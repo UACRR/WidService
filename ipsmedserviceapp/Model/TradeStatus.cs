@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ipsmedserviceapp.Model
+{
+    public partial class TradeStatus
+    {
+        public TradeStatus()
+        {
+            ReqTrade = new HashSet<ReqTrade>();
+        }
+
+        public int StatusCode { get; set; }
+        public string StatusNameUk { get; set; }
+        public string StatusNameRu { get; set; }
+        public string StatusNameEn { get; set; }
+
+        public virtual ICollection<ReqTrade> ReqTrade { get; set; }
+    }
+}

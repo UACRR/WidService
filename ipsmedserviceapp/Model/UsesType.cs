@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ipsmedserviceapp.Model
+{
+    public partial class UsesType
+    {
+        public UsesType()
+        {
+            Fixation = new HashSet<Fixation>();
+            UsesKind = new HashSet<UsesKind>();
+            UsesTypeTr = new HashSet<UsesTypeTr>();
+        }
+
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+
+        public virtual ICollection<Fixation> Fixation { get; set; }
+        public virtual ICollection<UsesKind> UsesKind { get; set; }
+        public virtual ICollection<UsesTypeTr> UsesTypeTr { get; set; }
+    }
+}

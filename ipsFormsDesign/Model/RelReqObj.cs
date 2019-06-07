@@ -1,0 +1,17 @@
+using ipsFormsDesign.Interfaces;
+using System;
+using System.Collections.Generic;
+
+namespace ipsFormsDesign.Model
+{
+    public partial class RelReqObj : IRelReqObj
+    {
+        public int CategoryCode { get; set; }
+        public int ReqType { get; set; }
+        public int KindGroupId { get; set; }
+        public int? CrkindCode { get; set; }
+
+        public virtual RequestType ReqTypeNavigation { get; set; }
+    }
+}
+

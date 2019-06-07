@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>sysAdminwp</RootNamespace>
     <AssemblyName>sysAdminwp</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -32,16 +33,39 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug IIS|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug IIS\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug HttpSys|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug HttpSys\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,33 +74,125 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2018.1.220.40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.WinControls.UI, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2018.1.220.40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2018.1.220.40\TelerikCommon.dll</HintPath>
+    <Reference Include="Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.RichTextEditor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="model\Category.cs" />
-    <Compile Include="model\CategoryTr.cs" />
-    <Compile Include="model\httpApp.cs" />
-    <Compile Include="RadForm1.cs">
+    <Compile Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.Designer.cs">
+      <DependentUpon>BaseSystemConstantControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.Designer.cs">
+      <DependentUpon>BaseTypePlaceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseKlr030Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseKlr030Control.Designer.cs">
+      <DependentUpon>BaseKlr030Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.Designer.cs">
+      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.Designer.cs">
+      <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.Designer.cs">
+      <DependentUpon>BaseCountryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.Designer.cs">
+      <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DictionaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadForm1.Designer.cs">
-      <DependentUpon>RadForm1.cs</DependentUpon>
+    <Compile Include="DictionaryForm.Designer.cs">
+      <DependentUpon>DictionaryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CopyrightKindLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CountryLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CreativeroleTypeLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\GenreTypeLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\Klr030Layer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\SystemConstantLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\TypePlaceLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DirectorLayers.cs" />
+    <Compile Include="PresenterComplexDictionaries\IDictionaryActions.cs" />
+    <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.Designer.cs">
+      <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTable.cs" />
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.resx">
+      <DependentUpon>BaseSystemConstantControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.resx">
+      <DependentUpon>BaseTypePlaceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseKlr030Control.resx">
+      <DependentUpon>BaseKlr030Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.resx">
+      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.resx">
+      <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCountryControl.resx">
+      <DependentUpon>BaseCountryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.resx">
+      <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="RadForm1.resx">
-      <DependentUpon>RadForm1.cs</DependentUpon>
+    <EmbeddedResource Include="DictionaryForm.resx">
+      <DependentUpon>DictionaryForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,8 +204,28 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="viewPageDictionaryControls\ComplexDictionaryControl.resx">
+      <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictBaseTypeI.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Category.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Continent.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKind.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKindTr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Country.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CountryTr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CrkindGroup.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030tr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.SystemConstant.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlaceTr.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,15 +235,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="workplace.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
-      <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
+      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
       <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
+      <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
+      <Name>IpsViewComponentLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
       <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
@@ -117,6 +262,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

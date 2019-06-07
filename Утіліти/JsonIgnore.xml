@@ -1,0 +1,105 @@
+<tables>
+    <item name="Customer">
+        <noignore>Company</noignore>
+        <noignore>Person</noignore>
+        <noignore>Client</noignore>
+        <noignore>BankAccount</noignore>
+        <noignore>RightHolder</noignore>
+        <noignore>Community</noignore>
+        <noignore>AnketaAddName</noignore>
+        <noignore>AgreementMaster</noignore>
+        <noignore>FileCustomer</noignore>
+        <noignore>Partner</noignore>
+        <noignore>AnketaExternal</noignore>
+    </item>
+    <item name="Client">
+        <noignore>ClnBusinessPlace</noignore>
+        <noignore>LicenseAgreement</noignore>
+        <noignore>MoneyReceived</noignore>
+    </item>
+    <item name="LicenseAgreement">
+        <noignore>Agr</noignore>
+        <noignore>License</noignore>
+        <noignore>LicenseAgrParam</noignore>
+        <noignore>PaidPeriod</noignore>
+        <noignore>Register</noignore>
+        <noignore>LicenseBigR</noignore>
+    </item>
+    <item Name="ClnBusinessPlace">
+        <noignore>ClnPlaceHoll</noignore>
+        <noignore>PlCodeNavigation</noignore>
+    </item>
+    <item Name="Company">
+        <noignore>RelEmployee</noignore>
+        <noignore>AnketaCompany</noignore>
+    </item>
+    <item Name="Person">
+        <noignore>AnketaPerson</noignore>
+    </item>
+    <item Name="RelEmployee">
+        <noignore>Empl</noignore>
+    </item>
+    <item Name="PaidPeriod">
+        <noignore>MoneyPeriodLink</noignore>
+        <noignore>Register</noignore>
+        <noignore>BrRegister</noignore>
+        <noignore>RegisterRatedList</noignore>
+    </item>
+    <item Name="MoneyPeriodLink">
+        <noignore>Paid</noignore>
+    </item>
+    <item Name="TypePlace"></item>
+    <item Name="License"></item>
+    <item Name="MoneyReceived"></item>
+    <item Name="LicenseBigR">
+        <noignore>ObjectRight</noignore>
+        <noignore>LicAuthorBr</noignore>
+        <noignore>MusicalDesign</noignore>
+    </item>
+    <item Name="MusicalDesign">
+        <noignore>Obj</noignore>
+    </item>
+    <item Name="LicAuthorBr"></item>
+    <item Name="RightHolder">
+        <noignore>TermsOfService</noignore>
+        <noignore>TerritoryExclude</noignore>
+        <noignore>TerritoryInclude</noignore>
+        <noignore>AnketaAddNick</noignore>
+        <noignore>CopyRight</noignore>
+        <noignore>Cust</noignore>
+    </item>
+    <item Name="CopyRight">
+        <noignore>LicAuthorBr</noignore>
+        <noignore>WorkRh</noignore>
+        <noignore>Obj</noignore>
+    </item>
+    <item Name="WorkRh"></item>
+    <item Name="AgreementAddRh"></item>
+    <item Name="AgreementAddBr"></item>
+    <item Name="AgreementMaster">
+        <noignore>AgreementAddPartner</noignore>
+	<noignore>AgreementAddRh</noignore>
+        <noignore>AgreementAddBr</noignore>     
+    </item>
+    <item Name="Register">
+        <noignore>Distribution</noignore>
+        <noignore>RegisterItem</noignore>
+    </item>
+    <item Name="RegisterItem">
+        <noignore>Obj</noignore>
+        <noignore>RegisterCount</noignore>
+        <noignore>RegisterExtra</noignore>
+        <noignore>RegisterItemFix</noignore>
+    </item>
+    <item Name="Distribution">
+        <noignore>DistributionItem</noignore>
+    </item>
+	<item Name="CatalogStatus">
+        <noignore>CatalogStatusTr</noignore>
+    </item>
+	<item Name="AgrLicenseType">
+        <noignore>UsesKindNavigation</noignore>
+    </item>
+	<item Name="UsesKind"></item>
+	<item Name="CreativeRoleType"></item>
+</tables>

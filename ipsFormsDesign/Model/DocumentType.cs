@@ -1,0 +1,24 @@
+using ipsFormsDesign.Interfaces;
+using System;
+using System.Collections.Generic;
+
+namespace ipsFormsDesign.Model
+{
+    public partial class DocumentType : IDocumentType
+    {
+        public DocumentType()
+        {
+            DocumentTypeTr = new ObservableListSource<DocumentTypeTr>();
+            RelCounterDoc = new ObservableListSource<RelCounterDoc>();
+            RelDocAgrType = new ObservableListSource<RelDocAgrType>();
+        }
+
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+
+        public virtual ObservableListSource<DocumentTypeTr> DocumentTypeTr { get; set; }
+        public virtual ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
+        public virtual ObservableListSource<RelDocAgrType> RelDocAgrType { get; set; }
+    }
+}
+

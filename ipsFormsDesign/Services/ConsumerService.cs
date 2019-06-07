@@ -1,0 +1,377 @@
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
+using WebAPIConnector;
+
+using ipsFormsDesign.Enums;
+
+namespace ipsFormsDesign.Services
+{
+    public class ConsumerService// : IConsumerService
+    {
+        protected readonly ApiConnector _webApi = new ApiConnector();
+        private readonly string _prefix = "consumer/";
+
+        public AnketaDictionaties GetDictionary()
+        {
+            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
+            return anketaDic;
+        }
+
+        public ObjectRightDictionaries GetObjectRightDictionaries()
+        {
+            var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
+            return dictionaries;
+        }
+
+        public Customer GetData(int custId)
+        {
+            var consumer = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString());
+            return consumer;
+        }
+
+        public ConsumerSmallRightView GetShortInfoById(int custId)
+        {
+            var consumerInfo = _webApi.GetItemById<ConsumerSmallRightView>("consumer/info", custId.ToString());
+            return consumerInfo;
+        }
+
+        public Customer GetExternalById(int custId)
+        {
+            var item = _webApi.GetItemById<Customer>("consumers/external", custId.ToString());
+            return item;
+        }
+
+        public bool SaveExternal(Customer customer)
+        {
+            if (customer.CustId == 0) // Новий споживач
+            {
+                return _webApi.NewItem("consumers/external", customer);
+            }
+
+            return _webApi.UpdateItem("consumers/external", customer.CustId.ToString(), customer);
+        }
+
+        #region * * * Register Методи обробки 
+
+        /// <summary>
+        /// Отримати дані звіту
+        /// </summary>
+        /// <param name="regId">Ід звіту</param>
+        /// <returns></returns>
+        public List<RegisterItem> GetRegisterItems(int regId)
+        {
+            string url = $"consumer/period/register/RegisterItem/{regId}";
+            return _webApi.GetList<RegisterItem>(url);
+        }
+
+        /// <summary>
+        /// Отримати список Р/Л для споживача з параметром
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public Customer GetRatedListForCust( int custId )
+        {
+            string url = _prefix + "period/register/RatedList";
+            KeyValuePair<string, string> customer = new KeyValuePair<string, string>("custId", custId.ToString());
+            return _webApi.GetItemByIdWithParam<Customer>(url, string.Empty, customer);
+        }
+
+        /// <summary>
+        /// Отримати Р/Л по Ідентифікатору
+        /// </summary>
+        /// <param name="rmId"></param>
+        /// <returns></returns>
+        public RegisterRatedList GetRatedList( int rmId )
+        {
+            string url = _prefix + "period/register/RatedList";
+            return _webApi.GetItemById<RegisterRatedList>(url, rmId.ToString());
+        }
+
+        public bool DeleteRatedList(int rmId)
+        {
+            string url = _prefix + "period/register/RatedList";
+            return _webApi.DeleteItem(url, rmId.ToString());
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="regRatedList"></param>
+        /// <param name="retObject"></param>
+        /// <returns></returns>
+        public bool SaveRegisterRatedList(RegisterRatedList regRatedList, out RegisterRatedList retObject)
+        {
+            string rmId = regRatedList.RmId == 0 ? string.Empty : regRatedList.RmId.ToString();
+            return _webApi.UpdateItemWithReturn("consumer/period/register/RatedList", rmId, regRatedList, out retObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public bool SaveRegister(Register body)
+        {
+            string id = body.RegId == 0 ? string.Empty : body.RegId.ToString();
+            return _webApi.UpdateItem<Register>("consumer/period/register", id, body);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public bool DeleteRegister(Register body)
+        {
+            return _webApi.DeleteItem("consumer/period/register", body.RegId.ToString());
+        }
+
+        public Register GetRegister( int regId )
+        {
+            string url = _prefix + "period/register";
+            return _webApi.GetItemById<Register>(url, regId.ToString());
+        }
+
+        /// <summary>
+        /// Зміна стану звітів
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public List<Register> SetRegisterState(RegisterState state, List<Register> list )
+        {
+            string url = _prefix + "period/register/state";
+            List<Register> retList = null;
+
+            var ret = _webApi.UpdateListItemWithReturn(url, ((int)state).ToString(), list, out retList);
+            if (ret == true)
+                return retList;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Встановити стан періоду
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="period"></param>
+        /// <returns></returns>
+        public bool SetPeriodState(PeriodState state, PaidPeriod period)
+        {
+            string url = _prefix + $"period/state/{period.PeriodId}/{(int)state}";
+            return _webApi.UpdateItem(url, string.Empty, period);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Получити дані для авто заповнення
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public IList<AutoCompleteData> GetAutoCompleteList(string filter)
+        {
+            string url = $"consumer/listAutoCompleted";
+            KeyValuePair<string, string> param = new KeyValuePair<string, string>("filter", filter);
+            var list = _webApi.GetList<AutoCompleteData>(url, param);
+            return list;
+        }
+
+        /// <summary>
+        /// отримати шаблон customer
+        /// </summary>
+        /// <param name="custType"></param>
+        /// <returns></returns>
+        public Customer NewCustomer(int custType)
+        {
+            var anketaDic = _webApi.GetItemById<Customer>("consumer/newconsumer", custType.ToString());
+            return anketaDic;
+        }
+
+        /// <summary>
+        /// Зберегти customer
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <returns></returns>
+        public bool Save(Customer cust)
+        {
+            if (cust.CustId == 0) // Новий споживач
+            {
+                return _webApi.NewItem<Customer>("consumer/newconsumer", cust);
+            }
+
+            return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
+        }
+
+        /// <summary>
+        /// Використовується для збереження змін генерального договору великих прав
+        /// </summary>
+        /// <param name="agrId">ID agreementAddBr</param>
+        /// <param name="agreement">Генеральна угода</param>
+        /// <returns></returns>
+        public bool SaveAgreementAddBrById(int agrId, LicenseAgreement agreement)
+        {
+            return _webApi.UpdateItem<LicenseAgreement>("consumer/genagrprol", agrId.ToString(), agreement);
+        }
+
+        #region * * * FILES * * * 
+
+        /// <summary>
+        /// Запис файла на сервер
+        /// </summary>
+        /// <param name="custId">Ід користувача</param>
+        /// <param name="typeDocument">Тип зі довідника</param>
+        /// <param name="comment">Коментар</param>
+        /// <param name="Document">назва файлу з повнм шляхом</param>
+        public void uploadDocument(int custId, int typeDocument, string comment, string Document)
+        {
+            string url = $"consumer/Document/{custId}/{typeDocument}";
+            var fileName = Path.GetFileName(Document);
+            FileStream document = new FileStream(Document, FileMode.Open);
+            Task.Run(() => _webApi.uploadFile(url, fileName, comment, document)).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Завантажити файл (документ) з сервера
+        /// </summary>
+        /// <param name="custId">ID користувача</param>
+        /// <param name="typeDocument">Тип файлу</param>
+        /// <param name="fileName">Найменування файлу</param>
+        /// <returns>File-stream</returns>
+        public Stream DownloadDocument(int custId, int typeDocument, string fileName)
+        {
+            try
+            {
+                string checkExistUrl = $"consumer/existdocument/{custId}/{typeDocument}/{fileName}";
+                var isExistFile = _webApi.GetItemById<FileNotFoundException>(checkExistUrl, null);
+                if (isExistFile != null)
+                    throw new FileNotFoundException(isExistFile.Message, isExistFile.FileName);
+
+                string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";
+                return Task.Run(() => _webApi.downloadFile(url)).GetAwaiter().GetResult();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Видалити файл з сервера по ID 
+        /// </summary>
+        /// <param name="fileId">ID файла</param>
+        /// <returns></returns>
+        public bool DeleteFileById(int fileId)
+        {
+            string url = "consumer/document/delete";
+            return _webApi.DeleteItem(url, fileId.ToString());
+        }
+
+        #endregion
+
+
+        #region Payments
+        /// <summary>
+        /// Отримати всі зовнішні платежі користувача 
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public List<ExternalPay> GetCustomerPays( int custId )
+        {
+            string url = "consumer/Period/Payments/" + custId.ToString();
+            return _webApi.GetList<ExternalPay>(url); 
+        }
+
+        /// <summary>
+        /// Збереження підтвердження Споживача по великим правам
+        /// </summary>
+        /// <param name="licId"></param>
+        /// <param name="worrh"></param>
+        /// <returns></returns>
+        public bool SaveBRWorkRH(int licId, List<WorkRh> worrh)
+        { 
+            string url = string.Concat(_prefix, "BR/WorkRH");
+            return _webApi.UpdateItem<List<WorkRh>>(url, licId.ToString(), worrh);
+        }
+
+        /// <summary>
+        /// Збереження нових зовнішніх платежів (відлагодження)
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="pays"></param>
+        /// <returns></returns>
+        public bool SaveNewPayments( int custId, List<ExternalPay> pays )
+        {
+            string url = "consumer/Period/Payments";
+            var ret = _webApi.UpdateItem(url, custId.ToString(), pays);
+            return ret;
+        }
+
+        /// <summary>
+        /// Перевод типу ліц. договору з Заявки в Довідку та ліц договір.
+        /// </summary>
+        /// <param name="lic"></param>
+        /// <param name="typeId">Тип ліцензії</param>
+        /// <returns></returns>
+        public bool SetLicenseType(LicenseAgreement lic, LicType typeId)
+        {
+            string url = _prefix + $"license/type/{lic.LicId}/{(int)typeId}";
+            return _webApi.UpdateItem<LicenseAgreement>(url, null, null);
+
+        }
+ 
+        /// <summary>
+        /// Отримати всю інормацію по поточним періодам оплати для інтерфейсу Розрахунки
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public Customer getPaidInfo( int custId )
+        {
+            return _webApi.GetItemById<Customer>("consumer/Period/GetCustomerInfo", custId.ToString());
+        }
+
+        /// <summary>
+        /// Зберігання нових періодів
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="periods">Нові періоди</param>
+        /// <returns></returns>
+        public List<PaidPeriod> SavePeriods(int custId, List<PaidPeriod> periods)
+        {
+            List<PaidPeriod> retList = null;
+            var retCode = _webApi.UpdateListItemWithReturn("consumer/Period/Payments/paidperiods", custId.ToString(), periods, out retList );
+            return retList;
+        }
+
+        public bool SetLicAgreementStatus(LicenseAgreement agr, int version, int status, bool toChangeVersion = false)
+        {
+            string url = $"consumer/license/State/{version}/{status}/{(toChangeVersion ? 1 : 0)}";
+            var ret = _webApi.UpdateItem<LicenseAgreement>(url, null, agr );
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Зберігання прив'язаних сум
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="listLinks">Прив'язані суми</param>
+        /// <returns></returns>
+        public List<MoneyPeriodLink> SaveLink(int custId, List<MoneyPeriodLink> listLinks)
+        {
+            List<MoneyPeriodLink> list;
+            var retCode = _webApi.UpdateListItemWithReturn("consumer/Period/Payments/linkperiods", custId.ToString(), listLinks, out list );
+            if (retCode)
+                return list;
+            return null;
+        }
+        #endregion
+
+    }
+}

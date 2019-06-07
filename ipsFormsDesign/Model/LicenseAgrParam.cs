@@ -1,0 +1,39 @@
+using ipsFormsDesign.Interfaces;
+using System;
+using System.Collections.Generic;
+
+namespace ipsFormsDesign.Model
+{
+    public partial class LicenseAgrParam : ILicenseAgrParam
+    {
+        public LicenseAgrParam()
+        {
+            License = new ObservableListSource<License>();
+        }
+
+        public int LicId { get; set; }
+        public int LicVersion { get; set; }
+        public string LicNum { get; set; }
+        public DateTime? LicDate { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
+        public decimal? MinAmount { get; set; }
+        public decimal? RateAmount { get; set; }
+        public bool? IsAutoprolog { get; set; }
+        public decimal? AddRate { get; set; }
+        public decimal? IndxInfl { get; set; }
+        public int? PeriodCode { get; set; }
+        public int? DayForPay { get; set; }
+        public int? LicStatus { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
+        public int? AnkVersion { get; set; }
+        public string Comment { get; set; }
+
+        public virtual LicenseAgreement Lic { get; set; }
+        public virtual AgreementStatus LicStatusNavigation { get; set; }
+        public virtual Period PeriodCodeNavigation { get; set; }
+        public virtual ObservableListSource<License> License { get; set; }
+    }
+}
+

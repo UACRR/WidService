@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>MediaServiceDb</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{f08cc997-76a4-4cdd-bd90-f186acc54fe9}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql140DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>MediaServiceDb</RootNamespace>
+    <AssemblyName>MediaServiceDb</AssemblyName>
+    <ModelCollation>1058,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Ukrainian_100_CI_AI</DefaultCollation>
+    <TargetFrameworkProfile />
+    <PermissionSet>SAFE</PermissionSet>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>ipskeys.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug IIS|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug HttpSys|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\User Defined Types\" />
+    <Folder Include="Assemblies\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.PolicyEnum">
+      <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.PolicyEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.RegSvrEnum">
+      <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo">
+      <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SmoExtended">
+      <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.SmoExtended.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum">
+      <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="MediaServiceDb">
+      <HintPath>Assemblies\MediaServiceDb.dll</HintPath>
+      <SqlAssemblyName>MediaServiceDb</SqlAssemblyName>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+      <SqlOwnerName>dbo</SqlOwnerName>
+      <SqlPermissionSet>SAFE</SqlPermissionSet>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ipskeys.snk" />
+    <None Include="Assemblies\MediaServiceDb.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\WorkTypeTr.sql" />
+    <Build Include="dbo\Tables\WorkType.sql" />
+    <Build Include="dbo\Tables\WorkRH.sql" />
+    <Build Include="dbo\Tables\UsesTypeTr.sql" />
+    <Build Include="dbo\Tables\UsesType.sql" />
+    <Build Include="dbo\Tables\UsesKindTr.sql" />
+    <Build Include="dbo\Tables\UsesKind.sql" />
+    <Build Include="dbo\Tables\UserRoleTypeTr.sql" />
+    <Build Include="dbo\Tables\UserRoleType.sql" />
+    <Build Include="dbo\Tables\userRole.sql" />
+    <Build Include="dbo\Tables\UseMediaTypeTr.sql" />
+    <Build Include="dbo\Tables\UseMediaType.sql" />
+    <Build Include="dbo\Tables\UseAreaTypeTr.sql" />
+    <Build Include="dbo\Tables\UseAreaType.sql" />
+    <Build Include="dbo\Tables\TypeVATTr.sql" />
+    <Build Include="dbo\Tables\TypeVAT.sql" />
+    <Build Include="dbo\Tables\TypePlaceTr.sql" />
+    <Build Include="dbo\Tables\TypePlaceParamTr.sql" />
+    <Build Include="dbo\Tables\TypePlaceParam.sql" />
+    <Build Include="dbo\Tables\TypePlace.sql" />
+    <Build Include="dbo\Tables\TypeMethodGetTr.sql" />
+    <Build Include="dbo\Tables\TypeMethodGet.sql" />
+    <Build Include="dbo\Tables\TypeInternetObjectTr.sql" />
+    <Build Include="dbo\Tables\TypeInternetObject.sql" />
+    <Build Include="dbo\Tables\TradeStatus.sql" />
+    <Build Include="dbo\Tables\TerritoryInclude.sql" />
+    <Build Include="dbo\Tables\TerritoryExclude.sql" />
+    <Build Include="dbo\Tables\TermUseTr.sql" />
+    <Build Include="dbo\Tables\TermUse.sql" />
+    <Build Include="dbo\Tables\TermsOfService.sql" />
+    <Build Include="dbo\Tables\TableType.sql" />
+    <Build Include="dbo\Tables\TableObject.sql" />
+    <Build Include="dbo\Tables\TableColumnTech.sql" />
+    <Build Include="dbo\Tables\TableColumn.sql" />
+    <Build Include="dbo\Tables\SpecTypeTr.sql" />
+    <Build Include="dbo\Tables\SpecType.sql" />
+    <Build Include="dbo\Tables\SexTypeTr.sql" />
+    <Build Include="dbo\Tables\SexType.sql" />
+    <Build Include="dbo\Tables\SeekTypeTr.sql" />
+    <Build Include="dbo\Tables\SeekType.sql" />
+    <Build Include="dbo\Tables\SeekObject.sql" />
+    <Build Include="dbo\Tables\SaldoDay.sql" />
+    <Build Include="dbo\Tables\RightHolder.sql" />
+    <Build Include="dbo\Tables\RHolderTypeTr.sql" />
+    <Build Include="dbo\Tables\RHolderType.sql" />
+    <Build Include="dbo\Tables\ResidentTypeTr.sql" />
+    <Build Include="dbo\Tables\ResidentType.sql" />
+    <Build Include="dbo\Tables\RequestTypeTr.sql" />
+    <Build Include="dbo\Tables\RequestType.sql" />
+    <Build Include="dbo\Tables\RequestTVRadio.sql" />
+    <Build Include="dbo\Tables\RequestStatusTypeTr.sql" />
+    <Build Include="dbo\Tables\RequestStatusType.sql" />
+    <Build Include="dbo\Tables\RequestSerial.sql" />
+    <Build Include="dbo\Tables\RequestOther.sql" />
+    <Build Include="dbo\Tables\RequestMovie.sql" />
+    <Build Include="dbo\Tables\RequestInternet.sql" />
+    <Build Include="dbo\Tables\RequestAimTr.sql" />
+    <Build Include="dbo\Tables\RequestAim.sql" />
+    <Build Include="dbo\Tables\RequestAdvertising.sql" />
+    <Build Include="dbo\Tables\RequestAdapt.sql" />
+    <Build Include="dbo\Tables\Request.sql" />
+    <Build Include="dbo\Tables\ReqTrade.sql" />
+    <Build Include="dbo\Tables\ReqLocationUse.sql" />
+    <Build Include="dbo\Tables\ReqCustomer.sql" />
+    <Build Include="dbo\Tables\ReqAgreementStatus.sql" />
+    <Build Include="dbo\Tables\ReqAgreement.sql" />
+    <Build Include="dbo\Tables\Reports.sql" />
+    <Build Include="dbo\Tables\RelTVEpisode.sql" />
+    <Build Include="dbo\Tables\RelSerialEpisode.sql" />
+    <Build Include="dbo\Tables\RelReqObj.sql" />
+    <Build Include="dbo\Tables\RelReqMedia.sql" />
+    <Build Include="dbo\Tables\RelPopGenre.sql" />
+    <Build Include="dbo\Tables\RelObjPerformer.sql" />
+    <Build Include="dbo\Tables\RelMovieEpisode.sql" />
+    <Build Include="dbo\Tables\relLicCopyR.sql" />
+    <Build Include="dbo\Tables\RelGenreSerial.sql" />
+    <Build Include="dbo\Tables\relGenreRole.sql" />
+    <Build Include="dbo\Tables\RelGenrePercent.sql" />
+    <Build Include="dbo\Tables\RelGenreMovie.sql" />
+    <Build Include="dbo\Tables\RelGenreAdapt.sql" />
+    <Build Include="dbo\Tables\relEtRole.sql" />
+    <Build Include="dbo\Tables\relEtGenre.sql" />
+    <Build Include="dbo\Tables\RelEmployee.sql" />
+    <Build Include="dbo\Tables\RelDocAgrType.sql" />
+    <Build Include="dbo\Tables\relCounterDoc.sql" />
+    <Build Include="dbo\Tables\RelAdaptUseArea.sql" />
+    <Build Include="dbo\Tables\RegisterStatusTr.sql" />
+    <Build Include="dbo\Tables\RegisterStatus.sql" />
+    <Build Include="dbo\Tables\RegisterRatedList.sql" />
+    <Build Include="dbo\Tables\RegisterListStatusTr.sql" />
+    <Build Include="dbo\Tables\RegisterListStatus.sql" />
+    <Build Include="dbo\Tables\RegisterItemType.sql" />
+    <Build Include="dbo\Tables\RegisterItemFix.sql" />
+    <Build Include="dbo\Tables\RegisterItem.sql" />
+    <Build Include="dbo\Tables\RegisterExtra.sql" />
+    <Build Include="dbo\Tables\RegisterCount.sql" />
+    <Build Include="dbo\Tables\RegisterAuthors.sql" />
+    <Build Include="dbo\Tables\Register.sql" />
+    <Build Include="dbo\Tables\RegionTr.sql" />
+    <Build Include="dbo\Tables\Region.sql" />
+    <Build Include="dbo\Tables\PrePayTypeTr.sql" />
+    <Build Include="dbo\Tables\PrePayType.sql" />
+    <Build Include="dbo\Tables\PositionTypeTr.sql" />
+    <Build Include="dbo\Tables\PositionType.sql" />
+    <Build Include="dbo\Tables\PortalSupportRights.sql" />
+    <Build Include="dbo\Tables\PortalObjectRights.sql" />
+    <Build Include="dbo\Tables\PopGenreTr.sql" />
+    <Build Include="dbo\Tables\PopGenre.sql" />
+    <Build Include="dbo\Tables\Person.sql" />
+    <Build Include="dbo\Tables\PermitTypeTr.sql" />
+    <Build Include="dbo\Tables\PermitType.sql" />
+    <Build Include="dbo\Tables\PeriodTr.sql" />
+    <Build Include="dbo\Tables\PeriodStatusTr.sql" />
+    <Build Include="dbo\Tables\PeriodStatus.sql" />
+    <Build Include="dbo\Tables\Period.sql" />
+    <Build Include="dbo\Tables\PerformTypeTr.sql" />
+    <Build Include="dbo\Tables\PerformType.sql" />
+    <Build Include="dbo\Tables\Performer.sql" />
+    <Build Include="dbo\Tables\PayTurn.sql" />
+    <Build Include="dbo\Tables\PayMethodTypeTr.sql" />
+    <Build Include="dbo\Tables\PayMethodType.sql" />
+    <Build Include="dbo\Tables\PaymentStatusTr.sql" />
+    <Build Include="dbo\Tables\PaymentStatus.sql" />
+    <Build Include="dbo\Tables\PaymentKindTr.sql" />
+    <Build Include="dbo\Tables\PaymentKind.sql" />
+    <Build Include="dbo\Tables\PaymentCase.sql" />
+    <Build Include="dbo\Tables\PartnerClient.sql" />
+    <Build Include="dbo\Tables\Partner.sql" />
+    <Build Include="dbo\Tables\ParametersListBox.sql" />
+    <Build Include="dbo\Tables\PaidPeriod.sql" />
+    <Build Include="dbo\Tables\ObjectStatusTr.sql" />
+    <Build Include="dbo\Tables\ObjectStatus.sql" />
+    <Build Include="dbo\Tables\ObjectRight.sql" />
+    <Build Include="dbo\Tables\ObjActTr.sql" />
+    <Build Include="dbo\Tables\ObjAct.sql" />
+    <Build Include="dbo\Tables\myCopyRightType.sql" />
+    <Build Include="dbo\Tables\MyCategory.sql" />
+    <Build Include="dbo\Tables\MyAnketa.sql" />
+    <Build Include="dbo\Tables\MusicalDesign.sql" />
+    <Build Include="dbo\Tables\MoneyTypeTr.sql" />
+    <Build Include="dbo\Tables\MoneyType.sql" />
+    <Build Include="dbo\Tables\MoneyReceived.sql" />
+    <Build Include="dbo\Tables\MoneyPrepayLink.sql" />
+    <Build Include="dbo\Tables\MoneyPeriodLink.sql" />
+    <Build Include="dbo\Tables\MoneyLinkStatusTr.sql" />
+    <Build Include="dbo\Tables\MoneyLinkStatus.sql" />
+    <Build Include="dbo\Tables\ModifyTypeTr.sql" />
+    <Build Include="dbo\Tables\ModifyType.sql" />
+    <Build Include="dbo\Tables\ModifyTextTypeTr.sql" />
+    <Build Include="dbo\Tables\ModifyTextType.sql" />
+    <Build Include="dbo\Tables\ModifyMusicTypeTr.sql" />
+    <Build Include="dbo\Tables\ModifyMusicType.sql" />
+    <Build Include="dbo\Tables\MediaTrack.sql" />
+    <Build Include="dbo\Tables\MediaSearchData.sql" />
+    <Build Include="dbo\Tables\MediaFile.sql" />
+    <Build Include="dbo\Tables\licPlace.sql" />
+    <Build Include="dbo\Tables\LicenseTypeTr.sql" />
+    <Build Include="dbo\Tables\LicenseType.sql" />
+    <Build Include="dbo\Tables\LicenseClass.sql" />
+    <Build Include="dbo\Tables\LicenseBigR.sql" />
+    <Build Include="dbo\Tables\LicenseAgrParam.sql" />
+    <Build Include="dbo\Tables\LicenseAgreement.sql" />
+    <Build Include="dbo\Tables\License.sql" />
+    <Build Include="dbo\Tables\LicAuthorBR.sql" />
+    <Build Include="dbo\Tables\LegalBasisTr.sql" />
+    <Build Include="dbo\Tables\LegalBasis.sql" />
+    <Build Include="dbo\Tables\Language.sql" />
+    <Build Include="dbo\Tables\LangTr.sql" />
+    <Build Include="dbo\Tables\Lang.sql" />
+    <Build Include="dbo\Tables\KL_R031.sql" />
+    <Build Include="dbo\Tables\KL_R030Tr.sql" />
+    <Build Include="dbo\Tables\KL_R030.sql" />
+    <Build Include="dbo\Tables\KindSerialTr.sql" />
+    <Build Include="dbo\Tables\KindSerial.sql" />
+    <Build Include="dbo\Tables\KindFilmTr.sql" />
+    <Build Include="dbo\Tables\KindFilm.sql" />
+    <Build Include="dbo\Tables\KindCompositionTr.sql" />
+    <Build Include="dbo\Tables\KindComposition.sql" />
+    <Build Include="dbo\Tables\ItemStatusTr.sql" />
+    <Build Include="dbo\Tables\ItemStatus.sql" />
+    <Build Include="dbo\Tables\Invoice.sql" />
+    <Build Include="dbo\Tables\GenreTypeTr.sql" />
+    <Build Include="dbo\Tables\GenreType.sql" />
+    <Build Include="dbo\Tables\FolkTypeTr.sql" />
+    <Build Include="dbo\Tables\FolkType.sql" />
+    <Build Include="dbo\Tables\FixStorageDevice.sql" />
+    <Build Include="dbo\Tables\FixStageStatus.sql" />
+    <Build Include="dbo\Tables\FixFile.sql" />
+    <Build Include="dbo\Tables\Fixation.sql" />
+    <Build Include="dbo\Tables\FileType.sql" />
+    <Build Include="dbo\Tables\FileCustomer.sql" />
+    <Build Include="dbo\Tables\ExternalPay.sql" />
+    <Build Include="dbo\Tables\EtRole.sql" />
+    <Build Include="dbo\Tables\EtGenreRole.sql" />
+    <Build Include="dbo\Tables\EtGenreRate.sql" />
+    <Build Include="dbo\Tables\EtGenre.sql" />
+    <Build Include="dbo\Tables\EpisodeTypeTr.sql" />
+    <Build Include="dbo\Tables\EpisodeType.sql" />
+    <Build Include="dbo\Tables\Employee.sql" />
+    <Build Include="dbo\Tables\DocumentTypeTr.sql" />
+    <Build Include="dbo\Tables\DocumentType.sql" />
+    <Build Include="dbo\Tables\DocText.sql" />
+    <Build Include="dbo\Tables\DocReq.sql" />
+    <Build Include="dbo\Tables\DocPreparePay.sql" />
+    <Build Include="dbo\Tables\DistributionItem.sql" />
+    <Build Include="dbo\Tables\Distribution.sql" />
+    <Build Include="dbo\Tables\DistribTypeTr.sql" />
+    <Build Include="dbo\Tables\DistribType.sql" />
+    <Build Include="dbo\Tables\DistribStatusTr.sql" />
+    <Build Include="dbo\Tables\DistribStatus.sql" />
+    <Build Include="dbo\Tables\DictCategory.sql" />
+    <Build Include="dbo\Tables\DicList.sql" />
+    <Build Include="dbo\Tables\DicCategoryItems.sql" />
+    <Build Include="dbo\Tables\CustomerTypeTr.sql" />
+    <Build Include="dbo\Tables\CustomerType.sql" />
+    <Build Include="dbo\Tables\CustomerStatusTr.sql" />
+    <Build Include="dbo\Tables\CustomerStatus.sql" />
+    <Build Include="dbo\Tables\Customer.sql" />
+    <Build Include="dbo\Tables\CustCmRight.sql" />
+    <Build Include="dbo\Tables\CurrencyCourse.sql" />
+    <Build Include="dbo\Tables\Currency.sql" />
+    <Build Include="dbo\Tables\CRKindGroupTr.sql" />
+    <Build Include="dbo\Tables\CRKindGroup.sql" />
+    <Build Include="dbo\Tables\CRightStatusTr.sql" />
+    <Build Include="dbo\Tables\CRightStatus.sql" />
+    <Build Include="dbo\Tables\CreativeRoleTypeTr.sql" />
+    <Build Include="dbo\Tables\CreativeRoleType.sql" />
+    <Build Include="dbo\Tables\CountryTr.sql" />
+    <Build Include="dbo\Tables\Country.sql" />
+    <Build Include="dbo\Tables\CounterNumber.sql" />
+    <Build Include="dbo\Tables\CopyrightTypeTr.sql" />
+    <Build Include="dbo\Tables\CopyrightType.sql" />
+    <Build Include="dbo\Tables\CopyrightKindTr.sql" />
+    <Build Include="dbo\Tables\CopyrightKind.sql" />
+    <Build Include="dbo\Tables\CopyRight.sql" />
+    <Build Include="dbo\Tables\ContinentTr.sql" />
+    <Build Include="dbo\Tables\Continent.sql" />
+    <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="dbo\Tables\Community.sql" />
+    <Build Include="dbo\Tables\CommentCause.sql" />
+    <Build Include="dbo\Tables\ClnPlaceHoll.sql" />
+    <Build Include="dbo\Tables\ClnBusinessPlace.sql" />
+    <Build Include="dbo\Tables\ClientGroupTr.sql" />
+    <Build Include="dbo\Tables\ClientGroup.sql" />
+    <Build Include="dbo\Tables\ClientBrandTr.sql" />
+    <Build Include="dbo\Tables\ClientBrand.sql" />
+    <Build Include="dbo\Tables\Client.sql" />
+    <Build Include="dbo\Tables\CategoryTr.sql" />
+    <Build Include="dbo\Tables\CategoryStatusTypeTr.sql" />
+    <Build Include="dbo\Tables\CategoryStatusType.sql" />
+    <Build Include="dbo\Tables\Category.sql" />
+    <Build Include="dbo\Tables\BrRegItem.sql" />
+    <Build Include="dbo\Tables\BrRegister.sql" />
+    <Build Include="dbo\Tables\BankAccount.sql" />
+    <Build Include="dbo\Tables\Authors.sql" />
+    <Build Include="dbo\Tables\AspNetUserTokens.sql" />
+    <Build Include="dbo\Tables\AspNetUsers.sql" />
+    <Build Include="dbo\Tables\AspNetUserRoles.sql" />
+    <Build Include="dbo\Tables\AspNetUserLogins.sql" />
+    <Build Include="dbo\Tables\AspNetUserClaims.sql" />
+    <Build Include="dbo\Tables\AspNetRoles.sql" />
+    <Build Include="dbo\Tables\AspNetRoleClaims.sql" />
+    <Build Include="dbo\Tables\AnketaStatusTr.sql" />
+    <Build Include="dbo\Tables\AnketaStatus.sql" />
+    <Build Include="dbo\Tables\AnketaPerson.sql" />
+    <Build Include="dbo\Tables\AnketaExternal.sql" />
+    <Build Include="dbo\Tables\AnketaCompany.sql" />
+    <Build Include="dbo\Tables\AnketaAddParam.sql" />
+    <Build Include="dbo\Tables\AnketaAddNick.sql" />
+    <Build Include="dbo\Tables\AnketaAddName.sql" />
+    <Build Include="dbo\Tables\AlgorithmType.sql" />
+    <Build Include="dbo\Tables\AgrLicenseTypeTr.sql" />
+    <Build Include="dbo\Tables\AgrLicenseType.sql" />
+    <Build Include="dbo\Tables\AgreementTypeTr.sql" />
+    <Build Include="dbo\Tables\AgreementType.sql" />
+    <Build Include="dbo\Tables\AgreementStatusTr.sql" />
+    <Build Include="dbo\Tables\AgreementStatus.sql" />
+    <Build Include="dbo\Tables\AgreementMaster.sql" />
+    <Build Include="dbo\Tables\AgreementAddRH.sql" />
+    <Build Include="dbo\Tables\AgreementAddPartner.sql" />
+    <Build Include="dbo\Tables\AgreementAddCommunity.sql" />
+    <Build Include="dbo\Tables\AgreementAddBR.sql" />
+    <Build Include="dbo\Tables\ActivityTypeTr.sql" />
+    <Build Include="dbo\Tables\ActivityType.sql" />
+    <Build Include="dbo\Tables\AccountStatusTr.sql" />
+    <Build Include="dbo\Tables\AccountStatus.sql" />
+    <Build Include="dbo\Tables\AccountBalsTr.sql" />
+    <Build Include="dbo\Tables\AccountBals.sql" />
+    <Build Include="dbo\Tables\Account.sql" />
+    <Build Include="dbo\Views\vTsk_vBRLicense.sql" />
+    <Build Include="dbo\Views\vTsk_7_FixDistr.sql" />
+    <Build Include="dbo\Views\vTsk_6_ListPClient.sql" />
+    <Build Include="dbo\Views\vTsk_6_ListPartner.sql" />
+    <Build Include="dbo\Views\vTsk_6_ListFreeCln.sql" />
+    <Build Include="dbo\Views\vtsk_4_OR_PROFITFORYEAR.sql" />
+    <Build Include="dbo\Views\vtsk_4_CUSTOMER_PROFITFORYEAR.sql" />
+    <Build Include="dbo\Views\vtsk_3_WRH_03.sql" />
+    <Build Include="dbo\Views\vtsk_3_WRH_02.sql" />
+    <Build Include="dbo\Views\vtsk_3_WRH_01.sql" />
+    <Build Include="dbo\Views\vtsk_3_R_04.sql" />
+    <Build Include="dbo\Views\vtsk_3_OR_03_V3.sql" />
+    <Build Include="dbo\Views\vtsk_3_OR_03_V2.sql" />
+    <Build Include="dbo\Views\vtsk_3_OR_03.sql" />
+    <Build Include="dbo\Views\vtsk_3_OR_01.sql" />
+    <Build Include="dbo\Views\vTSK_3_ObjectMusicanLiric.sql" />
+    <Build Include="dbo\Views\vTsk_3_ListObjectRight01.sql" />
+    <Build Include="dbo\Views\vTsk_1_Moneyundescrib.sql" />
+    <Build Include="dbo\Views\vTSK_1_MoneyPeriod.sql" />
+    <Build Include="dbo\Views\vTsk_1_MoneyLink.sql" />
+    <Build Include="dbo\Views\vtsk_1_MasterListBR.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListRightHolder01.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListRHCommunity.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListCRKindCommunity.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer02.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer01.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListCommunity.sql" />
+    <Build Include="dbo\Views\vtsk_1_LicenseAgreementList.sql" />
+    <Build Include="dbo\Views\vTSK_1_BRRegister.sql" />
+    <Build Include="dbo\Views\vTSK_1_BRObjects.sql" />
+    <Build Include="dbo\Views\vTsk_1_BRNotice.sql" />
+    <Build Include="dbo\Views\vTsk_1_BRMusic.sql" />
+    <Build Include="dbo\Views\vTsk_1_BRMoneyItem.sql" />
+    <Build Include="dbo\Views\vTSK_1_BRMaster.sql" />
+    <Build Include="dbo\Views\vTsk_1_BRBidAuthors.sql" />
+    <Build Include="dbo\Views\vTsk_1_BRBid.sql" />
+    <Build Include="dbo\Views\vTsk_1_BRAuthorsDistributed.sql" />
+    <Build Include="dbo\Views\vTsk_1_BRAllDocs.sql" />
+    <Build Include="dbo\Views\vSD.sql" />
+    <Build Include="dbo\Views\vRequestState.sql" />
+    <Build Include="dbo\Views\vPeriodPaid.sql" />
+    <Build Include="dbo\Views\vPartner.sql" />
+    <Build Include="dbo\Views\vLicenseAgreement.sql" />
+    <Build Include="dbo\Views\vLicense.sql" />
+    <Build Include="dbo\Views\vForDistrRegister.sql" />
+    <Build Include="dbo\Views\vForDistrPeriod.sql" />
+    <Build Include="dbo\Views\vEtGenreRole.sql" />
+    <Build Include="dbo\Views\vEtGenreRate.sql" />
+    <Build Include="dbo\Views\vCustomer.sql" />
+    <Build Include="dbo\Views\vCopyRightSh.sql" />
+    <Build Include="dbo\Views\vCopyright.sql" />
+    <Build Include="dbo\Views\vAgrLicenseType.sql" />
+    <Build Include="dbo\Views\vActiveRequest.sql" />
+    <Build Include="dbo\Views\vActiveOrders.sql" />
+    <Build Include="dbo\Views\myAnketaParam.sql" />
+    <Build Include="dbo\Functions\ft_AccOpenName.sql" />
+    <Build Include="dbo\Functions\fs_GetCounter.sql" />
+    <Build Include="dbo\Functions\fMyCustId.sql" />
+    <Build Include="dbo\Functions\fMyCountry.sql" />
+    <Build Include="dbo\Functions\f_rest_out.sql" />
+    <Build Include="dbo\Functions\f_rest_in.sql" />
+    <Build Include="dbo\Functions\f_Num2Word.sql" />
+    <Build Include="dbo\Functions\f_N2TUk.sql" />
+    <Build Include="dbo\Functions\f_N2TRu.sql" />
+    <Build Include="dbo\Functions\f_N2TEn.sql" />
+    <Build Include="dbo\Functions\splitstring.sql" />
+    <Build Include="dbo\Functions\ft_tsk_7_FixDistr01.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_5_RatingObj.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_4_RatingRH.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_16_AuthorSRFact.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_16_AuthorSR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBRSum.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_14_RegisterSR.sql" />
+    <Build Include="dbo\Functions\ft_tsk_3_DistribMain.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_3_AutoLink.sql" />
+    <Build Include="dbo\Functions\ft_TradeAmount.sql" />
+    <Build Include="dbo\Functions\ft_PrtmyAnk.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_7_Users.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_7_RegisterRegisterCounts.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_7_ObjectRightholders.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_7_Fixations.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_6_Customers.sql" />
+    <Build Include="dbo\Functions\ft_tsk_3_WRH_03.sql" />
+    <Build Include="dbo\Functions\ft_tsk_3_SearchObj.sql" />
+    <Build Include="dbo\Functions\ft_tsk_3_R_04.sql" />
+    <Build Include="dbo\Functions\ft_ObjectRightCustomerForm01.sql" />
+    <Build Include="dbo\Functions\fn_vRequestState.sql" />
+    <Build Include="dbo\Functions\fn_vActiveOrders.sql" />
+    <Build Include="dbo\Functions\authCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\tsk_1_BRCabinetList.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_DistribMain.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_Consolidated.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_6_Customers.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_3_Community.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_2_CrKind_NEW.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_2_CrKind.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_18_TurnAccount.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_BalanseGroup30.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_BalanseGroup_list.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_BalanseGroup.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_3_BalanseGroupAccount.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_3_BalanseGroup_test.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_3_BalanseGroup.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_2_BalanseTTT.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_2_BalanseGroupAccount.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_2_BalanseGroup.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_17_1_BalanseGroup.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_1_Main.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_3_AutoLink.sql" />
+    <Build Include="dbo\Stored Procedures\ppTsk_5_2_CrKind.sql" />
+    <Build Include="dbo\Stored Procedures\Pay_SaldoDay_Court.sql" />
+    <Build Include="dbo\Stored Procedures\Pay_Pay_SaldoDay.sql" />
+    <Build Include="dbo\Stored Procedures\p_rest_out.sql" />
+    <Build Include="dbo\Stored Procedures\p_rest_in.sql" />
+    <Build Include="dbo\Stored Procedures\p_MusDesignToRegItems.sql" />
+    <Build Include="dbo\Stored Procedures\p_DistribForNewRHolder.sql" />
+    <Build Include="dbo\Stored Procedures\p_CreateDistribution.sql" />
+    <Build Include="dbo\Stored Procedures\p_CreateDistribForFixation.sql" />
+    <Build Include="dbo\Stored Procedures\p_BRlicView.sql" />
+    <Build Include="dbo\Stored Procedures\OpenAccNLS.sql" />
+    <Build Include="dbo\Stored Procedures\MPayCheck_Accounts.sql" />
+    <Build Include="dbo\Stored Procedures\MPay931_D21_2_K301_.sql" />
+    <Build Include="dbo\Stored Procedures\MPay93_D21_2_K301_.sql" />
+    <Build Include="dbo\Stored Procedures\MPay91_D_20_K_10_____.sql" />
+    <Build Include="dbo\Stored Procedures\MPay5_D10_K20.sql" />
+    <Build Include="dbo\Stored Procedures\MPay4_D20_K21.sql" />
+    <Build Include="dbo\Stored Procedures\MPay31_D21_2_K301.sql" />
+    <Build Include="dbo\Stored Procedures\MPay3_D21_2_K301.sql" />
+    <Build Include="dbo\Stored Procedures\MPay2_D301_2_K22.sql" />
+    <Build Include="dbo\Stored Procedures\MPay1_D_22_K_10.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_D31_2_K20_dt4.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_D20_2_K20_dt3.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_CheckAccounts.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_A_main.sql" />
+    <Build Include="dbo\Stored Procedures\getCounter.sql" />
+    <Build Include="dbo\Stored Procedures\Get_correspondent.sql" />
+    <Build Include="dbo\Stored Procedures\DelObjectRight.sql" />
+    <Build Include="dbo\Stored Procedures\DelLicenseAgr.sql" />
+    <Build Include="dbo\Stored Procedures\DelFullCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\DelCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\DelAgreement.sql" />
+    <Build Include="dbo\User Defined Types\CopyRightParam.sql" />
+    <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
+    <Build Include="dbo\Views\vTSK_1_BRMoneyPrepay.sql" />
+    <Build Include="dbo\Functions\ft_AccountName.sql" />
+    <Build Include="dbo\Views\vCustCmService.sql" />
+    <Build Include="dbo\Tables\inputFile.sql" />
+    <Build Include="dbo\Tables\CopyRightHistory.sql" />
+    <Build Include="dbo\Tables\CheckParamPays.sql" />
+    <Build Include="dbo\Tables\AlgorithmTypeTr.sql" />
+    <Build Include="dbo\Views\vTsk_1_BRBidAuthors_.sql" />
+    <Build Include="dbo\Views\vRateCommiss.sql" />
+    <Build Include="dbo\Views\vObjectRightSR.sql" />
+    <Build Include="dbo\Views\vMyAnk.sql" />
+    <Build Include="dbo\Views\vCommunity.sql" />
+    <Build Include="dbo\Functions\Month_name.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_Reg_SRMain.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_25_SRLic.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_24_SR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_24_BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_23_BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_SRcm.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_BRcm_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_BRcm.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_2_SRcm.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_2_BRcm.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_1_BRcm.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_21_SRcomm.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_21_BRcomm.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_20_SRMain.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_20_2_BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_20_1_BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR__.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_12_BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_11_BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_1_BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_18_1_ObjUnattached.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_UnFound.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_24_BR_1.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_24_BR.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_19_12_BR.sql" />
+    <Build Include="dbo\Stored Procedures\p_Tsk_5_19_12_BR.sql" />
+    <Build Include="dbo\Stored Procedures\p_Tsk_1_LinkExternalPay.sql" />
+    <Build Include="dbo\Stored Procedures\p_Tsk_1_CheckInputFile.sql" />
+    <Build Include="dbo\Stored Procedures\p_Num2Word.sql" />
+    <Build Include="dbo\Tables\SystemMessage.sql" />
+    <Build Include="dbo\Tables\SystemConstantTr.sql" />
+    <Build Include="dbo\Tables\SystemConstant.sql" />
+    <Build Include="dbo\Tables\ReportType.sql" />
+    <Build Include="dbo\Tables\ReportList.sql" />
+    <Build Include="dbo\Tables\PayTurnType.sql" />
+    <Build Include="dbo\Tables\PayTurnRed.sql" />
+    <Build Include="dbo\Tables\PayTurnExtra.sql" />
+    <Build Include="dbo\Tables\PayTurnCm.sql" />
+    <Build Include="dbo\Tables\MonthNameTr.sql" />
+    <Build Include="dbo\Tables\MonthName.sql" />
+    <Build Include="dbo\Views\vTsk9_5_Object.sql" />
+    <Build Include="dbo\Views\vtsk_1_MasterListBR__.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListRightHolder01_test.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer01__.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer01_.sql" />
+    <Build Include="dbo\Views\vTermsOfService.sql" />
+    <Build Include="dbo\Views\vRelObjPerformer.sql" />
+    <Build Include="dbo\Views\vLicenseAgrParam.sql" />
+    <Build Include="dbo\Views\vLicenseAgreementPortal_.sql" />
+    <Build Include="dbo\Views\vLicenseAgreementPortal.sql" />
+    <Build Include="dbo\Views\vCustomerRHolder.sql" />
+    <Build Include="dbo\Views\vCustomerClient.sql" />
+    <Build Include="dbo\Views\vCustCmService__.sql" />
+    <Build Include="dbo\Views\vCustCmService_.sql" />
+    <Build Include="dbo\Views\vCategory.sql" />
+    <Build Include="dbo\Functions\ParseStr.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Compare.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Accurace.sql" />
+    <Build Include="dbo\Functions\fs_PeriodName.sql" />
+    <Build Include="dbo\Functions\fs_PeriodEnd.sql" />
+    <Build Include="dbo\Functions\fs_PeriodBegin.sql" />
+    <Build Include="dbo\Functions\ParseStr3.sql" />
+    <Build Include="dbo\Functions\ParseStr2.sql" />
+    <Build Include="dbo\Functions\ft_vCommunity.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_6_MoneyR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_6_MoneyPeriod.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_5_Object.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_4_RhRegister.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_3_RhCrProfit.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_2_RhObjProfit.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_1_RhProfit.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_FACTToPay.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_DistributedRed.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_DISTRIBUTED.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_COLLECTED.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_8_DistribMain.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_8_Consolidated.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_4_RatingRH__.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_4_RatingRH_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_32_RegRH.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_31_GetGiveDetail.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_31_GetGive_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_31_GetGive.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_30_Booker_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_30_Booker.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_25_2_SRLic.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_25_1_SRLic.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_24_SR__.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_1_BRcm_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_20_BRMain_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_OldOk.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_Old.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_0SR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_1_0BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR_New.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_14_RegisterSR_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_8_Consolidated_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_35_Start.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_33_RegRH.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_1_ListRightHolder01.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk9_CustMapping.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk9_CustMapAnk.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_StartDay.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_LicProlongCreate.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_LicProlongActive.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_LicPeriodCreate.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_LicPeriodBorg.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_AgrDelete.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_DistribMain_.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_Consolidated_.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_2_CrKind_.sql" />
+    <Build Include="dbo\Stored Procedures\PayTurnRedForm.sql" />
+    <Build Include="dbo\Stored Procedures\PayTurnExtra_form.sql" />
+    <Build Include="dbo\Stored Procedures\Pay_Pay_ASaldoDay_storno.sql" />
+    <Build Include="dbo\Stored Procedures\Pay_Pay_A_rollback_regId.sql" />
+    <Build Include="dbo\Stored Procedures\p_Tsk3_AddAltName.sql" />
+    <Build Include="dbo\Stored Procedures\p_CreateDistribution_L.sql" />
+    <Build Include="dbo\Stored Procedures\MPay6_D20_K21.sql" />
+    <Build Include="dbo\Stored Procedures\MPay4_D20_K21____.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_regId.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_distid.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_DelObject.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_ForPayFact.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_18_1_ObjUnattached.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_18_1_ObjUnattache_.sql" />
+    <Build Include="dbo\Views\vRegister.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_turnid.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Compare.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Accurace.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Compare.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Accurace.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment1.sql" />
+  </ItemGroup>
+</Project>

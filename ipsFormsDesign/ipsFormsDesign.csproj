@@ -1,13 +1,576 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{21DA4297-A0F3-4E44-BD98-CAF3605B243A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ipsFormsDesign</RootNamespace>
+    <AssemblyName>ipsFormsDesign</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug IIS|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug IIS\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug HttpSys|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug HttpSys\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Windows.Forms">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Word1">
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Word\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Flow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
-
+  <ItemGroup>
+    <Compile Include="Dictionary\AgreementStatuses.cs" />
+    <Compile Include="Dictionary\AutoCompleteData.cs" />
+    <Compile Include="Dictionary\CommunityInfo.cs" />
+    <Compile Include="Dictionary\ConsumerFilterEnum.cs" />
+    <Compile Include="Dictionary\ItemListResponse.cs" />
+    <Compile Include="Dictionary\DictBaseTypeI.cs" />
+    <Compile Include="Dictionary\DictionaryBaseControl.cs" />
+    <Compile Include="Dictionary\DictTr.cs" />
+    <Compile Include="Dictionary\EditableObjectBase.cs" />
+    <Compile Include="Dictionary\FixationModel.cs" />
+    <Compile Include="Dictionary\LicenseAgreementQuery.cs" />
+    <Compile Include="Dictionary\LicenseTypes.cs" />
+    <Compile Include="Dictionary\ObjectAuthorRightholder.cs" />
+    <Compile Include="Dictionary\ObjectAuthorRightholderBrViewModel.cs" />
+    <Compile Include="Dictionary\ObjectCopyright.cs" />
+    <Compile Include="Dictionary\ObjectRightMainView.cs" />
+    <Compile Include="Dictionary\ObjectRightQuery.cs" />
+    <Compile Include="Dictionary\ObjectRightListResponse.cs" />
+    <Compile Include="Dictionary\ObjectRightStates.cs" />
+    <Compile Include="Dictionary\RegisterFilter.cs" />
+    <Compile Include="Dictionary\RegisterItemViewModel.cs" />
+    <Compile Include="Dictionary\RegisterListViewModel.cs" />
+    <Compile Include="Dictionary\RegisterSearchObject.cs" />
+    <Compile Include="Dictionary\RegisterStatusType.cs" />
+    <Compile Include="Dictionary\RightholderListQuery.cs" />
+    <Compile Include="Dictionary\PaginateAndSearchQuery.cs" />
+    <Compile Include="Dictionary\RightholdersResponse.cs" />
+    <Compile Include="Dictionary\RightholderStates.cs" />
+    <Compile Include="Dictionary\RightholderStatusType.cs" />
+    <Compile Include="Dictionary\TermsOfServiceWrapper.cs" />
+    <Compile Include="Enums\CPartnerObjectStatus.cs" />
+    <Compile Include="Enums\LicType.cs" />
+    <Compile Include="Enums\PeriodState.cs" />
+    <Compile Include="Enums\RegisterState.cs" />
+    <Compile Include="EventAggregator\EventAggregator.cs" />
+    <Compile Include="EventAggregator\IEventAggregator.cs" />
+    <Compile Include="EventAggregator\ISubscriber.cs" />
+    <Compile Include="Events\ConsumerExternalEvents.cs" />
+    <Compile Include="Events\FixationEvents.cs" />
+    <Compile Include="Events\ObjectRightEvents.cs" />
+    <Compile Include="Events\RegisterEvents.cs" />
+    <Compile Include="Events\RightholderEvents.cs" />
+    <Compile Include="Interfaces\EFInterfaces.cs" />
+    <Compile Include="Interfaces\IAnketaDictionaties.cs" />
+    <Compile Include="Interfaces\IConsumer.cs" />
+    <Compile Include="Interfaces\IConsumerService.cs" />
+    <Compile Include="Interfaces\IDBFPresenter.cs" />
+    <Compile Include="Interfaces\IFilteredControl.cs" />
+    <Compile Include="Interfaces\IModel.cs" />
+    <Compile Include="Interfaces\IObjectRightItemPresenter.cs" />
+    <Compile Include="Interfaces\IObjectRightItemView.cs" />
+    <Compile Include="Interfaces\IRightholderForm.cs" />
+    <Compile Include="Interfaces\IRightholderPresenter.cs" />
+    <Compile Include="Interfaces\IRightHolderService.cs" />
+    <Compile Include="Interfaces\IRightholderView.cs" />
+    <Compile Include="Interfaces\IUniqueChecker.cs" />
+    <Compile Include="Interfaces\IUpdateProvider.cs" />
+    <Compile Include="Interfaces\ObservableListSource.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\AccountBals.cs" />
+    <Compile Include="Model\AccountBalsTr.cs" />
+    <Compile Include="Model\AccountStatus.cs" />
+    <Compile Include="Model\AccountStatusTr.cs" />
+    <Compile Include="Model\ActivityType.cs" />
+    <Compile Include="Model\ActivityTypeTr.cs" />
+    <Compile Include="Model\AgreementAddBr.cs" />
+    <Compile Include="Model\AgreementAddCommunity.cs" />
+    <Compile Include="Model\AgreementAddPartner.cs" />
+    <Compile Include="Model\AgreementAddRh.cs" />
+    <Compile Include="Model\AgreementMaster.cs" />
+    <Compile Include="Model\AgreementStatus.cs" />
+    <Compile Include="Model\AgreementStatusTr.cs" />
+    <Compile Include="Model\AgreementType.cs" />
+    <Compile Include="Model\AgreementTypeTr.cs" />
+    <Compile Include="Model\AgrLicenseType.cs" />
+    <Compile Include="Model\AgrLicenseTypeTr.cs" />
+    <Compile Include="Model\AlgorithmType.cs" />
+    <Compile Include="Model\AlgorithmTypeTr.cs" />
+    <Compile Include="Model\AnketaAddName.cs" />
+    <Compile Include="Model\AnketaAddNick.cs" />
+    <Compile Include="Model\AnketaAddParam.cs" />
+    <Compile Include="Model\AnketaCompany.cs" />
+    <Compile Include="Model\AnketaExternal.cs" />
+    <Compile Include="Model\AnketaPerson.cs" />
+    <Compile Include="Model\AnketaStatus.cs" />
+    <Compile Include="Model\AnketaStatusTr.cs" />
+    <Compile Include="Model\AspNetRoleClaims.cs" />
+    <Compile Include="Model\AspNetRoles.cs" />
+    <Compile Include="Model\AspNetUserClaims.cs" />
+    <Compile Include="Model\AspNetUserLogins.cs" />
+    <Compile Include="Model\AspNetUserRoles.cs" />
+    <Compile Include="Model\AspNetUsers.cs" />
+    <Compile Include="Model\AspNetUserTokens.cs" />
+    <Compile Include="Model\Authors.cs" />
+    <Compile Include="Model\BankAccount.cs" />
+    <Compile Include="Model\BrRegister.cs" />
+    <Compile Include="Model\BrRegItem.cs" />
+    <Compile Include="Model\CatalogFile.cs" />
+    <Compile Include="Model\CatalogStatus.cs" />
+    <Compile Include="Model\CatalogStatusTr.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CategoryStatusType.cs" />
+    <Compile Include="Model\CategoryStatusTypeTr.cs" />
+    <Compile Include="Model\CategoryTr.cs" />
+    <Compile Include="Model\CheckParamPays.cs" />
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\ClientBrand.cs" />
+    <Compile Include="Model\ClientBrandTr.cs" />
+    <Compile Include="Model\ClientGroup.cs" />
+    <Compile Include="Model\ClientGroupTr.cs" />
+    <Compile Include="Model\ClnBusinessPlace.cs" />
+    <Compile Include="Model\ClnPlaceHoll.cs" />
+    <Compile Include="Model\CommentCause.cs" />
+    <Compile Include="Model\Community.cs" />
+    <Compile Include="Model\Company.cs" />
+    <Compile Include="Model\Continent.cs" />
+    <Compile Include="Model\ContinentTr.cs" />
+    <Compile Include="Model\CopyRight.cs" />
+    <Compile Include="Model\CopyRightHistory.cs" />
+    <Compile Include="Model\CopyrightKind.cs" />
+    <Compile Include="Model\CopyrightKindTr.cs" />
+    <Compile Include="Model\CopyrightType.cs" />
+    <Compile Include="Model\CopyrightTypeTr.cs" />
+    <Compile Include="Model\CounterNumber.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\CountryTr.cs" />
+    <Compile Include="Model\CreativeRoleType.cs" />
+    <Compile Include="Model\CreativeRoleTypeTr.cs" />
+    <Compile Include="Model\CrightStatus.cs" />
+    <Compile Include="Model\CrightStatusTr.cs" />
+    <Compile Include="Model\CrkindGroup.cs" />
+    <Compile Include="Model\CrkindGroupTr.cs" />
+    <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\CurrencyCourse.cs" />
+    <Compile Include="Model\CustCmRight.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\CustomerStatus.cs" />
+    <Compile Include="Model\CustomerStatusTr.cs" />
+    <Compile Include="Model\CustomerType.cs" />
+    <Compile Include="Model\CustomerTypeTr.cs" />
+    <Compile Include="Model\DicCategoryItems.cs" />
+    <Compile Include="Model\DicList.cs" />
+    <Compile Include="Model\DictCategory.cs" />
+    <Compile Include="Model\DistribStatus.cs" />
+    <Compile Include="Model\DistribStatusTr.cs" />
+    <Compile Include="Model\DistribType.cs" />
+    <Compile Include="Model\DistribTypeTr.cs" />
+    <Compile Include="Model\Distribution.cs" />
+    <Compile Include="Model\DistributionItem.cs" />
+    <Compile Include="Model\DocPreparePay.cs" />
+    <Compile Include="Model\DocReq.cs" />
+    <Compile Include="Model\DocText.cs" />
+    <Compile Include="Model\DocumentType.cs" />
+    <Compile Include="Model\DocumentTypeTr.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\EpisodeType.cs" />
+    <Compile Include="Model\EpisodeTypeTr.cs" />
+    <Compile Include="Model\EtGenre.cs" />
+    <Compile Include="Model\EtGenreRate.cs" />
+    <Compile Include="Model\EtGenreRole.cs" />
+    <Compile Include="Model\EtRole.cs" />
+    <Compile Include="Model\ExternalPay.cs" />
+    <Compile Include="Model\FileCustomer.cs" />
+    <Compile Include="Model\FileType.cs" />
+    <Compile Include="Model\Fixation.cs" />
+    <Compile Include="Model\FixFile.cs" />
+    <Compile Include="Model\FixStageStatus.cs" />
+    <Compile Include="Model\FixStorageDevice.cs" />
+    <Compile Include="Model\FolkType.cs" />
+    <Compile Include="Model\FolkTypeTr.cs" />
+    <Compile Include="Model\GenreType.cs" />
+    <Compile Include="Model\GenreTypeTr.cs" />
+    <Compile Include="Model\HandDocPay.cs" />
+    <Compile Include="Model\InputFile.cs" />
+    <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\ItemStatus.cs" />
+    <Compile Include="Model\ItemStatusTr.cs" />
+    <Compile Include="Model\KindComposition.cs" />
+    <Compile Include="Model\KindCompositionTr.cs" />
+    <Compile Include="Model\KindFilm.cs" />
+    <Compile Include="Model\KindFilmTr.cs" />
+    <Compile Include="Model\KindSerial.cs" />
+    <Compile Include="Model\KindSerialTr.cs" />
+    <Compile Include="Model\KlR030.cs" />
+    <Compile Include="Model\KlR030tr.cs" />
+    <Compile Include="Model\KlR031.cs" />
+    <Compile Include="Model\Lang.cs" />
+    <Compile Include="Model\LangTr.cs" />
+    <Compile Include="Model\Language.cs" />
+    <Compile Include="Model\LegalBasis.cs" />
+    <Compile Include="Model\LegalBasisTr.cs" />
+    <Compile Include="Model\LicAuthorBr.cs" />
+    <Compile Include="Model\License.cs" />
+    <Compile Include="Model\LicenseAgreement.cs" />
+    <Compile Include="Model\LicenseAgrParam.cs" />
+    <Compile Include="Model\LicenseBigR.cs" />
+    <Compile Include="Model\LicenseClass.cs" />
+    <Compile Include="Model\LicenseType.cs" />
+    <Compile Include="Model\LicenseTypeTr.cs" />
+    <Compile Include="Model\LicPlace.cs" />
+    <Compile Include="Model\MediaFile.cs" />
+    <Compile Include="Model\MediaSearchData.cs" />
+    <Compile Include="Model\MediaTrack.cs" />
+    <Compile Include="Model\ModifyMusicType.cs" />
+    <Compile Include="Model\ModifyMusicTypeTr.cs" />
+    <Compile Include="Model\ModifyTextType.cs" />
+    <Compile Include="Model\ModifyTextTypeTr.cs" />
+    <Compile Include="Model\ModifyType.cs" />
+    <Compile Include="Model\ModifyTypeTr.cs" />
+    <Compile Include="Model\MoneyLinkStatus.cs" />
+    <Compile Include="Model\MoneyLinkStatusTr.cs" />
+    <Compile Include="Model\MoneyPeriodLink.cs" />
+    <Compile Include="Model\MoneyPrepayLink.cs" />
+    <Compile Include="Model\MoneyReceived.cs" />
+    <Compile Include="Model\MoneyType.cs" />
+    <Compile Include="Model\MoneyTypeTr.cs" />
+    <Compile Include="Model\MonthName.cs" />
+    <Compile Include="Model\MonthNameTr.cs" />
+    <Compile Include="Model\MusicalDesign.cs" />
+    <Compile Include="Model\MyAnketa.cs" />
+    <Compile Include="Model\MyCategory.cs" />
+    <Compile Include="Model\MyCopyRightType.cs" />
+    <Compile Include="Model\ObjAct.cs" />
+    <Compile Include="Model\ObjActTr.cs" />
+    <Compile Include="Model\ObjectRight.cs" />
+    <Compile Include="Model\ObjectStatus.cs" />
+    <Compile Include="Model\ObjectStatusTr.cs" />
+    <Compile Include="Model\PaidPeriod.cs" />
+    <Compile Include="Model\ParametersListBox.cs" />
+    <Compile Include="Model\Partner.cs" />
+    <Compile Include="Model\PartnerClient.cs" />
+    <Compile Include="Model\PaymentCase.cs" />
+    <Compile Include="Model\PaymentKind.cs" />
+    <Compile Include="Model\PaymentKindTr.cs" />
+    <Compile Include="Model\PaymentStatus.cs" />
+    <Compile Include="Model\PaymentStatusTr.cs" />
+    <Compile Include="Model\PayMethodType.cs" />
+    <Compile Include="Model\PayMethodTypeTr.cs" />
+    <Compile Include="Model\PayTurn.cs" />
+    <Compile Include="Model\PayTurnCm.cs" />
+    <Compile Include="Model\PayTurnExtra.cs" />
+    <Compile Include="Model\PayTurnRed.cs" />
+    <Compile Include="Model\PayTurnType.cs" />
+    <Compile Include="Model\Performer.cs" />
+    <Compile Include="Model\PerformType.cs" />
+    <Compile Include="Model\PerformTypeTr.cs" />
+    <Compile Include="Model\Period.cs" />
+    <Compile Include="Model\PeriodStatus.cs" />
+    <Compile Include="Model\PeriodStatusTr.cs" />
+    <Compile Include="Model\PeriodTr.cs" />
+    <Compile Include="Model\PermitType.cs" />
+    <Compile Include="Model\PermitTypeTr.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\PopGenre.cs" />
+    <Compile Include="Model\PopGenreTr.cs" />
+    <Compile Include="Model\PortalObjectRights.cs" />
+    <Compile Include="Model\PortalSupportRights.cs" />
+    <Compile Include="Model\PositionType.cs" />
+    <Compile Include="Model\PositionTypeTr.cs" />
+    <Compile Include="Model\PrePayType.cs" />
+    <Compile Include="Model\PrePayTypeTr.cs" />
+    <Compile Include="Model\PubCatalogItem.cs" />
+    <Compile Include="Model\Region.cs" />
+    <Compile Include="Model\RegionTr.cs" />
+    <Compile Include="Model\Register.cs" />
+    <Compile Include="Model\RegisterAuthors.cs" />
+    <Compile Include="Model\RegisterCount.cs" />
+    <Compile Include="Model\RegisterExtra.cs" />
+    <Compile Include="Model\RegisterItem.cs" />
+    <Compile Include="Model\RegisterItemFix.cs" />
+    <Compile Include="Model\RegisterItemType.cs" />
+    <Compile Include="Model\RegisterListStatus.cs" />
+    <Compile Include="Model\RegisterListStatusTr.cs" />
+    <Compile Include="Model\RegisterRatedList.cs" />
+    <Compile Include="Model\RegisterStatus.cs" />
+    <Compile Include="Model\RegisterStatusTr.cs" />
+    <Compile Include="Model\RelAdaptUseArea.cs" />
+    <Compile Include="Model\RelCounterDoc.cs" />
+    <Compile Include="Model\RelDocAgrType.cs" />
+    <Compile Include="Model\RelEmployee.cs" />
+    <Compile Include="Model\RelEtGenre.cs" />
+    <Compile Include="Model\RelEtRole.cs" />
+    <Compile Include="Model\RelGenreAdapt.cs" />
+    <Compile Include="Model\RelGenreMovie.cs" />
+    <Compile Include="Model\RelGenrePercent.cs" />
+    <Compile Include="Model\RelGenreRole.cs" />
+    <Compile Include="Model\RelGenreSerial.cs" />
+    <Compile Include="Model\RelLicCopyR.cs" />
+    <Compile Include="Model\RelMovieEpisode.cs" />
+    <Compile Include="Model\RelObjPerformer.cs" />
+    <Compile Include="Model\RelPopGenre.cs" />
+    <Compile Include="Model\RelReqMedia.cs" />
+    <Compile Include="Model\RelReqObj.cs" />
+    <Compile Include="Model\RelSerialEpisode.cs" />
+    <Compile Include="Model\RelTvepisode.cs" />
+    <Compile Include="Model\ReportList.cs" />
+    <Compile Include="Model\Reports.cs" />
+    <Compile Include="Model\ReportType.cs" />
+    <Compile Include="Model\ReqAgreement.cs" />
+    <Compile Include="Model\ReqAgreementStatus.cs" />
+    <Compile Include="Model\ReqCustomer.cs" />
+    <Compile Include="Model\ReqTrade.cs" />
+    <Compile Include="Model\Request.cs" />
+    <Compile Include="Model\RequestAdapt.cs" />
+    <Compile Include="Model\RequestAdvertising.cs" />
+    <Compile Include="Model\RequestAim.cs" />
+    <Compile Include="Model\RequestAimTr.cs" />
+    <Compile Include="Model\RequestInternet.cs" />
+    <Compile Include="Model\RequestMovie.cs" />
+    <Compile Include="Model\RequestOther.cs" />
+    <Compile Include="Model\RequestSerial.cs" />
+    <Compile Include="Model\RequestStatusType.cs" />
+    <Compile Include="Model\RequestStatusTypeTr.cs" />
+    <Compile Include="Model\RequestTvradio.cs" />
+    <Compile Include="Model\RequestType.cs" />
+    <Compile Include="Model\RequestTypeTr.cs" />
+    <Compile Include="Model\ResidentType.cs" />
+    <Compile Include="Model\ResidentTypeTr.cs" />
+    <Compile Include="Model\RhcatalogItem.cs" />
+    <Compile Include="Model\RholderType.cs" />
+    <Compile Include="Model\RholderTypeTr.cs" />
+    <Compile Include="Model\RightHolder.cs" />
+    <Compile Include="Model\SaldoDay.cs" />
+    <Compile Include="Model\SeekObject.cs" />
+    <Compile Include="Model\SeekType.cs" />
+    <Compile Include="Model\SeekTypeTr.cs" />
+    <Compile Include="Model\SexType.cs" />
+    <Compile Include="Model\SexTypeTr.cs" />
+    <Compile Include="Model\SpecType.cs" />
+    <Compile Include="Model\SpecTypeTr.cs" />
+    <Compile Include="Model\SqlViewData\Ft_Tsk_1_ListRightHolder01.cs" />
+    <Compile Include="Model\SqlViewData\vCustomer.cs" />
+    <Compile Include="Model\SystemConstant.cs" />
+    <Compile Include="Model\SystemConstantTr.cs" />
+    <Compile Include="Model\SystemMessage.cs" />
+    <Compile Include="Model\TableColumn.cs" />
+    <Compile Include="Model\TableColumnTech.cs" />
+    <Compile Include="Model\TableObject.cs" />
+    <Compile Include="Model\TableType.cs" />
+    <Compile Include="Model\TermsOfService.cs" />
+    <Compile Include="Model\TermUse.cs" />
+    <Compile Include="Model\TermUseTr.cs" />
+    <Compile Include="Model\TerritoryExclude.cs" />
+    <Compile Include="Model\TerritoryInclude.cs" />
+    <Compile Include="Model\TradeStatus.cs" />
+    <Compile Include="Model\TypeInternetObject.cs" />
+    <Compile Include="Model\TypeInternetObjectTr.cs" />
+    <Compile Include="Model\TypeMethodGet.cs" />
+    <Compile Include="Model\TypeMethodGetTr.cs" />
+    <Compile Include="Model\TypePlace.cs" />
+    <Compile Include="Model\TypePlaceParam.cs" />
+    <Compile Include="Model\TypePlaceParamTr.cs" />
+    <Compile Include="Model\TypePlaceTr.cs" />
+    <Compile Include="Model\TypeVat.cs" />
+    <Compile Include="Model\TypeVattr.cs" />
+    <Compile Include="Model\UseAreaType.cs" />
+    <Compile Include="Model\UseAreaTypeTr.cs" />
+    <Compile Include="Model\UseMediaType.cs" />
+    <Compile Include="Model\UseMediaTypeTr.cs" />
+    <Compile Include="Model\UserRole.cs" />
+    <Compile Include="Model\UserRoleType.cs" />
+    <Compile Include="Model\UserRoleTypeTr.cs" />
+    <Compile Include="Model\UsesKind.cs" />
+    <Compile Include="Model\UsesKindTr.cs" />
+    <Compile Include="Model\UsesType.cs" />
+    <Compile Include="Model\UsesTypeTr.cs" />
+    <Compile Include="Model\WorkRh.cs" />
+    <Compile Include="Model\WorkType.cs" />
+    <Compile Include="Model\WorkTypeTr.cs" />
+    <Compile Include="Presenters\UniqueCheckerPresenter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CatalogService.cs" />
+    <Compile Include="Services\CommunityService.cs" />
+    <Compile Include="Services\ConsumerBigRightService.cs" />
+    <Compile Include="Services\ConsumerService.cs" />
+    <Compile Include="Data\Global.cs" />
+    <Compile Include="Engines\DbfEngine.cs" />
+    <Compile Include="Engines\ExcelEngine.cs" />
+    <Compile Include="Services\ConsumerSmallRightService.cs" />
+    <Compile Include="Services\DbfService.cs" />
+    <Compile Include="Services\DictionaryService.cs" />
+    <Compile Include="Services\FixationService.cs" />
+    <Compile Include="Services\LicenseDataService.cs" />
+    <Compile Include="Services\ObjectUploading\ObjectRightData.cs" />
+    <Compile Include="Services\ObjectUploading\ObjectRightDataClientSideValidator.cs" />
+    <Compile Include="Services\ObjectUploading\ObjectRightDataParser.cs" />
+    <Compile Include="Services\ObjectRightService.cs" />
+    <Compile Include="Services\PartnerService.cs" />
+    <Compile Include="Services\RegisterService.cs" />
+    <Compile Include="Services\ObjectUploading\RightholderData.cs" />
+    <Compile Include="Services\RightholderRegisterService.cs" />
+    <Compile Include="Services\RightHolderService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\Utils.cs" />
+    <Compile Include="Engines\WordEngine.cs" />
+    <Compile Include="Interfaces\ActiveAgreementData.cs" />
+    <Compile Include="Utilities\AmountDistributor.cs" />
+    <Compile Include="Utilities\CustomerUtility.cs" />
+    <Compile Include="Utilities\EnumUtility.cs" />
+    <Compile Include="Utilities\FixationExtensions.cs" />
+    <Compile Include="Utilities\ObjectRightExtensions.cs" />
+    <Compile Include="Utilities\RegisterExtensions.cs" />
+    <Compile Include="Utilities\UpdateEventHandlerUtility.cs" />
+    <Compile Include="ViewModels\Fixations\AmountDistributionViewModel.cs" />
+    <Compile Include="ViewModels\Fixations\FixationListViewModel.cs" />
+    <Compile Include="ViewModels\Fixations\FixationQuery.cs" />
+    <Compile Include="ViewModels\Fixations\FixationStages.cs" />
+    <Compile Include="ViewModels\Fixations\FixationStageStatuses.cs" />
+    <Compile Include="ViewModels\Fixations\RegisterCountViewModel.cs" />
+    <Compile Include="ViewModels\ObjectsRight\ObjectRightForTransfering.cs" />
+    <Compile Include="ViewModels\ObjectsRight\ObjectRightholderViewModel.cs" />
+    <Compile Include="ViewModels\Rightholders\LegalBasisType.cs" />
+    <Compile Include="ViewModels\Rightholders\TransferParameters.cs" />
+    <Compile Include="ViewModels\Users\UserViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{b17076a8-b8f9-4f60-aac0-3845773a4d43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
+      <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
+      <Name>WebAPIConnector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ShouldAddDPIScalingManifest="False" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

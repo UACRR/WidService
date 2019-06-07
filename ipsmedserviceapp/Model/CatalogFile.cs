@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ipsmedserviceapp.Model
+{
+    public partial class CatalogFile
+    {
+        public CatalogFile()
+        {
+            PubCatalogItem = new HashSet<PubCatalogItem>();
+            RhcatalogItem = new HashSet<RhcatalogItem>();
+        }
+
+        public int FileId { get; set; }
+        public int? CustId { get; set; }
+        public string CustName { get; set; }
+        public string FileName { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string UserId { get; set; }
+        public int? Status { get; set; }
+        public int? RhType { get; set; }
+        public string Comment { get; set; }
+        public int? CountZap { get; set; }
+        public int? CountOk { get; set; }
+        public int? CountErr { get; set; }
+
+        public virtual RightHolder Cust { get; set; }
+        public virtual RholderType RhTypeNavigation { get; set; }
+        public virtual CatalogStatus StatusNavigation { get; set; }
+        public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
+        public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
+    }
+}

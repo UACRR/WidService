@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class CategoryTr
     {
+        public int CodeI { get; set; }
         public string Lang { get; set; }
-        public int CategoryCode { get; set; }
-        public string CategoryName { get; set; }
+        public string Name { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public virtual Category CodeINavigation { get; set; }
     }
 }
