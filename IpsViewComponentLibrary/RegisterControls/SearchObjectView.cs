@@ -68,6 +68,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         public SearchObjectView()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
             _registerItemList = new BindingList<RegisterItemViewModel>();
             _foundedObjectList = new BindingList<RegisterSearchObject>();

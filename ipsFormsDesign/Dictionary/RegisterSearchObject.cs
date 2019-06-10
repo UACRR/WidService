@@ -13,6 +13,7 @@ namespace ipsFormsDesign.Dictionary
     {
 
         public int ObjId { get; set; }
+        public string InnerCode { get; set; }
         public string Name { get; set; }
         public string Performer { get; set; }
         public string Author { get; set; }
