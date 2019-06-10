@@ -18,11 +18,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         private const string DeleteItemConfirmMsg = "Видалити автора?";
 
         private readonly Register _register;
-
-        /// <summary>
-        /// Конструктор для створення рапортички
-        /// </summary>
-        /// <param name="register"></param>
+        
         public ReportExtendedForm(Register register)
         {
             InitializeComponent();
@@ -50,13 +46,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             bsRegisterItem.DataSource = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
 
             ddlGenreType.SelectedValueChanged += ddlGenreType_SelectedValueChanged;
-        }
 
-        /// <summary>
-        /// Конструктор для перегляду або редагування
-        /// </summary>
-        /// <param name="register">Звіт</param>
-        /// <param name="isEdit">true - якщо редагування, false - якщо перегляд</param>
+            Closing += ReportExtendedForm_Closing;
+        }
+        
         public ReportExtendedForm(Register register, bool isEdit) : this(register)
         {
             MusicDesingDataSource = _register;
@@ -68,8 +61,20 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             txtAmount.ReadOnly = !isEdit;
             txtAuthRate.ReadOnly = !isEdit;
             txtAuthAmount.ReadOnly = !isEdit;
-            ddlGenreType.Enabled = isEdit;
             txtMusicalDesignRate.ReadOnly = !isEdit;
+
+            txtStagingRate.ReadOnly = !isEdit;
+            txtStagingName.ReadOnly = !isEdit;
+            ddlGenreType.ReadOnly = !isEdit;
+            //txtStagingName.Enabled = isEdit;
+            //ddlGenreType.Enabled = isEdit;
+        }
+
+        private void ReportExtendedForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var item = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
+            if (string.IsNullOrEmpty(item.ItemName) && item.GenreType == null)
+                _register.RegisterItem.Remove(item);
         }
 
         #region PROPERTIES
