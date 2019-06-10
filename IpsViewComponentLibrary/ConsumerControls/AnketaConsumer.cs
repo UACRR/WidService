@@ -79,10 +79,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
                 InitAgreementType(TypeRights);
             else if (_anketeType == ConsumerAnketeType.EditAnketa)
-            {
-                pageAnketaConsumer.Pages["pvPrint"].Item.Visibility = ElementVisibility.Collapsed;
                 pageAnketaConsumer.Pages["pvAgreement"].Item.Visibility = ElementVisibility.Collapsed;
-            }
         }
 
         public Size PanelAgreementSize

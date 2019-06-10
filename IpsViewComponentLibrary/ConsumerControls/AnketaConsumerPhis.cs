@@ -33,10 +33,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             _customer = customer;
 
             if (anketeType == ConsumerAnketeType.EditAnketa)
-            {
-                pageAnketaConsumer.Pages["pvPrint"].Item.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
                 pageAnketaConsumer.Pages["pvAgreement"].Item.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            }
 
             // agreement
             if (anketeType == ConsumerAnketeType.CreateNewAnketa)
