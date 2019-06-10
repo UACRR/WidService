@@ -29,6 +29,7 @@ namespace ipsFormsDesign.Utilities
                     RegId = r.RegId,
                     RegIitemId = r.RegIitemId,
                     IsAuto = r.IsAuto,
+                    GenreType = r.GenreType,
                     CodeItem = r.CodeItem,
                     RegisterItemFix = r.RegisterItemFix ?? new RegisterItemFix { TimeStart = new TimeSpan(), TimeEnd = new TimeSpan() },
                 };

@@ -68,11 +68,14 @@ namespace IpsViewComponentLibrary
             string[] quartals = { "I", "II", "III", "IV" };
             string[] halfYear = { "I", "II" };
 
+            // Назва місяця українською
+            TextInfo ti = new CultureInfo("uk-UA", false).TextInfo;
+
             Func<DateTime, string>[] namePeriods = {
-                (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0:MMMM} {0:yyyy} року", d )); }, // Місяць 
-                (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0} квартал {1:yyyy} року", d.Month / 3 + 1, d )); }, // Квартал
-                (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0} півріччя {1:yyyy} року", d.Month/6+1, d )); }, // Півріччя
-                (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0:yyyy} рік", d )); }, // Рік
+                (d)=>{ return ti.ToTitleCase(string.Format( "{0:MMMM} {0:yyyy} року", d )); }, // Місяць 
+                (d)=>{ return ti.ToTitleCase(string.Format( "{0} квартал {1:yyyy} року", d.Month / 3 + 1, d )); }, // Квартал
+                (d)=>{ return ti.ToTitleCase(string.Format( "{0} півріччя {1:yyyy} року", d.Month/6+1, d )); }, // Півріччя
+                (d)=>{ return ti.ToTitleCase(string.Format( "{0:yyyy} рік", d )); }, // Рік
             };
             Func<DateTime, string> namePariod = namePeriods[0];
             int PeriodCode = 0;
@@ -87,9 +90,9 @@ namespace IpsViewComponentLibrary
             else
             {
                 var agree = _lic.LicenseAgrParam.Single(rec => rec.LicVersion == _lic.LicVersion);
+                var licType = _lic.LicCodeNavigation;
                 PeriodCode = agree.PeriodCode ?? 1;
-                MinAmount = agree.MinAmount;
-
+                MinAmount = licType?.SchemaId == 2 ? 0 : agree.MinAmount;
             }
 
             switch (PeriodCode)

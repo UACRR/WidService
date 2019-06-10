@@ -264,6 +264,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                     Genre = genre?.Name,
                     Rate = rate?.Rate,
+                    GenreType = r.GenreType,
                 };
 
                 if (r.Obj != null)

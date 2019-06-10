@@ -1797,14 +1797,15 @@ and t2.custId = @custId
         public async Task<IActionResult> GetRegisterInfoForCustomer([FromQuery] int custId)
         {
             var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
-select t" + @"1.* 
+select t1.* 
 from LicenseAgreement t1 
 where t1.custId = @custId
 and isnull(licType,1) between 1 and 3
 ", new SqlParameter("@custId", custId))
-                .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
                 .Include(lic => lic.Cust)
+                    .ThenInclude(cln => cln.Cust)
                 .Include(lic => lic.Agr)
+                .Include( lic => lic.LicCodeNavigation )
                 .ToListAsync();
 
 
