@@ -257,6 +257,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     RegIitemId = r.RegIitemId,
                     IsAuto = r.IsAuto,
                     CodeItem = r.CodeItem,
+                    GenreType = r.GenreType,
                 };
 
                 if (r.Obj != null)

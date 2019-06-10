@@ -89,6 +89,8 @@ namespace ipsFormsDesign.Dictionary
             }
         }
 
+        public int? GenreType { get; set; }
+
         public RegisterItemFix RegisterItemFix { get; set; }
         public List<RegisterExtra> RegisterExtraList { get; set; } = new List<RegisterExtra>();
 

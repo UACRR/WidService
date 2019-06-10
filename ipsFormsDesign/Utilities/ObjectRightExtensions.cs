@@ -12,6 +12,7 @@ namespace ipsFormsDesign.Utilities
         {
             objectRight.Name = registerItem.ItemName;
             objectRight.MediaTrack.Duration = registerItem.DurationItem;
+            objectRight.GenreType = registerItem.GenreType;
 
             if (!string.IsNullOrWhiteSpace(registerItem.AuthorMusic))
                 objectRight.Authors.Add(new Authors { AuthorName = registerItem.AuthorMusic, FolkType = 1, RoleCode = 2 });
