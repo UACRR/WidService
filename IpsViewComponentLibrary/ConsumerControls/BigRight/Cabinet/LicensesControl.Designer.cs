@@ -290,7 +290,6 @@
             this.Controls.Add(this.separator);
             this.Controls.Add(this.gvViewLicences);
             this.Controls.Add(this.ctrlAgrInfo);
-            this.MinimumSize = new System.Drawing.Size(993, 538);
             this.Name = "LicensesControl";
             this.Size = new System.Drawing.Size(1000, 538);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).EndInit();

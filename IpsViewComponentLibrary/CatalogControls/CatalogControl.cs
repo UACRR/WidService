@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Forms;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
@@ -21,6 +22,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string DeleteCatalogFileErrorMsg = "Неможливо видалити файл!";
 
         private readonly CatalogPresenter _catalogPresenter;
+        private readonly DialogService _dialogService = new DialogService(); 
 
         //public int CustomerId { get; set; }
         public int CustId { get; set; }
@@ -37,16 +39,16 @@ namespace IpsViewComponentLibrary.CatalogControls
             Load += CatalogControl_Load;
         }
 
-        private void CatalogFileUpdateNeed_EventHandler(object sender, CatalogFile e)
-        {
-            UpdateGridData();
-            bsGridData.ResetBindings(false);
-        }
-
         private void CatalogControl_Load(object sender, EventArgs e)
         {
             UpdateGridData();
-            UpdateEventHandlerUtility<CatalogFile>.GetEventWrap().UpdateEventHandler += CatalogFileUpdateNeed_EventHandler;
+            UpdateEventHandlerUtility<PubCatalogItem>.GetEventWrap().UpdateEventHandler += CatalogFileUpdateNeed_EventHandler;
+        }
+
+        private void CatalogFileUpdateNeed_EventHandler(object sender, PubCatalogItem e)
+        {
+            UpdateGridData();
+            bsGridData.ResetBindings(false);
         }
 
 
@@ -99,8 +101,16 @@ namespace IpsViewComponentLibrary.CatalogControls
             switch (e.Column.FieldName)
             {
                 case "infoBtn":
-                    var form = new CatalogDetailForm(row);
-                    form.ShowDialog();
+                    var file = _catalogPresenter.GetCatalogFile(row.CustId ?? 0, row.FileId);
+                    if (file == null)
+                    {
+                        _dialogService.ShowError("Помилка отримання каталога з бази даних");
+                    }
+                    else
+                    {
+                        var form = new CatalogDetailForm(file);
+                        form.ShowDialog();
+                    }
                     break;
                 case "editBtn":
                     var commentForm = new ChangeCommentForm(row);

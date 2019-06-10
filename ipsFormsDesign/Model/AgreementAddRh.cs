@@ -29,7 +29,6 @@ namespace ipsFormsDesign.Model
         public virtual RightHolder Cust { get; set; }
         public virtual TypeMethodGet GetCodeNavigation { get; set; }
         public virtual Period PeriodCodeNavigation { get; set; }
-        public virtual AspNetUsers ResponsUserNavigation { get; set; }
     }
 }
 

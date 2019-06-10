@@ -21,6 +21,8 @@ namespace WebAPIConnector
     public class ApiConnector
     {
         private readonly HttpClient client;
+        public string ErrorCode { get; private set; }
+        public string ErrorMessage { get; private set; }
 
         public ApiConnector()
         {
@@ -72,32 +74,32 @@ namespace WebAPIConnector
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
+        /// <param name="listParam"></param>
         /// <returns></returns>
         public List<T> GetList<T>(string url, params KeyValuePair<string, string>[] listParam)
         {
             string runUrl = url;
-            if (listParam.Count() > 0)
-                runUrl = string.Concat(runUrl, AsQueryString(listParam));
-            string retApiString;
-
             try
             {
+                if (listParam.Any())
+                    runUrl = string.Concat(runUrl, AsQueryString(listParam));
+
+                string retApiString;
                 retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+
+                JArray array = JArray.Parse(retApiString);
+                List<T> list = array.Select(rec =>
+                {
+                    var item = rec.ToObject<T>();
+                    return item;
+                }).ToList();
+
+                return list;
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
-
-            JArray array = JArray.Parse(retApiString);
-            List<T> list = array.Select(rec =>
-            {
-                var item = rec.ToObject<T>();
-                return item;
-            }).ToList();
-
-            return list;
-
         }
 
         /// <summary>
@@ -209,7 +211,7 @@ namespace WebAPIConnector
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                     return default(T);
-                else 
+                else
                     return default(T);
             }
             catch
@@ -221,7 +223,7 @@ namespace WebAPIConnector
 
 
         /// <summary>
-        /// Получити об'єкт з серверу додатків по ID
+        /// Отримати об'єкт з серверу додатків по ID
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -260,12 +262,17 @@ namespace WebAPIConnector
             return result.IsSuccessStatusCode;
         }
 
-        public T NewItemWithReturn<T>(string url, T data)
+        public T NewItemWithReturn<T>(string url, T data) where T : class
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             var result = client.PostAsync(url, content).GetAwaiter().GetResult();
 
-            return result.Content.ReadAs<T>();
+            if (result.IsSuccessStatusCode)
+            {
+                return result.Content.ReadAs<T>();
+            }
+            else
+                return null;
         }
 
         public T NewItemWithResult<T>(string url, T data) where T : class

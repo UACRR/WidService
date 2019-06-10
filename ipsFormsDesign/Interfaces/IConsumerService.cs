@@ -1,7 +1,6 @@
-﻿using ipsFormsDesign.Dictionary;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 
 namespace ipsFormsDesign.Interfaces
@@ -11,7 +10,8 @@ namespace ipsFormsDesign.Interfaces
         public int CustId { get; set; }
         public string Innokpo { get; set; }
         public string Name { get; set; }
-        public int CountAgree { get; set; }
+        public string ClientBrand { get; set; }
+        public int CountActive { get; set; }
         public decimal Undistribamount { get; set; }
         public bool IsAnkExtrn { get; set; }
     }
@@ -374,8 +374,8 @@ namespace ipsFormsDesign.Interfaces
 
     public class PartnerView
     {
-        public DateTime? AgrDate { get; set; }
         public int? CustId { get; set; }
+        public DateTime? AgrDate { get; set; }
         public int AgrId { get; set; }
         public int? AgrStatus { get; set; }
         public int? ClnCount { get; set; }

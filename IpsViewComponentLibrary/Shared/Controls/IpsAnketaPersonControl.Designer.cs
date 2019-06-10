@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary.PartnerControls
+﻿namespace IpsViewComponentLibrary.Shared.Controls
 {
-    partial class PartnerNameControl
+    partial class IpsAnketaPersonControl
     {
         /// <summary> 
         /// Required designer variable.

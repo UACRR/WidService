@@ -24,7 +24,6 @@ namespace ipsmedserviceapp.Model
         public virtual Client Cust { get; set; }
         public virtual PaidPeriod Period { get; set; }
         public virtual RegisterStatus StatusNavigation { get; set; }
-        public virtual AspNetUsers User { get; set; }
         public virtual ICollection<BrRegItem> BrRegItem { get; set; }
         public virtual ICollection<Distribution> Distribution { get; set; }
     }

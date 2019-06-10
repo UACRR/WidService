@@ -6,11 +6,10 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
+    [ComplexBindingProperties("DataSource")]
     public partial class AddressLetter : UserControl
     {
-
-        BindingSource _bindingSource;
+        private readonly BindingSource _bindingSource;
         private string _countryDataMember;
         private string _regionDataMember;
         private string _cityDataMember;
@@ -30,7 +29,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
@@ -42,15 +41,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
         }
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string DataMember
-        {
-            get => _bindingSource.DataMember;
-            set => _bindingSource.DataMember = value;
-        }
-
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string CountryDataMember
         {
@@ -66,7 +57,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string RegionDataMember
         {
@@ -82,7 +73,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string CityDataMember
         {
@@ -93,12 +84,12 @@ namespace IpsViewComponentLibrary.Shared.Controls
                 {
                     _cityDataMember = value;
                     txtCity.DataBindings.Clear();
-                    txtCity.DataBindings.Add("Text", _bindingSource, _cityDataMember);
+                    txtCity.DataBindings.Add("Text", _bindingSource, _cityDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
                 }
             }
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string AddressDataMember
         {
@@ -109,119 +100,26 @@ namespace IpsViewComponentLibrary.Shared.Controls
                 {
                     _addressDataMember = value;
                     txtAddress.DataBindings.Clear();
-                    txtAddress.DataBindings.Add("Text", _bindingSource, _addressDataMember);
+                    txtAddress.DataBindings.Add("Text", _bindingSource, _addressDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
                 }
             }
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string PostIndexDataMember
         {
-            get => _addressDataMember;
+            get => _postIndexDataMember;
             set
             {
                 if (_postIndexDataMember != value)
                 {
                     _postIndexDataMember = value;
                     txtPostIndex.DataBindings.Clear();
-                    txtPostIndex.DataBindings.Add("Text", _bindingSource, _postIndexDataMember);
+                    txtPostIndex.DataBindings.Add("Text", _bindingSource, _postIndexDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
                 }
             }
         }
-
-        #region Country dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object CountriesDataSource
-        {
-            get => ddlCountry.DataSource;
-            set
-            {
-                if (ddlCountry.DataSource != value)
-                    ddlCountry.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesDataMember
-        {
-            get => ddlCountry.DataMember;
-            set => ddlCountry.DataMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesDisplayMember
-        {
-            get => ddlCountry.DisplayMember;
-            set => ddlCountry.DisplayMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesValueMember
-        {
-            get => ddlCountry.ValueMember;
-            set => ddlCountry.ValueMember = value;
-        }
-
-        #endregion
-
-        #region Region dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object RegionsDataSource
-        {
-            get => ddlRegion.DataSource;
-            set
-            {
-                if (ddlRegion.DataSource != value)
-                    ddlRegion.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsDataMember
-        {
-            get => ddlRegion.DataMember;
-            set => ddlRegion.DataMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsDisplayMember
-        {
-            get => ddlRegion.DisplayMember;
-            set => ddlRegion.DisplayMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsValueMember
-        {
-            get => ddlRegion.ValueMember;
-            set => ddlRegion.ValueMember = value;
-        }
-
-        #endregion
-
-        #region Edit controls
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadDropDownList DdlCountry => ddlCountry;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadDropDownList DdlRegion => ddlRegion;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtCity => txtCity;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtAddress => txtAddress;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtPostIndex => txtPostIndex;
-
-        #endregion
 
         public bool Validator()
         {
@@ -236,20 +134,6 @@ namespace IpsViewComponentLibrary.Shared.Controls
             //    radLabel1.ForeColor = Color.Black;
 
             return isValid;
-        }
-
-        internal void SetDefaultState()
-        {
-            if (ddlCountry.Items.Count != 0)
-            {
-                ddlCountry.SelectedIndex = ddlCountry.Items.Last.Index;
-                ddlCountry.SelectedIndex = ddlCountry.Items.First.Index;
-            }
-            if (ddlRegion.Items.Count != 0)
-            {
-                ddlRegion.SelectedIndex = ddlCountry.Items.Last.Index;
-                ddlRegion.SelectedIndex = ddlCountry.Items.First.Index;
-            }
         }
     }
 }

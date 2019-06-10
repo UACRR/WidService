@@ -37,6 +37,19 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Отримати CatalogFile по ID правовласника/видавництва та по FileId
+        /// </summary>
+        /// <param name="custId">ID правовласника/видавництва</param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public CatalogFile GetCatalogFile(int custId, int fileId )
+        {
+            string url = $"{Prefix}/catalogfile/{custId}/{fileId}";
+            var result = _apiConnector.GetItemById<CatalogFile>(url, null);
+            return result;
+        }
+
+        /// <summary>
         /// Завантажити CatalogFile на сервер
         /// </summary>
         /// <param name="custId"></param>

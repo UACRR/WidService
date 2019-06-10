@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace ipsmedserviceapp.Model
 {
@@ -25,10 +24,10 @@ namespace ipsmedserviceapp.Model
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
         public string ErrComment { get; set; }
+        public string RhName { get; set; }
 
         public virtual CopyRight CRight { get; set; }
         public virtual RightHolder Cust { get; set; }
-        [JsonIgnore]
         public virtual CatalogFile File { get; set; }
         public virtual CatalogStatus StatusNavigation { get; set; }
     }

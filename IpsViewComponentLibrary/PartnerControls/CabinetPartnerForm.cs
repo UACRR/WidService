@@ -31,7 +31,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event SaveCustomerEventHandler OnSaveCustomer;
         public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
         public event GetCustomerByIdEventHandler UpdateCustomer;
-        private IAnketaControls _control;
+        private readonly IAnketaControls _control;
 
         public CabinetPartnerForm(Customer customer)
         {

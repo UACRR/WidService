@@ -220,10 +220,10 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.pageView.Controls.Add(this.pvConditions);
             this.pageView.Controls.Add(this.pvMusicalArrangement);
             this.pageView.DefaultPage = this.pvAuthors;
-            this.pageView.Location = new System.Drawing.Point(0, 222);
+            this.pageView.Location = new System.Drawing.Point(3, 203);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvAuthors;
-            this.pageView.Size = new System.Drawing.Size(1064, 285);
+            this.pageView.Size = new System.Drawing.Size(1090, 314);
             this.pageView.TabIndex = 4;
             this.pageView.ThemeName = "Office2013Light";
             this.pageView.SelectedPageChanged += new System.EventHandler(this.PageView_SelectedPageChanged);
@@ -237,22 +237,20 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.pvAuthors.ItemSize = new System.Drawing.SizeF(56F, 27F);
             this.pvAuthors.Location = new System.Drawing.Point(5, 31);
             this.pvAuthors.Name = "pvAuthors";
-            this.pvAuthors.Size = new System.Drawing.Size(1054, 249);
+            this.pvAuthors.Size = new System.Drawing.Size(1080, 278);
             this.pvAuthors.Text = "Автори";
             // 
             // ctrlAuthorRightholderList
             // 
             this.ctrlAuthorRightholderList.AllowEditList = false;
-            this.ctrlAuthorRightholderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlAuthorRightholderList.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholderBrViewModel);
+            this.ctrlAuthorRightholderList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlAuthorRightholderList.ListMode = IpsViewComponentLibrary.ObjectRightControls.AuthorRightholderBrListMode.Full;
-            this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(0, 12);
+            this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(0, 0);
             this.ctrlAuthorRightholderList.Name = "ctrlAuthorRightholderList";
             this.ctrlAuthorRightholderList.RoleRateErrorText = "";
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
-            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1056, 234);
+            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1080, 278);
             this.ctrlAuthorRightholderList.TabIndex = 0;
             this.ctrlAuthorRightholderList.CurrentAuthorRightholderChanged += new System.EventHandler(this.CtrlAuthorRightholderList_CurrentAuthorRightholderChanged);
             // 
@@ -278,7 +276,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.pvConditions.ItemSize = new System.Drawing.SizeF(51F, 27F);
             this.pvConditions.Location = new System.Drawing.Point(5, 31);
             this.pvConditions.Name = "pvConditions";
-            this.pvConditions.Size = new System.Drawing.Size(1067, 378);
+            this.pvConditions.Size = new System.Drawing.Size(1080, 278);
             this.pvConditions.Text = "Умови";
             // 
             // checkIsTour
@@ -470,7 +468,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvMusicalArrangement.Location = new System.Drawing.Point(5, 31);
             this.pvMusicalArrangement.Name = "pvMusicalArrangement";
-            this.pvMusicalArrangement.Size = new System.Drawing.Size(1067, 378);
+            this.pvMusicalArrangement.Size = new System.Drawing.Size(1080, 278);
             this.pvMusicalArrangement.Text = "Збірна музика";
             // 
             // radSeparator1
@@ -532,7 +530,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ctrlMusicalDesignList.ShowLinked = true;
             this.ctrlMusicalDesignList.ShowObjectInfo = true;
             this.ctrlMusicalDesignList.ShowTimeStartEnd = false;
-            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1067, 298);
+            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1080, 229);
             this.ctrlMusicalDesignList.TabIndex = 2;
             // 
             // bsWorkRh
@@ -1025,10 +1023,10 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radPanel2.Controls.Add(this.panelStatusees);
             this.radPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radPanel2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radPanel2.Location = new System.Drawing.Point(0, 515);
+            this.radPanel2.Location = new System.Drawing.Point(0, 526);
             this.radPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(1069, 31);
+            this.radPanel2.Size = new System.Drawing.Size(1095, 31);
             this.radPanel2.TabIndex = 5;
             this.radPanel2.ThemeName = "Office2013Light";
             // 
@@ -1036,7 +1034,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(891, 4);
+            this.btnCancel.Location = new System.Drawing.Point(917, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(175, 24);
             this.btnCancel.TabIndex = 1;
@@ -1046,7 +1044,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(710, 4);
+            this.btnSave.Location = new System.Drawing.Point(736, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(175, 24);
             this.btnSave.TabIndex = 0;
@@ -1103,10 +1101,12 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // RequestForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(1090, 500);
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1069, 546);
+            this.ClientSize = new System.Drawing.Size(1095, 557);
             this.Controls.Add(this.ddlStatus);
             this.Controls.Add(this.ddlState);
             this.Controls.Add(this.radLabel9);

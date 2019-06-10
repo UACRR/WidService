@@ -68,16 +68,16 @@ namespace IpsViewComponentLibrary.CommunityControls
             ctrlRightLimitation.SetData(item, rightList, _communityCustId);
         }
 
-        private void timerSearch_Tick(object sender, EventArgs e)
-        {
-            timerSearch.Stop();
-            navigatorPanel.CurrentPage = 1;
-        }
-
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             timerSearch.Stop();
             timerSearch.Start();
+        }
+
+        private void timerSearch_Tick(object sender, EventArgs e)
+        {
+            timerSearch.Stop();
+            navigatorPanel.CurrentPage = 1;
         }
 
         private void navigatorPanel_CurrentPageChanged(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         {
             waitingBar.StartWaiting();
 
-            var query = new RightholdersQuery();
+            var query = new PaginateAndSearchQuery();
 
             query.Page = navigatorPanel.CurrentPage;
             query.PageSize = navigatorPanel.PageSize;

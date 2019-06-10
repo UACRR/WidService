@@ -432,7 +432,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void GvRegisterItemList_CellFormatting(object sender, CellFormattingEventArgs e)
         {
-            IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
+            Utilities.GridViewHelper.DisplayErrors(sender, e);
         }
 
         private void GvRegisterItemList_ViewCellFormatting(object sender, CellFormattingEventArgs e)

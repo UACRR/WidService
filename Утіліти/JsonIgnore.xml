@@ -94,4 +94,12 @@
     <item Name="Distribution">
         <noignore>DistributionItem</noignore>
     </item>
+	<item Name="CatalogStatus">
+        <noignore>CatalogStatusTr</noignore>
+    </item>
+	<item Name="AgrLicenseType">
+        <noignore>UsesKindNavigation</noignore>
+    </item>
+	<item Name="UsesKind"></item>
+	<item Name="CreativeRoleType"></item>
 </tables>

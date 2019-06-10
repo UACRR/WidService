@@ -164,6 +164,7 @@ public interface IAgrLicenseType
          int? AlgorithmId { get; set; }
          string Series { get; set; }
          decimal? AuthRate { get; set; }
+         short? IsPortal { get; set; }
 }
 public interface IAgrLicenseTypeTr
     {
@@ -569,6 +570,8 @@ public interface ICopyRight
          int? RoleCode { get; set; }
          int? Status { get; set; }
          decimal? RateMech { get; set; }
+         int? LoadId { get; set; }
+         string SourceName { get; set; }
 }
 public interface ICopyRightHistory
     {
@@ -694,6 +697,7 @@ public interface ICustomer
          byte? AnkPublish { get; set; }
          byte? AnkTech { get; set; }
          string UserId { get; set; }
+         int? LoadId { get; set; }
 }
 public interface ICustomerStatus
     {    int CodeI { get; set; }
@@ -1659,6 +1663,7 @@ public interface IPubCatalogItem
          int? RoleCode { get; set; }
          int? Status { get; set; }
          string ErrComment { get; set; }
+         string RhName { get; set; }
 }
 public interface IRegion
     {    int CodeI { get; set; }
@@ -1746,6 +1751,7 @@ public interface IRegisterItem
          int? Durationticks { get; set; }
          int Ticks { get; set; }
          bool IsAuto { get; set; }
+         int? GenreType { get; set; }
 }
 public interface IRegisterItemFix
     {
@@ -2104,6 +2110,7 @@ public interface IRhcatalogItem
          int? Status { get; set; }
          int? CRightId { get; set; }
          string ErrComment { get; set; }
+         TimeSpan? Duration { get; set; }
 }
 public interface IRholderType
     {    int CodeI { get; set; }
@@ -2114,28 +2121,6 @@ public interface IRholderTypeTr
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
-}
-public interface IRhñatalogItem
-    {
-         int ItemId { get; set; }
-         int? FileId { get; set; }
-         string ItemCode { get; set; }
-         string Iswc { get; set; }
-         string ObjName { get; set; }
-         string GenreName { get; set; }
-         string RoleName { get; set; }
-         string AuthorName { get; set; }
-         decimal? Rate { get; set; }
-         string CmName { get; set; }
-         string Comment { get; set; }
-         int? ObjId { get; set; }
-         int? CustId { get; set; }
-         int? GenreCode { get; set; }
-         int? RoleCode { get; set; }
-         int? CmCustId { get; set; }
-         int? Status { get; set; }
-         int? CRightId { get; set; }
-         string ErrComment { get; set; }
 }
 public interface IRightHolder
     {    int CustId { get; set; }

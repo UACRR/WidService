@@ -6,10 +6,10 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
+    [ComplexBindingProperties("DataSource")]
     public partial class IpsAddressControl : UserControl
     {
-        BindingSource _bindingSource;
+        private readonly BindingSource _bindingSource;
         string _countryDataMember;
         string _regionDataMember;
         string _cityDataMember;
@@ -31,11 +31,11 @@ namespace IpsViewComponentLibrary.Shared.Controls
             
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return _bindingSource.DataSource; }
+            get => _bindingSource.DataSource;
             set
             {
                 if (_bindingSource.DataSource != value)
@@ -43,19 +43,11 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
         }
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string DataMember
-        {
-            get { return _bindingSource.DataMember; }
-            set { _bindingSource.DataMember = value; }
-        }
-
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string CountryDataMember
         {
-            get { return _countryDataMember; }
+            get => _countryDataMember;
             set
             {
                 if (_countryDataMember != value)
@@ -67,11 +59,11 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string RegionDataMember
         {
-            get { return _regionDataMember; }
+            get => _regionDataMember;
             set
             {
                 if (_regionDataMember != value)
@@ -83,75 +75,37 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string CityDataMember
         {
-            get { return _cityDataMember; }
+            get => _cityDataMember;
             set
             {
                 if (_cityDataMember != value)
                 {
                     _cityDataMember = value;
                     txtCity.DataBindings.Clear();
-                    txtCity.DataBindings.Add("Text", _bindingSource, _cityDataMember);
+                    txtCity.DataBindings.Add("Text", _bindingSource, _cityDataMember, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
                 }
             }
         }
 
-        [Category("Data")]
+        [Category("DataBinding")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string AddressDataMember
         {
-            get { return _addressDataMember; }
+            get => _addressDataMember;
             set
             {
                 if (_addressDataMember != value)
                 {
                     _addressDataMember = value;
                     txtAddress.DataBindings.Clear();
-                    txtAddress.DataBindings.Add("Text", _bindingSource, _addressDataMember);
+                    txtAddress.DataBindings.Add("Text", _bindingSource, _addressDataMember, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
                 }
             }
         }
-
-        #region Edit controls
-
-
-        public RadDropDownList DdlCountry
-        {
-            get
-            {
-                return ddlCountry;
-            }
-        }
-
-        public RadDropDownList DdlRegion
-        {
-            get
-            {
-                return ddlRegion;
-            }
-        }
-
-        public RadTextBox TxtCity
-        {
-            get
-            {
-                return txtCity;
-            }
-        }
-
-        public RadTextBox TxtAddress
-        {
-            get
-            {
-                return txtAddress;
-            }
-        }
-
-
-        #endregion
 
         public bool Validator()
         {
@@ -166,20 +120,6 @@ namespace IpsViewComponentLibrary.Shared.Controls
             //    radLabel1.ForeColor = Color.Black;
 
             return isValid;
-        }
-
-        internal void SetDefaultState()
-        {
-            if (ddlCountry.Items.Count != 0)
-            {
-                ddlCountry.SelectedIndex = ddlCountry.Items.Last.Index;
-                ddlCountry.SelectedIndex = ddlCountry.Items.First.Index;
-            }
-            if (ddlRegion.Items.Count != 0)
-            {
-                ddlRegion.SelectedIndex = ddlRegion.Items.Last.Index;
-                ddlRegion.SelectedIndex = ddlRegion.Items.First.Index;
-            }
         }
     }
 }

@@ -36,7 +36,6 @@ namespace ipsFormsDesign.Model
         public virtual LicenseAgreement Lic { get; set; }
         public virtual Partner PartnerCust { get; set; }
         public virtual FixStageStatus StageStatusNavigation { get; set; }
-        public virtual AspNetUsers User { get; set; }
         public virtual UsesType UsesTypeNavigation { get; set; }
         public virtual ObservableListSource<FixFile> FixFile { get; set; }
         public virtual ObservableListSource<FixStorageDevice> FixStorageDevice { get; set; }

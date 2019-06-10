@@ -34,8 +34,6 @@ namespace ipsmedserviceapp.Model
         public virtual TypeMethodGet GetCodeNavigation { get; set; }
         [JsonIgnore]
         public virtual Period PeriodCodeNavigation { get; set; }
-        [JsonIgnore]
-        public virtual AspNetUsers ResponsUserNavigation { get; set; }
     }
 }
 

@@ -8,12 +8,10 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using WordApplication = Microsoft.Office.Interop.Word.Application;
 using ExcelApplication = Microsoft.Office.Interop.Excel.Application;
@@ -41,6 +39,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
             _mainGrid = mainGrid;
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
+            _mainGrid.SearchOrPageChanged += GridDataUpdate;
 
             _cabinetSmallRightForm.OnUpdate += SmallRightForm_OnUpdate;
             _cabinetSmallRightForm.cabinet.SaveCustomer += SaveCustomer;
@@ -127,10 +126,9 @@ namespace ConsumerSmallRightWorkplace.Presenters
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
-            // Передати в поточний контрол зміну фільтра ???
-            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
+            GridDataUpdate();
         }
-        
+
         //відкрити кабінет користувача
         private void LoadCustomerCabinet(ConsumerSmallRightView item)
         {
@@ -153,7 +151,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
 
             CloneRegisterRL(mainCust, regCust);
 
-            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
+            GridDataUpdate();
 
             _cabinetSmallRightForm.SetCustomer(mainCust);
             _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;
@@ -185,6 +183,10 @@ namespace ConsumerSmallRightWorkplace.Presenters
                     }
                 }
             }
+
+            // sync anketa
+            regCust.Company = mainCust.Company;
+            regCust.Person = mainCust.Person;
         }
 
         // Додавання нового споживача юридична особа (діалогова форма)
@@ -218,7 +220,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
                     break;
             }
             GC.Collect();
-            UpdateDataGrid();
+            GridDataUpdate();
         }
 
         // збереження customer
@@ -238,9 +240,23 @@ namespace ConsumerSmallRightWorkplace.Presenters
         /// <summary>
         /// Оновлення даних основного гріда
         /// </summary>
+        public async void GridDataUpdate()
+        {
+            _mainGrid.StartWait();
+            var result = await RunTask();
+            _mainGrid.DataSource = result.List;
+            _mainGrid.TotalItems = result.TotalItems;
+            _mainGrid.StopWait();
+        }
+
+        private async Task<ItemListResponse<ConsumerSmallRightView>> RunTask()
+        {
+            return await Task.Factory.StartNew(() => _service.getMainView(_currentNodeValue, _mainGrid.PaginateAndSearchQuery));
+        }
+
         public void UpdateDataGrid()
         {
-            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
+            GridDataUpdate();
         }
     }
 }

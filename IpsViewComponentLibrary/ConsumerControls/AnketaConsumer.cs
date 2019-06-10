@@ -169,7 +169,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public void UpdateLicenses()
         {
-            _ctrlAgreementSmallRights?.UpdateLicenses();
+            _ctrlAgreementSmallRights?.UpdatePlaceLicenses();
         }
 
         /// <summary>

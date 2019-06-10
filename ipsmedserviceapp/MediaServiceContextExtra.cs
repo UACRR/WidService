@@ -167,6 +167,7 @@ namespace ipsmedserviceapp.Model
             List<Dictionary<string, object>> vActiveOrders = null;
 
             var connection = this.Database.GetDbConnection();
+            var timeout = Database.GetCommandTimeout() ?? 600;
 
             try
             {
@@ -174,6 +175,8 @@ namespace ipsmedserviceapp.Model
                 using (var comm = connection.CreateCommand())
                 {
                     comm.CommandText = sqlCommand;
+                    comm.CommandTimeout = timeout;
+
                     if (param != null && param.Length > 0)
                     {
                         foreach (var p in param)

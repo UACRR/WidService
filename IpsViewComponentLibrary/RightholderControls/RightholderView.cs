@@ -8,8 +8,6 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
-using IpsViewComponentLibrary.CatalogControls;
-using IpsViewComponentLibrary.RightholderControls.Anketa;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -18,7 +16,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class RightholderView : RadForm, IRightholderView
     {
-        private bool _isCompany;
+        //private bool _isCompany;
         private string _pdf;
         private string _doc;
         private string _custName;
@@ -57,7 +55,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => bsAnketaCompany.DataSource = value;
         }
 
-        //define Anketa External data source
         public object AnketaExternalDataSource
         {
             get => bsAnketaExternal.DataSource;
@@ -101,6 +98,29 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         #endregion
 
+        /// <summary>
+        /// Активність вкладок реєстру/каталога залежно від типу правовласника
+        /// </summary>
+        /// <param name="rhType"></param>
+        public void SetCatalogsTabVisible(int? rhType)
+        {
+            if (rhType == null)
+            {
+                pvCatalog.Enabled = false;
+                pvRegisters.Enabled = false;
+            }
+            else if (rhType == 1)
+            {
+                pvCatalog.Enabled = false;
+                pvRegisters.Enabled = true;
+            }
+            else
+            {
+                pvCatalog.Enabled = true;
+                pvRegisters.Enabled = false;
+            }
+        }
+
         
         public RightholderView()
         {
@@ -114,8 +134,6 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
-
-            //catalogControl1.command += 
         }
 
         ~RightholderView()
@@ -180,7 +198,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
-
+            SetCatalogsTabVisible(customer.RightHolder.RHolderType);
+            ctrlRightholderRegister.CustId = customer.CustId;
             //set active pages on depends field 'CustType'
             //ShowActivePages(customer);
 
@@ -261,11 +280,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             Text = header + " - Анкета правовласника";
         }
 
-        private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             // TODO: move to presenter
@@ -281,7 +295,6 @@ namespace IpsViewComponentLibrary.RightholderControls
                     createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
             }
         }
-
 
         private void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
         {
@@ -379,13 +392,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             bsAnketaPerson.ResetCurrentItem();
         }
 
-        private void RightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        private void RightholderView_FormClosing(object sender, FormClosingEventArgs e)
         {
             _presenter.Close();
             e.Cancel = true;
         }
 
-        private void bsAgreementAddRh_BindingComplete(object sender, System.Windows.Forms.BindingCompleteEventArgs e)
+        private void bsAgreementAddRh_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             SetAllowedStatuses();
         }

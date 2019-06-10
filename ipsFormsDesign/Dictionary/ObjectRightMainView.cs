@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Dictionary
     public class ObjectRightMainView
     {
         public int ObjId { get; set; }
+        public string InnerCode { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public string GenreName { get; set; }

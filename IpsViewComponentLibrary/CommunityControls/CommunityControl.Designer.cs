@@ -39,17 +39,17 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.gvViewPartners = new Telerik.WinControls.UI.RadGridView();
+            this.bsCommunityListView = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.btnAddCommunity = new Telerik.WinControls.UI.RadButton();
             this.panelBottom = new Telerik.WinControls.UI.RadPanel();
             this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
-            this.bsCommunityListView = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityListView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCommunity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelBottom)).BeginInit();
             this.panelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityListView)).BeginInit();
             this.SuspendLayout();
             // 
             // gvViewPartners
@@ -151,6 +151,10 @@
             this.gvViewPartners.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewPartners_CellDoubleClick);
             this.gvViewPartners.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewPartners_CommandCellClick);
             // 
+            // bsCommunityListView
+            // 
+            this.bsCommunityListView.DataSource = typeof(ipsFormsDesign.Interfaces.CommunityListView);
+            // 
             // ctrlSearch
             // 
             this.ctrlSearch.Location = new System.Drawing.Point(3, 3);
@@ -192,10 +196,6 @@
             this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
             this.ctrlGridRowCount.TabIndex = 0;
             // 
-            // bsCommunityListView
-            // 
-            this.bsCommunityListView.DataSource = typeof(ipsFormsDesign.Interfaces.CommunityListView);
-            // 
             // CommunityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,10 +208,10 @@
             this.Size = new System.Drawing.Size(932, 496);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityListView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCommunity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelBottom)).EndInit();
             this.panelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityListView)).EndInit();
             this.ResumeLayout(false);
 
         }

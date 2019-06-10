@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ipsmedserviceapp.Model
 {
@@ -21,14 +22,23 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public int Crtype { get; set; }
 
+        [JsonIgnore]
         public virtual Category CategoryCodeNavigation { get; set; }
+        [JsonIgnore]
         public virtual CopyrightType CrtypeNavigation { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Authors> Authors { get; set; }
+        [JsonIgnore]
         public virtual ICollection<CopyRight> CopyRight { get; set; }
+        [JsonIgnore]
         public virtual ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
+        [JsonIgnore]
         public virtual ICollection<RegisterAuthors> RegisterAuthors { get; set; }
+        [JsonIgnore]
         public virtual ICollection<RegisterExtra> RegisterExtra { get; set; }
+        [JsonIgnore]
         public virtual ICollection<RelEtRole> RelEtRole { get; set; }
+        [JsonIgnore]
         public virtual ICollection<RelGenreRole> RelGenreRole { get; set; }
     }
 }

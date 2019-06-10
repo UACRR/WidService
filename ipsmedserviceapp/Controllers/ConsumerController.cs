@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Castle.Core.Logging;
+using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.DATA;
 using ipsmedserviceapp.Model;
 using ipsmedserviceapp.Utilities;
@@ -695,31 +697,56 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("listSR/{whatId}")]
-        public async Task<IActionResult> GetListSR(int whatId)
+        public async Task<IActionResult> GetListSR(int whatId, [FromQuery] ConsumerSmallRightResource queryResource)
         {
             ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
 
-            string queue = "select * from vTsk_1_ListConsumer01";
+            string function = "select * from ft_tsk_1_LicenseAgreementList (@strSeek)";
+
             switch (what)
             {
                 case ConsumerFilterEnum.All:
                 case ConsumerFilterEnum.None:
                     break;
                 case ConsumerFilterEnum.Working:
-                    queue = string.Concat(queue, " ", "where cntActive > 0");
+                    function = string.Concat(function, " where statusActive = 1");
                     break;
                 case ConsumerFilterEnum.NotAccepted:
-                    queue = string.Concat(queue, " ", "where cntOnAccepting > 0");
+                    function = string.Concat(function, " where statusNoAccept = 1");
                     break;
                 case ConsumerFilterEnum.ForProlongation:
-                    queue = string.Concat(queue, " ", "where cntExtraAgr > 0");
+                    function = string.Concat(function, " where statusProlong = 1");
                     break;
                 case ConsumerFilterEnum.ForDistribution:
-                    queue = string.Concat(queue, " ", "where undistribamount > 0");
+                    function = string.Concat(function, " where statusUndistribute = 1");
                     break;
             }
-            var List = await _dbContext.getViewData(queue, null);
-            return Json(List);
+
+            string strSeek = !string.IsNullOrEmpty(queryResource?.SearchText) ? queryResource.SearchText.Replace('\'', '_') : string.Empty;
+
+            var totalItems = (await _dbContext.getViewData(function.Replace("*", "count(*)"), new[] { new SqlParameter("@strSeek", strSeek) }))
+                .FirstOrDefault()?.Values.FirstOrDefault();
+
+            int page = 1;
+            int pageSize = 200;
+
+            if (queryResource.Page.HasValue)
+                page = (int)queryResource.Page;
+
+            if (queryResource.PageSize.HasValue)
+                pageSize = (int)queryResource.PageSize;
+
+            // paging conditions
+            string orderBy = $" ORDER BY custId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
+            function = string.Concat(function, orderBy);
+
+            var list = await _dbContext.getViewData(function, new[] { new SqlParameter("@strSeek", strSeek) });
+
+            return Ok(new
+            {
+                List = list,
+                TotalItems = totalItems
+            });
         }
 
         [HttpGet("listall")]
@@ -1096,6 +1123,19 @@ namespace ipsmedserviceapp.Controllers
             var licenseAgrParam = await _dbContext.LicenseAgrParam
                 .SingleOrDefaultAsync(rec => rec.LicId == licId && rec.LicVersion == licVersion);
             licenseAgrParam.LicStatus = 10;
+
+            // договір що був створений для пролонгації
+            var license = await _dbContext.LicenseAgreement
+                .SingleOrDefaultAsync(rec => rec.LicId == licId && rec.ProlongVersion == licVersion);
+            if (license != null)
+                license.ProlongVersion = null;
+
+            // видалити ліцензії бізнес-точок
+            var placeLicenses = await _dbContext.License
+                .Where(rec => rec.LicId == licId && rec.LicVersion == licVersion).ToListAsync();
+            if (placeLicenses.Any())
+                _dbContext.License.RemoveRange(placeLicenses);
+
             return licenseAgrParam;
         }
 
@@ -1327,34 +1367,35 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = false;
 
-                _dbContext.UpdateListExtra(sorsItem.RegisterItem, destItem.RegisterItem,
-                    (isNew, sorsRec, destRec) =>
-                    {
-                        destRec.SetFields(sorsRec);
+                if (sorsItem.RegisterItem.Count > 0)
+                    _dbContext.UpdateListExtra(sorsItem.RegisterItem, destItem.RegisterItem,
+                        (isNew, sorsRec, destRec) =>
+                        {
+                            destRec.SetFields(sorsRec);
                         // TICKS *********************************
                         // Виправлення даних для вирахування пропорціність використання твору
                         if (destRec.DurationItem == null)
-                        {
-                            destRec.DurationItem = TimeSpan.FromTicks(10000);
-                            destRec.Ticks = 1;
-                        }
+                            {
+                                destRec.DurationItem = TimeSpan.FromTicks( TimeSpan.TicksPerMillisecond ); 
+                                destRec.Ticks = 1;
+                            }
 
-                        if (destRec.Ticks == 0)
-                        {
-                            if (destItem.AlgorithmId == 1)  // Duration
+                            if (destRec.Ticks == 0)
+                            {
+                                if (destItem.AlgorithmId == 1)  // Duration
                                 destRec.Ticks = Math.Max(1,
-                                                         (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / 10000));
-                            else
-                                destRec.Ticks = 1;          // Count
+                                                             (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / TimeSpan.TicksPerMillisecond ));
+                                else
+                                    destRec.Ticks = 1;          // Count
                         }
                         // TICKS *********************************
 
                         if (isNew)
-                            destRec.RegIitemId = regItemId++;
+                                destRec.RegIitemId = regItemId++;
 
-                        _dbContext.UpdateList(sorsRec.RegisterExtra, destRec.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
-                    }
-                    , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+                            _dbContext.UpdateList(sorsRec.RegisterExtra, destRec.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
+                        }
+                        , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
 
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
 
@@ -1465,16 +1506,18 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             int index = modifyItem.RegisterItem.Max(rec => rec.RegIitemId);
             index++;
 
-            _dbContext.UpdateListExtra(body.RegisterItem, modifyItem.RegisterItem, (isNew, sorsItem, destItem) =>
-            {
+            _dbContext.UpdateListExtra(
+                body.RegisterItem, 
+                modifyItem.RegisterItem,
+                (isNew, sorsItem, destItem) =>
+                {
+                    if (isNew)
+                        destItem.RegIitemId = index++;
 
-                if (isNew)
-                    destItem.RegIitemId = index++;
-
-                _dbContext.UpdateList(sorsItem.RegisterExtra, destItem.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
-            }
-
-            , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+                    _dbContext.UpdateList(sorsItem.RegisterExtra, destItem.RegisterExtra, i => { },
+                        (l, r) => l.RegExtraId == r.RegExtraId);
+                },
+                (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
         }
 
         /// <summary>
@@ -1754,14 +1797,15 @@ and t2.custId = @custId
         public async Task<IActionResult> GetRegisterInfoForCustomer([FromQuery] int custId)
         {
             var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
-select t" + @"1.* 
+select t1.* 
 from LicenseAgreement t1 
 where t1.custId = @custId
 and isnull(licType,1) between 1 and 3
 ", new SqlParameter("@custId", custId))
-                .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
                 .Include(lic => lic.Cust)
+                    .ThenInclude(cln => cln.Cust)
                 .Include(lic => lic.Agr)
+                .Include( lic => lic.LicCodeNavigation )
                 .ToListAsync();
 
 
@@ -1881,14 +1925,13 @@ and isnull(licType,1) between 1 and 3
             try
             {
                 RegisterRatedList dest = null;
-                dest = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
+                dest = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
                     .Include(rec => rec.Register)
-                    .Include(rec => rec.Period) // MED-197
-                            .ThenInclude(p => p.Lic)
-                                .ThenInclude(lic => lic.LicCodeNavigation)
-                                    .ThenInclude(code => code.UsesKindNavigation)
-
-                    .Single();
+                    .Include(rec => rec.Period)
+                    .ThenInclude(p => p.Lic)
+                    .ThenInclude(lic => lic.LicCodeNavigation)
+                    .ThenInclude(code => code.UsesKindNavigation)
+                    .SingleOrDefaultAsync();
 
                 foreach (var item in dest.Register)
                 {
@@ -1902,13 +1945,11 @@ and isnull(licType,1) between 1 and 3
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
-                tran = null;
                 return Json(dest);
             }
             catch (Exception e)
             {
-                if (tran != null)
-                    tran.Rollback();
+                tran?.Rollback();
                 return BadRequest(e.Message);
             }
 
@@ -2072,9 +2113,9 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
 
                 var mime = MimeTypeMap.GetMimeType(Path.GetExtension(consumerPath));
 
-                var file = new FileStream(consumerPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite );
+                var file = new FileStream(consumerPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
-                return File(file, mime, fileName );
+                return File(file, mime, fileName);
 
             }
             catch

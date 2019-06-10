@@ -201,33 +201,40 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             //}
 
             //var List = await _dbContext.getViewData(queryText, null);
-            vTsk1ListRightHolder01Box retItem = new vTsk1ListRightHolder01Box();
             //object searchText = new SqlParameter("@searchString", string.IsNullOrEmpty(query.SearchString) ? (object)DBNull.Value : query.SearchString );
 
             //var qlist = _dbContext.vTsk1ListRightHolder01.FromSql("select * from Ft_Tsk_1_ListRightHolder01(NULL,@searchString)", searchText);
-            var qlist = _dbContext.vTsk_1_ListRightHolder01.AsQueryable();
 
-            
-            if( !string.IsNullOrEmpty(query.SearchString) )
+
+            try
             {
-                var searchString = query.SearchString.Trim();
-                qlist = qlist.Where(rec => rec.Name.Contains(searchString) || rec.InnerCode.Contains(searchString) || rec.InterCode.Contains(searchString));
+                vTsk1ListRightHolder01Box retItem = new vTsk1ListRightHolder01Box();
 
+                var qlist = _dbContext.vTsk_1_ListRightHolder01.AsQueryable();
+
+                if (!string.IsNullOrEmpty(query.SearchString))
+                {
+                    var searchString = query.SearchString.Trim();
+                    qlist = qlist.Where(rec => rec.Name.Contains(searchString) || rec.InnerCode.Contains(searchString) || rec.InterCode.Contains(searchString));
+                }
+
+                if (query.AgreementStatus.HasValue)
+                    qlist = qlist.Where(rec => rec.AgrStatus == query.AgreementStatus);
+                if (query.RightholderStatus.HasValue)
+                    qlist = qlist.Where(rec => rec.AgrStatus == query.RightholderStatus);
+
+                retItem.TotalPages = qlist.Count();
+
+                var skipRows = Math.Max((int)((query.PageNumber - 1) * query.RowsPerPage), 0);
+                retItem.list = await qlist.OrderBy(rec => rec.Name).Skip(skipRows).Take((int)query.RowsPerPage).ToListAsync();
+
+
+                return Ok(retItem);
             }
-
-
-            if (query.AgreementStatus.HasValue)
-                qlist = qlist.Where(rec => rec.AgrStatus == query.AgreementStatus);
-            if (query.RightholderStatus.HasValue)
-                qlist = qlist.Where(rec => rec.AgrStatus == query.RightholderStatus);
-
-            retItem.TotalPages = qlist.Count();
-
-            var skipRows = Math.Max((int)((query.PageNumber-1) * query.RowsPerPage),0);
-            retItem.list = await qlist.OrderBy(rec => rec.Name).Skip(skipRows).Take((int)query.RowsPerPage).ToListAsync();
-
-
-            return Ok(retItem);
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         [HttpGet("newrightholder/{custType}")]
@@ -275,7 +282,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             else
                 return BadRequest();
 
-
+            // Для % по замовчуванню
             var sysConst = await _dbContext.SystemConstant.Where(rec => (new[] { 4, 5 }).Contains(rec.CodeI)).ToDictionaryAsync(rec => rec.CodeI);
 
             var copyrightList = await _dbContext.CopyrightKind

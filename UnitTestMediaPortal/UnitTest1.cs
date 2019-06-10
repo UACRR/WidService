@@ -17,6 +17,7 @@ using ipsFormsDesign.Data;
 using AutoMapper;
 using System.Dynamic;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
+using System.Collections;
 //using Autofac;
 
 
@@ -87,17 +88,17 @@ namespace UnitTestMediaPortal
         [TestMethod]
         public void TestAutoMap()
         {
-            Mapper.Initialize( cfg => {
+            Mapper.Initialize(cfg => {
                 cfg.CreateMap<ClsOne, clsDTO>()
-                .ForMember( d => d.Id, opt => opt.MapFrom( src => src.Id ))
+                .ForMember(d => d.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(d => d.ClsOneName, opt => opt.MapFrom(src => src.Name))
                 .ForMember(d => d.ClsTwoName, opt => opt.MapFrom(src => src.Item.Name))
                 .ReverseMap()
-                .ForPath( d => d.Item.Id, opt => opt.MapFrom( src => src.Id ))
+                .ForPath(d => d.Item.Id, opt => opt.MapFrom(src => src.Id))
                 ;
             });
             ClsOne one = new ClsOne { Id = 1, Name = "One",
-                Item = new ClsTwo { Id = 1, Name = "Two"}
+                Item = new ClsTwo { Id = 1, Name = "Two" }
             };
 
             var result = Mapper.Map<ClsOne, clsDTO>(one);
@@ -126,6 +127,23 @@ namespace UnitTestMediaPortal
             //CatalogPresenter presenter = new CatalogPresenter();
             //var data = presenter.GetPubСatalog(@"D:\work\MediaSercice\temp\тест_каталог для Видавництв.xlsx");
             //Assert.AreNotEqual(data.Count, 0);
+        }
+
+        [TestMethod]
+        public void testIEnumerable()
+        {
+            int result = 0;
+            foreach (dynamic item in GetData())
+            {
+                result += item.id;
+            }
+
+            Assert.AreEqual( result, 1+2+3+4+5);
+        }
+        private IEnumerable GetData()
+        {
+            for (int i = 0; i <= 5; i++)
+                yield return new { id = i, res = i + 10 };
         }
     }
 }

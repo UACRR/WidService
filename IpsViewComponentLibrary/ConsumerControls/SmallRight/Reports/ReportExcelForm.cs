@@ -3,10 +3,11 @@ using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerForms
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
-    public partial class ReportExcelViewForm : Telerik.WinControls.UI.RadForm
+    public partial class ReportExcelForm : RadForm
     {
         private ObservableListSource<RegisterItem> _datasource = new ObservableListSource<RegisterItem>();
         public bool IsManual { get; private set; }
@@ -28,8 +29,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             }
         }
 
-
-        public ReportExcelViewForm(Register register, bool isManual = false)
+        public ReportExcelForm(Register register, bool isManual = false)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -93,7 +93,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             gvReportContentView.CurrentRow = gvReportContentView.Rows.LastOrDefault();
         }
 
-        private void gvReportContentView_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvReportContentView_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
             if(e.Column.FieldName == "DurationItem" || e.Column.FieldName == "CountUse")
                 if(e.Row?.DataBoundItem is RegisterItem item && item.DurationItem != null)
@@ -103,7 +103,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 }
         }
 
-        private void gvReportContentView_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvReportContentView_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             if (e?.Row?.DataBoundItem is RegisterItem item)
             {

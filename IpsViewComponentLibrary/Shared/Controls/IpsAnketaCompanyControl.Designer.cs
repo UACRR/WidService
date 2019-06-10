@@ -47,14 +47,14 @@
             this.txtShortName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtShortName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "ShortName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtShortName.Location = new System.Drawing.Point(119, 25);
-            this.txtShortName.MaximumSize = new System.Drawing.Size(350, 20);
+            this.txtShortName.Location = new System.Drawing.Point(114, 64);
+            this.txtShortName.MaxLength = 254;
             this.txtShortName.Name = "txtShortName";
             // 
             // 
             // 
-            this.txtShortName.RootElement.MaxSize = new System.Drawing.Size(350, 20);
-            this.txtShortName.Size = new System.Drawing.Size(333, 20);
+            this.txtShortName.RootElement.MaxSize = new System.Drawing.Size(0, 0);
+            this.txtShortName.Size = new System.Drawing.Size(422, 20);
             this.txtShortName.TabIndex = 1;
             this.txtShortName.ThemeName = "Office2013Light";
             // 
@@ -64,7 +64,7 @@
             // 
             // lblShortName
             // 
-            this.lblShortName.Location = new System.Drawing.Point(2, 27);
+            this.lblShortName.Location = new System.Drawing.Point(2, 65);
             this.lblShortName.Name = "lblShortName";
             this.lblShortName.Size = new System.Drawing.Size(91, 19);
             this.lblShortName.TabIndex = 1;
@@ -86,11 +86,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtName.Location = new System.Drawing.Point(119, 1);
+            this.txtName.Location = new System.Drawing.Point(114, 3);
+            this.txtName.MaxLength = 254;
+            this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(333, 21);
+            this.txtName.Size = new System.Drawing.Size(422, 55);
             this.txtName.TabIndex = 0;
             this.txtName.ThemeName = "Office2013Light";
+            this.txtName.VerticalScrollBarState = Telerik.WinControls.UI.ScrollState.AlwaysShow;
             this.txtName.Leave += new System.EventHandler(this.TxtName_Leave);
             // 
             // IpsAnketaCompanyControl
@@ -101,10 +104,10 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblShortName);
             this.Controls.Add(this.lblFullName);
-            this.MaximumSize = new System.Drawing.Size(900, 47);
-            this.MinimumSize = new System.Drawing.Size(400, 47);
+            this.MaximumSize = new System.Drawing.Size(800, 86);
+            this.MinimumSize = new System.Drawing.Size(400, 86);
             this.Name = "IpsAnketaCompanyControl";
-            this.Size = new System.Drawing.Size(452, 47);
+            this.Size = new System.Drawing.Size(539, 86);
             ((System.ComponentModel.ISupportInitialize)(this.txtShortName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblShortName)).EndInit();

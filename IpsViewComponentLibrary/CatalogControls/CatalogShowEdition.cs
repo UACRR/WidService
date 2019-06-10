@@ -9,13 +9,13 @@ using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
 using System.IO;
+using IpsViewComponentLibrary.Shared.Interfaces;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
         private const string ValidateSuccessMsg = "Контроль виконано!";
-        private const string ValidateErrorMsg = "Контроль не виконано!";
 
         private CatalogFile _catalogFile = null;
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
@@ -58,7 +58,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             if (boolResult)
             {
                 DataSource = result.Data;
-                UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result.Data);
+                UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
             }
 
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
@@ -91,7 +91,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             if (boolResult)
             {
                 DataSource = result.Data;
-                UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result.Data);
+                UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
             }
 
             MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);

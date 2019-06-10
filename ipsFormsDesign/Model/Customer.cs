@@ -31,6 +31,7 @@ namespace ipsFormsDesign.Model
         public byte? AnkPublish { get; set; }
         public byte? AnkTech { get; set; }
         public string UserId { get; set; }
+        public int? LoadId { get; set; }
 
         public virtual CustomerType CustTypeNavigation { get; set; }
         public virtual CustomerStatus StatusNavigation { get; set; }

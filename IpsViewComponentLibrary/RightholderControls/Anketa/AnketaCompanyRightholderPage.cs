@@ -12,10 +12,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class AnketaCompanyRightholderPage : UserControl
     {
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]

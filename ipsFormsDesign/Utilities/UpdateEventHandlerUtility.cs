@@ -15,6 +15,20 @@ namespace ipsFormsDesign.Utilities
         }
     }
 
+    /// <summary>
+    /// Тип, який дає змогу підписатися на подію 'необхідності оновлення даних' в UserContols & Forms
+    /// </summary>
+    /// <typeparam name="T">Тип, що змінюється</typeparam>
+    /// <example> Використовується об'єкт зі списку об'єктів, об'єкт змінюється та список необхідно оновити:
+    /// 1) Об'єкт змінився, необхідно сповістити підписаних:
+    /// <code>
+    /// UpdateEventHandlerUtility<Т>.InvokeEvent();
+    /// </code>
+    /// 2) Підписатись на сповіщення можливих змін:
+    /// <code>
+    /// UpdateEventHandlerUtility<T>.GetEventWrap().UpdateEventHandler += UpdateNeed_EventHandler;
+    /// </code>
+    /// </example>
     public static class UpdateEventHandlerUtility<T> where T : class
     {
         private static Dictionary<Type, IpsEventWrap<T>> Events { get; } = new Dictionary<Type, IpsEventWrap<T>>();

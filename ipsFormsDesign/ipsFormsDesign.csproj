@@ -11,6 +11,7 @@
     <AssemblyName>ipsFormsDesign</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,6 +101,7 @@
     <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />
     <Compile Include="Dictionary\ConsumerFilterEnum.cs" />
+    <Compile Include="Dictionary\ItemListResponse.cs" />
     <Compile Include="Dictionary\DictBaseTypeI.cs" />
     <Compile Include="Dictionary\DictionaryBaseControl.cs" />
     <Compile Include="Dictionary\DictTr.cs" />
@@ -120,7 +122,7 @@
     <Compile Include="Dictionary\RegisterSearchObject.cs" />
     <Compile Include="Dictionary\RegisterStatusType.cs" />
     <Compile Include="Dictionary\RightholderListQuery.cs" />
-    <Compile Include="Dictionary\RightholdersQuery.cs" />
+    <Compile Include="Dictionary\PaginateAndSearchQuery.cs" />
     <Compile Include="Dictionary\RightholdersResponse.cs" />
     <Compile Include="Dictionary\RightholderStates.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />
@@ -485,6 +487,7 @@
     <Compile Include="Services\PartnerService.cs" />
     <Compile Include="Services\RegisterService.cs" />
     <Compile Include="Services\ObjectUploading\RightholderData.cs" />
+    <Compile Include="Services\RightholderRegisterService.cs" />
     <Compile Include="Services\RightHolderService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Utils.cs" />
@@ -564,7 +567,9 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

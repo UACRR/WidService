@@ -11,6 +11,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports;
 using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
@@ -21,11 +22,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public partial class ReportsControl : UserControl
     {
+        private const string SaveReportSuccessMsg = "Звіт збережено!";
+        private const string SaveReportErrorMsg = "Неможливо зберегти звіт!";
+
         private readonly ExcelEngine _excel = ExcelEngine.GetInstance();
 
-        public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
+        public event Func<RegisterRatedList, bool> SaveRegisterRatedListExecuted;
+        //public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
-        public event EventHandler<Register> SaveRegisterExecuted;
+        public event Func<Register, bool> SaveRegisterExecuted;
+        //public event EventHandler<Register> SaveRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
@@ -39,6 +45,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private TypeRights _typeRights = TypeRights.All;
         private List<int> validClass;
         private Customer _customer;
+
+        // керування зміною поточного активного договору
+        private CurrentAgreementController _currentAgreementController = null;
 
         public ReportsControl()
         {
@@ -57,6 +66,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             else
                 IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
         }
+
         public Customer Customer
         {
             get => _customer;
@@ -67,10 +77,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             }
         }
 
-        /// <summary>
-        /// Керування зміною поточного активного договору
-        /// </summary>
-        private CurrentAgreementController _currentAgreementController = null;
         [EditorBrowsable]
         public CurrentAgreementController CurrentAgreementController
         {
@@ -348,8 +354,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                         addRegister.RegisterItem.Add(item);
 
                     RatedList.Register.Add(addRegister);
-
-                    SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
+                    var result = SaveRegisterRatedListExecuted?.Invoke(RatedList);
                 })
                 .ContinueWith( tsk => {
 
@@ -398,24 +403,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 // для визначення рапортички
                 var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
 
-                if (schemaId == 2) // рапортичка
+                // рапортичка
+                if (schemaId == 2)
                 {
-                    string customerName;
-                    if (_customer.CustType == 3)
-                    {
-                        customerName = _customer.Company?.AnketaCompany?.SingleOrDefault()?.ShortName;
-                    }
-                    else
-                    {
-                        var anketaPerson = _customer.Person?.AnketaPerson?.SingleOrDefault();
-                        customerName = anketaPerson?.LastName + " " + anketaPerson?.FirstName + " " + anketaPerson?.SurName;
-                    }
-
                     registerTemp.SchemaId = 2;
-                    var progReportBigRight = new CreateProgReportBigRight(registerTemp)
+                    var progReportBigRight = new ReportExtendedForm(registerTemp)
                     {
-                        StartPosition = FormStartPosition.CenterParent,
-                        HeaderInfoCustomerName = customerName,
+                        HeaderInfoCustomerName = GetCustomerName(),
                         HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
                         HeaderInfoPeriodName = period.PeriodName,
                         HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
@@ -425,18 +419,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     {
                         period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
                         bindingReports.Add(registerTemp);
-                        SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+
+                        var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
+                        MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
                     }
                 }
-                else // не рапотричка
+                // не рапотричка
+                else
                 {
                     registerTemp.SchemaId = 1;
-                    var viewForm = new ReportExcelViewForm(registerTemp, true);
+                    var viewForm = new ReportExcelForm(registerTemp, true);
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
                         period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
                         bindingReports.Add(registerTemp);
-                        SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+                        var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault());
                     }
                 }
 
@@ -464,10 +461,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
             if (reg != null && (schemaId == 2 || schemaId == 3)) // рапортичка
             {
-                var progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
+                var progReportBigRight = new ReportExtendedForm(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
-                    StartPosition = FormStartPosition.CenterParent,
-                    HeaderInfoCustomerName = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.ShortName,
+                    HeaderInfoCustomerName = GetCustomerName(),
                     HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
                     HeaderInfoPeriodName = period.PeriodName,
                     HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
@@ -475,16 +471,38 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
                 if (progReportBigRight.ShowDialog() == DialogResult.OK)
                 {
-                    SaveRegisterExecuted?.Invoke(this, register);
+                    var result = SaveRegisterExecuted?.Invoke(register) ?? false;
+                    MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
                 }
                 return;
             }
 
-            var viewForm = new ReportExcelViewForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
+            var viewForm = new ReportExcelForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
             if (viewForm.ShowDialog() == DialogResult.OK)
             {
-                SaveRegisterExecuted?.Invoke(this, register);
+                var result = SaveRegisterExecuted?.Invoke(register) ?? false;
+                MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
             }
+        }
+
+        /// <summary>
+        ///  Найменування користувача
+        /// </summary>
+        /// <returns></returns>
+        private string GetCustomerName()
+        {
+            string customerName;
+            if (_customer.CustType == 3)
+            {
+                customerName = _customer.Company?.AnketaCompany?.SingleOrDefault()?.ShortName;
+            }
+            else
+            {
+                var anketaPerson = _customer.Person?.AnketaPerson?.SingleOrDefault();
+                customerName = $"{anketaPerson?.LastName} {anketaPerson?.FirstName} {anketaPerson?.SurName}";
+            }
+
+            return customerName;
         }
 
         #endregion
@@ -495,7 +513,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 return;
             if (!(gvPeriodReports.CurrentRow.DataBoundItem is Register register))
                 return;
-            if (MessageBox.Show($"Видалити звіт {register.FileName}", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show($"Видалити звіт {register.FileName}?", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 DeleteRegisterExecuted(this, register);
                 var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
@@ -506,8 +524,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                         item.Register.Remove(register);
                         break;
                     }
-
-
                 }
                 bindingReports.Remove(register);
                 gvPeriodReports.MasterTemplate.Refresh();
@@ -543,8 +559,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     e.CellElement.Enabled = false;
                 else
                     e.CellElement.Enabled = true;
-
-
             }
         }
 
@@ -612,7 +626,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             if (form.ShowDialog() == DialogResult.OK)
             {
                 period.RegisterRatedList.Add(addRatedList);
-                SaveRegisterRatedListExecuted?.Invoke(this, addRatedList);
+                var result = SaveRegisterRatedListExecuted?.Invoke(addRatedList);
                 bindingRatedList.Add(addRatedList);
                 btnAddRatedList.Enabled = false;
             }
@@ -620,14 +634,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
         private void GvRatedList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
-            var row = e.RowElement.RowInfo;
-            if (row == null || row.DataBoundItem == null || !(row.DataBoundItem is RegisterRatedList))
+            if (!(e.RowElement?.RowInfo?.DataBoundItem is RegisterRatedList ratedList))
                 return;
-
-            var ratedList = row.DataBoundItem as RegisterRatedList;
-            int cnt = ratedList.Register.Count();
-            row.Cells["RegisterCount"].Value = cnt;
-
+            
+            e.RowElement.RowInfo.Cells["RegisterCount"].Value = ratedList.Register.Count;
         }
 
         private void GvRatedList_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -643,7 +653,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    SaveRegisterRatedListExecuted(this, modifyRatedList);
+                    var result = SaveRegisterRatedListExecuted?.Invoke(modifyRatedList);
                     bindingRatedList.CurrencyManager.Refresh();
                     btnAddRatedList.Enabled = false;
                 }

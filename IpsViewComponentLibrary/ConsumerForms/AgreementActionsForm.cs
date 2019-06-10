@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -24,6 +21,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _goal = goal;
 
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             FormClosing += ProlongationWithPlaces_FormClosing;
 
             ctrlProlongation.Rights = typeRights;
@@ -44,23 +42,32 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlProlongation.LicenseEnabled = goal == DialogGoal.forNew;
         }
 
+        public bool IsNewAgreement { get; set; }
+
         private void ProlongationWithPlaces_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (DialogResult == DialogResult.OK)
             {
-                ctrlProlongation.UpdateLicenses();
+                ctrlProlongation.UpdatePlaceLicenses();
                 return;
             }
 
-            if (_goal == DialogGoal.forNew)
-            {
-                _license.LicenseAgrParam.Remove(_licAgr);
-                _customer.Client.LicenseAgreement.Remove(_license);
-            }
+            if (!IsNewAgreement)
+                return;
 
-            if (_goal == DialogGoal.forProlongation)
+            switch (_goal)
             {
-                _license.LicenseAgrParam.Remove(_licAgr);
+                case DialogGoal.forNew:
+                    _license.LicenseAgrParam.Remove(_licAgr);
+                    _customer.Client.LicenseAgreement.Remove(_license);
+                    break;
+                case DialogGoal.forProlongation:
+                    _license.LicenseAgrParam.Remove(_licAgr);
+                    _license.ProlongVersion = null;
+                    break;
+                case DialogGoal.forChange:
+                    _license.LicenseAgrParam.Remove(_licAgr);
+                    break;
             }
         }
     }

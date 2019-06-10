@@ -55,10 +55,11 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.bsDictionaryWorkType = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewRequests = new Telerik.WinControls.UI.RadGridView();
+            this.bsRequestsOrReferenceBigRightView = new System.Windows.Forms.BindingSource(this.components);
             this.separator = new Telerik.WinControls.UI.RadSeparator();
             this.btnCreate = new Telerik.WinControls.UI.RadButton();
             this.gvCreativeRole = new Telerik.WinControls.UI.RadGridView();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bsAuthorsForLicenseBigRightView = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.ddBtnStateChange = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnChangeToReference = new Telerik.WinControls.UI.RadMenuItem();
@@ -69,16 +70,17 @@
             this.spHeader = new Telerik.WinControls.UI.SplitPanel();
             this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.ctrlAgrInfo = new GeneralAgreementInfo();
+            this.ctrlAgrInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.GeneralAgreementInfo();
             this.spFooter = new Telerik.WinControls.UI.SplitPanel();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionaryWorkType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRequestsOrReferenceBigRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAuthorsForLicenseBigRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnStateChange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnStatusChange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -117,6 +119,7 @@
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn2.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn2.FieldName = "Objid";
             gridViewTextBoxColumn2.HeaderText = "Код вистави";
             gridViewTextBoxColumn2.MaxWidth = 100;
@@ -140,6 +143,7 @@
             gridViewTextBoxColumn4.Name = "LicNum";
             gridViewTextBoxColumn4.Width = 120;
             gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn5.FieldName = "LicDate";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
             gridViewTextBoxColumn5.HeaderText = "Дата заявки";
@@ -149,6 +153,7 @@
             gridViewTextBoxColumn5.Name = "LicDate";
             gridViewTextBoxColumn5.Width = 75;
             gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn6.FieldName = "Rate";
             gridViewTextBoxColumn6.HeaderText = "АВ%";
             gridViewTextBoxColumn6.MaxWidth = 45;
@@ -157,6 +162,7 @@
             gridViewTextBoxColumn6.Name = "Rate";
             gridViewTextBoxColumn6.Width = 45;
             gridViewTextBoxColumn6.WrapText = true;
+            gridViewTextBoxColumn7.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn7.FieldName = "DatePremiere";
             gridViewTextBoxColumn7.FormatString = "{0:d}";
             gridViewTextBoxColumn7.HeaderText = "Дата прем\'єри";
@@ -166,6 +172,7 @@
             gridViewTextBoxColumn7.Name = "DatePremiere";
             gridViewTextBoxColumn7.Width = 75;
             gridViewTextBoxColumn7.WrapText = true;
+            gridViewTextBoxColumn8.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn8.FieldName = "LicDateEnd";
             gridViewTextBoxColumn8.FormatString = "{0:d}";
             gridViewTextBoxColumn8.HeaderText = "Дата завершення";
@@ -217,6 +224,7 @@
             gridViewTextBoxColumn9,
             gridViewCommandColumn1,
             gridViewCommandColumn2});
+            this.gvViewRequests.MasterTemplate.DataSource = this.bsRequestsOrReferenceBigRightView;
             this.gvViewRequests.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewRequests.MasterTemplate.EnableFiltering = true;
             this.gvViewRequests.MasterTemplate.EnableGrouping = false;
@@ -229,6 +237,10 @@
             this.gvViewRequests.ThemeName = "Office2013Light";
             this.gvViewRequests.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRequests_CurrentRowChanged);
             this.gvViewRequests.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRequests_CommandCellClick);
+            // 
+            // bsRequestsOrReferenceBigRightView
+            // 
+            this.bsRequestsOrReferenceBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.RequestsOrReferenceBigRightView);
             // 
             // separator
             // 
@@ -367,7 +379,7 @@
             gridViewTextBoxColumn18,
             gridViewTextBoxColumn19,
             gridViewTextBoxColumn20});
-            this.gvCreativeRole.MasterTemplate.DataSource = this.bindingSource1;
+            this.gvCreativeRole.MasterTemplate.DataSource = this.bsAuthorsForLicenseBigRightView;
             this.gvCreativeRole.MasterTemplate.EnableCustomFiltering = true;
             this.gvCreativeRole.MasterTemplate.EnableFiltering = true;
             this.gvCreativeRole.MasterTemplate.EnableGrouping = false;
@@ -379,9 +391,9 @@
             this.gvCreativeRole.TabIndex = 19;
             this.gvCreativeRole.ThemeName = "Office2013Light";
             // 
-            // bindingSource1
+            // bsAuthorsForLicenseBigRightView
             // 
-            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.AuthorsForLicenseBigRightView);
+            this.bsAuthorsForLicenseBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.AuthorsForLicenseBigRightView);
             // 
             // ddBtnStateChange
             // 
@@ -553,8 +565,8 @@
             // 
             // RequestReferenceControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.splitContainer);
             this.Name = "RequestReferenceControl";
             this.Size = new System.Drawing.Size(1000, 587);
@@ -562,11 +574,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionaryWorkType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRequestsOrReferenceBigRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAuthorsForLicenseBigRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnStateChange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnStatusChange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
@@ -588,7 +601,7 @@
         private Telerik.WinControls.UI.RadButton btnCreate;
         private Telerik.WinControls.UI.RadGridView gvCreativeRole;
         private System.Windows.Forms.BindingSource bsDictionaryWorkType;
-        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.BindingSource bsAuthorsForLicenseBigRightView;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadDropDownButton ddBtnStateChange;
         private Telerik.WinControls.UI.RadMenuItem btnChangeToReference;
@@ -600,5 +613,6 @@
         private Telerik.WinControls.UI.SplitPanel spFooter;
         private Common.SearchTextBoxControl ctrlSearch;
         private Telerik.WinControls.UI.RadButton btnUpdate;
+        private System.Windows.Forms.BindingSource bsRequestsOrReferenceBigRightView;
     }
 }

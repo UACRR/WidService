@@ -69,5 +69,6 @@ namespace ipsFormsDesign.Interfaces
         public IList<SpecType> specType {get; set; }
         public IList<SpecType> folkType { get; set; }
         public IList<RegisterStatus> RegisterStatuses { get; set; }
+        public IList<CatalogStatus> catalogStatus { get; set; }
     }
 }

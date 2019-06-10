@@ -32,6 +32,8 @@ namespace ipsmedserviceapp.Model
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
         public decimal? RateMech { get; set; }
+        public int? LoadId { get; set; }
+        public string SourceName { get; set; }
 
         [JsonIgnore]
         public virtual RightHolder Cust { get; set; }

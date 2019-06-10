@@ -1,7 +1,7 @@
-﻿using IpsCommonTypes.Types;
-using ipsFormsDesign.Model;
+﻿using ipsFormsDesign.Model;
+using IpsCommonTypes.Types;
 
-namespace IpsViewComponentLibrary.CatalogControls.Presenters
+namespace IpsViewComponentLibrary.Shared.Interfaces
 {
     public interface ICatalogFileItemsHandler
     {

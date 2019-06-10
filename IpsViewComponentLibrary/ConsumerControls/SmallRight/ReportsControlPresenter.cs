@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             _control.SaveRegisterRatedListExecuted += SaveRegisterRatedListExecuted;
             _control.GetRegisterItems = _service.GetRegisterItems;
             _control.DeleteRegisterExecuted += DeleteRegisterExecuted;
-            _control.SaveRegisterExecuted += SaveRegisterExecuted; ;
+            _control.SaveRegisterExecuted += SaveRegisterExecuted;
             _control.SetRegisterStateExecuted += _control_SetRegisterStateExecuted;
             _control.SetPeriodStateExecuted += _control_SetPeriodStateExecuted;
             _control.SavePariodCommandExecuted += SavePariodCommandExecuted;
@@ -63,9 +63,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             }
         }
 
-        private void SaveRegisterExecuted(object sender, Register e)
+        private bool SaveRegisterExecuted(Register e)
         {
-            _service.SaveRegister(e);
+            return _service.SaveRegister(e);
         }
 
         private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)
@@ -92,10 +92,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             _service.DeleteRegister(e);
         }
 
-        private void SaveRegisterRatedListExecuted(object sender, RegisterRatedList e)
+        private bool SaveRegisterRatedListExecuted(RegisterRatedList e)
         {
-            RegisterRatedList ratedList = null;
-            if (_service.SaveRegisterRatedList(e, out ratedList) == true)
+            var result = _service.SaveRegisterRatedList(e, out RegisterRatedList ratedList);
+            if (result)
             {
                 var dic = ratedList.Register.ToDictionary(rec => rec.FileName);
                 e.SetFields(ratedList);
@@ -108,6 +108,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                         item.RegisterItem.Add(sorsItem);
                 }
             }
+            return result;
         }
 
         private void SavePariodCommandExecuted(object sender, List<PaidPeriod> e)

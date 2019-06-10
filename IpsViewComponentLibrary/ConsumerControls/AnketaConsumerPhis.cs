@@ -1,81 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class AnketaConsumerPhis : UserControl
     {
+        private Customer _customer;
+        private LicenseAgreement _licenseAgreement;
+        public event Action<string> CustomerNameChanged;
+
         public AnketaConsumerPhis()
         {
             InitializeComponent();
-
-            btnCopyFromLiveToLett.Click += BtnCopyFromLiveToLett_Click;
-            btnCopyFromLiveToReg.Click += BtnCopyFromLiveToReg_Click;
-            btnCopyFromRegToLett.Click += BtnCopyFromRegToLett_Click;
+            ctrlConsumerName.CustomerNameChanged += OnCustomerNameChanged;
         }
 
-        public void SetData(Customer customer, ConsumerAnketeType anketeType = ConsumerAnketeType.CreateNewAnketa)
+        public RadPageView PageView => pageAnketaConsumer;
+
+        public void UpdatePlaceLicenses()
         {
+            ctrlAgreementPhis.UpdatePlaceLicenses();
+        }
+
+        public void SetData(Customer customer, ConsumerAnketeType anketeType)
+        {
+            _customer = customer;
+
             if (anketeType == ConsumerAnketeType.EditAnketa)
             {
                 pageAnketaConsumer.Pages["pvPrint"].Item.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
                 pageAnketaConsumer.Pages["pvAgreement"].Item.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             }
-            // binding
 
             // agreement
-            if (anketeType != ConsumerAnketeType.EditAnketa)
+            if (anketeType == ConsumerAnketeType.CreateNewAnketa)
             {
                 var places = customer.Client.ClnBusinessPlace;
-                var license = customer.Client.LicenseAgreement.SingleOrDefault();
-                var licAgr = license?.LicenseAgrParam.SingleOrDefault();
+                _licenseAgreement = customer.Client.LicenseAgreement.SingleOrDefault();
+                var licAgr = _licenseAgreement?.LicenseAgrParam.SingleOrDefault();
                 ctrlAgreementPhis.Rights = TypeRights.SmallRights;
-                ctrlAgreementPhis.InitializeObjects(places, license, licAgr, ConsumerAgreementInitType.AddNewAgreement);
+                ctrlAgreementPhis.InitializeObjects(places, _licenseAgreement, licAgr, ConsumerAgreementInitType.AddNewAgreement);
             }
+
+            bsClient.DataSource = customer.Client;
 
             // anketaPerson
             var anketaPerson = customer.Person.AnketaPerson.SingleOrDefault();
-            ctrlConsumerName.DataSourceAnketa = anketaPerson;
-            // контакти
-            ctrlContacts.DataSource = anketaPerson;
-            // - проживання
-            ctrlAddressLive.DataSource = anketaPerson;
-            ctrlAddressLive.AddressDataMember = "FaAddress"; 
-            ctrlAddressLive.CityDataMember = "FaCity";       
-            ctrlAddressLive.CountryDataMember = "FaCountry"; 
-            ctrlAddressLive.RegionDataMember = "FaRegion";
-            // - реєстрації
-            ctrlAddressRegister.DataSource = anketaPerson;
-            ctrlAddressRegister.AddressDataMember = "ReAddress";
-            ctrlAddressRegister.CityDataMember = "ReCity";
-            ctrlAddressRegister.CountryDataMember = "ReCountry";
-            ctrlAddressRegister.RegionDataMember = "ReRegion";
-            //- -поштова
+            bsAnketaPerson.DataSource = anketaPerson;
 
-            //поштова
-            ctrlAddressLetter.DataSource = anketaPerson;
-            ctrlAddressLetter.AddressDataMember = "LeAddress";
-            ctrlAddressLetter.CityDataMember = "LeCity";
-            ctrlAddressLetter.CountryDataMember = "LeCountry";
-            ctrlAddressLetter.CountriesDataSource = IpsGlobal.AnketaDictionaties.country;
-            ctrlAddressLetter.CountriesValueMember = "countryCode";
-            ctrlAddressLetter.CountriesDisplayMember = "countryName";
-            ctrlAddressLetter.RegionDataMember = "LeRegion";
-            ctrlAddressLetter.RegionsDataSource = IpsGlobal.AnketaDictionaties.region;
-            ctrlAddressLetter.RegionsValueMember = "codeI";
-            ctrlAddressLetter.RegionsDisplayMember = "name";
-            ctrlAddressLetter.PostIndexDataMember = "LePostIndex";
+            ctrlConsumerName.DataSourceAnketa = anketaPerson;
+
+            // контакти
+            ctrlContacts.SetDataSource(customer);
 
             // паспортні дані
             ctrlConsumerPassport.DataSource = anketaPerson;
@@ -91,36 +73,15 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlPlaces.SetData(customer);
         }
 
-        private void BtnCopyFromLiveToReg_Click(object sender, EventArgs e)
+        private void btnLoadPdf_Click(object sender, EventArgs e)
         {
-            ctrlAddressRegister.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
-            ctrlAddressRegister.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
-            ctrlAddressRegister.TxtCity.Select();
-            ctrlAddressRegister.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
-            ctrlAddressRegister.TxtAddress.Select();
-            ctrlAddressRegister.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
+            var printForm = new ViewAndPrintAgreementForm(_customer, _licenseAgreement);
+            printForm.ShowDialog();
         }
 
-        private void BtnCopyFromLiveToLett_Click(object sender, EventArgs e)
+        private void OnCustomerNameChanged(string customerName)
         {
-            ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
-            ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
-            ctrlAddressLetter.TxtCity.Select();
-            ctrlAddressLetter.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
-            ctrlAddressLetter.TxtAddress.Select();
-            ctrlAddressLetter.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
-            ctrlAddressLetter.TxtPostIndex.Select();
-        }
-
-        private void BtnCopyFromRegToLett_Click(object sender, EventArgs e)
-        {
-            ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressRegister.DdlCountry.SelectedValue;
-            ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressRegister.DdlRegion.SelectedIndex;
-            ctrlAddressLetter.TxtCity.Select();
-            ctrlAddressLetter.TxtCity.Text = ctrlAddressRegister.TxtCity.Text;
-            ctrlAddressLetter.TxtAddress.Select();
-            ctrlAddressLetter.TxtAddress.Text = ctrlAddressRegister.TxtAddress.Text;
-            ctrlAddressLetter.TxtPostIndex.Select();
+            CustomerNameChanged?.Invoke(customerName);
         }
     }
 }

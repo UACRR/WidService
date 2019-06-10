@@ -92,6 +92,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -167,20 +168,20 @@
     <Compile Include="CatalogControls\CatalogShowEdition.Designer.cs">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\ChangeCommentForm.cs">
+    <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CatalogControls\ChangeCommentForm.Designer.cs">
+    <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.Designer.cs">
+      <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Forms\ChangeCommentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shared\Forms\ChangeCommentForm.Designer.cs">
       <DependentUpon>ChangeCommentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\CommentControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CatalogControls\CommentControl.Designer.cs">
-      <DependentUpon>CommentControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
-    <Compile Include="CatalogControls\Presenters\ICatalogFileItemsHandler.cs" />
+    <Compile Include="Shared\Interfaces\ICatalogFileItemsHandler.cs" />
     <Compile Include="Common\Editors\IpsPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -259,6 +260,25 @@
     </Compile>
     <Compile Include="RightholderControls\Anketa\AnketaExternalRightholderControl.Designer.cs">
       <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderRegisterControls\Presenters\RightholderRegisterPresenter.cs" />
+    <Compile Include="RightholderRegisterControls\RightholderRegisterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderRegisterControls\RightholderRegisterControl.Designer.cs">
+      <DependentUpon>RightholderRegisterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsClientGroupBrandControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsClientGroupBrandControl.Designer.cs">
+      <DependentUpon>IpsClientGroupBrandControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\PersonalAddressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\PersonalAddressControl.Designer.cs">
+      <DependentUpon>PersonalAddressControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\IpsUARadGridLocalizationProvider.cs" />
     <Compile Include="_UnusedControls\AddCompositionForm.cs">
@@ -483,17 +503,17 @@
     <Compile Include="Common\TabNavigationControl.Designer.cs">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.cs">
+    <Compile Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.Designer.cs">
-      <DependentUpon>AddAuthRoleForMusDesingBr.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.Designer.cs">
+      <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerDialogForms\CreateProgReportBigRight.cs">
+    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerDialogForms\CreateProgReportBigRight.Designer.cs">
-      <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.Designer.cs">
+      <DependentUpon>ReportExtendedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\PaysInfo.cs">
       <SubType>UserControl</SubType>
@@ -665,11 +685,11 @@
     <Compile Include="PartnerControls\PartnerControl.Designer.cs">
       <DependentUpon>PartnerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartnerControls\PartnerNameControl.cs">
+    <Compile Include="Shared\Controls\IpsAnketaPersonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PartnerControls\PartnerNameControl.Designer.cs">
-      <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    <Compile Include="Shared\Controls\IpsAnketaPersonControl.Designer.cs">
+      <DependentUpon>IpsAnketaPersonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PartnerControls\PartnerClientsControl.cs">
       <SubType>UserControl</SubType>
@@ -971,11 +991,11 @@
     <Compile Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.Designer.cs">
       <DependentUpon>RequestReferenceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlClientName.cs">
+    <Compile Include="ConsumerControls\JuridicalClientNameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlClientName.Designer.cs">
-      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    <Compile Include="ConsumerControls\JuridicalClientNameControl.Designer.cs">
+      <DependentUpon>JuridicalClientNameControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.cs">
       <SubType>UserControl</SubType>
@@ -1071,11 +1091,11 @@
     <Compile Include="RightholderControls\RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerForms\ReportExcelViewForm.cs">
+    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerForms\ReportExcelViewForm.Designer.cs">
-      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.Designer.cs">
+      <DependentUpon>ReportExcelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\ReportsControl.cs">
       <SubType>UserControl</SubType>
@@ -1155,11 +1175,11 @@
     <EmbeddedResource Include="CatalogControls\CatalogShowEdition.resx">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\ChangeCommentForm.resx">
-      <DependentUpon>ChangeCommentForm.cs</DependentUpon>
+    <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterDetailForm.resx">
+      <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\CommentControl.resx">
-      <DependentUpon>CommentControl.cs</DependentUpon>
+    <EmbeddedResource Include="Shared\Forms\ChangeCommentForm.resx">
+      <DependentUpon>ChangeCommentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\GridRowCountControl.resx">
       <DependentUpon>GridRowCountControl.cs</DependentUpon>
@@ -1193,6 +1213,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaExternalRightholderControl.resx">
       <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterControl.resx">
+      <DependentUpon>RightholderRegisterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsClientGroupBrandControl.resx">
+      <DependentUpon>IpsClientGroupBrandControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\PersonalAddressControl.resx">
+      <DependentUpon>PersonalAddressControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
@@ -1296,11 +1325,11 @@
     <EmbeddedResource Include="Common\TabNavigationControl.resx">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx">
-      <DependentUpon>AddAuthRoleForMusDesingBr.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.resx">
+      <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerDialogForms\CreateProgReportBigRight.resx">
-      <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.resx">
+      <DependentUpon>ReportExtendedForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\PaysInfo.resx">
@@ -1399,8 +1428,8 @@
     <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
       <DependentUpon>PartnerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartnerControls\PartnerNameControl.resx">
-      <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    <EmbeddedResource Include="Shared\Controls\IpsAnketaPersonControl.resx">
+      <DependentUpon>IpsAnketaPersonControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\TabNavigationExpandedControl.resx">
       <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
@@ -1522,8 +1551,8 @@
     <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.resx">
       <DependentUpon>RequestReferenceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlClientName.resx">
-      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\JuridicalClientNameControl.resx">
+      <DependentUpon>JuridicalClientNameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
@@ -1571,8 +1600,8 @@
     <EmbeddedResource Include="RightholderControls\RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerForms\ReportExcelViewForm.resx">
-      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.resx">
+      <DependentUpon>ReportExcelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
@@ -1630,6 +1659,9 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerSmallRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.PartnerView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RatedListBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RequestsOrReferenceBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
@@ -1678,6 +1710,8 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RelGenrePercent.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RhcatalogItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.SexType.datasource" />
@@ -1773,6 +1807,8 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ConsumerControls\Presenters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

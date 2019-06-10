@@ -33,18 +33,18 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvPartnerName = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlClientName = new IpsViewComponentLibrary.JurPersonName();
+            this.ctrlClientName = new IpsViewComponentLibrary.PartnerControls.JurPersonName();
             this.pvContact = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAddress = new JuridicalAddressControl();
+            this.ctrlAddress = new IpsViewComponentLibrary.Shared.Controls.JuridicalAddressControl();
             this.pvManager = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlManagers = new JuridicalManagersControl();
+            this.ctrlManagers = new IpsViewComponentLibrary.Shared.Controls.JuridicalManagersControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
-            this.ctrlTabNavigationExpanded = new TabNavigationExpandedControl();
+            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.Common.TabNavigationExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
@@ -85,11 +85,12 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // ctrlClientName
             // 
+            this.ctrlClientName.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             this.ctrlClientName.Location = new System.Drawing.Point(3, 26);
-            this.ctrlClientName.MaximumSize = new System.Drawing.Size(711, 172);
-            this.ctrlClientName.MinimumSize = new System.Drawing.Size(711, 172);
+            this.ctrlClientName.MaximumSize = new System.Drawing.Size(711, 217);
+            this.ctrlClientName.MinimumSize = new System.Drawing.Size(711, 217);
             this.ctrlClientName.Name = "ctrlClientName";
-            this.ctrlClientName.Size = new System.Drawing.Size(711, 172);
+            this.ctrlClientName.Size = new System.Drawing.Size(711, 217);
             this.ctrlClientName.TabIndex = 0;
             // 
             // pvContact
@@ -160,6 +161,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.ctrlAgreement.AgreementCommunityDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlAgreement.IsReadOnly = false;
             this.ctrlAgreement.Location = new System.Drawing.Point(4, 28);
             this.ctrlAgreement.MaximumSize = new System.Drawing.Size(504, 140);
             this.ctrlAgreement.MinimumSize = new System.Drawing.Size(394, 140);
@@ -179,6 +181,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // ctrlConditions
             // 
             this.ctrlConditions.AgreementAddPartnerDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlConditions.IsReadOnly = false;
             this.ctrlConditions.Location = new System.Drawing.Point(22, 6);
             this.ctrlConditions.Name = "ctrlConditions";
             this.ctrlConditions.Size = new System.Drawing.Size(702, 357);

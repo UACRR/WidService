@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -44,15 +45,16 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.treeView = new Telerik.WinControls.UI.RadTreeView();
             this.gvViewPartners = new Telerik.WinControls.UI.RadGridView();
+            this.bsPartnerView = new System.Windows.Forms.BindingSource(this.components);
             this.rddBtnNewPartner = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnNewPartnerJur = new Telerik.WinControls.UI.RadMenuItem();
             this.btnNewPartnerPhis = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.lblTextPartners = new System.Windows.Forms.Label();
-            this.lblCountPartners = new System.Windows.Forms.Label();
+            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
             ((System.ComponentModel.ISupportInitialize)(this.treeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPartnerView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddBtnNewPartner)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,17 +88,16 @@
             this.gvViewPartners.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.FieldName = "CustId";
-            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.HeaderText = "custid";
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn2.DataType = typeof(int);
             gridViewTextBoxColumn2.FieldName = "AgrId";
             gridViewTextBoxColumn2.HeaderText = "ID договору";
             gridViewTextBoxColumn2.MaxWidth = 95;
             gridViewTextBoxColumn2.MinWidth = 95;
-            gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "AgrId";
             gridViewTextBoxColumn2.Width = 95;
-            gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.DataType = typeof(int);
             gridViewTextBoxColumn3.FieldName = "Innokpo";
             gridViewTextBoxColumn3.HeaderText = "ОКПО/ІД";
@@ -124,6 +125,7 @@
             gridViewTextBoxColumn6.MinWidth = 80;
             gridViewTextBoxColumn6.Name = "AgrNumber";
             gridViewTextBoxColumn6.Width = 80;
+            gridViewTextBoxColumn7.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn7.FieldName = "AgrDate";
             gridViewTextBoxColumn7.FormatString = "{0:d}";
             gridViewTextBoxColumn7.HeaderText = "Дата договору";
@@ -148,6 +150,7 @@
             gridViewTextBoxColumn9.Name = "StatusName";
             gridViewTextBoxColumn9.Width = 105;
             gridViewTextBoxColumn9.WrapText = true;
+            gridViewTextBoxColumn10.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn10.FieldName = "AgrCount";
             gridViewTextBoxColumn10.HeaderText = "К-сть договорів користувачів";
             gridViewTextBoxColumn10.MaxWidth = 80;
@@ -157,6 +160,7 @@
             gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn10.Width = 80;
             gridViewTextBoxColumn10.WrapText = true;
+            gridViewHyperlinkColumn1.DataType = typeof(System.Nullable<int>);
             gridViewHyperlinkColumn1.FieldName = "ClnCount";
             gridViewHyperlinkColumn1.HeaderText = "К-сть користувачів";
             gridViewHyperlinkColumn1.MaxWidth = 80;
@@ -192,6 +196,7 @@
             gridViewTextBoxColumn10,
             gridViewHyperlinkColumn1,
             gridViewCommandColumn1});
+            this.gvViewPartners.MasterTemplate.DataSource = this.bsPartnerView;
             this.gvViewPartners.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewPartners.MasterTemplate.EnableFiltering = true;
             this.gvViewPartners.MasterTemplate.EnableGrouping = false;
@@ -199,21 +204,24 @@
             this.gvViewPartners.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewPartners.Name = "gvViewPartners";
             this.gvViewPartners.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewPartners.Size = new System.Drawing.Size(1066, 512);
+            this.gvViewPartners.Size = new System.Drawing.Size(1066, 514);
             this.gvViewPartners.TabIndex = 9;
             this.gvViewPartners.ThemeName = "Office2013Light";
             this.gvViewPartners.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewPartners_CellDoubleClick);
             this.gvViewPartners.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewPartners_CommandCellClick);
             // 
+            // bsPartnerView
+            // 
+            this.bsPartnerView.DataSource = typeof(ipsFormsDesign.Interfaces.PartnerView);
+            // 
             // rddBtnNewPartner
             // 
-            this.rddBtnNewPartner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.rddBtnNewPartner.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnNewPartnerJur,
             this.btnNewPartnerPhis});
-            this.rddBtnNewPartner.Location = new System.Drawing.Point(161, 548);
+            this.rddBtnNewPartner.Location = new System.Drawing.Point(715, 4);
             this.rddBtnNewPartner.Name = "rddBtnNewPartner";
-            this.rddBtnNewPartner.Size = new System.Drawing.Size(220, 24);
+            this.rddBtnNewPartner.Size = new System.Drawing.Size(220, 20);
             this.rddBtnNewPartner.TabIndex = 11;
             this.rddBtnNewPartner.Text = "Створити нового представника";
             this.rddBtnNewPartner.ThemeName = "Office2013Light";
@@ -239,31 +247,22 @@
             this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
             this.ctrlSearch.TabIndex = 13;
             // 
-            // lblTextPartners
+            // ctrlGridRowCount
             // 
-            this.lblTextPartners.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTextPartners.Location = new System.Drawing.Point(1088, 548);
-            this.lblTextPartners.Name = "lblTextPartners";
-            this.lblTextPartners.Size = new System.Drawing.Size(68, 14);
-            this.lblTextPartners.TabIndex = 14;
-            this.lblTextPartners.Text = "К-ть рядків";
-            // 
-            // lblCountPartners
-            // 
-            this.lblCountPartners.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountPartners.Location = new System.Drawing.Point(1162, 548);
-            this.lblCountPartners.Name = "lblCountPartners";
-            this.lblCountPartners.Size = new System.Drawing.Size(64, 14);
-            this.lblCountPartners.TabIndex = 15;
-            this.lblCountPartners.Text = "0";
-            this.lblCountPartners.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(1071, 548);
+            this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
+            this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.Name = "ctrlGridRowCount";
+            this.ctrlGridRowCount.RadGridViewDataSource = null;
+            this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
+            this.ctrlGridRowCount.TabIndex = 16;
             // 
             // PartnerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblCountPartners);
-            this.Controls.Add(this.lblTextPartners);
+            this.Controls.Add(this.ctrlGridRowCount);
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.rddBtnNewPartner);
             this.Controls.Add(this.gvViewPartners);
@@ -273,6 +272,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPartnerView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddBtnNewPartner)).EndInit();
             this.ResumeLayout(false);
 
@@ -287,7 +287,7 @@
         private Telerik.WinControls.UI.RadMenuItem btnNewPartnerJur;
         private Telerik.WinControls.UI.RadMenuItem btnNewPartnerPhis;
         private Common.SearchTextBoxControl ctrlSearch;
-        private System.Windows.Forms.Label lblTextPartners;
-        private System.Windows.Forms.Label lblCountPartners;
+        private Common.GridRowCountControl ctrlGridRowCount;
+        private System.Windows.Forms.BindingSource bsPartnerView;
     }
 }

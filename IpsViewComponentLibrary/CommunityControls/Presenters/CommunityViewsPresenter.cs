@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary.CommunityControls.Presenters
@@ -15,7 +13,7 @@ namespace IpsViewComponentLibrary.CommunityControls.Presenters
             _service = CommunityService.GetInstance();
         }
 
-        public async Task<RightholdersResponse> GetAllAutorsView(RightholdersQuery query)
+        public async Task<RightholdersResponse> GetAllAutorsView(PaginateAndSearchQuery query)
         {
             return await Task.Factory.StartNew(() => _service.GetCommunityAuthorsView<RightholdersResponse>("vTsk_1_ListRHCommunity", query));
         }

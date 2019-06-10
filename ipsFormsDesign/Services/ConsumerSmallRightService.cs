@@ -33,10 +33,10 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
-        public IList<ConsumerSmallRightView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All)
+        public ItemListResponse<ConsumerSmallRightView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All, PaginateAndSearchQuery query = null)
         {
             string url = $"consumer/listSR/{(int)what}";
-            var anketaDic = _webApi.GetList<ConsumerSmallRightView>(url);
+            var anketaDic = _webApi.GetItemByIdWithParam<ItemListResponse<ConsumerSmallRightView>>(url, null, query?.ToKeyValuePair());
             return anketaDic;
         }
     }

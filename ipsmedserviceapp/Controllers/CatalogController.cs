@@ -5,13 +5,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
-//using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -21,10 +21,30 @@ namespace ipsmedserviceapp.Controllers
     public class CatalogController : ControllerBase
     {
         private readonly MediaServiceContext _dbContext;
+        private readonly ILogger<CatalogController> _logger;
 
-        public CatalogController(MediaServiceContext dbContext)
+        public CatalogController(MediaServiceContext dbContext, ILogger<CatalogController> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
+        }
+
+
+        [HttpGet("catalogfilelist/{custId}")]
+        public async Task<IActionResult> GetCatalogFilesList(int custId)
+        {
+            var catalogFiles = await _dbContext.CatalogFile
+                .Where(rec => rec.CustId == custId && rec.PubCatalogItem.Any()  )
+                .Include(rec => rec.StatusNavigation)
+                // .Include(rec => rec.PubCatalogItem)
+                // .ThenInclude(rec => rec.StatusNavigation)
+                .ToListAsync();
+
+//            var delList = catalogFiles.Where(rec => rec.PubCatalogItem.Count == 0).ToArray();
+
+
+
+            return Ok(catalogFiles);
         }
 
         [HttpGet("catalogfile/{custId}/{fileId}")]
@@ -32,25 +52,13 @@ namespace ipsmedserviceapp.Controllers
         {
             var catalogFile = await _dbContext.CatalogFile
                 .Include(rec => rec.PubCatalogItem)
+                    .ThenInclude(rec => rec.StatusNavigation)
                 .SingleOrDefaultAsync(rec => rec.CustId == custId && rec.FileId == fileId);
 
             if (catalogFile == null)
                 return NotFound($"CatalogFile with CustId:{custId} and FileId:{fileId} not found!");
 
             return Ok(catalogFile);
-        }
-
-        [HttpGet("catalogfilelist/{custId}")]
-        public async Task<IActionResult> GetCatalogFilesList(int custId)
-        {
-            var catalogFiles = await _dbContext.CatalogFile
-                .Where(rec => rec.CustId == custId)
-                .Include(rec => rec.StatusNavigation)
-                .Include(rec => rec.PubCatalogItem)
-                .ThenInclude(rec => rec.StatusNavigation)
-                .ToListAsync();
-
-            return Ok(catalogFiles);
         }
 
         [Authorize]
@@ -104,7 +112,10 @@ namespace ipsmedserviceapp.Controllers
 
                     // інші RHolderType
                     default:
-                        return BadRequest("Unsupported RHolderType!");
+                        {
+                            _logger.LogInformation("Unsupported RHolderType!");
+                            return BadRequest("Unsupported RHolderType!");
+                        }
                 }
 
                 destination.CustName = vcustomer?.name;
@@ -118,8 +129,9 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok(destination);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex.InnerException.Message);
                 transaction?.Rollback();
                 throw;
             }
@@ -153,9 +165,10 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 transaction?.Rollback();
+                _logger.LogError(ex.InnerException.Message);
                 throw;
             }
             finally
@@ -188,9 +201,10 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 transaction?.Rollback();
+                _logger.LogError(ex.InnerException.Message);
                 throw;
             }
             finally
@@ -247,8 +261,9 @@ namespace ipsmedserviceapp.Controllers
 
                 return Ok(responce);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex.InnerException.Message);
                 throw;
             }
         }
@@ -301,8 +316,9 @@ namespace ipsmedserviceapp.Controllers
 
                 return Ok(responce);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex.InnerException.Message);
                 throw;
             }
         }

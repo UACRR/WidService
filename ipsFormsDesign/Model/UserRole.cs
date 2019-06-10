@@ -13,7 +13,6 @@ namespace ipsFormsDesign.Model
 
         public virtual Customer Cust { get; set; }
         public virtual UserRoleType RoleTypeNavigation { get; set; }
-        public virtual AspNetUsers User { get; set; }
     }
 }
 

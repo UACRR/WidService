@@ -31,6 +31,7 @@ namespace ipsmedserviceapp.Model
         public byte? AnkPublish { get; set; }
         public byte? AnkTech { get; set; }
         public string UserId { get; set; }
+        public int? LoadId { get; set; }
 
         [JsonIgnore]
         public virtual CustomerType CustTypeNavigation { get; set; }
