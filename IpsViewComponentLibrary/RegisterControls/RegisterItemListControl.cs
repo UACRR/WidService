@@ -21,10 +21,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 {
     public partial class RegisterItemListControl : UserControl
     {
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public object DataSource
         {
@@ -212,7 +209,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _showObjectInfo = true;
         public bool ShowObjectInfo
         {
-            get { return _showObjectInfo; }
+            get => _showObjectInfo;
             set
             {
                 _showObjectInfo = value;
@@ -231,7 +228,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _showAuthors = true;
         public bool ShowAuthors
         {
-            get { return _showObjectInfo; }
+            get => _showObjectInfo;
             set
             {
                 _showAuthors = value;
@@ -239,6 +236,36 @@ namespace IpsViewComponentLibrary.RegisterControls
                 gvRegisterItemList.SetColumnVisibility("Performer", _showAuthors);
                 gvRegisterItemList.SetColumnVisibility("AuthorMusic", _showAuthors);
                 gvRegisterItemList.SetColumnVisibility("AuthorText", _showAuthors);
+            }
+        }
+
+        private bool _showGenre = false;
+        public bool ShowGenre
+        {
+            get => _showGenre;
+            set
+            {
+                _showGenre = value;
+                gvRegisterItemList.SetColumnVisibility("Genre", _showGenre);
+
+                gvRegisterItemList.SetColumnVisibility("DurationItem", !_showGenre);
+                gvRegisterItemList.SetColumnVisibility("CountUse", !_showGenre);
+                gvRegisterItemList.SetColumnVisibility("DurationUse", !_showGenre);
+            }
+        }
+
+        private bool _showGenreAndRate = false;
+        public bool ShowGenreAndRate
+        {
+            get => _showGenreAndRate;
+            set
+            {
+                _showGenreAndRate = value;
+                gvRegisterItemList.SetColumnVisibility("Genre", _showGenreAndRate);
+                gvRegisterItemList.SetColumnVisibility("Rate", _showGenreAndRate);
+
+                gvRegisterItemList.SetColumnVisibility("DurationItem", !_showGenreAndRate);
+                gvRegisterItemList.SetColumnVisibility("DurationUse", !_showGenreAndRate);
             }
         }
 
@@ -381,14 +408,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             foreach (var row in gvRegisterItemList.Rows)
             {
-                if( (row.DataBoundItem as RegisterItemViewModel).ObjId == null )
+                if( (row.DataBoundItem as RegisterItemViewModel)?.ObjId == null )
                     row.Cells["ObjectName"].ErrorText = errTxt;
             }
         }
 
         public int GetCountUnlink()
         {
-            var cnt = gvRegisterItemList.Rows.Count(rec => (rec.DataBoundItem as RegisterItemViewModel).ObjId == null);
+            var cnt = gvRegisterItemList.Rows.Count(rec => (rec.DataBoundItem as RegisterItemViewModel)?.ObjId == null);
             return cnt;
         }
 

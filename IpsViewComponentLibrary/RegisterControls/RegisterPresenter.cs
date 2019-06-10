@@ -8,6 +8,7 @@ using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -243,6 +244,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             foreach (var r in _register.RegisterItem)
             {
+                var genre = IpsGlobal.AnketaDictionaties.genreType.SingleOrDefault(rec => rec.CodeI == r.GenreType);
+                var rate = IpsGlobal.AnketaDictionaties.relGenrePercent.SingleOrDefault(rec =>rec.GenreType == genre?.CodeI);
+
                 var rvm = new RegisterItemViewModel
                 {
                     ItemName = r.ItemName,
@@ -257,6 +261,10 @@ namespace IpsViewComponentLibrary.RegisterControls
                     RegIitemId = r.RegIitemId,
                     IsAuto = r.IsAuto,
                     CodeItem = r.CodeItem,
+
+                    Genre = genre?.Name,
+                    Rate = rate?.Rate,
+                    GenreType = r.GenreType,
                 };
 
                 if (r.Obj != null)
