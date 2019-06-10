@@ -119,6 +119,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 ctrlRegisterItemListStage.ShowAuthors = false;
 
+                ctrlRegisterItemListStage.ShowGenre = true;
+                ctrlRegisterItemList.ShowGenreAndRate = true;
+
                 lblMusicRate.Visible = true;
                 mebMusicRate.Visible = true;
             }
