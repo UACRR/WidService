@@ -121,12 +121,12 @@
             this.gvPremises.Size = new System.Drawing.Size(444, 132);
             this.gvPremises.TabIndex = 0;
             this.gvPremises.ThemeName = "Office2013Light";
-            this.gvPremises.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPremises_CurrentRowChanged);
             this.gvPremises.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPremises_CellDoubleClick);
             // 
             // bsClnPlaceHoll
             // 
             this.bsClnPlaceHoll.DataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
+            this.bsClnPlaceHoll.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.bsClnPlaceHoll_ListChanged);
             // 
             // rBtnAddPremises
             // 

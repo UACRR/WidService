@@ -116,7 +116,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places.Components
         /// </summary>
         private void EditPremisesCall()
         {
-            if (!(gvPremises.CurrentRow.DataBoundItem is ClnPlaceHoll editItem))
+            if (!(gvPremises.CurrentRow?.DataBoundItem is ClnPlaceHoll editItem))
                 return;
 
             var temp = new ClnPlaceHoll();
@@ -128,6 +128,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places.Components
                 EditAdditionalPremises(editItem, temp);
 
             bsClnPlaceHoll.ResetBindings(false);
+            gvPremises.ResetBindings();
         }
 
         /// <summary>
@@ -157,17 +158,17 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places.Components
         // видалити приміщення
         private void btnDeletePremises_Click(object sender, EventArgs e)
         {
-            if (!(gvPremises.CurrentRow.DataBoundItem is ClnPlaceHoll deleteItem))
+            if (!(gvPremises.CurrentRow?.DataBoundItem is ClnPlaceHoll deleteItem))
                 return;
 
             (bsClnPlaceHoll.DataSource as ObservableListSource<ClnPlaceHoll>)?.Remove(deleteItem);
             bsClnPlaceHoll.ResetBindings(false);
+            gvPremises.ResetBindings();
         }
 
-        private void gvPremises_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        private void bsClnPlaceHoll_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
         {
-            var visible = gvPremises.RowCount != 0;
-
+            var visible = gvPremises.Rows.Any();
             btnEditPremises.Enabled = visible;
             btnDeletePremises.Enabled = visible;
         }
