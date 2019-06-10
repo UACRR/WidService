@@ -10,6 +10,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.BigRight;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -18,7 +19,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class AnketaConsumer : UserControl
     {
-        private const string DefaultTemplateName = "F_Тестовий шаблон.docx";
+        private const int BottomHeigth = 31;
+
 
         private bool isEdit = false;
 
@@ -83,6 +85,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             }
         }
 
+        public Size PanelAgreementSize
+        {
+            get => panelContainer.Size;
+            set => panelContainer.Size = new Size(value.Width, value.Height + BottomHeigth);
+        }
+
         //ініціалізація контролу договору за типом прав
         private void InitAgreementType(TypeRights rights)
         {
@@ -95,14 +103,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
                         // ініціалізація контролу великих прав 
                         _ctrlAgreementBigRights = new AgreementBigRight
                         {
-                            Location = _locationAgreement,
-                            MaximumSize = new Size(900, 200),
-                            MinimumSize = new Size(500, 200),
                             Name = "ctrlAgreementBigRights",
-                            Size = new Size(596, 200),
+                            Dock = DockStyle.Fill,
                             TabIndex = 0
                         };
-                        pvAgreement.Controls.Add(_ctrlAgreementBigRights);
+                        PanelAgreementSize = _ctrlAgreementBigRights.Size;
+                        panelAgreement.Controls.Add(_ctrlAgreementBigRights);
                     }
                     
                     if (_customer.Client?.LicenseAgreement?.LastOrDefault()?.LicCode != null)
@@ -136,12 +142,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     {
                         _ctrlAgreementSmallRights = new AgreementWithPlacesControl
                         {
-                            Location = _locationAgreement,
                             Name = "ctrlAgreementSmallRights",
-                            Size = new Size(690, 390),
+                            Dock = DockStyle.Fill,
                             TabIndex = 0
                         };
-                        pvAgreement.Controls.Add(_ctrlAgreementSmallRights);
+                        PanelAgreementSize = _ctrlAgreementSmallRights.Size;
+                        panelAgreement.Controls.Add(_ctrlAgreementSmallRights);
                     }
 
                     _ctrlAgreementSmallRights.Rights = TypeRights;
@@ -222,40 +228,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             return isValid;
         }
 
-        private async Task<WordEngine> LoadPdfDocAsync()
+        private void btnLoadPdf_Click(object sender, EventArgs e)
         {
-            WordEngine wordEngine = new WordEngine(_anketaDictionaries);
-
             var licenseAgreement = _customer?.Client?.LicenseAgreement?.FirstOrDefault();
-            int version = licenseAgreement?.LicVersion ?? default(int);
-            string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? DefaultTemplateName;
-            templateName = string.Concat(@"Templates\", templateName);
-
-            return await Task.Run(() => {
-                wordEngine.ProcessConsumer(templateName, _customer, licenseAgreement, version);
-                return wordEngine;
-            });
-        }
-
-        private void BtnLoadPdf_Click(object sender, EventArgs e)
-        {
-            radWaitingBar1.StartWaiting();
-            var task = Task.Run(() => LoadPdfDocAsync());
-            task.Wait();
-            var wordEngine = task.Result;
-            // var wordEngine = Task.Run(()=> LoadPdfDocAsync()).GetAwaiter().GetResult();
-            radWaitingBar1.StopWaiting();
-            radPdfViewer.LoadDocument(wordEngine.Pdf);
-        }
-
-        private void RadWaitingBar1_WaitingStarted(object sender, EventArgs e)
-        {
-            radWaitingBar1.Visible = true;
-        }
-
-        private void RadWaitingBar1_WaitingStopped(object sender, EventArgs e)
-        {
-            radWaitingBar1.Visible = false;
+            var printForm = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+            if (printForm.ValidTemplate)
+                printForm.ShowDialog();
         }
     }
 }

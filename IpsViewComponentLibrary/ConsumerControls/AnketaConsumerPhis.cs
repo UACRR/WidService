@@ -76,7 +76,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
             var printForm = new ViewAndPrintAgreementForm(_customer, _licenseAgreement);
-            printForm.ShowDialog();
+            if (printForm.ValidTemplate)
+                printForm.ShowDialog();
         }
 
         private void OnCustomerNameChanged(string customerName)

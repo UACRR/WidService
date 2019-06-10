@@ -33,7 +33,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnketaConsumer));
             this.pageAnketaConsumer = new Telerik.WinControls.UI.RadPageView();
             this.pvClientName = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClientName = new IpsViewComponentLibrary.ConsumerControls.JuridicalClientNameControl();
@@ -48,12 +47,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlManagers = new IpsViewComponentLibrary.ConsumerControls.ManagersControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
+            this.panelContainer = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.panelAgreement = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
-            this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
-            this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
-            this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
-            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
@@ -64,12 +61,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvAddress.SuspendLayout();
             this.pvBankRequisites.SuspendLayout();
             this.pvManagers.SuspendLayout();
-            this.pvPrint.SuspendLayout();
+            this.pvAgreement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelContainer)).BeginInit();
+            this.panelContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
+            this.ipsPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).BeginInit();
-            this.radPdfViewer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // pageAnketaConsumer
@@ -81,7 +79,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pageAnketaConsumer.Controls.Add(this.pvBankRequisites);
             this.pageAnketaConsumer.Controls.Add(this.pvManagers);
             this.pageAnketaConsumer.Controls.Add(this.pvAgreement);
-            this.pageAnketaConsumer.Controls.Add(this.pvPrint);
             this.pageAnketaConsumer.DefaultPage = this.pvClientName;
             this.pageAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageAnketaConsumer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -91,7 +88,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // 
             this.pageAnketaConsumer.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAnketaConsumer.SelectedPage = this.pvClientName;
+            this.pageAnketaConsumer.SelectedPage = this.pvAgreement;
             this.pageAnketaConsumer.SelectionWrap = false;
             this.pageAnketaConsumer.Size = new System.Drawing.Size(922, 502);
             this.pageAnketaConsumer.TabIndex = 1;
@@ -229,93 +226,52 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // pvAgreement
             // 
+            this.pvAgreement.Controls.Add(this.panelContainer);
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(134, 5);
             this.pvAgreement.Name = "pvAgreement";
             this.pvAgreement.Size = new System.Drawing.Size(783, 492);
             this.pvAgreement.Text = "Договір";
             // 
-            // pvPrint
+            // panelContainer
             // 
-            this.pvPrint.Controls.Add(this.btnLoadPdf);
-            this.pvPrint.Controls.Add(this.radPdfViewerNavigator);
-            this.pvPrint.Controls.Add(this.radPdfViewer);
-            this.pvPrint.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvPrint.Location = new System.Drawing.Point(134, 5);
-            this.pvPrint.Name = "pvPrint";
-            this.pvPrint.Size = new System.Drawing.Size(783, 492);
-            this.pvPrint.Text = "Друк";
+            this.panelContainer.BorderVisible = false;
+            this.panelContainer.Controls.Add(this.panelAgreement);
+            this.panelContainer.Controls.Add(this.ipsPanel1);
+            this.panelContainer.Location = new System.Drawing.Point(19, 5);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(590, 374);
+            this.panelContainer.TabIndex = 6;
+            // 
+            // panelAgreement
+            // 
+            this.panelAgreement.BorderVisible = false;
+            this.panelAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelAgreement.Location = new System.Drawing.Point(0, 0);
+            this.panelAgreement.Name = "panelAgreement";
+            this.panelAgreement.Size = new System.Drawing.Size(590, 343);
+            this.panelAgreement.TabIndex = 0;
+            // 
+            // ipsPanel1
+            // 
+            this.ipsPanel1.BorderVisible = false;
+            this.ipsPanel1.Controls.Add(this.btnLoadPdf);
+            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ipsPanel1.Location = new System.Drawing.Point(0, 343);
+            this.ipsPanel1.Name = "ipsPanel1";
+            this.ipsPanel1.Size = new System.Drawing.Size(590, 31);
+            this.ipsPanel1.TabIndex = 1;
             // 
             // btnLoadPdf
             // 
-            this.btnLoadPdf.Location = new System.Drawing.Point(3, 3);
+            this.btnLoadPdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadPdf.Location = new System.Drawing.Point(411, 3);
             this.btnLoadPdf.Name = "btnLoadPdf";
             this.btnLoadPdf.Size = new System.Drawing.Size(176, 24);
-            this.btnLoadPdf.TabIndex = 4;
+            this.btnLoadPdf.TabIndex = 5;
             this.btnLoadPdf.Text = "Завантажити PDF договору";
             this.btnLoadPdf.ThemeName = "Office2013Light";
-            this.btnLoadPdf.Click += new System.EventHandler(this.BtnLoadPdf_Click);
-            // 
-            // radPdfViewerNavigator
-            // 
-            this.radPdfViewerNavigator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
-            this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
-            this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(777, 39);
-            this.radPdfViewerNavigator.TabIndex = 2;
-            this.radPdfViewerNavigator.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
-            ((Telerik.WinControls.Layouts.StackLayoutPanel)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
-            ((Telerik.WinControls.UI.CommandBarRowElement)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0))).MinSize = new System.Drawing.Size(25, 25);
-            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).MinSize = new System.Drawing.Size(34, 34);
-            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Text = "Open";
-            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).ToolTipText = "Open";
-            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            ((Telerik.WinControls.UI.RadCommandBarOverflowButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-            // 
-            // radPdfViewer
-            // 
-            this.radPdfViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radPdfViewer.Controls.Add(this.radWaitingBar1);
-            this.radPdfViewer.EnableThumbnails = false;
-            this.radPdfViewer.Location = new System.Drawing.Point(3, 82);
-            this.radPdfViewer.Name = "radPdfViewer";
-            this.radPdfViewer.Size = new System.Drawing.Size(777, 365);
-            this.radPdfViewer.TabIndex = 3;
-            this.radPdfViewer.ThemeName = "Office2013Light";
-            this.radPdfViewer.ThumbnailsScaleFactor = 0.15F;
-            ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).MinimumThumbWidth = 34;
-            ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
-            ((Telerik.WinControls.UI.ThumbnailListElement)(this.radPdfViewer.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            // 
-            // radWaitingBar1
-            // 
-            this.radWaitingBar1.AssociatedControl = this.radPdfViewer;
-            this.radWaitingBar1.BackColor = System.Drawing.Color.Transparent;
-            this.radWaitingBar1.Location = new System.Drawing.Point(464, 211);
-            this.radWaitingBar1.Name = "radWaitingBar1";
-            this.radWaitingBar1.Size = new System.Drawing.Size(70, 70);
-            this.radWaitingBar1.TabIndex = 0;
-            this.radWaitingBar1.Text = "radWaitingBar1";
-            this.radWaitingBar1.Visible = false;
-            this.radWaitingBar1.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
-            this.radWaitingBar1.WaitingSpeed = 50;
-            this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            this.radWaitingBar1.WaitingStarted += new System.EventHandler(this.RadWaitingBar1_WaitingStarted);
-            this.radWaitingBar1.WaitingStopped += new System.EventHandler(this.RadWaitingBar1_WaitingStopped);
-            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.radWaitingBar1.GetChildAt(0))).WaitingSpeed = 50;
-            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
-            // 
-            // lineRingWaitingBarIndicatorElement1
-            // 
-            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.btnLoadPdf.Click += new System.EventHandler(this.btnLoadPdf_Click);
             // 
             // AnketaConsumer
             // 
@@ -334,13 +290,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvAddress.ResumeLayout(false);
             this.pvBankRequisites.ResumeLayout(false);
             this.pvManagers.ResumeLayout(false);
-            this.pvPrint.ResumeLayout(false);
-            this.pvPrint.PerformLayout();
+            this.pvAgreement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelContainer)).EndInit();
+            this.panelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
+            this.ipsPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).EndInit();
-            this.radPdfViewer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -354,19 +310,17 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.RadPageViewPage pvPlaces;
         private Telerik.WinControls.UI.RadPageViewPage pvBankRequisites;
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
-        private Telerik.WinControls.UI.RadPageViewPage pvPrint;
         private Telerik.WinControls.UI.RadLabel ctrlPlacesTitle;
-        private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator;
-        private Telerik.WinControls.UI.RadPdfViewer radPdfViewer;
         private JuridicalAddressControl ctrlAddress;
         private ConsumerPlacesControl ctrlPlaces;
-        private Telerik.WinControls.UI.RadButton btnLoadPdf;
-        private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
-        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
         private ManagersControl ctrlManagers;
         public JuridicalClientNameControl ctrlClientName;
         private IpsBankAccountControl ctrlBankRequisites;
+        private Telerik.WinControls.UI.RadButton btnLoadPdf;
+        private Common.Editors.IpsPanel panelAgreement;
+        private Common.Editors.IpsPanel panelContainer;
+        private Common.Editors.IpsPanel ipsPanel1;
     }
 }

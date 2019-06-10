@@ -118,10 +118,18 @@
     <None Include="Templates\F_7_Г готелі.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\F_Copyright-Request.docx" />
     <None Include="Templates\F_dogovir-go-uaasp-radio-efirne.docx" />
     <None Include="Templates\F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\F_Акт_публічне виконання.docx" />
+    <None Include="Templates\F_Акт_публічне сповіщення TV+радио.docx" />
+    <None Include="Templates\F_Акт_публічне сповіщення кTV.docx" />
+    <None Include="Templates\F_Акт_публічне сповіщення+використання Інтернет %28TV+радио%29.docx" />
+    <None Include="Templates\F_ГО УААСП Автор.docx" />
+    <None Include="Templates\F_ГО УААСП Правовласник-Видавництво.docx" />
+    <None Include="Templates\F_Лицензионный договор на спектакль %28БП%29.docx" />
     <None Include="Templates\F_Тестовий шаблон лицензионного договора.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -131,7 +139,31 @@
     <None Include="Templates\F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР КАБЕЛЬНА РЕТРАНСЛЯЦІЯ.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МУЗИЧНІ АВТОМАТИ  ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР НІЧНІ КЛУБИ ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГ ПЛАТНИЙ ВХІД ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГ ТУР ПЛАТНИЙ ВХІД ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГб безопл вхід ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОНЛАЙН ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ПУБЛІЧНЕ СПОВІЩЕННЯ ПО КАБЕЛЮ.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР Р ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР Рі ІНТЕРНЕТ-РАДІО ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР СИСТЕМИ КАРАОКЕ ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЕ ЕФІРНЕ ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЕі ІНТЕРНЕТ-ТЕЛЕБАЧЕННЯ ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЦ  ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ФІЛАРМОНІЇ ГО УААСП.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ЦИРК ГО УААСП.docx" />
     <None Include="Templates\F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП %281%29.docx" />
+    <None Include="Templates\Result.pdf" />
+    <None Include="Templates\ПРЕДСТАВНИК ГО УААСП.docx" />
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

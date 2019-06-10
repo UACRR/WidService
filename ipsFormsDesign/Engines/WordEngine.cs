@@ -801,7 +801,7 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = minRltGrn;
                         break;
                     case "minRltGrnText":
-                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32((int)licenseAgrParam.MinAmount), true);
+                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32((int)(licenseAgrParam.MinAmount ?? 0)), true);
                         break;
                     case "minRltKop":
                         item.Range.Text = minRltKop;
