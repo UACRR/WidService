@@ -630,7 +630,7 @@ namespace ReportsLibrary
             this.textBox16.Style.Font.Bold = true;
             this.textBox16.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox16.StyleName = "BlueOpal.TableHeader";
-            this.textBox16.Value = "Правовласник";
+            this.textBox16.Value = "Товариство";
             // 
             // textBox17
             // 
@@ -1100,12 +1100,12 @@ namespace ReportsLibrary
             reportParameter6.Value = "= Max(IsNull(Fields.commRate,0))* Parameters.authamount.Value/100";
             reportParameter7.AllowNull = true;
             reportParameter7.AvailableValues.DataSource = this.sqlDataSource3;
-            reportParameter7.AvailableValues.ValueMember = "=(IsNull(Fields.sborESVRate,0)+IsNull(Fields.sborMiliRate,0))* Parameters.authamo" +
-    "unt.Value/100";
+            reportParameter7.AvailableValues.ValueMember = "=((Parameters.authamount.Value- Parameters.deductions.Value)/100)*(Max(IsNull(Fie" +
+    "lds.sborESVRate,0))+Max(IsNull(Fields.sborMiliRate,0))) ";
             reportParameter7.Name = "PDFO";
             reportParameter7.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter7.Value = "=(IsNull(Fields.sborESVRate,0)+IsNull(Fields.sborMiliRate,0))* Parameters.authamo" +
-    "unt.Value/100";
+            reportParameter7.Value = "=((Parameters.authamount.Value- Parameters.deductions.Value)/100)*(Max(IsNull(Fie" +
+    "lds.sborESVRate,0))+Max(IsNull(Fields.sborMiliRate,0))) ";
             reportParameter8.AllowNull = true;
             reportParameter8.AvailableValues.ValueMember = "= Parameters.authamount.Value- Parameters.deductions.Value- Parameters.PDFO.Value" +
     "";
