@@ -42,7 +42,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(690, 4);
+            this.btnCancel.Location = new System.Drawing.Point(892, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 1;
@@ -54,7 +54,7 @@
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnOk.Location = new System.Drawing.Point(574, 4);
+            this.btnOk.Location = new System.Drawing.Point(776, 4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(110, 24);
             this.btnOk.TabIndex = 0;
@@ -68,22 +68,21 @@
             this.panelCommand.Controls.Add(this.btnCancel);
             this.panelCommand.Controls.Add(this.btnOk);
             this.panelCommand.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelCommand.Location = new System.Drawing.Point(0, 362);
+            this.panelCommand.Location = new System.Drawing.Point(0, 469);
             this.panelCommand.Name = "panelCommand";
-            this.panelCommand.Size = new System.Drawing.Size(803, 31);
+            this.panelCommand.Size = new System.Drawing.Size(1005, 31);
             this.panelCommand.TabIndex = 1;
             // 
             // ctrlObjectRightList
             // 
-            this.ctrlObjectRightList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlObjectRightList.Location = new System.Drawing.Point(0, -2);
+            this.ctrlObjectRightList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlObjectRightList.Location = new System.Drawing.Point(0, 0);
             this.ctrlObjectRightList.Name = "ctrlObjectRightList";
             this.ctrlObjectRightList.SelectedObject = null;
-            this.ctrlObjectRightList.Size = new System.Drawing.Size(803, 369);
+            this.ctrlObjectRightList.Size = new System.Drawing.Size(1005, 469);
             this.ctrlObjectRightList.TabIndex = 2;
             this.ctrlObjectRightList.ObjectSelected += new System.EventHandler<ipsFormsDesign.Dictionary.ObjectRightMainView>(this.ctrlObjectRightList_ObjectSelected);
+            this.ctrlObjectRightList.EditCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.ObjectRightMainView>(this.ctrlObjectRightList_EditCommandExecuted);
             // 
             // ObjectRightSelectionView
             // 
@@ -91,9 +90,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(803, 393);
-            this.Controls.Add(this.panelCommand);
+            this.ClientSize = new System.Drawing.Size(1005, 500);
             this.Controls.Add(this.ctrlObjectRightList);
+            this.Controls.Add(this.panelCommand);
             this.Name = "ObjectRightSelectionView";
             // 
             // 
