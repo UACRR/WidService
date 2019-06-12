@@ -101,10 +101,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             return removeList.Any() ? removeList : null;
         }
 
-        private void ddlGenreType_SelectedValueChanged(object sender, EventArgs e)
+        private void bsRegisterItem_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (bsRegisterItem.DataSource is RegisterItem item && (item.GenreType ?? 0) != 0)
-                bsDictRelGenrePercent.DataSource = IpsGlobal.AnketaDictionaties.relGenrePercent.SingleOrDefault(rec => rec.GenreType == item.GenreType);
+            if (!(bsRegisterItem.DataSource is RegisterItem item))
+                return;
+
+            var source = IpsGlobal.AnketaDictionaties.relGenrePercent.SingleOrDefault(rec => rec.GenreType == item.GenreType);
+            if (bsDictRelGenrePercent.DataSource != source)
+                bsDictRelGenrePercent.DataSource = source;
         }
     }
 }
