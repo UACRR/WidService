@@ -153,7 +153,6 @@
             this.gvViewConsumers.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewConsumers.MasterTemplate.EnableFiltering = true;
             this.gvViewConsumers.MasterTemplate.EnableGrouping = false;
-            this.gvViewConsumers.MasterTemplate.EnableSorting = false;
             this.gvViewConsumers.MasterTemplate.ShowFilteringRow = false;
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
@@ -264,7 +263,7 @@
             this.navigatorPanel.Location = new System.Drawing.Point(3, 4);
             this.navigatorPanel.Name = "navigatorPanel";
             this.navigatorPanel.PageSize = 200;
-            this.navigatorPanel.ReadOnlyPageSize = true;
+            this.navigatorPanel.ReadOnlyPageSize = false;
             this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
             this.navigatorPanel.TabIndex = 25;
             this.navigatorPanel.TotalPages = 0;

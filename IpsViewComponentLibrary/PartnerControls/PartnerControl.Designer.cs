@@ -204,6 +204,7 @@
             this.gvViewPartners.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewPartners.Name = "gvViewPartners";
             this.gvViewPartners.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvViewPartners.ShowGroupPanel = false;
             this.gvViewPartners.Size = new System.Drawing.Size(1066, 514);
             this.gvViewPartners.TabIndex = 9;
             this.gvViewPartners.ThemeName = "Office2013Light";

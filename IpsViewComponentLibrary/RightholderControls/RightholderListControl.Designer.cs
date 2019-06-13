@@ -36,12 +36,12 @@
             this.btnRefresh = new Telerik.WinControls.UI.RadButton();
             this.gvRightholdersList = new Telerik.WinControls.UI.RadGridView();
             this.rightholderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.navigatorPanelControl1 = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             this.lblCountRows = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.navigatorPanelControl1 = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -290,20 +290,6 @@
             // 
             this.rightholderMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.RightholderMainView);
             // 
-            // navigatorPanelControl1
-            // 
-            this.navigatorPanelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.navigatorPanelControl1.CurrentPage = 1;
-            this.navigatorPanelControl1.Location = new System.Drawing.Point(430, 0);
-            this.navigatorPanelControl1.Name = "navigatorPanelControl1";
-            this.navigatorPanelControl1.PageSize = 40;
-            this.navigatorPanelControl1.ReadOnlyPageSize = false;
-            this.navigatorPanelControl1.Size = new System.Drawing.Size(350, 28);
-            this.navigatorPanelControl1.TabIndex = 4;
-            this.navigatorPanelControl1.TotalPages = 0;
-            this.navigatorPanelControl1.CurrentPageChanged += new System.EventHandler(this.navigatorPanelControl1_CurrentPageChanged);
-            this.navigatorPanelControl1.PageSizeChanged += new System.EventHandler(this.navigatorPanelControl1_PageSizeChanged);
-            // 
             // lblCountRows
             // 
             this.lblCountRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -354,6 +340,20 @@
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(960, 30);
             this.radPanel1.TabIndex = 30;
+            // 
+            // navigatorPanelControl1
+            // 
+            this.navigatorPanelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.navigatorPanelControl1.CurrentPage = 1;
+            this.navigatorPanelControl1.Location = new System.Drawing.Point(430, 0);
+            this.navigatorPanelControl1.Name = "navigatorPanelControl1";
+            this.navigatorPanelControl1.PageSize = 40;
+            this.navigatorPanelControl1.ReadOnlyPageSize = false;
+            this.navigatorPanelControl1.Size = new System.Drawing.Size(350, 28);
+            this.navigatorPanelControl1.TabIndex = 4;
+            this.navigatorPanelControl1.TotalPages = 0;
+            this.navigatorPanelControl1.CurrentPageChanged += new System.EventHandler(this.navigatorPanelControl1_CurrentPageChanged);
+            this.navigatorPanelControl1.PageSizeChanged += new System.EventHandler(this.navigatorPanelControl1_PageSizeChanged);
             // 
             // RightholderListControl
             // 
