@@ -40,6 +40,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             bindingSource.DataSource = undistrinbMoney;
             bindingSourceAgreement.DataSource = licenseAgr;
 
+            SetTxtPayDistribution(undistrinbMoney);
             _source = licenseAgr.Lic.PaidPeriod
                 .Where(rec => (rec.Status >= 2 && rec.Status < 7) && (period == null || period.PeriodId == rec.PeriodId))
                 .OrderBy(rec => rec.BeginDate)
@@ -59,6 +60,11 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
 
             SetDataSources();
+        }
+
+        private void SetTxtPayDistribution(MoneyReceived pay)
+        {
+            txtPayDistribution.Text =  string.Format("{0:# ### ### ##0.00}", pay.Amount - pay.DestribAmount);
         }
 
         //встановити джерело для грідів
