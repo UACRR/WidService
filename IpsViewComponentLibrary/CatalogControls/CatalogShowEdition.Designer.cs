@@ -162,10 +162,12 @@
             gridViewTextBoxColumn8.Name = "role";
             gridViewTextBoxColumn8.Width = 105;
             gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.FieldName = "RhName";
             gridViewTextBoxColumn9.HeaderText = "Назва Правовласника";
-            gridViewTextBoxColumn9.IsVisible = false;
-            gridViewTextBoxColumn9.Name = "rhName";
-            gridViewTextBoxColumn9.Width = 16;
+            gridViewTextBoxColumn9.MinWidth = 150;
+            gridViewTextBoxColumn9.Name = "RhName";
+            gridViewTextBoxColumn9.Width = 150;
+            gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn10.ExcelExportType = Telerik.WinControls.UI.Export.DisplayFormatType.Standard;
             gridViewTextBoxColumn10.FieldName = "Rate";
@@ -212,7 +214,7 @@
             this.gridDetailInfo.Name = "gridDetailInfo";
             this.gridDetailInfo.ReadOnly = true;
             this.gridDetailInfo.ShowGroupPanel = false;
-            this.gridDetailInfo.Size = new System.Drawing.Size(788, 295);
+            this.gridDetailInfo.Size = new System.Drawing.Size(664, 295);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
             // 
@@ -428,7 +430,7 @@
             this.Controls.Add(this.btnAuditItems);
             this.Controls.Add(this.gridDetailInfo);
             this.Name = "CatalogShowEdition";
-            this.Size = new System.Drawing.Size(794, 427);
+            this.Size = new System.Drawing.Size(670, 427);
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
