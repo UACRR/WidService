@@ -10,6 +10,12 @@ namespace ipsmedserviceapp.Mappings
 {
     public class MappingProfile : Profile
     {
+
+        private bool checkPaidPeriod(PaidPeriod l, PaidPeriod r)
+        {
+            return l.PeriodId == r.PeriodId;
+        }
+
         public MappingProfile()
         {
             CreateMap<Fixation, Fixation>()
@@ -51,10 +57,12 @@ namespace ipsmedserviceapp.Mappings
                 .ForMember(c => c.AgrId, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.AgrId == to.AgrId);
 
+
             CreateMap<PaidPeriod, PaidPeriod>()
                 .ForMember(pp => pp.PeriodId, opt => opt.Ignore())
                 .ForMember(pp => pp.Lic, opt => opt.Ignore())
-                .EqualityComparison((from, to) => from.PeriodId == to.PeriodId);
+                //.EqualityComparison((from, to) =>  from.PeriodId == to.PeriodId );
+                .EqualityComparison((from, to) => checkPaidPeriod(from,to));
 
             CreateMap<RegisterRatedList, RegisterRatedList>()
                 .ForMember(rr => rr.RmId, opt => opt.Ignore())
