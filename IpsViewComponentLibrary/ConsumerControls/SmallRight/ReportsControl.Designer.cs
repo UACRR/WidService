@@ -76,7 +76,7 @@
             this.gvPeriods = new Telerik.WinControls.UI.RadGridView();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
+            this.bsPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.gvPeriodReports = new Telerik.WinControls.UI.RadGridView();
             this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -108,7 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods.MasterTemplate)).BeginInit();
             this.gvPeriods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).BeginInit();
@@ -286,12 +286,14 @@
             gridViewDecimalColumn4.HeaderText = "Розподілено";
             gridViewDecimalColumn4.MinWidth = 120;
             gridViewDecimalColumn4.Name = "Distrib";
-            gridViewDecimalColumn4.Width = 121;
+            gridViewDecimalColumn4.Width = 141;
+            gridViewTextBoxColumn10.FieldName = "ReportCount";
             gridViewTextBoxColumn10.HeaderText = "Звітів";
+            gridViewTextBoxColumn10.MaxWidth = 80;
             gridViewTextBoxColumn10.MinWidth = 80;
-            gridViewTextBoxColumn10.Name = "ReportCounts";
+            gridViewTextBoxColumn10.Name = "ReportCount";
             gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn10.Width = 100;
+            gridViewTextBoxColumn10.Width = 80;
             gridViewTextBoxColumn11.FieldName = "IsActFormed";
             gridViewTextBoxColumn11.HeaderText = "Сформовано акт";
             gridViewTextBoxColumn11.MaxWidth = 80;
@@ -346,7 +348,7 @@
             gridViewTextBoxColumn12,
             gridViewDecimalColumn5,
             gridViewDecimalColumn6});
-            this.gvPeriods.MasterTemplate.DataSource = this.bindingPaidPeriod;
+            this.gvPeriods.MasterTemplate.DataSource = this.bsPaidPeriod;
             this.gvPeriods.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvPeriods.Name = "gvPeriods";
             this.gvPeriods.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -377,9 +379,9 @@
             // 
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             // 
-            // bindingPaidPeriod
+            // bsPaidPeriod
             // 
-            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
+            this.bsPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
             // 
             // gvPeriodReports
             // 
@@ -867,7 +869,7 @@
             this.gvPeriods.ResumeLayout(false);
             this.gvPeriods.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).EndInit();
@@ -911,7 +913,7 @@
         private Telerik.WinControls.UI.RadButton btnAddReport;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private System.Windows.Forms.BindingSource bindingAgreement;
-        private System.Windows.Forms.BindingSource bindingPaidPeriod;
+        private System.Windows.Forms.BindingSource bsPaidPeriod;
         private System.Windows.Forms.BindingSource bindingReports;
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;

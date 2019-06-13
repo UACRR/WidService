@@ -12,8 +12,6 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports;
-using IpsViewComponentLibrary.ConsumerDialogForms;
-using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
@@ -28,10 +26,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private readonly ExcelEngine _excel = ExcelEngine.GetInstance();
 
         public event Func<RegisterRatedList, bool> SaveRegisterRatedListExecuted;
-        //public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
         public event Func<Register, bool> SaveRegisterExecuted;
-        //public event EventHandler<Register> SaveRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
@@ -60,9 +56,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
 
             if (IpsGlobal.AnketaDictionaties != null)
-            {
                 SubscribeDictionary(null, null);
-            }
             else
                 IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
         }
@@ -192,7 +186,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void ClearBindings()
         {
             bindingAgreement.DataSource = typeof(IAgreementData);
-            bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+            bsPaidPeriod.DataSource = typeof(PaidPeriod);
             bindingReports.DataSource = typeof(Register);
             buttonController.SetPeriodState(null, null);
             btnAddRatedList.Enabled = false;
@@ -218,23 +212,20 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void GvLicenseAgr_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
 
-            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData lic))
             {
-                bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+                bsPaidPeriod.DataSource = typeof(PaidPeriod);
                 return;
-
             }
 
-            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
-
-            if (lic?.Lic?.PaidPeriod.Count > 0)
+            if (lic.Lic?.PaidPeriod.Count > 0)
             {
-                bindingPaidPeriod.DataSource = lic?.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
+                bsPaidPeriod.DataSource = lic.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
 
             }
             else
             {
-                bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+                bsPaidPeriod.DataSource = typeof(PaidPeriod);
                 buttonController.SetPeriodState(null, null);
             }
 
@@ -671,7 +662,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             {
                 var list = lic.PaidPeriod.ToList();
                 SavePariodCommandExecuted?.Invoke(this, list);
-                bindingPaidPeriod.DataSource = list;
+                bsPaidPeriod.DataSource = list;
             }
         }
 
