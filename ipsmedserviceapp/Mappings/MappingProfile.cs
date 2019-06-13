@@ -61,8 +61,7 @@ namespace ipsmedserviceapp.Mappings
             CreateMap<PaidPeriod, PaidPeriod>()
                 .ForMember(pp => pp.PeriodId, opt => opt.Ignore())
                 .ForMember(pp => pp.Lic, opt => opt.Ignore())
-                //.EqualityComparison((from, to) =>  from.PeriodId == to.PeriodId );
-                .EqualityComparison((from, to) => checkPaidPeriod(from,to));
+                .EqualityComparison((from, to) => from.PeriodId == to.PeriodId);
 
             CreateMap<RegisterRatedList, RegisterRatedList>()
                 .ForMember(rr => rr.RmId, opt => opt.Ignore())
