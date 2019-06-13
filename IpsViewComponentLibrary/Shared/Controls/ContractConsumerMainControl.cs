@@ -189,7 +189,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             return isValid;
         }
 
-        private void dtDateBegin_ValueChanged(object sender, EventArgs e)
+        private void dtDateBegin_Leave(object sender, EventArgs e)
         {
             if (dtDateBegin.Value >= MaxBeginDateTime)
             {
