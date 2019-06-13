@@ -13,6 +13,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
@@ -127,6 +128,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         {
             NormalizeData(_customer);
             bindingReports.ResetBindings(false);
+            bsPaidPeriod.ResetBindings(false);
             gvPeriodReports.MasterTemplate.Refresh();
         }
 
@@ -186,21 +188,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void ClearBindings()
         {
             bindingAgreement.DataSource = typeof(IAgreementData);
-            bsPaidPeriod.DataSource = typeof(PaidPeriod);
+            bsPaidPeriod.DataSource = typeof(ReportPaidPeriod);
             bindingReports.DataSource = typeof(Register);
             buttonController.SetPeriodState(null, null);
             btnAddRatedList.Enabled = false;
 
-        }
-
-        private void CreateAct()
-        {
-            MessageBox.Show("Створення акту");
-        }
-
-        private void ViewAct()
-        {
-            MessageBox.Show("Перегляд акту");
         }
 
         #endregion
@@ -214,18 +206,19 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
             if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData lic))
             {
-                bsPaidPeriod.DataSource = typeof(PaidPeriod);
+                bsPaidPeriod.DataSource = typeof(ReportPaidPeriod);
                 return;
             }
 
             if (lic.Lic?.PaidPeriod.Count > 0)
             {
-                bsPaidPeriod.DataSource = lic.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
+                var listPaidPeriod = lic.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate).ToList();
+                bsPaidPeriod.DataSource = ReportPaidPeriod.Convert(listPaidPeriod);
 
             }
             else
             {
-                bsPaidPeriod.DataSource = typeof(PaidPeriod);
+                bsPaidPeriod.DataSource = typeof(ReportPaidPeriod);
                 buttonController.SetPeriodState(null, null);
             }
 
@@ -294,6 +287,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     ViewAct();
                     break;
             }
+        }
+
+        private void CreateAct()
+        {
+            MessageBox.Show("Створення акту");
+        }
+
+        private void ViewAct()
+        {
+            MessageBox.Show("Перегляд акту");
         }
 
         private void EnableButtons(bool enabled)
@@ -662,7 +665,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             {
                 var list = lic.PaidPeriod.ToList();
                 SavePariodCommandExecuted?.Invoke(this, list);
-                bsPaidPeriod.DataSource = list;
+                bsPaidPeriod.DataSource = ReportPaidPeriod.Convert(list);
             }
         }
 

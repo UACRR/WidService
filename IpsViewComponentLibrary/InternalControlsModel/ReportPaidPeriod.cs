@@ -50,6 +50,5 @@ namespace IpsViewComponentLibrary.InternalControlsModel
             }
             return list;
         }
-
     }
 }

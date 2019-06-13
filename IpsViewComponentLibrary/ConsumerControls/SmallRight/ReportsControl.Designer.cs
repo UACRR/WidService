@@ -287,6 +287,7 @@
             gridViewDecimalColumn4.MinWidth = 120;
             gridViewDecimalColumn4.Name = "Distrib";
             gridViewDecimalColumn4.Width = 141;
+            gridViewTextBoxColumn10.DataType = typeof(int);
             gridViewTextBoxColumn10.FieldName = "ReportCount";
             gridViewTextBoxColumn10.HeaderText = "Звітів";
             gridViewTextBoxColumn10.MaxWidth = 80;
@@ -381,7 +382,7 @@
             // 
             // bsPaidPeriod
             // 
-            this.bsPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
+            this.bsPaidPeriod.DataSource = typeof(IpsViewComponentLibrary.InternalControlsModel.ReportPaidPeriod);
             // 
             // gvPeriodReports
             // 

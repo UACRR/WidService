@@ -1730,6 +1730,7 @@
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.PlacesForAgreement.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.ReportPaidPeriod.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.RightholderControls.RightholderView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
