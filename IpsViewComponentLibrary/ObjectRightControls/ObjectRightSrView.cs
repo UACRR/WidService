@@ -48,6 +48,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public ObjectRightSrView()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
             gvObjectAuthorsRightholders.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
             gvObjectAuthorsRightholders.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);

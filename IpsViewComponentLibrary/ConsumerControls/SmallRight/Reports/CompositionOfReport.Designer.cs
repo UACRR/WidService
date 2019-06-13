@@ -53,9 +53,9 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.lblStagingAmount = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.lblRate = new Telerik.WinControls.UI.RadLabel();
             this.bsDictRelGenrePercent = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
@@ -71,9 +71,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblStagingAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictRelGenrePercent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,6 +95,7 @@
             // bsRegisterItem
             // 
             this.bsRegisterItem.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
+            this.bsRegisterItem.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bsRegisterItem_BindingComplete);
             // 
             // radLabel7
             // 
@@ -117,7 +118,6 @@
             this.ddlGenreType.TabIndex = 22;
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
-            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.ddlGenreType_SelectedValueChanged);
             // 
             // bsDictGenreType
             // 
@@ -293,7 +293,7 @@
             // 
             // radPanel1
             // 
-            this.radPanel1.Controls.Add(this.lblStagingAmount);
+            this.radPanel1.Controls.Add(this.lblRate);
             this.radPanel1.Controls.Add(this.radLabel5);
             this.radPanel1.Controls.Add(this.radLabel7);
             this.radPanel1.Controls.Add(this.radLabel2);
@@ -308,35 +308,39 @@
             this.radPanel1.TabIndex = 36;
             this.radPanel1.ThemeName = "Office2013Light";
             // 
-            // lblStagingAmount
+            // lblRate
             // 
-            this.lblStagingAmount.AutoSize = false;
-            this.lblStagingAmount.BorderVisible = true;
-            this.lblStagingAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDictRelGenrePercent, "Rate", true));
-            this.lblStagingAmount.Location = new System.Drawing.Point(460, 29);
-            this.lblStagingAmount.MinimumSize = new System.Drawing.Size(50, 18);
-            this.lblStagingAmount.Name = "lblStagingAmount";
+            this.lblRate.AutoSize = false;
+            this.lblRate.BorderVisible = true;
+            this.lblRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDictRelGenrePercent, "Rate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.lblRate.Location = new System.Drawing.Point(460, 29);
+            this.lblRate.MinimumSize = new System.Drawing.Size(50, 18);
+            this.lblRate.Name = "lblRate";
             // 
             // 
             // 
-            this.lblStagingAmount.RootElement.MinSize = new System.Drawing.Size(50, 18);
-            this.lblStagingAmount.Size = new System.Drawing.Size(50, 21);
-            this.lblStagingAmount.TabIndex = 48;
-            this.lblStagingAmount.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.lblStagingAmount.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStagingAmount.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStagingAmount.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStagingAmount.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            this.lblRate.RootElement.MinSize = new System.Drawing.Size(50, 18);
+            this.lblRate.Size = new System.Drawing.Size(50, 21);
+            this.lblRate.TabIndex = 48;
+            this.lblRate.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.lblRate.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblRate.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblRate.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblRate.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblRate.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // bsDictRelGenrePercent
+            // 
+            this.bsDictRelGenrePercent.DataSource = typeof(ipsFormsDesign.Model.RelGenrePercent);
             // 
             // radLabel5
             // 
@@ -346,10 +350,6 @@
             this.radLabel5.TabIndex = 47;
             this.radLabel5.Text = "Паї";
             this.radLabel5.ThemeName = "Office2013Light";
-            // 
-            // bsDictRelGenrePercent
-            // 
-            this.bsDictRelGenrePercent.DataSource = typeof(ipsFormsDesign.Model.RelGenrePercent);
             // 
             // CompositionOfReport
             // 
@@ -385,9 +385,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblStagingAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictRelGenrePercent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -410,7 +410,7 @@
         private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
         private System.Windows.Forms.BindingSource bsDictGenreType;
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadLabel lblStagingAmount;
+        private Telerik.WinControls.UI.RadLabel lblRate;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private System.Windows.Forms.BindingSource bsDictRelGenrePercent;
     }

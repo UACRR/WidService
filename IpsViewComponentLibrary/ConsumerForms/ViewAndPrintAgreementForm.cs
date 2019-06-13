@@ -25,6 +25,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
+        public bool ValidTemplate { get; private set; }
+
         public ViewAndPrintAgreementForm()
         {
             InitializeComponent();
@@ -88,7 +90,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 _wordEngine.ProcessConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
             }
 
-            if(_wordEngine.ValidTemplate)
+            ValidTemplate = _wordEngine.ValidTemplate;
+
+            if (_wordEngine.ValidTemplate)
                 SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             radWaitingBar1.StopWaiting();
         }
@@ -107,6 +111,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
             {
                 _wordEngine.ProcessConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
             }
+
+            ValidTemplate = _wordEngine.ValidTemplate;
 
             SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             radWaitingBar1.StopWaiting();

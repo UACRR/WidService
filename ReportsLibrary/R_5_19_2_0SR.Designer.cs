@@ -83,8 +83,8 @@ namespace ReportsLibrary
             this.textBox25 = new Telerik.Reporting.TextBox();
             this.textBox26 = new Telerik.Reporting.TextBox();
             this.detailSection1 = new Telerik.Reporting.DetailSection();
-            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
+            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.textBox28 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -173,14 +173,14 @@ namespace ReportsLibrary
             this.textBox8,
             this.textBox9,
             this.textBox10});
-            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.1D), Telerik.Reporting.Drawing.Unit.Cm(0.1D));
+            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.5D), Telerik.Reporting.Drawing.Unit.Cm(0.1D));
             this.table1.Name = "table1";
             tableGroup11.Name = "group";
             tableGroup12.Groupings.Add(new Telerik.Reporting.Grouping(null));
             tableGroup12.Name = "detail";
             this.table1.RowGroups.Add(tableGroup11);
             this.table1.RowGroups.Add(tableGroup12);
-            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(24.498D), Telerik.Reporting.Drawing.Unit.Cm(3.364D));
+            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(24.499D), Telerik.Reporting.Drawing.Unit.Cm(3.364D));
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox11
@@ -189,6 +189,7 @@ namespace ReportsLibrary
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateEnd", "= Parameters.dateEnd.Value"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("Community", "= Parameters.Community.Value"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("custId", "= Fields.rhcustId"));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("rhName", "= Fields.rhName"));
             typeReportSource1.TypeName = "ReportsLibrary.R_5_19_2_SR, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Pub" +
     "licKeyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
@@ -559,13 +560,6 @@ namespace ReportsLibrary
             this.detailSection1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.detailSection1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Bottom;
             // 
-            // pageFooterSection1
-            // 
-            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2D);
-            this.pageFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.textBox28});
-            this.pageFooterSection1.Name = "pageFooterSection1";
-            // 
             // reportHeaderSection1
             // 
             this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
@@ -578,9 +572,16 @@ namespace ReportsLibrary
             this.textBox25});
             this.reportHeaderSection1.Name = "reportHeaderSection1";
             // 
+            // pageFooterSection1
+            // 
+            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
+            this.pageFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.textBox28});
+            this.pageFooterSection1.Name = "pageFooterSection1";
+            // 
             // textBox28
             // 
-            this.textBox28.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.452D), Telerik.Reporting.Drawing.Unit.Inch(0.294D));
+            this.textBox28.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.452D), Telerik.Reporting.Drawing.Unit.Inch(0.392D));
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox28.Style.Font.Bold = true;
@@ -593,8 +594,8 @@ namespace ReportsLibrary
             // 
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.detailSection1,
-            this.pageFooterSection1,
-            this.reportHeaderSection1});
+            this.reportHeaderSection1,
+            this.pageFooterSection1});
             this.Name = "R_5_19_2_0SR";
             this.PageSettings.ContinuousPaper = false;
             this.PageSettings.Landscape = true;
@@ -742,13 +743,13 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox8;
         private Telerik.Reporting.TextBox textBox9;
         private Telerik.Reporting.TextBox textBox10;
-        private Telerik.Reporting.PageFooterSection pageFooterSection1;
         private Telerik.Reporting.TextBox textBox26;
         private Telerik.Reporting.TextBox textBox27;
         private Telerik.Reporting.TextBox textBox31;
         private Telerik.Reporting.TextBox textBox32;
         private Telerik.Reporting.TextBox textBox33;
         private Telerik.Reporting.ReportHeaderSection reportHeaderSection1;
+        private Telerik.Reporting.PageFooterSection pageFooterSection1;
         private Telerik.Reporting.TextBox textBox28;
     }
 }
