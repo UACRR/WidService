@@ -237,6 +237,8 @@
     <None Include="Templates\F_Акт фіксації_друк.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\F_ГО УААСП Автор.docx" />
+    <None Include="Templates\F_ГО УААСП Правовласник-Видавництво.docx" />
     <None Include="Templates\F_Наказ на фіксацію.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

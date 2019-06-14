@@ -88,7 +88,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // 
             this.pageAnketaConsumer.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAnketaConsumer.SelectedPage = this.pvAgreement;
+            this.pageAnketaConsumer.SelectedPage = this.pvClientName;
             this.pageAnketaConsumer.SelectionWrap = false;
             this.pageAnketaConsumer.Size = new System.Drawing.Size(922, 502);
             this.pageAnketaConsumer.TabIndex = 1;
@@ -265,11 +265,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // btnLoadPdf
             // 
             this.btnLoadPdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoadPdf.Location = new System.Drawing.Point(411, 3);
+            this.btnLoadPdf.Location = new System.Drawing.Point(390, 4);
             this.btnLoadPdf.Name = "btnLoadPdf";
-            this.btnLoadPdf.Size = new System.Drawing.Size(176, 24);
+            this.btnLoadPdf.Size = new System.Drawing.Size(200, 24);
             this.btnLoadPdf.TabIndex = 5;
-            this.btnLoadPdf.Text = "Завантажити PDF договору";
+            this.btnLoadPdf.Text = "Сформувати документ договору";
             this.btnLoadPdf.ThemeName = "Office2013Light";
             this.btnLoadPdf.Click += new System.EventHandler(this.btnLoadPdf_Click);
             // 
