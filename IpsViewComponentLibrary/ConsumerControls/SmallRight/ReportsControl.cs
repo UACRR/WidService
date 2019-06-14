@@ -128,6 +128,17 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         {
             NormalizeData(_customer);
             bindingReports.ResetBindings(false);
+            if (gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData lic)
+            {
+                if (lic.Lic?.PaidPeriod != null && lic.Lic.PaidPeriod.Count > 0)
+                {
+                    var listPaidPeriod = lic.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
+                    bsPaidPeriod.DataSource = ReportPaidPeriod.Convert(listPaidPeriod);
+                }
+                else
+                    bsPaidPeriod.DataSource = typeof(ReportPaidPeriod);
+            }
+
             bsPaidPeriod.ResetBindings(false);
             gvPeriodReports.MasterTemplate.Refresh();
         }
@@ -225,15 +236,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             // Цирк,Філармонія,Концертна діяльність
             bool isCollapsed = agrType.SchemaId == 2;
-            // AddReport Xls disable for Цирк,Філармонія,Концертна діяльність
+            // AddReport Xls disable for Цирк, Філармонія, Концертна діяльність
             btnAddReport.Enabled = !isCollapsed;
 
-            //bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
             btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
-            if (CurrentAgreementController != null
-                && !CurrentAgreementController.Broadcast
-                && lic.Lic?.LicId != CurrentAgreementController.LicId)
+            if (CurrentAgreementController != null && !CurrentAgreementController.Broadcast && lic.Lic?.LicId != CurrentAgreementController.LicId)
             {
                 CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
             }
@@ -365,6 +373,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }
 
+            RefreshData();
         }
 
         /// <summary>
@@ -438,10 +447,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // * * * [Переглянути звіт]
         private void RegisterReport()
         {
-            if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
-                return;
-
-            if (!(gvPeriodReports.CurrentRow.DataBoundItem is Register register))
+            if (GetRegisterItems == null || !(gvPeriodReports.CurrentRow?.DataBoundItem is Register register))
                 return;
 
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
@@ -535,6 +541,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             else if (columnName == "DeleteColumn")
             {
                 DeleteRegister();
+                RefreshData();
             }
         }
 

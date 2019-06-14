@@ -62,7 +62,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         {
             if(IsManual)
             {
-                if (txtReportPeriod.Text == string.Empty)
+                if (string.IsNullOrEmpty(txtReportPeriod.Text))
                 {
                     MessageBox.Show("Введіть назву періоду!", "Не всі поля заповнені",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     return;
