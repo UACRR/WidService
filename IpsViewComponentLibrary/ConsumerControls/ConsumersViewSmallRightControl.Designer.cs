@@ -124,7 +124,7 @@
             gridViewTextBoxColumn6.MaxWidth = 150;
             gridViewTextBoxColumn6.MinWidth = 100;
             gridViewTextBoxColumn6.Name = "Undistribamount";
-            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn6.Width = 144;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;

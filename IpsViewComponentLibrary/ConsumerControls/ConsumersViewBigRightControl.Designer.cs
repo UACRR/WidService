@@ -150,7 +150,7 @@
             gridViewTextBoxColumn10.MinWidth = 100;
             gridViewTextBoxColumn10.Multiline = true;
             gridViewTextBoxColumn10.Name = "UndistribAmount";
-            gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn10.Width = 106;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.DataType = typeof(System.Nullable<decimal>);
@@ -160,6 +160,7 @@
             gridViewTextBoxColumn11.MinWidth = 100;
             gridViewTextBoxColumn11.Multiline = true;
             gridViewTextBoxColumn11.Name = "UnattachAmount";
+            gridViewTextBoxColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn11.Width = 106;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.DataType = typeof(System.Nullable<decimal>);
@@ -169,6 +170,7 @@
             gridViewTextBoxColumn12.MaxWidth = 100;
             gridViewTextBoxColumn12.MinWidth = 100;
             gridViewTextBoxColumn12.Name = "Borg";
+            gridViewTextBoxColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn12.Width = 100;
             gridViewTextBoxColumn13.FieldName = "PartnerName";
             gridViewTextBoxColumn13.HeaderText = "Представник";

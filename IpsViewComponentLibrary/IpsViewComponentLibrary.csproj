@@ -331,10 +331,10 @@
     <Compile Include="_trash\SinglePlaceParameterControl.Designer.cs">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\AgreementPhis.cs">
+    <Compile Include="_UnusedControls\AgreementPhis.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\AgreementPhis.Designer.cs">
+    <Compile Include="_UnusedControls\AgreementPhis.Designer.cs">
       <DependentUpon>AgreementPhis.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\GridLicenseAgreementView.cs" />
@@ -1248,7 +1248,7 @@
     <EmbeddedResource Include="_trash\SinglePlaceParameterControl.resx">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\AgreementPhis.resx">
+    <EmbeddedResource Include="_UnusedControls\AgreementPhis.resx">
       <DependentUpon>AgreementPhis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ContactPersonActionForm.resx">
@@ -1810,7 +1810,9 @@
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ConsumerControls\Calculation\" />
     <Folder Include="ConsumerControls\Presenters\" />
+    <Folder Include="ConsumerControls\Reports\Forms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
