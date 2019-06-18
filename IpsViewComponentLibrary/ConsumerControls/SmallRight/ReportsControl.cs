@@ -250,14 +250,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // * * * [Періоди платежів]
         private void GvPeriods_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            if (!(gvPeriods.CurrentRow?.DataBoundItem is PaidPeriod))
+            if (!(gvPeriods.CurrentRow?.DataBoundItem is PaidPeriod period))
             {
                 bindingRatedList.DataSource = typeof(RegisterRatedList);
                 bindingReports.DataSource = typeof(Register);
                 return;
             }
 
-            var period = (PaidPeriod)gvPeriods.CurrentRow.DataBoundItem;
+            //var period = (PaidPeriod)gvPeriods.CurrentRow.DataBoundItem;
             var reports = new List<Register>();
             int maxRgStatus = -1;
             if (period.RegisterRatedList.Any())
@@ -279,6 +279,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
             bindingReports.DataSource = reports;
             buttonController.SetPeriodState(period.Status, reports);
+        }
+
+        private void gvPeriodReports_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            if (!(e.CurrentRow?.DataBoundItem is Register register))
+                return;
+
+            btnToAcception.Enabled = register.RgStatus == 0 || register.RgStatus == 5;
         }
 
 
