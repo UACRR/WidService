@@ -49,6 +49,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             this.btnAddRow = new Telerik.WinControls.UI.RadButton();
             this.txtReportPeriod = new Telerik.WinControls.UI.RadTextBoxControl();
             this.bsRegisterName = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
             ((System.ComponentModel.ISupportInitialize)(this.btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView.MasterTemplate)).BeginInit();
@@ -229,11 +230,22 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // 
             this.bsRegisterName.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
+            // ctrlGridRowCount
+            // 
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(824, 412);
+            this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
+            this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.Name = "ctrlGridRowCount";
+            this.ctrlGridRowCount.RadGridViewDataSource = null;
+            this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
+            this.ctrlGridRowCount.TabIndex = 5;
+            // 
             // ReportExcelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 448);
+            this.Controls.Add(this.ctrlGridRowCount);
             this.Controls.Add(this.txtReportPeriod);
             this.Controls.Add(this.btnAddRow);
             this.Controls.Add(this.gvReportContentView);
@@ -268,5 +280,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         private Telerik.WinControls.UI.RadButton btnAddRow;
         private Telerik.WinControls.UI.RadTextBoxControl txtReportPeriod;
         private BindingSource bsRegisterName;
+        private Common.GridRowCountControl ctrlGridRowCount;
     }
 }
