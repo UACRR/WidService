@@ -8,7 +8,6 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
-using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
