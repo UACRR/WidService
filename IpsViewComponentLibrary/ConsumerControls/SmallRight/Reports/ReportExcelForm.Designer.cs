@@ -96,28 +96,28 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             gridViewTextBoxColumn2.MinWidth = 165;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "ItemName";
-            gridViewTextBoxColumn2.Width = 182;
+            gridViewTextBoxColumn2.Width = 197;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "Performer";
             gridViewTextBoxColumn3.HeaderText = "Виконавець";
             gridViewTextBoxColumn3.MinWidth = 165;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "Performer";
-            gridViewTextBoxColumn3.Width = 165;
+            gridViewTextBoxColumn3.Width = 177;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "AuthorMusic";
             gridViewTextBoxColumn4.HeaderText = "Автор музики";
             gridViewTextBoxColumn4.MinWidth = 165;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "AuthorMusic";
-            gridViewTextBoxColumn4.Width = 165;
+            gridViewTextBoxColumn4.Width = 177;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "AuthorText";
             gridViewTextBoxColumn5.HeaderText = "Автор тексту";
             gridViewTextBoxColumn5.MinWidth = 165;
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "AuthorText";
-            gridViewTextBoxColumn5.Width = 165;
+            gridViewTextBoxColumn5.Width = 197;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTimeSpanColumn1.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewTimeSpanColumn1.FieldName = "DurationItem";
@@ -182,7 +182,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             this.gvReportContentView.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvReportContentView.Name = "gvReportContentView";
             this.gvReportContentView.ShowGroupPanel = false;
-            this.gvReportContentView.Size = new System.Drawing.Size(967, 364);
+            this.gvReportContentView.Size = new System.Drawing.Size(1038, 364);
             this.gvReportContentView.TabIndex = 2;
             this.gvReportContentView.ThemeName = "Office2013Light";
             this.gvReportContentView.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvReportContentView_CellValueChanged);
@@ -217,7 +217,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // 
             // 
             this.txtReportPeriod.RootElement.PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            this.txtReportPeriod.Size = new System.Drawing.Size(967, 24);
+            this.txtReportPeriod.Size = new System.Drawing.Size(1038, 24);
             this.txtReportPeriod.TabIndex = 4;
             this.txtReportPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReportPeriod.ThemeName = "Office2013Light";
@@ -232,7 +232,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // 
             // ctrlGridRowCount
             // 
-            this.ctrlGridRowCount.Location = new System.Drawing.Point(824, 412);
+            this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(895, 412);
             this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
             this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
             this.ctrlGridRowCount.Name = "ctrlGridRowCount";
@@ -244,7 +245,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(991, 448);
+            this.ClientSize = new System.Drawing.Size(1062, 448);
             this.Controls.Add(this.ctrlGridRowCount);
             this.Controls.Add(this.txtReportPeriod);
             this.Controls.Add(this.btnAddRow);
