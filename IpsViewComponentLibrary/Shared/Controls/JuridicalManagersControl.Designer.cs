@@ -62,7 +62,8 @@
             this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(153, 30);
             this.txtOnBasicsIfHeadBoss.Multiline = true;
             this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
-            this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР)";
+            this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР, наказ," +
+    " протокол)";
             this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(594, 20);
             this.txtOnBasicsIfHeadBoss.TabIndex = 18;
             this.txtOnBasicsIfHeadBoss.ThemeName = "Office2013Light";
