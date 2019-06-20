@@ -33,8 +33,9 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
                 _catalogFileItemsHandler = new RightholderRegisterPresenter();
 
             UpdateDataSources(file);
+            
+            btnPerform.Enabled = _catalogFile.Status == 1;
 
-            btnPerform.Enabled = _catalogFile.Status == 1 || _catalogFile.CountOk == 2;
             Text = _catalogFile.FileName;
 
             lblStatus.Text = IpsGlobal.ObjectRightDictionaries.catalogStatus
@@ -65,6 +66,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
             UpdateDataSources(result.Data);
             UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
+            btnPerform.Enabled = _catalogFile.Status == 1;
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)

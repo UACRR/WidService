@@ -40,7 +40,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                 bsCatalogFile.DataSource = _catalogFile;
                 bsCatalogFile.ResetBindings(false);
 
-                btnPerform.Enabled = _catalogFile.Status == 1 || catalogFile.CountOk == 2;
+                btnPerform.Enabled = _catalogFile.Status == 1;
 
                 if (_catalogFile.PubCatalogItem.Any())
                 {
