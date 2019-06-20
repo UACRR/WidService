@@ -47,9 +47,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.ctrlBookkeeper = new IpsBossNameContactsControl();
+            this.ctrlBookkeeper = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
             this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
-            this.ctrlHeadBoss = new IpsBossNameContactsControl();
+            this.ctrlHeadBoss = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator5 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
@@ -77,9 +77,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // ctrlBookkeeper
             // 
+            this.ctrlBookkeeper.DataSource = typeof(ipsFormsDesign.Model.Employee);
             this.ctrlBookkeeper.Location = new System.Drawing.Point(54, 145);
             this.ctrlBookkeeper.Name = "ctrlBookkeeper";
             this.ctrlBookkeeper.OutsidePhone = false;
+            this.ctrlBookkeeper.PhoneNullText = "+380## ### ## ##";
             this.ctrlBookkeeper.Size = new System.Drawing.Size(682, 56);
             this.ctrlBookkeeper.TabIndex = 32;
             // 
@@ -89,16 +91,19 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(153, 30);
             this.txtOnBasicsIfHeadBoss.Multiline = true;
             this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
-            this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР)";
+            this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР, наказ," +
+    " протокол)";
             this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(583, 20);
             this.txtOnBasicsIfHeadBoss.TabIndex = 30;
             this.txtOnBasicsIfHeadBoss.ThemeName = "Office2013Light";
             // 
             // ctrlHeadBoss
             // 
+            this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Model.Employee);
             this.ctrlHeadBoss.Location = new System.Drawing.Point(54, 56);
             this.ctrlHeadBoss.Name = "ctrlHeadBoss";
             this.ctrlHeadBoss.OutsidePhone = false;
+            this.ctrlHeadBoss.PhoneNullText = "+380## ### ## ##";
             this.ctrlHeadBoss.Size = new System.Drawing.Size(682, 56);
             this.ctrlHeadBoss.TabIndex = 31;
             // 
