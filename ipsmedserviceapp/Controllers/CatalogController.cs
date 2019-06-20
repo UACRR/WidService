@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
+using IpsCommonTypes.Enums;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -238,25 +239,18 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>();
-                responce.Message = message.Value.ToString();
-
-                // Процедура виконала дії без помилок
-                if (Convert.ToInt32(returnCode.Value) == 0)
+                var responce = new ExecSqlResponce<CatalogFile>
                 {
-                    var validCatalog = await _dbContext.CatalogFile
-                        .Include(rec => rec.PubCatalogItem)
-                        .ThenInclude(pub => pub.StatusNavigation)
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                    Message = message.Value.ToString(),
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
+                };
 
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
-                    responce.Data = validCatalog;
-                }
-                else
-                {
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
-                }
+                var validCatalog = await _dbContext.CatalogFile
+                    .Include(rec => rec.PubCatalogItem)
+                    .ThenInclude(pub => pub.StatusNavigation)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                responce.Data = validCatalog;
 
                 return Ok(responce);
             }
@@ -291,27 +285,20 @@ namespace ipsmedserviceapp.Controllers
 
                 string command = @"exec CatalogInputPub @fileId, @result OUTPUT, @RetCode OUTPUT";
 
-                var data = await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
+                await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>();
-                responce.Message = message.Value.ToString();
-
-                // Процедура виконала дії без помилок
-                if (Convert.ToInt32(returnCode.Value) == 0)
+                var responce = new ExecSqlResponce<CatalogFile>
                 {
-                    var validCatalog = await _dbContext.CatalogFile
-                        .Include(rec => rec.PubCatalogItem)
-                        .ThenInclude(pub => pub.StatusNavigation)
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                    Message = message.Value.ToString(),
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
+                };
 
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
-                    responce.Data = validCatalog;
-                }
-                else
-                {
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
-                }
+                var validCatalog = await _dbContext.CatalogFile
+                    .Include(rec => rec.PubCatalogItem)
+                    .ThenInclude(pub => pub.StatusNavigation)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                responce.Data = validCatalog;
 
                 return Ok(responce);
             }
@@ -321,6 +308,5 @@ namespace ipsmedserviceapp.Controllers
                 throw;
             }
         }
-
     }
 }
