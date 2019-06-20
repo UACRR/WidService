@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;

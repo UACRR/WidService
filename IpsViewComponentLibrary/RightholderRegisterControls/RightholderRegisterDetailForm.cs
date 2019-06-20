@@ -61,13 +61,10 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
 
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
-            if (boolResult)
-            {
-                UpdateDataSources(result.Data);
-                UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
-            }
 
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
+            UpdateDataSources(result.Data);
+            UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -95,12 +92,9 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             var result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
 
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
-            if (boolResult)
-            {
-                UpdateDataSources(result.Data);
-                UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
-            }
-
+            
+            UpdateDataSources(result.Data);
+            UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
             MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);
         }
     }

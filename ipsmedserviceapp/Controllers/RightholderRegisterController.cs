@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -14,6 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ipsmedserviceapp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class RightholderRegisterController : ControllerBase
@@ -257,6 +257,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="custId"></param>
         /// <param name="sors"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost("{custId}/upload")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile sors)
         {
