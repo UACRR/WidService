@@ -43,6 +43,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.txtState = new Telerik.WinControls.UI.RadLabel();
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.txtPercentAutoprolongation = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtMinAmount = new Telerik.WinControls.UI.RadLabel();
             this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
             this.txtRate = new Telerik.WinControls.UI.RadLabel();
@@ -65,13 +67,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrDate = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.txtDelegate = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtReportPeriod = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.txtPercentAutoprolongation = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsComment)).BeginInit();
@@ -86,6 +84,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoprolongation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRate)).BeginInit();
@@ -110,12 +110,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDelegate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReportPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoprolongation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSaveComment
@@ -296,6 +292,43 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPanel2.Size = new System.Drawing.Size(190, 79);
             this.radPanel2.TabIndex = 17;
             this.radPanel2.ThemeName = "Office2013Light";
+            // 
+            // txtPercentAutoprolongation
+            // 
+            this.txtPercentAutoprolongation.AutoSize = false;
+            this.txtPercentAutoprolongation.BorderVisible = true;
+            this.txtPercentAutoprolongation.Location = new System.Drawing.Point(135, 53);
+            this.txtPercentAutoprolongation.Name = "txtPercentAutoprolongation";
+            // 
+            // 
+            // 
+            this.txtPercentAutoprolongation.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.txtPercentAutoprolongation.Size = new System.Drawing.Size(52, 18);
+            this.txtPercentAutoprolongation.TabIndex = 34;
+            this.txtPercentAutoprolongation.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.txtPercentAutoprolongation.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtPercentAutoprolongation.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtPercentAutoprolongation.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtPercentAutoprolongation.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(3, 53);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(114, 19);
+            this.radLabel4.TabIndex = 33;
+            this.radLabel4.Text = "Відсоток автопрол.";
+            this.radLabel4.ThemeName = "Office2013Light";
             // 
             // txtMinAmount
             // 
@@ -697,43 +730,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radLabel3.Text = "Дата";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
-            // txtDelegate
-            // 
-            this.txtDelegate.BorderVisible = true;
-            this.txtDelegate.Location = new System.Drawing.Point(433, 3);
-            this.txtDelegate.MinimumSize = new System.Drawing.Size(300, 18);
-            this.txtDelegate.Name = "txtDelegate";
-            // 
-            // 
-            // 
-            this.txtDelegate.RootElement.MinSize = new System.Drawing.Size(300, 18);
-            this.txtDelegate.Size = new System.Drawing.Size(300, 18);
-            this.txtDelegate.TabIndex = 28;
-            this.txtDelegate.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.txtDelegate.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtDelegate.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtDelegate.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtDelegate.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtDelegate.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Location = new System.Drawing.Point(347, 3);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(80, 19);
-            this.radLabel5.TabIndex = 27;
-            this.radLabel5.Text = "Представник";
-            this.radLabel5.ThemeName = "Office2013Light";
-            // 
             // txtReportPeriod
             // 
             this.txtReportPeriod.BorderVisible = true;
@@ -771,51 +767,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radLabel8.Text = "Період звітності";
             this.radLabel8.ThemeName = "Office2013Light";
             // 
-            // txtPercentAutoprolongation
-            // 
-            this.txtPercentAutoprolongation.AutoSize = false;
-            this.txtPercentAutoprolongation.BorderVisible = true;
-            this.txtPercentAutoprolongation.Location = new System.Drawing.Point(135, 53);
-            this.txtPercentAutoprolongation.Name = "txtPercentAutoprolongation";
-            // 
-            // 
-            // 
-            this.txtPercentAutoprolongation.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.txtPercentAutoprolongation.Size = new System.Drawing.Size(52, 18);
-            this.txtPercentAutoprolongation.TabIndex = 34;
-            this.txtPercentAutoprolongation.TextAlignment = System.Drawing.ContentAlignment.TopRight;
-            this.txtPercentAutoprolongation.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtPercentAutoprolongation.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtPercentAutoprolongation.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopRight;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtPercentAutoprolongation.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtPercentAutoprolongation.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Location = new System.Drawing.Point(3, 53);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(114, 19);
-            this.radLabel4.TabIndex = 33;
-            this.radLabel4.Text = "Відсоток автопрол.";
-            this.radLabel4.ThemeName = "Office2013Light";
-            // 
             // ConsumerAgrDetailInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtReportPeriod);
             this.Controls.Add(this.radLabel8);
-            this.Controls.Add(this.txtDelegate);
-            this.Controls.Add(this.radLabel5);
             this.Controls.Add(this.txtAgrDate);
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.txtAgrNumber);
@@ -846,6 +803,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoprolongation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRate)).EndInit();
@@ -872,12 +831,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDelegate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReportPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoprolongation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -919,8 +874,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadLabel txtAgrDate;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadLabel txtDelegate;
-        private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel txtReportPeriod;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
@@ -32,7 +26,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             //шапка
             txtAgrNumber.Text = licenseParam?.LicNum ?? string.Empty;
             txtAgrDate.Text = licenseParam?.LicDate?.ToShortDateString() ?? string.Empty;
-            txtDelegate.Text = "";// представник
             txtReportPeriod.Text = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty;
             //блок 1
             txtDateBegin.Text = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty;
@@ -61,7 +54,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             txtAgrNumber.Text = string.Empty;
             txtAgrDate.Text = string.Empty;
-            txtDelegate.Text = string.Empty;
             txtReportPeriod.Text = string.Empty;
             txtDateBegin.Text = string.Empty;
             txtDateEnd.Text = string.Empty;
