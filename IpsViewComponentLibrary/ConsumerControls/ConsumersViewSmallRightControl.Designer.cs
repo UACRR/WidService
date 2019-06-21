@@ -37,34 +37,57 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.bsConsumerSmallRightView = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.timerSearch = new System.Windows.Forms.Timer(this.components);
+            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.gvViewConsumers = new Telerik.WinControls.UI.RadGridView();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
-            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.ddbtnAddConsumer = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnAddJurConsumer = new Telerik.WinControls.UI.RadMenuItem();
             this.btnAddPhisConsumer = new Telerik.WinControls.UI.RadMenuItem();
             this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
             this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
-            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.bsConsumerSmallRightView = new System.Windows.Forms.BindingSource(this.components);
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.timerSearch = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
+            this.backgroundPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
             this.gvViewConsumers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
-            this.backgroundPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
             this.ipsPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnAddConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
             this.ipsPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // bsConsumerSmallRightView
+            // 
+            this.bsConsumerSmallRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
+            // 
+            // timerSearch
+            // 
+            this.timerSearch.Interval = 300;
+            this.timerSearch.Tick += new System.EventHandler(this.timerSearch_Tick);
+            // 
+            // backgroundPanel
+            // 
+            this.backgroundPanel.BorderVisible = false;
+            this.backgroundPanel.Controls.Add(this.gvViewConsumers);
+            this.backgroundPanel.Controls.Add(this.ipsPanel1);
+            this.backgroundPanel.Controls.Add(this.ipsPanel2);
+            this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
+            this.backgroundPanel.Name = "backgroundPanel";
+            this.backgroundPanel.Size = new System.Drawing.Size(1154, 588);
+            this.backgroundPanel.TabIndex = 13;
+            this.backgroundPanel.ThemeName = "Office2013Light";
             // 
             // gvViewConsumers
             // 
@@ -124,7 +147,7 @@
             gridViewTextBoxColumn6.MaxWidth = 150;
             gridViewTextBoxColumn6.MinWidth = 100;
             gridViewTextBoxColumn6.Name = "Undistribamount";
-            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn6.Width = 144;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
@@ -153,7 +176,6 @@
             this.gvViewConsumers.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewConsumers.MasterTemplate.EnableFiltering = true;
             this.gvViewConsumers.MasterTemplate.EnableGrouping = false;
-            this.gvViewConsumers.MasterTemplate.EnableSorting = false;
             this.gvViewConsumers.MasterTemplate.ShowFilteringRow = false;
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
@@ -181,18 +203,12 @@
             ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
-            // backgroundPanel
+            // lineRingWaitingBarIndicatorElement1
             // 
-            this.backgroundPanel.BorderVisible = false;
-            this.backgroundPanel.Controls.Add(this.gvViewConsumers);
-            this.backgroundPanel.Controls.Add(this.ipsPanel1);
-            this.backgroundPanel.Controls.Add(this.ipsPanel2);
-            this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
-            this.backgroundPanel.Name = "backgroundPanel";
-            this.backgroundPanel.Size = new System.Drawing.Size(1154, 588);
-            this.backgroundPanel.TabIndex = 13;
-            this.backgroundPanel.ThemeName = "Office2013Light";
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
             // ipsPanel1
             // 
@@ -249,6 +265,7 @@
             // ipsPanel2
             // 
             this.ipsPanel2.BorderVisible = false;
+            this.ipsPanel2.Controls.Add(this.ctrlGridRowCount);
             this.ipsPanel2.Controls.Add(this.navigatorPanel);
             this.ipsPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ipsPanel2.Location = new System.Drawing.Point(0, 553);
@@ -257,6 +274,17 @@
             this.ipsPanel2.TabIndex = 12;
             this.ipsPanel2.ThemeName = "Office2013Light";
             // 
+            // ctrlGridRowCount
+            // 
+            this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(996, 4);
+            this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
+            this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.Name = "ctrlGridRowCount";
+            this.ctrlGridRowCount.RadGridViewDataSource = null;
+            this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
+            this.ctrlGridRowCount.TabIndex = 26;
+            // 
             // navigatorPanel
             // 
             this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -264,28 +292,12 @@
             this.navigatorPanel.Location = new System.Drawing.Point(3, 4);
             this.navigatorPanel.Name = "navigatorPanel";
             this.navigatorPanel.PageSize = 200;
-            this.navigatorPanel.ReadOnlyPageSize = true;
+            this.navigatorPanel.ReadOnlyPageSize = false;
             this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
             this.navigatorPanel.TabIndex = 25;
             this.navigatorPanel.TotalPages = 0;
             this.navigatorPanel.CurrentPageChanged += new System.EventHandler(this.navigatorPanel_CurrentPageChanged);
             this.navigatorPanel.PageSizeChanged += new System.EventHandler(this.navigatorPanel_PageSizeChanged);
-            // 
-            // lineRingWaitingBarIndicatorElement1
-            // 
-            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
-            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
-            // 
-            // bsConsumerSmallRightView
-            // 
-            this.bsConsumerSmallRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
-            // 
-            // timerSearch
-            // 
-            this.timerSearch.Interval = 300;
-            this.timerSearch.Tick += new System.EventHandler(this.timerSearch_Tick);
             // 
             // ConsumersViewSmallRightControl
             // 
@@ -294,20 +306,20 @@
             this.Controls.Add(this.backgroundPanel);
             this.Name = "ConsumersViewSmallRightControl";
             this.Size = new System.Drawing.Size(1154, 588);
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
+            this.backgroundPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).EndInit();
             this.gvViewConsumers.ResumeLayout(false);
             this.gvViewConsumers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
-            this.backgroundPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
             this.ipsPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnAddConsumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).EndInit();
             this.ipsPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -328,5 +340,6 @@
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private System.Windows.Forms.Timer timerSearch;
         private Common.Editors.IpsPanel backgroundPanel;
+        private Common.GridRowCountControl ctrlGridRowCount;
     }
 }

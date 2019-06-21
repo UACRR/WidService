@@ -120,6 +120,9 @@
   <metadata name="bsDictCreativeRole.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>285, 17</value>
   </metadata>
+  <metadata name="bsDictGenreType.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1243, 17</value>
+  </metadata>
   <metadata name="bsDictRelGenrePercent.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>439, 17</value>
   </metadata>
@@ -129,10 +132,10 @@
   <metadata name="bsRegisterItemMusic.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>615, 17</value>
   </metadata>
-  <metadata name="bsDictGenreType.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1243, 17</value>
+  <metadata name="bsRegisterItemMusic.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>615, 17</value>
   </metadata>
-  <data name="gridViewRelation1.ChildColumnNames" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="gridViewRelation2.ChildColumnNames" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAElTeXN0ZW0sIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0
         cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BQEAAAAvU3lzdGVtLkNvbGxlY3Rpb25z
@@ -141,7 +144,7 @@
         bXMFX3NpemUIX3ZlcnNpb24FAAAICAkEAAAAAQAAAAQAAAAQBAAAAAQAAAAGBQAAAAVSZWdJZA0DCw==
 </value>
   </data>
-  <data name="gridViewRelation1.ParentColumnNames" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="gridViewRelation2.ParentColumnNames" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAElTeXN0ZW0sIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0
         cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BQEAAAAvU3lzdGVtLkNvbGxlY3Rpb25z

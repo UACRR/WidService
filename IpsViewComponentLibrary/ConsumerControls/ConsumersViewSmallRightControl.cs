@@ -32,7 +32,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public int TotalItems
         {
-            set => navigatorPanel.TotalPages = (int)Math.Ceiling((double)value / navigatorPanel.PageSize);
+            set
+            {
+                navigatorPanel.TotalPages = (int) Math.Ceiling((double) value / navigatorPanel.PageSize);
+                ctrlGridRowCount.TotalItems = value;
+            }
         }
 
         public PaginateAndSearchQuery PaginateAndSearchQuery => new PaginateAndSearchQuery
@@ -74,7 +78,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            OnLoadCustomerCabinetNeed?.Invoke(e.Row.DataBoundItem as ConsumerSmallRightView);
+            if (!(e.Row.DataBoundItem is ConsumerSmallRightView row))
+                return;
+
+            OnLoadCustomerCabinetNeed?.Invoke(row);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

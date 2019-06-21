@@ -3,12 +3,16 @@ using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
     public partial class ReportExcelForm : RadForm
     {
+        private const string EmptyReportNameWarningMsg = "Введіть назву звіту!";
+        private const string EmptyRegisterItemListWarningMsg = "Не додано жодного твору!";
+
         private ObservableListSource<RegisterItem> _datasource = new ObservableListSource<RegisterItem>();
         public bool IsManual { get; private set; }
 
@@ -33,6 +37,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
+            ctrlGridRowCount.RadGridViewDataSource = gvReportContentView;
             IsManual = isManual;
             DialogResult = DialogResult.None;
             if (isManual)
@@ -62,19 +67,19 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         {
             if(IsManual)
             {
-                if (txtReportPeriod.Text == string.Empty)
+                if (string.IsNullOrEmpty(txtReportPeriod.Text))
                 {
-                    MessageBox.Show("Введіть назву періоду!", "Не всі поля заповнені",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    MessageShow.ShowWarning(EmptyReportNameWarningMsg);
                     return;
                 }
 
                 if (!_datasource.Any())
                 {
-                    MessageBox.Show("Не додано жодного твору!", "Відсутні твори в звіті", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageShow.ShowWarning(EmptyRegisterItemListWarningMsg);
                     return;
                 }
-                DialogResult = DialogResult.OK;
             }
+
             DialogResult = DialogResult.OK;
         }
 
@@ -96,20 +101,22 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         private void gvReportContentView_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
             if(e.Column.FieldName == "DurationItem" || e.Column.FieldName == "CountUse")
-                if(e.Row?.DataBoundItem is RegisterItem item && item.DurationItem != null)
+            {
+                if (e.Row?.DataBoundItem is RegisterItem item && item.DurationItem != null)
                 {
                     item.DurationUse = TimeSpan.FromSeconds(item.DurationItem.Value.TotalSeconds * item.CountUse ?? default(double));
                     item.Ticks = (int) (item.DurationUse.Value.Ticks / 10000);
                 }
+            }
         }
 
         private void gvReportContentView_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            if (e?.Row?.DataBoundItem is RegisterItem item)
-            {
-                _datasource.Remove(item);
-                gvReportContentView.DataSource = bindingRegItems.DataSource;
-            }
+            if (!(e?.Row?.DataBoundItem is RegisterItem item))
+                return;
+
+            _datasource.Remove(item);
+            gvReportContentView.DataSource = bindingRegItems.DataSource; 
         }
     }
 }

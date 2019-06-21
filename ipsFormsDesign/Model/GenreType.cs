@@ -9,6 +9,7 @@ namespace ipsFormsDesign.Model
         public GenreType()
         {
             GenreTypeTr = new ObservableListSource<GenreTypeTr>();
+            RegisterItem = new ObservableListSource<RegisterItem>();
             RelEtGenre = new ObservableListSource<RelEtGenre>();
             RelGenrePercent = new ObservableListSource<RelGenrePercent>();
             RelGenreRole = new ObservableListSource<RelGenreRole>();
@@ -20,6 +21,7 @@ namespace ipsFormsDesign.Model
 
         public virtual Category CategoryCodeNavigation { get; set; }
         public virtual ObservableListSource<GenreTypeTr> GenreTypeTr { get; set; }
+        public virtual ObservableListSource<RegisterItem> RegisterItem { get; set; }
         public virtual ObservableListSource<RelEtGenre> RelEtGenre { get; set; }
         public virtual ObservableListSource<RelGenrePercent> RelGenrePercent { get; set; }
         public virtual ObservableListSource<RelGenreRole> RelGenreRole { get; set; }

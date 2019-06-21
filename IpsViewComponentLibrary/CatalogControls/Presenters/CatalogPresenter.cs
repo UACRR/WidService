@@ -94,7 +94,6 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             if (decimal.TryParse(item[9], out decimal outBuffer))
             {
                 newItem.Rate = outBuffer;
-
             }
 
             return newItem;

@@ -77,6 +77,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.reportsControl = new IpsViewComponentLibrary.ConsumerControls.SmallRight.ReportsControl();
             this.pvMoreAgreements = new Telerik.WinControls.UI.RadPageViewPage();
             this.gvMoreLicenseAgr = new Telerik.WinControls.UI.RadGridView();
+            this.bsGridLicenseAgreementViewNoAccept = new System.Windows.Forms.BindingSource(this.components);
             this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.btnAddNewAgrMore = new Telerik.WinControls.UI.RadButton();
             this.ddBtnChangeStatusMore = new Telerik.WinControls.UI.RadDropDownButton();
@@ -99,7 +100,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
             this.pvClosedAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClosedAgreements = new IpsViewComponentLibrary.ConsumerControls.ClosedAgreementsControl();
-            this.bsGridLicenseAgreementViewNoAccept = new System.Windows.Forms.BindingSource(this.components);
             this.pvAgent.SuspendLayout();
             this.pvFiles.SuspendLayout();
             this.pvContacts.SuspendLayout();
@@ -109,6 +109,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvMoreAgreements.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNoAccept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
             this.ipsPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewAgrMore)).BeginInit();
@@ -127,7 +128,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
             this.pvClosedAgreement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNoAccept)).BeginInit();
             this.SuspendLayout();
             // 
             // pvAgent
@@ -137,7 +137,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvAgent.ItemSize = new System.Drawing.SizeF(88F, 27F);
             this.pvAgent.Location = new System.Drawing.Point(5, 41);
             this.pvAgent.Name = "pvAgent";
-            this.pvAgent.Size = new System.Drawing.Size(856, 458);
+            this.pvAgent.Size = new System.Drawing.Size(985, 444);
             this.pvAgent.Text = "Представник";
             // 
             // ctrlPartner
@@ -154,7 +154,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvFiles.ItemSize = new System.Drawing.SizeF(51F, 27F);
             this.pvFiles.Location = new System.Drawing.Point(5, 41);
             this.pvFiles.Name = "pvFiles";
-            this.pvFiles.Size = new System.Drawing.Size(856, 458);
+            this.pvFiles.Size = new System.Drawing.Size(985, 444);
             this.pvFiles.Text = "Файли";
             // 
             // ctrlFiles
@@ -162,7 +162,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.ctrlFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlFiles.Location = new System.Drawing.Point(0, 0);
             this.ctrlFiles.Name = "ctrlFiles";
-            this.ctrlFiles.Size = new System.Drawing.Size(856, 458);
+            this.ctrlFiles.Size = new System.Drawing.Size(985, 444);
             this.ctrlFiles.TabIndex = 0;
             // 
             // pvContacts
@@ -172,7 +172,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvContacts.ItemSize = new System.Drawing.SizeF(66F, 27F);
             this.pvContacts.Location = new System.Drawing.Point(5, 41);
             this.pvContacts.Name = "pvContacts";
-            this.pvContacts.Size = new System.Drawing.Size(860, 446);
+            this.pvContacts.Size = new System.Drawing.Size(985, 444);
             this.pvContacts.Text = "Контакти";
             // 
             // ctrlHeaderInfo
@@ -191,7 +191,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvPayments.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvPayments.Location = new System.Drawing.Point(5, 41);
             this.pvPayments.Name = "pvPayments";
-            this.pvPayments.Size = new System.Drawing.Size(870, 446);
+            this.pvPayments.Size = new System.Drawing.Size(985, 444);
             this.pvPayments.Text = "Платежі";
             // 
             // ctrlPaysInfo1
@@ -201,7 +201,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.ctrlPaysInfo1.Location = new System.Drawing.Point(0, 0);
             this.ctrlPaysInfo1.Margin = new System.Windows.Forms.Padding(2);
             this.ctrlPaysInfo1.Name = "ctrlPaysInfo1";
-            this.ctrlPaysInfo1.Size = new System.Drawing.Size(870, 446);
+            this.ctrlPaysInfo1.Size = new System.Drawing.Size(985, 444);
             this.ctrlPaysInfo1.TabIndex = 0;
             // 
             // pvCalculation
@@ -211,7 +211,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvCalculation.ItemSize = new System.Drawing.SizeF(80F, 27F);
             this.pvCalculation.Location = new System.Drawing.Point(5, 41);
             this.pvCalculation.Name = "pvCalculation";
-            this.pvCalculation.Size = new System.Drawing.Size(893, 472);
+            this.pvCalculation.Size = new System.Drawing.Size(985, 444);
             this.pvCalculation.Text = "Розрахунки";
             // 
             // calculationCtrl
@@ -222,7 +222,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.calculationCtrl.Location = new System.Drawing.Point(0, 0);
             this.calculationCtrl.MaximumSize = new System.Drawing.Size(3000, 1000);
             this.calculationCtrl.Name = "calculationCtrl";
-            this.calculationCtrl.Size = new System.Drawing.Size(893, 472);
+            this.calculationCtrl.Size = new System.Drawing.Size(985, 444);
             this.calculationCtrl.TabIndex = 0;
             this.calculationCtrl.TypeRights = ipsFormsDesign.Dictionary.TypeRights.All;
             // 
@@ -236,7 +236,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvReports.ItemSize = new System.Drawing.SizeF(43F, 27F);
             this.pvReports.Location = new System.Drawing.Point(5, 41);
             this.pvReports.Name = "pvReports";
-            this.pvReports.Size = new System.Drawing.Size(873, 468);
+            this.pvReports.Size = new System.Drawing.Size(985, 444);
             this.pvReports.Text = "Звіти";
             // 
             // reportsControl
@@ -246,7 +246,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.reportsControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reportsControl.Location = new System.Drawing.Point(0, 0);
             this.reportsControl.Name = "reportsControl";
-            this.reportsControl.Size = new System.Drawing.Size(873, 468);
+            this.reportsControl.Size = new System.Drawing.Size(985, 444);
             this.reportsControl.TabIndex = 0;
             this.reportsControl.TypeRights = ipsFormsDesign.Dictionary.TypeRights.All;
             // 
@@ -322,33 +322,37 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.DataType = typeof(decimal);
             gridViewTextBoxColumn8.FieldName = "MinRate";
+            gridViewTextBoxColumn8.FormatString = "{0:##0.00}";
             gridViewTextBoxColumn8.HeaderText = "Тариф";
-            gridViewTextBoxColumn8.MaxWidth = 45;
-            gridViewTextBoxColumn8.MinWidth = 45;
+            gridViewTextBoxColumn8.MaxWidth = 90;
+            gridViewTextBoxColumn8.MinWidth = 90;
             gridViewTextBoxColumn8.Name = "MinRate";
-            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn8.Width = 45;
+            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn8.Width = 90;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.DataType = typeof(decimal);
             gridViewTextBoxColumn9.FieldName = "MinAmount";
+            gridViewTextBoxColumn9.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn9.HeaderText = "Гарантійний платіж";
             gridViewTextBoxColumn9.MaxWidth = 100;
             gridViewTextBoxColumn9.MinWidth = 90;
             gridViewTextBoxColumn9.Name = "MinAmount";
-            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn9.Width = 90;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.FieldName = "PeriodPayment";
             gridViewTextBoxColumn10.HeaderText = "Періодичність оплати";
+            gridViewTextBoxColumn10.MaxWidth = 100;
             gridViewTextBoxColumn10.MinWidth = 100;
             gridViewTextBoxColumn10.Name = "PeriodPayment";
             gridViewTextBoxColumn10.Width = 100;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.FieldName = "State";
             gridViewTextBoxColumn11.HeaderText = "Статус";
-            gridViewTextBoxColumn11.MinWidth = 90;
+            gridViewTextBoxColumn11.MaxWidth = 150;
+            gridViewTextBoxColumn11.MinWidth = 100;
             gridViewTextBoxColumn11.Name = "State";
-            gridViewTextBoxColumn11.Width = 90;
+            gridViewTextBoxColumn11.Width = 100;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewCheckBoxColumn1.FieldName = "IsAutoprolog";
             gridViewCheckBoxColumn1.HeaderText = "а-п";
@@ -415,6 +419,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.gvMoreLicenseAgr.ThemeName = "Office2013Light";
             this.gvMoreLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvMoreLicenseAgr_CurrentRowChanged);
             this.gvMoreLicenseAgr.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvMoreLicenseAgr_CommandCellClick);
+            // 
+            // bsGridLicenseAgreementViewNoAccept
+            // 
+            this.bsGridLicenseAgreementViewNoAccept.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.SmallRight.GridLicenseAgreementView);
             // 
             // ipsPanel2
             // 
@@ -535,26 +543,30 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             gridViewTextBoxColumn17.WrapText = true;
             gridViewTextBoxColumn18.DataType = typeof(decimal);
             gridViewTextBoxColumn18.FieldName = "MinRate";
+            gridViewTextBoxColumn18.FormatString = "{0:##0.00}";
             gridViewTextBoxColumn18.HeaderText = "Тариф";
+            gridViewTextBoxColumn18.MaxWidth = 90;
             gridViewTextBoxColumn18.MinWidth = 90;
             gridViewTextBoxColumn18.Name = "MinRate";
-            gridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn18.Width = 90;
             gridViewTextBoxColumn18.WrapText = true;
             gridViewDecimalColumn1.FieldName = "MinAmount";
+            gridViewDecimalColumn1.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn1.HeaderText = "Гарантійний платіж";
             gridViewDecimalColumn1.MinWidth = 90;
             gridViewDecimalColumn1.Name = "MinAmount";
-            gridViewDecimalColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewDecimalColumn1.Width = 90;
             gridViewDecimalColumn1.WrapText = true;
             gridViewTextBoxColumn19.FieldName = "State";
             gridViewTextBoxColumn19.HeaderText = "Статус";
+            gridViewTextBoxColumn19.MaxWidth = 150;
             gridViewTextBoxColumn19.MinWidth = 100;
             gridViewTextBoxColumn19.Name = "State";
             gridViewTextBoxColumn19.Width = 100;
             gridViewTextBoxColumn20.FieldName = "PeriodPayment";
             gridViewTextBoxColumn20.HeaderText = "Періодичність оплати";
+            gridViewTextBoxColumn20.MaxWidth = 115;
             gridViewTextBoxColumn20.MinWidth = 100;
             gridViewTextBoxColumn20.Name = "PeriodPayment";
             gridViewTextBoxColumn20.Width = 100;
@@ -694,7 +706,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvAnketa.Location = new System.Drawing.Point(5, 41);
             this.pvAnketa.Name = "pvAnketa";
-            this.pvAnketa.Size = new System.Drawing.Size(984, 520);
+            this.pvAnketa.Size = new System.Drawing.Size(985, 444);
             this.pvAnketa.Text = "Анкета";
             // 
             // anketaPanel
@@ -703,7 +715,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.anketaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.anketaPanel.Location = new System.Drawing.Point(0, 0);
             this.anketaPanel.Name = "anketaPanel";
-            this.anketaPanel.Size = new System.Drawing.Size(984, 489);
+            this.anketaPanel.Size = new System.Drawing.Size(985, 413);
             this.anketaPanel.TabIndex = 17;
             this.anketaPanel.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPanelElement)(this.anketaPanel.GetChildAt(0))).BorderHighlightThickness = 1;
@@ -712,11 +724,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             // ctrlTabNavigation
             // 
             this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 489);
+            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 413);
             this.ctrlTabNavigation.MaximumSize = new System.Drawing.Size(2000, 31);
             this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlTabNavigation.Name = "ctrlTabNavigation";
-            this.ctrlTabNavigation.Size = new System.Drawing.Size(984, 31);
+            this.ctrlTabNavigation.Size = new System.Drawing.Size(985, 31);
             this.ctrlTabNavigation.TabIndex = 16;
             // 
             // pvMain
@@ -770,7 +782,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvClosedAgreement.ItemSize = new System.Drawing.SizeF(114F, 27F);
             this.pvClosedAgreement.Location = new System.Drawing.Point(5, 41);
             this.pvClosedAgreement.Name = "pvClosedAgreement";
-            this.pvClosedAgreement.Size = new System.Drawing.Size(893, 472);
+            this.pvClosedAgreement.Size = new System.Drawing.Size(985, 444);
             this.pvClosedAgreement.Text = "Закриті договори";
             // 
             // ctrlClosedAgreements
@@ -778,12 +790,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.ctrlClosedAgreements.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlClosedAgreements.Location = new System.Drawing.Point(0, 0);
             this.ctrlClosedAgreements.Name = "ctrlClosedAgreements";
-            this.ctrlClosedAgreements.Size = new System.Drawing.Size(893, 472);
+            this.ctrlClosedAgreements.Size = new System.Drawing.Size(985, 444);
             this.ctrlClosedAgreements.TabIndex = 0;
-            // 
-            // bsGridLicenseAgreementViewNoAccept
-            // 
-            this.bsGridLicenseAgreementViewNoAccept.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.SmallRight.GridLicenseAgreementView);
             // 
             // CabinetSmallRight
             // 
@@ -803,6 +811,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvMoreAgreements.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNoAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).EndInit();
             this.ipsPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewAgrMore)).EndInit();
@@ -821,7 +830,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).EndInit();
             this.pvMain.ResumeLayout(false);
             this.pvClosedAgreement.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNoAccept)).EndInit();
             this.ResumeLayout(false);
 
         }

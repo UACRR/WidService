@@ -30,6 +30,7 @@ namespace ipsFormsDesign.Model
         public int? RHolderType { get; set; }
         public string Ipibase { get; set; }
         public string Comment { get; set; }
+        public DateTime? DatePassed { get; set; }
 
         public virtual Customer Cust { get; set; }
         public virtual ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }

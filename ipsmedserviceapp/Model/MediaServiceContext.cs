@@ -851,7 +851,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.SrFirstRate)
                     .HasColumnName("srFirstRate")
-                    .HasColumnType("numeric(10, 5)");
+                    .HasColumnType("numeric(10, 5)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.SrMonthRate)
                     .HasColumnName("srMonthRate")
@@ -8052,6 +8053,11 @@ namespace ipsmedserviceapp.Model
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGITEM_REF_REGITEMTYPE");
 
+                entity.HasOne(d => d.GenreTypeNavigation)
+                    .WithMany(p => p.RegisterItem)
+                    .HasForeignKey(d => d.GenreType)
+                    .HasConstraintName("FK_REGISTER_REFERENCE_GENRETYP");
+
                 entity.HasOne(d => d.Obj)
                     .WithMany(p => p.RegisterItem)
                     .HasForeignKey(d => d.ObjId)
@@ -9675,6 +9681,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("rate")
                     .HasColumnType("numeric(10, 5)");
 
+                entity.Property(e => e.RhCustId).HasColumnName("rhCustId");
+
                 entity.Property(e => e.RoleCode).HasColumnName("roleCode");
 
                 entity.Property(e => e.RoleName)
@@ -9766,6 +9774,10 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("comment")
                     .HasMaxLength(1024)
                     .IsUnicode(false);
+
+                entity.Property(e => e.DatePassed)
+                    .HasColumnName("datePassed")
+                    .HasColumnType("date");
 
                 entity.Property(e => e.InnerCode)
                     .HasColumnName("innerCode")

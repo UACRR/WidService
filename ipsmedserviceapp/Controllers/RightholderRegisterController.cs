@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
+using IpsCommonTypes.Enums;
 using ipsmedserviceapp.Model;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ipsmedserviceapp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class RightholderRegisterController : ControllerBase
@@ -155,25 +156,18 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>();
-                responce.Message = message.Value.ToString();
-
-                // Процедура виконала дії без помилок
-                if (Convert.ToInt32(returnCode.Value) == 0)
+                var responce = new ExecSqlResponce<CatalogFile>
                 {
-                    var validCatalog = await _dbContext.CatalogFile
-                        .Include(rec => rec.RhcatalogItem)
-                        .ThenInclude(pub => pub.StatusNavigation)
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                    Message = message.Value.ToString(),
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
+                };
 
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
-                    responce.Data = validCatalog;
-                }
-                else
-                {
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
-                }
+                var validCatalog = await _dbContext.CatalogFile
+                    .Include(rec => rec.RhcatalogItem)
+                    .ThenInclude(pub => pub.StatusNavigation)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                responce.Data = validCatalog;
 
                 return Ok(responce);
             }
@@ -222,25 +216,20 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>();
-                responce.Message = message.Value.ToString();
+                var responce = new ExecSqlResponce<CatalogFile>
+                {
+                    Message = message.Value.ToString(),
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
+                };
 
                 // Процедура виконала дії без помилок
-                if (Convert.ToInt32(returnCode.Value) == 0)
-                {
-                    var validCatalog = await _dbContext.CatalogFile
-                        .Include(rec => rec.RhcatalogItem)
-                        .ThenInclude(pub => pub.StatusNavigation)
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
 
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
-                    responce.Data = validCatalog;
-                }
-                else
-                {
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
-                }
+                var validCatalog = await _dbContext.CatalogFile
+                    .Include(rec => rec.RhcatalogItem)
+                    .ThenInclude(pub => pub.StatusNavigation)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                responce.Data = validCatalog;
 
                 return Ok(responce);
             }
@@ -257,6 +246,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="custId"></param>
         /// <param name="sors"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost("{custId}/upload")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile sors)
         {

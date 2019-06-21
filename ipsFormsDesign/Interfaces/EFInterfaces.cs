@@ -2111,6 +2111,7 @@ public interface IRhcatalogItem
          int? CRightId { get; set; }
          string ErrComment { get; set; }
          TimeSpan? Duration { get; set; }
+         int? RhCustId { get; set; }
 }
 public interface IRholderType
     {    int CodeI { get; set; }
@@ -2131,6 +2132,7 @@ public interface IRightHolder
          int? RHolderType { get; set; }
          string Ipibase { get; set; }
          string Comment { get; set; }
+         DateTime? DatePassed { get; set; }
 }
 public interface ISaldoDay
     {

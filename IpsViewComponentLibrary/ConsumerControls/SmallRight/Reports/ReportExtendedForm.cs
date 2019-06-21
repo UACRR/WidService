@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
@@ -231,7 +232,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             _register.AuthAmount = amount / 100 * authRate;
             _register.MusicAmount = amount / 100 * musicRate;
 
-            lblValidAuthAmount.Text = (_register.AuthAmount + _register.MusicAmount).ToString();
+            lblValidAuthAmount.Text = ((_register.AuthAmount + _register.MusicAmount) ?? 0m).ToString("N2");
 
             decimal.TryParse(lblValidAuthAmount.Text, out decimal rightResult);
             decimal.TryParse(txtAuthAmount.Text, out decimal leftResult);

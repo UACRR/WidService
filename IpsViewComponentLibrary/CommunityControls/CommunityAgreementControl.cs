@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
@@ -15,7 +8,10 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityAgreementControl : UserControl
     {
+        private const string MaxDateBeginWarning = "Перевищено максимальне значення дати \"від\"!";
+        private readonly DateTime MaxBeginDateTime = new DateTime(2999, 12, 31);
         private bool _isReadOnlyMode;
+
         public CommunityAgreementControl()
         {
             InitializeComponent();
@@ -59,7 +55,7 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void txtDayForPay_TextChanged(object sender, EventArgs e)
         {
-            if (Int32.TryParse(txtDayForPay.Text, out int val) && val > 31)
+            if (int.TryParse(txtDayForPay.Text, out int val) && val > 31)
                 txtDayForPay.Text = "31";
         }
 
@@ -78,9 +74,16 @@ namespace IpsViewComponentLibrary.CommunityControls
                 item.DateEnd = dtDateEnd.Value.Date;
         }
 
-        private void dtDateBegin_ValueChanged(object sender, EventArgs e)
+        private void dtDateBegin_Leave(object sender, EventArgs e)
         {
-            dtDateEnd.MinDate = dtDateBegin.Value.AddDays(1);
+            if (dtDateBegin.Value >= MaxBeginDateTime)
+            {
+                MessageShow.ShowWarning(MaxDateBeginWarning);
+                dtDateBegin.Value = DateTime.Today;
+            }
+
+            if (dtDateBegin.Value.AddDays(1) is DateTime newDate)
+                dtDateEnd.MinDate = new DateTime(newDate.Year, newDate.Month, newDate.Day);
         }
     }
 }

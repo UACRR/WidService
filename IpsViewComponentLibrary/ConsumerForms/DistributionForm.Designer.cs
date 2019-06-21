@@ -258,21 +258,21 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             this.txtPayDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPayDistribution.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "DestribAmount", true));
             this.txtPayDistribution.Location = new System.Drawing.Point(852, 12);
             this.txtPayDistribution.Name = "txtPayDistribution";
             this.txtPayDistribution.ReadOnly = true;
             this.txtPayDistribution.Size = new System.Drawing.Size(122, 21);
             this.txtPayDistribution.TabIndex = 21;
+            this.txtPayDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPayDistribution.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
             this.radLabel4.Location = new System.Drawing.Point(738, 13);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(117, 19);
+            this.radLabel4.Size = new System.Drawing.Size(56, 19);
             this.radLabel4.TabIndex = 20;
-            this.radLabel4.Text = "Сума для прив\'язки";
+            this.radLabel4.Text = "Залишок";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
             // txtPayGoalInvoice

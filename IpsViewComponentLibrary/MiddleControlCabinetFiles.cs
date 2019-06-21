@@ -1,25 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlCabinetFiles : UserControl
     {
-        private Customer _customer;
-        private const string TitleMsg = "Підтвердження";
         private const string TextMsg = "Видалити обраний файл?";
+        private Customer _customer;
 
         public delegate void AddNewDocumentHandler(int custId, int typeDocument, string fileName, string comment);
         public event AddNewDocumentHandler AddNewFile;
@@ -39,12 +28,11 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             gvListFiles.DataSource = _customer?.FileCustomer;
-            //SetGridDataSource(_customer?.FileCustomer ?? new ObservableListSource<FileCustomer>());
         }
 
         private void btnAddFile_Click(object sender, EventArgs e)
         {
-            AddFileDialogForm fileAdd = new AddFileDialogForm();
+            var fileAdd = new AddFileDialogForm();
             if (fileAdd.ShowDialog() == DialogResult.OK)
             {
                 AddNewFile?.Invoke(_customer.CustId, fileAdd.DocumentType, fileAdd.FileName, fileAdd.Comment);
@@ -61,11 +49,10 @@ namespace IpsViewComponentLibrary
                         ViewCurrentFile?.Invoke(_customer.CustId, rec.DocType, rec.DocFile);
                         break;
                     case "deleteBtn":
-                        if (MessageBox.Show(TextMsg, TitleMsg, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if(MessageShow.ConfirmAction(TextMsg) == DialogResult.Yes)
                         {
                             var result = DeleteCurrentFile?.Invoke(rec.DocId);
-                            if (result ?? false)
-                                UpdateData?.Invoke();
+                            UpdateData?.Invoke();
                         }
                         break;
                 }

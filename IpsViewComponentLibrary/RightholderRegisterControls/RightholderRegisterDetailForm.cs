@@ -33,8 +33,9 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
                 _catalogFileItemsHandler = new RightholderRegisterPresenter();
 
             UpdateDataSources(file);
+            
+            btnPerform.Enabled = _catalogFile.Status == 1;
 
-            btnPerform.Enabled = _catalogFile.Status == 1 || _catalogFile.CountOk == 2;
             Text = _catalogFile.FileName;
 
             lblStatus.Text = IpsGlobal.ObjectRightDictionaries.catalogStatus
@@ -61,13 +62,11 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
 
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
-            if (boolResult)
-            {
-                UpdateDataSources(result.Data);
-                UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
-            }
 
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
+            UpdateDataSources(result.Data);
+            UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
+            btnPerform.Enabled = _catalogFile.Status == 1;
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -95,12 +94,9 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             var result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
 
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
-            if (boolResult)
-            {
-                UpdateDataSources(result.Data);
-                UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
-            }
-
+            
+            UpdateDataSources(result.Data);
+            UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
             MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);
         }
     }

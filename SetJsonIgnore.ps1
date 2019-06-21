@@ -75,3 +75,5 @@ foreach ( $csfile in $modelDir.GetFiles() ) {
 
     $sb.Dispose();
 }
+
+Write-Host "JsonIgnore update process successful!"

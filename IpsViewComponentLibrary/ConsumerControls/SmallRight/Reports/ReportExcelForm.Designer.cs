@@ -49,6 +49,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             this.btnAddRow = new Telerik.WinControls.UI.RadButton();
             this.txtReportPeriod = new Telerik.WinControls.UI.RadTextBoxControl();
             this.bsRegisterName = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
             ((System.ComponentModel.ISupportInitialize)(this.btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView.MasterTemplate)).BeginInit();
@@ -62,7 +63,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // btn
             // 
             this.btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn.Location = new System.Drawing.Point(12, 393);
+            this.btn.Location = new System.Drawing.Point(12, 411);
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(110, 24);
             this.btn.TabIndex = 1;
@@ -72,8 +73,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // 
             // gvReportContentView
             // 
-            this.gvReportContentView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gvReportContentView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvReportContentView.AutoScroll = true;
             this.gvReportContentView.AutoSizeRows = true;
             this.gvReportContentView.Location = new System.Drawing.Point(12, 42);
             // 
@@ -90,27 +93,31 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             gridViewTextBoxColumn1.Name = "IdReport";
             gridViewTextBoxColumn2.FieldName = "ItemName";
             gridViewTextBoxColumn2.HeaderText = "Назва твору";
+            gridViewTextBoxColumn2.MinWidth = 165;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "ItemName";
-            gridViewTextBoxColumn2.Width = 214;
+            gridViewTextBoxColumn2.Width = 197;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "Performer";
             gridViewTextBoxColumn3.HeaderText = "Виконавець";
+            gridViewTextBoxColumn3.MinWidth = 165;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "Performer";
-            gridViewTextBoxColumn3.Width = 219;
+            gridViewTextBoxColumn3.Width = 177;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "AuthorMusic";
             gridViewTextBoxColumn4.HeaderText = "Автор музики";
+            gridViewTextBoxColumn4.MinWidth = 165;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "AuthorMusic";
-            gridViewTextBoxColumn4.Width = 162;
+            gridViewTextBoxColumn4.Width = 177;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "AuthorText";
             gridViewTextBoxColumn5.HeaderText = "Автор тексту";
+            gridViewTextBoxColumn5.MinWidth = 165;
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "AuthorText";
-            gridViewTextBoxColumn5.Width = 61;
+            gridViewTextBoxColumn5.Width = 197;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTimeSpanColumn1.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewTimeSpanColumn1.FieldName = "DurationItem";
@@ -142,11 +149,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             gridViewTimeSpanColumn2.Format = "hh:mm:ss";
             gridViewTimeSpanColumn2.FormatString = "hh:mm:ss";
             gridViewTimeSpanColumn2.HeaderText = "Загальна тривалість звучання твору";
-            gridViewTimeSpanColumn2.MaxWidth = 120;
+            gridViewTimeSpanColumn2.MaxWidth = 95;
             gridViewTimeSpanColumn2.Minimum = System.TimeSpan.Parse("00:00:01");
             gridViewTimeSpanColumn2.MinWidth = 120;
             gridViewTimeSpanColumn2.Name = "DurationUse";
-            gridViewTimeSpanColumn2.Width = 120;
+            gridViewTimeSpanColumn2.Width = 95;
             gridViewTimeSpanColumn2.WrapText = true;
             gridViewCommandColumn1.FieldName = "Delete";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
@@ -175,7 +182,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             this.gvReportContentView.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvReportContentView.Name = "gvReportContentView";
             this.gvReportContentView.ShowGroupPanel = false;
-            this.gvReportContentView.Size = new System.Drawing.Size(971, 345);
+            this.gvReportContentView.Size = new System.Drawing.Size(1038, 364);
             this.gvReportContentView.TabIndex = 2;
             this.gvReportContentView.ThemeName = "Office2013Light";
             this.gvReportContentView.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvReportContentView_CellValueChanged);
@@ -188,7 +195,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // btnAddRow
             // 
             this.btnAddRow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddRow.Location = new System.Drawing.Point(138, 393);
+            this.btnAddRow.Location = new System.Drawing.Point(138, 411);
             this.btnAddRow.Name = "btnAddRow";
             this.btnAddRow.Size = new System.Drawing.Size(110, 24);
             this.btnAddRow.TabIndex = 3;
@@ -210,7 +217,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // 
             // 
             this.txtReportPeriod.RootElement.PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            this.txtReportPeriod.Size = new System.Drawing.Size(971, 24);
+            this.txtReportPeriod.Size = new System.Drawing.Size(1038, 24);
             this.txtReportPeriod.TabIndex = 4;
             this.txtReportPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReportPeriod.ThemeName = "Office2013Light";
@@ -223,18 +230,30 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             // 
             this.bsRegisterName.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
-            // ReportExcelViewForm
+            // ctrlGridRowCount
+            // 
+            this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(895, 412);
+            this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
+            this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.Name = "ctrlGridRowCount";
+            this.ctrlGridRowCount.RadGridViewDataSource = null;
+            this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
+            this.ctrlGridRowCount.TabIndex = 5;
+            // 
+            // ReportExcelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 430);
+            this.ClientSize = new System.Drawing.Size(1062, 448);
+            this.Controls.Add(this.ctrlGridRowCount);
             this.Controls.Add(this.txtReportPeriod);
             this.Controls.Add(this.btnAddRow);
             this.Controls.Add(this.gvReportContentView);
             this.Controls.Add(this.btn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(900, 460);
-            this.Name = "ReportExcelViewForm";
+            this.Name = "ReportExcelForm";
             // 
             // 
             // 
@@ -262,5 +281,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         private Telerik.WinControls.UI.RadButton btnAddRow;
         private Telerik.WinControls.UI.RadTextBoxControl txtReportPeriod;
         private BindingSource bsRegisterName;
+        private Common.GridRowCountControl ctrlGridRowCount;
     }
 }

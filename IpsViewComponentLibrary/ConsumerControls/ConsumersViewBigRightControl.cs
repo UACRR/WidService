@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             InitializeComponent();
             ctrlSearch.SetUsageGrid(gvConsumers);
+            ctrlGridRowCount.RadGridViewDataSource = gvConsumers;
         }
 
         public object DataSource
@@ -42,8 +43,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            // ReSharper disable once PossibleNullReferenceException
-            OnLoadCustomerCabinetNeed?.Invoke(e.Row.DataBoundItem as ConsumerBigRightView);
+            if (!(e.Row.DataBoundItem is ConsumerBigRightView row))
+                return;
+
+            OnLoadCustomerCabinetNeed?.Invoke(row);
         }
     }
 }

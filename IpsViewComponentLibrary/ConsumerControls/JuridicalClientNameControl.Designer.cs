@@ -46,6 +46,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlRegistrationsCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(3, 161);
             this.ctrlRegistrationsCompany.MaxDate = new System.DateTime(2018, 7, 2, 0, 0, 0, 0);
+            this.ctrlRegistrationsCompany.MinimumSize = new System.Drawing.Size(550, 108);
             this.ctrlRegistrationsCompany.Name = "ctrlRegistrationsCompany";
             this.ctrlRegistrationsCompany.Size = new System.Drawing.Size(705, 109);
             this.ctrlRegistrationsCompany.TabIndex = 3;

@@ -40,7 +40,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                 bsCatalogFile.DataSource = _catalogFile;
                 bsCatalogFile.ResetBindings(false);
 
-                btnPerform.Enabled = _catalogFile.Status == 1 || catalogFile.CountOk == 2;
+                btnPerform.Enabled = _catalogFile.Status == 1;
 
                 if (_catalogFile.PubCatalogItem.Any())
                 {
@@ -55,12 +55,9 @@ namespace IpsViewComponentLibrary.CatalogControls
         {
             var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
-            if (boolResult)
-            {
-                DataSource = result.Data;
-                UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
-            }
 
+            DataSource = result.Data;
+            UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
         }
 
@@ -88,12 +85,9 @@ namespace IpsViewComponentLibrary.CatalogControls
         {
             var result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
-            if (boolResult)
-            {
-                DataSource = result.Data;
-                UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
-            }
 
+            DataSource = result.Data;
+            UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
             MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);
         }
     }

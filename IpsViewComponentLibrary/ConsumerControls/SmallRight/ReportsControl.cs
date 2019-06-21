@@ -12,9 +12,8 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports;
-using IpsViewComponentLibrary.ConsumerDialogForms;
-using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
@@ -28,10 +27,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private readonly ExcelEngine _excel = ExcelEngine.GetInstance();
 
         public event Func<RegisterRatedList, bool> SaveRegisterRatedListExecuted;
-        //public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
         public event Func<Register, bool> SaveRegisterExecuted;
-        //public event EventHandler<Register> SaveRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
@@ -60,9 +57,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
 
             if (IpsGlobal.AnketaDictionaties != null)
-            {
                 SubscribeDictionary(null, null);
-            }
             else
                 IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
         }
@@ -133,6 +128,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         {
             NormalizeData(_customer);
             bindingReports.ResetBindings(false);
+            if (gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData lic)
+            {
+                if (lic.Lic?.PaidPeriod != null && lic.Lic.PaidPeriod.Count > 0)
+                {
+                    var listPaidPeriod = lic.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
+                    bsPaidPeriod.DataSource = ReportPaidPeriod.Convert(listPaidPeriod);
+                }
+                else
+                    bsPaidPeriod.DataSource = typeof(ReportPaidPeriod);
+            }
+
+            bsPaidPeriod.ResetBindings(false);
             gvPeriodReports.MasterTemplate.Refresh();
         }
 
@@ -192,21 +199,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void ClearBindings()
         {
             bindingAgreement.DataSource = typeof(IAgreementData);
-            bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+            bsPaidPeriod.DataSource = typeof(ReportPaidPeriod);
             bindingReports.DataSource = typeof(Register);
             buttonController.SetPeriodState(null, null);
             btnAddRatedList.Enabled = false;
 
-        }
-
-        private void CreateAct()
-        {
-            MessageBox.Show("Створення акту");
-        }
-
-        private void ViewAct()
-        {
-            MessageBox.Show("Перегляд акту");
         }
 
         #endregion
@@ -218,38 +215,33 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void GvLicenseAgr_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
 
-            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData lic))
             {
-                bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+                bsPaidPeriod.DataSource = typeof(ReportPaidPeriod);
                 return;
-
             }
 
-            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
-
-            if (lic?.Lic?.PaidPeriod.Count > 0)
+            if (lic.Lic?.PaidPeriod.Count > 0)
             {
-                bindingPaidPeriod.DataSource = lic?.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
+                var listPaidPeriod = lic.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate).ToList();
+                bsPaidPeriod.DataSource = ReportPaidPeriod.Convert(listPaidPeriod);
 
             }
             else
             {
-                bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+                bsPaidPeriod.DataSource = typeof(ReportPaidPeriod);
                 buttonController.SetPeriodState(null, null);
             }
 
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             // Цирк,Філармонія,Концертна діяльність
             bool isCollapsed = agrType.SchemaId == 2;
-            // AddReport Xls disable for Цирк,Філармонія,Концертна діяльність
+            // AddReport Xls disable for Цирк, Філармонія, Концертна діяльність
             btnAddReport.Enabled = !isCollapsed;
 
-            //bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
             btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
-            if (CurrentAgreementController != null
-                && !CurrentAgreementController.Broadcast
-                && lic.Lic?.LicId != CurrentAgreementController.LicId)
+            if (CurrentAgreementController != null && !CurrentAgreementController.Broadcast && lic.Lic?.LicId != CurrentAgreementController.LicId)
             {
                 CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
             }
@@ -258,14 +250,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // * * * [Періоди платежів]
         private void GvPeriods_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            if (!(gvPeriods.CurrentRow?.DataBoundItem is PaidPeriod))
+            if (!(gvPeriods.CurrentRow?.DataBoundItem is PaidPeriod period))
             {
                 bindingRatedList.DataSource = typeof(RegisterRatedList);
                 bindingReports.DataSource = typeof(Register);
                 return;
             }
 
-            var period = (PaidPeriod)gvPeriods.CurrentRow.DataBoundItem;
+            //var period = (PaidPeriod)gvPeriods.CurrentRow.DataBoundItem;
             var reports = new List<Register>();
             int maxRgStatus = -1;
             if (period.RegisterRatedList.Any())
@@ -289,6 +281,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             buttonController.SetPeriodState(period.Status, reports);
         }
 
+        private void gvPeriodReports_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            if (!(e.CurrentRow?.DataBoundItem is Register register))
+                return;
+
+            btnToAcception.Enabled = register.RgStatus == 0 || register.RgStatus == 5;
+        }
+
 
         // * * *  * * *  КНОПКИ:
         // * * * НА ГРІД [Періоди платежів]
@@ -303,6 +303,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     ViewAct();
                     break;
             }
+        }
+
+        private void CreateAct()
+        {
+            MessageBox.Show("Створення акту");
+        }
+
+        private void ViewAct()
+        {
+            MessageBox.Show("Перегляд акту");
         }
 
         private void EnableButtons(bool enabled)
@@ -371,6 +381,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }
 
+            RefreshData();
         }
 
         /// <summary>
@@ -444,10 +455,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // * * * [Переглянути звіт]
         private void RegisterReport()
         {
-            if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
-                return;
-
-            if (!(gvPeriodReports.CurrentRow.DataBoundItem is Register register))
+            if (GetRegisterItems == null || !(gvPeriodReports.CurrentRow?.DataBoundItem is Register register))
                 return;
 
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
@@ -541,6 +549,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             else if (columnName == "DeleteColumn")
             {
                 DeleteRegister();
+                RefreshData();
             }
         }
 
@@ -671,7 +680,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             {
                 var list = lic.PaidPeriod.ToList();
                 SavePariodCommandExecuted?.Invoke(this, list);
-                bindingPaidPeriod.DataSource = list;
+                bsPaidPeriod.DataSource = ReportPaidPeriod.Convert(list);
             }
         }
 

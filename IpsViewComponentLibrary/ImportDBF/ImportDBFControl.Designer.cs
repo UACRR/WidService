@@ -241,7 +241,7 @@
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn7.FieldName = "SCredit";
-            gridViewTextBoxColumn7.FormatString = "{0:# ### ##0.00} ";
+            gridViewTextBoxColumn7.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn7.HeaderText = "Сума";
             gridViewTextBoxColumn7.MinWidth = 70;
             gridViewTextBoxColumn7.Multiline = true;

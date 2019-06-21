@@ -318,6 +318,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
             wordEngine.ProcessRightHolder(template, customer, customer.AgreementMaster.First());
 
+            if (string.IsNullOrEmpty(wordEngine.Pdf))
+                return;
+
             pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
             _custName = CustomerUtility.CustomerName(customer);
             radPdfViewerNavigator1.Enabled = true;
