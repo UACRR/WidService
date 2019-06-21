@@ -2128,7 +2128,7 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
             }
         }
 
-        [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
+        [HttpGet("existdocument/{custId}/{typeDocument}/{fileName}")]
         public IActionResult CheckExistDocument(int custId, int typeDocument, string fileName)
         {
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
