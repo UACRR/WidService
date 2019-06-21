@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             InitializeComponent();
             ctrlSearch.SetUsageGrid(gvConsumers);
+            ctrlGridRowCount.RadGridViewDataSource = gvConsumers;
         }
 
         public object DataSource

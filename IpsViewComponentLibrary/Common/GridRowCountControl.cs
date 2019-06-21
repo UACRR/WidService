@@ -25,6 +25,17 @@ namespace IpsViewComponentLibrary.Common
             }
         }
 
+        public int? TotalItems
+        {
+            set
+            {
+                if (value is int count && count != 0)
+                    lblCount.Text = count.ToString("### ### ###");
+                else
+                    lblCount.Text = DefaultCountString;
+            }
+        }
+
         private void DataBindingComplete(object sender, GridViewBindingCompleteEventArgs e)
         {
             if (_gridView?.RowCount is int count && count != 0)

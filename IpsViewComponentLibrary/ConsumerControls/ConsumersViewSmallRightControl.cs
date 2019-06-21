@@ -32,7 +32,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public int TotalItems
         {
-            set => navigatorPanel.TotalPages = (int)Math.Ceiling((double)value / navigatorPanel.PageSize);
+            set
+            {
+                navigatorPanel.TotalPages = (int) Math.Ceiling((double) value / navigatorPanel.PageSize);
+                ctrlGridRowCount.TotalItems = value;
+            }
         }
 
         public PaginateAndSearchQuery PaginateAndSearchQuery => new PaginateAndSearchQuery
