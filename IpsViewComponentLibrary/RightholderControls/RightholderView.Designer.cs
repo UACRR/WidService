@@ -104,6 +104,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.Contract = new Telerik.WinControls.UI.RadPageViewPage();
             this.agreementPageView = new Telerik.WinControls.UI.RadPageView();
             this.agreementPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.lblDatePassed = new Telerik.WinControls.UI.RadLabel();
+            this.dtDatePassed = new Telerik.WinControls.UI.RadDateTimePicker();
             this.gboxRightholderStatus = new Telerik.WinControls.UI.RadGroupBox();
             this.btnSetStatusClosed = new Telerik.WinControls.UI.RadButton();
             this.btnSetStatusInheritance = new Telerik.WinControls.UI.RadButton();
@@ -193,6 +195,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.agreementPageView)).BeginInit();
             this.agreementPageView.SuspendLayout();
             this.agreementPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDatePassed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDatePassed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gboxRightholderStatus)).BeginInit();
             this.gboxRightholderStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusClosed)).BeginInit();
@@ -593,6 +597,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.royaltyPage.Controls.Add(this.radLabel8);
             this.royaltyPage.Controls.Add(this.createRightholderRoyaltyPageView);
             this.royaltyPage.Controls.Add(this.ddlTypeMethodGet);
+            this.royaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.royaltyPage.Location = new System.Drawing.Point(139, 5);
             this.royaltyPage.Name = "royaltyPage";
             this.royaltyPage.Size = new System.Drawing.Size(865, 437);
@@ -721,6 +726,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // rigthLimitationsPage
             // 
             this.rigthLimitationsPage.Controls.Add(this.ctrlRightLimitations);
+            this.rigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.rigthLimitationsPage.Location = new System.Drawing.Point(139, 5);
             this.rigthLimitationsPage.Name = "rigthLimitationsPage";
             this.rigthLimitationsPage.Size = new System.Drawing.Size(865, 437);
@@ -741,6 +747,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // territoryLimitationsPage
             // 
             this.territoryLimitationsPage.Controls.Add(this.ctrlTerritoryIncludeExclude);
+            this.territoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.territoryLimitationsPage.Location = new System.Drawing.Point(139, 5);
             this.territoryLimitationsPage.Name = "territoryLimitationsPage";
             this.territoryLimitationsPage.Size = new System.Drawing.Size(865, 437);
@@ -759,6 +766,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPrintPage.Controls.Add(this.radPdfViewerNavigator1);
             this.agreementPrintPage.Controls.Add(this.btnGenerateRightholderAgreement);
             this.agreementPrintPage.Controls.Add(this.pdfvRightholderAgreement);
+            this.agreementPrintPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPrintPage.Location = new System.Drawing.Point(139, 5);
             this.agreementPrintPage.Name = "agreementPrintPage";
             this.agreementPrintPage.Size = new System.Drawing.Size(865, 437);
@@ -941,15 +949,38 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // agreementPage
             // 
+            this.agreementPage.Controls.Add(this.lblDatePassed);
+            this.agreementPage.Controls.Add(this.dtDatePassed);
             this.agreementPage.Controls.Add(this.gboxRightholderStatus);
             this.agreementPage.Controls.Add(this.radLabel3);
             this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
+            this.agreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPage.Name = "agreementPage";
             this.agreementPage.Size = new System.Drawing.Size(863, 435);
             this.agreementPage.Text = "Договір";
+            // 
+            // lblDatePassed
+            // 
+            this.lblDatePassed.Location = new System.Drawing.Point(377, 213);
+            this.lblDatePassed.Name = "lblDatePassed";
+            this.lblDatePassed.Size = new System.Drawing.Size(72, 19);
+            this.lblDatePassed.TabIndex = 30;
+            this.lblDatePassed.Text = "Дата смерті";
+            this.lblDatePassed.ThemeName = "Office2013Light";
+            // 
+            // dtDatePassed
+            // 
+            this.dtDatePassed.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsRightHolder, "DatePassed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.dtDatePassed.Location = new System.Drawing.Point(455, 212);
+            this.dtDatePassed.Name = "dtDatePassed";
+            this.dtDatePassed.Size = new System.Drawing.Size(164, 21);
+            this.dtDatePassed.TabIndex = 29;
+            this.dtDatePassed.TabStop = false;
+            this.dtDatePassed.ThemeName = "Office2013Light";
+            this.dtDatePassed.Value = new System.DateTime(((long)(0)));
             // 
             // gboxRightholderStatus
             // 
@@ -1302,6 +1333,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPageView.ResumeLayout(false);
             this.agreementPage.ResumeLayout(false);
             this.agreementPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblDatePassed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDatePassed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gboxRightholderStatus)).EndInit();
             this.gboxRightholderStatus.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusClosed)).EndInit();
@@ -1427,5 +1460,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadTextBoxControl txtCommentJur;
         private Telerik.WinControls.UI.RadPageViewPage pvRegisters;
         private RightholderRegisterControls.RightholderRegisterControl ctrlRightholderRegister;
+        private Telerik.WinControls.UI.RadLabel lblDatePassed;
+        private Telerik.WinControls.UI.RadDateTimePicker dtDatePassed;
     }
 }
