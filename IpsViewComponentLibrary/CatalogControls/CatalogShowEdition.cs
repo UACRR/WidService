@@ -65,9 +65,10 @@ namespace IpsViewComponentLibrary.CatalogControls
         {
             using (var dialog = new SaveFileDialog())
             {
-                dialog.FileName = "exportFile";
-                var spreadExporter = new GridViewSpreadExport(gridDetailInfo);
-                spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
+                dialog.FileName = $"{_catalogFile.FileName}_export";
+                var spreadExporter = new GridViewSpreadExport(gridDetailInfo, SpreadExportFormat.Xlsx);
+                //spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
+                
                 dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
                 if (dialog.ShowDialog() == DialogResult.OK)
