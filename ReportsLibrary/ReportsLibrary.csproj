@@ -241,6 +241,12 @@
     <Compile Include="R_5_24_BR.Designer.cs">
       <DependentUpon>R_5_24_BR.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_24_DBF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_24_DBF.Designer.cs">
+      <DependentUpon>R_5_24_DBF.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_24_SR.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -457,6 +463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_24_BR.resx">
       <DependentUpon>R_5_24_BR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_24_DBF.resx">
+      <DependentUpon>R_5_24_DBF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_24_SR.resx">
       <DependentUpon>R_5_24_SR.cs</DependentUpon>
