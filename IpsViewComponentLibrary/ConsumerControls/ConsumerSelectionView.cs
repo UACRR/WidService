@@ -1,11 +1,12 @@
-﻿using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.ViewModels.Consumer;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
-    public partial class ConsumerSelectionView : Telerik.WinControls.UI.RadForm
+    public partial class ConsumerSelectionView : RadForm
     {
         public ConsumerSmallRightView SelectedConsumer
         {

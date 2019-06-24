@@ -1,6 +1,6 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Events;
-using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.ViewModels.Consumer;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;

@@ -1,8 +1,4 @@
-﻿using ipsFormsDesign.Data;
-using ipsFormsDesign.Interfaces;
-using ipsFormsDesign.Model;
-using ipsFormsDesign.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,17 +9,16 @@ using System.Windows.Forms;
 using IpsViewComponentLibrary;
 using System.Threading.Tasks;
 using Telerik.WinControls;
-using ipsFormsDesign.Dictionary;
-using ipsFormsDesign;
+using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 
 namespace TestControls
 {
     public partial class MainForm : Telerik.WinControls.UI.RadForm
     {
-        private ConsumerService _service;
+        //private ConsumerService _service;
         private EditPay payForm = null;
-        private ConsumerMainView _curItem = null;
+        //private ConsumerMainView _curItem = null;
         //private bool isInit = false;
         public MainForm()
         {
@@ -41,20 +36,20 @@ namespace TestControls
         /// </summary>
         private void initControls()
         {
-            var pres01 = new CalculationInfoControlPresenter(bindPayPeriod1, _service);
-            var pres02 = new ReportsControlPresenter(reportsControl1, _service);
+            //var pres01 = new CalculationInfoControlPresenter(bindPayPeriod1, _service);
+            //var pres02 = new ReportsControlPresenter(reportsControl1, _service);
 
-            payForm = new EditPay();
+            //payForm = new EditPay();
 
-            var employee = _service.getMainView(ConsumerFilterEnum.All);
-            bindingSource1.DataSource = employee;
+            //var employee = _service.getMainView(ConsumersSmallRightFilter.All);
+            //bindingSource1.DataSource = employee;
 
-            if (radGridView1.RowCount > 0)
-            {
-                radGridView1.Rows[0].IsCurrent = true;
-            }
-            if (employee.Count == 0)
-                SetButtonDisable();
+            //if (radGridView1.RowCount > 0)
+            //{
+            //    radGridView1.Rows[0].IsCurrent = true;
+            //}
+            //if (employee.Count == 0)
+            //    SetButtonDisable();
 
         }
 

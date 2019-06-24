@@ -74,8 +74,8 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             using (var dialog = new SaveFileDialog())
             {
                 dialog.FileName = "exportFile";
-                var spreadExporter = new GridViewSpreadExport(gridDetailInfo);
-                spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
+                var spreadExporter = new GridViewSpreadExport(gridDetailInfo, SpreadExportFormat.Xlsx);
+                //spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
                 dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
                 if (dialog.ShowDialog() == DialogResult.OK)

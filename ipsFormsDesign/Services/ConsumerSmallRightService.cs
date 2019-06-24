@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
-using WebAPIConnector;
+using ipsFormsDesign.ViewModels.Consumer;
+using IpsCommonTypes.Enums;
 
 namespace ipsFormsDesign.Services
 {
@@ -33,7 +29,7 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
-        public ItemListResponse<ConsumerSmallRightView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All, PaginateAndSearchQuery query = null)
+        public ItemListResponse<ConsumerSmallRightView> getMainView(ConsumersSmallRightFilter what = ConsumersSmallRightFilter.All, PaginateAndSearchQuery query = null)
         {
             string url = $"consumer/listSR/{(int)what}";
             var anketaDic = _webApi.GetItemByIdWithParam<ItemListResponse<ConsumerSmallRightView>>(url, null, query?.ToKeyValuePair());

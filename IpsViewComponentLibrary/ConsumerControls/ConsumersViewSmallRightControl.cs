@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.ViewModels.Consumer;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 

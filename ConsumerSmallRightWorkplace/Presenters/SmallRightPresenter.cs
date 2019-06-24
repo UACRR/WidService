@@ -8,6 +8,8 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.ViewModels.Consumer;
+using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
@@ -24,7 +26,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
         private const string ConsumerNotAdded = "Не вдалося додати нового користувача!";
 
         private readonly CabinetSmallRightForm _cabinetSmallRightForm;
-        private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
+        private ConsumersSmallRightFilter _currentNodeValue = ConsumersSmallRightFilter.None;
         private readonly ConsumerSmallRightService _service;
         private readonly PartnerService _partnerService;
         private readonly ConsumersViewSmallRightControl _mainGrid;
@@ -125,7 +127,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
         //зміна фільтра
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
-            _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
+            _currentNodeValue = (e.Node.Value is ConsumersSmallRightFilter @enum ? @enum : ConsumersSmallRightFilter.None);
             GridDataUpdate();
         }
 

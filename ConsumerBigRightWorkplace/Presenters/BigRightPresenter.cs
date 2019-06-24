@@ -8,6 +8,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
@@ -31,8 +32,8 @@ namespace ConsumerBigRightWorkplace.Presenters
         private readonly PartnerService _partnerService;
         private readonly ConsumersViewBigRightControl _mainGrid;
 
-        private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
-        private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
+        private ConsumersBigRightFilter _currentNodeValue = ConsumersBigRightFilter.None;
+        private ConsumersBigRightCategoryFilter _currentNodeDocType = ConsumersBigRightCategoryFilter.None;
 
         public BigRightPresenter(RadTreeView treeView, ConsumersViewBigRightControl mainGrid)
         {
@@ -120,15 +121,15 @@ namespace ConsumerBigRightWorkplace.Presenters
         //зміна даних по фільтру
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
-            if (e.Node.Value is ConsumerFilterEnum @curEnum)
+            if (e.Node.Value is ConsumersBigRightFilter @curEnum)
             {
-                _currentNodeDocType = e.Node.Parent?.Value is TypeBRDocument @element ? @element : TypeBRDocument.All;
+                _currentNodeDocType = e.Node.Parent?.Value is ConsumersBigRightCategoryFilter @element ? @element : ConsumersBigRightCategoryFilter.All;
                 _currentNodeValue = @curEnum;
             }
             else
             {
-                _currentNodeDocType = e.Node.Value is TypeBRDocument @element ? @element : TypeBRDocument.GenAgreement;
-                _currentNodeValue = ConsumerFilterEnum.All;
+                _currentNodeDocType = e.Node.Value is ConsumersBigRightCategoryFilter @element ? @element : ConsumersBigRightCategoryFilter.GenAgreement;
+                _currentNodeValue = ConsumersBigRightFilter.All;
             }
             // _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???

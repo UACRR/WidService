@@ -1,13 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using WebAPIConnector;
-
 using ipsFormsDesign.Enums;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.ViewModels.Consumer;
 
 namespace ipsFormsDesign.Services
 {

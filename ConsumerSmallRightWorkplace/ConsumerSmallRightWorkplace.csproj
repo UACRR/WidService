@@ -175,6 +175,10 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{B17076A8-B8F9-4F60-AAC0-3845773A4D43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
       <Name>ipsFormsDesign</Name>

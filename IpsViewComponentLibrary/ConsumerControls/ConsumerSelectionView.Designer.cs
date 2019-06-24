@@ -78,7 +78,7 @@
             this.ctrlConsumerList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlConsumerList.ConsumerDataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
+            this.ctrlConsumerList.ConsumerDataSource = typeof(ipsFormsDesign.ViewModels.Consumer.ConsumerSmallRightView);
             this.ctrlConsumerList.Location = new System.Drawing.Point(0, 2);
             this.ctrlConsumerList.Name = "ctrlConsumerList";
             this.ctrlConsumerList.SelectedConsumer = null;

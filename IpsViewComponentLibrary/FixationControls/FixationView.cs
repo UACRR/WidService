@@ -1,10 +1,10 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
 using ipsFormsDesign.ViewModels.Users;
+using ipsFormsDesign.ViewModels.Consumer;
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Utilities;
 using System;
