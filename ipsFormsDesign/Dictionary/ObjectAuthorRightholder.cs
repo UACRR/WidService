@@ -127,7 +127,6 @@ namespace ipsFormsDesign.Dictionary
                 IsRightholder = true;
                 AuthorName = defaultRightholder.Name;
                 CustId = defaultRightholder.CustId;
-                CommunityName = defaultRightholder.Community_Name;
             }
         }
 
@@ -137,7 +136,6 @@ namespace ipsFormsDesign.Dictionary
             CustId = null;
             CopyrightStatus = null;
             StatusZayavky = null;
-            CommunityName = "";
             Rate = null;
             BeginDate = null;
             EndDate = null;
