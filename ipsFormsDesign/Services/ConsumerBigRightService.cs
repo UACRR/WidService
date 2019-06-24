@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsCommonTypes.Enums;
 
 namespace ipsFormsDesign.Services
 {
@@ -36,7 +37,7 @@ namespace ipsFormsDesign.Services
         /// <param name="typeDoc"></param>
         /// <param name="what"></param>
         /// <returns></returns>
-        public IList<ConsumerBigRightView> GetMainBigRightView(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
+        public IList<ConsumerBigRightView> GetMainBigRightView(ConsumersBigRightCategoryFilter typeDoc = ConsumersBigRightCategoryFilter.All, ConsumersBigRightFilter what = ConsumersBigRightFilter.All)
         {
             string url = $"consumer/listBR";
             KeyValuePair<string, string>[] param = new[] {

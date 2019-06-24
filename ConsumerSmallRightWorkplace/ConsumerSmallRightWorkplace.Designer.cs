@@ -79,7 +79,7 @@
             // 
             // ctrlConsumersViewSmallRight
             // 
-            this.ctrlConsumersViewSmallRight.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
+            this.ctrlConsumersViewSmallRight.DataSource = typeof(ipsFormsDesign.ViewModels.Consumer.ConsumerSmallRightView);
             this.ctrlConsumersViewSmallRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlConsumersViewSmallRight.Location = new System.Drawing.Point(205, 0);
             this.ctrlConsumersViewSmallRight.Name = "ctrlConsumersViewSmallRight";

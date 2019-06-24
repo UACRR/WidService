@@ -1720,6 +1720,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypeVat.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Consumer.ConsumerSmallRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.AmountDistributionViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.FixationListViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel.datasource" />

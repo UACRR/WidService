@@ -4,15 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
-using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.Utilities;
-using ipsFormsDesign.Data;
+using ipsFormsDesign.ViewModels.Consumer;
 using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
 using IpsViewComponentLibrary.AppController;
-using ipsFormsDesign.Utilities;
-using IpsViewComponentLibrary.Common;
-using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 { 

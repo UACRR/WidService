@@ -2,20 +2,10 @@
 using System.Collections.Generic;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.ViewModels.Consumer;
 
 namespace ipsFormsDesign.Interfaces
 {
-    public class ConsumerSmallRightView
-    {
-        public int CustId { get; set; }
-        public string Innokpo { get; set; }
-        public string Name { get; set; }
-        public string ClientBrand { get; set; }
-        public int CountActive { get; set; }
-        public decimal Undistribamount { get; set; }
-        public bool IsAnkExtrn { get; set; }
-    }
-
     /// <summary>
     /// Дані для GridView Для великих прав
     /// </summary>

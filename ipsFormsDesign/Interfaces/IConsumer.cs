@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.ViewModels.Consumer;
 
 
 namespace ipsFormsDesign.Interfaces
 {
     public interface IConsumerPresenter
     {
-        Control view { get; }
-        void SetFilter(ConsumerFilterEnum what);
+        //Control view { get; }
+        //void SetFilter(ConsumerFilterEnum what);
     }
     
     public interface IConsumerForm

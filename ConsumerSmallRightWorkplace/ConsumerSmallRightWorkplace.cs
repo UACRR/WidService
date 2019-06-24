@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using ConsumerSmallRightWorkplace.Presenters;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
+using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -34,11 +28,17 @@ namespace ConsumerSmallRightWorkplace
         {
             RadTreeNode[] list =
             {
-                new RadTreeNode {Text = "Всі", Value = ConsumerFilterEnum.All},
-                new RadTreeNode {Text = "Діючі", Value = ConsumerFilterEnum.Working},
-                new RadTreeNode {Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
-                new RadTreeNode {Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation},
-                new RadTreeNode {Text = "Не розподіленні", Value = ConsumerFilterEnum.ForDistribution}
+                new RadTreeNode {Text = "Всі", Value = ConsumersSmallRightFilter.All},
+                new RadTreeNode {Text = "Діючі", Value = ConsumersSmallRightFilter.Working},
+                new RadTreeNode {Text = "Не підтверджені", Value = ConsumersSmallRightFilter.ForAccept},
+                new RadTreeNode {Text = "На акцепті", Value = ConsumersSmallRightFilter.NotAccepted},
+                new RadTreeNode {Text = "Для пролонгації", Value = ConsumersSmallRightFilter.ForProlongation},
+                new RadTreeNode {Text = "Не розподіленні", Value = ConsumersSmallRightFilter.ForDistribution},
+                new RadTreeNode {Text = "Борг", Value = ConsumersSmallRightFilter.Debt},
+                new RadTreeNode {Text = "Не отримані кошти", Value = ConsumersSmallRightFilter.NotReceivingMoney},
+                new RadTreeNode {Text = "Не отримані звіти", Value = ConsumersSmallRightFilter.NotReceivingRegister},
+                new RadTreeNode {Text = "Погоджені звіти", Value = ConsumersSmallRightFilter.RegisterStatusOk},
+                new RadTreeNode {Text = "Відхилені звіти", Value = ConsumersSmallRightFilter.RegisterStatusRefuse},
             };
             foreach (var item in list)
             {

@@ -35,15 +35,16 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.bsConsumerSmallRightView = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.timerSearch = new System.Windows.Forms.Timer(this.components);
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.gvViewConsumers = new Telerik.WinControls.UI.RadGridView();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.bsConsumerSmallRightView = new System.Windows.Forms.BindingSource(this.components);
             this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.ddbtnAddConsumer = new Telerik.WinControls.UI.RadDropDownButton();
@@ -52,13 +53,13 @@
             this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
             this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
             this.backgroundPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
             this.gvViewConsumers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
             this.ipsPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
@@ -66,10 +67,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
             this.ipsPanel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // bsConsumerSmallRightView
-            // 
-            this.bsConsumerSmallRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
             // 
             // timerSearch
             // 
@@ -124,13 +121,13 @@
             gridViewTextBoxColumn3.MinWidth = 400;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "Name";
-            gridViewTextBoxColumn3.Width = 639;
+            gridViewTextBoxColumn3.Width = 471;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "ClientBrand";
             gridViewTextBoxColumn4.HeaderText = "Бренд";
             gridViewTextBoxColumn4.MinWidth = 140;
             gridViewTextBoxColumn4.Name = "ClientBrand";
-            gridViewTextBoxColumn4.Width = 140;
+            gridViewTextBoxColumn4.Width = 153;
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "CountActive";
             gridViewTextBoxColumn5.HeaderText = "К-сть діючих договорів";
@@ -148,8 +145,17 @@
             gridViewTextBoxColumn6.MinWidth = 100;
             gridViewTextBoxColumn6.Name = "Undistribamount";
             gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn6.Width = 144;
+            gridViewTextBoxColumn6.Width = 150;
             gridViewTextBoxColumn6.WrapText = true;
+            gridViewTextBoxColumn7.DataType = typeof(decimal);
+            gridViewTextBoxColumn7.FieldName = "AmountBorg";
+            gridViewTextBoxColumn7.FormatString = "{0:### ### ##0.00}";
+            gridViewTextBoxColumn7.HeaderText = "Борг";
+            gridViewTextBoxColumn7.MaxWidth = 150;
+            gridViewTextBoxColumn7.MinWidth = 100;
+            gridViewTextBoxColumn7.Name = "AmountBorg";
+            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn7.Width = 150;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";
@@ -171,6 +177,7 @@
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
             gridViewCommandColumn1});
             this.gvViewConsumers.MasterTemplate.DataSource = this.bsConsumerSmallRightView;
             this.gvViewConsumers.MasterTemplate.EnableCustomFiltering = true;
@@ -209,6 +216,10 @@
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
+            // bsConsumerSmallRightView
+            // 
+            this.bsConsumerSmallRightView.DataSource = typeof(ipsFormsDesign.ViewModels.Consumer.ConsumerSmallRightView);
             // 
             // ipsPanel1
             // 
@@ -306,7 +317,6 @@
             this.Controls.Add(this.backgroundPanel);
             this.Name = "ConsumersViewSmallRightControl";
             this.Size = new System.Drawing.Size(1154, 588);
-            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
             this.backgroundPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
@@ -314,6 +324,7 @@
             this.gvViewConsumers.ResumeLayout(false);
             this.gvViewConsumers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
             this.ipsPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();

@@ -6,9 +6,9 @@ using System.Windows.Forms;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Services;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using ConsumerSmallRightView = ipsFormsDesign.ViewModels.Consumer.ConsumerSmallRightView;
 
 namespace IpsViewComponentLibrary.Extensions
 {
