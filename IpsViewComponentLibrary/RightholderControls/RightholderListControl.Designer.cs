@@ -212,6 +212,7 @@
             gridViewTextBoxColumn4.MinWidth = 220;
             gridViewTextBoxColumn4.Name = "Name";
             gridViewTextBoxColumn4.Width = 220;
+            gridViewDateTimeColumn1.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewDateTimeColumn1.EnableExpressionEditor = false;
             gridViewDateTimeColumn1.FieldName = "AgreementDate";
             gridViewDateTimeColumn1.FormatString = "{0:dd/MM/yyyy}";

@@ -51,14 +51,14 @@
         Debt = 9,
 
         /// <summary>
-        /// Не отримані звіти
+        /// Прийом звітів
         /// </summary>
-        NotReceivingRegister = 10,
+        ReceivingRegister = 10,
 
         /// <summary>
-        /// Не отримані кошти
+        /// Прийом коштів
         /// </summary>
-        NotReceivingMoney = 11,
+        ReceivingMoney = 11,
 
         /// <summary>
         /// Всі

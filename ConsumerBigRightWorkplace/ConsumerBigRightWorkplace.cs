@@ -31,7 +31,7 @@ namespace ConsumerBigRightWorkplace
             {
                 new RadTreeNode
                 {
-                    Text = "Генеральні договори", Value = ConsumersBigRightCategoryFilter.GenAgreement, Selected = true,
+                    Text = "Генеральні договори", Value = ConsumersBigRightCategoryFilter.GenAgreement, Selected = true, 
                     Nodes =
                     {
                         new RadTreeNode {Text = "Всі", Value = ConsumersBigRightFilter.All},
