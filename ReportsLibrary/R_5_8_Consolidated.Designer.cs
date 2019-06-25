@@ -252,6 +252,8 @@ namespace ReportsLibrary
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("endDate", "= Parameters.endDate.Value"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("cmFlag", "= Fields.cmFlag"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("categoryCode", "= Fields.categoryCode"));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("cmCustId", "= Fields.cmCustId"));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("cmName", "= Fields.cmName"));
             typeReportSource1.TypeName = "ReportsLibrary.R_5_8_ConsolidDetail, ReportsLibrary, Version=1.0.0.0, Culture=neu" +
     "tral, PublicKeyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
@@ -271,7 +273,7 @@ namespace ReportsLibrary
             this.textBox11.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
             this.textBox11.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox11.StyleName = "Normal.TableBody";
-            this.textBox11.Value = "= Fields.cmFlagName";
+            this.textBox11.Value = "= Fields.cmName";
             // 
             // textBox12
             // 
