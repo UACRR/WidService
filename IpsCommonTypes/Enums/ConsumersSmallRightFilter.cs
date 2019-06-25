@@ -61,6 +61,11 @@
         ReceivingMoney = 11,
 
         /// <summary>
+        /// Незакріплені
+        /// </summary>
+        UnattachedMoney = 12,
+
+        /// <summary>
         /// Всі
         /// </summary>
         All

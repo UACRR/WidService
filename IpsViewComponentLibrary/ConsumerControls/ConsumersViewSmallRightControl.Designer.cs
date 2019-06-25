@@ -36,6 +36,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
@@ -121,13 +122,13 @@
             gridViewTextBoxColumn3.MinWidth = 400;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "Name";
-            gridViewTextBoxColumn3.Width = 471;
+            gridViewTextBoxColumn3.Width = 400;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "ClientBrand";
             gridViewTextBoxColumn4.HeaderText = "Бренд";
-            gridViewTextBoxColumn4.MinWidth = 140;
+            gridViewTextBoxColumn4.MinWidth = 100;
             gridViewTextBoxColumn4.Name = "ClientBrand";
-            gridViewTextBoxColumn4.Width = 153;
+            gridViewTextBoxColumn4.Width = 125;
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "CountActive";
             gridViewTextBoxColumn5.HeaderText = "К-сть діючих договорів";
@@ -137,25 +138,34 @@
             gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn5.Width = 80;
             gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.DataType = typeof(double);
-            gridViewTextBoxColumn6.FieldName = "Undistribamount";
+            gridViewTextBoxColumn6.DataType = typeof(decimal);
+            gridViewTextBoxColumn6.FieldName = "UnattachAmount";
             gridViewTextBoxColumn6.FormatString = "{0:### ### ##0.00}";
-            gridViewTextBoxColumn6.HeaderText = "Нерозподілені кошти";
+            gridViewTextBoxColumn6.HeaderText = "Незакріплені кошти";
             gridViewTextBoxColumn6.MaxWidth = 150;
             gridViewTextBoxColumn6.MinWidth = 100;
-            gridViewTextBoxColumn6.Name = "Undistribamount";
+            gridViewTextBoxColumn6.Name = "UnattachAmount";
             gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn6.Width = 150;
-            gridViewTextBoxColumn6.WrapText = true;
-            gridViewTextBoxColumn7.DataType = typeof(decimal);
-            gridViewTextBoxColumn7.FieldName = "AmountBorg";
+            gridViewTextBoxColumn6.Width = 143;
+            gridViewTextBoxColumn7.DataType = typeof(double);
+            gridViewTextBoxColumn7.FieldName = "Undistribamount";
             gridViewTextBoxColumn7.FormatString = "{0:### ### ##0.00}";
-            gridViewTextBoxColumn7.HeaderText = "Борг";
+            gridViewTextBoxColumn7.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn7.MaxWidth = 150;
             gridViewTextBoxColumn7.MinWidth = 100;
-            gridViewTextBoxColumn7.Name = "AmountBorg";
+            gridViewTextBoxColumn7.Name = "Undistribamount";
             gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn7.Width = 150;
+            gridViewTextBoxColumn7.Width = 143;
+            gridViewTextBoxColumn7.WrapText = true;
+            gridViewTextBoxColumn8.DataType = typeof(decimal);
+            gridViewTextBoxColumn8.FieldName = "AmountBorg";
+            gridViewTextBoxColumn8.FormatString = "{0:### ### ##0.00}";
+            gridViewTextBoxColumn8.HeaderText = "Борг";
+            gridViewTextBoxColumn8.MaxWidth = 150;
+            gridViewTextBoxColumn8.MinWidth = 100;
+            gridViewTextBoxColumn8.Name = "AmountBorg";
+            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn8.Width = 114;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";
@@ -178,6 +188,7 @@
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
             gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
             gridViewCommandColumn1});
             this.gvViewConsumers.MasterTemplate.DataSource = this.bsConsumerSmallRightView;
             this.gvViewConsumers.MasterTemplate.EnableCustomFiltering = true;

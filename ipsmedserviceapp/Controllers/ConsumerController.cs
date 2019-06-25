@@ -647,6 +647,9 @@ namespace ipsmedserviceapp.Controllers
                 case ConsumersSmallRightFilter.ForDistribution:
                     function = string.Concat(function, " where statusUndistribute = 1");
                     break;
+                case ConsumersSmallRightFilter.UnattachedMoney:
+                    function = string.Concat(function, " where statusUnattach = 1");
+                    break;
                 case ConsumersSmallRightFilter.Debt:
                     function = string.Concat(function, " where statusBorg = 1");
                     break;
