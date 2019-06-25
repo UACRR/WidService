@@ -301,7 +301,7 @@ namespace ReportsLibrary
     "tral, PublicKeyToken=null";
             navigateToReportAction9.ReportSource = typeReportSource9;
             this.textBox9.Action = navigateToReportAction9;
-            this.textBox9.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox9.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox9.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -341,7 +341,7 @@ namespace ReportsLibrary
     "neutral, PublicKeyToken=null";
             navigateToReportAction11.ReportSource = typeReportSource11;
             this.textBox11.Action = navigateToReportAction11;
-            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(1.11D));
+            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox11.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
