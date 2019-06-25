@@ -8,6 +8,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -16,7 +17,6 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class RightholderView : RadForm, IRightholderView
     {
-        //private bool _isCompany;
         private string _pdf;
         private string _doc;
         private string _custName;
@@ -25,13 +25,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         private IRightholderPresenter _presenter;
         public IRightholderPresenter Presenter
         {
-            get { return _presenter; }
+            get => _presenter;
             set
             {
                 if (_presenter == null)
-                {
                     _presenter = value;
-                }
             }
         }
 
@@ -40,7 +38,14 @@ namespace IpsViewComponentLibrary.RightholderControls
         public object AgreementAddRhDataSource
         {
             get => bsAgreementAddRh.DataSource;
-            set => bsAgreementAddRh.DataSource = value;
+            set
+            {
+                bsAgreementAddRh.DataSource = value;
+                if (value is AgreementAddRh agreement && agreement.AgrStatus == 7)
+                    DatePassedVisible = true;
+                else
+                    DatePassedVisible = false;
+            }
         }
 
         public object AnketaPersonDataSource
@@ -98,6 +103,16 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         #endregion
 
+        public bool DatePassedVisible
+        {
+            get => dtDatePassed.Visible;
+            set
+            {
+                lblDatePassed.Visible = value;
+                dtDatePassed.Visible = value;
+            }
+        }
+
         /// <summary>
         /// Активність вкладок реєстру/каталога залежно від типу правовласника
         /// </summary>
@@ -131,6 +146,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+
+            dtDatePassed.SetUserCalendarSettingsm();
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
@@ -365,6 +382,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void btnSetAgreementRightholderStatusInheritance_Click(object sender, EventArgs e)
         {
             _presenter.SetAgreementRightholderStatus(AgreementStatuses.Inheritance);
+
+            DatePassedVisible = true;
+            if (bsRightHolder.DataSource is RightHolder rh && rh.DatePassed == null)
+                rh.DatePassed = DateTime.Now;
+            bsRightHolder.ResetBindings(false);
             bsAgreementAddRh.ResetCurrentItem();
         }
 
