@@ -166,6 +166,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPanel3.Size = new System.Drawing.Size(190, 79);
             this.radPanel3.TabIndex = 19;
             this.radPanel3.ThemeName = "Office2013Light";
+            this.radPanel3.Visible = false;
             // 
             // txtIsPaid
             // 
@@ -419,6 +420,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPanel4.Size = new System.Drawing.Size(190, 79);
             this.radPanel4.TabIndex = 18;
             this.radPanel4.ThemeName = "Office2013Light";
+            this.radPanel4.Visible = false;
             // 
             // txtDistribAmount
             // 

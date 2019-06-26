@@ -263,7 +263,7 @@
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(292, 21);
             this.radLabel1.TabIndex = 9;
-            this.radLabel1.Text = "Нерозподілені кошти користувача";
+            this.radLabel1.Text = "Незакріплені кошти користувача";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // gvLicenseAgr

@@ -43,12 +43,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
+            this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtSeries = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
-            this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceAgr = new System.Windows.Forms.BindingSource(this.components);
             this.bsPlacesForAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgrMain = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerMainControl();
@@ -60,11 +60,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeries)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlacesForAgreement)).BeginInit();
             this.SuspendLayout();
@@ -123,25 +123,25 @@ namespace IpsViewComponentLibrary.ConsumerControls
             gridViewTextBoxColumn1.Name = "PlaceId";
             gridViewTextBoxColumn1.ReadOnly = true;
             gridViewTextBoxColumn1.Width = 70;
-            gridViewTextBoxColumn2.FieldName = "FullAddressPlace";
-            gridViewTextBoxColumn2.HeaderText = "Фактична адреса закладу";
-            gridViewTextBoxColumn2.Name = "FullAddressPlace";
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
+            gridViewTextBoxColumn2.Expression = "";
+            gridViewTextBoxColumn2.FieldName = "PlaceName";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.MinWidth = 200;
+            gridViewTextBoxColumn2.Name = "PlaceName";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 355;
-            gridViewTextBoxColumn3.EnableExpressionEditor = false;
-            gridViewTextBoxColumn3.Expression = "";
-            gridViewTextBoxColumn3.FieldName = "PlaceName";
-            gridViewTextBoxColumn3.HeaderText = "Назва Закладу";
-            gridViewTextBoxColumn3.Name = "PlaceName";
-            gridViewTextBoxColumn3.ReadOnly = true;
-            gridViewTextBoxColumn3.Width = 202;
-            gridViewTextBoxColumn4.FieldName = "Amount";
-            gridViewTextBoxColumn4.HeaderText = "Сума";
-            gridViewTextBoxColumn4.IsVisible = false;
-            gridViewTextBoxColumn4.MinWidth = 20;
-            gridViewTextBoxColumn4.Name = "Amount";
+            gridViewTextBoxColumn2.Width = 200;
+            gridViewTextBoxColumn3.FieldName = "PlCodeNavigation.Name";
+            gridViewTextBoxColumn3.HeaderText = "Тип бізнес-точки";
+            gridViewTextBoxColumn3.MinWidth = 120;
+            gridViewTextBoxColumn3.Name = "PlCodeNavigation";
+            gridViewTextBoxColumn3.Width = 120;
+            gridViewTextBoxColumn4.FieldName = "FullAddressPlace";
+            gridViewTextBoxColumn4.HeaderText = "Фактична адреса";
+            gridViewTextBoxColumn4.MinWidth = 220;
+            gridViewTextBoxColumn4.Name = "FullAddressPlace";
             gridViewTextBoxColumn4.ReadOnly = true;
-            gridViewTextBoxColumn4.Width = 120;
+            gridViewTextBoxColumn4.Width = 237;
             gridViewCheckBoxColumn1.Checked = Telerik.WinControls.Enumerations.ToggleState.On;
             gridViewCheckBoxColumn1.EnableHeaderCheckBox = true;
             gridViewCheckBoxColumn1.FieldName = "CheckIn";
@@ -183,6 +183,14 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.StackLayoutElement)(this.ddlLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
             // 
+            // licenseAgreementBindingSource
+            // 
+            this.licenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            // 
+            // bindingSourceDictionary
+            // 
+            this.bindingSourceDictionary.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
+            // 
             // radLabel2
             // 
             this.radLabel2.AutoSize = false;
@@ -212,14 +220,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.txtSeries.Size = new System.Drawing.Size(73, 21);
             this.txtSeries.TabIndex = 2;
             this.txtSeries.ThemeName = "Office2013Light";
-            // 
-            // bindingSourceDictionary
-            // 
-            this.bindingSourceDictionary.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
-            // 
-            // licenseAgreementBindingSource
-            // 
-            this.licenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
             // 
             // bindingSourceAgr
             // 
@@ -286,11 +286,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeries)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPlacesForAgreement)).EndInit();
             this.ResumeLayout(false);

@@ -11,6 +11,7 @@
         public int StatusNoReport { get; set; }
         public int StatusNoMoney { get; set; }
         public decimal Undistribamount { get; set; }
+        public decimal UnattachAmount { get; set; }
         public bool IsAnkExtrn { get; set; }
     }
 }

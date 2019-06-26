@@ -31,7 +31,7 @@ namespace ConsumerBigRightWorkplace
             {
                 new RadTreeNode
                 {
-                    Text = "Генеральні договори", Value = ConsumersBigRightCategoryFilter.GenAgreement, Selected = true,
+                    Text = "Генеральні договори", Value = ConsumersBigRightCategoryFilter.GenAgreement, Selected = true, 
                     Nodes =
                     {
                         new RadTreeNode {Text = "Всі", Value = ConsumersBigRightFilter.All},
@@ -80,7 +80,7 @@ namespace ConsumerBigRightWorkplace
                         //new RadTreeNode {Text = "Відхилені", Value = ConsumerFilterEnum.None},
                     }
                 },
-                new RadTreeNode {Text = "Не розподіленні", Value = ConsumersBigRightFilter.ForDistribution},
+                new RadTreeNode {Text = "Нерозподіленні", Value = ConsumersBigRightFilter.ForDistribution},
                 new RadTreeNode {Text = "Борг", Value = ConsumersBigRightFilter.Debt},
                 new RadTreeNode {Text = "Відсутні Роз.Листи", Value = ConsumersBigRightFilter.UnattachData}
             };
