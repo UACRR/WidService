@@ -1502,6 +1502,7 @@ namespace ipsFormsDesign.Services
             string BRAdvText = string.Empty;
             string BRAdvText1 = string.Empty;
             string BRAdvText2 = string.Empty;
+            string  BRAdvText1_SO = string.Empty;
             string BRLmpText = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
@@ -1653,11 +1654,17 @@ namespace ipsFormsDesign.Services
                            }).ToList();
             }
             if (TbAvAdv.Count == 0)
-            { BRAdvText1 = "Виключено за домовленістю Сторін."; }
+            { BRAdvText1 = "Виключено за домовленістю Сторін.";
+                BRAdvText1_SO = BRAdvText1;
+            }
             else
             {
                 BRAdvText1 = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок ГО УААСП протягом 14 робочих днів авторську винагороду в сумі ";
                 BRAdvText2 = ", що вважається як аванс роялті, визначеного в п. 2.4.цього Договору.";
+                BRAdvText1_SO = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок ДО УААСП авторську винагороду в сумі";
+
+
+
             };
 
             if (TbAL.Count == 0)
@@ -1943,7 +1950,9 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = BRAdvText2;
                         break;
 
-
+                    case "BRAdvText1_SO":
+                        item.Range.Text = BRAdvText1_SO;
+                        break;
                     default:
 
                         break;
