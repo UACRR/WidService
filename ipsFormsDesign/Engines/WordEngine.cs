@@ -1419,6 +1419,8 @@ namespace ipsFormsDesign.Services
 
             var places = licA.LicenseAgrParam.Where(rec => rec.LicVersion == licA.LicVersion).FirstOrDefault()?.License?.Select(rec => rec.PlaceId).ToArray() ?? new int?[] { };
             var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => places.Contains(rec.PlaceId)).ToList();
+            var clnBusinessPlaceTheater1 = cust.Client.ClnBusinessPlace.ToList();
+
             AgreementAddBr agreementAddBr;
             agreementAddBr = agr;
             string ShowPLAdress = string.Empty;
@@ -1579,10 +1581,12 @@ namespace ipsFormsDesign.Services
                          (rec.LicVersion == licA.LicVersion)).Single();
 
             docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
-            DateTime datedoc;
+            DateTime? datedoc;
             CultureInfo provider = CultureInfo.InvariantCulture;
 
-            datedoc = DateTime.ParseExact(docDateC, "dd.MM.yyyy", provider);
+            //           datedoc = DateTime.ParseExact(docDateC, "dd.MM.yyyy", provider);
+            datedoc = licagr?.LicDate;
+
             docDateEndC = $"{licagr?.DateEnd:dd.MM.yyyy}";
             var TbAPrc = new List<TbAuthorPrc>();
             if (authors != null)
@@ -1599,7 +1603,7 @@ namespace ipsFormsDesign.Services
                                       { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
                         }
             */
-
+            if (datedoc != null)
             {
                 TbAPrc = (from aut in authors
                           join cpr in copyright on (aut.CustId,aut.RoleCode ) equals (cpr?.CustId,cpr.RoleCode) 
@@ -1953,6 +1957,10 @@ namespace ipsFormsDesign.Services
                     case "BRAdvText1_SO":
                         item.Range.Text = BRAdvText1_SO;
                         break;
+                    case "TablePL1BR":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceTheater1);
+                        break;
+
                     default:
 
 
