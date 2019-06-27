@@ -233,9 +233,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 buttonController.SetPeriodState(null, null);
             }
 
-            var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
+            var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.SingleOrDefault(rec => rec.CodeI == lic.Lic.LicCode);
             // Цирк,Філармонія,Концертна діяльність
-            bool isCollapsed = agrType.SchemaId == 2;
+            bool isCollapsed = agrType?.SchemaId == 2;
             // AddReport Xls disable for Цирк, Філармонія, Концертна діяльність
             btnAddReport.Enabled = !isCollapsed;
 
@@ -279,6 +279,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
             bindingReports.DataSource = reports;
             buttonController.SetPeriodState(period.Status, reports);
+            
+            if (gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData lic)
+            {
+                var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.SingleOrDefault(rec => rec.CodeI == lic.Lic.LicCode);
+                btnAddReport.Enabled = agrType?.SchemaId != 2;
+            }
         }
 
         private void gvPeriodReports_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
