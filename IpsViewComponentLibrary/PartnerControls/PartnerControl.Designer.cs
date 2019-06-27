@@ -118,7 +118,7 @@
             gridViewTextBoxColumn5.HeaderText = "Представник";
             gridViewTextBoxColumn5.MinWidth = 80;
             gridViewTextBoxColumn5.Name = "Name";
-            gridViewTextBoxColumn5.Width = 245;
+            gridViewTextBoxColumn5.Width = 235;
             gridViewTextBoxColumn6.FieldName = "AgrNumber";
             gridViewTextBoxColumn6.HeaderText = "№ договору";
             gridViewTextBoxColumn6.MaxWidth = 110;
@@ -144,11 +144,11 @@
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "StatusName";
             gridViewTextBoxColumn9.HeaderText = "Статус договору";
-            gridViewTextBoxColumn9.MaxWidth = 105;
-            gridViewTextBoxColumn9.MinWidth = 105;
+            gridViewTextBoxColumn9.MaxWidth = 115;
+            gridViewTextBoxColumn9.MinWidth = 115;
             gridViewTextBoxColumn9.Multiline = true;
             gridViewTextBoxColumn9.Name = "StatusName";
-            gridViewTextBoxColumn9.Width = 105;
+            gridViewTextBoxColumn9.Width = 115;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn10.FieldName = "AgrCount";

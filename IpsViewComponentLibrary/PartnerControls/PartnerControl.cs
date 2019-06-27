@@ -57,13 +57,13 @@ namespace IpsViewComponentLibrary.PartnerControls
                     bsPartnerView.DataSource = partnerList;
                     break;
                 case PartnerFilter.Active:
-                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 2);
+                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 2).ToList();
                     break;
                 case PartnerFilter.OnAccept:
-                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 1);
+                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 1).ToList();
                     break;
                 case PartnerFilter.NotAccept:
-                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 0);
+                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 0).ToList();
                     break;
             }
             bsPartnerView.ResetBindings(false);
