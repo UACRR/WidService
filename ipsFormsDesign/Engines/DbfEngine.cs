@@ -93,7 +93,7 @@ namespace ipsFormsDesign.Engines
                             MfoCorr = item["MFOCOR"].ToString(),
                             DocNum = item["NDOC"].ToString(),
                             DocDate = item.Field<DateTime>("DT"),
-                            SCredit = Convert.ToDecimal(item["SUMMA"]),
+                            SCredit = Convert.ToDecimal(item["SUMMA"]) / 100,
                             Nplat = item.Field<string>("NAZN")
                         });
                     dest.ExternalPay.Add(new ExternalPay

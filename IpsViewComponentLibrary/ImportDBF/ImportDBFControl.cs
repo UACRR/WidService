@@ -81,7 +81,9 @@ namespace IpsViewComponentLibrary.ImportDBF
         /// <param name="gridViewCell"></param>
         private void PaymentsAttach(GridViewCellEventArgs gridViewCell)
         {
-            var row = gridViewCell.Row.DataBoundItem as ExternalPay;
+            if (!(gridViewCell.Row.DataBoundItem is ExternalPay row))
+                return;
+
             var paymentsAttach = new PaymentsAttachForm(_clientsList, row);
             if (paymentsAttach.ShowDialog() == DialogResult.OK)
             {
