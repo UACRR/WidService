@@ -15,7 +15,9 @@ namespace IpsViewComponentLibrary.PartnerControls
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
-        public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
+        //public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
+        public event Func<AgreementAddPartner, Partner, bool> OnSaveAgreement;
+
         public event GetCustomerByIdEventHandler GetPartnerById;
         public delegate List<T> ReturnPartnerViewEventHandler<T>();
         public event ReturnPartnerViewEventHandler<PartnerView> GetPartnersView;
@@ -151,11 +153,10 @@ namespace IpsViewComponentLibrary.PartnerControls
         }
 
         // збереження змін договору
-        private bool CabinetPartner_OnSaveAgreement(AgreementAddPartner saveObj)
+        private bool CabinetPartner_OnSaveAgreement(AgreementAddPartner saveObj, Partner partner)
         {
-            var result = OnSaveAgreement?.Invoke(saveObj) ?? false;
-            if (result)
-                UpdateGridData(treeView.SelectedNode);
+            var result = OnSaveAgreement?.Invoke(saveObj, partner) ?? false;
+            UpdateGridData(treeView.SelectedNode);
             return result;
         }
 
@@ -194,8 +195,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         private bool SaveAnketaPartner(Customer customer)
         {
             var result = OnSaveCustomer?.Invoke(customer) ?? false;
-            if (result)
-                UpdateGridData(treeView.SelectedNode);
+            UpdateGridData(treeView.SelectedNode);
             return result;
         }
     }

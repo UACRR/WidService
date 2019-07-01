@@ -369,7 +369,7 @@ namespace ipsFormsDesign.Interfaces
         public int AgrId { get; set; }
         public int? AgrStatus { get; set; }
         public int? ClnCount { get; set; }
-        public int? AgrCount { get; set; }
+        public string AgrCount { get; set; }
         public string Innokpo { get; set; }
         public string Name { get; set; }
         public string AgrNumber { get; set; }
@@ -387,7 +387,7 @@ namespace ipsFormsDesign.Interfaces
         public int ClCustId { get; set; }
         public int? CustType { get; set; }
         public string CustTypeName { get; set; }
-        public int? AgrCount { get; set; }
+        public string AgrCount { get; set; }
         public decimal SumBorg { get; set; }
         public string Innokpo { get; set; }
         public string ClientName { get; set; }

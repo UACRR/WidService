@@ -163,7 +163,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // checkPartnerInternal
             // 
-            this.checkPartnerInternal.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsPartner, "IsMy", true));
+            this.checkPartnerInternal.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsPartner, "IsMy", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, false));
             this.checkPartnerInternal.Location = new System.Drawing.Point(35, 149);
             this.checkPartnerInternal.Name = "checkPartnerInternal";
             this.checkPartnerInternal.Size = new System.Drawing.Size(233, 19);
@@ -281,6 +281,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // ctrlSaveCancelButtons
             // 
+            this.ctrlSaveCancelButtons.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
             this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 479);
             this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);

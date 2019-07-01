@@ -34,9 +34,9 @@ namespace PartnersWorkplace.Presenters
             _partner.ChangeStatusAgr += AgreementPartnerStatusChange;
         }
 
-        private bool SaveAgreement(AgreementAddPartner saveObj)
+        private bool SaveAgreement(AgreementAddPartner saveObj, Partner partner)
         {
-            return _service.UpdateAgreement(saveObj);
+            return _service.UpdateAgreement(saveObj, partner);
         }
 
         private bool _partner_OnDetachClientInPartner(int clientId, int partnerId)

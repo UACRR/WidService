@@ -150,21 +150,23 @@
             gridViewTextBoxColumn4.HeaderText = "Назва користувача";
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "ClientName";
-            gridViewTextBoxColumn4.Width = 544;
+            gridViewTextBoxColumn4.Width = 524;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "AgrCount";
-            gridViewTextBoxColumn5.HeaderText = "К-сть діючих договорів";
-            gridViewTextBoxColumn5.MaxWidth = 80;
-            gridViewTextBoxColumn5.MinWidth = 80;
+            gridViewTextBoxColumn5.HeaderText = "К-сть договорів (всі/активні)";
+            gridViewTextBoxColumn5.MaxWidth = 100;
+            gridViewTextBoxColumn5.MinWidth = 100;
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "AgrCount";
-            gridViewTextBoxColumn5.Width = 80;
+            gridViewTextBoxColumn5.Width = 100;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.FieldName = "SumBorg";
+            gridViewTextBoxColumn6.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn6.HeaderText = "Заборгованість";
             gridViewTextBoxColumn6.MaxWidth = 110;
             gridViewTextBoxColumn6.MinWidth = 110;
             gridViewTextBoxColumn6.Name = "SumBorg";
+            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn6.Width = 110;
             this.gvViewClientsOfPartner.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
@@ -198,8 +200,8 @@
             // 
             // PartnerClientsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.btnDetach);
             this.Controls.Add(this.gvViewClientsOfPartner);
             this.Controls.Add(this.lblPartnerName);

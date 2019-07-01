@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -8,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+
 // ReSharper disable All
 
 namespace ipsmedserviceapp.Controllers
@@ -16,12 +19,52 @@ namespace ipsmedserviceapp.Controllers
     [Route("api/partner")]
     public class PartnerController : Controller
     {
+        private const string AgreementSaveAgrumentExcpMsg = "[0] element of sequence must be AgreementAddPartner type and [1] element of sequence must be Partner type!";
+
         private MediaServiceContext _dbContext;
         private IConfiguration _config;
+
+        /// <summary>
+        /// Список SQL VIEW для представників
+        /// </summary>
+        private readonly Dictionary<string, string> viewList = new Dictionary<string, string>
+        {
+            {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
+            {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
+            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"}
+        };
+
         public PartnerController(MediaServiceContext dbContext, IConfiguration config)
         {
             _dbContext = dbContext;
             _config = config;
+        }
+
+        /// <summary>
+        /// Отримати VIEW по назві
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("viewlist")]
+        public async Task<IActionResult> GetBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
+        {
+            if (viewName == null || !viewList.Keys.Contains(viewName))
+                return BadRequest();
+
+            string QueryStr = string.Concat("select * from ", viewList[viewName]);
+
+            if (custId == null)
+            {
+                var list = await _dbContext.getViewData(QueryStr, null);
+                return Json(list);
+            }
+            else
+            {
+                QueryStr = string.Concat(QueryStr, " where custId = @custId");
+                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId) });
+                return Json(list);
+            }
         }
 
         /// <summary>
@@ -115,16 +158,25 @@ namespace ipsmedserviceapp.Controllers
         /// <summary>
         /// Збереження змін в договорі представника
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="objects"></param>
         /// <returns></returns>
         [HttpPut("agreement")]
-        public async Task<IActionResult> UpdateAgreement([FromBody] AgreementAddPartner source)
+        public async Task<IActionResult> UpdateAgreement([FromBody] List<object> objects)
         {
             IDbContextTransaction transaction = null;
             try
             {
+                var source = JsonConvert.DeserializeObject<AgreementAddPartner>(objects[0].ToString());
+                var partnerSource = JsonConvert.DeserializeObject<Partner>(objects[1].ToString());
+                if (source == null || partnerSource == null)
+                    return BadRequest(AgreementSaveAgrumentExcpMsg);
+
                 var destinatopn = await _dbContext.AgreementAddPartner.SingleOrDefaultAsync(rec => rec.AgrId == source.AgrId);
                 destinatopn.SetFields(source, new []{ "CustId", "AgrId", "AgrStatus", });
+
+                var partner = await _dbContext.Partner.SingleOrDefaultAsync(rec => rec.CustId == source.CustId);
+                partner.IsMy  = partnerSource.IsMy;
+
                 transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
                 transaction.Commit();

@@ -29,7 +29,8 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event SetPartnerEventHandler OnDetachClientInPartner;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event SaveCustomerEventHandler OnSaveCustomer;
-        public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
+        //public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
+        public event Func<AgreementAddPartner, Partner, bool> OnSaveAgreement;
         public event GetCustomerByIdEventHandler UpdateCustomer;
         private readonly IAnketaControls _control;
 
@@ -86,6 +87,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             ctrlConditions.IsReadOnly = agrStatus == 2;
 
             bsPartner.DataSource = _customer?.Partner;
+            bsPartner.ResetBindings(false);
         }
 
         private void SubscribeEvents()
@@ -134,24 +136,25 @@ namespace IpsViewComponentLibrary.PartnerControls
             }
         }
 
+        private const string CloseAgreementConfirmMsg = "Ви дійсно хочете закрити договір з представником?";
         // закрити договір
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Ви дійсно хочете закрити договір з представником?", "Підтверження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageShow.ConfirmAction(CloseAgreementConfirmMsg) == DialogResult.Yes)
             {
                 var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Close);
-                if (result ?? false)
-                {
-                    _customer = UpdateCustomer?.Invoke(_customer.CustId);
-                    BeginBinding();
-                }
+                // use result
+                _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                BeginBinding();
             }
         }
 
         // зберегти зміни договору
         private void Save_Click(object sender, EventArgs e)
         {
-            var result = OnSaveAgreement?.Invoke(_customer.Partner.AgreementAddPartner.SingleOrDefault()) ?? false;
+            var agr = _customer.Partner.AgreementAddPartner.SingleOrDefault();
+            var result = OnSaveAgreement?.Invoke(agr, _customer.Partner) ?? false;
+            //var result = OnSaveAgreement?.Invoke(agr) ?? false;
             MessageShow.ShowInfoByResult(SuccessAgrMsg, ErrorAgrMsg, result);
         }
 
