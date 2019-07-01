@@ -167,7 +167,6 @@ namespace ipsFormsDesign.Interfaces
         public int? ObjStatus { get; set; }
         public int? GenreType { get; set; }
         public int? PerformNumb { get; set; }
-        public decimal? Borg { get; set; }
         public decimal? PrepayPaush { get; set; }
         public decimal? PrepayAvans { get; set; }
         public decimal? PrepayRest { get; set; }

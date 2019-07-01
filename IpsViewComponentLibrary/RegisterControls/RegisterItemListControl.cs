@@ -446,6 +446,13 @@ namespace IpsViewComponentLibrary.RegisterControls
                             e.RowElement.BackColor = Color.LightGray;
                         }
                     }
+                    // clear row format
+                    else
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.White;
+                    }
                 }
                 else
                 {

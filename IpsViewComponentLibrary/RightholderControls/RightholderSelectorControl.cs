@@ -61,7 +61,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void btnAnketa_Click(object sender, EventArgs e)
         {
-            OnShowAnketaCommandExecuted(_rightholder);
+            if (_rightholder != null)
+                OnShowAnketaCommandExecuted(_rightholder);
         }
 
         private void UpdateView()

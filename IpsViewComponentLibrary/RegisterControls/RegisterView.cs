@@ -26,7 +26,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private RegisterFormType _formType;
         public RegisterFormType FormType
         {
-            get { return _formType; }
+            get => _formType;
             set
             {
                 _formType = value;
