@@ -184,7 +184,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvUndistribPays.AutoScroll = true;
-            this.gvUndistribPays.AutoSizeRows = true;
             this.gvUndistribPays.EnableCustomFiltering = true;
             this.gvUndistribPays.Location = new System.Drawing.Point(3, 16);
             // 
@@ -204,28 +203,28 @@
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn2.FieldName = "AccountCorr";
             gridViewTextBoxColumn2.HeaderText = "Номер рахунку";
-            gridViewTextBoxColumn2.MaxWidth = 100;
-            gridViewTextBoxColumn2.MinWidth = 80;
+            gridViewTextBoxColumn2.MaxWidth = 150;
+            gridViewTextBoxColumn2.MinWidth = 110;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "AccountCorr";
-            gridViewTextBoxColumn2.Width = 100;
+            gridViewTextBoxColumn2.Width = 110;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "Mfo";
             gridViewTextBoxColumn3.HeaderText = "МФО";
-            gridViewTextBoxColumn3.MaxWidth = 70;
-            gridViewTextBoxColumn3.MinWidth = 70;
+            gridViewTextBoxColumn3.MaxWidth = 100;
+            gridViewTextBoxColumn3.MinWidth = 80;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "Mfo";
-            gridViewTextBoxColumn3.Width = 70;
+            gridViewTextBoxColumn3.Width = 80;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(int);
             gridViewTextBoxColumn4.FieldName = "OkpoCorr";
             gridViewTextBoxColumn4.HeaderText = "ЄДРПОУ";
-            gridViewTextBoxColumn4.MaxWidth = 85;
-            gridViewTextBoxColumn4.MinWidth = 85;
+            gridViewTextBoxColumn4.MaxWidth = 90;
+            gridViewTextBoxColumn4.MinWidth = 90;
             gridViewTextBoxColumn4.Name = "OkpoCorr";
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 85;
+            gridViewTextBoxColumn4.Width = 90;
             gridViewTextBoxColumn5.FieldName = "NameCorr";
             gridViewTextBoxColumn5.HeaderText = "Назва користувача";
             gridViewTextBoxColumn5.MinWidth = 110;
@@ -243,7 +242,7 @@
             gridViewTextBoxColumn7.FieldName = "SCredit";
             gridViewTextBoxColumn7.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn7.HeaderText = "Сума";
-            gridViewTextBoxColumn7.MinWidth = 70;
+            gridViewTextBoxColumn7.MinWidth = 80;
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "SCredit";
             gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
@@ -254,8 +253,7 @@
             gridViewTextBoxColumn8.MinWidth = 180;
             gridViewTextBoxColumn8.Multiline = true;
             gridViewTextBoxColumn8.Name = "Nplat";
-            gridViewTextBoxColumn8.Width = 285;
-            gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn8.Width = 260;
             gridViewTextBoxColumn9.DataType = typeof(System.DateTime);
             gridViewTextBoxColumn9.FieldName = "DocDate";
             gridViewTextBoxColumn9.FormatString = "{0:dd.MM.yyyy}";
@@ -307,6 +305,7 @@
             this.gvUndistribPays.ThemeName = "Office2013Light";
             this.gvUndistribPays.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvUndistribPays_CellDoubleClick);
             this.gvUndistribPays.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvUndistribPays_CommandCellClick);
+            this.gvUndistribPays.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvUndistribPays_ToolTipTextNeeded);
             // 
             // ImportDBFControl
             // 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
@@ -147,6 +148,11 @@ namespace IpsViewComponentLibrary.ImportDBF
                 else if (TypeRights == TypeRights.BigRights)
                     _updateProviderBigRight = IpsGlobal.Instances[typeof(IUpdateProviderBigRight)] as IUpdateProviderBigRight;
             }
+        }
+
+        private void gvUndistribPays_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        {
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
     }
 }
