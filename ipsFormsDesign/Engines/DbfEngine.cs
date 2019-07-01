@@ -1,21 +1,15 @@
-﻿using ipsFormsDesign.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
+using ipsFormsDesign.Model;
 
-
-
-namespace ipsFormsDesign.Services
+namespace ipsFormsDesign.Engines
 {
     public class DbfEngine
     {
-
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int GetShortPathName(String pathName, StringBuilder shortName, int cbShortName);
 
@@ -48,7 +42,7 @@ namespace ipsFormsDesign.Services
             File.Copy(fileName, tempFile);
 
 
-            InputFile dest = new InputFile { FileName = Path.GetFileName( fileName ), InputTime = DateTime.Now };
+            InputFile dest = new InputFile {FileName = Path.GetFileName(fileName), InputTime = DateTime.Now};
             string path = Path.GetDirectoryName(tempFile);
             string tableName = Path.GetFileNameWithoutExtension(tempFile);
 
@@ -69,7 +63,7 @@ namespace ipsFormsDesign.Services
                 }
             }
 
-            File.Delete( tempFile );
+            File.Delete(tempFile);
 
             // Перевіряємо структуру переданих даних
             if (СheckFields(data) == false)
@@ -105,7 +99,7 @@ namespace ipsFormsDesign.Services
                     dest.ExternalPay.Add(new ExternalPay
                     {
                         InputDate = DateTime.Today,
-                        Mfo = item["OKPOCLI"].ToString(),
+                        Mfo = item["MFOCLI"].ToString(),
                         Okpol = item["OKPOCLI"].ToString(),
                         Account = item["ACCCLI"].ToString(),
                         DateOper = item.Field<DateTime>("DT"),
