@@ -86,10 +86,10 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.pvPartnerName.AutoScroll = true;
             this.pvPartnerName.Controls.Add(this.ctrlPartnerName);
-            this.pvPartnerName.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvPartnerName.Location = new System.Drawing.Point(134, 5);
+            this.pvPartnerName.ItemSize = new System.Drawing.SizeF(133F, 27F);
+            this.pvPartnerName.Location = new System.Drawing.Point(137, 5);
             this.pvPartnerName.Name = "pvPartnerName";
-            this.pvPartnerName.Size = new System.Drawing.Size(817, 546);
+            this.pvPartnerName.Size = new System.Drawing.Size(814, 546);
             this.pvPartnerName.Text = "Представник";
             // 
             // ctrlPartnerName
@@ -104,7 +104,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.pvContact.AutoScroll = true;
             this.pvContact.Controls.Add(this.ctrlContacts);
-            this.pvContact.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvContact.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvContact.Location = new System.Drawing.Point(134, 5);
             this.pvContact.Name = "pvContact";
             this.pvContact.Size = new System.Drawing.Size(817, 546);
@@ -121,7 +121,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.pvPasport.AutoScroll = true;
             this.pvPasport.Controls.Add(this.radGroupBox3);
-            this.pvPasport.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvPasport.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvPasport.Location = new System.Drawing.Point(134, 5);
             this.pvPasport.Name = "pvPasport";
             this.pvPasport.Size = new System.Drawing.Size(817, 546);
@@ -151,7 +151,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // pvBank
             // 
             this.pvBank.Controls.Add(this.ctrlBankAccount);
-            this.pvBank.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvBank.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvBank.Location = new System.Drawing.Point(134, 5);
             this.pvBank.Name = "pvBank";
             this.pvBank.Size = new System.Drawing.Size(817, 546);
@@ -169,7 +169,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.pvAgreement.Controls.Add(this.checkPartnerInternal);
             this.pvAgreement.Controls.Add(this.ctrlAgreement);
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvAgreement.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(134, 5);
             this.pvAgreement.Name = "pvAgreement";
             this.pvAgreement.Size = new System.Drawing.Size(817, 546);
@@ -205,11 +205,11 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.pvTerms.AutoScroll = true;
             this.pvTerms.Controls.Add(this.ctrlConditions);
-            this.pvTerms.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvTerms.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvTerms.Location = new System.Drawing.Point(134, 5);
             this.pvTerms.Name = "pvTerms";
             this.pvTerms.Size = new System.Drawing.Size(817, 546);
-            this.pvTerms.Text = "Умои представника";
+            this.pvTerms.Text = "Умови представника";
             // 
             // ctrlConditions
             // 
