@@ -8,6 +8,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.CommunityControls.InternalModel;
 using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -22,7 +23,9 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event GetCustomerByIdEventHandler UpdateCustomer;
         public event ReturnFullViewEventHandler<CommunityAuthorsView> UpdateAutorsList;
         public event GetCommunityRightList GetCommunityRightList;
-        public event SaveLimitedRightEventHandler<CustCmRight> SaveLimitedRights; 
+        public event Func<int, List<TermsOfService>> GetTermsOfService;
+        public event Func<int, int, List<CustCmRight>, bool> SaveCustCmRightLimitedRights;
+        public event Func<int, int, List<TermsOfService>, bool> SaveTermsOfServiceLimitedRights;
 
         private Customer _customer;
         private readonly CommunityViewsPresenter _presenter;
@@ -204,12 +207,11 @@ namespace IpsViewComponentLibrary.CommunityControls
             }
         }
 
-        private List<CustCmRight> AddAutorForm_GetCommunityRightList(int custId)
-        {
-            return GetCommunityRightList?.Invoke(custId);
-        }
-
-        //додати автора
+        /// <summary>
+        /// Додавання обмеження прав правовласника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnAddCommunity_Click(object sender, EventArgs e)
         {
             var query = new PaginateAndSearchQuery
@@ -219,16 +221,32 @@ namespace IpsViewComponentLibrary.CommunityControls
                 PageSize = 200,
             };
             waitingBar.StartWaiting();
+
             var result = await _presenter.GetAllAutorsView(query);
             var autorsList = result.List.DistinctBy(rec => rec.CustId).ToList();
-            var addAuthorForm = new CommunityLimitsAddForm(autorsList, _customer.CustId);
-            addAuthorForm.UpdateTotalPages(result.TotalItems);
+            var addAuthorForm = new CommunityLimitsAddForm(_customer.CustId);
             addAuthorForm.GetCommunityRightList += AddAutorForm_GetCommunityRightList;
+            addAuthorForm.GetTermsOfService += AddAuthorForm_GetTermsOfService;
+            addAuthorForm.DataSourceAuthors = autorsList;
+            addAuthorForm.UpdateTotalPages(result.TotalItems);
+
             waitingBar.StopWaiting();
             if (addAuthorForm.ShowDialog() == DialogResult.OK)
             {
-                SaveChanges(addAuthorForm.AuthorId, addAuthorForm.LimitRights);
+                if (_customer.CustId == InternalCommunity.InternalCommunityInfo.CustId)
+                    SaveChanges(addAuthorForm.AuthorId, addAuthorForm.TermsOfServiceLimitRights);
+                else
+                    SaveChanges(addAuthorForm.AuthorId, addAuthorForm.LimitRights);
             }
+        }
+
+        private List<CustCmRight> AddAutorForm_GetCommunityRightList(int custId)
+        {
+            return GetCommunityRightList?.Invoke(custId);
+        }
+        private List<TermsOfService> AddAuthorForm_GetTermsOfService(int arg)
+        {
+            return GetTermsOfService?.Invoke(arg);
         }
 
         private void gvViewAutors_CellDoubleClick(object sender, GridViewCellEventArgs e)
@@ -246,22 +264,49 @@ namespace IpsViewComponentLibrary.CommunityControls
             LimitationEditFormShow(row);
         }
 
+        /// <summary>
+        /// Редагування обмеження прав правовласника
+        /// </summary>
+        /// <param name="item"></param>
         private void LimitationEditFormShow(CommunityAuthorsView item)
         {
+            var editAutorForm = new CommunityLimitsEditForm();
+
             var rights = GetCommunityRightList?.Invoke(item.CustId);
-            var editAutorForm = new CommunityLimitsEditForm(item, rights, _customer.CustId);
+            var termsOfService = GetTermsOfService?.Invoke(item.CustId);
+
+            editAutorForm.SetData(item, rights, termsOfService, _customer.CustId);
 
             if (editAutorForm.ShowDialog() == DialogResult.OK)
             {
-                SaveChanges(item.CustId, editAutorForm.LimitRights);
+                if (item.CmCustId == InternalCommunity.InternalCommunityInfo.CustId)
+                    SaveChanges(item.CustId, editAutorForm.TermsOfServiceLimitRights);
+                else
+                    SaveChanges(item.CustId, editAutorForm.LimitRights);
             }
         }
 
+        private void SaveChanges(int authorId, List<TermsOfService> cmRights)
+        {
+            var result = SaveTermsOfServiceLimitedRights?.Invoke(_customer.CustId, authorId, cmRights) ?? false;
+            UpdateAfterSave(result);
+        }
+
+        /// <summary>
+        /// Зберегти зміни по обмеженню прав
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <param name="cmRights"></param>
         private void SaveChanges(int authorId, List<CustCmRight> cmRights)
         {
-            var result = SaveLimitedRights?.Invoke(_customer.CustId, authorId, cmRights) ?? false;
-            MessageShow.ShowInfoAfterChanges(result);
-            if (result)
+            var result = SaveCustCmRightLimitedRights?.Invoke(_customer.CustId, authorId, cmRights) ?? false;
+            UpdateAfterSave(result);
+        }
+
+        private void UpdateAfterSave(bool saveResult)
+        {
+            MessageShow.ShowInfoAfterChanges(saveResult);
+            if (saveResult)
             {
                 _customer = UpdateCustomer?.Invoke(_customer.CustId);
                 bsCommunityAuthorsView.DataSource = UpdateAutorsList?.Invoke();

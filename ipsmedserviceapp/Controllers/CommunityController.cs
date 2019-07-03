@@ -238,8 +238,28 @@ namespace ipsmedserviceapp.Controllers
         {
             try
             {
-                var cmRights = await _dbContext.CustCmRight.Where(items => items.CustId == custId).ToListAsync();
-                return Json(cmRights);
+                var cmRights = await _dbContext.CustCmRight
+                    .Where(items => items.CustId == custId)
+                    .ToListAsync();
+
+                return Ok(cmRights);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("termsofservice/{custId}")]
+        public async Task<IActionResult> GetTermsOfServiceListById(int custId)
+        {
+            try
+            {
+                var termsOfServiceList = await _dbContext.TermsOfService
+                    .Where(rec => rec.CustId == custId && rec.OurService)
+                    .ToListAsync();
+
+                return Ok(termsOfServiceList);
             }
             catch (Exception ex)
             {
@@ -248,14 +268,14 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// Зберегти змінені обмеження прав
+        /// Зберегти змінені обмеження прав по таблиці CustCmRight
         /// </summary>
         /// <param name="cmCustId"></param>
         /// <param name="custId"></param>
         /// <param name="sourceList"></param>
         /// <returns></returns>
         [HttpPut("lrightsupd/{cmCustId}/{custId}")]
-        public async Task<IActionResult> SaveLimitRights(int cmCustId, int custId, [FromBody] List<CustCmRight> sourceList)
+        public async Task<IActionResult> SaveLimitRightsByCustCmRight(int cmCustId, int custId, [FromBody] List<CustCmRight> sourceList)
         {
             //int[] workedCustId = sourceList.Select(rec => rec.CustId).Distinct().ToArray();
             int[] workedCRkindCode = sourceList.Select(rec => rec.CRkindCode).Distinct().ToArray();
@@ -332,6 +352,76 @@ namespace ipsmedserviceapp.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Зберегти змінені обмеження прав по таблиці TermsOfService
+        /// </summary>
+        /// <param name="cmCustId"></param>
+        /// <param name="custId"></param>
+        /// <param name="sourceList"></param>
+        /// <returns></returns>
+        [HttpPut("lrightstosupd/{cmCustId}/{custId}")]
+        public async Task<IActionResult> SaveLimitRightsByTermsOfService(int cmCustId, int custId, [FromBody] List<TermsOfService> sourceList)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var destination = await _dbContext.TermsOfService
+                    .Where(rec => rec.CustId == custId)
+                    .ToListAsync();
+
+                if (!destination.Any())
+                    return NotFound();
+                
+                // якщо нема жодного вхідного запису то обмеження відсутні
+                if (!sourceList.Any())
+                {
+                    foreach (var currentTerm in destination)
+                        currentTerm.OurService = false;
+                }
+                else
+                {
+                    foreach (var currentTerm in destination)
+                    {
+                        // якщо запис в колекції знайдено, то по ньому є обмеження прав користувача програми,
+                        // необхідно видалити можливий наявний запис в таблиці CustCmRight
+                        var term = sourceList.SingleOrDefault(rec => rec.CustId == currentTerm.CustId && rec.CrkindCode == currentTerm.CrkindCode);
+                        currentTerm.OurService = term != null && term.OurService;
+
+                        if (term != null)
+                        {
+                            var custCmRight = _dbContext.CustCmRight.SingleOrDefault(rec => rec.CustId == currentTerm.CustId && rec.CRkindCode == currentTerm.CrkindCode);
+                            if (custCmRight != null)
+                                _dbContext.CustCmRight.Remove(custCmRight);
+                        }
+                    }
+
+                    // можлива наявність нових записів
+                    foreach (var termsOfService in sourceList)
+                    {
+                        var isExist = destination.Any(rec => rec.CustId == termsOfService.CustId && rec.CrkindCode == termsOfService.CrkindCode);
+                        if (isExist)
+                            continue;
+
+                        var newTerm = new TermsOfService();
+                        newTerm.SetFields(termsOfService);
+                        destination.Add(newTerm);
+                        _dbContext.TermsOfService.Add(newTerm);
+                    }
+                }
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+
+                return Ok();
+            }
+            catch
+            {
+                transaction?.Rollback();
+                throw;
             }
         }
 

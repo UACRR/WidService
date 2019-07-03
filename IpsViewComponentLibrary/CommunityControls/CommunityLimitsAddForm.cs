@@ -23,14 +23,16 @@ namespace IpsViewComponentLibrary.CommunityControls
         private readonly int _communityCustId;
 
         public List<CustCmRight> LimitRights => ctrlRightLimitation.LimitRights;
+        public List<TermsOfService> TermsOfServiceLimitRights => ctrlRightLimitation.TermsOfServiceLimitRights;
 
         public int AuthorId { get; private set; }
 
         public event GetCommunityRightList GetCommunityRightList;
+        public event Func<int, List<TermsOfService>> GetTermsOfService;
 
         protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
-        public CommunityLimitsAddForm(List<CommunityAuthorsView> autorList, int communityCustId)
+        public CommunityLimitsAddForm(int communityCustId)
         {
             InitializeComponent();
             if (!IsDesignMode)
@@ -38,10 +40,16 @@ namespace IpsViewComponentLibrary.CommunityControls
             WindowState = FormWindowState.Maximized;
             parentGridPanel.PanelElement.PanelBorder.Width = 0f;
             ctrlSaveCancel.SaveButtonEnabled = false;
+            ctrlSaveCancel.ButtonSaveDialogResult = DialogResult.None;
             ctrlSaveCancel.SaveClck += Save_Click;
             ctrlRightLimitation.ValueEdit += CtrlRightLimitation_ValueEdit;
             _communityCustId = communityCustId;
-            bsCommunityAuthorsView.DataSource = autorList;
+        }
+
+        public object DataSourceAuthors
+        {
+            get => bsCommunityAuthorsView.DataSource;
+            set => bsCommunityAuthorsView.DataSource = value;
         }
 
         private void CtrlRightLimitation_ValueEdit(object sender, EventArgs e)
@@ -55,7 +63,11 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void Save_Click(object sender, EventArgs e)
         {
             AuthorId = (gvViewAutors.CurrentRow.DataBoundItem as CommunityAuthorsView)?.CustId ?? 0;
-            //DialogResult = DialogResult.OK;
+            if (ctrlRightLimitation.CheckCanSaveRightLimitChanges())
+            {
+                ctrlRightLimitation.UpdateData();
+                DialogResult = DialogResult.OK;
+            }
         }
 
         // зміна рядка автора
@@ -65,7 +77,9 @@ namespace IpsViewComponentLibrary.CommunityControls
                 return;
 
             var rightList = GetCommunityRightList?.Invoke(item.CustId);
-            ctrlRightLimitation.SetData(item, rightList, _communityCustId);
+            var termsOfServices = GetTermsOfService?.Invoke(item.CustId);
+
+            ctrlRightLimitation.SetData(item, rightList, termsOfServices, _communityCustId);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

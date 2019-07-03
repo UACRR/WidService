@@ -12,6 +12,7 @@ using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.CommunityControls.InternalModel;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -30,7 +31,9 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event SaveCustomerEventHandler SaveCommunity;
         public event Func<AgreementAddCommunity, bool> SaveAgreementChanges;
         public event GetCommunityRightList GetCommunityRightList;
-        public event SaveLimitedRightEventHandler<CustCmRight> SaveLimitRights;
+        public event Func<int, List<TermsOfService>> GetTermsOfService;
+        public event Func<int, int, List<CustCmRight>, bool> SaveCustCmRightLimitedRights;
+        public event Func<int, int, List<TermsOfService>, bool> SaveTermsOfServiceLimitedRights;
 
         public CommunityControl()
         {
@@ -49,7 +52,9 @@ namespace IpsViewComponentLibrary.CommunityControls
         // оновлення даних на грід зі збереженням обраного рядка
         private void UpdateDataGrid()
         {
-            bsCommunityListView.DataSource = SetCommunityList?.Invoke(-1);
+            var communityList = SetCommunityList?.Invoke(-1);
+            bsCommunityListView.DataSource = communityList;
+            InternalCommunity.InternalCommunityInfo = communityList?.SingleOrDefault(rec => rec.IsMy == 1);
             bsCommunityListView.ResetBindings(false);
         }
 
@@ -61,8 +66,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             {
                 var result = SaveCommunity?.Invoke(community) ?? false;
                 MessageShow.ShowInfoByResult(SeccessMsg, ErrorMsg, result);
-                if (result)
-                    UpdateDataGrid();
+                UpdateDataGrid();
             }
         }
 
@@ -91,17 +95,16 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             var customer = GetCommunity?.Invoke(item.CustId);
             var autors = GetCommunityAutorsList?.Invoke(item.CustId);
+
             var cabinetForm = new CommunityCabinetForm(customer, autors);
-            //using (var cabinet = new CommunityCabinetForm(customer, autors))
-            //{
-            //    cabinet.Show();
-            //}
             cabinetForm.SaveCustomer += CabinetForm_SaveCustomer;
             cabinetForm.SaveAgreementChanges += CabinetForm_SaveAgreementChanges;
             cabinetForm.UpdateCustomer += CabinetForm_UpdateCustomer;
             cabinetForm.ChangeStatusAgr += CabinetForm_ChangeStatusAgr;
             cabinetForm.GetCommunityRightList += CabinetForm_GetCommunityRightList;
-            cabinetForm.SaveLimitedRights += CabinetFormSaveLimitedRights;
+            cabinetForm.GetTermsOfService += CabinetForm_GetTermsOfService;
+            cabinetForm.SaveCustCmRightLimitedRights += CabinetFormSaveCustCmRightLimitedRights;
+            cabinetForm.SaveTermsOfServiceLimitedRights += CabinetForm_SaveTermsOfServiceLimitedRights;
             cabinetForm.UpdateAutorsList += CabinetForm_UpdateAutorsList;
             cabinetForm.Show();
         }
@@ -113,14 +116,24 @@ namespace IpsViewComponentLibrary.CommunityControls
             return null;
         }
 
-        private bool CabinetFormSaveLimitedRights(int cmCustId, int custId, List<CustCmRight> listObj)
+        private bool CabinetFormSaveCustCmRightLimitedRights(int cmCustId, int custId, List<CustCmRight> listObj)
         {
-            return SaveLimitRights?.Invoke(cmCustId, custId, listObj) ?? false;
+            return SaveCustCmRightLimitedRights?.Invoke(cmCustId, custId, listObj) ?? false;
+        }
+
+        private bool CabinetForm_SaveTermsOfServiceLimitedRights(int cmCustId, int custId, List<TermsOfService> termsOfServices)
+        {
+            return SaveTermsOfServiceLimitedRights?.Invoke(cmCustId, custId, termsOfServices) ?? false;
         }
 
         private List<CustCmRight> CabinetForm_GetCommunityRightList(int custId)
         {
             return GetCommunityRightList?.Invoke(custId);
+        }
+
+        private List<TermsOfService> CabinetForm_GetTermsOfService(int arg)
+        {
+            return GetTermsOfService?.Invoke(arg);
         }
 
         private bool CabinetForm_ChangeStatusAgr(int communityId, CPartnerObjectStatus status)

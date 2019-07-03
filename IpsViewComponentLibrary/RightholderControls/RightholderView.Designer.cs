@@ -737,7 +737,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightLimitations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRightLimitations.DataMember = "";
             this.ctrlRightLimitations.DataSource = typeof(ipsFormsDesign.Dictionary.TermsOfServiceWrapper);
             this.ctrlRightLimitations.Location = new System.Drawing.Point(3, 3);
             this.ctrlRightLimitations.Name = "ctrlRightLimitations";
@@ -1127,7 +1126,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.rightLimitationsControl1_ExternalAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rightLimitationsControl1_ExternalAnketa.DataMember = "";
             this.rightLimitationsControl1_ExternalAnketa.DataSource = typeof(ipsFormsDesign.Dictionary.TermsOfServiceWrapper);
             this.rightLimitationsControl1_ExternalAnketa.Location = new System.Drawing.Point(0, 0);
             this.rightLimitationsControl1_ExternalAnketa.Name = "rightLimitationsControl1_ExternalAnketa";

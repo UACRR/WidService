@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.ctrlSaveCancel = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
-            this.ctrlRightLimitation = new IpsViewComponentLibrary.CommunityControls.CommunityRightLimitationControl();
             this.panelHeader = new Telerik.WinControls.UI.RadPanel();
             this.lblRhName = new Telerik.WinControls.UI.RadLabel();
             this.bsHeaderCommunityAuthorsView = new System.Windows.Forms.BindingSource(this.components);
@@ -40,6 +39,7 @@
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.lblCipherCode = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.mainPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             ((System.ComponentModel.ISupportInitialize)(this.panelHeader)).BeginInit();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblRhName)).BeginInit();
@@ -49,26 +49,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCipherCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlSaveCancel
             // 
+            this.ctrlSaveCancel.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
             this.ctrlSaveCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrlSaveCancel.Location = new System.Drawing.Point(0, 384);
             this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
             this.ctrlSaveCancel.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlSaveCancel.Name = "ctrlSaveCancel";
+            this.ctrlSaveCancel.SaveButtonEnabled = true;
             this.ctrlSaveCancel.Size = new System.Drawing.Size(884, 31);
             this.ctrlSaveCancel.TabIndex = 0;
-            // 
-            // ctrlRightLimitation
-            // 
-            this.ctrlRightLimitation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlRightLimitation.Location = new System.Drawing.Point(0, 65);
-            this.ctrlRightLimitation.Name = "ctrlRightLimitation";
-            this.ctrlRightLimitation.Size = new System.Drawing.Size(884, 319);
-            this.ctrlRightLimitation.TabIndex = 1;
             // 
             // panelHeader
             // 
@@ -200,12 +195,21 @@
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Шифр:";
             // 
+            // mainPanel
+            // 
+            this.mainPanel.BorderVisible = false;
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(0, 65);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(884, 319);
+            this.mainPanel.TabIndex = 3;
+            // 
             // CommunityLimitsEditForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(884, 415);
-            this.Controls.Add(this.ctrlRightLimitation);
+            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.ctrlSaveCancel);
             this.Name = "CommunityLimitsEditForm";
@@ -225,6 +229,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCipherCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -234,7 +239,6 @@
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Common.SaveCancelButtonsControl ctrlSaveCancel;
-        private CommunityRightLimitationControl ctrlRightLimitation;
         private Telerik.WinControls.UI.RadPanel panelHeader;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel lblCipherCode;
@@ -243,5 +247,6 @@
         private Telerik.WinControls.UI.RadLabel lblIpi;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private System.Windows.Forms.BindingSource bsHeaderCommunityAuthorsView;
+        private Common.Editors.IpsPanel mainPanel;
     }
 }

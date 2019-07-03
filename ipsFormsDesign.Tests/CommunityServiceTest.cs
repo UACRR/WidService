@@ -178,7 +178,7 @@ namespace ipsFormsDesign.Tests
                 }
             };
             //save data
-            bool result = _communityService.SaveLimitRights(cmCustId, custId, listObj);
+            bool result = _communityService.SaveCustCmRightLimitedRights(cmCustId, custId, listObj);
             //check on success
         }
 

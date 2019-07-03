@@ -14,13 +14,10 @@ using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
+    [ComplexBindingProperties("DataSource")]
     public partial class RightLimitationsControl : UserControl
     {
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public RightLimitationsControl()
         {
@@ -42,20 +39,12 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return bsTermsOfServiceWrapper.DataSource; }
+            get => bsTermsOfServiceWrapper.DataSource;
             set
             {
                 if (bsTermsOfServiceWrapper.DataSource != value)
                     bsTermsOfServiceWrapper.DataSource = value;
             }
-        }
-
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string DataMember
-        {
-            get { return bsTermsOfServiceWrapper.DataMember; }
-            set { bsTermsOfServiceWrapper.DataMember = value; }
         }
 
         private void gvRightLimitations_CellFormatting(object sender, CellFormattingEventArgs e)

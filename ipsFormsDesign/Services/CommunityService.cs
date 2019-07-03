@@ -109,11 +109,19 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem($"{Prefix}updateagreement", agreement.AgrId.ToString(), agreement);
         }
 
-        public bool SaveLimitRights(int cmCustId, int custId, List<CustCmRight> listObj)
+        public bool SaveCustCmRightLimitedRights(int cmCustId, int custId, List<CustCmRight> listObj)
         {
             var url = $"lrightsupd/{cmCustId}/{custId}";
 
             var result = _webApi.UpdateItem(string.Concat(Prefix, url), null, listObj);
+            return result;
+        }
+
+        public bool SaveTermsOfServiceLimitedRights(int cmCustId, int custId, List<TermsOfService> termsOfServices)
+        {
+            var url = $"{Prefix}lrightstosupd/{cmCustId}/{custId}";
+
+            var result = _webApi.UpdateItem(url, null, termsOfServices);
             return result;
         }
 
@@ -128,6 +136,13 @@ namespace ipsFormsDesign.Services
             string url = Prefix + "cmautors/" + custId;
             var rightlist = _webApi.GetList<CustCmRight>(url);
             return rightlist;
+        }
+
+        public List<TermsOfService> GetTermsOfService(int custId)
+        {
+            string url = Prefix + "termsofservice/" + custId;
+            var termsOfServices = _webApi.GetList<TermsOfService>(url);
+            return termsOfServices;
         }
 
         public bool ChangeStatusAgr(int communityId, CPartnerObjectStatus status)

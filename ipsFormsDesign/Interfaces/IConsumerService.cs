@@ -417,6 +417,7 @@ namespace ipsFormsDesign.Interfaces
         public string InterCode { get; set; }
         public DateTime? RegistrDate { get; set; }
         public int? CountAuthors { get; set; }
+        public int IsMy { get; set; }
     }
 
     public class CommunityAuthorsView
