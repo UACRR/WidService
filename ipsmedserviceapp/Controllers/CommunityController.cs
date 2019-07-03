@@ -277,7 +277,6 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("lrightsupd/{cmCustId}/{custId}")]
         public async Task<IActionResult> SaveLimitRightsByCustCmRight(int cmCustId, int custId, [FromBody] List<CustCmRight> sourceList)
         {
-            //int[] workedCustId = sourceList.Select(rec => rec.CustId).Distinct().ToArray();
             int[] workedCRkindCode = sourceList.Select(rec => rec.CRkindCode).Distinct().ToArray();
 
             Expression<Func<CustCmRight, bool>> predicate = rec => rec.CmCustId == cmCustId && rec.CustId == custId;
@@ -291,13 +290,17 @@ namespace ipsmedserviceapp.Controllers
                 .Where(rec => rec.CustId == custId && workedCRkindCode.Contains(rec.CrkindCode))
                 .ToArrayAsync();
 
+            IDbContextTransaction transaction = null;
+
             try
             {
-                // remove
+                // remove items
                 var removeList = destinationList
-                    .Where(dest => !sourceList.Any(sors => sors.CmCustId == dest.CmCustId 
-                                                        && sors.CRkindCode == dest.CRkindCode 
-                                                        && sors.CustId == dest.CustId)).ToList();
+                    .Where(dest => !sourceList
+                        .Any(sors => sors.CmCustId == dest.CmCustId && 
+                                     sors.CRkindCode == dest.CRkindCode && 
+                                     sors.CustId == dest.CustId)).ToList();
+
                 removeList.ForEach(item =>
                 {
                     item.C.OurService = true;
@@ -305,52 +308,59 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.CustCmRight.Remove(item);
                 });
 
-                // update
-                var updList = destinationList
-                    .Where(dest => sourceList.Any(sors => sors.CmCustId == dest.CmCustId
-                                                       && sors.CRkindCode == dest.CRkindCode 
-                                                       && sors.CustId == dest.CustId)).ToList();
-                var sourceDict = sourceList.Where(rec => rec.CmCustId != 0).ToDictionary(rec => rec.CRkindCode);
-                updList.ForEach(item =>
-                {
-                    var sourceItem = sourceDict[item.CRkindCode];
-                    item.SetFields(sourceItem);
-                });
-
-                // add new
+                // add or update items
                 var addList = sourceList
-                    .Where(sors => !destinationList.Any(dest => dest.CustId == sors.CustId 
-                                                             && dest.CRkindCode == sors.CRkindCode 
-                                                             && dest.CmCustId == sors.CmCustId)).ToList();
+                    .Where(sors => !destinationList
+                        .Any(dest => dest.CustId == sors.CustId && 
+                                     dest.CRkindCode == sors.CRkindCode && 
+                                     dest.CmCustId == sors.CmCustId)).ToList();
+
                 addList.ForEach(item =>
                 {
+                    // старі видаляємо, нові додаємо: 'CustCmRight' is part of a key and so cannot be modified
+                    var oldRight = _dbContext.CustCmRight.SingleOrDefault(rec => rec.CustId == item.CustId && rec.CRkindCode == item.CRkindCode);
+                    if (oldRight != null)
+                    {
+                        destinationList.Remove(oldRight);
+                        _dbContext.CustCmRight.Remove(oldRight);
+                    }
+
                     var right = new CustCmRight
                     {
                         CmCustId = cmCustId
                     };
-                    right.SetFields(item, new []{ "CmCustId" });
+                    right.SetFields(item, new[] { "CmCustId" });
 
-                    //destinationList.Add(right);
+                    destinationList.Add(right);
                     _dbContext.CustCmRight.Add(right);
+                    
+                    // можливі нові записи в TermsOfService
                     var terms = termOfService.FirstOrDefault(r => r.CustId == item.CustId && r.CrkindCode == item.CRkindCode);
-                    if (terms != null)
+                    if (terms == null)
+                    {
+                        var newTerm = new TermsOfService
+                        {
+                            CustId = item.CustId,
+                            CrkindCode = item.CRkindCode,
+                            OurService = false,
+                        };
+                        _dbContext.TermsOfService.Add(newTerm);
+                    }
+                    else
+                    {
                         terms.OurService = false;
+                    }
                 });
 
-                // check exist CustCmRight and delete
-                var crKindCode = addList.Select(rec => rec.CRkindCode).ToList();
-                var existCustCmRight = _dbContext.CustCmRight
-                    .Where(rec => rec.CustId == custId && rec.CmCustId != cmCustId && crKindCode.Contains(rec.CRkindCode)).ToList();
-                if (existCustCmRight.Any())
-                    _dbContext.CustCmRight.RemoveRange(existCustCmRight);
-
-
+                transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
+                transaction.Commit();
 
-                return Json(destinationList);
+                return Ok();
             }
             catch (Exception ex)
             {
+                transaction?.Rollback();
                 return BadRequest(ex.Message);
             }
         }
