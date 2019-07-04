@@ -24,6 +24,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             ctrlSaveCancelButtons.SaveClck += btnSave_Click;
             bsDictCreativeRole.DataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
             bsDictGenreType.DataSource = IpsGlobal.AnketaDictionaties.genreType.Where(rec => rec.CategoryCode == 5);
+            bsRegisterItem.BindingComplete += bsRegisterItem_BindingComplete;
             bsRegisterItem.DataSource = registerItem;
             bsRegisterExtra.DataSource = registerItem.RegisterExtra;
         }
@@ -107,8 +108,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
                 return;
 
             var source = IpsGlobal.AnketaDictionaties.relGenrePercent.SingleOrDefault(rec => rec.GenreType == item.GenreType);
-            if (bsDictRelGenrePercent.DataSource != source)
+
+            if (source != null)
                 bsDictRelGenrePercent.DataSource = source;
+            else
+                bsDictRelGenrePercent.DataSource = typeof(RelGenrePercent);
         }
     }
 }

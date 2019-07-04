@@ -95,7 +95,6 @@
             // bsRegisterItem
             // 
             this.bsRegisterItem.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
-            this.bsRegisterItem.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bsRegisterItem_BindingComplete);
             // 
             // radLabel7
             // 
@@ -312,7 +311,7 @@
             // 
             this.lblRate.AutoSize = false;
             this.lblRate.BorderVisible = true;
-            this.lblRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDictRelGenrePercent, "Rate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.lblRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDictRelGenrePercent, "Rate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.lblRate.Location = new System.Drawing.Point(460, 29);
             this.lblRate.MinimumSize = new System.Drawing.Size(50, 18);
             this.lblRate.Name = "lblRate";
