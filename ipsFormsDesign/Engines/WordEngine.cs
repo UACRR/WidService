@@ -1000,11 +1000,20 @@ namespace ipsFormsDesign.Services
                     case "CstName":
                         item.Range.Text = rightholder.Name;
                         break;
+                    case "NameCR":
+                        item.Range.Text = rightholder.Name;
+                        break;
                     case "data":
+                        item.Range.Text = DateTime.Now.ToShortDateString();
+                        break;
+                    case "DataRq":
                         item.Range.Text = DateTime.Now.ToShortDateString();
                         break;
                     case "TableObjForApp":
                         PopulateTableObjects(item.Range.Tables, objectRightList);
+                        break;
+                    case "TableObjForApp1":
+                        PopulateTableObjects1(item.Range.Tables, objectRightList);
                         break;
                 }
             }
@@ -1020,6 +1029,44 @@ namespace ipsFormsDesign.Services
             if (appVersion < 15)
                 ConvertDocxToPdf(tempFileName + ".docx", tempFileName + ".pdf");
 
+        }
+
+        private void PopulateTableObjects1(Tables tables, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            if (tables.Count == 0)
+                return;
+
+            Table tableObjects = tables[1];
+            int index = 1;
+            ObjectRightService _objectRightService;
+            _objectRightService = new ObjectRightService();
+            foreach (var item in objectRightList)
+            {
+                var newRow = tableObjects.Rows.Add();
+                int curObjid = item.ObjId;
+
+
+                newRow.Cells[1].Range.Text = index.ToString();
+                index++;
+                newRow.Cells[2].Range.Text = item.ObjName;
+                newRow.Cells[3].Range.Text = item.GenreName;
+                newRow.Cells[4].Range.Text = item.Duration;
+                newRow.Cells[5].Range.Text = item.SpecName;                 
+                newRow.Cells[6].Range.Text = item.Performer;
+                var list = _objectRightService.GetObjectRightholders(curObjid);
+
+                foreach (var curObj in list)
+                {
+                    newRow = tableObjects.Rows.Add();
+                    newRow.Cells[7].Range.Text = curObj.CreativeRoles;
+                    newRow.Cells[8].Range.Text = curObj.Name;
+                    newRow.Cells[9].Range.Text = curObj.TotalRate.ToString();
+                }
+
+
+              
+        //        DisableBoldFont(newRow);
+            }
         }
 
         private void PopulateTableObjects(Tables tables, IEnumerable<ObjectRightNotAccepted> objectRightList)
