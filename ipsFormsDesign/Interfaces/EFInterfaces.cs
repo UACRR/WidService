@@ -632,6 +632,7 @@ public interface ICreativeRoleType
          int CategoryCode { get; set; }
          string Name { get; set; }
          int Crtype { get; set; }
+         int? IsAuthorType { get; set; }
 }
 public interface ICreativeRoleTypeTr
     {
@@ -1030,6 +1031,10 @@ public interface IInvoice
          string Purpose { get; set; }
          int? Status { get; set; }
     }
+public interface IIsAuthorType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
 public interface IItemStatus
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1359,6 +1364,7 @@ public interface IMyAnketa
          string AccCommission { get; set; }
          string AccInCommission { get; set; }
          string AccCourt { get; set; }
+         short? TypeAlg { get; set; }
 }
 public interface IMyCategory
     {

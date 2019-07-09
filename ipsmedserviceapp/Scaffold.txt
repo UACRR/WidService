@@ -116,6 +116,7 @@
 "HandDocPay",
 "inputFile",
 "Invoice",
+"IsAuthorType",
 "ItemStatus",
 "ItemStatusTr",
 "KindComposition",
