@@ -47,9 +47,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.ctrlBookkeeper = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
-            this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
-            this.ctrlHeadBoss = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
+            this.txtOnBasicsBoss = new Telerik.WinControls.UI.RadTextBox();
+            this.bsRelEmployeeBoss = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator5 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
@@ -61,7 +60,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.gvContactPersons = new Telerik.WinControls.UI.RadGridView();
             this.bsEmployee = new System.Windows.Forms.BindingSource(this.components);
             this.btnAddContact = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).BeginInit();
+            this.ctrlHeadBoss = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsExtendedControl();
+            this.ctrlBookkeeper = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsExtendedControl();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsBoss)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRelEmployeeBoss)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
@@ -75,37 +77,22 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.btnAddContact)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctrlBookkeeper
+            // txtOnBasicsBoss
             // 
-            this.ctrlBookkeeper.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlBookkeeper.Location = new System.Drawing.Point(54, 145);
-            this.ctrlBookkeeper.Name = "ctrlBookkeeper";
-            this.ctrlBookkeeper.OutsidePhone = false;
-            this.ctrlBookkeeper.PhoneNullText = "+380## ### ## ##";
-            this.ctrlBookkeeper.Size = new System.Drawing.Size(682, 56);
-            this.ctrlBookkeeper.TabIndex = 32;
-            // 
-            // txtOnBasicsIfHeadBoss
-            // 
-            this.txtOnBasicsIfHeadBoss.AutoSize = false;
-            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(153, 30);
-            this.txtOnBasicsIfHeadBoss.Multiline = true;
-            this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
-            this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР, наказ," +
+            this.txtOnBasicsBoss.AutoSize = false;
+            this.txtOnBasicsBoss.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRelEmployeeBoss, "RelDocument", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.txtOnBasicsBoss.Location = new System.Drawing.Point(153, 30);
+            this.txtOnBasicsBoss.Multiline = true;
+            this.txtOnBasicsBoss.Name = "txtOnBasicsBoss";
+            this.txtOnBasicsBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР, наказ," +
     " протокол)";
-            this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(583, 20);
-            this.txtOnBasicsIfHeadBoss.TabIndex = 30;
-            this.txtOnBasicsIfHeadBoss.ThemeName = "Office2013Light";
+            this.txtOnBasicsBoss.Size = new System.Drawing.Size(580, 20);
+            this.txtOnBasicsBoss.TabIndex = 30;
+            this.txtOnBasicsBoss.ThemeName = "Office2013Light";
             // 
-            // ctrlHeadBoss
+            // bsRelEmployeeBoss
             // 
-            this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlHeadBoss.Location = new System.Drawing.Point(54, 56);
-            this.ctrlHeadBoss.Name = "ctrlHeadBoss";
-            this.ctrlHeadBoss.OutsidePhone = false;
-            this.ctrlHeadBoss.PhoneNullText = "+380## ### ## ##";
-            this.ctrlHeadBoss.Size = new System.Drawing.Size(682, 56);
-            this.ctrlHeadBoss.TabIndex = 31;
+            this.bsRelEmployeeBoss.DataSource = typeof(ipsFormsDesign.Model.RelEmployee);
             // 
             // radLabel8
             // 
@@ -119,7 +106,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // radSeparator5
             // 
-            this.radSeparator5.Location = new System.Drawing.Point(116, 207);
+            this.radSeparator5.Location = new System.Drawing.Point(116, 283);
             this.radSeparator5.Name = "radSeparator5";
             this.radSeparator5.Size = new System.Drawing.Size(619, 21);
             this.radSeparator5.TabIndex = 24;
@@ -128,7 +115,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // radLabel6
             // 
             this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel6.Location = new System.Drawing.Point(3, 207);
+            this.radLabel6.Location = new System.Drawing.Point(3, 283);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(107, 21);
             this.radLabel6.TabIndex = 25;
@@ -137,7 +124,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // radSeparator4
             // 
-            this.radSeparator4.Location = new System.Drawing.Point(75, 118);
+            this.radSeparator4.Location = new System.Drawing.Point(75, 156);
             this.radSeparator4.Name = "radSeparator4";
             this.radSeparator4.Size = new System.Drawing.Size(661, 21);
             this.radSeparator4.TabIndex = 26;
@@ -146,7 +133,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // radLabel5
             // 
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel5.Location = new System.Drawing.Point(3, 118);
+            this.radLabel5.Location = new System.Drawing.Point(3, 156);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(66, 21);
             this.radLabel5.TabIndex = 27;
@@ -173,9 +160,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // gvContactPersons
             // 
-            this.gvContactPersons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gvContactPersons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvContactPersons.Location = new System.Drawing.Point(3, 258);
+            this.gvContactPersons.Location = new System.Drawing.Point(3, 334);
             // 
             // 
             // 
@@ -296,7 +284,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.gvContactPersons.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvContactPersons.Name = "gvContactPersons";
             this.gvContactPersons.ReadOnly = true;
-            this.gvContactPersons.Size = new System.Drawing.Size(887, 193);
+            this.gvContactPersons.Size = new System.Drawing.Size(887, 139);
             this.gvContactPersons.TabIndex = 33;
             this.gvContactPersons.ThemeName = "Office2013Light";
             this.gvContactPersons.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvContactPersons_CommandCellClick);
@@ -307,7 +295,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // btnAddContact
             // 
-            this.btnAddContact.Location = new System.Drawing.Point(3, 232);
+            this.btnAddContact.Location = new System.Drawing.Point(3, 308);
             this.btnAddContact.Name = "btnAddContact";
             this.btnAddContact.Size = new System.Drawing.Size(156, 20);
             this.btnAddContact.TabIndex = 34;
@@ -315,15 +303,35 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.btnAddContact.ThemeName = "Office2013Light";
             this.btnAddContact.Click += new System.EventHandler(this.btnAddContact_Click);
             // 
+            // ctrlHeadBoss
+            // 
+            this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Model.Employee);
+            this.ctrlHeadBoss.Location = new System.Drawing.Point(46, 56);
+            this.ctrlHeadBoss.MaximumSize = new System.Drawing.Size(1000, 94);
+            this.ctrlHeadBoss.MinimumSize = new System.Drawing.Size(450, 94);
+            this.ctrlHeadBoss.Name = "ctrlHeadBoss";
+            this.ctrlHeadBoss.Size = new System.Drawing.Size(690, 94);
+            this.ctrlHeadBoss.TabIndex = 35;
+            // 
+            // ctrlBookkeeper
+            // 
+            this.ctrlBookkeeper.DataSource = typeof(ipsFormsDesign.Model.Employee);
+            this.ctrlBookkeeper.Location = new System.Drawing.Point(46, 183);
+            this.ctrlBookkeeper.MaximumSize = new System.Drawing.Size(1000, 94);
+            this.ctrlBookkeeper.MinimumSize = new System.Drawing.Size(450, 94);
+            this.ctrlBookkeeper.Name = "ctrlBookkeeper";
+            this.ctrlBookkeeper.Size = new System.Drawing.Size(690, 94);
+            this.ctrlBookkeeper.TabIndex = 36;
+            // 
             // ManagersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ctrlBookkeeper);
+            this.Controls.Add(this.ctrlHeadBoss);
             this.Controls.Add(this.btnAddContact);
             this.Controls.Add(this.gvContactPersons);
-            this.Controls.Add(this.ctrlBookkeeper);
-            this.Controls.Add(this.txtOnBasicsIfHeadBoss);
-            this.Controls.Add(this.ctrlHeadBoss);
+            this.Controls.Add(this.txtOnBasicsBoss);
             this.Controls.Add(this.radLabel8);
             this.Controls.Add(this.radSeparator5);
             this.Controls.Add(this.radLabel6);
@@ -332,8 +340,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.Controls.Add(this.radSeparator3);
             this.Controls.Add(this.radLabel4);
             this.Name = "ManagersControl";
-            this.Size = new System.Drawing.Size(893, 454);
-            ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).EndInit();
+            this.Size = new System.Drawing.Size(893, 476);
+            ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsBoss)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRelEmployeeBoss)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
@@ -351,9 +360,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         }
 
         #endregion
-        private IpsBossNameContactsControl ctrlBookkeeper;
-        private Telerik.WinControls.UI.RadTextBox txtOnBasicsIfHeadBoss;
-        private IpsBossNameContactsControl ctrlHeadBoss;
+        private Telerik.WinControls.UI.RadTextBox txtOnBasicsBoss;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private Telerik.WinControls.UI.RadSeparator radSeparator5;
         private Telerik.WinControls.UI.RadLabel radLabel6;
@@ -365,5 +372,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.RadGridView gvContactPersons;
         private System.Windows.Forms.BindingSource bsEmployee;
         private Telerik.WinControls.UI.RadButton btnAddContact;
+        private System.Windows.Forms.BindingSource bsRelEmployeeBoss;
+        private IpsBossNameContactsExtendedControl ctrlHeadBoss;
+        private IpsBossNameContactsExtendedControl ctrlBookkeeper;
     }
 }

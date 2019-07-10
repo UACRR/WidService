@@ -91,7 +91,6 @@
             this.txtPhone.Size = new System.Drawing.Size(173, 21);
             this.txtPhone.TabIndex = 3;
             this.txtPhone.ThemeName = "Office2013Light";
-            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // employeeBindingSource
             // 
@@ -138,7 +137,7 @@
             this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(28, 19);
+            this.radLabel1.Size = new System.Drawing.Size(24, 19);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "ПІБ:";
             this.radLabel1.ThemeName = "Office2013Light";
@@ -148,7 +147,7 @@
             this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.radLabel2.Location = new System.Drawing.Point(3, 34);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(31, 19);
+            this.radLabel2.Size = new System.Drawing.Size(24, 19);
             this.radLabel2.TabIndex = 3;
             this.radLabel2.Text = "Тел.:";
             this.radLabel2.ThemeName = "Office2013Light";
