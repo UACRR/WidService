@@ -12,14 +12,8 @@ namespace ipsFormsDesign.Dictionary
         public int AuthId { get; set; }
         public int ObjId { get; set; }
         public int RoleCode { get; set; }
-        private string _authorName = string.Empty;
-        public string AuthorName {
-            get => _authorName;
-            set {
-                // Debug.WriteLine(value);
-                _authorName = value;
-            }
-        }
+        public string AuthorName { get; set; } = string.Empty;
+
         public int? CustId { get; set; }
         public int? CRightId { get; set; }
         public int? CopyrightStatus { get; set; }
@@ -29,7 +23,7 @@ namespace ipsFormsDesign.Dictionary
         private decimal? _rate;
         public decimal? Rate
         {
-            get { return _rate; }
+            get => _rate;
             set
             {
                 _rate = value;
@@ -40,7 +34,7 @@ namespace ipsFormsDesign.Dictionary
         private DateTime? _beginDate;
         public DateTime? BeginDate
         {
-            get { return _beginDate; }
+            get => _beginDate;
             set
             {
                 _beginDate = value;
@@ -51,7 +45,7 @@ namespace ipsFormsDesign.Dictionary
         private DateTime? _endDate;
         public DateTime? EndDate
         {
-            get { return _endDate; }
+            get => _endDate;
             set
             {
                 _endDate = value;
@@ -62,7 +56,7 @@ namespace ipsFormsDesign.Dictionary
         private int? _folkType;
         public int? FolkType
         {
-            get { return _folkType; }
+            get => _folkType;
             set
             {
                 if (_folkType != value)
@@ -90,7 +84,7 @@ namespace ipsFormsDesign.Dictionary
         private bool _isRightholder;
         public bool IsRightholder
         {
-            get { return _isRightholder; }
+            get => _isRightholder;
             set
             {
                 if (_isRightholder != value)
