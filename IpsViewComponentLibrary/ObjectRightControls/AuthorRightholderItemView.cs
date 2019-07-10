@@ -41,7 +41,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             SetDictionaries();
 
             objectAuthorRightholderBindingSource.DataSource = _authorRightholder;
-            if (_authorRightholder.IsRightholder)
+
+            if (_authorRightholder.CopyrightStatus == 1)
                 SetReadOnlyForConfirmRightholder();
         }
 
