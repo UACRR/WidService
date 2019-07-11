@@ -46,10 +46,17 @@
             this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
             this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
+            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
+            this.gridCatalogFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
+            this.backgroundPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -68,6 +75,7 @@
             this.gridCatalogFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridCatalogFiles.Controls.Add(this.waitingBar);
             this.gridCatalogFiles.EnableCustomFiltering = true;
             this.gridCatalogFiles.Location = new System.Drawing.Point(3, 3);
             // 
@@ -201,19 +209,57 @@
             // 
             this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
             // 
+            // backgroundPanel
+            // 
+            this.backgroundPanel.BorderVisible = false;
+            this.backgroundPanel.Controls.Add(this.gridCatalogFiles);
+            this.backgroundPanel.Controls.Add(this.btnLoadFile);
+            this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
+            this.backgroundPanel.Name = "backgroundPanel";
+            this.backgroundPanel.Size = new System.Drawing.Size(814, 458);
+            this.backgroundPanel.TabIndex = 5;
+            // 
+            // waitingBar
+            // 
+            this.waitingBar.AssociatedControl = this.backgroundPanel;
+            this.waitingBar.Location = new System.Drawing.Point(369, 176);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 8;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
             // RightholderRegisterControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this.btnLoadFile);
-            this.Controls.Add(this.gridCatalogFiles);
+            this.Controls.Add(this.backgroundPanel);
             this.Name = "RightholderRegisterControl";
             this.Size = new System.Drawing.Size(814, 458);
             this.Load += new System.EventHandler(this.RightholderRegisterControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
+            this.gridCatalogFiles.ResumeLayout(false);
+            this.gridCatalogFiles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
+            this.backgroundPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -224,5 +270,8 @@
         private Telerik.WinControls.UI.RadButton btnLoadFile;
         private Telerik.WinControls.UI.RadGridView gridCatalogFiles;
         private System.Windows.Forms.BindingSource bsGridData;
+        private Common.Editors.IpsPanel backgroundPanel;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }
