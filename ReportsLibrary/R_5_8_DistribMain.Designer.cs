@@ -67,9 +67,9 @@ namespace ReportsLibrary
             this.textBox31 = new Telerik.Reporting.TextBox();
             this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
             this.textBox35 = new Telerik.Reporting.TextBox();
+            this.textBox30 = new Telerik.Reporting.TextBox();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.textBox1 = new Telerik.Reporting.TextBox();
-            this.textBox30 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // table1
@@ -502,6 +502,17 @@ namespace ReportsLibrary
             this.textBox35.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox35.Value = "Звіти. Головна.";
             // 
+            // textBox30
+            // 
+            this.textBox30.Format = "{0:d}";
+            this.textBox30.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(11.35D), Telerik.Reporting.Drawing.Unit.Cm(1.2D));
+            this.textBox30.Name = "textBox30";
+            this.textBox30.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.6D), Telerik.Reporting.Drawing.Unit.Cm(0.75D));
+            this.textBox30.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox30.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBox30.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox30.Value = "= Parameters.beginDate.Value";
+            // 
             // pageFooterSection1
             // 
             this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
@@ -519,17 +530,6 @@ namespace ReportsLibrary
             this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox1.Value = "=\'- \' +PageNumber+\' -\'";
-            // 
-            // textBox30
-            // 
-            this.textBox30.Format = "{0:d}";
-            this.textBox30.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(11.35D), Telerik.Reporting.Drawing.Unit.Cm(1.2D));
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.6D), Telerik.Reporting.Drawing.Unit.Cm(0.75D));
-            this.textBox30.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox30.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.textBox30.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox30.Value = "= Parameters.beginDate.Value";
             // 
             // R_5_8_DistribMain
             // 

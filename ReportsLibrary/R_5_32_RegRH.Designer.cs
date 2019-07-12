@@ -81,6 +81,7 @@ namespace ReportsLibrary
             this.sqlDataSource2 = new Telerik.Reporting.SqlDataSource();
             this.detailSection1 = new Telerik.Reporting.DetailSection();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
+            this.textBox35 = new Telerik.Reporting.TextBox();
             this.textBox3 = new Telerik.Reporting.TextBox();
             this.textBox1 = new Telerik.Reporting.TextBox();
             this.textBox4 = new Telerik.Reporting.TextBox();
@@ -91,7 +92,6 @@ namespace ReportsLibrary
             this.textBox9 = new Telerik.Reporting.TextBox();
             this.textBox10 = new Telerik.Reporting.TextBox();
             this.textBox21 = new Telerik.Reporting.TextBox();
-            this.textBox35 = new Telerik.Reporting.TextBox();
             this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -207,7 +207,7 @@ namespace ReportsLibrary
             // textBox27
             // 
             this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.587D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox27.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.588D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox27.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox27.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox27.StyleName = "BlueOpal.TableBody";
@@ -474,6 +474,17 @@ namespace ReportsLibrary
             this.textBox35});
             this.pageFooterSection1.Name = "pageFooterSection1";
             // 
+            // textBox35
+            // 
+            this.textBox35.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.472D), Telerik.Reporting.Drawing.Unit.Inch(0.294D));
+            this.textBox35.Name = "textBox35";
+            this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
+            this.textBox35.Style.Font.Bold = true;
+            this.textBox35.Style.Font.Name = "Segoe UI Light";
+            this.textBox35.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox35.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox35.Value = "=\'- \' +PageNumber+\' -\'";
+            // 
             // textBox3
             // 
             this.textBox3.Format = "{0:d}";
@@ -575,17 +586,6 @@ namespace ReportsLibrary
             this.textBox21.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox21.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox21.Value = "Звіти. Головна.";
-            // 
-            // textBox35
-            // 
-            this.textBox35.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.472D), Telerik.Reporting.Drawing.Unit.Inch(0.294D));
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
-            this.textBox35.Style.Font.Bold = true;
-            this.textBox35.Style.Font.Name = "Segoe UI Light";
-            this.textBox35.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox35.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox35.Value = "=\'- \' +PageNumber+\' -\'";
             // 
             // reportHeaderSection1
             // 

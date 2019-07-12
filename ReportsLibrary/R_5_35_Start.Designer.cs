@@ -45,8 +45,8 @@ namespace ReportsLibrary
             this.textBox11 = new Telerik.Reporting.TextBox();
             this.textBox12 = new Telerik.Reporting.TextBox();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
-            this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
             this.textBox35 = new Telerik.Reporting.TextBox();
+            this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // textBox1
@@ -108,7 +108,7 @@ namespace ReportsLibrary
             this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.Date, "= Parameters.dateBegin.Value")});
+            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.DateTime, "= Parameters.dateBegin.Value")});
             this.sqlDataSource1.SelectCommand = "select  id, mdate, mtime, name, custName, text from ft_Tsk_5_35_Start (@dateBegin" +
     ") order by id";
             // 
@@ -283,15 +283,6 @@ namespace ReportsLibrary
             this.textBox35});
             this.pageFooterSection1.Name = "pageFooterSection1";
             // 
-            // reportHeaderSection1
-            // 
-            this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
-            this.reportHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.textBox20,
-            this.textBox14,
-            this.textBox13});
-            this.reportHeaderSection1.Name = "reportHeaderSection1";
-            // 
             // textBox35
             // 
             this.textBox35.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.481D), Telerik.Reporting.Drawing.Unit.Inch(0.294D));
@@ -302,6 +293,15 @@ namespace ReportsLibrary
             this.textBox35.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox35.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox35.Value = "=\'- \' +PageNumber+\' -\'";
+            // 
+            // reportHeaderSection1
+            // 
+            this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
+            this.reportHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.textBox20,
+            this.textBox14,
+            this.textBox13});
+            this.reportHeaderSection1.Name = "reportHeaderSection1";
             // 
             // R_5_35_Start
             // 

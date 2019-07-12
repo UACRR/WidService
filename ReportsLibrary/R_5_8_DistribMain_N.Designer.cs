@@ -38,8 +38,6 @@ namespace ReportsLibrary
             Telerik.Reporting.Drawing.DescendantSelector descendantSelector1 = new Telerik.Reporting.Drawing.DescendantSelector();
             Telerik.Reporting.Drawing.StyleRule styleRule5 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.DescendantSelector descendantSelector2 = new Telerik.Reporting.Drawing.DescendantSelector();
-            this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
-            this.detailSection1 = new Telerik.Reporting.DetailSection();
             this.table1 = new Telerik.Reporting.Table();
             this.textBox10 = new Telerik.Reporting.TextBox();
             this.textBox11 = new Telerik.Reporting.TextBox();
@@ -60,34 +58,17 @@ namespace ReportsLibrary
             this.textBox6 = new Telerik.Reporting.TextBox();
             this.textBox7 = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
+            this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
+            this.groupFooterSection = new Telerik.Reporting.GroupFooterSection();
+            this.groupHeaderSection = new Telerik.Reporting.GroupHeaderSection();
+            this.detailSection1 = new Telerik.Reporting.DetailSection();
             this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
             this.ReportNameTextBox = new Telerik.Reporting.TextBox();
             this.textBox30 = new Telerik.Reporting.TextBox();
             this.textBox29 = new Telerik.Reporting.TextBox();
             this.textBox32 = new Telerik.Reporting.TextBox();
             this.textBox31 = new Telerik.Reporting.TextBox();
-            this.groupHeaderSection = new Telerik.Reporting.GroupHeaderSection();
-            this.groupFooterSection = new Telerik.Reporting.GroupFooterSection();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
-            // sqlDataSource1
-            // 
-            this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.Date, "= Parameters.beginDate.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.Date, "= Parameters.endDate.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@cmFlag", System.Data.DbType.Int32, "= Parameters.cmFlag.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@categoryCode", System.Data.DbType.Int32, "= Parameters.categoryCode.Value")});
-            this.sqlDataSource1.SelectCommand = "dbo.pTsk_5_8_DistribMain";
-            this.sqlDataSource1.SelectCommandType = Telerik.Reporting.SqlDataSourceCommandType.StoredProcedure;
-            // 
-            // detailSection1
-            // 
-            this.detailSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(4.3D);
-            this.detailSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.table1});
-            this.detailSection1.Name = "detailSection1";
             // 
             // table1
             // 
@@ -333,7 +314,6 @@ namespace ReportsLibrary
             sortingAction1.Targets.AddRange(new Telerik.Reporting.IActionTarget[] {
             this.table1});
             this.textBox3.Action = sortingAction1;
-            this.textBox3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.186D), Telerik.Reporting.Drawing.Unit.Cm(1.294D));
             this.textBox3.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(244)))), ((int)(((byte)(249)))));
@@ -424,6 +404,35 @@ namespace ReportsLibrary
             this.textBox2.StyleName = "Normal.TableHeader";
             this.textBox2.Value = "% обслуг.";
             // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
+            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.Date, "= Parameters.beginDate.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.Date, "= Parameters.endDate.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@cmFlag", System.Data.DbType.Int32, "= Parameters.cmFlag.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@categoryCode", System.Data.DbType.Int32, "= Parameters.categoryCode.Value")});
+            this.sqlDataSource1.SelectCommand = "dbo.pTsk_5_8_DistribMain";
+            this.sqlDataSource1.SelectCommandType = Telerik.Reporting.SqlDataSourceCommandType.StoredProcedure;
+            // 
+            // groupFooterSection
+            // 
+            this.groupFooterSection.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
+            this.groupFooterSection.Name = "groupFooterSection";
+            // 
+            // groupHeaderSection
+            // 
+            this.groupHeaderSection.Height = Telerik.Reporting.Drawing.Unit.Cm(0.132D);
+            this.groupHeaderSection.Name = "groupHeaderSection";
+            // 
+            // detailSection1
+            // 
+            this.detailSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(4.3D);
+            this.detailSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.table1});
+            this.detailSection1.Name = "detailSection1";
+            // 
             // pageHeaderSection1
             // 
             this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
@@ -488,16 +497,6 @@ namespace ReportsLibrary
             this.textBox31.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox31.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox31.Value = "по";
-            // 
-            // groupHeaderSection
-            // 
-            this.groupHeaderSection.Height = Telerik.Reporting.Drawing.Unit.Cm(0.132D);
-            this.groupHeaderSection.Name = "groupHeaderSection";
-            // 
-            // groupFooterSection
-            // 
-            this.groupFooterSection.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
-            this.groupFooterSection.Name = "groupFooterSection";
             // 
             // R_5_8_DistribMain_N
             // 

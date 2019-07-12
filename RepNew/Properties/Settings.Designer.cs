@@ -26,8 +26,8 @@ namespace RepNew.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser;Passwor" +
-            "d=ReportUser")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPS,60675;Initial Catalog=MediaService;User ID=ReportUser;Pas" +
+            "sword=ReportUser")]
         public string MediaService {
             get {
                 return ((string)(this["MediaService"]));

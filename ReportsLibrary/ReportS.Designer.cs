@@ -111,7 +111,6 @@ namespace ReportsLibrary
             this.textBox31 = new Telerik.Reporting.TextBox();
             this.textBox32 = new Telerik.Reporting.TextBox();
             this.textBox33 = new Telerik.Reporting.TextBox();
-            this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // detailSection1
@@ -760,10 +759,6 @@ namespace ReportsLibrary
             this.textBox33.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox33.Value = "37.    Реєстр переданого до розподілу  роялті";
             // 
-            // sqlDataSource1
-            // 
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            // 
             // ReportS
             // 
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
@@ -823,7 +818,6 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox29;
         private Telerik.Reporting.TextBox textBox30;
         private Telerik.Reporting.TextBox textBox31;
-        private Telerik.Reporting.SqlDataSource sqlDataSource1;
         private Telerik.Reporting.TextBox textBox32;
         private Telerik.Reporting.TextBox textBox33;
     }

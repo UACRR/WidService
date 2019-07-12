@@ -424,8 +424,8 @@ namespace ReportsLibrary
             this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.Date, "= Parameters.dateBegin.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.Date, "= Parameters.dateEnd.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.DateTime, "= Parameters.dateBegin.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.DateTime, "= Parameters.dateEnd.Value"),
             new Telerik.Reporting.SqlDataSourceParameter("@categoryCode", System.Data.DbType.Int32, "= Parameters.categoryCode.Value")});
             this.sqlDataSource1.SelectCommand = "select * from dbo.ft_Tsk_5_16_AuthorSRFact   ( @dateBegin , @dateEnd, @categoryCo" +
     "de)";

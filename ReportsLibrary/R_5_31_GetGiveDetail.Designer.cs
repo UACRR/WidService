@@ -84,14 +84,14 @@ namespace ReportsLibrary
             this.textBox20 = new Telerik.Reporting.TextBox();
             this.detailSection1 = new Telerik.Reporting.DetailSection();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
-            this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
-            this.textBox2 = new Telerik.Reporting.TextBox();
-            this.textBox19 = new Telerik.Reporting.TextBox();
-            this.textBox21 = new Telerik.Reporting.TextBox();
-            this.textBox22 = new Telerik.Reporting.TextBox();
-            this.textBox23 = new Telerik.Reporting.TextBox();
-            this.textBox34 = new Telerik.Reporting.TextBox();
             this.textBox35 = new Telerik.Reporting.TextBox();
+            this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
+            this.textBox34 = new Telerik.Reporting.TextBox();
+            this.textBox23 = new Telerik.Reporting.TextBox();
+            this.textBox22 = new Telerik.Reporting.TextBox();
+            this.textBox21 = new Telerik.Reporting.TextBox();
+            this.textBox19 = new Telerik.Reporting.TextBox();
+            this.textBox2 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // textBox9
@@ -529,6 +529,17 @@ namespace ReportsLibrary
             this.textBox35});
             this.pageFooterSection1.Name = "pageFooterSection1";
             // 
+            // textBox35
+            // 
+            this.textBox35.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.472D), Telerik.Reporting.Drawing.Unit.Inch(0.294D));
+            this.textBox35.Name = "textBox35";
+            this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
+            this.textBox35.Style.Font.Bold = true;
+            this.textBox35.Style.Font.Name = "Segoe UI Light";
+            this.textBox35.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox35.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox35.Value = "=\'- \' +PageNumber+\' -\'";
+            // 
             // reportHeaderSection1
             // 
             this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(5.1D);
@@ -549,14 +560,37 @@ namespace ReportsLibrary
             this.textBox2});
             this.reportHeaderSection1.Name = "reportHeaderSection1";
             // 
-            // textBox2
+            // textBox34
             // 
-            this.textBox2.Format = "{0:D}";
-            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(3.832D));
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.005D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox2.Value = "= Parameters.lastday.Value";
+            this.textBox34.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(3.332D));
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.505D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
+            this.textBox34.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox34.Value = "=\'_________\'+Parameters.bossShortName.Value";
+            // 
+            // textBox23
+            // 
+            this.textBox23.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(1.592D));
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.3D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
+            this.textBox23.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox23.Value = "= Parameters.positionNmae.Value";
+            // 
+            // textBox22
+            // 
+            this.textBox22.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(2.132D));
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
+            this.textBox22.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox22.Value = "= Parameters.name.Value";
+            // 
+            // textBox21
+            // 
+            this.textBox21.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(2.732D));
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.005D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
+            this.textBox21.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox21.Value = "= \'ì. \'+ Parameters.ñity.Value";
             // 
             // textBox19
             // 
@@ -567,48 +601,14 @@ namespace ReportsLibrary
             this.textBox19.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox19.Value = "ÇÀÒÂÅÐÄÆÓÞ \r";
             // 
-            // textBox21
+            // textBox2
             // 
-            this.textBox21.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(2.732D));
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.005D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox21.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox21.Value = "= \'ì. \'+ Parameters.ñity.Value";
-            // 
-            // textBox22
-            // 
-            this.textBox22.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(2.132D));
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox22.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox22.Value = "= Parameters.name.Value";
-            // 
-            // textBox23
-            // 
-            this.textBox23.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(1.592D));
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.3D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox23.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox23.Value = "= Parameters.positionNmae.Value";
-            // 
-            // textBox34
-            // 
-            this.textBox34.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(3.332D));
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.505D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox34.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox34.Value = "=\'_________\'+Parameters.bossShortName.Value";
-            // 
-            // textBox35
-            // 
-            this.textBox35.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.472D), Telerik.Reporting.Drawing.Unit.Inch(0.294D));
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
-            this.textBox35.Style.Font.Bold = true;
-            this.textBox35.Style.Font.Name = "Segoe UI Light";
-            this.textBox35.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox35.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox35.Value = "=\'- \' +PageNumber+\' -\'";
+            this.textBox2.Format = "{0:D}";
+            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(18.1D), Telerik.Reporting.Drawing.Unit.Cm(3.832D));
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.005D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
+            this.textBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox2.Value = "= Parameters.lastday.Value";
             // 
             // R_5_31GetGiveDetails
             // 

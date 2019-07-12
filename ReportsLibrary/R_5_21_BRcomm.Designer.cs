@@ -82,8 +82,8 @@ namespace ReportsLibrary
             this.textBox16 = new Telerik.Reporting.TextBox();
             this.textBox15 = new Telerik.Reporting.TextBox();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
-            this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
             this.textBox26 = new Telerik.Reporting.TextBox();
+            this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
             this.textBox34 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -556,6 +556,17 @@ namespace ReportsLibrary
             this.textBox26});
             this.pageFooterSection1.Name = "pageFooterSection1";
             // 
+            // textBox26
+            // 
+            this.textBox26.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.42D), Telerik.Reporting.Drawing.Unit.Inch(0.294D));
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
+            this.textBox26.Style.Font.Bold = true;
+            this.textBox26.Style.Font.Name = "Segoe UI Light";
+            this.textBox26.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox26.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox26.Value = "=\'- \' +PageNumber+\' -\'";
+            // 
             // reportHeaderSection1
             // 
             this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(4.5D);
@@ -575,17 +586,6 @@ namespace ReportsLibrary
             this.textBox19,
             this.textBox34});
             this.reportHeaderSection1.Name = "reportHeaderSection1";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Inch(4.42D), Telerik.Reporting.Drawing.Unit.Inch(0.294D));
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
-            this.textBox26.Style.Font.Bold = true;
-            this.textBox26.Style.Font.Name = "Segoe UI Light";
-            this.textBox26.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox26.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox26.Value = "=\'- \' +PageNumber+\' -\'";
             // 
             // textBox34
             // 
