@@ -21,9 +21,11 @@ namespace ipsFormsDesign.Model
         public int CategoryCode { get; set; }
         public string Name { get; set; }
         public int Crtype { get; set; }
+        public int? IsAuthorType { get; set; }
 
         public virtual Category CategoryCodeNavigation { get; set; }
         public virtual CopyrightType CrtypeNavigation { get; set; }
+        public virtual IsAuthorType IsAuthorTypeNavigation { get; set; }
         public virtual ObservableListSource<Authors> Authors { get; set; }
         public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
         public virtual ObservableListSource<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }

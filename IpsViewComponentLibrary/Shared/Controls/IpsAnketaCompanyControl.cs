@@ -49,16 +49,14 @@ namespace IpsViewComponentLibrary.Shared.Controls
         public bool Validator()
         {
             bool isValid = true;
-            var test = txtShortName.Text;
 
-            if (txtName.Text == string.Empty)
+            if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 lblFullName.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
             }
             else
                 lblFullName.ForeColor = Color.Black;
-
 
             return isValid;
         }

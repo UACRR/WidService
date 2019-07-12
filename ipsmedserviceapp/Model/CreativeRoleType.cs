@@ -21,11 +21,14 @@ namespace ipsmedserviceapp.Model
         public int CategoryCode { get; set; }
         public string Name { get; set; }
         public int Crtype { get; set; }
+        public int? IsAuthorType { get; set; }
 
         [JsonIgnore]
         public virtual Category CategoryCodeNavigation { get; set; }
         [JsonIgnore]
         public virtual CopyrightType CrtypeNavigation { get; set; }
+        [JsonIgnore]
+        public virtual IsAuthorType IsAuthorTypeNavigation { get; set; }
         [JsonIgnore]
         public virtual ICollection<Authors> Authors { get; set; }
         [JsonIgnore]

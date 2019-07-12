@@ -176,6 +176,12 @@
     <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.Designer.cs">
       <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shared\Controls\IpsBossNameContactsExtendedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsBossNameContactsExtendedControl.Designer.cs">
+      <DependentUpon>IpsBossNameContactsExtendedControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shared\Forms\ChangeCommentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1179,6 +1185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterDetailForm.resx">
       <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsBossNameContactsExtendedControl.resx">
+      <DependentUpon>IpsBossNameContactsExtendedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\Forms\ChangeCommentForm.resx">
       <DependentUpon>ChangeCommentForm.cs</DependentUpon>

@@ -37,7 +37,7 @@
             this.ctrlAnketaPerson = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaPersonRightHolderControl();
             this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlRegistrationsPerson = new RegistrationPersonsControl();
+            this.ctrlRegistrationsPerson = new IpsViewComponentLibrary.RightholderControls.RegistrationPersonsControl();
             this.lblIPIExists = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
@@ -113,9 +113,9 @@
             // ctrlRegistrationsPerson
             // 
             this.ctrlRegistrationsPerson.DataSource = this.bsAnketaPerson;
-            this.ctrlRegistrationsPerson.Location = new System.Drawing.Point(7, 200);
+            this.ctrlRegistrationsPerson.Location = new System.Drawing.Point(5, 194);
             this.ctrlRegistrationsPerson.Name = "ctrlRegistrationsPerson";
-            this.ctrlRegistrationsPerson.Size = new System.Drawing.Size(482, 53);
+            this.ctrlRegistrationsPerson.Size = new System.Drawing.Size(403, 53);
             this.ctrlRegistrationsPerson.TabIndex = 30;
             // 
             // lblIPIExists

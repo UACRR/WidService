@@ -221,7 +221,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.ctrlManagers.Location = new System.Drawing.Point(19, 5);
             this.ctrlManagers.Name = "ctrlManagers";
-            this.ctrlManagers.Size = new System.Drawing.Size(750, 454);
+            this.ctrlManagers.Size = new System.Drawing.Size(750, 469);
             this.ctrlManagers.TabIndex = 0;
             // 
             // pvAgreement

@@ -16,33 +16,25 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class ObjectRightSrView : Telerik.WinControls.UI.RadForm, IObjectRightItemView
+    public partial class ObjectRightSrView : RadForm, IObjectRightItemView
     {
         private ObjectRightSrPresenter _presenter;
         public ObjectRightSrPresenter Presenter
         {
-            get { return _presenter; }
+            get => _presenter;
             set
             {
                 if (_presenter == null)
-                {
                     _presenter = value;
-                }
             }
         }
 
         public IList<ViewCustomer> RightholderList { private get; set; }
         public ObjectRight ObjectRight { get; set; }
 
-        public ObjectAuthorRightholder SelectedObjectAuthorRightholder
-        {
-            get
-            {
-                return gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
-            }
-        }
+        public ObjectAuthorRightholder SelectedObjectAuthorRightholder => gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
 
-        private BindingList<ObjectAuthorRightholder> _objectAuthorRightholderList = new BindingList<ObjectAuthorRightholder>();
+        private readonly BindingList<ObjectAuthorRightholder> _objectAuthorRightholderList = new BindingList<ObjectAuthorRightholder>();
         public Collection<ObjectAuthorRightholder> ObjectAuthorRightholderList => _objectAuthorRightholderList;
 
         public ObjectRightSrView()

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls;
 using ipsFormsDesign;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.Extensions;
@@ -17,29 +12,38 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class ManagersControl : UserControl
     {
+        private const string ConfirmDeleteContactPersonMsg = "Видалити контакту особу?";
+
         private List<Employee> _sourceGridEmployees;
         private ContactPersonActionForm _contactPersonForm;
         private Customer _customer;
+
         public ManagersControl()
         {
             InitializeComponent();
+            gvContactPersons.ToolTipTextNeeded += GvContactPersons_ToolTipTextNeeded;
+        }
+
+        private void GvContactPersons_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        {
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         public void SetDataSources(Customer cust)
         {
             _customer = cust;
 
+            // на основі чого діє
             var relEmpl = _customer.Company?.RelEmployee?.FirstOrDefault(rec => rec.PositionCode == 1);
             if (relEmpl == null)
             {
                 relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
                 cust?.Company?.RelEmployee?.Add(relEmpl);
             }
+            bsRelEmployeeBoss.DataSource = relEmpl;
 
-            txtOnBasicsIfHeadBoss.DataBindings.Clear();
-            txtOnBasicsIfHeadBoss.DataBindings.Add("Text", relEmpl, "RelDocument", true); // на основі чого діє
-
-            ctrlHeadBoss.DataSource = relEmpl.Empl;             // - - -  Керівник
+            // керівник
+            ctrlHeadBoss.DataSource = relEmpl.Empl;
 
             var relEmplBuh = cust?.Company?.RelEmployee?.FirstOrDefault(rec => rec?.PositionCode == 2);
             if (relEmplBuh == null)
@@ -47,7 +51,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 relEmplBuh = new RelEmployee { Empl = new Employee(), PositionCode = 2 };
                 cust?.Company?.RelEmployee?.Add(relEmplBuh);
             }
-            ctrlBookkeeper.DataSource = relEmplBuh.Empl;         // - - - Бухгалтер
+
+            // бухгалтер
+            ctrlBookkeeper.DataSource = relEmplBuh.Empl; 
             
             SetGridDataSource();
         }
@@ -78,10 +84,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             };
 
 
-            _contactPersonForm = new ContactPersonActionForm(temp, FLoadType.Create)
-            {
-                StartPosition = FormStartPosition.CenterScreen
-            };
+            _contactPersonForm = new ContactPersonActionForm(temp, FLoadType.Create);
 
             if (_contactPersonForm.ShowDialog() == DialogResult.OK)
             {
@@ -98,7 +101,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             switch (e.Column.FieldName)
             {
                 case "deleteBtn":
-                    if (MessageBox.Show("Видалити контакту особу?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageShow.ConfirmAction(ConfirmDeleteContactPersonMsg) == DialogResult.Yes)
                     {
                         _customer.Company?.RelEmployee.Remove(item);
                     }
@@ -110,10 +113,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     };
                     temp.SetFields(item);
                     temp.Empl.SetFields(item.Empl);
-                    _contactPersonForm = new ContactPersonActionForm(temp, FLoadType.Edit)
-                    {
-                        StartPosition = FormStartPosition.CenterScreen
-                    };
+                    _contactPersonForm = new ContactPersonActionForm(temp, FLoadType.Edit);
+
                     if (_contactPersonForm.ShowDialog() == DialogResult.OK)
                     {
                         item.SetFields(temp);

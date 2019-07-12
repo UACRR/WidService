@@ -34,15 +34,10 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> GetCatalogFilesList(int custId)
         {
             var catalogFiles = await _dbContext.CatalogFile
-                .Where(rec => rec.CustId == custId && rec.PubCatalogItem.Any()  )
+                .Where(rec => rec.CustId == custId && rec.PubCatalogItem.Any())
                 .Include(rec => rec.StatusNavigation)
-                // .Include(rec => rec.PubCatalogItem)
-                // .ThenInclude(rec => rec.StatusNavigation)
+                .OrderBy(rec => rec.FileId)
                 .ToListAsync();
-
-//            var delList = catalogFiles.Where(rec => rec.PubCatalogItem.Count == 0).ToArray();
-
-
 
             return Ok(catalogFiles);
         }

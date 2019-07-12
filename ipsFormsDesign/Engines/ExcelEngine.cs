@@ -189,9 +189,11 @@ namespace ipsFormsDesign.Services
         /// <param name="FileName">Повній шлях до файлу</param>
         /// <param name="countCols">Кількість колонок данних які будуть імпортуватися</param>
         /// <returns></returns>
-        public List<List<string>> ReadData(string FileName, int countCols = 10 )
+        public List<List<string>> ReadData(string FileName, int countCols = 10)
         {
             // TODO: extract OpenWorkbook(), CloseWorkbook() methods
+            bool percentTypeChecked = false;
+            int numberColumnPercent = 0;
 
             var list = new List<List<string>>();
             int i = 0, iter = 1;
@@ -218,6 +220,23 @@ namespace ipsFormsDesign.Services
                 {
                     dynamic dim = item.dim.Value;
                     int rows = item.size;
+                    
+                    // перевірити чи в exel % формат по всіх стовбцях
+                    if (!percentTypeChecked)
+                    {
+                        for (byte k = 1; k <= maxCol; k++)
+                        {
+                            // перший запис, всі стовбці
+                            var format = ((Range)item.dim.Cells[1, k]).NumberFormat;
+                            if (string.Equals(format, PercentFormat))
+                            {
+                                numberColumnPercent = k;
+                                break;
+                            }
+                        }
+                        percentTypeChecked = true;
+                    }
+
                     //for (i = 1; i <= maxRow; i++)
                     for (i = 1; i <= rows; i++, iter++)
                     {
@@ -236,12 +255,19 @@ namespace ipsFormsDesign.Services
 
                         for (var j = 1; j <= maxCol; j++)
                         {
-                            var format = ((Range)item.dim.Cells[i, j]).NumberFormat;
-                            if (string.Equals(format, PercentFormat))
+                            // якщо numberColumnPercent != 0, пошук стовбця з % форматом 
+                            if (j == numberColumnPercent)
                             {
                                 rowList.Add(GetFirst(dim[i, j] * 100));
                                 continue;
                             }
+
+                            //var format = ((Range)item.dim.Cells[i, j]).NumberFormat;
+                            //if (string.Equals(format, PercentFormat))
+                            //{
+                            //    rowList.Add(GetFirst(dim[i, j] * 100));
+                            //    continue;
+                            //}
 
                             rowList.Add(GetFirst(dim[i, j]));
                         }

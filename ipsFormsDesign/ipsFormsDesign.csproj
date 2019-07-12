@@ -272,6 +272,7 @@
     <Compile Include="Model\HandDocPay.cs" />
     <Compile Include="Model\InputFile.cs" />
     <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\IsAuthorType.cs" />
     <Compile Include="Model\ItemStatus.cs" />
     <Compile Include="Model\ItemStatusTr.cs" />
     <Compile Include="Model\KindComposition.cs" />

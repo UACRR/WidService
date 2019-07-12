@@ -22,7 +22,7 @@ namespace ipsFormsDesign
             if (null != props) return;
 
             //enumerate properties
-            PropertyInfo[] properties = (this.GetType()).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo[] properties = GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             props = new Hashtable(properties.Length - 1);
 

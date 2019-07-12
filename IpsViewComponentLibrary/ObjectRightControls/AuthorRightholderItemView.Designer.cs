@@ -329,7 +329,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.pvpFolk.ItemSize = new System.Drawing.SizeF(57F, 27F);
             this.pvpFolk.Location = new System.Drawing.Point(5, 5);
             this.pvpFolk.Name = "pvpFolk";
-            this.pvpFolk.Size = new System.Drawing.Size(536, 145);
+            this.pvpFolk.Size = new System.Drawing.Size(536, 147);
             this.pvpFolk.Text = "pvpFolk";
             // 
             // errorProvider

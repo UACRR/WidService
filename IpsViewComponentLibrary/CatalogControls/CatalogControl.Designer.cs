@@ -48,10 +48,17 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
             this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
+            this.gridCatalogFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
+            this.backgroundPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -59,6 +66,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.gridCatalogFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridCatalogFiles.Controls.Add(this.waitingBar);
             this.gridCatalogFiles.EnableCustomFiltering = true;
             this.gridCatalogFiles.Location = new System.Drawing.Point(3, 3);
             // 
@@ -76,12 +84,12 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn1.HeaderText = "№п/п";
             gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewTextBoxColumn1.MinWidth = 50;
-            gridViewTextBoxColumn1.Name = "number";
+            gridViewTextBoxColumn1.Name = "FileId";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn2.FieldName = "FileName";
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.MinWidth = 175;
-            gridViewTextBoxColumn2.Name = "fileName";
+            gridViewTextBoxColumn2.Name = "FileName";
             gridViewTextBoxColumn2.Width = 175;
             gridViewTextBoxColumn3.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn3.FieldName = "CreateDate";
@@ -89,28 +97,28 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
             gridViewTextBoxColumn3.MaxWidth = 125;
             gridViewTextBoxColumn3.MinWidth = 125;
-            gridViewTextBoxColumn3.Name = "dateDownload";
+            gridViewTextBoxColumn3.Name = "CreateDate";
             gridViewTextBoxColumn3.Width = 125;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn4.FieldName = "CountZap";
             gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
             gridViewTextBoxColumn4.MinWidth = 95;
-            gridViewTextBoxColumn4.Name = "countFiles";
+            gridViewTextBoxColumn4.Name = "CountZap";
             gridViewTextBoxColumn4.Width = 95;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn5.FieldName = "CountErr";
             gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
             gridViewTextBoxColumn5.MinWidth = 95;
-            gridViewTextBoxColumn5.Name = "countLeaveFiles";
+            gridViewTextBoxColumn5.Name = "CountErr";
             gridViewTextBoxColumn5.Width = 95;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn6.FieldName = "Status";
             gridViewTextBoxColumn6.HeaderText = "status";
             gridViewTextBoxColumn6.IsVisible = false;
-            gridViewTextBoxColumn6.Name = "statusFile";
+            gridViewTextBoxColumn6.Name = "Status";
             gridViewTextBoxColumn6.Width = 48;
             gridViewTextBoxColumn7.FieldName = "StatusNavigation.Name";
             gridViewTextBoxColumn7.HeaderText = "Статус файлу";
@@ -182,7 +190,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.gridCatalogFiles.Name = "gridCatalogFiles";
             this.gridCatalogFiles.ReadOnly = true;
             this.gridCatalogFiles.ShowGroupPanel = false;
-            this.gridCatalogFiles.Size = new System.Drawing.Size(772, 295);
+            this.gridCatalogFiles.Size = new System.Drawing.Size(877, 462);
             this.gridCatalogFiles.TabIndex = 1;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             this.gridCatalogFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gridCatalogFiles_CommandCellClick);
@@ -195,7 +203,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             // btnLoadFile
             // 
             this.btnLoadFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLoadFile.Location = new System.Drawing.Point(3, 304);
+            this.btnLoadFile.Location = new System.Drawing.Point(3, 468);
             this.btnLoadFile.Name = "btnLoadFile";
             this.btnLoadFile.Size = new System.Drawing.Size(219, 24);
             this.btnLoadFile.TabIndex = 2;
@@ -203,18 +211,56 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.btnLoadFile.ThemeName = "Office2013Light";
             this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
+            // backgroundPanel
+            // 
+            this.backgroundPanel.BorderVisible = false;
+            this.backgroundPanel.Controls.Add(this.btnLoadFile);
+            this.backgroundPanel.Controls.Add(this.gridCatalogFiles);
+            this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
+            this.backgroundPanel.Name = "backgroundPanel";
+            this.backgroundPanel.Size = new System.Drawing.Size(883, 495);
+            this.backgroundPanel.TabIndex = 6;
+            // 
+            // waitingBar
+            // 
+            this.waitingBar.AssociatedControl = this.backgroundPanel;
+            this.waitingBar.Location = new System.Drawing.Point(403, 196);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 7;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
             // CatalogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnLoadFile);
-            this.Controls.Add(this.gridCatalogFiles);
+            this.Controls.Add(this.backgroundPanel);
             this.Name = "CatalogControl";
-            this.Size = new System.Drawing.Size(778, 331);
+            this.Size = new System.Drawing.Size(883, 495);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
+            this.gridCatalogFiles.ResumeLayout(false);
+            this.gridCatalogFiles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
+            this.backgroundPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -224,5 +270,8 @@ namespace IpsViewComponentLibrary.CatalogControls
         private Telerik.WinControls.UI.RadButton btnLoadFile;
         private System.Windows.Forms.BindingSource bsGridData;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Common.Editors.IpsPanel backgroundPanel;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

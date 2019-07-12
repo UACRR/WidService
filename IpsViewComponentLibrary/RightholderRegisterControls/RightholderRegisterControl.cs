@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
@@ -53,7 +54,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnLoadFile_Click(object sender, EventArgs e)
+        private async void btnLoadFile_Click(object sender, EventArgs e)
         {
             using (var fileExel = new OpenFileDialog())
             {
@@ -68,7 +69,13 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
                         CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
-                    var result = _presenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+                    CatalogFile result = null;
+                    waitingBar.StartWaiting();
+                    await Task.Factory.StartNew(() =>
+                    {
+                        result = _presenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+                    });
+                    waitingBar.StopWaiting();
                     var boolResult = result != null;
                     MessageShow.ShowInfoByResult(LoadCatalogFileSuccessMsg, LoadCatalogFileErrorMsg, boolResult);
                     if (boolResult)

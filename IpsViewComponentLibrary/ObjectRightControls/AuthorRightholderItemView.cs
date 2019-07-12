@@ -1,23 +1,18 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
-using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.RightholderControls;
 using IpsViewComponentLibrary.Utilities;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class AuthorRightholderItemView : Telerik.WinControls.UI.RadForm
+    public partial class AuthorRightholderItemView : RadForm
     {
         private readonly ObjectAuthorRightholder _authorRightholder;
         private readonly ObjectRightDictionaries _dictionaries;
@@ -46,6 +41,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             SetDictionaries();
 
             objectAuthorRightholderBindingSource.DataSource = _authorRightholder;
+
+            if (_authorRightholder.CopyrightStatus == 1)
+                SetReadOnlyForConfirmRightholder();
         }
 
         private void SetDictionaries()
@@ -53,6 +51,16 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ddlRoleCode.DataSource = _dictionaries.creativeRoleType.Where(cr => cr.CategoryCode == _category && cr.Crtype == 1);
             ddlRoleCode.ValueMember = "CodeI";
             ddlRoleCode.DisplayMember = "Name";
+        }
+
+        private void SetReadOnlyForConfirmRightholder()
+        {
+            ddlRoleCode.Enabled = false;
+            rpanelFolkType.Enabled = false;
+            checkIsRightholder.Enabled = false;
+            ddlRightholder.Enabled = false;
+            dtBeginDate.Enabled = false;
+            mtxtRate.Enabled = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

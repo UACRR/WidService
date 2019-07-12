@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
@@ -65,12 +66,13 @@ namespace IpsViewComponentLibrary.CatalogControls
         }
 
         /// <summary>
-        /// choise exel file
+        /// Обрати та завантажити exel каталог
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnLoadFile_Click(object sender, EventArgs e)
+        private async void btnLoadFile_Click(object sender, EventArgs e)
         {
+
             using (var fileExel = new OpenFileDialog())
             {
                 //open dialog
@@ -86,7 +88,14 @@ namespace IpsViewComponentLibrary.CatalogControls
                         CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
-                    var result = _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+                    CatalogFile result = null;
+                    waitingBar.StartWaiting();
+                    await Task.Factory.StartNew(() =>
+                    {
+                        result = _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+
+                    });
+                    waitingBar.StopWaiting();
                     var boolResult = result != null;
                     MessageShow.ShowInfoByResult(LoadCatalogFileSuccessMsg, LoadCatalogFileErrorMsg, boolResult);
                     if (boolResult)
