@@ -91,7 +91,7 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(600, 48);
-            this.tableLayoutPanel.TabIndex = 6;
+            this.tableLayoutPanel.TabIndex = 0;
             // 
             // txtAddress
             // 

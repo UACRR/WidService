@@ -53,7 +53,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.btnCopyAddressReLe = new Telerik.WinControls.UI.RadButton();
             this.btnCopyAddressFaLe = new Telerik.WinControls.UI.RadButton();
-            this.ctrlLeAddress = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.btnCopyAddressFaRe = new Telerik.WinControls.UI.RadButton();
             this.ctrlReAddress = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
@@ -133,6 +132,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlLeAddress = new IpsViewComponentLibrary.Shared.Controls.AddressLetter();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -351,7 +351,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.contactsPersonPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
             this.contactsPersonPage.Location = new System.Drawing.Point(103, 5);
             this.contactsPersonPage.Name = "contactsPersonPage";
-            this.contactsPersonPage.Size = new System.Drawing.Size(898, 456);
+            this.contactsPersonPage.Size = new System.Drawing.Size(901, 435);
             this.contactsPersonPage.Text = "Контакти";
             // 
             // radGroupBox1
@@ -383,9 +383,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             // radGroupBox3
             // 
             this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox3.Controls.Add(this.ctrlLeAddress);
             this.radGroupBox3.Controls.Add(this.btnCopyAddressReLe);
             this.radGroupBox3.Controls.Add(this.btnCopyAddressFaLe);
-            this.radGroupBox3.Controls.Add(this.ctrlLeAddress);
             this.radGroupBox3.HeaderText = "Адреса листування";
             this.radGroupBox3.Location = new System.Drawing.Point(3, 199);
             this.radGroupBox3.Name = "radGroupBox3";
@@ -413,20 +413,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.btnCopyAddressFaLe.Text = "Вставити з проживання";
             this.btnCopyAddressFaLe.ThemeName = "Office2013Light";
             this.btnCopyAddressFaLe.Click += new System.EventHandler(this.btnCopyAddressFaLe_Click);
-            // 
-            // ctrlLeAddress
-            // 
-            this.ctrlLeAddress.AddressDataMember = "LeAddress";
-            this.ctrlLeAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlLeAddress.CityDataMember = "LeCity";
-            this.ctrlLeAddress.CountryDataMember = "LeCountry";
-            this.ctrlLeAddress.DataSource = this.bsAnketaPerson;
-            this.ctrlLeAddress.Location = new System.Drawing.Point(140, 52);
-            this.ctrlLeAddress.Name = "ctrlLeAddress";
-            this.ctrlLeAddress.RegionDataMember = "LeRegion";
-            this.ctrlLeAddress.Size = new System.Drawing.Size(696, 48);
-            this.ctrlLeAddress.TabIndex = 1;
             // 
             // radGroupBox2
             // 
@@ -597,7 +583,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.royaltyPage.Controls.Add(this.radLabel8);
             this.royaltyPage.Controls.Add(this.createRightholderRoyaltyPageView);
             this.royaltyPage.Controls.Add(this.ddlTypeMethodGet);
-            this.royaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.royaltyPage.Location = new System.Drawing.Point(139, 5);
             this.royaltyPage.Name = "royaltyPage";
             this.royaltyPage.Size = new System.Drawing.Size(865, 437);
@@ -726,7 +711,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // rigthLimitationsPage
             // 
             this.rigthLimitationsPage.Controls.Add(this.ctrlRightLimitations);
-            this.rigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.rigthLimitationsPage.Location = new System.Drawing.Point(139, 5);
             this.rigthLimitationsPage.Name = "rigthLimitationsPage";
             this.rigthLimitationsPage.Size = new System.Drawing.Size(865, 437);
@@ -746,7 +730,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // territoryLimitationsPage
             // 
             this.territoryLimitationsPage.Controls.Add(this.ctrlTerritoryIncludeExclude);
-            this.territoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.territoryLimitationsPage.Location = new System.Drawing.Point(139, 5);
             this.territoryLimitationsPage.Name = "territoryLimitationsPage";
             this.territoryLimitationsPage.Size = new System.Drawing.Size(865, 437);
@@ -765,7 +748,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPrintPage.Controls.Add(this.radPdfViewerNavigator1);
             this.agreementPrintPage.Controls.Add(this.btnGenerateRightholderAgreement);
             this.agreementPrintPage.Controls.Add(this.pdfvRightholderAgreement);
-            this.agreementPrintPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPrintPage.Location = new System.Drawing.Point(139, 5);
             this.agreementPrintPage.Name = "agreementPrintPage";
             this.agreementPrintPage.Size = new System.Drawing.Size(865, 437);
@@ -955,7 +937,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
-            this.agreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPage.Name = "agreementPage";
             this.agreementPage.Size = new System.Drawing.Size(863, 435);
@@ -1244,6 +1225,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.AnketaExternal);
             // 
+            // ctrlLeAddress
+            // 
+            this.ctrlLeAddress.AddressDataMember = "LeAddress";
+            this.ctrlLeAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlLeAddress.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ctrlLeAddress.CityDataMember = "LeCity";
+            this.ctrlLeAddress.CountryDataMember = "LeCountry";
+            this.ctrlLeAddress.DataSource = this.bsAnketaPerson;
+            this.ctrlLeAddress.Location = new System.Drawing.Point(137, 47);
+            this.ctrlLeAddress.Name = "ctrlLeAddress";
+            this.ctrlLeAddress.PostIndexDataMember = "LePostIndex";
+            this.ctrlLeAddress.RegionDataMember = "LeRegion";
+            this.ctrlLeAddress.Size = new System.Drawing.Size(699, 54);
+            this.ctrlLeAddress.TabIndex = 32;
+            // 
             // RightholderView
             // 
             this.AcceptButton = this.miSave;
@@ -1406,7 +1403,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private IpsAddressControl ctrlFaAddress;
         private System.Windows.Forms.BindingSource bsAnketaPerson;
-        private IpsAddressControl ctrlLeAddress;
         private IpsAddressControl ctrlReAddress;
         private IpsAddressControl ctrlBaAddress;
         private System.Windows.Forms.BindingSource bsBankAccount;
@@ -1460,5 +1456,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private RightholderRegisterControls.RightholderRegisterControl ctrlRightholderRegister;
         private Telerik.WinControls.UI.RadLabel lblDatePassed;
         private Telerik.WinControls.UI.RadDateTimePicker dtDatePassed;
+        private AddressLetter ctrlLeAddress;
     }
 }
