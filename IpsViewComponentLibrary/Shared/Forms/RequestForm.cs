@@ -553,6 +553,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             bsLicAgrParam.ResetCurrentItem();
             panelStatusees.Enabled = false;
             ReadOnly = true;
+            ctrlAuthorRightholderList.AllowEditList = false;
         }
 
         // відхилити
