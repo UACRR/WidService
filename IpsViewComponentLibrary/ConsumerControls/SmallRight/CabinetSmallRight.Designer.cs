@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.ConsumerControls.Calculation;
+using IpsViewComponentLibrary.ConsumerControls.Reports;
 
 namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
@@ -71,10 +73,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvPayments = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPaysInfo1 = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.calculationCtrl = new IpsViewComponentLibrary.ConsumerControls.SmallRight.CalculationInfoControl();
+            this.calculationCtrl = new CalculationInfoControl();
             this.currentAgreementController1 = new IpsViewComponentLibrary.Utilities.CurrentAgreementController();
             this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
-            this.reportsControl = new IpsViewComponentLibrary.ConsumerControls.SmallRight.ReportsControl();
+            this.reportsControl = new ReportsControl();
             this.pvMoreAgreements = new Telerik.WinControls.UI.RadPageViewPage();
             this.gvMoreLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.bsGridLicenseAgreementViewNoAccept = new System.Windows.Forms.BindingSource(this.components);

@@ -1,4 +1,6 @@
-﻿using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+﻿using IpsViewComponentLibrary.ConsumerControls.Calculation;
+using IpsViewComponentLibrary.ConsumerControls.Reports;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 
 namespace TestControls
 {

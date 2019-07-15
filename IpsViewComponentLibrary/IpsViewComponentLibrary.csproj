@@ -511,16 +511,16 @@
     <Compile Include="Common\TabNavigationControl.Designer.cs">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\CompositionOfReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\CompositionOfReport.Designer.cs">
       <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\ReportExtendedForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\ReportExtendedForm.Designer.cs">
       <DependentUpon>ReportExtendedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\PaysInfo.cs">
@@ -535,8 +535,8 @@
     <Compile Include="ConsumerDialogForms\ProlongationBigRight.Designer.cs">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
-    <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ConsumerControls\Calculation\CalculationInfoControlPresenter.cs" />
+    <Compile Include="ConsumerControls\Reports\ReportsControlPresenter.cs" />
     <Compile Include="Common\SaveCancelButtonsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -822,10 +822,10 @@
     <Compile Include="ObjectRightControls\AuthorRightholderItemView.Designer.cs">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.cs">
+    <Compile Include="ConsumerControls\Calculation\CalculationInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.Designer.cs">
+    <Compile Include="ConsumerControls\Calculation\CalculationInfoControl.Designer.cs">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.cs">
@@ -1099,16 +1099,16 @@
     <Compile Include="RightholderControls\RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\ReportExcelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\ReportExcelForm.Designer.cs">
       <DependentUpon>ReportExcelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\ReportsControl.cs">
+    <Compile Include="ConsumerControls\Reports\ReportsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\ReportsControl.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Shared\Forms\RequestForm.cs">
@@ -1336,10 +1336,10 @@
     <EmbeddedResource Include="Common\TabNavigationControl.resx">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\Forms\CompositionOfReport.resx">
       <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\Forms\ReportExtendedForm.resx">
       <DependentUpon>ReportExtendedForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1472,7 +1472,7 @@
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderItemView.resx">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\CalculationInfoControl.resx">
+    <EmbeddedResource Include="ConsumerControls\Calculation\CalculationInfoControl.resx">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\ConsumerPlacesControl.resx">
@@ -1611,10 +1611,10 @@
     <EmbeddedResource Include="RightholderControls\RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\Forms\ReportExcelForm.resx">
       <DependentUpon>ReportExcelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\ReportsControl.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\Forms\RequestForm.resx">
@@ -1821,9 +1821,7 @@
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ConsumerControls\Calculation\" />
     <Folder Include="ConsumerControls\Presenters\" />
-    <Folder Include="ConsumerControls\Reports\Forms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

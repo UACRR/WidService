@@ -11,13 +11,13 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports;
+using IpsViewComponentLibrary.ConsumerControls.Reports.Forms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+namespace IpsViewComponentLibrary.ConsumerControls.Reports
 {
     public partial class ReportsControl : UserControl
     {
@@ -348,7 +348,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     var list = _excel.GetReportItems(dialog.FileName);
                     if (!period.RegisterRatedList.Any())
                     {
-                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 1 });
+                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
                     }
 
                     var RatedList = period.RegisterRatedList.First();
@@ -397,65 +397,66 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         /// <param name="e"></param>
         private void BtnCreateReport_Click(object sender, EventArgs e)
         {
-            if (gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period)
+            if (!(gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period))
+                return;
+            
+            if (!period.RegisterRatedList.Any())
             {
-                if (!period.RegisterRatedList.Any())
-                {
-                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 1 });
-                }
+                period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
+            }
 
-                //об'єкт звіт
-                var registerTemp = new Register
+            //об'єкт звіт
+            var registerTemp = new Register
+            {
+                RgStatus = 0,
+                RmId = period.RegisterRatedList.SingleOrDefault()?.RmId ?? 0,
+                FileName = string.Empty,
+                CustId = _customer.CustId,
+                RgStatusNavigation = dicRegStatus[0],
+                LicId = period.LicId,
+                AlgorithmId = 2,
+                PeriodId = period.PeriodId,
+            };
+
+            // для визначення рапортички
+            var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
+
+            // рапортичка
+            if (schemaId == 2)
+            {
+                registerTemp.SchemaId = 2;
+                var progReportBigRight = new ReportExtendedForm(registerTemp)
                 {
-                    RgStatus = 0,
-                    RmId = period.RegisterRatedList.SingleOrDefault()?.RmId ?? 0,
-                    FileName = string.Empty,
-                    CustId = _customer.CustId,
-                    RgStatusNavigation = dicRegStatus[0],
-                    LicId = period.LicId,
-                    AlgorithmId = 2,
-                    PeriodId = period.PeriodId,
+                    HeaderInfoCustomerName = GetCustomerName(),
+                    HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
+                    HeaderInfoPeriodName = period.PeriodName,
+                    HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
                 };
 
-                // для визначення рапортички
-                var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
-
-                // рапортичка
-                if (schemaId == 2)
+                if (progReportBigRight.ShowDialog() == DialogResult.OK)
                 {
-                    registerTemp.SchemaId = 2;
-                    var progReportBigRight = new ReportExtendedForm(registerTemp)
-                    {
-                        HeaderInfoCustomerName = GetCustomerName(),
-                        HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
-                        HeaderInfoPeriodName = period.PeriodName,
-                        HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
-                    };
+                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
+                    bindingReports.Add(registerTemp);
 
-                    if (progReportBigRight.ShowDialog() == DialogResult.OK)
-                    {
-                        period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
-                        bindingReports.Add(registerTemp);
-
-                        var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
-                        MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
-                    }
+                    var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
+                    MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
                 }
-                // не рапотричка
-                else
-                {
-                    registerTemp.SchemaId = 1;
-                    var viewForm = new ReportExcelForm(registerTemp, true);
-                    if (viewForm.ShowDialog() == DialogResult.OK)
-                    {
-                        period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
-                        bindingReports.Add(registerTemp);
-                        var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault());
-                    }
-                }
-
-                RefreshData();
             }
+            // не рапотричка
+            else
+            {
+                registerTemp.SchemaId = 1;
+                var viewForm = new ReportExcelForm(registerTemp, true);
+                if (viewForm.ShowDialog() == DialogResult.OK)
+                {
+                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
+                    bindingReports.Add(registerTemp);
+                    var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
+                    MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
+                }
+            }
+
+            RefreshData();
         }
 
         // * * * [Переглянути звіт]
