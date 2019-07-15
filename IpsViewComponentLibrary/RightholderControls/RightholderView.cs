@@ -116,10 +116,12 @@ namespace IpsViewComponentLibrary.RightholderControls
         /// <summary>
         /// Активність вкладок реєстру/каталога залежно від типу правовласника
         /// </summary>
+        /// <param name="customerType"></param>
         /// <param name="rhType"></param>
-        public void SetCatalogsTabVisible(int? rhType)
+        public void SetCatalogsTabVisible(int? customerType, int? rhType)
         {
-            if (rhType == null)
+            // тип користувача/правовласника юр або фіз особи
+            if (customerType == null || customerType >= 4 || rhType == null)
             {
                 pvCatalog.Enabled = false;
                 pvRegisters.Enabled = false;
@@ -129,7 +131,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                 pvCatalog.Enabled = false;
                 pvRegisters.Enabled = true;
             }
-            else
+            else if (rhType == 3)
             {
                 pvCatalog.Enabled = true;
                 pvRegisters.Enabled = false;
@@ -215,7 +217,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
-            SetCatalogsTabVisible(customer.RightHolder.RHolderType);
+            SetCatalogsTabVisible(customer.CustType, customer.RightHolder.RHolderType);
             ctrlRightholderRegister.CustId = customer.CustId;
             //set active pages on depends field 'CustType'
             //ShowActivePages(customer);

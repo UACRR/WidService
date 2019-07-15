@@ -12,11 +12,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
     public class ObjectRightSrPresenter
     {
+        private const string SaveObjectSuccessMsg = "Об'єкт збережено!";
+        private const string SaveObjectErrorMsg = "Не вдалося зберегти об'єкт!";
+
         private readonly ObjectRightSrView _view;
         private readonly ObjectRightService _objectRightService;
         private readonly DialogService _dialogService;
@@ -151,10 +155,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
             ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
-            if (result)
-                _view.Close();
-            else
-                _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
+            MessageShow.ShowInfoByResult(SaveObjectSuccessMsg, SaveObjectErrorMsg, result);
+
+            //if (result)
+            //    _view.Close();
+            //else
+            //    _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
         }
 
         private void SetObjectRigth(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
@@ -242,11 +248,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void Close()
         {
-            if (!_canClose)
-                _canClose = _dialogService.ClosingIsConfirmed((IWin32Window)_view);
+            _view.Hide();
+            // TODO: indicate when data was changed
+            //if (!_canClose)
+            //    _canClose = _dialogService.ClosingIsConfirmed((IWin32Window)_view);
 
-            if (_canClose)
-                _view.Hide();
+            //if (_canClose)
+            //    _view.Hide();
         }
     }
 }
