@@ -18,6 +18,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 {
     public partial class ObjectRightSrView : RadForm, IObjectRightItemView
     {
+        private const int DefaultObjectRightGenreTypeSongCode = 41;
+
         private ObjectRightSrPresenter _presenter;
         public ObjectRightSrPresenter Presenter
         {
@@ -99,6 +101,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // TODO: move to constructor, move other binding initialization to constructor, set bindings for MediaTrack, SeekObject in the presenter throught property
 
             ObjectRight = objectRight;
+
+            if (ObjectRight.GenreType == null)
+                ObjectRight.GenreType = DefaultObjectRightGenreTypeSongCode;
 
             objectRightBindingSource.DataSource = ObjectRight;
             mediaTrackBindingSource.DataSource = ObjectRight.MediaTrack;
