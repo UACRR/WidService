@@ -30,7 +30,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public string Title
         {
             get => Text;
-            set => Text = string.IsNullOrEmpty( value ) ? DefaultTitle : string.Concat(DefaultTitle, $": {value}");
+            set => Text = string.IsNullOrWhiteSpace(value) ? DefaultTitle : string.Concat(DefaultTitle, $": {value}");
         }
 
         public void SetCustomer(Customer customer)
