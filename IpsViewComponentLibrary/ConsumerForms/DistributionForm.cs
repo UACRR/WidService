@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerControls.Calculation;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using Telerik.WinControls.UI;
 

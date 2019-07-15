@@ -11,13 +11,13 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports;
+using IpsViewComponentLibrary.ConsumerControls.Reports.Forms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+namespace IpsViewComponentLibrary.ConsumerControls.Reports
 {
     public partial class ReportsControl : UserControl
     {
@@ -348,7 +348,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     var list = _excel.GetReportItems(dialog.FileName);
                     if (!period.RegisterRatedList.Any())
                     {
-                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 1 });
+                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
                     }
 
                     var RatedList = period.RegisterRatedList.First();
@@ -401,7 +401,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             {
                 if (!period.RegisterRatedList.Any())
                 {
-                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 1 });
+                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
                 }
 
                 //об'єкт звіт

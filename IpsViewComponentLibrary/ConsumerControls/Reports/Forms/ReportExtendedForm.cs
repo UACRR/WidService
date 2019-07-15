@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
@@ -10,7 +8,7 @@ using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
+namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
 {
     public partial class ReportExtendedForm : RadForm
     {

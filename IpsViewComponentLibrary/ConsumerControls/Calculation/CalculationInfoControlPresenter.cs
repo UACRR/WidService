@@ -5,7 +5,7 @@ using ipsFormsDesign.Enums;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+namespace IpsViewComponentLibrary.ConsumerControls.Calculation
 {
     public class CalculationInfoControlPresenter
     {

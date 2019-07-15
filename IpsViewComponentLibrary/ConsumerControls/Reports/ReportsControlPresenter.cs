@@ -4,8 +4,9 @@ using ipsFormsDesign;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+namespace IpsViewComponentLibrary.ConsumerControls.Reports
 {
     public class ReportsControlPresenter
     {

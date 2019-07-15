@@ -11,6 +11,7 @@ using ipsFormsDesign.Services;
 using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerControls.Calculation;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;

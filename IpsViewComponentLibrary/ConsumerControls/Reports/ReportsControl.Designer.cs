@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+﻿namespace IpsViewComponentLibrary.ConsumerControls.Reports
 {
     partial class ReportsControl
     {

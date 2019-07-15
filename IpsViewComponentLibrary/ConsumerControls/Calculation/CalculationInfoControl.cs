@@ -13,7 +13,7 @@ using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+namespace IpsViewComponentLibrary.ConsumerControls.Calculation
 {
     public partial class CalculationInfoControl : UserControl
     {

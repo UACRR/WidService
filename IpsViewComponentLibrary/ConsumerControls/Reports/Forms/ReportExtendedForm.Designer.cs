@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
+namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
 {
     partial class ReportExtendedForm
     {
