@@ -444,7 +444,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (agreementStatus == AgreementStatuses.Active)
             {
                 gboxRightholderStatus.Enabled = true;
-                btnSetStatusInheritance.Enabled = true;
+                btnSetStatusInheritance.Enabled = ((Customer)CustomerDataSource).CustType != CustomerTypeJuridicalCode;
                 btnSetStatusClosed.Enabled = true;
 
                 btnSetAgreementRightholderStatus.Text = "Заблокувати";
@@ -472,8 +472,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 gboxRightholderStatus.Enabled = false;
             }
-
-            btnSetStatusInheritance.Enabled = ((Customer) CustomerDataSource).CustType != CustomerTypeJuridicalCode;
         }
 
         private void pageViewMain_SelectedPageChanged(object sender, EventArgs e)
