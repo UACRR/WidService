@@ -122,7 +122,6 @@
   <ItemGroup>
     <None Include="ipskeys.snk" />
     <None Include="Assemblies\MediaServiceDb.dll" />
-    <None Include="MediaServiceDb.jfm" />
     <None Include="MediaServiceDb.sqlproj.user" />
   </ItemGroup>
   <ItemGroup>
