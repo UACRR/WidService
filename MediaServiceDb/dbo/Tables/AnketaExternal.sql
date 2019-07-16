@@ -1,7 +1,6 @@
 ﻿CREATE TABLE [dbo].[AnketaExternal] (
     [custId]      INT           NOT NULL,
     [name]        VARCHAR (200) NOT NULL,
-    [interCode]   VARCHAR (25)  NULL,
     [countryCode] CHAR (3)      NULL,
     [innOkpo]     VARCHAR (12)  NULL,
     CONSTRAINT [PK_ANKETAEXTERNAL] PRIMARY KEY CLUSTERED ([custId] ASC),
@@ -10,8 +9,10 @@
 );
 
 
+
+
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'IPI', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AnketaExternal', @level2type = N'COLUMN', @level2name = N'interCode';
+
 
 
 GO

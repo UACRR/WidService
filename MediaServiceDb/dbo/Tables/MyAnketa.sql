@@ -4,9 +4,12 @@
     [accCommission]   VARCHAR (25) NULL,
     [accInCommission] VARCHAR (25) NULL,
     [accCourt]        VARCHAR (25) NULL,
+    [typeAlg]         SMALLINT     NULL,
     CONSTRAINT [PK_MYANKETA] PRIMARY KEY CLUSTERED ([custId] ASC),
     CONSTRAINT [FK_MYANKETA_REFERENCE_CUSTOMER] FOREIGN KEY ([custId]) REFERENCES [dbo].[Customer] ([custId])
 );
+
+
 
 
 GO

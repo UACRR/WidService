@@ -142,3 +142,8 @@ where ISNULL(t1.cmCustId,0) = t3.custId
  RETURN
  END
  --select  * from ft_Tsk_5_19_1_BR ('2019-01-01', '2019-03-01',NULL, NULL)  --80737,12
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_19_1_BR] TO [ReportUser]
+    AS [dbo];
+

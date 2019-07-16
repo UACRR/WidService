@@ -13,3 +13,8 @@ left join vCustomer t2 on t1.custId = t2.custId
 where cast(modifydate as date) = isnull(@date,cast(getdate() as date))
  );
 --select * from dbo.ft_Tsk_5_35_Start (NULL)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_35_Start] TO [ReportUser]
+    AS [dbo];
+

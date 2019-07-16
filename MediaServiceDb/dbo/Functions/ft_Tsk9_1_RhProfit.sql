@@ -22,7 +22,8 @@ set @dateBegin = Case isnull(@dateBegin, cast('1900-01-01' as date) )
 set @dateEnd = isnull(@dateEnd, getdate())
 
 --Конец предідущего месяґца (на начало текущего месяца)
-declare @dateBeginMonth date = cast (dateadd(day,1-day(getdate())-1,getdate()) as date)
+declare @dateEndMonth date = cast (dateadd(day,1-day(getdate())-1,getdate()) as date)
+declare @dateBeginMonth date = cast (dateadd(day,1-day(@dateEndMonth),@dateEndMonth) as date)
 
 --можно проверить, что несколько custId и ничего не показывать или показать общую сумму
 declare @custId integer = (select max(t2.custId) 
@@ -50,29 +51,42 @@ select t2.custId, t2.name, IPI, 0, 0, 0 --, rateCourt, rateCommiss
 ),  
 --amountCollected -зібрано
 TabCollected as 
-(select t1.custId, sum(amount) as amountCollected
+(select t1.custId, isnull(sum(amount),0) as amountCollected
  from TabAccount t1 
       join PayTurn t2 on t1.accid = t2.accIdDebet and t2.accDebet like '21%' and accCredit like '%3%' --заработано 
                       and t2.dateWork between @dateBegin and @dateEnd 
  where t1.custId = @custId
  group by t1.custId
 ),
---amountAvailable -доступно
+/*
+--amountAvailable -доступно по остатку на начапло месяца
 TabAvailable as 
-(select t1.custId, sum(t2.rest) as amountAvailable
+(select t1.custId, sum(t2.deboborot) as amountAvailable
  from TabAccount t1 
       join SaldoDay t2 on t1.accid = t2.accId and t1.balsCode = 20 --Доступно 
-           and @dateBeginMonth between t2.dateBegin and t2.dateEnd 
+           and @dateEndMonth between t2.dateBegin and t2.dateEnd 
  where t1.custId = @custId
  group by t1.custId
 )
-update @RT set amountCollected = t1.amountCollected - round(t1.amountCollected*isnull(@rateCommiss,1)/100,2) , 
-               amountAvailable = isnull(t2.amountAvailable,0), 
+*/
+--amountAvailable -доступно по оборотам за предыдущий месяц
+TabAvailable as 
+(select t1.custId, isnull((Case When (sum(t2.deboborot)-sum(t2.krdOborot))<=0 Then 0 ELSE (sum(t2.deboborot)-sum(t2.krdOborot)) END),0)  as amountAvailable
+ from TabAccount t1 
+      join SaldoDay t2 on t1.accid = t2.accId and t1.balsCode = 20 --Доступно 
+           and t2.dateBegin between @dateBeginMonth and @dateEndMonth
+ where t1.custId = @custId and t1.balsCode = 20
+ group by t1.custId
+)
+
+update @RT set amountCollected = isnull(t1.amountCollected - round(t1.amountCollected*isnull(@rateCommiss,1)/100,2),0) , 
+               amountAvailable = isnull(isnull(t2.amountAvailable,0),0), 
                amountTax = isnull(convert(money, round((t2.amountAvailable*t3.rate/100+t2.amountAvailable*t4.rate/100),2)),0)  --налоги, 
 			   --,amountTest = t1.amountCollected 
 --select t1.custId, t1.amountCollected, t2.amountAvailable, convert(money, round((t2.amountAvailable*t3.rate/100+t2.amountAvailable*t4.rate/100),2)) as amountTax
-  from TabCollected  t1 
-     left join TabAvailable t2 on t1.custId = t2.custId 
+ from @RT t0
+     left join TabCollected  t1 on t1.custId = t0.rhCustId
+     left join TabAvailable t2 on t2.custId = t0.rhCustId
      left join SystemConstant t3 on t3.codeI in (1) --esv
 	 left join SystemConstant t4 on t4.codeI in (2) --military
 
@@ -80,9 +94,9 @@ RETURN
 END
 /*
  select * from dbo.ft_Tsk9_1_RhProfit ('2018-01-01', '3000-01-01', '8f1f2428-48b4-4209-a577-1fab339c0d82')
- select * from ft_Tsk_5_19_2_SR ('2018-01-01', '3000-01-01', 206, 0)
- select * from ft_Tsk_5_19_2_0SR ('2018-01-01', '3000-01-01', 0) --2957.68 --2772.19
- select * from ft_Tsk_5_19_1_BR ('2018-01-01', '3000-01-01', 206, 0)
- select * from ft_Tsk_5_19_1_0BR ('2018-01-01', '3000-01-01', NULL)
  */
- --select * from vCustomer where custId = 221 --userId = '8f1f2428-48b4-4209-a577-1fab339c0d82' --206
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk9_1_RhProfit] TO [ReportUser]
+    AS [dbo];
+

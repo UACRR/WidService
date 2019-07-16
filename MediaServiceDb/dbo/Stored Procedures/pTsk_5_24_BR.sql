@@ -92,3 +92,8 @@ dateinvoice,amount,n_reglist  from @RT
 RETURN
 END
 --exec pTsk_5_24_BR null, null
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_24_BR] TO [ReportUser]
+    AS [dbo];
+

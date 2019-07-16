@@ -9,9 +9,10 @@
     [email]       VARCHAR (254)  NULL,
     [comment]     VARCHAR (1024) NULL,
     CONSTRAINT [PK_EMPLOYEE] PRIMARY KEY CLUSTERED ([emplid] ASC),
-    CONSTRAINT [FK_EMPLOYEE_REFERENCE_ASPNETUS] FOREIGN KEY ([userId]) REFERENCES [dbo].[AspNetUsers] ([id]),
     CONSTRAINT [FK_EMPLOYEE_REFERENCE_CUSTOMER] FOREIGN KEY ([custId]) REFERENCES [dbo].[Customer] ([custId])
 );
+
+
 
 
 
@@ -51,6 +52,5 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Сотруд
 
 
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [UI_Employee_Email]
-    ON [dbo].[Employee]([email] ASC) WHERE ([email] IS NOT NULL);
+
 

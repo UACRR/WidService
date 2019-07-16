@@ -1,18 +1,22 @@
 ﻿CREATE TABLE [dbo].[AgrLicenseType] (
-    [codeI]        INT           NOT NULL,
-    [name]         VARCHAR (100) NULL,
-    [kindCode]     INT           NULL,
-    [usesKind]     INT           NULL,
-    [templateName] VARCHAR (256) NULL,
-    [needPlace]    BIT           NULL,
-    [schemaId]     INT           NULL,
-    [algorithmId]  INT           NULL,
-    [series]       VARCHAR (10)  NULL,
+    [codeI]        INT             NOT NULL,
+    [name]         VARCHAR (100)   NULL,
+    [kindCode]     INT             NULL,
+    [usesKind]     INT             NULL,
+    [templateName] VARCHAR (256)   NULL,
+    [needPlace]    BIT             NULL,
+    [schemaId]     INT             NULL,
+    [algorithmId]  INT             NULL,
+    [series]       VARCHAR (10)    NULL,
+    [authRate]     NUMERIC (10, 5) NULL,
+    [isPortal]     SMALLINT        NULL,
     CONSTRAINT [PK_ARGLICENSETYPE] PRIMARY KEY CLUSTERED ([codeI] ASC),
     CONSTRAINT [FK_AGRLICEN_REFERENCE_COPYRIGH] FOREIGN KEY ([kindCode]) REFERENCES [dbo].[CopyrightKind] ([codeI]),
     CONSTRAINT [FK_AGRLICEN_REFERENCE_USESKIND] FOREIGN KEY ([usesKind]) REFERENCES [dbo].[UsesKind] ([codeI]),
     CONSTRAINT [FK_AGRLICENTYPE_REF_ALGORITH] FOREIGN KEY ([algorithmId]) REFERENCES [dbo].[AlgorithmType] ([codeI])
 );
+
+
 
 
 

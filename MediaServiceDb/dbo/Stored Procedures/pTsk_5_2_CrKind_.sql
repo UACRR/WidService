@@ -132,3 +132,8 @@ select usesType, usesTypeName, cRKindCode, cRKindName, countRh, sPaid,  sComm
 end
 
 --exec pTsk_5_2_CrKind 1
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_2_CrKind_] TO [ReportUser]
+    AS [dbo];
+

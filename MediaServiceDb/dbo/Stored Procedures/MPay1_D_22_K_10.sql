@@ -43,13 +43,14 @@ CREATE TABLE #PayTurn(
 	regId						int,
 	distid					int,
 	paidid				int null,
+	payturntype int null,
  PRIMARY KEY CLUSTERED (	TurnId ASC,	DateWork ASC)
 )
 --select * from #doc
 
 --отбор подготовленных distribution (status=1)
 insert #doc (dateWork,paidid,regId ,distid,custID,ObjId,distribDate,amount	,kindCode,periodId,payNote,docNum,okpo	)
-select	distinct	getdate(), paidId,NULL,NULL,null  --custID
+select	distinct	getdate(), paidId,NULL,NULL,custID
 ,NULL ,dateOper,sCredit	,NULL,NULL,nplat,docNum,okpoCorr
 from Externalpay 
 where 
@@ -58,7 +59,7 @@ where
   	if @@error	<> 0
 		goto __retErr
 
-
+/*
 update #doc set 
 custID= null
 
@@ -75,7 +76,7 @@ and t1.paidId =t3.paidId
 
   	if @@error	<> 0
 		goto __retErr
-
+*/
 delete #doc
 where custid is null
 
@@ -195,15 +196,21 @@ BEGIN
   	if @@error	<> 0
 		goto __retErr
 
+							update t1
+							set payturntype=t3.codei
+							from #PayTurn t1, PayTurnType t3
+							where					
+								convert(int,substring(accdebet,1,2))=balsDbt and
+								convert(int,substring(acccredit,1,2))=balsCrdt 
 
 begin Transaction 
 BEGIN TRY
 	exec Pay_Pay_SaldoDay
 	insert PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
-						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid)  
+						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid,payturntype)  
 	select 
 						TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
-						Amount,0,PayNote,'980',getdate(),2,regId ,distid
+						Amount,0,PayNote,'980',getdate(),2,regId ,distid,payturntype
 	from #PayTurn
 
 --exec sp__msg  'Ok'

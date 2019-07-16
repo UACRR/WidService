@@ -103,3 +103,8 @@ RETURN
 END
 
 --select  * from dbo.ft_Tsk_5_14_RegisterSR  ('2019-01-01', '2028-12-01') --31097,11
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_14_RegisterSR] TO [ReportUser]
+    AS [dbo];
+

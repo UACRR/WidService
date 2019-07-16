@@ -54,13 +54,13 @@ order by t2.accNls
 
 merge @result  as target
 using (   select 	t2.accnls 					 
-				 ,isnull(sum(case  when t3.restbegin > 0 then t3.restbegin else 0 end),0)	rest_D
-				 ,isnull(sum(case  when t3.restbegin < 0 then -t3.restbegin else 0 end),0)	rest_K			    
+				 ,isnull(sum(case  when t3.rest > 0 then t3.rest else 0 end),0)	rest_D
+				 ,isnull(sum(case  when t3.rest < 0 then -t3.rest else 0 end),0)	rest_K			    
 				 ,isnull(sum(case  when t4.rest > 0 then t4.rest else 0 end),0)	rest_end_D
 				 ,isnull(sum(case  when t4.rest < 0 then -t4.rest else 0 end),0)	rest_end_K			    
 			from 
 			Account t2 
-			left join SaldoDay t3 on (t2.accId = t3.accid and @dateBegin between t3.dateBegin and t3.dateEnd )
+			left join SaldoDay t3 on (t2.accId = t3.accid and dateadd(day,-1,@dateBegin) between t3.dateBegin and t3.dateEnd )
 --			left join SaldoDay t3 on (t2.accId = t3.accid and '20180101' between t3.dateBegin and t3.dateEnd )
 			left join SaldoDay t4 on (t2.accId = t4.accid and @dateEnd between t4.dateBegin and t4.dateEnd 
 			)
@@ -89,3 +89,8 @@ END   -- 2
 end
 
 --pTsk_5_17_2_BalanseGroupAccount  null,null,'20'
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_17_2_BalanseGroupAccount] TO [ReportUser]
+    AS [dbo];
+

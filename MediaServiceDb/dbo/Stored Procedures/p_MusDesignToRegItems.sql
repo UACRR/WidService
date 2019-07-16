@@ -1,6 +1,7 @@
 ﻿
 
 
+
 CREATE procedure [dbo].[p_MusDesignToRegItems] as
 begin
 /*
@@ -22,12 +23,12 @@ join LicenseAgreement t21 on t2.agrId = t21.agrId and t21.licClass = 2
 join LicenseBigR t3 on t3.licid = t21.licid and t3.objid is not null
 join MusicalDesign t4 on t4.licId = t21.licId
 where 
---t1.undistribamount > 0 and 
+t1.undistribamount > 0 and 
 t3.objid is not null
 group by t1.licId, t1.periodId, t21.licId
 having count(*) = sum( case when t4.objid is not null then 1 else 0 end  );
 
-
+-- select * from @period;
 
 with validLicId as
 (select distinct ri.regId , p.childLicId as licid from @period p join register ri on ri.licId = p.childLicId )  
@@ -38,7 +39,7 @@ isnull(t3.regIItemId,0) + ROW_NUMBER() over (partition by t1.regid order by t1.r
 t4.objId,                                                                                               -- objId,
 3,                                                                                                      -- codeItem,
 t4.objName,                                                                                             -- ItemName,
-5,                                                                                                   -- categoryCode,
+5,                                                                                                      -- categoryCode,
 t4.nameSinger,                                                                                          -- performer,
 t4.nameMusician,                                                                                        -- authorMusic,
 t4.authorText,                                                                                          -- authorText,

@@ -36,7 +36,7 @@ CREATE TABLE #doc1(
 	amountPay	money null,
 	cRType int NULL,
 	disttype		int,
-	paynote varchar	(100)		null,
+	paynote varchar	(160)		null,
 	custIdRh integer NULL,  --!T
 	primary key (id)
 	)
@@ -59,13 +59,14 @@ create table #balance(
 	AccCredit				varchar(25)			NULL,
 	Amount					numeric(20, 2	)	NULL,
 	AmountCur				numeric(20, 2)	NULL,
-	PayNote					varchar(200) 	NULL,
+	PayNote					varchar(160) 	NULL,
 	DateOper				datetime						NOT NULL,
 	PayStatus				int					 NULL,
 	regId						int,
 	distid					int,
 	paidid				int null,
 	custIdRh integer NULL,  --!T
+	payturntype int null,
  PRIMARY KEY CLUSTERED (	TurnId ASC,	DateWork ASC)
 )
 insert #doc1
@@ -89,12 +90,12 @@ select
 from 
 		distribution t1,DistributionItem t3,RegisterCount t4
 where
-		t3.regId=t4.regId	and
-		t3.regIItemId=t4.regIItemId and
-		t3.distId=t1.distid
---		t3.distId=t4.distId	and
---		t3.distItemId=t4.distItemId and
---		t3.distId=t1.distid and
+--		t3.regId=t4.regId	and
+--		t3.regIItemId=t4.regIItemId and
+		t3.distId=t1.distid and
+		t3.distId=t4.distId	and
+		t3.distItemId=t4.distItemId 
+
 --and t1.distid=2411
 and	t1.status=2		and
 		t1.distType=2	
@@ -135,11 +136,15 @@ set amountPay=amountMy-amountBalans
   	if @@error	<> 0
 		goto __retErr
 */
+
+ 
 update t1
 set paynote=ltrim(rtrim(t4.Name))+'  '+ltrim(rtrim(t4.Author))
 from #doc1 t1,ObjectRight t4
 where
 t1.ObjId=t4.ObjId
+
+
 
  	if @@error	<> 0
 		goto __retErr
@@ -218,6 +223,13 @@ and dateWork=@DateOper
 
  	if @@error	<> 0
 		goto __retErr
+							update t1
+							set payturntype=t3.codei
+							from #PayTurn t1, PayTurnType t3
+							where					
+								convert(int,substring(accdebet,1,2))=balsDbt and
+								convert(int,substring(acccredit,1,2))=balsCrdt 
+
 
 
 
@@ -229,11 +241,11 @@ exec Pay_Pay_SaldoDay
 
 insert PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
 						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid
-						,custIdRh,regIItemId --T
+						,custIdRh,regIItemId,payturntype --T
 						)  select 
  TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
 						Amount,AmountCur,PayNote,'980',getdate(),2,regId ,distid
-						,custIdRh ,paidid --!T
+						,custIdRh ,paidid ,payturntype--!T
 from #PayTurn
 
 --exec sp__msg  'Ok'

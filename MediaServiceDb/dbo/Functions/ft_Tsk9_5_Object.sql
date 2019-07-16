@@ -50,3 +50,8 @@ END
 /*
 select * from ft_Tsk9_5_Object (5849)
 */
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk9_5_Object] TO [ReportUser]
+    AS [dbo];
+

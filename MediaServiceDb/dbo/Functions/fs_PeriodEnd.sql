@@ -1,4 +1,4 @@
-﻿CREATE FUNCTION dbo.fs_PeriodEnd (@periodType integer, @date date)
+﻿CREATE FUNCTION [dbo].[fs_PeriodEnd] (@periodType integer, @date date)
 RETURNS date
     WITH EXECUTE AS CALLER 
     as
@@ -16,6 +16,9 @@ RETURNS date
      IF @periodType = 4 --1 раз на рік
 	  set @result = convert(date, '31.12.'+convert(char(4),year(@date)),104)
 
+     IF @periodType = 5 --одноразово
+	  set @result = EOMONTH (@date)
+
 	RETURN @result
 END
---select dbo.fs_PeriodEnd (4, getdate())
+--select dbo.fs_PeriodEnd (5, getdate())

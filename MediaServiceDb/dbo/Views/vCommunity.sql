@@ -1,13 +1,11 @@
-﻿
-CREATE view [dbo].[vCommunity] as 
-with TmpCm as 
-(select cmCustId,  max(cmName) as cmName, MAX(cast(isnull(ourService,0) as int)) as isMy
- from --vCustCmService
-    vTermsOfService 
-  group by cmCustId 
- )
-select row_number() over(ORDER BY cmName)  as num, cmCustId, cmName, isMy
- from TmpCm where cmCustId >=0
- union
- select cmCustId as num, cmCustId, cmName, isMy 
- from TmpCm where cmCustId <0
+﻿CREATE view [dbo].[vCommunity] as
+select row_number() over(ORDER BY name)  as num, t1.custId as cmCustId,  t2.name as cmName, t2.ankMy as isMy 
+  from Community t1 
+   join vCustomer t2 on t2.custId = t1.custId 
+union
+select 0, -1, 'НЕ ВИЗНАЧЕНО', 0
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[vCommunity] TO [ReportUser]
+    AS [dbo];
+

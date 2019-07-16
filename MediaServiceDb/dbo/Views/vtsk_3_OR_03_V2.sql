@@ -1,4 +1,5 @@
-﻿CREATE view [dbo].[vtsk_3_OR_03_V2] as
+﻿
+CREATE view [dbo].[vtsk_3_OR_03_V2] as
 with CPR as 
 (select t2.objid, sum(t2.rate) as rate
 from copyright t2 
@@ -32,8 +33,8 @@ select t7.custId, t8.name as nameClient, t1.objid, t1.name,
 t3.iswc
  from objectRight t1 
 left join MediaTrack t3 on t1.objid = t3.objId
-join GenreType t2 on t1.genreType = t2.codeI
-join specType t4 on t1.specType = t4.codeI
+left join GenreType t2 on t1.genreType = t2.codeI
+left join specType t4 on t1.specType = t4.codeI
 join CPR t5 on t1.objid = t5.objId
 left join vtsk_4_OR_PROFITFORYEAR t6 on t1.objId = t6.objid
 join CPRH t7 on t7.objid = t1.objId

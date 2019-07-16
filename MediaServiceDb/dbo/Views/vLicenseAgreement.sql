@@ -1,4 +1,5 @@
-﻿CREATE view [dbo].[vLicenseAgreement] as 
+﻿
+CREATE view [dbo].[vLicenseAgreement] as 
 --актуальные договора
 select 
 (case When t8.codeI = 1 Then 3 Else (Case When t8.codeI in (2,3,4) Then 2 else 1 end) end) as registerType,
@@ -13,7 +14,7 @@ t10.minAmount, t10.rateAmount,
 t10.isAutoprolog, t10.addRate, t10.indxInfl, t10.periodCode, t5.name as periodName, t10.dayForPay, t1.licClass, t1.agrId, 
 t6.datePremiere, t6.fillingRate, t6.performNumb, t6.ticketPriceNC, t6.ticketPriceUSD, t6.isTour, t6.whereTour, 
 t6.objId, t7.name as objName,
-t2.usesKind, t8.name as usesKindName, t8.usesType, t9.name as usesTypeName, t1.licVersion
+t2.usesKind, t8.name as usesKindName, t8.usesType, t9.name as usesTypeName, t1.licVersion, t2.series
 --select *
 from licenseAgreement t1 
 join LicenseAgrParam t10 on t1.licId = t10.licId and t1.licVersion = t10.licVersion

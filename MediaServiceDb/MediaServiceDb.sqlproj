@@ -122,6 +122,8 @@
   <ItemGroup>
     <None Include="ipskeys.snk" />
     <None Include="Assemblies\MediaServiceDb.dll" />
+    <None Include="MediaServiceDb.jfm" />
+    <None Include="MediaServiceDb.sqlproj.user" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\WorkTypeTr.sql" />
@@ -565,7 +567,6 @@
     <Build Include="dbo\Tables\CopyRightHistory.sql" />
     <Build Include="dbo\Tables\CheckParamPays.sql" />
     <Build Include="dbo\Tables\AlgorithmTypeTr.sql" />
-    <Build Include="dbo\Views\vTsk_1_BRBidAuthors_.sql" />
     <Build Include="dbo\Views\vRateCommiss.sql" />
     <Build Include="dbo\Views\vObjectRightSR.sql" />
     <Build Include="dbo\Views\vMyAnk.sql" />
@@ -615,8 +616,6 @@
     <Build Include="dbo\Views\vTsk9_5_Object.sql" />
     <Build Include="dbo\Views\vtsk_1_MasterListBR__.sql" />
     <Build Include="dbo\Views\vTsk_1_ListRightHolder01_test.sql" />
-    <Build Include="dbo\Views\vTsk_1_ListConsumer01__.sql" />
-    <Build Include="dbo\Views\vTsk_1_ListConsumer01_.sql" />
     <Build Include="dbo\Views\vTermsOfService.sql" />
     <Build Include="dbo\Views\vRelObjPerformer.sql" />
     <Build Include="dbo\Views\vLicenseAgrParam.sql" />
@@ -667,13 +666,10 @@
     <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_19_2_0SR.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_19_1_0BR.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR_New.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_14_RegisterSR_.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_8_Consolidated_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_35_Start.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_33_RegRH.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_1_ListRightHolder01.sql" />
     <Build Include="dbo\Stored Procedures\pTsk9_CustMapping.sql" />
     <Build Include="dbo\Stored Procedures\pTsk9_CustMapAnk.sql" />
     <Build Include="dbo\Stored Procedures\pTsk8_StartDay.sql" />
@@ -695,7 +691,6 @@
     <Build Include="dbo\Stored Procedures\MPay4_D20_K21____.sql" />
     <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_regId.sql" />
     <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_distid.sql" />
-    <Build Include="dbo\Stored Procedures\Intr_DelObject.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_ForPayFact.sql" />
     <Build Include="dbo\Stored Procedures\pTsk_5_18_1_ObjUnattached.sql" />
     <Build Include="dbo\Stored Procedures\pTsk_5_18_1_ObjUnattache_.sql" />
@@ -705,8 +700,93 @@
     <Build Include="dbo\Functions\Ft_tsk_3_Accurace.sql" />
     <Build Include="dbo\Functions\Ft_tsk_3_Compare.sql" />
     <Build Include="dbo\Functions\Ft_tsk_3_Accurace.sql" />
+    <Build Include="dbo\Tables\RHCatalogItem.sql" />
+    <Build Include="dbo\Tables\PubCatalogItem.sql" />
+    <Build Include="dbo\Tables\ObjectRight_deleted.sql" />
+    <Build Include="dbo\Tables\IsAuthorType.sql" />
+    <Build Include="dbo\Tables\HandDocPay.sql" />
+    <Build Include="dbo\Tables\Distribution_deleted.sql" />
+    <Build Include="dbo\Tables\CopyRightHistory_deleted.sql" />
+    <Build Include="dbo\Tables\CopyRight_deleted.sql" />
+    <Build Include="dbo\Tables\CatalogStatusTr.sql" />
+    <Build Include="dbo\Tables\CatalogStatus.sql" />
+    <Build Include="dbo\Tables\CatalogFile.sql" />
+    <Build Include="dbo\Views\vTsk_6_ListFreeCln_.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListRightHolder01_.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListRHCommunity_.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer02_190403.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer01_noAgr.sql" />
+    <Build Include="dbo\Views\vCustomerRHolder_.sql" />
+    <Build Include="dbo\Views\vCustomerCommunity.sql" />
+    <Build Include="dbo\Views\vCopyRightHistory.sql" />
+    <Build Include="dbo\Views\vCommunity_190404.sql" />
+    <Build Include="dbo\Views\vClnBusinessPlace.sql" />
+    <Build Include="dbo\Views\vBORG.sql" />
+    <Build Include="Security\testuser.sql" />
+    <Build Include="Security\robot.sql" />
+    <Build Include="Security\ReportUser.sql" />
+    <Build Include="Security\IPS_oshadurskyi.sql" />
+    <Build Include="Security\IPS_IT Developers.sql" />
+    <Build Include="Security\IPS_Backupuser.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_DISTRIB_AuthorCommunity.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_8_DistribMainCommunity.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_8_Consolidated_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_25_SRLic_2802.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_25_2_SRLic_2702.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_25_1_SRLic_2802.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_24_DBF.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_24_BR_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBRSum_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_1_ListRightHolder01_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_1_ListRightHolder01.sql" />
+    <Build Include="dbo\Functions\ft_tsk_1_LicenseAgreementList_.sql" />
+    <Build Include="dbo\Functions\ft_tsk_1_LicenseAgreementList.sql" />
+    <Build Include="dbo\Functions\f_tsk_1_LicenseAgreementList.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_36_Objects.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_33_RegRH_.sql" />
+    <Build Include="dbo\Stored Procedures\sysTableCount.sql" />
+    <Build Include="dbo\Stored Procedures\Sys_UnionRH.sql" />
+    <Build Include="dbo\Stored Procedures\Sys_PortalUserDelete.sql" />
+    <Build Include="dbo\Stored Procedures\Sys_BackAuthorLife.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_RegisterStatus.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk4_GetRHNdog.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk4_GetClnNdog.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_DistribMainCommunity.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_DistribMain_other.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_ConsolidDetail.sql" />
+    <Build Include="dbo\Stored Procedures\MPay7_Hand_Pay.sql" />
+    <Build Include="dbo\Stored Procedures\Merge_Objects_1.sql" />
+    <Build Include="dbo\Stored Procedures\Merge_Objects.sql" />
+    <Build Include="dbo\Stored Procedures\IO_PartnerControl.sql" />
+    <Build Include="dbo\Stored Procedures\IO_ObjectPrepare.sql" />
+    <Build Include="dbo\Stored Procedures\IO_ImportSpectacles.sql" />
+    <Build Include="dbo\Stored Procedures\IO_ImportPartner.sql" />
+    <Build Include="dbo\Stored Procedures\IO_ImportClient_GO.sql" />
+    <Build Include="dbo\Stored Procedures\IO_ImportClient.sql" />
+    <Build Include="dbo\Stored Procedures\IO_ClientControl_GO.sql" />
+    <Build Include="dbo\Stored Procedures\IO_ClientControl.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_IO_OpenObjects.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_IO_OpenCopyRight.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_IO_OpenAnkRh.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_IO_LicBRControl_SO.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_IO_DELETE.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_IO_ClientTheaterControl_SO.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_IO_ClientTheater_SO.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_IO_ClientTheater.sql" />
+    <Build Include="dbo\Stored Procedures\Import_RHYO.sql" />
+    <Build Include="dbo\Stored Procedures\Import_RHFO.sql" />
+    <Build Include="dbo\Stored Procedures\Import_Community.sql" />
+    <Build Include="dbo\Stored Procedures\CatalogInputRH.sql" />
+    <Build Include="dbo\Stored Procedures\CatalogInputPub_n.sql" />
+    <Build Include="dbo\Stored Procedures\CatalogInputPub.sql" />
+    <Build Include="dbo\Stored Procedures\CatalogControlRH.sql" />
+    <Build Include="dbo\Stored Procedures\CatalogControlPub.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Script.PreDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ft_tsk_3_Compare.cs" />
   </ItemGroup>
 </Project>

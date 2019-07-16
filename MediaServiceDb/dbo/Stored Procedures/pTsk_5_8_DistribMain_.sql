@@ -139,3 +139,8 @@ RETURN
 END
 
 --exec pTsk_5_8_DistribMain NULL, NULL,0,5
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_8_DistribMain_] TO [ReportUser]
+    AS [dbo];
+

@@ -58,8 +58,8 @@ select licId, max(licVersion) as licversion
   from LicenseAgrParam 
   group by licId
 )
-insert into #LicenseAgrParam (licId, licVersion, dateBegin, dateEnd, minAmount, addRate, rateAmount, indxInfl, dayForPay, isAutoprolog, periodCode, licStatus, 
-                             modifyDate, modifyLogin, comment, custId, minAmountOld, licNum, licDate, versOld) 
+--insert into #LicenseAgrParam (licId, licVersion, dateBegin, dateEnd, minAmount, addRate, rateAmount, indxInfl, dayForPay, isAutoprolog, periodCode, licStatus, 
+--                             modifyDate, modifyLogin, comment, custId, minAmountOld, licNum, licDate, versOld) 
 select t1.licId, isnull(t5.licVersion,0)+1, dateadd(day, 1, t2.dateEnd) as dateBegin, dateadd(year, 1, t2.dateEnd) as dateEnd,
 --( Case isnull(addRate,0) When 0  THEN round(t4.rate*t2.minAmount/100 + t2.minAmount,2) --индекс инфляции. Пока берем с договора
  ( Case isnull(addRate,0) When 0  THEN round(t2.indxInfl*t2.minAmount/100 + t2.minAmount, 2) --индекс инфляции. Пока берем с договора
@@ -75,7 +75,7 @@ left join TabLicVers t5 on t1.licId = t5.licId
 where t1.licStatus=2 and t2.dateEnd <= @date
 --и нет договоров активных или на акцепте с датой окончания больше заданной 
 and not exists ( select  1 from LicenseAgrParam t3 
-                 where t1.licId = t3.licId and t3.licStatus in (1, 2) and t1.licVersion <> t3.licVersion and t3.dateEnd >= @date)
+                 where t1.licId = t3.licId and t3.licStatus in (0, 1, 2) and t1.licVersion <> t3.licVersion and t3.dateEnd >= @date)
 
   --Запись в журнал 
    insert into SystemMessage (modifydate, nameMain, sysName, keyObj, text, name)  
@@ -138,3 +138,8 @@ END
 
 --exec pTsk8_LicProlongCreate
 --select * from SystemMessage
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk8_LicProlongCreate] TO [ReportUser]
+    AS [dbo];
+

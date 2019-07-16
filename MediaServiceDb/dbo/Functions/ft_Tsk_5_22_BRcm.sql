@@ -40,3 +40,8 @@ RETURN
 END
 
 --select * from ft_Tsk_5_22_BRcm ('2019-01-01', '2019-02-28')
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_22_BRcm] TO [ReportUser]
+    AS [dbo];
+

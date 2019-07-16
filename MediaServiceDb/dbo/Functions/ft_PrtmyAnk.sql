@@ -88,3 +88,8 @@ RETURN
 END  
 
 --select * from dbo.ft_PrtmyAnk (NULL)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_PrtmyAnk] TO [ReportUser]
+    AS [dbo];
+

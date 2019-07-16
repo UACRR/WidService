@@ -1,8 +1,9 @@
-﻿CREATE procedure dbo.pTsk8_LicPeriodBorg (@date date = NULL)
+﻿CREATE procedure [dbo].[pTsk8_LicPeriodBorg] (@date date = NULL)
 as
 begin
 /*
---Установка признака "Борг" на периоде (status = 3). Устанавливается, если undistribution <> 0 и разница @date и конца периода ( dateEnd ) больше месяца
+--Установка признака "Борг" на периоде (status = 3). 
+--Устанавливается, если amount - undistribamount - distribamount <> 0 и разница @date и конца периода ( dateEnd ) больше месяца  25-06-2019 (было по undistribamount<>0)
 --@date = NULL - getdate()
 */
 SET NOCOUNT ON;
@@ -35,7 +36,7 @@ declare @name varchar(50) = 'БОРГ періоду розрахунку - '+co
  from  PaidPeriod t1 
   join LicenseAgreement t2 on t1.licId = t2.licId and t2.licStatus = 2 
   where t1.endDate < getdate() 
-        and isnull(undistribamount,0) <> 0
+        and (amount - undistribamount - distribamount) <> 0
         and  datediff( month, t1.endDate, getdate()) > 1
         and t1.status <> 3  --возможно добавить 7
 
@@ -88,6 +89,8 @@ select * from PaidPeriod where periodId in (1201,1208,1221)
 update PaidPeriod set status = 2 where periodId in (1201,1208,1221)
 --exec dbo.pTsk8_StartDay
 */
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk8_LicPeriodBorg] TO [ReportUser]
+    AS [dbo];
 
-
-rollback

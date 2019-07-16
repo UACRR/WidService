@@ -16,12 +16,16 @@
     [roleCode]      INT            NULL,
     [status]        INT            NULL,
     [rateMech]      DECIMAL (5, 2) NULL,
+    [loadId]        INT            NULL,
+    [sourceName]    VARCHAR (200)  NULL,
     CONSTRAINT [PK_COPYRIGHT] PRIMARY KEY CLUSTERED ([cRightId] ASC),
     CONSTRAINT [FK_COPYRIGH_ASSOCIATI_RIGHTHOL] FOREIGN KEY ([custId]) REFERENCES [dbo].[RightHolder] ([custId]),
     CONSTRAINT [FK_COPYRIGH_REFERENCE_CREATIVE] FOREIGN KEY ([roleCode]) REFERENCES [dbo].[CreativeRoleType] ([codeI]),
     CONSTRAINT [FK_COPYRIGH_REFERENCE_CRIGHTST] FOREIGN KEY ([status]) REFERENCES [dbo].[CRightStatus] ([codeI]),
     CONSTRAINT [FK_COPYRIGH_REFERENCE_OBJECTRI] FOREIGN KEY ([objId]) REFERENCES [dbo].[ObjectRight] ([objId])
 );
+
+
 
 
 
@@ -146,7 +150,7 @@ error:
 end
 GO
 CREATE TRIGGER ti_CopyRight
-   ON  CopyRight 
+   ON  [dbo].[CopyRight] 
    AFTER INSERT
  AS BEGIN
 
@@ -154,3 +158,12 @@ CREATE TRIGGER ti_CopyRight
    update CopyRight set createDate = getdate() 
       from inserted t1 where CopyRight.cRightId = t1.cRightId
 END
+GO
+CREATE NONCLUSTERED INDEX [iCopyRightObjid]
+    ON [dbo].[CopyRight]([objId] ASC, [custId] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [iCopyRightCustid]
+    ON [dbo].[CopyRight]([custId] ASC);
+

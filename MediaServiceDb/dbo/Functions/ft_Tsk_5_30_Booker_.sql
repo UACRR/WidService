@@ -87,3 +87,8 @@ where ISNULL(t1.cmCustId,0) = t3.custId
 --select  rhName, innerInterCode, cmName, amount, sborESVMoney, sborMiliMoney, amountCommiss, amountToPay from ft_Tsk_5_30_Booker ('2018-01-01', '2019-01-01',0,20 ) order by rowNum
 
 --select  * from ft_Tsk_5_30_Booker (NULL, '2019-01-01',0,-1 ) order by rowNum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_30_Booker_] TO [ReportUser]
+    AS [dbo];
+

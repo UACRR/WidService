@@ -1,13 +1,13 @@
 ﻿CREATE TABLE [dbo].[AgreementAddPartner] (
     [agrId]         INT             NOT NULL,
     [custId]        INT             NULL,
-    [srFirstRate]   NUMERIC (10, 5) NULL,
-    [srMonthRate]   NUMERIC (10, 5) NULL,
-    [pfFirstRate]   NUMERIC (10, 5) NULL,
-    [pfMonthRate]   NUMERIC (10, 5) NULL,
-    [courtRate]     NUMERIC (10, 5) NULL,
-    [noCourtRate]   NUMERIC (10, 5) NULL,
-    [courtCompRate] NUMERIC (10, 5) NULL,
+    [srFirstRate]   NUMERIC (10, 5) CONSTRAINT [D_AgreementAddPartner_srFirstRate] DEFAULT ((0)) NULL,
+    [srMonthRate]   NUMERIC (10, 5) CONSTRAINT [D_AgreementAddPartner_srMonthRate] DEFAULT ((0)) NULL,
+    [pfFirstRate]   NUMERIC (10, 5) CONSTRAINT [D_AgreementAddPartner_pfFirstRate] DEFAULT ((0)) NULL,
+    [pfMonthRate]   NUMERIC (10, 5) CONSTRAINT [D_AgreementAddPartner_pfMonthRate] DEFAULT ((0)) NULL,
+    [courtRate]     NUMERIC (10, 5) CONSTRAINT [D_AgreementAddPartner_courtRate] DEFAULT ((0)) NULL,
+    [noCourtRate]   NUMERIC (10, 5) CONSTRAINT [D_AgreementAddPartner_noCourtRate] DEFAULT ((0)) NULL,
+    [courtCompRate] NUMERIC (10, 5) CONSTRAINT [D_AgreementAddPartner_courtCompRate] DEFAULT ((0)) NULL,
     [version]       INT             NOT NULL,
     [agrNumber]     VARCHAR (100)   NULL,
     [agrDate]       DATE            NULL,
@@ -25,6 +25,8 @@
     CONSTRAINT [FK_AGREEMEN_REFERENCE_AGREEMEN] FOREIGN KEY ([agrId]) REFERENCES [dbo].[AgreementMaster] ([agrId]),
     CONSTRAINT [FK_AGREEMEN_REFERENCE_PARTNER] FOREIGN KEY ([custId]) REFERENCES [dbo].[Partner] ([custId])
 );
+
+
 
 
 GO

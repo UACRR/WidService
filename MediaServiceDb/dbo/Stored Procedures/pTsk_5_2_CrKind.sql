@@ -114,3 +114,8 @@ select usesType, usesTypeName, cRKindCode, cRKindName, countRh, sPaid,  sComm, c
 end
 
 --exec pTsk_5_2_CrKind 0, '2019-01-01'
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_2_CrKind] TO [ReportUser]
+    AS [dbo];
+

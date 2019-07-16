@@ -21,22 +21,26 @@ BEGIN
 
 create table #TabProlong 
 (licId integer,
- versOld integer,
- versNew integer, 
+ versOld integer,  --текущая активная версия
+ versNew integer,  --версия из prolongVersion
  custId integer,
  primary key (licId))
 
  --declare @date date = convert(date, getdate())
  delete #TabProlong 
+ --Алгоритм. Для активации пролонгации устанавливаю активной версию из prolongVersion. Активную версию закрываю. 
  insert into #TabProlong (licId, versOld, versNew, custId)
  select t1.licId, max(t1.licVersion) as oldVers, max(t2.licVersion) as newVers, max(t1.custId) as custId
  from LicenseAgreement t1 
-  join LicenseAgrParam t2 on t1.licId = t2.licId and t1.licStatus = t2.licStatus and t2.licStatus = 2  --только для активных договоров
+  join LicenseAgrParam t2 on t1.licId = t2.licId and t1.licStatus = t2.licStatus and isnull(t1.prolongVersion,0) <> 0 and t2.licStatus = 2    --только для активных договоров
+   and t1.licStatus = 2
+   and t2.licVersion = t1.prolongVersion
    and t1.licVersion <> t2.licversion
-   and t2.dateBegin <= @date
+   and t2.dateBegin <= getdate()--@date  --уже наступил срок 
   group by t1.licId 
 
 --Удаляю из отобранных, если даты меньше или равны уже действующего договора
+--такого не может быть
    delete #TabProlong 
      from #TabProlong t1 
      join LicenseAgrParam t2 on t1.licId = t2.licId and t1.versNew = t2.licVersion 
@@ -103,3 +107,8 @@ return @Retcode
 END
 --exec dbo.pTsk8_LicProlongActive
 --select * from SystemMessage
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk8_LicProlongActive] TO [ReportUser]
+    AS [dbo];
+

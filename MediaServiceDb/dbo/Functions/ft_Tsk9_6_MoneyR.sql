@@ -30,3 +30,8 @@ RETURN
 END
 
 --select * from ft_Tsk9_6_MoneyR (134, '2018-01-31', '2019-02-28') order by dateInvoice desc
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk9_6_MoneyR] TO [ReportUser]
+    AS [dbo];
+

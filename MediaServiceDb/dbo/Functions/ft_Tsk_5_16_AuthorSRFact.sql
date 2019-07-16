@@ -80,3 +80,8 @@ where t9.categoryCode = isnull(@categoryCode, t9.categoryCode)
 RETURN 
 END
 --select * from dbo.ft_Tsk_5_16_AuthorSRFact (NULL, NULL, 0)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_16_AuthorSRFact] TO [ReportUser]
+    AS [dbo];
+

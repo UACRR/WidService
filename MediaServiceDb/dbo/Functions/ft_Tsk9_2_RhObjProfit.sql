@@ -91,3 +91,8 @@ END
 select * from ft_Tsk9_2_RhObjProfit ('2018-01-01', '3000-01-01', '8f1f2428-48b4-4209-a577-1fab339c0d82')
 select top 2 objname, genreName, duration, specName, rate, amountCollected from ft_Tsk9_2_RhObjProfit ('2018-01-01', '3000-01-01', '8f1f2428-48b4-4209-a577-1fab339c0d82') order by
 */
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk9_2_RhObjProfit] TO [ReportUser]
+    AS [dbo];
+

@@ -63,3 +63,8 @@ group by t1.periodId, t2.rmId, t4.objId
  END
 
 --select  * from dbo.ft_Tsk_5_14_RegisterSR  ('2018-01-01', '2018-12-01')
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_14_RegisterSR_] TO [ReportUser]
+    AS [dbo];
+

@@ -25,9 +25,10 @@
     CONSTRAINT [FK_REG_REF_CLIENT] FOREIGN KEY ([custId]) REFERENCES [dbo].[Client] ([custId]),
     CONSTRAINT [FK_REG_REF_REGRATELIST] FOREIGN KEY ([rmId]) REFERENCES [dbo].[RegisterRatedList] ([rmId]),
     CONSTRAINT [FK_REGISTER_REFERENCE_ALGORITH] FOREIGN KEY ([algorithmId]) REFERENCES [dbo].[AlgorithmType] ([codeI]),
-    CONSTRAINT [FK_REGISTER_REFERENCE_ASPNETUS] FOREIGN KEY ([userId]) REFERENCES [dbo].[AspNetUsers] ([id]),
     CONSTRAINT [FK_REGISTER_REFERENCE_REGISTER2] FOREIGN KEY ([rgStatus]) REFERENCES [dbo].[RegisterStatus] ([codeI])
 );
+
+
 
 
 GO

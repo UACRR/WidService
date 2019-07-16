@@ -77,3 +77,8 @@ and t2.periodId = t7.periodId
 RETURN
 END
 --exec pTsk_5_24_BR_1  '20180101', '20181231'
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_24_BR_1] TO [ReportUser]
+    AS [dbo];
+

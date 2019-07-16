@@ -37,3 +37,8 @@ group by clCustId
  RETURN
  END
  --select  * from ft_Tsk_5_20_1_BR (null, null)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_20_1_BR] TO [ReportUser]
+    AS [dbo];
+

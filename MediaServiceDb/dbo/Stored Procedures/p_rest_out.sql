@@ -14,3 +14,8 @@ isnull((select t2.rest from account t1, SaldoDay t2
 ),0)
 select  @result
 END
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[p_rest_out] TO [ReportUser]
+    AS [dbo];
+

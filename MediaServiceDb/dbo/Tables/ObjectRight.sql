@@ -15,12 +15,15 @@
     [specType]     INT           NULL,
     [actCode]      INT           NULL,
     [innerCode]    VARCHAR (100) NULL,
+    [sourceName]   VARCHAR (200) NULL,
     CONSTRAINT [PK_OBJECTRIGHT] PRIMARY KEY CLUSTERED ([objId] ASC),
     CONSTRAINT [FK_OBJECTRI_REFERENCE_CATEGORY] FOREIGN KEY ([categoryCode]) REFERENCES [dbo].[Category] ([codeI]),
     CONSTRAINT [FK_OBJECTRI_REFERENCE_OBJACT] FOREIGN KEY ([actCode]) REFERENCES [dbo].[ObjAct] ([codeI]),
     CONSTRAINT [FK_OBJECTRI_REFERENCE_OBJECTST] FOREIGN KEY ([status]) REFERENCES [dbo].[ObjectStatus] ([codeI]),
     CONSTRAINT [FK_OBJECTRI_REFERENCE_SPECTYPE] FOREIGN KEY ([specType]) REFERENCES [dbo].[SpecType] ([codeI])
 );
+
+
 
 
 
@@ -82,7 +85,7 @@ BEGIN
 END
 GO
 CREATE TRIGGER ti_ObjectRight
-   ON  ObjectRight 
+   ON  [dbo].[ObjectRight] 
    AFTER INSERT
  AS BEGIN
 
@@ -90,3 +93,12 @@ CREATE TRIGGER ti_ObjectRight
    update ObjectRight set createDate = getdate() 
       from inserted t1 where ObjectRight.objId = t1.objId
 END
+GO
+CREATE NONCLUSTERED INDEX [iObjectRightName]
+    ON [dbo].[ObjectRight]([name] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [iObjectRightCreateDate]
+    ON [dbo].[ObjectRight]([createDate] ASC);
+

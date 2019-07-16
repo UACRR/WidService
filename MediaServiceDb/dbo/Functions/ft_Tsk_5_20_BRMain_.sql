@@ -46,3 +46,8 @@ RETURN
 END
 
 --select * from ft_Tsk_5_20_BRMain ('2018-01-01', '2018-12-31')
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_20_BRMain_] TO [ReportUser]
+    AS [dbo];
+

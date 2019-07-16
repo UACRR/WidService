@@ -9,7 +9,7 @@ t7.workCommentRH, t7.workDateRH, t7.workTypeRH
 from copyright t1 
 join ObjectRight t2 on t1.objId = t2.objId 
 join CreativeRoleType t3 on t1.roleCode = t3.codeI
-join GenreType t4 on t2.genreType = t4.codeI
+left join GenreType t4 on t2.genreType = t4.codeI
 left join MediaTrack t5 on t2.objid = t5.objId
 left join SpecType t6 on t2.specType = t6.codeI
 left join WorkRH t7 on t1.cRightId = t7.cRightId

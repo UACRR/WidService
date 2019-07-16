@@ -23,10 +23,8 @@ set @cmCustId = (Case When isnull(@cmCustId,0) = 0 Then NULL Else @cmCustId end)
 --Если лицензи нул - беру по видам использования
 ;with TabRt as 
 (
-select licCode, sum(Amount) as Amount
-from dbo.ft_Tsk_5_Reg_SRMain (@dateBegin, @dateEnd) 
-where cmCustId = isnull(@cmCustId, cmCustId)
-     and rateCommiss = isnull(@rateCommiss, rateCommiss)
+select licCode,  sum(Amount) as Amount
+from ft_Tsk_5_25_2_SRLic (@dateBegin, @dateEnd,@rateCommiss, @cmCustId ) 
 group by licCode
 )
 insert into @RT (licCode, licName, amount, rowNum)
@@ -40,3 +38,8 @@ order by 2
 RETURN
 END
 --	select * from dbo.ft_Tsk_5_25_SRLic (NULL,  NULL, -1, NULL) order by rownum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_25_SRLic] TO [ReportUser]
+    AS [dbo];
+

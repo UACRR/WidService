@@ -39,3 +39,8 @@ END
 select * from ft_Tsk9_4_RhRegister ('8f1f2428-48b4-4209-a577-1fab339c0d82')
 select * from vtsk_3_OR_03_V2 -- реестр объектов правообладателей
 */
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk9_4_RhRegister] TO [ReportUser]
+    AS [dbo];
+

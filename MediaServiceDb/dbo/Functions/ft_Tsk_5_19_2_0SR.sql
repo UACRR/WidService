@@ -20,7 +20,8 @@ BEGIN
 
 --declare @dateBegin date, @dateEnd date, @cRightKind integer, @category integer,  @ourAuthor smallint
 --Первый день месяца
-set  @dateBegin =  isnull(@dateBegin, convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102))
+--set  @dateBegin =  isnull(@dateBegin, convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102))
+set  @dateBegin =  isnull(@dateBegin, convert(date, (convert(char(4),year(getdate()))+'.01.01' ),102))
 set @dateEnd = isnull(@dateEnd, getdate())
 
 set @cmCustId = (Case When isnull(@cmCustId,0) = 0 Then NULL Else @cmCustId end)
@@ -54,3 +55,8 @@ update @RT
  RETURN
  END
  --select  id, rhcustId, interCode, rhName, cntObjid, amount, commRate, cmCustIdName, countryName, rhTypeName  from ft_Tsk_5_19_2_0SR ('2018-01-01', '2219-01-01', 138 ) order by id 
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_19_2_0SR] TO [ReportUser]
+    AS [dbo];
+

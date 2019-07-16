@@ -17,10 +17,15 @@
     [distId]      INT             NULL,
     [custIdRh]    INT             NULL,
     [regIItemId]  INT             NULL,
+    [PayTurnType] INT             NULL,
+    [DocType]     SMALLINT        NULL,
+    [handId]      INT             NULL,
     CONSTRAINT [PK_PAYTURN] PRIMARY KEY CLUSTERED ([turnId] ASC, [dateWork] ASC),
     CONSTRAINT [FK_PAYTURN_REFERENCE_ACCOUNT] FOREIGN KEY ([accIdDebet]) REFERENCES [dbo].[Account] ([accId]),
     CONSTRAINT [FK_PAYTURN_REFERENCE_PAYMENTS] FOREIGN KEY ([payStatus]) REFERENCES [dbo].[PaymentStatus] ([codeI])
 );
+
+
 
 
 

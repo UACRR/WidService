@@ -11,8 +11,8 @@ if @beginDate>@endDate
 
 declare @result table(
 	custId	int,
-	custName		varchar(100),
-	INNOKPO		varchar(20),
+	custName		nvarchar(250),
+	INNOKPO		nvarchar(20),
 	cntDog			int,
 	amount			money,
 	primary key  (custId)
@@ -33,7 +33,7 @@ group by t1.custId
  select t2.custId, sum(t1.amount) as amount
   from payTurn t1 
   join account t2 on t2.accId = t1.accIdDebet
- where dateOper between @beginDate and @endDate and
+ where dateWork between @beginDate and @endDate and
  t1.accDebet like '22%' and accCredit like '10%'
  group by t2.custId  
 )	TabTurn on (TabTurn.custId = TabCntLic.custId)
@@ -45,3 +45,8 @@ group by t1.custId
 
 END
 --exec  pTsk_5_6_Customers null, null
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_6_Customers] TO [ReportUser]
+    AS [dbo];
+

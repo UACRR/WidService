@@ -54,3 +54,8 @@ select * from @result
 END
 
 --exec  pTsk_5_18_TurnAccount  '20180101','20190802','301015842'
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_18_TurnAccount] TO [ReportUser]
+    AS [dbo];
+

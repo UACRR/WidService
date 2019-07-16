@@ -2,7 +2,7 @@
 --Великі права. Звіт про авторську винагороду по Автору  або авторам з Товариства 
 -- @custId - по конкретному правообладателю. 0-все правообладатели за период
 -- @cmCustId - по конкретному сообществу, 0-выбрать всесообщества, -1 - не визначено
-
+-- 11-06-2019  Номер и серия договора клиента 
 --Назва використаного твору	Виконавець - П.І.Б. виконавця (співвиконавців) або назва колективу виконавців	Автор музики (П.І.Б.)	Автор тексту (П.І.Б.)	Тривалість звучання твору (хвил. сек.)	Кількість публічних сповіщень твору	Загальна Тривалість звучання твору (хвил. сек.)	Загальга тривалість в секундах	АВ на твір	Доля автора	 АВ автора 	Правовласник	ПІБ Автора	Код Автора	Каталог	Звіт
 
 RETURNS @RT TABLE
@@ -24,8 +24,11 @@ RETURNS @RT TABLE
  AutorText varchar(200),
  durationUse varchar(15), 
  countUse integer, --к-ть 
- fullDuration varchar(15), --datetime, --загальна тривалість
- fullDurationSec integer, -- Загальна тривалість в секундах
+ --fullDuration varchar(15), --datetime, --загальна тривалість
+ --fullDurationSec integer, -- Загальна тривалість в секундах
+ licId integer, 
+ licNum varchar(25), 
+ series varchar(10), 
  rHcustId integer, 
  cRName varchar(200),   --Наименование правообладателя
  innerCode varchar(25), 
@@ -44,14 +47,17 @@ RETURNS @RT TABLE
  sborMiliRate decimal(5,2), -- Відрахування(1.5%)
  sborMiliMoney money, -- Відрахування\r(1.5%%)
  AmountToPay money,  -- До виплати 
- CatalogName varchar(200) --каталог
+ CatalogName varchar(200), --каталог
+ rhCustType integer
 )
 AS
 BEGIN  --Користувачі
 
 --declare @dateBegin date, @dateEnd date, @cRightKind integer, @category integer,  @ourAuthor smallint
 --Первый день месяца
-set  @dateBegin =  isnull(@dateBegin, convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102))
+
+--set  @dateBegin =  isnull(@dateBegin, convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102))
+set  @dateBegin =  isnull(@dateBegin, convert(date, (convert(char(4),year(getdate()))+'.01.01' ),102))
 set @dateEnd = isnull(@dateEnd, getdate())
 
 set @custId = (Case When isnull(@custId,0) = 0 Then NULL Else @custId end)
@@ -85,7 +91,11 @@ set @cmCustId = (Case When isnull(@cmCustId,0) = 0 Then NULL Else @cmCustId end)
   kindCode integer, 
   objAmount money, 
   cmCustId integer,
-  primary Key (rhCustId, turnId,id)) 
+  licId integer, 
+  licNum varchar(25), 
+  series varchar(10),
+  rhCustType integer
+ primary Key (rhCustId, turnId,id)) 
 
 declare @TmpObj table
 (objid integer not null primary key, 
@@ -118,31 +128,44 @@ update @TmpRH
       periodId = t4.periodId, 
       periodName = t4.periodName, 
       periodDate = convert(char(12), t4.beginDate)+'-'+convert(char(12), t4.endDate), 
-      fileName = t2.fileName
+      fileName = t2.fileName, 
+	  licId = t4.licId
   from @TmpRH  t1 
    join register t2 on t1.regId = t2.regId 
    join RegisterRatedList t3 on t3.rmid = t2.rmId
    join PaidPeriod t4 on t4.periodId = t3.periodId
 
---Название их звита
+--Название из звита
 update @TmpRH 
    set ItemName = t2.ItemName,  
        countUse  = t2.countUse, 
 	   durationUse = t2.durationUse
   from @TmpRH t1 
   join RegisterItem t2 on t1.regId = t2.regId and t1.regItemId = t2.regIItemId 
-      
+
+--Название из ObjectRight
+update @TmpRH 
+   set ItemName = t2.name
+  from @TmpRH t1 
+  join ObjectRight t2 on t1.objid = t2.objId where t1.ItemName is NULL
+
+--Номер и серия договора клиента 11-06-2019 
+ update @TmpRH set licNum = t2.licNum, series = t2.series 
+    from @TmpRH t1 
+	  join vLicenseAgreement t2 on t2.licId = t1.licId 
 ----------------------------------------------------------------
 --Заливаю в результат с комьюнити
 delete @RT 
 insert into @RT 
 ( clCustId, clName, periodId, periodName, periodDate, regId, fileName, regIItemId, ItemName, objid, countUse,
-  durationUse, rHcustId,  authAmount, cmCustId, objAmount
+  durationUse, rHcustId,  authAmount, cmCustId, objAmount, 
+  licId, licNum, series 
 )
 select 
   t1.clCustId, t1.clCustName, t1.periodId, t1.periodName, t1.periodDate, t1.regId, t1.fileName, t1.regItemId, t1.ItemName, t1.objid, t1.countUse,
   t1.durationUse, t1.rHcustId,  authAmount, 
- ( Case t3.ourService When 1 Then t5.custId ELSE isnull(t4.cmCustId, -1) END ), t1.objAmount
+ ( Case t3.ourService When 1 Then t5.custId ELSE isnull(t4.cmCustId, -1) END ), t1.objAmount, 
+ t1.licid, t1.licNum, t1.series
  from @TmpRH t1 
    --join vCustCmService t2 on t1.rHcustId = t2.custId and t1.kindCode = t2.crKindCode
    left join TermsOfService t3 on t3.custId = t1.rhCustId and t3.CRKindCode = t1.kindCode 
@@ -153,7 +176,7 @@ select
    from @RT t1 
      left join vCustomer t2 on t1.cmCustId = t2.custId
  
- update @RT set cRName = t2.name 
+ update @RT set cRName = t2.name, rhCustType = t2.custType
   from @RT t1 
      join vcustomer t2 on t1.rHcustId = t2.custId
 
@@ -199,7 +222,7 @@ set  sborESVRate = t2.rate,
 from @RT t1
 left join vMyAnk t3 on t1.cmCustId = t3.custId
 left join SystemConstant t2 on codei = 1
-where ISNULL(t1.cmCustId,0) = t3.custId
+where ISNULL(t1.cmCustId,0) = t3.custId and t1.rhCustType = 1
 
 update @RT  
 set  sborMiliRate = t2.rate, 
@@ -207,7 +230,7 @@ set  sborMiliRate = t2.rate,
 from @RT t1
 left join vMyAnk t3 on t1.cmCustId = t3.custId
 FULL OUTER JOIN SystemConstant t2 on t2.codeI = 2
-where  ISNULL(t1.cmCustId,0) = t3.custId
+where  ISNULL(t1.cmCustId,0) = t3.custId and t1.rhCustType = 1
  
 update @RT  
   set AmountToPay = authAmount - isnull(commAmount,0) - isnull(sborESVMoney,0) - isnull(sborMiliMoney,0)
@@ -219,3 +242,8 @@ where ISNULL(t1.cmCustId,0) = t3.custId
  END
  --
 --select * from ft_Tsk_5_19_2_SR ('2019-01-01', '2019-02-25', NULL, NULL  ) --317419,14
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_19_2_SR] TO [ReportUser]
+    AS [dbo];
+

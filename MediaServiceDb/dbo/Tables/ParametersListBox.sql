@@ -7,3 +7,11 @@
     PRIMARY KEY CLUSTERED ([repId] ASC, [pId] ASC)
 );
 
+
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ParametersListBox] TO [ReportUser]
+    AS [dbo];
+
