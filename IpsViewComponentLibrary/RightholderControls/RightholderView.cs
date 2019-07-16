@@ -17,6 +17,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class RightholderView : RadForm, IRightholderView
     {
+        private const int CustomerTypeJuridicalCode = 3;
         private string _pdf;
         private string _doc;
         private string _custName;
@@ -435,42 +436,44 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void SetAllowedStatuses()
         {
-            if (bsAgreementAddRh.Current != null)
+            if (bsAgreementAddRh.Current == null)
+                return;
+
+            var agreementStatus = (AgreementStatuses)((AgreementAddRh)bsAgreementAddRh.Current).AgrStatus;
+
+            if (agreementStatus == AgreementStatuses.Active)
             {
-                var agreementStatus = (AgreementStatuses)((AgreementAddRh)bsAgreementAddRh.Current).AgrStatus;
+                gboxRightholderStatus.Enabled = true;
+                btnSetStatusInheritance.Enabled = true;
+                btnSetStatusClosed.Enabled = true;
 
-                if (agreementStatus == AgreementStatuses.Active)
-                {
-                    gboxRightholderStatus.Enabled = true;
-                    btnSetStatusInheritance.Enabled = true;
-                    btnSetStatusClosed.Enabled = true;
-
-                    btnSetAgreementRightholderStatus.Text = "Заблокувати";
-                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Blocked;
-                }
-                else if (agreementStatus == AgreementStatuses.Blocked)
-                {
-                    gboxRightholderStatus.Enabled = true;
-                    btnSetStatusInheritance.Enabled = false;
-                    btnSetStatusClosed.Enabled = false;
-
-                    btnSetAgreementRightholderStatus.Text = "Розблокувати";
-                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
-                }
-                else if (agreementStatus == AgreementStatuses.NotAccepted || agreementStatus == AgreementStatuses.OnAcception)
-                {
-                    gboxRightholderStatus.Enabled = true;
-                    btnSetStatusInheritance.Enabled = false;
-                    btnSetStatusClosed.Enabled = false;
-
-                    btnSetAgreementRightholderStatus.Text = "Активний";
-                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
-                }
-                else
-                {
-                    gboxRightholderStatus.Enabled = false;
-                }
+                btnSetAgreementRightholderStatus.Text = "Заблокувати";
+                btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Blocked;
             }
+            else if (agreementStatus == AgreementStatuses.Blocked)
+            {
+                gboxRightholderStatus.Enabled = true;
+                btnSetStatusInheritance.Enabled = false;
+                btnSetStatusClosed.Enabled = false;
+
+                btnSetAgreementRightholderStatus.Text = "Розблокувати";
+                btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
+            }
+            else if (agreementStatus == AgreementStatuses.NotAccepted || agreementStatus == AgreementStatuses.OnAcception)
+            {
+                gboxRightholderStatus.Enabled = true;
+                btnSetStatusInheritance.Enabled = false;
+                btnSetStatusClosed.Enabled = false;
+
+                btnSetAgreementRightholderStatus.Text = "Активний";
+                btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
+            }
+            else
+            {
+                gboxRightholderStatus.Enabled = false;
+            }
+
+            btnSetStatusInheritance.Enabled = ((Customer) CustomerDataSource).CustType != CustomerTypeJuridicalCode;
         }
 
         private void pageViewMain_SelectedPageChanged(object sender, EventArgs e)
