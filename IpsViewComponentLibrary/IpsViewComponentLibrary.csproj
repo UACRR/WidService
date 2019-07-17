@@ -169,6 +169,7 @@
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </Compile>
     <Compile Include="CommunityControls\InternalModel\InternalCommunity.cs" />
+    <Compile Include="ConsumerControls\Reports\ReportsHandler.cs" />
     <Compile Include="InternalControlsModel\ReportPaidPeriod.cs" />
     <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.cs">
       <SubType>Form</SubType>

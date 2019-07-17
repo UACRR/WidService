@@ -339,52 +339,59 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var licenseAgreement = _customer.Client.LicenseAgreement.FirstOrDefault(rec => rec.LicId == period.LicId);
-                radWaitingBar1.StartWaiting();
+                waitingBar.StartWaiting();
                 EnableButtons(false);
 
                 Register addRegister = null;
+                bool statusDoubledRecordExist = false;
                 Task.Run(() =>
                 {
                     var list = _excel.GetReportItems(dialog.FileName);
-                    if (!period.RegisterRatedList.Any())
+                    statusDoubledRecordExist = ReportsHandler.CheckDoubleRecord(list);
+                    if (!statusDoubledRecordExist)
                     {
-                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
+                        if (!period.RegisterRatedList.Any())
+                        {
+                            period.RegisterRatedList.Add(new RegisterRatedList
+                            {
+                                PeriodId = period.PeriodId,
+                                Period = period,
+                                Status = 0
+                            });
+                        }
+
+                        var RatedList = period.RegisterRatedList.First();
+                        // Створення Звіту
+                        addRegister = new Register
+                        {
+                            RgStatus = 0,
+                            FileName = Path.GetFileName(dialog.FileName),
+                            CustId = _customer.CustId,
+                            RgStatusNavigation = dicRegStatus[0],
+                            PeriodId = period.PeriodId,
+                            Rm = RatedList,
+                            LicId = period.LicId,
+                            SchemaId = licenseAgreement?.LicCodeNavigation?.SchemaId ?? 1,
+                            AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ?? 1
+                        };
+
+                        foreach (var item in list)
+                            addRegister.RegisterItem.Add(item);
+
+                        RatedList.Register.Add(addRegister);
+                        var result = SaveRegisterRatedListExecuted?.Invoke(RatedList);
                     }
-
-                    var RatedList = period.RegisterRatedList.First();
-                    // Створення Звіту
-                    addRegister = new Register
-                    {
-                        RgStatus = 0,
-                        FileName = Path.GetFileName(dialog.FileName),
-                        CustId = _customer.CustId,
-                        RgStatusNavigation = dicRegStatus[0],
-                        PeriodId = period.PeriodId,
-                        Rm = RatedList,
-                        LicId = period.LicId,
-                        SchemaId = licenseAgreement?.LicCodeNavigation?.SchemaId ?? 1,
-                        AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ?? 1
-                    };
-
-                    foreach (var item in list)
-                        addRegister.RegisterItem.Add(item);
-
-                    RatedList.Register.Add(addRegister);
-                    var result = SaveRegisterRatedListExecuted?.Invoke(RatedList);
                 })
-                .ContinueWith( tsk => {
+                .ContinueWith(tsk => {
 
-                    if (tsk.Status == TaskStatus.RanToCompletion && 
-                        addRegister != null && 
-                        !bindingReports.Contains(addRegister))
+                    if (tsk.Status == TaskStatus.RanToCompletion && addRegister != null && !bindingReports.Contains(addRegister))
                         bindingReports.Add(addRegister);
 
                     EnableButtons(true);
                     btnToAcception.Enabled = true;
-
-                    radWaitingBar1.StopWaiting();
-
                 }, TaskScheduler.FromCurrentSynchronizationContext());
+
+                waitingBar.StopWaiting();
             }
 
             RefreshData();

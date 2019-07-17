@@ -74,7 +74,7 @@
             this.bindingAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPeriods = new Telerik.WinControls.UI.RadGridView();
-            this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.bsPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.gvPeriodReports = new Telerik.WinControls.UI.RadGridView();
@@ -107,7 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods.MasterTemplate)).BeginInit();
             this.gvPeriods.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports.MasterTemplate)).BeginInit();
@@ -252,7 +252,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvPeriods.AutoScroll = true;
-            this.gvPeriods.Controls.Add(this.radWaitingBar1);
+            this.gvPeriods.Controls.Add(this.waitingBar);
             this.gvPeriods.Location = new System.Drawing.Point(3, 29);
             // 
             // 
@@ -361,20 +361,20 @@
             this.gvPeriods.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.GvPeriods_CurrentRowChanged);
             this.gvPeriods.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.GvPeriods_CommandCellClick);
             // 
-            // radWaitingBar1
+            // waitingBar
             // 
-            this.radWaitingBar1.AssociatedControl = this.gvPeriods;
-            this.radWaitingBar1.Location = new System.Drawing.Point(444, 73);
-            this.radWaitingBar1.Name = "radWaitingBar1";
-            this.radWaitingBar1.Size = new System.Drawing.Size(70, 70);
-            this.radWaitingBar1.TabIndex = 1;
-            this.radWaitingBar1.Text = "Завантаження";
-            this.radWaitingBar1.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
-            this.radWaitingBar1.WaitingSpeed = 50;
-            this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.radWaitingBar1.GetChildAt(0))).WaitingSpeed = 50;
-            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
+            this.waitingBar.AssociatedControl = this.gvPeriods;
+            this.waitingBar.Location = new System.Drawing.Point(444, 73);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 1;
+            this.waitingBar.Text = "Завантаження";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
             // lineRingWaitingBarIndicatorElement1
             // 
@@ -870,7 +870,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods)).EndInit();
             this.gvPeriods.ResumeLayout(false);
             this.gvPeriods.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports)).EndInit();
@@ -917,7 +917,7 @@
         private System.Windows.Forms.BindingSource bindingAgreement;
         private System.Windows.Forms.BindingSource bsPaidPeriod;
         private System.Windows.Forms.BindingSource bindingReports;
-        private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.UI.RadButton btnToAcception;
         private Telerik.WinControls.UI.RadButton btnAcceptType1;

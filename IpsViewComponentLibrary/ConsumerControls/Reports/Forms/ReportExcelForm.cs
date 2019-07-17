@@ -13,7 +13,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
         private const string EmptyReportNameWarningMsg = "Введіть назву звіту!";
         private const string EmptyRegisterItemListWarningMsg = "Не додано жодного твору!";
 
-        private ObservableListSource<RegisterItem> _datasource = new ObservableListSource<RegisterItem>();
+        private readonly ObservableListSource<RegisterItem> _datasource = new ObservableListSource<RegisterItem>();
         public bool IsManual { get; private set; }
 
         public object ReportNameBindingSource
@@ -80,7 +80,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
                 }
             }
 
-            DialogResult = DialogResult.OK;
+            ReportsHandler.RemoveEmptyRecord(_datasource);
+
+            if (!ReportsHandler.CheckDoubleRecord(_datasource))
+                DialogResult = DialogResult.OK;
         }
 
         private void btnAddRow_Click(object sender, EventArgs e)
