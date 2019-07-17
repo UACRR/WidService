@@ -33,5 +33,16 @@ namespace ReportsLibrary.Properties {
                 return ((string)(this["MediaService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPS,60675;Initial Catalog=SO_UCARR;User ID=ReportUser;Passwor" +
+            "d=ReportUser")]
+        public string SOUCARR {
+            get {
+                return ((string)(this["SOUCARR"]));
+            }
+        }
     }
 }
