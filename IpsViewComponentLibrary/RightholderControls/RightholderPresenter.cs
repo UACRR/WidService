@@ -10,6 +10,7 @@ using ipsFormsDesign.Presenters;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
 
@@ -17,6 +18,9 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public class RightholderPresenter : IRightholderPresenter
     {
+        private const string SaveRightHolderSuccessMsg = "Правовласника збережено!";
+        private const string SaveRightHolderErrorMsg = "Не вдалося зберегти правовласника!";
+
         private readonly IRightholderView _view;
         private readonly RightholderService _rightholderService;
         private readonly ObjectRightService _objectRightService;
@@ -153,23 +157,28 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
 
             var result = _rightholderService.Save(_customer);
+            MessageShow.ShowInfoByResult(SaveRightHolderSuccessMsg, SaveRightHolderErrorMsg, result);
+            ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
-            if (result)
-            {
-                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
-                _view.Hide();
-            }
-            else
-                _dialogService.ShowError((IWin32Window)_view, "Не вдалося зберегти правовласника.");
+            //if (result)
+            //{
+            //    ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+            //    // не приховувати вікно після збереження
+            //    //_view.Hide();
+            //}
+            //else
+            //    _dialogService.ShowError((IWin32Window)_view, "Не вдалося зберегти правовласника.");
         }
 
         public void Close()
         {
-            if (!_canClose)
-                _canClose = _dialogService.ClosingIsConfirmed((IWin32Window)_view);
+            _view.Hide();
+            // TODO: indicate when data was changed
+            //if (!_canClose)
+            //    _canClose = _dialogService.ClosingIsConfirmed((IWin32Window)_view);
 
-            if (_canClose)
-                _view.Hide();
+            //if (_canClose)
+            //    _view.Hide();
         }
 
         public void CopyAddressFactToRegister()

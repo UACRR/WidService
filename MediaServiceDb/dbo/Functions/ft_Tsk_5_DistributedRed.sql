@@ -114,3 +114,8 @@ update @RT set clCustId = t2.custId, regId = t4.regId, regItemId = t4.regIItemId
 --select sum(amount) from ft_Tsk_5_DistributedRed ('2019-01-01', '2019-02-15', 0, 0) --142213,34
 --select sum(amount) from ft_Tsk_5_Distributed ('2019-02-28', '3000-01-01', NULL, NULL) --183942,87
 --select * from ft_Tsk_5_DistributedRed (NULL, NULL, 5, NULL) --141974,07
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_DistributedRed] TO [ReportUser]
+    AS [dbo];
+

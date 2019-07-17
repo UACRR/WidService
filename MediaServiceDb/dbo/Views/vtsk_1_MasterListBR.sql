@@ -1,11 +1,9 @@
-﻿
-
-
-/*==============================================================*/
+﻿/*==============================================================*/
 /* View: vtsk_1_MasterList                                      */
 /*==============================================================*/
 CREATE view [dbo].[vtsk_1_MasterListBR] as
 --Текщее состояние мастера, если есть новая версия - она указывается и ее статус
+--01-07-2019  -vBorg
 with MasterInfo as 
 (
 select t1.agrid, t1.version, t1.agrStatus 
@@ -25,10 +23,13 @@ select custId, licId
 PaidInfo as 
 (
 select max(t2.custId) as custId, t1.licId, sum(t1.amount) as amount, sum(t1.distribAmount) as distribAmount, sum(t1.undistribAmount) as undistribAmount, 
- sum((case  t1.status When 3 Then 1 else 0 end)*isnull(t1.undistribAmount,0)) as borg
+ --sum((case  t1.status When 3 Then 1 else 0 end)*isnull(t1.undistribAmount,0)) as borg
+ max(t3.amountBorg) as borg
  from PaidPeriod t1 
   join LicenseInfo t2 on t1.licId = t2.licId 
+  left join vBorg t3 on t3.custId = t2.custId
   group by t1.licId 
+
 ),
 --Непривязані кошти Клієнтів
 MoneyInfo as (

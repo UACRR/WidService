@@ -55,3 +55,8 @@ select  clCustId, clName, objId, objName, crCustId, crCustIdName, rateCommiss, a
 RETURN
 END
 --	select * from dbo.ft_Tsk_5_21_BRcomm  ( NULL,  NULL, NULL) order by rownum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_21_BRcomm] TO [ReportUser]
+    AS [dbo];
+

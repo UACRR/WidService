@@ -54,3 +54,8 @@ update @RT
  RETURN
  END
  --select  id, rhcustId, interCode, rhName, cntObjid, amount, commRate, cmCustIdName, countryName, rhTypeName  from ft_Tsk_5_19_1_0BR ('2018-01-01', '2219-01-01', 138 ) order by id 
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_19_1_0BR] TO [ReportUser]
+    AS [dbo];
+

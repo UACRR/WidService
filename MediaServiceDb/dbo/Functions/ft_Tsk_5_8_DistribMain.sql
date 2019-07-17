@@ -47,3 +47,8 @@ END
 
 --select  sum(scollect) from ft_Tsk_5_8_DistribMain ('2019-01-01', NULL, 0, 5) --142213,34
 --select  * from ft_Tsk_5_8_DistribMain ('2019-01-01', NULL, NULL, NULL) --142213,34
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_8_DistribMain] TO [ReportUser]
+    AS [dbo];
+

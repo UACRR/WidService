@@ -21,3 +21,8 @@ return
 end
 
 --select * from [dbo].[ft_Tsk_5_19_12_BR] (0)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_19_12_BR] TO [ReportUser]
+    AS [dbo];
+

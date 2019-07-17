@@ -24,7 +24,6 @@
     [workName]     VARCHAR (254) NULL,
     [durationUse]  TIME (7)      NULL,
     CONSTRAINT [PK_REQUEST] PRIMARY KEY CLUSTERED ([reqId] ASC),
-    CONSTRAINT [FK_REQUEST_REFERENCE_ASPNETUS] FOREIGN KEY ([userId]) REFERENCES [dbo].[AspNetUsers] ([id]),
     CONSTRAINT [FK_REQUEST_REFERENCE_CATEGORY] FOREIGN KEY ([categoryCode]) REFERENCES [dbo].[Category] ([codeI]),
     CONSTRAINT [FK_REQUEST_REFERENCE_CUSTOMER] FOREIGN KEY ([custId]) REFERENCES [dbo].[Customer] ([custId]),
     CONSTRAINT [FK_REQUEST_REFERENCE_KINDCOMP] FOREIGN KEY ([kindCompCode]) REFERENCES [dbo].[KindComposition] ([codeI]),
@@ -36,6 +35,8 @@
     CONSTRAINT [FK_REQUEST_REFERENCE_REQUESTT] FOREIGN KEY ([reqType]) REFERENCES [dbo].[RequestType] ([codeI]),
     CONSTRAINT [FK_REQUEST_REFERENCE_TERMUSE] FOREIGN KEY ([termUseCode]) REFERENCES [dbo].[TermUse] ([codeI])
 );
+
+
 
 
 GO

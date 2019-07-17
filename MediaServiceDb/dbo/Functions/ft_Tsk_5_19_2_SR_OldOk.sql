@@ -329,3 +329,8 @@ where ISNULL(t1.cmCustId,0) = t3.custId
 --select * from objectRight where objid in (5842,7231)
 
 --select * from [dbo].[ft_Tsk_5_19_1_0BR] ('2018-01-01', '2019-12-01', 0  )
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_19_2_SR_OldOk] TO [ReportUser]
+    AS [dbo];
+

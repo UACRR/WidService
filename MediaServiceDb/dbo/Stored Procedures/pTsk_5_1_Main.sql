@@ -146,3 +146,8 @@ select  name, countRH,  countObj, countUser, countPartner, sPaid, sComm,  sCommP
 end
 
 --exec pTsk_5_1_Main
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_1_Main] TO [ReportUser]
+    AS [dbo];
+

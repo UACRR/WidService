@@ -4,35 +4,35 @@ AS
 
 Begin 
 --Користувачі
-
-set @beginDate = isnull(@beginDate, (select convert(date, (convert(char(4),year(getdate()))+'-01-01'))))
+/*
+set  @beginDate =  (Case WHEN isnull(@beginDate, '1900-01-01') ='1900-01-01'
+                    THEN convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102)
+                    ELSE @beginDate END)
+					*/
+set  @beginDate =  isnull(@beginDate, convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102))
 set @endDate = isnull(@endDate, getdate())
+
 if @beginDate>@endDate
 		return
 
---учет свод
-declare @result Table(
-categoryCode			int,
-cmFlag						int,
-categoryName			varchar(20),
-cmFlagName			varchar(20),
-sCollectm					money,
-sCommiss				money,
-sDistrib						money,
-primary key (categoryCode,cmFlag)
-)
+declare @myCmName varchar(100)
+set @myCmName = (select max(name) from vMyAnk)
 
-insert @result
+--select categoryCode, cmFlag, categoryName, cmFlagName, sCollectm, sCommiss, sDistrib
+-- from ft_Tsk_5_8_Consolidated (@beginDate, @endDate )
 
-select categoryCode, cmFlag,
-  (case when categoryCode = 5 Then 'Малі права' else case When categoryCode = 6 then 'Великі права' else '' end end) as categoryName, 
-  (case when cmFlag = 0 Then 'Правовласники УААСП' Else 'Інші Правовласники' end) as cmFlagName ,  
-	   sum(sCollect) as sCollectm, sum(sCommiss) as sCommiss, sum(sDistrib) as sDistrib
- from dbo.ft_tsk_3_DistribMain(@beginDate, @endDate) 
+select t1.categoryCode, t1.cmFlag, max(t2.name) as categoryName, 
+       (Case When cmFlag = 0 Then  @myCmName else 'Інші товариства'  END) as cmFlagName,
+       sum(isnull(sCollect,0)) as sCollectm, 
+       sum(isnull(sCommiss,0)) as sCommiss, sum(isnull(sDistrib,0)) as sDistrib
+ from ft_Tsk_5_8_DistribMain (@beginDate, @endDate,NULL, NULL ) t1 
+ join vCategory t2 on t2.codeI = t1.categoryCode
  group by categoryCode, cmFlag
- order by categoryCode
- 
- select * from @result
 
-end
+ end
 -- exec pTsk_5_8_Consolidated null, null
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_8_Consolidated_] TO [ReportUser]
+    AS [dbo];
+

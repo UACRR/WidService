@@ -20,6 +20,8 @@
 );
 
 
+
+
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [idx_paidPeriod01]
     ON [dbo].[PaidPeriod]([periodId] ASC, [periodName] ASC);
@@ -33,7 +35,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [uipaidperiod_001]
 GO
 
 
-create trigger tu_paidperiod01 on PaidPeriod for update as
+create trigger tu_paidperiod01 on [dbo].[PaidPeriod] for update as
 begin
 
 	SET NOCOUNT ON;

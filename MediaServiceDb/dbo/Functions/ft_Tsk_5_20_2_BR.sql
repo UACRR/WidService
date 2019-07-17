@@ -69,3 +69,8 @@ RETURN
 END
 
 --select * from ft_Tsk_5_20_2_BR (null,null,0) order by rowNum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_20_2_BR] TO [ReportUser]
+    AS [dbo];
+

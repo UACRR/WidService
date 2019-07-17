@@ -91,3 +91,8 @@ select sum(amount) from payTurn where left(accdebet,2) ='21' and  left(accCredit
 select sum(amount) from payTurn where left(accdebet,2) ='31' and  left(accCredit,2) = '30'  and dateWork > ='2019-01-01' --65120.65
 select 76853.42 + 65120.65 --141974.07
 */
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_DISTRIBUTED] TO [ReportUser]
+    AS [dbo];
+

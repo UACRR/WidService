@@ -63,3 +63,8 @@ RETURN
 END
 
 --select * from ft_Tsk_5_16_AuthorSR (NULL, 5)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_16_AuthorSR] TO [ReportUser]
+    AS [dbo];
+

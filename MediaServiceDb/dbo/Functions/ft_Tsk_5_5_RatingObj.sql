@@ -15,7 +15,7 @@ spacTypeName varchar(100),
 rateFull decimal(10,5), 
 performer varchar(200),
 amount money,
-ourAuthor smallint
+ourAuthor smallint 
 )
 AS
 BEGIN  --Користувачі
@@ -26,6 +26,8 @@ set @dateEnd = isnull(@dateEnd, getdate())
 set @cRightKind = (Case When isnull(@cRightKind,0) = 0 Then NULL Else @cRightKind end)
 set @category = (Case When isnull(@category,0) = 0 Then NULL Else @category end)
 set @ourAuthor = (Case When isnull(@ourAuthor,0) = 0 Then NULL Else @ourAuthor end)
+set @dateBegin = cast(@dateBegin as date)
+set @dateEnd = cast(@dateEnd as date)
 
 --обороты по видам права и правообладателям
 ;with TabTurn as 
@@ -52,7 +54,7 @@ select t1.objid, t2.name as objName,
       t1.amount
  from  TabTurn t1 
     join ObjectRight t2 on t1.objId = t2.objId 
-    join GenreType t3 on t3.codeI = t2.genreType
+    left join GenreType t3 on t3.codeI = t2.genreType
     left join MediaTrack t4 on t4.objid = t2.objid 
     left join specType t5 on t5.codeI = t2.genreType
 
@@ -89,4 +91,9 @@ update @Rt set ourAuthor = t2.ourService
 
  RETURN
  END
- --select  * from ft_Tsk_5_5_RatingObj (0, 0, 2, '2018-01-01', '2019-01-01')
+ --select  * from ft_Tsk_5_5_RatingObj (NULL, NULL, NULL, '2019-07-11', '2019-07-11')
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_5_RatingObj] TO [ReportUser]
+    AS [dbo];
+

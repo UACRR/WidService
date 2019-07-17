@@ -31,3 +31,8 @@ select id,	msk, rtrim(Ltrim(msk))+ replicate('_',8- Len(rtrim(ltrim(msk))))	+ltr
 end
 
 -- exec pTsk_5_17_BalanseGroup_list
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_17_BalanseGroup_list] TO [ReportUser]
+    AS [dbo];
+

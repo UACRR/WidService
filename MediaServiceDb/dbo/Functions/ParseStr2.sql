@@ -32,3 +32,8 @@ DECLARE @res NVARCHAR(250)
 	RETURN
  
 END;
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ParseStr2] TO [ReportUser]
+    AS [dbo];
+

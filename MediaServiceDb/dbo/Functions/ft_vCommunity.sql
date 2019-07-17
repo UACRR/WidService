@@ -16,3 +16,8 @@ select cmCustId,cmName
 end
 
 --select * from ft_Tsk_5_19_11_BR()
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_vCommunity] TO [ReportUser]
+    AS [dbo];
+

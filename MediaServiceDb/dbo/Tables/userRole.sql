@@ -4,10 +4,11 @@
     [userId]   NVARCHAR (48) NOT NULL,
     [status]   INT           NULL,
     CONSTRAINT [PK_USERROLE] PRIMARY KEY CLUSTERED ([custId] ASC, [roleType] ASC, [userId] ASC),
-    CONSTRAINT [FK_USERROLE_REFERENCE_ASPNETUS] FOREIGN KEY ([userId]) REFERENCES [dbo].[AspNetUsers] ([id]),
     CONSTRAINT [FK_USERROLE_REFERENCE_CUSTOMER] FOREIGN KEY ([custId]) REFERENCES [dbo].[Customer] ([custId]),
     CONSTRAINT [FK_USERROLE_REFERENCE_USERROLE] FOREIGN KEY ([roleType]) REFERENCES [dbo].[UserRoleType] ([codeI])
 );
+
+
 
 
 GO

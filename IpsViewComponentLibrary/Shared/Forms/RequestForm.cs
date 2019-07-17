@@ -552,6 +552,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             _licenseAgreement.LicenseAgrParam.First( rec => rec.LicVersion == _licenseAgreement.LicVersion).LicStatus = 2;
             bsLicAgrParam.ResetCurrentItem();
             panelStatusees.Enabled = false;
+            ReadOnly = true;
+            ctrlAuthorRightholderList.AllowEditList = false;
         }
 
         // відхилити

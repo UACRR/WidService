@@ -358,7 +358,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        private void NewRightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        private void NewRightholderView_FormClosing(object sender, FormClosingEventArgs e)
         {
             _presenter.Close();
             e.Cancel = true;

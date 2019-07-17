@@ -37,3 +37,8 @@ select t1.custId, kindCode, custIdRh, isnull(custIdCm, t1.custId), amount_sum, r
   RETURN
 END
 --select * from ft_Tsk_5_ForPayFact (NULL, NULL, 138, NULL)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_ForPayFact] TO [ReportUser]
+    AS [dbo];
+

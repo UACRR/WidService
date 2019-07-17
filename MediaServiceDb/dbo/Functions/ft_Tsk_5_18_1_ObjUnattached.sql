@@ -233,3 +233,8 @@ join vCustomer t2 on t1.custid = t2.custId
 join AgreementMaster t3 on t1.custId = t3.custId
 where objid = 5843
 */
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_18_1_ObjUnattached] TO [ReportUser]
+    AS [dbo];
+

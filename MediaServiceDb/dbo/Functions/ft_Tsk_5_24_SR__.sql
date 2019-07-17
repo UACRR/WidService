@@ -64,3 +64,8 @@ RETURN
 END
 --select * from ft_Tsk_5_24_SR__  ('2018-01-01', '2019-02-19') order by custid, dateinvoice, periodId
 --select * from MoneyPeriodLink 
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_24_SR__] TO [ReportUser]
+    AS [dbo];
+

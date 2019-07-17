@@ -13,10 +13,12 @@
 );
 
 
+
+
 GO
 
 
-create trigger tu_MoneyPeriodLink01 on MoneyPeriodLink for update as
+create trigger tu_MoneyPeriodLink01 on [dbo].[MoneyPeriodLink] for update as
 begin
    declare @rowcount int,
 			@errno int,
@@ -54,7 +56,7 @@ end
 GO
 
 
-create trigger ti_MoneyPeriodLink01 on MoneyPeriodLink for insert as
+create trigger ti_MoneyPeriodLink01 on [dbo].[MoneyPeriodLink] for insert as
 begin
     declare
        @maxcard  int,
@@ -99,7 +101,7 @@ end
 GO
 
 
-create trigger td_MoneyPeriodLink01 on MoneyPeriodLink for delete as
+create trigger td_MoneyPeriodLink01 on [dbo].[MoneyPeriodLink] for delete as
 begin
     declare
        @numrows  int,

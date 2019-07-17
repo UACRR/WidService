@@ -92,3 +92,8 @@ END CATCH
 END
 
 --exec pTsk9_CustMapAnk 
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk9_CustMapAnk] TO [ReportUser]
+    AS [dbo];
+

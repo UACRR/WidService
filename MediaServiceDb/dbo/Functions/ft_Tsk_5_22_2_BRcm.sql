@@ -51,3 +51,8 @@ END
 
 --select * from ft_Tsk_5_22_2_BRcm ('2018-01-01', '2019-12-31', -1, NULL) order by rowNum
 --select id,rhCustId,rhCustIdName,innerInterCode,cmCustId,amount,rateCommiss from ft_Tsk_5_22_2_BRcm ('2018-01-01', '2018-12-31', NULL, NULL) order by rowNum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_22_2_BRcm] TO [ReportUser]
+    AS [dbo];
+

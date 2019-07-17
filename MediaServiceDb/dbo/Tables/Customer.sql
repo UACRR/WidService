@@ -7,6 +7,7 @@
     [ankPublish] TINYINT       NULL,
     [ankTech]    TINYINT       NULL,
     [userId]     NVARCHAR (48) NULL,
+    [loadId]     INT           NULL,
     CONSTRAINT [PK_CUSTOMER] PRIMARY KEY CLUSTERED ([custId] ASC),
     CONSTRAINT [FK_CUSTOMER_REFERENCE_ASPNETUS] FOREIGN KEY ([userId]) REFERENCES [dbo].[AspNetUsers] ([id]),
     CONSTRAINT [FK_CUSTOMER_REFERENCE_CUSTOMER] FOREIGN KEY ([custType]) REFERENCES [dbo].[CustomerType] ([codeI]),
@@ -14,4 +15,11 @@
 );
 
 
+
+
+
+
+GO
+CREATE NONCLUSTERED INDEX [idx_custPublish]
+    ON [dbo].[Customer]([ankPublish] ASC);
 

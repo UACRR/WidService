@@ -59,6 +59,7 @@ CREATE TABLE #PayTurn(
 	regId							int,
 	distid						int,
 	paidid						int					null,
+	payturntype int null,
  PRIMARY KEY CLUSTERED (	TurnId ASC,	DateWork ASC)
 )
 
@@ -311,14 +312,21 @@ AccCredit like '22%'
   	if @@error	<> 0
 		goto __retErr
 
+		
+							update t1
+							set payturntype=t3.codei
+							from #PayTurn t1, PayTurnType t3
+							where					
+								convert(int,substring(accdebet,1,2))=balsDbt and
+								convert(int,substring(acccredit,1,2))=balsCrdt 
 
 begin Transaction 
 BEGIN TRY
 	exec Pay_Pay_SaldoDay
 	insert PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
-						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid,regIItemId)  
+						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid,regIItemId,payturntype)  
 	select		 TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
-						Amount,0,PayNote,'980',getdate(),2,regId ,distid,paidid
+						Amount,0,PayNote,'980',getdate(),2,regId ,distid,paidid,payturntype
 	from #PayTurn
 --exec sp__msg  'Ok'
 	delete t2

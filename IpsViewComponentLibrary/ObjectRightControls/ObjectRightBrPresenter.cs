@@ -7,11 +7,15 @@ using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.ComponentModel;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
     public class ObjectRightBrPresenter
     {
+        private const string SaveObjectSuccessMsg = "Об'єкт збережено!";
+        private const string SaveObjectErrorMsg = "Не вдалося зберегти об'єкт!";
+
         private readonly ObjectRightBrView _view;
         private readonly ObjectRightService _objectRightService;
         private readonly DialogService _dialogService;
@@ -74,19 +78,24 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
             ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
-            if (result)
-                _view.Close();
-            else
-                _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
+            MessageShow.ShowInfoByResult(SaveObjectSuccessMsg, SaveObjectErrorMsg, result);
+
+
+            //if (result)
+            //    _view.Close();
+            //else
+            //    _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
         }
 
         public void Close()
         {
-            if (!_canClose)
-                _canClose = _dialogService.ClosingIsConfirmed(_view);
+            _view.Hide();
+            // TODO: indicate when data was changed
+            //if (!_canClose)
+            //    _canClose = _dialogService.ClosingIsConfirmed(_view);
 
-            if (_canClose)
-                _view.Hide();
+            //if (_canClose)
+            //    _view.Hide();
         }
     }
 }

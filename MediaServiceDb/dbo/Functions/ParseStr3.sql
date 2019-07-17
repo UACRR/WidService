@@ -46,3 +46,8 @@ DECLARE  @delimiter1 NCHAR(1)=',';
 	RETURN
  
 END;
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ParseStr3] TO [ReportUser]
+    AS [dbo];
+

@@ -1,5 +1,5 @@
 ﻿--drop FUNCTION dbo.fMyCountry 
-CREATE FUNCTION dbo.fs_PeriodBegin (@periodType integer, @date date)
+CREATE FUNCTION [dbo].[fs_PeriodBegin] (@periodType integer, @date date)
 RETURNS date
     WITH EXECUTE AS CALLER 
     as
@@ -16,6 +16,9 @@ RETURNS date
 
      IF @periodType = 4 --1 раз на рік
 	  set @result = convert(date, '01.01.'+convert(char(4),year(@date)))
+
+    IF @periodType = 5 --одноразово
+	  set @result = @date
 
 	RETURN @result
 END

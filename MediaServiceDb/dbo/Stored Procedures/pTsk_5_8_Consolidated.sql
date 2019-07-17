@@ -3,30 +3,57 @@
 AS
 
 Begin 
---Користувачі
-
-set  @beginDate =  (Case WHEN isnull(@beginDate, '1900-01-01') ='1900-01-01'
-                    THEN convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102)
-                    ELSE @beginDate END)
-
+--9. Розподіл авторської
+--Зведена
+set  @beginDate =  isnull(@beginDate, convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102))
 set @endDate = isnull(@endDate, getdate())
 
 if @beginDate>@endDate
 		return
 
-declare @myCmName varchar(100)
+declare @myCm integer, @myCmName varchar(100)
+set @myCm = (select max(custId) from vMyAnk)
 set @myCmName = (select max(name) from vMyAnk)
 
---select categoryCode, cmFlag, categoryName, cmFlagName, sCollectm, sCommiss, sDistrib
--- from ft_Tsk_5_8_Consolidated (@beginDate, @endDate )
+declare @RT TABLE 
+(categoryCode integer, 
+ categoryName varchar(200), 
+ cmName varchar(200), 
+ cmCustId integer,
+ cmFlag integer, 
+ sCollectm money, 
+ sCommiss money,
+ sDistrib money
+)
 
-select t1.categoryCode, t1.cmFlag, max(t2.name) as categoryName, 
-       (Case When cmFlag = 0 Then  @myCmName else 'Інші товариства'  END) as cmFlagName,
-       sum(isnull(sCollect,0)) as sCollectm, 
-       sum(isnull(sCommiss,0)) as sCommiss, sum(isnull(sDistrib,0)) as sDistrib
- from ft_Tsk_5_8_DistribMain (@beginDate, @endDate,NULL, NULL ) t1 
- join vCategory t2 on t2.codeI = t1.categoryCode
- group by categoryCode, cmFlag
+ insert into @RT (cmCustId, categoryCode, cmFlag, sCollectm, sCommiss, sDistrib)
+ select   t1.cmCustId
+        , categoryCode
+		, (Case when cmCustId=@myCm Then 0 Else 1 end)
+		--, (Case when cmCustId=138 Then 0 Else 1 end)
+		, sum(amount) as sCollectm
+		, cast(sum(amount*(isnull(t2.rateCommiss,0)/100)) as money) as sCommiss
+		, sum(amount) - cast(sum(amount*isnull(t2.rateCommiss,0)/100) as money) as sDistrib
+   --from ft_Tsk_5_DISTRIBUTED ('2019-01-01', NULL, NULL, NULL)  t1
+   from ft_Tsk_5_DISTRIBUTED (@beginDate, @endDate, NULL, NULL)  t1
+     left join vCustomerRHolder t2 on t2.custId = t1.custId
+   group by  t1.cmCustId, categoryCode
+
+ 
+ update @RT set categoryName = t2.name
+   from @RT t1 
+     join vCategory t2 on t2.codeI = t1.categoryCode
+
+ update @RT set cmName = t2.name
+   from @RT t1 
+     join vCustomerCommunity t2 on t2.custId = t1.cmCustId
+
+ select * from @RT order by categoryCode, cmFlag, cmName
 
  end
--- exec pTsk_5_8_Consolidated null, null
+-- exec pTsk_5_8_Consolidated '2018-01-01', null
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_8_Consolidated] TO [ReportUser]
+    AS [dbo];
+

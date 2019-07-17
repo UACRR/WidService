@@ -53,3 +53,8 @@ from result_data t1
 where rowid = 1
 
 end
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_3_AutoLink] TO [ReportUser]
+    AS [dbo];
+

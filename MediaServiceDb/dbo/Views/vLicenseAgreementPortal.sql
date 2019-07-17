@@ -1,4 +1,5 @@
-﻿CREATE view [dbo].[vLicenseAgreementPortal] as 
+﻿
+CREATE view [dbo].[vLicenseAgreementPortal] as 
 --usesType = 1 -большие права, 2-малі права
 select distinct t1.custId, 
       (Case When t3.usesType=1 Then t6.agrNumber Else t2.licNum end) as licNum, 
@@ -20,4 +21,4 @@ select distinct t1.custId,
   left join AgreementAddBR t6 on t6.agrId = t1.agrId 
   left join AgreementStatus t7 on t7.codeI = t6.agrStatus
   left join period t8 on t8.codeI = t6.periodCode
-  where isnull(licClass,0) in (0, 1)
+  where isnull(licClass,0) in (0, 1) and t3.isPortal = 1

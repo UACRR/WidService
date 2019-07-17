@@ -75,7 +75,7 @@ left join TabLicVers t5 on t1.licId = t5.licId
 where t1.licStatus=2 and t2.dateEnd <= @date
 --и нет договоров активных или на акцепте с датой окончания больше заданной 
 and not exists ( select  1 from LicenseAgrParam t3 
-                 where t1.licId = t3.licId and t3.licStatus in (1, 2) and t1.licVersion <> t3.licVersion and t3.dateEnd >= @date)
+                 where t1.licId = t3.licId and t3.licStatus in (0, 1, 2) and t1.licVersion <> t3.licVersion and t3.dateEnd >= @date)
 
   --Запись в журнал 
    insert into SystemMessage (modifydate, nameMain, sysName, keyObj, text, name)  
@@ -138,3 +138,8 @@ END
 
 --exec pTsk8_LicProlongCreate
 --select * from SystemMessage
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk8_LicProlongCreate] TO [ReportUser]
+    AS [dbo];
+

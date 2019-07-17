@@ -73,3 +73,8 @@ join TabRgPeriod t2 on t1.periodId = t2.periodId
 RETURN
 END
 --select  id,month_name,periodYear,clName,INNOKPO,dogNumber,numberInvoice,dateInvoice,amount,n_reglist  from ft_Tsk_5_24_BR    ('2019-02-28', '2019-11-30')
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_24_BR] TO [ReportUser]
+    AS [dbo];
+

@@ -60,3 +60,8 @@ order by t3.name
 END
 
 --exec pTsk_5_3_Community '20181024','20181024'
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_3_Community] TO [ReportUser]
+    AS [dbo];
+

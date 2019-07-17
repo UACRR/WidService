@@ -3,10 +3,14 @@
     [CategoryCode] INT           NOT NULL,
     [name]         VARCHAR (128) NULL,
     [CRType]       INT           NOT NULL,
+    [isAuthorType] INT           NULL,
     CONSTRAINT [PK_CREATIVEROLETYPE] PRIMARY KEY CLUSTERED ([codeI] ASC),
     CONSTRAINT [FK_CREATIVE_REFERENCE_CATEGORY] FOREIGN KEY ([CategoryCode]) REFERENCES [dbo].[Category] ([codeI]),
-    CONSTRAINT [FK_CREATIVE_REFERENCE_COPYRIGH] FOREIGN KEY ([CRType]) REFERENCES [dbo].[CopyrightType] ([codeI])
+    CONSTRAINT [FK_CREATIVE_REFERENCE_COPYRIGH] FOREIGN KEY ([CRType]) REFERENCES [dbo].[CopyrightType] ([codeI]),
+    CONSTRAINT [FK_CREATIVE_REFERENCE_ISAUTHOR] FOREIGN KEY ([isAuthorType]) REFERENCES [dbo].[IsAuthorType] ([codeI])
 );
+
+
 
 
 GO

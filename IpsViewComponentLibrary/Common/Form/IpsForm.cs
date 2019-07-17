@@ -12,7 +12,7 @@ namespace IpsViewComponentLibrary.Common.Form
         private bool _readOnly = false;
         public bool ReadOnly
         {
-            get { return _readOnly; }
+            get => _readOnly;
             set
             {
                 _readOnly = value;

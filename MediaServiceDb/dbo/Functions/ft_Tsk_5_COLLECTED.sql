@@ -43,3 +43,8 @@ select t1.accId, t1.objid, cast(substring(accnls, 4,2) as integer) as kindCode, 
  RETURN
  END
 --select * from ft_Tsk_5_COLLECTED (NULL, NULL, 6, NULL)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_COLLECTED] TO [ReportUser]
+    AS [dbo];
+

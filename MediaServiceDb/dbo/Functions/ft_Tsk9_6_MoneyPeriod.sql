@@ -34,3 +34,8 @@ END
 --select * from ft_Tsk9_6_MoneyPeriod (6) order by periodId
 --select * from MoneyPeriodLink 
 --select * from MoneyReceived where custId = 134
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk9_6_MoneyPeriod] TO [ReportUser]
+    AS [dbo];
+

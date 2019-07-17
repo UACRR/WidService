@@ -101,3 +101,8 @@ update @RT
  END
 
 --select sum(amount) from ft_Tsk_5_4_RatingRH (0, 0, 0, '2019-02-01', '3000-01-01')  --110868,35
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_4_RatingRH__] TO [ReportUser]
+    AS [dbo];
+

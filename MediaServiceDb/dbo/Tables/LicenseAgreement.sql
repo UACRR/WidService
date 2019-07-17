@@ -18,6 +18,8 @@
 );
 
 
+
+
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Идентификатор клиента (правообладателя или покупателя)', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'LicenseAgreement', @level2type = N'COLUMN', @level2name = N'custId';
 
@@ -32,4 +34,9 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Код лі�
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Ліцензійний договір', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'LicenseAgreement';
+
+
+GO
+CREATE NONCLUSTERED INDEX [iLicenseAgreementCustid]
+    ON [dbo].[LicenseAgreement]([custId] ASC);
 
