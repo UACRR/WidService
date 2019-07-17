@@ -50,6 +50,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>.\bin\Output\MediaServiceDb.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -87,11 +88,11 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Views\" />
-    <Folder Include="Security\" />
     <Folder Include="dbo\Functions\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="dbo\User Defined Types\" />
     <Folder Include="Assemblies\" />
+    <Folder Include="Security" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SqlServer.PolicyEnum">
@@ -118,11 +119,14 @@
       <SqlOwnerName>dbo</SqlOwnerName>
       <SqlPermissionSet>SAFE</SqlPermissionSet>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ipskeys.snk" />
     <None Include="Assemblies\MediaServiceDb.dll" />
     <None Include="MediaServiceDb.sqlproj.user" />
+    <None Include="PublishAssembly.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\WorkTypeTr.sql" />
@@ -721,13 +725,6 @@
     <Build Include="dbo\Views\vCommunity_190404.sql" />
     <Build Include="dbo\Views\vClnBusinessPlace.sql" />
     <Build Include="dbo\Views\vBORG.sql" />
-    <Build Include="Security\testuser.sql" />
-    <Build Include="Security\robot.sql" />
-    <Build Include="Security\ReportUser.sql" />
-    <Build Include="Security\IPS_oshadurskyi.sql" />
-    <Build Include="Security\IPS_IT Developers.sql" />
-    <Build Include="Security\IPS_Backupuser.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_DISTRIB_AuthorCommunity.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_8_DistribMainCommunity.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_8_Consolidated_.sql" />
@@ -743,7 +740,6 @@
     <Build Include="dbo\Functions\ft_tsk_1_LicenseAgreementList.sql" />
     <Build Include="dbo\Functions\f_tsk_1_LicenseAgreementList.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_36_Objects.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_33_RegRH_.sql" />
     <Build Include="dbo\Stored Procedures\sysTableCount.sql" />
     <Build Include="dbo\Stored Procedures\Sys_UnionRH.sql" />
     <Build Include="dbo\Stored Procedures\Sys_PortalUserDelete.sql" />
@@ -781,11 +777,12 @@
     <Build Include="dbo\Stored Procedures\CatalogInputPub.sql" />
     <Build Include="dbo\Stored Procedures\CatalogControlRH.sql" />
     <Build Include="dbo\Stored Procedures\CatalogControlPub.sql" />
+    <Build Include="Security\IPS_Backupuser.sql" />
+    <Build Include="Security\IPS_IT Developers.sql" />
+    <Build Include="Security\IPS_oshadurskyi.sql" />
+    <Build Include="Security\ReportUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Script.PreDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ft_tsk_3_Compare.cs" />
   </ItemGroup>
 </Project>

@@ -1,2 +1,4 @@
-﻿CREATE USER [ReportUser] FOR LOGIN [ReportUser];
-
+﻿--CREATE LOGIN [ReportUser] WITHOUT PASSWORD;
+--GO
+CREATE USER [ReportUser] WITHOUT LOGIN WITH DEFAULT_SCHEMA=[dbo]; --FOR LOGIN [ReportUser];
+GO

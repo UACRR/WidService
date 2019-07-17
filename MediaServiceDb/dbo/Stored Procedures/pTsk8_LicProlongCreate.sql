@@ -58,8 +58,8 @@ select licId, max(licVersion) as licversion
   from LicenseAgrParam 
   group by licId
 )
---insert into #LicenseAgrParam (licId, licVersion, dateBegin, dateEnd, minAmount, addRate, rateAmount, indxInfl, dayForPay, isAutoprolog, periodCode, licStatus, 
---                             modifyDate, modifyLogin, comment, custId, minAmountOld, licNum, licDate, versOld) 
+insert into #LicenseAgrParam (licId, licVersion, dateBegin, dateEnd, minAmount, addRate, rateAmount, indxInfl, dayForPay, isAutoprolog, periodCode, licStatus, 
+                             modifyDate, modifyLogin, comment, custId, minAmountOld, licNum, licDate, versOld) 
 select t1.licId, isnull(t5.licVersion,0)+1, dateadd(day, 1, t2.dateEnd) as dateBegin, dateadd(year, 1, t2.dateEnd) as dateEnd,
 --( Case isnull(addRate,0) When 0  THEN round(t4.rate*t2.minAmount/100 + t2.minAmount,2) --индекс инфляции. Пока берем с договора
  ( Case isnull(addRate,0) When 0  THEN round(t2.indxInfl*t2.minAmount/100 + t2.minAmount, 2) --индекс инфляции. Пока берем с договора
