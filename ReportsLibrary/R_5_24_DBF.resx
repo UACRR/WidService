@@ -117,15 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
-    <value>select id, inputDate, fileName, nameCorr, mfoCorr, nameMfoCorr, accountCorr, okpoCorr,
- dogNum, docDate, amount, nplat, clnName, mfo, okpol, account 
-
- from ft_Tsk_5_24_DBF  (@dateBegin, @dateEnd) order by inputDate, fileName, nameCorr</value>
-  </data>
-  <metadata name="sqlDataSource2.ParameterValues" xml:space="preserve">
-    <value>{"@currency":"NULL","@lang":"NULL"}</value>
-  </metadata>
   <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
