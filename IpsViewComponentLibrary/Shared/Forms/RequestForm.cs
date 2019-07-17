@@ -554,6 +554,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             panelStatusees.Enabled = false;
             ReadOnly = true;
             ctrlAuthorRightholderList.AllowEditList = false;
+            ctrlMusicalDesignList.AllowEditList = false;
+            ctrlMusicalDesignList.AllowActionRegisterItem = false;
         }
 
         // відхилити

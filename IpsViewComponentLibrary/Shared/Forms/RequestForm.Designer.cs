@@ -506,6 +506,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // ctrlMusicalDesignList
             // 
+            this.ctrlMusicalDesignList.AllowActionRegisterItem = true;
             this.ctrlMusicalDesignList.AllowCreateObjectCommand = true;
             this.ctrlMusicalDesignList.AllowEditList = true;
             this.ctrlMusicalDesignList.AllowFindCommand = true;
@@ -527,6 +528,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ctrlMusicalDesignList.ShowAuthors = true;
             this.ctrlMusicalDesignList.ShowDurationUse = true;
             this.ctrlMusicalDesignList.ShowFilters = true;
+            this.ctrlMusicalDesignList.ShowGenre = false;
+            this.ctrlMusicalDesignList.ShowGenreAndRate = false;
             this.ctrlMusicalDesignList.ShowLinked = true;
             this.ctrlMusicalDesignList.ShowObjectInfo = true;
             this.ctrlMusicalDesignList.ShowTimeStartEnd = false;

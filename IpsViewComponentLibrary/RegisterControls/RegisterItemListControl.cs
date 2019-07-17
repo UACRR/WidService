@@ -90,7 +90,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _allowEditList = false;
         public bool AllowEditList
         {
-            get { return _allowEditList; }
+            get => _allowEditList;
             set
             {
                 _allowEditList = value;
@@ -105,6 +105,8 @@ namespace IpsViewComponentLibrary.RegisterControls
                 gvRegisterItemList.SetColumnReadOnly("CountUse", !_allowEditList);
             }
         }
+
+        public bool AllowActionRegisterItem { get; set; } = true;
 
         private bool _allowFindCommand = true;
         public bool AllowFindCommand
@@ -348,6 +350,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void GvRegisterItemList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
+            if (!AllowActionRegisterItem)
+                return;
+
             var currentColumnName = e.Column.Name;
 
             if (currentColumnName == "FindColumn")
