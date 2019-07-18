@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ipsFormsDesign.Interfaces;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -45,6 +46,18 @@ namespace ipsFormsDesign.Services
             string url = string.Concat(_prefix, "extra/copyrightkind");
             url = $"{_prefix}extra/{_urls[typeof(T)]}";
             return _webApi.UpdateItemWithResult(url, codeI.ToString(), sors);
+        }
+
+        public AnketaDictionaties GetAnketaDictionaties()
+        {
+            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
+            return anketaDic;
+        }
+
+        public ObjectRightDictionaries GetObjectRightDictionaries()
+        {
+            var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
+            return dictionaries;
         }
 
         // CopyRightKind BEGIN ********************

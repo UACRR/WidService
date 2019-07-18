@@ -14,7 +14,7 @@ using System.Collections;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public partial class BaseKlr030Control : UserControl
+    public sealed partial class BaseKlr030Control : UserControl
     {
         Klr030Layer _layer = new Klr030Layer();
         public delegate KlR030 GetDictionaryLayer(int id);
@@ -83,6 +83,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 btnCancelKlr030.Enabled = !value;
             }
         }
+
+        public BaseKlr030Control()
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+        }
+
         public BaseKlr030Control(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();

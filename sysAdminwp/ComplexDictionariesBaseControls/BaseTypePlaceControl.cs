@@ -13,7 +13,7 @@ using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public partial class BaseTypePlaceControl : UserControl
+    public sealed partial class BaseTypePlaceControl : UserControl
     {
         TypePlaceLayer _layer = new TypePlaceLayer();
         public delegate TypePlace GetDictionaryLayer(int id);
@@ -83,6 +83,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 btnCancelTypePlace.Enabled = !value;
             }
         }
+
+        public BaseTypePlaceControl()
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+        }
+
         public BaseTypePlaceControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();

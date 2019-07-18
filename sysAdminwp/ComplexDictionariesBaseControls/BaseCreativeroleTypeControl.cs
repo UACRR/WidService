@@ -15,7 +15,7 @@ using System.Threading;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public partial class BaseCreativeroleTypeControl : UserControl
+    public sealed partial class BaseCreativeroleTypeControl : UserControl
     {
         CreativeroleTypeLayer _layer = new CreativeroleTypeLayer();
         public delegate CreativeRoleType GetDictionaryLayer(int id);
@@ -88,6 +88,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //'Cancel' button (bottom panel)
                 btnCancelCreativeroleType.Enabled = !value;
             }
+        }
+
+        public BaseCreativeroleTypeControl()
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
         }
 
         public BaseCreativeroleTypeControl(ApiConnector connector, string urlForComplexDict)

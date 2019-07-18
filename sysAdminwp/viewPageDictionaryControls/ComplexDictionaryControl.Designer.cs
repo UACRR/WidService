@@ -33,10 +33,12 @@
             this.tableLayout_MarkupElement = new System.Windows.Forms.TableLayoutPanel();
             this.dictBaseEditPanel = new System.Windows.Forms.BindingSource(this.components);
             this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.controlPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).BeginInit();
             this.tableLayout_MarkupElement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.controlPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // complexTreeView
@@ -56,6 +58,7 @@
             this.tableLayout_MarkupElement.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.82682F));
             this.tableLayout_MarkupElement.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.17319F));
             this.tableLayout_MarkupElement.Controls.Add(this.complexTreeView, 0, 0);
+            this.tableLayout_MarkupElement.Controls.Add(this.controlPanel, 1, 0);
             this.tableLayout_MarkupElement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayout_MarkupElement.Location = new System.Drawing.Point(0, 0);
             this.tableLayout_MarkupElement.Name = "tableLayout_MarkupElement";
@@ -72,6 +75,15 @@
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
+            // controlPanel
+            // 
+            this.controlPanel.BorderVisible = false;
+            this.controlPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.controlPanel.Location = new System.Drawing.Point(201, 3);
+            this.controlPanel.Name = "controlPanel";
+            this.controlPanel.Size = new System.Drawing.Size(1228, 560);
+            this.controlPanel.TabIndex = 6;
+            // 
             // ComplexDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,6 +95,7 @@
             this.tableLayout_MarkupElement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.controlPanel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -92,5 +105,6 @@
         private System.Windows.Forms.BindingSource dictBaseEditPanel;
         private Telerik.WinControls.UI.RadTreeView complexTreeView;
         private System.Windows.Forms.TableLayoutPanel tableLayout_MarkupElement;
+        private IpsViewComponentLibrary.Common.Editors.IpsPanel controlPanel;
     }
 }

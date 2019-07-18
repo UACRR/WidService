@@ -11,7 +11,7 @@ using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public partial class BaseSystemConstantControl : UserControl
+    public sealed partial class BaseSystemConstantControl : UserControl
     {
         SystemConstantLayer _layer = new SystemConstantLayer();
         public delegate SystemConstant GetDictionaryLayer(int id);
@@ -78,6 +78,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 btnCancelSystemConstant.Enabled = !value;
             }
         }
+
+        public BaseSystemConstantControl()
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+        }
+
         public BaseSystemConstantControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();

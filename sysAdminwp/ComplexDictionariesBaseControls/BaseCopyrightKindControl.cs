@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Dictionary;
@@ -13,7 +14,7 @@ using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public partial class BaseCopyrightKindControl : UserControl
+    public sealed partial class BaseCopyrightKindControl : UserControl
     {
         CopyrightKindLayer _layer = new CopyrightKindLayer();
         public delegate CopyrightKind GetDictionaryLayer(int id);
@@ -49,7 +50,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 if (value != null)
                 {
                     _copyrightKindList = value;
-                    totalCopyrightKind.Text = _copyrightKindList.Count.ToString();
                 }
             }
         }
@@ -63,16 +63,16 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private bool controlEnabledActiveElements = true;
         public bool ControlEnabledActiveElements
         {
-            get { return controlEnabledActiveElements; }
+            get => controlEnabledActiveElements;
             set
             {
                 controlEnabledActiveElements = value;
                 //'search' element
-                txtSearchCopyrightKind.Enabled = value;
+                searchCopyrightKind.Enabled = value;
                 //filter for grid
                 ddlFilterCopyrightKind.Enabled = value;
                 //grid element
-                gridCopyrightKindList.Enabled = value;
+                gvCopyrightKindList.Enabled = value;
                 //'Add' button
                 btnAddCopyrightKind.Enabled = value;
                 //'Delete' button
@@ -84,6 +84,37 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
         }
 
+        public BaseCopyrightKindControl()
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+
+            if (IpsGlobal.AnketaDictionaties != null)
+            {
+                bsDictCRKindGroup.DataSource = IpsGlobal.AnketaDictionaties.crkindGroup;
+
+                var list = new List<CrkindGroup>
+                {
+                    new CrkindGroup
+                    {
+                        CodeI = 0,
+                        Name = "Всі",
+                    }
+                };
+                list.AddRange(IpsGlobal.AnketaDictionaties.crkindGroup);
+                bsFilterDictCRKindGroup.DataSource = list;
+            }
+
+            searchCopyrightKind.SetUsageGrid(gvCopyrightKindList);
+            ctrlGridRowCount.RadGridViewDataSource = gvCopyrightKindList;
+        }
+
+        public void SetDataByDictionaryURL(string url)
+        {
+            gvCopyrightKindList.DataSource = HandleDataForGrid(url);
+
+        }
+
         public BaseCopyrightKindControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
@@ -91,17 +122,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists
-            ddlFilterCopyrightKind.DataSource = bsSimpleDictCopyrightKind.DataSource = InitializeDataForFilter();
+            //ddlFilterCopyrightKind.DataSource = bsDictCRKindGroup.DataSource = InitializeDataForFilter();
             //initialize data for grid
-            gridCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
+            gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
-            txtSearchCopyrightKind.SetUsageGrid(gridCopyrightKindList);
+            //searchCopyrightKind.SetUsageGrid(gvCopyrightKindList);
             
             //set default data for bottom panel
             if (CopyrightKindList.Count != 0)
-                DataUpdateForBottomPanel(
-                    CopyrightKindList[0].CodeI
-                    );
+                DataUpdateForBottomPanel(CopyrightKindList[0].CodeI);
 
             ControlEnabledActiveElements = true;
         }
@@ -110,7 +139,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
             //check on valid state parameter
-            if (urlForGetDataDictionaries == null) return new List<ViewTable>();
+            if (urlForGetDataDictionaries == null)
+                return new List<ViewTable>();
+
             //get data dictionaries -> for grid
             CopyrightKindList = _connector.GetList<CopyrightKind>(urlForGetDataDictionaries);
             //return if data is not exist
@@ -133,29 +164,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 });
             }
             return dataGrid;
-        }
-
-        //handle data for drop down list - 'Спосіб використання'
-        private List<DictBaseTypeI> InitializeDataForFilter()
-        {
-            //get data for drop down list
-            return _connector.GetList<DictBaseTypeI>(UrlBaseDict) ?? new List<DictBaseTypeI>();
-        }
-
-        /// <summary>
-        /// show data for bottom panel
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
-        {
-            if (!(gridCopyrightKindList.CurrentRow.DataBoundItem is ViewTable currentRow))
-                return;
-
-            if (!int.TryParse(currentRow.Code, out int code))
-                return;
-            indexSelectedElem = CopyrightKindList.FindIndex(el => el.CodeI == code);
-            DataUpdateForBottomPanel(code);
         }
 
         /// <summary>
@@ -206,19 +214,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 result = CopyrightKindList[0];
             }
             return result;
-        }
-
-        //select item into drop down list for filtered data into grid
-        private void ddlCommonKeyData_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            //stop perform if position is not exist
-            if (e.Position == -1) return;
-            //get index current data
-            string valueDropList = ddlFilterCopyrightKind.Items[e.Position].Value.ToString();
-            if (int.TryParse(valueDropList, out int selectedItemData))
-                gridCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
-            else
-                return;
         }
 
         //filter data for grid
@@ -283,7 +278,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             CopyrightKind item = CopyrightKindList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
             //update data for grid
-            gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+            gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
 
             // TODO: DataSource гріда через BindingSource
             //BindingSource bs = new BindingSource();
@@ -293,7 +288,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //step up in grid position
             if (result) --indexSelectedElem;
             if (indexSelectedElem < 0) indexSelectedElem = 0;
-            gridCopyrightKindList.CurrentRow = gridCopyrightKindList.Rows[indexSelectedElem];
+            gvCopyrightKindList.CurrentRow = gvCopyrightKindList.Rows[indexSelectedElem];
             //define new currentRow
             DataUpdateForBottomPanel(
                 CopyrightKindList[indexSelectedElem].CodeI
@@ -327,10 +322,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 CopyrightKind result = CheckAfterCreate(copyrightKindData);
                 codeIAfter = result.CodeI;
                 //update data for grid
-                gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+                gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
                 indexSelectedElem = CopyrightKindList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
-                gridCopyrightKindList.CurrentRow = gridCopyrightKindList.Rows[indexSelectedElem];
+                gvCopyrightKindList.CurrentRow = gvCopyrightKindList.Rows[indexSelectedElem];
                 //set default state for 'Text' of the btnSave
                 btnSaveCopyrightKind.Text = "Зберегти";
             } else if (btnSaveCopyrightKind.Text == "Зберегти")
@@ -339,11 +334,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 CopyrightKind result = CheckAfterUpdate(copyrightKindData);
                 codeIAfter = result.CodeI;
                 //save last selected item
-                indexSelectedElem = gridCopyrightKindList.CurrentRow.Index;
+                indexSelectedElem = gvCopyrightKindList.CurrentRow.Index;
                 //update data for grid
-                gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+                gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
                 //select certain item into grid
-                gridCopyrightKindList.CurrentRow = gridCopyrightKindList.Rows[indexSelectedElem];
+                gvCopyrightKindList.CurrentRow = gvCopyrightKindList.Rows[indexSelectedElem];
             }
             //update data for bottom panel
             DataUpdateForBottomPanel(codeIAfter);
@@ -388,9 +383,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void btnCancel_Click(object sender, EventArgs e)
         {
             //reset changed data
-            DataUpdateForBottomPanel(
-                CopyrightKindList[indexSelectedElem].CodeI
-                );
+            DataUpdateForBottomPanel(CopyrightKindList[indexSelectedElem].CodeI);
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -494,6 +487,39 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 e.Handled = true;
             }
+        }
+
+
+        //select item into drop down list for filtered data into grid
+        private void ddlCommonKeyData_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            //stop perform if position is not exist
+            if (e.Position == -1) return;
+            //get index current data
+            string valueDropList = ddlFilterCopyrightKind.Items[e.Position].Value.ToString();
+            if (int.TryParse(valueDropList, out int selectedItemData))
+                gvCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
+            else
+                return;
+        }
+
+        private void ddlFilterCopyrightKind_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gvCopyrightKindList_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            if (!(e.CurrentRow?.DataBoundItem is ViewTable currentRow))
+                return;
+
+            if (!int.TryParse(currentRow.Code, out int code))
+                return;
+
+
+
+            indexSelectedElem = CopyrightKindList.FindIndex(el => el.CodeI == code);
+            DataUpdateForBottomPanel(code);
         }
     }
 }

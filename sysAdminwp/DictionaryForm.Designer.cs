@@ -67,6 +67,7 @@ namespace sysAdminwp
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlComplexDictionary = new sysAdminwp.viewPageDictionaryControls.ComplexDictionaryControl();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList.MasterTemplate)).BeginInit();
@@ -90,6 +91,7 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
+            this.radPageViewPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,8 +102,8 @@ namespace sysAdminwp
             this.radMenuItem2});
             this.radMenu1.Location = new System.Drawing.Point(0, 0);
             this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.radMenu1.Size = new System.Drawing.Size(985, 39);
+            this.radMenu1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
+            this.radMenu1.Size = new System.Drawing.Size(1105, 27);
             this.radMenu1.TabIndex = 8;
             this.radMenu1.ThemeName = "Office2013Light";
             // 
@@ -152,19 +154,19 @@ namespace sysAdminwp
             gridViewTextBoxColumn1.FieldName = "Code";
             gridViewTextBoxColumn1.HeaderText = "Код";
             gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 66;
+            gridViewTextBoxColumn1.Width = 77;
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 197;
+            gridViewTextBoxColumn2.Width = 231;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 197;
+            gridViewTextBoxColumn3.Width = 231;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 238;
+            gridViewTextBoxColumn4.Width = 279;
             this.gvDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -177,7 +179,7 @@ namespace sysAdminwp
             this.gvDictionariesList.Name = "gvDictionariesList";
             this.gvDictionariesList.ReadOnly = true;
             this.gvDictionariesList.ShowGroupPanel = false;
-            this.gvDictionariesList.Size = new System.Drawing.Size(721, 232);
+            this.gvDictionariesList.Size = new System.Drawing.Size(841, 203);
             this.gvDictionariesList.TabIndex = 0;
             this.gvDictionariesList.ThemeName = "Office2013Light";
             this.gvDictionariesList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.RadGridView1_CurrentRowChanged);
@@ -188,10 +190,10 @@ namespace sysAdminwp
             this.radPageView1.Controls.Add(this.radPageViewPage1);
             this.radPageView1.Controls.Add(this.radPageViewPage2);
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPageView1.Location = new System.Drawing.Point(0, 39);
+            this.radPageView1.Location = new System.Drawing.Point(0, 27);
             this.radPageView1.Name = "radPageView1";
             this.radPageView1.SelectedPage = this.radPageViewPage1;
-            this.radPageView1.Size = new System.Drawing.Size(985, 543);
+            this.radPageView1.Size = new System.Drawing.Size(1105, 514);
             this.radPageView1.TabIndex = 1;
             this.radPageView1.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -209,7 +211,7 @@ namespace sysAdminwp
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(975, 507);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1095, 478);
             this.radPageViewPage1.Text = "Прості довідники";
             // 
             // treeViewList
@@ -218,7 +220,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Left)));
             this.treeViewList.Location = new System.Drawing.Point(3, 28);
             this.treeViewList.Name = "treeViewList";
-            this.treeViewList.Size = new System.Drawing.Size(229, 476);
+            this.treeViewList.Size = new System.Drawing.Size(229, 447);
             this.treeViewList.SpacingBetweenNodes = -1;
             this.treeViewList.TabIndex = 3;
             this.treeViewList.ThemeName = "Office2013Light";
@@ -249,9 +251,9 @@ namespace sysAdminwp
             this.radPanelChange.Controls.Add(this.btnCancel);
             this.radPanelChange.Controls.Add(this.btnSave);
             this.radPanelChange.Enabled = false;
-            this.radPanelChange.Location = new System.Drawing.Point(253, 298);
+            this.radPanelChange.Location = new System.Drawing.Point(253, 269);
             this.radPanelChange.Name = "radPanelChange";
-            this.radPanelChange.Size = new System.Drawing.Size(719, 206);
+            this.radPanelChange.Size = new System.Drawing.Size(839, 206);
             this.radPanelChange.TabIndex = 4;
             this.radPanelChange.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.radPanelChange.ThemeName = "Office2013Light";
@@ -270,7 +272,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameRu.Location = new System.Drawing.Point(162, 81);
             this.txtNameRu.Name = "txtNameRu";
-            this.txtNameRu.Size = new System.Drawing.Size(539, 20);
+            this.txtNameRu.Size = new System.Drawing.Size(659, 20);
             this.txtNameRu.TabIndex = 8;
             this.txtNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
@@ -280,7 +282,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameEn.Location = new System.Drawing.Point(162, 108);
             this.txtNameEn.Name = "txtNameEn";
-            this.txtNameEn.Size = new System.Drawing.Size(539, 20);
+            this.txtNameEn.Size = new System.Drawing.Size(659, 20);
             this.txtNameEn.TabIndex = 9;
             this.txtNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
@@ -290,7 +292,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameUa.Location = new System.Drawing.Point(162, 55);
             this.txtNameUa.Name = "txtNameUa";
-            this.txtNameUa.Size = new System.Drawing.Size(539, 20);
+            this.txtNameUa.Size = new System.Drawing.Size(659, 20);
             this.txtNameUa.TabIndex = 7;
             this.txtNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
@@ -300,7 +302,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Location = new System.Drawing.Point(162, 28);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(539, 20);
+            this.txtCode.Size = new System.Drawing.Size(659, 20);
             this.txtCode.TabIndex = 6;
             this.txtCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
@@ -356,7 +358,7 @@ namespace sysAdminwp
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Відміна";
             this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.radBtnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -383,7 +385,7 @@ namespace sysAdminwp
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemove.Enabled = false;
-            this.btnRemove.Location = new System.Drawing.Point(383, 268);
+            this.btnRemove.Location = new System.Drawing.Point(383, 239);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(110, 24);
             this.btnRemove.TabIndex = 2;
@@ -404,7 +406,7 @@ namespace sysAdminwp
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Enabled = false;
-            this.btnAdd.Location = new System.Drawing.Point(253, 268);
+            this.btnAdd.Location = new System.Drawing.Point(253, 239);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(110, 24);
             this.btnAdd.TabIndex = 1;
@@ -414,17 +416,27 @@ namespace sysAdminwp
             // 
             // radPageViewPage2
             // 
+            this.radPageViewPage2.Controls.Add(this.ctrlComplexDictionary);
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(119F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(975, 507);
+            this.radPageViewPage2.Size = new System.Drawing.Size(1095, 478);
             this.radPageViewPage2.Text = "Складні довідники";
+            // 
+            // ctrlComplexDictionary
+            // 
+            this.ctrlComplexDictionary.ComplexDictionaryList = null;
+            this.ctrlComplexDictionary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlComplexDictionary.Location = new System.Drawing.Point(0, 0);
+            this.ctrlComplexDictionary.Name = "ctrlComplexDictionary";
+            this.ctrlComplexDictionary.Size = new System.Drawing.Size(1095, 478);
+            this.ctrlComplexDictionary.TabIndex = 0;
             // 
             // DictionaryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 582);
+            this.ClientSize = new System.Drawing.Size(1105, 541);
             this.Controls.Add(this.radPageView1);
             this.Controls.Add(this.radMenu1);
             this.Name = "DictionaryForm";
@@ -460,6 +472,7 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
+            this.radPageViewPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -494,5 +507,6 @@ namespace sysAdminwp
         private RadPageViewPage radPageViewPage1;
         private RadPageViewPage radPageViewPage2;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private viewPageDictionaryControls.ComplexDictionaryControl ctrlComplexDictionary;
     }
 }
