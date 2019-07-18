@@ -226,6 +226,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.SystemConstant.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlaceTr.datasource" />
+    <None Include="Properties\DataSources\ViewTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

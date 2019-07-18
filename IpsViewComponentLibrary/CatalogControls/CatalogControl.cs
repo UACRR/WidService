@@ -93,7 +93,6 @@ namespace IpsViewComponentLibrary.CatalogControls
                     await Task.Factory.StartNew(() =>
                     {
                         result = _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
-
                     });
                     waitingBar.StopWaiting();
                     var boolResult = result != null;
@@ -104,13 +103,19 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
-        private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private async void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             var row = e.Row.DataBoundItem as CatalogFile;
             switch (e.Column.FieldName)
             {
                 case "infoBtn":
-                    var file = _catalogPresenter.GetCatalogFile(row.CustId ?? 0, row.FileId);
+                    CatalogFile file = null;
+                    waitingBar.StartWaiting();
+                    await Task.Factory.StartNew(() =>
+                    {
+                        file = _catalogPresenter.GetCatalogFile(row.CustId ?? 0, row.FileId);
+                    });
+                    waitingBar.StopWaiting();
                     if (file == null)
                     {
                         _dialogService.ShowError("Помилка отримання каталога з бази даних");

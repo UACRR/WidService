@@ -27,6 +27,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             "Uk", "Ru", "En"
         };
 
+        private const string UkLang = "Uk";
+        private const string RuLang = "Ru";
+        private const string EnLang = "En";
+
         private const string DelMess = "Об'єкт не видалений!";
         private const string GetMess = "об'єкт не знайдено";
         private const string CreateMess = "Помилка формату";
@@ -107,34 +111,48 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
             searchCopyrightKind.SetUsageGrid(gvCopyrightKindList);
             ctrlGridRowCount.RadGridViewDataSource = gvCopyrightKindList;
+            ControlEnabledActiveElements = true;
+            ddlFilterCopyrightKind.SelectedValueChanged += ddlFilterCopyrightKind_SelectedValueChanged;
         }
+
+        private string Url { get; set; }
 
         public void SetDataByDictionaryURL(string url)
         {
-            gvCopyrightKindList.DataSource = HandleDataForGrid(url);
-
+            Url = url;
+            UpdateDataFromServer();
+            bsViewTable.DataSource = ConvertToGridDataList();
+            bsViewTable.ResetBindings(false);
         }
 
-        public BaseCopyrightKindControl(ApiConnector connector, string urlForComplexDict)
+        private void UpdateDataFromServer()
         {
-            InitializeComponent();
-            Dock = DockStyle.Fill;
-            _connector = connector;
-            urlDataGrid = urlForComplexDict;
-            //initialize data for drop down lists
-            //ddlFilterCopyrightKind.DataSource = bsDictCRKindGroup.DataSource = InitializeDataForFilter();
-            //initialize data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
-            //setup search posibility for textBox element
-            //searchCopyrightKind.SetUsageGrid(gvCopyrightKindList);
-            
-            //set default data for bottom panel
-            if (CopyrightKindList.Count != 0)
-                DataUpdateForBottomPanel(CopyrightKindList[0].CodeI);
+            if (string.IsNullOrWhiteSpace(Url))
+                return;
 
-            ControlEnabledActiveElements = true;
+            CopyrightKindList = _service.GetCopyrightKindList(Url);
         }
-        
+
+        private List<ViewTable> ConvertToGridDataList(int groupCode = 0)
+        {
+            var filteredList = groupCode == 0 ? CopyrightKindList : CopyrightKindList.Where(rec => rec.CrGroupCode == groupCode).ToList();
+
+            List<ViewTable> dataGrid = new List<ViewTable>();
+
+            foreach (var item in filteredList)
+            {
+                dataGrid.Add(new ViewTable
+                {
+                    Code = item.CodeI.ToString(),
+                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
+                    VariantUse = ddlFilterCopyrightKind.Items.First(el => (int)el.Value == item.CrGroupCode).Text,
+                });
+            }
+            return dataGrid;
+        }
+
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
@@ -216,32 +234,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             return result;
         }
 
-        //filter data for grid
-        private List<ViewTable> FilterDataIntoGrid(int code)
-        {
-            //get all data of the 'CopyrightKind'
-            CopyrightKindList = _connector.GetList<CopyrightKind>(urlDataGrid);
-            //stop perform if data is not exist
-            if (CopyrightKindList == null) return new List<ViewTable>();
-            //filter data by parameter 'code'
-            CopyrightKindList = CopyrightKindList.Where(item => item.CrGroupCode == code).ToList();
-            //initialzie empty data for result
-            List<ViewTable> filteredData = new List<ViewTable>();
-            //initialize data for grid
-            foreach (var item in CopyrightKindList)
-            {
-                filteredData.Add(new ViewTable
-                {
-                    Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
-                    VariantUse = ddlFilterCopyrightKind.SelectedItem.Text,
-                });
-            }
-            return filteredData;
-        }
-
         //action 'Add' new object to grid
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
@@ -290,9 +282,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (indexSelectedElem < 0) indexSelectedElem = 0;
             gvCopyrightKindList.CurrentRow = gvCopyrightKindList.Rows[indexSelectedElem];
             //define new currentRow
-            DataUpdateForBottomPanel(
-                CopyrightKindList[indexSelectedElem].CodeI
-                );
+            DataUpdateForBottomPanel(CopyrightKindList[indexSelectedElem].CodeI);
         }
 
         /// <summary>
@@ -489,23 +479,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
         }
 
-
-        //select item into drop down list for filtered data into grid
-        private void ddlCommonKeyData_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            //stop perform if position is not exist
-            if (e.Position == -1) return;
-            //get index current data
-            string valueDropList = ddlFilterCopyrightKind.Items[e.Position].Value.ToString();
-            if (int.TryParse(valueDropList, out int selectedItemData))
-                gvCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
-            else
-                return;
-        }
-
         private void ddlFilterCopyrightKind_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (!(ddlFilterCopyrightKind.SelectedValue is int groupCode))
+                return;
 
+            bsViewTable.DataSource = ConvertToGridDataList(groupCode);
+            bsViewTable.ResetBindings(false);
         }
 
         private void gvCopyrightKindList_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
@@ -513,13 +493,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (!(e.CurrentRow?.DataBoundItem is ViewTable currentRow))
                 return;
 
-            if (!int.TryParse(currentRow.Code, out int code))
-                return;
-
-
-
-            indexSelectedElem = CopyrightKindList.FindIndex(el => el.CodeI == code);
-            DataUpdateForBottomPanel(code);
+            var copyrightKind = CopyrightKindList.SingleOrDefault(rec => rec.CodeI == int.Parse(currentRow.Code));
+            UpdateBottomPanel(copyrightKind);
         }
+
+        private void UpdateBottomPanel(CopyrightKind copyrightKind)
+        {
+            bsCopyrightKind.DataSource = copyrightKind;
+            bsCopyrightKind.ResetBindings(false);
+
+            bsUkLangCopyrightKind.DataSource = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == UkLang);
+            bsUkLangCopyrightKind.ResetBindings(false);
+
+            bsRuLangCopyrightKind.DataSource = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == RuLang);
+            bsRuLangCopyrightKind.ResetBindings(false);
+
+            bsEnLangCopyrightKind.DataSource = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == EnLang);
+            bsEnLangCopyrightKind.ResetBindings(false);
+        }
+
     }
 }

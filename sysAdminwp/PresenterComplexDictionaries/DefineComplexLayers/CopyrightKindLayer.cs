@@ -16,7 +16,8 @@ namespace sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers
         //initialize control
         public UserControl InitControl(ApiConnector connector, string url)
         {
-            return new BaseCopyrightKindControl(connector, url);
+            //return new BaseCopyrightKindControl(connector, url);
+            return null;
         }
 
         //get dictionary by id

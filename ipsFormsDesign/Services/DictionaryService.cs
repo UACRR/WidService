@@ -61,6 +61,13 @@ namespace ipsFormsDesign.Services
         }
 
         // CopyRightKind BEGIN ********************
+
+        public List<CopyrightKind> GetCopyrightKindList(string url)
+        {
+            var result = _webApi.GetList<CopyrightKind>(url);
+            return result;
+        }
+
         public CopyrightKind GetCopyrightKind( int id )
         {
             string url = string.Concat( _prefix, "extra/copyrightkind");

@@ -9,8 +9,10 @@ using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
 using System.IO;
+using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.Shared.Interfaces;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
@@ -29,7 +31,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             if (!IsDesingMode)
                 _catalogFileItemsHandler = new CatalogPresenter();
             ctrlNavigatorPanel.CurrentPageChanged += NavigatorPanel_UpdateData;
-            ctrlNavigatorPanel.PageSizeChanged += CtrlNavigatorPanel_PageSizeChanged; ;
+            ctrlNavigatorPanel.PageSizeChanged += CtrlNavigatorPanel_PageSizeChanged;
         }
 
         private void CtrlNavigatorPanel_PageSizeChanged(object sender, EventArgs e)
@@ -80,24 +82,34 @@ namespace IpsViewComponentLibrary.CatalogControls
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
         }
 
-        private void btnGetExcel_Click(object sender, EventArgs e)
+        private async void btnGetExcel_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog())
             {
                 dialog.FileName = $"{_catalogFile.FileName}_export";
-                var spreadExporter = new GridViewSpreadExport(gridDetailInfo, SpreadExportFormat.Xlsx);
-                //spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
-                
                 dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
+                bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem;
+                var spreadExporter = new GridViewSpreadExport(gridDetailInfo, SpreadExportFormat.Xlsx);
+                
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     if (File.Exists(dialog.FileName))
                         File.Delete(dialog.FileName);
 
-                    SpreadExportRenderer renderer = new SpreadExportRenderer();
-                    spreadExporter.RunExport(dialog.FileName, renderer);
+                    waitingBar.StartWaiting();
+                    string fileName = dialog.FileName;
+                    await Task.Factory.StartNew(() =>
+                    {
+                        var renderer = new SpreadExportRenderer();
+                        spreadExporter.RunExport(fileName, renderer);
+                    });
+                    waitingBar.StopWaiting();
                 }
+
+                int skip = (ctrlNavigatorPanel.CurrentPage - 1) * ctrlNavigatorPanel.PageSize;
+                bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem.Skip(skip).Take(ctrlNavigatorPanel.PageSize);
+                bsPubCatalogItem.ResetBindings(false);
             }
         }
 

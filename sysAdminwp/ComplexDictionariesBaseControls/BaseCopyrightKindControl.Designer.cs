@@ -38,15 +38,21 @@
             this.bsDictCRKindGroup = new System.Windows.Forms.BindingSource(this.components);
             this.lbFilterCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.editPanelCopyrightKind = new Telerik.WinControls.UI.RadPanel();
+            this.txtRuDescr = new Telerik.WinControls.UI.RadTextBox();
+            this.bsRuLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
+            this.txtEnDescr = new Telerik.WinControls.UI.RadTextBox();
+            this.bsEnLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
+            this.txtUaDescr = new Telerik.WinControls.UI.RadTextBox();
+            this.bsUkLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.lbEditKeyCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.ddlEditKeyCopyrightKind = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.txtRuCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
-            this.bsRuLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.txtEnCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
-            this.bsEnLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.txtUaCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
-            this.bsUkLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.txtCodeCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
             this.lblRuLangCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.lblEnLangCopyrightKind = new Telerik.WinControls.UI.RadLabel();
@@ -57,30 +63,31 @@
             this.btnDeleteCopyrightKind = new Telerik.WinControls.UI.RadButton();
             this.btnAddCopyrightKind = new Telerik.WinControls.UI.RadButton();
             this.gvCopyrightKindList = new Telerik.WinControls.UI.RadGridView();
+            this.bsViewTable = new System.Windows.Forms.BindingSource(this.components);
             this.searchCopyrightKind = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
-            this.txtRuDescr = new Telerik.WinControls.UI.RadTextBox();
-            this.txtEnDescr = new Telerik.WinControls.UI.RadTextBox();
-            this.txtUaDescr = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.bsFilterDictCRKindGroup = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCRKindGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbFilterCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanelCopyrightKind)).BeginInit();
             this.editPanelCopyrightKind.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuDescr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCopyrightKind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEnDescr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCopyrightKind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUaDescr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCopyrightKind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUaCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangCopyrightKind)).BeginInit();
@@ -92,18 +99,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRuDescr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEnDescr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUaDescr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsViewTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFilterDictCRKindGroup)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlFilterCopyrightKind
             // 
-            this.ddlFilterCopyrightKind.DataSource = this.bsDictCRKindGroup;
+            this.ddlFilterCopyrightKind.DataSource = this.bsFilterDictCRKindGroup;
             this.ddlFilterCopyrightKind.DisplayMember = "Name";
             this.ddlFilterCopyrightKind.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlFilterCopyrightKind.FormattingEnabled = false;
@@ -113,8 +115,6 @@
             this.ddlFilterCopyrightKind.TabIndex = 22;
             this.ddlFilterCopyrightKind.ThemeName = "Office2013Light";
             this.ddlFilterCopyrightKind.ValueMember = "CodeI";
-            this.ddlFilterCopyrightKind.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
-            this.ddlFilterCopyrightKind.SelectedValueChanged += new System.EventHandler(this.ddlFilterCopyrightKind_SelectedValueChanged);
             // 
             // bsDictCRKindGroup
             // 
@@ -167,6 +167,87 @@
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelCopyrightKind.GetChildAt(0).GetChildAt(2))).LineLimit = false;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelCopyrightKind.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtRuDescr
+            // 
+            this.txtRuDescr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRuDescr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangCopyrightKind, "NameDescript", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtRuDescr.Location = new System.Drawing.Point(636, 106);
+            this.txtRuDescr.MaxLength = 500;
+            this.txtRuDescr.Name = "txtRuDescr";
+            this.txtRuDescr.Size = new System.Drawing.Size(376, 21);
+            this.txtRuDescr.TabIndex = 20;
+            this.txtRuDescr.ThemeName = "Office2013Light";
+            // 
+            // bsRuLangCopyrightKind
+            // 
+            this.bsRuLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            // 
+            // txtEnDescr
+            // 
+            this.txtEnDescr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEnDescr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCopyrightKind, "NameDescript", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtEnDescr.Location = new System.Drawing.Point(636, 132);
+            this.txtEnDescr.MaxLength = 500;
+            this.txtEnDescr.Name = "txtEnDescr";
+            this.txtEnDescr.Size = new System.Drawing.Size(376, 21);
+            this.txtEnDescr.TabIndex = 21;
+            this.txtEnDescr.ThemeName = "Office2013Light";
+            // 
+            // bsEnLangCopyrightKind
+            // 
+            this.bsEnLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            // 
+            // txtUaDescr
+            // 
+            this.txtUaDescr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUaDescr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCopyrightKind, "NameDescript", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtUaDescr.Location = new System.Drawing.Point(636, 80);
+            this.txtUaDescr.MaxLength = 500;
+            this.txtUaDescr.Name = "txtUaDescr";
+            this.txtUaDescr.Size = new System.Drawing.Size(376, 21);
+            this.txtUaDescr.TabIndex = 19;
+            this.txtUaDescr.ThemeName = "Office2013Light";
+            // 
+            // bsUkLangCopyrightKind
+            // 
+            this.bsUkLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.AutoSize = false;
+            this.radLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.radLabel1.Location = new System.Drawing.Point(540, 108);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(90, 18);
+            this.radLabel1.TabIndex = 17;
+            this.radLabel1.Text = "Описание (RU):";
+            this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.AutoSize = false;
+            this.radLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.radLabel2.Location = new System.Drawing.Point(540, 135);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(90, 18);
+            this.radLabel2.TabIndex = 16;
+            this.radLabel2.Text = "Description (EN):";
+            this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.AutoSize = false;
+            this.radLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.radLabel3.Location = new System.Drawing.Point(540, 82);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(90, 18);
+            this.radLabel3.TabIndex = 15;
+            this.radLabel3.Text = "Опис (UA):";
+            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            // 
             // lbEditKeyCopyrightKind
             // 
             this.lbEditKeyCopyrightKind.Location = new System.Drawing.Point(69, 27);
@@ -206,10 +287,6 @@
             this.txtRuCopyrightKind.ThemeName = "Office2013Light";
             this.txtRuCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangCopyrightKind_KeyPress);
             // 
-            // bsRuLangCopyrightKind
-            // 
-            this.bsRuLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            // 
             // txtEnCopyrightKind
             // 
             this.txtEnCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCopyrightKind, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -221,10 +298,6 @@
             this.txtEnCopyrightKind.ThemeName = "Office2013Light";
             this.txtEnCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangCopyrightKind_KeyPress);
             // 
-            // bsEnLangCopyrightKind
-            // 
-            this.bsEnLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            // 
             // txtUaCopyrightKind
             // 
             this.txtUaCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCopyrightKind, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -235,10 +308,6 @@
             this.txtUaCopyrightKind.TabIndex = 7;
             this.txtUaCopyrightKind.ThemeName = "Office2013Light";
             this.txtUaCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUaLangCopyrightKind_KeyPress);
-            // 
-            // bsUkLangCopyrightKind
-            // 
-            this.bsUkLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             // 
             // txtCodeCopyrightKind
             // 
@@ -376,6 +445,7 @@
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4});
+            this.gvCopyrightKindList.MasterTemplate.DataSource = this.bsViewTable;
             this.gvCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
             this.gvCopyrightKindList.MasterTemplate.EnableFiltering = true;
             this.gvCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
@@ -387,6 +457,10 @@
             this.gvCopyrightKindList.TabIndex = 25;
             this.gvCopyrightKindList.ThemeName = "Office2013Light";
             this.gvCopyrightKindList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvCopyrightKindList_CurrentRowChanged);
+            // 
+            // bsViewTable
+            // 
+            this.bsViewTable.DataSource = typeof(sysAdminwp.ViewTable);
             // 
             // searchCopyrightKind
             // 
@@ -409,75 +483,6 @@
             this.ctrlGridRowCount.RadGridViewDataSource = null;
             this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
             this.ctrlGridRowCount.TabIndex = 31;
-            // 
-            // txtRuDescr
-            // 
-            this.txtRuDescr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRuDescr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangCopyrightKind, "NameDescript", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtRuDescr.Location = new System.Drawing.Point(636, 106);
-            this.txtRuDescr.MaxLength = 500;
-            this.txtRuDescr.Name = "txtRuDescr";
-            this.txtRuDescr.Size = new System.Drawing.Size(376, 21);
-            this.txtRuDescr.TabIndex = 20;
-            this.txtRuDescr.ThemeName = "Office2013Light";
-            // 
-            // txtEnDescr
-            // 
-            this.txtEnDescr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEnDescr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCopyrightKind, "NameDescript", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtEnDescr.Location = new System.Drawing.Point(636, 132);
-            this.txtEnDescr.MaxLength = 500;
-            this.txtEnDescr.Name = "txtEnDescr";
-            this.txtEnDescr.Size = new System.Drawing.Size(376, 21);
-            this.txtEnDescr.TabIndex = 21;
-            this.txtEnDescr.ThemeName = "Office2013Light";
-            // 
-            // txtUaDescr
-            // 
-            this.txtUaDescr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUaDescr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCopyrightKind, "NameDescript", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtUaDescr.Location = new System.Drawing.Point(636, 80);
-            this.txtUaDescr.MaxLength = 500;
-            this.txtUaDescr.Name = "txtUaDescr";
-            this.txtUaDescr.Size = new System.Drawing.Size(376, 21);
-            this.txtUaDescr.TabIndex = 19;
-            this.txtUaDescr.ThemeName = "Office2013Light";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.AutoSize = false;
-            this.radLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel1.Location = new System.Drawing.Point(540, 108);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(90, 18);
-            this.radLabel1.TabIndex = 17;
-            this.radLabel1.Text = "Описание (RU):";
-            this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.AutoSize = false;
-            this.radLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel2.Location = new System.Drawing.Point(540, 135);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(90, 18);
-            this.radLabel2.TabIndex = 16;
-            this.radLabel2.Text = "Description (EN):";
-            this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.AutoSize = false;
-            this.radLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel3.Location = new System.Drawing.Point(540, 82);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(90, 18);
-            this.radLabel3.TabIndex = 15;
-            this.radLabel3.Text = "Опис (UA):";
-            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
             // bsFilterDictCRKindGroup
             // 
@@ -505,15 +510,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.editPanelCopyrightKind)).EndInit();
             this.editPanelCopyrightKind.ResumeLayout(false);
             this.editPanelCopyrightKind.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuDescr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCopyrightKind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEnDescr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCopyrightKind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUaDescr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCopyrightKind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUaCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangCopyrightKind)).EndInit();
@@ -525,12 +536,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRuDescr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEnDescr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUaDescr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsViewTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFilterDictCRKindGroup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -571,5 +577,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private System.Windows.Forms.BindingSource bsFilterDictCRKindGroup;
+        private System.Windows.Forms.BindingSource bsViewTable;
     }
 }

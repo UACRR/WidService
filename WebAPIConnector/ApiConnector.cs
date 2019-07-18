@@ -35,7 +35,7 @@ namespace WebAPIConnector
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.Timeout = TimeSpan.FromMinutes(10);
+            client.Timeout = TimeSpan.FromSeconds(1200);
         }
 
         private string configUrl()
