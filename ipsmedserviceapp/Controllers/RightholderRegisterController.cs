@@ -250,6 +250,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("{custId}/upload")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile sors)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             IDbContextTransaction transaction = null;
             try
             {
@@ -260,6 +261,7 @@ namespace ipsmedserviceapp.Controllers
                     return BadRequest(msg);
                 }
 
+                _dbContext.Database.SetCommandTimeout(1200);
                 var vcustomer = await _dbContext.vCustomer.SingleOrDefaultAsync(rec => rec.CustId == custId);
                 var rightholder = _dbContext.RightHolder.SingleOrDefault(rec => rec.CustId == custId);
                 if (rightholder == null)
@@ -302,6 +304,11 @@ namespace ipsmedserviceapp.Controllers
             {
                 transaction?.Rollback();
                 throw;
+            }
+            finally
+            {
+                if(currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
 

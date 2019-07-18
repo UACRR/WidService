@@ -9,6 +9,7 @@ using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
 using System.IO;
+using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.Shared.Interfaces;
 
 namespace IpsViewComponentLibrary.CatalogControls
@@ -18,6 +19,8 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string ValidateSuccessMsg = "Контроль виконано!";
 
         private CatalogFile _catalogFile = null;
+        private ObservableListSource<PubCatalogItem> _pubCatalogItemList = new ObservableListSource<PubCatalogItem>();
+
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
         protected bool IsDesingMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         public CatalogShowEdition()
@@ -25,6 +28,22 @@ namespace IpsViewComponentLibrary.CatalogControls
             InitializeComponent();
             if (!IsDesingMode)
                 _catalogFileItemsHandler = new CatalogPresenter();
+            ctrlNavigatorPanel.CurrentPageChanged += NavigatorPanel_UpdateData;
+            ctrlNavigatorPanel.PageSizeChanged += CtrlNavigatorPanel_PageSizeChanged; ;
+        }
+
+        private void CtrlNavigatorPanel_PageSizeChanged(object sender, EventArgs e)
+        {
+            ctrlNavigatorPanel.TotalPages = _pubCatalogItemList.Count / ctrlNavigatorPanel.PageSize;
+            ctrlNavigatorPanel.CurrentPage = 1;
+        }
+
+        private void NavigatorPanel_UpdateData(object sender, EventArgs e)
+        {
+            //UpdateGridData();
+            int skip = (ctrlNavigatorPanel.CurrentPage - 1) * ctrlNavigatorPanel.PageSize;
+            bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem.Skip(skip).Take(ctrlNavigatorPanel.PageSize);
+            bsPubCatalogItem.ResetBindings(false);
         }
 
         public object DataSource
@@ -44,8 +63,9 @@ namespace IpsViewComponentLibrary.CatalogControls
 
                 if (_catalogFile.PubCatalogItem.Any())
                 {
-                    bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem;
-                    bsPubCatalogItem.ResetBindings(false);
+                    _pubCatalogItemList = _catalogFile.PubCatalogItem;
+                    ctrlNavigatorPanel.TotalPages = _pubCatalogItemList.Count / ctrlNavigatorPanel.PageSize;
+                    ctrlNavigatorPanel.CurrentPage = 1;
                 }
             }
         }

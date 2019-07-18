@@ -61,8 +61,10 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
             IDbContextTransaction transaction = null;
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
+                _dbContext.Database.SetCommandTimeout(1200);
                 if (source == null || !source.PubCatalogItem.Any())
                     return BadRequest("Loaded file is empty or not read!");
 
@@ -133,6 +135,8 @@ namespace ipsmedserviceapp.Controllers
             finally
             {
                 transaction?.Dispose();
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
 
