@@ -40,7 +40,6 @@ namespace IpsViewComponentLibrary.CatalogControls
 
         private void NavigatorPanel_UpdateData(object sender, EventArgs e)
         {
-            //UpdateGridData();
             int skip = (ctrlNavigatorPanel.CurrentPage - 1) * ctrlNavigatorPanel.PageSize;
             bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem.Skip(skip).Take(ctrlNavigatorPanel.PageSize);
             bsPubCatalogItem.ResetBindings(false);
