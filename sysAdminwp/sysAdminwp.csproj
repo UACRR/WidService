@@ -160,8 +160,8 @@
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\Klr030Layer.cs" />
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\SystemConstantLayer.cs" />
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\TypePlaceLayer.cs" />
-    <Compile Include="PresenterComplexDictionaries\DirectorLayers.cs" />
     <Compile Include="PresenterComplexDictionaries\IDictionaryActions.cs" />
+    <Compile Include="SaveModeEnum.cs" />
     <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

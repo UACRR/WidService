@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.ddlFilterCopyrightKind = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsFilterDictCRKindGroup = new System.Windows.Forms.BindingSource(this.components);
             this.bsDictCRKindGroup = new System.Windows.Forms.BindingSource(this.components);
             this.lbFilterCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.editPanelCopyrightKind = new Telerik.WinControls.UI.RadPanel();
@@ -48,7 +49,7 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.lbEditKeyCopyrightKind = new Telerik.WinControls.UI.RadLabel();
-            this.ddlEditKeyCopyrightKind = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlCopyrightKind = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.txtRuCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
             this.txtEnCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
@@ -67,8 +68,8 @@
             this.searchCopyrightKind = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
-            this.bsFilterDictCRKindGroup = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterCopyrightKind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFilterDictCRKindGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCRKindGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbFilterCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanelCopyrightKind)).BeginInit();
@@ -83,7 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCopyrightKind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnCopyrightKind)).BeginInit();
@@ -100,7 +101,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsViewTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFilterDictCRKindGroup)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlFilterCopyrightKind
@@ -115,6 +115,10 @@
             this.ddlFilterCopyrightKind.TabIndex = 22;
             this.ddlFilterCopyrightKind.ThemeName = "Office2013Light";
             this.ddlFilterCopyrightKind.ValueMember = "CodeI";
+            // 
+            // bsFilterDictCRKindGroup
+            // 
+            this.bsFilterDictCRKindGroup.DataSource = typeof(ipsFormsDesign.Model.CrkindGroup);
             // 
             // bsDictCRKindGroup
             // 
@@ -142,7 +146,7 @@
             this.editPanelCopyrightKind.Controls.Add(this.radLabel2);
             this.editPanelCopyrightKind.Controls.Add(this.radLabel3);
             this.editPanelCopyrightKind.Controls.Add(this.lbEditKeyCopyrightKind);
-            this.editPanelCopyrightKind.Controls.Add(this.ddlEditKeyCopyrightKind);
+            this.editPanelCopyrightKind.Controls.Add(this.ddlCopyrightKind);
             this.editPanelCopyrightKind.Controls.Add(this.txtRuCopyrightKind);
             this.editPanelCopyrightKind.Controls.Add(this.txtEnCopyrightKind);
             this.editPanelCopyrightKind.Controls.Add(this.txtUaCopyrightKind);
@@ -194,6 +198,7 @@
             this.txtEnDescr.Size = new System.Drawing.Size(376, 21);
             this.txtEnDescr.TabIndex = 21;
             this.txtEnDescr.ThemeName = "Office2013Light";
+
             // 
             // bsEnLangCopyrightKind
             // 
@@ -257,20 +262,19 @@
             this.lbEditKeyCopyrightKind.Text = "Група видів прав використання:";
             this.lbEditKeyCopyrightKind.ThemeName = "Office2013Light";
             // 
-            // ddlEditKeyCopyrightKind
+            // ddlCopyrightKind
             // 
-            this.ddlEditKeyCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ddlEditKeyCopyrightKind.DataSource = this.bsDictCRKindGroup;
-            this.ddlEditKeyCopyrightKind.DisplayMember = "Name";
-            this.ddlEditKeyCopyrightKind.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlEditKeyCopyrightKind.Enabled = false;
-            this.ddlEditKeyCopyrightKind.Location = new System.Drawing.Point(263, 26);
-            this.ddlEditKeyCopyrightKind.Name = "ddlEditKeyCopyrightKind";
-            this.ddlEditKeyCopyrightKind.Size = new System.Drawing.Size(271, 21);
-            this.ddlEditKeyCopyrightKind.TabIndex = 13;
-            this.ddlEditKeyCopyrightKind.ThemeName = "Office2013Light";
-            this.ddlEditKeyCopyrightKind.ValueMember = "CodeI";
-            this.ddlEditKeyCopyrightKind.Click += new System.EventHandler(this.ddlEditKeyCopyrightKind_Click);
+            this.ddlCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ddlCopyrightKind.DataSource = this.bsDictCRKindGroup;
+            this.ddlCopyrightKind.DisplayMember = "Name";
+            this.ddlCopyrightKind.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCopyrightKind.Enabled = false;
+            this.ddlCopyrightKind.Location = new System.Drawing.Point(263, 26);
+            this.ddlCopyrightKind.Name = "ddlCopyrightKind";
+            this.ddlCopyrightKind.Size = new System.Drawing.Size(271, 21);
+            this.ddlCopyrightKind.TabIndex = 13;
+            this.ddlCopyrightKind.ThemeName = "Office2013Light";
+            this.ddlCopyrightKind.ValueMember = "CodeI";
             // 
             // bsCopyrightKind
             // 
@@ -285,7 +289,6 @@
             this.txtRuCopyrightKind.Size = new System.Drawing.Size(379, 21);
             this.txtRuCopyrightKind.TabIndex = 8;
             this.txtRuCopyrightKind.ThemeName = "Office2013Light";
-            this.txtRuCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangCopyrightKind_KeyPress);
             // 
             // txtEnCopyrightKind
             // 
@@ -296,7 +299,6 @@
             this.txtEnCopyrightKind.Size = new System.Drawing.Size(379, 21);
             this.txtEnCopyrightKind.TabIndex = 9;
             this.txtEnCopyrightKind.ThemeName = "Office2013Light";
-            this.txtEnCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangCopyrightKind_KeyPress);
             // 
             // txtUaCopyrightKind
             // 
@@ -307,7 +309,6 @@
             this.txtUaCopyrightKind.Size = new System.Drawing.Size(379, 21);
             this.txtUaCopyrightKind.TabIndex = 7;
             this.txtUaCopyrightKind.ThemeName = "Office2013Light";
-            this.txtUaCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUaLangCopyrightKind_KeyPress);
             // 
             // txtCodeCopyrightKind
             // 
@@ -315,10 +316,10 @@
             this.txtCodeCopyrightKind.Location = new System.Drawing.Point(155, 53);
             this.txtCodeCopyrightKind.MaxLength = 5;
             this.txtCodeCopyrightKind.Name = "txtCodeCopyrightKind";
+            this.txtCodeCopyrightKind.ReadOnly = true;
             this.txtCodeCopyrightKind.Size = new System.Drawing.Size(379, 21);
             this.txtCodeCopyrightKind.TabIndex = 6;
             this.txtCodeCopyrightKind.ThemeName = "Office2013Light";
-            this.txtCodeCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeComplex_KeyPress);
             // 
             // lblRuLangCopyrightKind
             // 
@@ -424,32 +425,32 @@
             this.gvCopyrightKindList.MasterTemplate.AllowEditRow = false;
             this.gvCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
             this.gvCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Code";
-            gridViewTextBoxColumn1.HeaderText = "Код";
-            gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 111;
-            gridViewTextBoxColumn2.FieldName = "NameUk";
-            gridViewTextBoxColumn2.HeaderText = "Назва";
-            gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 302;
-            gridViewTextBoxColumn3.FieldName = "NameRu";
-            gridViewTextBoxColumn3.HeaderText = "Название";
-            gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 306;
-            gridViewTextBoxColumn4.FieldName = "NameEn";
-            gridViewTextBoxColumn4.HeaderText = "Name";
-            gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 281;
+            gridViewTextBoxColumn9.FieldName = "Code";
+            gridViewTextBoxColumn9.HeaderText = "Код";
+            gridViewTextBoxColumn9.Name = "Code";
+            gridViewTextBoxColumn9.Width = 111;
+            gridViewTextBoxColumn10.FieldName = "NameUk";
+            gridViewTextBoxColumn10.HeaderText = "Назва";
+            gridViewTextBoxColumn10.Name = "NameUk";
+            gridViewTextBoxColumn10.Width = 302;
+            gridViewTextBoxColumn11.FieldName = "NameRu";
+            gridViewTextBoxColumn11.HeaderText = "Название";
+            gridViewTextBoxColumn11.Name = "NameRu";
+            gridViewTextBoxColumn11.Width = 306;
+            gridViewTextBoxColumn12.FieldName = "NameEn";
+            gridViewTextBoxColumn12.HeaderText = "Name";
+            gridViewTextBoxColumn12.Name = "NameEn";
+            gridViewTextBoxColumn12.Width = 281;
             this.gvCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4});
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12});
             this.gvCopyrightKindList.MasterTemplate.DataSource = this.bsViewTable;
             this.gvCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
             this.gvCopyrightKindList.MasterTemplate.EnableFiltering = true;
             this.gvCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
-            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvCopyrightKindList.Name = "gvCopyrightKindList";
             this.gvCopyrightKindList.ReadOnly = true;
             this.gvCopyrightKindList.ShowGroupPanel = false;
@@ -484,10 +485,6 @@
             this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
             this.ctrlGridRowCount.TabIndex = 31;
             // 
-            // bsFilterDictCRKindGroup
-            // 
-            this.bsFilterDictCRKindGroup.DataSource = typeof(ipsFormsDesign.Model.CrkindGroup);
-            // 
             // BaseCopyrightKindControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -505,6 +502,7 @@
             this.Name = "BaseCopyrightKindControl";
             this.Size = new System.Drawing.Size(1023, 497);
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterCopyrightKind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFilterDictCRKindGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCRKindGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbFilterCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanelCopyrightKind)).EndInit();
@@ -520,7 +518,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCopyrightKind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnCopyrightKind)).EndInit();
@@ -537,7 +535,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsViewTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFilterDictCRKindGroup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -561,7 +558,7 @@
         private Telerik.WinControls.UI.RadButton btnAddCopyrightKind;
         private Telerik.WinControls.UI.RadGridView gvCopyrightKindList;
         private IpsViewComponentLibrary.Common.SearchTextBoxControl searchCopyrightKind;
-        private Telerik.WinControls.UI.RadDropDownList ddlEditKeyCopyrightKind;
+        private Telerik.WinControls.UI.RadDropDownList ddlCopyrightKind;
         private Telerik.WinControls.UI.RadLabel lbEditKeyCopyrightKind;
         private System.Windows.Forms.BindingSource bsCopyrightKind;
         private System.Windows.Forms.BindingSource bsDictCRKindGroup;

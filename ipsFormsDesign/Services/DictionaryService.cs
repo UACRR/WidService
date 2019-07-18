@@ -60,7 +60,8 @@ namespace ipsFormsDesign.Services
             return dictionaries;
         }
 
-        // CopyRightKind BEGIN ********************
+
+        #region * * * CopyRightKind * * *
 
         public List<CopyrightKind> GetCopyrightKindList(string url)
         {
@@ -68,22 +69,16 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
-        public CopyrightKind GetCopyrightKind( int id )
-        {
-            string url = string.Concat( _prefix, "extra/copyrightkind");
-            return _webApi.GetItemById<CopyrightKind>(url, id.ToString());
-        }
-
-        public CopyrightKind CreateCopyrightKind( CopyrightKind sors )
+        public bool CreateCopyrightKind(CopyrightKind sors)
         {
             string url = string.Concat(_prefix, "extra/copyrightkind");
-            return _webApi.NewItemWithResult(url, sors);
+            return _webApi.NewItem(url, sors);
         }
 
-        public CopyrightKind UpdateCopyrightKind(CopyrightKind sors)
+        public bool UpdateCopyrightKind(CopyrightKind sors)
         {
             string url = string.Concat(_prefix, "extra/copyrightkind");
-            return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
+            return _webApi.UpdateItem(url, sors.CodeI.ToString(), sors);
         }
 
         public bool DeleteCopyrightKind(int id)
@@ -91,6 +86,8 @@ namespace ipsFormsDesign.Services
             string url = string.Concat(_prefix, "extra/copyrightkind");
             return _webApi.DeleteItem(url, id.ToString());
         }
+
+        #endregion
 
         // Country BEGIN ********************
         public Country GetCountry(int id)
