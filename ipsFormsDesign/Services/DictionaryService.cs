@@ -13,11 +13,13 @@ namespace ipsFormsDesign.Services
     {
         private readonly ApiConnector _webApi = new ApiConnector();
         private readonly string _prefix = "dictionary/";
+        private const string _prefixExtra = "dictionary/extra";
+
         private static DictionaryService _service;
 
         private readonly Dictionary<Type, string> _urls = new Dictionary<Type, string>
         {
-            {typeof(CopyrightKind), "" },
+            {typeof(CopyrightKind), "copyrightkind" },
 
         };
 
@@ -29,23 +31,6 @@ namespace ipsFormsDesign.Services
                 _service = new DictionaryService();
 
             return _service;
-        }
-
-        public T GetObj<T>(int id)
-        {
-            string url = string.Concat(_prefix, "extra/copyrightkind");
-            url = $"{_prefix}extra/{_urls[typeof(T)]}";
-            return _webApi.GetItemById<T>(url, id.ToString());
-        }
-
-        public T UpdateObj<T>(T sors, int codeI) where T:class
-        {
-            if (!_urls.ContainsKey(typeof(T)))
-                throw new ArgumentException("");
-
-            string url = string.Concat(_prefix, "extra/copyrightkind");
-            url = $"{_prefix}extra/{_urls[typeof(T)]}";
-            return _webApi.UpdateItemWithResult(url, codeI.ToString(), sors);
         }
 
         public AnketaDictionaties GetAnketaDictionaties()
@@ -60,34 +45,48 @@ namespace ipsFormsDesign.Services
             return dictionaries;
         }
 
-
-        #region * * * CopyRightKind * * *
-
-        public List<CopyrightKind> GetCopyrightKindList(string url)
+        /// <summary>
+        /// Отримати список записів складного довідника
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public List<T> GetExtraDictionaryList<T>(string url)
         {
-            var result = _webApi.GetList<CopyrightKind>(url);
+            var result = _webApi.GetList<T>(url);
             return result;
         }
 
-        public bool CreateCopyrightKind(CopyrightKind sors)
+        public bool CreateExtraDictionaryRecord<T>(T sors) where T : class
         {
-            string url = string.Concat(_prefix, "extra/copyrightkind");
+            if (!_urls.ContainsKey(typeof(T)))
+                return false;
+
+            string url = $"{_prefixExtra}/create/{_urls[typeof(T)]}";
             return _webApi.NewItem(url, sors);
         }
 
-        public bool UpdateCopyrightKind(CopyrightKind sors)
+        public bool UpdateExtraDictionaryRecord<T>(T source) where T : class
         {
-            string url = string.Concat(_prefix, "extra/copyrightkind");
-            return _webApi.UpdateItem(url, sors.CodeI.ToString(), sors);
+            if (!_urls.ContainsKey(typeof(T)))
+                return false;
+
+            string url = $"{_prefixExtra}/update/{_urls[typeof(T)]}";
+            return _webApi.UpdateItem(url, null, source);
         }
 
-        public bool DeleteCopyrightKind(int id)
+        public bool DeleteExtraDictionaryRecord<T>(int id) where T : class
         {
-            string url = string.Concat(_prefix, "extra/copyrightkind");
+            if (!_urls.ContainsKey(typeof(T)))
+                return false;
+
+            string url = $"{_prefixExtra}/delete/{_urls[typeof(T)]}";
             return _webApi.DeleteItem(url, id.ToString());
         }
 
-        #endregion
+
+        // -------- - - 
+
 
         // Country BEGIN ********************
         public Country GetCountry(int id)

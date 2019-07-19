@@ -13,12 +13,14 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public sealed partial class BaseCopyrightKindControl : UserControl
     {
+        private const string NotUniquenessCodeWarningMsg = "Введений код належить іншому запису довідника!";
+
         private const string SaveNewRecordSuccessMsg = "Новий запис в довідник додано!";
         private const string SaveNewRecordErrorMsg = "Неможливо додати новий запис в довідник!";
 
         private const string DeleteRecordConfirmMsg = "Видалити запис?";
         private const string DeleteRecordSuccessMsg = "Запис з довідника видалено!";
-        private const string DeleteRecordErrorMsg = "Неможливо видалити запис з довідника!";
+        private const string DeleteRecordErrorMsg = "Неможливо видалити запис з довідника! Запис використовується в іншій таблиці через \"FOREIGN KEY\"!";
 
         private const string UkLang = "Uk";
         private const string RuLang = "Ru";
@@ -102,7 +104,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (string.IsNullOrWhiteSpace(Url))
                 return;
 
-            _copyrightKindList = _service.GetCopyrightKindList(Url);
+            //_copyrightKindList = _service.GetCopyrightKindList(Url);
+            _copyrightKindList = _service.GetExtraDictionaryList<CopyrightKind>(Url);
 
             bsViewTable.DataSource = ConvertToGridDataList();
             bsViewTable.ResetBindings(false);
@@ -163,7 +166,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
             if (MessageShow.ConfirmAction(DeleteRecordConfirmMsg) == DialogResult.Yes)
             {
-                var result = _service.DeleteCopyrightKind(int.Parse(row.Code));
+                var result = _service.DeleteExtraDictionaryRecord<CopyrightKind>(int.Parse(row.Code));
                 MessageShow.ShowInfoByResult(DeleteRecordSuccessMsg, DeleteRecordErrorMsg, result);
                 UpdateDataFromServer();
             }
@@ -185,7 +188,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
             if (SaveMode == SaveMode.OnCreate)
             {
-                var result = _service.CreateCopyrightKind(_copyrightKindData);
+                if (!CheckForUniqueness(_copyrightKindData.CodeI))
+                {
+                    MessageShow.ShowError(NotUniquenessCodeWarningMsg);
+                    return;
+                }
+
+                var result = _service.CreateExtraDictionaryRecord(_copyrightKindData);
                 MessageShow.ShowInfoByResult(SaveNewRecordSuccessMsg, SaveNewRecordErrorMsg, result);
 
                 if (!result)
@@ -200,7 +209,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
             else if (SaveMode == SaveMode.OnEditExist)
             {
-                var result = _service.UpdateCopyrightKind(_copyrightKindData);
+                var result = _service.UpdateExtraDictionaryRecord(_copyrightKindData);
                 MessageShow.ShowInfoAfterChanges(result);
 
                 if (!result)
@@ -246,6 +255,21 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             UpdateBottomPanel(copyrightKind);
         }
 
+        /// <summary>
+        /// Перевірити введений код на унікальність
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private bool CheckForUniqueness(int code)
+        {
+            // не унікальний якщо такий код є в колекції
+            return !_copyrightKindList.Select(rec => rec.CodeI).ToArray().Contains(code);
+        }
+
+        /// <summary>
+        /// Оновити дані на панелі редагування
+        /// </summary>
+        /// <param name="copyrightKind"></param>
         private void UpdateBottomPanel(CopyrightKind copyrightKind)
         {
             _copyrightKindData = copyrightKind;

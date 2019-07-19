@@ -9,18 +9,6 @@ namespace sysAdminwp.viewPageDictionaryControls
 {
     public partial class ComplexDictionaryControl : UserControl
     {
-        //sequence of complex dictionaries
-        private readonly List<string> _complexDictionaryList = new List<string>
-        {
-            "copyrightkind",
-            "country",
-            "creativeroletype",
-            "genretype",
-            "kl_r030",
-            "systemconstant",
-            "typeplace"
-        };
-
         private readonly BaseCopyrightKindControl _baseCopyrightKind;
         private readonly BaseCountryControl _baseCountry;
         private readonly BaseCreativeroleTypeControl _baseCreativeroleType;
@@ -28,10 +16,6 @@ namespace sysAdminwp.viewPageDictionaryControls
         private readonly BaseKlr030Control _baseKlr030;
         private readonly BaseSystemConstantControl _baseSystemConstant;
         private readonly BaseTypePlaceControl _baseTypePlace;
-
-        private const string PrefixUpdate = "dictionary/complex/update/";
-        private const string PrefixCreate = "dictionary/complex/addnew/";
-        private const string PrefixDelete = "dictionary/complex/delete/";
 
         public ComplexDictionaryControl()
         {
@@ -45,7 +29,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             _baseTypePlace = new BaseTypePlaceControl();
         }
 
-        //for saved complex dictionaries from DictionaryForm and use for
         public List<DicCategoryItems> ComplexDictionaryList { get; set; }
 
         public string UrlForComplexDictionaries
@@ -99,40 +82,32 @@ namespace sysAdminwp.viewPageDictionaryControls
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
-                    //DirectorLayers<CopyrightKind> directorCopyright = new DirectorLayers<CopyrightKind>();
-                    //BaseCopyrightKindControl baseCopyrightKind = (BaseCopyrightKindControl)directorCopyright.InitCommon(_connector, UrlForComplexDictionaries);
                     controlPanel.Controls.Add(_baseCopyrightKind);
                     _baseCopyrightKind.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "country":
-                    //DirectorLayers<Country> directorCountry = new DirectorLayers<Country>();
-                    //BaseCountryControl baseCountry = (BaseCountryControl)directorCountry.InitCommon(_connector, UrlForComplexDictionaries);
                     controlPanel.Controls.Add(_baseCountry);
+                    _baseCountry.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "creativeroletype":
-                    //DirectorLayers<CreativeRoleType> directorCreative = new DirectorLayers<CreativeRoleType>();
-                    //BaseCreativeroleTypeControl baseCreativeroleType = (BaseCreativeroleTypeControl)directorCreative.InitCommon(_connector, UrlForComplexDictionaries);
                     controlPanel.Controls.Add(_baseCreativeroleType);
+                    _baseCreativeroleType.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "genretype":
-                    //DirectorLayers<GenreType> directorGenre = new DirectorLayers<GenreType>();
-                    //BaseGenreTypeControl baseGenreType = (BaseGenreTypeControl)directorGenre.InitCommon(_connector, UrlForComplexDictionaries);
                     controlPanel.Controls.Add(_baseGenreType);
+                    _baseGenreType.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "kl_r030":
-                    //DirectorLayers<KlR030> directorKlr = new DirectorLayers<KlR030>();
-                    //BaseKlr030Control baseKlr030 = (BaseKlr030Control)directorKlr.InitCommon(_connector, UrlForComplexDictionaries);
                     controlPanel.Controls.Add(_baseKlr030);
+                    _baseKlr030.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "systemconstant":
-                    //DirectorLayers<SystemConstant> directorSystem = new DirectorLayers<SystemConstant>();
-                    //BaseSystemConstantControl baseSystemConstant = (BaseSystemConstantControl)directorSystem.InitCommon(_connector, UrlForComplexDictionaries);
                     controlPanel.Controls.Add(_baseSystemConstant);
+                    _baseSystemConstant.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "typeplace":
-                    //DirectorLayers<TypePlace> directorType = new DirectorLayers<TypePlace>();
-                    //BaseTypePlaceControl baseTypePlace = (BaseTypePlaceControl)directorType.InitCommon(_connector, UrlForComplexDictionaries);
                     controlPanel.Controls.Add(_baseTypePlace);
+                    _baseTypePlace.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
             }
         }
