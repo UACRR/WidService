@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.Model;
 using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public sealed partial class BaseGenreTypeControl : UserControl
+    public sealed partial class BaseSystemConstantControl : UserControl
     {
-        GenreTypeLayer _layer = new GenreTypeLayer();
-        public delegate GenreType GetDictionaryLayer(int id);
-        public delegate GenreType CreateLayer(GenreType sors);
-        public delegate GenreType UpdateLayer(GenreType sors);
+        SystemConstantLayer _layer = new SystemConstantLayer();
+        public delegate SystemConstant GetDictionaryLayer(int id);
+        public delegate SystemConstant CreateLayer(SystemConstant sors);
+        public delegate SystemConstant UpdateLayer(SystemConstant sors);
         public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
@@ -29,33 +28,31 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private const string GetMess = "об'єкт не знайдено";
         private const string CreateMess = "Помилка формату";
         private const string UpdateMess = "Помилка формату";
-        private const string UrlBaseDict = "dictionary/base/Category";
 
         private readonly DictionaryService _dictService = DictionaryService.GetInstance();
         private readonly ApiConnector _connector;
 
         //define data for different languages
-        private GenreTypeTr ukGenreType;
-        private GenreTypeTr ruGenreType;
-        private GenreTypeTr enGenreType;
-        
-        //data grid
-        private List<GenreType> _genreTypeList;
-        public List<GenreType> GenreTypeList
+        private SystemConstantTr ukSystemConstant;
+        private SystemConstantTr ruSystemConstant;
+        private SystemConstantTr enSystemConstant;
+
+        //define grid data
+        private List<SystemConstant> _systemConstantList;
+        public List<SystemConstant> SystemConstantList
         {
-            get { return _genreTypeList; }
+            get { return _systemConstantList; }
             set
             {
                 if (value != null)
                 {
-                    _genreTypeList = value;
-                    //show current count elements into grid
-                    totalGenreType.Text = _genreTypeList.Count.ToString();
+                    _systemConstantList = value;
+                    totalSystemConstant.Text = _systemConstantList.Count.ToString();
                 }
             }
         }
         //item data
-        private GenreType genreTypeData;
+        private SystemConstant systemConstantData;
         //url for get data to grid
         private readonly string urlDataGrid;
         //for control current select of grid
@@ -69,23 +66,21 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 controlEnabledActiveElements = value;
                 //'search' element
-                txtSearchGenreType.Enabled = value;
-                //filter for grid
-                ddlFilterGenreType.Enabled = value;
+                txtSearchSystemConstant.Enabled = value;
                 //grid element
-                gridGenreTypeList.Enabled = value;
+                gridSystemConstantList.Enabled = value;
                 //'Add' button
-                btnAddGenreType.Enabled = value;
+                btnAddSystemConstant.Enabled = value;
                 //'Delete' button
-                btnDeleteGenreType.Enabled = value;
+                btnDeleteSystemConstant.Enabled = value;
                 //'Save' button (bottom panel)
-                btnSaveGenreType.Enabled = !value;
+                btnSaveSystemConstant.Enabled = !value;
                 //'Cancel' button (bottom panel)
-                btnCancelGenreType.Enabled = !value;
+                btnCancelSystemConstant.Enabled = !value;
             }
         }
 
-        public BaseGenreTypeControl()
+        public BaseSystemConstantControl()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
@@ -96,73 +91,59 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         }
 
-        public BaseGenreTypeControl(ApiConnector connector, string urlForComplexDict)
+        public BaseSystemConstantControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             _connector = connector;
             urlDataGrid = urlForComplexDict;
-            //initialize data for drop down lists
-            ddlFilterGenreType.DataSource = bsSimpleDictGenreType.DataSource = InitializeDataForFilter();
             //initialize data for grid
-            gridGenreTypeList.DataSource = HandleDataForGrid(urlForComplexDict);
+            gridSystemConstantList.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
-            txtSearchGenreType.SetUsageGrid(gridGenreTypeList);
-            
+            txtSearchSystemConstant.SetUsageGrid(gridSystemConstantList);
             //set default data for bottom panel
-            if (GenreTypeList.Count != 0)
-                DataUpdateForBottomPanel(
-                    GenreTypeList[0].CodeI
-                    );
+            if (SystemConstantList.Count != 0)
+                DataUpdateForBottomPanel(SystemConstantList[0].CodeI);
             ControlEnabledActiveElements = true;
         }
-
+        
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
             //get data dictionaries -> for grid
-            GenreTypeList = _connector.GetList<GenreType>(urlForGetDataDictionaries);
-            //data is not exist
-            if (GenreTypeList == null)
+            SystemConstantList = _connector.GetList<SystemConstant>(urlForGetDataDictionaries);
+            if (SystemConstantList == null)
             {
-                GenreTypeList = new List<GenreType>();
+                SystemConstantList = new List<SystemConstant>();
                 return new List<ViewTable>();
             }
 
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
-            foreach (var item in GenreTypeList)
+            foreach (var item in SystemConstantList)
             {
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
-                    NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
-                    NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
-                    VariantObject = ddlFilterGenreType.Items.First(el => (int)el.Value == item.CategoryCode).Text,
+                    NameUk = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                 });
             }
             return dataGrid;
         }
 
-        //handle data for drop down list - 'Спосіб використання'
-        private List<DictBaseTypeI> InitializeDataForFilter()
-        {
-            //get data for drop down list
-            return _connector.GetList<DictBaseTypeI>(UrlBaseDict) ?? new List<DictBaseTypeI>();
-        }
-
         //show data for bottom panel
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
-            if (!(gridGenreTypeList.CurrentRow.DataBoundItem is ViewTable currentRow))
+            if (!(gridSystemConstantList.CurrentRow.DataBoundItem is ViewTable currentRow))
                 return;
 
             if (!int.TryParse(currentRow.Code, out int code))
                 return;
-            indexSelectedElem = GenreTypeList.FindIndex(el => el.CodeI == code);
+            indexSelectedElem = SystemConstantList.FindIndex(el => el.CodeI == code);
             DataUpdateForBottomPanel(code);
         }
 
@@ -170,105 +151,73 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void DataUpdateForBottomPanel(int codeI)
         {
             //get object by parameter 'code' from service
-            genreTypeData = CheckAfterGetQuery(codeI);
+            systemConstantData = CheckAfterGetQuery(codeI);
             //use data for binding source
-            bsGenreType.DataSource = genreTypeData;
+            bsSystemConstant.DataSource = systemConstantData;
             //define binding for source of the 'Uk'
-            ukGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
-            if (ukGenreType == null)
+            ukSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
+            if (ukSystemConstant == null)
             {
-                ukGenreType = new GenreTypeTr { Lang = Langs[0] };
-                genreTypeData.GenreTypeTr.Add(ukGenreType);
+                ukSystemConstant = new SystemConstantTr { Lang = Langs[0] };
+                systemConstantData.SystemConstantTr.Add(ukSystemConstant);
             }
-            bsUkLangGenreType.DataSource = ukGenreType;
+            bsUkLangSystemConstant.DataSource = ukSystemConstant;
             //defined binding for source of the 'Ru'
-            ruGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
-            if (ruGenreType == null)
+            ruSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
+            if (ruSystemConstant == null)
             {
-                ruGenreType = new GenreTypeTr { Lang = Langs[1] };
-                genreTypeData.GenreTypeTr.Add(ruGenreType);
+                ruSystemConstant = new SystemConstantTr { Lang = Langs[1] };
+                systemConstantData.SystemConstantTr.Add(ruSystemConstant);
             }
-            bsRuLangGenreType.DataSource = ruGenreType;
+            bsRuLangSystemConstant.DataSource = ruSystemConstant;
             //define binding for source of the 'En'
-            enGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
-            if (enGenreType == null)
+            enSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
+            if (enSystemConstant == null)
             {
-                enGenreType = new GenreTypeTr { Lang = Langs[2] };
-                genreTypeData.GenreTypeTr.Add(enGenreType);
+                enSystemConstant = new SystemConstantTr { Lang = Langs[2] };
+                systemConstantData.SystemConstantTr.Add(enSystemConstant);
             }
-            bsEnLangGenreType.DataSource = enGenreType;
+            bsEnLangSystemConstant.DataSource = enSystemConstant;
         }
 
-        private GenreType CheckAfterGetQuery(int codeI)
+        /// <summary>
+        /// check after 'Get' query
+        /// </summary>
+        /// <param name="codeI"></param>
+        /// <returns></returns>
+        private SystemConstant CheckAfterGetQuery(int codeI)
         {
-            GetDictionaryLayer dictDelegate = new GetDictionaryLayer(_layer.GetDictionary);
-            GenreType result = dictDelegate(codeI);
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
+            SystemConstant result = dictDelegat(codeI);
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
                 //set select first element of grid
-                result = GenreTypeList[0];
+                result = SystemConstantList[0];
             }
             return result;
-        }
-
-        //select item into drop down list for filtered data into grid
-        private void ddlCommonKeyData_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            //stop perform if position is not exist
-            if (e.Position == -1) return;
-            //get index current data
-            string valueDropList = ddlFilterGenreType.Items[e.Position].Value.ToString();
-            if (int.TryParse(valueDropList, out int selectedItemData))
-                gridGenreTypeList.DataSource = FilterDataIntoGrid(selectedItemData);
-        }
-
-        //filter data for grid
-        private List<ViewTable> FilterDataIntoGrid(int code)
-        {
-            //get all data of the 'CopyrightKind'
-            GenreTypeList = _connector.GetList<GenreType>(urlDataGrid);
-            //stop perform if data is not exist
-            if (GenreTypeList == null) return new List<ViewTable>();
-            //filter data by parameter 'code'
-            if (GenreTypeList.Count == 0)
-                GenreTypeList = GenreTypeList.Where(item => item.CategoryCode == code).ToList();
-            List<ViewTable> filteredData = new List<ViewTable>();
-            //initialize data for grid
-            foreach (var item in GenreTypeList)
-            {
-                filteredData.Add(new ViewTable
-                {
-                    Code = item.CodeI.ToString(),
-                    NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
-                    NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
-                    NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
-                    VariantObject = ddlFilterGenreType.SelectedItem.Text,
-                });
-            }
-            return filteredData;
         }
 
         //action 'Add' new object to grid
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
             //change property 'Text' of the btnSave for 'Add' action
-            btnSaveGenreType.Text = "Додати";
+            btnSaveSystemConstant.Text = "Додати";
             //refresh data for field 'Code'
-            genreTypeData = new GenreType { CategoryCode = 1 };
-            bsGenreType.DataSource = genreTypeData;
+            systemConstantData = new SystemConstant();
+            bsSystemConstant.DataSource = systemConstantData;
             //refresh data for field 'Uk'
-            ukGenreType = new GenreTypeTr { Lang = Langs[0] };
-            genreTypeData.GenreTypeTr.Add(ukGenreType);
-            bsUkLangGenreType.DataSource = ukGenreType;
+            ukSystemConstant = new SystemConstantTr { Lang = Langs[0] };
+            systemConstantData.SystemConstantTr.Add(ukSystemConstant);
+            bsUkLangSystemConstant.DataSource = ukSystemConstant;
             //refresh data for field 'Ru'
-            ruGenreType = new GenreTypeTr { Lang = Langs[1] };
-            genreTypeData.GenreTypeTr.Add(ruGenreType);
-            bsRuLangGenreType.DataSource = ruGenreType;
+            ruSystemConstant = new SystemConstantTr { Lang = Langs[1] };
+            systemConstantData.SystemConstantTr.Add(ruSystemConstant);
+            bsRuLangSystemConstant.DataSource = ruSystemConstant;
             //refresh data for field 'Ru'
-            enGenreType = new GenreTypeTr { Lang = Langs[2] };
-            genreTypeData.GenreTypeTr.Add(enGenreType);
-            bsEnLangGenreType.DataSource = enGenreType;
+            enSystemConstant = new SystemConstantTr { Lang = Langs[2] };
+            systemConstantData.SystemConstantTr.Add(enSystemConstant);
+            bsEnLangSystemConstant.DataSource = enSystemConstant;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -279,20 +228,20 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
             //return if element by index is not exist
-            if (!(GenreTypeList.Count > indexSelectedElem))
+            if (!(SystemConstantList.Count > indexSelectedElem))
                 return;
             //delete selected item of grid by field 'Code'
-            GenreType item = GenreTypeList[indexSelectedElem];
+            SystemConstant item = SystemConstantList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
             //update data for grid
-            gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
             //step up in grid position
             if (result) --indexSelectedElem;
             if (indexSelectedElem < 0) indexSelectedElem = 0;
-            gridGenreTypeList.CurrentRow = gridGenreTypeList.Rows[indexSelectedElem];
+            gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[indexSelectedElem];
             //define new currentRow
             DataUpdateForBottomPanel(
-                GenreTypeList[indexSelectedElem].CodeI
+                SystemConstantList[indexSelectedElem].CodeI
                 );
         }
 
@@ -317,29 +266,28 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //refresh bottom panel
             int codeIAfter = 0;
-            if (btnSaveGenreType.Text == "Додати")
+            if (btnSaveSystemConstant.Text == "Додати")
             {
                 //send created object
-                GenreType result = CheckAfterCreate(genreTypeData);
+                SystemConstant result = CheckAfterCreate(systemConstantData);
                 codeIAfter = result.CodeI;
                 //update data for grid
-                gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
-                indexSelectedElem = GenreTypeList.FindIndex(el => el.CodeI == result.CodeI);
+                gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
+                indexSelectedElem = _systemConstantList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
-                gridGenreTypeList.CurrentRow = gridGenreTypeList.Rows[indexSelectedElem];
-                //set default state for 'Text' of the btnSave
-                btnSaveGenreType.Text = "Зберегти";
-            } else if (btnSaveGenreType.Text == "Зберегти")
+                gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[indexSelectedElem];
+                btnSaveSystemConstant.Text = "Зберегти";
+            } else if (btnSaveSystemConstant.Text == "Зберегти")
             {
                 //save changes
-                GenreType result = CheckAfterUpdate(genreTypeData);
+                SystemConstant result = CheckAfterUpdate(systemConstantData);
                 codeIAfter = result.CodeI;
                 //save last selected item
-                indexSelectedElem = gridGenreTypeList.CurrentRow.Index;
+                indexSelectedElem = gridSystemConstantList.CurrentRow.Index;
                 //update data for grid
-                gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+                gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
                 //select certain item into grid
-                gridGenreTypeList.CurrentRow = gridGenreTypeList.Rows[indexSelectedElem];
+                gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[indexSelectedElem];
             }
             DataUpdateForBottomPanel(codeIAfter);
             //stop perform if elements have 'Enabled' -> true
@@ -349,19 +297,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         }
 
         /// <summary>
-        /// check result data after 'Create'
+        /// check result data after 'Craete'
         /// </summary>
         /// <param name="createItem"></param>
         /// <returns></returns>
-        private GenreType CheckAfterCreate(GenreType createItem)
+        private SystemConstant CheckAfterCreate(SystemConstant createItem)
         {
             CreateLayer dictDelegat = new CreateLayer(_layer.Create);
-            GenreType result = dictDelegat(createItem);
+            SystemConstant result = dictDelegat(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
-                result = GenreTypeList[0];
+                result = SystemConstantList[0];
             }
             return result;
         }
@@ -371,15 +319,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// </summary>
         /// <param name="updateItem"></param>
         /// <returns></returns>
-        private GenreType CheckAfterUpdate(GenreType updateItem)
+        private SystemConstant CheckAfterUpdate(SystemConstant updateItem)
         {
             UpdateLayer dictDelegat = new UpdateLayer(_layer.Update);
-            GenreType result = dictDelegat(genreTypeData);
+            SystemConstant result = dictDelegat(systemConstantData);
             if (result == null)
             {
-                MessageShow.ShowError(UpdateMess);
+                MessageBox.Show(UpdateMess);
                 //select first element of grid by default
-                result = GenreTypeList[0];
+                result = SystemConstantList[0];
             }
             return result;
         }
@@ -387,7 +335,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Cancel' reset changed data for selected item
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            int codeICurrent = GenreTypeList[indexSelectedElem].CodeI;
+            int codeICurrent = SystemConstantList[indexSelectedElem].CodeI;
             //reset changed data
             DataUpdateForBottomPanel(codeICurrent);
             //stop perform if elements have 'Enabled' -> true
@@ -401,12 +349,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtUkLangGenreType_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtUkLangSystemConstant_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (btnSaveGenreType.Text != "Додати")
+            if (btnSaveSystemConstant.Text != "Додати")
             {
                 //change property 'Text' of the btnSave for 'Save' action
-                btnSaveGenreType.Text = "Зберегти";
+                btnSaveSystemConstant.Text = "Зберегти";
             }
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
@@ -419,12 +367,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtRuLangGenreType_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtRuLangSystemConstant_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (btnSaveGenreType.Text != "Додати")
+            if (btnSaveSystemConstant.Text != "Додати")
             {
                 //change property 'Text' of the btnSave for 'Save' action
-                btnSaveGenreType.Text = "Зберегти";
+                btnSaveSystemConstant.Text = "Зберегти";
             }
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
@@ -437,12 +385,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtEnLangGenreType_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtEnLangSystemConstant_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (btnSaveGenreType.Text != "Додати")
+            if (btnSaveSystemConstant.Text != "Додати")
             {
                 //change property 'Text' of the btnSave for 'Save' action
-                btnSaveGenreType.Text = "Зберегти";
+                btnSaveSystemConstant.Text = "Зберегти";
             }
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
@@ -455,33 +403,32 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ddlEditKeyGenreType_Click(object sender, EventArgs e)
+        private void dsCopyrightKind_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (btnSaveGenreType.Text != "Додати")
+            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                //change property 'Text' of the btnSave for 'Save' action
-                btnSaveGenreType.Text = "Зберегти";
+                if (btnSaveSystemConstant.Text != "Додати")
+                {
+                    //change property 'Text' of the btnSave for 'Save' action
+                    btnSaveSystemConstant.Text = "Зберегти";
+                }
+                //stop perform if elements have 'Enabled' -> false
+                if (!ControlEnabledActiveElements) return;
+                //change 'Enabled' state for elements
+                ControlEnabledActiveElements = false;
             }
-            //stop perform if elements have 'Enabled' -> false
-            if (!ControlEnabledActiveElements) return;
-            //change 'Enabled' state for elements
-            ControlEnabledActiveElements = false;
         }
 
-        /// <summary>
-        /// allow input only number data
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtCodeGenreType_KeyPress(object sender, KeyPressEventArgs e)
+        //allow input only number data
+        private void txtCodeSystemConstant_KeyPress(object sender, KeyPressEventArgs e)
         {
             //if it 'number' or 'Backspace' -> allow input
             if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
             {
-                if (btnSaveGenreType.Text != "Додати")
+                if (btnSaveSystemConstant.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSaveGenreType.Text = "Зберегти";
+                    btnSaveSystemConstant.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -493,7 +440,5 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //disallow input
                 e.Handled = true;
         }
-
-        
     }
 }

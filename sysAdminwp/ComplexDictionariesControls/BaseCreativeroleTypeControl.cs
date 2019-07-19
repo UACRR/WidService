@@ -12,6 +12,7 @@ using IpsViewComponentLibrary.Extensions;
 using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 using sysAdminwp.PresenterComplexDictionaries;
 using System.Threading;
+using sysAdminwp.Model;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {

@@ -3,29 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
-using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
-using Telerik.WinControls.UI;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.Model;
+using Telerik.WinControls.UI;
+using static sysAdminwp.Model.DictionaryConstants;
 
-namespace sysAdminwp.ComplexDictionariesBaseControls
+namespace sysAdminwp.ComplexDictionariesControls
 {
     public sealed partial class CopyrightKindControl : UserControl
     {
-        private const string NotUniquenessCodeWarningMsg = "Введений код належить іншому запису довідника!";
-
-        private const string SaveNewRecordSuccessMsg = "Новий запис в довідник додано!";
-        private const string SaveNewRecordErrorMsg = "Неможливо додати новий запис в довідник!";
-
-        private const string DeleteRecordConfirmMsg = "Видалити запис?";
-        private const string DeleteRecordSuccessMsg = "Запис з довідника видалено!";
-        private const string DeleteRecordErrorMsg = "Неможливо видалити запис з довідника! Запис використовується в іншій таблиці через \"FOREIGN KEY\"!";
-
-        private const string UkLang = "Uk";
-        private const string RuLang = "Ru";
-        private const string EnLang = "En";
-
         private readonly DictionaryService _service = DictionaryService.GetInstance();
 
         private List<CopyrightKind> _copyrightKindList;
@@ -103,8 +92,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (string.IsNullOrWhiteSpace(Url))
                 return;
-
-            //_copyrightKindList = _service.GetCopyrightKindList(Url);
+            
             _copyrightKindList = _service.GetExtraDictionaryList<CopyrightKind>(Url);
 
             bsViewTable.DataSource = ConvertToGridDataList();
@@ -174,14 +162,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         // зберегти
         private void btnSave_Click(object sender, EventArgs e)
-        {
-            Save();
-        }
-
-        /// <summary>
-        /// Зберегти доданий або редагований запис в довіднику
-        /// </summary>
-        private void Save()
         {
             if (SaveMode == SaveMode.None)
                 return;
