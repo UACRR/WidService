@@ -13,7 +13,7 @@ using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public partial class BaseCountryControl : UserControl
+    public sealed partial class BaseCountryControl : UserControl
     {
         CountryLayer _layer = new CountryLayer();
         public delegate Country GetDictionaryLayer(int id);
@@ -84,6 +84,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //'Cancel' button (bottom panel)
                 btnCancelCountry.Enabled = !value;
             }
+        }
+
+        public BaseCountryControl()
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
         }
         public BaseCountryControl(ApiConnector connector, string urlForComplexDict)
         {

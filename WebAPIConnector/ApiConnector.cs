@@ -35,7 +35,7 @@ namespace WebAPIConnector
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.Timeout = TimeSpan.FromMinutes(10);
+            client.Timeout = TimeSpan.FromSeconds(1200);
         }
 
         private string configUrl()
@@ -255,7 +255,6 @@ namespace WebAPIConnector
         /// <returns></returns>
         public bool NewItem<T>(string url, T data)
         {
-
             StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             var result = client.PostAsync(url, content).GetAwaiter().GetResult();
 

@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    partial class BaseSystemConstantControl
+    sealed partial class BaseSystemConstantControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

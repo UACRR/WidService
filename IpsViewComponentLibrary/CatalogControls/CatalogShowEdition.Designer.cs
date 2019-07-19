@@ -65,9 +65,14 @@
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlNavigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
+            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
+            this.gridDetailInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
@@ -88,12 +93,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
+            this.backgroundPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGetExcel
             // 
             this.btnGetExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGetExcel.Location = new System.Drawing.Point(123, 400);
+            this.btnGetExcel.Location = new System.Drawing.Point(123, 480);
             this.btnGetExcel.Name = "btnGetExcel";
             this.btnGetExcel.Size = new System.Drawing.Size(151, 24);
             this.btnGetExcel.TabIndex = 3;
@@ -106,6 +114,7 @@
             this.gridDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridDetailInfo.Controls.Add(this.waitingBar);
             this.gridDetailInfo.EnableCustomFiltering = true;
             this.gridDetailInfo.Location = new System.Drawing.Point(3, 99);
             // 
@@ -215,7 +224,7 @@
             this.gridDetailInfo.Name = "gridDetailInfo";
             this.gridDetailInfo.ReadOnly = true;
             this.gridDetailInfo.ShowGroupPanel = false;
-            this.gridDetailInfo.Size = new System.Drawing.Size(664, 295);
+            this.gridDetailInfo.Size = new System.Drawing.Size(872, 375);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
             // 
@@ -226,7 +235,7 @@
             // btnAuditItems
             // 
             this.btnAuditItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAuditItems.Location = new System.Drawing.Point(3, 400);
+            this.btnAuditItems.Location = new System.Drawing.Point(3, 480);
             this.btnAuditItems.Name = "btnAuditItems";
             this.btnAuditItems.Size = new System.Drawing.Size(114, 24);
             this.btnAuditItems.TabIndex = 4;
@@ -238,7 +247,7 @@
             // 
             this.btnPerform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPerform.Enabled = false;
-            this.btnPerform.Location = new System.Drawing.Point(280, 400);
+            this.btnPerform.Location = new System.Drawing.Point(280, 480);
             this.btnPerform.Name = "btnPerform";
             this.btnPerform.Size = new System.Drawing.Size(131, 24);
             this.btnPerform.TabIndex = 3;
@@ -408,33 +417,81 @@
             this.radLabel15.Text = "К-ть оброблених записів";
             this.radLabel15.ThemeName = "Office2013Light";
             // 
+            // ctrlNavigatorPanel
+            // 
+            this.ctrlNavigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlNavigatorPanel.CurrentPage = 1;
+            this.ctrlNavigatorPanel.Location = new System.Drawing.Point(525, 480);
+            this.ctrlNavigatorPanel.Name = "ctrlNavigatorPanel";
+            this.ctrlNavigatorPanel.PageSize = 300;
+            this.ctrlNavigatorPanel.ReadOnlyPageSize = false;
+            this.ctrlNavigatorPanel.Size = new System.Drawing.Size(350, 24);
+            this.ctrlNavigatorPanel.TabIndex = 13;
+            this.ctrlNavigatorPanel.TotalPages = 0;
+            // 
+            // backgroundPanel
+            // 
+            this.backgroundPanel.BorderVisible = false;
+            this.backgroundPanel.Controls.Add(this.ctrlNavigatorPanel);
+            this.backgroundPanel.Controls.Add(this.radLabel15);
+            this.backgroundPanel.Controls.Add(this.btnAuditItems);
+            this.backgroundPanel.Controls.Add(this.radLabel14);
+            this.backgroundPanel.Controls.Add(this.btnGetExcel);
+            this.backgroundPanel.Controls.Add(this.radLabel13);
+            this.backgroundPanel.Controls.Add(this.btnPerform);
+            this.backgroundPanel.Controls.Add(this.radLabel12);
+            this.backgroundPanel.Controls.Add(this.gridDetailInfo);
+            this.backgroundPanel.Controls.Add(this.radLabel11);
+            this.backgroundPanel.Controls.Add(this.radLabel1);
+            this.backgroundPanel.Controls.Add(this.radLabel10);
+            this.backgroundPanel.Controls.Add(this.radLabel3);
+            this.backgroundPanel.Controls.Add(this.radLabel9);
+            this.backgroundPanel.Controls.Add(this.radLabel2);
+            this.backgroundPanel.Controls.Add(this.radLabel8);
+            this.backgroundPanel.Controls.Add(this.radLabel5);
+            this.backgroundPanel.Controls.Add(this.radLabel7);
+            this.backgroundPanel.Controls.Add(this.radLabel6);
+            this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
+            this.backgroundPanel.Name = "backgroundPanel";
+            this.backgroundPanel.Size = new System.Drawing.Size(878, 507);
+            this.backgroundPanel.TabIndex = 14;
+            // 
+            // waitingBar
+            // 
+            this.waitingBar.AssociatedControl = this.backgroundPanel;
+            this.waitingBar.Location = new System.Drawing.Point(401, 152);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 9;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
             // CatalogShowEdition
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radLabel15);
-            this.Controls.Add(this.radLabel14);
-            this.Controls.Add(this.radLabel13);
-            this.Controls.Add(this.radLabel12);
-            this.Controls.Add(this.radLabel11);
-            this.Controls.Add(this.radLabel10);
-            this.Controls.Add(this.radLabel9);
-            this.Controls.Add(this.radLabel8);
-            this.Controls.Add(this.radLabel7);
-            this.Controls.Add(this.radLabel6);
-            this.Controls.Add(this.radLabel5);
-            this.Controls.Add(this.radLabel2);
-            this.Controls.Add(this.radLabel3);
-            this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.btnPerform);
-            this.Controls.Add(this.btnGetExcel);
-            this.Controls.Add(this.btnAuditItems);
-            this.Controls.Add(this.gridDetailInfo);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.backgroundPanel);
             this.Name = "CatalogShowEdition";
-            this.Size = new System.Drawing.Size(670, 427);
+            this.Size = new System.Drawing.Size(878, 507);
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
+            this.gridDetailInfo.ResumeLayout(false);
+            this.gridDetailInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
@@ -455,6 +512,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
+            this.backgroundPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -482,5 +542,9 @@
         private Telerik.WinControls.UI.RadLabel radLabel14;
         private Telerik.WinControls.UI.RadLabel radLabel15;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Common.NavigatorPanelControl ctrlNavigatorPanel;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
+        private Common.Editors.IpsPanel backgroundPanel;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

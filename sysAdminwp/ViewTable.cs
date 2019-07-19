@@ -12,7 +12,6 @@ namespace sysAdminwp
         public string NameUk { get; set; }
         public string NameRu { get; set; }
         public string NameEn { get; set; }
-        public string VariantUse { get; set; }
         public string Continent { get; set; }
         public string Category { get; set; }
         public string VariantObject { get; set; }
@@ -25,7 +24,6 @@ namespace sysAdminwp
             NameUk = default(string);
             NameRu = default(string);
             NameEn = default(string);
-            VariantUse = default(string);
             Continent = default(string);
             Category = default(string);
             VariantObject = default(string);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ipsFormsDesign.Interfaces;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -47,23 +48,37 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItemWithResult(url, codeI.ToString(), sors);
         }
 
-        // CopyRightKind BEGIN ********************
-        public CopyrightKind GetCopyrightKind( int id )
+        public AnketaDictionaties GetAnketaDictionaties()
         {
-            string url = string.Concat( _prefix, "extra/copyrightkind");
-            return _webApi.GetItemById<CopyrightKind>(url, id.ToString());
+            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
+            return anketaDic;
         }
 
-        public CopyrightKind CreateCopyrightKind( CopyrightKind sors )
+        public ObjectRightDictionaries GetObjectRightDictionaries()
         {
-            string url = string.Concat(_prefix, "extra/copyrightkind");
-            return _webApi.NewItemWithResult(url, sors);
+            var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
+            return dictionaries;
         }
 
-        public CopyrightKind UpdateCopyrightKind(CopyrightKind sors)
+
+        #region * * * CopyRightKind * * *
+
+        public List<CopyrightKind> GetCopyrightKindList(string url)
+        {
+            var result = _webApi.GetList<CopyrightKind>(url);
+            return result;
+        }
+
+        public bool CreateCopyrightKind(CopyrightKind sors)
         {
             string url = string.Concat(_prefix, "extra/copyrightkind");
-            return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
+            return _webApi.NewItem(url, sors);
+        }
+
+        public bool UpdateCopyrightKind(CopyrightKind sors)
+        {
+            string url = string.Concat(_prefix, "extra/copyrightkind");
+            return _webApi.UpdateItem(url, sors.CodeI.ToString(), sors);
         }
 
         public bool DeleteCopyrightKind(int id)
@@ -71,6 +86,8 @@ namespace ipsFormsDesign.Services
             string url = string.Concat(_prefix, "extra/copyrightkind");
             return _webApi.DeleteItem(url, id.ToString());
         }
+
+        #endregion
 
         // Country BEGIN ********************
         public Country GetCountry(int id)

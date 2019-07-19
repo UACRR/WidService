@@ -13,7 +13,7 @@ using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public partial class BaseGenreTypeControl : UserControl
+    public sealed partial class BaseGenreTypeControl : UserControl
     {
         GenreTypeLayer _layer = new GenreTypeLayer();
         public delegate GenreType GetDictionaryLayer(int id);
@@ -84,6 +84,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 btnCancelGenreType.Enabled = !value;
             }
         }
+
+        public BaseGenreTypeControl()
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+        }
+
         public BaseGenreTypeControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();

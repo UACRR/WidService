@@ -6,9 +6,11 @@ using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using System.IO;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using sysAdminwp.viewPageDictionaryControls;
 
 namespace sysAdminwp
@@ -24,13 +26,15 @@ namespace sysAdminwp
         private List<ViewTable> _dataGrid;
         //define new position for grid
         private int _updatePosition;
+
         //defined enable state for elements
-        private bool enableStateElements;
+        private bool _enableStateElements;
         public bool EnableSateElements
         {
-            get { return enableStateElements; }
+            get => _enableStateElements;
             set
             {
+                _enableStateElements = value;
                 //add new element button
                 btnAdd.Enabled = value;
                 //search field
@@ -51,7 +55,7 @@ namespace sysAdminwp
         }
 
         /// <summary>
-        /// URL словника
+        /// URL довідника
         /// </summary>
         public string Url
         {
@@ -64,6 +68,7 @@ namespace sysAdminwp
                 return categoryItem.Url;
             }
         }
+
         /// <summary>
         /// Найменування довідника
         /// </summary>
@@ -81,18 +86,13 @@ namespace sysAdminwp
 
         public DictionaryForm()
         {
+            _enableStateElements = false;
             InitializeComponent();
-            //fill data for treeView element
             SetTreeViewDataSource();
-            //update bottom panel
             UpdateEditPanel();
-            //initialize object for complex dictionaries
-            ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl(_connector, _complexDictionary)
-            {
-                Dock = DockStyle.Fill,
-            };
-            //add new control for complex dictionaries
-            radPageViewPage2.Controls.Add(complexDictionaryControl);
+            ctrlComplexDictionary.SetComplexDictionaryForTreeView(_complexDictionary);
+            IpsGlobal.SetAnketaDictionaties(DictionaryService.GetInstance().GetAnketaDictionaties());
+            IpsGlobal.SetObjectRightDictionaries(DictionaryService.GetInstance().GetObjectRightDictionaries());
         }
 
         #region * * * Методи * * *
@@ -307,7 +307,7 @@ namespace sysAdminwp
             gvDictionariesList.BeginUpdate();
             e.Visible = false;
             for (int i = 0; i < gvDictionariesList.ColumnCount; i++)
-            {   
+            {
                 //якщо поле пусте
                 if (e.Row.Cells[i].Value == null)
                     continue;
@@ -375,7 +375,7 @@ namespace sysAdminwp
         }
 
         //кнопка відміни внесених змін
-        private void radBtnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             UpdateEditPanel();
             EnableSateElements = true;

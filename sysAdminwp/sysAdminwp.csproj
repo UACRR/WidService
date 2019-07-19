@@ -160,8 +160,8 @@
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\Klr030Layer.cs" />
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\SystemConstantLayer.cs" />
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\TypePlaceLayer.cs" />
-    <Compile Include="PresenterComplexDictionaries\DirectorLayers.cs" />
     <Compile Include="PresenterComplexDictionaries\IDictionaryActions.cs" />
+    <Compile Include="SaveModeEnum.cs" />
     <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -226,6 +226,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.SystemConstant.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlaceTr.datasource" />
+    <None Include="Properties\DataSources\ViewTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
