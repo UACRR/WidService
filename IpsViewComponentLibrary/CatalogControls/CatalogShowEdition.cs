@@ -11,6 +11,7 @@ using Telerik.WinControls.Export;
 using System.IO;
 using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
+using IpsCommonTypes.Types;
 using IpsViewComponentLibrary.Shared.Interfaces;
 using Telerik.WinControls.UI;
 
@@ -72,9 +73,15 @@ namespace IpsViewComponentLibrary.CatalogControls
         }
 
         // перевірка валідності. . .
-        private void btnAuditItems_Click(object sender, EventArgs e)
+        private async void btnAuditItems_Click(object sender, EventArgs e)
         {
-            var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
+            ExecSqlResponce<CatalogFile> result = null;
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
+            {
+                result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
+            });
+            waitingBar.StopWaiting();
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
             DataSource = result.Data;
@@ -113,9 +120,13 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
-        private void btnPerform_Click(object sender, EventArgs e)
+        private async void btnPerform_Click(object sender, EventArgs e)
         {
-            var result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
+            ExecSqlResponce<CatalogFile> result = null;
+            await Task.Factory.StartNew(() =>
+            {
+                result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
+            });
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
             DataSource = result.Data;
