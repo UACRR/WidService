@@ -29,7 +29,6 @@ namespace ipsmedserviceapp.Controllers
             _logger = logger;
         }
 
-
         [HttpGet("catalogfilelist/{custId}")]
         public async Task<IActionResult> GetCatalogFilesList(int custId)
         {
@@ -124,6 +123,10 @@ namespace ipsmedserviceapp.Controllers
                 transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
                 transaction.Commit();
+
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
+
                 return Ok(destination);
             }
             catch (Exception ex)
@@ -135,8 +138,6 @@ namespace ipsmedserviceapp.Controllers
             finally
             {
                 transaction?.Dispose();
-                if (currentTimeOut.HasValue)
-                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
 
@@ -220,6 +221,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("validate/{fileId}")]
         public async Task<IActionResult> BeginValidationFile(int fileId)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
                 var paramFileId = new SqlParameter("@fileId", fileId);
@@ -236,12 +238,16 @@ namespace ipsmedserviceapp.Controllers
 
                 string command = "exec CatalogControlPub @fileId, @result OUTPUT, @RetCode  OUTPUT";
 
+                _dbContext.Database.SetCommandTimeout(600);
+
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
                 var responce = new ExecSqlResponce<CatalogFile>
                 {
                     Message = message.Value.ToString(),
-                    StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0
+                        ? ExecSqlResponceStatus.Successed
+                        : ExecSqlResponceStatus.Failed
                 };
 
                 var validCatalog = await _dbContext.CatalogFile
@@ -250,6 +256,9 @@ namespace ipsmedserviceapp.Controllers
                     .AsNoTracking()
                     .FirstOrDefaultAsync(rec => rec.FileId == fileId);
                 responce.Data = validCatalog;
+
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
 
                 return Ok(responce);
             }
@@ -268,6 +277,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("process/{fileId}")]
         public async Task<IActionResult> BeginProcessFile(int fileId)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
                 var paramFileId = new SqlParameter("@fileId", fileId);
@@ -283,13 +293,16 @@ namespace ipsmedserviceapp.Controllers
                 };
 
                 string command = @"exec CatalogInputPub @fileId, @result OUTPUT, @RetCode OUTPUT";
+                _dbContext.Database.SetCommandTimeout(1200);
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
                 var responce = new ExecSqlResponce<CatalogFile>
                 {
                     Message = message.Value.ToString(),
-                    StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0
+                        ? ExecSqlResponceStatus.Successed
+                        : ExecSqlResponceStatus.Failed
                 };
 
                 var validCatalog = await _dbContext.CatalogFile
@@ -298,6 +311,9 @@ namespace ipsmedserviceapp.Controllers
                     .AsNoTracking()
                     .FirstOrDefaultAsync(rec => rec.FileId == fileId);
                 responce.Data = validCatalog;
+
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
 
                 return Ok(responce);
             }

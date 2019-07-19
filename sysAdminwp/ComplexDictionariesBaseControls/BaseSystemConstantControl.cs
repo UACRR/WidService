@@ -85,6 +85,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             Dock = DockStyle.Fill;
         }
 
+        public void SetDataByDictionaryURL(string url)
+        {
+
+        }
+
         public BaseSystemConstantControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();

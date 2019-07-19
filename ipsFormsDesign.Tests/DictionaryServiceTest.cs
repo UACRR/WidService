@@ -67,9 +67,9 @@ namespace ipsFormsDesign.Tests
                 Name = "TestCopyrightKind",
                 CrGroupCode = 1
             };
-            _dictionary.CreateCopyrightKind(copyrightKind);
+            _dictionary.CreateExtraDictionaryRecord(copyrightKind);
             //delete CopyrightKind instance
-            bool result = _dictionary.DeleteCopyrightKind(666);
+            bool result = _dictionary.DeleteExtraDictionaryRecord<CopyrightKind>(666);
             //checks for result
             Assert.IsTrue(result, "copyrightKind is not deleted");
         }
