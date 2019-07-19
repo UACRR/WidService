@@ -28,7 +28,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private List<CopyrightKind> _copyrightKindList;
         private CopyrightKind _copyrightKindData;
-        
+
+        private bool _subscribedEvents;
+
         private string Url { get; set; }
         private SaveMode SaveMode { get; set; } = SaveMode.None;
 
@@ -136,13 +138,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtCodeCopyrightKind.ReadOnly = false;
             ChangeSubscribeEvents();
 
+            var codeItem = _copyrightKindList.Max(rec => rec.CodeI) + 1;
+            var codeGroup = IpsGlobal.AnketaDictionaties.crkindGroup.Min(rec => rec.CodeI);
+            
             var copyrightKind = new CopyrightKind
             {
+                CodeI = codeItem,
+                CrGroupCode = codeGroup,
                 CopyrightKindTr = new ObservableListSource<CopyrightKindTr>
                 {
-                    new CopyrightKindTr{Lang = UkLang},
-                    new CopyrightKindTr{Lang = RuLang},
-                    new CopyrightKindTr{Lang = EnLang}
+                    new CopyrightKindTr {CodeI = codeItem, Lang = UkLang},
+                    new CopyrightKindTr {CodeI = codeItem, Lang = RuLang},
+                    new CopyrightKindTr {CodeI = codeItem, Lang = EnLang},
                 }
             };
             UpdateBottomPanel(copyrightKind);
@@ -180,18 +187,29 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 var result = _service.CreateCopyrightKind(_copyrightKindData);
                 MessageShow.ShowInfoByResult(SaveNewRecordSuccessMsg, SaveNewRecordErrorMsg, result);
+
+                if (!result)
+                    return;
+
                 ddlCopyrightKind.Enabled = false;
                 txtCodeCopyrightKind.ReadOnly = true;
+
+                // змінити режим збереження перед зміною підписок
+                SaveMode = SaveMode.None;
+                ChangeSubscribeEvents();
             }
             else if (SaveMode == SaveMode.OnEditExist)
             {
                 var result = _service.UpdateCopyrightKind(_copyrightKindData);
                 MessageShow.ShowInfoAfterChanges(result);
+
+                if (!result)
+                    return;
+
+                SaveMode = SaveMode.None;
             }
 
-            SaveMode = SaveMode.None;
             UpdateDataFromServer();
-            ChangeSubscribeEvents();
             IsEditMode = false;
         }
 
@@ -234,35 +252,55 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             bsCopyrightKind.DataSource = copyrightKind;
             bsCopyrightKind.ResetBindings(false);
 
+            if (!(copyrightKind.CopyrightKindTr.Any(rec => rec.Lang == UkLang)))
+                copyrightKind.CopyrightKindTr.Add(new CopyrightKindTr{Lang = UkLang, CodeI = copyrightKind.CodeI});
+
             bsUkLangCopyrightKind.DataSource = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == UkLang);
             bsUkLangCopyrightKind.ResetBindings(false);
 
+            if (!(copyrightKind.CopyrightKindTr.Any(rec => rec.Lang == RuLang)))
+                copyrightKind.CopyrightKindTr.Add(new CopyrightKindTr { Lang = RuLang, CodeI = copyrightKind.CodeI });
+
             bsRuLangCopyrightKind.DataSource = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == RuLang);
             bsRuLangCopyrightKind.ResetBindings(false);
+
+            if (!(copyrightKind.CopyrightKindTr.Any(rec => rec.Lang == EnLang)))
+                copyrightKind.CopyrightKindTr.Add(new CopyrightKindTr { Lang = EnLang, CodeI = copyrightKind.CodeI });
 
             bsEnLangCopyrightKind.DataSource = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == EnLang);
             bsEnLangCopyrightKind.ResetBindings(false);
         }
 
+        /// <summary>
+        /// Змінити реакцію нижньої панелі на редагування/додавання нового запису
+        /// </summary>
         private void ChangeSubscribeEvents()
         {
             if (SaveMode == SaveMode.OnCreate)
             {
+                if (!_subscribedEvents)
+                    return;
+
                 txtUaDescr.KeyPress -= OnBeginEdit_KeyPress;
                 txtRuDescr.KeyPress -= OnBeginEdit_KeyPress;
                 txtEnDescr.KeyPress -= OnBeginEdit_KeyPress;
                 txtRuCopyrightKind.KeyPress -= OnBeginEdit_KeyPress;
                 txtUaCopyrightKind.KeyPress -= OnBeginEdit_KeyPress;
                 txtEnCopyrightKind.KeyPress -= OnBeginEdit_KeyPress;
+                _subscribedEvents = false;
             }
             else
             {
+                if (_subscribedEvents)
+                    return;
+
                 txtUaDescr.KeyPress += OnBeginEdit_KeyPress;
                 txtRuDescr.KeyPress += OnBeginEdit_KeyPress;
                 txtEnDescr.KeyPress += OnBeginEdit_KeyPress;
                 txtRuCopyrightKind.KeyPress += OnBeginEdit_KeyPress;
                 txtUaCopyrightKind.KeyPress += OnBeginEdit_KeyPress;
                 txtEnCopyrightKind.KeyPress += OnBeginEdit_KeyPress;
+                _subscribedEvents = true;
             }
         }
     }
