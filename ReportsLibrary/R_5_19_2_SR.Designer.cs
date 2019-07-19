@@ -43,6 +43,8 @@ namespace ReportsLibrary
             Telerik.Reporting.TableGroup tableGroup31 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup32 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup33 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup34 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup35 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.SortingAction sortingAction2 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction3 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction4 = new Telerik.Reporting.SortingAction();
@@ -143,6 +145,8 @@ namespace ReportsLibrary
             this.textBox142 = new Telerik.Reporting.TextBox();
             this.textBox159 = new Telerik.Reporting.TextBox();
             this.textBox108 = new Telerik.Reporting.TextBox();
+            this.textBox2 = new Telerik.Reporting.TextBox();
+            this.textBox18 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // textBox1
@@ -227,70 +231,76 @@ namespace ReportsLibrary
             tableGroup3.ChildGroups.Add(tableGroup4);
             tableGroup3.Name = "group53";
             tableGroup3.ReportItem = this.textBox98;
-            tableGroup16.Name = "group7";
-            tableGroup16.ReportItem = this.textBox7;
-            tableGroup17.Name = "group8";
-            tableGroup17.ReportItem = this.textBox8;
-            tableGroup18.Name = "group9";
-            tableGroup18.ReportItem = this.textBox9;
-            tableGroup19.Name = "group10";
-            tableGroup19.ReportItem = this.textBox10;
-            tableGroup20.Name = "group11";
-            tableGroup20.ReportItem = this.textBox11;
-            tableGroup15.ChildGroups.Add(tableGroup16);
-            tableGroup15.ChildGroups.Add(tableGroup17);
-            tableGroup15.ChildGroups.Add(tableGroup18);
-            tableGroup15.ChildGroups.Add(tableGroup19);
-            tableGroup15.ChildGroups.Add(tableGroup20);
-            tableGroup15.Name = "group75";
-            tableGroup15.ReportItem = this.textBox61;
-            tableGroup14.ChildGroups.Add(tableGroup15);
-            tableGroup14.Name = "group92";
-            tableGroup14.ReportItem = this.textBox137;
-            tableGroup13.ChildGroups.Add(tableGroup14);
-            tableGroup13.Name = "group41";
-            tableGroup13.ReportItem = this.textBox154;
-            tableGroup12.ChildGroups.Add(tableGroup13);
-            tableGroup12.Name = "group58";
-            tableGroup12.ReportItem = this.textBox103;
-            tableGroup25.Name = "group12";
-            tableGroup25.ReportItem = this.textBox12;
-            tableGroup26.Name = "group13";
-            tableGroup26.ReportItem = this.textBox13;
-            tableGroup27.Name = "group14";
-            tableGroup27.ReportItem = this.textBox14;
-            tableGroup28.Name = "group15";
-            tableGroup28.ReportItem = this.textBox15;
-            tableGroup29.Name = "group16";
-            tableGroup29.ReportItem = this.textBox41;
-            tableGroup30.Name = "group17";
-            tableGroup30.ReportItem = this.textBox16;
-            tableGroup31.Name = "group18";
-            tableGroup31.ReportItem = this.textBox17;
-            tableGroup24.ChildGroups.Add(tableGroup25);
-            tableGroup24.ChildGroups.Add(tableGroup26);
-            tableGroup24.ChildGroups.Add(tableGroup27);
-            tableGroup24.ChildGroups.Add(tableGroup28);
-            tableGroup24.ChildGroups.Add(tableGroup29);
-            tableGroup24.ChildGroups.Add(tableGroup30);
-            tableGroup24.ChildGroups.Add(tableGroup31);
-            tableGroup24.Name = "group80";
-            tableGroup24.ReportItem = this.textBox74;
-            tableGroup23.ChildGroups.Add(tableGroup24);
-            tableGroup23.Name = "group97";
-            tableGroup23.ReportItem = this.textBox142;
-            tableGroup22.ChildGroups.Add(tableGroup23);
-            tableGroup22.Name = "group46";
-            tableGroup22.ReportItem = this.textBox159;
-            tableGroup21.ChildGroups.Add(tableGroup22);
-            tableGroup21.Name = "group63";
-            tableGroup21.ReportItem = this.textBox108;
             tableGroup2.ChildGroups.Add(tableGroup3);
-            tableGroup2.ChildGroups.Add(tableGroup12);
-            tableGroup2.ChildGroups.Add(tableGroup21);
             tableGroup2.Name = "group19";
             tableGroup2.ReportItem = this.textBox115;
+            tableGroup17.Name = "group7";
+            tableGroup17.ReportItem = this.textBox7;
+            tableGroup18.Name = "group8";
+            tableGroup18.ReportItem = this.textBox8;
+            tableGroup19.Name = "group9";
+            tableGroup19.ReportItem = this.textBox9;
+            tableGroup20.Name = "group10";
+            tableGroup20.ReportItem = this.textBox10;
+            tableGroup21.Name = "group11";
+            tableGroup21.ReportItem = this.textBox11;
+            tableGroup16.ChildGroups.Add(tableGroup17);
+            tableGroup16.ChildGroups.Add(tableGroup18);
+            tableGroup16.ChildGroups.Add(tableGroup19);
+            tableGroup16.ChildGroups.Add(tableGroup20);
+            tableGroup16.ChildGroups.Add(tableGroup21);
+            tableGroup16.Name = "group75";
+            tableGroup16.ReportItem = this.textBox61;
+            tableGroup15.ChildGroups.Add(tableGroup16);
+            tableGroup15.Name = "group92";
+            tableGroup15.ReportItem = this.textBox137;
+            tableGroup14.ChildGroups.Add(tableGroup15);
+            tableGroup14.Name = "group41";
+            tableGroup14.ReportItem = this.textBox154;
+            tableGroup13.ChildGroups.Add(tableGroup14);
+            tableGroup13.Name = "group58";
+            tableGroup13.ReportItem = this.textBox103;
+            tableGroup12.ChildGroups.Add(tableGroup13);
+            tableGroup12.Name = "group";
+            tableGroup12.ReportItem = this.textBox2;
+            tableGroup27.Name = "group12";
+            tableGroup27.ReportItem = this.textBox12;
+            tableGroup28.Name = "group13";
+            tableGroup28.ReportItem = this.textBox13;
+            tableGroup29.Name = "group14";
+            tableGroup29.ReportItem = this.textBox14;
+            tableGroup30.Name = "group15";
+            tableGroup30.ReportItem = this.textBox15;
+            tableGroup31.Name = "group16";
+            tableGroup31.ReportItem = this.textBox41;
+            tableGroup32.Name = "group17";
+            tableGroup32.ReportItem = this.textBox16;
+            tableGroup33.Name = "group18";
+            tableGroup33.ReportItem = this.textBox17;
+            tableGroup26.ChildGroups.Add(tableGroup27);
+            tableGroup26.ChildGroups.Add(tableGroup28);
+            tableGroup26.ChildGroups.Add(tableGroup29);
+            tableGroup26.ChildGroups.Add(tableGroup30);
+            tableGroup26.ChildGroups.Add(tableGroup31);
+            tableGroup26.ChildGroups.Add(tableGroup32);
+            tableGroup26.ChildGroups.Add(tableGroup33);
+            tableGroup26.Name = "group80";
+            tableGroup26.ReportItem = this.textBox74;
+            tableGroup25.ChildGroups.Add(tableGroup26);
+            tableGroup25.Name = "group97";
+            tableGroup25.ReportItem = this.textBox142;
+            tableGroup24.ChildGroups.Add(tableGroup25);
+            tableGroup24.Name = "group46";
+            tableGroup24.ReportItem = this.textBox159;
+            tableGroup23.ChildGroups.Add(tableGroup24);
+            tableGroup23.Name = "group63";
+            tableGroup23.ReportItem = this.textBox108;
+            tableGroup22.ChildGroups.Add(tableGroup23);
+            tableGroup22.Name = "group20";
+            tableGroup22.ReportItem = this.textBox18;
             tableGroup1.ChildGroups.Add(tableGroup2);
+            tableGroup1.ChildGroups.Add(tableGroup12);
+            tableGroup1.ChildGroups.Add(tableGroup22);
             tableGroup1.Name = "id";
             tableGroup1.ReportItem = this.textBox81;
             this.table1.ColumnGroups.Add(tableGroup1);
@@ -349,14 +359,16 @@ namespace ReportsLibrary
             this.textBox15,
             this.textBox41,
             this.textBox16,
-            this.textBox17});
+            this.textBox17,
+            this.textBox2,
+            this.textBox18});
             this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.2D));
             this.table1.Name = "table1";
-            tableGroup32.Name = "group1";
-            tableGroup33.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup33.Name = "detail";
-            this.table1.RowGroups.Add(tableGroup32);
-            this.table1.RowGroups.Add(tableGroup33);
+            tableGroup34.Name = "group1";
+            tableGroup35.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup35.Name = "detail";
+            this.table1.RowGroups.Add(tableGroup34);
+            this.table1.RowGroups.Add(tableGroup35);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.48D), Telerik.Reporting.Drawing.Unit.Cm(9.227D));
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
@@ -802,9 +814,9 @@ namespace ReportsLibrary
     "eyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox49.Action = navigateToReportAction1;
-            this.textBox49.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(0.2D));
+            this.textBox49.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.2D));
             this.textBox49.Name = "textBox49";
-            this.textBox49.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.7D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox49.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox49.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(244)))), ((int)(((byte)(249)))));
             this.textBox49.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
             this.textBox49.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -858,9 +870,10 @@ namespace ReportsLibrary
             this.textBox56.Name = "textBox56";
             this.textBox56.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.83D), Telerik.Reporting.Drawing.Unit.Cm(0.923D));
             this.textBox56.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox56.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox56.Style.Color = System.Drawing.Color.Black;
-            this.textBox56.Style.Font.Bold = false;
-            this.textBox56.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox56.Style.Font.Bold = true;
+            this.textBox56.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox56.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox56.StyleName = "BlueOpal.TableHeader";
             this.textBox56.Value = "Âèïëàòà";
@@ -871,10 +884,11 @@ namespace ReportsLibrary
             this.textBox61.Name = "textBox61";
             this.textBox61.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.49D), Telerik.Reporting.Drawing.Unit.Cm(0.923D));
             this.textBox61.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox61.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox61.Style.Color = System.Drawing.Color.Black;
-            this.textBox61.Style.Font.Bold = false;
-            this.textBox61.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox61.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox61.Style.Font.Bold = true;
+            this.textBox61.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBox61.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox61.StyleName = "BlueOpal.TableHeader";
             this.textBox61.Value = "= Parameters.pay.Value";
             // 
@@ -883,9 +897,10 @@ namespace ReportsLibrary
             this.textBox74.Name = "textBox74";
             this.textBox74.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.16D), Telerik.Reporting.Drawing.Unit.Cm(0.923D));
             this.textBox74.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox74.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox74.Style.Color = System.Drawing.Color.Black;
             this.textBox74.Style.Font.Bold = true;
-            this.textBox74.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox74.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox74.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox74.StyleName = "BlueOpal.TableHeader";
             // 
@@ -894,6 +909,8 @@ namespace ReportsLibrary
             this.textBox81.Name = "textBox81";
             this.textBox81.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.48D), Telerik.Reporting.Drawing.Unit.Cm(1.294D));
             this.textBox81.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox81.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox81.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Dotted;
             this.textBox81.Style.Color = System.Drawing.Color.Black;
             this.textBox81.Style.Font.Bold = true;
             this.textBox81.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
@@ -907,9 +924,10 @@ namespace ReportsLibrary
             this.textBox98.Name = "textBox98";
             this.textBox98.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.83D), Telerik.Reporting.Drawing.Unit.Cm(0.685D));
             this.textBox98.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox98.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox98.Style.Color = System.Drawing.Color.Black;
-            this.textBox98.Style.Font.Bold = false;
-            this.textBox98.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox98.Style.Font.Bold = true;
+            this.textBox98.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox98.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox98.StyleName = "BlueOpal.TableHeader";
             this.textBox98.Value = "=\'Çàãàëüíà ñóìà\'";
@@ -920,21 +938,24 @@ namespace ReportsLibrary
             this.textBox103.Name = "textBox103";
             this.textBox103.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.49D), Telerik.Reporting.Drawing.Unit.Cm(0.685D));
             this.textBox103.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox103.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox103.Style.Color = System.Drawing.Color.Black;
-            this.textBox103.Style.Font.Bold = false;
-            this.textBox103.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox103.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox103.Style.Font.Bold = true;
+            this.textBox103.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBox103.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox103.StyleName = "BlueOpal.TableHeader";
             this.textBox103.Value = "= Parameters.authamount.Value";
             // 
             // textBox115
             // 
             this.textBox115.Name = "textBox115";
-            this.textBox115.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.48D), Telerik.Reporting.Drawing.Unit.Cm(0.791D));
+            this.textBox115.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.83D), Telerik.Reporting.Drawing.Unit.Cm(0.791D));
             this.textBox115.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox115.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox115.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox115.Style.Color = System.Drawing.Color.Black;
-            this.textBox115.Style.Font.Bold = false;
-            this.textBox115.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox115.Style.Font.Bold = true;
+            this.textBox115.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox115.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox115.StyleName = "BlueOpal.TableHeader";
             this.textBox115.Value = "=\'Øèôð  -  \'+ Parameters.custId.Value+\'      IPI -  \'+ Parameters.interCode.Value" +
@@ -945,9 +966,10 @@ namespace ReportsLibrary
             this.textBox132.Name = "textBox132";
             this.textBox132.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.83D), Telerik.Reporting.Drawing.Unit.Cm(0.765D));
             this.textBox132.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox132.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox132.Style.Color = System.Drawing.Color.Black;
-            this.textBox132.Style.Font.Bold = false;
-            this.textBox132.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox132.Style.Font.Bold = true;
+            this.textBox132.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox132.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox132.StyleName = "BlueOpal.TableHeader";
             this.textBox132.Value = "=\'ÏÄÔÎ (\'+ Parameters.ESVRate.Value+\'%), â³éñüê. çá³ð(\'+ Parameters.MiliRate.Valu" +
@@ -959,10 +981,11 @@ namespace ReportsLibrary
             this.textBox137.Name = "textBox137";
             this.textBox137.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.49D), Telerik.Reporting.Drawing.Unit.Cm(0.765D));
             this.textBox137.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox137.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox137.Style.Color = System.Drawing.Color.Black;
-            this.textBox137.Style.Font.Bold = false;
-            this.textBox137.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox137.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox137.Style.Font.Bold = true;
+            this.textBox137.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBox137.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox137.StyleName = "BlueOpal.TableHeader";
             this.textBox137.Value = "= Parameters.PDFO.Value";
             // 
@@ -971,9 +994,10 @@ namespace ReportsLibrary
             this.textBox149.Name = "textBox149";
             this.textBox149.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.83D), Telerik.Reporting.Drawing.Unit.Cm(0.685D));
             this.textBox149.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox149.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox149.Style.Color = System.Drawing.Color.Black;
-            this.textBox149.Style.Font.Bold = false;
-            this.textBox149.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox149.Style.Font.Bold = true;
+            this.textBox149.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox149.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox149.StyleName = "BlueOpal.TableHeader";
             this.textBox149.Value = "=\'Â³äðàõóâàííÿ ÄÎ ÓÀÀÑÏ (20%)\'";
@@ -984,10 +1008,11 @@ namespace ReportsLibrary
             this.textBox154.Name = "textBox154";
             this.textBox154.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.49D), Telerik.Reporting.Drawing.Unit.Cm(0.685D));
             this.textBox154.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox154.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox154.Style.Color = System.Drawing.Color.Black;
-            this.textBox154.Style.Font.Bold = false;
-            this.textBox154.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox154.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox154.Style.Font.Bold = true;
+            this.textBox154.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBox154.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox154.StyleName = "BlueOpal.TableHeader";
             this.textBox154.Value = "= Parameters.deductions.Value";
             // 
@@ -996,9 +1021,10 @@ namespace ReportsLibrary
             this.textBox142.Name = "textBox142";
             this.textBox142.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.16D), Telerik.Reporting.Drawing.Unit.Cm(0.765D));
             this.textBox142.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox142.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox142.Style.Color = System.Drawing.Color.Black;
-            this.textBox142.Style.Font.Bold = false;
-            this.textBox142.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox142.Style.Font.Bold = true;
+            this.textBox142.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox142.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox142.StyleName = "BlueOpal.TableHeader";
             // 
@@ -1007,9 +1033,10 @@ namespace ReportsLibrary
             this.textBox159.Name = "textBox159";
             this.textBox159.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.16D), Telerik.Reporting.Drawing.Unit.Cm(0.685D));
             this.textBox159.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox159.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox159.Style.Color = System.Drawing.Color.Black;
-            this.textBox159.Style.Font.Bold = false;
-            this.textBox159.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox159.Style.Font.Bold = true;
+            this.textBox159.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox159.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox159.StyleName = "BlueOpal.TableHeader";
             // 
@@ -1018,11 +1045,30 @@ namespace ReportsLibrary
             this.textBox108.Name = "textBox108";
             this.textBox108.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.16D), Telerik.Reporting.Drawing.Unit.Cm(0.685D));
             this.textBox108.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox108.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox108.Style.Color = System.Drawing.Color.Black;
-            this.textBox108.Style.Font.Bold = false;
-            this.textBox108.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox108.Style.Font.Bold = true;
+            this.textBox108.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox108.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox108.StyleName = "BlueOpal.TableHeader";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.49D), Telerik.Reporting.Drawing.Unit.Cm(0.791D));
+            this.textBox2.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox2.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox2.Style.Font.Bold = true;
+            this.textBox2.StyleName = "BlueOpal.TableHeader";
+            // 
+            // textBox18
+            // 
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(9.16D), Telerik.Reporting.Drawing.Unit.Cm(0.791D));
+            this.textBox18.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox18.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox18.Style.Font.Bold = true;
+            this.textBox18.StyleName = "BlueOpal.TableHeader";
             // 
             // R_5_19_2_SR
             // 
@@ -1264,5 +1310,7 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox142;
         private Telerik.Reporting.TextBox textBox159;
         private Telerik.Reporting.TextBox textBox108;
+        private Telerik.Reporting.TextBox textBox2;
+        private Telerik.Reporting.TextBox textBox18;
     }
 }
