@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using WebAPIConnector;
 using sysAdminwp.ComplexDictionariesBaseControls;
 using sysAdminwp.PresenterComplexDictionaries;
@@ -9,7 +10,8 @@ namespace sysAdminwp.viewPageDictionaryControls
 {
     public partial class ComplexDictionaryControl : UserControl
     {
-        private readonly BaseCopyrightKindControl _baseCopyrightKind;
+        private readonly CopyrightKindControl _ctrlCopyrightKind;
+        private readonly RelGenrePercentControl _ctrlRelGenrePercent;
         private readonly BaseCountryControl _baseCountry;
         private readonly BaseCreativeroleTypeControl _baseCreativeroleType;
         private readonly BaseGenreTypeControl _baseGenreType;
@@ -20,7 +22,8 @@ namespace sysAdminwp.viewPageDictionaryControls
         public ComplexDictionaryControl()
         {
             InitializeComponent();
-            _baseCopyrightKind = new BaseCopyrightKindControl();
+            _ctrlCopyrightKind = new CopyrightKindControl();
+            _ctrlRelGenrePercent = new RelGenrePercentControl();
             _baseCountry = new BaseCountryControl();
             _baseCreativeroleType = new BaseCreativeroleTypeControl();
             _baseGenreType = new BaseGenreTypeControl();
@@ -82,8 +85,8 @@ namespace sysAdminwp.viewPageDictionaryControls
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
-                    controlPanel.Controls.Add(_baseCopyrightKind);
-                    _baseCopyrightKind.SetDataByDictionaryURL(UrlForComplexDictionaries);
+                    controlPanel.Controls.Add(_ctrlCopyrightKind);
+                    _ctrlCopyrightKind.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "country":
                     controlPanel.Controls.Add(_baseCountry);
@@ -108,6 +111,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "typeplace":
                     controlPanel.Controls.Add(_baseTypePlace);
                     _baseTypePlace.SetDataByDictionaryURL(UrlForComplexDictionaries);
+                    break;
+                case "relgenrepercent":
+                    controlPanel.Controls.Add(_ctrlRelGenrePercent);
+                    _ctrlRelGenrePercent.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
             }
         }

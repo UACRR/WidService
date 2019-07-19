@@ -11,7 +11,7 @@ using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    public sealed partial class BaseCopyrightKindControl : UserControl
+    public sealed partial class CopyrightKindControl : UserControl
     {
         private const string NotUniquenessCodeWarningMsg = "Введений код належить іншому запису довідника!";
 
@@ -60,7 +60,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
         }
 
-        public BaseCopyrightKindControl()
+        public CopyrightKindControl()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;

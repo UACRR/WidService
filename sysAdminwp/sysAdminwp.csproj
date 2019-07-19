@@ -141,11 +141,17 @@
     <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.Designer.cs">
       <DependentUpon>BaseCountryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.cs">
+    <Compile Include="ComplexDictionariesBaseControls\CopyrightKindControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.Designer.cs">
-      <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesBaseControls\CopyrightKindControl.Designer.cs">
+      <DependentUpon>CopyrightKindControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\RelGenrePercentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\RelGenrePercentControl.Designer.cs">
+      <DependentUpon>RelGenrePercentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DictionaryForm.cs">
       <SubType>Form</SubType>
@@ -187,8 +193,11 @@
     <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCountryControl.resx">
       <DependentUpon>BaseCountryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.resx">
-      <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\CopyrightKindControl.resx">
+      <DependentUpon>CopyrightKindControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\RelGenrePercentControl.resx">
+      <DependentUpon>RelGenrePercentControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="DictionaryForm.resx">

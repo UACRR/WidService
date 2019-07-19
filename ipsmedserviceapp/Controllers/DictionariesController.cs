@@ -133,7 +133,7 @@ namespace ipsmedserviceapp.Controllers
             "country",
             "creativeroletype",
             "genretype",
-            "klr030",
+            "kl_r030",
             "systemconstant",
             "typeplace",
             "relgenrepercent"
@@ -1593,14 +1593,14 @@ namespace ipsmedserviceapp.Controllers
 
         #endregion
 
-        #region * * * KlR030 * * *
+        #region * * * Kl_R030 * * *
         
         /// <summary>
         /// Create
         /// </summary>
         /// <param name="sors"></param>
         /// <returns></returns>
-        [HttpPost("extra/klr030")]
+        [HttpPost("extra/kl_r030")]
         public async Task<IActionResult> CreateKlR030([FromBody] KlR030 sors)
         {
             var dest = new KlR030();
@@ -1628,7 +1628,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="id"></param>
         /// <param name="sors"></param>
         /// <returns></returns>
-        [HttpPut("extra/klr030/{id}")]
+        [HttpPut("extra/kl_r030/{id}")]
         public async Task<IActionResult> UpdateKlR030(int id, [FromBody] KlR030 sors)
         {
             var dest = await _dbContext.KlR030.Where(rec => Convert.ToInt32(rec.R030) == id)
@@ -1656,7 +1656,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("extra/klr030/{id}")]
+        [HttpDelete("extra/kl_r030/{id}")]
         public async Task<IActionResult> DeleteKlR030(int id)
         {
             var delRow = await _dbContext.KlR030.Where(rec => Convert.ToInt32(rec.R030) == id)

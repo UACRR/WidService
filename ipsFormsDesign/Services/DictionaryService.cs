@@ -19,8 +19,14 @@ namespace ipsFormsDesign.Services
 
         private readonly Dictionary<Type, string> _urls = new Dictionary<Type, string>
         {
-            {typeof(CopyrightKind), "copyrightkind" },
-
+            {typeof(CopyrightKind), "copyrightkind"},
+            {typeof(Country), "country"},
+            {typeof(CreativeRoleType), "creativeroletype"},
+            {typeof(GenreType), "genretype"},
+            {typeof(KlR030), "kl_r030"},
+            {typeof(SystemConstant), "systemconstant"},
+            {typeof(TypePlace), "typeplace"},
+            {typeof(RelGenrePercent), "relgenrepercent"},
         };
 
         private DictionaryService() { }
@@ -57,6 +63,12 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
+        /// <summary>
+        /// Додати запис до складного довідника
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sors"></param>
+        /// <returns></returns>
         public bool CreateExtraDictionaryRecord<T>(T sors) where T : class
         {
             if (!_urls.ContainsKey(typeof(T)))
@@ -66,6 +78,12 @@ namespace ipsFormsDesign.Services
             return _webApi.NewItem(url, sors);
         }
 
+        /// <summary>
+        /// Оновити запис складного довідника
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public bool UpdateExtraDictionaryRecord<T>(T source) where T : class
         {
             if (!_urls.ContainsKey(typeof(T)))
@@ -75,6 +93,12 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem(url, null, source);
         }
 
+        /// <summary>
+        /// Видалити запис із складного довідника
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool DeleteExtraDictionaryRecord<T>(int id) where T : class
         {
             if (!_urls.ContainsKey(typeof(T)))
@@ -84,10 +108,7 @@ namespace ipsFormsDesign.Services
             return _webApi.DeleteItem(url, id.ToString());
         }
 
-
-        // -------- - - 
-
-
+        
         // Country BEGIN ********************
         public Country GetCountry(int id)
         {
@@ -166,7 +187,7 @@ namespace ipsFormsDesign.Services
         // KlR030 BEGIN ********************
         public KlR030 GetKlR030(int id)
         {
-            string url = string.Concat(_prefix, "extra/klr030");
+            string url = string.Concat(_prefix, "extra/kl_r030");
             return _webApi.GetItemById<KlR030>(url, id.ToString());
         }
 

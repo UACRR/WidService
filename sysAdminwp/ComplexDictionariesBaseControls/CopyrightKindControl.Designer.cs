@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexDictionariesBaseControls
 {
-    sealed partial class BaseCopyrightKindControl
+    sealed partial class CopyrightKindControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
