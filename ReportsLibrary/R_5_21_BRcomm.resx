@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox19.Value" xml:space="preserve">
+    <value>='22. Реєстр переданого до розподілу роялті від користувачів з "великих прав"
+в розрізі ліцензійних договорів за період з '+ Substr(CStr(Parameters.dateBegin.Value),0,10)+' по '+Substr(CStr(Parameters.dateEnd.Value),0,10)</value>
+  </data>
   <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
     <value>{"@rateCommiss":"-1"}</value>
   </metadata>
