@@ -161,7 +161,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             this.editPanelCopyrightKind.Controls.Add(this.btnSaveCopyrightKind);
             this.editPanelCopyrightKind.Location = new System.Drawing.Point(0, 295);
             this.editPanelCopyrightKind.Name = "editPanelCopyrightKind";
-            this.editPanelCopyrightKind.Size = new System.Drawing.Size(1023, 202);
+            this.editPanelCopyrightKind.Size = new System.Drawing.Size(1000, 202);
             this.editPanelCopyrightKind.TabIndex = 6;
             this.editPanelCopyrightKind.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.editPanelCopyrightKind.ThemeName = "Office2013Light";
@@ -181,7 +181,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             this.txtRuDescr.Location = new System.Drawing.Point(636, 106);
             this.txtRuDescr.MaxLength = 700;
             this.txtRuDescr.Name = "txtRuDescr";
-            this.txtRuDescr.Size = new System.Drawing.Size(376, 21);
+            this.txtRuDescr.Size = new System.Drawing.Size(353, 21);
             this.txtRuDescr.TabIndex = 7;
             this.txtRuDescr.ThemeName = "Office2013Light";
             // 
@@ -197,7 +197,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             this.txtEnDescr.Location = new System.Drawing.Point(636, 132);
             this.txtEnDescr.MaxLength = 700;
             this.txtEnDescr.Name = "txtEnDescr";
-            this.txtEnDescr.Size = new System.Drawing.Size(376, 21);
+            this.txtEnDescr.Size = new System.Drawing.Size(353, 21);
             this.txtEnDescr.TabIndex = 8;
             this.txtEnDescr.ThemeName = "Office2013Light";
             // 
@@ -213,7 +213,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             this.txtUaDescr.Location = new System.Drawing.Point(636, 80);
             this.txtUaDescr.MaxLength = 700;
             this.txtUaDescr.Name = "txtUaDescr";
-            this.txtUaDescr.Size = new System.Drawing.Size(376, 21);
+            this.txtUaDescr.Size = new System.Drawing.Size(353, 21);
             this.txtUaDescr.TabIndex = 6;
             this.txtUaDescr.ThemeName = "Office2013Light";
             // 
@@ -429,19 +429,19 @@ namespace sysAdminwp.ComplexDictionariesControls
             gridViewTextBoxColumn1.FieldName = "Code";
             gridViewTextBoxColumn1.HeaderText = "Код";
             gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 111;
+            gridViewTextBoxColumn1.Width = 108;
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 302;
+            gridViewTextBoxColumn2.Width = 295;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 306;
+            gridViewTextBoxColumn3.Width = 299;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 281;
+            gridViewTextBoxColumn4.Width = 275;
             this.gvCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -455,7 +455,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             this.gvCopyrightKindList.Name = "gvCopyrightKindList";
             this.gvCopyrightKindList.ReadOnly = true;
             this.gvCopyrightKindList.ShowGroupPanel = false;
-            this.gvCopyrightKindList.Size = new System.Drawing.Size(1023, 206);
+            this.gvCopyrightKindList.Size = new System.Drawing.Size(1000, 206);
             this.gvCopyrightKindList.TabIndex = 3;
             this.gvCopyrightKindList.ThemeName = "Office2013Light";
             this.gvCopyrightKindList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvCopyrightKindList_CurrentRowChanged);
@@ -472,13 +472,13 @@ namespace sysAdminwp.ComplexDictionariesControls
             this.searchCopyrightKind.MaximumSize = new System.Drawing.Size(2000, 20);
             this.searchCopyrightKind.MinimumSize = new System.Drawing.Size(20, 20);
             this.searchCopyrightKind.Name = "searchCopyrightKind";
-            this.searchCopyrightKind.Size = new System.Drawing.Size(404, 20);
+            this.searchCopyrightKind.Size = new System.Drawing.Size(381, 20);
             this.searchCopyrightKind.TabIndex = 1;
             // 
             // ctrlGridRowCount
             // 
             this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlGridRowCount.Location = new System.Drawing.Point(857, 264);
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(834, 264);
             this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
             this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
             this.ctrlGridRowCount.Name = "ctrlGridRowCount";
@@ -501,7 +501,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             this.Controls.Add(this.gvCopyrightKindList);
             this.Controls.Add(this.searchCopyrightKind);
             this.Name = "CopyrightKindControl";
-            this.Size = new System.Drawing.Size(1023, 497);
+            this.Size = new System.Drawing.Size(1000, 497);
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFilterDictCRKindGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCRKindGroup)).EndInit();

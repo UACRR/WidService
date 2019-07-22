@@ -43,11 +43,11 @@
             this.bsGenreType = new System.Windows.Forms.BindingSource(this.components);
             this.bsDictCategory = new System.Windows.Forms.BindingSource(this.components);
             this.txtRuGenreType = new Telerik.WinControls.UI.RadTextBox();
-            this.bsRuLangGenreType = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRuGenreType = new System.Windows.Forms.BindingSource(this.components);
             this.txtEnGenreType = new Telerik.WinControls.UI.RadTextBox();
-            this.bsEnLangGenreType = new System.Windows.Forms.BindingSource(this.components);
+            this.bsEnGenreType = new System.Windows.Forms.BindingSource(this.components);
             this.txtUkGenreType = new Telerik.WinControls.UI.RadTextBox();
-            this.bsUkLangGenreType = new System.Windows.Forms.BindingSource(this.components);
+            this.bsUkGenreType = new System.Windows.Forms.BindingSource(this.components);
             this.txtCodeGenreType = new Telerik.WinControls.UI.RadTextBox();
             this.lblRuLangGenreType = new Telerik.WinControls.UI.RadLabel();
             this.lblEnLangGenreType = new Telerik.WinControls.UI.RadLabel();
@@ -72,11 +72,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuGenreType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnGenreType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUkGenreType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangGenreType)).BeginInit();
@@ -185,7 +185,7 @@
             // 
             // txtRuGenreType
             // 
-            this.txtRuGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangGenreType, "Name", true));
+            this.txtRuGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuGenreType, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtRuGenreType.Location = new System.Drawing.Point(162, 109);
             this.txtRuGenreType.MaxLength = 500;
             this.txtRuGenreType.Name = "txtRuGenreType";
@@ -193,13 +193,13 @@
             this.txtRuGenreType.TabIndex = 8;
             this.txtRuGenreType.ThemeName = "Office2013Light";
             // 
-            // bsRuLangGenreType
+            // bsRuGenreType
             // 
-            this.bsRuLangGenreType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsRuGenreType.DataSource = typeof(ipsFormsDesign.Model.GenreTypeTr);
             // 
             // txtEnGenreType
             // 
-            this.txtEnGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangGenreType, "Name", true));
+            this.txtEnGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnGenreType, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtEnGenreType.Location = new System.Drawing.Point(162, 136);
             this.txtEnGenreType.MaxLength = 500;
             this.txtEnGenreType.Name = "txtEnGenreType";
@@ -207,13 +207,13 @@
             this.txtEnGenreType.TabIndex = 9;
             this.txtEnGenreType.ThemeName = "Office2013Light";
             // 
-            // bsEnLangGenreType
+            // bsEnGenreType
             // 
-            this.bsEnLangGenreType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsEnGenreType.DataSource = typeof(ipsFormsDesign.Model.GenreTypeTr);
             // 
             // txtUkGenreType
             // 
-            this.txtUkGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangGenreType, "Name", true));
+            this.txtUkGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkGenreType, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtUkGenreType.Location = new System.Drawing.Point(162, 83);
             this.txtUkGenreType.MaxLength = 500;
             this.txtUkGenreType.Name = "txtUkGenreType";
@@ -221,13 +221,13 @@
             this.txtUkGenreType.TabIndex = 7;
             this.txtUkGenreType.ThemeName = "Office2013Light";
             // 
-            // bsUkLangGenreType
+            // bsUkGenreType
             // 
-            this.bsUkLangGenreType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsUkGenreType.DataSource = typeof(ipsFormsDesign.Model.GenreTypeTr);
             // 
             // txtCodeGenreType
             // 
-            this.txtCodeGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsGenreType, "CodeI", true));
+            this.txtCodeGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsGenreType, "CodeI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtCodeGenreType.Location = new System.Drawing.Point(162, 56);
             this.txtCodeGenreType.MaxLength = 5;
             this.txtCodeGenreType.Name = "txtCodeGenreType";
@@ -398,7 +398,7 @@
             this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
             this.ctrlGridRowCount.TabIndex = 33;
             // 
-            // BaseGenreTypeControl
+            // GenreTypeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -410,7 +410,7 @@
             this.Controls.Add(this.btnDeleteGenreType);
             this.Controls.Add(this.btnAddGenreType);
             this.Controls.Add(this.gvGenreType);
-            this.Name = "BaseGenreTypeControl";
+            this.Name = "GenreTypeControl";
             this.Size = new System.Drawing.Size(998, 461);
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictFilterCategory)).EndInit();
@@ -423,11 +423,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuGenreType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnGenreType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUkGenreType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangGenreType)).EndInit();
@@ -465,9 +465,9 @@
         private Telerik.WinControls.UI.RadDropDownList ddlCategory;
         private System.Windows.Forms.BindingSource bsGenreType;
         private System.Windows.Forms.BindingSource bsDictFilterCategory;
-        private System.Windows.Forms.BindingSource bsRuLangGenreType;
-        private System.Windows.Forms.BindingSource bsEnLangGenreType;
-        private System.Windows.Forms.BindingSource bsUkLangGenreType;
+        private System.Windows.Forms.BindingSource bsRuGenreType;
+        private System.Windows.Forms.BindingSource bsEnGenreType;
+        private System.Windows.Forms.BindingSource bsUkGenreType;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private System.Windows.Forms.BindingSource bsViewTable;
         private IpsViewComponentLibrary.Common.SearchTextBoxControl ctrlSearch;

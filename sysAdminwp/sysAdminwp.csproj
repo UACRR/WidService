@@ -230,8 +230,11 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Country.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CountryTr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleTypeTr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CrkindGroup.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreTypeTr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.IsAuthorType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030tr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjAct.datasource" />

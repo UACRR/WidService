@@ -33,7 +33,6 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<Authors> Authors { get; set; }
         [JsonIgnore]
         public virtual ICollection<CopyRight> CopyRight { get; set; }
-        [JsonIgnore]
         public virtual ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
         [JsonIgnore]
         public virtual ICollection<RegisterAuthors> RegisterAuthors { get; set; }
