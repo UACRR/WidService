@@ -1307,14 +1307,14 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("extra/create/copyrightkind")]
         public async Task<IActionResult> CreateCopyRightKind([FromBody] CopyrightKind sors)
         {
-            var dest = new CopyrightKind();
+            var target = new CopyrightKind();
+            target.SetFields(sors);
 
-            dest.SetFields(sors);
-            _dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            _dbContext.CopyrightKind.Add(dest);
+            _dbContext.AppendList(sors.CopyrightKindTr, target.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.CopyrightKind.Add(target);
             await _dbContext.SaveChangesAsync();
 
-            return Ok(dest);
+            return Ok();
         }
 
         /// <summary>
@@ -1326,19 +1326,19 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("extra/update/copyrightkind")]
         public async Task<IActionResult> UpdateCopyRightKind([FromBody] CopyrightKind sors)
         {
-            var dest = await _dbContext.CopyrightKind.Where(rec => rec.CodeI == sors.CodeI)
+            var target = await _dbContext.CopyrightKind.Where(rec => rec.CodeI == sors.CodeI)
                 .Include(rec => rec.CopyrightKindTr)
                 .FirstOrDefaultAsync();
 
-            if (dest == null)
+            if (target == null)
                 return NotFound();
 
-            _dbContext.UpdateList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            dest.SetFields(sors);
+            _dbContext.UpdateList(sors.CopyrightKindTr, target.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            target.SetFields(sors);
 
             await _dbContext.SaveChangesAsync();
 
-            return Ok(dest);
+            return Ok();
         }
 
         /// <summary>
@@ -1375,6 +1375,97 @@ namespace ipsmedserviceapp.Controllers
 
         #endregion
 
+        #region * * * RelGenrePercent * * *
+
+        /// <summary>
+        /// Create
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPost("extra/create/relgenrepercent")]
+        public async Task<IActionResult> CreateRelGenrePercent([FromBody] RelGenrePercent source)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = new RelGenrePercent();
+                target.SetFields(source);
+                await _dbContext.RelGenrePercent.AddAsync(target);
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPut("extra/update/relgenrepercent")]
+        public async Task<IActionResult> UpdateRelGenrePercent([FromBody] RelGenrePercent source)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = await _dbContext.RelGenrePercent.SingleOrDefaultAsync(rec => rec.ActCode == source.ActCode && rec.GenreType == source.GenreType);
+                if (target == null)
+                    return NotFound();
+
+                target.Rate = source.Rate;
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="actCode"></param>
+        /// <param name="genreCode"></param>
+        /// <returns></returns>
+        [HttpDelete("extra/delete/relgenrepercent/{actCode}/{genreCode}")]
+        public async Task<IActionResult> DeleteRelGenrePercent(int actCode, int genreCode)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var deleteItem = await _dbContext.RelGenrePercent.SingleOrDefaultAsync(rec => rec.ActCode == actCode && rec.GenreType == genreCode);
+                if (deleteItem == null)
+                    return NotFound();
+
+                _dbContext.RelGenrePercent.Remove(deleteItem);
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
+        }
+
+        #endregion
+
+        // -
         #region * * * Country * * *
 
         /// <summary>
@@ -1795,7 +1886,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         #endregion
-
+        // -
         #endregion
 
         /// <summary>

@@ -57,6 +57,7 @@ namespace sysAdminwp.ComplexDictionariesControls
                 bsDictObjAct.DataSource = IpsGlobal.AnketaDictionaties.objAct;
                 bsDictGenreType.DataSource = IpsGlobal.AnketaDictionaties.genreType;
             }
+            ChangeSubscribeEvents();
         }
 
         public void SetDataByDictionaryURL(string url)
@@ -110,12 +111,14 @@ namespace sysAdminwp.ComplexDictionariesControls
             UpdateBottomPanel(relGenrePercent);
         }
 
+        // додати
         private void btnAddCopyrightKind_Click(object sender, System.EventArgs e)
         {
             SaveMode = SaveMode.OnCreate;
             IsEditMode = true;
             ddlObjAct.Enabled = true;
             ddlGenre.Enabled = true;
+            ChangeSubscribeEvents();
 
             var relGenrePercent = new RelGenrePercent
             {
@@ -127,6 +130,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             UpdateBottomPanel(relGenrePercent);
         }
 
+        // видалити
         private void btnDeleteCopyrightKind_Click(object sender, System.EventArgs e)
         {
             if (!(gvCopyrightKindList.CurrentRow?.DataBoundItem is RelGenrePercentViewTable row))
@@ -134,12 +138,14 @@ namespace sysAdminwp.ComplexDictionariesControls
 
             if (MessageShow.ConfirmAction(DeleteRecordConfirmMsg) == DialogResult.Yes)
             {
-                //var result = _service.DeleteExtraDictionaryRecord<CopyrightKind>(int.Parse(row.Code));
+                string urlData = $"{row.ActCode}/{row.GenreType}";
+                var result = _service.DeleteExtraDictionaryRecord<RelGenrePercent>(urlData);
                 MessageShow.ShowInfoByResult(DeleteRecordSuccessMsg, DeleteRecordErrorMsg, result);
                 UpdateDataFromServer();
             }
         }
 
+        // зберегти
         private void btnSaveCopyrightKind_Click(object sender, System.EventArgs e)
         {
             if (SaveMode == SaveMode.None)
@@ -181,11 +187,16 @@ namespace sysAdminwp.ComplexDictionariesControls
             IsEditMode = false;
         }
 
+        /// <summary>
+        /// Перевірити чи наявний запис що додається
+        /// </summary>
+        /// <returns></returns>
         private bool CheckForUniqueness()
         {
-            return true;
+            return !_relGenrePercentList.Any(rec => rec.ActCode == _relGenrePercentData.ActCode && rec.GenreType == _relGenrePercentData.GenreType);
         }
 
+        // скасувати
         private void btnCancelCopyrightKind_Click(object sender, System.EventArgs e)
         {
             SaveMode = SaveMode.None;
