@@ -108,7 +108,22 @@ namespace ipsFormsDesign.Services
             return _webApi.DeleteItem(url, id.ToString());
         }
 
-        
+        /// <summary>
+        /// Видалити запис із складного довідника
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public bool DeleteExtraDictionaryRecord<T>(string data) where T : class
+        {
+            if (!_urls.ContainsKey(typeof(T)))
+                return false;
+
+            string url = $"{_prefixExtra}/delete/{_urls[typeof(T)]}/{data}";
+            return _webApi.DeleteItem(url);
+        }
+
+
         // Country BEGIN ********************
         public Country GetCountry(int id)
         {

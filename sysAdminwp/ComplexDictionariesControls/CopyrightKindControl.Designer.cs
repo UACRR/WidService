@@ -1,4 +1,6 @@
-﻿namespace sysAdminwp.ComplexDictionariesBaseControls
+﻿using sysAdminwp.Model;
+
+namespace sysAdminwp.ComplexDictionariesControls
 {
     sealed partial class CopyrightKindControl
     {
@@ -460,7 +462,7 @@
             // 
             // bsViewTable
             // 
-            this.bsViewTable.DataSource = typeof(sysAdminwp.ViewTable);
+            this.bsViewTable.DataSource = typeof(sysAdminwp.Model.ViewTable);
             // 
             // searchCopyrightKind
             // 
@@ -484,7 +486,7 @@
             this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
             this.ctrlGridRowCount.TabIndex = 0;
             // 
-            // BaseCopyrightKindControl
+            // CopyrightKindControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -498,7 +500,7 @@
             this.Controls.Add(this.btnAddCopyrightKind);
             this.Controls.Add(this.gvCopyrightKindList);
             this.Controls.Add(this.searchCopyrightKind);
-            this.Name = "BaseCopyrightKindControl";
+            this.Name = "CopyrightKindControl";
             this.Size = new System.Drawing.Size(1023, 497);
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFilterDictCRKindGroup)).EndInit();

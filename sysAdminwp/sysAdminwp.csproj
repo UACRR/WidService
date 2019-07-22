@@ -105,52 +105,52 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.cs">
+    <Compile Include="ComplexDictionariesControls\BaseSystemConstantControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.Designer.cs">
+    <Compile Include="ComplexDictionariesControls\BaseSystemConstantControl.Designer.cs">
       <DependentUpon>BaseSystemConstantControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.cs">
+    <Compile Include="ComplexDictionariesControls\BaseTypePlaceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.Designer.cs">
+    <Compile Include="ComplexDictionariesControls\BaseTypePlaceControl.Designer.cs">
       <DependentUpon>BaseTypePlaceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseKlr030Control.cs">
+    <Compile Include="ComplexDictionariesControls\BaseKlr030Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseKlr030Control.Designer.cs">
+    <Compile Include="ComplexDictionariesControls\BaseKlr030Control.Designer.cs">
       <DependentUpon>BaseKlr030Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.cs">
+    <Compile Include="ComplexDictionariesControls\GenreTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.Designer.cs">
-      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesControls\GenreTypeControl.Designer.cs">
+      <DependentUpon>GenreTypeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.cs">
+    <Compile Include="ComplexDictionariesControls\BaseCreativeroleTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.Designer.cs">
+    <Compile Include="ComplexDictionariesControls\BaseCreativeroleTypeControl.Designer.cs">
       <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.cs">
+    <Compile Include="ComplexDictionariesControls\BaseCountryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.Designer.cs">
+    <Compile Include="ComplexDictionariesControls\BaseCountryControl.Designer.cs">
       <DependentUpon>BaseCountryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\CopyrightKindControl.cs">
+    <Compile Include="ComplexDictionariesControls\CopyrightKindControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\CopyrightKindControl.Designer.cs">
+    <Compile Include="ComplexDictionariesControls\CopyrightKindControl.Designer.cs">
       <DependentUpon>CopyrightKindControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\RelGenrePercentControl.cs">
+    <Compile Include="ComplexDictionariesControls\RelGenrePercentControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesBaseControls\RelGenrePercentControl.Designer.cs">
+    <Compile Include="ComplexDictionariesControls\RelGenrePercentControl.Designer.cs">
       <DependentUpon>RelGenrePercentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DictionaryForm.cs">
@@ -159,6 +159,8 @@
     <Compile Include="DictionaryForm.Designer.cs">
       <DependentUpon>DictionaryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\DictionaryConstants.cs" />
+    <Compile Include="Model\RelGenrePercentViewTable.cs" />
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CopyrightKindLayer.cs" />
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CountryLayer.cs" />
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CreativeroleTypeLayer.cs" />
@@ -174,29 +176,29 @@
     <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.Designer.cs">
       <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewTable.cs" />
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.resx">
+    <Compile Include="Model\ViewTable.cs" />
+    <EmbeddedResource Include="ComplexDictionariesControls\BaseSystemConstantControl.resx">
       <DependentUpon>BaseSystemConstantControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.resx">
+    <EmbeddedResource Include="ComplexDictionariesControls\BaseTypePlaceControl.resx">
       <DependentUpon>BaseTypePlaceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseKlr030Control.resx">
+    <EmbeddedResource Include="ComplexDictionariesControls\BaseKlr030Control.resx">
       <DependentUpon>BaseKlr030Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.resx">
-      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesControls\GenreTypeControl.resx">
+      <DependentUpon>GenreTypeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.resx">
+    <EmbeddedResource Include="ComplexDictionariesControls\BaseCreativeroleTypeControl.resx">
       <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCountryControl.resx">
+    <EmbeddedResource Include="ComplexDictionariesControls\BaseCountryControl.resx">
       <DependentUpon>BaseCountryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\CopyrightKindControl.resx">
+    <EmbeddedResource Include="ComplexDictionariesControls\CopyrightKindControl.resx">
       <DependentUpon>CopyrightKindControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesBaseControls\RelGenrePercentControl.resx">
+    <EmbeddedResource Include="ComplexDictionariesControls\RelGenrePercentControl.resx">
       <DependentUpon>RelGenrePercentControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -232,9 +234,13 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030tr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjAct.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RelGenrePercent.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.SystemConstant.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlaceTr.datasource" />
+    <None Include="Properties\DataSources\sysAdminwp.Model.RelGenrePercentViewTable.datasource" />
+    <None Include="Properties\DataSources\sysAdminwp.Model.ViewTable.datasource" />
     <None Include="Properties\DataSources\ViewTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

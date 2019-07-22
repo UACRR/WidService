@@ -500,15 +500,27 @@ namespace WebAPIConnector
         /// Видалити об'єкт на сервері додатків
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="url"></param>
+        /// <param name="urlData"></param>
         /// <returns></returns>
-        public bool DeleteItem(string url, string id)
+        public bool DeleteItem(string urlData, string id)
         {
 
-            string idUrl = $"{url}/{id}";
+            string idUrl = $"{urlData}/{id}";
             var result = client.DeleteAsync(idUrl).GetAwaiter().GetResult();
 
             return result.IsSuccessStatusCode;
+        }
+
+        /// <summary>
+        /// Видалити об'єкт на сервері додатків
+        /// </summary>
+        /// <param name="urlData">Дані по об'єкту</param>
+        /// <returns></returns>
+        public bool DeleteItem(string urlData)
+        {
+            var result = client.DeleteAsync(urlData).GetAwaiter().GetResult();
+            var retCode = result.IsSuccessStatusCode;
+            return retCode;
         }
 
         /// <summary>
