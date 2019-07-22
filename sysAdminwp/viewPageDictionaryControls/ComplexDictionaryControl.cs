@@ -15,7 +15,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         private readonly RelGenrePercentControl _ctrlRelGenrePercent;
         private readonly BaseCountryControl _baseCountry;
         private readonly BaseCreativeroleTypeControl _baseCreativeroleType;
-        private readonly BaseGenreTypeControl _baseGenreType;
+        private readonly GenreTypeControl _ctrlGenreType;
         private readonly BaseKlr030Control _baseKlr030;
         private readonly BaseSystemConstantControl _baseSystemConstant;
         private readonly BaseTypePlaceControl _baseTypePlace;
@@ -27,7 +27,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             _ctrlRelGenrePercent = new RelGenrePercentControl();
             _baseCountry = new BaseCountryControl();
             _baseCreativeroleType = new BaseCreativeroleTypeControl();
-            _baseGenreType = new BaseGenreTypeControl();
+            _ctrlGenreType = new GenreTypeControl();
             _baseKlr030 = new BaseKlr030Control();
             _baseSystemConstant = new BaseSystemConstantControl();
             _baseTypePlace = new BaseTypePlaceControl();
@@ -98,8 +98,8 @@ namespace sysAdminwp.viewPageDictionaryControls
                     _baseCreativeroleType.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "genretype":
-                    controlPanel.Controls.Add(_baseGenreType);
-                    _baseGenreType.SetDataByDictionaryURL(UrlForComplexDictionaries);
+                    controlPanel.Controls.Add(_ctrlGenreType);
+                    _ctrlGenreType.SetDataByDictionaryURL(UrlForComplexDictionaries);
                     break;
                 case "kl_r030":
                     controlPanel.Controls.Add(_baseKlr030);

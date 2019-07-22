@@ -276,11 +276,11 @@ namespace ipsmedserviceapp.Controllers
                     rec => rec.CustomerTypeTr)
             );
             //baseEng.Add("documentkind".ToLower(),
-            //                new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
-            //                sors => (DictBaseTypeI)sors,
-            //                sors => (DocumentKind)sors,
-            //                sors => sors.DocumentKindTr.ToList(),
-            //                (sors, dest) => ((DocumentKindTr)sors).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)sors).Lang == ((DocumentKindTr)dest).Lang,
+            //                new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (source, id) => source.CodeI == int.Parse(id),
+            //                source => (DictBaseTypeI)source,
+            //                source => (DocumentKind)source,
+            //                source => source.DocumentKindTr.ToList(),
+            //                (source, dest) => ((DocumentKindTr)source).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)source).Lang == ((DocumentKindTr)dest).Lang,
             //                rec => rec.DocumentKindTr)
             //            );
             baseEng.Add("popgenre".ToLower(),
@@ -323,11 +323,11 @@ namespace ipsmedserviceapp.Controllers
                     rec => rec.ObjectStatusTr)
             );
             //baseEng.Add("objecttype".ToLower(),
-            //                new BaseDictionaryEng<ObjectType, ObjectTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
-            //                sors => (DictBaseTypeI)sors,
-            //                sors => (ObjectType)sors,
-            //                sors => sors.ObjectTypeTr.ToList(),
-            //                (sors, dest) => ((ObjectTypeTr)sors).CodeI == ((ObjectTypeTr)dest).CodeI && ((ObjectTypeTr)sors).Lang == ((ObjectTypeTr)dest).Lang,
+            //                new BaseDictionaryEng<ObjectType, ObjectTypeTr, DictBaseTypeI>(_dbContext, (source, id) => source.CodeI == int.Parse(id),
+            //                source => (DictBaseTypeI)source,
+            //                source => (ObjectType)source,
+            //                source => source.ObjectTypeTr.ToList(),
+            //                (source, dest) => ((ObjectTypeTr)source).CodeI == ((ObjectTypeTr)dest).CodeI && ((ObjectTypeTr)source).Lang == ((ObjectTypeTr)dest).Lang,
             //                rec => rec.ObjectTypeTr)
             //            );
             baseEng.Add("paymentkind".ToLower(),
@@ -1535,7 +1535,7 @@ namespace ipsmedserviceapp.Controllers
 
 
         #endregion
-
+        // -
         #region * * * CreativeRoleType * * *
 
         /// <summary>
@@ -1622,42 +1622,65 @@ namespace ipsmedserviceapp.Controllers
         /// <summary>
         /// Create
         /// </summary>
-        /// <param name="sors"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        [HttpPost("extra/genretype")]
-        public async Task<IActionResult> CreateGenreType([FromBody] GenreType sors)
+        [HttpPost("extra/create/genretype")]
+        public async Task<IActionResult> CreateGenreType([FromBody] GenreType source)
         {
-            var dest = new GenreType();
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = new GenreType();
 
-            dest.SetFields(sors);
-            _dbContext.AppendList(sors.GenreTypeTr, dest.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            _dbContext.GenreType.Add(dest);
-            await _dbContext.SaveChangesAsync();
+                target.SetFields(source);
+                _dbContext.AppendList(source.GenreTypeTr, target.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+                _dbContext.GenreType.Add(target);
 
-            return Ok(dest);
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
         }
 
         /// <summary>
         /// Update
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sors"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        [HttpPut("extra/genretype/{id}")]
-        public async Task<IActionResult> UpdateGenreType(int id, [FromBody] GenreType sors)
+        [HttpPut("extra/update/genretype")]
+        public async Task<IActionResult> UpdateGenreType([FromBody] GenreType source)
         {
-            var dest = await _dbContext.GenreType.Where(rec => rec.CodeI == id)
-                                .Include(rec => rec.GenreTypeTr)
-                                .FirstOrDefaultAsync();
-            if (dest == null)
-                return NotFound();
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = await _dbContext.GenreType.Where(rec => rec.CodeI == source.CodeI)
+                    .Include(rec => rec.GenreTypeTr)
+                    .FirstOrDefaultAsync();
+                if (target == null)
+                    return NotFound();
 
-            _dbContext.UpdateList(sors.GenreTypeTr, dest.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            dest.SetFields(sors);
+                _dbContext.UpdateList(source.GenreTypeTr, target.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+                target.SetFields(source);
 
-            await _dbContext.SaveChangesAsync();
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
 
-            return Ok(dest);
+                return Ok(target);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
         }
 
         /// <summary>
@@ -1665,25 +1688,37 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("extra/genretype/{id}")]
+        [HttpDelete("extra/delete/genretype/{id}")]
         public async Task<IActionResult> DeleteGenreType(int id)
         {
-            var delRow = await _dbContext.GenreType.Where(rec => rec.CodeI == id)
-                                .Include(rec => rec.GenreTypeTr)
-                                .FirstOrDefaultAsync();
-            if (delRow == null)
-                return NotFound();
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var delRow = await _dbContext.GenreType.Where(rec => rec.CodeI == id)
+                    .Include(rec => rec.GenreTypeTr)
+                    .FirstOrDefaultAsync();
+                if (delRow == null)
+                    return NotFound();
 
-            _dbContext.GenreTypeTr.RemoveRange(delRow.GenreTypeTr);
-            _dbContext.GenreType.Remove(delRow);
+                _dbContext.GenreTypeTr.RemoveRange(delRow.GenreTypeTr);
+                _dbContext.GenreType.Remove(delRow);
 
-            await _dbContext.SaveChangesAsync();
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
         }
 
         #endregion
 
+        // -
         #region * * * Kl_R030 * * *
         
         /// <summary>
@@ -1765,7 +1800,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         #endregion
-
+        // -
         #region * * * SystemConstant * * *
 
         /// <summary>
@@ -1832,7 +1867,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         #endregion
-
+        // -
         #region * * * TypePlace * * *
 
         // Create

@@ -123,11 +123,11 @@
     <Compile Include="ComplexDictionariesControls\BaseKlr030Control.Designer.cs">
       <DependentUpon>BaseKlr030Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesControls\BaseGenreTypeControl.cs">
+    <Compile Include="ComplexDictionariesControls\GenreTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesControls\BaseGenreTypeControl.Designer.cs">
-      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesControls\GenreTypeControl.Designer.cs">
+      <DependentUpon>GenreTypeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ComplexDictionariesControls\BaseCreativeroleTypeControl.cs">
       <SubType>UserControl</SubType>
@@ -186,8 +186,8 @@
     <EmbeddedResource Include="ComplexDictionariesControls\BaseKlr030Control.resx">
       <DependentUpon>BaseKlr030Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesControls\BaseGenreTypeControl.resx">
-      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesControls\GenreTypeControl.resx">
+      <DependentUpon>GenreTypeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComplexDictionariesControls\BaseCreativeroleTypeControl.resx">
       <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
@@ -240,6 +240,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlaceTr.datasource" />
     <None Include="Properties\DataSources\sysAdminwp.Model.RelGenrePercentViewTable.datasource" />
+    <None Include="Properties\DataSources\sysAdminwp.Model.ViewTable.datasource" />
     <None Include="Properties\DataSources\ViewTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
