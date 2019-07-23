@@ -12,7 +12,7 @@ using WebAPIConnector;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using sysAdminwp.Model;
-using sysAdminwp.viewPageDictionaryControls;
+using Telerik.WinControls;
 
 namespace sysAdminwp
 {
@@ -74,12 +74,12 @@ namespace sysAdminwp
         {
             _enableStateElements = false;
             InitializeComponent();
+            pageView.Pages[pvSimpleOld.Name].Item.Visibility = ElementVisibility.Collapsed;
+            
             IpsGlobal.SetAnketaDictionaties(DictionaryService.GetInstance().GetAnketaDictionaties());
             IpsGlobal.SetObjectRightDictionaries(DictionaryService.GetInstance().GetObjectRightDictionaries());
             SetTreeViewDataSource();
-            UpdateEditPanel();
-            ctrlComplexDictionary.SetDictionaryCategories(_complexDictionary);
-            ctrlSimpleDictionary.SetDictionaryCategories(_dictionaryCategories);
+            //UpdateEditPanel();
         }
 
         #region * * * Методи * * *
@@ -115,6 +115,9 @@ namespace sysAdminwp
                     category.DicCategoryItems.Add(i);
             }
             _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
+
+            ctrlComplexDictionary.SetDictionaryCategories(_complexDictionary);
+            ctrlSimpleDictionary.SetDictionaryCategories(_dictionaryCategories);
         }
 
         /// <summary>

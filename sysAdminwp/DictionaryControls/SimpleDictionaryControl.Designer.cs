@@ -1,4 +1,4 @@
-﻿namespace sysAdminwp.viewPageDictionaryControls
+﻿namespace sysAdminwp.DictionaryControls
 {
     partial class SimpleDictionaryControl
     {
@@ -36,7 +36,7 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.treeViewList = new Telerik.WinControls.UI.RadTreeView();
             this.txtTreeFilter = new Telerik.WinControls.UI.RadTextBox();
-            this.radPanelChange = new Telerik.WinControls.UI.RadPanel();
+            this.bottomPanel = new Telerik.WinControls.UI.RadPanel();
             this.txtNameRu = new Telerik.WinControls.UI.RadTextBox();
             this.bsTrRu = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameEn = new Telerik.WinControls.UI.RadTextBox();
@@ -57,10 +57,11 @@
             this.bsViewTable = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelChange)).BeginInit();
-            this.radPanelChange.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).BeginInit();
+            this.bottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTrRu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEn)).BeginInit();
@@ -108,33 +109,33 @@
             this.txtTreeFilter.TabIndex = 13;
             this.txtTreeFilter.ThemeName = "Office2013Light";
             // 
-            // radPanelChange
+            // bottomPanel
             // 
-            this.radPanelChange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.bottomPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radPanelChange.Controls.Add(this.txtNameRu);
-            this.radPanelChange.Controls.Add(this.txtNameEn);
-            this.radPanelChange.Controls.Add(this.txtNameUa);
-            this.radPanelChange.Controls.Add(this.txtCode);
-            this.radPanelChange.Controls.Add(this.radLabelNameRu);
-            this.radPanelChange.Controls.Add(this.radLabelNameEn);
-            this.radPanelChange.Controls.Add(this.radLabelNameUa);
-            this.radPanelChange.Controls.Add(this.radLabelCode);
-            this.radPanelChange.Controls.Add(this.btnCancel);
-            this.radPanelChange.Controls.Add(this.btnSave);
-            this.radPanelChange.Location = new System.Drawing.Point(236, 307);
-            this.radPanelChange.Name = "radPanelChange";
-            this.radPanelChange.Size = new System.Drawing.Size(875, 206);
-            this.radPanelChange.TabIndex = 12;
-            this.radPanelChange.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.radPanelChange.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanelChange.GetChildAt(0))).Text = "Дані довідника";
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.Azure;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(2))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(2))).LineLimit = false;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bottomPanel.Controls.Add(this.txtNameRu);
+            this.bottomPanel.Controls.Add(this.txtNameEn);
+            this.bottomPanel.Controls.Add(this.txtNameUa);
+            this.bottomPanel.Controls.Add(this.txtCode);
+            this.bottomPanel.Controls.Add(this.radLabelNameRu);
+            this.bottomPanel.Controls.Add(this.radLabelNameEn);
+            this.bottomPanel.Controls.Add(this.radLabelNameUa);
+            this.bottomPanel.Controls.Add(this.radLabelCode);
+            this.bottomPanel.Controls.Add(this.btnCancel);
+            this.bottomPanel.Controls.Add(this.btnSave);
+            this.bottomPanel.Location = new System.Drawing.Point(236, 307);
+            this.bottomPanel.Name = "bottomPanel";
+            this.bottomPanel.Size = new System.Drawing.Size(875, 206);
+            this.bottomPanel.TabIndex = 12;
+            this.bottomPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.bottomPanel.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.bottomPanel.GetChildAt(0))).Text = "Дані довідника";
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.bottomPanel.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.bottomPanel.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.Azure;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.bottomPanel.GetChildAt(0).GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.bottomPanel.GetChildAt(0).GetChildAt(2))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.bottomPanel.GetChildAt(0).GetChildAt(2))).LineLimit = false;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.bottomPanel.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtNameRu
             // 
@@ -336,7 +337,6 @@
             this.gvDictionaries.Size = new System.Drawing.Size(875, 245);
             this.gvDictionaries.TabIndex = 8;
             this.gvDictionaries.ThemeName = "Office2013Light";
-            this.gvDictionaries.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvDictionaries_CurrentRowChanged);
             // 
             // bsViewTable
             // 
@@ -370,7 +370,7 @@
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.treeViewList);
             this.Controls.Add(this.txtTreeFilter);
-            this.Controls.Add(this.radPanelChange);
+            this.Controls.Add(this.bottomPanel);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gvDictionaries);
@@ -378,9 +378,9 @@
             this.Size = new System.Drawing.Size(1114, 516);
             ((System.ComponentModel.ISupportInitialize)(this.treeViewList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanelChange)).EndInit();
-            this.radPanelChange.ResumeLayout(false);
-            this.radPanelChange.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).EndInit();
+            this.bottomPanel.ResumeLayout(false);
+            this.bottomPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTrRu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEn)).EndInit();
@@ -409,7 +409,7 @@
 
         private Telerik.WinControls.UI.RadTreeView treeViewList;
         private Telerik.WinControls.UI.RadTextBox txtTreeFilter;
-        private Telerik.WinControls.UI.RadPanel radPanelChange;
+        private Telerik.WinControls.UI.RadPanel bottomPanel;
         private Telerik.WinControls.UI.RadTextBox txtNameRu;
         private Telerik.WinControls.UI.RadTextBox txtNameEn;
         private Telerik.WinControls.UI.RadTextBox txtNameUa;
@@ -430,5 +430,6 @@
         private System.Windows.Forms.BindingSource bsTrRu;
         private System.Windows.Forms.BindingSource bsTrEn;
         private System.Windows.Forms.BindingSource bsDictionary;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

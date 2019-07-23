@@ -170,17 +170,17 @@
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\TypePlaceLayer.cs" />
     <Compile Include="PresenterComplexDictionaries\IDictionaryActions.cs" />
     <Compile Include="SaveModeEnum.cs" />
-    <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.cs">
+    <Compile Include="DictionaryControls\ComplexDictionaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.Designer.cs">
+    <Compile Include="DictionaryControls\ComplexDictionaryControl.Designer.cs">
       <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ViewTable.cs" />
-    <Compile Include="viewPageDictionaryControls\SimpleDictionaryControl.cs">
+    <Compile Include="DictionaryControls\SimpleDictionaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="viewPageDictionaryControls\SimpleDictionaryControl.Designer.cs">
+    <Compile Include="DictionaryControls\SimpleDictionaryControl.Designer.cs">
       <DependentUpon>SimpleDictionaryControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ComplexDictionariesControls\BaseSystemConstantControl.resx">
@@ -223,10 +223,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="viewPageDictionaryControls\ComplexDictionaryControl.resx">
+    <EmbeddedResource Include="DictionaryControls\ComplexDictionaryControl.resx">
       <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="viewPageDictionaryControls\SimpleDictionaryControl.resx">
+    <EmbeddedResource Include="DictionaryControls\SimpleDictionaryControl.resx">
       <DependentUpon>SimpleDictionaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

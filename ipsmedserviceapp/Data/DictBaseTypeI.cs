@@ -363,7 +363,24 @@ namespace ipsFormsDesign.Dictionary
         {
             return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.SystemConstantTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
         }
-
+        // MonthName
+        public static implicit operator MonthName(DictBaseTypeI test)
+        {
+            return new MonthName { CodeI = test.CodeI, Name = test.Name, MonthNameTr = test.DictTrI.Select(rec => new MonthNameTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang}).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(MonthName test)
+        {
+            return new DictBaseTypeI{ CodeI = test.CodeI, Name = test.Name, DictTrI = test.MonthNameTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // CatalogStatus
+        public static implicit operator CatalogStatus(DictBaseTypeI test)
+        {
+            return new CatalogStatus { CodeI = test.CodeI, Name = test.Name, CatalogStatusTr = test.DictTrI.Select(rec => new CatalogStatusTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(CatalogStatus test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.CatalogStatusTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang}).ToList() };
+        }
         #endregion
 
     }

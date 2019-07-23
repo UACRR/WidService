@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
@@ -9,9 +10,8 @@ using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
 using sysAdminwp.Model;
 using Telerik.WinControls.UI;
-using static sysAdminwp.Model.DictionaryConstants;
 
-namespace sysAdminwp.viewPageDictionaryControls
+namespace sysAdminwp.DictionaryControls
 {
     public partial class SimpleDictionaryControl : UserControl
     {
@@ -52,6 +52,8 @@ namespace sysAdminwp.viewPageDictionaryControls
             set
             {
                 _isEditMode = value;
+                treeViewList.Enabled = !value;
+                txtTreeFilter.Enabled = !value;
                 //'search' element
                 ctrlSearch.Enabled = !value;
                 //grid element
@@ -81,6 +83,17 @@ namespace sysAdminwp.viewPageDictionaryControls
 
             IsEditMode = false;
             ChangeSubscribeEvents();
+            DataSectionEnabled(false);
+            gvDictionaries.SelectionChanged += gvDictionaries_SelectionChanged;
+        }
+
+        private void DataSectionEnabled(bool enabled)
+        {
+            ctrlSearch.Enabled = enabled;
+            gvDictionaries.Enabled = enabled;
+            btnAdd.Enabled = enabled;
+            btnDelete.Enabled = enabled;
+            bottomPanel.Enabled = enabled;
         }
 
         /// <summary>
@@ -103,7 +116,10 @@ namespace sysAdminwp.viewPageDictionaryControls
 
             _dictBaseTypeList = _service.GetSimpleDictionaryList(Url);
 
+            gvDictionaries.SelectionChanged -= gvDictionaries_SelectionChanged;
             bsViewTable.DataSource = ConvertToGridDataList();
+            gvDictionaries.SelectionChanged += gvDictionaries_SelectionChanged;
+
             bsViewTable.ResetBindings(false);
         }
 
@@ -115,11 +131,13 @@ namespace sysAdminwp.viewPageDictionaryControls
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.DictTrI?.SingleOrDefault(i => i?.Lang == UkLang)?.Name ?? item.Name,
-                    NameEn = item.DictTrI?.SingleOrDefault(i => i?.Lang == EnLang)?.Name,
-                    NameRu = item.DictTrI?.SingleOrDefault(i => i?.Lang == RuLang)?.Name,
+                    NameUk = item.DictTrI?.SingleOrDefault(i => i?.Lang == DictionaryConstants.UkLang)?.Name ?? item.Name,
+                    NameEn = item.DictTrI?.SingleOrDefault(i => i?.Lang == DictionaryConstants.EnLang)?.Name,
+                    NameRu = item.DictTrI?.SingleOrDefault(i => i?.Lang == DictionaryConstants.RuLang)?.Name,
                 });
             }
+            if (!dataGrid.Any())
+                DataSectionEnabled(false);
             return dataGrid;
         }
 
@@ -138,9 +156,9 @@ namespace sysAdminwp.viewPageDictionaryControls
                 CodeI = codeItem,
                 DictTrI = new List<DictTrI>
                 {
-                    new DictTrI {CodeI = codeItem, Lang = UkLang},
-                    new DictTrI {CodeI = codeItem, Lang = RuLang},
-                    new DictTrI {CodeI = codeItem, Lang = EnLang},
+                    new DictTrI {CodeI = codeItem, Lang = DictionaryConstants.UkLang},
+                    new DictTrI {CodeI = codeItem, Lang = DictionaryConstants.RuLang},
+                    new DictTrI {CodeI = codeItem, Lang = DictionaryConstants.EnLang},
                 }
             };
 
@@ -153,10 +171,10 @@ namespace sysAdminwp.viewPageDictionaryControls
             if (!(gvDictionaries.CurrentRow?.DataBoundItem is ViewTable row))
                 return;
 
-            if (MessageShow.ConfirmAction(DeleteRecordConfirmMsg) == DialogResult.Yes)
+            if (MessageShow.ConfirmAction(DictionaryConstants.DeleteRecordConfirmMsg) == DialogResult.Yes)
             {
                 var result = _service.DeleteSimpleDictionaryRecord(Url, row.Code);
-                MessageShow.ShowInfoByResult(DeleteRecordSuccessMsg, DeleteRecordErrorMsg, result);
+                MessageShow.ShowInfoByResult(DictionaryConstants.DeleteRecordSuccessMsg, DictionaryConstants.DeleteRecordErrorMsg, result);
                 UpdateDataFromServer();
             }
         }
@@ -172,12 +190,12 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 if (!CheckForUniqueness(_dictBaseTypeData.CodeI))
                 {
-                    MessageShow.ShowError(NotUniquenessCodeWarningMsg);
+                    MessageShow.ShowError(DictionaryConstants.NotUniquenessCodeWarningMsg);
                     return;
                 }
 
                 var result = _service.CreateSimpleDictionaryRecord(Url, _dictBaseTypeData);
-                MessageShow.ShowInfoByResult(SaveNewRecordSuccessMsg, SaveNewRecordErrorMsg, result);
+                MessageShow.ShowInfoByResult(DictionaryConstants.SaveNewRecordSuccessMsg, DictionaryConstants.SaveNewRecordErrorMsg, result);
 
                 if (!result)
                     return;
@@ -212,7 +230,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             foreach (var item in _dictBaseTypeData.DictTrI)
                 item.CodeI = _dictBaseTypeData.CodeI;
 
-            _dictBaseTypeData.Name = _dictBaseTypeData.DictTrI.SingleOrDefault(rec => rec.Lang == UkLang)?.Name;
+            _dictBaseTypeData.Name = _dictBaseTypeData.DictTrI.SingleOrDefault(rec => rec.Lang == DictionaryConstants.UkLang)?.Name;
         }
 
         /// <summary>
@@ -243,15 +261,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             IsEditMode = true;
         }
 
-        private void gvDictionaries_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
-        {
-            if (!(e.CurrentRow?.DataBoundItem is ViewTable currentRow))
-                return;
-            
-            var copyrightKind = _dictBaseTypeList.SingleOrDefault(rec => rec.CodeI == int.Parse(currentRow.Code));
-            UpdateBottomPanel(copyrightKind);
-        }
-
         /// <summary>
         /// Оновити дані на панелі редагування
         /// </summary>
@@ -262,22 +271,22 @@ namespace sysAdminwp.viewPageDictionaryControls
             bsDictionary.DataSource = dictBaseType;
             bsDictionary.ResetBindings(false);
 
-            if (!(dictBaseType.DictTrI.Any(rec => rec.Lang == UkLang)))
-                dictBaseType.DictTrI.Add(new DictTrI { Lang = UkLang, CodeI = dictBaseType.CodeI });
+            if (!(dictBaseType.DictTrI.Any(rec => rec.Lang == DictionaryConstants.UkLang)))
+                dictBaseType.DictTrI.Add(new DictTrI { Lang = DictionaryConstants.UkLang, CodeI = dictBaseType.CodeI });
 
-            bsTrUk.DataSource = dictBaseType.DictTrI.SingleOrDefault(rec => rec.Lang == UkLang);
+            bsTrUk.DataSource = dictBaseType.DictTrI.SingleOrDefault(rec => rec.Lang == DictionaryConstants.UkLang);
             bsTrUk.ResetBindings(false);
 
-            if (!(dictBaseType.DictTrI.Any(rec => rec.Lang == RuLang)))
-                dictBaseType.DictTrI.Add(new DictTrI { Lang = RuLang, CodeI = dictBaseType.CodeI });
+            if (!(dictBaseType.DictTrI.Any(rec => rec.Lang == DictionaryConstants.RuLang)))
+                dictBaseType.DictTrI.Add(new DictTrI { Lang = DictionaryConstants.RuLang, CodeI = dictBaseType.CodeI });
 
-            bsTrRu.DataSource = dictBaseType.DictTrI.SingleOrDefault(rec => rec.Lang == RuLang);
+            bsTrRu.DataSource = dictBaseType.DictTrI.SingleOrDefault(rec => rec.Lang == DictionaryConstants.RuLang);
             bsTrRu.ResetBindings(false);
 
-            if (!(dictBaseType.DictTrI.Any(rec => rec.Lang == EnLang)))
-                dictBaseType.DictTrI.Add(new DictTrI { Lang = EnLang, CodeI = dictBaseType.CodeI });
+            if (!(dictBaseType.DictTrI.Any(rec => rec.Lang == DictionaryConstants.EnLang)))
+                dictBaseType.DictTrI.Add(new DictTrI { Lang = DictionaryConstants.EnLang, CodeI = dictBaseType.CodeI });
 
-            bsTrEn.DataSource = dictBaseType.DictTrI.SingleOrDefault(rec => rec.Lang == EnLang);
+            bsTrEn.DataSource = dictBaseType.DictTrI.SingleOrDefault(rec => rec.Lang == DictionaryConstants.EnLang);
             bsTrEn.ResetBindings(false);
         }
 
@@ -310,7 +319,17 @@ namespace sysAdminwp.viewPageDictionaryControls
 
         private void treeViewList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
+            DataSectionEnabled(true);
             UpdateDataFromServer();
+        }
+
+        private void gvDictionaries_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!(gvDictionaries.CurrentRow?.DataBoundItem is ViewTable currentRow))
+                return;
+
+            var copyrightKind = _dictBaseTypeList.SingleOrDefault(rec => rec.CodeI == int.Parse(currentRow.Code));
+            UpdateBottomPanel(copyrightKind);
         }
     }
 }

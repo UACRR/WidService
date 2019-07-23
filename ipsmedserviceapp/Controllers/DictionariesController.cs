@@ -125,7 +125,7 @@ namespace ipsmedserviceapp.Controllers
     public class DictionariesController : Controller
     {
 
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
         private Dictionary<string, object> baseEng;
         private readonly List<string> _complexDictionaryList = new List<string>
         {
@@ -144,10 +144,6 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = context;
             SetEng();
         }
-
-        //MediaServiceContext dbContext,
-        //Func<T, string, bool> compareId,
-        //params Expression<Func<T, object>>[] includes
 
         private void SetEng()
         {
@@ -246,13 +242,13 @@ namespace ipsmedserviceapp.Controllers
                     rec => rec.CreativeRoleTypeTr)
             );
             baseEng.Add("crkindgroup".ToLower(),
-                new BaseDictionaryEng<CrkindGroup, CrkindGroupTr, CrkindGroup>(_dbContext,
+                new BaseDictionaryEng<CrkindGroup, CrkindGroupTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.CodeI == int.Parse(id),
                     sors => sors,
-                    sors => (CrkindGroup) sors,
+                    sors => sors,
                     sors => sors.CrkindGroupTr.ToList(),
-                    (sors, dest) => ((CrkindGroupTr) sors).CodeI == ((CrkindGroupTr) dest).CodeI &&
-                                    ((CrkindGroupTr) sors).Lang == ((CrkindGroupTr) dest).Lang,
+                    (sors, dest) => sors.CodeI == dest.CodeI &&
+                                    sors.Lang == dest.Lang,
                     rec => rec.CrkindGroupTr, rec => rec.CopyrightKind)
             );
             baseEng.Add("customerstatus".ToLower(),
@@ -275,14 +271,6 @@ namespace ipsmedserviceapp.Controllers
                                     ((CustomerTypeTr) sors).Lang == ((CustomerTypeTr) dest).Lang,
                     rec => rec.CustomerTypeTr)
             );
-            //baseEng.Add("documentkind".ToLower(),
-            //                new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (source, id) => source.CodeI == int.Parse(id),
-            //                source => (DictBaseTypeI)source,
-            //                source => (DocumentKind)source,
-            //                source => source.DocumentKindTr.ToList(),
-            //                (source, dest) => ((DocumentKindTr)source).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)source).Lang == ((DocumentKindTr)dest).Lang,
-            //                rec => rec.DocumentKindTr)
-            //            );
             baseEng.Add("popgenre".ToLower(),
                 new BaseDictionaryEng<PopGenre, PopGenreTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.Id == int.Parse(id),
@@ -322,14 +310,6 @@ namespace ipsmedserviceapp.Controllers
                                     ((ObjectStatusTr) sors).Lang == ((ObjectStatusTr) dest).Lang,
                     rec => rec.ObjectStatusTr)
             );
-            //baseEng.Add("objecttype".ToLower(),
-            //                new BaseDictionaryEng<ObjectType, ObjectTypeTr, DictBaseTypeI>(_dbContext, (source, id) => source.CodeI == int.Parse(id),
-            //                source => (DictBaseTypeI)source,
-            //                source => (ObjectType)source,
-            //                source => source.ObjectTypeTr.ToList(),
-            //                (source, dest) => ((ObjectTypeTr)source).CodeI == ((ObjectTypeTr)dest).CodeI && ((ObjectTypeTr)source).Lang == ((ObjectTypeTr)dest).Lang,
-            //                rec => rec.ObjectTypeTr)
-            //            );
             baseEng.Add("paymentkind".ToLower(),
                 new BaseDictionaryEng<PaymentKind, PaymentKindTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.CodeI == int.Parse(id),
@@ -434,11 +414,10 @@ namespace ipsmedserviceapp.Controllers
             baseEng.Add("typeplaceparam".ToLower(),
                 new BaseDictionaryEng<TypePlaceParam, TypePlaceParamTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.CodeI == int.Parse(id),
-                    sors => (DictBaseTypeI) sors,
-                    sors => (TypePlaceParam) sors,
+                    sors => sors,
+                    sors => sors,
                     sors => sors.TypePlaceParamTr.ToList(),
-                    (sors, dest) => ((TypePlaceParamTr) sors).CodeI == ((TypePlaceParamTr) dest).CodeI &&
-                                    ((TypePlaceParamTr) sors).Lang == ((TypePlaceParamTr) dest).Lang,
+                    (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
                     rec => rec.TypePlaceParamTr)
             );
 
@@ -553,7 +532,7 @@ namespace ipsmedserviceapp.Controllers
                     (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
                     rec => rec.DocumentTypeTr)
             );
-            baseEng.Add("systemconstant",
+            baseEng.Add("systemconstant".ToLower(),
                 new BaseDictionaryEng<SystemConstant, SystemConstantTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.CodeI == int.Parse(id),
                     sors => sors,
@@ -561,6 +540,22 @@ namespace ipsmedserviceapp.Controllers
                     sors => sors.SystemConstantTr.ToList(),
                     (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
                     rec => rec.SystemConstantTr));
+            baseEng.Add("MonthName".ToLower(),
+                new BaseDictionaryEng<MonthName, MonthNameTr, DictBaseTypeI>(_dbContext,
+                    (sors, id) => sors.CodeI == int.Parse(id),
+                    sors => sors,
+                    sors => sors,
+                    sors => sors.MonthNameTr.ToList(),
+                    (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                    rec => rec.MonthNameTr));
+            baseEng.Add("CatalogStatus".ToLower(),
+                new BaseDictionaryEng<CatalogStatus, CatalogStatusTr, DictBaseTypeI>(_dbContext,
+                    (sors, id) => sors.CodeI == int.Parse(id),
+                    sors => sors,
+                    sors => sors,
+                    sors => sors.CatalogStatusTr.ToList(),
+                    (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                    rec => rec.CatalogStatusTr));
 
             #endregion
         }

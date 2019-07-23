@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using sysAdminwp;
+using sysAdminwp.DictionaryControls;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
@@ -46,7 +47,11 @@ namespace sysAdminwp
             this.radMenuItemSaveConfig = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemsSetDefaultSett = new Telerik.WinControls.UI.RadMenuItem();
             this.gvDictionariesList = new Telerik.WinControls.UI.RadGridView();
-            this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
+            this.pageView = new Telerik.WinControls.UI.RadPageView();
+            this.pvSimpleDictionary = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlSimpleDictionary = new sysAdminwp.DictionaryControls.SimpleDictionaryControl();
+            this.pvComplexDictionary = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlComplexDictionary = new sysAdminwp.DictionaryControls.ComplexDictionaryControl();
             this.pvSimpleOld = new Telerik.WinControls.UI.RadPageViewPage();
             this.treeViewList = new Telerik.WinControls.UI.RadTreeView();
             this.txtTreeFilter = new Telerik.WinControls.UI.RadTextBox();
@@ -65,16 +70,14 @@ namespace sysAdminwp
             this.btnRemove = new Telerik.WinControls.UI.RadButton();
             this.radLblSearch = new System.Windows.Forms.Label();
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
-            this.pvComplexDictionary = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlComplexDictionary = new sysAdminwp.viewPageDictionaryControls.ComplexDictionaryControl();
-            this.pvSimpleDictionary = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlSimpleDictionary = new sysAdminwp.viewPageDictionaryControls.SimpleDictionaryControl();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
-            this.radPageView1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
+            this.pageView.SuspendLayout();
+            this.pvSimpleDictionary.SuspendLayout();
+            this.pvComplexDictionary.SuspendLayout();
             this.pvSimpleOld.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).BeginInit();
@@ -93,8 +96,6 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
-            this.pvComplexDictionary.SuspendLayout();
-            this.pvSimpleDictionary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,12 +126,14 @@ namespace sysAdminwp
             // 
             // radMenuItemSaveConfig
             // 
+            this.radMenuItemSaveConfig.Enabled = false;
             this.radMenuItemSaveConfig.Name = "radMenuItemSaveConfig";
             this.radMenuItemSaveConfig.Text = "Зберегти поточну конфігурацію";
             this.radMenuItemSaveConfig.Click += new System.EventHandler(this.radMenuItemSaveConfig_Click);
             // 
             // radMenuItemsSetDefaultSett
             // 
+            this.radMenuItemsSetDefaultSett.Enabled = false;
             this.radMenuItemsSetDefaultSett.Name = "radMenuItemsSetDefaultSett";
             this.radMenuItemsSetDefaultSett.Text = "Відновити початкові налаштуавння";
             this.radMenuItemsSetDefaultSett.Click += new System.EventHandler(this.radMenuItemsSetDefaultSett_Click);
@@ -188,19 +191,55 @@ namespace sysAdminwp
             this.gvDictionariesList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.RadGridView1_CurrentRowChanged);
             this.gvDictionariesList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.RadGridView1_CustomFiltering);
             // 
-            // radPageView1
+            // pageView
             // 
-            this.radPageView1.Controls.Add(this.pvSimpleOld);
-            this.radPageView1.Controls.Add(this.pvComplexDictionary);
-            this.radPageView1.Controls.Add(this.pvSimpleDictionary);
-            this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPageView1.Location = new System.Drawing.Point(0, 27);
-            this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.pvComplexDictionary;
-            this.radPageView1.Size = new System.Drawing.Size(1105, 514);
-            this.radPageView1.TabIndex = 1;
-            this.radPageView1.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            this.pageView.Controls.Add(this.pvSimpleDictionary);
+            this.pageView.Controls.Add(this.pvComplexDictionary);
+            this.pageView.Controls.Add(this.pvSimpleOld);
+            this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageView.Location = new System.Drawing.Point(0, 27);
+            this.pageView.Name = "pageView";
+            this.pageView.SelectedPage = this.pvSimpleDictionary;
+            this.pageView.Size = new System.Drawing.Size(1105, 514);
+            this.pageView.TabIndex = 1;
+            this.pageView.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            // 
+            // pvSimpleDictionary
+            // 
+            this.pvSimpleDictionary.Controls.Add(this.ctrlSimpleDictionary);
+            this.pvSimpleDictionary.ItemSize = new System.Drawing.SizeF(113F, 27F);
+            this.pvSimpleDictionary.Location = new System.Drawing.Point(5, 31);
+            this.pvSimpleDictionary.Name = "pvSimpleDictionary";
+            this.pvSimpleDictionary.Size = new System.Drawing.Size(1095, 478);
+            this.pvSimpleDictionary.Text = "Прості довідники";
+            // 
+            // ctrlSimpleDictionary
+            // 
+            this.ctrlSimpleDictionary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlSimpleDictionary.IsEditMode = false;
+            this.ctrlSimpleDictionary.Location = new System.Drawing.Point(0, 0);
+            this.ctrlSimpleDictionary.Name = "ctrlSimpleDictionary";
+            this.ctrlSimpleDictionary.Size = new System.Drawing.Size(1095, 478);
+            this.ctrlSimpleDictionary.TabIndex = 0;
+            // 
+            // pvComplexDictionary
+            // 
+            this.pvComplexDictionary.Controls.Add(this.ctrlComplexDictionary);
+            this.pvComplexDictionary.ItemSize = new System.Drawing.SizeF(119F, 27F);
+            this.pvComplexDictionary.Location = new System.Drawing.Point(5, 31);
+            this.pvComplexDictionary.Name = "pvComplexDictionary";
+            this.pvComplexDictionary.Size = new System.Drawing.Size(1095, 478);
+            this.pvComplexDictionary.Text = "Складні довідники";
+            // 
+            // ctrlComplexDictionary
+            // 
+            this.ctrlComplexDictionary.ComplexDictionaryList = null;
+            this.ctrlComplexDictionary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlComplexDictionary.Location = new System.Drawing.Point(0, 0);
+            this.ctrlComplexDictionary.Name = "ctrlComplexDictionary";
+            this.ctrlComplexDictionary.Size = new System.Drawing.Size(1095, 478);
+            this.ctrlComplexDictionary.TabIndex = 0;
             // 
             // pvSimpleOld
             // 
@@ -276,7 +315,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameRu.Location = new System.Drawing.Point(162, 81);
             this.txtNameRu.Name = "txtNameRu";
-            this.txtNameRu.Size = new System.Drawing.Size(659, 20);
+            this.txtNameRu.Size = new System.Drawing.Size(659, 0);
             this.txtNameRu.TabIndex = 8;
             this.txtNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
@@ -286,7 +325,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameEn.Location = new System.Drawing.Point(162, 108);
             this.txtNameEn.Name = "txtNameEn";
-            this.txtNameEn.Size = new System.Drawing.Size(659, 20);
+            this.txtNameEn.Size = new System.Drawing.Size(659, 0);
             this.txtNameEn.TabIndex = 9;
             this.txtNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
@@ -296,7 +335,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameUa.Location = new System.Drawing.Point(162, 55);
             this.txtNameUa.Name = "txtNameUa";
-            this.txtNameUa.Size = new System.Drawing.Size(659, 20);
+            this.txtNameUa.Size = new System.Drawing.Size(659, 0);
             this.txtNameUa.TabIndex = 7;
             this.txtNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
@@ -306,7 +345,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Location = new System.Drawing.Point(162, 28);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(659, 20);
+            this.txtCode.Size = new System.Drawing.Size(659, 0);
             this.txtCode.TabIndex = 6;
             this.txtCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
@@ -418,48 +457,12 @@ namespace sysAdminwp
             this.btnAdd.ThemeName = "Office2013Light";
             this.btnAdd.Click += new System.EventHandler(this.radBtnAdd_Click);
             // 
-            // pvComplexDictionary
-            // 
-            this.pvComplexDictionary.Controls.Add(this.ctrlComplexDictionary);
-            this.pvComplexDictionary.ItemSize = new System.Drawing.SizeF(119F, 27F);
-            this.pvComplexDictionary.Location = new System.Drawing.Point(5, 31);
-            this.pvComplexDictionary.Name = "pvComplexDictionary";
-            this.pvComplexDictionary.Size = new System.Drawing.Size(1095, 478);
-            this.pvComplexDictionary.Text = "Складні довідники";
-            // 
-            // ctrlComplexDictionary
-            // 
-            this.ctrlComplexDictionary.ComplexDictionaryList = null;
-            this.ctrlComplexDictionary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlComplexDictionary.Location = new System.Drawing.Point(0, 0);
-            this.ctrlComplexDictionary.Name = "ctrlComplexDictionary";
-            this.ctrlComplexDictionary.Size = new System.Drawing.Size(1095, 478);
-            this.ctrlComplexDictionary.TabIndex = 0;
-            // 
-            // pvSimpleDictionary
-            // 
-            this.pvSimpleDictionary.Controls.Add(this.ctrlSimpleDictionary);
-            this.pvSimpleDictionary.ItemSize = new System.Drawing.SizeF(113F, 27F);
-            this.pvSimpleDictionary.Location = new System.Drawing.Point(5, 31);
-            this.pvSimpleDictionary.Name = "pvSimpleDictionary";
-            this.pvSimpleDictionary.Size = new System.Drawing.Size(1095, 478);
-            this.pvSimpleDictionary.Text = "Прості довідники";
-            // 
-            // ctrlSimpleDictionary
-            // 
-            this.ctrlSimpleDictionary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlSimpleDictionary.IsEditMode = false;
-            this.ctrlSimpleDictionary.Location = new System.Drawing.Point(0, 0);
-            this.ctrlSimpleDictionary.Name = "ctrlSimpleDictionary";
-            this.ctrlSimpleDictionary.Size = new System.Drawing.Size(1095, 478);
-            this.ctrlSimpleDictionary.TabIndex = 0;
-            // 
             // DictionaryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1105, 541);
-            this.Controls.Add(this.radPageView1);
+            this.Controls.Add(this.pageView);
             this.Controls.Add(this.radMenu1);
             this.Name = "DictionaryForm";
             // 
@@ -472,8 +475,10 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
-            this.radPageView1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
+            this.pageView.ResumeLayout(false);
+            this.pvSimpleDictionary.ResumeLayout(false);
+            this.pvComplexDictionary.ResumeLayout(false);
             this.pvSimpleOld.ResumeLayout(false);
             this.pvSimpleOld.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewList)).EndInit();
@@ -494,8 +499,6 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
-            this.pvComplexDictionary.ResumeLayout(false);
-            this.pvSimpleDictionary.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -526,12 +529,12 @@ namespace sysAdminwp
         private RadTextBox txtTreeFilter;
         private RadTextBox txtSearchData;
         private Label radLblSearch;
-        private RadPageView radPageView1;
+        private RadPageView pageView;
         private RadPageViewPage pvSimpleOld;
         private RadPageViewPage pvComplexDictionary;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private viewPageDictionaryControls.ComplexDictionaryControl ctrlComplexDictionary;
+        private ComplexDictionaryControl ctrlComplexDictionary;
         private RadPageViewPage pvSimpleDictionary;
-        private viewPageDictionaryControls.SimpleDictionaryControl ctrlSimpleDictionary;
+        private SimpleDictionaryControl ctrlSimpleDictionary;
     }
 }

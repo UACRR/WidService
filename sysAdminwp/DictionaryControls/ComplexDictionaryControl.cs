@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Common.Editors;
 using sysAdminwp.ComplexDictionariesBaseControls;
 using sysAdminwp.ComplexDictionariesControls;
 using Telerik.WinControls.UI;
 
-namespace sysAdminwp.viewPageDictionaryControls
+namespace sysAdminwp.DictionaryControls
 {
     public partial class ComplexDictionaryControl : UserControl
     {
@@ -84,7 +86,7 @@ namespace sysAdminwp.viewPageDictionaryControls
 
             // TODO: розблокувати коли буде готовий
             // заблокувати непрацюючі довідники
-            string[] namesForLock = {"Country".ToLower(), "KL_R030".ToLower(), "SystemConstant".ToLower(), "TypePlace".ToLower()};
+            string[] namesForLock = {"Country".ToLower(), "KL_R030".ToLower(), "SystemConstant".ToLower(), "TypePlace".ToLower(), "AgrLicenseType".ToLower() };
             var lockNodes = complexTreeView.Nodes.Where(rec => namesForLock.Contains((rec.DataBoundItem as DicCategoryItems)?.DicName.ToLower()));
             foreach (var node in lockNodes)
                 node.Enabled = false;
@@ -94,7 +96,6 @@ namespace sysAdminwp.viewPageDictionaryControls
         private void complexTreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             controlPanel.Controls.Clear();
-
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
