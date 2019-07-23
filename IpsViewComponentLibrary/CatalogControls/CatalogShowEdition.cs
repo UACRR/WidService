@@ -123,10 +123,12 @@ namespace IpsViewComponentLibrary.CatalogControls
         private async void btnPerform_Click(object sender, EventArgs e)
         {
             ExecSqlResponce<CatalogFile> result = null;
+            waitingBar.StartWaiting();
             await Task.Factory.StartNew(() =>
             {
                 result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
             });
+            waitingBar.StartWaiting();
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
             DataSource = result.Data;
