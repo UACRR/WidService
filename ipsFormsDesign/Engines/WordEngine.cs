@@ -28,16 +28,38 @@ namespace ipsFormsDesign.Services
     {
 
         private static Application app;
-        private Microsoft.Office.Interop.Word.Document innerDoc;
+        private Document innerDoc;
         private string tempFileName = string.Empty;
         private AnketaDictionaties _dic = null;
         internal double appVersion = 0;
 
         private bool _validTemplate = false;
         /// <summary>
-        /// Признак, що шаблон документа існує
+        /// Ознака наявності шаблона документа
         /// </summary>
-        public bool ValidTemplate { get => _validTemplate; }
+        public bool ValidTemplate => _validTemplate;
+
+        public string Pdf => string.IsNullOrEmpty(tempFileName) ? string.Empty : tempFileName + ".pdf";
+        public string Docx => string.IsNullOrEmpty(tempFileName) ? string.Empty : tempFileName + ".docx";
+
+        public WordEngine(AnketaDictionaties dic)
+        {
+            app = null;
+            _dic = dic;
+        }
+
+        ~WordEngine()
+        {
+            ClearFiles();
+            if (app != null)
+            {
+                app.Quit();
+                Marshal.ReleaseComObject(app);
+                app = null;
+                appVersion = 0;
+            }
+        }
+
         internal bool ConvertDocxToPdf(string docxPath, string pdfPath)
         {
             if (File.Exists(pdfPath))
@@ -59,11 +81,6 @@ namespace ipsFormsDesign.Services
                 fileStream.Close();
             }
             return true;
-        }
-        public WordEngine(AnketaDictionaties dic)
-        {
-            app = null;
-            _dic = dic;
         }
 
         // Запуск Word
@@ -98,20 +115,6 @@ namespace ipsFormsDesign.Services
             if (File.Exists(docFile))
                 File.Delete(docFile);
         }
-        ~WordEngine()
-        {
-            ClearFiles();
-            if (app != null)
-            {
-                app.Quit();
-                Marshal.ReleaseComObject(app);
-                app = null;
-                appVersion = 0;
-            }
-        }
-
-        public string Pdf { get { return tempFileName + ".pdf"; } }
-        public string Docx { get { return tempFileName + ".docx"; } }
 
         /// <summary>
         /// Формування Генерального договору з Правовласником 
@@ -131,7 +134,6 @@ namespace ipsFormsDesign.Services
             }
 
             await System.Threading.Tasks.Task.Run(() => InnerProcesRightHolder(cust, agr));
-
         }
 
         private bool isPresentTemplate(string pathTemplate)
@@ -144,6 +146,7 @@ namespace ipsFormsDesign.Services
             MessageBox.Show($"Шаблон {pathTemplate} не знайдено", "Помилка друку", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -165,6 +168,7 @@ namespace ipsFormsDesign.Services
 
             InnerProcesRightHolder(cust, agr);
         }
+        
         /// <summary>
         /// Формування документу (внутріній метод)
         /// </summary>
@@ -172,8 +176,6 @@ namespace ipsFormsDesign.Services
         /// <param name="agr"></param>
         private void InnerProcesRightHolder(Customer cust, AgreementMaster agr)
         {
-
-
             var docFile = tempFileName + ".docx";
 
 
@@ -482,6 +484,7 @@ namespace ipsFormsDesign.Services
             if (appVersion < 15)
                 ConvertDocxToPdf(tempFileName + ".docx", tempFileName + ".pdf");
         }
+
         /// <summary>
         /// Друк доп угоди по ліцензійному договору with Stream
         /// </summary>
@@ -497,20 +500,21 @@ namespace ipsFormsDesign.Services
             ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
             //  await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion );
         }
+
         /// <summary>
         /// Друк доп угоди по ліцензійному договору with FileName
         /// </summary>
         /// <param name="pathTemplate"></param>
-        /// <param name="Consumer"></param> 
+        /// <param name="cust"></param>
+        /// <param name="agr"></param>
+        /// <param name="version"></param>
         public void ProcessConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
         {
             if (!isPresentTemplate(pathTemplate))
                 return;
 
             string docFile = PrepareWork();
-            System.IO.File.Copy(pathTemplate, docFile);
-
-            // відкрити шаблон
+            File.Copy(pathTemplate, docFile);
 
             InnerProcessConsumer(cust, agr, version, docFile);
         }
@@ -533,6 +537,18 @@ namespace ipsFormsDesign.Services
 
             await System.Threading.Tasks.Task.Run(() => InnerProcessConsumer(cust, agr, version, docFile));
         }
+
+        private string PrepareWork()
+        {
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var docFile = tempFileName + ".docx";
+
+            if (File.Exists(docFile))
+                File.Delete(docFile);
+            return docFile;
+        }
+
         /// <summary>
         /// Внутрішній метод формування договору з Споживачем
         /// </summary>
@@ -801,7 +817,7 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = minRltGrn;
                         break;
                     case "minRltGrnText":
-                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32((int)licenseAgrParam.MinAmount), true);
+                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32((int)(licenseAgrParam.MinAmount ?? 0)), true);
                         break;
                     case "minRltKop":
                         item.Range.Text = minRltKop;
@@ -984,11 +1000,20 @@ namespace ipsFormsDesign.Services
                     case "CstName":
                         item.Range.Text = rightholder.Name;
                         break;
+                    case "NameCR":
+                        item.Range.Text = rightholder.Name;
+                        break;
                     case "data":
+                        item.Range.Text = DateTime.Now.ToShortDateString();
+                        break;
+                    case "DataRq":
                         item.Range.Text = DateTime.Now.ToShortDateString();
                         break;
                     case "TableObjForApp":
                         PopulateTableObjects(item.Range.Tables, objectRightList);
+                        break;
+                    case "TableObjForApp1":
+                        PopulateTableObjects1(item.Range.Tables, objectRightList);
                         break;
                 }
             }
@@ -1004,6 +1029,44 @@ namespace ipsFormsDesign.Services
             if (appVersion < 15)
                 ConvertDocxToPdf(tempFileName + ".docx", tempFileName + ".pdf");
 
+        }
+
+        private void PopulateTableObjects1(Tables tables, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            if (tables.Count == 0)
+                return;
+
+            Table tableObjects = tables[1];
+            int index = 1;
+            ObjectRightService _objectRightService;
+            _objectRightService = new ObjectRightService();
+            foreach (var item in objectRightList)
+            {
+                var newRow = tableObjects.Rows.Add();
+                int curObjid = item.ObjId;
+
+
+                newRow.Cells[1].Range.Text = index.ToString();
+                index++;
+                newRow.Cells[2].Range.Text = item.ObjName;
+                newRow.Cells[3].Range.Text = item.GenreName;
+                newRow.Cells[4].Range.Text = item.Duration;
+                newRow.Cells[5].Range.Text = item.SpecName;                 
+                newRow.Cells[6].Range.Text = item.Performer;
+                var list = _objectRightService.GetObjectRightholders(curObjid);
+
+                foreach (var curObj in list)
+                {
+                    newRow = tableObjects.Rows.Add();
+                    newRow.Cells[7].Range.Text = curObj.CreativeRoles;
+                    newRow.Cells[8].Range.Text = curObj.Name;
+                    newRow.Cells[9].Range.Text = curObj.TotalRate.ToString();
+                }
+
+
+              
+        //        DisableBoldFont(newRow);
+            }
         }
 
         private void PopulateTableObjects(Tables tables, IEnumerable<ObjectRightNotAccepted> objectRightList)
@@ -1403,6 +1466,8 @@ namespace ipsFormsDesign.Services
 
             var places = licA.LicenseAgrParam.Where(rec => rec.LicVersion == licA.LicVersion).FirstOrDefault()?.License?.Select(rec => rec.PlaceId).ToArray() ?? new int?[] { };
             var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => places.Contains(rec.PlaceId)).ToList();
+            var clnBusinessPlaceTheater1 = cust.Client.ClnBusinessPlace.ToList();
+
             AgreementAddBr agreementAddBr;
             agreementAddBr = agr;
             string ShowPLAdress = string.Empty;
@@ -1486,6 +1551,7 @@ namespace ipsFormsDesign.Services
             string BRAdvText = string.Empty;
             string BRAdvText1 = string.Empty;
             string BRAdvText2 = string.Empty;
+            string  BRAdvText1_SO = string.Empty;
             string BRLmpText = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
@@ -1562,10 +1628,12 @@ namespace ipsFormsDesign.Services
                          (rec.LicVersion == licA.LicVersion)).Single();
 
             docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
-            DateTime datedoc;
+            DateTime? datedoc;
             CultureInfo provider = CultureInfo.InvariantCulture;
 
-            datedoc = DateTime.ParseExact(docDateC, "dd.MM.yyyy", provider);
+            //           datedoc = DateTime.ParseExact(docDateC, "dd.MM.yyyy", provider);
+            datedoc = licagr?.LicDate;
+
             docDateEndC = $"{licagr?.DateEnd:dd.MM.yyyy}";
             var TbAPrc = new List<TbAuthorPrc>();
             if (authors != null)
@@ -1582,7 +1650,7 @@ namespace ipsFormsDesign.Services
                                       { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
                         }
             */
-
+            if (datedoc != null)
             {
                 TbAPrc = (from aut in authors
                           join cpr in copyright on (aut.CustId,aut.RoleCode ) equals (cpr?.CustId,cpr.RoleCode) 
@@ -1637,11 +1705,17 @@ namespace ipsFormsDesign.Services
                            }).ToList();
             }
             if (TbAvAdv.Count == 0)
-            { BRAdvText1 = "Виключено за домовленістю Сторін."; }
+            { BRAdvText1 = "Виключено за домовленістю Сторін.";
+                BRAdvText1_SO = BRAdvText1;
+            }
             else
             {
                 BRAdvText1 = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок ГО УААСП протягом 14 робочих днів авторську винагороду в сумі ";
                 BRAdvText2 = ", що вважається як аванс роялті, визначеного в п. 2.4.цього Договору.";
+                BRAdvText1_SO = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок ДО УААСП авторську винагороду в сумі";
+
+
+
             };
 
             if (TbAL.Count == 0)
@@ -1927,8 +2001,15 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = BRAdvText2;
                         break;
 
+                    case "BRAdvText1_SO":
+                        item.Range.Text = BRAdvText1_SO;
+                        break;
+                    case "TablePL1BR":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceTheater1);
+                        break;
 
                     default:
+
 
                         break;
 
@@ -1948,8 +2029,6 @@ namespace ipsFormsDesign.Services
                 ConvertDocxToPdf(tempFileName + ".docx", tempFileName + ".pdf");
 
         }
-
-
 
         public void ProcessPartner(string pathTemplate, Customer cust, AgreementMaster agrMain)
         {
@@ -2170,29 +2249,6 @@ namespace ipsFormsDesign.Services
 
         }
 
-
-
-
-
-
-
-
-
-
-
-        private string PrepareWork()
-        {
-            // копіювати в тимчасову папку
-            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            var docFile = tempFileName + ".docx";
-
-            if (File.Exists(docFile))
-                File.Delete(docFile);
-            return docFile;
-        }
-
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -2364,6 +2420,7 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[5].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
             }
         }
+
         private void FormTableAvtorPrc1(Tables tables, List<TbAuthorPrc> list, string objname)
         {
             TbAuthorPrc tbAuthorPrc;
@@ -2390,6 +2447,7 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[4].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
             }
         }
+
         private void FormTableAvtorLmp(Tables tables, List<TbAuthorL> list, string objname)
         {
             TbAuthorL tbAuthorL;
@@ -2416,10 +2474,6 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[7].Range.Text = $"{tbAuthorL.PrepayDateDo:dd.MM.yyyy}";
             }
         }
-
-
-
-
 
         private void FormTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
         {
@@ -2454,7 +2508,6 @@ namespace ipsFormsDesign.Services
 
 
         }
-
 
         private void FormTablePl0(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
@@ -2530,9 +2583,6 @@ namespace ipsFormsDesign.Services
             }
         }
 
-
-
-
         private void FormTablePl2(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
@@ -2578,8 +2628,6 @@ namespace ipsFormsDesign.Services
 
             }
         }
-
-
 
         private void FormTablePl3(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
@@ -2665,9 +2713,6 @@ namespace ipsFormsDesign.Services
                 }
             }
         }
-
-
-
 
         private void FormTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
@@ -2904,8 +2949,6 @@ namespace ipsFormsDesign.Services
                 }
             }
         }
-
-        // зберігти
     }
 }
 

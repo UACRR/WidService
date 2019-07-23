@@ -49,8 +49,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.4.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>..\packages\Portable.BouncyCastle.1.8.4\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
@@ -58,32 +58,32 @@
     <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="itext.barcodes, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.barcodes.dll</HintPath>
+    <Reference Include="itext.barcodes, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.barcodes.dll</HintPath>
     </Reference>
-    <Reference Include="itext.forms, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.forms.dll</HintPath>
+    <Reference Include="itext.forms, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.forms.dll</HintPath>
     </Reference>
-    <Reference Include="itext.io, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.io.dll</HintPath>
+    <Reference Include="itext.io, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.io.dll</HintPath>
     </Reference>
-    <Reference Include="itext.kernel, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.kernel.dll</HintPath>
+    <Reference Include="itext.kernel, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.kernel.dll</HintPath>
     </Reference>
-    <Reference Include="itext.layout, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.layout.dll</HintPath>
+    <Reference Include="itext.layout, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.layout.dll</HintPath>
     </Reference>
-    <Reference Include="itext.pdfa, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.pdfa.dll</HintPath>
+    <Reference Include="itext.pdfa, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.pdfa.dll</HintPath>
     </Reference>
-    <Reference Include="itext.sign, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.sign.dll</HintPath>
+    <Reference Include="itext.sign, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.sign.dll</HintPath>
     </Reference>
-    <Reference Include="itext.styledxmlparser, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.styledxmlparser.dll</HintPath>
+    <Reference Include="itext.styledxmlparser, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.styledxmlparser.dll</HintPath>
     </Reference>
-    <Reference Include="itext.svg, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.svg.dll</HintPath>
+    <Reference Include="itext.svg, Version=7.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.6\lib\net40\itext.svg.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -168,11 +168,20 @@
     <Compile Include="CatalogControls\CatalogShowEdition.Designer.cs">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommunityControls\InternalModel\InternalCommunity.cs" />
+    <Compile Include="ConsumerControls\Reports\ReportsHandler.cs" />
+    <Compile Include="InternalControlsModel\ReportPaidPeriod.cs" />
     <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.Designer.cs">
       <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsBossNameContactsExtendedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsBossNameContactsExtendedControl.Designer.cs">
+      <DependentUpon>IpsBossNameContactsExtendedControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Shared\Forms\ChangeCommentForm.cs">
       <SubType>Form</SubType>
@@ -330,10 +339,10 @@
     <Compile Include="_trash\SinglePlaceParameterControl.Designer.cs">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\AgreementPhis.cs">
+    <Compile Include="_UnusedControls\AgreementPhis.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\AgreementPhis.Designer.cs">
+    <Compile Include="_UnusedControls\AgreementPhis.Designer.cs">
       <DependentUpon>AgreementPhis.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\GridLicenseAgreementView.cs" />
@@ -503,16 +512,16 @@
     <Compile Include="Common\TabNavigationControl.Designer.cs">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\CompositionOfReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\CompositionOfReport.Designer.cs">
       <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\ReportExtendedForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\ReportExtendedForm.Designer.cs">
       <DependentUpon>ReportExtendedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\PaysInfo.cs">
@@ -527,8 +536,8 @@
     <Compile Include="ConsumerDialogForms\ProlongationBigRight.Designer.cs">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
-    <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ConsumerControls\Calculation\CalculationInfoControlPresenter.cs" />
+    <Compile Include="ConsumerControls\Reports\ReportsControlPresenter.cs" />
     <Compile Include="Common\SaveCancelButtonsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -814,10 +823,10 @@
     <Compile Include="ObjectRightControls\AuthorRightholderItemView.Designer.cs">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.cs">
+    <Compile Include="ConsumerControls\Calculation\CalculationInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.Designer.cs">
+    <Compile Include="ConsumerControls\Calculation\CalculationInfoControl.Designer.cs">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.cs">
@@ -1091,16 +1100,16 @@
     <Compile Include="RightholderControls\RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\ReportExcelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\ReportExcelForm.Designer.cs">
       <DependentUpon>ReportExcelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\ReportsControl.cs">
+    <Compile Include="ConsumerControls\Reports\ReportsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\ReportsControl.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Shared\Forms\RequestForm.cs">
@@ -1178,6 +1187,9 @@
     <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterDetailForm.resx">
       <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsBossNameContactsExtendedControl.resx">
+      <DependentUpon>IpsBossNameContactsExtendedControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shared\Forms\ChangeCommentForm.resx">
       <DependentUpon>ChangeCommentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1247,7 +1259,7 @@
     <EmbeddedResource Include="_trash\SinglePlaceParameterControl.resx">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\AgreementPhis.resx">
+    <EmbeddedResource Include="_UnusedControls\AgreementPhis.resx">
       <DependentUpon>AgreementPhis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ContactPersonActionForm.resx">
@@ -1325,10 +1337,10 @@
     <EmbeddedResource Include="Common\TabNavigationControl.resx">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\Forms\CompositionOfReport.resx">
       <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\Forms\ReportExtendedForm.resx">
       <DependentUpon>ReportExtendedForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1461,7 +1473,7 @@
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderItemView.resx">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\CalculationInfoControl.resx">
+    <EmbeddedResource Include="ConsumerControls\Calculation\CalculationInfoControl.resx">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\ConsumerPlacesControl.resx">
@@ -1600,10 +1612,10 @@
     <EmbeddedResource Include="RightholderControls\RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\Forms\ReportExcelForm.resx">
       <DependentUpon>ReportExcelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\ReportsControl.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\Forms\RequestForm.resx">
@@ -1719,6 +1731,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypeVat.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Consumer.ConsumerSmallRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.AmountDistributionViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.FixationListViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel.datasource" />
@@ -1729,6 +1742,7 @@
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.PlacesForAgreement.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.ReportPaidPeriod.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.RightholderControls.RightholderView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

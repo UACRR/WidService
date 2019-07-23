@@ -128,3 +128,8 @@ select * from ft_Tsk_5_31_GetGive_ ('2019-01-31', '2019-01-31') order by rowNum
 select * from PayTurn where datework = '2019-01-31' and acccredit like '%134'
 --select sum(amount) from PayTurn where datework = '2019-01-31' and acccredit like '%134'
 */
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_31_GetGive_] TO [ReportUser]
+    AS [dbo];
+

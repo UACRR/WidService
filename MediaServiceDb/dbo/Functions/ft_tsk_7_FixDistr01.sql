@@ -60,3 +60,8 @@ left join vCustomer t4 on t2.custId = t4.custId
  END
 
 --select  * from dbo.ft_tsk_7_FixDistr01  (0)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_tsk_7_FixDistr01] TO [ReportUser]
+    AS [dbo];
+

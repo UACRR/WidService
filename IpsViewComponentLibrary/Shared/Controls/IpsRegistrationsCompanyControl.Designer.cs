@@ -64,12 +64,14 @@
             // 
             // txtNumberVat
             // 
+            this.txtNumberVat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNumberVat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "NumberVat", true));
             this.txtNumberVat.Enabled = false;
-            this.txtNumberVat.Location = new System.Drawing.Point(436, 85);
+            this.txtNumberVat.Location = new System.Drawing.Point(423, 81);
             this.txtNumberVat.MaxLength = 12;
             this.txtNumberVat.Name = "txtNumberVat";
-            this.txtNumberVat.Size = new System.Drawing.Size(161, 21);
+            this.txtNumberVat.Size = new System.Drawing.Size(135, 21);
             this.txtNumberVat.TabIndex = 5;
             this.txtNumberVat.ThemeName = "Office2013Light";
             // 
@@ -79,10 +81,12 @@
             // 
             // txtRegisterNumber
             // 
+            this.txtRegisterNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRegisterNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "RegistrNumber", true));
-            this.txtRegisterNumber.Location = new System.Drawing.Point(106, 43);
+            this.txtRegisterNumber.Location = new System.Drawing.Point(340, 27);
             this.txtRegisterNumber.Name = "txtRegisterNumber";
-            this.txtRegisterNumber.Size = new System.Drawing.Size(134, 21);
+            this.txtRegisterNumber.Size = new System.Drawing.Size(218, 21);
             this.txtRegisterNumber.TabIndex = 1;
             this.txtRegisterNumber.ThemeName = "Office2013Light";
             // 
@@ -91,9 +95,9 @@
             this.txtRegisterWho.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRegisterWho.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "RegistrWho", true));
-            this.txtRegisterWho.Location = new System.Drawing.Point(436, 43);
+            this.txtRegisterWho.Location = new System.Drawing.Point(217, 54);
             this.txtRegisterWho.Name = "txtRegisterWho";
-            this.txtRegisterWho.Size = new System.Drawing.Size(215, 21);
+            this.txtRegisterWho.Size = new System.Drawing.Size(341, 21);
             this.txtRegisterWho.TabIndex = 3;
             this.txtRegisterWho.ThemeName = "Office2013Light";
             // 
@@ -101,10 +105,10 @@
             // 
             this.dtRegisterDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAnketaCompany, "RegistrDate", true));
             this.dtRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtRegisterDate.Location = new System.Drawing.Point(278, 43);
+            this.dtRegisterDate.Location = new System.Drawing.Point(44, 55);
             this.dtRegisterDate.MaxDate = new System.DateTime(2018, 7, 2, 0, 0, 0, 0);
             this.dtRegisterDate.Name = "dtRegisterDate";
-            this.dtRegisterDate.Size = new System.Drawing.Size(92, 21);
+            this.dtRegisterDate.Size = new System.Drawing.Size(104, 21);
             this.dtRegisterDate.TabIndex = 2;
             this.dtRegisterDate.TabStop = false;
             this.dtRegisterDate.ThemeName = "Office2013Light";
@@ -113,17 +117,17 @@
             // txtOkpo
             // 
             this.txtOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "Okpo", true));
-            this.txtOkpo.Location = new System.Drawing.Point(106, 2);
+            this.txtOkpo.Location = new System.Drawing.Point(66, 2);
             this.txtOkpo.MaxLength = 10;
             this.txtOkpo.Name = "txtOkpo";
-            this.txtOkpo.Size = new System.Drawing.Size(134, 21);
+            this.txtOkpo.Size = new System.Drawing.Size(174, 21);
             this.txtOkpo.TabIndex = 0;
             this.txtOkpo.ThemeName = "Office2013Light";
             this.txtOkpo.Leave += new System.EventHandler(this.txtOkpo_Leave);
             // 
             // lblIssuedBy
             // 
-            this.lblIssuedBy.Location = new System.Drawing.Point(376, 44);
+            this.lblIssuedBy.Location = new System.Drawing.Point(154, 55);
             this.lblIssuedBy.Name = "lblIssuedBy";
             this.lblIssuedBy.Size = new System.Drawing.Size(57, 19);
             this.lblIssuedBy.TabIndex = 3;
@@ -132,7 +136,7 @@
             // 
             // lblDateBegin
             // 
-            this.lblDateBegin.Location = new System.Drawing.Point(247, 44);
+            this.lblDateBegin.Location = new System.Drawing.Point(13, 56);
             this.lblDateBegin.Name = "lblDateBegin";
             this.lblDateBegin.Size = new System.Drawing.Size(25, 19);
             this.lblDateBegin.TabIndex = 2;
@@ -141,21 +145,20 @@
             // 
             // lblIPN
             // 
-            this.lblIPN.Location = new System.Drawing.Point(305, 85);
+            this.lblIPN.Location = new System.Drawing.Point(286, 82);
             this.lblIPN.Name = "lblIPN";
-            this.lblIPN.Size = new System.Drawing.Size(128, 19);
+            this.lblIPN.Size = new System.Drawing.Size(131, 19);
             this.lblIPN.TabIndex = 5;
-            this.lblIPN.Text = "Номер платника ПДВ";
+            this.lblIPN.Text = "Номер платника ПДВ:";
             this.lblIPN.ThemeName = "Office2013Light";
             // 
             // lblSvidoctvo
             // 
-            this.lblSvidoctvo.AutoSize = false;
-            this.lblSvidoctvo.Location = new System.Drawing.Point(3, 24);
+            this.lblSvidoctvo.Location = new System.Drawing.Point(3, 28);
             this.lblSvidoctvo.Name = "lblSvidoctvo";
-            this.lblSvidoctvo.Size = new System.Drawing.Size(97, 52);
+            this.lblSvidoctvo.Size = new System.Drawing.Size(331, 19);
             this.lblSvidoctvo.TabIndex = 1;
-            this.lblSvidoctvo.Text = "Свідоцтво про державну реєстрацію №:";
+            this.lblSvidoctvo.Text = "Свідоцтво про держ. реєстрацію / виписка з ЄДРПОУ №:";
             this.lblSvidoctvo.ThemeName = "Office2013Light";
             // 
             // lbledrpou
@@ -169,10 +172,9 @@
             // 
             // lblTypeTaxpayer
             // 
-            this.lblTypeTaxpayer.AutoSize = false;
-            this.lblTypeTaxpayer.Location = new System.Drawing.Point(3, 76);
+            this.lblTypeTaxpayer.Location = new System.Drawing.Point(3, 82);
             this.lblTypeTaxpayer.Name = "lblTypeTaxpayer";
-            this.lblTypeTaxpayer.Size = new System.Drawing.Size(97, 35);
+            this.lblTypeTaxpayer.Size = new System.Drawing.Size(137, 19);
             this.lblTypeTaxpayer.TabIndex = 4;
             this.lblTypeTaxpayer.Text = "Тип платника податків:";
             this.lblTypeTaxpayer.ThemeName = "Office2013Light";
@@ -186,7 +188,7 @@
             this.ddlTypeVat.DisplayMember = "Name";
             this.ddlTypeVat.DropDownMaxSize = new System.Drawing.Size(300, 120);
             this.ddlTypeVat.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlTypeVat.Location = new System.Drawing.Point(106, 85);
+            this.ddlTypeVat.Location = new System.Drawing.Point(146, 82);
             this.ddlTypeVat.Name = "ddlTypeVat";
             this.ddlTypeVat.Size = new System.Drawing.Size(134, 21);
             this.ddlTypeVat.TabIndex = 4;
@@ -229,8 +231,9 @@
             this.Controls.Add(this.lblIPN);
             this.Controls.Add(this.lblSvidoctvo);
             this.Controls.Add(this.lbledrpou);
+            this.MinimumSize = new System.Drawing.Size(550, 108);
             this.Name = "IpsRegistrationsCompanyControl";
-            this.Size = new System.Drawing.Size(654, 110);
+            this.Size = new System.Drawing.Size(561, 108);
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).EndInit();

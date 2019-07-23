@@ -44,4 +44,6 @@ $setIgnore = Get-Location;
 $setIgnore = [System.IO.Path]::Combine( $setIgnore, "SetJsonIgnore.ps1" );
 # Split-Path $setIgnore; 
 
+Write-Host "Database struct update! Process successful!"
+
  & $setIgnore;

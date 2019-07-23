@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using ConsumerSmallRightWorkplace.Presenters;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
+using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -34,11 +28,22 @@ namespace ConsumerSmallRightWorkplace
         {
             RadTreeNode[] list =
             {
-                new RadTreeNode {Text = "Всі", Value = ConsumerFilterEnum.All},
-                new RadTreeNode {Text = "Діючі", Value = ConsumerFilterEnum.Working},
-                new RadTreeNode {Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
-                new RadTreeNode {Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation},
-                new RadTreeNode {Text = "Не розподіленні", Value = ConsumerFilterEnum.ForDistribution}
+                new RadTreeNode {Text = "Договори:", Enabled = false,},
+                new RadTreeNode {Text = "  Всі", Value = ConsumersSmallRightFilter.All, Name = "All"},
+                new RadTreeNode {Text = "  Діючі", Value = ConsumersSmallRightFilter.Working},
+                new RadTreeNode {Text = "  Не підтверджені", Value = ConsumersSmallRightFilter.ForAccept},
+                new RadTreeNode {Text = "  На акцепті", Value = ConsumersSmallRightFilter.NotAccepted},
+                new RadTreeNode {Text = "  Для пролонгації", Value = ConsumersSmallRightFilter.ForProlongation},
+                new RadTreeNode {Text = "Кошти:", Enabled = false},
+                new RadTreeNode {Text = "  Незакріплені", Value = ConsumersSmallRightFilter.UnattachedMoney},
+                new RadTreeNode {Text = "  Нерозподіленні", Value = ConsumersSmallRightFilter.ForDistribution},
+                new RadTreeNode {Text = "  Борг", Value = ConsumersSmallRightFilter.Debt},
+                new RadTreeNode {Text = "Періоди:", Enabled = false},
+                new RadTreeNode {Text = "  Прийом коштів", Value = ConsumersSmallRightFilter.ReceivingMoney},
+                new RadTreeNode {Text = "  Прийом звітів", Value = ConsumersSmallRightFilter.ReceivingRegister},
+                new RadTreeNode {Text = "Звіти:", Enabled = false},
+                new RadTreeNode {Text = "  Погоджені звіти", Value = ConsumersSmallRightFilter.RegisterStatusOk},
+                new RadTreeNode {Text = "  Відхилені звіти", Value = ConsumersSmallRightFilter.RegisterStatusRefuse},
             };
             foreach (var item in list)
             {
@@ -49,7 +54,7 @@ namespace ConsumerSmallRightWorkplace
             var smallRightPresenter = new SmallRightPresenter(treeViewSmallRight, ctrlConsumersViewSmallRight);
             IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), smallRightPresenter);
 
-            treeViewSmallRight.SelectedNode = treeViewSmallRight.Nodes["Всі"];
+            treeViewSmallRight.SelectedNode = treeViewSmallRight.Nodes["All"];
         }
     }
 }

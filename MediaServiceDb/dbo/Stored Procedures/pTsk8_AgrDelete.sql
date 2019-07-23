@@ -190,11 +190,13 @@ delete #TabLicId where isnull(isAnk,0) = 1
       update LicenseAgrParam set licStatus = 4 
 	     from LicenseAgrParam t1 
 		   join LicenseAgreement t3 on t3.licId = t1.licId and t3.licVersion = t1.licVersion
-		   join #TabLicId t2 on t2.licId = t1.licId
+		   join #TabLicId t2 on t2.licId = t1.licId 
+		   where t2.status = 4
 
       update LicenseAgreement set licStatus = 4 
 	     from LicenseAgreement t1 
 		   join #TabLicId t2 on t2.licId = t1.licId
+		   where t2.status = 4
       
       set @cntrRow = (select count( distinct licId) from #TabLicId where isnull(isLicFull,0) <> 0 and status = 4)
       PRINT 'Закрито договорів = '+ convert(char(10), @cntrRow) 
@@ -251,14 +253,14 @@ delete #TabLicId where isnull(isAnk,0) = 1
     join LicenseBigR t3 on t3.objId = t1.objid
 	 join #TabLicId t2 on t2.licId = t3.licId
 
+ delete LicenseBigR 
+   from LicenseBigR t1
+    join #TabLicId t2 on t1.licId = t2.licId 
+
  delete ObjectRight 
    from ObjectRight t1 
     join LicenseBigR t3 on t3.objId = t1.objId
     join #TabLicId t2 on t2.licId = t3.licId 
-
- delete LicenseBigR 
-   from LicenseBigR t1
-    join #TabLicId t2 on t1.licId = t2.licId 
 
  delete LicenseAgreement 
    from LicenseAgreement t1 
@@ -293,7 +295,8 @@ PRINT 'Вилучено договорів = '+ convert(char(10), @cntrRow) +
 
     update AgreementMaster set agrStatus = 4 
 	   from AgreementMaster t1 
-	      join #TabAgrId t2 on t2.custId = t1.custId
+	      join #TabAgrId t2 on t2.custId = t1.custId 
+		  and t2.status = 4
 
     delete #TabAgrId where status = 4
 
@@ -403,3 +406,8 @@ END
 select * from vCustomer where custid = 1391
 select * from LicenseAgreement where licStatus = 10
 */
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk8_AgrDelete] TO [ReportUser]
+    AS [dbo];
+

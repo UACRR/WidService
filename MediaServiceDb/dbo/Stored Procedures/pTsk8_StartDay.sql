@@ -38,3 +38,8 @@ return @Retcode
 END
 
 --exec dbo.pTsk8_StartDay
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk8_StartDay] TO [ReportUser]
+    AS [dbo];
+

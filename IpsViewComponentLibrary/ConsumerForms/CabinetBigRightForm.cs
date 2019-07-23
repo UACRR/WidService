@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using ipsFormsDesign.Data;
-using ipsFormsDesign.Model;
-using Telerik.WinControls;
+﻿using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerForms
 {
-    public partial class CabinetBigRightForm : Telerik.WinControls.UI.RadForm
+    public partial class CabinetBigRightForm : RadForm
     {
         private const string DefaultTitle = "Кабінет користувача";
         public CabinetBigRightForm()
@@ -24,7 +16,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public string Title
         {
             get => Text;
-            set => Text = value.Length == 0 ? DefaultTitle : string.Concat(DefaultTitle, $": {value}");
+            set => Text = string.IsNullOrWhiteSpace(value) ? DefaultTitle : string.Concat(DefaultTitle, $": {value}");
         }
 
         public bool IsInit { get; set; } = false;

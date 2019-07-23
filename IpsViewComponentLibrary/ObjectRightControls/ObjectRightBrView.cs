@@ -39,6 +39,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public ObjectRightBrView()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         public void Run()

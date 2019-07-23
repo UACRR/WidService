@@ -64,8 +64,9 @@ package-lock.json
 Thumbs.db
 *.ai
 *.dbmdl
-MediaServiceDb/MediaServiceDb.jfm
-MediaServiceDb/MediaServiceDb.dbmdl
+
+/MediaServiceDb/MediaServiceDb.jfm
+/MediaServiceDb/MediaServiceDb.dbmdl
 /ipsmedserviceapp/ClientApp/node_modules
 #MediaServiceInstaller
 /MediaServiceInstaller

@@ -4,6 +4,7 @@ begin
 /*
 --@date - поточна дата по замовченню
 --Створення періодів договорів для договорів у статусі "активний"
+--10-06-2019 --схема 2 формируется без учета суммы договора
 */
 SET NOCOUNT ON;
 declare @RetCode integer
@@ -38,12 +39,14 @@ create table #PaidPeriod (
 delete #PaidPeriod 
 
 --Отбираю активные лицензии, срок действия которых не истек
+--Если схема 2 - не беру сумму по договору
 ;with TabLic as 
  (select  t1.custId, t1.licId, isnull(t2.dateBegin, '2018-01-01') as dateBegin, 
-   isnull(t2.dateEnd, '3000-01-01') as dateEnd,  isnull(minAmount,0) as minAmount, 
+   isnull(t2.dateEnd, '3000-01-01') as dateEnd,  (Case When isnull(t3.schemaId,0) <> 2 Then isnull(minAmount,0) ELSE 0 END) as minAmount, 
    isnull(periodCode,1) as periodCode
    from LicenseAgreement t1 
         join LicenseAgrParam t2 on t1.licId = t2.licId and t1.licVersion = t2.licVersion 
+		join AgrLicenseType t3 on t3.codeI = t1.licCode
      and t1.licStatus = 2 and isnull(t2.dateBegin,'1900-01-01') <= @date 
 	 and isnull(t2.dateEnd,'3000-01-01') >= @date
 	 and isnull(t1.licClass,0) in (0,1)
@@ -60,10 +63,11 @@ TabLastPeriod as
     periodName, 
     lastDateEnd )
   select t1.custId, t1.periodCode, t1.licId, 
-         dbo.fs_PeriodBegin(t1.periodCode, @date) as dateBegin, 
-         dbo.fs_PeriodEnd(t1.periodCode, @date) as dateEnd, 
+         (CASE WHEN t1.periodCode = 5 Then dbo.fs_PeriodBegin (t1.periodCode, dateBegin) ELSE dbo.fs_PeriodBegin(t1.periodCode, @date) END ) as dateBegin, 
+         (CASE WHEN t1.periodCode = 5 Then dbo.fs_PeriodEnd (t1.periodCode, dateEnd) ELSE dbo.fs_PeriodEnd(t1.periodCode, @date) END ) as dateEnd, 
          1 as status, isnull(t1.minAmount,0), 0, 0, 
-         dbo.fs_PeriodName(t1.periodCode, @date) as periodName, 
+         dbo.fs_PeriodName(t1.periodCode, @date) + 
+		       (Case WHEN t1.periodCode = 5 Then convert(char(10),t1.dateBegin,104)+'-'+convert(char(10),t1.dateEnd,104) Else '' END) as periodName, 
 	     t5.endDate
 	   from TabLic t1 
     	   left join TabLastPeriod t5 on t5.licId = t1.licId 
@@ -134,3 +138,8 @@ END
 
 --select * from paidPeriod --where periodId > 1235
 --delete  from paidPeriod where periodId > 1235
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk8_LicPeriodCreate] TO [ReportUser]
+    AS [dbo];
+

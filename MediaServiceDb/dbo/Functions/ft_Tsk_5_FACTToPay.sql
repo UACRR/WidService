@@ -68,3 +68,8 @@ group by t3.custId, t1.custIdRH
  END
 --select * from ft_Tsk_5_FACTToPay ('2018-01-01', NULL, NULL, NULL)
 --select * from PayTurn where accDebet like '20%' or accDebet like '11%'
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_FACTToPay] TO [ReportUser]
+    AS [dbo];
+

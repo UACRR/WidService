@@ -44,7 +44,7 @@
             this.fileNameTitle = new Telerik.WinControls.UI.RadLabel();
             this.lblFileName = new Telerik.WinControls.UI.RadLabel();
             this.gvPaysFromFile = new Telerik.WinControls.UI.RadGridView();
-            this.bindingCheckPay = new System.Windows.Forms.BindingSource(this.components);
+            this.bsCheckParamPays = new System.Windows.Forms.BindingSource(this.components);
             this.btnAcceptData = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.footerPanel = new Telerik.WinControls.UI.RadPanel();
@@ -53,7 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingCheckPay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCheckParamPays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAcceptData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerPanel)).BeginInit();
@@ -113,11 +113,11 @@
             gridViewTextBoxColumn1.Name = "CheckId";
             gridViewTextBoxColumn2.FieldName = "AccountCorr";
             gridViewTextBoxColumn2.HeaderText = "Номер рахунку";
-            gridViewTextBoxColumn2.MaxWidth = 100;
-            gridViewTextBoxColumn2.MinWidth = 80;
+            gridViewTextBoxColumn2.MaxWidth = 120;
+            gridViewTextBoxColumn2.MinWidth = 100;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "AccountCorr";
-            gridViewTextBoxColumn2.Width = 99;
+            gridViewTextBoxColumn2.Width = 100;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "MfoCorr";
             gridViewTextBoxColumn3.HeaderText = "МФО";
@@ -144,18 +144,20 @@
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.DataType = typeof(decimal);
             gridViewTextBoxColumn6.FieldName = "SCredit";
+            gridViewTextBoxColumn6.FormatString = "{0:### ### ### ##0.00}";
             gridViewTextBoxColumn6.HeaderText = "Сума";
-            gridViewTextBoxColumn6.MinWidth = 70;
+            gridViewTextBoxColumn6.MinWidth = 100;
             gridViewTextBoxColumn6.Multiline = true;
             gridViewTextBoxColumn6.Name = "SCredit";
-            gridViewTextBoxColumn6.Width = 87;
+            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn6.Width = 100;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "Nplat";
             gridViewTextBoxColumn7.HeaderText = "Призначення платежу";
             gridViewTextBoxColumn7.MinWidth = 180;
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "Nplat";
-            gridViewTextBoxColumn7.Width = 223;
+            gridViewTextBoxColumn7.Width = 270;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.DataType = typeof(System.DateTime);
             gridViewTextBoxColumn8.FieldName = "DocDate";
@@ -171,16 +173,18 @@
             gridViewTextBoxColumn9.DataType = typeof(int);
             gridViewTextBoxColumn9.FieldName = "InputStatus";
             gridViewTextBoxColumn9.HeaderText = "Статус обробки";
-            gridViewTextBoxColumn9.MinWidth = 80;
+            gridViewTextBoxColumn9.MaxWidth = 120;
+            gridViewTextBoxColumn9.MinWidth = 120;
             gridViewTextBoxColumn9.Name = "InputStatus";
-            gridViewTextBoxColumn9.Width = 99;
+            gridViewTextBoxColumn9.Width = 120;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.DataType = typeof(int);
             gridViewTextBoxColumn10.FieldName = "LinkStatus";
             gridViewTextBoxColumn10.HeaderText = "Статус прив\'язки";
+            gridViewTextBoxColumn10.MaxWidth = 120;
             gridViewTextBoxColumn10.MinWidth = 120;
             gridViewTextBoxColumn10.Name = "LinkStatus";
-            gridViewTextBoxColumn10.Width = 202;
+            gridViewTextBoxColumn10.Width = 120;
             gridViewTextBoxColumn10.WrapText = true;
             this.gvPaysFromFile.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
@@ -193,7 +197,7 @@
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10});
-            this.gvPaysFromFile.MasterTemplate.DataSource = this.bindingCheckPay;
+            this.gvPaysFromFile.MasterTemplate.DataSource = this.bsCheckParamPays;
             this.gvPaysFromFile.MasterTemplate.EnableCustomFiltering = true;
             this.gvPaysFromFile.MasterTemplate.EnableFiltering = true;
             this.gvPaysFromFile.MasterTemplate.EnableGrouping = false;
@@ -205,9 +209,9 @@
             this.gvPaysFromFile.TabIndex = 2;
             this.gvPaysFromFile.ThemeName = "Office2013Light";
             // 
-            // bindingCheckPay
+            // bsCheckParamPays
             // 
-            this.bindingCheckPay.DataSource = typeof(ipsFormsDesign.Model.CheckParamPays);
+            this.bsCheckParamPays.DataSource = typeof(ipsFormsDesign.Model.CheckParamPays);
             // 
             // btnAcceptData
             // 
@@ -275,7 +279,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingCheckPay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCheckParamPays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAcceptData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerPanel)).EndInit();
@@ -298,6 +302,6 @@
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadPanel footerPanel;
         private Telerik.WinControls.UI.RadPanel headerPanel;
-        private System.Windows.Forms.BindingSource bindingCheckPay;
+        private System.Windows.Forms.BindingSource bsCheckParamPays;
     }
 }

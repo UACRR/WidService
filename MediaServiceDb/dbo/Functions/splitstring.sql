@@ -23,3 +23,8 @@ BEGIN
 
  RETURN
 END
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[splitstring] TO [ReportUser]
+    AS [dbo];
+

@@ -85,12 +85,22 @@ namespace ipsmedserviceapp.Controllers
             if (dest.CategoryCode == 5)
             {
                 // update authors or lyrics, composers from Authors
-                var lyrics = dest.Authors.Where(a => a.RoleCode == 1).Select(a => a.AuthorName).ToList();
-                var composers = dest.Authors.Where(a => a.RoleCode == 2).Select(a => a.AuthorName).ToList();
+                var creativeRoleTypes = _dbContext.CreativeRoleType.ToList();
 
+                // автори всі коди окрім 0
+                var authorsId = creativeRoleTypes.Where(rec => rec.IsAuthorType != 0).Select(rec => rec.CodeI).ToList();
+                var authors = dest.Authors.Where(a => authorsId.Contains(a.RoleCode)).Select(a => a.AuthorName).ToList();
+                dest.Author = string.Join(", ", authors);
+
+                // автор тексту або автор тексту/композитор
+                var lyricsId = creativeRoleTypes.Where(rec => rec.IsAuthorType == 1 || rec.IsAuthorType == 3).Select(rec => rec.CodeI).ToList();
+                var lyrics = dest.Authors.Where(a => lyricsId.Contains(a.RoleCode)).Select(a => a.AuthorName).ToList();
                 dest.MediaTrack.Lyrics = string.Join(", ", lyrics);
+
+                // композитор або автор тексту/композитор
+                var composersId = creativeRoleTypes.Where(rec => rec.IsAuthorType == 2 || rec.IsAuthorType == 3).Select(rec => rec.CodeI).ToList();
+                var composers = dest.Authors.Where(a => composersId.Contains(a.RoleCode)).Select(a => a.AuthorName).ToList();
                 dest.MediaTrack.Composers = string.Join(", ", composers);
-                dest.Author = string.Join(", ", dest.MediaTrack.Lyrics, dest.MediaTrack.Composers);
 
                 // update performers from SeekObject
                 var performers = dest.SeekObject.Where(so => so.CodeI == 2).Select(so => so.Name).ToList();

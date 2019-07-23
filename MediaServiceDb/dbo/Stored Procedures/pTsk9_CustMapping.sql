@@ -101,3 +101,8 @@ END
 --update employee set userId = NULL where userId = '2733ab28-eb37-4f61-b5db-920bd0408b2d'
 --update customer set userId = NULL where userId = '2733ab28-eb37-4f61-b5db-920bd0408b2d'
 --dbcc checkident (systemmessage, reseed, 807)
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk9_CustMapping] TO [ReportUser]
+    AS [dbo];
+

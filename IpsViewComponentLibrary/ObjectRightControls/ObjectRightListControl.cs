@@ -100,8 +100,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             //show count RightList into grid
             lblCountRightList.Text = result.TotalItems.ToString();
 
-            //SelectedObject = currentObject; // TODO: is it realy need?
-
             waitingBar.StopWaiting();
         }
 

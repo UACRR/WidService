@@ -48,7 +48,8 @@ namespace ipsmedserviceapp.Controllers
             {
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
-                _dbContext.Database.ExecuteSqlCommand("exec p_Tsk_1_CheckInputFile @fileId", new SqlParameter("@fileId", dest.FileId));
+                _dbContext.Database.ExecuteSqlCommand("exec p_Tsk_1_CheckInputFile @fileId",
+                    new SqlParameter("@fileId", dest.FileId));
                 var retDest = await _dbContext.InputFile.Where(rec => rec.FileId == dest.FileId)
                     .Include(rec => rec.CheckParamPays)
                     .AsNoTracking()
@@ -57,15 +58,15 @@ namespace ipsmedserviceapp.Controllers
                 return Ok(retDest);
 
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
-                tran.Rollback();
-                throw ex;
+                tran?.Rollback();
+                throw;
             }
         }
         
         /// <summary>
-        /// Зберігти файл проводок
+        /// Зберегти файл проводок
         /// </summary>
         [HttpPut("file/{fileId}")]
         public async Task<IActionResult> SaveInputFile(int fileId, [FromBody] InputFile inputFile)
@@ -111,11 +112,8 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                if (tran != null)
-                    tran.Rollback();
-
-                throw ex;
-
+                tran?.Rollback();
+                throw;
             }
         }
         
@@ -137,10 +135,10 @@ namespace ipsmedserviceapp.Controllers
                         DateInvoice = (DateTime)exPay.DocDate,
                         NumberInvoice = exPay.DocNum,
                         GoalInvoice = exPay.Nplat,
-                        Amount = (decimal)exPay.SCredit,
+                        Amount = exPay.SCredit ?? 0m,
                         DestribAmount = 0,
                         DestribPrepay = 0,
-                        CustId = (int)exPay.CustId
+                        CustId = exPay.CustId ?? 0
                     });
 
         }
@@ -153,7 +151,7 @@ namespace ipsmedserviceapp.Controllers
             var dest = await _dbContext.ExternalPay.Where(rec => ids.Contains(rec.PaidId)).ToListAsync();
             var moneyRecived = await _dbContext.MoneyReceived.Where(rec => ids.Contains(rec.PaidId)).ToListAsync();
 
-            if (dest.Count() == 0)
+            if (!dest.Any())
                 return NotFound();
 
             _dbContext.UpdateList(pays, dest, i => { }, (l, r) => l.PaidId == r.PaidId);
@@ -203,7 +201,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// Отримати список діючих Споживачів
+        /// Отримати список діючих Користувачів
         /// </summary>
         /// <returns></returns>
         [HttpGet("vCustomers")]

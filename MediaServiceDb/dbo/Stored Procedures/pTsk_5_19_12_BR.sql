@@ -24,3 +24,8 @@ select * from @result
 end
 
 --exec [dbo].[p_Tsk_5_19_12_BR] 0
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_19_12_BR] TO [ReportUser]
+    AS [dbo];
+

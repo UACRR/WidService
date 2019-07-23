@@ -66,12 +66,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         private void gvGenAgrLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             // TODO: після отримання шаблону видалити
-            MessageShow.ShowWarning("Відсутній шаблон для даного договору!");
+            //MessageShow.ShowWarning("Відсутній шаблон для даного договору!");
 
-            //var row = e.Row.DataBoundItem as GeneralAgreementBigRightView;
-            //var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
-            //var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
-            //print.ShowDialog();
+            var row = e.Row.DataBoundItem as GeneralAgreementBigRightView;
+            var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
+            var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+            if (print.ValidTemplate)
+                print.ShowDialog();
         }
 
         #region * * * дії з генеральним договором * * *

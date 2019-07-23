@@ -19,13 +19,14 @@
     [courtFeeAmount]  MONEY          NULL,
     [userId]          NVARCHAR (48)  NULL,
     CONSTRAINT [PK_FIXATION] PRIMARY KEY CLUSTERED ([fixId] ASC),
-    CONSTRAINT [FK_FIXATION_REF_ASPNETUSER] FOREIGN KEY ([userId]) REFERENCES [dbo].[AspNetUsers] ([id]),
     CONSTRAINT [FK_FIXATION_REFERENCE_CLIENT] FOREIGN KEY ([clientCustId]) REFERENCES [dbo].[Client] ([custId]),
     CONSTRAINT [FK_FIXATION_REFERENCE_FIXSTAGE] FOREIGN KEY ([stageStatus]) REFERENCES [dbo].[FixStageStatus] ([codeI]),
     CONSTRAINT [FK_FIXATION_REFERENCE_LICENSEA] FOREIGN KEY ([licId]) REFERENCES [dbo].[LicenseAgreement] ([licId]),
     CONSTRAINT [FK_FIXATION_REFERENCE_PARTNER] FOREIGN KEY ([partnerCustId]) REFERENCES [dbo].[Partner] ([custId]),
     CONSTRAINT [FK_FIXATION_REFERENCE_USESTYPE] FOREIGN KEY ([usesType]) REFERENCES [dbo].[UsesType] ([codeI])
 );
+
+
 
 
 GO

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -19,8 +20,7 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityRightLimitationControl : UserControl
     {
-        private const string LimitationOfRightsQuestion = "Обмеження прав належить іншому товариству! Змінити обмеження?";
-        private const string ExceptionMsg = "Ідентифікатор 'CustId' не може бути NULL!";
+        private const string LimitationOfRightsQuestion = "Деякі обмеження прав належить іншому товариству! Змінити обмеження?";
 
         private readonly List<CopyrightKind> _copyrightKindsDictionary;
         private readonly List<CommunityInfo> _communitiesDictionary;
@@ -41,37 +41,36 @@ namespace IpsViewComponentLibrary.CommunityControls
             }
         }
 
-        public List<CustCmRight> LimitRights { get; } = new List<CustCmRight>();
+        public List<CustCmRight> LimitRights { get; private set; } = new List<CustCmRight>();
+        public List<TermsOfService> TermsOfServiceLimitRights { get; private set; } = new List<TermsOfService>();
 
-        public void SetData(CommunityAuthorsView authorsView, List<CustCmRight> rightList, int communityCustId)
+
+        public void SetData(CommunityAuthorsView authorsView, List<CustCmRight> rightList, List<TermsOfService> termsOfServices, int communityCustId)
         {
             _communityCustId = communityCustId;
-            bsRightLimitationsView.DataSource = GenerateDataGrid(authorsView, rightList);
+            bsRightLimitationsView.DataSource = GenerateDataGrid(authorsView, rightList, termsOfServices);
         }
 
         // оновлення даних
-        private List<RightLimitationsView> GenerateDataGrid(CommunityAuthorsView authorsView, List<CustCmRight> rightList)
+        private List<RightLimitationsView> GenerateDataGrid(CommunityAuthorsView authorsView, List<CustCmRight> rightList, List<TermsOfService> termsOfServices)
         {
-            _rightLimitationsViews = new List<RightLimitationsView>();
-            var items = rightList?.Where(rec => rec?.CmCustId == _communityCustId).ToList();
+            TermsOfServiceLimitRights = termsOfServices;
 
-            if (items != null && items.Any())
-            {
-                LimitRights.Clear();
-                LimitRights.AddRange(items);
-            }
+            _rightLimitationsViews = new List<RightLimitationsView>();
 
             foreach (var kind in _copyrightKindsDictionary)
             {
                 var right = rightList?.SingleOrDefault(rec => rec.CRkindCode == kind.CodeI);
+                var term = termsOfServices?.SingleOrDefault(rec => rec.CrkindCode == kind.CodeI);
+
                 _rightLimitationsViews.Add(new RightLimitationsView
                 {
                     CustId = authorsView.CustId,
-                    CmCustId = right?.CmCustId,
+                    CmCustId = GetCommunityId(right, term),
                     KindCode = kind.CodeI,
                     KindName = kind.Name,
-                    CommunityName = _communitiesDictionary.SingleOrDefault(rec => rec?.CustId == right?.CmCustId)?.Name,
-                    Check = right?.CmCustId == _communityCustId,
+                    CommunityName = GetCommunityName(right, term),
+                    Check = IsCheck(right, term),
                     DateBegin = right?.DateBegin ?? DateTime.Today,
                     DateEnd = right?.DateEnd ?? new DateTime(3000, 1, 1)
                 });
@@ -80,50 +79,144 @@ namespace IpsViewComponentLibrary.CommunityControls
             return _rightLimitationsViews;
         }
 
-
-        // зміна обмеження
-        private void gvRightLimitations_ValueChanging(object sender, ValueChangingEventArgs e)
+        /// <summary>
+        /// Отримати ID товариства залежно з якої таблиці обмеження
+        /// </summary>
+        /// <param name="right"></param>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        private int? GetCommunityId(CustCmRight right, TermsOfService term)
         {
-            if (!(gvRightLimitations.CurrentRow.DataBoundItem is RightLimitationsView row) || string.IsNullOrEmpty(row.CommunityName) || row.Check || row.CmCustId == _communityCustId)
-            {
-                ChangeRightLimitList((bool) e.NewValue);
-                return;
-            }
+            if (right?.CmCustId is int id)
+                return id;
 
-            if (MessageShow.ConfirmAction(LimitationOfRightsQuestion) == DialogResult.Yes)
-                ChangeRightLimitList((bool) e.NewValue);
-            else
-                e.Cancel = true;
+            if (term != null && term.OurService)
+                return InternalCommunity.InternalCommunityInfo.CustId;
+
+            return null;
         }
 
         /// <summary>
-        /// Змінити обмеження прав автора
+        /// Отримати Назву товариства залежно з якої таблиці обмеження
+        /// </summary>
+        /// <param name="right"></param>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        private string GetCommunityName(CustCmRight right, TermsOfService term)
+        {
+            var rightName = _communitiesDictionary.SingleOrDefault(rec => rec.CustId == right?.CmCustId)?.Name;
+            var termName = term?.OurService ?? false ? InternalCommunity.InternalCommunityInfo?.Name : string.Empty;
+            return !string.IsNullOrEmpty(rightName) ? rightName : termName;
+        }
+
+        /// <summary>
+        /// Вирахувати чи проставляти галочку
+        /// </summary>
+        /// <param name="right"></param>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        private bool IsCheck(CustCmRight right, TermsOfService term)
+        {
+            // якщо обмеження з табилці CustCmRight
+            var checkOfCustCmRight = right?.CmCustId == _communityCustId;
+            //якщо обммеження з таблиці TermsOfService 
+            var checkOfTermsOfService = (term?.OurService ?? false) && (InternalCommunity.InternalCommunityInfo?.CustId == _communityCustId);
+            return checkOfCustCmRight || checkOfTermsOfService;
+        }
+
+        /// <summary>
+        /// Виконати оновлення даних в структурі
+        /// </summary>
+        public void UpdateData()
+        {
+            // товариство - користувач програми - таблиця TermsOfService
+            if (InternalCommunity.InternalCommunityInfo?.CustId == _communityCustId)
+                TermsOfServiceChangeRightLimit();
+            // всі інші товариства - таблиця CustCmRight
+            else
+                CustCmRightChangeRightLimit();
+        }
+
+        /// <summary>
+        /// Змінити обмеження прав по таблиці TermsOfService
+        /// </summary>
+        private void TermsOfServiceChangeRightLimit()
+        {
+            foreach (var rightLimitationsView in _rightLimitationsViews)
+            {
+                var termsOfService = TermsOfServiceLimitRights.SingleOrDefault(rec => rec.CrkindCode == rightLimitationsView.KindCode);
+                // додати обмеження 
+                if (rightLimitationsView.Check)
+                {
+                    if (termsOfService == null)
+                    {
+                        var newTerm = new TermsOfService
+                        {
+                            CrkindCode = rightLimitationsView.KindCode,
+                            CustId = rightLimitationsView.CustId,
+                            OurService = true
+                        };
+                        TermsOfServiceLimitRights.Add(newTerm);
+                    }
+                    else
+                    {
+                        termsOfService.OurService = true;
+                    }
+                }
+                else
+                {
+                    if (termsOfService != null)
+                        TermsOfServiceLimitRights.Remove(termsOfService);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Змінити обмеження прав по таблиці CustCmRight
         /// </summary>
         /// <param name="action">додати/видалити обмеження</param>
-        private void ChangeRightLimitList(bool action)
+        private void CustCmRightChangeRightLimit()
         {
-            if (!(gvRightLimitations.CurrentRow.DataBoundItem is RightLimitationsView currentRow))
-                throw new ArgumentNullException(ExceptionMsg);
-
-            ValueEdit?.Invoke(new object(), EventArgs.Empty);
-
-            if (action)
+            foreach (var rightLimitationsView in _rightLimitationsViews.Where(rec => rec.Check))
             {
                 LimitRights.Add(new CustCmRight
                 {
-                    CustId = currentRow.CustId,
-                    CRkindCode = currentRow.KindCode,
-                    CmCustId = currentRow.CmCustId ?? 0,
-                    DateBegin = currentRow.DateBegin ?? DateTime.Today,
-                    DateEnd = currentRow.DateEnd ?? new DateTime(3000, 1, 1)
+                    CustId = rightLimitationsView.CustId,
+                    CRkindCode = rightLimitationsView.KindCode,
+                    CmCustId = _communityCustId,
+                    DateBegin = rightLimitationsView.DateBegin ?? DateTime.Today,
+                    DateEnd = rightLimitationsView.DateEnd ?? new DateTime(3000, 1, 1)
                 });
             }
-            else
+        }
+
+        /// <summary>
+        /// Попередня перевірка змін обмежень прав, запитує чи можна зберігати зміни обмежень прав з одного товариства на інше
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckCanSaveRightLimitChanges()
+        {
+            bool canSave = true;
+            if (_rightLimitationsViews.Any())
             {
-                var item = LimitRights.SingleOrDefault(r =>
-                    r.CustId == currentRow.CustId && r.CRkindCode == currentRow.KindCode);
-                LimitRights.Remove(item);
+                // пошук зміни товариства з іншого на поточне
+                var listForCheckChangeCommunity = _rightLimitationsViews.Where(rec => rec.Check && rec.CmCustId != _communityCustId).ToList();
+                foreach (var rightLimitationsView in listForCheckChangeCommunity)
+                {
+                    if (!string.IsNullOrEmpty(rightLimitationsView.CommunityName))
+                    {
+                        canSave = MessageShow.ConfirmAction(LimitationOfRightsQuestion) == DialogResult.Yes;
+                        break;
+                    }
+                }
             }
+
+            return canSave;
+        }
+
+        private void gvRightLimitations_ValueChanging(object sender, ValueChangingEventArgs e)
+        {
+            ValueEdit?.Invoke(sender, e);
         }
     }
 }

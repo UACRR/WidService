@@ -1,5 +1,6 @@
 ﻿using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
+using IpsViewComponentLibrary.ConsumerControls.Calculation;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.Extensions;
 
@@ -49,7 +50,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPayslips = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.RegisterRatedListControl();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlCalculation = new IpsViewComponentLibrary.ConsumerControls.SmallRight.CalculationInfoControl();
+            this.ctrlCalculation = new CalculationInfoControl();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();

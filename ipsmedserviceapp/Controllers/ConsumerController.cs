@@ -1,29 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Castle.Core.Logging;
 using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.DATA;
 using ipsmedserviceapp.Model;
 using ipsmedserviceapp.Utilities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Protocols;
-// ReSharper disable All
-
+using IpsCommonTypes.Enums;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -625,100 +616,54 @@ namespace ipsmedserviceapp.Controllers
 
         }
 
-        public enum ConsumerFilterEnum : int
-        {
-            /// <summary>
-            /// Не визначено
-            /// </summary>
-            None = 0,
-            /// <summary>
-            /// Діючі
-            /// </summary>
-            Working = 1,
-            /// <summary>
-            /// Для акцепту
-            /// </summary>
-            NotAccepted = 2,
-            /// <summary>
-            /// Не активні
-            /// </summary>
-            NotActive = 3,
-            /// <summary>
-            /// Для пролонгації
-            /// </summary>
-            ForProlongation = 4,
-            /// <summary>
-            /// Для розподілу
-            /// </summary>
-            ForDistribution = 5,
-            /// <summary>
-            /// Заборгованість
-            /// </summary>
-            Debt = 6,
-            /// <summary>
-            /// В роботі(прийом звітів)
-            /// </summary>
-            UnattachData = 7,
-            /// <summary>
-            /// Закриті
-            /// </summary>
-            Closed = 8,
-            /// <summary>
-            /// Не підтверджені
-            /// </summary>
-            NotConfirmed = 9,
-            /// <summary>
-            /// Всі
-            /// </summary>
-            All
-        }
-
-        /// <summary>
-        /// Типи документів Великих прав для запиту
-        /// </summary>
-        public enum TypeBRDocument
-        {
-            None = 0,
-            // General agreement
-            GenAgreement = 2,
-            // License agreement
-            LicAgreement = 3,
-            // Request
-            Request = 4,
-            // Certificate
-            Certificate = 5,
-            // All documents
-            All
-
-        }
-
         /// <summary>
         /// Отримати список Споживачів малих прав
         /// </summary>
         /// <returns></returns>
         [HttpGet("listSR/{whatId}")]
-        public async Task<IActionResult> GetListSR(int whatId, [FromQuery] ConsumerSmallRightResource queryResource)
+        public async Task<IActionResult> GetListSmallRight(int whatId, [FromQuery] ConsumerSmallRightResource queryResource)
         {
-            ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
+            ConsumersSmallRightFilter what = Enum.Parse<ConsumersSmallRightFilter>(whatId.ToString());
 
             string function = "select * from ft_tsk_1_LicenseAgreementList (@strSeek)";
 
             switch (what)
             {
-                case ConsumerFilterEnum.All:
-                case ConsumerFilterEnum.None:
+                case ConsumersSmallRightFilter.All:
+                case ConsumersSmallRightFilter.None:
                     break;
-                case ConsumerFilterEnum.Working:
+                case ConsumersSmallRightFilter.Working:
                     function = string.Concat(function, " where statusActive = 1");
                     break;
-                case ConsumerFilterEnum.NotAccepted:
+                case ConsumersSmallRightFilter.ForAccept:
+                    function = string.Concat(function, " where statusForAccept = 1");
+                    break;
+                case ConsumersSmallRightFilter.NotAccepted:
                     function = string.Concat(function, " where statusNoAccept = 1");
                     break;
-                case ConsumerFilterEnum.ForProlongation:
+                case ConsumersSmallRightFilter.ForProlongation:
                     function = string.Concat(function, " where statusProlong = 1");
                     break;
-                case ConsumerFilterEnum.ForDistribution:
+                case ConsumersSmallRightFilter.ForDistribution:
                     function = string.Concat(function, " where statusUndistribute = 1");
+                    break;
+                case ConsumersSmallRightFilter.UnattachedMoney:
+                    function = string.Concat(function, " where statusUnattach = 1");
+                    break;
+                case ConsumersSmallRightFilter.Debt:
+                    function = string.Concat(function, " where statusBorg = 1");
+                    break;
+                case ConsumersSmallRightFilter.ReceivingMoney:
+                    function = string.Concat(function, " where statusNoReport = 1");
+                    break;
+                case ConsumersSmallRightFilter.ReceivingRegister:
+                    function = string.Concat(function, " where statusNoMoney = 1");
+                    break;
+                case ConsumersSmallRightFilter.RegisterStatusOk:
+                    function = string.Concat(function, " where rgStatusOk = 1");
+                    break;
+                case ConsumersSmallRightFilter.RegisterStatusRefuse:
+                    function = string.Concat(function, " where rgStatusRefuse = 1");
                     break;
             }
 
@@ -759,36 +704,50 @@ namespace ipsmedserviceapp.Controllers
 
         #region * * * Змінні для фільтрів * * *
 
-        Dictionary<ConsumerFilterEnum, string> validQueryForAllDocs = new Dictionary<ConsumerFilterEnum, string> {
-            { ConsumerFilterEnum.ForDistribution, "statusUndistribute=1"},
-            { ConsumerFilterEnum.Debt, "isnull(borg,0)>0"},
-            { ConsumerFilterEnum.UnattachData, "isnull(unattachAmount,0)>0"}
+        Dictionary<ConsumersBigRightFilter, string> validQueryForAllDocs = new Dictionary<ConsumersBigRightFilter, string> {
+            { ConsumersBigRightFilter.ForDistribution, "statusUndistribute=1"},
+            { ConsumersBigRightFilter.Debt, "isnull(borg,0)>0"},
+            { ConsumersBigRightFilter.UnattachData, "isnull(unattachAmount,0)>0"}
         };
 
-        Dictionary<TypeBRDocument, Dictionary<ConsumerFilterEnum, string>> validDocRequest = new Dictionary<TypeBRDocument, Dictionary<ConsumerFilterEnum, string>> {
-            { TypeBRDocument.GenAgreement, new Dictionary<ConsumerFilterEnum, string> {
-                { ConsumerFilterEnum.All, ""  },
-                { ConsumerFilterEnum.Working, "statusMasterActive=1" },
-                { ConsumerFilterEnum.NotConfirmed, "agrStatus=0" },
-                { ConsumerFilterEnum.ForProlongation, "statusMasterProlong=1" },
-                { ConsumerFilterEnum.Closed, "agrStatus=4" }
-            } },
-            { TypeBRDocument.LicAgreement, new Dictionary<ConsumerFilterEnum, string> {
-                { ConsumerFilterEnum.All, "countLic1NoActive+countLic1Active>0"  },
-                { ConsumerFilterEnum.Working, "statusLic1Active=1"  },
-                { ConsumerFilterEnum.NotActive, "statusLic1Noactive=1"},
-                { ConsumerFilterEnum.ForProlongation, "statusLic1ToProlong=1"}
-            } },
-            { TypeBRDocument.Request, new Dictionary<ConsumerFilterEnum, string> {
-                { ConsumerFilterEnum.All, "countLic2Active+countLic2NoActive>0"  },
-                { ConsumerFilterEnum.Working, "statusLic2Active=1"  },
-                { ConsumerFilterEnum.NotActive, "statusLic2Noactive=1"}
-            } },
-            { TypeBRDocument.Certificate, new Dictionary<ConsumerFilterEnum, string> {
-                { ConsumerFilterEnum.All, "countLic3Active+countLic3NoActive>0"  },
-                { ConsumerFilterEnum.Working, "statusLic3Active=1"  },
-                { ConsumerFilterEnum.NotActive, "statusLic3Noactive=1"}
-            } }
+        private readonly Dictionary<ConsumersBigRightCategoryFilter, Dictionary<ConsumersBigRightFilter, string>> validDocRequest = new Dictionary<ConsumersBigRightCategoryFilter, Dictionary<ConsumersBigRightFilter, string>>
+        {
+            {
+                ConsumersBigRightCategoryFilter.GenAgreement, new Dictionary<ConsumersBigRightFilter, string>
+                {
+                    {ConsumersBigRightFilter.All, ""},
+                    {ConsumersBigRightFilter.Working, "statusMasterActive=1"},
+                    {ConsumersBigRightFilter.NotAccepted, "agrStatus=1"},
+                    {ConsumersBigRightFilter.NotConfirmed, "agrStatus=0"},
+                    {ConsumersBigRightFilter.ForProlongation, "statusMasterProlong=1"},
+                    {ConsumersBigRightFilter.Closed, "agrStatus=4"}
+                }
+            },
+            {
+                ConsumersBigRightCategoryFilter.License, new Dictionary<ConsumersBigRightFilter, string>
+                {
+                    {ConsumersBigRightFilter.All, "countLic1NoActive+countLic1Active>0"},
+                    {ConsumersBigRightFilter.Working, "statusLic1Active=1"},
+                    {ConsumersBigRightFilter.NotActive, "statusLic1Noactive=1"},
+                    {ConsumersBigRightFilter.ForProlongation, "statusLic1ToProlong=1"}
+                }
+            },
+            {
+                ConsumersBigRightCategoryFilter.Request, new Dictionary<ConsumersBigRightFilter, string>
+                {
+                    {ConsumersBigRightFilter.All, "countLic2Active+countLic2NoActive>0"},
+                    {ConsumersBigRightFilter.Working, "statusLic2Active=1"},
+                    {ConsumersBigRightFilter.NotActive, "statusLic2Noactive=1"}
+                }
+            },
+            {
+                ConsumersBigRightCategoryFilter.Reference, new Dictionary<ConsumersBigRightFilter, string>
+                {
+                    {ConsumersBigRightFilter.All, "countLic3Active+countLic3NoActive>0"},
+                    {ConsumersBigRightFilter.Working, "statusLic3Active=1"},
+                    {ConsumersBigRightFilter.NotActive, "statusLic3Noactive=1"}
+                }
+            }
         };
 
         #endregion
@@ -848,20 +807,20 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// Отримати список Споживачів Великих прав
+        /// Отримати список [Користувачі Великих прав]
         /// </summary>
         /// <returns></returns>
         [HttpGet("listBR")]
         public async Task<IActionResult> GetListBR([FromQuery(Name = "whatId")] int whatId, [FromQuery(Name = "typeDocId")] int typeDocId)
         {
-            ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
-            TypeBRDocument typeDoc = Enum.Parse<TypeBRDocument>(typeDocId.ToString());
+            ConsumersBigRightFilter what = Enum.Parse<ConsumersBigRightFilter>(whatId.ToString());
+            ConsumersBigRightCategoryFilter typeDoc = Enum.Parse<ConsumersBigRightCategoryFilter>(typeDocId.ToString());
             string queue = "select * from vtsk_1_MasterListBR";
 
 
             if (validDocRequest.Keys.Contains(typeDoc))
             {
-                Dictionary<ConsumerFilterEnum, string> filterObject = validDocRequest[typeDoc];
+                Dictionary<ConsumersBigRightFilter, string> filterObject = validDocRequest[typeDoc];
                 if (filterObject.Keys.Contains(what))
                 {
                     string filter = filterObject[what];
@@ -876,7 +835,7 @@ namespace ipsmedserviceapp.Controllers
                 }
             }
             // Недопустиміе параметрі запроса для вібора всех елементов
-            else if (typeDoc == TypeBRDocument.All && validQueryForAllDocs.Keys.Contains(what))
+            else if (typeDoc == ConsumersBigRightCategoryFilter.All && validQueryForAllDocs.Keys.Contains(what))
                 queue = $"{queue} where {validQueryForAllDocs[what]}";
             else
                 queue = queue + " where 1 != 0";  // условие для вібора пустого множества
@@ -1797,14 +1756,15 @@ and t2.custId = @custId
         public async Task<IActionResult> GetRegisterInfoForCustomer([FromQuery] int custId)
         {
             var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
-select t" + @"1.* 
+select t1.* 
 from LicenseAgreement t1 
 where t1.custId = @custId
 and isnull(licType,1) between 1 and 3
 ", new SqlParameter("@custId", custId))
-                .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
                 .Include(lic => lic.Cust)
+                    .ThenInclude(cln => cln.Cust)
                 .Include(lic => lic.Agr)
+                .Include( lic => lic.LicCodeNavigation )
                 .ToListAsync();
 
 
@@ -2127,7 +2087,7 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
             }
         }
 
-        [HttpGet("  /{custId}/{typeDocument}/{fileName}")]
+        [HttpGet("existdocument/{custId}/{typeDocument}/{fileName}")]
         public IActionResult CheckExistDocument(int custId, int typeDocument, string fileName)
         {
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");

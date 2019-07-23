@@ -104,34 +104,140 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Templates\F_1_БВ-НК-бари-дискотеки_.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\F_3_МБВ.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\F_4_ТЦ магазини.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\F_6_МТЦ.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\F_7_Г готелі.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Templates\F_dogovir-go-uaasp-radio-efirne.docx" />
+    <None Include="Templates\F_Copyright-Request.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_dogovir-go-uaasp-radio-efirne.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт_публічне виконання.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт_публічне сповіщення TV+радио.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт_публічне сповіщення кTV.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт_публічне сповіщення+використання Інтернет %28TV+радио%29.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ГЕНЕРАЛЬНИЙ ДОГОВІР 2018р.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ГО УААСП Автор.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ГО УААСП Правовласник-Видавництво.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Ліцензійний договір для театрів %28вистави%29.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Лицензионный договор на спектакль %28БП%29.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\F_Тестовий шаблон лицензионного договора.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\F_Тестовий шаблон.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Templates\F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП %281%29.docx" />
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР КАБЕЛЬНА РЕТРАНСЛЯЦІЯ.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МУЗИЧНІ АВТОМАТИ  ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР НІЧНІ КЛУБИ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГ ПЛАТНИЙ ВХІД ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГ ТУР ПЛАТНИЙ ВХІД ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГб безопл вхід ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОНЛАЙН ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ПУБЛІЧНЕ СПОВІЩЕННЯ ПО КАБЕЛЮ.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР Р ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР Рі ІНТЕРНЕТ-РАДІО ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР СИСТЕМИ КАРАОКЕ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЕ ЕФІРНЕ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЕі ІНТЕРНЕТ-ТЕЛЕБАЧЕННЯ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЦ  ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ФІЛАРМОНІЇ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ЦИРК ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП %281%29.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\Result.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\ПРЕДСТАВНИК ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -141,6 +247,10 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{B17076A8-B8F9-4F60-AAC0-3845773A4D43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{21DA4297-A0F3-4E44-BD98-CAF3605B243A}</Project>
       <Name>ipsFormsDesign</Name>

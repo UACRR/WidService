@@ -5,9 +5,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
+using IpsCommonTypes.Enums;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -29,20 +29,14 @@ namespace ipsmedserviceapp.Controllers
             _logger = logger;
         }
 
-
         [HttpGet("catalogfilelist/{custId}")]
         public async Task<IActionResult> GetCatalogFilesList(int custId)
         {
             var catalogFiles = await _dbContext.CatalogFile
-                .Where(rec => rec.CustId == custId && rec.PubCatalogItem.Any()  )
+                .Where(rec => rec.CustId == custId && rec.PubCatalogItem.Any())
                 .Include(rec => rec.StatusNavigation)
-                // .Include(rec => rec.PubCatalogItem)
-                // .ThenInclude(rec => rec.StatusNavigation)
+                .OrderBy(rec => rec.FileId)
                 .ToListAsync();
-
-//            var delList = catalogFiles.Where(rec => rec.PubCatalogItem.Count == 0).ToArray();
-
-
 
             return Ok(catalogFiles);
         }
@@ -66,8 +60,10 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
             IDbContextTransaction transaction = null;
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
+                _dbContext.Database.SetCommandTimeout(1200);
                 if (source == null || !source.PubCatalogItem.Any())
                     return BadRequest("Loaded file is empty or not read!");
 
@@ -127,6 +123,10 @@ namespace ipsmedserviceapp.Controllers
                 transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
                 transaction.Commit();
+
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
+
                 return Ok(destination);
             }
             catch (Exception ex)
@@ -221,6 +221,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("validate/{fileId}")]
         public async Task<IActionResult> BeginValidationFile(int fileId)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
                 var paramFileId = new SqlParameter("@fileId", fileId);
@@ -237,27 +238,27 @@ namespace ipsmedserviceapp.Controllers
 
                 string command = "exec CatalogControlPub @fileId, @result OUTPUT, @RetCode  OUTPUT";
 
+                _dbContext.Database.SetCommandTimeout(600);
+
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>();
-                responce.Message = message.Value.ToString();
-
-                // Процедура виконала дії без помилок
-                if (Convert.ToInt32(returnCode.Value) == 0)
+                var responce = new ExecSqlResponce<CatalogFile>
                 {
-                    var validCatalog = await _dbContext.CatalogFile
-                        .Include(rec => rec.PubCatalogItem)
-                        .ThenInclude(pub => pub.StatusNavigation)
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                    Message = message.Value.ToString(),
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0
+                        ? ExecSqlResponceStatus.Successed
+                        : ExecSqlResponceStatus.Failed
+                };
 
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
-                    responce.Data = validCatalog;
-                }
-                else
-                {
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
-                }
+                var validCatalog = await _dbContext.CatalogFile
+                    .Include(rec => rec.PubCatalogItem)
+                    .ThenInclude(pub => pub.StatusNavigation)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                responce.Data = validCatalog;
+
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
 
                 return Ok(responce);
             }
@@ -276,6 +277,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("process/{fileId}")]
         public async Task<IActionResult> BeginProcessFile(int fileId)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
                 var paramFileId = new SqlParameter("@fileId", fileId);
@@ -291,28 +293,27 @@ namespace ipsmedserviceapp.Controllers
                 };
 
                 string command = @"exec CatalogInputPub @fileId, @result OUTPUT, @RetCode OUTPUT";
+                _dbContext.Database.SetCommandTimeout(1200);
 
-                var data = await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
+                await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>();
-                responce.Message = message.Value.ToString();
-
-                // Процедура виконала дії без помилок
-                if (Convert.ToInt32(returnCode.Value) == 0)
+                var responce = new ExecSqlResponce<CatalogFile>
                 {
-                    var validCatalog = await _dbContext.CatalogFile
-                        .Include(rec => rec.PubCatalogItem)
-                        .ThenInclude(pub => pub.StatusNavigation)
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                    Message = message.Value.ToString(),
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0
+                        ? ExecSqlResponceStatus.Successed
+                        : ExecSqlResponceStatus.Failed
+                };
 
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
-                    responce.Data = validCatalog;
-                }
-                else
-                {
-                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
-                }
+                var validCatalog = await _dbContext.CatalogFile
+                    .Include(rec => rec.PubCatalogItem)
+                    .ThenInclude(pub => pub.StatusNavigation)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                responce.Data = validCatalog;
+
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
 
                 return Ok(responce);
             }
@@ -322,6 +323,5 @@ namespace ipsmedserviceapp.Controllers
                 throw;
             }
         }
-
     }
 }

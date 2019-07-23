@@ -16,6 +16,7 @@ namespace ipsmedserviceapp.Model
         public string AccCommission { get; set; }
         public string AccInCommission { get; set; }
         public string AccCourt { get; set; }
+        public short? TypeAlg { get; set; }
 
         public virtual Customer Cust { get; set; }
         public virtual ICollection<MyCategory> MyCategory { get; set; }

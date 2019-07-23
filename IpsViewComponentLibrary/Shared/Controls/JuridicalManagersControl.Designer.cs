@@ -62,7 +62,8 @@
             this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(153, 30);
             this.txtOnBasicsIfHeadBoss.Multiline = true;
             this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
-            this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР)";
+            this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР, наказ," +
+    " протокол)";
             this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(594, 20);
             this.txtOnBasicsIfHeadBoss.TabIndex = 18;
             this.txtOnBasicsIfHeadBoss.ThemeName = "Office2013Light";
@@ -179,8 +180,8 @@
             // 
             // JuridicalManagersControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.ctrlContactPerson);
             this.Controls.Add(this.ctrlBookkeeper);
             this.Controls.Add(this.txtOnBasicsIfHeadBoss);

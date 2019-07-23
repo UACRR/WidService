@@ -6,10 +6,13 @@ using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using System.IO;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
-using sysAdminwp.viewPageDictionaryControls;
+using ipsFormsDesign.Services;
+using sysAdminwp.Model;
+using Telerik.WinControls;
 
 namespace sysAdminwp
 {
@@ -24,13 +27,15 @@ namespace sysAdminwp
         private List<ViewTable> _dataGrid;
         //define new position for grid
         private int _updatePosition;
+
         //defined enable state for elements
-        private bool enableStateElements;
+        private bool _enableStateElements;
         public bool EnableSateElements
         {
-            get { return enableStateElements; }
+            get => _enableStateElements;
             set
             {
+                _enableStateElements = value;
                 //add new element button
                 btnAdd.Enabled = value;
                 //search field
@@ -51,7 +56,7 @@ namespace sysAdminwp
         }
 
         /// <summary>
-        /// URL словника
+        /// URL довідника
         /// </summary>
         public string Url
         {
@@ -64,35 +69,17 @@ namespace sysAdminwp
                 return categoryItem.Url;
             }
         }
-        /// <summary>
-        /// Найменування довідника
-        /// </summary>
-        public string DictionaryName
-        {
-            get
-            {
-                var node = treeViewList.SelectedNode;
-                if (node?.Parent == null) return string.Empty;
-                var categoryItem = _dictionaryCategories[node.Parent.Index].DicCategoryItems[node.Index];
-                if (categoryItem == null) return string.Empty;
-                return categoryItem.DicName;
-            }
-        }
 
         public DictionaryForm()
         {
+            _enableStateElements = false;
             InitializeComponent();
-            //fill data for treeView element
+            pageView.Pages[pvSimpleOld.Name].Item.Visibility = ElementVisibility.Collapsed;
+            
+            IpsGlobal.SetAnketaDictionaties(DictionaryService.GetInstance().GetAnketaDictionaties());
+            IpsGlobal.SetObjectRightDictionaries(DictionaryService.GetInstance().GetObjectRightDictionaries());
             SetTreeViewDataSource();
-            //update bottom panel
-            UpdateEditPanel();
-            //initialize object for complex dictionaries
-            ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl(_connector, _complexDictionary)
-            {
-                Dock = DockStyle.Fill,
-            };
-            //add new control for complex dictionaries
-            radPageViewPage2.Controls.Add(complexDictionaryControl);
+            //UpdateEditPanel();
         }
 
         #region * * * Методи * * *
@@ -103,7 +90,13 @@ namespace sysAdminwp
         /// get method for complex dictionary
         private void SetTreeViewDataSource()
         {
-            _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");//дерево
+            // дерево
+            _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");
+            // show simple dictionaries
+            treeViewList.DataSource = _dictionaryCategories;
+            treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
+            treeViewList.DisplayMember = "Name\\Name";
+
             _complexDictionary = new List<DicCategoryItems>();
             foreach (var category in _dictionaryCategories)
             {
@@ -121,12 +114,10 @@ namespace sysAdminwp
                 foreach (var i in categoryItems)
                     category.DicCategoryItems.Add(i);
             }
-            //complex dictionaries for send to second control
             _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
-            //show simple dictionaries
-            treeViewList.DataSource = _dictionaryCategories;
-            treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
-            treeViewList.DisplayMember = "Name\\Name";
+
+            ctrlComplexDictionary.SetDictionaryCategories(_complexDictionary);
+            ctrlSimpleDictionary.SetDictionaryCategories(_dictionaryCategories);
         }
 
         /// <summary>
@@ -307,7 +298,7 @@ namespace sysAdminwp
             gvDictionariesList.BeginUpdate();
             e.Visible = false;
             for (int i = 0; i < gvDictionariesList.ColumnCount; i++)
-            {   
+            {
                 //якщо поле пусте
                 if (e.Row.Cells[i].Value == null)
                     continue;
@@ -375,7 +366,7 @@ namespace sysAdminwp
         }
 
         //кнопка відміни внесених змін
-        private void radBtnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             UpdateEditPanel();
             EnableSateElements = true;

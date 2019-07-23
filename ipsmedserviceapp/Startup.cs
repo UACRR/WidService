@@ -26,6 +26,7 @@ using Newtonsoft.Json.Serialization;
 using AutoMapper.EquivalencyExpression;
 using ipsmedserviceapp.DATA;
 using ipsmedserviceapp.Repositories;
+using ipsmedserviceapp.Mappings;
 
 namespace ipsmedserviceapp
 {
@@ -92,22 +93,19 @@ namespace ipsmedserviceapp
             services.AddAuthentication(IISDefaults.AuthenticationScheme);
 #endif
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddLogging(builder => {
+            services.AddLogging(builder =>
+            {
                 builder.AddConfiguration(Configuration.GetSection("Logging"))
                 .AddEventSourceLogger();
             });
 
-            //services.AddAutoMapper(cfg =>
-            //{
-            //    cfg.AddCollectionMappers();
-            //    cfg.CreateMissingTypeMaps = false;
-            //});
-            Mapper.Initialize(cfg =>
-            {
-                cfg.AddCollectionMappers();
-                cfg.CreateMissingTypeMaps = false;
-            });
-            services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddAutoMapper(
+                cfg=> {
+                    cfg.AddCollectionMappers();
+                    //cfg.CreateMissingTypeMaps = false;
+
+                },
+                typeof(Startup).Assembly);
 
             services.AddTransient<RightholderRepository>();
             services.AddLogging(builder => builder.AddConsole());
@@ -127,10 +125,8 @@ namespace ipsmedserviceapp
             });
 
 
-            // loggerFactory.AddConsole();
             app.UseAuthentication();
-            //loggerFactory.AddDebug();
-            //loggerFactory.AddConsole();
+
 
 
             app.UseRequestLocalization(BuildLocalizationOptions());

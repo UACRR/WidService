@@ -9,7 +9,11 @@ using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
 using System.IO;
+using System.Threading.Tasks;
+using ipsFormsDesign.Interfaces;
+using IpsCommonTypes.Types;
 using IpsViewComponentLibrary.Shared.Interfaces;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
@@ -18,6 +22,8 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string ValidateSuccessMsg = "Контроль виконано!";
 
         private CatalogFile _catalogFile = null;
+        private ObservableListSource<PubCatalogItem> _pubCatalogItemList = new ObservableListSource<PubCatalogItem>();
+
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
         protected bool IsDesingMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         public CatalogShowEdition()
@@ -25,6 +31,21 @@ namespace IpsViewComponentLibrary.CatalogControls
             InitializeComponent();
             if (!IsDesingMode)
                 _catalogFileItemsHandler = new CatalogPresenter();
+            ctrlNavigatorPanel.CurrentPageChanged += NavigatorPanel_UpdateData;
+            ctrlNavigatorPanel.PageSizeChanged += CtrlNavigatorPanel_PageSizeChanged;
+        }
+
+        private void CtrlNavigatorPanel_PageSizeChanged(object sender, EventArgs e)
+        {
+            ctrlNavigatorPanel.TotalPages = _pubCatalogItemList.Count / ctrlNavigatorPanel.PageSize;
+            ctrlNavigatorPanel.CurrentPage = 1;
+        }
+
+        private void NavigatorPanel_UpdateData(object sender, EventArgs e)
+        {
+            int skip = (ctrlNavigatorPanel.CurrentPage - 1) * ctrlNavigatorPanel.PageSize;
+            bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem.Skip(skip).Take(ctrlNavigatorPanel.PageSize);
+            bsPubCatalogItem.ResetBindings(false);
         }
 
         public object DataSource
@@ -40,60 +61,78 @@ namespace IpsViewComponentLibrary.CatalogControls
                 bsCatalogFile.DataSource = _catalogFile;
                 bsCatalogFile.ResetBindings(false);
 
-                btnPerform.Enabled = _catalogFile.Status == 1 || catalogFile.CountOk == 2;
+                btnPerform.Enabled = _catalogFile.Status == 1;
 
                 if (_catalogFile.PubCatalogItem.Any())
                 {
-                    bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem;
-                    bsPubCatalogItem.ResetBindings(false);
+                    _pubCatalogItemList = _catalogFile.PubCatalogItem;
+                    ctrlNavigatorPanel.TotalPages = _pubCatalogItemList.Count / ctrlNavigatorPanel.PageSize;
+                    ctrlNavigatorPanel.CurrentPage = 1;
                 }
             }
         }
 
         // перевірка валідності. . .
-        private void btnAuditItems_Click(object sender, EventArgs e)
+        private async void btnAuditItems_Click(object sender, EventArgs e)
         {
-            var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
-            var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
-            if (boolResult)
+            ExecSqlResponce<CatalogFile> result = null;
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
             {
-                DataSource = result.Data;
-                UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
-            }
+                result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
+            });
+            waitingBar.StopWaiting();
+            var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
+            DataSource = result.Data;
+            UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
         }
 
-        private void btnGetExcel_Click(object sender, EventArgs e)
+        private async void btnGetExcel_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog())
             {
-                dialog.FileName = "exportFile";
-                var spreadExporter = new GridViewSpreadExport(gridDetailInfo);
-                spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
+                dialog.FileName = $"{_catalogFile.FileName}_export";
                 dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
+                bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem;
+                var spreadExporter = new GridViewSpreadExport(gridDetailInfo, SpreadExportFormat.Xlsx);
+                
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     if (File.Exists(dialog.FileName))
                         File.Delete(dialog.FileName);
 
-                    SpreadExportRenderer renderer = new SpreadExportRenderer();
-                    spreadExporter.RunExport(dialog.FileName, renderer);
+                    waitingBar.StartWaiting();
+                    string fileName = dialog.FileName;
+                    await Task.Factory.StartNew(() =>
+                    {
+                        var renderer = new SpreadExportRenderer();
+                        spreadExporter.RunExport(fileName, renderer);
+                    });
+                    waitingBar.StopWaiting();
                 }
+
+                int skip = (ctrlNavigatorPanel.CurrentPage - 1) * ctrlNavigatorPanel.PageSize;
+                bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem.Skip(skip).Take(ctrlNavigatorPanel.PageSize);
+                bsPubCatalogItem.ResetBindings(false);
             }
         }
 
-        private void btnPerform_Click(object sender, EventArgs e)
+        private async void btnPerform_Click(object sender, EventArgs e)
         {
-            var result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
-            var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
-            if (boolResult)
+            ExecSqlResponce<CatalogFile> result = null;
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
             {
-                DataSource = result.Data;
-                UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
-            }
+                result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
+            });
+            waitingBar.StartWaiting();
+            var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
+            DataSource = result.Data;
+            UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
             MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);
         }
     }

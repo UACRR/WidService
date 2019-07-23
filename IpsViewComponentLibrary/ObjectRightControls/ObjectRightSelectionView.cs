@@ -11,8 +11,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public ObjectRightSelectionView()
         {
             InitializeComponent();
-
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -22,16 +21,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         }
 
         private void btnOk_Click(object sender, EventArgs e)
-        {
-            SelectAndClose();
-        }
-
-        private void ctrlObjectRightList_ObjectSelected(object sender, ObjectRightMainView selectedObject)
-        {
-            SelectAndClose();
-        }
-
-        private void SelectAndClose()
         {
             var item = ctrlObjectRightList.SelectedObject;
 
@@ -44,6 +33,36 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
             else
                 DialogResult = DialogResult.None;
+        }
+
+        private void ctrlObjectRightList_ObjectSelected(object sender, ObjectRightMainView selectedObject)
+        {
+            EditObjectRight(selectedObject);
+        }
+
+        private void ctrlObjectRightList_EditCommandExecuted(object sender, ObjectRightMainView selectedObject)
+        {
+            EditObjectRight(selectedObject);
+        }
+
+        private void EditObjectRight(ObjectRightMainView objectRight)
+        {
+            if (objectRight.Category == "M")
+            {
+                using (var view = new ObjectRightSrView())
+                {
+                    var presenter = new ObjectRightSrPresenter(view);
+                    presenter.Show(objectRight.ObjId);
+                }
+            }
+            else
+            {
+                using (var view = new ObjectRightBrView())
+                {
+                    var presenter = new ObjectRightBrPresenter(view);
+                    presenter.Show(objectRight.ObjId);
+                }
+            }
         }
 
         private void OnObjectSelected(ObjectRightMainView item)

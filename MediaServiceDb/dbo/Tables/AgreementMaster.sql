@@ -13,6 +13,8 @@
 );
 
 
+
+
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Пользователь, кто модифицировал запись', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AgreementMaster', @level2type = N'COLUMN', @level2name = N'modifyLogin';
 
@@ -33,4 +35,9 @@ GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Генеральній договор с клиентами и правообладателями
    
    ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AgreementMaster';
+
+
+GO
+CREATE NONCLUSTERED INDEX [iAgreementMaster]
+    ON [dbo].[AgreementMaster]([custId] ASC);
 

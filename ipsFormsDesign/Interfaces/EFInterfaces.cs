@@ -632,6 +632,7 @@ public interface ICreativeRoleType
          int CategoryCode { get; set; }
          string Name { get; set; }
          int Crtype { get; set; }
+         int? IsAuthorType { get; set; }
 }
 public interface ICreativeRoleTypeTr
     {
@@ -1030,6 +1031,10 @@ public interface IInvoice
          string Purpose { get; set; }
          int? Status { get; set; }
     }
+public interface IIsAuthorType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
 public interface IItemStatus
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1359,6 +1364,7 @@ public interface IMyAnketa
          string AccCommission { get; set; }
          string AccInCommission { get; set; }
          string AccCourt { get; set; }
+         short? TypeAlg { get; set; }
 }
 public interface IMyCategory
     {
@@ -2111,6 +2117,7 @@ public interface IRhcatalogItem
          int? CRightId { get; set; }
          string ErrComment { get; set; }
          TimeSpan? Duration { get; set; }
+         int? RhCustId { get; set; }
 }
 public interface IRholderType
     {    int CodeI { get; set; }
@@ -2131,6 +2138,7 @@ public interface IRightHolder
          int? RHolderType { get; set; }
          string Ipibase { get; set; }
          string Comment { get; set; }
+         DateTime? DatePassed { get; set; }
 }
 public interface ISaldoDay
     {

@@ -20,10 +20,11 @@
     CONSTRAINT [FK_AGREEMEN_REF_AGREEMEN] FOREIGN KEY ([agrStatus]) REFERENCES [dbo].[AgreementStatus] ([codeI]),
     CONSTRAINT [FK_AGREEMEN_REF_PERIOD] FOREIGN KEY ([periodCode]) REFERENCES [dbo].[Period] ([codeI]),
     CONSTRAINT [FK_AGREEMEN_REFERENCE_AGREEM] FOREIGN KEY ([agrId]) REFERENCES [dbo].[AgreementMaster] ([agrId]),
-    CONSTRAINT [FK_AGREEMEN_REFERENCE_ASPNETUS] FOREIGN KEY ([responsUser]) REFERENCES [dbo].[AspNetUsers] ([id]),
     CONSTRAINT [FK_AGREEMEN_REFERENCE_RIGHTHOL] FOREIGN KEY ([custId]) REFERENCES [dbo].[RightHolder] ([custId]),
     CONSTRAINT [FK_AGREEMEN_REFERENCE_TYPEMETH] FOREIGN KEY ([getCode]) REFERENCES [dbo].[TypeMethodGet] ([codeI])
 );
+
+
 
 
 GO
@@ -48,4 +49,9 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Иденти
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Комиссиооные от Правообладаелей', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AgreementAddRH';
+
+
+GO
+CREATE NONCLUSTERED INDEX [iAgreementAddRhStatus]
+    ON [dbo].[AgreementAddRH]([agrStatus] ASC);
 

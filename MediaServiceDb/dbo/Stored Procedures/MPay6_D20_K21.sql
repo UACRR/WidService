@@ -57,6 +57,7 @@ CREATE TABLE #PayTurn(
 	distid					int,
 	paidid				int null,
 	flCourt				tinyint,
+	payturntype		int null,
  PRIMARY KEY CLUSTERED (	TurnId ASC,	DateWork ASC)
 )
 
@@ -400,6 +401,12 @@ and accCredit like '21%'
  	if @@error	<> 0
 		goto __retErr
 goto   __forward
+							update t1
+							set payturntype=t3.codei
+							from #PayTurn t1, PayTurnType t3
+							where					
+								convert(int,substring(accdebet,1,2))=balsDbt and
+								convert(int,substring(acccredit,1,2))=balsCrdt 
 
 
 
@@ -410,9 +417,9 @@ BEGIN TRY
 exec Pay_Pay_SaldoDay
 
 insert PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
-						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid)  select 
+						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid,payturntype)  select 
  TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
-						Amount,AmountCur,PayNote,'980',getdate(),2,regId ,distid
+						Amount,AmountCur,PayNote,'980',getdate(),2,regId ,distid,payturntype
 from #PayTurn
 
 

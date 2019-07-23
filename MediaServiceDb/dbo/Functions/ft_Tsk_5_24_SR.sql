@@ -66,3 +66,8 @@ join TabRgPeriod t2 on t1.periodId = t2.periodId
 RETURN
 END
 --select * from ft_Tsk_5_24_SR  ('2018-11-01', '2018-11-30') order by custid, dateinvoice, periodId
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_24_SR] TO [ReportUser]
+    AS [dbo];
+

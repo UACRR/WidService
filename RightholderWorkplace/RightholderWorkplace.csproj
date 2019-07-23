@@ -226,7 +226,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Templates\F_Copyright-Request.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -237,6 +237,8 @@
     <None Include="Templates\F_Акт фіксації_друк.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\F_ГО УААСП Автор.docx" />
+    <None Include="Templates\F_ГО УААСП Правовласник-Видавництво.docx" />
     <None Include="Templates\F_Наказ на фіксацію.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

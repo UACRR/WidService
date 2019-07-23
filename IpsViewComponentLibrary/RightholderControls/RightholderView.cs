@@ -8,6 +8,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -16,7 +17,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class RightholderView : RadForm, IRightholderView
     {
-        //private bool _isCompany;
+        private const int CustomerTypeJuridicalCode = 3;
         private string _pdf;
         private string _doc;
         private string _custName;
@@ -25,13 +26,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         private IRightholderPresenter _presenter;
         public IRightholderPresenter Presenter
         {
-            get { return _presenter; }
+            get => _presenter;
             set
             {
                 if (_presenter == null)
-                {
                     _presenter = value;
-                }
             }
         }
 
@@ -40,7 +39,14 @@ namespace IpsViewComponentLibrary.RightholderControls
         public object AgreementAddRhDataSource
         {
             get => bsAgreementAddRh.DataSource;
-            set => bsAgreementAddRh.DataSource = value;
+            set
+            {
+                bsAgreementAddRh.DataSource = value;
+                if (value is AgreementAddRh agreement && agreement.AgrStatus == 7)
+                    DatePassedVisible = true;
+                else
+                    DatePassedVisible = false;
+            }
         }
 
         public object AnketaPersonDataSource
@@ -98,13 +104,25 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         #endregion
 
+        public bool DatePassedVisible
+        {
+            get => dtDatePassed.Visible;
+            set
+            {
+                lblDatePassed.Visible = value;
+                dtDatePassed.Visible = value;
+            }
+        }
+
         /// <summary>
         /// Активність вкладок реєстру/каталога залежно від типу правовласника
         /// </summary>
+        /// <param name="customerType"></param>
         /// <param name="rhType"></param>
-        public void SetCatalogsTabVisible(int? rhType)
+        public void SetCatalogsTabVisible(int? customerType, int? rhType)
         {
-            if (rhType == null)
+            // тип користувача/правовласника юр або фіз особи
+            if (customerType == null || customerType >= 4 || rhType == null)
             {
                 pvCatalog.Enabled = false;
                 pvRegisters.Enabled = false;
@@ -114,7 +132,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                 pvCatalog.Enabled = false;
                 pvRegisters.Enabled = true;
             }
-            else
+            else if (rhType == 3)
             {
                 pvCatalog.Enabled = true;
                 pvRegisters.Enabled = false;
@@ -131,6 +149,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+
+            dtDatePassed.SetUserCalendarSettingsm();
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
@@ -198,7 +218,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
-            SetCatalogsTabVisible(customer.RightHolder.RHolderType);
+            SetCatalogsTabVisible(customer.CustType, customer.RightHolder.RHolderType);
             ctrlRightholderRegister.CustId = customer.CustId;
             //set active pages on depends field 'CustType'
             //ShowActivePages(customer);
@@ -365,6 +385,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void btnSetAgreementRightholderStatusInheritance_Click(object sender, EventArgs e)
         {
             _presenter.SetAgreementRightholderStatus(AgreementStatuses.Inheritance);
+
+            DatePassedVisible = true;
+            if (bsRightHolder.DataSource is RightHolder rh && rh.DatePassed == null)
+                rh.DatePassed = DateTime.Now;
+            bsRightHolder.ResetBindings(false);
             bsAgreementAddRh.ResetCurrentItem();
         }
 
@@ -411,41 +436,41 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void SetAllowedStatuses()
         {
-            if (bsAgreementAddRh.Current != null)
+            if (bsAgreementAddRh.Current == null)
+                return;
+
+            var agreementStatus = (AgreementStatuses)((AgreementAddRh)bsAgreementAddRh.Current).AgrStatus;
+
+            if (agreementStatus == AgreementStatuses.Active)
             {
-                var agreementStatus = (AgreementStatuses)((AgreementAddRh)bsAgreementAddRh.Current).AgrStatus;
+                gboxRightholderStatus.Enabled = true;
+                btnSetStatusInheritance.Enabled = ((Customer)CustomerDataSource).CustType != CustomerTypeJuridicalCode;
+                btnSetStatusClosed.Enabled = true;
 
-                if (agreementStatus == AgreementStatuses.Active)
-                {
-                    gboxRightholderStatus.Enabled = true;
-                    btnSetStatusInheritance.Enabled = true;
-                    btnSetStatusClosed.Enabled = true;
+                btnSetAgreementRightholderStatus.Text = "Заблокувати";
+                btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Blocked;
+            }
+            else if (agreementStatus == AgreementStatuses.Blocked)
+            {
+                gboxRightholderStatus.Enabled = true;
+                btnSetStatusInheritance.Enabled = false;
+                btnSetStatusClosed.Enabled = false;
 
-                    btnSetAgreementRightholderStatus.Text = "Заблокувати";
-                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Blocked;
-                }
-                else if (agreementStatus == AgreementStatuses.Blocked)
-                {
-                    gboxRightholderStatus.Enabled = true;
-                    btnSetStatusInheritance.Enabled = false;
-                    btnSetStatusClosed.Enabled = false;
+                btnSetAgreementRightholderStatus.Text = "Розблокувати";
+                btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
+            }
+            else if (agreementStatus == AgreementStatuses.NotAccepted || agreementStatus == AgreementStatuses.OnAcception)
+            {
+                gboxRightholderStatus.Enabled = true;
+                btnSetStatusInheritance.Enabled = false;
+                btnSetStatusClosed.Enabled = false;
 
-                    btnSetAgreementRightholderStatus.Text = "Розблокувати";
-                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
-                }
-                else if (agreementStatus == AgreementStatuses.NotAccepted || agreementStatus == AgreementStatuses.OnAcception)
-                {
-                    gboxRightholderStatus.Enabled = true;
-                    btnSetStatusInheritance.Enabled = false;
-                    btnSetStatusClosed.Enabled = false;
-
-                    btnSetAgreementRightholderStatus.Text = "Активний";
-                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
-                }
-                else
-                {
-                    gboxRightholderStatus.Enabled = false;
-                }
+                btnSetAgreementRightholderStatus.Text = "Активний";
+                btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
+            }
+            else
+            {
+                gboxRightholderStatus.Enabled = false;
             }
         }
 

@@ -89,3 +89,8 @@ END   -- 2
 end
 
 --pTsk_5_17_3_BalanseGroup_test  '20180101','20180701','301015843'
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_17_3_BalanseGroup_test] TO [ReportUser]
+    AS [dbo];
+

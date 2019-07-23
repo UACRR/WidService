@@ -14,8 +14,10 @@
 );
 
 
+
+
 GO
-create trigger ti_regRatedList on RegisterRatedList for insert as
+create trigger ti_regRatedList on [dbo].[RegisterRatedList] for insert as
 --create trigger [%QUALIFIER%]%TRIGGER% on [%TABLQUALIFIER%]%TABLE% for insert as
 begin
     declare
@@ -42,7 +44,7 @@ error:
     rollback  transaction
 end
 GO
-CREATE trigger tu_regRatedList on RegisterRatedList for update as
+CREATE trigger tu_regRatedList on [dbo].[RegisterRatedList] for update as
 --alter trigger [%QUALIFIER%]%TRIGGER% on RegisterRatedList for update as
 begin
    declare

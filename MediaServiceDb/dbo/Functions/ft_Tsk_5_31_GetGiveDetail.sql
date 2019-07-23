@@ -45,3 +45,8 @@ RETURN
 END
 
 --select * from ft_Tsk_5_31_GetGiveDetail (134, '2018-01-01', '2028-12-31') order by rowNum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_31_GetGiveDetail] TO [ReportUser]
+    AS [dbo];
+

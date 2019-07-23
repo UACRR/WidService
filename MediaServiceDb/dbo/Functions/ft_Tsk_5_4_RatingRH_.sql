@@ -101,3 +101,8 @@ t9.cmCustId, isnull(t10.name, 'УААСП') as cmName, t1.amount
  END
 
 --select  * from ft_Tsk_5_4_RatingRH_ (0, 0, 0, NULL, NULL)
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_4_RatingRH_] TO [ReportUser]
+    AS [dbo];
+

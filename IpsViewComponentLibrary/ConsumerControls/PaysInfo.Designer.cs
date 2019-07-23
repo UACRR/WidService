@@ -58,33 +58,33 @@
             Telerik.WinControls.UI.GridViewColumnGroupRow gridViewColumnGroupRow2 = new Telerik.WinControls.UI.GridViewColumnGroupRow();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvMoneyResived = new Telerik.WinControls.UI.RadGridView();
             this.bindingMoney = new System.Windows.Forms.BindingSource(this.components);
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.gvPeriod = new Telerik.WinControls.UI.RadGridView();
             this.bindingPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoneyResived)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoneyResived.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingMoney)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriod.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -120,6 +120,29 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnUpdate.Location = new System.Drawing.Point(651, 3);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(110, 24);
+            this.btnUpdate.TabIndex = 16;
+            this.btnUpdate.Text = "Оновити дані";
+            this.btnUpdate.ThemeName = "Office2013Light";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.AutoSize = false;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel3.Location = new System.Drawing.Point(3, 3);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(325, 21);
+            this.radLabel3.TabIndex = 12;
+            this.radLabel3.Text = "Платежі";
+            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // gvMoneyResived
             // 
@@ -186,7 +209,7 @@
             gridViewDateTimeColumn1.Width = 129;
             gridViewDecimalColumn4.EnableExpressionEditor = false;
             gridViewDecimalColumn4.FieldName = "Amount";
-            gridViewDecimalColumn4.FormatString = "{0:# ##0.00}";
+            gridViewDecimalColumn4.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn4.HeaderText = "Сума";
             gridViewDecimalColumn4.IsAutoGenerated = true;
             gridViewDecimalColumn4.MinWidth = 2;
@@ -194,7 +217,7 @@
             gridViewDecimalColumn4.Width = 118;
             gridViewDecimalColumn5.EnableExpressionEditor = true;
             gridViewDecimalColumn5.Expression = "Amount - DestribAmount - ISNULL(DestribPrepay,0) ";
-            gridViewDecimalColumn5.FormatString = "{0:# ##0.00}";
+            gridViewDecimalColumn5.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn5.HeaderText = "Залишок";
             gridViewDecimalColumn5.MinWidth = 3;
             gridViewDecimalColumn5.Name = "Rest";
@@ -307,6 +330,17 @@
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
             // 
+            // radLabel1
+            // 
+            this.radLabel1.AutoSize = false;
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel1.Location = new System.Drawing.Point(3, 3);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(325, 21);
+            this.radLabel1.TabIndex = 13;
+            this.radLabel1.Text = "Розподілені суми";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
             // gvPeriod
             // 
             this.gvPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -361,7 +395,7 @@
             gridViewDecimalColumn8.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn8.EnableExpressionEditor = false;
             gridViewDecimalColumn8.FieldName = "PeriodAmount";
-            gridViewDecimalColumn8.FormatString = "{0:# ##0.00}";
+            gridViewDecimalColumn8.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn8.HeaderText = "Сума періоду";
             gridViewDecimalColumn8.IsAutoGenerated = true;
             gridViewDecimalColumn8.Name = "PeriodAmount";
@@ -370,7 +404,7 @@
             gridViewDecimalColumn9.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn9.EnableExpressionEditor = false;
             gridViewDecimalColumn9.FieldName = "PayAmount";
-            gridViewDecimalColumn9.FormatString = "{0:# ##0.00}";
+            gridViewDecimalColumn9.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn9.HeaderText = "Зв\'язана сума";
             gridViewDecimalColumn9.IsAutoGenerated = true;
             gridViewDecimalColumn9.Name = "PayAmount";
@@ -423,40 +457,6 @@
             this.radPanel1.Size = new System.Drawing.Size(764, 501);
             this.radPanel1.TabIndex = 1;
             // 
-            // radLabel3
-            // 
-            this.radLabel3.AutoSize = false;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(3, 3);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(325, 21);
-            this.radLabel3.TabIndex = 12;
-            this.radLabel3.Text = "Платежі";
-            this.radLabel3.ThemeName = "Office2013Light";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.AutoSize = false;
-            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel1.Location = new System.Drawing.Point(3, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(325, 21);
-            this.radLabel1.TabIndex = 13;
-            this.radLabel1.Text = "Розподілені суми";
-            this.radLabel1.ThemeName = "Office2013Light";
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnUpdate.Location = new System.Drawing.Point(651, 3);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(110, 24);
-            this.btnUpdate.TabIndex = 16;
-            this.btnUpdate.Text = "Оновити дані";
-            this.btnUpdate.ThemeName = "Office2013Light";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // PaysInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,19 +469,19 @@
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoneyResived.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoneyResived)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingMoney)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriod.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -64,7 +64,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(718, 54);
-            this.tableLayoutPanel3.TabIndex = 11;
+            this.tableLayoutPanel3.TabIndex = 0;
             // 
             // txtPostIndex
             // 
@@ -73,7 +73,7 @@
             this.txtPostIndex.Name = "txtPostIndex";
             this.txtPostIndex.NullText = "Поштовий індекс";
             this.txtPostIndex.Size = new System.Drawing.Size(221, 21);
-            this.txtPostIndex.TabIndex = 12;
+            this.txtPostIndex.TabIndex = 4;
             this.txtPostIndex.ThemeName = "Office2013Light";
             // 
             // txtAddress
@@ -84,7 +84,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.NullText = "Адреса";
             this.txtAddress.Size = new System.Drawing.Size(465, 21);
-            this.txtAddress.TabIndex = 12;
+            this.txtAddress.TabIndex = 3;
             this.txtAddress.ThemeName = "Office2013Light";
             // 
             // txtCity
@@ -94,7 +94,7 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.NullText = "Місто";
             this.txtCity.Size = new System.Drawing.Size(221, 16);
-            this.txtCity.TabIndex = 12;
+            this.txtCity.TabIndex = 2;
             this.txtCity.ThemeName = "Office2013Light";
             // 
             // ddlRegion
@@ -105,7 +105,7 @@
             this.ddlRegion.Location = new System.Drawing.Point(248, 3);
             this.ddlRegion.Name = "ddlRegion";
             this.ddlRegion.Size = new System.Drawing.Size(220, 16);
-            this.ddlRegion.TabIndex = 12;
+            this.ddlRegion.TabIndex = 1;
             this.ddlRegion.ThemeName = "Office2013Light";
             // 
             // ddlCountry
@@ -116,7 +116,7 @@
             this.ddlCountry.Location = new System.Drawing.Point(3, 3);
             this.ddlCountry.Name = "ddlCountry";
             this.ddlCountry.Size = new System.Drawing.Size(219, 16);
-            this.ddlCountry.TabIndex = 12;
+            this.ddlCountry.TabIndex = 0;
             this.ddlCountry.ThemeName = "Office2013Light";
             // 
             // AddressLetter

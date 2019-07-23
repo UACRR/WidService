@@ -7,16 +7,22 @@ using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
-    public partial class ContactPersonActionForm : Telerik.WinControls.UI.RadForm
+    public partial class ContactPersonActionForm : RadForm
     {
         private const string TitleCreate = "Додати контактну особу";
         private const string TitleEdit = "Редагування контактної особи";
         private const string PerformentComment = "Виконавець";
         private string _cacheComment;
+
+        private class InternalPositionType
+        {
+            public int CodeI { get; set; }
+            public string Name { get; set; }
+        }
 
         private readonly List<InternalPositionType> _positionTypes = new List<InternalPositionType>
         {
@@ -35,6 +41,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         public ContactPersonActionForm(RelEmployee relEmployee, FLoadType type)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+
             switch (type)
             {
                 case FLoadType.Create:
@@ -65,17 +73,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             get => base.Text;
             set => base.Text = value;
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-        }
-
-        public class InternalPositionType
-        {
-            public int CodeI { get; set; }
-            public string Name { get; set; }
         }
 
         private void ddlPosition_SelectedValueChanged(object sender, EventArgs e)

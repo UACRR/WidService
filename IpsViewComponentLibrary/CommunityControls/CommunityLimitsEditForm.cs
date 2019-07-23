@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -13,16 +9,40 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityLimitsEditForm : RadForm
     {
-        public CommunityLimitsEditForm(CommunityAuthorsView view, List<CustCmRight> custCmRights, int communityCustId)
+        private readonly CommunityRightLimitationControl ctrlRightLimitation;
+
+        public List<CustCmRight> LimitRights => ctrlRightLimitation.LimitRights;
+        public List<TermsOfService> TermsOfServiceLimitRights => ctrlRightLimitation.TermsOfServiceLimitRights;
+
+        public CommunityLimitsEditForm()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             panelHeader.PanelElement.PanelBorder.Width = 0f;
 
-            bsHeaderCommunityAuthorsView.DataSource = view;
-            ctrlRightLimitation.SetData(view, custCmRights, communityCustId);
+            ctrlRightLimitation = new CommunityRightLimitationControl
+            {
+                Dock = DockStyle.Fill,
+            };
+            mainPanel.Controls.Add(ctrlRightLimitation);
+            ctrlSaveCancel.ButtonSaveDialogResult = DialogResult.None;
+            ctrlSaveCancel.SaveClck += CtrlSaveCancel_SaveClck;
+            
         }
 
-        public List<CustCmRight> LimitRights => ctrlRightLimitation.LimitRights;
+        private void CtrlSaveCancel_SaveClck(object sender, EventArgs e)
+        {
+            if (ctrlRightLimitation.CheckCanSaveRightLimitChanges())
+            {
+                ctrlRightLimitation.UpdateData();
+                DialogResult = DialogResult.OK;
+            }
+        }
+
+        public void SetData(CommunityAuthorsView view, List<CustCmRight> custCmRights, List<TermsOfService> termsOfServices, int communityCustId)
+        {
+            bsHeaderCommunityAuthorsView.DataSource = view;
+            ctrlRightLimitation.SetData(view, custCmRights, termsOfServices, communityCustId);
+        }
     }
 }

@@ -101,7 +101,7 @@
             // 
             this.txtPasportNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "PUnumber", true));
             this.txtPasportNumber.Location = new System.Drawing.Point(145, 2);
-            this.txtPasportNumber.MaxLength = 6;
+            this.txtPasportNumber.MaxLength = 254;
             this.txtPasportNumber.Name = "txtPasportNumber";
             this.txtPasportNumber.Size = new System.Drawing.Size(262, 21);
             this.txtPasportNumber.TabIndex = 1;
@@ -112,6 +112,7 @@
             this.txtPasportIssuedWho.AutoSize = false;
             this.txtPasportIssuedWho.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "PUissuedWho", true));
             this.txtPasportIssuedWho.Location = new System.Drawing.Point(99, 26);
+            this.txtPasportIssuedWho.MaxLength = 254;
             this.txtPasportIssuedWho.Multiline = true;
             this.txtPasportIssuedWho.Name = "txtPasportIssuedWho";
             this.txtPasportIssuedWho.Size = new System.Drawing.Size(308, 40);

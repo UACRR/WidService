@@ -11,6 +11,7 @@
     <AssemblyName>ipsFormsDesign</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,7 +55,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -271,6 +272,7 @@
     <Compile Include="Model\HandDocPay.cs" />
     <Compile Include="Model\InputFile.cs" />
     <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\IsAuthorType.cs" />
     <Compile Include="Model\ItemStatus.cs" />
     <Compile Include="Model\ItemStatusTr.cs" />
     <Compile Include="Model\KindComposition.cs" />
@@ -499,6 +501,7 @@
     <Compile Include="Utilities\ObjectRightExtensions.cs" />
     <Compile Include="Utilities\RegisterExtensions.cs" />
     <Compile Include="Utilities\UpdateEventHandlerUtility.cs" />
+    <Compile Include="ViewModels\Consumer\ConsumerSmallRightView.cs" />
     <Compile Include="ViewModels\Fixations\AmountDistributionViewModel.cs" />
     <Compile Include="ViewModels\Fixations\FixationListViewModel.cs" />
     <Compile Include="ViewModels\Fixations\FixationQuery.cs" />
@@ -560,13 +563,13 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

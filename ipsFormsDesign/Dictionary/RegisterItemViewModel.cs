@@ -17,6 +17,9 @@ namespace ipsFormsDesign.Dictionary
         public int LicId { get; set; }
         public int? LicVersion { get; set; }
 
+        public string Genre { get; set; }
+        public decimal? Rate { get; set; }
+
         public string ItemName { get; set; }
         public int? CategoryCode { get; set; }
         public string Performer { get; set; }
@@ -88,6 +91,8 @@ namespace ipsFormsDesign.Dictionary
                 OnPropertyChanged(nameof(IsAuto));
             }
         }
+
+        public int? GenreType { get; set; }
 
         public RegisterItemFix RegisterItemFix { get; set; }
         public List<RegisterExtra> RegisterExtraList { get; set; } = new List<RegisterExtra>();

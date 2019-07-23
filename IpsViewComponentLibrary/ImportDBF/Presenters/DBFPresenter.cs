@@ -29,9 +29,9 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
         /// </summary>
         /// <param name="newFile"></param>
         /// <returns></returns>
-        public InputFile CheckInputFile( InputFile newFile )
+        public InputFile CheckInputFile(InputFile newFile)
         {
-            var retFile = _service.CheckInputFile( newFile );
+            var retFile = _service.CheckInputFile(newFile);
             newFile.FileId = retFile.FileId;
             newFile.CheckParamPays.Clear();
 
@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public InputFile SaveInputFile( InputFile file )
+        public InputFile SaveInputFile(InputFile file)
         {
             var retFile = _service.SaveInputFile(file);
             return retFile;
@@ -57,9 +57,9 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
         /// </summary>
         /// <param name="pay"></param>
         /// <returns></returns>
-        public ExternalPay SaveLinkedPay( ExternalPay pay )
+        public ExternalPay SaveLinkedPay(ExternalPay pay)
         {
-            return _service.SaveLinkedPay( pay );
+            return _service.SaveLinkedPay(pay);
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public List<ExternalPay> SaveListPays( List<ExternalPay> list )
+        public List<ExternalPay> SaveListPays(List<ExternalPay> list)
         {
-            return _service.SaveListLinkedPays( list );
+            return _service.SaveListLinkedPays(list);
         }
 
         /// <summary>

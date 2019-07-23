@@ -39,3 +39,8 @@ join vCustomer t5 on t1.rhCustId = t5.custId
 RETURN
 END
 --	select * from dbo.ft_Tsk_5_21_SRcomm  ( NULL,  NULL, NULL) order by rownum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_21_SRcomm] TO [ReportUser]
+    AS [dbo];
+

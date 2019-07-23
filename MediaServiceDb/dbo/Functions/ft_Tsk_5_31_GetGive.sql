@@ -58,3 +58,8 @@ order by 2
 RETURN
 END
 --select * from ft_Tsk_5_31_GetGive ('2019-01-31', '2019-01-31')
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_31_GetGive] TO [ReportUser]
+    AS [dbo];
+

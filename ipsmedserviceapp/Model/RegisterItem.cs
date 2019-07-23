@@ -33,6 +33,8 @@ namespace ipsmedserviceapp.Model
 
         [JsonIgnore]
         public virtual RegisterItemType CodeItemNavigation { get; set; }
+        [JsonIgnore]
+        public virtual GenreType GenreTypeNavigation { get; set; }
         public virtual ObjectRight Obj { get; set; }
         [JsonIgnore]
         public virtual Register Reg { get; set; }

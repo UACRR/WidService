@@ -13,3 +13,8 @@ insert @result select dbo.f_Num2Word (@Value, '980', 'Uk')
 select * from  @result
 END
 --exec p_Num2Word NULL ,'980', 'En'
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[p_Num2Word] TO [ReportUser]
+    AS [dbo];
+

@@ -33,8 +33,8 @@ BEGIN   ----2
  insert  @result (account ,accname,date_begin,rest_begin_D,rest_begin_K,turn_D,turn_K,rest_end_D,rest_end_K)
  select 	t2.accnls,	t2.accName accname,
 				isnull(dateBegin,@dateBegin)
-				 ,isnull((case  when t3.restbegin > 0 then t3.restbegin else 0 end),0)	rest_D
-				 ,isnull((case  when t3.restbegin < 0 then -t3.restbegin else 0 end),0)	rest_K			    
+				 ,isnull((case  when t3.rest > 0 then t3.rest else 0 end),0)	rest_D
+				 ,isnull((case  when t3.rest < 0 then -t3.rest else 0 end),0)	rest_K			    
 				 ,isnull(t3.deboborot,0)	turn_D,
 				 isnull(t3.krdoborot,0)	turn_K ,
 				 isnull((case  when t3.rest > 0 then t3.rest else 0 end),0)	rest_end_D
@@ -52,11 +52,11 @@ order by dateBegin
 
 merge @result  as target
 using (   select 	t2.accnls ,t2.accName accname,	t3.dateBegin
-				 ,isnull((case  when t3.restbegin > 0 then t3.restbegin else 0 end),0)	rest_D
-				 ,isnull((case  when t3.restbegin < 0 then -t3.restbegin else 0 end),0)	rest_K			    
+				 ,isnull((case  when t3.rest > 0 then t3.restbegin else 0 end),0)	rest_D
+				 ,isnull((case  when t3.rest < 0 then -t3.restbegin else 0 end),0)	rest_K			    
 			from 
 			Account t2 
-			left join SaldoDay t3 on (t2.accId = t3.accid and @dateBegin between t3.dateBegin and t3.dateEnd )
+			left join SaldoDay t3 on (t2.accId = t3.accid and dateadd(day,-1,@dateBegin) between t3.dateBegin and t3.dateEnd )
 			where @account=t2.accnls
 		)   as source on (source.dateBegin = target.date_begin) 
 		when not matched
@@ -89,3 +89,8 @@ end
 --pTsk_5_17_3_BalanseGroupAccount  '20180101','20180727','20'
 
 --select * from vSD where accnls ='20000144'
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_17_3_BalanseGroupAccount] TO [ReportUser]
+    AS [dbo];
+

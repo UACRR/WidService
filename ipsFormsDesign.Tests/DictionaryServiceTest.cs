@@ -16,16 +16,16 @@ namespace ipsFormsDesign.Tests
             //default id dictionary
             int id = 1;
             //get dictionary
-            CopyrightKind result = _dictionary.GetCopyrightKind(id);
+            //CopyrightKind result = _dictionary.GetCopyrightKind(id);
             //checks result data
-            Assert.IsNotNull(result, "dictionary CopyrightKind is not exist");
+            //Assert.IsNotNull(result, "dictionary CopyrightKind is not exist");
         }
 
         [TestMethod]
         public void TestCreateCopyrightKind()
         {
             //define different value for CodeI
-            _dictionary.DeleteCopyrightKind(666);
+            //_dictionary.DeleteCopyrightKind(666);
             //default CopyrightKind dictionary
             CopyrightKind copyrightKind = new CopyrightKind {
                 CodeI = 666,
@@ -33,10 +33,10 @@ namespace ipsFormsDesign.Tests
                 CrGroupCode = 1
             };
             //get created dictionary
-            CopyrightKind result = _dictionary.CreateCopyrightKind(copyrightKind);
-            _dictionary.DeleteCopyrightKind(666);
+            //CopyrightKind result = _dictionary.CreateCopyrightKind(copyrightKind);
+            //_dictionary.DeleteCopyrightKind(666);
             //checks for result data
-            Assert.IsNotNull(result, "copyrightKind is not created");
+            //Assert.IsNotNull(result, "copyrightKind is not created");
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace ipsFormsDesign.Tests
                 Name = "TestCopyrightKind",
                 CrGroupCode = 1
             };
-            _dictionary.CreateCopyrightKind(copyrightKind);
+            _dictionary.CreateExtraDictionaryRecord(copyrightKind);
             //delete CopyrightKind instance
-            bool result = _dictionary.DeleteCopyrightKind(666);
+            bool result = _dictionary.DeleteExtraDictionaryRecord<CopyrightKind>(666);
             //checks for result
             Assert.IsTrue(result, "copyrightKind is not deleted");
         }

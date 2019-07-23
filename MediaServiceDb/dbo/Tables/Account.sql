@@ -22,6 +22,8 @@
 
 
 
+
+
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [AccountUI]
     ON [dbo].[Account]([r030] ASC, [accNls] ASC, [accStatus] ASC);
@@ -29,7 +31,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [AccountUI]
 
 GO
 CREATE TRIGGER AccountInsert 
-   ON  Account
+   ON  [dbo].[Account]
       AFTER INSERT 
 AS 
 BEGIN
@@ -81,4 +83,10 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Таблиц
 GO
 CREATE NONCLUSTERED INDEX [idx_custId]
     ON [dbo].[Account]([accId] ASC, [custId] ASC);
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[Account] TO [ReportUser]
+    AS [dbo];
 

@@ -78,3 +78,8 @@ END
 select * from ft_Tsk9_3_RhCrProfit ('2018-01-01', '3000-01-01','8f1f2428-48b4-4209-a577-1fab339c0d82') --2366,14
 select * from ft_Tsk9_1_RhProfit  ('2018-01-01', '3000-01-01','8f1f2428-48b4-4209-a577-1fab339c0d82') --2366,14	2957,68
 */
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk9_3_RhCrProfit] TO [ReportUser]
+    AS [dbo];
+

@@ -55,7 +55,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public IList<object> GetView(Type typeResult, string viewName, int? custId)
         {
-            string url = "consumer/BR/view/list"; // TODO: винести в інший контролер
+            string url = $"{Prefix}viewlist";
             List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("viewName", viewName) };
             if (custId != null)
                 param.Add(new KeyValuePair<string, string>("custId", custId.ToString()));
@@ -118,10 +118,10 @@ namespace ipsFormsDesign.Services
             return false;
         }
 
-        public bool UpdateAgreement(AgreementAddPartner agreement)
+        public bool UpdateAgreement(AgreementAddPartner agreement, Partner partner)
         {
             var url = string.Concat(Prefix, "agreement");
-            return _webApi.UpdateItem(url, null, agreement);
+            return _webApi.UpdateItem(url, null, new List<object> {agreement, partner});
         }
 
         #region  * * * ПРЕДСТАВНИК + КЛІЄНТ * * *

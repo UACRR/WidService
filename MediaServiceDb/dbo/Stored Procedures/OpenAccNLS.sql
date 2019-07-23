@@ -1,6 +1,4 @@
-﻿
-
-
+﻿/****** Object:  StoredProcedure [dbo].[OpenAccNLS]    Script Date: 12.07.2019 15:24:06 ******/
 --ALTER PROCEDURE [dbo].[OpenAccNLS]   
 CREATE procedure [dbo].[OpenAccNLS] 
   @CustId  integer, @Objid  integer,  @r030 char(3) , @AccNls varchar(26) , 
@@ -9,7 +7,7 @@ AS
 --Открывает счет, который задал пользователь 
 --Если  передается @CustId и/или @Objid - проверяется на наличие в соответствующих таблицах
 --внутренние счета откріваются с @CustId = NULL и @Objid = NULL
-
+--12-07-2019 -ограничение имени счета
 Begin
 SET NOCOUNT ON;   --отключение вывода кол-ва строк для оптимизации
 declare @Retcode integer, @ErrMsg varchar(200), @ErrMsg2 varchar(200)
@@ -64,7 +62,7 @@ Set @ErrMsg = ''
 begin Transaction OpenAccount 
  BEGIN TRY
 
-set @AccName = isnull(@AccName, dbo.ft_accOpenName(@accNls))
+set @AccName = left( isnull(@AccName, dbo.ft_accOpenName(@accNls)), 100)
 
 If isnull(@CustId,0) <> 0
 begin
@@ -131,6 +129,6 @@ Exec  dbo.OpenAccNLS  NUll, Null,  980, '100001', 'Счет поступлени
 Exec  dbo.OpenAccNLS  NUll, Null,  980, '110001', 'Счет для распределения (А)'  
 Exec  dbo.OpenAccNLS  NUll, Null,  980, '180001', 'Счет кредиторской задолженности (A)'  
 Exec  dbo.OpenAccNLS  NUll, Null,  980, '190001', 'Счет дебиторской задолженности (П)'  
-Exec  dbo.OpenAccNLS  1, Null,  980, '290001'
+Exec  dbo.OpenAccNLS  null, 7856,  '980', '311037856',NULL
 
 */

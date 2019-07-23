@@ -1,4 +1,5 @@
-﻿CREATE view  [dbo].[vTsk_1_BRAuthorsDistributed]
+﻿
+CREATE view  [dbo].[vTsk_1_BRAuthorsDistributed]
 as
 with TabAvanse as --Сплачено за рахунок авансів
 (select  t4.cRightId, max(isnull(t4.prepaySumAuthor,0)) as prepaySumAuthor, sum(isnull(t1.prepaySum,0)) as avanseUsed
@@ -15,7 +16,7 @@ TabPay as
  join Account t3 on t3.accId = t2.accIdDebet 
 group by t1.regId, t1.objid, t2.custIdRh
 )
-select distinct t1.rmId, t1.regId, t2.objId, t2.itemName, 
+select distinct t1.rmId, t1.regId, t2.objId, t2.itemName, t2.countUse,
 t1.regAmount, t3.actCode, t1.authRate, t1.authAmount, 
 isnull(t5.prepaySumAuthor,0) as prepaySumAuthor, 
 isnull(t5.prepaySumAuthor,0) - isnull(t5.avanseUsed,0) as avanseRest,  

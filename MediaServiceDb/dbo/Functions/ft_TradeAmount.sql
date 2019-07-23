@@ -63,3 +63,8 @@ select isnull(@tradeIdCl,0) as tradeIdCl, @AmountCl as AmountCl, @rAgrIdCl as rA
   
 RETURN;
 END;
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_TradeAmount] TO [ReportUser]
+    AS [dbo];
+

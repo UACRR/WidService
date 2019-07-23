@@ -73,6 +73,8 @@ namespace ReportsLibrary
             Telerik.Reporting.TypeReportSource typeReportSource31 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.NavigateToReportAction navigateToReportAction32 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource32 = new Telerik.Reporting.TypeReportSource();
+            Telerik.Reporting.NavigateToReportAction navigateToReportAction33 = new Telerik.Reporting.NavigateToReportAction();
+            Telerik.Reporting.TypeReportSource typeReportSource33 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule2 = new Telerik.Reporting.Drawing.StyleRule();
             this.detailSection1 = new Telerik.Reporting.DetailSection();
@@ -108,12 +110,12 @@ namespace ReportsLibrary
             this.textBox30 = new Telerik.Reporting.TextBox();
             this.textBox31 = new Telerik.Reporting.TextBox();
             this.textBox32 = new Telerik.Reporting.TextBox();
-            this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
+            this.textBox33 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // detailSection1
             // 
-            this.detailSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(25.7D);
+            this.detailSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(23.3D);
             this.detailSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox1,
             this.textBox2,
@@ -146,7 +148,8 @@ namespace ReportsLibrary
             this.textBox29,
             this.textBox30,
             this.textBox31,
-            this.textBox32});
+            this.textBox32,
+            this.textBox33});
             this.detailSection1.Name = "detailSection1";
             this.detailSection1.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
             // 
@@ -159,7 +162,7 @@ namespace ReportsLibrary
             this.textBox1.Culture = new System.Globalization.CultureInfo("");
             this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox1.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox1.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox1.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -174,9 +177,9 @@ namespace ReportsLibrary
     "blicKeyToken=null";
             navigateToReportAction2.ReportSource = typeReportSource2;
             this.textBox2.Action = navigateToReportAction2;
-            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(4.786D));
+            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(4.602D));
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.114D));
             this.textBox2.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox2.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox2.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -192,9 +195,9 @@ namespace ReportsLibrary
             navigateToReportAction3.ReportSource = typeReportSource3;
             this.textBox3.Action = navigateToReportAction3;
             this.textBox3.Culture = new System.Globalization.CultureInfo("");
-            this.textBox3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(2.943D));
+            this.textBox3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(2.851D));
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox3.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox3.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox3.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -209,16 +212,16 @@ namespace ReportsLibrary
     "PublicKeyToken=null";
             navigateToReportAction4.ReportSource = typeReportSource4;
             this.textBox4.Action = navigateToReportAction4;
-            this.textBox4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(6.629D));
+            this.textBox4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(6.367D));
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.55D));
             this.textBox4.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox4.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox4.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox4.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox4.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox4.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox4.Value = "5. Дохідність по \r\n        правовласникам";
+            this.textBox4.Value = "5. Дохідність по правовласникам";
             // 
             // textBox5
             // 
@@ -226,9 +229,9 @@ namespace ReportsLibrary
     " PublicKeyToken=null";
             navigateToReportAction5.ReportSource = typeReportSource5;
             this.textBox5.Action = navigateToReportAction5;
-            this.textBox5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(8.471D));
+            this.textBox5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(8.568D));
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox5.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox5.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox5.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -243,9 +246,9 @@ namespace ReportsLibrary
     " PublicKeyToken=null";
             navigateToReportAction6.ReportSource = typeReportSource6;
             this.textBox6.Action = navigateToReportAction6;
-            this.textBox6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(10.314D));
+            this.textBox6.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(10.319D));
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox6.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox6.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox6.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox6.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -260,9 +263,9 @@ namespace ReportsLibrary
     "al, PublicKeyToken=null";
             navigateToReportAction7.ReportSource = typeReportSource7;
             this.textBox7.Action = navigateToReportAction7;
-            this.textBox7.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(12.157D));
+            this.textBox7.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(12.071D));
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.55D));
             this.textBox7.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox7.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox7.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -270,7 +273,7 @@ namespace ReportsLibrary
             this.textBox7.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox7.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox7.Style.Visible = true;
-            this.textBox7.Value = "9. Розподіл авторскої ";
+            this.textBox7.Value = "9. Розподіл авторскої винагороди";
             // 
             // textBox8
             // 
@@ -278,9 +281,9 @@ namespace ReportsLibrary
     "utral, PublicKeyToken=null";
             navigateToReportAction8.ReportSource = typeReportSource8;
             this.textBox8.Action = navigateToReportAction8;
-            this.textBox8.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(14D));
+            this.textBox8.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(14.272D));
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.4D));
             this.textBox8.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox8.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox8.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -297,9 +300,9 @@ namespace ReportsLibrary
     "tral, PublicKeyToken=null";
             navigateToReportAction9.ReportSource = typeReportSource9;
             this.textBox9.Action = navigateToReportAction9;
-            this.textBox9.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(1.11D));
+            this.textBox9.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox9.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox9.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox9.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox9.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -307,8 +310,7 @@ namespace ReportsLibrary
             this.textBox9.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox9.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox9.Style.Visible = true;
-            this.textBox9.Value = "11. Відомість \'Розподіл авторської \r\n    винагороди на Авторів  з \'малих \r\n    пр" +
-    "ав\'\'";
+            this.textBox9.Value = "11. Відомість \'Розподіл авторської винагороди на Авторів  з \'малих прав\'\'";
             // 
             // textBox10
             // 
@@ -318,9 +320,9 @@ namespace ReportsLibrary
     "l, PublicKeyToken=null";
             navigateToReportAction10.ReportSource = typeReportSource10;
             this.textBox10.Action = navigateToReportAction10;
-            this.textBox10.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(3.443D));
+            this.textBox10.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(3.493D));
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox10.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox10.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox10.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox10.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -328,8 +330,7 @@ namespace ReportsLibrary
             this.textBox10.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox10.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox10.Style.Visible = true;
-            this.textBox10.Value = "12. Відомість \'Розподіл авторської \r\n    винагороди на Авторів  з \'великих \r\n    " +
-    "прав\'\'";
+            this.textBox10.Value = "12. Відомість \'Розподіл авторської  винагороди на Авторів  з \'великих прав\'\'";
             // 
             // textBox11
             // 
@@ -339,9 +340,9 @@ namespace ReportsLibrary
     "neutral, PublicKeyToken=null";
             navigateToReportAction11.ReportSource = typeReportSource11;
             this.textBox11.Action = navigateToReportAction11;
-            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(5.776D));
+            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox11.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox11.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox11.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -349,8 +350,8 @@ namespace ReportsLibrary
             this.textBox11.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox11.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox11.Style.Visible = true;
-            this.textBox11.Value = "13. Відомість \'Розподіл авторської \r\n    винагороди на правовласників з \r\n    \'ве" +
-    "ликих прав\' - інші товариства\'";
+            this.textBox11.Value = "13. Відомість \'Розподіл авторської винагороди на правовласників з \'великих прав\' " +
+    "- інші товариства\'";
             // 
             // textBox12
             // 
@@ -358,17 +359,16 @@ namespace ReportsLibrary
     "l, PublicKeyToken=null";
             navigateToReportAction12.ReportSource = typeReportSource12;
             this.textBox12.Action = navigateToReportAction12;
-            this.textBox12.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(8.189D));
+            this.textBox12.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(3.503D));
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox12.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox12.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox12.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox12.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox12.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox12.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox12.Value = "14. Реєстр \"Розподіл авторської\r\n    винагороди на правовласників з \r\n    \"малих " +
-    "прав\"";
+            this.textBox12.Value = "14. Реєстр \"Розподіл авторської винагороди на правовласників з \"малих прав\"";
             // 
             // textBox13
             // 
@@ -376,17 +376,17 @@ namespace ReportsLibrary
     "l, PublicKeyToken=null";
             navigateToReportAction13.ReportSource = typeReportSource13;
             this.textBox13.Action = navigateToReportAction13;
-            this.textBox13.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(10.443D));
+            this.textBox13.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(5.886D));
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox13.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox13.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox13.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox13.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox13.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox13.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox13.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox13.Value = "15. Реєстр \'Розподіл авторської \r\n    винагороди на правовласників з \r\n    \'велик" +
-    "их прав у зозрізі р/л\'";
+            this.textBox13.Value = "15. Реєстр \'Розподіл авторської  винагороди на правовласників з \'великих прав у з" +
+    "озрізі р/л\'";
             // 
             // textBox14
             // 
@@ -394,17 +394,17 @@ namespace ReportsLibrary
     "tral, PublicKeyToken=null";
             navigateToReportAction14.ReportSource = typeReportSource14;
             this.textBox14.Action = navigateToReportAction14;
-            this.textBox14.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(12.776D));
+            this.textBox14.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(8.279D));
             this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox14.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox14.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox14.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox14.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox14.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox14.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox14.Value = "16. Реєстр розподіл авторської \r\n    винагороди на правовласників з \r\n    \'велики" +
-    "х прав \' (зведений)";
+            this.textBox14.Value = "16. Реєстр розподіл авторської винагороди на правовласників з \'великих прав \' (зв" +
+    "едений)";
             // 
             // textBox15
             // 
@@ -412,17 +412,16 @@ namespace ReportsLibrary
     "ral, PublicKeyToken=null";
             navigateToReportAction15.ReportSource = typeReportSource15;
             this.textBox15.Action = navigateToReportAction15;
-            this.textBox15.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(15.11D));
+            this.textBox15.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(5.886D));
             this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox15.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox15.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox15.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox15.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox15.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox15.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox15.Value = "17. Відомість \'Розподіл авторської \r\n    винагороди на правовласників\' за \r\n    п" +
-    "еріод";
+            this.textBox15.Value = "17. Відомість \'Розподіл авторської винагороди на правовласників\' за період";
             // 
             // textBox16
             // 
@@ -430,17 +429,16 @@ namespace ReportsLibrary
     "eutral, PublicKeyToken=null";
             navigateToReportAction16.ReportSource = typeReportSource16;
             this.textBox16.Action = navigateToReportAction16;
-            this.textBox16.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox16.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(8.279D));
             this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox16.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox16.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox16.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox16.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox16.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox16.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox16.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox16.Value = "18. Реєстр неприв\'язаних та в пошуку \r\n    об\'єктів права (малі права) \r\n    за д" +
-    "ату";
+            this.textBox16.Value = "18. Реєстр неприв\'язаних та в пошуку об\'єктів права (малі права)  за дату";
             // 
             // textBox17
             // 
@@ -450,16 +448,16 @@ namespace ReportsLibrary
     "licKeyToken=null";
             navigateToReportAction17.ReportSource = typeReportSource17;
             this.textBox17.Action = navigateToReportAction17;
-            this.textBox17.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(5.786D));
+            this.textBox17.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(10.673D));
             this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox17.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox17.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox17.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox17.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox17.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox17.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox17.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox17.Value = "20. Великі права. Звіт про авторську \r\n    винагороду по Автору за період";
+            this.textBox17.Value = "20. Великі права. Звіт про авторську винагороду по Автору за період";
             // 
             // textBox18
             // 
@@ -469,16 +467,16 @@ namespace ReportsLibrary
     "blicKeyToken=null";
             navigateToReportAction18.ReportSource = typeReportSource18;
             this.textBox18.Action = navigateToReportAction18;
-            this.textBox18.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(3.443D));
+            this.textBox18.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(10.673D));
             this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox18.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox18.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox18.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox18.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox18.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox18.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox18.Value = "19. Малі права. Звіт про авторську \r\n    винагороду по Автору  за період";
+            this.textBox18.Value = "19. Малі права. Звіт про авторську винагороду по Автору  за період";
             // 
             // textBox19
             // 
@@ -488,16 +486,16 @@ namespace ReportsLibrary
     "licKeyToken=null";
             navigateToReportAction19.ReportSource = typeReportSource19;
             this.textBox19.Action = navigateToReportAction19;
-            this.textBox19.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(8.129D));
+            this.textBox19.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(13.066D));
             this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox19.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox19.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox19.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox19.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox19.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox19.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox19.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox19.Value = "21. Роялті до розподілу від \r\n     користувачів з \"великих прав\"\n";
+            this.textBox19.Value = "21. Роялті до розподілу від користувачів з \"великих прав\"\n";
             // 
             // textBox20
             // 
@@ -507,17 +505,16 @@ namespace ReportsLibrary
     "ublicKeyToken=null";
             navigateToReportAction20.ReportSource = typeReportSource20;
             this.textBox20.Action = navigateToReportAction20;
-            this.textBox20.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(10.471D));
+            this.textBox20.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(15.459D));
             this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox20.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox20.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox20.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox20.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox20.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox20.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox20.Value = "22. Реєстр переданого до розподілу\r\n    роялті від користувачів з \"великих\r\n    п" +
-    "рав\"";
+            this.textBox20.Value = "22. Реєстр переданого до розподілу роялті від користувачів з \"великих прав\"";
             // 
             // textBox21
             // 
@@ -527,16 +524,16 @@ namespace ReportsLibrary
     "cKeyToken=null";
             navigateToReportAction21.ReportSource = typeReportSource21;
             this.textBox21.Action = navigateToReportAction21;
-            this.textBox21.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(12.814D));
+            this.textBox21.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(17.852D));
             this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox21.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox21.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox21.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox21.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox21.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox21.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox21.Value = "23. Реєстр переданого до розподілу \r\n    роялті по \"великим правам\"";
+            this.textBox21.Value = "23. Реєстр переданого до розподілу роялті по \"великим правам\"";
             // 
             // textBox22
             // 
@@ -546,16 +543,16 @@ namespace ReportsLibrary
     "cKeyToken=null";
             navigateToReportAction22.ReportSource = typeReportSource22;
             this.textBox22.Action = navigateToReportAction22;
-            this.textBox22.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(15.157D));
+            this.textBox22.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(13.066D));
             this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox22.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox22.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox22.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox22.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox22.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox22.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox22.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox22.Value = "24. Реєстр переданого до розподілу \r\n     роялті по \"малим правам\"";
+            this.textBox22.Value = "24. Реєстр переданого до розподілу  роялті по \"малим правам\"";
             // 
             // textBox23
             // 
@@ -563,9 +560,9 @@ namespace ReportsLibrary
     "PublicKeyToken=null";
             navigateToReportAction23.ReportSource = typeReportSource23;
             this.textBox23.Action = navigateToReportAction23;
-            this.textBox23.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(17.5D));
+            this.textBox23.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(16.323D));
             this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox23.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.31D));
             this.textBox23.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox23.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox23.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -582,37 +579,35 @@ namespace ReportsLibrary
     "licKeyToken=null";
             navigateToReportAction24.ReportSource = typeReportSource24;
             this.textBox24.Action = navigateToReportAction24;
-            this.textBox24.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
+            this.textBox24.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(20.245D));
             this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox24.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox24.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox24.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox24.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox24.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox24.Value = "26. Відомість \"Розподіл авторської \r\n    винагороди на правовласників\r\n     \"вели" +
-    "ких прав\"";
+            this.textBox24.Value = "26. Відомість \"Розподіл авторської  винагороди на правовласників \"великих прав\"";
             // 
             // textBox25
             // 
             typeReportSource25.Parameters.Add(new Telerik.Reporting.Parameter("cmFlag", "=0"));
-            typeReportSource25.Parameters.Add(new Telerik.Reporting.Parameter("categoryCode", "=5"));
+            typeReportSource25.Parameters.Add(new Telerik.Reporting.Parameter("categoryCode", "=0"));
             typeReportSource25.TypeName = "ReportsLibrary.R_5_16_AuthorSR, ReportsLibrary, Version=1.0.0.0, Culture=neutral," +
     " PublicKeyToken=null";
             navigateToReportAction25.ReportSource = typeReportSource25;
             this.textBox25.Action = navigateToReportAction25;
-            this.textBox25.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22D), Telerik.Reporting.Drawing.Unit.Cm(3.443D));
+            this.textBox25.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19D), Telerik.Reporting.Drawing.Unit.Cm(1.1D));
             this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox25.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox25.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox25.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox25.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox25.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox25.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox25.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox25.Value = "27. Відомість \'Розподіл авторської \r\n    винагороди на правовласників\' \r\n        " +
-    "за дату";
+            this.textBox25.Value = "27. Відомість \'Розподіл авторської винагороди на правовласників\'  за дату";
             // 
             // textBox26
             // 
@@ -622,17 +617,17 @@ namespace ReportsLibrary
     "cKeyToken=null";
             navigateToReportAction26.ReportSource = typeReportSource26;
             this.textBox26.Action = navigateToReportAction26;
-            this.textBox26.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22D), Telerik.Reporting.Drawing.Unit.Cm(5.786D));
+            this.textBox26.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19D), Telerik.Reporting.Drawing.Unit.Cm(3.443D));
             this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox26.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox26.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox26.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox26.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox26.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox26.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox26.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox26.Value = "28. Відомість \"Розподіл авторської \r\n    винагороди  з \"великих прав\"\r\n    Інші т" +
-    "овариства (Іноземні автори)\r\n";
+            this.textBox26.Value = "28. Відомість \"Розподіл авторської  винагороди  з \"великих прав\" Інші товариства " +
+    "(Іноземні автори)\r\n";
             // 
             // textBox27
             // 
@@ -642,17 +637,16 @@ namespace ReportsLibrary
     "blicKeyToken=null";
             navigateToReportAction27.ReportSource = typeReportSource27;
             this.textBox27.Action = navigateToReportAction27;
-            this.textBox27.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22D), Telerik.Reporting.Drawing.Unit.Cm(8.129D));
+            this.textBox27.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19D), Telerik.Reporting.Drawing.Unit.Cm(5.786D));
             this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox27.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox27.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox27.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox27.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox27.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox27.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox27.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox27.Value = "29. Роялті до розподілу від \r\n    користувачів з \"малих прав\" за \r\n    видами дог" +
-    "оворів";
+            this.textBox27.Value = "29. Роялті до розподілу від  користувачів з \"малих прав\" за  видами договорів";
             // 
             // textBox28
             // 
@@ -662,17 +656,17 @@ namespace ReportsLibrary
     "PublicKeyToken=null";
             navigateToReportAction28.ReportSource = typeReportSource28;
             this.textBox28.Action = navigateToReportAction28;
-            this.textBox28.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22D), Telerik.Reporting.Drawing.Unit.Cm(10.471D));
+            this.textBox28.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19D), Telerik.Reporting.Drawing.Unit.Cm(8.128D));
             this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox28.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox28.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox28.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox28.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox28.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox28.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox28.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox28.Value = "30. Роялті до розподілу від \r\n    користувачів з \"малих прав\" \r\n    за видами дог" +
-    "оворів(загальний)";
+            this.textBox28.Value = "30. Роялті до розподілу від  користувачів з \"малих прав\" за видами договорів(зага" +
+    "льний)";
             // 
             // textBox29
             // 
@@ -682,9 +676,9 @@ namespace ReportsLibrary
     "ublicKeyToken=null";
             navigateToReportAction29.ReportSource = typeReportSource29;
             this.textBox29.Action = navigateToReportAction29;
-            this.textBox29.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22D), Telerik.Reporting.Drawing.Unit.Cm(12.814D));
+            this.textBox29.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(19D), Telerik.Reporting.Drawing.Unit.Cm(10.99D));
             this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox29.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox29.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox29.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox29.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -701,16 +695,16 @@ namespace ReportsLibrary
     "PublicKeyToken=null";
             navigateToReportAction30.ReportSource = typeReportSource30;
             this.textBox30.Action = navigateToReportAction30;
-            this.textBox30.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22D), Telerik.Reporting.Drawing.Unit.Cm(15.157D));
+            this.textBox30.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(18.284D));
             this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox30.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.31D));
             this.textBox30.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox30.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox30.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox30.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox30.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox30.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox30.Value = "32.  Відомість Надійшло-\r\n          Розподілено";
+            this.textBox30.Value = "32.  Відомість Надійшло-Розподілено";
             // 
             // textBox31
             // 
@@ -720,9 +714,9 @@ namespace ReportsLibrary
     "blicKeyToken=null";
             navigateToReportAction31.ReportSource = typeReportSource31;
             this.textBox31.Action = navigateToReportAction31;
-            this.textBox31.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(22D), Telerik.Reporting.Drawing.Unit.Cm(17.5D));
+            this.textBox31.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(20.245D));
             this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.1D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox31.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(1.31D));
             this.textBox31.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox31.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox31.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -737,9 +731,9 @@ namespace ReportsLibrary
     "yToken=null";
             navigateToReportAction32.ReportSource = typeReportSource32;
             this.textBox32.Action = navigateToReportAction32;
-            this.textBox32.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(20.2D));
+            this.textBox32.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(15.469D));
             this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox32.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox32.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox32.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox32.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -748,9 +742,22 @@ namespace ReportsLibrary
             this.textBox32.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox32.Value = "36.      Реєстр об\'єктів права";
             // 
-            // sqlDataSource1
+            // textBox33
             // 
-            this.sqlDataSource1.Name = "sqlDataSource1";
+            typeReportSource33.TypeName = "ReportsLibrary.R_5_24_DBF, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Publ" +
+    "icKeyToken=null";
+            navigateToReportAction33.ReportSource = typeReportSource33;
+            this.textBox33.Action = navigateToReportAction33;
+            this.textBox33.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.6D), Telerik.Reporting.Drawing.Unit.Cm(17.862D));
+            this.textBox33.Name = "textBox33";
+            this.textBox33.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox33.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox33.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
+            this.textBox33.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox33.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox33.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
+            this.textBox33.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox33.Value = "37.    Реєстр переданого до розподілу  роялті";
             // 
             // ReportS
             // 
@@ -759,7 +766,7 @@ namespace ReportsLibrary
             this.Name = "ReportS";
             this.PageSettings.ContinuousPaper = false;
             this.PageSettings.Landscape = true;
-            this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(1.5D), Telerik.Reporting.Drawing.Unit.Cm(1.5D), Telerik.Reporting.Drawing.Unit.Cm(1.5D), Telerik.Reporting.Drawing.Unit.Cm(1.5D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
@@ -774,7 +781,7 @@ namespace ReportsLibrary
             this.StyleSheet.AddRange(new Telerik.Reporting.Drawing.StyleRule[] {
             styleRule1,
             styleRule2});
-            this.Width = Telerik.Reporting.Drawing.Unit.Cm(30.7D);
+            this.Width = Telerik.Reporting.Drawing.Unit.Cm(25.7D);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -811,7 +818,7 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox29;
         private Telerik.Reporting.TextBox textBox30;
         private Telerik.Reporting.TextBox textBox31;
-        private Telerik.Reporting.SqlDataSource sqlDataSource1;
         private Telerik.Reporting.TextBox textBox32;
+        private Telerik.Reporting.TextBox textBox33;
     }
 }

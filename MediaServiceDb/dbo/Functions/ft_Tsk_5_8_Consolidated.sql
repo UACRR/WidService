@@ -2,8 +2,9 @@
 RETURNS @RT TABLE
 (categoryCode integer, 
  categoryName varchar(200), 
- cmFlagName varchar(200), 
- cmFlag integer,
+ cmName varchar(200), 
+ cmCustId integer,
+ cmFlag integer, 
  sCollectm money, 
  sCommiss money,
  sDistrib money
@@ -21,41 +22,31 @@ set @endDate = isnull(@endDate, getdate())
 set @myCm = (select max(custId) from vMyAnk)
 set @myCmName = (select max(name) from vMyAnk)
 
-declare @TmpRh table
-( id integer not null identity primary key, 
-  rhCustId integer, 
-  objid integer, 
-  categoryCode integer,
-  amount money, 
-  cmCustId integer, 
-  rate decimal(10,5), 
-  cmFlag integer, 
-  cmFlagName varchar(200)
-)
-insert into @TmpRh (rhCustId, categoryCode, amount, cmCustId, cmFlag, cmFlagName)
- select isnull(rhCustId,-1), categoryCode, sum(amount) as amount, cmCustId, 
-       (Case when cmCustId=@myCm Then 0 Else 1 end),
-       (Case when cmCustId=@myCm Then @myCmName Else 'Інші Товариства' end)
-   --from ft_Tsk_5_DISTRIBUTED ('2019-01-01', NULL, NULL, NULL)  
-   from ft_Tsk_5_DISTRIBUTED (@beginDate, @endDate, NULL, NULL) 
-   group by  rhCustId, categoryCode, cmCustId
 
- update @TmpRh set rate = t3.rateCommiss
-     from @TmpRh  t1 
-	 join AgreementMaster t2 on t2.custId = t1.rhCustId
-	 join AgreementAddRH t3 on t3.agrId = t2.agrId and t3.version = t2.version
-	 
- insert into @RT (categoryCode, cmFlagName, sCollectm, sCommiss, sDistrib, cmFlag) 
-   select categoryCode, max(cmFlagName), sum(amount),  cast(sum(amount*rate/100) as money), sum(amount) - cast(sum(amount*rate/100) as money), cmFlag
-    from @TmpRh 
-	group by categoryCode, cmFlag
+ insert into @RT (cmCustId, categoryCode, cmFlag, sCollectm, sCommiss, sDistrib)
+ select   t1.cmCustId
+        , categoryCode
+		, (Case when cmCustId=@myCm Then 0 Else 1 end)
+		--, (Case when cmCustId=138 Then 0 Else 1 end)
+		, sum(amount) as sCollectm
+		, cast(sum(amount*(isnull(t2.rateCommiss,0)/100)) as money) as sCommiss
+		, sum(amount) - cast(sum(amount*isnull(t2.rateCommiss,0)/100) as money) as sDistrib
+   --from ft_Tsk_5_DISTRIBUTED ('2019-01-01', NULL, NULL, NULL)  t1
+   from ft_Tsk_5_DISTRIBUTED (@beginDate, @endDate, NULL, NULL)  t1
+     left join vCustomerRHolder t2 on t2.custId = t1.custId
+   group by  t1.cmCustId, categoryCode
+
  
  update @RT set categoryName = t2.name
    from @RT t1 
      join vCategory t2 on t2.codeI = t1.categoryCode
 
+ update @RT set cmName = t2.name
+   from @RT t1 
+     join vCustomerCommunity t2 on t2.custId = t1.cmCustId
+
 RETURN
 END
 
---select  * from ft_Tsk_5_8_Consolidated ('2019-01-01', NULL) --142213,34
+--select  * from ft_Tsk_5_8_Consolidated ('2018-01-01', NULL) order by categoryCode, cmFlag, cmName --142213,34 
 --select  * from ft_Tsk_5_8_Consolidated ('2019-01-01', NULL) --142213,34

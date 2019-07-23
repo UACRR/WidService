@@ -20,9 +20,12 @@ namespace IpsViewComponentLibrary.Shared.Controls
         public IpsBossNameContactsControl()
         {
             InitializeComponent();
-            txtPhone.Text = phoneCode;
-            txtPhone.Leave += txtPhone_Leave;
-            txtPhone.Enter += txtPhone_Enter;
+
+            // disabled in MED-571
+            //txtPhone.Text = phoneCode;
+            //txtPhone.KeyPress += txtPhone_KeyPress;
+            //txtPhone.Leave += txtPhone_Leave;
+            //txtPhone.Enter += txtPhone_Enter;
         }
 
         public object DataSource
@@ -39,7 +42,6 @@ namespace IpsViewComponentLibrary.Shared.Controls
 
         private bool IsValidMail(string email)
         {
-            
             try
             {
                 var mail = new MailAddress(email);

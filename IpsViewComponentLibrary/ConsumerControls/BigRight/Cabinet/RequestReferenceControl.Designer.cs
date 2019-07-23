@@ -137,7 +137,7 @@
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ заявки";
-            gridViewTextBoxColumn4.MaxWidth = 120;
+            gridViewTextBoxColumn4.MaxWidth = 180;
             gridViewTextBoxColumn4.MinWidth = 120;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "LicNum";
@@ -155,6 +155,7 @@
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn6.FieldName = "Rate";
+            gridViewTextBoxColumn6.FormatString = "{0:##0.00}";
             gridViewTextBoxColumn6.HeaderText = "АВ%";
             gridViewTextBoxColumn6.MaxWidth = 45;
             gridViewTextBoxColumn6.MinWidth = 45;
@@ -319,6 +320,7 @@
             gridViewTextBoxColumn14.WrapText = true;
             gridViewTextBoxColumn15.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn15.FieldName = "RoleRate";
+            gridViewTextBoxColumn15.FormatString = "{0:##0.00}";
             gridViewTextBoxColumn15.HeaderText = "% вин.";
             gridViewTextBoxColumn15.MaxWidth = 40;
             gridViewTextBoxColumn15.MinWidth = 40;
@@ -328,7 +330,6 @@
             gridViewTextBoxColumn15.Width = 40;
             gridViewTextBoxColumn15.WrapText = true;
             gridViewTextBoxColumn16.FieldName = "R030";
-            gridViewTextBoxColumn16.FormatString = "{0:d}";
             gridViewTextBoxColumn16.HeaderText = "Вал.";
             gridViewTextBoxColumn16.MaxWidth = 40;
             gridViewTextBoxColumn16.MinWidth = 40;
@@ -339,6 +340,7 @@
             gridViewTextBoxColumn16.WrapText = true;
             gridViewTextBoxColumn17.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn17.FieldName = "PrepaySum";
+            gridViewTextBoxColumn17.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn17.HeaderText = "Передоплата";
             gridViewTextBoxColumn17.MinWidth = 85;
             gridViewTextBoxColumn17.Multiline = true;

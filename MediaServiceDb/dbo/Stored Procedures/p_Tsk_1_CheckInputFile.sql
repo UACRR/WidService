@@ -1,4 +1,5 @@
-﻿create procedure dbo.p_Tsk_1_CheckInputFile @inputFileId int as
+﻿
+CREATE procedure [dbo].[p_Tsk_1_CheckInputFile] @inputFileId int as
 begin
 -- Пошук дублів
 update CheckParamPays 
@@ -6,6 +7,7 @@ set inputStatus = 0
 from CheckParamPays t1
 join ExternalPay t2 on t1.accountCorr = t2.accountCorr and t1.okpoCorr = t2.okpoCorr and t1.docNum = t2.docNum
 						and t1.docDate = t2.docDate and t1.sCredit = t2.sCredit and t1.nplat = t2.nplat
+						-- t1.sCredit / 100 = t2.sCredit
 where
 t1.inputFileId = @inputFileId;
 
@@ -43,7 +45,4 @@ update CheckParamPays
 set LinkStatus = 0
 where
 LinkStatus is null;
-
-
-
 end

@@ -2,20 +2,10 @@
 using System.Collections.Generic;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.ViewModels.Consumer;
 
 namespace ipsFormsDesign.Interfaces
 {
-    public class ConsumerSmallRightView
-    {
-        public int CustId { get; set; }
-        public string Innokpo { get; set; }
-        public string Name { get; set; }
-        public string ClientBrand { get; set; }
-        public int CountActive { get; set; }
-        public decimal Undistribamount { get; set; }
-        public bool IsAnkExtrn { get; set; }
-    }
-
     /// <summary>
     /// Дані для GridView Для великих прав
     /// </summary>
@@ -177,7 +167,6 @@ namespace ipsFormsDesign.Interfaces
         public int? ObjStatus { get; set; }
         public int? GenreType { get; set; }
         public int? PerformNumb { get; set; }
-        public decimal? Borg { get; set; }
         public decimal? PrepayPaush { get; set; }
         public decimal? PrepayAvans { get; set; }
         public decimal? PrepayRest { get; set; }
@@ -379,7 +368,7 @@ namespace ipsFormsDesign.Interfaces
         public int AgrId { get; set; }
         public int? AgrStatus { get; set; }
         public int? ClnCount { get; set; }
-        public int? AgrCount { get; set; }
+        public string AgrCount { get; set; }
         public string Innokpo { get; set; }
         public string Name { get; set; }
         public string AgrNumber { get; set; }
@@ -397,7 +386,7 @@ namespace ipsFormsDesign.Interfaces
         public int ClCustId { get; set; }
         public int? CustType { get; set; }
         public string CustTypeName { get; set; }
-        public int? AgrCount { get; set; }
+        public string AgrCount { get; set; }
         public decimal SumBorg { get; set; }
         public string Innokpo { get; set; }
         public string ClientName { get; set; }
@@ -428,6 +417,7 @@ namespace ipsFormsDesign.Interfaces
         public string InterCode { get; set; }
         public DateTime? RegistrDate { get; set; }
         public int? CountAuthors { get; set; }
+        public int IsMy { get; set; }
     }
 
     public class CommunityAuthorsView

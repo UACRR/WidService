@@ -58,8 +58,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvViewPartners.AutoScroll = true;
-            this.gvViewPartners.AutoSizeRows = true;
+            this.gvViewPartners.Cursor = System.Windows.Forms.Cursors.Default;
             this.gvViewPartners.EnableCustomFiltering = true;
+            this.gvViewPartners.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gvViewPartners.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.gvViewPartners.Location = new System.Drawing.Point(3, 29);
             // 
             // 
@@ -95,7 +97,7 @@
             gridViewTextBoxColumn4.HeaderText = "Назва товариства";
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Name = "Name";
-            gridViewTextBoxColumn4.Width = 540;
+            gridViewTextBoxColumn4.Width = 564;
             gridViewTextBoxColumn5.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn5.FieldName = "RegistrDate";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
@@ -142,9 +144,13 @@
             this.gvViewPartners.MasterTemplate.EnableFiltering = true;
             this.gvViewPartners.MasterTemplate.EnableGrouping = false;
             this.gvViewPartners.MasterTemplate.ShowFilteringRow = false;
+            this.gvViewPartners.MasterTemplate.ShowRowHeaderColumn = false;
             this.gvViewPartners.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewPartners.Name = "gvViewPartners";
             this.gvViewPartners.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvViewPartners.ReadOnly = true;
+            this.gvViewPartners.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gvViewPartners.ShowGroupPanel = false;
             this.gvViewPartners.Size = new System.Drawing.Size(926, 437);
             this.gvViewPartners.TabIndex = 11;
             this.gvViewPartners.ThemeName = "Office2013Light";

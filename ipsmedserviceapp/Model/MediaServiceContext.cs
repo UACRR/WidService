@@ -132,6 +132,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<HandDocPay> HandDocPay { get; set; }
         public virtual DbSet<InputFile> InputFile { get; set; }
         public virtual DbSet<Invoice> Invoice { get; set; }
+        public virtual DbSet<IsAuthorType> IsAuthorType { get; set; }
         public virtual DbSet<ItemStatus> ItemStatus { get; set; }
         public virtual DbSet<ItemStatusTr> ItemStatusTr { get; set; }
         public virtual DbSet<KindComposition> KindComposition { get; set; }
@@ -808,11 +809,13 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CourtCompRate)
                     .HasColumnName("courtCompRate")
-                    .HasColumnType("numeric(10, 5)");
+                    .HasColumnType("numeric(10, 5)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.CourtRate)
                     .HasColumnName("courtRate")
-                    .HasColumnType("numeric(10, 5)");
+                    .HasColumnType("numeric(10, 5)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -837,25 +840,30 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.NoCourtRate)
                     .HasColumnName("noCourtRate")
-                    .HasColumnType("numeric(10, 5)");
+                    .HasColumnType("numeric(10, 5)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
 
                 entity.Property(e => e.PfFirstRate)
                     .HasColumnName("pfFirstRate")
-                    .HasColumnType("numeric(10, 5)");
+                    .HasColumnType("numeric(10, 5)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.PfMonthRate)
                     .HasColumnName("pfMonthRate")
-                    .HasColumnType("numeric(10, 5)");
+                    .HasColumnType("numeric(10, 5)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.SrFirstRate)
                     .HasColumnName("srFirstRate")
-                    .HasColumnType("numeric(10, 5)");
+                    .HasColumnType("numeric(10, 5)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.SrMonthRate)
                     .HasColumnName("srMonthRate")
-                    .HasColumnType("numeric(10, 5)");
+                    .HasColumnType("numeric(10, 5)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.HasOne(d => d.Agr)
                     .WithMany(p => p.AgreementAddPartner)
@@ -3252,6 +3260,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Crtype).HasColumnName("CRType");
 
+                entity.Property(e => e.IsAuthorType).HasColumnName("isAuthorType");
+
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(128)
@@ -3268,6 +3278,11 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.Crtype)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CREATIVE_REFERENCE_COPYRIGH");
+
+                entity.HasOne(d => d.IsAuthorTypeNavigation)
+                    .WithMany(p => p.CreativeRoleType)
+                    .HasForeignKey(d => d.IsAuthorType)
+                    .HasConstraintName("FK_CREATIVE_REFERENCE_ISAUTHOR");
             });
 
             modelBuilder.Entity<CreativeRoleTypeTr>(entity =>
@@ -4917,6 +4932,23 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Status).HasColumnName("status");
             });
 
+            modelBuilder.Entity<IsAuthorType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI)
+                    .HasName("PK_ISAUTHORTYPE");
+
+                entity.ToTable("IsAuthorType", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<ItemStatus>(entity =>
             {
                 entity.HasKey(e => e.CodeI)
@@ -6394,6 +6426,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("accInCommission")
                     .HasMaxLength(25)
                     .IsUnicode(false);
+
+                entity.Property(e => e.TypeAlg).HasColumnName("typeAlg");
 
                 entity.HasOne(d => d.Cust)
                     .WithOne(p => p.MyAnketa)
@@ -8052,6 +8086,11 @@ namespace ipsmedserviceapp.Model
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGITEM_REF_REGITEMTYPE");
 
+                entity.HasOne(d => d.GenreTypeNavigation)
+                    .WithMany(p => p.RegisterItem)
+                    .HasForeignKey(d => d.GenreType)
+                    .HasConstraintName("FK_REGISTER_REFERENCE_GENRETYP");
+
                 entity.HasOne(d => d.Obj)
                     .WithMany(p => p.RegisterItem)
                     .HasForeignKey(d => d.ObjId)
@@ -9675,6 +9714,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("rate")
                     .HasColumnType("numeric(10, 5)");
 
+                entity.Property(e => e.RhCustId).HasColumnName("rhCustId");
+
                 entity.Property(e => e.RoleCode).HasColumnName("roleCode");
 
                 entity.Property(e => e.RoleName)
@@ -9766,6 +9807,10 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("comment")
                     .HasMaxLength(1024)
                     .IsUnicode(false);
+
+                entity.Property(e => e.DatePassed)
+                    .HasColumnName("datePassed")
+                    .HasColumnType("date");
 
                 entity.Property(e => e.InnerCode)
                     .HasColumnName("innerCode")

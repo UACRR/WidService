@@ -134,7 +134,7 @@
             this.panel.Controls.Add(this.ddlPeriodPayment);
             this.panel.Location = new System.Drawing.Point(3, 70);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(489, 69);
+            this.panel.Size = new System.Drawing.Size(474, 69);
             this.panel.TabIndex = 5;
             this.panel.ThemeName = "Office2013Light";
             // 
@@ -255,7 +255,7 @@
             this.Controls.Add(this.lblParam);
             this.Controls.Add(this.panel);
             this.Name = "AgreementBigRight";
-            this.Size = new System.Drawing.Size(499, 145);
+            this.Size = new System.Drawing.Size(481, 145);
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).EndInit();

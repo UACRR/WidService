@@ -129,3 +129,8 @@ select (Case usesType when 6 then 1 else 2 end), usesTypeName, cRKindCode, cRKin
 end
 
 --exec pTsk_5_2_CrKind 2
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[pTsk_5_2_CrKind_NEW] TO [ReportUser]
+    AS [dbo];
+

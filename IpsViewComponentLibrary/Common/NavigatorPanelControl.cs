@@ -9,7 +9,7 @@ namespace IpsViewComponentLibrary.Common
         private int _currentPage;
         public int CurrentPage
         {
-            get { return _currentPage; }
+            get => _currentPage;
             set
             {
                 _currentPage = value;
@@ -21,7 +21,7 @@ namespace IpsViewComponentLibrary.Common
         private int _totalPages;
         public int TotalPages
         {
-            get { return _totalPages; }
+            get => _totalPages;
             set
             {
                 _totalPages = value;
@@ -32,7 +32,7 @@ namespace IpsViewComponentLibrary.Common
         private int _pageSize;
         public int PageSize
         {
-            get { return _pageSize; }
+            get => _pageSize;
             set
             {
                 _pageSize = value;
@@ -130,21 +130,14 @@ namespace IpsViewComponentLibrary.Common
 
         private void SetSize()
         {
-            int size;
-            if (int.TryParse(mebCountPerPage.Text, out size))
+            var sizeString = mebCountPerPage.Text.Replace(" ", string.Empty);
+            if (int.TryParse(sizeString, out int size))
             {
                 // change current page to 1 without raising CurrentPageChanged event
                 _currentPage = 1;
                 UpdateCurrentPage();
 
-                if (size < 10)
-                {
-                    PageSize = 10;
-                }
-                else
-                {
-                    PageSize = size;
-                }
+                PageSize = size < 10 ? 10 : size;
             }
         }
 

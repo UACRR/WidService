@@ -1,8 +1,4 @@
 ﻿
-
-
-
-
 CREATE view [dbo].[vCustomer] as 
  with Cust as 
 ( select t1.custId, custType, status, ankVersion, ankPublish, ankTech, 
@@ -11,7 +7,9 @@ CREATE view [dbo].[vCustomer] as
   (Case When t4.custid is NUll Then 0 else 1 end) as isPartner,
   (Case When t5.custid is NUll Then 0 else 1 end) as ankMy, 
    t2.signP,  
-   isnull((Case When isnull(t2.signP,0) = 0 Then t2.CustId Else (select custId from customer where isnull(ankPublish,0)= 1) end), t1.custId) as custIdSP, t2.interCode as IPI, 
+   --isnull((Case When isnull(t2.signP,0) = 0 Then t2.CustId Else (select custId from customer where isnull(ankPublish,0)= 1) end), t1.custId) as custIdSP, 
+   null as custIdSP, 
+   t2.interCode as IPI, 
    t1.userId, 
    t6.userName
  from customer t1 
@@ -55,7 +53,7 @@ union
 select
    t1.custId,
    t1.custType,
-   isnull(t3.LastName,'')+' '+isnull(t3.FirstName,'') + ' ' + isnull(t3.SurName,'') as fullName ,
+   (Case WHEN t1.custType = 2 THEN 'ФОП ' ELSE '' END)+isnull(t3.LastName,'')+' '+isnull(t3.FirstName,'') + ' ' + isnull(t3.SurName,'') as name ,
    --isnull(t3.LastName,'')+' '+isnull((substring(t3.FirstName,1,1)+'.'),'') + ' ' + isnull((substring(t3.SurName,1,1)+'.'),'') as name,
    isnull(t3.LastName,'')+' '+isnull(t3.FirstName,'') + ' ' + isnull(t3.SurName,'') as fullName ,
    t1.isRHolder,
@@ -107,11 +105,11 @@ select
    NULL as jaCity, 
    NULL as jaAdress,
    cast(1 as bit) as isAnkExtrn, 
-   isnull(t1.IPI,t2.interCode) as IPI, 
+   t1.IPI as IPI, 
    t1.userId, 
    t1.userName
 from
    Cust t1
    join AnketaExternal t2 on  t2.CustId = t1.CustId
-   where not exists ( select 1 from AnketaPerson t3 where t3.custId = t2.CustId ) and 
-         not exists ( select 1 from AnketaCompany t4 where t4.custId = t2.CustId )
+--   where not exists ( select 1 from AnketaPerson t3 where t3.custId = t2.CustId ) and 
+--         not exists ( select 1 from AnketaCompany t4 where t4.custId = t2.CustId ) 

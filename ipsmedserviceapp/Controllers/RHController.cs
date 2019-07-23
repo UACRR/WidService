@@ -321,7 +321,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         {
             // Сінхронизація Договора з типом Правовласника Begin ********************
             int correctAgrType = 1;
-            switch( sorsCust.RightHolder.RHolderType )
+            switch (sorsCust.RightHolder.RHolderType)
             {
                 case 2: // Видавництво
                     correctAgrType = 4;
@@ -335,8 +335,8 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             foreach (var item in listToUpdate)
                 item.AgrType = correctAgrType;
             // Сінхронизація Договора з типом Правовласника End *************************
-
         }
+
         /// <summary>
         /// Сінхронізація структури Правовласника
         /// </summary>
@@ -517,7 +517,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         }
 
         /// <summary>
-        /// Збереження нового Споживача
+        /// Збереження нового Правовласника
         /// </summary>
         /// <param name="newRightHolder"></param>
         /// <returns></returns>
@@ -540,8 +540,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             }
             catch (Exception ex)
             {
-                if (tran != null)
-                    tran.Rollback();
+                tran?.Rollback();
                 return BadRequest(ex.Message);
             }
 

@@ -21,10 +21,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 {
     public partial class RegisterItemListControl : UserControl
     {
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public object DataSource
         {
@@ -93,7 +90,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _allowEditList = false;
         public bool AllowEditList
         {
-            get { return _allowEditList; }
+            get => _allowEditList;
             set
             {
                 _allowEditList = value;
@@ -108,6 +105,8 @@ namespace IpsViewComponentLibrary.RegisterControls
                 gvRegisterItemList.SetColumnReadOnly("CountUse", !_allowEditList);
             }
         }
+
+        public bool AllowActionRegisterItem { get; set; } = true;
 
         private bool _allowFindCommand = true;
         public bool AllowFindCommand
@@ -212,7 +211,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _showObjectInfo = true;
         public bool ShowObjectInfo
         {
-            get { return _showObjectInfo; }
+            get => _showObjectInfo;
             set
             {
                 _showObjectInfo = value;
@@ -231,7 +230,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _showAuthors = true;
         public bool ShowAuthors
         {
-            get { return _showObjectInfo; }
+            get => _showObjectInfo;
             set
             {
                 _showAuthors = value;
@@ -239,6 +238,36 @@ namespace IpsViewComponentLibrary.RegisterControls
                 gvRegisterItemList.SetColumnVisibility("Performer", _showAuthors);
                 gvRegisterItemList.SetColumnVisibility("AuthorMusic", _showAuthors);
                 gvRegisterItemList.SetColumnVisibility("AuthorText", _showAuthors);
+            }
+        }
+
+        private bool _showGenre = false;
+        public bool ShowGenre
+        {
+            get => _showGenre;
+            set
+            {
+                _showGenre = value;
+                gvRegisterItemList.SetColumnVisibility("Genre", _showGenre);
+
+                gvRegisterItemList.SetColumnVisibility("DurationItem", !_showGenre);
+                gvRegisterItemList.SetColumnVisibility("CountUse", !_showGenre);
+                gvRegisterItemList.SetColumnVisibility("DurationUse", !_showGenre);
+            }
+        }
+
+        private bool _showGenreAndRate = false;
+        public bool ShowGenreAndRate
+        {
+            get => _showGenreAndRate;
+            set
+            {
+                _showGenreAndRate = value;
+                gvRegisterItemList.SetColumnVisibility("Genre", _showGenreAndRate);
+                gvRegisterItemList.SetColumnVisibility("Rate", _showGenreAndRate);
+
+                gvRegisterItemList.SetColumnVisibility("DurationItem", !_showGenreAndRate);
+                gvRegisterItemList.SetColumnVisibility("DurationUse", !_showGenreAndRate);
             }
         }
 
@@ -321,6 +350,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void GvRegisterItemList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
+            if (!AllowActionRegisterItem)
+                return;
+
             var currentColumnName = e.Column.Name;
 
             if (currentColumnName == "FindColumn")
@@ -381,14 +413,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             foreach (var row in gvRegisterItemList.Rows)
             {
-                if( (row.DataBoundItem as RegisterItemViewModel).ObjId == null )
+                if( (row.DataBoundItem as RegisterItemViewModel)?.ObjId == null )
                     row.Cells["ObjectName"].ErrorText = errTxt;
             }
         }
 
         public int GetCountUnlink()
         {
-            var cnt = gvRegisterItemList.Rows.Count(rec => (rec.DataBoundItem as RegisterItemViewModel).ObjId == null);
+            var cnt = gvRegisterItemList.Rows.Count(rec => (rec.DataBoundItem as RegisterItemViewModel)?.ObjId == null);
             return cnt;
         }
 
@@ -418,6 +450,13 @@ namespace IpsViewComponentLibrary.RegisterControls
                             e.RowElement.GradientStyle = GradientStyles.Solid;
                             e.RowElement.BackColor = Color.LightGray;
                         }
+                    }
+                    // clear row format
+                    else
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.White;
                     }
                 }
                 else

@@ -23,21 +23,12 @@ namespace IpsViewComponentLibrary.RightholderControls
         private RightholderService _rightholderService;
         private AgreementStatuses[] _allowedStatuses;
 
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         private RightholderMainView _rightholder;
         public RightholderMainView SelectedRightholder
         {
-            get
-            {
-                if (gvRightholdersList.CurrentRow == null)
-                    return null;
-
-                return gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
-            }
+            get => gvRightholdersList?.CurrentRow?.DataBoundItem as RightholderMainView;
             set
             {
                 if (_rightholder != value)
@@ -60,7 +51,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private bool _showCommandColumns = true;
         public bool ShowCommandColumns
         {
-            get { return _showCommandColumns; }
+            get => _showCommandColumns;
             set
             {
                 if (_showCommandColumns != value)
@@ -84,8 +75,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderListControl()
         {
             InitializeComponent();
-            //navigatorPanelControl1.PageSize = 20;
-            //navigatorPanelControl1.CurrentPage = 1;
 
             if (!IsDesignMode)
             {
@@ -118,9 +107,9 @@ namespace IpsViewComponentLibrary.RightholderControls
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                components?.Dispose();
             }
 
             ApplicationController.Instance.EventAggregator.UnsubscribeEvent(this);
@@ -208,13 +197,12 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             if (e.Column is GridViewCommandColumn)
                 return;
+
             if(SelectedRightholder.CustType == 5)
             {
                 OnRightholderSelected(SelectedRightholder);
-
-                //MessageBox.Show("Для зовнішніх Правовласників кабінет тимчасово заблоковано", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //return;
-            } else
+            }
+            else
             {
                 OnRightholderSelected(SelectedRightholder);
             }

@@ -40,8 +40,8 @@ select  isnull(t3.custId, -1) as rhCustId, sum(t1.amount) as amount, convert(int
 from PayTurn t1 
 join Account t2 on t1.accIdCredit = t2.accId and t2.balsCode in (30, 31) 
 join Account t3 on t1.accIdDebet = t3.accId and t3.balsCode in (21, 31)
-  where --dateWork between @dateBegin and @dateEnd
-        dateWork between '2019-02-27' and '2019-02-27'
+  where dateWork between @dateBegin and @dateEnd
+        --dateWork between '2019-02-27' and '2019-02-27'
 group by t3.custId, convert(integer,substring(t2.accNls,3,2))
 )
  insert into @RT (rhCustId, rhName,  innerInterCode, amount, cmCustId, cmName, rateCommiss, amountCommiss, rowNum)
@@ -81,3 +81,8 @@ where ISNULL(t1.cmCustId,0) = t3.custId
 --select  * from ft_Tsk_5_30_Booker ('2019-02-27', '2019-02-27', 0, -1 ) order by rowNum
 --select  rhName, innerInterCode, cmName, amount, sborESVMoney, sborMiliMoney, amountCommiss, amountToPay from ft_Tsk_5_30_Booker ('2018-01-01', '2019-01-01',0,20 ) order by rowNum
 --select  * from ft_Tsk_5_30_Booker (NULL, '2019-01-01',0, -1  ) order by rowNum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_30_Booker] TO [ReportUser]
+    AS [dbo];
+

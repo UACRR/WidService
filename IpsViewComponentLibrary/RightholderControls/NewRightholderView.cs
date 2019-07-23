@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class NewRightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
+    public partial class NewRightholderView : RadForm, IRightholderView
     {
         private bool _isCompany;
         private WordEngine wordEngine;
@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private IRightholderPresenter _presenter;
         public IRightholderPresenter Presenter
         {
-            get { return _presenter; }
+            get => _presenter;
             set
             {
                 if (_presenter == null)
@@ -52,7 +52,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => bsAnketaCompany.DataSource = value;
         }
 
-        //define Anketa External Data Source
         public object AnketaExternalDataSource
         {
             get => bsAnketaExternal.DataSource;
@@ -78,12 +77,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         }
 
         //term of service for External Anketa
-        object test;
-        public object TermsOfServiceExternalAnketaDataSource
-        {
-            get => test;
-            set => test = value;
-        }
+        public object TermsOfServiceExternalAnketaDataSource { get; set; }
 
         public object RightholderDataSource
         {
@@ -96,7 +90,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         public NewRightholderView()
         {
             InitializeComponent();
-
+            StartPosition = FormStartPosition.CenterScreen;
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
@@ -138,18 +132,16 @@ namespace IpsViewComponentLibrary.RightholderControls
 
                 if (File.Exists(FileName))
                     File.Delete(FileName);
+
                 switch (saveFileDialog1.FilterIndex)
                 {
                     case 1:
                         File.Copy(wordEngine.Docx, FileName);
                         break;
                     case 2:
-                        {
-                            File.Copy(wordEngine.Pdf, FileName);
-                            break;
-                        }
+                        File.Copy(wordEngine.Pdf, FileName);
+                        break;
                 }
-
             }
         }
 
@@ -215,7 +207,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             Text = header + " - Анкета правовласника";
         }
 
-        private void mainPageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
+        private void mainPageView_SelectedPageChanging(object sender, RadPageViewCancelEventArgs e)
         {
             // TODO: move to presenter
             var selectedPage = mainPageView.SelectedPage;
@@ -231,11 +223,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
             else if (selectedPage == contactsPersonPage)
             {
-                isValid = ctrlContacts.Validator();
+                //isValid = ctrlContacts.Validator();
             }
             else if (selectedPage == managersPage)
             {
-                isValid = ctrlMiddleControlManagers.Validator();
+                //isValid = ctrlMiddleControlManagers.Validator();
             }
             else if (selectedPage == agreementPage)
             {
@@ -318,6 +310,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
             wordEngine.ProcessRightHolder(template, customer, customer.AgreementMaster.First());
 
+            if (string.IsNullOrEmpty(wordEngine.Pdf))
+                return;
+
             pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
             _custName = CustomerUtility.CustomerName(customer);
             radPdfViewerNavigator1.Enabled = true;
@@ -363,7 +358,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        private void NewRightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        private void NewRightholderView_FormClosing(object sender, FormClosingEventArgs e)
         {
             _presenter.Close();
             e.Cancel = true;

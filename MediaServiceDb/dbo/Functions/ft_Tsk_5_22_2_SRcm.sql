@@ -54,3 +54,8 @@ RETURN
 END
 
 --select * from ft_Tsk_5_22_2_SRcm ('2018-01-01', '2018-12-31', NULL,-1 ) order by rowNum
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_22_2_SRcm] TO [ReportUser]
+    AS [dbo];
+

@@ -33,7 +33,9 @@ namespace RightholderWorkplace.Presenters
             _community.GetCommunity += GetCommunity;
             _community.GetCommunityAutorsList += GetCommunityAutorsView;
             _community.GetCommunityRightList += GetCommunityRightList;
-            _community.SaveLimitRights += SaveLimitRights;
+            _community.GetTermsOfService += GetTermsOfService;
+            _community.SaveCustCmRightLimitedRights += SaveCustCmRightLimitedRights;
+            _community.SaveTermsOfServiceLimitedRights += SaveTermsOfServiceLimitedRights;
             _community.ChangeStatusAgr += ChangeStatusAgr;
         }
 
@@ -42,14 +44,24 @@ namespace RightholderWorkplace.Presenters
             return _service.ChangeStatusAgr(communityId, status);
         }
 
-        private bool SaveLimitRights(int cmCustId, int custId, List<CustCmRight> listObj)
+        private bool SaveCustCmRightLimitedRights(int cmCustId, int custId, List<CustCmRight> listObj)
         {
-            return _service.SaveLimitRights(cmCustId, custId, listObj);
+            return _service.SaveCustCmRightLimitedRights(cmCustId, custId, listObj);
+        }
+
+        private bool SaveTermsOfServiceLimitedRights(int cmCustId, int custId, List<TermsOfService> termsOfServices)
+        {
+            return _service.SaveTermsOfServiceLimitedRights(cmCustId, custId, termsOfServices);
         }
 
         private List<CustCmRight> GetCommunityRightList(int custId)
         {
             return _service.GetCommunityRightList(custId);
+        }
+
+        private List<TermsOfService> GetTermsOfService(int arg)
+        {
+            return _service.GetTermsOfService(arg);
         }
 
         private Customer GetCommunity(int custId)

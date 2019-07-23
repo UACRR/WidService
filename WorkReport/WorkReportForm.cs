@@ -22,13 +22,8 @@ namespace workReport
             var rightholderService = new RightholderService();
             IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
-
-        }
-
-        private void radButton1_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

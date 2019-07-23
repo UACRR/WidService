@@ -22,7 +22,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             _customer = customer;
             ctrlTabNavigation.SetDefaultState(pageView, FLoadType.Create);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
-            ctrlContactPerson.UnsubscribePhoneVldt();
             ctrlClientName.SetLabelName(LabelName);
             SetBindings();
         }
@@ -83,13 +82,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             var employeeHead = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
 
             ctrlContactPerson.DataSource = employeeContact.Empl;
-            ctrlContactPerson.OutsidePhone = true;
-            ctrlContactPerson.PhoneNullText = string.Empty;
 
             bsRelEmployee.DataSource = employeeHead;
             ctrlHeadBoss.DataSource = employeeHead.Empl;
-            ctrlHeadBoss.OutsidePhone = true;
-            ctrlHeadBoss.PhoneNullText = string.Empty;
 
             // - - адреса
             // юридична

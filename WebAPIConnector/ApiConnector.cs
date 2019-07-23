@@ -35,7 +35,7 @@ namespace WebAPIConnector
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.Timeout = TimeSpan.FromMinutes(10);
+            client.Timeout = TimeSpan.FromSeconds(1200);
         }
 
         private string configUrl()
@@ -255,7 +255,6 @@ namespace WebAPIConnector
         /// <returns></returns>
         public bool NewItem<T>(string url, T data)
         {
-
             StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             var result = client.PostAsync(url, content).GetAwaiter().GetResult();
 
@@ -501,15 +500,26 @@ namespace WebAPIConnector
         /// Видалити об'єкт на сервері додатків
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="url"></param>
+        /// <param name="urlData"></param>
         /// <returns></returns>
-        public bool DeleteItem(string url, string id)
+        public bool DeleteItem(string urlData, string id)
         {
-
-            string idUrl = $"{url}/{id}";
+            string idUrl = $"{urlData}/{id}";
             var result = client.DeleteAsync(idUrl).GetAwaiter().GetResult();
 
             return result.IsSuccessStatusCode;
+        }
+
+        /// <summary>
+        /// Видалити об'єкт на сервері додатків
+        /// </summary>
+        /// <param name="urlData">Дані по об'єкту</param>
+        /// <returns></returns>
+        public bool DeleteItem(string urlData)
+        {
+            var result = client.DeleteAsync(urlData).GetAwaiter().GetResult();
+            var retCode = result.IsSuccessStatusCode;
+            return retCode;
         }
 
         /// <summary>

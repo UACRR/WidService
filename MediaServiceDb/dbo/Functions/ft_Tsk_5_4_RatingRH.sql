@@ -81,3 +81,8 @@ set @myCm = (select max(custId) from vMyAnk)
 --select sum(amount) from ft_Tsk_5_4_RatingRH (5, 1, 0, '2019-01-01', '3000-01-01')  --110868,35
 --select * from ft_Tsk_5_4_RatingRH (0, 1, 0, '2019-01-01', '3000-01-01')  --110868,35
 --select 96853.42 + 45120.65
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[ft_Tsk_5_4_RatingRH] TO [ReportUser]
+    AS [dbo];
+

@@ -42,12 +42,10 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
             this.bsRelEmployee = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlHeadBoss = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
             this.txtIpi = new Telerik.WinControls.UI.RadTextBox();
             this.bsCommunity = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlContactPerson = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
             this.ctrlClientName = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyControl();
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddressLe = new IpsViewComponentLibrary.CommunityControls.CommunityAddressLetterControl();
@@ -67,6 +65,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.CommunityControls.CommunityAgreementControl();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationExpandedControl();
+            this.ctrlContactPerson = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsExtendedControl();
+            this.ctrlHeadBoss = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsExtendedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvCommunityName.SuspendLayout();
@@ -115,16 +115,16 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // pvCommunityName
             // 
+            this.pvCommunityName.Controls.Add(this.ctrlContactPerson);
+            this.pvCommunityName.Controls.Add(this.ctrlHeadBoss);
             this.pvCommunityName.Controls.Add(this.radSeparator4);
             this.pvCommunityName.Controls.Add(this.radSeparator5);
             this.pvCommunityName.Controls.Add(this.radLabel10);
             this.pvCommunityName.Controls.Add(this.txtOnBasicsIfHeadBoss);
             this.pvCommunityName.Controls.Add(this.radLabel4);
-            this.pvCommunityName.Controls.Add(this.ctrlHeadBoss);
             this.pvCommunityName.Controls.Add(this.txtIpi);
             this.pvCommunityName.Controls.Add(this.radLabel1);
             this.pvCommunityName.Controls.Add(this.radLabel6);
-            this.pvCommunityName.Controls.Add(this.ctrlContactPerson);
             this.pvCommunityName.Controls.Add(this.ctrlClientName);
             this.pvCommunityName.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvCommunityName.Location = new System.Drawing.Point(134, 5);
@@ -134,7 +134,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radSeparator4
             // 
-            this.radSeparator4.Location = new System.Drawing.Point(132, 240);
+            this.radSeparator4.Location = new System.Drawing.Point(132, 278);
             this.radSeparator4.Name = "radSeparator4";
             this.radSeparator4.Size = new System.Drawing.Size(487, 19);
             this.radSeparator4.TabIndex = 0;
@@ -183,16 +183,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel4.Text = "Діє на підставі:";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
-            // ctrlHeadBoss
-            // 
-            this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlHeadBoss.Location = new System.Drawing.Point(22, 178);
-            this.ctrlHeadBoss.Name = "ctrlHeadBoss";
-            this.ctrlHeadBoss.OutsidePhone = false;
-            this.ctrlHeadBoss.PhoneNullText = "+380## ### ## ##";
-            this.ctrlHeadBoss.Size = new System.Drawing.Size(597, 56);
-            this.ctrlHeadBoss.TabIndex = 3;
-            // 
             // txtIpi
             // 
             this.txtIpi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCommunity, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
@@ -217,22 +207,12 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(22, 240);
+            this.radLabel6.Location = new System.Drawing.Point(22, 278);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(104, 19);
             this.radLabel6.TabIndex = 0;
             this.radLabel6.Text = "Контактна особа:";
             this.radLabel6.ThemeName = "Office2013Light";
-            // 
-            // ctrlContactPerson
-            // 
-            this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlContactPerson.Location = new System.Drawing.Point(19, 265);
-            this.ctrlContactPerson.Name = "ctrlContactPerson";
-            this.ctrlContactPerson.OutsidePhone = false;
-            this.ctrlContactPerson.PhoneNullText = "+380## ### ## ##";
-            this.ctrlContactPerson.Size = new System.Drawing.Size(600, 56);
-            this.ctrlContactPerson.TabIndex = 4;
             // 
             // ctrlClientName
             // 
@@ -424,6 +404,26 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlTabNavigation.Size = new System.Drawing.Size(1011, 31);
             this.ctrlTabNavigation.TabIndex = 2;
             // 
+            // ctrlContactPerson
+            // 
+            this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Model.Employee);
+            this.ctrlContactPerson.Location = new System.Drawing.Point(22, 303);
+            this.ctrlContactPerson.MaximumSize = new System.Drawing.Size(1000, 94);
+            this.ctrlContactPerson.MinimumSize = new System.Drawing.Size(450, 94);
+            this.ctrlContactPerson.Name = "ctrlContactPerson";
+            this.ctrlContactPerson.Size = new System.Drawing.Size(597, 94);
+            this.ctrlContactPerson.TabIndex = 11;
+            // 
+            // ctrlHeadBoss
+            // 
+            this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Model.Employee);
+            this.ctrlHeadBoss.Location = new System.Drawing.Point(22, 178);
+            this.ctrlHeadBoss.MaximumSize = new System.Drawing.Size(1000, 94);
+            this.ctrlHeadBoss.MinimumSize = new System.Drawing.Size(450, 94);
+            this.ctrlHeadBoss.Name = "ctrlHeadBoss";
+            this.ctrlHeadBoss.Size = new System.Drawing.Size(597, 94);
+            this.ctrlHeadBoss.TabIndex = 10;
+            // 
             // CommunityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -492,7 +492,6 @@ namespace IpsViewComponentLibrary.CommunityControls
         private Telerik.WinControls.UI.RadSeparator radSeparator2;
         private CommunityAddressLetterControl ctrlAddressLe;
         private Telerik.WinControls.UI.RadLabel radLabel6;
-        private IpsBossNameContactsControl ctrlContactPerson;
         private IpsAnketaCompanyControl ctrlClientName;
         private CommunityAgreementControl ctrlAgreement;
         private Telerik.WinControls.UI.RadTextBox txtIpi;
@@ -502,9 +501,10 @@ namespace IpsViewComponentLibrary.CommunityControls
         private Telerik.WinControls.UI.RadLabel radLabel10;
         private Telerik.WinControls.UI.RadTextBox txtOnBasicsIfHeadBoss;
         private Telerik.WinControls.UI.RadLabel radLabel4;
-        private IpsBossNameContactsControl ctrlHeadBoss;
         private Telerik.WinControls.UI.RadSeparator radSeparator4;
         private BindingSource bsRelEmployee;
         private TabNavigationExpandedControl ctrlTabNavigation;
+        private IpsBossNameContactsExtendedControl ctrlContactPerson;
+        private IpsBossNameContactsExtendedControl ctrlHeadBoss;
     }
 }

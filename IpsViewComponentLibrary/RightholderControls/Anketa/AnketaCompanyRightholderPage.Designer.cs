@@ -58,9 +58,9 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             this.ddlRightholderType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRightHolder, "RHolderType", true));
             this.ddlRightholderType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlRightholderType.Enabled = false;
-            this.ddlRightholderType.Location = new System.Drawing.Point(119, 100);
+            this.ddlRightholderType.Location = new System.Drawing.Point(131, 95);
             this.ddlRightholderType.Name = "ddlRightholderType";
-            this.ddlRightholderType.Size = new System.Drawing.Size(218, 21);
+            this.ddlRightholderType.Size = new System.Drawing.Size(270, 21);
             this.ddlRightholderType.TabIndex = 19;
             this.ddlRightholderType.ThemeName = "Office2013Light";
             // 
@@ -70,19 +70,21 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(3, 100);
+            this.radLabel2.Location = new System.Drawing.Point(5, 95);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(117, 19);
+            this.radLabel2.Size = new System.Drawing.Size(120, 19);
             this.radLabel2.TabIndex = 18;
-            this.radLabel2.Text = "Тип правовласника";
+            this.radLabel2.Text = "Тип правовласника:";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
             // ctrlRegistrationsCompany
             // 
             this.ctrlRegistrationsCompany.DataSource = this.bsAnketaCompany;
-            this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(13, 181);
+            this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(3, 173);
+            this.ctrlRegistrationsCompany.MaxDate = new System.DateTime(2018, 7, 2, 0, 0, 0, 0);
+            this.ctrlRegistrationsCompany.MinimumSize = new System.Drawing.Size(550, 108);
             this.ctrlRegistrationsCompany.Name = "ctrlRegistrationsCompany";
-            this.ctrlRegistrationsCompany.Size = new System.Drawing.Size(655, 110);
+            this.ctrlRegistrationsCompany.Size = new System.Drawing.Size(664, 110);
             this.ctrlRegistrationsCompany.TabIndex = 17;
             // 
             // bsAnketaCompany
@@ -93,13 +95,15 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             // 
             this.ctrlAnketaCompany.DataSource = this.bsAnketaCompany;
             this.ctrlAnketaCompany.Location = new System.Drawing.Point(3, 3);
+            this.ctrlAnketaCompany.MaximumSize = new System.Drawing.Size(800, 86);
+            this.ctrlAnketaCompany.MinimumSize = new System.Drawing.Size(400, 86);
             this.ctrlAnketaCompany.Name = "ctrlAnketaCompany";
-            this.ctrlAnketaCompany.Size = new System.Drawing.Size(664, 91);
+            this.ctrlAnketaCompany.Size = new System.Drawing.Size(664, 86);
             this.ctrlAnketaCompany.TabIndex = 16;
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(3, 128);
+            this.radLabel1.Location = new System.Drawing.Point(5, 120);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(44, 19);
             this.radLabel1.TabIndex = 30;
@@ -108,7 +112,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             // 
             // radLabel12
             // 
-            this.radLabel12.Location = new System.Drawing.Point(3, 155);
+            this.radLabel12.Location = new System.Drawing.Point(5, 147);
             this.radLabel12.Name = "radLabel12";
             this.radLabel12.Size = new System.Drawing.Size(23, 19);
             this.radLabel12.TabIndex = 31;
@@ -118,7 +122,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             // txtInnerCode
             // 
             this.txtInnerCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "InnerCode", true));
-            this.txtInnerCode.Location = new System.Drawing.Point(119, 127);
+            this.txtInnerCode.Location = new System.Drawing.Point(118, 119);
             this.txtInnerCode.Name = "txtInnerCode";
             this.txtInnerCode.Size = new System.Drawing.Size(283, 21);
             this.txtInnerCode.TabIndex = 32;
@@ -127,7 +131,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             // txtInterCode
             // 
             this.txtInterCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "InterCode", true));
-            this.txtInterCode.Location = new System.Drawing.Point(119, 154);
+            this.txtInterCode.Location = new System.Drawing.Point(118, 146);
             this.txtInterCode.Name = "txtInterCode";
             this.txtInterCode.Size = new System.Drawing.Size(283, 21);
             this.txtInterCode.TabIndex = 33;
@@ -137,7 +141,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             // lblIPIExists
             // 
             this.lblIPIExists.ForeColor = System.Drawing.Color.Red;
-            this.lblIPIExists.Location = new System.Drawing.Point(409, 156);
+            this.lblIPIExists.Location = new System.Drawing.Point(408, 148);
             this.lblIPIExists.Name = "lblIPIExists";
             this.lblIPIExists.Size = new System.Drawing.Size(70, 18);
             this.lblIPIExists.TabIndex = 34;
@@ -158,7 +162,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             this.Controls.Add(this.ctrlRegistrationsCompany);
             this.Controls.Add(this.ctrlAnketaCompany);
             this.Name = "AnketaCompanyRightholderPage";
-            this.Size = new System.Drawing.Size(670, 300);
+            this.Size = new System.Drawing.Size(670, 287);
             ((System.ComponentModel.ISupportInitialize)(this.ddlRightholderType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();

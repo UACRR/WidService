@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Interfaces;
-using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
-using System.Linq;
 using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
+using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.AppController;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
@@ -192,7 +192,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             _presenter.UpdateRightholderList();
             _presenter.UpdateObjectsList();
-
         }
     }
 }

@@ -11,6 +11,8 @@
 
 
 
+
+
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Наименование Типа авторского права', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'CopyrightKind', @level2type = N'COLUMN', @level2name = N'name';
 
@@ -21,4 +23,10 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Код ви�
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Справочник типов прав на объекты права', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'CopyrightKind';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[CopyrightKind] TO [ReportUser]
+    AS [dbo];
 

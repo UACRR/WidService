@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Services;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Engines;
 using ipsFormsDesign.Model.SQLViewsData;
 using IpsViewComponentLibrary.ImportDBF.Presenters;
 
@@ -81,7 +82,9 @@ namespace IpsViewComponentLibrary.ImportDBF
         /// <param name="gridViewCell"></param>
         private void PaymentsAttach(GridViewCellEventArgs gridViewCell)
         {
-            var row = gridViewCell.Row.DataBoundItem as ExternalPay;
+            if (!(gridViewCell.Row.DataBoundItem is ExternalPay row))
+                return;
+
             var paymentsAttach = new PaymentsAttachForm(_clientsList, row);
             if (paymentsAttach.ShowDialog() == DialogResult.OK)
             {
@@ -110,7 +113,6 @@ namespace IpsViewComponentLibrary.ImportDBF
                     }
                     catch( Exception ex )
                     {
-
                         MessageBox.Show(ex.Message, "Помилка завантаження", MessageBoxButtons.OK, MessageBoxIcon.Error );
                     }
                 }
@@ -146,6 +148,11 @@ namespace IpsViewComponentLibrary.ImportDBF
                 else if (TypeRights == TypeRights.BigRights)
                     _updateProviderBigRight = IpsGlobal.Instances[typeof(IUpdateProviderBigRight)] as IUpdateProviderBigRight;
             }
+        }
+
+        private void gvUndistribPays_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        {
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
     }
 }

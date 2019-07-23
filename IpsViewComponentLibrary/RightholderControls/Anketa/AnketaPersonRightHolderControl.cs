@@ -55,7 +55,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
             if (!IsDesignMode)
             {
-                rdtPickerBirth.SetUserCalendarSettingsm();
+                dtBirthDate.SetUserCalendarSettingsm();
                 ddlSexType.SetDataSource(IpsGlobal.AnketaDictionaties.sexType);
             }
         }
@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             else
                 lblBirthDate.ForeColor = Color.Black;
 
-            if (rtxtBoxFirstName.Text == string.Empty)
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
             {
                 lblFirstName.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
@@ -84,7 +84,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             else
                 lblFirstName.ForeColor = Color.Black;
 
-            if (rtxtBoxLastName.Text == string.Empty)
+            if (string.IsNullOrWhiteSpace(txtLastName.Text))
             {
                 lblLastName.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
@@ -108,19 +108,14 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
         /// </summary>
         public void ClearData()
         {
-            rtxtBoxFirstName.Clear();
-            rtxtBoxLastName.Clear();
-            rtxtBoxMidleName.Clear();
-            rtxtBoxPseudonym.Clear();
-            rdtPickerBirth.SetToNullValue();
+            txtFirstName.Clear();
+            txtLastName.Clear();
+            txtMidleName.Clear();
+            txtPseudonym.Clear();
+            dtBirthDate.SetToNullValue();
             //_sexSelected = false;
             _birthDateSelected = false;
         }
-
-        //private void radDropDownListSex_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        //{
-        //    _sexSelected = radDropDownListSex.SelectedItem.Index != 0;
-        //}
 
         private void btnMoreName_Click(object sender, EventArgs e)
         {

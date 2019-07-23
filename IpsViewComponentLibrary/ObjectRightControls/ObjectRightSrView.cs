@@ -16,38 +16,33 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class ObjectRightSrView : Telerik.WinControls.UI.RadForm, IObjectRightItemView
+    public partial class ObjectRightSrView : RadForm, IObjectRightItemView
     {
+        private const int DefaultObjectRightGenreTypeSongCode = 41;
+
         private ObjectRightSrPresenter _presenter;
         public ObjectRightSrPresenter Presenter
         {
-            get { return _presenter; }
+            get => _presenter;
             set
             {
                 if (_presenter == null)
-                {
                     _presenter = value;
-                }
             }
         }
 
         public IList<ViewCustomer> RightholderList { private get; set; }
         public ObjectRight ObjectRight { get; set; }
 
-        public ObjectAuthorRightholder SelectedObjectAuthorRightholder
-        {
-            get
-            {
-                return gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
-            }
-        }
+        public ObjectAuthorRightholder SelectedObjectAuthorRightholder => gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
 
-        private BindingList<ObjectAuthorRightholder> _objectAuthorRightholderList = new BindingList<ObjectAuthorRightholder>();
+        private readonly BindingList<ObjectAuthorRightholder> _objectAuthorRightholderList = new BindingList<ObjectAuthorRightholder>();
         public Collection<ObjectAuthorRightholder> ObjectAuthorRightholderList => _objectAuthorRightholderList;
 
         public ObjectRightSrView()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
             gvObjectAuthorsRightholders.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
             gvObjectAuthorsRightholders.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
@@ -106,6 +101,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // TODO: move to constructor, move other binding initialization to constructor, set bindings for MediaTrack, SeekObject in the presenter throught property
 
             ObjectRight = objectRight;
+
+            if (ObjectRight.GenreType == null)
+                ObjectRight.GenreType = DefaultObjectRightGenreTypeSongCode;
 
             objectRightBindingSource.DataSource = ObjectRight;
             mediaTrackBindingSource.DataSource = ObjectRight.MediaTrack;

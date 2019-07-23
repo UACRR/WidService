@@ -58,6 +58,12 @@ delete CopyRightHistory
   where (t1.parentId = t2.cRightId or t1.childId = t2.cRightId)
       and t2.objId = @Objid
   
+--Каталоги
+update PubCatalogItem set cRightId = NULL where objid = @Objid
+update PubCatalogItem set objId = NULL where objid = @Objid
+update RHCatalogItem set cRightId = NULL where objid = @Objid
+update RHCatalogItem set objId = NULL where objid = @Objid
+
 delete CopyRight   where objId = @objid
 declare @licId integer
 set @licId = (select licId from LicenseBigR where objId = @objid)
