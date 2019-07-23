@@ -161,6 +161,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             if (SaveMode == SaveMode.None)
                 return;
 
+            SyncCodeAndName();
             if (SaveMode == SaveMode.OnCreate)
             {
                 if (!CheckForUniqueness(_genreTypeData.CodeI))
@@ -206,6 +207,20 @@ namespace sysAdminwp.ComplexDictionariesControls
         {
             // не унікальний якщо такий код є в колекції
             return !_genreTypeList.Select(rec => rec.CodeI).ToArray().Contains(code);
+        }
+
+        /// <summary>
+        /// Синхронізувати CodeI, Name основної таблиці та Tr-таблиці
+        /// </summary>
+        private void SyncCodeAndName()
+        {
+            if (SaveMode == SaveMode.OnCreate)
+            {
+                foreach (var genreTypeTr in _genreTypeData.GenreTypeTr)
+                    genreTypeTr.CodeI = _genreTypeData.CodeI;
+            }
+
+            _genreTypeData.Name = _genreTypeData.GenreTypeTr.SingleOrDefault(rec => rec.Lang == UkLang)?.Name;
         }
 
         // скасувати

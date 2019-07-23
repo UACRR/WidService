@@ -129,11 +129,11 @@
     <Compile Include="ComplexDictionariesControls\GenreTypeControl.Designer.cs">
       <DependentUpon>GenreTypeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionariesControls\BaseCreativeroleTypeControl.cs">
+    <Compile Include="ComplexDictionariesControls\CreativeroleTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionariesControls\BaseCreativeroleTypeControl.Designer.cs">
-      <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesControls\CreativeroleTypeControl.Designer.cs">
+      <DependentUpon>CreativeroleTypeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ComplexDictionariesControls\BaseCountryControl.cs">
       <SubType>UserControl</SubType>
@@ -177,6 +177,12 @@
       <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ViewTable.cs" />
+    <Compile Include="viewPageDictionaryControls\SimpleDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="viewPageDictionaryControls\SimpleDictionaryControl.Designer.cs">
+      <DependentUpon>SimpleDictionaryControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ComplexDictionariesControls\BaseSystemConstantControl.resx">
       <DependentUpon>BaseSystemConstantControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,8 +195,8 @@
     <EmbeddedResource Include="ComplexDictionariesControls\GenreTypeControl.resx">
       <DependentUpon>GenreTypeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionariesControls\BaseCreativeroleTypeControl.resx">
-      <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesControls\CreativeroleTypeControl.resx">
+      <DependentUpon>CreativeroleTypeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComplexDictionariesControls\BaseCountryControl.resx">
       <DependentUpon>BaseCountryControl.cs</DependentUpon>
@@ -220,8 +226,12 @@
     <EmbeddedResource Include="viewPageDictionaryControls\ComplexDictionaryControl.resx">
       <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="viewPageDictionaryControls\SimpleDictionaryControl.resx">
+      <DependentUpon>SimpleDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictBaseTypeI.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictTrI.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Category.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Continent.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKind.datasource" />

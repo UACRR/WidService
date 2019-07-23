@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.Extensions;
-using WebAPIConnector;
 using sysAdminwp.ComplexDictionariesBaseControls;
 using sysAdminwp.ComplexDictionariesControls;
-using sysAdminwp.PresenterComplexDictionaries;
+using Telerik.WinControls.UI;
 
 namespace sysAdminwp.viewPageDictionaryControls
 {
@@ -14,23 +14,28 @@ namespace sysAdminwp.viewPageDictionaryControls
         private readonly CopyrightKindControl _ctrlCopyrightKind;
         private readonly RelGenrePercentControl _ctrlRelGenrePercent;
         private readonly BaseCountryControl _baseCountry;
-        private readonly BaseCreativeroleTypeControl _baseCreativeroleType;
+        private readonly CreativeroleTypeControl _baseCreativeroleType;
         private readonly GenreTypeControl _ctrlGenreType;
         private readonly BaseKlr030Control _baseKlr030;
         private readonly BaseSystemConstantControl _baseSystemConstant;
         private readonly BaseTypePlaceControl _baseTypePlace;
 
+        private bool IsDesignMode => LicenseManager.UsageMode == LicenseUsageMode.Designtime || DesignMode;
+
         public ComplexDictionaryControl()
         {
             InitializeComponent();
-            _ctrlCopyrightKind = new CopyrightKindControl();
-            _ctrlRelGenrePercent = new RelGenrePercentControl();
-            _baseCountry = new BaseCountryControl();
-            _baseCreativeroleType = new BaseCreativeroleTypeControl();
-            _ctrlGenreType = new GenreTypeControl();
-            _baseKlr030 = new BaseKlr030Control();
-            _baseSystemConstant = new BaseSystemConstantControl();
-            _baseTypePlace = new BaseTypePlaceControl();
+            if (!IsDesignMode)
+            {
+                _ctrlCopyrightKind = new CopyrightKindControl();
+                _ctrlRelGenrePercent = new RelGenrePercentControl();
+                _baseCountry = new BaseCountryControl();
+                _baseCreativeroleType = new CreativeroleTypeControl();
+                _ctrlGenreType = new GenreTypeControl();
+                _baseKlr030 = new BaseKlr030Control();
+                _baseSystemConstant = new BaseSystemConstantControl();
+                _baseTypePlace = new BaseTypePlaceControl();
+            }
         }
 
         public List<DicCategoryItems> ComplexDictionaryList { get; set; }
@@ -70,16 +75,23 @@ namespace sysAdminwp.viewPageDictionaryControls
         /// Initialize sequence complex dictionaries for 'TreeView' element
         /// </summary>
         /// <param name="complexDictionaries"></param>
-        public void SetComplexDictionaryForTreeView(List<DicCategoryItems> complexDictionaries)
+        public void SetDictionaryCategories(List<DicCategoryItems> complexDictionaries)
         {
             ComplexDictionaryList = complexDictionaries;
             complexTreeView.DataSource = complexDictionaries;
             complexTreeView.ValueMember = "Code";
             complexTreeView.DisplayMember = "Name";
+
+            // TODO: розблокувати коли буде готовий
+            // заблокувати непрацюючі довідники
+            string[] namesForLock = {"Country".ToLower(), "KL_R030".ToLower(), "SystemConstant".ToLower(), "TypePlace".ToLower()};
+            var lockNodes = complexTreeView.Nodes.Where(rec => namesForLock.Contains((rec.DataBoundItem as DicCategoryItems)?.DicName.ToLower()));
+            foreach (var node in lockNodes)
+                node.Enabled = false;
         }
 
         //initialize data for grid of the selected dictionary
-        private void complexTreeView_SelectedNodeChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
+        private void complexTreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             controlPanel.Controls.Clear();
 

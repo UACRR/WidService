@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 using sysAdminwp.Model;
 using Telerik.WinControls.UI;
 using static sysAdminwp.Model.DictionaryConstants;
 
 namespace sysAdminwp.ComplexDictionariesControls
 {
-    public sealed partial class BaseCreativeroleTypeControl : UserControl
+    public sealed partial class CreativeroleTypeControl : UserControl
     {
         private readonly DictionaryService _service = DictionaryService.GetInstance();
         
@@ -33,8 +35,10 @@ namespace sysAdminwp.ComplexDictionariesControls
                 _isEditMode = !value;
                 //'search' element
                 ctrlSearch.Enabled = !value;
-                //filter for grid
+                //filters for grid
                 ddlFilterCategory.Enabled = !value;
+                ddlFilterCopyrightType.Enabled = !value;
+                ddlFilterIsAuthorType.Enabled = !value;
                 //grid element
                 gvCreativeroleType.Enabled = !value;
                 //'Add' button
@@ -48,7 +52,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             }
         }
 
-        public BaseCreativeroleTypeControl()
+        public CreativeroleTypeControl()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
@@ -178,25 +182,139 @@ namespace sysAdminwp.ComplexDictionariesControls
         // додати
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
+            SaveMode = SaveMode.OnCreate;
+            IsEditMode = true;
+            ddlCategory.Enabled = true;
+            ddlCopyrightType.Enabled = true;
+            ddlIsAuthorType.Enabled = true;
+            txtCodeCreativeroleType.ReadOnly = false;
+            ChangeSubscribeEvents();
 
+            var codeItem = _creativeroleTypeList.Max(rec => rec.CodeI) + 1;
+            var categoryCode = IpsGlobal.ObjectRightDictionaries.category.Min(rec => rec.CodeI);
+            var isAuthorType = IpsGlobal.AnketaDictionaties.isAuthorType.Min(rec => rec.CodeI);
+            var crtype = IpsGlobal.AnketaDictionaties.copyrightType.Min(rec => rec.CodeI);
+
+            var copyrightKind = new CreativeRoleType
+            {
+                CodeI = codeItem,
+                CategoryCode = categoryCode,
+                IsAuthorType = isAuthorType,
+                Crtype = crtype,
+                CreativeRoleTypeTr = new ObservableListSource<CreativeRoleTypeTr>
+                {
+                    new CreativeRoleTypeTr
+                    {
+                        Lang = UkLang,
+                    },
+                    new CreativeRoleTypeTr
+                    {
+                        Lang = RuLang,
+                    },
+                    new CreativeRoleTypeTr
+                    {
+                        Lang = EnLang,
+                    }
+                }
+            };
+            UpdateBottomPanel(copyrightKind);
         }
 
         // видалити
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
+            if (!(gvCreativeroleType.CurrentRow?.DataBoundItem is ViewTable row))
+                return;
 
+            if (MessageShow.ConfirmAction(DeleteRecordConfirmMsg) == DialogResult.Yes)
+            {
+                var result = _service.DeleteExtraDictionaryRecord<CreativeRoleType>(int.Parse(row.Code));
+                MessageShow.ShowInfoByResult(DeleteRecordSuccessMsg, DeleteRecordErrorMsg, result);
+                UpdateDataFromServer();
+            }
         }
 
         // зберегти
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (SaveMode == SaveMode.None)
+                return;
 
+            SyncCodeAndName();
+            if (SaveMode == SaveMode.OnCreate)
+            {
+                if (!CheckForUniqueness(_creativeRoleTypeData.CodeI))
+                {
+                    MessageShow.ShowError(NotUniquenessCodeWarningMsg);
+                    return;
+                }
+
+                var result = _service.CreateExtraDictionaryRecord(_creativeRoleTypeData);
+                MessageShow.ShowInfoByResult(SaveNewRecordSuccessMsg, SaveNewRecordErrorMsg, result);
+
+                if (!result)
+                    return;
+
+                ddlCategory.Enabled = false;
+                ddlCopyrightType.Enabled = false;
+                ddlIsAuthorType.Enabled = false;
+                txtCodeCreativeroleType.ReadOnly = true;
+
+                // змінити режим збереження перед зміною підписок
+                SaveMode = SaveMode.None;
+                ChangeSubscribeEvents();
+            }
+            else if (SaveMode == SaveMode.OnEditExist)
+            {
+                var result = _service.UpdateExtraDictionaryRecord(_creativeRoleTypeData);
+                MessageShow.ShowInfoAfterChanges(result);
+
+                if (!result)
+                    return;
+
+                SaveMode = SaveMode.None;
+            }
+
+            UpdateDataFromServer();
+            IsEditMode = false;
+        }
+
+        /// <summary>
+        /// Перевірити введений код на унікальність
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private bool CheckForUniqueness(int code)
+        {
+            // не унікальний якщо такий код є в колекції
+            return !_creativeroleTypeList.Select(rec => rec.CodeI).ToArray().Contains(code);
+        }
+
+        /// <summary>
+        /// Синхронізувати CodeI, Name основної таблиці та Tr-таблиці
+        /// </summary>
+        private void SyncCodeAndName()
+        {
+            if (SaveMode == SaveMode.OnCreate)
+            {
+                foreach (var creativeRoleTypeTr in _creativeRoleTypeData.CreativeRoleTypeTr)
+                    creativeRoleTypeTr.CodeI = _creativeRoleTypeData.CodeI;
+            }
+
+            _creativeRoleTypeData.Name = _creativeRoleTypeData.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == UkLang)?.Name;
         }
 
         // скасувати
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            SaveMode = SaveMode.None;
+            UpdateDataFromServer();
+            IsEditMode = false;
+            ddlCategory.Enabled = false;
+            ddlCopyrightType.Enabled = false;
+            ddlIsAuthorType.Enabled = false;
+            txtCodeCreativeroleType.ReadOnly = true;
+            ChangeSubscribeEvents();
         }
 
         private void DdlFilters_SelectedValueChanged(object sender, EventArgs e)

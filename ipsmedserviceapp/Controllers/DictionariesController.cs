@@ -793,8 +793,8 @@ namespace ipsmedserviceapp.Controllers
             if (target == null)
                 return NotFound();
 
-            _dbContext.UpdateList(sors.CopyrightKindTr, target.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
             target.SetFields(sors);
+            _dbContext.UpdateList(sors.CopyrightKindTr, target.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
 
             await _dbContext.SaveChangesAsync();
 
@@ -1153,8 +1153,8 @@ namespace ipsmedserviceapp.Controllers
                 if (target == null)
                     return NotFound();
 
-                _dbContext.UpdateList(source.GenreTypeTr, target.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
                 target.SetFields(source);
+                _dbContext.UpdateList(source.GenreTypeTr, target.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
 
                 transaction = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();

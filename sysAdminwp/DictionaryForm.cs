@@ -70,30 +70,16 @@ namespace sysAdminwp
             }
         }
 
-        /// <summary>
-        /// Найменування довідника
-        /// </summary>
-        public string DictionaryName
-        {
-            get
-            {
-                var node = treeViewList.SelectedNode;
-                if (node?.Parent == null) return string.Empty;
-                var categoryItem = _dictionaryCategories[node.Parent.Index].DicCategoryItems[node.Index];
-                if (categoryItem == null) return string.Empty;
-                return categoryItem.DicName;
-            }
-        }
-
         public DictionaryForm()
         {
             _enableStateElements = false;
             InitializeComponent();
-            SetTreeViewDataSource();
-            UpdateEditPanel();
-            ctrlComplexDictionary.SetComplexDictionaryForTreeView(_complexDictionary);
             IpsGlobal.SetAnketaDictionaties(DictionaryService.GetInstance().GetAnketaDictionaties());
             IpsGlobal.SetObjectRightDictionaries(DictionaryService.GetInstance().GetObjectRightDictionaries());
+            SetTreeViewDataSource();
+            UpdateEditPanel();
+            ctrlComplexDictionary.SetDictionaryCategories(_complexDictionary);
+            ctrlSimpleDictionary.SetDictionaryCategories(_dictionaryCategories);
         }
 
         #region * * * Методи * * *
@@ -104,7 +90,13 @@ namespace sysAdminwp
         /// get method for complex dictionary
         private void SetTreeViewDataSource()
         {
-            _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");//дерево
+            // дерево
+            _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");
+            // show simple dictionaries
+            treeViewList.DataSource = _dictionaryCategories;
+            treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
+            treeViewList.DisplayMember = "Name\\Name";
+
             _complexDictionary = new List<DicCategoryItems>();
             foreach (var category in _dictionaryCategories)
             {
@@ -122,12 +114,7 @@ namespace sysAdminwp
                 foreach (var i in categoryItems)
                     category.DicCategoryItems.Add(i);
             }
-            //complex dictionaries for send to second control
             _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
-            //show simple dictionaries
-            treeViewList.DataSource = _dictionaryCategories;
-            treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
-            treeViewList.DisplayMember = "Name\\Name";
         }
 
         /// <summary>
