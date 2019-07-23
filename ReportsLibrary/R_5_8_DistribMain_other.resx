@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox22.Value" xml:space="preserve">
+    <value>='13. Відомість '+"'"+'Розподіл авторської винагороди на авторів  з '+"'"+'великих прав'+"'"+' - інші товариства 
+за період з '+ Substr(CStr(Parameters.beginDate.Value),0,10)+' по '+Substr(CStr(Parameters.endDate.Value),0,10)</value>
+  </data>
   <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
