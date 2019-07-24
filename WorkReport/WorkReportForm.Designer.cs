@@ -30,9 +30,9 @@
         {
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.registerListControl1 = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
+            this.ctrlRegisterList = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.licenseAgreementListControl1 = new IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl();
+            this.ctrlLicenseAgreementList = new IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
@@ -57,39 +57,39 @@
             // 
             // radPageViewPage1
             // 
-            this.radPageViewPage1.Controls.Add(this.registerListControl1);
+            this.radPageViewPage1.Controls.Add(this.ctrlRegisterList);
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(66F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(1099, 552);
             this.radPageViewPage1.Text = "Звіти МП";
             // 
-            // registerListControl1
+            // ctrlRegisterList
             // 
-            this.registerListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.registerListControl1.Location = new System.Drawing.Point(0, 0);
-            this.registerListControl1.Name = "registerListControl1";
-            this.registerListControl1.SelectedRegister = null;
-            this.registerListControl1.Size = new System.Drawing.Size(1099, 552);
-            this.registerListControl1.TabIndex = 0;
+            this.ctrlRegisterList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRegisterList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterList.Name = "ctrlRegisterList";
+            this.ctrlRegisterList.SelectedRegister = null;
+            this.ctrlRegisterList.Size = new System.Drawing.Size(1099, 552);
+            this.ctrlRegisterList.TabIndex = 0;
             // 
             // radPageViewPage2
             // 
-            this.radPageViewPage2.Controls.Add(this.licenseAgreementListControl1);
+            this.radPageViewPage2.Controls.Add(this.ctrlLicenseAgreementList);
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(123F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(1099, 557);
+            this.radPageViewPage2.Size = new System.Drawing.Size(1099, 552);
             this.radPageViewPage2.Text = "Заявки/Довідки ВП";
             // 
-            // licenseAgreementListControl1
+            // ctrlLicenseAgreementList
             // 
-            this.licenseAgreementListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.licenseAgreementListControl1.Location = new System.Drawing.Point(0, 0);
-            this.licenseAgreementListControl1.Name = "licenseAgreementListControl1";
-            this.licenseAgreementListControl1.SelectedLicenseAgreement = null;
-            this.licenseAgreementListControl1.Size = new System.Drawing.Size(1099, 557);
-            this.licenseAgreementListControl1.TabIndex = 0;
+            this.ctrlLicenseAgreementList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlLicenseAgreementList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlLicenseAgreementList.Name = "ctrlLicenseAgreementList";
+            this.ctrlLicenseAgreementList.SelectedLicenseAgreement = null;
+            this.ctrlLicenseAgreementList.Size = new System.Drawing.Size(1099, 552);
+            this.ctrlLicenseAgreementList.TabIndex = 0;
             // 
             // WorkReportForm
             // 
@@ -118,7 +118,7 @@
         private Telerik.WinControls.UI.RadPageView radPageView1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
-        private IpsViewComponentLibrary.RegisterControls.RegisterListControl registerListControl1;
-        private IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl licenseAgreementListControl1;
+        private IpsViewComponentLibrary.RegisterControls.RegisterListControl ctrlRegisterList;
+        private IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl ctrlLicenseAgreementList;
     }
 }

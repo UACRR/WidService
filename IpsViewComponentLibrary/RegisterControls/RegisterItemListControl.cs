@@ -62,7 +62,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private RegisterItemViewModel _selectedRegisterItem;
         public RegisterItemViewModel SelectedRegisterItem
         {
-            get { return _selectedRegisterItem; }
+            get => _selectedRegisterItem;
             set
             {
                 _selectedRegisterItem = value;
@@ -400,7 +400,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
-        // *** MED-526
         public void ResetErrorText()
         {
             foreach( var row in gvRegisterItemList.Rows )
@@ -423,8 +422,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             var cnt = gvRegisterItemList.Rows.Count(rec => (rec.DataBoundItem as RegisterItemViewModel)?.ObjId == null);
             return cnt;
         }
-
-        // *** MED-526
 
         private void GvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
@@ -562,14 +559,21 @@ namespace IpsViewComponentLibrary.RegisterControls
             if (!_allowLinkCommand)
                 return;
 
+
             LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
 
-            // TODO: move to presenter
-            using (var selectionView = new ObjectRightSelectionView())
+            // TODO: CHANGE TO NEW SEARCH WINDOW
+
+            using (var selectionView = new ObjectRightSelectionExtendedView())
             {
-                selectionView.ObjectSelected += SelectionView_ObjectSelected;
                 selectionView.ShowDialog();
             }
+
+            //using (var selectionView = new ObjectRightSelectionView())
+            //{
+            //    selectionView.ObjectSelected += SelectionView_ObjectSelected;
+            //    selectionView.ShowDialog();
+            //}
         }
 
         private void OnUnlinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)

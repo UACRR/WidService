@@ -171,6 +171,12 @@
     <Compile Include="CommunityControls\InternalModel\InternalCommunity.cs" />
     <Compile Include="ConsumerControls\Reports\ReportsHandler.cs" />
     <Compile Include="InternalControlsModel\ReportPaidPeriod.cs" />
+    <Compile Include="ObjectRightControls\ObjectRightSelectionExtendedView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightSelectionExtendedView.Designer.cs">
+      <DependentUpon>ObjectRightSelectionExtendedView.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1183,6 +1189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CatalogControls\CatalogShowEdition.resx">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightSelectionExtendedView.resx">
+      <DependentUpon>ObjectRightSelectionExtendedView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterDetailForm.resx">
       <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>

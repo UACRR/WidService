@@ -183,10 +183,11 @@ namespace WebAPIConnector
 
 
         /// <summary>
-        /// Получити об'єкт з серверу додатків по ID
+        /// Отримати об'єкт з серверу додатків по ID
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         public T GetItemById<T>(string url, string id)
         {

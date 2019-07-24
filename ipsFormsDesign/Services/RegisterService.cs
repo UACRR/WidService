@@ -53,15 +53,16 @@ namespace ipsFormsDesign.Services
             return item.PaidPeriod.FirstOrDefault().RegisterRatedList.FirstOrDefault().Register.FirstOrDefault();
         }
 
-        public List<RegisterSearchObject> SearchObjects( string name, string authtors, string performers )
+        public List<RegisterSearchObject> SearchObjects(string name, string authtors, string performers)
         {
-            KeyValuePair<string, string>[] param = {
-                new KeyValuePair<string, string>("name",name),
-                new KeyValuePair<string, string>("authtors",authtors),
-                new KeyValuePair<string, string>("performers",performers)
+            KeyValuePair<string, string>[] param =
+            {
+                new KeyValuePair<string, string>("name", name),
+                new KeyValuePair<string, string>("authtors", authtors),
+                new KeyValuePair<string, string>("performers", performers)
             };
 
-            var list = _webApi.GetList<RegisterSearchObject>("register/search", param );
+            var list = _webApi.GetList<RegisterSearchObject>("register/search", param);
 
             return list;
         }
