@@ -65,7 +65,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         private void SetTxtPayDistribution(MoneyReceived pay)
         {
-            txtPayDistribution.Text =  string.Format("{0:# ### ### ##0.00}", pay.Amount - pay.DestribAmount);
+            txtPayDistribution.Text = string.Format("{0:# ### ### ##0.00}", pay.Amount - pay.DestribAmount);
         }
 
         //встановити джерело для грідів
