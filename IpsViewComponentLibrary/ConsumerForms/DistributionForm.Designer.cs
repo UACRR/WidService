@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvDistributionPayment = new Telerik.WinControls.UI.RadGridView();
@@ -113,50 +113,53 @@ namespace IpsViewComponentLibrary.ConsumerForms
             gridViewTextBoxColumn1.HeaderText = "Період";
             gridViewTextBoxColumn1.Name = "PeriodName";
             gridViewTextBoxColumn1.ReadOnly = true;
-            gridViewTextBoxColumn1.Width = 162;
+            gridViewTextBoxColumn1.Width = 141;
             gridViewTextBoxColumn2.EnableExpressionEditor = false;
             gridViewTextBoxColumn2.FieldName = "Status";
             gridViewTextBoxColumn2.HeaderText = "Стан періоду";
             gridViewTextBoxColumn2.Name = "Status";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 134;
+            gridViewTextBoxColumn2.Width = 141;
             gridViewDecimalColumn1.EnableExpressionEditor = false;
             gridViewDecimalColumn1.FieldName = "Amount";
+            gridViewDecimalColumn1.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn1.HeaderText = "Вимога";
             gridViewDecimalColumn1.Name = "Amount";
             gridViewDecimalColumn1.ReadOnly = true;
-            gridViewDecimalColumn1.Width = 155;
+            gridViewDecimalColumn1.Width = 141;
             gridViewDecimalColumn2.EnableExpressionEditor = false;
             gridViewDecimalColumn2.FieldName = "AmountBound";
+            gridViewDecimalColumn2.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn2.HeaderText = "Прив\'язано";
             gridViewDecimalColumn2.Name = "AmountBound";
             gridViewDecimalColumn2.ReadOnly = true;
-            gridViewDecimalColumn2.Width = 155;
+            gridViewDecimalColumn2.Width = 141;
             gridViewDecimalColumn3.EnableExpressionEditor = false;
             gridViewDecimalColumn3.FieldName = "Arrears";
+            gridViewDecimalColumn3.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn3.HeaderText = "Борг";
             gridViewDecimalColumn3.Name = "Arrears";
             gridViewDecimalColumn3.ReadOnly = true;
-            gridViewDecimalColumn3.Width = 134;
-            gridViewTextBoxColumn3.DataType = typeof(decimal);
-            gridViewTextBoxColumn3.EnableExpressionEditor = false;
-            gridViewTextBoxColumn3.FieldName = "DistAmount";
-            gridViewTextBoxColumn3.HeaderText = "Сума прив\'язки";
-            gridViewTextBoxColumn3.Name = "DistAmount";
-            gridViewTextBoxColumn3.Width = 126;
+            gridViewDecimalColumn3.Width = 141;
+            gridViewDecimalColumn4.FieldName = "DistAmount";
+            gridViewDecimalColumn4.FormatString = "{0:### ### ##0.00}";
+            gridViewDecimalColumn4.HeaderText = "Сума прив\'язки";
+            gridViewDecimalColumn4.MinWidth = 20;
+            gridViewDecimalColumn4.Name = "DistAmount";
+            gridViewDecimalColumn4.Width = 141;
             gridViewCheckBoxColumn1.EnableExpressionEditor = false;
             gridViewCheckBoxColumn1.FieldName = "AutoSet";
             gridViewCheckBoxColumn1.HeaderText = "Автоматично";
             gridViewCheckBoxColumn1.MinWidth = 20;
             gridViewCheckBoxColumn1.Name = "AutoSet";
-            gridViewCheckBoxColumn1.Width = 76;
+            gridViewCheckBoxColumn1.Width = 96;
             this.gvDistributionPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewDecimalColumn1,
             gridViewDecimalColumn2,
             gridViewDecimalColumn3,
-            gridViewTextBoxColumn3,
+            gridViewDecimalColumn4,
             gridViewCheckBoxColumn1});
             this.gvDistributionPayment.MasterTemplate.EnableGrouping = false;
             this.gvDistributionPayment.MasterTemplate.EnableSorting = false;
