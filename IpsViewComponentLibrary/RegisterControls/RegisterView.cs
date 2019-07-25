@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading.Tasks;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -184,13 +185,13 @@ namespace IpsViewComponentLibrary.RegisterControls
             btnSetCanceledStatus.Enabled = !((int)status >= 2);
         }
 
-        private void btnSearchAuto_Click(object sender, EventArgs e)
+        private async void btnSearchAuto_Click(object sender, EventArgs e)
         {
-            radWaitingBar1.StartWaiting();
-            Task.Run(() => _presenter.SearchObjectsAuto())
-                    .ContinueWith(ct => radWaitingBar1.StopWaiting(), TaskScheduler.FromCurrentSynchronizationContext());
-            
-            //_presenter.SearchObjectsAuto();
+            waitingBar.StartWaiting();
+            MessageShow.ShowInfo("Процес може зайняти тривалий час. Очікуйте завершення.");
+            await Task.Factory.StartNew(() => _presenter.SearchObjectsAuto());
+            //.ContinueWith(ct => waitingBar.StopWaiting(), TaskScheduler.FromCurrentSynchronizationContext());
+            waitingBar.StopWaiting();
         }
 
         private void btnSearchAll_Click(object sender, EventArgs e)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -27,11 +28,11 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
-        public string GetDefault()
+        public List<RegisterItemViewModel> GetAutoLinkedObjects(int regId)
         {
-            string url = $"{Prefix}/default";
-            var result = _apiConnector.GetItemById<string>(url, null);
-            return result;
+            string url = $"{Prefix}/autolinkedobjects/{regId}";
+            var list = _apiConnector.GetList<RegisterItemViewModel>(url);
+            return list;
         }
     }
 }

@@ -74,7 +74,7 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.ddlAlgorithmId = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
@@ -127,7 +127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlAlgorithmId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -374,7 +374,7 @@
             // 
             // splitPanel2
             // 
-            this.splitPanel2.Controls.Add(this.radWaitingBar1);
+            this.splitPanel2.Controls.Add(this.waitingBar);
             this.splitPanel2.Controls.Add(this.mebMusicRate);
             this.splitPanel2.Controls.Add(this.lblMusicRate);
             this.splitPanel2.Controls.Add(this.radLabel4);
@@ -668,17 +668,17 @@
             this.radPanel2.Size = new System.Drawing.Size(1267, 628);
             this.radPanel2.TabIndex = 101;
             // 
-            // radWaitingBar1
+            // waitingBar
             // 
-            this.radWaitingBar1.AssociatedControl = this.radPanel2;
-            this.radWaitingBar1.Location = new System.Drawing.Point(535, 60);
-            this.radWaitingBar1.Name = "radWaitingBar1";
-            this.radWaitingBar1.Size = new System.Drawing.Size(70, 70);
-            this.radWaitingBar1.TabIndex = 109;
-            this.radWaitingBar1.Text = "radWaitingBar1";
-            this.radWaitingBar1.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
-            this.radWaitingBar1.WaitingSpeed = 50;
-            this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            this.waitingBar.AssociatedControl = this.radPanel2;
+            this.waitingBar.Location = new System.Drawing.Point(535, 60);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 109;
+            this.waitingBar.Text = "waitingBar";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             // 
             // lineRingWaitingBarIndicatorElement1
             // 
@@ -757,7 +757,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -809,7 +809,7 @@
         private IpsViewComponentLibrary.Common.Editors.IpsDropDownList ddlAlgorithmId;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private Telerik.WinControls.UI.RadPanel radPanel2;
-        private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

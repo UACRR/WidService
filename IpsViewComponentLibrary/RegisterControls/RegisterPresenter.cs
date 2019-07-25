@@ -9,6 +9,7 @@ using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -22,6 +23,7 @@ namespace IpsViewComponentLibrary.RegisterControls
     {
         private readonly RegisterView _view;
         private readonly RegisterService _registerService;
+        private readonly RegisterWIDService _registerWidService;
         private readonly ConsumerService _consumerService;
         private readonly DialogService _dialogService;
         private Register _register;
@@ -36,6 +38,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.FormClosing += View_FormClosing;
 
             _registerService = registerService;
+            _registerWidService = RegisterWIDService.GetInstance();
             _consumerService = new ConsumerService();
             _dialogService = new DialogService();
         }
@@ -61,7 +64,14 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public void SearchObjectsAuto()
         {
-            var list = _registerService.GetAutoLinkedObjects(_register.RegId);
+            var list = _registerWidService.GetAutoLinkedObjects(_register.RegId);
+            //var list = _registerService.GetAutoLinkedObjects(_register.RegId);
+
+            if (!list.Any())
+            {
+                MessageShow.ShowInfo("Співпадінь не знайдено!");
+                return;
+            }
 
             foreach (var item in list)
             {

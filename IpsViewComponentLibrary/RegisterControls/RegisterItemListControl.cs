@@ -559,14 +559,16 @@ namespace IpsViewComponentLibrary.RegisterControls
             if (!_allowLinkCommand)
                 return;
 
-
             LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
 
             // TODO: CHANGE TO NEW SEARCH WINDOW
 
             using (var selectionView = new ObjectRightSelectionExtendedView())
             {
-                selectionView.ShowDialog();
+                if (selectionView.ShowDialog() == DialogResult.OK)
+                {
+                    SelectedRegisterItem.SetObjectData(selectionView.ObjectRight);
+                }
             }
 
             //using (var selectionView = new ObjectRightSelectionView())
@@ -593,8 +595,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 selectedObject.Name,
                 selectedObject.Author,
                 selectedObject.Performer,
-                selectedObject.Duration
-            );
+                selectedObject.Duration);
         }
 
         private void BsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)

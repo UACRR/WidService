@@ -33,7 +33,7 @@ namespace ipsFormsDesign.Dictionary
         private int? _objId;
         public int? ObjId
         {
-            get { return _objId; }
+            get => _objId;
             set
             {
                 _objId = value;
@@ -44,7 +44,7 @@ namespace ipsFormsDesign.Dictionary
         private string _objectName;
         public string ObjectName
         {
-            get { return _objectName; }
+            get => _objectName;
             set
             {
                 _objectName = value;
@@ -54,7 +54,7 @@ namespace ipsFormsDesign.Dictionary
         private string _objectPerformers;
         public string ObjectPerformers
         {
-            get { return _objectPerformers; }
+            get => _objectPerformers;
             set
             {
                 _objectPerformers = value;
@@ -64,7 +64,7 @@ namespace ipsFormsDesign.Dictionary
         private string _objectAuthors;
         public string ObjectAuthors
         {
-            get { return _objectAuthors; }
+            get => _objectAuthors;
             set
             {
                 _objectAuthors = value;
@@ -74,7 +74,7 @@ namespace ipsFormsDesign.Dictionary
         private TimeSpan? _objectDurations;
         public TimeSpan? ObjectDuration
         {
-            get { return _objectDurations; }
+            get => _objectDurations;
             set
             {
                 _objectDurations = value;
@@ -84,7 +84,7 @@ namespace ipsFormsDesign.Dictionary
         private bool _isAuto;
         public bool IsAuto
         {
-            get { return _isAuto; }
+            get => _isAuto;
             set
             {
                 _isAuto = value;
@@ -139,6 +139,21 @@ namespace ipsFormsDesign.Dictionary
                 ObjectAuthors = authors;
                 ObjectPerformers = performers;
                 ObjectDuration = duration;
+
+                if (resetIsAuto)
+                    IsAuto = false;
+            }
+            else
+            {
+                ClearObjectData();
+            }
+        }
+
+        public void SetObjectData(object obj, bool resetIsAuto = true)
+        {
+            if (obj != null)
+            {
+                // TODO: assign values
 
                 if (resetIsAuto)
                     IsAuto = false;
