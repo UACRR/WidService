@@ -160,6 +160,10 @@ namespace IpsViewComponentLibrary.RightholderControls
             MessageShow.ShowInfoByResult(SaveRightHolderSuccessMsg, SaveRightHolderErrorMsg, result);
             ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
+            // приховати коли додано нового
+            if (_customer.CustId == 0)
+                _view.Hide();
+
             //if (result)
             //{
             //    ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());

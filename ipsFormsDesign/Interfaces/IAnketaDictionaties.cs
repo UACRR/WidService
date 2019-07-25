@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 
@@ -50,6 +48,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<Language> language { get; set; }
         public IList<RelGenrePercent> relGenrePercent { get; set; }
         public IList<FixStageStatus> fixStageStatus { get; set; }
+        public IList<IsAuthorType> isAuthorType { get; set; }
     }
 
 

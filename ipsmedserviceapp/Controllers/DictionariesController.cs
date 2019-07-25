@@ -125,7 +125,7 @@ namespace ipsmedserviceapp.Controllers
     public class DictionariesController : Controller
     {
 
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
         private Dictionary<string, object> baseEng;
         private readonly List<string> _complexDictionaryList = new List<string>
         {
@@ -144,10 +144,6 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = context;
             SetEng();
         }
-
-        //MediaServiceContext dbContext,
-        //Func<T, string, bool> compareId,
-        //params Expression<Func<T, object>>[] includes
 
         private void SetEng()
         {
@@ -246,13 +242,13 @@ namespace ipsmedserviceapp.Controllers
                     rec => rec.CreativeRoleTypeTr)
             );
             baseEng.Add("crkindgroup".ToLower(),
-                new BaseDictionaryEng<CrkindGroup, CrkindGroupTr, CrkindGroup>(_dbContext,
+                new BaseDictionaryEng<CrkindGroup, CrkindGroupTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.CodeI == int.Parse(id),
                     sors => sors,
-                    sors => (CrkindGroup) sors,
+                    sors => sors,
                     sors => sors.CrkindGroupTr.ToList(),
-                    (sors, dest) => ((CrkindGroupTr) sors).CodeI == ((CrkindGroupTr) dest).CodeI &&
-                                    ((CrkindGroupTr) sors).Lang == ((CrkindGroupTr) dest).Lang,
+                    (sors, dest) => sors.CodeI == dest.CodeI &&
+                                    sors.Lang == dest.Lang,
                     rec => rec.CrkindGroupTr, rec => rec.CopyrightKind)
             );
             baseEng.Add("customerstatus".ToLower(),
@@ -275,14 +271,6 @@ namespace ipsmedserviceapp.Controllers
                                     ((CustomerTypeTr) sors).Lang == ((CustomerTypeTr) dest).Lang,
                     rec => rec.CustomerTypeTr)
             );
-            //baseEng.Add("documentkind".ToLower(),
-            //                new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (source, id) => source.CodeI == int.Parse(id),
-            //                source => (DictBaseTypeI)source,
-            //                source => (DocumentKind)source,
-            //                source => source.DocumentKindTr.ToList(),
-            //                (source, dest) => ((DocumentKindTr)source).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)source).Lang == ((DocumentKindTr)dest).Lang,
-            //                rec => rec.DocumentKindTr)
-            //            );
             baseEng.Add("popgenre".ToLower(),
                 new BaseDictionaryEng<PopGenre, PopGenreTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.Id == int.Parse(id),
@@ -322,14 +310,6 @@ namespace ipsmedserviceapp.Controllers
                                     ((ObjectStatusTr) sors).Lang == ((ObjectStatusTr) dest).Lang,
                     rec => rec.ObjectStatusTr)
             );
-            //baseEng.Add("objecttype".ToLower(),
-            //                new BaseDictionaryEng<ObjectType, ObjectTypeTr, DictBaseTypeI>(_dbContext, (source, id) => source.CodeI == int.Parse(id),
-            //                source => (DictBaseTypeI)source,
-            //                source => (ObjectType)source,
-            //                source => source.ObjectTypeTr.ToList(),
-            //                (source, dest) => ((ObjectTypeTr)source).CodeI == ((ObjectTypeTr)dest).CodeI && ((ObjectTypeTr)source).Lang == ((ObjectTypeTr)dest).Lang,
-            //                rec => rec.ObjectTypeTr)
-            //            );
             baseEng.Add("paymentkind".ToLower(),
                 new BaseDictionaryEng<PaymentKind, PaymentKindTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.CodeI == int.Parse(id),
@@ -434,11 +414,10 @@ namespace ipsmedserviceapp.Controllers
             baseEng.Add("typeplaceparam".ToLower(),
                 new BaseDictionaryEng<TypePlaceParam, TypePlaceParamTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.CodeI == int.Parse(id),
-                    sors => (DictBaseTypeI) sors,
-                    sors => (TypePlaceParam) sors,
+                    sors => sors,
+                    sors => sors,
                     sors => sors.TypePlaceParamTr.ToList(),
-                    (sors, dest) => ((TypePlaceParamTr) sors).CodeI == ((TypePlaceParamTr) dest).CodeI &&
-                                    ((TypePlaceParamTr) sors).Lang == ((TypePlaceParamTr) dest).Lang,
+                    (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
                     rec => rec.TypePlaceParamTr)
             );
 
@@ -553,7 +532,7 @@ namespace ipsmedserviceapp.Controllers
                     (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
                     rec => rec.DocumentTypeTr)
             );
-            baseEng.Add("systemconstant",
+            baseEng.Add("systemconstant".ToLower(),
                 new BaseDictionaryEng<SystemConstant, SystemConstantTr, DictBaseTypeI>(_dbContext,
                     (sors, id) => sors.CodeI == int.Parse(id),
                     sors => sors,
@@ -561,6 +540,22 @@ namespace ipsmedserviceapp.Controllers
                     sors => sors.SystemConstantTr.ToList(),
                     (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
                     rec => rec.SystemConstantTr));
+            baseEng.Add("MonthName".ToLower(),
+                new BaseDictionaryEng<MonthName, MonthNameTr, DictBaseTypeI>(_dbContext,
+                    (sors, id) => sors.CodeI == int.Parse(id),
+                    sors => sors,
+                    sors => sors,
+                    sors => sors.MonthNameTr.ToList(),
+                    (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                    rec => rec.MonthNameTr));
+            baseEng.Add("CatalogStatus".ToLower(),
+                new BaseDictionaryEng<CatalogStatus, CatalogStatusTr, DictBaseTypeI>(_dbContext,
+                    (sors, id) => sors.CodeI == int.Parse(id),
+                    sors => sors,
+                    sors => sors,
+                    sors => sors.CatalogStatusTr.ToList(),
+                    (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                    rec => rec.CatalogStatusTr));
 
             #endregion
         }
@@ -660,546 +655,6 @@ namespace ipsmedserviceapp.Controllers
                     return NotFound();
             }
         }
-
-        ///// <summary>
-        ///// Оновити дані складного довідника
-        ///// </summary>
-        ///// <param name="dictionaryName"></param>
-        ///// <param name="id"></param>
-        ///// <param name="dataJObject"></param>
-        ///// <returns></returns>
-        //[HttpPut("complex/update/{dictionaryName}/{id}")]
-        //public async Task<IActionResult> SaveComplexDictionary(string dictionaryName, string id, [FromBody]JObject dataJObject)
-        //{
-        //    IDbContextTransaction transaction = null;
-        //    try
-        //    {
-        //        if(_complexDictionaryList.Contains(dictionaryName.ToLower()))
-        //        switch (dictionaryName.ToLower())
-        //        {
-        //            case "copyrightkind":
-        //                // convert copyrughtkind from JSON
-        //                var copyrightKind = dataJObject.ToObject<CopyrightKind>();
-        //                if (copyrightKind == null)
-        //                    return NotFound("CopyrightKind not found!");
-        //                //get copyrughtkind from DB by id
-        //                var destination = await _dbContext.CopyrightKind
-        //                    .Include(item => item.CopyrightKindTr)
-        //                    .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
-        //                //update copyrightKind data 
-        //                destination.SetFields(copyrightKind);
-        //                // update CopyrightKindTr list
-        //                foreach (var kindTr in copyrightKind.CopyrightKindTr)
-        //                {
-        //                    //get dictionary tr with current lang
-        //                    var kind = destination.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == kindTr.Lang);
-        //                    //if not exist 
-        //                    if (kind == null)    
-        //                        destination.CopyrightKindTr.Add(new CopyrightKindTr
-        //                        {
-        //                            CodeI = kindTr.CodeI,
-        //                            Lang = kindTr.Lang,
-        //                            Name = kindTr.Name,
-        //                        });
-        //                    else
-        //                        kind.SetFields(kindTr,new []{"Lang"});
-        //                }
-        //                    break;
-        //                case "country":
-        //                    // convert country object from json
-        //                    var objCountryForNewData = dataJObject.ToObject<Country>();
-        //                    //check on valid state
-        //                    if (objCountryForNewData == null)
-        //                        return NotFound("Country not found!");
-        //                    //get country from DB by id
-        //                    var getCountryDictionaryFromDB = await _dbContext.Country
-        //                        .Include(item => item.CountryTr)
-        //                        .SingleOrDefaultAsync(findById => findById.CountryCode == id);
-        //                    //update country data
-        //                    getCountryDictionaryFromDB.SetFields(objCountryForNewData);
-        //                    //update country list
-        //                    foreach(var dict in objCountryForNewData.CountryTr)
-        //                    {
-        //                        //get dictionary tr with current lang
-        //                        var newLangValue = getCountryDictionaryFromDB.CountryTr.SingleOrDefault(find => find.Lang == dict.Lang);
-        //                        //if not exist
-        //                        if (newLangValue == null)
-        //                        {
-        //                            //if not exist
-        //                            getCountryDictionaryFromDB.CountryTr.Add(new CountryTr
-        //                            {
-        //                                CountryCode = dict.CountryCode,
-        //                                Lang = dict.Lang,
-        //                                CountryName = dict.CountryName,
-        //                            });
-        //                        }
-        //                        else
-        //                        {
-                                    
-        //                            getCountryDictionaryFromDB.SetFields(dict, new[] { "Lang" });
-        //                        }
-        //                    }
-        //                    break;
-        //                case "creativeroletype":
-        //                    //convert creativeroletype object from json
-        //                    var objCreativeForNewData = dataJObject.ToObject<CreativeRoleType>();
-        //                    //check on valid state
-        //                    if (objCreativeForNewData == null)
-        //                        return NotFound("Country not found!");
-        //                    //get creartiveroletype from DB by id
-        //                    var getCreativeDictionaryFromDB = await _dbContext.CreativeRoleType
-        //                        .Include(item => item.CreativeRoleTypeTr)
-        //                        .SingleOrDefaultAsync(item => item.CodeI == Convert.ToInt32(id));
-        //                    //update creativeRoleType data
-        //                    getCreativeDictionaryFromDB.SetFields(objCreativeForNewData);
-        //                    //update creativeroletype list
-        //                    foreach(var dict in objCreativeForNewData.CreativeRoleTypeTr)
-        //                    {
-        //                        //get dictionary tr with current lang
-        //                        var newLangCreative = getCreativeDictionaryFromDB.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == dict.Lang);
-        //                        //if not exist
-        //                        if (newLangCreative == null)
-        //                        {
-        //                            //if not exist
-        //                            getCreativeDictionaryFromDB.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
-        //                            {
-        //                                CodeI = dict.CodeI,
-        //                                Lang = dict.Lang,
-        //                                Name = dict.Name,
-        //                            });
-        //                        }
-        //                        else
-        //                        {
-        //                            getCreativeDictionaryFromDB.SetFields(dict, new[] { "Lang" });
-        //                        }
-        //                    }
-        //                    break;
-        //                case "genretype":
-        //                    //convert genretype object from json
-        //                    var objGenreForNewData = dataJObject.ToObject<GenreType>();
-        //                    //check on valid state
-        //                    if (objGenreForNewData == null)
-        //                        return NotFound("Genre not found!");
-        //                    //get genre from DB by id
-        //                    var getGenreDictionaryFromDB = await _dbContext.GenreType
-        //                        .Include(item => item.GenreTypeTr)
-        //                        .SingleOrDefaultAsync(item => item.CodeI == Convert.ToInt32(id));
-        //                    //update genretype data
-        //                    getGenreDictionaryFromDB.SetFields(objGenreForNewData);
-        //                    //update genretype list
-        //                    foreach(var dict in objGenreForNewData.GenreTypeTr)
-        //                    {
-        //                        //get dictionary tr with current lang
-        //                        var newLangGenre = getGenreDictionaryFromDB.GenreTypeTr.SingleOrDefault(item => item.Lang == dict.Lang);
-        //                        //if not exist
-        //                        if (newLangGenre == null)
-        //                        {
-        //                            getGenreDictionaryFromDB.GenreTypeTr.Add(new GenreTypeTr
-        //                            {
-        //                                CodeI = dict.CodeI,
-        //                                Lang = dict.Lang,
-        //                                Name = dict.Name,
-        //                            });
-        //                        }
-        //                        else
-        //                        {
-        //                            getGenreDictionaryFromDB.SetFields(dict, new[] { "Lang" });
-        //                        }
-        //                    }
-        //                    break;
-        //                case "klr030":
-        //                    //convert klr030 object from json
-        //                    var objKLRForNewData = dataJObject.ToObject<KlR030>();
-        //                    //check on valud state
-        //                    if (objKLRForNewData == null)
-        //                        return NotFound("KLR030 not found!");
-        //                    //get KLR030 from DB by id
-        //                    var getKLRDictionaryFromDB = await _dbContext.KlR030
-        //                        .Include(item => item.KlR030tr)
-        //                        .SingleOrDefaultAsync(item => item.CountryCode == id);
-        //                    //update KLR030 data
-        //                    getKLRDictionaryFromDB.SetFields(objKLRForNewData);
-        //                    //update KLR030 list
-        //                    foreach(var dict in objKLRForNewData.KlR030tr)
-        //                    {
-        //                        //get dictionary tr with current lang
-        //                        var newLangKLR = getKLRDictionaryFromDB.KlR030tr.SingleOrDefault(item => item.Lang == dict.Lang);
-        //                        //if not exist
-        //                        if (newLangKLR == null)
-        //                        {
-        //                            //if not exist
-        //                            getKLRDictionaryFromDB.KlR030tr.Add(new KlR030tr
-        //                            {
-        //                                R030 = dict.R030,
-        //                                Lang = dict.Lang,
-        //                                R030Name = dict.R030Name,
-        //                            });
-        //                        }
-        //                        else
-        //                        {
-        //                            getKLRDictionaryFromDB.SetFields(dict, new[] { "Lang" });
-        //                        }
-        //                    }
-        //                    break;
-        //                case "systemconstant":
-        //                    //convert systemconstant object from json
-        //                    var objSystemConstantForNewData = dataJObject.ToObject<SystemConstant>();
-        //                    //check on valid state
-        //                    if (objSystemConstantForNewData == null)
-        //                        return NotFound("Country not found!");
-        //                    //get systemconstant from DB by id
-        //                    var getSystemConstantDictionaryFromDB = await _dbContext.SystemConstant
-        //                        .Include(item => item.SystemConstantTr)
-        //                        .SingleOrDefaultAsync(item => item.CodeI == Convert.ToInt32(id));
-        //                    //update systemconstant data
-        //                    getSystemConstantDictionaryFromDB.SetFields(objSystemConstantForNewData);
-        //                    //update systemconstant list
-        //                    foreach (var dict in objSystemConstantForNewData.SystemConstantTr)
-        //                    {
-        //                        //get dictionary tr with current lang
-        //                        var newLangSystemConstant = getSystemConstantDictionaryFromDB.SystemConstantTr.SingleOrDefault(rec => rec.Lang == dict.Lang);
-        //                        //if not exist
-        //                        if (newLangSystemConstant == null)
-        //                        {
-        //                            //if not exist
-        //                            getSystemConstantDictionaryFromDB.SystemConstantTr.Add(new SystemConstantTr
-        //                            {
-        //                                CodeI = dict.CodeI,
-        //                                Lang = dict.Lang,
-        //                                Name = dict.Name,
-        //                            });
-        //                        }
-        //                        else
-        //                        {
-        //                            getSystemConstantDictionaryFromDB.SetFields(dict, new[] { "Lang" });
-        //                        }
-        //                    }
-        //                    break;
-        //                case "typeplace":
-        //                    //convert typeplace object from json
-        //                    var objTypePlaceForNewData = dataJObject.ToObject<TypePlace>();
-        //                    //check on valid state
-        //                    if (objTypePlaceForNewData == null)
-        //                        return NotFound("Country not found!");
-        //                    //get typeplace from DB by id
-        //                    var getTypePlaceDictionaryFromDB = await _dbContext.TypePlace
-        //                        .Include(item => item.TypePlaceTr)
-        //                        .SingleOrDefaultAsync(item => item.CodeI == Convert.ToInt32(id));
-        //                    //update creativeRoleType data
-        //                    getTypePlaceDictionaryFromDB.SetFields(objTypePlaceForNewData);
-        //                    //update typeplace list
-        //                    foreach (var dict in objTypePlaceForNewData.TypePlaceTr)
-        //                    {
-        //                        //get dictionary tr with current lang
-        //                        var newLangTypePlace = getTypePlaceDictionaryFromDB.TypePlaceTr.SingleOrDefault(rec => rec.Lang == dict.Lang);
-        //                        //if not exist
-        //                        if (newLangTypePlace == null)
-        //                        {
-        //                            //if not exist
-        //                            getTypePlaceDictionaryFromDB.TypePlaceTr.Add(new TypePlaceTr
-        //                            {
-        //                                CodeI = dict.CodeI,
-        //                                Lang = dict.Lang,
-        //                                Name = dict.Name,
-        //                            });
-        //                        }
-        //                        else
-        //                        {
-        //                            getTypePlaceDictionaryFromDB.SetFields(dict, new[] { "Lang" });
-        //                        }
-        //                    }
-        //                    break;
-        //            }
-
-        //        transaction = _dbContext.Database.BeginTransaction();
-        //        await _dbContext.SaveChangesAsync();
-        //        transaction.Commit();
-        //        transaction = null;
-
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        transaction?.Rollback();
-        //        return BadRequest(e.Message);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Видалити запис з довідника по ID
-        ///// </summary>
-        ///// <param name="dictionaryName"></param>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpDelete("complex/delete/{dictionaryName}/{id}")]
-        //public async Task<IActionResult> DeleteComplexDictionary(string dictionaryName, string id)
-        //{
-        //    IDbContextTransaction transaction = null;
-        //    try
-        //    {
-        //        if (!_complexDictionaryList.Contains(dictionaryName.ToLower()))
-        //            return NotFound("Complex dictionary not found!");
-        //        switch (dictionaryName.ToLower())
-        //        {
-        //            case "copyrightkind":
-        //                var copyrightKind = await _dbContext.CopyrightKind
-        //                    .Include(item => item.CopyrightKindTr)
-        //                    .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
-        //                _dbContext.CopyrightKindTr.RemoveRange(copyrightKind.CopyrightKindTr);
-        //                _dbContext.CopyrightKind.Remove(copyrightKind);
-        //                break;
-        //            case "country":
-        //                //filter only country and find by id
-        //                var countryFindedIntoDB = await _dbContext.Country
-        //                 .Include(item => item.CountryTr)
-        //                 .SingleOrDefaultAsync(rec => rec.CountryCode == id);
-                        
-        //                //remove finded dictionaries
-        //                _dbContext.CountryTr.RemoveRange(countryFindedIntoDB.CountryTr);
-        //                //remove finded dictionary
-        //                _dbContext.Country.Remove(countryFindedIntoDB);
-        //                break;
-        //            case "creativeroletype":
-        //                //filter only craetiveroletype and find by id
-        //                var creativeFindedIntoDB = await _dbContext.CreativeRoleType
-        //                    .Include(item => item.CreativeRoleTypeTr)
-        //                    .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
-        //                //remove finded dictionaries
-        //                _dbContext.CreativeRoleTypeTr.RemoveRange(creativeFindedIntoDB.CreativeRoleTypeTr);
-        //                //remove finded dictionary
-        //                _dbContext.CreativeRoleType.Remove(creativeFindedIntoDB);
-        //                break;
-        //            case "genretype":
-        //                //filter only genretype and find by id
-        //                var genreFindedIntoDB = await _dbContext.GenreType
-        //                    .Include(item => item.GenreTypeTr)
-        //                    .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
-        //                //remove finded dictionaries
-        //                _dbContext.GenreTypeTr.RemoveRange(genreFindedIntoDB.GenreTypeTr);
-        //                //remove finded dictionary
-        //                _dbContext.GenreType.Remove(genreFindedIntoDB);
-        //                break;
-        //            case "klr030":
-        //                //filter only KlR030 and find by id
-        //                var klrFindedIntoDB = await _dbContext.KlR030
-        //                    .Include(item => item.KlR030tr)
-        //                    .SingleOrDefaultAsync(rec => rec.R030 == id );
-        //                //remove finded dictionaries
-        //                _dbContext.KlR030tr.RemoveRange(klrFindedIntoDB.KlR030tr);
-        //                //remove finded dictionary
-        //                _dbContext.KlR030.Remove(klrFindedIntoDB);
-        //                break;
-        //            case "systemconstant":
-        //                //filter only systemconstant and find by id
-        //                var systemConstantFindedIntoDB = await _dbContext.SystemConstant
-        //                 .Include(item => item.SystemConstantTr)
-        //                 .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
-
-        //                //remove finded dictionaries
-        //                _dbContext.SystemConstantTr.RemoveRange(systemConstantFindedIntoDB.SystemConstantTr);
-        //                //remove finded dictionary
-        //                _dbContext.SystemConstant.Remove(systemConstantFindedIntoDB);
-        //                break;
-        //            case "typeplace":
-        //                //filter only typeplace and find by id
-        //                var typePlaceFindedIntoDB = await _dbContext.TypePlace
-        //                 .Include(item => item.TypePlaceTr)
-        //                 .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
-
-        //                //remove finded dictionaries
-        //                _dbContext.TypePlaceTr.RemoveRange(typePlaceFindedIntoDB.TypePlaceTr);
-        //                //remove finded dictionary
-        //                _dbContext.TypePlace.Remove(typePlaceFindedIntoDB);
-        //                break;
-        //        }
-
-        //        transaction = await _dbContext.Database.BeginTransactionAsync();
-        //        await _dbContext.SaveChangesAsync();
-        //        transaction.Commit();
-        //        transaction = null;
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        transaction?.Rollback();
-        //        return BadRequest(e.Message);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Додати запис в довідник
-        ///// </summary>
-        ///// <param name="dictionaryName"></param>
-        ///// <param name="dataJObject"></param>
-        ///// <returns></returns>
-        //[HttpPost("complex/addnew/{dictionaryName}")]
-        //public async Task<IActionResult> AddComplexDictionary(string dictionaryName, [FromBody] JObject dataJObject)
-        //{
-        //    IDbContextTransaction transaction = null;
-        //    try
-        //    {
-        //        if (!_complexDictionaryList.Contains(dictionaryName.ToLower()))
-        //            return NotFound("Complex dictionary not found!");
-        //        switch (dictionaryName.ToLower())
-        //        {
-        //            case "copyrightkind":
-        //                var destinationCopyrightKind = new CopyrightKind();
-        //                var copyrightKind = dataJObject.ToObject<CopyrightKind>();
-        //                if (copyrightKind == null)
-        //                    return NotFound("Data object not found!");
-
-        //                destinationCopyrightKind.SetFields(copyrightKind);
-        //                foreach (var kindTr in copyrightKind.CopyrightKindTr)
-        //                {
-        //                    var kind = new CopyrightKindTr();
-        //                    kind.SetFields(kindTr);
-        //                    destinationCopyrightKind.CopyrightKindTr.Add(kind);
-        //                }
-
-        //                await _dbContext.CopyrightKind.AddAsync(destinationCopyrightKind);
-        //                await _dbContext.CopyrightKindTr.AddRangeAsync(destinationCopyrightKind.CopyrightKindTr);
-
-        //                break;
-        //            case "country":
-        //                //initialize object Country for add new data
-        //                var countryNewData = new Country();
-        //                //convert to Country input data
-        //                var inputCountryData = dataJObject.ToObject<Country>();
-        //                //check valid state
-        //                if (inputCountryData == null)
-        //                    return NotFound("Data object not found!");
-        //                //save new object Country
-        //                countryNewData.SetFields(inputCountryData);
-        //                //save every dictionary
-        //                foreach(var dict in inputCountryData.CountryTr)
-        //                {
-        //                    //initialize obj for next add
-        //                    var country = new CountryTr();
-        //                    //add field data
-        //                    country.SetFields(dict);
-        //                    //add new country object
-        //                    countryNewData.CountryTr.Add(country);
-        //                }
-        //                //add new object to DB
-        //                await _dbContext.Country.AddAsync(countryNewData);
-        //                //add new dictionaries
-        //                await _dbContext.CountryTr.AddRangeAsync(countryNewData.CountryTr);
-        //                break;
-        //            case "creativeroletype":
-        //                //initialize object CreativeRoleType for add new data
-        //                var creativeNewData = new CreativeRoleType();
-        //                //convert to CreativeRoleType input data
-        //                var inputCreativeData = dataJObject.ToObject<CreativeRoleType>();
-        //                //check valid state
-        //                if (inputCreativeData == null)
-        //                    return NotFound("Data object not found!");
-        //                //save new object CreativeRoleType
-        //                creativeNewData.SetFields(inputCreativeData);
-        //                //save every dictionary
-        //                foreach(var dict in inputCreativeData.CreativeRoleTypeTr)
-        //                {
-        //                    //initialize obj for next add
-        //                    var creative = new CreativeRoleTypeTr();
-        //                    //add field data
-        //                    creative.SetFields(dict);
-        //                    //add new CreativeRoleType object
-        //                    creativeNewData.CreativeRoleTypeTr.Add(creative);
-        //                }
-        //                //add new object to DB
-        //                await _dbContext.CreativeRoleType.AddAsync(creativeNewData);
-        //                //add new dictionaries
-        //                await _dbContext.CreativeRoleTypeTr.AddRangeAsync(creativeNewData.CreativeRoleTypeTr);
-        //                break;
-        //            case "genretype":
-        //                //initialize object GenreType for add new data
-        //                var genreNewData = new GenreType();
-        //                //convert to GenreType input data
-        //                var inputGenreData = dataJObject.ToObject<GenreType>();
-        //                //check valid state
-        //                if (inputGenreData == null)
-        //                    return NotFound("Data object not found!");
-        //                //save new object GenreType
-        //                genreNewData.SetFields(inputGenreData);
-        //                //save every dictionary
-        //                foreach(var dict in inputGenreData.GenreTypeTr)
-        //                {
-        //                    //initialize obj for next add
-        //                    var genre = new GenreTypeTr();
-        //                    //add field data
-        //                    genre.SetFields(dict);
-        //                    //add new genretyoe object
-        //                    genreNewData.GenreTypeTr.Add(genre);
-        //                }
-        //                //add new object to DB
-        //                await _dbContext.GenreType.AddAsync(genreNewData);
-        //                //add new dictionaries
-        //                await _dbContext.GenreTypeTr.AddRangeAsync(genreNewData.GenreTypeTr);
-        //                break;
-        //            case "systemconstant":
-        //                //initialize object systemConstant for add new data
-        //                var systemConstantNewData = new SystemConstant();
-        //                //convert to SystemConstant input data
-        //                var inputSystemConstantNewData = dataJObject.ToObject<SystemConstant>();
-        //                //check valid state
-        //                if (inputSystemConstantNewData == null)
-        //                    return NotFound("Data object not found!");
-        //                //save new object SystemConstant
-        //                systemConstantNewData.SetFields(inputSystemConstantNewData);
-        //                //save every dictionary
-        //                foreach(var dict in inputSystemConstantNewData.SystemConstantTr)
-        //                {
-        //                    //initialize obj for next add
-        //                    var systemConstant = new SystemConstantTr();
-        //                    //add field data
-        //                    systemConstant.SetFields(dict);
-        //                    //add new KlR030 object
-        //                    systemConstantNewData.SystemConstantTr.Add(systemConstant);
-        //                }
-        //                //add new object to DB
-        //                await _dbContext.SystemConstant.AddAsync(systemConstantNewData);
-        //                //add new dictionaries
-        //                await _dbContext.SystemConstantTr.AddRangeAsync(systemConstantNewData.SystemConstantTr);
-        //                break;
-        //            case "typeplace":
-        //                //initialize object typeplace for add new data
-        //                var typePlaceNewData = new TypePlace();
-        //                //convert to TypePlace input data
-        //                var inputTypePlaceData = dataJObject.ToObject<TypePlace>();
-        //                //check valid state
-        //                if (inputTypePlaceData == null)
-        //                    return NotFound("Data object not found!");
-        //                //save new object Country
-        //                typePlaceNewData.SetFields(inputTypePlaceData);
-        //                //save every dictionary
-        //                foreach (var dict in inputTypePlaceData.TypePlaceTr)
-        //                {
-        //                    //initialize obj for next add
-        //                    var typePlace = new TypePlaceTr();
-        //                    //add field data
-        //                    typePlace.SetFields(dict);
-        //                    //add new country object
-        //                    typePlaceNewData.TypePlaceTr.Add(typePlace);
-        //                }
-        //                //add new object to DB
-        //                await _dbContext.TypePlace.AddAsync(typePlaceNewData);
-        //                //add new dictionaries
-        //                await _dbContext.TypePlaceTr.AddRangeAsync(typePlaceNewData.TypePlaceTr);
-        //                break;
-        //        }
-
-        //        transaction = await _dbContext.Database.BeginTransactionAsync();
-        //        await _dbContext.SaveChangesAsync();
-        //        transaction.Commit();
-        //        transaction = null;
-
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        transaction?.Rollback();
-        //        return BadRequest(e.Message);
-        //    }
-        //}
 
         [HttpGet("base/{dictionary}/{id}")]
         public async Task<IActionResult> GetBaseDictionaryById(string dictionary, string id)
@@ -1333,8 +788,8 @@ namespace ipsmedserviceapp.Controllers
             if (target == null)
                 return NotFound();
 
-            _dbContext.UpdateList(sors.CopyrightKindTr, target.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
             target.SetFields(sors);
+            _dbContext.UpdateList(sors.CopyrightKindTr, target.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
 
             await _dbContext.SaveChangesAsync();
 
@@ -1533,50 +988,74 @@ namespace ipsmedserviceapp.Controllers
             return Ok();
         }
 
-
         #endregion
-        // -
+
+        
         #region * * * CreativeRoleType * * *
 
         /// <summary>
         /// Create
         /// </summary>
-        /// <param name="sors"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        [HttpPost("extra/creativeroletype")]
-        public async Task<IActionResult> CreateCreativeRoleType([FromBody] CreativeRoleType sors)
+        [HttpPost("extra/create/creativeroletype")]
+        public async Task<IActionResult> CreateCreativeRoleType([FromBody] CreativeRoleType source)
         {
-            var dest = new CreativeRoleType();
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = new CreativeRoleType();
+                target.SetFields(source);
 
-            dest.SetFields(sors);
-            _dbContext.AppendList(sors.CreativeRoleTypeTr, dest.CreativeRoleTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            _dbContext.CreativeRoleType.Add(dest);
-            await _dbContext.SaveChangesAsync();
+                _dbContext.AppendList(source.CreativeRoleTypeTr, target.CreativeRoleTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+                _dbContext.CreativeRoleType.Add(target);
 
-            return Ok(dest);
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                return Ok(target);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
         }
 
         /// <summary>
         /// Update
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sors"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        [HttpPut("extra/creativeroletype/{id}")]
-        public async Task<IActionResult> UpdateCreativeRoleType(int id, [FromBody] CreativeRoleType sors)
+        [HttpPut("extra/update/creativeroletype")]
+        public async Task<IActionResult> UpdateCreativeRoleType([FromBody] CreativeRoleType source)
         {
-            var dest = await _dbContext.CreativeRoleType.Where(rec => rec.CodeI == id)
-                                .Include(rec => rec.CreativeRoleTypeTr)
-                                .FirstOrDefaultAsync();
-            if (dest == null)
-                return NotFound();
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = await _dbContext.CreativeRoleType.Where(rec => rec.CodeI == source.CodeI)
+                    .Include(rec => rec.CreativeRoleTypeTr)
+                    .FirstOrDefaultAsync();
 
-            _dbContext.UpdateList(sors.CreativeRoleTypeTr, dest.CreativeRoleTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            dest.SetFields(sors);
+                if (target == null)
+                    return NotFound();
 
-            await _dbContext.SaveChangesAsync();
+                target.SetFields(source);
+                _dbContext.UpdateList(source.CreativeRoleTypeTr, target.CreativeRoleTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
 
-            return Ok(dest);
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                return Ok(target);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
         }
 
         /// <summary>
@@ -1584,24 +1063,26 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("extra/creativeroletype/{id}")]
+        [HttpDelete("extra/delete/creativeroletype/{id}")]
         public async Task<IActionResult> DeleteCreativeRoleType(int id)
         {
-            var delRow = await _dbContext.CreativeRoleType.Where(rec => rec.CodeI == id)
-                                .Include(rec => rec.CreativeRoleTypeTr)
-                                .FirstOrDefaultAsync();
-            if (delRow == null)
-                return NotFound();
-
-            _dbContext.CreativeRoleTypeTr.RemoveRange(delRow.CreativeRoleTypeTr);
-            _dbContext.CreativeRoleType.Remove(delRow);
-
             IDbContextTransaction transaction = null;
             try
             {
+                var deleteItem = await _dbContext.CreativeRoleType.Where(rec => rec.CodeI == id)
+                    .Include(rec => rec.CreativeRoleTypeTr)
+                    .FirstOrDefaultAsync();
+
+                if (deleteItem == null)
+                    return NotFound();
+
+                _dbContext.CreativeRoleTypeTr.RemoveRange(deleteItem.CreativeRoleTypeTr);
+                _dbContext.CreativeRoleType.Remove(deleteItem);
+
                 transaction = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
                 transaction.Commit();
+
                 return Ok();
             }
             catch
@@ -1667,8 +1148,8 @@ namespace ipsmedserviceapp.Controllers
                 if (target == null)
                     return NotFound();
 
-                _dbContext.UpdateList(source.GenreTypeTr, target.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
                 target.SetFields(source);
+                _dbContext.UpdateList(source.GenreTypeTr, target.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
 
                 transaction = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
@@ -1980,6 +1461,8 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("language", await _dbContext.Language.Where(l => l.ShortChoise == 1).AsNoTracking().ToListAsync());
 
             retDictionary.Add("systemconstant", await _dbContext.SystemConstant.AsNoTracking().ToListAsync());
+
+            retDictionary.Add("isAuthorType", await _dbContext.IsAuthorType.AsNoTracking().ToListAsync());
 
             retDictionary.Add("Communities",
                 await _dbContext.getViewData("select t2.name, t2.custId from community t1 join vCustomer t2 on t2.custId = t1.custId", new SqlParameter[0]));

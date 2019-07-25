@@ -1,4 +1,4 @@
-﻿namespace sysAdminwp.viewPageDictionaryControls
+﻿namespace sysAdminwp.DictionaryControls
 {
     partial class ComplexDictionaryControl
     {
@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.tableLayout_MarkupElement = new System.Windows.Forms.TableLayoutPanel();
-            this.dictBaseEditPanel = new System.Windows.Forms.BindingSource(this.components);
-            this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.controlPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.dictBaseEditPanel = new System.Windows.Forms.BindingSource();
+            this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).BeginInit();
             this.tableLayout_MarkupElement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.controlPanel)).BeginInit();
+            this.controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.controlPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // complexTreeView
@@ -67,14 +68,6 @@
             this.tableLayout_MarkupElement.Size = new System.Drawing.Size(1432, 566);
             this.tableLayout_MarkupElement.TabIndex = 1;
             // 
-            // dictBaseEditPanel
-            // 
-            this.dictBaseEditPanel.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
-            // 
-            // dictBaseTypeIBindingSource
-            // 
-            this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
-            // 
             // controlPanel
             // 
             this.controlPanel.BorderVisible = false;
@@ -83,6 +76,21 @@
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Size = new System.Drawing.Size(1228, 560);
             this.controlPanel.TabIndex = 6;
+            // 
+            // dictBaseEditPanel
+            // 
+            this.dictBaseEditPanel.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
+            // 
+            // dictBaseTypeIBindingSource
+            // 
+            this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
             // ComplexDictionaryControl
             // 
@@ -93,9 +101,10 @@
             this.Size = new System.Drawing.Size(1432, 566);
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).EndInit();
             this.tableLayout_MarkupElement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.controlPanel)).EndInit();
+            this.controlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.controlPanel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -106,5 +115,6 @@
         private Telerik.WinControls.UI.RadTreeView complexTreeView;
         private System.Windows.Forms.TableLayoutPanel tableLayout_MarkupElement;
         private IpsViewComponentLibrary.Common.Editors.IpsPanel controlPanel;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

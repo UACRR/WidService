@@ -1,9 +1,7 @@
 ﻿using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using WebAPIConnector;
 
@@ -50,6 +48,59 @@ namespace ipsFormsDesign.Services
             var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
             return dictionaries;
         }
+
+        #region * * * ПРОСТІ ДОВІДНИКИ * * *
+
+        /// <summary>
+        /// Отримати список записів простого довідника
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public List<DictBaseTypeI> GetSimpleDictionaryList(string url)
+        {
+            var result = _webApi.GetList<DictBaseTypeI>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Додати запис до простого довідника
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public bool CreateSimpleDictionaryRecord(string url, DictBaseTypeI data)
+        {
+            var result = _webApi.NewItem(url, data);
+            return result;
+        }
+
+        /// <summary>
+        /// Оновити запис простого довідника
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public bool UpdateSimpleDictionaryRecord(string url, DictBaseTypeI data)
+        {
+            bool result = _webApi.UpdateItem(url, data.CodeI.ToString(), data);
+            return result;
+        }
+
+        /// <summary>
+        /// Видалити запис із простого довідника
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool DeleteSimpleDictionaryRecord(string url, string id)
+        {
+            bool result = _webApi.DeleteItem(url, id);
+            return result;
+        }
+
+        #endregion
+
+        #region * * * СКЛАДНІ ДОВІДНИКИ * * *
 
         /// <summary>
         /// Отримати список записів складного довідника
@@ -123,7 +174,9 @@ namespace ipsFormsDesign.Services
             return _webApi.DeleteItem(url);
         }
 
+        #endregion
 
+        // TODO: повидаляти  . . . .
         // Country BEGIN ********************
         public Country GetCountry(int id)
         {

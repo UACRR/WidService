@@ -504,7 +504,6 @@ namespace WebAPIConnector
         /// <returns></returns>
         public bool DeleteItem(string urlData, string id)
         {
-
             string idUrl = $"{urlData}/{id}";
             var result = client.DeleteAsync(idUrl).GetAwaiter().GetResult();
 

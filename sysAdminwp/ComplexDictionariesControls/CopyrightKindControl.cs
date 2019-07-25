@@ -23,6 +23,7 @@ namespace sysAdminwp.ComplexDictionariesControls
         private bool _subscribedEvents;
 
         private string Url { get; set; }
+
         private SaveMode SaveMode { get; set; } = SaveMode.None;
 
         private bool _isEditMode;
@@ -166,6 +167,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             if (SaveMode == SaveMode.None)
                 return;
 
+            SyncCodeAndName();
             if (SaveMode == SaveMode.OnCreate)
             {
                 if (!CheckForUniqueness(_copyrightKindData.CodeI))
@@ -202,6 +204,32 @@ namespace sysAdminwp.ComplexDictionariesControls
             IsEditMode = false;
         }
 
+        /// <summary>
+        /// Синхронізувати CodeI, Name, NameDescript основної таблиці та Tr-таблиці
+        /// </summary>
+        private void SyncCodeAndName()
+        {
+            if (SaveMode == SaveMode.OnCreate)
+            {
+                foreach (var copyrightKindTr in _copyrightKindData.CopyrightKindTr)
+                    copyrightKindTr.CodeI = _copyrightKindData.CodeI;
+            }
+
+            _copyrightKindData.Name = _copyrightKindData.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == UkLang)?.Name;
+            _copyrightKindData.NameDescript = _copyrightKindData.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == UkLang)?.NameDescript;
+        }
+
+        /// <summary>
+        /// Перевірити введений код на унікальність
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private bool CheckForUniqueness(int code)
+        {
+            // не унікальний якщо такий код є в колекції
+            return !_copyrightKindList.Select(rec => rec.CodeI).ToArray().Contains(code);
+        }
+
         // скасувати
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -233,17 +261,6 @@ namespace sysAdminwp.ComplexDictionariesControls
 
             var copyrightKind = _copyrightKindList.SingleOrDefault(rec => rec.CodeI == int.Parse(currentRow.Code));
             UpdateBottomPanel(copyrightKind);
-        }
-
-        /// <summary>
-        /// Перевірити введений код на унікальність
-        /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
-        private bool CheckForUniqueness(int code)
-        {
-            // не унікальний якщо такий код є в колекції
-            return !_copyrightKindList.Select(rec => rec.CodeI).ToArray().Contains(code);
         }
 
         /// <summary>

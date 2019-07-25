@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
-using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
 using sysAdminwp.Model;
-using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 using Telerik.WinControls.UI;
-using WebAPIConnector;
 using static sysAdminwp.Model.DictionaryConstants;
 
 namespace sysAdminwp.ComplexDictionariesControls
@@ -164,6 +161,7 @@ namespace sysAdminwp.ComplexDictionariesControls
             if (SaveMode == SaveMode.None)
                 return;
 
+            SyncCodeAndName();
             if (SaveMode == SaveMode.OnCreate)
             {
                 if (!CheckForUniqueness(_genreTypeData.CodeI))
@@ -209,6 +207,20 @@ namespace sysAdminwp.ComplexDictionariesControls
         {
             // не унікальний якщо такий код є в колекції
             return !_genreTypeList.Select(rec => rec.CodeI).ToArray().Contains(code);
+        }
+
+        /// <summary>
+        /// Синхронізувати CodeI, Name основної таблиці та Tr-таблиці
+        /// </summary>
+        private void SyncCodeAndName()
+        {
+            if (SaveMode == SaveMode.OnCreate)
+            {
+                foreach (var genreTypeTr in _genreTypeData.GenreTypeTr)
+                    genreTypeTr.CodeI = _genreTypeData.CodeI;
+            }
+
+            _genreTypeData.Name = _genreTypeData.GenreTypeTr.SingleOrDefault(rec => rec.Lang == UkLang)?.Name;
         }
 
         // скасувати
@@ -277,20 +289,20 @@ namespace sysAdminwp.ComplexDictionariesControls
             if (!(genreType.GenreTypeTr.Any(rec => rec.Lang == UkLang)))
                 genreType.GenreTypeTr.Add(new GenreTypeTr { Lang = UkLang, CodeI = genreType.CodeI });
 
-            bsUkLangGenreType.DataSource = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == UkLang);
-            bsUkLangGenreType.ResetBindings(false);
+            bsUkGenreType.DataSource = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == UkLang);
+            bsUkGenreType.ResetBindings(false);
 
             if (!(genreType.GenreTypeTr.Any(rec => rec.Lang == RuLang)))
                 genreType.GenreTypeTr.Add(new GenreTypeTr { Lang = RuLang, CodeI = genreType.CodeI });
 
-            bsRuLangGenreType.DataSource = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == RuLang);
-            bsRuLangGenreType.ResetBindings(false);
+            bsRuGenreType.DataSource = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == RuLang);
+            bsRuGenreType.ResetBindings(false);
 
             if (!(genreType.GenreTypeTr.Any(rec => rec.Lang == EnLang)))
                 genreType.GenreTypeTr.Add(new GenreTypeTr { Lang = EnLang, CodeI = genreType.CodeI });
 
-            bsEnLangGenreType.DataSource = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == EnLang);
-            bsEnLangGenreType.ResetBindings(false);
+            bsEnGenreType.DataSource = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == EnLang);
+            bsEnGenreType.ResetBindings(false);
         }
     }
 }
