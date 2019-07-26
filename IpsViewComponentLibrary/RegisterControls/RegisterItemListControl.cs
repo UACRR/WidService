@@ -135,7 +135,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-
         private bool _allowShowObjectCommand = true;
         public bool AllowShowObjectCommand
         {
@@ -294,6 +293,16 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        public bool ShowObjectDuration
+        {
+            set => gvRegisterItemList.SetColumnVisibility("ObjectDuration", value);
+        }
+        
+        public bool ShowObjectSource
+        {
+            set => gvRegisterItemList.SetColumnVisibility("ObjectSource", value);
+        }
+
         public RegisterItemListMode Mode { get; set; } = RegisterItemListMode.Default;
 
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
@@ -395,7 +404,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        private void GvRegisterItemList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        private void GvRegisterItemList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
@@ -588,15 +597,15 @@ namespace IpsViewComponentLibrary.RegisterControls
             selectedRegisterItem.ClearObjectData();
         }
 
-        private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
-        {
-            SelectedRegisterItem.SetObjectData(
-                selectedObject.ObjId,
-                selectedObject.Name,
-                selectedObject.Author,
-                selectedObject.Performer,
-                selectedObject.Duration);
-        }
+        //private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
+        //{
+        //    SelectedRegisterItem.SetObjectData(
+        //        selectedObject.ObjId,
+        //        selectedObject.Name,
+        //        selectedObject.Author,
+        //        selectedObject.Performer,
+        //        selectedObject.Duration);
+        //}
 
         private void BsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)
         {

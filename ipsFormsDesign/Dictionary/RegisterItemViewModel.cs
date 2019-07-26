@@ -41,6 +41,8 @@ namespace ipsFormsDesign.Dictionary
             }
         }
 
+        public int? Wic { get; set; }
+
         private string _objectName;
         public string ObjectName
         {
@@ -51,6 +53,7 @@ namespace ipsFormsDesign.Dictionary
                 OnPropertyChanged(nameof(ObjectName));
             }
         }
+
         private string _objectPerformers;
         public string ObjectPerformers
         {
@@ -61,6 +64,7 @@ namespace ipsFormsDesign.Dictionary
                 OnPropertyChanged(nameof(ObjectPerformers));
             }
         }
+
         private string _objectAuthors;
         public string ObjectAuthors
         {
@@ -71,6 +75,7 @@ namespace ipsFormsDesign.Dictionary
                 OnPropertyChanged(nameof(ObjectAuthors));
             }
         }
+
         private TimeSpan? _objectDurations;
         public TimeSpan? ObjectDuration
         {
@@ -81,6 +86,10 @@ namespace ipsFormsDesign.Dictionary
                 OnPropertyChanged(nameof(ObjectDuration));
             }
         }
+
+        public string ObjectSource { get; set; }
+        public double? SumAllTogether { get; set; }
+
         private bool _isAuto;
         public bool IsAuto
         {
@@ -95,6 +104,7 @@ namespace ipsFormsDesign.Dictionary
         public int? GenreType { get; set; }
 
         public RegisterItemFix RegisterItemFix { get; set; }
+
         public List<RegisterExtra> RegisterExtraList { get; set; } = new List<RegisterExtra>();
 
         public RegisterItemViewModel()
@@ -151,12 +161,28 @@ namespace ipsFormsDesign.Dictionary
 
         public void SetObjectData(object obj, bool resetIsAuto = true)
         {
-            if (obj != null)
+            if (obj is ObjectRightMainView objectRight)
             {
-                // TODO: assign values
+                ObjId = objectRight.ObjId;
+                ObjectName = objectRight.Name;
+                ObjectAuthors = objectRight.Author;
+                ObjectPerformers = objectRight.Performer;
+                // TODO: add assign value
+                //Wic = objectRight.Wic;
+                //ObjectSource = objectRight.ObjectSource;
 
                 if (resetIsAuto)
                     IsAuto = false;
+            }
+            else if (obj is RegisterItemViewModel registerItem)
+            {
+                ObjId = registerItem.ObjId;
+                ObjectName = registerItem.ObjectName;
+                ObjectAuthors = registerItem.ObjectAuthors;
+                ObjectPerformers = registerItem.ObjectPerformers;
+                Wic = registerItem.Wic;
+
+                ObjectSource = registerItem.Wic.HasValue ? "WID" : string.Empty;
             }
             else
             {

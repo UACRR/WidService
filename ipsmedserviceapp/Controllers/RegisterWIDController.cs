@@ -28,14 +28,17 @@ namespace ipsmedserviceapp.Controllers
             var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
-                // imitation of process
-                return Ok(new List<string>());
-
+                // select * from dbo.ft_Tsk_3_AutoLink_FULL()
                 _dbContext.Database.SetCommandTimeout(2400);
-                var sqlParameter = new[] {new SqlParameter("regId", regId)};
-                var list = await _dbContext.getViewData($"select * from ft_Tsk_3_AutoLink(@regId)", sqlParameter);
+                var sqlParameter = new[] { new SqlParameter("regId", regId) };
+                var list = await _dbContext.getViewData("select * from dbo.ft_Tsk_3_AutoLink_FULL(@regId)", sqlParameter);
 
                 return Ok(list);
+
+                //_dbContext.Database.SetCommandTimeout(2400);
+                //var sqlParameter = new[] {new SqlParameter("regId", regId)};
+                //var list = await _dbContext.getViewData($"select * from ft_Tsk_3_AutoLink(@regId)", sqlParameter);
+                //return Ok(list);
             }
             finally
             {

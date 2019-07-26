@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Dictionary
         private decimal _rate;
         public decimal Rate
         {
-            get { return _rate; }
+            get => _rate;
             set
             {
                 _rate = value;

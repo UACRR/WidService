@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Dictionary;
+﻿using System;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Events;
 using ipsFormsDesign.ViewModels.Consumer;
 using ipsFormsDesign.Model;
@@ -62,10 +63,12 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.Run();
         }
 
+        /// <summary>
+        /// Процес автоматичного пошуку об'єктів
+        /// </summary>
         public void SearchObjectsAuto()
         {
             var list = _registerWidService.GetAutoLinkedObjects(_register.RegId);
-            //var list = _registerService.GetAutoLinkedObjects(_register.RegId);
 
             if (!list.Any())
             {
@@ -75,11 +78,23 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             foreach (var item in list)
             {
-                var itemToUpdate = _view.RegisterItemList.FirstOrDefault(i => i.RegId == item.RegId && i.RegIitemId == item.RegIitemId);
+                RegisterItemViewModel itemToUpdate = null;
+                var itemsToUpdate = _view.RegisterItemList.Where(i => i.RegIitemId == item.RegIitemId).ToList();
+
+                if (itemsToUpdate.Count == 1)
+                {
+                    itemToUpdate = itemsToUpdate.FirstOrDefault();
+                }
+                else if (itemsToUpdate.Count > 1)
+                {
+                    var maxSumAllTogether = itemsToUpdate.Max(rec => rec.SumAllTogether);
+                    itemToUpdate = itemsToUpdate.FirstOrDefault(i => Math.Abs((i.SumAllTogether - maxSumAllTogether) ?? 0) < 0.00001);
+                }
 
                 if (itemToUpdate != null)
                 {
-                    itemToUpdate.SetObjectData(item.ObjId, item.ObjectName, item.ObjectAuthors, item.ObjectPerformers, item.ObjectDuration);
+                    //itemToUpdate.SetObjectData(item.ObjId, item.ObjectName, item.ObjectAuthors, item.ObjectPerformers, item.ObjectDuration);
+                    itemToUpdate.SetObjectData(item);
                     itemToUpdate.IsAuto = true;
                 }
             }
