@@ -597,16 +597,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             selectedRegisterItem.ClearObjectData();
         }
 
-        //private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
-        //{
-        //    SelectedRegisterItem.SetObjectData(
-        //        selectedObject.ObjId,
-        //        selectedObject.Name,
-        //        selectedObject.Author,
-        //        selectedObject.Performer,
-        //        selectedObject.Duration);
-        //}
-
         private void BsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemChanged && e.PropertyDescriptor.Name == "ObjId")

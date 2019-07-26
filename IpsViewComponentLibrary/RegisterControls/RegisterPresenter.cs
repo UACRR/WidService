@@ -22,6 +22,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
     public class RegisterPresenter
     {
+        //private const string WIDSource = "WIDSource";
         private readonly RegisterView _view;
         private readonly RegisterService _registerService;
         private readonly RegisterWIDService _registerWidService;
@@ -76,28 +77,51 @@ namespace IpsViewComponentLibrary.RegisterControls
                 return;
             }
 
-            foreach (var item in list)
+            // по паписам звіту знайти елементи з найбільшим співпадінням
+            foreach (var item in _view.RegisterItemList)
             {
-                RegisterItemViewModel itemToUpdate = null;
-                var itemsToUpdate = _view.RegisterItemList.Where(i => i.RegIitemId == item.RegIitemId).ToList();
+                RegisterItemViewModel itemForUpdate = null;
+                var itemsForUpdate = list.Where(i => i.RegIitemId == item.RegIitemId).ToList();
 
-                if (itemsToUpdate.Count == 1)
+                if (itemsForUpdate.Count == 1)
                 {
-                    itemToUpdate = itemsToUpdate.FirstOrDefault();
+                    itemForUpdate = itemsForUpdate.FirstOrDefault();
                 }
-                else if (itemsToUpdate.Count > 1)
+                else if (itemsForUpdate.Count > 1)
                 {
-                    var maxSumAllTogether = itemsToUpdate.Max(rec => rec.SumAllTogether);
-                    itemToUpdate = itemsToUpdate.FirstOrDefault(i => Math.Abs((i.SumAllTogether - maxSumAllTogether) ?? 0) < 0.00001);
+                    var maxSumAllTogether = itemsForUpdate.Max(rec => rec.SumAllTogether);
+                    itemForUpdate = itemsForUpdate.FirstOrDefault(i => Math.Abs((i.SumAllTogether - maxSumAllTogether) ?? 0) < 0.00001);
                 }
 
-                if (itemToUpdate != null)
-                {
-                    //itemToUpdate.SetObjectData(item.ObjId, item.ObjectName, item.ObjectAuthors, item.ObjectPerformers, item.ObjectDuration);
-                    itemToUpdate.SetObjectData(item);
-                    itemToUpdate.IsAuto = true;
+                if (itemForUpdate != null)
+                {       
+                    item.SetObjectData(itemsForUpdate);
+                    item.IsAuto = true;
                 }
             }
+
+            //foreach (var item in list)
+            //{
+            //    RegisterItemViewModel itemToUpdate = null;
+            //    var itemsToUpdate = _view.RegisterItemList.Where(i => i.RegIitemId == item.RegIitemId).ToList();
+
+            //    if (itemsToUpdate.Count == 1)
+            //    {
+            //        itemToUpdate = itemsToUpdate.FirstOrDefault();
+            //    }
+            //    else if (itemsToUpdate.Count > 1)
+            //    {
+            //        var maxSumAllTogether = itemsToUpdate.Max(rec => rec.SumAllTogether);
+            //        itemToUpdate = itemsToUpdate.FirstOrDefault(i => Math.Abs((i.SumAllTogether - maxSumAllTogether) ?? 0) < 0.00001);
+            //    }
+
+            //    if (itemToUpdate != null)
+            //    {
+            //        //itemToUpdate.SetObjectData(item.ObjId, item.ObjectName, item.ObjectAuthors, item.ObjectPerformers, item.ObjectDuration);
+            //        itemToUpdate.SetObjectData(item);
+            //        itemToUpdate.IsAuto = true;
+            //    }
+            //}
         }
 
         public void SearchObjectsForAll()
@@ -224,6 +248,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     foundedRegisterItem.ObjId = rvm.ObjId;
                     foundedRegisterItem.IsAuto = rvm.IsAuto;
                     foundedRegisterItem.CodeItem = rvm.CodeItem;
+                    foundedRegisterItem.Wic = rvm.Wic;
                 };
             }
 
@@ -246,6 +271,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     foundedRegisterItem.ObjId = rvm.ObjId;
                     foundedRegisterItem.IsAuto = rvm.IsAuto;
                     foundedRegisterItem.CodeItem = rvm.CodeItem;
+                    foundedRegisterItem.Wic = rvm.Wic;
                 };
             }
 
@@ -286,6 +312,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     RegIitemId = r.RegIitemId,
                     IsAuto = r.IsAuto,
                     CodeItem = r.CodeItem,
+                    Wic = r.Wic,
 
                     Genre = genre?.Name,
                     Rate = rate?.Rate,

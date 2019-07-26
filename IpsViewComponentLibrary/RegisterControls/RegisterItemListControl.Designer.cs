@@ -383,6 +383,7 @@
             gridViewTextBoxColumn15.HeaderText = "Джерело";
             gridViewTextBoxColumn15.MinWidth = 30;
             gridViewTextBoxColumn15.Name = "ObjectSource";
+            gridViewTextBoxColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn15.Width = 30;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Показати прив\'язаний об\'єкт";

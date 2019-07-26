@@ -194,7 +194,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             waitingBar.StartWaiting();
             MessageShow.ShowInfo("Процес може зайняти тривалий час. Дочекайтеся завершення процесу.");
             await Task.Factory.StartNew(() => _presenter.SearchObjectsAuto());
-            //.ContinueWith(ct => waitingBar.StopWaiting(), TaskScheduler.FromCurrentSynchronizationContext());
             waitingBar.StopWaiting();
         }
 

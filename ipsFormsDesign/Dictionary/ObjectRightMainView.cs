@@ -19,6 +19,7 @@ namespace ipsFormsDesign.Dictionary
         public string Performer { get; set; }
         public double Profit { get; set; }
         public int CategoryCode { get; set; }
+        public int? Wic { get; set; }
     }
 
     public class ObjectRightForRightholder : ObjectRightMainView

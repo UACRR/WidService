@@ -10,6 +10,8 @@ namespace ipsFormsDesign.Dictionary
 {
     public class RegisterItemViewModel : INotifyPropertyChanged
     {
+        private const string WIDSource = "WID";
+
         public int RegId { get; set; }
         public int RegIitemId { get; set; }
 
@@ -41,7 +43,16 @@ namespace ipsFormsDesign.Dictionary
             }
         }
 
-        public int? Wic { get; set; }
+        private int? _wic;
+        public int? Wic
+        {
+            get => _wic;
+            set
+            {
+                ObjectSource = value.HasValue ? WIDSource : string.Empty;
+                _wic = value;
+            }
+        }
 
         private string _objectName;
         public string ObjectName
@@ -167,9 +178,7 @@ namespace ipsFormsDesign.Dictionary
                 ObjectName = objectRight.Name;
                 ObjectAuthors = objectRight.Author;
                 ObjectPerformers = objectRight.Performer;
-                // TODO: add assign value
-                //Wic = objectRight.Wic;
-                //ObjectSource = objectRight.ObjectSource;
+                Wic = objectRight.Wic;
 
                 if (resetIsAuto)
                     IsAuto = false;
@@ -181,8 +190,6 @@ namespace ipsFormsDesign.Dictionary
                 ObjectAuthors = registerItem.ObjectAuthors;
                 ObjectPerformers = registerItem.ObjectPerformers;
                 Wic = registerItem.Wic;
-
-                ObjectSource = registerItem.Wic.HasValue ? "WID" : string.Empty;
             }
             else
             {
