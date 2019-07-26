@@ -7648,7 +7648,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.AuthorMusic)
                     .HasColumnName("authorMusic")
-                    .HasMaxLength(100)
+                    .HasMaxLength(254)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AuthorText)
@@ -8079,6 +8079,8 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ticks).HasColumnName("ticks");
+
+                entity.Property(e => e.Wic).HasColumnName("WIC");
 
                 entity.HasOne(d => d.CodeItemNavigation)
                     .WithMany(p => p.RegisterItem)
@@ -10581,8 +10583,7 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TypePlaceParamTr>(entity =>

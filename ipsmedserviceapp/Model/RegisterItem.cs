@@ -30,6 +30,7 @@ namespace ipsmedserviceapp.Model
         public int Ticks { get; set; }
         public bool IsAuto { get; set; }
         public int? GenreType { get; set; }
+        public int? Wic { get; set; }
 
         [JsonIgnore]
         public virtual RegisterItemType CodeItemNavigation { get; set; }
