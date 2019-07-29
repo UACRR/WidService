@@ -7,7 +7,7 @@ using IpsCommonTypes.Types;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage;
-using static ipsmedserviceapp.Utilities.ControllerErrorHandler;
+using static ipsmedserviceapp.Utilities.ServerOrDBErrorHandler;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -27,10 +27,9 @@ namespace ipsmedserviceapp.Controllers
             if (responseError == null)
                 return;
 
-            IDbContextTransaction transaction = null;
             try
             {
-
+                // save to db new error log
             }
             catch (Exception e)
             {

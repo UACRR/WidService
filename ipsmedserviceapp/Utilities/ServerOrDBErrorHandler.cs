@@ -7,12 +7,11 @@ using IpsCommonTypes.Types;
 
 namespace ipsmedserviceapp.Utilities
 {
-    public static class ControllerErrorHandler
+    public static class ServerOrDBErrorHandler
     {
         public static async void CreateControllerErrorLog(this MediaServiceContext context, RequestError requestError)
         {
-            ; 
-            
+            // save to db new error
         }
     }
 }

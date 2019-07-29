@@ -580,7 +580,7 @@ namespace WebAPIConnector
 
         private void LogError(HttpResponseMessage result)
         {
-            string url = $"";
+            string url = $"errorhandler/error/apiconnector";
             var item = new ResponseError
             {
                 StatusCode = (int) result.StatusCode,
