@@ -80,5 +80,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{B17076A8-B8F9-4F60-AAC0-3845773A4D43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

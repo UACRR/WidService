@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -10,8 +9,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Configuration;
 using System.IO;
-using System.Web;
 using System.Net;
+using IpsCommonTypes.Types;
 
 namespace WebAPIConnector
 {
@@ -21,8 +20,6 @@ namespace WebAPIConnector
     public class ApiConnector
     {
         private readonly HttpClient client;
-        public string ErrorCode { get; private set; }
-        public string ErrorMessage { get; private set; }
 
         public ApiConnector()
         {
@@ -53,16 +50,16 @@ namespace WebAPIConnector
 
         private string AsQueryString(IEnumerable<KeyValuePair<string, string>> parameters)
         {
-            if (!parameters.Any())
-                return "";
+            var keyValuePairs = parameters.ToList();
+            if (!keyValuePairs.Any())
+                return string.Empty;
 
             var builder = new StringBuilder("?");
 
             var separator = "";
-            foreach (var kvp in parameters.Where(kvp => kvp.Value != null))
+            foreach (var kvp in keyValuePairs.Where(kvp => kvp.Value != null))
             {
                 builder.AppendFormat("{0}{1}={2}", separator, WebUtility.UrlEncode(kvp.Key), WebUtility.UrlEncode(kvp.Value.ToString()));
-
                 separator = "&";
             }
 
@@ -70,7 +67,7 @@ namespace WebAPIConnector
         }
 
         /// <summary>
-        /// Получити список об'єктів з серверу додатків
+        /// Отримати список об'єктів з серверу додатків
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -84,8 +81,7 @@ namespace WebAPIConnector
                 if (listParam.Any())
                     runUrl = string.Concat(runUrl, AsQueryString(listParam));
 
-                string retApiString;
-                retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+                string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
 
                 JArray array = JArray.Parse(retApiString);
                 List<T> list = array.Select(rec =>
@@ -103,15 +99,16 @@ namespace WebAPIConnector
         }
 
         /// <summary>
-        /// Получити список об'єктів з серверу додатків
+        /// Отримати список об'єктів з серверу додатків
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="typeResult"></param>
         /// <param name="url"></param>
+        /// <param name="listParam"></param>
         /// <returns></returns>
         public List<object> GetTypedList(Type typeResult, string url, params KeyValuePair<string, string>[] listParam)
         {
             string runUrl = url;
-            if (listParam.Count() > 0)
+            if (listParam.Any())
                 runUrl = string.Concat(runUrl, AsQueryString(listParam));
 
             string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
@@ -119,27 +116,6 @@ namespace WebAPIConnector
             List<object> list = array.Select(rec =>
             {
                 var item = rec.ToObject(typeResult);
-                return item;
-            }).ToList();
-
-            return list;
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="url"></param>
-        /// <returns></returns>
-        public List<T> GetListAgreement<T>(string url)
-        {
-            string runUrl = url;
-
-            string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
-            JArray array = JArray.Parse(retApiString);
-            List<T> list = array.Select(rec =>
-            {
-                var item = rec.ToObject<T>();
                 return item;
             }).ToList();
 
@@ -174,11 +150,9 @@ namespace WebAPIConnector
                 JObject retObj = JObject.Parse(contentResponce);
 
                 return retObj.ToObject<TResult>();
-
             }
 
             return null;
-
         }
 
 
@@ -253,6 +227,7 @@ namespace WebAPIConnector
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
         public bool NewItem<T>(string url, T data)
         {
@@ -283,8 +258,9 @@ namespace WebAPIConnector
             {
                 return result.Content.ReadAs<T>();
             }
-            else
-                return null;
+
+            LogError(result);
+            return null;
         }
 
         public List<T> NewListItemWithResult<T>(string url, List<T> data) where T : class
@@ -409,18 +385,17 @@ namespace WebAPIConnector
                 string idUrl = $"{url}/{id}";
                 result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
             }
-            var retCode = result.IsSuccessStatusCode;
-            if (retCode == true)
+            if (result.IsSuccessStatusCode)
             {
                 var retString = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                 var jarray = JArray.Parse(retString);
                 retData = jarray.ToObject<List<T>>();
 
-                return retCode;
+                return true;
             }
 
             retData = null;
-            return retCode;
+            return false;
         }
 
         /// <summary>
@@ -448,7 +423,6 @@ namespace WebAPIConnector
             else // Create
             {
                 result = client.PostAsync(idUrl, content).GetAwaiter().GetResult();
-
             }
 
             var retCode = result.IsSuccessStatusCode;
@@ -595,9 +569,25 @@ namespace WebAPIConnector
                     result = client.DeleteAsync(fullUrl).GetAwaiter().GetResult();
                     break;
             }
-            return result?.IsSuccessStatusCode ?? false;
+
+            var boolResult = result?.IsSuccessStatusCode ?? false;
+
+            if (!boolResult)
+                LogError(result);
+
+            return boolResult;
         }
 
-
+        private void LogError(HttpResponseMessage result)
+        {
+            string url = $"errorhandler/error/apiconnector";
+            var item = new ResponseError
+            {
+                StatusCode = (int) result.StatusCode,
+                ReasonPhrase = result.ReasonPhrase,
+                MethodType = result.RequestMessage.Method.Method,
+            };
+            client.PostAsJson(url, item);
+        }
     }
 }
