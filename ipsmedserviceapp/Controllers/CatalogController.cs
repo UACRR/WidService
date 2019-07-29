@@ -63,7 +63,7 @@ namespace ipsmedserviceapp.Controllers
             var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
-                _dbContext.Database.SetCommandTimeout(1200);
+                _dbContext.Database.SetCommandTimeout(2400);
                 if (source == null || !source.PubCatalogItem.Any())
                     return BadRequest("Loaded file is empty or not read!");
 
@@ -131,7 +131,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex.ToString());
                 transaction?.Rollback();
                 throw;
             }
@@ -238,7 +238,7 @@ namespace ipsmedserviceapp.Controllers
 
                 string command = "exec CatalogControlPub @fileId, @result OUTPUT, @RetCode  OUTPUT";
 
-                _dbContext.Database.SetCommandTimeout(600);
+                _dbContext.Database.SetCommandTimeout(1200);
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
