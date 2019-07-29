@@ -52,7 +52,6 @@ namespace IpsViewComponentLibrary.CatalogControls
             bsGridData.ResetBindings(false);
         }
 
-
         /// <summary>
         /// show files into grid
         /// </summary>
@@ -72,13 +71,12 @@ namespace IpsViewComponentLibrary.CatalogControls
         /// <param name="e"></param>
         private async void btnLoadFile_Click(object sender, EventArgs e)
         {
-
             using (var fileExel = new OpenFileDialog())
             {
                 //open dialog
                 // fileExel.InitialDirectory = @"C:\";
                 fileExel.Filter = "Excel files (.xlsx)|*.xlsx";
-                fileExel.RestoreDirectory = true;
+                //fileExel.RestoreDirectory = true;
 
                 //show file into grid
                 if (fileExel.ShowDialog() == DialogResult.OK)
