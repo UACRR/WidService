@@ -55,7 +55,7 @@ namespace ipsmedserviceapp.Controllers
             return Ok(catalogFile);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("upload/{custId}")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
@@ -78,7 +78,7 @@ namespace ipsmedserviceapp.Controllers
                 var destination = new CatalogFile
                 {
                     CustId = custId,
-                    UserId = User.Identity.Name,
+                    UserId = User?.Identity?.Name ?? "system",
                     Status = 0,
                     PubCatalogItem = new List<PubCatalogItem>()
                 };
