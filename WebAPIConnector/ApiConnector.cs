@@ -581,7 +581,7 @@ namespace WebAPIConnector
         private void LogError(HttpResponseMessage result)
         {
             string url = $"";
-            var item = new HttpResponseError
+            var item = new ResponseError
             {
                 StatusCode = (int) result.StatusCode,
                 ReasonPhrase = result.ReasonPhrase,

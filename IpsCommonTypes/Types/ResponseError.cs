@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IpsCommonTypes.Types
+﻿namespace IpsCommonTypes.Types
 {
-    public class HttpResponseError
+    public class ResponseError
     {
         public int? StatusCode { get; set; }
         public string ReasonPhrase { get; set; }
