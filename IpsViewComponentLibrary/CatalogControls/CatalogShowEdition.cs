@@ -12,6 +12,7 @@ using System.IO;
 using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
 using IpsCommonTypes.Types;
+using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Shared.Interfaces;
 using Telerik.WinControls.UI;
 

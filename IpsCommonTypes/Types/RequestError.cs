@@ -1,5 +1,9 @@
 ﻿namespace IpsCommonTypes.Types
 {
+    /// <summary>
+    ///  Помилка, яка виникає при роботі метода контролера.
+    /// </summary>
+    /// <remarks>Коли виникають: exceptions, збереження змін в БД</remarks>
     public class RequestError
     {
         public string ControllerName { get; set; }

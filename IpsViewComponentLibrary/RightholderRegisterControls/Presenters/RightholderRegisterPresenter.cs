@@ -9,6 +9,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsCommonTypes.Types;
+using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Shared.Interfaces;
 using Telerik.WinControls.UI;
 using TimeSpan = System.TimeSpan;
