@@ -33,6 +33,11 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
+        /// <summary>
+        /// Запустити процес автоматичної прив'язки об'єктів права
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
         public List<RegisterItemViewModel> GetAutoLinkedObjects(int regId)
         {
             string url = $"{Prefix}/autolinkedobjects/{regId}";
@@ -40,6 +45,11 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
+        /// <summary>
+        /// Отримати список об'єктів права за пошуком
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public ItemListResponse<ObjectRightWithWID> GetObjectRightListBySearch(SearchObjectRightQuery query)
         {
             string url = $"{Prefix}/searchbyquery";

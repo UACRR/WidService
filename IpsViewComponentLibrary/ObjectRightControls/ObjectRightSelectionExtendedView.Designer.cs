@@ -32,16 +32,16 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.commandPanel = new System.Windows.Forms.Panel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
@@ -52,11 +52,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtAuthorOrRightholder = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.txtObjectName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtISWC = new Telerik.WinControls.UI.RadTextBox();
             this.mainPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
@@ -78,11 +76,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorOrRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtISWC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).BeginInit();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
@@ -142,11 +138,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.leftPanel.Controls.Add(this.radLabel4);
             this.leftPanel.Controls.Add(this.txtAuthorOrRightholder);
             this.leftPanel.Controls.Add(this.radLabel3);
-            this.leftPanel.Controls.Add(this.radLabel2);
             this.leftPanel.Controls.Add(this.radLabel1);
             this.leftPanel.Controls.Add(this.radSeparator1);
             this.leftPanel.Controls.Add(this.txtObjectName);
-            this.leftPanel.Controls.Add(this.txtISWC);
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Name = "leftPanel";
@@ -156,7 +150,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // radLabel5
             // 
             this.radLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel5.Location = new System.Drawing.Point(12, 186);
+            this.radLabel5.Location = new System.Drawing.Point(12, 135);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(77, 19);
             this.radLabel5.TabIndex = 10;
@@ -167,7 +161,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.txtPerformer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPerformer.Location = new System.Drawing.Point(12, 211);
+            this.txtPerformer.Location = new System.Drawing.Point(12, 160);
             this.txtPerformer.Name = "txtPerformer";
             this.txtPerformer.Size = new System.Drawing.Size(250, 21);
             this.txtPerformer.TabIndex = 9;
@@ -176,7 +170,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // radLabel4
             // 
             this.radLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel4.Location = new System.Drawing.Point(12, 134);
+            this.radLabel4.Location = new System.Drawing.Point(12, 83);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(130, 19);
             this.radLabel4.TabIndex = 8;
@@ -187,7 +181,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.txtAuthorOrRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAuthorOrRightholder.Location = new System.Drawing.Point(12, 159);
+            this.txtAuthorOrRightholder.Location = new System.Drawing.Point(12, 108);
             this.txtAuthorOrRightholder.Name = "txtAuthorOrRightholder";
             this.txtAuthorOrRightholder.Size = new System.Drawing.Size(250, 21);
             this.txtAuthorOrRightholder.TabIndex = 7;
@@ -196,22 +190,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // radLabel3
             // 
             this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel3.Location = new System.Drawing.Point(12, 82);
+            this.radLabel3.Location = new System.Drawing.Point(12, 31);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(78, 19);
             this.radLabel3.TabIndex = 6;
             this.radLabel3.Text = "Назва твору:";
             this.radLabel3.ThemeName = "Office2013Light";
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel2.Location = new System.Drawing.Point(12, 30);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(38, 19);
-            this.radLabel2.TabIndex = 5;
-            this.radLabel2.Text = "ISWC:";
-            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel1
             // 
@@ -237,21 +221,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.txtObjectName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtObjectName.Location = new System.Drawing.Point(12, 107);
+            this.txtObjectName.Location = new System.Drawing.Point(12, 56);
             this.txtObjectName.Name = "txtObjectName";
             this.txtObjectName.Size = new System.Drawing.Size(250, 21);
             this.txtObjectName.TabIndex = 1;
             this.txtObjectName.ThemeName = "Office2013Light";
-            // 
-            // txtISWC
-            // 
-            this.txtISWC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtISWC.Location = new System.Drawing.Point(12, 55);
-            this.txtISWC.Name = "txtISWC";
-            this.txtISWC.Size = new System.Drawing.Size(250, 21);
-            this.txtISWC.TabIndex = 0;
-            this.txtISWC.ThemeName = "Office2013Light";
             // 
             // mainPanel
             // 
@@ -279,77 +253,77 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.gvObjectsRightsList.MasterTemplate.AllowEditRow = false;
             this.gvObjectsRightsList.MasterTemplate.AutoGenerateColumns = false;
             this.gvObjectsRightsList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn5.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn5.FieldName = "ObjId";
-            gridViewDecimalColumn5.HeaderText = "ObjId";
-            gridViewDecimalColumn5.IsAutoGenerated = true;
-            gridViewDecimalColumn5.IsVisible = false;
-            gridViewDecimalColumn5.Name = "ObjId";
-            gridViewDecimalColumn5.Width = 62;
-            gridViewTextBoxColumn13.FieldName = "InnerCode";
-            gridViewTextBoxColumn13.HeaderText = "Шифр твору";
-            gridViewTextBoxColumn13.MinWidth = 90;
-            gridViewTextBoxColumn13.Name = "InnerCode";
-            gridViewTextBoxColumn13.Width = 90;
-            gridViewTextBoxColumn14.FieldName = "Iswc";
-            gridViewTextBoxColumn14.HeaderText = "ISWC";
-            gridViewTextBoxColumn14.MinWidth = 90;
-            gridViewTextBoxColumn14.Name = "Iswc";
-            gridViewTextBoxColumn14.Width = 90;
-            gridViewTextBoxColumn15.FieldName = "Name";
-            gridViewTextBoxColumn15.HeaderText = "Назва твору";
-            gridViewTextBoxColumn15.IsAutoGenerated = true;
-            gridViewTextBoxColumn15.MinWidth = 180;
-            gridViewTextBoxColumn15.Name = "Name";
-            gridViewTextBoxColumn15.Width = 206;
-            gridViewTextBoxColumn16.FieldName = "GenreName";
-            gridViewTextBoxColumn16.HeaderText = "Жанр";
-            gridViewTextBoxColumn16.IsAutoGenerated = true;
-            gridViewTextBoxColumn16.MinWidth = 85;
-            gridViewTextBoxColumn16.Name = "GenreName";
-            gridViewTextBoxColumn16.Width = 98;
-            gridViewTextBoxColumn17.FieldName = "Author";
-            gridViewTextBoxColumn17.HeaderText = "Автори";
-            gridViewTextBoxColumn17.MinWidth = 100;
-            gridViewTextBoxColumn17.Name = "Author";
-            gridViewTextBoxColumn17.Width = 104;
-            gridViewDecimalColumn6.DataType = typeof(System.Nullable<double>);
-            gridViewDecimalColumn6.FieldName = "RateTotal";
-            gridViewDecimalColumn6.HeaderText = "Спільний % володіння";
-            gridViewDecimalColumn6.IsAutoGenerated = true;
-            gridViewDecimalColumn6.MinWidth = 70;
-            gridViewDecimalColumn6.Name = "RateTotal";
-            gridViewDecimalColumn6.Width = 81;
-            gridViewTextBoxColumn18.FieldName = "Performer";
-            gridViewTextBoxColumn18.HeaderText = "Виконавець";
-            gridViewTextBoxColumn18.IsAutoGenerated = true;
-            gridViewTextBoxColumn18.MinWidth = 90;
-            gridViewTextBoxColumn18.Name = "Performer";
-            gridViewTextBoxColumn18.Width = 90;
-            gridViewCommandColumn3.AllowResize = false;
-            gridViewCommandColumn3.DefaultText = "Редагувати";
-            gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn3.MaxWidth = 30;
-            gridViewCommandColumn3.MinWidth = 30;
-            gridViewCommandColumn3.Name = "EditColumn";
-            gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn3.Width = 30;
+            gridViewDecimalColumn1.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn1.FieldName = "ObjId";
+            gridViewDecimalColumn1.HeaderText = "ObjId";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.IsVisible = false;
+            gridViewDecimalColumn1.Name = "ObjId";
+            gridViewDecimalColumn1.Width = 62;
+            gridViewTextBoxColumn1.FieldName = "InnerCode";
+            gridViewTextBoxColumn1.HeaderText = "Шифр твору";
+            gridViewTextBoxColumn1.MinWidth = 90;
+            gridViewTextBoxColumn1.Name = "InnerCode";
+            gridViewTextBoxColumn1.Width = 90;
+            gridViewTextBoxColumn2.FieldName = "Iswc";
+            gridViewTextBoxColumn2.HeaderText = "ISWC";
+            gridViewTextBoxColumn2.MinWidth = 90;
+            gridViewTextBoxColumn2.Name = "Iswc";
+            gridViewTextBoxColumn2.Width = 90;
+            gridViewTextBoxColumn3.FieldName = "Name";
+            gridViewTextBoxColumn3.HeaderText = "Назва твору";
+            gridViewTextBoxColumn3.IsAutoGenerated = true;
+            gridViewTextBoxColumn3.MinWidth = 180;
+            gridViewTextBoxColumn3.Name = "Name";
+            gridViewTextBoxColumn3.Width = 206;
+            gridViewTextBoxColumn4.FieldName = "GenreName";
+            gridViewTextBoxColumn4.HeaderText = "Жанр";
+            gridViewTextBoxColumn4.IsAutoGenerated = true;
+            gridViewTextBoxColumn4.MinWidth = 85;
+            gridViewTextBoxColumn4.Name = "GenreName";
+            gridViewTextBoxColumn4.Width = 98;
+            gridViewTextBoxColumn5.FieldName = "Author";
+            gridViewTextBoxColumn5.HeaderText = "Автори";
+            gridViewTextBoxColumn5.MinWidth = 100;
+            gridViewTextBoxColumn5.Name = "Author";
+            gridViewTextBoxColumn5.Width = 104;
+            gridViewDecimalColumn2.DataType = typeof(System.Nullable<double>);
+            gridViewDecimalColumn2.FieldName = "RateTotal";
+            gridViewDecimalColumn2.HeaderText = "Спільний % володіння";
+            gridViewDecimalColumn2.IsAutoGenerated = true;
+            gridViewDecimalColumn2.MinWidth = 70;
+            gridViewDecimalColumn2.Name = "RateTotal";
+            gridViewDecimalColumn2.Width = 81;
+            gridViewTextBoxColumn6.FieldName = "Performer";
+            gridViewTextBoxColumn6.HeaderText = "Виконавець";
+            gridViewTextBoxColumn6.IsAutoGenerated = true;
+            gridViewTextBoxColumn6.MinWidth = 90;
+            gridViewTextBoxColumn6.Name = "Performer";
+            gridViewTextBoxColumn6.Width = 90;
+            gridViewCommandColumn1.AllowResize = false;
+            gridViewCommandColumn1.DefaultText = "Редагувати";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "EditColumn";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.Width = 30;
             this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn5,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewDecimalColumn6,
-            gridViewTextBoxColumn18,
-            gridViewCommandColumn3});
+            gridViewDecimalColumn1,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewDecimalColumn2,
+            gridViewTextBoxColumn6,
+            gridViewCommandColumn1});
             this.gvObjectsRightsList.MasterTemplate.DataSource = this.bsObjectRightsView;
             this.gvObjectsRightsList.MasterTemplate.ShowFilteringRow = false;
             this.gvObjectsRightsList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvObjectsRightsList.Name = "gvObjectsRightsList";
             this.gvObjectsRightsList.ReadOnly = true;
             this.gvObjectsRightsList.ShowGroupPanel = false;
@@ -394,7 +368,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // bsObjectRightsView
             // 
-            this.bsObjectRightsView.DataSource = typeof(ObjectRightWithWID);
+            this.bsObjectRightsView.DataSource = typeof(IpsCommonTypes.Views.ObjectRightWithWID);
             // 
             // searchButtonPanel
             // 
@@ -474,11 +448,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorOrRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtISWC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).EndInit();
             this.mainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).EndInit();
@@ -522,11 +494,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadTextBox txtAuthorOrRightholder;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadSeparator radSeparator1;
         private Telerik.WinControls.UI.RadTextBox txtObjectName;
-        private Telerik.WinControls.UI.RadTextBox txtISWC;
         private System.Windows.Forms.BindingSource bsObjectRightsView;
     }
 }

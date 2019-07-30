@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Services;
-using ipsFormsDesign.ViewModels.ObjectsRight;
 using IpsCommonTypes.ClassesForSearchQuery;
-using IpsCommonTypes.Types;
 using IpsCommonTypes.Views;
 using IpsCommonTypes.Wrappers;
-using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
@@ -36,7 +26,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             Load += Form_Load;
             navigatorPanel.CurrentPageChanged += NavigatorPanel_CurrentPageChanged;
             navigatorPanel.PageSizeChanged += NavigatorPanel_PageSizeChanged;
-            UpdateList();
             _service = RegisterWIDService.GetInstance();
         }
 
@@ -57,7 +46,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                     DBSearch = _dbSearch,
                     Page = navigatorPanel.CurrentPage,
                     PageSize = navigatorPanel.PageSize,
-                    Iswc = !string.IsNullOrWhiteSpace(txtISWC.Text) ? txtISWC.Text : string.Empty,
                     ObjectName = !string.IsNullOrWhiteSpace(txtObjectName.Text) ? txtObjectName.Text : string.Empty,
                     Performer = !string.IsNullOrWhiteSpace(txtPerformer.Text) ? txtPerformer.Text : string.Empty,
                     Author = !string.IsNullOrWhiteSpace(txtAuthorOrRightholder.Text) ? txtAuthorOrRightholder.Text : string.Empty
