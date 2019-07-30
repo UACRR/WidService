@@ -5,6 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ipsFormsDesign.ViewModels.ObjectsRight;
+using IpsCommonTypes.Types;
+using IpsCommonTypes.Views;
 
 namespace ipsFormsDesign.Dictionary
 {
@@ -190,6 +193,10 @@ namespace ipsFormsDesign.Dictionary
                 ObjectAuthors = registerItem.ObjectAuthors;
                 ObjectPerformers = registerItem.ObjectPerformers;
                 Wic = registerItem.Wic;
+            }
+            else if (obj is ObjectRightWithWID objectRightWithWid)
+            {
+
             }
             else
             {

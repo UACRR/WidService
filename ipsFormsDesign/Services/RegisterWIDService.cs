@@ -5,6 +5,11 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.ViewModels.ObjectsRight;
+using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types;
+using IpsCommonTypes.Views;
+using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -33,6 +38,13 @@ namespace ipsFormsDesign.Services
             string url = $"{Prefix}/autolinkedobjects/{regId}";
             var list = _apiConnector.GetList<RegisterItemViewModel>(url);
             return list;
+        }
+
+        public ItemListResponse<ObjectRightWithWID> GetObjectRightListBySearch(SearchObjectRightQuery query)
+        {
+            string url = $"{Prefix}/searchbyquery";
+            var item = _apiConnector.GetItemByObjectQuery<ItemListResponse<ObjectRightWithWID>, SearchObjectRightQuery>(url, query);
+            return item;
         }
     }
 }
