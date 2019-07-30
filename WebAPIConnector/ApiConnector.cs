@@ -155,15 +155,14 @@ namespace WebAPIConnector
             return null;
         }
 
-
         /// <summary>
         /// Отримати об'єкт з серверу додатків по ID
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
         /// <param name="url"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public T GetItemById<T>(string url, string id)
+        public TResult GetItemById<TResult>(string url, string id)
         {
             string idUrl = !string.IsNullOrEmpty(id) ? $"{url}/{id}" : $"{url}";
 
@@ -178,16 +177,16 @@ namespace WebAPIConnector
 
 
                     if (string.IsNullOrEmpty(retApiString))
-                        return default(T);
+                        return default(TResult);
 
                     JObject retObj = JObject.Parse(retApiString);
 
-                    return retObj.ToObject<T>();
+                    return retObj.ToObject<TResult>();
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
-                    return default(T);
+                    return default(TResult);
                 else
-                    return default(T);
+                    return default(TResult);
             }
             catch
             {
@@ -199,16 +198,16 @@ namespace WebAPIConnector
         /// <summary>
         /// Отримати об'єкт з серверу додатків по об'єтку фільтра через POST request
         /// </summary>
-        /// <typeparam name="U"></typeparam>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TData"></typeparam>
         /// <param name="url"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public U GetItemByObjectQuery<U, T>(string url, T obj) where U : class where T: class
+        public TResult GetItemByObjectQuery<TResult, TData>(string url, TData obj) where TResult : class where TData: class
         {
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
             var result = client.PostAsync(url, content).GetAwaiter().GetResult();
-            var contentReturn = result.Content.ReadAs<U>();
+            var contentReturn = result.Content.ReadAs<TResult>();
             return contentReturn;
         }
 
@@ -217,6 +216,7 @@ namespace WebAPIConnector
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         public T GetItemByIdWithParam<T>(string url, string id, params KeyValuePair<string, string>[] listParam)
         {
