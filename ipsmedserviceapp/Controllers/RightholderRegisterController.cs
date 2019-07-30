@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IpsCommonTypes.Types;
 using IpsCommonTypes.Enums;
 using ipsmedserviceapp.Model;
+using IpsCommonTypes.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

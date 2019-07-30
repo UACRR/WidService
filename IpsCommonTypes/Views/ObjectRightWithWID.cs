@@ -1,5 +1,8 @@
 ﻿namespace IpsCommonTypes.Views
 {
+    /// <summary>
+    /// Універсальна view для об'єктів права з локальної або WID бази
+    /// </summary>
     public class ObjectRightWithWID
     {
         public int? ObjId { get; set; }

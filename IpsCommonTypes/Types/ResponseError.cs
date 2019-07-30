@@ -1,5 +1,8 @@
 ﻿namespace IpsCommonTypes.Types
 {
+    /// <summary>
+    /// Помилка яка виникає при реквесті або після нього (відповідь IsSuccessful = false)
+    /// </summary>
     public class ResponseError
     {
         public int? StatusCode { get; set; }

@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Model;
 using IpsCommonTypes.Types;
+using IpsCommonTypes.Wrappers;
 
 namespace IpsViewComponentLibrary.Shared.Interfaces
 {
