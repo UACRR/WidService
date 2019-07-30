@@ -27,5 +27,19 @@ namespace IpsViewComponentLibrary.Extensions
 
             form.BringToFront();
         }
+
+        public static void ShowHiddenDialogWindow(RadForm form)
+        {
+            if (form == null)
+                return;
+
+            if (!form.Visible)
+                form.ShowDialog();
+
+            if (form.WindowState == FormWindowState.Minimized)
+                form.WindowState = FormWindowState.Maximized;
+
+            form.BringToFront();
+        }
     }
 }

@@ -101,7 +101,6 @@
     <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />
     <Compile Include="Dictionary\ConsumerFilterEnum.cs" />
-    <Compile Include="Dictionary\ItemListResponse.cs" />
     <Compile Include="Dictionary\DictBaseTypeI.cs" />
     <Compile Include="Dictionary\DictionaryBaseControl.cs" />
     <Compile Include="Dictionary\DictTr.cs" />

@@ -196,6 +196,21 @@ namespace WebAPIConnector
             }
         }
 
+        /// <summary>
+        /// Отримати об'єкт з серверу додатків по об'єтку фільтра через POST request
+        /// </summary>
+        /// <typeparam name="U"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public U GetItemByObjectQuery<U, T>(string url, T obj) where U : class where T: class
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+            var result = client.PostAsync(url, content).GetAwaiter().GetResult();
+            var contentReturn = result.Content.ReadAs<U>();
+            return contentReturn;
+        }
 
         /// <summary>
         /// Отримати об'єкт з серверу додатків по ID

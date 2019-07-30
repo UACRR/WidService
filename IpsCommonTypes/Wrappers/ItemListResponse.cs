@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ipsFormsDesign.Dictionary
+namespace IpsCommonTypes.Wrappers
 {
     public class ItemListResponse<T> where T : class
     {
