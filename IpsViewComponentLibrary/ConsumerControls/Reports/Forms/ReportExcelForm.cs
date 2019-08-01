@@ -83,7 +83,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             ReportsHandler.RemoveEmptyRecord(_datasource);
 
             if (!ReportsHandler.CheckDoubleRecord(_datasource))
+            {
                 DialogResult = DialogResult.OK;
+            }
         }
 
         private void btnAddRow_Click(object sender, EventArgs e)

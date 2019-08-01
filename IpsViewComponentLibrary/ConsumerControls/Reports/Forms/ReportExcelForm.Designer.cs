@@ -153,6 +153,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             gridViewTimeSpanColumn2.Minimum = System.TimeSpan.Parse("00:00:01");
             gridViewTimeSpanColumn2.MinWidth = 120;
             gridViewTimeSpanColumn2.Name = "DurationUse";
+            gridViewTimeSpanColumn2.ReadOnly = true;
             gridViewTimeSpanColumn2.Width = 95;
             gridViewTimeSpanColumn2.WrapText = true;
             gridViewCommandColumn1.FieldName = "Delete";

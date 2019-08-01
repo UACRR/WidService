@@ -503,8 +503,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
         #endregion
 
-
-
         private void GvPeriodReports_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var columnName = e.Column.Name;
