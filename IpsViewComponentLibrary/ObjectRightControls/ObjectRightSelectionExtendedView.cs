@@ -78,6 +78,18 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             UpdateList();
         }
 
+        private void CheckValidCountSymbol()
+        {
+            if (!string.IsNullOrEmpty(txtObjectName.Text))
+                ;
+
+            if (!string.IsNullOrEmpty(txtAuthorOrRightholder.Text))
+                ;
+
+            if (!string.IsNullOrEmpty(txtPerformer.Text))
+                ;
+        }
+
         private void NavigatorPanel_PageSizeChanged(object sender, EventArgs e)
         {
             UpdateList();

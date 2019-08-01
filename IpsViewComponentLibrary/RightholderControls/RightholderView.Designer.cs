@@ -599,7 +599,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.royaltyPage.Controls.Add(this.radLabel8);
             this.royaltyPage.Controls.Add(this.createRightholderRoyaltyPageView);
             this.royaltyPage.Controls.Add(this.ddlTypeMethodGet);
-            this.royaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.royaltyPage.Location = new System.Drawing.Point(139, 5);
             this.royaltyPage.Name = "royaltyPage";
             this.royaltyPage.Size = new System.Drawing.Size(865, 437);
@@ -728,7 +727,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // rigthLimitationsPage
             // 
             this.rigthLimitationsPage.Controls.Add(this.ctrlRightLimitations);
-            this.rigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.rigthLimitationsPage.Location = new System.Drawing.Point(139, 5);
             this.rigthLimitationsPage.Name = "rigthLimitationsPage";
             this.rigthLimitationsPage.Size = new System.Drawing.Size(865, 437);
@@ -748,7 +746,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // territoryLimitationsPage
             // 
             this.territoryLimitationsPage.Controls.Add(this.ctrlTerritoryIncludeExclude);
-            this.territoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.territoryLimitationsPage.Location = new System.Drawing.Point(139, 5);
             this.territoryLimitationsPage.Name = "territoryLimitationsPage";
             this.territoryLimitationsPage.Size = new System.Drawing.Size(865, 437);
@@ -767,7 +764,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPrintPage.Controls.Add(this.radPdfViewerNavigator1);
             this.agreementPrintPage.Controls.Add(this.btnGenerateRightholderAgreement);
             this.agreementPrintPage.Controls.Add(this.pdfvRightholderAgreement);
-            this.agreementPrintPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPrintPage.Location = new System.Drawing.Point(139, 5);
             this.agreementPrintPage.Name = "agreementPrintPage";
             this.agreementPrintPage.Size = new System.Drawing.Size(865, 437);
@@ -904,7 +900,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageCatalog.DefaultPage = this.Anketa;
             this.pageCatalog.Location = new System.Drawing.Point(0, 1);
             this.pageCatalog.Name = "pageCatalog";
-            this.pageCatalog.SelectedPage = this.Anketa;
+            this.pageCatalog.SelectedPage = this.pageObjects;
             this.pageCatalog.Size = new System.Drawing.Size(1019, 481);
             this.pageCatalog.TabIndex = 20;
             this.pageCatalog.ThemeName = "Office2013Light";
@@ -957,7 +953,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
-            this.agreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPage.Name = "agreementPage";
             this.agreementPage.Size = new System.Drawing.Size(863, 435);
