@@ -127,6 +127,8 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("{custId}/file/{fileId}/validate")]
         public async Task<IActionResult> ValidateFile(int custId, int fileId)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
+            _dbContext.Database.SetCommandTimeout(2400);
 
             var file = await _dbContext.CatalogFile
             .Where(rec => rec.CustId == custId && rec.FileId == fileId)
@@ -174,8 +176,13 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex.ToString());
                 throw;
+            }
+            finally
+            {
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
 
@@ -188,6 +195,9 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("{custId}/file/{fileId}/process")]
         public async Task<IActionResult> ProcessFile(int custId, int fileId)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
+            _dbContext.Database.SetCommandTimeout(2400);
+
             var file = await _dbContext.CatalogFile
             .Where(rec => rec.CustId == custId && rec.FileId == fileId)
             .FirstOrDefaultAsync();
@@ -220,7 +230,9 @@ namespace ipsmedserviceapp.Controllers
                 var responce = new ExecSqlResponce<CatalogFile>
                 {
                     Message = message.Value.ToString(),
-                    StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0
+                        ? ExecSqlResponceStatus.Successed
+                        : ExecSqlResponceStatus.Failed
                 };
 
                 // Процедура виконала дії без помилок
@@ -236,8 +248,13 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex.ToString());
                 throw;
+            }
+            finally
+            {
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
 
@@ -247,7 +264,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="custId"></param>
         /// <param name="sors"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpPost("{custId}/upload")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile sors)
         {
@@ -262,7 +279,7 @@ namespace ipsmedserviceapp.Controllers
                     return BadRequest(msg);
                 }
 
-                _dbContext.Database.SetCommandTimeout(1200);
+                _dbContext.Database.SetCommandTimeout(2400);
                 var vcustomer = await _dbContext.vCustomer.SingleOrDefaultAsync(rec => rec.CustId == custId);
                 var rightholder = _dbContext.RightHolder.SingleOrDefault(rec => rec.CustId == custId);
                 if (rightholder == null)
@@ -272,7 +289,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     CustId = custId,
                     Status = 0,
-                    UserId = User.Identity.Name,
+                    UserId = User?.Identity?.Name ?? "system",
                     RhType = rightholder.RHolderType,
                     CreateDate = DateTime.Now,
                     CountZap = sors.RhcatalogItem.Count,
