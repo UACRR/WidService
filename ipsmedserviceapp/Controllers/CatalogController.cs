@@ -56,7 +56,7 @@ namespace ipsmedserviceapp.Controllers
             return Ok(catalogFile);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("upload/{custId}")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
