@@ -45,19 +45,19 @@ namespace IpsViewComponentLibrary.CatalogControls
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
-            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
-            this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
+            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
             this.gridCatalogFiles.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
             this.backgroundPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -190,26 +190,11 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.gridCatalogFiles.Name = "gridCatalogFiles";
             this.gridCatalogFiles.ReadOnly = true;
             this.gridCatalogFiles.ShowGroupPanel = false;
-            this.gridCatalogFiles.Size = new System.Drawing.Size(877, 462);
+            this.gridCatalogFiles.Size = new System.Drawing.Size(909, 396);
             this.gridCatalogFiles.TabIndex = 1;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             this.gridCatalogFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gridCatalogFiles_CommandCellClick);
             this.gridCatalogFiles.DoubleClick += new System.EventHandler(this.gridCatalogFiles_DoubleClick);
-            // 
-            // bsGridData
-            // 
-            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
-            // 
-            // btnLoadFile
-            // 
-            this.btnLoadFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLoadFile.Location = new System.Drawing.Point(3, 468);
-            this.btnLoadFile.Name = "btnLoadFile";
-            this.btnLoadFile.Size = new System.Drawing.Size(219, 24);
-            this.btnLoadFile.TabIndex = 2;
-            this.btnLoadFile.Text = "Завантажити каталог";
-            this.btnLoadFile.ThemeName = "Office2013Light";
-            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
             // backgroundPanel
             // 
@@ -219,16 +204,31 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
             this.backgroundPanel.Name = "backgroundPanel";
-            this.backgroundPanel.Size = new System.Drawing.Size(883, 495);
+            this.backgroundPanel.Size = new System.Drawing.Size(915, 429);
             this.backgroundPanel.TabIndex = 6;
+            // 
+            // btnLoadFile
+            // 
+            this.btnLoadFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLoadFile.Location = new System.Drawing.Point(3, 402);
+            this.btnLoadFile.Name = "btnLoadFile";
+            this.btnLoadFile.Size = new System.Drawing.Size(219, 24);
+            this.btnLoadFile.TabIndex = 2;
+            this.btnLoadFile.Text = "Завантажити каталог";
+            this.btnLoadFile.ThemeName = "Office2013Light";
+            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
+            // 
+            // bsGridData
+            // 
+            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
             // 
             // waitingBar
             // 
             this.waitingBar.AssociatedControl = this.backgroundPanel;
-            this.waitingBar.Location = new System.Drawing.Point(403, 196);
+            this.waitingBar.Location = new System.Drawing.Point(419, 163);
             this.waitingBar.Name = "waitingBar";
             this.waitingBar.Size = new System.Drawing.Size(70, 70);
-            this.waitingBar.TabIndex = 7;
+            this.waitingBar.TabIndex = 8;
             this.waitingBar.Text = "radWaitingBar1";
             this.waitingBar.ThemeName = "Office2013Light";
             this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
@@ -251,15 +251,15 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.backgroundPanel);
             this.Name = "CatalogControl";
-            this.Size = new System.Drawing.Size(883, 495);
+            this.Size = new System.Drawing.Size(915, 429);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
             this.gridCatalogFiles.ResumeLayout(false);
             this.gridCatalogFiles.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
             this.backgroundPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             this.ResumeLayout(false);
 
