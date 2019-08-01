@@ -1155,6 +1155,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.btnUploadFromExcel.TabIndex = 11;
             this.btnUploadFromExcel.Text = "Завантажити з Excel";
             this.btnUploadFromExcel.ThemeName = "Office2013Light";
+            this.btnUploadFromExcel.Visible = false;
             this.btnUploadFromExcel.Click += new System.EventHandler(this.btnUploadFromExcel_Click);
             // 
             // btnAddExistingObjectRightForRightholder
