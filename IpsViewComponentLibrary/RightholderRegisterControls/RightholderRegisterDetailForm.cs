@@ -2,11 +2,13 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
 using IpsCommonTypes.Enums;
+using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.RightholderRegisterControls.Presenters;
 using IpsViewComponentLibrary.Shared.Interfaces;
@@ -57,9 +59,16 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             bsRHCatalogItem.ResetBindings(false);
         }
 
-        private void btnAuditItems_Click(object sender, EventArgs e)
+        // заупустити перевірку
+        private async void btnAuditItems_Click(object sender, EventArgs e)
         {
-            var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
+            ExecSqlResponce<CatalogFile> result = null;
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
+            {
+                result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
+            });
+            waitingBar.StopWaiting();
 
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
@@ -69,29 +78,44 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             btnPerform.Enabled = _catalogFile.Status == 1;
         }
 
-        private void btnGetExcel_Click(object sender, EventArgs e)
+        // вивантажити в excel
+        private async void btnGetExcel_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog())
             {
-                dialog.FileName = "exportFile";
-                var spreadExporter = new GridViewSpreadExport(gridDetailInfo, SpreadExportFormat.Xlsx);
-                //spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
+                dialog.FileName = $"{_catalogFile.FileName}_export";
                 dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+                var spreadExporter = new GridViewSpreadExport(gridDetailInfo, SpreadExportFormat.Xlsx);
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     if (File.Exists(dialog.FileName))
                         File.Delete(dialog.FileName);
 
-                    SpreadExportRenderer renderer = new SpreadExportRenderer();
-                    spreadExporter.RunExport(dialog.FileName, renderer);
+                    waitingBar.StartWaiting();
+                    string fileName = dialog.FileName;
+                    await Task.Factory.StartNew(() =>
+                    {
+                        var renderer = new SpreadExportRenderer();
+                        spreadExporter.RunExport(fileName, renderer);
+                    });
+                    waitingBar.StopWaiting();
                 }
             }
         }
 
-        private void btnPerform_Click(object sender, EventArgs e)
+        // запустити процес завантаження в бд
+        private async void btnPerform_Click(object sender, EventArgs e)
         {
-            var result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
+            ExecSqlResponce<CatalogFile> result = null;
+
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
+            {
+                result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
+            });
+            waitingBar.StopWaiting();
 
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
             

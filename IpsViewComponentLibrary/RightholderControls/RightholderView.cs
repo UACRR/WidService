@@ -152,8 +152,14 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             dtDatePassed.SetUserCalendarSettingsm();
 
-            sbSave.DefaultItem = miSave;
-            sbSave.Text = miSave.Text;
+            sbtnSaveAnketa.DefaultItem = mibtnSaveAnketa;
+            sbtnSaveAnketa.Text = mibtnSaveAnketa.Text;
+
+            sbtnSaveAgreement.DefaultItem = mibtnSaveAgreement;
+            sbtnSaveAgreement.Text = mibtnSaveAgreement.Text;
+
+            sbtnSaveAnketaExternal.DefaultItem = mibtnSaveAnketaExternal;
+            sbtnSaveAnketaExternal.Text = mibtnSaveAnketaExternal.Text;
         }
 
         ~RightholderView()

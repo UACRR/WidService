@@ -88,9 +88,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             }
         }
 
-        private void DeleteRegisterExecuted(object sender, Register e)
+        private bool DeleteRegisterExecuted(Register register)
         {
-            _service.DeleteRegister(e);
+            return _service.DeleteRegister(register);
         }
 
         private bool SaveRegisterRatedListExecuted(RegisterRatedList e)

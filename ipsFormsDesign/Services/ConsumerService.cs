@@ -99,7 +99,7 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// 
+        /// Зберегти розрахунковий лист
         /// </summary>
         /// <param name="regRatedList"></param>
         /// <param name="retObject"></param>
@@ -111,7 +111,7 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// 
+        /// Зберегти звіт
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// 
+        /// Видалити звіт
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
