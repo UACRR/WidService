@@ -207,8 +207,13 @@ namespace WebAPIConnector
         {
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
             var result = client.PostAsync(url, content).GetAwaiter().GetResult();
-            var contentReturn = result.Content.ReadAs<TResult>();
-            return contentReturn;
+            if (result.IsSuccessStatusCode)
+            {
+                var contentReturn = result.Content.ReadAs<TResult>();
+                return contentReturn;
+            }
+
+            return default(TResult);
         }
 
         /// <summary>
