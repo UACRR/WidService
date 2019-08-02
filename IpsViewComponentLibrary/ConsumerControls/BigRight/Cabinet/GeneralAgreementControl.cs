@@ -151,7 +151,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             if ((bool)result)
                 UpdateData?.Invoke();
 
-            ExtensionUtils.ShowMessage((bool)result, MessageType.GeneralAgreementChange);
+            MessageShow.ShowInfoAfterChanges((bool)result);
         }
 
         #endregion

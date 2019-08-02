@@ -81,11 +81,30 @@ namespace IpsViewComponentLibrary.Extensions
             dtPicker.DateTimePickerElement.Calendar.TodayButton.Click += TodayButton_Click;
         }
 
+        // обробка події кліку кнопки кастомного календара
         private static void TodayButton_Click(object sender, EventArgs e)
         {
             // var container = (sender as RadControl).GetContainerControl();
             if (((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl is RadDateTimePicker dtPicker)
                 dtPicker.Value = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Зробити колір тексту лейбла червоним
+        /// </summary>
+        /// <param name="label"></param>
+        public static void SetWarningLabelColor(this RadLabel label)
+        {
+            label.ForeColor = Color.FromArgb(180, 255, 0, 2);
+        }
+
+        /// <summary>
+        /// Зробити стандартний колір тексту лейбла
+        /// </summary>
+        /// <param name="label"></param>
+        public static void SetDefaultLabelColor(this RadLabel label)
+        {
+            label.ForeColor = Control.DefaultForeColor;
         }
 
         /// <summary>
@@ -153,27 +172,6 @@ namespace IpsViewComponentLibrary.Extensions
             return new DateTime(DateTime.Today.Year, 12, 31);
         }
 
-        public static void ShowMessage(bool result, MessageType messageType)
-        {
-            string msgText = string.Empty;
-            string headerText = result ? "Успішно" : "Помилка";
-            MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
-            switch (messageType)
-            {
-                case MessageType.GeneralAgreementChange:
-                    msgText = result ? "Зміни генерального договору збережено!" : "Неможливо зберегти зміни генерального договору!";
-                    break;
-                case MessageType.LicenseAgreementChange:
-                    msgText = result ? "Зміни ліцензійного договору збережено!" : "Неможливо зберегти зміни ліцензійного договору!";
-                    break;
-                case MessageType.LicenseStatus:
-                    msgText = result ? "Статус ліцензії зміненно!" : "Неможливо змінити статус ліцензії!";
-                    break;
-            }
-
-            MessageBox.Show(msgText, headerText, MessageBoxButtons.OK, icon);
-        }
-
         //для колапс панелі
         public static void NavigationButtonPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -191,14 +189,6 @@ namespace IpsViewComponentLibrary.Extensions
                 btn.Visibility = ElementVisibility.Collapsed;
             }
         }
-    }
-
-    public enum MessageType
-    {
-        GeneralAgreementChange,
-        LicenseAgreementChange,
-        LicenseStatus,
-        
     }
 
     #region МАЙДАНЧИКИ
