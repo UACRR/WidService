@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     partial class CreatePeriod
     {
@@ -31,18 +31,19 @@
             this.components = new System.ComponentModel.Container();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
-            this.radDateTimePicker1 = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.ddlPeriod = new Telerik.WinControls.UI.RadDropDownList();
+            this.btnCreate = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.dtStartDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.SuspendLayout();
@@ -61,45 +62,48 @@
             this.radLabel4.TabIndex = 3;
             this.radLabel4.TextWrap = false;
             // 
-            // radDropDownList1
+            // ddlPeriod
             // 
-            this.radDropDownList1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radDropDownList1.Location = new System.Drawing.Point(138, 54);
-            this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(232, 25);
-            this.radDropDownList1.TabIndex = 1;
-            this.radDropDownList1.Text = "radDropDownList1";
+            this.ddlPeriod.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ddlPeriod.Location = new System.Drawing.Point(138, 54);
+            this.ddlPeriod.Name = "ddlPeriod";
+            this.ddlPeriod.Size = new System.Drawing.Size(232, 25);
+            this.ddlPeriod.TabIndex = 1;
+            this.ddlPeriod.ThemeName = "Office2013Light";
             // 
-            // radButton1
+            // btnCreate
             // 
-            this.radButton1.Location = new System.Drawing.Point(12, 106);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(111, 24);
-            this.radButton1.TabIndex = 3;
-            this.radButton1.Text = "Створити";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            this.btnCreate.Location = new System.Drawing.Point(12, 106);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(111, 24);
+            this.btnCreate.TabIndex = 3;
+            this.btnCreate.Text = "Створити";
+            this.btnCreate.ThemeName = "Office2013Light";
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // radButton2
+            // btnCancel
             // 
-            this.radButton2.Location = new System.Drawing.Point(256, 106);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(114, 24);
-            this.radButton2.TabIndex = 4;
-            this.radButton2.Text = "Закрити";
-            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(256, 106);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(114, 24);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
             // 
-            // radDateTimePicker1
+            // dtStartDate
             // 
-            this.radDateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radDateTimePicker1.Location = new System.Drawing.Point(138, 18);
-            this.radDateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.radDateTimePicker1.Name = "radDateTimePicker1";
-            this.radDateTimePicker1.Size = new System.Drawing.Size(155, 25);
-            this.radDateTimePicker1.TabIndex = 0;
-            this.radDateTimePicker1.TabStop = false;
-            this.radDateTimePicker1.Text = "21 липня 2018 р.";
-            this.radDateTimePicker1.Value = new System.DateTime(2018, 7, 21, 7, 51, 24, 863);
-            this.radDateTimePicker1.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.dtStartDate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dtStartDate.Location = new System.Drawing.Point(138, 18);
+            this.dtStartDate.Margin = new System.Windows.Forms.Padding(2);
+            this.dtStartDate.Name = "dtStartDate";
+            this.dtStartDate.Size = new System.Drawing.Size(155, 25);
+            this.dtStartDate.TabIndex = 0;
+            this.dtStartDate.TabStop = false;
+            this.dtStartDate.Text = "21 липня 2018 р.";
+            this.dtStartDate.ThemeName = "Office2013Light";
+            this.dtStartDate.Value = new System.DateTime(2018, 7, 21, 7, 51, 24, 863);
+            this.dtStartDate.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
             // 
             // radLabel1
             // 
@@ -109,6 +113,7 @@
             this.radLabel1.Size = new System.Drawing.Size(57, 24);
             this.radLabel1.TabIndex = 5;
             this.radLabel1.Text = "Період";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
@@ -118,28 +123,32 @@
             this.radLabel2.Size = new System.Drawing.Size(115, 23);
             this.radLabel2.TabIndex = 6;
             this.radLabel2.Text = "Початкова дата";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // CreatePeriod
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(380, 142);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.radDateTimePicker1);
-            this.Controls.Add(this.radButton2);
-            this.Controls.Add(this.radButton1);
-            this.Controls.Add(this.radDropDownList1);
+            this.Controls.Add(this.dtStartDate);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.ddlPeriod);
             this.Controls.Add(this.radLabel4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CreatePeriod";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Новий період";
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDateTimePicker1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.ResumeLayout(false);
@@ -151,11 +160,12 @@
 
         private System.Windows.Forms.BindingSource bindingSource1;
         private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList1;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
-        private Telerik.WinControls.UI.RadDateTimePicker radDateTimePicker1;
+        private Telerik.WinControls.UI.RadDropDownList ddlPeriod;
+        private Telerik.WinControls.UI.RadButton btnCreate;
+        private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.UI.RadDateTimePicker dtStartDate;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

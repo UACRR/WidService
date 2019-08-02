@@ -48,7 +48,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
 
             Closing += ReportExtendedForm_Closing;
         }
-        
+
         public ReportExtendedForm(Register register, bool isEdit) : this(register)
         {
             MusicDesingDataSource = _register;
