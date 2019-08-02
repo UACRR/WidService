@@ -306,7 +306,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             btnToAcception.Enabled = register.RgStatus == 0 || register.RgStatus == 5;
         }
 
-
         // * * *  * * *  КНОПКИ:
         // * * * НА ГРІД [Періоди платежів]
         private void GvPeriods_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -428,6 +427,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
             }
 
+            var algorithmId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.AlgorithmId;
+            var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
+
             //об'єкт звіт
             var registerTemp = new Register
             {
@@ -437,17 +439,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 CustId = _customer.CustId,
                 RgStatusNavigation = dicRegStatus[0],
                 LicId = period.LicId,
-                AlgorithmId = 2,
+                AlgorithmId = algorithmId,
                 PeriodId = period.PeriodId,
+                SchemaId = schemaId,
             };
-
-            // для визначення рапортички
-            var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
-
+            
             // рапортичка
             if (schemaId == 2)
             {
-                registerTemp.SchemaId = 2;
                 var progReportBigRight = new ReportExtendedForm(registerTemp)
                 {
                     HeaderInfoCustomerName = GetCustomerName(),
@@ -468,7 +467,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             // не рапотричка
             else
             {
-                registerTemp.SchemaId = 1;
                 var viewForm = new ReportExcelForm(registerTemp, true);
                 if (viewForm.ShowDialog() == DialogResult.OK)
                 {
