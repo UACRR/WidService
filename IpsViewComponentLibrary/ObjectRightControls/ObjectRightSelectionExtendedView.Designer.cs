@@ -1,4 +1,5 @@
-﻿using IpsCommonTypes.Types;
+﻿using System.Drawing;
+using IpsCommonTypes.Types;
 using IpsCommonTypes.Views;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
@@ -38,8 +39,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
@@ -103,16 +105,16 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.commandPanel.Controls.Add(this.btnCancel);
             this.commandPanel.Controls.Add(this.btnOk);
             this.commandPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.commandPanel.Location = new System.Drawing.Point(0, 436);
+            this.commandPanel.Location = new System.Drawing.Point(0, 500);
             this.commandPanel.Name = "commandPanel";
-            this.commandPanel.Size = new System.Drawing.Size(1052, 31);
+            this.commandPanel.Size = new System.Drawing.Size(1219, 31);
             this.commandPanel.TabIndex = 2;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(939, 4);
+            this.btnCancel.Location = new System.Drawing.Point(1106, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 1;
@@ -122,7 +124,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(823, 4);
+            this.btnOk.Location = new System.Drawing.Point(990, 4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(110, 24);
             this.btnOk.TabIndex = 0;
@@ -144,7 +146,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(268, 436);
+            this.leftPanel.Size = new System.Drawing.Size(268, 500);
             this.leftPanel.TabIndex = 3;
             // 
             // lblPerformer
@@ -236,7 +238,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(268, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(784, 436);
+            this.mainPanel.Size = new System.Drawing.Size(951, 500);
             this.mainPanel.TabIndex = 4;
             // 
             // gvObjectsRightsList
@@ -264,42 +266,48 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gridViewTextBoxColumn1.HeaderText = "Шифр твору";
             gridViewTextBoxColumn1.MinWidth = 90;
             gridViewTextBoxColumn1.Name = "InnerCode";
-            gridViewTextBoxColumn1.Width = 90;
+            gridViewTextBoxColumn1.Width = 105;
             gridViewTextBoxColumn2.FieldName = "Iswc";
             gridViewTextBoxColumn2.HeaderText = "ISWC";
             gridViewTextBoxColumn2.MinWidth = 90;
             gridViewTextBoxColumn2.Name = "Iswc";
-            gridViewTextBoxColumn2.Width = 90;
-            gridViewTextBoxColumn3.FieldName = "Name";
-            gridViewTextBoxColumn3.HeaderText = "Назва твору";
-            gridViewTextBoxColumn3.IsAutoGenerated = true;
-            gridViewTextBoxColumn3.MinWidth = 180;
-            gridViewTextBoxColumn3.Name = "Name";
-            gridViewTextBoxColumn3.Width = 206;
-            gridViewTextBoxColumn4.FieldName = "GenreName";
-            gridViewTextBoxColumn4.HeaderText = "Жанр";
+            gridViewTextBoxColumn2.Width = 105;
+            gridViewTextBoxColumn3.DataType = typeof(System.Nullable<int>);
+            gridViewTextBoxColumn3.FieldName = "WIC";
+            gridViewTextBoxColumn3.HeaderText = "WIC";
+            gridViewTextBoxColumn3.MinWidth = 90;
+            gridViewTextBoxColumn3.Name = "WIC";
+            gridViewTextBoxColumn3.Width = 105;
+            gridViewTextBoxColumn4.FieldName = "Name";
+            gridViewTextBoxColumn4.HeaderText = "Назва твору";
             gridViewTextBoxColumn4.IsAutoGenerated = true;
-            gridViewTextBoxColumn4.MinWidth = 85;
-            gridViewTextBoxColumn4.Name = "GenreName";
-            gridViewTextBoxColumn4.Width = 98;
-            gridViewTextBoxColumn5.FieldName = "Author";
-            gridViewTextBoxColumn5.HeaderText = "Автори";
-            gridViewTextBoxColumn5.MinWidth = 100;
-            gridViewTextBoxColumn5.Name = "Author";
-            gridViewTextBoxColumn5.Width = 104;
+            gridViewTextBoxColumn4.MinWidth = 180;
+            gridViewTextBoxColumn4.Name = "Name";
+            gridViewTextBoxColumn4.Width = 210;
+            gridViewTextBoxColumn5.FieldName = "GenreName";
+            gridViewTextBoxColumn5.HeaderText = "Жанр";
+            gridViewTextBoxColumn5.IsAutoGenerated = true;
+            gridViewTextBoxColumn5.MinWidth = 85;
+            gridViewTextBoxColumn5.Name = "GenreName";
+            gridViewTextBoxColumn5.Width = 99;
+            gridViewTextBoxColumn6.FieldName = "Author";
+            gridViewTextBoxColumn6.HeaderText = "Автори";
+            gridViewTextBoxColumn6.MinWidth = 100;
+            gridViewTextBoxColumn6.Name = "Author";
+            gridViewTextBoxColumn6.Width = 117;
             gridViewDecimalColumn2.DataType = typeof(System.Nullable<double>);
             gridViewDecimalColumn2.FieldName = "RateTotal";
             gridViewDecimalColumn2.HeaderText = "Спільний % володіння";
             gridViewDecimalColumn2.IsAutoGenerated = true;
             gridViewDecimalColumn2.MinWidth = 70;
             gridViewDecimalColumn2.Name = "RateTotal";
-            gridViewDecimalColumn2.Width = 81;
-            gridViewTextBoxColumn6.FieldName = "Performer";
-            gridViewTextBoxColumn6.HeaderText = "Виконавець";
-            gridViewTextBoxColumn6.IsAutoGenerated = true;
-            gridViewTextBoxColumn6.MinWidth = 90;
-            gridViewTextBoxColumn6.Name = "Performer";
-            gridViewTextBoxColumn6.Width = 90;
+            gridViewDecimalColumn2.Width = 82;
+            gridViewTextBoxColumn7.FieldName = "Performer";
+            gridViewTextBoxColumn7.HeaderText = "Виконавець";
+            gridViewTextBoxColumn7.IsAutoGenerated = true;
+            gridViewTextBoxColumn7.MinWidth = 90;
+            gridViewTextBoxColumn7.Name = "Performer";
+            gridViewTextBoxColumn7.Width = 104;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Редагувати";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
@@ -309,6 +317,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "EditColumn";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 30;
             this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn1,
@@ -317,8 +326,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
-            gridViewDecimalColumn2,
             gridViewTextBoxColumn6,
+            gridViewDecimalColumn2,
+            gridViewTextBoxColumn7,
             gridViewCommandColumn1});
             this.gvObjectsRightsList.MasterTemplate.DataSource = this.bsObjectRightsView;
             this.gvObjectsRightsList.MasterTemplate.ShowFilteringRow = false;
@@ -327,7 +337,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.gvObjectsRightsList.Name = "gvObjectsRightsList";
             this.gvObjectsRightsList.ReadOnly = true;
             this.gvObjectsRightsList.ShowGroupPanel = false;
-            this.gvObjectsRightsList.Size = new System.Drawing.Size(784, 372);
+            this.gvObjectsRightsList.Size = new System.Drawing.Size(951, 436);
             this.gvObjectsRightsList.TabIndex = 23;
             this.gvObjectsRightsList.ThemeName = "Office2013Light";
             // 
@@ -356,7 +366,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
             this.backgroundPanel.Name = "backgroundPanel";
-            this.backgroundPanel.Size = new System.Drawing.Size(1052, 467);
+            this.backgroundPanel.Size = new System.Drawing.Size(1219, 531);
             this.backgroundPanel.TabIndex = 5;
             // 
             // lineRingWaitingBarIndicatorElement1
@@ -378,7 +388,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.searchButtonPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.searchButtonPanel.Location = new System.Drawing.Point(0, 0);
             this.searchButtonPanel.Name = "searchButtonPanel";
-            this.searchButtonPanel.Size = new System.Drawing.Size(784, 31);
+            this.searchButtonPanel.Size = new System.Drawing.Size(951, 31);
             this.searchButtonPanel.TabIndex = 24;
             // 
             // btnSearchWID
@@ -406,16 +416,16 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.navigationPanel.BorderVisible = false;
             this.navigationPanel.Controls.Add(this.navigatorPanel);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.navigationPanel.Location = new System.Drawing.Point(0, 403);
+            this.navigationPanel.Location = new System.Drawing.Point(0, 467);
             this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(784, 33);
+            this.navigationPanel.Size = new System.Drawing.Size(951, 33);
             this.navigationPanel.TabIndex = 6;
             // 
             // navigatorPanel
             // 
             this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.navigatorPanel.CurrentPage = 1;
-            this.navigatorPanel.Location = new System.Drawing.Point(431, 3);
+            this.navigatorPanel.Location = new System.Drawing.Point(598, 3);
             this.navigatorPanel.Name = "navigatorPanel";
             this.navigatorPanel.PageSize = 40;
             this.navigatorPanel.ReadOnlyPageSize = false;
@@ -428,7 +438,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1052, 467);
+            this.ClientSize = new System.Drawing.Size(1219, 531);
             this.Controls.Add(this.backgroundPanel);
             this.Name = "ObjectRightSelectionExtendedView";
             // 

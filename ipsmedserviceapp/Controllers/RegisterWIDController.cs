@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using ipsFormsDesign.Dictionary;
 using ipsmedserviceapp.Model;
+using static ipsmedserviceapp.Utilities.DBQueryHelper;
 using IpsCommonTypes.ClassesForSearchQuery;
-using IpsCommonTypes.Types;
 using IpsCommonTypes.Views;
 using IpsCommonTypes.Wrappers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -60,28 +58,56 @@ namespace ipsmedserviceapp.Controllers
         {
             try
             {
+                var conditions = new Dictionary<string, string>();
+
+                if (!string.IsNullOrEmpty(query.ObjectName))
+                    conditions.Add("name", query.ObjectName);
+
+                if (!string.IsNullOrEmpty(query.Author))
+                    conditions.Add("author", query.Author);
+
+                if (!string.IsNullOrEmpty(query.Performer))
+                    conditions.Add("performer", query.Performer);
+
                 switch (query.DBSearch)
                 {
                     case WID:
-                        break;
-                    case Local:
-                        var param = new[]
+                        var queryWIDText = "select * from [WID_IPI].[dbo].[vtsk_3_OR_01_new]";
+                        queryWIDText = ApplySqlWhereCondition(queryWIDText, conditions);
+
+                        int totalItemsWID = 1000;
+
+                        queryWIDText = ApplySqlOrderByAndPaging(queryWIDText, "WIC", query.Page, query.PageSize);
+
+                        var listWID = await _dbContext.getViewData(queryWIDText, null);
+
+                        var responseWID = new
                         {
-                            new SqlParameter("@name", !string.IsNullOrEmpty(query.ObjectName) ? (object) query.ObjectName : DBNull.Value),
-                            new SqlParameter("@authtors", !string.IsNullOrEmpty(query.Author) ? (object) query.Author : DBNull.Value),
-                            new SqlParameter("@performers", !string.IsNullOrEmpty(query.Performer) ? (object) query.Performer : DBNull.Value)
+                            List = listWID,
+                            TotalItems = (object) totalItemsWID
                         };
-                        var list = await _dbContext.getViewData("select * from [dbo].[ft_tsk_3_SearchObj](@name, @authtors, @performers )", param);
-                        break;
+                        return Ok(responseWID);
+
+                    case Local:
+                        var queryText = "select * from vtsk_3_OR_01";
+                        queryText = ApplySqlWhereCondition(queryText, conditions);
+
+                        var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
+
+                        queryText = ApplySqlOrderByAndPaging(queryText, "objId", query.Page, query.PageSize);
+
+                        var list = await _dbContext.getViewData(queryText, null);
+
+                        var response = new
+                        {
+                            List = list,
+                            TotalItems = totalItems
+                        };
+
+                        return Ok(response);
                 }
 
-                var response = new ItemListResponse<ObjectRightWithWID>
-                {
-                    TotalItems = 0,
-                    List = new List<ObjectRightWithWID>()
-                };
-
-                return Ok(response);
+                return BadRequest();
             }
             catch (Exception e)
             {

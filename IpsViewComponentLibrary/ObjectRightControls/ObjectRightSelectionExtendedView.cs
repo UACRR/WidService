@@ -99,13 +99,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 lblName.SetWarningLabelColor();
             }
 
-            if (!string.IsNullOrEmpty(txtAuthorOrRightholder.Text))
+            if (!string.IsNullOrEmpty(txtAuthorOrRightholder.Text) && txtAuthorOrRightholder.Text.Length < 3)
             {
                 msg += $"Для пошуку поле \"{lblAuthor.Text}\" повинно мати мінімум 3 символи! ";
                 lblAuthor.SetWarningLabelColor();
             }
 
-            if (!string.IsNullOrEmpty(txtPerformer.Text))
+            if (!string.IsNullOrEmpty(txtPerformer.Text) && txtPerformer.Text.Length < 3)
             {
                 msg += $"Для пошуку поле \"{lblPerformer.Text}\" повинно мати мінімум 3 символи! ";
                 lblPerformer.SetWarningLabelColor();
