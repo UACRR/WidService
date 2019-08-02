@@ -16,7 +16,7 @@ namespace ipsmedserviceapp.Utilities
             var conditions = new Collection<string>();
 
             foreach (var condition in conditionDictionary)
-                conditions.Add($"{condition.Key} like %{condition.Value}%");
+                conditions.Add($"{condition.Key} like \'%{condition.Value}%\'");
             
             if (conditions.Any())
                 queryText = $"{queryText} where {string.Join(" and ", conditions)}";
