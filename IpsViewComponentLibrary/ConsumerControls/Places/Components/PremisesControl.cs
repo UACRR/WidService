@@ -5,7 +5,7 @@ using ipsFormsDesign;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.ConsumerControls.Places.Enums;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places.Components

@@ -13,7 +13,6 @@ using ConsumerSmallRightView = ipsFormsDesign.ViewModels.Consumer.ConsumerSmallR
 namespace IpsViewComponentLibrary.Extensions
 {
     public delegate bool LicenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
-    public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, LicType licType);
     public delegate bool SaveRegisterRatedListEventHandler(RegisterRatedList list);
     public delegate Customer GetRegisterRatedList(int custId);
@@ -36,16 +35,11 @@ namespace IpsViewComponentLibrary.Extensions
     public delegate bool ActionWithTwoId(int custId, int id);
     public delegate bool ActionByIdDelegate(int id);
     public delegate bool SaveCustomerEventHandler(Customer customer);
-    public delegate bool SaveObjectListEventHandler<T>(int cmCustId, List<T> listObj);
-    public delegate bool SaveLimitedRightEventHandler<T>(int firstId, int secondId, List<T> listObj);
     public delegate bool SaveObjectByIdEventHandler<T>(int id, T saveObj);
-    public delegate bool SaveObjectEventHandler<T>(T obj);
     public delegate Customer GetCustomerEventHandler();
     public delegate Customer GetCustomerByIdEventHandler(int custId);
     public delegate List<T> ReturnViewEventHandler<T>(int custId);
     public delegate List<T> ReturnFullViewEventHandler<T>();
-    public delegate List<T> ReturnFullViewByFilterEventHandler<T, F>(F filter);
-
 
     public delegate T ReturnObjectEventHandler<out T>(int custId);
 
@@ -191,43 +185,6 @@ namespace IpsViewComponentLibrary.Extensions
         }
     }
 
-    #region МАЙДАНЧИКИ
-
-    /// <summary>
-    /// Тип ініціалізації форми приміщення завкладу
-    /// </summary>
-    public enum PremisesFormTypeInitialization
-    {
-        /// <summary>
-        /// Редагування
-        /// </summary>
-        Edit,
-        /// <summary>
-        /// Створення нового
-        /// </summary>
-        CreateNew
-    }
-
-    /// <summary>
-    /// Тип вимірювання майданчика
-    /// </summary>
-    public enum MeasurementOfPlaces
-    {
-        /// <summary>
-        /// Площа
-        /// </summary>
-        Area = 1,
-        /// <summary>
-        /// Кількість місць
-        /// </summary>
-        Number = 2,
-        /// <summary>
-        /// Інше
-        /// </summary>
-        Other = 3,
-        Empty = 0
-    }
-
     /// <summary>
     /// Тип форматування поточної анкети
     /// </summary>
@@ -273,8 +230,6 @@ namespace IpsViewComponentLibrary.Extensions
         /// </summary>
         ChangeAgreement
     }
-
-    #endregion
 
     /// <summary>
     /// Тип вкладки кабінету великих прав

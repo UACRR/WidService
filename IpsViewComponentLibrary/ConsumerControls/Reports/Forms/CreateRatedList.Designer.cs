@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls
+﻿namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
 {
     partial class CreateRatedList
     {
@@ -30,29 +30,30 @@
         {
             this.components = new System.ComponentModel.Container();
             this.radTextPeriod = new Telerik.WinControls.UI.RadTextBox();
+            this.bindingPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radTextAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.bindingSourceRatedList = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radTextRoyalty = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radTextCntReport = new Telerik.WinControls.UI.RadTextBox();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
-            this.bindingSourceRatedList = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingPeriod = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radTextPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRatedList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextRoyalty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextCntReport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRatedList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             this.SuspendLayout();
             // 
             // radTextPeriod
@@ -64,6 +65,11 @@
             this.radTextPeriod.Name = "radTextPeriod";
             this.radTextPeriod.Size = new System.Drawing.Size(183, 23);
             this.radTextPeriod.TabIndex = 0;
+            this.radTextPeriod.ThemeName = "Office2013Light";
+            // 
+            // bindingPeriod
+            // 
+            this.bindingPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
             // 
             // radLabel1
             // 
@@ -73,6 +79,7 @@
             this.radLabel1.Size = new System.Drawing.Size(50, 21);
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "Період";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
@@ -83,6 +90,7 @@
             this.radLabel2.Size = new System.Drawing.Size(132, 42);
             this.radLabel2.TabIndex = 3;
             this.radLabel2.Text = "Загальна сума збору по р/л";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radTextAmount
             // 
@@ -92,6 +100,11 @@
             this.radTextAmount.Name = "radTextAmount";
             this.radTextAmount.Size = new System.Drawing.Size(183, 23);
             this.radTextAmount.TabIndex = 1;
+            this.radTextAmount.ThemeName = "Office2013Light";
+            // 
+            // bindingSourceRatedList
+            // 
+            this.bindingSourceRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
             // 
             // radLabel3
             // 
@@ -102,6 +115,7 @@
             this.radLabel3.Size = new System.Drawing.Size(171, 42);
             this.radLabel3.TabIndex = 5;
             this.radLabel3.Text = "Загальна сума авторської винаговроди по р/л";
+            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // radTextRoyalty
             // 
@@ -111,6 +125,7 @@
             this.radTextRoyalty.Name = "radTextRoyalty";
             this.radTextRoyalty.Size = new System.Drawing.Size(183, 23);
             this.radTextRoyalty.TabIndex = 2;
+            this.radTextRoyalty.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
@@ -120,6 +135,7 @@
             this.radLabel4.Size = new System.Drawing.Size(99, 21);
             this.radLabel4.TabIndex = 3;
             this.radLabel4.Text = "Кількість звітів ";
+            this.radLabel4.ThemeName = "Office2013Light";
             // 
             // radTextCntReport
             // 
@@ -129,44 +145,39 @@
             this.radTextCntReport.Name = "radTextCntReport";
             this.radTextCntReport.Size = new System.Drawing.Size(183, 23);
             this.radTextCntReport.TabIndex = 3;
+            this.radTextCntReport.ThemeName = "Office2013Light";
             // 
-            // radButton1
+            // btnSave
             // 
-            this.radButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.radButton1.Location = new System.Drawing.Point(13, 188);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 24);
-            this.radButton1.TabIndex = 4;
-            this.radButton1.Text = "Зберегти";
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSave.Location = new System.Drawing.Point(13, 188);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(110, 24);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Зберегти";
+            this.btnSave.ThemeName = "Office2013Light";
             // 
-            // radButton2
+            // btnCancel
             // 
-            this.radButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.radButton2.Location = new System.Drawing.Point(266, 188);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(110, 24);
-            this.radButton2.TabIndex = 5;
-            this.radButton2.Text = "Скасувати";
-            // 
-            // bindingSourceRatedList
-            // 
-            this.bindingSourceRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
-            // 
-            // bindingPeriod
-            // 
-            this.bindingPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(266, 188);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 24);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
             // 
             // CreateRatedList
             // 
-            this.AcceptButton = this.radButton1;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AcceptButton = this.btnSave;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CancelButton = this.radButton2;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(387, 219);
             this.ControlBox = false;
-            this.Controls.Add(this.radButton2);
-            this.Controls.Add(this.radButton1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.radTextCntReport);
             this.Controls.Add(this.radLabel3);
@@ -181,17 +192,17 @@
             this.Name = "CreateRatedList";
             this.Text = "Новий розрахунковий лист";
             ((System.ComponentModel.ISupportInitialize)(this.radTextPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRatedList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextRoyalty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextCntReport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRatedList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,8 +219,9 @@
         private Telerik.WinControls.UI.RadTextBox radTextRoyalty;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadTextBox radTextCntReport;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton btnSave;
+        private Telerik.WinControls.UI.RadButton btnCancel;
         private System.Windows.Forms.BindingSource bindingPeriod;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

@@ -12,6 +12,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.Reports.Forms;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Utilities;
@@ -663,8 +664,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
 
-            RegisterRatedList addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0, StatusNavigation = dicRatedListStatus[0] };
-            CreateRatedList form = new CreateRatedList
+            var addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0, StatusNavigation = dicRatedListStatus[0] };
+            var form = new CreateRatedList
             {
                 RatedList = addRatedList
             };
@@ -692,7 +693,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             {
                 var row = e.Row;
                 var modifyRatedList = row.DataBoundItem as RegisterRatedList;
-                CreateRatedList form = new CreateRatedList
+                var form = new CreateRatedList
                 {
                     RatedList = modifyRatedList
                 };
