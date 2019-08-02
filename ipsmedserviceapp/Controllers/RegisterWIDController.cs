@@ -19,6 +19,9 @@ namespace ipsmedserviceapp.Controllers
     [ApiController]
     public class RegisterWIDController : ControllerBase
     {
+        private const string WID = "wid";
+        private const string Local = "local";
+
         private readonly MediaServiceContext _dbContext;
 
         public RegisterWIDController(MediaServiceContext dbContext)
@@ -26,6 +29,11 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Автопошук та прив'язка об'єктів по локальній та WID БД
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
         [HttpGet("autolinkedobjects/{regId}")]
         public async Task<IActionResult> DefaultGetRequest(int regId)
         {
@@ -50,13 +58,35 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("searchbyquery")]
         public async Task<IActionResult> SearchObjectRightsByQuery([FromBody] SearchObjectRightQuery query)
         {
-            var response = new ItemListResponse<ObjectRightWithWID>
+            try
             {
-                TotalItems = 0,
-                List = new List<ObjectRightWithWID>()
-            };
+                switch (query.DBSearch)
+                {
+                    case WID:
+                        break;
+                    case Local:
+                        var param = new[]
+                        {
+                            new SqlParameter("@name", !string.IsNullOrEmpty(query.ObjectName) ? (object) query.ObjectName : DBNull.Value),
+                            new SqlParameter("@authtors", !string.IsNullOrEmpty(query.Author) ? (object) query.Author : DBNull.Value),
+                            new SqlParameter("@performers", !string.IsNullOrEmpty(query.Performer) ? (object) query.Performer : DBNull.Value)
+                        };
+                        var list = await _dbContext.getViewData("select * from [dbo].[ft_tsk_3_SearchObj](@name, @authtors, @performers )", param);
+                        break;
+                }
 
-            return Ok(response);
+                var response = new ItemListResponse<ObjectRightWithWID>
+                {
+                    TotalItems = 0,
+                    List = new List<ObjectRightWithWID>()
+                };
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
     }
 }

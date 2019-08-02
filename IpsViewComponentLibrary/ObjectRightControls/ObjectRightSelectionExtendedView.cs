@@ -95,19 +95,19 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             if (!string.IsNullOrEmpty(txtObjectName.Text) && txtObjectName.Text.Length < 3)
             {
-                msg += $"Поле \"{lblName.Text}\" повинно мати мінімум 3 символи! ";
+                msg += $"Для пошуку поле \"{lblName.Text}\" повинно мати мінімум 3 символи! ";
                 lblName.SetWarningLabelColor();
             }
 
             if (!string.IsNullOrEmpty(txtAuthorOrRightholder.Text))
             {
-                msg += $"Поле \"{lblAuthor.Text}\" повинно мати мінімум 3 символи! ";
+                msg += $"Для пошуку поле \"{lblAuthor.Text}\" повинно мати мінімум 3 символи! ";
                 lblAuthor.SetWarningLabelColor();
             }
 
             if (!string.IsNullOrEmpty(txtPerformer.Text))
             {
-                msg += $"Поле \"{lblPerformer.Text}\" повинно мати мінімум 3 символи! ";
+                msg += $"Для пошуку поле \"{lblPerformer.Text}\" повинно мати мінімум 3 символи! ";
                 lblPerformer.SetWarningLabelColor();
             }
 
