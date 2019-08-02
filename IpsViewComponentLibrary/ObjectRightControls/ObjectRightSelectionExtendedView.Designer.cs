@@ -47,11 +47,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.leftPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.lblPerformer = new Telerik.WinControls.UI.RadLabel();
             this.txtPerformer = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.lblAuthor = new Telerik.WinControls.UI.RadLabel();
             this.txtAuthorOrRightholder = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.lblName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.txtObjectName = new Telerik.WinControls.UI.RadTextBox();
@@ -71,11 +71,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftPanel)).BeginInit();
             this.leftPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPerformer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPerformer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAuthor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorOrRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).BeginInit();
@@ -133,11 +133,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // leftPanel
             // 
             this.leftPanel.BorderVisible = false;
-            this.leftPanel.Controls.Add(this.radLabel5);
+            this.leftPanel.Controls.Add(this.lblPerformer);
             this.leftPanel.Controls.Add(this.txtPerformer);
-            this.leftPanel.Controls.Add(this.radLabel4);
+            this.leftPanel.Controls.Add(this.lblAuthor);
             this.leftPanel.Controls.Add(this.txtAuthorOrRightholder);
-            this.leftPanel.Controls.Add(this.radLabel3);
+            this.leftPanel.Controls.Add(this.lblName);
             this.leftPanel.Controls.Add(this.radLabel1);
             this.leftPanel.Controls.Add(this.radSeparator1);
             this.leftPanel.Controls.Add(this.txtObjectName);
@@ -147,15 +147,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.leftPanel.Size = new System.Drawing.Size(268, 436);
             this.leftPanel.TabIndex = 3;
             // 
-            // radLabel5
+            // lblPerformer
             // 
-            this.radLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel5.Location = new System.Drawing.Point(12, 135);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(77, 19);
-            this.radLabel5.TabIndex = 10;
-            this.radLabel5.Text = "Виконавець:";
-            this.radLabel5.ThemeName = "Office2013Light";
+            this.lblPerformer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPerformer.Location = new System.Drawing.Point(12, 135);
+            this.lblPerformer.Name = "lblPerformer";
+            this.lblPerformer.Size = new System.Drawing.Size(77, 19);
+            this.lblPerformer.TabIndex = 10;
+            this.lblPerformer.Text = "Виконавець:";
+            this.lblPerformer.ThemeName = "Office2013Light";
             // 
             // txtPerformer
             // 
@@ -167,15 +167,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.txtPerformer.TabIndex = 9;
             this.txtPerformer.ThemeName = "Office2013Light";
             // 
-            // radLabel4
+            // lblAuthor
             // 
-            this.radLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel4.Location = new System.Drawing.Point(12, 83);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(130, 19);
-            this.radLabel4.TabIndex = 8;
-            this.radLabel4.Text = "Автор/Правовласник:";
-            this.radLabel4.ThemeName = "Office2013Light";
+            this.lblAuthor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAuthor.Location = new System.Drawing.Point(12, 83);
+            this.lblAuthor.Name = "lblAuthor";
+            this.lblAuthor.Size = new System.Drawing.Size(130, 19);
+            this.lblAuthor.TabIndex = 8;
+            this.lblAuthor.Text = "Автор/Правовласник:";
+            this.lblAuthor.ThemeName = "Office2013Light";
             // 
             // txtAuthorOrRightholder
             // 
@@ -187,15 +187,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.txtAuthorOrRightholder.TabIndex = 7;
             this.txtAuthorOrRightholder.ThemeName = "Office2013Light";
             // 
-            // radLabel3
+            // lblName
             // 
-            this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel3.Location = new System.Drawing.Point(12, 31);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(78, 19);
-            this.radLabel3.TabIndex = 6;
-            this.radLabel3.Text = "Назва твору:";
-            this.radLabel3.ThemeName = "Office2013Light";
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.Location = new System.Drawing.Point(12, 31);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(78, 19);
+            this.lblName.TabIndex = 6;
+            this.lblName.Text = "Назва твору:";
+            this.lblName.ThemeName = "Office2013Light";
             // 
             // radLabel1
             // 
@@ -443,11 +443,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.leftPanel)).EndInit();
             this.leftPanel.ResumeLayout(false);
             this.leftPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPerformer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPerformer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAuthor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorOrRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).EndInit();
@@ -489,11 +489,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private Common.Editors.IpsPanel searchButtonPanel;
         private Telerik.WinControls.UI.RadButton btnSearchWID;
         private Telerik.WinControls.UI.RadButton btnSearchLocal;
-        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadLabel lblPerformer;
         private Telerik.WinControls.UI.RadTextBox txtPerformer;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel lblAuthor;
         private Telerik.WinControls.UI.RadTextBox txtAuthorOrRightholder;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel lblName;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadSeparator radSeparator1;
         private Telerik.WinControls.UI.RadTextBox txtObjectName;

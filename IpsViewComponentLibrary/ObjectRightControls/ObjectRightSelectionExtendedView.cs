@@ -5,6 +5,7 @@ using ipsFormsDesign.Services;
 using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Views;
 using IpsCommonTypes.Wrappers;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
@@ -68,26 +69,55 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void btnSearchLocal_Click(object sender, EventArgs e)
         {
+            if (!CheckValidCountSymbol())
+                return;
+
             _dbSearch = Local;
             UpdateList();
         }
 
         private void btnSearchWID_Click(object sender, EventArgs e)
         {
+            if (!CheckValidCountSymbol())
+                return;
+            
+            MessageShow.ShowInfo("Процес пошуку в зовнішній базі даних WID може тривати довго! Дочекайтеся завершення процесу!");
             _dbSearch = WID;
             UpdateList();
         }
 
-        private void CheckValidCountSymbol()
+        private bool CheckValidCountSymbol()
         {
-            if (!string.IsNullOrEmpty(txtObjectName.Text))
-                ;
+            string msg = string.Empty;
+            lblName.SetDefaultLabelColor();
+            lblAuthor.SetDefaultLabelColor();
+            lblPerformer.SetDefaultLabelColor();
+
+            if (!string.IsNullOrEmpty(txtObjectName.Text) && txtObjectName.Text.Length < 3)
+            {
+                msg += $"Поле \"{lblName.Text}\" повинно мати мінімум 3 символи! ";
+                lblName.SetWarningLabelColor();
+            }
 
             if (!string.IsNullOrEmpty(txtAuthorOrRightholder.Text))
-                ;
+            {
+                msg += $"Поле \"{lblAuthor.Text}\" повинно мати мінімум 3 символи! ";
+                lblAuthor.SetWarningLabelColor();
+            }
 
             if (!string.IsNullOrEmpty(txtPerformer.Text))
-                ;
+            {
+                msg += $"Поле \"{lblPerformer.Text}\" повинно мати мінімум 3 символи! ";
+                lblPerformer.SetWarningLabelColor();
+            }
+
+            if (!string.IsNullOrEmpty(msg))
+            {
+                MessageShow.ShowWarning(msg);
+                return false;
+            }
+
+            return true;
         }
 
         private void NavigatorPanel_PageSizeChanged(object sender, EventArgs e)
