@@ -8,6 +8,11 @@ namespace IpsViewComponentLibrary.Utilities
 {
     public static class GridViewHelper
     {
+        public static void SubscribeToolTipTextNeeded(this RadGridView gridView)
+        {
+            gridView.ToolTipTextNeeded += gridView_ToolTipTextNeeded;
+        }
+
         public static void SetTooltipText(object sender, ToolTipTextNeededEventArgs e)
         {
             // tooltip for text which is too big for the cell - works for header cell and data cell
@@ -127,6 +132,11 @@ namespace IpsViewComponentLibrary.Utilities
                 throw new Exception($"There is no column with name '{columnName}'.");
 
             return gridView.Columns[columnName];
+        }
+
+        private static void gridView_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        {
+            SetTooltipText(sender, e);
         }
     }
 }

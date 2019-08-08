@@ -325,6 +325,8 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.DataSource = bsRegisterItemViewModel;
             ddlLinkedStatus.SelectedIndex = 0;
 
+            gvRegisterItemList.SubscribeToolTipTextNeeded();
+
             gvRegisterItemList.SetCommandColumnImageAlignment("FindColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("LinkColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("UnlinkColumn", ContentAlignment.MiddleCenter);
@@ -402,11 +404,6 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 OnRegisterCountDeleted(registerCount);
             }
-        }
-
-        private void GvRegisterItemList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
-        {
-            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         public void ResetErrorText()
@@ -572,6 +569,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             using (var selectionView = new ObjectRightSelectionExtendedView())
             {
+                selectionView.RegisterItemViewModel = selectedRegisterItem;
                 if (selectionView.ShowDialog() == DialogResult.OK)
                 {
                     SelectedRegisterItem.SetObjectData(selectionView.ObjectRight);

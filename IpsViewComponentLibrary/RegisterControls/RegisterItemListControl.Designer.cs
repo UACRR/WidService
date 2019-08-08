@@ -567,7 +567,6 @@
             this.gvRegisterItemList.RowValidating += new Telerik.WinControls.UI.RowValidatingEventHandler(this.GvRegisterItemList_RowValidating);
             this.gvRegisterItemList.SelectionChanged += new System.EventHandler(this.GvRegisterItemList_SelectionChanged);
             this.gvRegisterItemList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.GvRegisterItemList_CommandCellClick);
-            this.gvRegisterItemList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.GvRegisterItemList_ToolTipTextNeeded);
             this.gvRegisterItemList.Validating += new System.ComponentModel.CancelEventHandler(this.GvRegisterItemList_Validating);
             // 
             // bsRegisterItemViewModel
