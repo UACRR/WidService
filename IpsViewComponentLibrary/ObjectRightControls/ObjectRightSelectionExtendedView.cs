@@ -6,6 +6,7 @@ using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Views;
 using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
@@ -20,10 +21,17 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public ObjectRightWithWID ObjectRight => gvObjectsRightsList.CurrentRow?.DataBoundItem as ObjectRightWithWID;
 
+        public object RegisterItemViewModel
+        {
+            get => bsRegisterItemViewModel.DataSource;
+            set => bsRegisterItemViewModel.DataSource = value;
+        }
+
         public ObjectRightSelectionExtendedView()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
+            gvObjectsRightsList.SubscribeToolTipTextNeeded();
             Load += Form_Load;
             navigatorPanel.CurrentPageChanged += NavigatorPanel_CurrentPageChanged;
             navigatorPanel.PageSizeChanged += NavigatorPanel_PageSizeChanged;
@@ -56,6 +64,10 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             });
 
             bsObjectRightsView.DataSource = result.List;
+
+            navigatorPanel.CurrentPageChanged -= NavigatorPanel_CurrentPageChanged;
+            navigatorPanel.CurrentPage = 1;
+            navigatorPanel.CurrentPageChanged += NavigatorPanel_CurrentPageChanged;
 
             navigatorPanel.TotalPages = (int)Math.Ceiling((double)result.TotalItems / query.PageSize);
 
@@ -128,6 +140,25 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private void NavigatorPanel_CurrentPageChanged(object sender, EventArgs e)
         {
             UpdateList();
+        }
+
+        private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var row = e.Row.DataBoundItem as ObjectRightWithWID;
+            // local object
+            if (row?.ObjId != null)
+            {
+                using (var view = new ObjectRightSrView())
+                {
+                    var presenter = new ObjectRightSrPresenter(view);
+                    presenter.Show((int)row.ObjId);
+                }
+            }
+            // wid-ipi object
+            else if (row?.Wic != null)
+            {
+
+            }
         }
     }
 }

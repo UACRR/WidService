@@ -196,7 +196,12 @@ namespace ipsFormsDesign.Dictionary
             }
             else if (obj is ObjectRightWithWID objectRightWithWid)
             {
-
+                ObjId = objectRightWithWid.ObjId;
+                ObjectName = objectRightWithWid.Name;
+                ObjectAuthors = objectRightWithWid.Author;
+                ObjectPerformers = objectRightWithWid.Performer;
+                Wic = objectRightWithWid.Wic;
+                Genre = objectRightWithWid.GenreName;
             }
             else
             {

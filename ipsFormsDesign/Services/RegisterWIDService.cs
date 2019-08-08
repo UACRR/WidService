@@ -56,5 +56,12 @@ namespace ipsFormsDesign.Services
             var item = _apiConnector.GetItemByObjectQuery<ItemListResponse<ObjectRightWithWID>, SearchObjectRightQuery>(url, query);
             return item;
         }
+
+        public List<ObjectRightWithWID> GetObjectRightListByWIC(int[] wicArray)
+        {
+            string url = $"{Prefix}/widobjectrights";
+            var list = _apiConnector.GetItemByObjectQuery<List<ObjectRightWithWID>, int[]>(url, wicArray);
+            return list;
+        }
     }
 }

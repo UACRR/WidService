@@ -61,9 +61,21 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.topPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.lblTAuthorText = new Telerik.WinControls.UI.RadLabel();
+            this.bsRegisterItemViewModel = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.lblTAuthorMusic = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.lblTPerformer = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
+            this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
+            this.lblTObjectName = new Telerik.WinControls.UI.RadLabel();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.bsObjectRightsView = new System.Windows.Forms.BindingSource(this.components);
-            this.searchButtonPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.btnSearchWID = new Telerik.WinControls.UI.RadButton();
             this.btnSearchLocal = new Telerik.WinControls.UI.RadButton();
             this.navigationPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
@@ -89,9 +101,21 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
             this.backgroundPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topPanel)).BeginInit();
+            this.topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTAuthorText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTAuthorMusic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTPerformer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTObjectName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightsView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchButtonPanel)).BeginInit();
-            this.searchButtonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchWID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPanel)).BeginInit();
@@ -105,16 +129,16 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.commandPanel.Controls.Add(this.btnCancel);
             this.commandPanel.Controls.Add(this.btnOk);
             this.commandPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.commandPanel.Location = new System.Drawing.Point(0, 500);
+            this.commandPanel.Location = new System.Drawing.Point(0, 482);
             this.commandPanel.Name = "commandPanel";
-            this.commandPanel.Size = new System.Drawing.Size(1219, 31);
+            this.commandPanel.Size = new System.Drawing.Size(1057, 31);
             this.commandPanel.TabIndex = 2;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(1106, 4);
+            this.btnCancel.Location = new System.Drawing.Point(944, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 1;
@@ -124,7 +148,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(990, 4);
+            this.btnOk.Location = new System.Drawing.Point(828, 4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(110, 24);
             this.btnOk.TabIndex = 0;
@@ -135,7 +159,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // leftPanel
             // 
             this.leftPanel.BorderVisible = false;
+            this.leftPanel.Controls.Add(this.btnSearchWID);
             this.leftPanel.Controls.Add(this.lblPerformer);
+            this.leftPanel.Controls.Add(this.btnSearchLocal);
             this.leftPanel.Controls.Add(this.txtPerformer);
             this.leftPanel.Controls.Add(this.lblAuthor);
             this.leftPanel.Controls.Add(this.txtAuthorOrRightholder);
@@ -144,14 +170,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.leftPanel.Controls.Add(this.radSeparator1);
             this.leftPanel.Controls.Add(this.txtObjectName);
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.leftPanel.Location = new System.Drawing.Point(0, 0);
+            this.leftPanel.Location = new System.Drawing.Point(0, 125);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(268, 500);
+            this.leftPanel.Size = new System.Drawing.Size(322, 357);
             this.leftPanel.TabIndex = 3;
             // 
             // lblPerformer
             // 
-            this.lblPerformer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPerformer.Location = new System.Drawing.Point(12, 135);
             this.lblPerformer.Name = "lblPerformer";
             this.lblPerformer.Size = new System.Drawing.Size(77, 19);
@@ -165,13 +190,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPerformer.Location = new System.Drawing.Point(12, 160);
             this.txtPerformer.Name = "txtPerformer";
-            this.txtPerformer.Size = new System.Drawing.Size(250, 21);
+            this.txtPerformer.Size = new System.Drawing.Size(304, 21);
             this.txtPerformer.TabIndex = 9;
             this.txtPerformer.ThemeName = "Office2013Light";
             // 
             // lblAuthor
             // 
-            this.lblAuthor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAuthor.Location = new System.Drawing.Point(12, 83);
             this.lblAuthor.Name = "lblAuthor";
             this.lblAuthor.Size = new System.Drawing.Size(130, 19);
@@ -185,13 +209,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAuthorOrRightholder.Location = new System.Drawing.Point(12, 108);
             this.txtAuthorOrRightholder.Name = "txtAuthorOrRightholder";
-            this.txtAuthorOrRightholder.Size = new System.Drawing.Size(250, 21);
+            this.txtAuthorOrRightholder.Size = new System.Drawing.Size(304, 21);
             this.txtAuthorOrRightholder.TabIndex = 7;
             this.txtAuthorOrRightholder.ThemeName = "Office2013Light";
             // 
             // lblName
             // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.Location = new System.Drawing.Point(12, 31);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(78, 19);
@@ -201,8 +224,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // radLabel1
             // 
-            this.radLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel1.Location = new System.Drawing.Point(84, 5);
+            this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radLabel1.Location = new System.Drawing.Point(111, 5);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(94, 19);
             this.radLabel1.TabIndex = 3;
@@ -215,7 +238,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(3, 6);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(259, 19);
+            this.radSeparator1.Size = new System.Drawing.Size(313, 19);
             this.radSeparator1.TabIndex = 4;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
@@ -225,7 +248,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtObjectName.Location = new System.Drawing.Point(12, 56);
             this.txtObjectName.Name = "txtObjectName";
-            this.txtObjectName.Size = new System.Drawing.Size(250, 21);
+            this.txtObjectName.Size = new System.Drawing.Size(304, 21);
             this.txtObjectName.TabIndex = 1;
             this.txtObjectName.ThemeName = "Office2013Light";
             // 
@@ -233,12 +256,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.mainPanel.BorderVisible = false;
             this.mainPanel.Controls.Add(this.gvObjectsRightsList);
-            this.mainPanel.Controls.Add(this.searchButtonPanel);
             this.mainPanel.Controls.Add(this.navigationPanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(268, 0);
+            this.mainPanel.Location = new System.Drawing.Point(322, 125);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(951, 500);
+            this.mainPanel.Size = new System.Drawing.Size(735, 357);
             this.mainPanel.TabIndex = 4;
             // 
             // gvObjectsRightsList
@@ -246,7 +268,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.gvObjectsRightsList.AutoScroll = true;
             this.gvObjectsRightsList.Controls.Add(this.waitingBar);
             this.gvObjectsRightsList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvObjectsRightsList.Location = new System.Drawing.Point(0, 31);
+            this.gvObjectsRightsList.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
@@ -266,58 +288,58 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gridViewTextBoxColumn1.HeaderText = "Шифр твору";
             gridViewTextBoxColumn1.MinWidth = 90;
             gridViewTextBoxColumn1.Name = "InnerCode";
-            gridViewTextBoxColumn1.Width = 105;
+            gridViewTextBoxColumn1.Width = 90;
             gridViewTextBoxColumn2.FieldName = "Iswc";
             gridViewTextBoxColumn2.HeaderText = "ISWC";
             gridViewTextBoxColumn2.MinWidth = 90;
             gridViewTextBoxColumn2.Name = "Iswc";
-            gridViewTextBoxColumn2.Width = 105;
+            gridViewTextBoxColumn2.Width = 90;
             gridViewTextBoxColumn3.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn3.FieldName = "WIC";
             gridViewTextBoxColumn3.HeaderText = "WIC";
             gridViewTextBoxColumn3.MinWidth = 90;
             gridViewTextBoxColumn3.Name = "WIC";
-            gridViewTextBoxColumn3.Width = 105;
+            gridViewTextBoxColumn3.Width = 90;
             gridViewTextBoxColumn4.FieldName = "Name";
             gridViewTextBoxColumn4.HeaderText = "Назва твору";
             gridViewTextBoxColumn4.IsAutoGenerated = true;
             gridViewTextBoxColumn4.MinWidth = 180;
             gridViewTextBoxColumn4.Name = "Name";
-            gridViewTextBoxColumn4.Width = 210;
+            gridViewTextBoxColumn4.Width = 180;
             gridViewTextBoxColumn5.FieldName = "GenreName";
             gridViewTextBoxColumn5.HeaderText = "Жанр";
             gridViewTextBoxColumn5.IsAutoGenerated = true;
             gridViewTextBoxColumn5.MinWidth = 85;
             gridViewTextBoxColumn5.Name = "GenreName";
-            gridViewTextBoxColumn5.Width = 99;
+            gridViewTextBoxColumn5.Width = 85;
             gridViewTextBoxColumn6.FieldName = "Author";
             gridViewTextBoxColumn6.HeaderText = "Автори";
             gridViewTextBoxColumn6.MinWidth = 100;
             gridViewTextBoxColumn6.Name = "Author";
-            gridViewTextBoxColumn6.Width = 117;
+            gridViewTextBoxColumn6.Width = 100;
             gridViewDecimalColumn2.DataType = typeof(System.Nullable<double>);
             gridViewDecimalColumn2.FieldName = "RateTotal";
             gridViewDecimalColumn2.HeaderText = "Спільний % володіння";
             gridViewDecimalColumn2.IsAutoGenerated = true;
             gridViewDecimalColumn2.MinWidth = 70;
             gridViewDecimalColumn2.Name = "RateTotal";
-            gridViewDecimalColumn2.Width = 82;
+            gridViewDecimalColumn2.Width = 70;
             gridViewTextBoxColumn7.FieldName = "Performer";
             gridViewTextBoxColumn7.HeaderText = "Виконавець";
             gridViewTextBoxColumn7.IsAutoGenerated = true;
             gridViewTextBoxColumn7.MinWidth = 90;
             gridViewTextBoxColumn7.Name = "Performer";
-            gridViewTextBoxColumn7.Width = 104;
+            gridViewTextBoxColumn7.Width = 90;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Редагувати";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "EditColumn";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 30;
             this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn1,
@@ -337,9 +359,10 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.gvObjectsRightsList.Name = "gvObjectsRightsList";
             this.gvObjectsRightsList.ReadOnly = true;
             this.gvObjectsRightsList.ShowGroupPanel = false;
-            this.gvObjectsRightsList.Size = new System.Drawing.Size(951, 436);
+            this.gvObjectsRightsList.Size = new System.Drawing.Size(735, 324);
             this.gvObjectsRightsList.TabIndex = 23;
             this.gvObjectsRightsList.ThemeName = "Office2013Light";
+            this.gvObjectsRightsList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectsRightsList_CommandCellClick);
             // 
             // waitingBar
             // 
@@ -363,11 +386,143 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.backgroundPanel.Controls.Add(this.mainPanel);
             this.backgroundPanel.Controls.Add(this.leftPanel);
             this.backgroundPanel.Controls.Add(this.commandPanel);
+            this.backgroundPanel.Controls.Add(this.topPanel);
             this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
             this.backgroundPanel.Name = "backgroundPanel";
-            this.backgroundPanel.Size = new System.Drawing.Size(1219, 531);
+            this.backgroundPanel.Size = new System.Drawing.Size(1057, 513);
             this.backgroundPanel.TabIndex = 5;
+            // 
+            // topPanel
+            // 
+            this.topPanel.BorderVisible = false;
+            this.topPanel.Controls.Add(this.radLabel9);
+            this.topPanel.Controls.Add(this.lblTAuthorText);
+            this.topPanel.Controls.Add(this.radLabel7);
+            this.topPanel.Controls.Add(this.lblTAuthorMusic);
+            this.topPanel.Controls.Add(this.radLabel5);
+            this.topPanel.Controls.Add(this.lblTPerformer);
+            this.topPanel.Controls.Add(this.radLabel4);
+            this.topPanel.Controls.Add(this.radLabel3);
+            this.topPanel.Controls.Add(this.radSeparator3);
+            this.topPanel.Controls.Add(this.radSeparator2);
+            this.topPanel.Controls.Add(this.lblTObjectName);
+            this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.topPanel.Location = new System.Drawing.Point(0, 0);
+            this.topPanel.Name = "topPanel";
+            this.topPanel.Size = new System.Drawing.Size(1057, 125);
+            this.topPanel.TabIndex = 7;
+            this.topPanel.ThemeName = "Office2013Light";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(3, 95);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(81, 19);
+            this.radLabel9.TabIndex = 17;
+            this.radLabel9.Text = "Автор тексту:";
+            this.radLabel9.ThemeName = "Office2013Light";
+            // 
+            // lblTAuthorText
+            // 
+            this.lblTAuthorText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "AuthorText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.lblTAuthorText.Location = new System.Drawing.Point(90, 95);
+            this.lblTAuthorText.Name = "lblTAuthorText";
+            this.lblTAuthorText.Size = new System.Drawing.Size(66, 19);
+            this.lblTAuthorText.TabIndex = 16;
+            this.lblTAuthorText.Text = "author text";
+            this.lblTAuthorText.ThemeName = "Office2013Light";
+            // 
+            // bsRegisterItemViewModel
+            // 
+            this.bsRegisterItemViewModel.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Location = new System.Drawing.Point(3, 70);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(87, 19);
+            this.radLabel7.TabIndex = 15;
+            this.radLabel7.Text = "Автор музики:";
+            this.radLabel7.ThemeName = "Office2013Light";
+            // 
+            // lblTAuthorMusic
+            // 
+            this.lblTAuthorMusic.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "AuthorMusic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.lblTAuthorMusic.Location = new System.Drawing.Point(90, 70);
+            this.lblTAuthorMusic.Name = "lblTAuthorMusic";
+            this.lblTAuthorMusic.Size = new System.Drawing.Size(77, 19);
+            this.lblTAuthorMusic.TabIndex = 14;
+            this.lblTAuthorMusic.Text = "author music";
+            this.lblTAuthorMusic.ThemeName = "Office2013Light";
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(3, 45);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(77, 19);
+            this.radLabel5.TabIndex = 13;
+            this.radLabel5.Text = "Виконавець:";
+            this.radLabel5.ThemeName = "Office2013Light";
+            // 
+            // lblTPerformer
+            // 
+            this.lblTPerformer.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "Performer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.lblTPerformer.Location = new System.Drawing.Point(90, 45);
+            this.lblTPerformer.Name = "lblTPerformer";
+            this.lblTPerformer.Size = new System.Drawing.Size(61, 19);
+            this.lblTPerformer.TabIndex = 12;
+            this.lblTPerformer.Text = "performer";
+            this.lblTPerformer.ThemeName = "Office2013Light";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Location = new System.Drawing.Point(3, 20);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(78, 19);
+            this.radLabel4.TabIndex = 11;
+            this.radLabel4.Text = "Назва твору:";
+            this.radLabel4.ThemeName = "Office2013Light";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radLabel3.Location = new System.Drawing.Point(437, -2);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(160, 19);
+            this.radLabel3.TabIndex = 9;
+            this.radLabel3.Text = "Інформація по запису звіту";
+            this.radLabel3.ThemeName = "Office2013Light";
+            // 
+            // radSeparator3
+            // 
+            this.radSeparator3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator3.Location = new System.Drawing.Point(12, 4);
+            this.radSeparator3.Name = "radSeparator3";
+            this.radSeparator3.Size = new System.Drawing.Size(1033, 10);
+            this.radSeparator3.TabIndex = 10;
+            this.radSeparator3.ThemeName = "Office2013Light";
+            // 
+            // radSeparator2
+            // 
+            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator2.Location = new System.Drawing.Point(0, 119);
+            this.radSeparator2.Name = "radSeparator2";
+            this.radSeparator2.Size = new System.Drawing.Size(1054, 5);
+            this.radSeparator2.TabIndex = 8;
+            this.radSeparator2.ThemeName = "Office2013Light";
+            // 
+            // lblTObjectName
+            // 
+            this.lblTObjectName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "ItemName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.lblTObjectName.Location = new System.Drawing.Point(90, 20);
+            this.lblTObjectName.Name = "lblTObjectName";
+            this.lblTObjectName.Size = new System.Drawing.Size(37, 19);
+            this.lblTObjectName.TabIndex = 7;
+            this.lblTObjectName.Text = "name";
+            this.lblTObjectName.ThemeName = "Office2013Light";
             // 
             // lineRingWaitingBarIndicatorElement1
             // 
@@ -380,20 +535,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.bsObjectRightsView.DataSource = typeof(IpsCommonTypes.Views.ObjectRightWithWID);
             // 
-            // searchButtonPanel
-            // 
-            this.searchButtonPanel.BorderVisible = false;
-            this.searchButtonPanel.Controls.Add(this.btnSearchWID);
-            this.searchButtonPanel.Controls.Add(this.btnSearchLocal);
-            this.searchButtonPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.searchButtonPanel.Location = new System.Drawing.Point(0, 0);
-            this.searchButtonPanel.Name = "searchButtonPanel";
-            this.searchButtonPanel.Size = new System.Drawing.Size(951, 31);
-            this.searchButtonPanel.TabIndex = 24;
-            // 
             // btnSearchWID
             // 
-            this.btnSearchWID.Location = new System.Drawing.Point(156, 3);
+            this.btnSearchWID.Location = new System.Drawing.Point(172, 190);
             this.btnSearchWID.Name = "btnSearchWID";
             this.btnSearchWID.Size = new System.Drawing.Size(144, 24);
             this.btnSearchWID.TabIndex = 1;
@@ -403,7 +547,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // btnSearchLocal
             // 
-            this.btnSearchLocal.Location = new System.Drawing.Point(6, 3);
+            this.btnSearchLocal.Location = new System.Drawing.Point(12, 190);
             this.btnSearchLocal.Name = "btnSearchLocal";
             this.btnSearchLocal.Size = new System.Drawing.Size(144, 24);
             this.btnSearchLocal.TabIndex = 0;
@@ -416,16 +560,16 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.navigationPanel.BorderVisible = false;
             this.navigationPanel.Controls.Add(this.navigatorPanel);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.navigationPanel.Location = new System.Drawing.Point(0, 467);
+            this.navigationPanel.Location = new System.Drawing.Point(0, 324);
             this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(951, 33);
+            this.navigationPanel.Size = new System.Drawing.Size(735, 33);
             this.navigationPanel.TabIndex = 6;
             // 
             // navigatorPanel
             // 
             this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.navigatorPanel.CurrentPage = 1;
-            this.navigatorPanel.Location = new System.Drawing.Point(598, 3);
+            this.navigatorPanel.Location = new System.Drawing.Point(382, 3);
             this.navigatorPanel.Name = "navigatorPanel";
             this.navigatorPanel.PageSize = 40;
             this.navigatorPanel.ReadOnlyPageSize = false;
@@ -438,7 +582,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1219, 531);
+            this.ClientSize = new System.Drawing.Size(1057, 513);
             this.Controls.Add(this.backgroundPanel);
             this.Name = "ObjectRightSelectionExtendedView";
             // 
@@ -470,9 +614,22 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
             this.backgroundPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.topPanel)).EndInit();
+            this.topPanel.ResumeLayout(false);
+            this.topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTAuthorText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTAuthorMusic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTPerformer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTObjectName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightsView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchButtonPanel)).EndInit();
-            this.searchButtonPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchWID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchLocal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPanel)).EndInit();
@@ -496,7 +653,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private Common.NavigatorPanelControl navigatorPanel;
         private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
-        private Common.Editors.IpsPanel searchButtonPanel;
         private Telerik.WinControls.UI.RadButton btnSearchWID;
         private Telerik.WinControls.UI.RadButton btnSearchLocal;
         private Telerik.WinControls.UI.RadLabel lblPerformer;
@@ -508,5 +664,18 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private Telerik.WinControls.UI.RadSeparator radSeparator1;
         private Telerik.WinControls.UI.RadTextBox txtObjectName;
         private System.Windows.Forms.BindingSource bsObjectRightsView;
+        private Common.Editors.IpsPanel topPanel;
+        private Telerik.WinControls.UI.RadSeparator radSeparator2;
+        private Telerik.WinControls.UI.RadLabel lblTObjectName;
+        private System.Windows.Forms.BindingSource bsRegisterItemViewModel;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadLabel lblTAuthorText;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
+        private Telerik.WinControls.UI.RadLabel lblTAuthorMusic;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadLabel lblTPerformer;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadSeparator radSeparator3;
     }
 }

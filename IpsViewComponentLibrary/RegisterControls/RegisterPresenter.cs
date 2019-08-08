@@ -10,6 +10,7 @@ using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using ipsFormsDesign.Data;
+using IpsCommonTypes.Views;
 using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.RegisterControls
@@ -293,6 +294,12 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.RegisterItemListStage.Clear();
             _view.RegisterExtraListStage.Clear();
 
+            List<ObjectRightWithWID> listObjectRightWithWID = new List<ObjectRightWithWID>();
+            var objectsInWidList = _register.RegisterItem.Where(rec => rec.Wic.HasValue).ToList();
+
+            if (objectsInWidList.Any())
+                listObjectRightWithWID = _registerWidService.GetObjectRightListByWIC(objectsInWidList.Select(rec => (int)rec.Wic).ToArray());
+
             foreach (var r in _register.RegisterItem)
             {
                 var genre = IpsGlobal.AnketaDictionaties.genreType.SingleOrDefault(rec => rec.CodeI == r.GenreType);
@@ -319,8 +326,13 @@ namespace IpsViewComponentLibrary.RegisterControls
                     GenreType = r.GenreType,
                 };
 
+                // об'єкт існує локально
                 if (r.Obj != null)
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
+
+                // об'єкт існує в зовнішній бд
+                if (r.Wic.HasValue && listObjectRightWithWID.SingleOrDefault(rec => rec.Wic == r.Wic) is ObjectRightWithWID obj)
+                   rvm.SetObjectData(null, obj.Name, obj.Author, obj.Performer, null, resetIsAuto: false);
 
                 rvm.RegisterExtraList.AddRange(r.RegisterExtra);
 

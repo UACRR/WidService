@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
 using static ipsmedserviceapp.Utilities.DBQueryHelper;
 using IpsCommonTypes.ClassesForSearchQuery;
-using IpsCommonTypes.Views;
-using IpsCommonTypes.Wrappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,13 +33,12 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("autolinkedobjects/{regId}")]
         public async Task<IActionResult> DefaultGetRequest(int regId)
         {
-            await Task.Delay(3 * 1000);
             var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
                 // select * from dbo.ft_Tsk_3_AutoLink_FULL()
                 _dbContext.Database.SetCommandTimeout(2400);
-                var sqlParameter = new[] { new SqlParameter("regId", regId) };
+                var sqlParameter = new[] {new SqlParameter("regId", regId)};
                 var list = await _dbContext.getViewData("select * from dbo.ft_Tsk_3_AutoLink_FULL(@regId)", sqlParameter);
 
                 return Ok(list);
@@ -113,6 +110,12 @@ namespace ipsmedserviceapp.Controllers
             {
                 return BadRequest(e.ToString());
             }
+        }
+
+        [HttpPost("widobjectrights")]
+        public async Task<IActionResult> GetObjectRightListByWics([FromBody] int[] wics)
+        {
+            return BadRequest();
         }
     }
 }
