@@ -56,41 +56,50 @@ namespace ipsmedserviceapp
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            services.Configure<IISOptions>(options => {
+                options.AutomaticAuthentication = true;
+                options.ForwardClientCertificate = true;
+                options.AuthenticationDisplayName = "EnterAccount";
+                //options.
+            });
 
+            services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 
             services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-              .AddJwtBearer(options =>
-              {
-                  options.RequireHttpsMetadata = false;
-                  options.SaveToken = true;
-                  options.TokenValidationParameters = new TokenValidationParameters()
-                  {
-                      IssuerSigningKey = TokenAuthOption.Key,
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        IssuerSigningKey = TokenAuthOption.Key,
 
-                      ValidAudience = TokenAuthOption.Audience,
-                      ValidIssuer = TokenAuthOption.Issuer,
-                      // When receiving a token, check that we've signed it.
-                      ValidateIssuerSigningKey = true,
-                      // When receiving a token, check that it is still valid.
-                      ValidateLifetime = true,
-                      // This defines the maximum allowable clock skew - i.e. provides a tolerance on the token expiry time 
-                      // when validating the lifetime. As we're creating the tokens locally and validating them on the same 
-                      // machines which should have synchronised time, this can be set to zero. Where external tokens are
-                      // used, some leeway here could be useful.
-                      ClockSkew = TimeSpan.FromMinutes(10)
-                  };
+                        ValidAudience = TokenAuthOption.Audience,
+                        ValidIssuer = TokenAuthOption.Issuer,
+                        // When receiving a token, check that we've signed it.
+                        ValidateIssuerSigningKey = true,
+                        // When receiving a token, check that it is still valid.
+                        ValidateLifetime = true,
+                        // This defines the maximum allowable clock skew - i.e. provides a tolerance on the token expiry time 
+                        // when validating the lifetime. As we're creating the tokens locally and validating them on the same 
+                        // machines which should have synchronised time, this can be set to zero. Where external tokens are
+                        // used, some leeway here could be useful.
+                        ClockSkew = TimeSpan.FromMinutes(10)
+                    };
 
-              });
+                });
 
 #if DEBUG
-            services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
+            //services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 #else
-            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            //services.AddAuthentication(IISDefaults.AuthenticationScheme);
 #endif
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddLogging(builder =>
@@ -100,10 +109,10 @@ namespace ipsmedserviceapp
             });
 
             services.AddAutoMapper(
-                cfg=> {
+                cfg =>
+                {
                     cfg.AddCollectionMappers();
                     //cfg.CreateMissingTypeMaps = false;
-
                 },
                 typeof(Startup).Assembly);
 
@@ -124,10 +133,7 @@ namespace ipsmedserviceapp
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
-
             app.UseAuthentication();
-
-
 
             app.UseRequestLocalization(BuildLocalizationOptions());
             app.UseMvc();

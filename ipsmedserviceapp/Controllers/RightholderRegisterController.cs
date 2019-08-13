@@ -262,17 +262,16 @@ namespace ipsmedserviceapp.Controllers
         /// Upload new file
         /// </summary>
         /// <param name="custId"></param>
-        /// <param name="sors"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        //[Authorize]
         [HttpPost("{custId}/upload")]
-        public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile sors)
+        public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
             var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             IDbContextTransaction transaction = null;
             try
             {
-                if (sors == null)
+                if (source == null)
                 {
                     string msg = $"Upload *** Catalog File is empty";
                     _logger.LogWarning(msg);
@@ -285,24 +284,22 @@ namespace ipsmedserviceapp.Controllers
                 if (rightholder == null)
                     return NotFound($"RightHolder with ID:{custId} not found!");
 
-                CatalogFile dest = new CatalogFile
+                var dest = new CatalogFile
                 {
                     CustId = custId,
                     Status = 0,
-                    UserId = User?.Identity?.Name ?? "system",
+                    UserId = source.UserId ?? "system",
                     RhType = rightholder.RHolderType,
                     CreateDate = DateTime.Now,
-                    CountZap = sors.RhcatalogItem.Count,
-                    FileName = sors.FileName,
+                    CountZap = source.RhcatalogItem.Count,
+                    FileName = source.FileName,
                     CustName = vcustomer?.name,
                 };
 
-                //dest.SetFields(sors, new[] { "CustId", "FileId", "Status", "UserId", "RhType", "CreateDate", "CountZap" });
-
-                var items = sors.RhcatalogItem.ToArray();
+                var items = source.RhcatalogItem.ToArray();
                 foreach (var item in items)
                 {
-                    sors.RhcatalogItem.Remove(item);
+                    source.RhcatalogItem.Remove(item);
                     item.Status = 0;
                     item.CustId = custId;
                     dest.RhcatalogItem.Add(item);
