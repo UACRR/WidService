@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using IpsCommonTypes.Types;
 using IpsCommonTypes.Enums;
 using ipsmedserviceapp.Model;
 using IpsCommonTypes.Wrappers;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ipsmedserviceapp.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class CatalogController : ControllerBase
+    public class CatalogController : Controller
     {
         private readonly MediaServiceContext _dbContext;
         private readonly ILogger<CatalogController> _logger;
@@ -56,7 +57,6 @@ namespace ipsmedserviceapp.Controllers
             return Ok(catalogFile);
         }
 
-        //[Authorize]
         [HttpPost("upload/{custId}")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
@@ -79,7 +79,7 @@ namespace ipsmedserviceapp.Controllers
                 var destination = new CatalogFile
                 {
                     CustId = custId,
-                    UserId = User?.Identity?.Name ?? "system",
+                    UserId = source.UserId ?? "system",
                     Status = 0,
                     PubCatalogItem = new List<PubCatalogItem>()
                 };

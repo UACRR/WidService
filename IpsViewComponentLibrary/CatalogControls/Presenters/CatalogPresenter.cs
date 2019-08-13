@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Principal;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using IpsCommonTypes.Types;
 using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Shared.Interfaces;
 
@@ -34,6 +34,10 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
+
+            //string name = Environment.UserName;
+            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent())?.Identity?.Name;
+            catalogFile.UserId = identityName;
 
             var PubCatalogItemList = GetPubСatalog(path);
             catalogFile.PubCatalogItem = new ObservableListSource<PubCatalogItem>(PubCatalogItemList);
