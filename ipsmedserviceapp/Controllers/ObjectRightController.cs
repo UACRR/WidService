@@ -14,13 +14,14 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace ipsmedserviceapp.Controllers
 {
     /// <summary>
-    /// Об'єкти права
+    /// Контролер роботи з Об'єктами права
     /// </summary>
     [Produces("application/json")]
     [Route("api/ObjectRight")]
     public class ObjectRightController : Controller
     {
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
+
         public ObjectRightController(MediaServiceContext dbContext)
         {
             _dbContext = dbContext;
@@ -338,7 +339,7 @@ namespace ipsmedserviceapp.Controllers
             return Ok(rightholders);
         }
 
-        #region Big right
+        #region * * * Big right * * * 
 
         private async Task<ObjectRight> GetObjectRightBrById(int objId)
         {
@@ -415,8 +416,6 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(new { objectRight = or, rhList });
         }
-
-        
 
         [HttpPost("br/detail")]
         public async Task<IActionResult> CreateObjectRightBrById([FromBody] ObjectRight objectRight)

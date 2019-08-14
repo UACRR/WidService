@@ -19,17 +19,12 @@ namespace ipsmedserviceapp.Controllers
     {
         public string WebSecurity { get; private set; }
 
-        private UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
-        private RoleManager<ApplicationRole> _roleManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
 
-        public AccountController(
-            UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
-        RoleManager<ApplicationRole> roleManager
-            )
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
         {
-
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
@@ -117,7 +112,5 @@ namespace ipsmedserviceapp.Controllers
         {
             return Ok(User.Identity.Name);
         }
-
     }
-
 }

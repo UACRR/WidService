@@ -3,6 +3,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.ViewModels.Consumer;
 using IpsCommonTypes.Enums;
+using IpsCommonTypes.Wrappers;
 
 namespace ipsFormsDesign.Services
 {

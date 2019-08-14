@@ -1,6 +1,7 @@
 ﻿using IpsCommonTypes.Types;
 using ipsFormsDesign.Model;
 using System.Collections.Generic;
+using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services

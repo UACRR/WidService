@@ -134,7 +134,7 @@ namespace ipsFormsDesign.Services
                         registerItem.DurationItem = curTime;
                         // curTime = TimeSpan.FromDays(Convert.ToDouble(dim[index, 8]));
                         registerItem.DurationUse = TimeSpan.FromTicks(curTime.Ticks * registerItem.CountUse ?? 1);
-                        registerItem.Ticks = (int)(curTime.Ticks / 10000);
+                        registerItem.Ticks = (int)(registerItem.DurationUse.Value.Ticks / 10000);
                     }
                     catch
                     {
@@ -156,7 +156,8 @@ namespace ipsFormsDesign.Services
             finally
             {
                 excelAppWorkbook?.Close(false);
-                Marshal.ReleaseComObject(excelAppWorkbook);
+                if (excelAppWorkbook != null)
+                    Marshal.ReleaseComObject(excelAppWorkbook);
             }
             return list;
         }

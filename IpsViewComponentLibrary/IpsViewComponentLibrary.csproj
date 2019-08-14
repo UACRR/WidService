@@ -169,6 +169,9 @@
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </Compile>
     <Compile Include="CommunityControls\InternalModel\InternalCommunity.cs" />
+    <Compile Include="ConsumerControls\Places\Enums\MeasurementOfPlaces.cs" />
+    <Compile Include="ConsumerControls\Places\Enums\PremisesFormTypeInitialization.cs" />
+    <Compile Include="ConsumerControls\Reports\ButtonEnableControl.cs" />
     <Compile Include="ConsumerControls\Reports\ReportsHandler.cs" />
     <Compile Include="InternalControlsModel\ReportPaidPeriod.cs" />
     <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.cs">
@@ -319,25 +322,6 @@
     </Compile>
     <Compile Include="ConsumerControls\ManagersControl.Designer.cs">
       <DependentUpon>ManagersControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\PlacesInterface.cs" />
-    <Compile Include="_trash\MultiplePlaceParameterControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\MultiplePlaceParameterControl.Designer.cs">
-      <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\RadioPlaceParameterControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\RadioPlaceParameterControl.Designer.cs">
-      <DependentUpon>RadioPlaceParameterControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\SinglePlaceParameterControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\SinglePlaceParameterControl.Designer.cs">
-      <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </Compile>
     <Compile Include="_UnusedControls\AgreementPhis.cs">
       <SubType>UserControl</SubType>
@@ -500,10 +484,10 @@
     <Compile Include="ConsumerControls\ConsumerHeaderInfo.Designer.cs">
       <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\CreateRatedList.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\CreateRatedList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
+    <Compile Include="ConsumerControls\Reports\Forms\CreateRatedList.Designer.cs">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\TabNavigationControl.cs">
@@ -792,10 +776,10 @@
     <Compile Include="ConsumerForms\RegisterRatedListForm.Designer.cs">
       <DependentUpon>RegisterRatedListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\CreatePeriod.cs">
+    <Compile Include="ConsumerDialogForms\CreatePeriod.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\CreatePeriod.Designer.cs">
+    <Compile Include="ConsumerDialogForms\CreatePeriod.Designer.cs">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\CustomGridBehavior.cs" />
@@ -1149,12 +1133,6 @@
     <Compile Include="RegisterControls\SearchObjectView.Designer.cs">
       <DependentUpon>SearchObjectView.cs</DependentUpon>
     </Compile>
-    <Compile Include="_trash\SingleShowInformationControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\SingleShowInformationControl.Designer.cs">
-      <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1250,15 +1228,6 @@
     <EmbeddedResource Include="ConsumerControls\ManagersControl.resx">
       <DependentUpon>ManagersControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\MultiplePlaceParameterControl.resx">
-      <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\RadioPlaceParameterControl.resx">
-      <DependentUpon>RadioPlaceParameterControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\SinglePlaceParameterControl.resx">
-      <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="_UnusedControls\AgreementPhis.resx">
       <DependentUpon>AgreementPhis.cs</DependentUpon>
     </EmbeddedResource>
@@ -1331,7 +1300,7 @@
     <EmbeddedResource Include="ConsumerControls\ConsumerHeaderInfo.resx">
       <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
+    <EmbeddedResource Include="ConsumerControls\Reports\Forms\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\TabNavigationControl.resx">
@@ -1449,7 +1418,7 @@
     <EmbeddedResource Include="ConsumerForms\RegisterRatedListForm.resx">
       <DependentUpon>RegisterRatedListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\CreatePeriod.resx">
+    <EmbeddedResource Include="ConsumerDialogForms\CreatePeriod.resx">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterControls\RegisterItemListControl.resx">
@@ -1642,9 +1611,6 @@
     <EmbeddedResource Include="RightholderControls\RightholderView.resx">
       <DependentUpon>RightholderView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\SingleShowInformationControl.resx">
-      <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.resx">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1823,6 +1789,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConsumerControls\Presenters\" />
+    <Folder Include="_trash\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

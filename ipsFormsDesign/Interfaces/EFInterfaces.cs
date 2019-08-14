@@ -1758,6 +1758,7 @@ public interface IRegisterItem
          int Ticks { get; set; }
          bool IsAuto { get; set; }
          int? GenreType { get; set; }
+         int? Wic { get; set; }
 }
 public interface IRegisterItemFix
     {

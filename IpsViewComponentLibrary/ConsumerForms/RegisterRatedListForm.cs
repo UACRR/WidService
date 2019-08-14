@@ -7,6 +7,7 @@ using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.InternalControlsModel;
 using Telerik.WinControls.UI;

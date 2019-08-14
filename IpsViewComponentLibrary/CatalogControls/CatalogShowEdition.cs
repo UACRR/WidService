@@ -12,6 +12,7 @@ using System.IO;
 using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
 using IpsCommonTypes.Types;
+using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Shared.Interfaces;
 using Telerik.WinControls.UI;
 
@@ -72,7 +73,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
-        // перевірка валідності. . .
+        // перевірка валідності
         private async void btnAuditItems_Click(object sender, EventArgs e)
         {
             ExecSqlResponce<CatalogFile> result = null;
@@ -89,6 +90,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
         }
 
+        // вивантажити в excel
         private async void btnGetExcel_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog())
@@ -120,6 +122,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
+        // запустити процес завантаження в бд
         private async void btnPerform_Click(object sender, EventArgs e)
         {
             ExecSqlResponce<CatalogFile> result = null;

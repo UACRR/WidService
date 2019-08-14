@@ -1,15 +1,7 @@
-﻿using ipsFormsDesign.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using ipsFormsDesign.Model;
 
-namespace IpsViewComponentLibrary.ConsumerControls
+namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
 {
     public partial class CreateRatedList : Form
     {
@@ -21,8 +13,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private RegisterRatedList ratedList = null;
         public RegisterRatedList RatedList
         {
-            get { return ratedList; }
-            set {
+            get => ratedList;
+            set
+            {
                 ratedList = value;
                 setEnable();
             }
@@ -47,7 +40,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 radTextCntReport.Enabled = true;
                 bindingSourceRatedList.DataSource = ratedList;
                 bindingPeriod.DataSource = ratedList.Period;
-
             }
         }
     }

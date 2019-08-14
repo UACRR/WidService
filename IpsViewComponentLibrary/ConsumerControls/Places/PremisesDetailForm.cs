@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.ConsumerControls.Places.Enums;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places

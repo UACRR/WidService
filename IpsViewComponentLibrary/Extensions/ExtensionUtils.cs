@@ -13,7 +13,6 @@ using ConsumerSmallRightView = ipsFormsDesign.ViewModels.Consumer.ConsumerSmallR
 namespace IpsViewComponentLibrary.Extensions
 {
     public delegate bool LicenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
-    public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, LicType licType);
     public delegate bool SaveRegisterRatedListEventHandler(RegisterRatedList list);
     public delegate Customer GetRegisterRatedList(int custId);
@@ -36,16 +35,11 @@ namespace IpsViewComponentLibrary.Extensions
     public delegate bool ActionWithTwoId(int custId, int id);
     public delegate bool ActionByIdDelegate(int id);
     public delegate bool SaveCustomerEventHandler(Customer customer);
-    public delegate bool SaveObjectListEventHandler<T>(int cmCustId, List<T> listObj);
-    public delegate bool SaveLimitedRightEventHandler<T>(int firstId, int secondId, List<T> listObj);
     public delegate bool SaveObjectByIdEventHandler<T>(int id, T saveObj);
-    public delegate bool SaveObjectEventHandler<T>(T obj);
     public delegate Customer GetCustomerEventHandler();
     public delegate Customer GetCustomerByIdEventHandler(int custId);
     public delegate List<T> ReturnViewEventHandler<T>(int custId);
     public delegate List<T> ReturnFullViewEventHandler<T>();
-    public delegate List<T> ReturnFullViewByFilterEventHandler<T, F>(F filter);
-
 
     public delegate T ReturnObjectEventHandler<out T>(int custId);
 
@@ -81,11 +75,30 @@ namespace IpsViewComponentLibrary.Extensions
             dtPicker.DateTimePickerElement.Calendar.TodayButton.Click += TodayButton_Click;
         }
 
+        // обробка події кліку кнопки кастомного календара
         private static void TodayButton_Click(object sender, EventArgs e)
         {
             // var container = (sender as RadControl).GetContainerControl();
             if (((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl is RadDateTimePicker dtPicker)
                 dtPicker.Value = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Зробити колір тексту лейбла червоним
+        /// </summary>
+        /// <param name="label"></param>
+        public static void SetWarningLabelColor(this RadLabel label)
+        {
+            label.ForeColor = Color.FromArgb(180, 255, 0, 2);
+        }
+
+        /// <summary>
+        /// Зробити стандартний колір тексту лейбла
+        /// </summary>
+        /// <param name="label"></param>
+        public static void SetDefaultLabelColor(this RadLabel label)
+        {
+            label.ForeColor = Control.DefaultForeColor;
         }
 
         /// <summary>
@@ -153,27 +166,6 @@ namespace IpsViewComponentLibrary.Extensions
             return new DateTime(DateTime.Today.Year, 12, 31);
         }
 
-        public static void ShowMessage(bool result, MessageType messageType)
-        {
-            string msgText = string.Empty;
-            string headerText = result ? "Успішно" : "Помилка";
-            MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
-            switch (messageType)
-            {
-                case MessageType.GeneralAgreementChange:
-                    msgText = result ? "Зміни генерального договору збережено!" : "Неможливо зберегти зміни генерального договору!";
-                    break;
-                case MessageType.LicenseAgreementChange:
-                    msgText = result ? "Зміни ліцензійного договору збережено!" : "Неможливо зберегти зміни ліцензійного договору!";
-                    break;
-                case MessageType.LicenseStatus:
-                    msgText = result ? "Статус ліцензії зміненно!" : "Неможливо змінити статус ліцензії!";
-                    break;
-            }
-
-            MessageBox.Show(msgText, headerText, MessageBoxButtons.OK, icon);
-        }
-
         //для колапс панелі
         public static void NavigationButtonPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -191,51 +183,6 @@ namespace IpsViewComponentLibrary.Extensions
                 btn.Visibility = ElementVisibility.Collapsed;
             }
         }
-    }
-
-    public enum MessageType
-    {
-        GeneralAgreementChange,
-        LicenseAgreementChange,
-        LicenseStatus,
-        
-    }
-
-    #region МАЙДАНЧИКИ
-
-    /// <summary>
-    /// Тип ініціалізації форми приміщення завкладу
-    /// </summary>
-    public enum PremisesFormTypeInitialization
-    {
-        /// <summary>
-        /// Редагування
-        /// </summary>
-        Edit,
-        /// <summary>
-        /// Створення нового
-        /// </summary>
-        CreateNew
-    }
-
-    /// <summary>
-    /// Тип вимірювання майданчика
-    /// </summary>
-    public enum MeasurementOfPlaces
-    {
-        /// <summary>
-        /// Площа
-        /// </summary>
-        Area = 1,
-        /// <summary>
-        /// Кількість місць
-        /// </summary>
-        Number = 2,
-        /// <summary>
-        /// Інше
-        /// </summary>
-        Other = 3,
-        Empty = 0
     }
 
     /// <summary>
@@ -283,8 +230,6 @@ namespace IpsViewComponentLibrary.Extensions
         /// </summary>
         ChangeAgreement
     }
-
-    #endregion
 
     /// <summary>
     /// Тип вкладки кабінету великих прав
