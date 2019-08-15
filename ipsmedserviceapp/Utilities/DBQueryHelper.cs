@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,6 +20,16 @@ namespace ipsmedserviceapp.Utilities
             
             if (conditions.Any())
                 queryText = $"{queryText} where {string.Join(" and ", conditions)}";
+            
+            return queryText;
+        }
+
+        public static string ApplySqlWhereInCondition<T>(string queryText, string parameterName, ICollection<T> valueCollection)
+        {
+            if (valueCollection.Count == 0)
+                return queryText;
+
+            queryText = $"{queryText} where {parameterName} in ({string.Join(", ", valueCollection.ToArray())})";
             
             return queryText;
         }
