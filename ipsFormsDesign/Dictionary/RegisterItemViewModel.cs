@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Dictionary
     public class RegisterItemViewModel : INotifyPropertyChanged
     {
         private const string WIDSource = "WID";
-
+        public bool Linked { get; set; }
         public int RegId { get; set; }
         public int RegIitemId { get; set; }
 
@@ -159,6 +159,7 @@ namespace ipsFormsDesign.Dictionary
             if (objId.HasValue)
             {
                 ObjId = objId.Value;
+                Linked = true;
                 ObjectName = name;
                 ObjectAuthors = authors;
                 ObjectPerformers = performers;
@@ -171,6 +172,24 @@ namespace ipsFormsDesign.Dictionary
             {
                 ClearObjectData();
             }
+        }
+
+        /// <summary>
+        /// Оновити об'єкт з WID
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="authors"></param>
+        /// <param name="performers"></param>
+        /// <param name="resetIsAuto"></param>
+        public void SetObjectData(string name, string authors, string performers, bool resetIsAuto = true)
+        {
+            Linked = true;
+            ObjectName = name;
+            ObjectAuthors = authors;
+            ObjectPerformers = performers;
+            
+            if (resetIsAuto)
+                IsAuto = false;
         }
 
         public void SetObjectData(object obj, bool resetIsAuto = true)
@@ -212,10 +231,13 @@ namespace ipsFormsDesign.Dictionary
         public void ClearObjectData()
         {
             ObjId = null;
+            Wic = null;
             ObjectName = null;
             ObjectAuthors = null;
             ObjectPerformers = null;
             ObjectDuration = null;
+            ObjectSource = null;
+            Linked = false;
             IsAuto = false;
         }
 

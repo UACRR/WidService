@@ -11,6 +11,8 @@
         public string Name { get; set; }
         public string GenreName { get; set; }
         public double? RateTotal { get; set; }
+        public double? RateTotalMEC { get; set; }
+        public double? RateTotalPER { get; set; }
         public string Author { get; set; }
         public string Performer { get; set; }
         public int? Wic { get; set; }

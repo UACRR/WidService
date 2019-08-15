@@ -220,7 +220,7 @@
             gridViewCheckBoxColumn1.AllowResize = false;
             gridViewCheckBoxColumn1.DataType = typeof(System.Nullable<int>);
             gridViewCheckBoxColumn1.EnableExpressionEditor = false;
-            gridViewCheckBoxColumn1.FieldName = "ObjId";
+            gridViewCheckBoxColumn1.FieldName = "Linked";
             gridViewCheckBoxColumn1.HeaderText = "Знайдений";
             gridViewCheckBoxColumn1.MaxWidth = 50;
             gridViewCheckBoxColumn1.MinWidth = 50;

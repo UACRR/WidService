@@ -100,29 +100,6 @@ namespace IpsViewComponentLibrary.RegisterControls
                     item.IsAuto = true;
                 }
             }
-
-            //foreach (var item in list)
-            //{
-            //    RegisterItemViewModel itemToUpdate = null;
-            //    var itemsToUpdate = _view.RegisterItemList.Where(i => i.RegIitemId == item.RegIitemId).ToList();
-
-            //    if (itemsToUpdate.Count == 1)
-            //    {
-            //        itemToUpdate = itemsToUpdate.FirstOrDefault();
-            //    }
-            //    else if (itemsToUpdate.Count > 1)
-            //    {
-            //        var maxSumAllTogether = itemsToUpdate.Max(rec => rec.SumAllTogether);
-            //        itemToUpdate = itemsToUpdate.FirstOrDefault(i => Math.Abs((i.SumAllTogether - maxSumAllTogether) ?? 0) < 0.00001);
-            //    }
-
-            //    if (itemToUpdate != null)
-            //    {
-            //        //itemToUpdate.SetObjectData(item.ObjId, item.ObjectName, item.ObjectAuthors, item.ObjectPerformers, item.ObjectDuration);
-            //        itemToUpdate.SetObjectData(item);
-            //        itemToUpdate.IsAuto = true;
-            //    }
-            //}
         }
 
         public void SearchObjectsForAll()
@@ -284,6 +261,9 @@ namespace IpsViewComponentLibrary.RegisterControls
                 _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
         }
 
+        /// <summary>
+        /// Синхронізувати дані
+        /// </summary>
         private void UpdateDataBindings()
         {
             _view.Register = _register;
@@ -332,7 +312,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 // об'єкт існує в зовнішній бд
                 if (r.Wic.HasValue && listObjectRightWithWID.SingleOrDefault(rec => rec.Wic == r.Wic) is ObjectRightWithWID obj)
-                   rvm.SetObjectData(null, obj.Name, obj.Author, obj.Performer, null, resetIsAuto: false);
+                   rvm.SetObjectData(obj.Name, obj.Author, obj.Performer, resetIsAuto: false);
 
                 rvm.RegisterExtraList.AddRange(r.RegisterExtra);
 

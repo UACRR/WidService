@@ -115,7 +115,15 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("widobjectrights")]
         public async Task<IActionResult> GetObjectRightListByWics([FromBody] int[] wics)
         {
-            return BadRequest();
+            if (!wics.Any())
+                return BadRequest();
+
+            string query = "select * from vTsk10_WIDObjects";
+            query = ApplySqlWhereInCondition(query, "WIC", wics);
+
+            var listWIDObjects = await _dbContext.getViewData(query, null);
+
+            return Ok(listWIDObjects);
         }
     }
 }

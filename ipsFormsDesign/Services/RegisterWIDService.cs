@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.ViewModels.ObjectsRight;
 using IpsCommonTypes.ClassesForSearchQuery;
-using IpsCommonTypes.Types;
 using IpsCommonTypes.Views;
 using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
@@ -57,10 +50,15 @@ namespace ipsFormsDesign.Services
             return item;
         }
 
+        /// <summary>
+        /// Отримати об'єкти права з WID БД за масивом ID
+        /// </summary>
+        /// <param name="wicArray"></param>
+        /// <returns></returns>
         public List<ObjectRightWithWID> GetObjectRightListByWIC(int[] wicArray)
         {
             string url = $"{Prefix}/widobjectrights";
-            var list = _apiConnector.GetItemByObjectQuery<List<ObjectRightWithWID>, int[]>(url, wicArray);
+            var list = _apiConnector.GetItemListByObjectQuery<ObjectRightWithWID, int[]>(url, wicArray);
             return list;
         }
     }

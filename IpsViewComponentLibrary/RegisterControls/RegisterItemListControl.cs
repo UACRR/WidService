@@ -111,7 +111,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _allowFindCommand = true;
         public bool AllowFindCommand
         {
-            get { return _allowFindCommand; }
+            get => _allowFindCommand;
             set
             {
                 _allowFindCommand = value;
@@ -123,7 +123,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _allowShowDeleteCommand = true;
         public bool AllowShowDeleteCommand
         {
-            get { return _allowShowDeleteCommand; }
+            get => _allowShowDeleteCommand;
             set
             {
                 _allowShowDeleteCommand = value;
