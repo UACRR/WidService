@@ -11,6 +11,7 @@ using System.Configuration;
 using System.IO;
 using System.Net;
 using IpsCommonTypes.Types;
+using System.Collections;
 
 namespace WebAPIConnector
 {
@@ -203,7 +204,7 @@ namespace WebAPIConnector
         /// <param name="url"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public TResult GetItemByObjectQuery<TResult, TData>(string url, TData obj) where TResult : class where TData: class
+        public TResult GetItemByObjectQuery<TResult, TData>(string url, TData obj) where TData: class
         {
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
             var result = client.PostAsync(url, content).GetAwaiter().GetResult();
@@ -214,6 +215,27 @@ namespace WebAPIConnector
             }
 
             return default(TResult);
+        }
+
+        /// <summary>
+        /// Отримати список об'єктів з серверу додатків по об'єтку фільтра через POST request
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TData"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public List<TResult> GetItemListByObjectQuery<TResult, TData>(string url, TData obj)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+            var result = client.PostAsync(url, content).GetAwaiter().GetResult();
+            if (result.IsSuccessStatusCode)
+            {
+                var contentCollectionReturn = result.Content.ReadAsList<TResult>();
+                return contentCollectionReturn;
+            }
+
+            return default(List<TResult>);
         }
 
         /// <summary>
