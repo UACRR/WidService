@@ -93,6 +93,7 @@
     <Folder Include="dbo\User Defined Types\" />
     <Folder Include="Assemblies\" />
     <Folder Include="Security" />
+    <Folder Include="SQLAssembly" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SqlServer.PolicyEnum">

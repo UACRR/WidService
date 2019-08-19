@@ -18,7 +18,6 @@ public partial class UserDefinedFunctions
     public static SqlBoolean Ft_tsk_3_Compare(string sors, string dest, float accuracy)
     {
         return Ft_tsk_3_Accurace(sors, dest, accuracy) >= accuracy;
-
     }
 
     /// <summary>
@@ -107,8 +106,11 @@ public partial class UserDefinedFunctions
             return lastResult;
 
         return Math.Max(lastResult, result);
-
     }
 
+    [Microsoft.SqlServer.Server.SqlFunction]
+    public static SqlBoolean FT_Like()
+    {
 
+    }
 }
