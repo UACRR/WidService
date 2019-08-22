@@ -119,8 +119,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        // Видимість командної кнопки "Видалити"
+        
         private bool _allowShowDeleteCommand = true;
+        /// <summary>
+        /// Видимість командної кнопки "Видалити"
+        /// </summary>
         public bool AllowShowDeleteCommand
         {
             get => _allowShowDeleteCommand;
@@ -316,7 +319,6 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<RegisterCountViewModel> RegisterCountDeleted;
         public event EventHandler<CancelEventArgs> RegisterItemListValidating;
         public event EventHandler<RowValidatingEventArgs> RegisterItemRowValidating;
-
 
         public RegisterItemListControl()
         {
@@ -529,13 +531,22 @@ namespace IpsViewComponentLibrary.RegisterControls
             SetFilter(ddlLinkedStatus.SelectedIndex);
         }
 
+        /// <summary>
+        /// Відфільтрувати об'єкти
+        /// </summary>
+        /// <param name="linkedStatus"></param>
         private void SetFilter(int linkedStatus)
         {
+            if (linkedStatus == 1)
+                gvRegisterItemList.FilterDescriptors.LogicalOperator = FilterLogicalOperator.Or;
+            else if (linkedStatus == 2)
+                gvRegisterItemList.FilterDescriptors.LogicalOperator = FilterLogicalOperator.And;
+
             gvRegisterItemList.FilterDescriptors.Clear();
 
             if (linkedStatus != 0)
             {
-                FilterDescriptor filterByObjId = new FilterDescriptor
+                var filterByObjId = new FilterDescriptor
                 {
                     PropertyName = "ObjId",
                     Operator = linkedStatus == 1 ? FilterOperator.IsNotEqualTo : FilterOperator.IsEqualTo,
@@ -543,9 +554,22 @@ namespace IpsViewComponentLibrary.RegisterControls
                     IsFilterEditor = true
                 };
                 gvRegisterItemList.FilterDescriptors.Add(filterByObjId);
+
+                var filterByWic = new FilterDescriptor
+                {
+                    PropertyName = "Wic",
+                    Operator = linkedStatus == 1 ? FilterOperator.IsNotEqualTo : FilterOperator.IsEqualTo,
+                    Value = null,
+                    IsFilterEditor = true
+                };
+                gvRegisterItemList.FilterDescriptors.Add(filterByWic);
             }
         }
 
+        /// <summary>
+        /// Прив'язати за не строгим пошуком (лупа)
+        /// </summary>
+        /// <param name="selectedRegisterItem"></param>
         private void OnFindCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowFindCommand)
@@ -560,6 +584,10 @@ namespace IpsViewComponentLibrary.RegisterControls
             FindCommandExecuted?.Invoke(this, selectedRegisterItem);
         }
 
+        /// <summary>
+        /// Прив'язати за строгим пошуком 
+        /// </summary>
+        /// <param name="selectedRegisterItem"></param>
         private void OnLinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowLinkCommand)

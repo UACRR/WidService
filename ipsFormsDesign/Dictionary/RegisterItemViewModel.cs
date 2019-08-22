@@ -222,6 +222,15 @@ namespace ipsFormsDesign.Dictionary
                 Wic = objectRightWithWid.Wic;
                 Genre = objectRightWithWid.GenreName;
             }
+            else if (obj is RegisterSearchObject registerSearchObjectMG)
+            {
+                ObjId = registerSearchObjectMG.ObjId;
+                ObjectName = registerSearchObjectMG.Name;
+                ObjectAuthors = registerSearchObjectMG.Author;
+                ObjectPerformers = registerSearchObjectMG.Performer;
+                Wic = registerSearchObjectMG.Wic;
+                Genre = registerSearchObjectMG.Genre;
+            }
             else
             {
                 ClearObjectData();

@@ -17,6 +17,7 @@ namespace ipsmedserviceapp.Model
         public DbQuery<RightholderMainView> RightholderMainView { get; set; }
         public DbQuery<vCustomer> vCustomer { get; set; }
         public DbQuery<vTsk1ListRightHolder01> vTsk_1_ListRightHolder01 { get; set; }
+        public DbQuery<ObjectsRightForLink> ObjectsRightForLink { get; set; }
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {
@@ -72,8 +73,6 @@ namespace ipsmedserviceapp.Model
             });
 
         }
-
-
 
         /// <summary>
         /// 
@@ -131,7 +130,6 @@ namespace ipsmedserviceapp.Model
             });
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -167,7 +165,7 @@ namespace ipsmedserviceapp.Model
             List<Dictionary<string, object>> vActiveOrders = null;
 
             var connection = this.Database.GetDbConnection();
-            var timeout = Database.GetCommandTimeout() ?? 600;
+            var timeout = Database.GetCommandTimeout() ?? 1200;
 
             try
             {

@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Dictionary
 {
     /// <summary>
-    /// Опис Обзнайденого 'єкту права
+    /// Опис знайденого об'єкту права
     /// </summary>
     public class RegisterSearchObject
     {
-
-        public int ObjId { get; set; }
+        public int? ObjId { get; set; }
+        public int? Wic { get; set; }
         public string InnerCode { get; set; }
         public string Name { get; set; }
         public string Performer { get; set; }
         public string Author { get; set; }
         public string Genre { get; set; }
         public TimeSpan? Duration { get; set; }
-
+        public decimal? AccuracyPercent { get; set; }
     }
 }

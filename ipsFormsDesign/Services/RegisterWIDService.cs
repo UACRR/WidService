@@ -61,5 +61,49 @@ namespace ipsFormsDesign.Services
             var list = _apiConnector.GetItemListByObjectQuery<ObjectRightWithWID, int[]>(url, wicArray);
             return list;
         }
+
+        /// <summary>
+        /// Отримати об'єкти права з локальної БД для режиму прив'язки по лупі
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="authtors"></param>
+        /// <param name="performers"></param>
+        /// <returns></returns>
+        public List<RegisterSearchObject> SearchObjectsLocal(string name, string authtors, string performers)
+        {
+            KeyValuePair<string, string>[] param =
+            {
+                new KeyValuePair<string, string>("name", name),
+                new KeyValuePair<string, string>("authtors", authtors),
+                new KeyValuePair<string, string>("performers", performers)
+            };
+
+            string url = $"{Prefix}/searchlocal";
+            var list = _apiConnector.GetList<RegisterSearchObject>(url, param);
+
+            return list;
+        }
+
+        /// <summary>
+        /// Отримати об'єкти права з WID БД для режиму прив'язки по лупі
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="authtors"></param>
+        /// <param name="performers"></param>
+        /// <returns></returns>
+        public List<RegisterSearchObject> SearchObjectsWid(string name, string authtors, string performers)
+        {
+            KeyValuePair<string, string>[] param =
+            {
+                new KeyValuePair<string, string>("name", name),
+                new KeyValuePair<string, string>("authtors", authtors),
+                new KeyValuePair<string, string>("performers", performers)
+            };
+
+            string url = $"{Prefix}/searchwid";
+            var list = _apiConnector.GetList<RegisterSearchObject>(url, param);
+
+            return list;
+        }
     }
 }

@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
-    public partial class SearchObjectView : Telerik.WinControls.UI.RadForm
+    public partial class SearchObjectView : RadForm
     {
         private SearchObjectPresenter _presenter;
         public SearchObjectPresenter Presenter
@@ -19,34 +21,16 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        public object RegisterItemListDataSource
-        {
-            get { return ctrlRegisterItemList.DataSource; }
-            set { ctrlRegisterItemList.DataSource = value; }
-        }
+        private readonly BindingList<RegisterItemViewModel> _registerItemList;
+        public ICollection<RegisterItemViewModel> RegisterItemList => _registerItemList;
 
-        private BindingList<RegisterItemViewModel> _registerItemList;
-        public ICollection<RegisterItemViewModel> RegisterItemList
-        {
-            get { return _registerItemList; }
-        }
-
-        private BindingList<RegisterSearchObject> _foundedObjectList;
-        public ICollection<RegisterSearchObject> FoundedObjectList
-        {
-            get { return _foundedObjectList; }
-        }
+        private readonly BindingList<RegisterSearchObject> _foundedObjectList;
+        public ICollection<RegisterSearchObject> FoundedObjectList => _foundedObjectList;
 
         private RegisterSearchObject _registerSearchObject;
         public RegisterSearchObject SelectedRegisterSearchObject
         {
-            get
-            {
-                if (gvFoundedObjectList.CurrentRow == null)
-                    return null;
-
-                return gvFoundedObjectList.CurrentRow.DataBoundItem as RegisterSearchObject;
-            }
+            get => gvFoundedObjectList.CurrentRow?.DataBoundItem as RegisterSearchObject;
             set
             {
                 if (_registerSearchObject != value)
@@ -74,7 +58,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             _foundedObjectList = new BindingList<RegisterSearchObject>();
 
             ctrlRegisterItemList.DataSource = _registerItemList;
-            gvFoundedObjectList.DataSource = _foundedObjectList;
+            bsRegisterSearchObject.DataSource = _foundedObjectList;
+            //gvFoundedObjectList.DataSource = _foundedObjectList;
+
+            ctrlRegisterItemList.ShowObjectDuration = false;
+            ctrlRegisterItemList.AllowShowDeleteCommand = false;
         }
 
         public void Run()
@@ -84,10 +72,25 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            _presenter.Search(ctrlRegisterItemList.SelectedRegisterItem);
+            _presenter.SearchInLocal(ctrlRegisterItemList.SelectedRegisterItem);
         }
 
-        private void gvFoundedObjectList_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void btnSearchWID_Click(object sender, EventArgs e)
+        {
+            _presenter.SearchInWID(ctrlRegisterItemList.SelectedRegisterItem);
+        }
+
+        public void StartWaiting()
+        {
+            waitingBar.StartWaiting();
+        }
+
+        public void StopWaiting()
+        {
+            waitingBar.StopWaiting();
+        }
+
+        private void gvFoundedObjectList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var currentColumnName = e.Column.Name;
 
@@ -97,7 +100,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        private void gvFoundedObjectList_RowsChanged(object sender, Telerik.WinControls.UI.GridViewCollectionChangedEventArgs e)
+        private void gvFoundedObjectList_RowsChanged(object sender, GridViewCollectionChangedEventArgs e)
         {
             if (gvFoundedObjectList.RowCount == 0)
                 gvFoundedObjectList.TableElement.Text = "Для пошуку співпадінь натисніть \"Шукати\"";

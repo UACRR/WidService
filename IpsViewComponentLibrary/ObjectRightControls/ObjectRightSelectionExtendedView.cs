@@ -19,6 +19,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private string _dbSearch = Local;
 
+        private bool searchParamsChanged = false;
+
         public ObjectRightWithWID ObjectRight => gvObjectsRightsList.CurrentRow?.DataBoundItem as ObjectRightWithWID;
 
         public object RegisterItemViewModel
@@ -65,9 +67,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             bsObjectRightsView.DataSource = result.List;
 
-            navigatorPanel.CurrentPageChanged -= NavigatorPanel_CurrentPageChanged;
-            navigatorPanel.CurrentPage = 1;
-            navigatorPanel.CurrentPageChanged += NavigatorPanel_CurrentPageChanged;
+            if (searchParamsChanged)
+            {
+                navigatorPanel.CurrentPageChanged -= NavigatorPanel_CurrentPageChanged;
+                navigatorPanel.CurrentPage = 1;
+                navigatorPanel.CurrentPageChanged += NavigatorPanel_CurrentPageChanged;
+                searchParamsChanged = false;
+            }
 
             navigatorPanel.TotalPages = (int)Math.Ceiling((double)result.TotalItems / query.PageSize);
 
@@ -93,7 +99,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (!CheckValidCountSymbol())
                 return;
             
-            MessageShow.ShowInfo("Процес пошуку в зовнішній базі даних WID може тривати довго! Дочекайтеся завершення процесу!");
+            //MessageShow.ShowInfo("Процес пошуку в зовнішній базі даних WID може тривати довго! Дочекайтеся завершення процесу!");
             _dbSearch = WID;
             UpdateList();
         }
@@ -159,6 +165,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             {
 
             }
+        }
+
+        private void SearchParams_TextChanged(object sender, EventArgs e)
+        {
+            searchParamsChanged = true;
         }
     }
 }

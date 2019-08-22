@@ -96,7 +96,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 if (itemForUpdate != null)
                 {       
-                    item.SetObjectData(itemsForUpdate);
+                    item.SetObjectData(itemForUpdate);
                     item.IsAuto = true;
                 }
             }
@@ -120,8 +120,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             var registerItemList = new List<RegisterItemViewModel>();
 
-            registerItemList.AddRange(_view.RegisterItemListStage.Where(r => r.ObjId == null));
-            registerItemList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
+            registerItemList.AddRange(_view.RegisterItemListStage.Where(r => r.ObjId == null && r.Wic == null));
+            registerItemList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null && r.Wic == null));
 
             using (var view = new SearchObjectView())
             {

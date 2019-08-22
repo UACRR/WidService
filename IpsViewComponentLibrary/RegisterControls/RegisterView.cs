@@ -107,8 +107,8 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 ctrlRegisterItemList.ShowObjectDuration = false;
                 ctrlRegisterItemList.ShowAuthors = true;
+                ctrlRegisterItemList.AllowShowDeleteCommand = false;
                 ctrlRegisterItemListStage.ShowAuthors = true;
-                
 
                 lblMusicRate.Visible = false;
                 mebMusicRate.Visible = false;
@@ -191,8 +191,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private async void btnSearchAuto_Click(object sender, EventArgs e)
         {
+            //TODO: change
+            //await Task.Factory.StartNew(() => MessageShow.ShowInfo("Процес може зайняти тривалий час. Дочекайтеся завершення процесу."));
             waitingBar.StartWaiting();
-            MessageShow.ShowInfo("Процес може зайняти тривалий час. Дочекайтеся завершення процесу.");
             await Task.Factory.StartNew(() => _presenter.SearchObjectsAuto());
             waitingBar.StopWaiting();
         }

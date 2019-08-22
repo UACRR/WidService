@@ -4,6 +4,7 @@ using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -11,6 +12,7 @@ namespace IpsViewComponentLibrary.RegisterControls
     {
         private readonly SearchObjectView _view;
         private readonly RegisterService _registerService;
+        private readonly RegisterWIDService _registerWidService;
         private readonly DialogService _dialogService;
         private readonly List<RegisterItemViewModel> _sourceRegisterItemList;
 
@@ -18,7 +20,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             _view = view;
             _view.Presenter = this;
-
+            _registerWidService = RegisterWIDService.GetInstance();
             _registerService = registerService;
             _dialogService = new DialogService();
 
@@ -40,15 +42,58 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.Run();
         }
 
-        public void Search(RegisterItemViewModel registerItem)
+        /// <summary>
+        /// Пошук по локальній БД
+        /// </summary>
+        /// <param name="registerItem"></param>
+        public async void SearchInLocal(RegisterItemViewModel registerItem)
         {
             _view.FoundedObjectList.Clear();
 
-            var foundedObject = _registerService.SearchObjects(
-                registerItem.ItemName,
-                registerItem.AuthorMusic + ", " + registerItem.AuthorText,
-                registerItem.Performer
-            );
+            string name = registerItem.ItemName;
+            string authors = registerItem.AuthorMusic + ", " + registerItem.AuthorText;
+            string performer = registerItem.Performer;
+
+            List<RegisterSearchObject> foundedObject = null;
+            _view.StartWaiting();
+            await Task.Factory.StartNew(() => foundedObject = _registerWidService.SearchObjectsLocal(name, authors, performer));
+            _view.StopWaiting();
+
+            //var foundedObject = _registerService.SearchObjects(
+            //    registerItem.ItemName,
+            //    registerItem.AuthorMusic + ", " + registerItem.AuthorText,
+            //    registerItem.Performer
+            //);
+
+            if (foundedObject.Count != 0)
+            {
+                foreach (var obj in foundedObject)
+                {
+                    _view.FoundedObjectList.Add(obj);
+                }
+            }
+            else
+            {
+                _dialogService.ShowMessage(_view, "Співпадінь не знайдено.");
+            }
+        }
+
+        /// <summary>
+        /// Пошук по WID БД
+        /// </summary>
+        /// <param name="registerItem"></param>
+        public async void SearchInWID(RegisterItemViewModel registerItem)
+        {
+            _view.FoundedObjectList.Clear();
+
+            string name = registerItem.ItemName;
+            string authors = registerItem.AuthorMusic + ", " + registerItem.AuthorText;
+            string performer = registerItem.Performer;
+
+            List<RegisterSearchObject> foundedObject = null;
+            _view.StartWaiting();
+            await Task.Factory.StartNew(() => foundedObject = _registerWidService.SearchObjectsWid(name, authors, performer));
+            _view.StopWaiting();
 
             if (foundedObject.Count != 0)
             {
@@ -65,13 +110,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public void LinkObjectToRegisterItem(RegisterItemViewModel registerItem, RegisterSearchObject registerSearchObject)
         {
-            registerItem.SetObjectData(
-                registerSearchObject.ObjId,
-                registerSearchObject.Name,
-                registerSearchObject.Author,
-                registerSearchObject.Performer,
-                registerSearchObject.Duration
-            );
+            registerItem.SetObjectData(registerSearchObject);
         }
 
         public void Apply()
@@ -80,16 +119,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 var foundedRegisterItem = _sourceRegisterItemList.FirstOrDefault(r => r.RegId == registerItem.RegId && r.RegIitemId == registerItem.RegIitemId);
 
-                if (foundedRegisterItem != null)
-                {
-                    foundedRegisterItem.SetObjectData(
-                        registerItem.ObjId,
-                        registerItem.ObjectName,
-                        registerItem.ObjectAuthors,
-                        registerItem.ObjectPerformers,
-                        registerItem.ObjectDuration
-                    );
-                }
+                if (foundedRegisterItem == null)
+                    continue;
+
+                foundedRegisterItem.SetObjectData(registerItem);
+                foundedRegisterItem.ObjectDuration = registerItem.ObjectDuration;
             }
         }
 
@@ -99,7 +133,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 var clonedRegisterItem = new RegisterItemViewModel();
 
-                Utils.SetFields(clonedRegisterItem, r);
+                clonedRegisterItem.SetFields(r);
                 clonedRegisterItem.DurationItem = r.DurationItem;
                 clonedRegisterItem.DurationUse = r.DurationUse;
                 clonedRegisterItem.ObjectDuration = r.ObjectDuration;
