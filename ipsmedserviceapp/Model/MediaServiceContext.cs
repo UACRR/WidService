@@ -1475,6 +1475,11 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.FirstName)
+                    .HasColumnName("firstName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.InnOkpo)
                     .HasColumnName("innOkpo")
                     .HasMaxLength(12)
@@ -2047,6 +2052,9 @@ namespace ipsmedserviceapp.Model
 
                 entity.HasIndex(e => new { e.AuthorName, e.CustId })
                     .HasName("IdxNames");
+
+                entity.HasIndex(e => new { e.ObjId, e.CustId, e.AuthorName })
+                    .HasName("I_AuthorsObjId");
 
                 entity.Property(e => e.AuthId).HasColumnName("authId");
 
@@ -3545,6 +3553,10 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CustType).HasColumnName("custType");
 
+                entity.Property(e => e.DateCreate)
+                    .HasColumnName("dateCreate")
+                    .HasColumnType("datetime");
+
                 entity.Property(e => e.LoadId).HasColumnName("loadId");
 
                 entity.Property(e => e.Status).HasColumnName("status");
@@ -4350,12 +4362,12 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Account)
                     .HasColumnName("account")
-                    .HasMaxLength(30)
+                    .HasMaxLength(32)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AccountCorr)
                     .HasColumnName("accountCorr")
-                    .HasMaxLength(25)
+                    .HasMaxLength(32)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CodeOper)
@@ -9908,6 +9920,11 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.CreateDate)
+                    .HasColumnName("createDate")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")

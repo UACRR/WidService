@@ -244,6 +244,7 @@ public interface IAnketaExternal
          string Name { get; set; }
          string CountryCode { get; set; }
          string InnOkpo { get; set; }
+         string FirstName { get; set; }
 }
 public interface IAnketaPerson
     {
@@ -557,7 +558,7 @@ public interface ICopyRight
          int CustId { get; set; }
          int? ObjId { get; set; }
          int? LBasis { get; set; }
-         decimal? Rate { get; set; }
+         decimal Rate { get; set; }
          decimal? RoleRate { get; set; }
          DateTime? BeginDate { get; set; }
          DateTime? EndDate { get; set; }
@@ -569,7 +570,7 @@ public interface ICopyRight
          int? ParentId { get; set; }
          int? RoleCode { get; set; }
          int? Status { get; set; }
-         decimal? RateMech { get; set; }
+         decimal RateMech { get; set; }
          int? LoadId { get; set; }
          string SourceName { get; set; }
 }
@@ -699,6 +700,7 @@ public interface ICustomer
          byte? AnkTech { get; set; }
          string UserId { get; set; }
          int? LoadId { get; set; }
+         DateTime? DateCreate { get; set; }
 }
 public interface ICustomerStatus
     {    int CodeI { get; set; }
@@ -2162,6 +2164,7 @@ public interface ISeekObject
          int? CodeI { get; set; }
          int? ObjId { get; set; }
          string Name { get; set; }
+         DateTime? CreateDate { get; set; }
 }
 public interface ISeekType
     {    int CodeI { get; set; }

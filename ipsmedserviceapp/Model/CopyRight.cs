@@ -19,7 +19,7 @@ namespace ipsmedserviceapp.Model
         public int CustId { get; set; }
         public int? ObjId { get; set; }
         public int? LBasis { get; set; }
-        public decimal? Rate { get; set; }
+        public decimal Rate { get; set; }
         public decimal? RoleRate { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
@@ -31,7 +31,7 @@ namespace ipsmedserviceapp.Model
         public int? ParentId { get; set; }
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
-        public decimal? RateMech { get; set; }
+        public decimal RateMech { get; set; }
         public int? LoadId { get; set; }
         public string SourceName { get; set; }
 
