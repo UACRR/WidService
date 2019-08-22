@@ -34,6 +34,32 @@ namespace ipsmedserviceapp.Utilities
             return queryText;
         }
 
+        public static string ApplySqlWhereInCondition(string queryText, string parameterName, string stringValues)
+        {
+            if (string.IsNullOrWhiteSpace(stringValues))
+                return queryText;
+
+            queryText = $"{queryText} where {parameterName} in ({stringValues})";
+
+            return queryText;
+        }
+
+        public static string ApplySqlWhereContainsCondition(string queryText, Dictionary<string[], string> conditionDictionary)
+        {
+            if (!conditionDictionary.Any())
+                return queryText;
+
+            var containsList = new List<string>();
+            foreach (var item in conditionDictionary)
+            {
+                containsList.Add($"contains(({string.Join(", ", item.Key)}), '\"{item.Value}\"')");    
+            }
+
+            queryText += $" where {string.Join(" and ", containsList)}";
+
+            return queryText;
+        }
+
         /// <summary>
         /// Apply ORDER BY sort and paging to SQL query by arguments
         /// </summary>
