@@ -20,8 +20,8 @@ namespace ipsFormsDesign.Dictionary
         public int? StatusZayavky { get; set; }
         public string CommunityName { get; set; }
 
-        private decimal? _rate;
-        public decimal? Rate
+        private decimal _rate;
+        public decimal Rate
         {
             get => _rate;
             set
@@ -130,7 +130,7 @@ namespace ipsFormsDesign.Dictionary
             CustId = null;
             CopyrightStatus = null;
             StatusZayavky = null;
-            Rate = null;
+            Rate = 0m;
             BeginDate = null;
             EndDate = null;
             AuthorName = string.Empty;
