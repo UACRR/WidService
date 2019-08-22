@@ -54,6 +54,9 @@ namespace IpsViewComponentLibrary.RegisterControls
             dtCreateDateFrom.SetUserCalendarSettingsm();
             dtCreateDateTill.SetUserCalendarSettingsm();
 
+            ctrlGridRowCount.RadGridViewDataSource = gvRegisterList;
+            ctrlSearch.SetUsageGrid(gvRegisterList);
+
             gvRegisterList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
 
             if (!IsDesignMode)
@@ -98,8 +101,6 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             var list = _registerService.GetListByFilter(filter);
             registerListViewModelBindingSource.DataSource = list;
-            //show count Register into grid
-            lblCountRegister.Text = list.Count().ToString();
 
             SelectedRegister = currentRegister;
         }
@@ -182,52 +183,5 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             UpdateList();
         }
-
-        #region Search
-
-        private void txtSearchRegister_TextChanged(object sender, EventArgs e)
-        {
-            gvRegisterList.MasterTemplate.Refresh();
-        }
-
-        private void gvRegisterList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearchRegister.Text))
-            {
-                gvRegisterList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvRegisterList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRegisterList.EndUpdate(false);
-                return;
-            }
-
-            gvRegisterList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvRegisterList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearchRegister.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRegisterList.EndUpdate(false);
-            }
-        }
-
-        #endregion
     }
 }
