@@ -130,7 +130,7 @@ namespace ipsFormsDesign.Utilities
 
         public static decimal GetTotalRate(this ICollection<CopyRight> copyrightList)
         {
-            return copyrightList.Where(cr => cr.Rate != null).Sum(cr => cr.Rate.Value);
+            return copyrightList.Where(cr => true).Sum(cr => cr.Rate);
         }
 
         public static decimal GetTotalRoleRate(this ICollection<CopyRight> copyrightList)
