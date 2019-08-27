@@ -6,8 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Controllers;
 using ipsmedserviceapp.Model.SQLViewsData;
+using IpsCommonTypes.Types.ObjectRightInfoWID;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ipsmedserviceapp.Model
 {
@@ -18,6 +18,12 @@ namespace ipsmedserviceapp.Model
         public DbQuery<vCustomer> vCustomer { get; set; }
         public DbQuery<vTsk1ListRightHolder01> vTsk_1_ListRightHolder01 { get; set; }
         public DbQuery<ObjectsRightForLink> ObjectsRightForLink { get; set; }
+
+        public DbQuery<WIDObjectRight> WIDObjectRight { get; set; }
+        public DbQuery<WIDObjectAuthors> WIDObjectAuthors { get; set; }
+        public DbQuery<WIDObjectAuthorsCommunities> WIDObjectAuthorsCommunities { get; set; }
+        public DbQuery<WIDObjectAlternativeNames> WIDObjectAlternativeNames { get; set; }
+        public DbQuery<WIDObjectPerformers> WIDObjectPerformers { get; set; }
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {

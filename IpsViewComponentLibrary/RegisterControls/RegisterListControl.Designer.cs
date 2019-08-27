@@ -167,6 +167,7 @@
             gridViewDecimalColumn7.Width = 63;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Редагувати";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.MaxWidth = 30;

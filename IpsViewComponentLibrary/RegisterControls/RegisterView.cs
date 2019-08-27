@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public Register Register
         {
-            get { return bsRegister.DataSource as Register; }
+            get => bsRegister.DataSource as Register;
             set
             {
                 if (bsRegister.DataSource != value)
@@ -51,10 +51,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public ConsumerSmallRightView ConsumerInfo
         {
-            set
-            {
-                txtConsumerName.Text = value.Name;
-            }
+            set => txtConsumerName.Text = value.Name;
         }
 
         public BindingList<RegisterItemViewModel> RegisterItemList { get; private set; } = new BindingList<RegisterItemViewModel>();

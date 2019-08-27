@@ -150,20 +150,26 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            var row = e.Row.DataBoundItem as ObjectRightWithWID;
+            if (!(e.Row.DataBoundItem is ObjectRightWithWID row))
+                return;
+
             // local object
-            if (row?.ObjId != null)
+            if (row.ObjId.HasValue)
             {
                 using (var view = new ObjectRightSrView())
                 {
                     var presenter = new ObjectRightSrPresenter(view);
-                    presenter.Show((int)row.ObjId);
+                    presenter.Show(row.ObjId.Value);
                 }
             }
             // wid-ipi object
-            else if (row?.Wic != null)
+            else if (row.Wic.HasValue)
             {
-
+                using (var viewWid = new ObjectRightWIDView())
+                {
+                    viewWid.LoadData(row.Wic.Value);
+                    viewWid.ShowDialog();
+                }
             }
         }
 

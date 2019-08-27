@@ -180,6 +180,12 @@
     <Compile Include="ObjectRightControls\ObjectRightSelectionExtendedView.Designer.cs">
       <DependentUpon>ObjectRightSelectionExtendedView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightWIDView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightWIDView.Designer.cs">
+      <DependentUpon>ObjectRightWIDView.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1171,6 +1177,9 @@
     <EmbeddedResource Include="ObjectRightControls\ObjectRightSelectionExtendedView.resx">
       <DependentUpon>ObjectRightSelectionExtendedView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightWIDView.resx">
+      <DependentUpon>ObjectRightWIDView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterDetailForm.resx">
       <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1628,6 +1637,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\IpsCommonTypes.Types.ObjectRightInfoWID.WIDObjectAlternativeNames.datasource" />
+    <None Include="Properties\DataSources\IpsCommonTypes.Types.ObjectRightInfoWID.WIDObjectAuthors.datasource" />
+    <None Include="Properties\DataSources\IpsCommonTypes.Types.ObjectRightInfoWID.WIDObjectAuthorsCommunities.datasource" />
+    <None Include="Properties\DataSources\IpsCommonTypes.Types.ObjectRightInfoWID.WIDObjectPerformers.datasource" />
+    <None Include="Properties\DataSources\IpsCommonTypes.Types.ObjectRightInfoWID.WIDObjectRight.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObbjectRightNotAccepted.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />

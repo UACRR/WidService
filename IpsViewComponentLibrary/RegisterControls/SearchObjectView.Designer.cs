@@ -29,55 +29,55 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
-            this.btnSearchWID = new Telerik.WinControls.UI.RadButton();
-            this.btnSearchLocal = new Telerik.WinControls.UI.RadButton();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
+            this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.btnSearchLocal = new Telerik.WinControls.UI.RadButton();
+            this.btnSearchWID = new Telerik.WinControls.UI.RadButton();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
             this.gvFoundedObjectList = new Telerik.WinControls.UI.RadGridView();
             this.bsRegisterSearchObject = new System.Windows.Forms.BindingSource(this.components);
+            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
-            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
-            this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearchWID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
+            this.ipsPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchLocal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchWID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFoundedObjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFoundedObjectList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterSearchObject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
+            this.ipsPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
             this.backgroundPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
-            this.ipsPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
-            this.ipsPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -118,28 +118,6 @@
             this.splitPanel1.Text = "splitPanel1";
             this.splitPanel1.ThemeName = "Office2013Light";
             // 
-            // btnSearchWID
-            // 
-            this.btnSearchWID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSearchWID.Location = new System.Drawing.Point(172, 3);
-            this.btnSearchWID.Name = "btnSearchWID";
-            this.btnSearchWID.Size = new System.Drawing.Size(144, 24);
-            this.btnSearchWID.TabIndex = 7;
-            this.btnSearchWID.Text = "Шукати в WID БД";
-            this.btnSearchWID.ThemeName = "Office2013Light";
-            this.btnSearchWID.Click += new System.EventHandler(this.btnSearchWID_Click);
-            // 
-            // btnSearchLocal
-            // 
-            this.btnSearchLocal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSearchLocal.Location = new System.Drawing.Point(12, 3);
-            this.btnSearchLocal.Name = "btnSearchLocal";
-            this.btnSearchLocal.Size = new System.Drawing.Size(144, 24);
-            this.btnSearchLocal.TabIndex = 6;
-            this.btnSearchLocal.Text = "Шукати в локальній БД";
-            this.btnSearchLocal.ThemeName = "Office2013Light";
-            this.btnSearchLocal.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // ctrlRegisterItemList
             // 
             this.ctrlRegisterItemList.AllowActionRegisterItem = true;
@@ -171,6 +149,39 @@
             this.ctrlRegisterItemList.TabIndex = 1;
             this.ctrlRegisterItemList.SelectedRegisterItemChanged += new System.EventHandler(this.ctrlRegisterItemList_SelectedRegisterItemChanged);
             // 
+            // ipsPanel2
+            // 
+            this.ipsPanel2.BorderVisible = false;
+            this.ipsPanel2.Controls.Add(this.btnSearchLocal);
+            this.ipsPanel2.Controls.Add(this.btnSearchWID);
+            this.ipsPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ipsPanel2.Location = new System.Drawing.Point(0, 281);
+            this.ipsPanel2.Name = "ipsPanel2";
+            this.ipsPanel2.Size = new System.Drawing.Size(1201, 32);
+            this.ipsPanel2.TabIndex = 75;
+            // 
+            // btnSearchLocal
+            // 
+            this.btnSearchLocal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSearchLocal.Location = new System.Drawing.Point(12, 3);
+            this.btnSearchLocal.Name = "btnSearchLocal";
+            this.btnSearchLocal.Size = new System.Drawing.Size(144, 24);
+            this.btnSearchLocal.TabIndex = 6;
+            this.btnSearchLocal.Text = "Шукати в локальній БД";
+            this.btnSearchLocal.ThemeName = "Office2013Light";
+            this.btnSearchLocal.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnSearchWID
+            // 
+            this.btnSearchWID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSearchWID.Location = new System.Drawing.Point(172, 3);
+            this.btnSearchWID.Name = "btnSearchWID";
+            this.btnSearchWID.Size = new System.Drawing.Size(144, 24);
+            this.btnSearchWID.TabIndex = 7;
+            this.btnSearchWID.Text = "Шукати в WID БД";
+            this.btnSearchWID.ThemeName = "Office2013Light";
+            this.btnSearchWID.Click += new System.EventHandler(this.btnSearchWID_Click);
+            // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.gvFoundedObjectList);
@@ -189,15 +200,6 @@
             this.splitPanel2.Text = "splitPanel2";
             this.splitPanel2.ThemeName = "Office2013Light";
             // 
-            // radLabel17
-            // 
-            this.radLabel17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel17.Location = new System.Drawing.Point(3, 3);
-            this.radLabel17.Name = "radLabel17";
-            this.radLabel17.Size = new System.Drawing.Size(150, 25);
-            this.radLabel17.TabIndex = 73;
-            this.radLabel17.Text = "Результати пошуку";
-            // 
             // gvFoundedObjectList
             // 
             this.gvFoundedObjectList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -210,66 +212,66 @@
             this.gvFoundedObjectList.MasterTemplate.AllowDeleteRow = false;
             this.gvFoundedObjectList.MasterTemplate.AllowEditRow = false;
             this.gvFoundedObjectList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn3.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn3.FieldName = "ObjId";
-            gridViewDecimalColumn3.HeaderText = "ObjId";
-            gridViewDecimalColumn3.IsAutoGenerated = true;
-            gridViewDecimalColumn3.IsVisible = false;
-            gridViewDecimalColumn3.Name = "ObjId";
-            gridViewDecimalColumn3.Width = 176;
-            gridViewTextBoxColumn6.FieldName = "InnerCode";
-            gridViewTextBoxColumn6.HeaderText = "Шифр об\'єкта ";
-            gridViewTextBoxColumn6.Name = "InnerCode";
-            gridViewTextBoxColumn6.Width = 178;
-            gridViewTextBoxColumn7.FieldName = "Name";
-            gridViewTextBoxColumn7.HeaderText = "Назва";
-            gridViewTextBoxColumn7.IsAutoGenerated = true;
-            gridViewTextBoxColumn7.Name = "Name";
-            gridViewTextBoxColumn7.Width = 229;
-            gridViewTextBoxColumn8.FieldName = "Performer";
-            gridViewTextBoxColumn8.HeaderText = "Виконавець";
-            gridViewTextBoxColumn8.IsAutoGenerated = true;
-            gridViewTextBoxColumn8.Name = "Performer";
-            gridViewTextBoxColumn8.Width = 229;
-            gridViewTextBoxColumn9.FieldName = "Author";
-            gridViewTextBoxColumn9.HeaderText = "Автори";
-            gridViewTextBoxColumn9.IsAutoGenerated = true;
-            gridViewTextBoxColumn9.Name = "Author";
-            gridViewTextBoxColumn9.Width = 229;
-            gridViewTextBoxColumn10.FieldName = "Genre";
-            gridViewTextBoxColumn10.HeaderText = "Жанр";
-            gridViewTextBoxColumn10.IsAutoGenerated = true;
-            gridViewTextBoxColumn10.Name = "Genre";
-            gridViewTextBoxColumn10.Width = 199;
-            gridViewDecimalColumn4.DataType = typeof(System.Nullable<decimal>);
-            gridViewDecimalColumn4.FieldName = "AccuracyPercent";
-            gridViewDecimalColumn4.HeaderText = "% співпадіння";
-            gridViewDecimalColumn4.MaxWidth = 60;
-            gridViewDecimalColumn4.MinWidth = 60;
-            gridViewDecimalColumn4.Name = "AccuracyPercent";
-            gridViewDecimalColumn4.Width = 60;
-            gridViewCommandColumn2.AllowResize = false;
-            gridViewCommandColumn2.DefaultText = "Прив\'язати";
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Name = "LinkColumn";
-            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn2.UseDefaultText = true;
-            gridViewCommandColumn2.Width = 81;
+            gridViewDecimalColumn1.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn1.FieldName = "ObjId";
+            gridViewDecimalColumn1.HeaderText = "ObjId";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.IsVisible = false;
+            gridViewDecimalColumn1.Name = "ObjId";
+            gridViewDecimalColumn1.Width = 176;
+            gridViewTextBoxColumn1.FieldName = "InnerCode";
+            gridViewTextBoxColumn1.HeaderText = "Шифр об\'єкта ";
+            gridViewTextBoxColumn1.Name = "InnerCode";
+            gridViewTextBoxColumn1.Width = 178;
+            gridViewTextBoxColumn2.FieldName = "Name";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.IsAutoGenerated = true;
+            gridViewTextBoxColumn2.Name = "Name";
+            gridViewTextBoxColumn2.Width = 229;
+            gridViewTextBoxColumn3.FieldName = "Performer";
+            gridViewTextBoxColumn3.HeaderText = "Виконавець";
+            gridViewTextBoxColumn3.IsAutoGenerated = true;
+            gridViewTextBoxColumn3.Name = "Performer";
+            gridViewTextBoxColumn3.Width = 229;
+            gridViewTextBoxColumn4.FieldName = "Author";
+            gridViewTextBoxColumn4.HeaderText = "Автори";
+            gridViewTextBoxColumn4.IsAutoGenerated = true;
+            gridViewTextBoxColumn4.Name = "Author";
+            gridViewTextBoxColumn4.Width = 229;
+            gridViewTextBoxColumn5.FieldName = "Genre";
+            gridViewTextBoxColumn5.HeaderText = "Жанр";
+            gridViewTextBoxColumn5.IsAutoGenerated = true;
+            gridViewTextBoxColumn5.Name = "Genre";
+            gridViewTextBoxColumn5.Width = 199;
+            gridViewDecimalColumn2.DataType = typeof(System.Nullable<decimal>);
+            gridViewDecimalColumn2.FieldName = "sumAllTogether";
+            gridViewDecimalColumn2.HeaderText = "% співпадіння";
+            gridViewDecimalColumn2.MaxWidth = 60;
+            gridViewDecimalColumn2.MinWidth = 60;
+            gridViewDecimalColumn2.Name = "sumAllTogether";
+            gridViewDecimalColumn2.Width = 60;
+            gridViewCommandColumn1.AllowResize = false;
+            gridViewCommandColumn1.DefaultText = "Прив\'язати";
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Name = "LinkColumn";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.UseDefaultText = true;
+            gridViewCommandColumn1.Width = 81;
             this.gvFoundedObjectList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn3,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewDecimalColumn4,
-            gridViewCommandColumn2});
+            gridViewDecimalColumn1,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewDecimalColumn2,
+            gridViewCommandColumn1});
             this.gvFoundedObjectList.MasterTemplate.DataSource = this.bsRegisterSearchObject;
             this.gvFoundedObjectList.MasterTemplate.EnableCustomFiltering = true;
             this.gvFoundedObjectList.MasterTemplate.EnableFiltering = true;
             this.gvFoundedObjectList.MasterTemplate.ShowFilteringRow = false;
             this.gvFoundedObjectList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvFoundedObjectList.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvFoundedObjectList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvFoundedObjectList.Name = "gvFoundedObjectList";
             this.gvFoundedObjectList.ShowGroupPanel = false;
             this.gvFoundedObjectList.Size = new System.Drawing.Size(1201, 242);
@@ -281,6 +283,25 @@
             // bsRegisterSearchObject
             // 
             this.bsRegisterSearchObject.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterSearchObject);
+            // 
+            // ipsPanel1
+            // 
+            this.ipsPanel1.BorderVisible = false;
+            this.ipsPanel1.Controls.Add(this.radLabel17);
+            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ipsPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ipsPanel1.Name = "ipsPanel1";
+            this.ipsPanel1.Size = new System.Drawing.Size(1201, 32);
+            this.ipsPanel1.TabIndex = 74;
+            // 
+            // radLabel17
+            // 
+            this.radLabel17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel17.Location = new System.Drawing.Point(3, 3);
+            this.radLabel17.Name = "radLabel17";
+            this.radLabel17.Size = new System.Drawing.Size(150, 25);
+            this.radLabel17.TabIndex = 73;
+            this.radLabel17.Text = "Результати пошуку";
             // 
             // btnOk
             // 
@@ -330,27 +351,6 @@
             this.backgroundPanel.Size = new System.Drawing.Size(1201, 623);
             this.backgroundPanel.TabIndex = 93;
             // 
-            // ipsPanel1
-            // 
-            this.ipsPanel1.BorderVisible = false;
-            this.ipsPanel1.Controls.Add(this.radLabel17);
-            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ipsPanel1.Location = new System.Drawing.Point(0, 0);
-            this.ipsPanel1.Name = "ipsPanel1";
-            this.ipsPanel1.Size = new System.Drawing.Size(1201, 32);
-            this.ipsPanel1.TabIndex = 74;
-            // 
-            // ipsPanel2
-            // 
-            this.ipsPanel2.BorderVisible = false;
-            this.ipsPanel2.Controls.Add(this.btnSearchLocal);
-            this.ipsPanel2.Controls.Add(this.btnSearchWID);
-            this.ipsPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ipsPanel2.Location = new System.Drawing.Point(0, 281);
-            this.ipsPanel2.Name = "ipsPanel2";
-            this.ipsPanel2.Size = new System.Drawing.Size(1201, 32);
-            this.ipsPanel2.TabIndex = 75;
-            // 
             // waitingBar
             // 
             this.waitingBar.AssociatedControl = this.backgroundPanel;
@@ -391,25 +391,25 @@
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnSearchWID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).EndInit();
+            this.ipsPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchLocal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchWID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFoundedObjectList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFoundedObjectList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterSearchObject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
+            this.ipsPanel1.ResumeLayout(false);
+            this.ipsPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
             this.backgroundPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
-            this.ipsPanel1.ResumeLayout(false);
-            this.ipsPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).EndInit();
-            this.ipsPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

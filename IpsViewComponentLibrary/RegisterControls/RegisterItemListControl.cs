@@ -605,6 +605,10 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        /// <summary>
+        /// Відв'язати прив'язаний об'єкт
+        /// </summary>
+        /// <param name="selectedRegisterItem"></param>
         private void OnUnlinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowUnlinkCommand)
@@ -631,6 +635,10 @@ namespace IpsViewComponentLibrary.RegisterControls
             ObjectLinked?.Invoke(this, new ObjectLinkedEventArgs { RegisterItem = registerItem, ObjId = objId });
         }
 
+        /// <summary>
+        /// Показати прив'язаний об'єкт
+        /// </summary>
+        /// <param name="selectedRegisterItem"></param>
         private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowShowObjectCommand)
@@ -638,12 +646,20 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             ShowObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
 
-            if (selectedRegisterItem.ObjId != null)
+            if (selectedRegisterItem.ObjId.HasValue)
             {
                 using (var view = new ObjectRightSrView())
                 {
                     var presenter = new ObjectRightSrPresenter(view);
-                    presenter.Show((int)selectedRegisterItem.ObjId);
+                    presenter.Show(selectedRegisterItem.ObjId.Value);
+                }
+            }
+            else if (selectedRegisterItem.Wic.HasValue)
+            {
+                using (var viewWid = new ObjectRightWIDView())
+                {
+                    viewWid.LoadData(selectedRegisterItem.Wic.Value);
+                    viewWid.ShowDialog();
                 }
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ipsFormsDesign.Dictionary;
 using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types.ObjectRightInfoWID;
 using IpsCommonTypes.Views;
 using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
@@ -60,6 +61,18 @@ namespace ipsFormsDesign.Services
             string url = $"{Prefix}/widobjectrights";
             var list = _apiConnector.GetItemListByObjectQuery<ObjectRightWithWID, int[]>(url, wicArray);
             return list;
+        }
+
+        /// <summary>
+        /// Отримати об'єкт права з WID БД по WID
+        /// </summary>
+        /// <param name="wic"></param>
+        /// <returns></returns>
+        public WrapWIDObjectRightInfo GetObjectRightWIDByWIC(int wic)
+        {
+            string url = $"{Prefix}/objectinfo";
+            var item = _apiConnector.GetItemById<WrapWIDObjectRightInfo>(url, wic.ToString());
+            return item;
         }
 
         /// <summary>
