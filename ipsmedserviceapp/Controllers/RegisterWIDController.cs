@@ -211,11 +211,25 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("searchlocal")]
         public async Task<IActionResult> SearchObjectRightsByFunctionLocal([FromQuery] string name, [FromQuery] string authtors, [FromQuery] string performers)
         {
+            string normalizeName = string.Empty;
+            string normalizeAuthtors = string.Empty;
+            string normalizePerformers = string.Empty;
 
-            var list = await _dbContext.getViewData("select * from [dbo].[ft_tsk_3_SearchObj](@name, @authtors, @performers )",
-                new[] { new SqlParameter("@name", !string.IsNullOrEmpty(name) ? (object)name : DBNull.Value ),
-                    new SqlParameter("@authtors", !string.IsNullOrEmpty(name) ? (object)authtors : DBNull.Value ),
-                    new SqlParameter("@performers", !string.IsNullOrEmpty(name) ? (object)performers : DBNull.Value ) }
+            if (!string.IsNullOrWhiteSpace(name))
+                normalizeName = name.Replace("'", "''");
+            if (!string.IsNullOrWhiteSpace(authtors))
+                normalizeAuthtors = authtors.Replace("'", "''");
+            if (!string.IsNullOrWhiteSpace(performers))
+                normalizePerformers = performers.Replace("'", "''");
+
+            string query = @"select * from [dbo].[ft_tsk_3_SearchObj](@name, @authtors, @performers)";
+            var list = await _dbContext.getViewData(query,
+                new[]
+                {
+                    new SqlParameter("@name", !string.IsNullOrEmpty(name) ? (object) normalizeName : DBNull.Value),
+                    new SqlParameter("@authtors", !string.IsNullOrEmpty(name) ? (object) normalizeAuthtors : DBNull.Value),
+                    new SqlParameter("@performers", !string.IsNullOrEmpty(name) ? (object) normalizePerformers : DBNull.Value)
+                }
             );
 
             return Ok(list);
@@ -231,15 +245,22 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("searchwid")]
         public async Task<IActionResult> SearchObjectRightsByFunctionWID([FromQuery] string name, [FromQuery] string authtors, [FromQuery] string performers)
         {
-            //string normalizeName = name.Replace("'", "''");
-            //string normalizeAuthtors = authtors.Replace("'", "''");
-            //string normalizePerformers = performers.Replace("'", "''");
-             
+            string normalizeName = string.Empty;
+            string normalizeAuthtors = string.Empty;
+            string normalizePerformers = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(name))
+                normalizeName = name.Replace("'", "''");
+            if (!string.IsNullOrWhiteSpace(authtors))
+                normalizeAuthtors = authtors.Replace("'", "''");
+            if (!string.IsNullOrWhiteSpace(performers))
+                normalizePerformers = performers.Replace("'", "''");
+
             var sqlParameters = new[]
             {
-                new SqlParameter("@name", !string.IsNullOrEmpty(name) ? (object) name : DBNull.Value),
-                new SqlParameter("@authtors", !string.IsNullOrEmpty(name) ? (object) authtors : DBNull.Value),
-                new SqlParameter("@performers", !string.IsNullOrEmpty(name) ? (object) performers : DBNull.Value)
+                new SqlParameter("@name", !string.IsNullOrEmpty(name) ? (object) normalizeName : DBNull.Value),
+                new SqlParameter("@authtors", !string.IsNullOrEmpty(name) ? (object) normalizeAuthtors : DBNull.Value),
+                new SqlParameter("@performers", !string.IsNullOrEmpty(name) ? (object) normalizePerformers : DBNull.Value)
             };
 
             var list = await _dbContext.getViewData("select * from [dbo].[ft_tsk_3_SearchObjWID](@name, @authtors, @performers )", sqlParameters);
