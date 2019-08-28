@@ -28,7 +28,7 @@ namespace ipsmedserviceapp.Controllers
         private const string ObjectListQuery = @"select * from [WID_IPI].[dbo].[vObjRigthsForLink]";
 
         private const string WID_ObjectRight = @"select * from [WID_IPI].[dbo].[vtsk_3_OR_01_short]";
-        private const string WID_ObjectAuthors = @"select top 1 WIC, SeqNr, IPINr, IP_BASE_NR, IntrPtyRol, NAME + FST_NAME as authName, ratePER, rateMEC from [WID_IPI].[dbo].[v_objects_authors_5_shares]";
+        private const string WID_ObjectAuthors = @"select WIC, SeqNr, IPINr, IP_BASE_NR, IntrPtyRol, NAME + FST_NAME as authName, ratePER, rateMEC from [WID_IPI].[dbo].[v_objects_authors_5_shares]";
         private const string WID_ObjectAuthorsCommunities = @"select IP_BASE_NR, SOC_CDE, t2.name as OKU_NAME, ROL_CDE,RGT_CDE, AGR_VALID_FROM_DT, cast(MBR_SHARE/100 as decimal(5,2)) as MBR_SHARE, TISAN from [WID_IPI].[dbo].[TBLMBRAGREETERR] t1 left join vCustomerRholder t2 on t1.SOC_CDE = t2.interCode and t2.rHolderType = 2";
         private const string WID_ObjectAlternativeNames = @"select WIC, SeqNr, AltTtl from [WID_IPI].[dbo].[TblAltTtl]";
         private const string WID_ObjectPerformers = @"select WIC, SeqNr, LstNa + FstNa as PerformerName from [WID_IPI].[dbo].[TblArtist]";
@@ -245,27 +245,35 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("searchwid")]
         public async Task<IActionResult> SearchObjectRightsByFunctionWID([FromQuery] string name, [FromQuery] string authtors, [FromQuery] string performers)
         {
-            string normalizeName = string.Empty;
-            string normalizeAuthtors = string.Empty;
-            string normalizePerformers = string.Empty;
-
-            if (!string.IsNullOrWhiteSpace(name))
-                normalizeName = name.Replace("'", "''");
-            if (!string.IsNullOrWhiteSpace(authtors))
-                normalizeAuthtors = authtors.Replace("'", "''");
-            if (!string.IsNullOrWhiteSpace(performers))
-                normalizePerformers = performers.Replace("'", "''");
-
-            var sqlParameters = new[]
+            try
             {
-                new SqlParameter("@name", !string.IsNullOrEmpty(name) ? (object) normalizeName : DBNull.Value),
-                new SqlParameter("@authtors", !string.IsNullOrEmpty(name) ? (object) normalizeAuthtors : DBNull.Value),
-                new SqlParameter("@performers", !string.IsNullOrEmpty(name) ? (object) normalizePerformers : DBNull.Value)
-            };
+                string normalizeName = string.Empty;
+                string normalizeAuthtors = string.Empty;
+                string normalizePerformers = string.Empty;
 
-            var list = await _dbContext.getViewData("select * from [dbo].[ft_tsk_3_SearchObjWID](@name, @authtors, @performers )", sqlParameters);
+                if (!string.IsNullOrWhiteSpace(name))
+                    normalizeName = name.Replace("'", "''");
+                if (!string.IsNullOrWhiteSpace(authtors))
+                    normalizeAuthtors = authtors.Replace("'", "''");
+                if (!string.IsNullOrWhiteSpace(performers))
+                    normalizePerformers = performers.Replace("'", "''");
 
-            return Ok(list);
+                var sqlParameters = new[]
+                {
+                    new SqlParameter("@name", !string.IsNullOrEmpty(name) ? (object) normalizeName : DBNull.Value),
+                    new SqlParameter("@authtors", !string.IsNullOrEmpty(name) ? (object) normalizeAuthtors : DBNull.Value),
+                    new SqlParameter("@performers", !string.IsNullOrEmpty(name) ? (object) normalizePerformers : DBNull.Value)
+                };
+
+                string query = @"select * from [dbo].[ft_tsk_3_SearchObjWID](@name, @authtors, @performers)";
+                var list = await _dbContext.getViewData(query, sqlParameters);
+
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
 
         /// <summary>

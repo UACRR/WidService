@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
 
             //string name = Environment.UserName;
-            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent())?.Identity?.Name;
+            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
             catalogFile.UserId = identityName;
 
             var PubCatalogItemList = GetPubСatalog(path);

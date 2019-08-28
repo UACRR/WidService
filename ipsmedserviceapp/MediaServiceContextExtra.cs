@@ -13,7 +13,6 @@ namespace ipsmedserviceapp.Model
 {
     public partial class MediaServiceContext : DbContext
     {
-        // mapped to vTsk_1_ListRightHolder01
         public DbQuery<RightholderMainView> RightholderMainView { get; set; }
         public DbQuery<vCustomer> vCustomer { get; set; }
         public DbQuery<vTsk1ListRightHolder01> vTsk_1_ListRightHolder01 { get; set; }

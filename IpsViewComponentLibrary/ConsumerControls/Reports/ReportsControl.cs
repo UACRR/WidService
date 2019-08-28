@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
@@ -355,6 +356,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 bool statusDoubledRecordExist = false;
                 bool result = false;
 
+                string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
+
                 waitingBar.StartWaiting();
                 await Task.Factory.StartNew(() =>
                 {
@@ -384,7 +387,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                             Rm = RatedList,
                             LicId = period.LicId,
                             SchemaId = licenseAgreement?.LicCodeNavigation?.SchemaId ?? 1,
-                            AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ?? 1
+                            AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ?? 1,
+                            UserId = identityName
                         };
 
                         foreach (var item in list)
@@ -421,7 +425,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         {
             if (!(gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period))
                 return;
-            
+
+            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
+
             if (!period.RegisterRatedList.Any())
             {
                 period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
@@ -442,6 +448,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 AlgorithmId = algorithmId,
                 PeriodId = period.PeriodId,
                 SchemaId = schemaId,
+                UserId = identityName,
             };
             
             // рапортичка
