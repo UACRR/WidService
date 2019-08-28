@@ -186,6 +186,12 @@
     <Compile Include="ObjectRightControls\ObjectRightWIDView.Designer.cs">
       <DependentUpon>ObjectRightWIDView.cs</DependentUpon>
     </Compile>
+    <Compile Include="RightholderControls\NewRightholderExternalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\NewRightholderExternalForm.Designer.cs">
+      <DependentUpon>NewRightholderExternalForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1179,6 +1185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightWIDView.resx">
       <DependentUpon>ObjectRightWIDView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\NewRightholderExternalForm.resx">
+      <DependentUpon>NewRightholderExternalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterDetailForm.resx">
       <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>

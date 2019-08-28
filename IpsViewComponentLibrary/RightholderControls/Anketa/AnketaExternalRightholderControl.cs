@@ -19,7 +19,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
         {
             InitializeComponent();
             if (IpsGlobal.AnketaDictionaties != null)
-                bsCountry.DataSource = IpsGlobal.AnketaDictionaties.country;
+                bsDictCountry.DataSource = IpsGlobal.AnketaDictionaties.country;
 
             txtInnOkpo.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
         }

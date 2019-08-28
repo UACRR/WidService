@@ -9,7 +9,7 @@ namespace ipsFormsDesign.Dictionary
         public string SearchString { get; set; }
         public RightholderStatusType? RightholderStatus { get; set; }
         public AgreementStatuses? AgreementStatus { get; set; }
-
+        public int? FilterType { get; set; }
         public int? PageNumber { get; set;  }
         public int? RowsPerPage { get; set;  }
 
@@ -31,6 +31,9 @@ namespace ipsFormsDesign.Dictionary
 
             if(!string.IsNullOrEmpty(SearchString) && SearchString.Trim().Length > 0)
                 parameters.Add(new KeyValuePair<string, string>("searchString", SearchString));
+
+            if (FilterType.HasValue)
+                parameters.Add(new KeyValuePair<string, string>("filterType", (FilterType.Value).ToString()));
 
 
             return parameters.ToArray();

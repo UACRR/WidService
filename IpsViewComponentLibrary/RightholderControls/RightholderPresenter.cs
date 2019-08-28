@@ -107,7 +107,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 _anketaCompany = _customer.Company.AnketaCompany.FirstOrDefault();
                 _view.AnketaCompanyDataSource = _anketaCompany;
-            } else if (_customer.CustType == 5)
+            }
+            else if (_customer.CustType == 5)
             {
                 //get data for Exteral Anketa
                 _anketaExternal = _customer.AnketaExternal;

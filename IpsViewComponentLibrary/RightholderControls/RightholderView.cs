@@ -78,8 +78,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             get => bsCustomer.DataSource;
             set
             {
-                bsCustomer.DataSource = value;
-                ctrlCatalog.CustId = ((Customer) value).CustId;
+                if (value != null)
+                {
+                    bsCustomer.DataSource = value;
+                    ctrlCatalog.CustId = ((Customer)value).CustId;
+                }
             }
         }
 
@@ -92,8 +95,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         //TernsOfService control for External Anketa
         public object TermsOfServiceExternalAnketaDataSource
         {
-            get => rightLimitationsControl1_ExternalAnketa.DataSource;
-            set => rightLimitationsControl1_ExternalAnketa.DataSource = value;
+            get => ctrlRightLimitationsExternal.DataSource;
+            set => ctrlRightLimitationsExternal.DataSource = value;
         }
 
         public object RightholderDataSource
@@ -138,7 +141,6 @@ namespace IpsViewComponentLibrary.RightholderControls
                 pvRegisters.Enabled = false;
             }
         }
-
         
         public RightholderView()
         {
@@ -644,8 +646,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 //set default active page for External Anketa
                 _rightholderView.pageCatalog.SelectedPage = _rightholderView.AnketaExternal;
                 //set data of the External Anketa
-                _rightholderView.anketaExternalRightholderControl1.DataSourceAnketaExternal = _rightholderView.bsAnketaExternal;
-                _rightholderView.anketaExternalRightholderControl1.DataSourceRightHolder = _rightholderView.bsRightHolder;
+                _rightholderView.ctrlAnketaExternalRightholder.DataSourceAnketaExternal = _rightholderView.bsAnketaExternal;
+                _rightholderView.ctrlAnketaExternalRightholder.DataSourceRightHolder = _rightholderView.bsRightHolder;
+                _rightholderView.ctrlRightLimitationsExternal.IsExternalRightHolder = true;
             }
             
             //check on valid state input data
@@ -658,10 +661,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             //show necessary pages
             public void ShowPages()
             {
+                var hidepages = new[] { "Anketa", "Contract", "pvCatalog", "pvRegisters" };
                 foreach (var page in _rightholderView.pageCatalog.Pages)
                 {
-                    if (page.Name == "Anketa" || page.Name == "Contract")
+                    if (hidepages.Contains(page.Name))
                         page.Item.Visibility = ElementVisibility.Collapsed;
+
+                    //if (page.Name == "Anketa" || page.Name == "Contract")
+                    //    page.Item.Visibility = ElementVisibility.Collapsed;
                 }
             }
         }

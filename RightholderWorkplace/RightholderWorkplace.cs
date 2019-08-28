@@ -2,7 +2,6 @@
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
-using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.ObjectsRight;
@@ -14,14 +13,12 @@ using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
 using RightholderWorkplace.Presenters;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
@@ -30,16 +27,13 @@ namespace RightholderWorkplace
 {
     public partial class RightholderWorkplace : RadForm
     {
-        RightholderService _rightholderService = new RightholderService();
+        private const string SaveNewRightholderExternalSuccessMsg = "Нового зовнішнього правовласника/видавництво додано!";
+        private const string SaveNewRightholderExternalErrorMsg = "Неможливо додати нового зовнішнього правовласника/видавництво!";
+
+        readonly RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
         AmountDistributor _persentDistributor = new AmountDistributor();
         private CommunityPresenter _communityPresenter;  // main presenter for community
-
-        internal void InitEvents()
-        {
-
-        }
-
 
         public RightholderWorkplace()
         {
@@ -82,6 +76,40 @@ namespace RightholderWorkplace
             {
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
                 rightholderPresenter.ShowNew(custType);
+            }
+        }
+
+        /// <summary>
+        /// Додати зовнішнього правовласника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddRightholderExternal_Click(object sender, EventArgs e)
+        {
+            CreateNewRightholderExternal(1);
+        }
+
+        /// <summary>
+        /// Додати зовнішнього правовласника (видавництво)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddRightholderPublisherExternal_Click(object sender, EventArgs e)
+        {
+            CreateNewRightholderExternal(3);
+        }
+
+        private void CreateNewRightholderExternal(int rhType)
+        {
+            var customer = _rightholderService.NewExternalRightholder(rhType);
+            using (var externalRightHolderForm = new NewRightholderExternalForm())
+            {
+                externalRightHolderForm.LoadData(customer);
+                if (externalRightHolderForm.ShowDialog() == DialogResult.OK)
+                {
+                    var result = _rightholderService.SaveRightholderExternal(customer);
+                    MessageShow.ShowInfoByResult(SaveNewRightholderExternalSuccessMsg, SaveNewRightholderExternalErrorMsg, result);
+                }
             }
         }
 

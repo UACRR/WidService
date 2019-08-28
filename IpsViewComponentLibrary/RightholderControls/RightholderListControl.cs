@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary.RightholderControls
     public partial class RightholderListControl : UserControl,
         ISubscriber<RightholderUpdatedEvent>
     {
-        private RightholderService _rightholderService;
+        private readonly RightholderService _rightholderService;
         private AgreementStatuses[] _allowedStatuses;
 
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
@@ -83,9 +83,17 @@ namespace IpsViewComponentLibrary.RightholderControls
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
                 _rightholderService = new RightholderService();
 
-                var statusNode = new RadTreeNode { Text = "Статус" };
+                //var statusNode = new RadTreeNode { Text = "Статус" };
+                //tvFilters.Nodes.Add(statusNode);
 
-                tvFilters.Nodes.Add(statusNode);
+                var listFilters = new List<RadTreeNode>
+                {
+                    new RadTreeNode {Value = 0, Text = "Всі правовласники"},
+                    new RadTreeNode {Value = 1, Text = "Правовласники УААСП"},
+                    new RadTreeNode {Value = 2, Text = "Зовнішні Правовласники"}
+                };
+
+                tvFilters.Nodes.AddRange(listFilters);
                 tvFilters.ExpandAll();
             }
         }
@@ -97,7 +105,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                 PopulateFiltersValues();
 
                 // set default status filter as Active, this also cause update list, beacouse of tvFilters_SelectedNodeChanged is handled
-                tvFilters.Nodes[0].Nodes.First(n => (RightholderStates)n.Value == RightholderStates.Active).Selected = true;
+                tvFilters.Nodes[1].Nodes.First(n => (RightholderStates)n.Value == RightholderStates.Active).Selected = true;
             }
         }
 
@@ -136,21 +144,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             UpdateListWithPage(SelectedRightholder);
         }
 
-        //public async void UpdateList(RightholderMainView currentRightholder)
-        //{
-        //    waitingBar.StartWaiting();
-
-        //    var query = CreateRightholderQuery();
-
-        //    var list = await _rightholderService.GetRightholdersAsync(query);
-
-        //    rightholderMainViewBindingSource.DataSource = list;
-        //    lblCountRows.Text = list.Count().ToString();
-        //    //SelectedRightholder = currentRightholder; // TODO: is it needed?
-
-        //    waitingBar.StopWaiting();
-        //}
-
         public async void UpdateListWithPage(RightholderMainView currentRightholder)
         {
             if (_rightholderService == null)
@@ -159,6 +152,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             waitingBar.StartWaiting();
 
             var query = CreateRightholderQuery();
+
+            if (query == null)
+            {
+                rightholderMainViewBindingSource.DataSource = null;
+                waitingBar.StopWaiting();
+                return;
+            }
 
             var rowsOnPage = navigatorPanelControl1.PageSize;
             if( rowsOnPage == 0 )
@@ -175,8 +175,6 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             waitingBar.StopWaiting();
         }
-
-
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -264,6 +262,10 @@ namespace IpsViewComponentLibrary.RightholderControls
             RightholderSelected?.Invoke(this, selectedRightholder);
         }
 
+        /// <summary>
+        /// Відкрити кабінет правовласника
+        /// </summary>
+        /// <param name="selectedRightholder"></param>
         private void OnEditCommandExecuted(RightholderMainView selectedRightholder)
         {
             using (var rightholderView = new RightholderView())
@@ -277,6 +279,10 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void PopulateFiltersValues()
         {
+            var allNodes = new RadTreeNode{ Value = 0, Text = "Всі"};
+            tvFilters.Nodes[0].Nodes.Clear();
+            tvFilters.Nodes[0].Nodes.Add(allNodes);
+
             var filters = new List<RadTreeNode> {
                 new RadTreeNode { Value = -1,                            Text = "Всі" },
                 new RadTreeNode { Value = AgreementStatuses.NotAccepted, Text = "Не підтверджені" },
@@ -292,19 +298,27 @@ namespace IpsViewComponentLibrary.RightholderControls
                 filters = filters.Where(node => _allowedStatuses.Contains((AgreementStatuses)node.Value)).ToList();
             }
 
-            tvFilters.Nodes[0].Nodes.Clear();
-            tvFilters.Nodes[0].Nodes.AddRange(filters);
+            tvFilters.Nodes[1].Nodes.Clear();
+            tvFilters.Nodes[1].Nodes.AddRange(filters);
+
+            var externalNodes = new RadTreeNode{Value = 0, Text = "Всі"};
+            tvFilters.Nodes[2].Nodes.Clear();
+            tvFilters.Nodes[2].Nodes.AddRange(externalNodes);
         }
 
         private RightholderListQuery CreateRightholderQuery()
         {
             var query = new RightholderListQuery();
 
-            var agreementStatus = (AgreementStatuses)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value;
+            query.FilterType = tvFilters.SelectedNode.Parent.Value as int?;
 
-            if ((int)agreementStatus != -1)
+            if (query.FilterType == 1)
             {
-                query.AgreementStatus = agreementStatus;
+                var agreementStatus = (AgreementStatuses) tvFilters.Nodes[1].Nodes.First(n => n.Selected).Value;
+                if ((int) agreementStatus != -1)
+                {
+                    query.AgreementStatus = agreementStatus;
+                }
             }
 
             query.PageNumber = navigatorPanelControl1.CurrentPage;
@@ -320,53 +334,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             UpdateList();
         }
-
-        #region Search rightolder
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            gvRightholdersList.MasterTemplate.Refresh();
-        }
-
-        private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                gvRightholdersList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRightholdersList.EndUpdate(false);
-                return;
-            }
-
-            gvRightholdersList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRightholdersList.EndUpdate(false);
-            }
-        }
-
-        #endregion
 
         private void navigatorPanelControl1_CurrentPageChanged(object sender, EventArgs e)
         {

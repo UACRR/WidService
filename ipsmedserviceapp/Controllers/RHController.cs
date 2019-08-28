@@ -65,11 +65,9 @@ namespace ipsmedserviceapp.Controllers
             if (cust.RightHolder == null)
                 return null;
 
-            var currDate = DateTime.Now.Date;
-
-
 
             if (!forSync)
+            {
                 await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,1) as ourService
 from CopyrightKind t1
 left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.codeI", new SqlParameter("@custid", id))
@@ -77,12 +75,11 @@ left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.co
                         .ThenInclude(ck => ck.CrGroupCodeNavigation)
                     .Where(tos => tos.CustId == id)
                     .LoadAsync();
+            }
             else
-                await _dbContext.Entry(cust.RightHolder).Collection(rec => rec.TermsOfService)
-                    //.Query()
-                    //    .Include(tos => tos.CrkindCodeNavigation)
-                    //    .ThenInclude(ck => ck.CrGroupCodeNavigation)
-                        .LoadAsync();
+            {
+                await _dbContext.Entry(cust.RightHolder).Collection(rec => rec.TermsOfService).LoadAsync();
+            }
 
 
             await _dbContext.CustCmRight
@@ -115,7 +112,6 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 .LoadAsync();
 
             return cust;
-
         }
 
         /// <summary>
@@ -184,31 +180,9 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         [HttpGet("currentpage")]
         public async Task<IActionResult> GetRightholdersPageData([FromQuery] RightholderListQueryResource query)
         {
-            //var queryText = "select * from vTsk_1_ListRightHolder01";
-
-
-            //var conditions = new Collection<string>();
-            //if (query != null)
-            //{
-            //    if (query.RightholderStatus.HasValue)
-            //        conditions.Add($"custStatus = {query.RightholderStatus.Value}");
-
-            //    if (query.AgreementStatus.HasValue)
-            //        conditions.Add($"agrStatus = {query.AgreementStatus.Value}");
-
-            //    if (conditions.Any())
-            //        queryText = queryText + " where " + string.Join(" and ", conditions);
-            //}
-
-            //var List = await _dbContext.getViewData(queryText, null);
-            //object searchText = new SqlParameter("@searchString", string.IsNullOrEmpty(query.SearchString) ? (object)DBNull.Value : query.SearchString );
-
-            //var qlist = _dbContext.vTsk1ListRightHolder01.FromSql("select * from Ft_Tsk_1_ListRightHolder01(NULL,@searchString)", searchText);
-
-
             try
             {
-                vTsk1ListRightHolder01Box retItem = new vTsk1ListRightHolder01Box();
+                var rightHolderBox = new vTsk1ListRightHolder01Box();
 
                 var qlist = _dbContext.vTsk_1_ListRightHolder01.AsQueryable();
 
@@ -223,13 +197,23 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 if (query.RightholderStatus.HasValue)
                     qlist = qlist.Where(rec => rec.AgrStatus == query.RightholderStatus);
 
-                retItem.TotalPages = qlist.Count();
+                switch (query.FilterType)
+                {
+                    //case 0 - all
+                    case 1:
+                        qlist = qlist.Where(rec => rec.CustType != 5);
+                        break;
+                    case 2:
+                        qlist = qlist.Where(rec => rec.CustType == 5);
+                        break;
+                }
+                
+                rightHolderBox.TotalPages = qlist.Count();
 
                 var skipRows = Math.Max((int)((query.PageNumber - 1) * query.RowsPerPage), 0);
-                retItem.list = await qlist.OrderBy(rec => rec.Name).Skip(skipRows).Take((int)query.RowsPerPage).ToListAsync();
+                rightHolderBox.list = await qlist.OrderBy(rec => rec.Name).Skip(skipRows).Take((int)query.RowsPerPage).ToListAsync();
 
-
-                return Ok(retItem);
+                return Ok(rightHolderBox);
             }
             catch (Exception e)
             {
@@ -238,7 +222,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         }
 
         [HttpGet("newrightholder/{custType}")]
-        public async Task<IActionResult> Newrightholder(int custType)
+        public async Task<IActionResult> NewRightholder(int custType)
         {
             Customer newCust = new Customer { CustType = custType, AnkVersion = 1 };
             newCust.RightHolder = new RightHolder { AroundWord = true };
@@ -315,6 +299,101 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
 
             return Json(newCust);
 
+        }
+
+        /// <summary>
+        /// Структура нового зовнішнього правовласника/видавництва
+        /// </summary>
+        /// <param name="rhType"></param>
+        /// <returns></returns>
+        [HttpGet("newrightholder/external/{rhType}")]
+        public async Task<IActionResult> NewRightholderExternal(int rhType)
+        {
+            var customer = new Customer
+            {
+                DateCreate = DateTime.Now,
+                CustType = 5,
+                AnkVersion = 1,
+                RightHolder = new RightHolder
+                {
+                    AroundWord = true,
+                    RHolderType = rhType,
+                },
+                AnketaExternal = new AnketaExternal()
+            };
+            customer.BankAccount.Add(new BankAccount());
+
+            var copyrightList = await _dbContext.CopyrightKind
+                .Include(rec => rec.CrGroupCodeNavigation)
+                .AsNoTracking().ToListAsync();
+
+            copyrightList.ForEach(rec =>
+            {
+                customer.RightHolder.TermsOfService.Add(new TermsOfService
+                {
+                    CrkindCode = rec.CodeI,
+                    OurService = false,
+                    CrkindCodeNavigation = rec
+                });
+            });
+
+            return Json(customer);
+        }
+
+        /// <summary>
+        /// Додати нового зовнішнього правовласника/видавництво
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPost("saverightholder/external/new")]
+        public async Task<IActionResult> SaveNewRightholderExternal([FromBody] Customer source)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var fieldExclude = new[] {"CustId"};
+
+                var target = new Customer
+                {
+                    AnketaExternal = new AnketaExternal(),
+                    RightHolder = new RightHolder()
+                };
+                target.BankAccount.Add(new BankAccount());
+
+                target.SetFields(source, fieldExclude);
+                target.AnketaExternal.SetFields(source.AnketaExternal, fieldExclude);
+                target.RightHolder.SetFields(source.RightHolder, fieldExclude);
+                target.BankAccount.FirstOrDefault().SetFields(source.BankAccount.FirstOrDefault(), fieldExclude);
+
+                await _dbContext.Customer.AddAsync(target);
+
+                foreach (var termsOfService in source.RightHolder.TermsOfService)
+                {
+                    var newTerm = new TermsOfService {CustId = target.CustId};
+                    newTerm.SetFields(termsOfService, fieldExclude);
+                    foreach (var custCmRight in termsOfService.CustCmRight)
+                    {
+                        if (custCmRight.CmCustId == 0)
+                            continue;
+
+                        var newCustCmRight = new CustCmRight {CustId = target.CustId};
+                        newCustCmRight.SetFields(custCmRight, fieldExclude);
+                        newTerm.CustCmRight.Add(newCustCmRight);
+                    }
+
+                    target.RightHolder.TermsOfService.Add(newTerm);
+                }
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.ToString());
+            }
         }
 
         private void prepareToUpdate(Customer sorsCust, Customer destCustomer)
@@ -554,12 +633,18 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         [HttpGet("detail/{rhId}")]
         public async Task<IActionResult> getRh(int rhId)
         {
-            var customer = await GetRightHolderAllData(rhId);
-            if (customer == null)
-                return NotFound();
-            return Json(customer);
+            try
+            {
+                var customer = await GetRightHolderAllData(rhId);
+                if (customer == null)
+                    return NotFound();
+                return Json(customer);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.ToString());
+            }
         }
-
 
         /// <summary>
         /// Отримати всю інформацію по Правовласнику

@@ -70,18 +70,39 @@ namespace ipsFormsDesign.Services
 
         public Customer NewCustomer(int custType)
         {
-            var anketaDic = _webApi.GetItemById<Customer>("rh/newrightholder", custType.ToString());
-            return anketaDic;
+            var resultById = _webApi.GetItemById<Customer>("rh/newrightholder", custType.ToString());
+            return resultById;
+        }
+
+        /// <summary>
+        /// Створити зовнішнього правовласника
+        /// </summary>
+        /// <param name="rhType"></param>
+        /// <returns></returns>
+        public Customer NewExternalRightholder(int rhType)
+        {
+            var result = _webApi.GetItemById<Customer>("rh/newrightholder/external", rhType.ToString());
+            return result;
         }
 
         public bool Save(Customer cust)
         {
             if (cust.CustId == 0) // Новий споживач
             {
-                return _webApi.NewItem<Customer>("rh/newrightholder", cust);
+                return _webApi.NewItem("rh/newrightholder", cust);
             }
 
-            return _webApi.UpdateItem<Customer>("rh/detail", cust.CustId.ToString(), cust);
+            return _webApi.UpdateItem("rh/detail", cust.CustId.ToString(), cust);
+        }
+
+        /// <summary>
+        ///  Зберегти зовнішнього правовласника
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public bool SaveRightholderExternal(Customer customer)
+        {
+            return _webApi.NewItem("rh/saverightholder/external/new", customer);
         }
 
         private IList<RightholderMainView> GetRightholdersList(string resourceUrl)
