@@ -31,5 +31,10 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(list);
         }
+
+        public async Task<IActionResult> CreateLink()
+        {
+            return Ok();
+        }
     }
 }
