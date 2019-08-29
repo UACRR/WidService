@@ -235,6 +235,7 @@
 "RelPopGenre",
 "RelReqMedia",
 "RelReqObj",
+"RelSubPublish",
 "RelSerialEpisode",
 "RelTVEpisode",
 "ReportList",
