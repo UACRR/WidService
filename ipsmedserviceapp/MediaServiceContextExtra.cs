@@ -19,6 +19,7 @@ namespace ipsmedserviceapp.Model
         public DbQuery<ObjectsRightForLink> ObjectsRightForLink { get; set; }
 
         public DbQuery<WIDObjectRight> WIDObjectRight { get; set; }
+        public DbQuery<WIDiswc> WIDiswc { get; set; }
         public DbQuery<WIDObjectAuthors> WIDObjectAuthors { get; set; }
         public DbQuery<WIDObjectAuthorsCommunities> WIDObjectAuthorsCommunities { get; set; }
         public DbQuery<WIDObjectAlternativeNames> WIDObjectAlternativeNames { get; set; }

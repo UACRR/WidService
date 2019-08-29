@@ -15,6 +15,6 @@ namespace ipsFormsDesign.Dictionary
         public string Author { get; set; }
         public string Genre { get; set; }
         public TimeSpan? Duration { get; set; }
-        public decimal? AccuracyPercent { get; set; }
+        public decimal? SumAllTogether { get; set; }
     }
 }

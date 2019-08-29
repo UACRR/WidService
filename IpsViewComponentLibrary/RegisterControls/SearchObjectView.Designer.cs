@@ -244,11 +244,12 @@
             gridViewTextBoxColumn5.Name = "Genre";
             gridViewTextBoxColumn5.Width = 199;
             gridViewDecimalColumn2.DataType = typeof(System.Nullable<decimal>);
-            gridViewDecimalColumn2.FieldName = "sumAllTogether";
+            gridViewDecimalColumn2.FieldName = "SumAllTogether";
+            gridViewDecimalColumn2.FormatString = "{0:##0.00}";
             gridViewDecimalColumn2.HeaderText = "% співпадіння";
             gridViewDecimalColumn2.MaxWidth = 60;
             gridViewDecimalColumn2.MinWidth = 60;
-            gridViewDecimalColumn2.Name = "sumAllTogether";
+            gridViewDecimalColumn2.Name = "SumAllTogether";
             gridViewDecimalColumn2.Width = 60;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Прив\'язати";

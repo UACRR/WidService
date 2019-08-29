@@ -28,6 +28,7 @@ namespace ipsmedserviceapp.Controllers
         private const string ObjectListQuery = @"select * from [WID_IPI].[dbo].[vObjRigthsForLink]";
 
         private const string WID_ObjectRight = @"select * from [WID_IPI].[dbo].[vtsk_3_OR_01_short]";
+        private const string WID_ISWC = @"SELECT WIC, ISWC FROM [WID_IPI].[dbo].[tblISWC]";
         private const string WID_ObjectAuthors = @"select WIC, SeqNr, IPINr, IP_BASE_NR, IntrPtyRol, NAME + FST_NAME as authName, ratePER, rateMEC from [WID_IPI].[dbo].[v_objects_authors_5_shares]";
         private const string WID_ObjectAuthorsCommunities = @"select IP_BASE_NR, SOC_CDE, t2.name as OKU_NAME, ROL_CDE,RGT_CDE, AGR_VALID_FROM_DT, cast(MBR_SHARE/100 as decimal(5,2)) as MBR_SHARE, TISAN from [WID_IPI].[dbo].[TBLMBRAGREETERR] t1 left join vCustomerRholder t2 on t1.SOC_CDE = t2.interCode and t2.rHolderType = 2";
         private const string WID_ObjectAlternativeNames = @"select WIC, SeqNr, AltTtl from [WID_IPI].[dbo].[TblAltTtl]";
@@ -291,11 +292,14 @@ namespace ipsmedserviceapp.Controllers
                 var whereWicCondition = new Dictionary<string, string> {["WIC"] = wic.ToString()};
 
                 string queryObjectRight = ApplySqlWhereEqualCondition(WID_ObjectRight, whereWicCondition);
+                string queryISWC = ApplySqlWhereEqualCondition(WID_ISWC, whereWicCondition);
                 string queryObjectAuthors = ApplySqlWhereEqualCondition(WID_ObjectAuthors, whereWicCondition);
                 string queryObjectAlternativeNames = ApplySqlWhereEqualCondition(WID_ObjectAlternativeNames, whereWicCondition);
                 string queryObjectPerformers = ApplySqlWhereEqualCondition(WID_ObjectPerformers, whereWicCondition);
 
                 var widObjectRight = await _dbContext.WIDObjectRight.FromSql(queryObjectRight).AsNoTracking().SingleOrDefaultAsync();
+
+                var widISWC = await _dbContext.WIDiswc.FromSql(queryISWC).AsNoTracking().ToListAsync();
 
                 var widObjectAuthors = await _dbContext.WIDObjectAuthors.FromSql(queryObjectAuthors).AsNoTracking().ToListAsync();
 
@@ -310,6 +314,7 @@ namespace ipsmedserviceapp.Controllers
                 var wrapWidObjRight = new WrapWIDObjectRightInfo
                 {
                     WIDObjectRight = widObjectRight,
+                    WIDiswc = widISWC,
                     WIDObjectAuthors = widObjectAuthors,
                     WIDObjectAuthorsCommunities = widObjectAuthorsCommunities,
                     WIDObjectAlternativeNames = widObjectAlternativeNames,

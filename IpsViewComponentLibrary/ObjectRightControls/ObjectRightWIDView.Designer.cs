@@ -84,7 +84,6 @@
             this.bsWIDObjectPerformers = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.txtISWC = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
@@ -96,6 +95,8 @@
             this.txtDuration = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtObjectName = new Telerik.WinControls.UI.RadTextBox();
+            this.listISWCs = new Telerik.WinControls.UI.RadListControl();
+            this.bsWIDiswc = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -138,7 +139,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsWIDObjectPerformers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtISWC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
@@ -150,6 +150,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDuration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listISWCs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWIDiswc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,14 +162,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
-            this.radSplitContainer1.Location = new System.Drawing.Point(3, 83);
+            this.radSplitContainer1.Location = new System.Drawing.Point(3, 113);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(1202, 501);
+            this.radSplitContainer1.Size = new System.Drawing.Size(1202, 471);
             this.radSplitContainer1.SplitterWidth = 5;
             this.radSplitContainer1.TabIndex = 87;
             this.radSplitContainer1.TabStop = false;
@@ -182,7 +184,7 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(1202, 263);
+            this.splitPanel1.Size = new System.Drawing.Size(1202, 247);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.03024193F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 15);
             this.splitPanel1.TabIndex = 0;
@@ -201,7 +203,7 @@
             // 
             // 
             this.radSplitContainer3.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer3.Size = new System.Drawing.Size(1202, 263);
+            this.radSplitContainer3.Size = new System.Drawing.Size(1202, 247);
             this.radSplitContainer3.SplitterWidth = 5;
             this.radSplitContainer3.TabIndex = 75;
             this.radSplitContainer3.TabStop = false;
@@ -222,7 +224,7 @@
             // 
             // 
             this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel5.Size = new System.Drawing.Size(683, 263);
+            this.splitPanel5.Size = new System.Drawing.Size(683, 247);
             this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.07059318F, 0F);
             this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(-133, 0);
             this.splitPanel5.TabIndex = 0;
@@ -243,7 +245,7 @@
             // 
             this.itxtRatePER.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.itxtRatePER.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWIDObjectRight, "RateTotalPER", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.itxtRatePER.Location = new System.Drawing.Point(372, 238);
+            this.itxtRatePER.Location = new System.Drawing.Point(372, 222);
             this.itxtRatePER.Name = "itxtRatePER";
             this.itxtRatePER.ReadOnly = true;
             this.itxtRatePER.Size = new System.Drawing.Size(44, 21);
@@ -269,7 +271,7 @@
             // radLabel1
             // 
             this.radLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel1.Location = new System.Drawing.Point(162, 239);
+            this.radLabel1.Location = new System.Drawing.Point(162, 223);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(204, 19);
             this.radLabel1.TabIndex = 74;
@@ -306,23 +308,23 @@
             gridViewTextBoxColumn3.HeaderText = "IPINr";
             gridViewTextBoxColumn3.MinWidth = 130;
             gridViewTextBoxColumn3.Name = "IPINr";
-            gridViewTextBoxColumn3.Width = 130;
+            gridViewTextBoxColumn3.Width = 131;
             gridViewTextBoxColumn4.FieldName = "IP_BASE_NR";
             gridViewTextBoxColumn4.HeaderText = "IP_BASE_NR";
             gridViewTextBoxColumn4.MinWidth = 130;
             gridViewTextBoxColumn4.Name = "IP_BASE_NR";
-            gridViewTextBoxColumn4.Width = 130;
+            gridViewTextBoxColumn4.Width = 131;
             gridViewTextBoxColumn5.FieldName = "AuthName";
             gridViewTextBoxColumn5.HeaderText = "Назва";
             gridViewTextBoxColumn5.IsAutoGenerated = true;
             gridViewTextBoxColumn5.Name = "AuthName";
-            gridViewTextBoxColumn5.Width = 211;
+            gridViewTextBoxColumn5.Width = 207;
             gridViewTextBoxColumn6.FieldName = "IntrPtyRol";
             gridViewTextBoxColumn6.HeaderText = "Роль WID";
             gridViewTextBoxColumn6.MaxWidth = 90;
             gridViewTextBoxColumn6.MinWidth = 70;
             gridViewTextBoxColumn6.Name = "IntrPtyRol";
-            gridViewTextBoxColumn6.Width = 70;
+            gridViewTextBoxColumn6.Width = 72;
             gridViewDecimalColumn1.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn1.FieldName = "ratePER";
             gridViewDecimalColumn1.HeaderText = "% PER";
@@ -354,9 +356,10 @@
             this.gvWIDObjectAuthors.Name = "gvWIDObjectAuthors";
             this.gvWIDObjectAuthors.ReadOnly = true;
             this.gvWIDObjectAuthors.ShowGroupPanel = false;
-            this.gvWIDObjectAuthors.Size = new System.Drawing.Size(677, 198);
+            this.gvWIDObjectAuthors.Size = new System.Drawing.Size(677, 182);
             this.gvWIDObjectAuthors.TabIndex = 6;
             this.gvWIDObjectAuthors.ThemeName = "Office2013Light";
+            this.gvWIDObjectAuthors.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvWIDObjectAuthors_CurrentRowChanged);
             // 
             // bsWIDObjectAuthors
             // 
@@ -366,7 +369,7 @@
             // 
             this.itxtRateMEC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.itxtRateMEC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWIDObjectRight, "RateTotalMEC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.itxtRateMEC.Location = new System.Drawing.Point(636, 238);
+            this.itxtRateMEC.Location = new System.Drawing.Point(636, 222);
             this.itxtRateMEC.Name = "itxtRateMEC";
             this.itxtRateMEC.ReadOnly = true;
             this.itxtRateMEC.Size = new System.Drawing.Size(44, 21);
@@ -378,7 +381,7 @@
             // radLabel11
             // 
             this.radLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel11.Location = new System.Drawing.Point(422, 239);
+            this.radLabel11.Location = new System.Drawing.Point(422, 223);
             this.radLabel11.Name = "radLabel11";
             this.radLabel11.Size = new System.Drawing.Size(208, 19);
             this.radLabel11.TabIndex = 70;
@@ -396,7 +399,7 @@
             // 
             // 
             this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel6.Size = new System.Drawing.Size(514, 263);
+            this.splitPanel6.Size = new System.Drawing.Size(514, 247);
             this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.07059315F, 0F);
             this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(133, 0);
             this.splitPanel6.TabIndex = 1;
@@ -482,7 +485,7 @@
             this.gvWIDObjectAuthorsCommunities.Name = "gvWIDObjectAuthorsCommunities";
             this.gvWIDObjectAuthorsCommunities.ReadOnly = true;
             this.gvWIDObjectAuthorsCommunities.ShowGroupPanel = false;
-            this.gvWIDObjectAuthorsCommunities.Size = new System.Drawing.Size(502, 224);
+            this.gvWIDObjectAuthorsCommunities.Size = new System.Drawing.Size(502, 208);
             this.gvWIDObjectAuthorsCommunities.TabIndex = 75;
             this.gvWIDObjectAuthorsCommunities.ThemeName = "Office2013Light";
             // 
@@ -512,13 +515,13 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.radSplitContainer2);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 268);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 252);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(1202, 233);
+            this.splitPanel2.Size = new System.Drawing.Size(1202, 219);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.03024193F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -15);
             this.splitPanel2.TabIndex = 1;
@@ -537,7 +540,7 @@
             // 
             // 
             this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer2.Size = new System.Drawing.Size(1202, 233);
+            this.radSplitContainer2.Size = new System.Drawing.Size(1202, 219);
             this.radSplitContainer2.SplitterWidth = 5;
             this.radSplitContainer2.TabIndex = 0;
             this.radSplitContainer2.TabStop = false;
@@ -553,7 +556,7 @@
             // 
             // 
             this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel3.Size = new System.Drawing.Size(536, 233);
+            this.splitPanel3.Size = new System.Drawing.Size(536, 219);
             this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.05221388F, 0F);
             this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(-62, 0);
             this.splitPanel3.TabIndex = 0;
@@ -604,7 +607,7 @@
             this.gvWIDObjectAlternativeNames.Name = "gvWIDObjectAlternativeNames";
             this.gvWIDObjectAlternativeNames.ReadOnly = true;
             this.gvWIDObjectAlternativeNames.ShowGroupPanel = false;
-            this.gvWIDObjectAlternativeNames.Size = new System.Drawing.Size(530, 196);
+            this.gvWIDObjectAlternativeNames.Size = new System.Drawing.Size(530, 182);
             this.gvWIDObjectAlternativeNames.TabIndex = 8;
             this.gvWIDObjectAlternativeNames.ThemeName = "Office2013Light";
             // 
@@ -631,7 +634,7 @@
             // 
             // 
             this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel4.Size = new System.Drawing.Size(661, 233);
+            this.splitPanel4.Size = new System.Drawing.Size(661, 219);
             this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.05221385F, 0F);
             this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(62, 0);
             this.splitPanel4.TabIndex = 1;
@@ -682,7 +685,7 @@
             this.gvWIDObjectPerformers.Name = "gvWIDObjectPerformers";
             this.gvWIDObjectPerformers.ReadOnly = true;
             this.gvWIDObjectPerformers.ShowGroupPanel = false;
-            this.gvWIDObjectPerformers.Size = new System.Drawing.Size(652, 196);
+            this.gvWIDObjectPerformers.Size = new System.Drawing.Size(652, 182);
             this.gvWIDObjectPerformers.TabIndex = 11;
             this.gvWIDObjectPerformers.ThemeName = "Office2013Light";
             // 
@@ -707,16 +710,6 @@
             this.radLabel15.TabIndex = 77;
             this.radLabel15.Text = "Жанр:";
             this.radLabel15.ThemeName = "Office2013Light";
-            // 
-            // txtISWC
-            // 
-            this.txtISWC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWIDObjectRight, "ISWC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtISWC.Location = new System.Drawing.Point(90, 58);
-            this.txtISWC.Name = "txtISWC";
-            this.txtISWC.ReadOnly = true;
-            this.txtISWC.Size = new System.Drawing.Size(197, 21);
-            this.txtISWC.TabIndex = 4;
-            this.txtISWC.ThemeName = "Office2013Light";
             // 
             // radLabel20
             // 
@@ -820,6 +813,21 @@
             this.txtObjectName.TabIndex = 95;
             this.txtObjectName.ThemeName = "Office2013Light";
             // 
+            // listISWCs
+            // 
+            this.listISWCs.DataSource = this.bsWIDiswc;
+            this.listISWCs.DisplayMember = "ISWC";
+            this.listISWCs.Location = new System.Drawing.Point(90, 56);
+            this.listISWCs.Name = "listISWCs";
+            this.listISWCs.Size = new System.Drawing.Size(197, 54);
+            this.listISWCs.TabIndex = 97;
+            this.listISWCs.ThemeName = "Office2013Light";
+            this.listISWCs.ValueMember = "WIC";
+            // 
+            // bsWIDiswc
+            // 
+            this.bsWIDiswc.DataSource = typeof(IpsCommonTypes.Types.ObjectRightInfoWID.WIDiswc);
+            // 
             // ObjectRightWIDView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -827,6 +835,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1207, 620);
+            this.Controls.Add(this.listISWCs);
             this.Controls.Add(this.txtObjectName);
             this.Controls.Add(this.txtDuration);
             this.Controls.Add(this.radLabel2);
@@ -835,7 +844,6 @@
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radSplitContainer1);
             this.Controls.Add(this.radLabel15);
-            this.Controls.Add(this.txtISWC);
             this.Controls.Add(this.radLabel20);
             this.Controls.Add(this.radLabel18);
             this.Controls.Add(this.radLabel13);
@@ -892,7 +900,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsWIDObjectPerformers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtISWC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
@@ -904,6 +911,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDuration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listISWCs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWIDiswc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -927,7 +936,6 @@
         private Telerik.WinControls.UI.RadGridView gvWIDObjectPerformers;
         private Telerik.WinControls.UI.RadLabel radLabel21;
         private Telerik.WinControls.UI.RadLabel radLabel15;
-        private Telerik.WinControls.UI.RadTextBox txtISWC;
         private Telerik.WinControls.UI.RadLabel radLabel20;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadLabel radLabel18;
@@ -952,5 +960,7 @@
         private System.Windows.Forms.BindingSource bsWIDObjectAuthorsCommunities;
         private System.Windows.Forms.BindingSource bsWIDObjectAlternativeNames;
         private System.Windows.Forms.BindingSource bsWIDObjectPerformers;
+        private Telerik.WinControls.UI.RadListControl listISWCs;
+        private System.Windows.Forms.BindingSource bsWIDiswc;
     }
 }
