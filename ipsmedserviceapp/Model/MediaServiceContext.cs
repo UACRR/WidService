@@ -252,6 +252,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<RelReqMedia> RelReqMedia { get; set; }
         public virtual DbSet<RelReqObj> RelReqObj { get; set; }
         public virtual DbSet<RelSerialEpisode> RelSerialEpisode { get; set; }
+        public virtual DbSet<RelSubPublish> RelSubPublish { get; set; }
         public virtual DbSet<RelTvepisode> RelTvepisode { get; set; }
         public virtual DbSet<ReportList> ReportList { get; set; }
         public virtual DbSet<ReportType> ReportType { get; set; }
@@ -8755,6 +8756,48 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.ReqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELSERIAEP_REF_REQSERIAL");
+            });
+
+            modelBuilder.Entity<RelSubPublish>(entity =>
+            {
+                entity.HasKey(e => new { e.CustIdPub, e.CustIdSub, e.DateBegin })
+                    .HasName("PK_RELSUBPUBLISH");
+
+                entity.ToTable("RelSubPublish", "dbo");
+
+                entity.Property(e => e.CustIdPub).HasColumnName("custIdPub");
+
+                entity.Property(e => e.CustIdSub).HasColumnName("custIdSub");
+
+                entity.Property(e => e.DateBegin)
+                    .HasColumnName("dateBegin")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.CreateDate)
+                    .HasColumnName("createDate")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.DateEnd)
+                    .HasColumnName("dateEnd")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.ModifyDate)
+                    .HasColumnName("modifyDate")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.CustIdPubNavigation)
+                    .WithMany(p => p.RelSubPublishCustIdPubNavigation)
+                    .HasForeignKey(d => d.CustIdPub)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RELSUBPU_REFERENCE_RHPUB");
+
+                entity.HasOne(d => d.CustIdSubNavigation)
+                    .WithMany(p => p.RelSubPublishCustIdSubNavigation)
+                    .HasForeignKey(d => d.CustIdSub)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RELSUBPU_REFERENCE_RHSUB");
             });
 
             modelBuilder.Entity<RelTvepisode>(entity =>
