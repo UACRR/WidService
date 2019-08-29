@@ -15,6 +15,8 @@ namespace ipsFormsDesign.Model
             CopyRight = new ObservableListSource<CopyRight>();
             PubCatalogItem = new ObservableListSource<PubCatalogItem>();
             RegisterCount = new ObservableListSource<RegisterCount>();
+            RelSubPublishCustIdPubNavigation = new ObservableListSource<RelSubPublish>();
+            RelSubPublishCustIdSubNavigation = new ObservableListSource<RelSubPublish>();
             ReqAgreement = new ObservableListSource<ReqAgreement>();
             RhcatalogItem = new ObservableListSource<RhcatalogItem>();
             TermsOfService = new ObservableListSource<TermsOfService>();
@@ -40,6 +42,8 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
         public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
         public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public virtual ObservableListSource<RelSubPublish> RelSubPublishCustIdPubNavigation { get; set; }
+        public virtual ObservableListSource<RelSubPublish> RelSubPublishCustIdSubNavigation { get; set; }
         public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
         public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
         public virtual ObservableListSource<TermsOfService> TermsOfService { get; set; }

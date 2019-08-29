@@ -1905,6 +1905,15 @@ public interface IRelSerialEpisode
          int EpisodeTypeCode { get; set; }
          double? EpDuration { get; set; }
 }
+public interface IRelSubPublish
+    {
+         int CustIdPub { get; set; }
+         int CustIdSub { get; set; }
+         DateTime DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
+         DateTime? CreateDate { get; set; }
+         DateTime? ModifyDate { get; set; }
+}
 public interface IRelTvepisode
     {
          int ReqId { get; set; }
