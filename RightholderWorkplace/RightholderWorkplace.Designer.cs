@@ -115,6 +115,7 @@ namespace RightholderWorkplace
             this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlPublisherAndSubpublisher = new IpsViewComponentLibrary.PublisherAndSubpublisher.PublisherAndSubpublisherControl();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).BeginInit();
@@ -156,6 +157,7 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
+            this.pvPublisherSubpublisher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementAddRhBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderBindingSource)).BeginInit();
@@ -915,7 +917,7 @@ namespace RightholderWorkplace
             // 
             // pvPublisherSubpublisher
             // 
-            this.pvPublisherSubpublisher.Enabled = false;
+            this.pvPublisherSubpublisher.Controls.Add(this.ctrlPublisherAndSubpublisher);
             this.pvPublisherSubpublisher.ItemSize = new System.Drawing.SizeF(188F, 27F);
             this.pvPublisherSubpublisher.Location = new System.Drawing.Point(5, 31);
             this.pvPublisherSubpublisher.Name = "pvPublisherSubpublisher";
@@ -969,6 +971,14 @@ namespace RightholderWorkplace
             // objectRightDictionariesBindingSource
             // 
             this.objectRightDictionariesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ObjectRightDictionaries);
+            // 
+            // ctrlPublisherAndSubpublisher
+            // 
+            this.ctrlPublisherAndSubpublisher.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPublisherAndSubpublisher.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPublisherAndSubpublisher.Name = "ctrlPublisherAndSubpublisher";
+            this.ctrlPublisherAndSubpublisher.Size = new System.Drawing.Size(1206, 632);
+            this.ctrlPublisherAndSubpublisher.TabIndex = 0;
             // 
             // RightholderWorkplace
             // 
@@ -1029,6 +1039,7 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
             this.MainPageView.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
+            this.pvPublisherSubpublisher.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementAddRhBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderBindingSource)).EndInit();
@@ -1114,5 +1125,6 @@ namespace RightholderWorkplace
         private Telerik.WinControls.UI.RadDropDownButton ddbNewRightholderExternal;
         private Telerik.WinControls.UI.RadMenuItem btnAddRightholderExternal;
         private Telerik.WinControls.UI.RadMenuItem btnAddRightholderPublisherExternal;
+        private IpsViewComponentLibrary.PublisherAndSubpublisher.PublisherAndSubpublisherControl ctrlPublisherAndSubpublisher;
     }
 }

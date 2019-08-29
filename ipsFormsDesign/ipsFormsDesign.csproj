@@ -485,6 +485,7 @@
     <Compile Include="Services\ObjectUploading\ObjectRightDataParser.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
     <Compile Include="Services\PartnerService.cs" />
+    <Compile Include="Services\PublisherAndSubpublisherSevice.cs" />
     <Compile Include="Services\RegisterService.cs" />
     <Compile Include="Services\ObjectUploading\RightholderData.cs" />
     <Compile Include="Services\RegisterWIDService.cs" />
@@ -510,6 +511,7 @@
     <Compile Include="ViewModels\Fixations\RegisterCountViewModel.cs" />
     <Compile Include="ViewModels\ObjectsRight\ObjectRightForTransfering.cs" />
     <Compile Include="ViewModels\ObjectsRight\ObjectRightholderViewModel.cs" />
+    <Compile Include="ViewModels\Other\PublisherAndSubpublisherView.cs" />
     <Compile Include="ViewModels\Rightholders\LegalBasisType.cs" />
     <Compile Include="ViewModels\Rightholders\TransferParameters.cs" />
     <Compile Include="ViewModels\Users\UserViewModel.cs" />

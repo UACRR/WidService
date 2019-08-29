@@ -1744,6 +1744,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.FixationListViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.ObjectsRight.ObjectRightWithWID.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Other.PublisherAndSubpublisherView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.CommunityControls.InternalModel.RightLimitationsView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
