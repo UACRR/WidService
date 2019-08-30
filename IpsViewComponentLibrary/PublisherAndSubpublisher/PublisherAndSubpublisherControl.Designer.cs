@@ -37,39 +37,39 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.gvConsumers = new Telerik.WinControls.UI.RadGridView();
+            this.gvPublishers = new Telerik.WinControls.UI.RadGridView();
+            this.bsPublisherAndSubpublisherView = new System.Windows.Forms.BindingSource(this.components);
             this.bottomPanel = new Telerik.WinControls.UI.RadPanel();
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.bsPublisherAndSubpublisherView = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
             this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.gvConsumers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvConsumers.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPublishers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPublishers.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPublisherAndSubpublisherView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).BeginInit();
             this.bottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPublisherAndSubpublisherView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
             this.ipsPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // gvConsumers
+            // gvPublishers
             // 
-            this.gvConsumers.AutoScroll = true;
-            this.gvConsumers.AutoSizeRows = true;
-            this.gvConsumers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvConsumers.EnableCustomFiltering = true;
-            this.gvConsumers.Location = new System.Drawing.Point(0, 0);
+            this.gvPublishers.AutoScroll = true;
+            this.gvPublishers.AutoSizeRows = true;
+            this.gvPublishers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvPublishers.EnableCustomFiltering = true;
+            this.gvPublishers.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
-            this.gvConsumers.MasterTemplate.AllowAddNewRow = false;
-            this.gvConsumers.MasterTemplate.AllowDeleteRow = false;
-            this.gvConsumers.MasterTemplate.AllowDragToGroup = false;
-            this.gvConsumers.MasterTemplate.AllowEditRow = false;
-            this.gvConsumers.MasterTemplate.AutoGenerateColumns = false;
-            this.gvConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gvPublishers.MasterTemplate.AllowAddNewRow = false;
+            this.gvPublishers.MasterTemplate.AllowDeleteRow = false;
+            this.gvPublishers.MasterTemplate.AllowDragToGroup = false;
+            this.gvPublishers.MasterTemplate.AllowEditRow = false;
+            this.gvPublishers.MasterTemplate.AutoGenerateColumns = false;
+            this.gvPublishers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.FieldName = "CustIdPub";
             gridViewTextBoxColumn1.HeaderText = "CustIdPub";
@@ -125,7 +125,7 @@
             gridViewCommandColumn1.Name = "btnsView";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 30;
-            this.gvConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            this.gvPublishers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
@@ -133,18 +133,22 @@
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
             gridViewCommandColumn1});
-            this.gvConsumers.MasterTemplate.DataSource = this.bsPublisherAndSubpublisherView;
-            this.gvConsumers.MasterTemplate.EnableCustomFiltering = true;
-            this.gvConsumers.MasterTemplate.EnableFiltering = true;
-            this.gvConsumers.MasterTemplate.EnableGrouping = false;
-            this.gvConsumers.MasterTemplate.ShowFilteringRow = false;
-            this.gvConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.gvConsumers.Name = "gvConsumers";
-            this.gvConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvConsumers.Size = new System.Drawing.Size(891, 343);
-            this.gvConsumers.TabIndex = 7;
-            this.gvConsumers.ThemeName = "Office2013Light";
-            this.gvConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvConsumers_CommandCellClick);
+            this.gvPublishers.MasterTemplate.DataSource = this.bsPublisherAndSubpublisherView;
+            this.gvPublishers.MasterTemplate.EnableCustomFiltering = true;
+            this.gvPublishers.MasterTemplate.EnableFiltering = true;
+            this.gvPublishers.MasterTemplate.EnableGrouping = false;
+            this.gvPublishers.MasterTemplate.ShowFilteringRow = false;
+            this.gvPublishers.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvPublishers.Name = "gvPublishers";
+            this.gvPublishers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvPublishers.Size = new System.Drawing.Size(891, 343);
+            this.gvPublishers.TabIndex = 7;
+            this.gvPublishers.ThemeName = "Office2013Light";
+            this.gvPublishers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvConsumers_CommandCellClick);
+            // 
+            // bsPublisherAndSubpublisherView
+            // 
+            this.bsPublisherAndSubpublisherView.DataSource = typeof(ipsFormsDesign.ViewModels.Other.PublisherAndSubpublisherView);
             // 
             // bottomPanel
             // 
@@ -166,10 +170,6 @@
             this.btnAdd.Text = "Додати";
             this.btnAdd.ThemeName = "Office2013Light";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // bsPublisherAndSubpublisherView
-            // 
-            this.bsPublisherAndSubpublisherView.DataSource = typeof(ipsFormsDesign.ViewModels.Other.PublisherAndSubpublisherView);
             // 
             // ctrlGridRowCount
             // 
@@ -196,18 +196,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this.gvConsumers);
+            this.Controls.Add(this.gvPublishers);
             this.Controls.Add(this.ipsPanel1);
             this.Controls.Add(this.bottomPanel);
             this.Name = "PublisherAndSubpublisherControl";
             this.Size = new System.Drawing.Size(891, 403);
             this.Load += new System.EventHandler(this.PublisherAndSubpublisherControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gvConsumers.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvConsumers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPublishers.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPublishers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPublisherAndSubpublisherView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).EndInit();
             this.bottomPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPublisherAndSubpublisherView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
             this.ipsPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -216,7 +216,7 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadGridView gvConsumers;
+        private Telerik.WinControls.UI.RadGridView gvPublishers;
         private Telerik.WinControls.UI.RadPanel bottomPanel;
         private Telerik.WinControls.UI.RadButton btnAdd;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;

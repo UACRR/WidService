@@ -27,7 +27,7 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         public PublisherAndSubpublisherControl()
         {
             InitializeComponent();
-            ctrlGridRowCount.RadGridViewDataSource = gvConsumers;
+            ctrlGridRowCount.RadGridViewDataSource = gvPublishers;
             if (!IsDesignMode)
                 _sevice = PublisherAndSubpublisherSevice.GetInstance();
         }

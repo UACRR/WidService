@@ -32,7 +32,9 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ddlPublisher = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.bsRelSubPublish = new System.Windows.Forms.BindingSource(this.components);
+            this.bsPublishers = new System.Windows.Forms.BindingSource(this.components);
             this.ddlSubPublisher = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
+            this.bsSubPublishers = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.dtDateBegin = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -42,12 +44,12 @@
             this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             this.lblInfo = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.bsPublishers = new System.Windows.Forms.BindingSource(this.components);
-            this.bsSubPublishers = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPublisher)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRelSubPublish)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPublishers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSubPublisher)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSubPublishers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateBegin)).BeginInit();
@@ -55,8 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPublishers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSubPublishers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,6 +88,10 @@
             // 
             this.bsRelSubPublish.DataSource = typeof(ipsFormsDesign.Model.RelSubPublish);
             // 
+            // bsPublishers
+            // 
+            this.bsPublishers.DataSource = typeof(ipsFormsDesign.ViewModels.Other.PublishersView);
+            // 
             // ddlSubPublisher
             // 
             this.ddlSubPublisher.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -102,6 +106,10 @@
             this.ddlSubPublisher.TabIndex = 3;
             this.ddlSubPublisher.ThemeName = "Office2013Light";
             this.ddlSubPublisher.ValueMember = "CustId";
+            // 
+            // bsSubPublishers
+            // 
+            this.bsSubPublishers.DataSource = typeof(ipsFormsDesign.ViewModels.Other.PublishersView);
             // 
             // radLabel2
             // 
@@ -185,18 +193,10 @@
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(377, 39);
             this.lblInfo.TabIndex = 10;
-            this.lblInfo.Text = "*Для продовження або дострокового розірвання повноважень Субвидавництва змініть \"" +
-    "дату по\"!";
+            this.lblInfo.Text = "*Для продовження або дострокового розірвання повноважень Субвидавництва змініть д" +
+    "ату \"по\"";
             this.lblInfo.ThemeName = "Office2013Light";
             this.lblInfo.Visible = false;
-            // 
-            // bsPublishers
-            // 
-            this.bsPublishers.DataSource = typeof(ipsFormsDesign.ViewModels.Other.PublishersView);
-            // 
-            // bsSubPublishers
-            // 
-            this.bsSubPublishers.DataSource = typeof(ipsFormsDesign.ViewModels.Other.PublishersView);
             // 
             // PublisherAndSubpublisherForm
             // 
@@ -227,7 +227,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPublisher)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRelSubPublish)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPublishers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSubPublisher)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSubPublishers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateBegin)).EndInit();
@@ -235,8 +237,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDateEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPublishers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSubPublishers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

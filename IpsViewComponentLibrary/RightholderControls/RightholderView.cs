@@ -122,7 +122,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         /// </summary>
         /// <param name="customerType"></param>
         /// <param name="rhType"></param>
-        public void SetCatalogsTabVisible(int? customerType, int? rhType)
+        private void SetCatalogsTabVisible(int? customerType, int? rhType)
         {
             // тип користувача/правовласника юр або фіз особи
             if (customerType == null || customerType >= 4 || rhType == null)
@@ -141,7 +141,28 @@ namespace IpsViewComponentLibrary.RightholderControls
                 pvRegisters.Enabled = false;
             }
         }
-        
+
+        /// <summary>
+        /// Показати вкладку повноважень субвидавництва
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="rhType"></param>
+        /// <param name="custType"></param>
+        private void ShowPublishers(int custId, int? rhType, int? custType)
+        {
+            if (rhType == 3)
+            {
+                ctrlRightholderPublishers.LoadData(custId);
+
+                if (custType == 5)
+                    ctrlSubPublisherInUkraine.LoadData(custId);
+            }
+            else
+            {
+                pvPublishers.Item.Visibility = ElementVisibility.Collapsed;
+            }
+        }
+
         public RightholderView()
         {
             InitializeComponent();
@@ -228,53 +249,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             var customer = (Customer)bsCustomer.Current;
             SetCatalogsTabVisible(customer.CustType, customer.RightHolder.RHolderType);
             ctrlRightholderRegister.CustId = customer.CustId;
-            //set active pages on depends field 'CustType'
-            //ShowActivePages(customer);
 
-            //disable unusable code
-            //_isCompany = customer.CustType == 3;
+            ShowPublishers(customer.CustId, customer.RightHolder.RHolderType, customer.CustType);
 
 
-            //test model
+            
             DirectorCustType _director = new DirectorCustType(this, customer);
             _director.CurrentTypeCustomer.ShowPages();
             _director.CurrentTypeCustomer.RunSetings();
-            //if (customer.CustType == 3)
-            //{
-            //    rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
-            //    rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    anketaPageView.SelectedPage = rightholderCompanyPage;
-
-            //    contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
-            //    contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    ctrlMiddleControlAddress.SetDataSources(customer);
-
-            //    managersPage.Item.Visibility = ElementVisibility.Visible;
-            //    passportPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    ctrlMiddleControlManagers.SetDataSources(customer);
-            //}
-            //else if (customer.CustType == 5)
-            //{
-            //    //set default active page for External Anketa
-            //    pageViewMain.SelectedPage = AnketaExternal;
-            //    //set data of the External Anketa
-            //    anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
-            //    anketaExternalRightholderControl1.DataSourceRightHolder = bsRightHolder;
-
-            //}
-            //else
-            //{
-            //    rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
-            //    anketaPageView.SelectedPage = rightholderPersonPage;
-
-            //    contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
-
-            //    managersPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    passportPage.Item.Visibility = ElementVisibility.Visible;
-            //}
-
             ShowDialog();
         }
 

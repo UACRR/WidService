@@ -176,7 +176,6 @@ namespace WebAPIConnector
                     if (retApiString == "null")
                         retApiString = string.Empty;
 
-
                     if (string.IsNullOrEmpty(retApiString))
                         return default(TResult);
 

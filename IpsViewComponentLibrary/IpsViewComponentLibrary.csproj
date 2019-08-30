@@ -198,6 +198,18 @@
     <Compile Include="PublisherAndSubpublisher\PublisherAndSubpublisherForm.Designer.cs">
       <DependentUpon>PublisherAndSubpublisherForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PublisherAndSubpublisher\RightholderPublishersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PublisherAndSubpublisher\RightholderPublishersControl.Designer.cs">
+      <DependentUpon>RightholderPublishersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PublisherAndSubpublisher\SubPublisherInUkraineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PublisherAndSubpublisher\SubPublisherInUkraineControl.Designer.cs">
+      <DependentUpon>SubPublisherInUkraineControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\NewRightholderExternalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1203,6 +1215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PublisherAndSubpublisher\PublisherAndSubpublisherForm.resx">
       <DependentUpon>PublisherAndSubpublisherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PublisherAndSubpublisher\RightholderPublishersControl.resx">
+      <DependentUpon>RightholderPublishersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PublisherAndSubpublisher\SubPublisherInUkraineControl.resx">
+      <DependentUpon>SubPublisherInUkraineControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\NewRightholderExternalForm.resx">
       <DependentUpon>NewRightholderExternalForm.cs</DependentUpon>

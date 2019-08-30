@@ -41,6 +41,17 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Отримати список зв'язаних видавництв з субвидавництвом по ID
+        /// </summary>
+        /// <returns></returns>
+        public List<PublisherAndSubpublisherView> GetPublisherAndSubpublisherList(int custId)
+        {
+            string url = $"{Prefix}/list/links/{custId}";
+            var result = _apiConnector.GetList<PublisherAndSubpublisherView>(url);
+            return result;
+        }
+
+        /// <summary>
         /// Отримати список видавництв
         /// </summary>
         /// <returns></returns>
@@ -72,6 +83,18 @@ namespace ipsFormsDesign.Services
         {
             string url = $"{Prefix}/link/update";
             var result = _apiConnector.UpdateItem(url, null, relSubPublish);
+            return result;
+        }
+
+        /// <summary>
+        /// Отримати субвидавництво в Україні
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public PublisherAndSubpublisherView GetSubpublisherUkraine(int custId)
+        {
+            string url = $"{Prefix}/ukrainesubpublisher";
+            var result = _apiConnector.GetItemById<PublisherAndSubpublisherView>(url, custId.ToString());
             return result;
         }
     }

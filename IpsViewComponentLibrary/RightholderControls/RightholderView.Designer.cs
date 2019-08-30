@@ -140,9 +140,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlCatalog = new IpsViewComponentLibrary.CatalogControls.CatalogControl();
             this.pvRegisters = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRightholderRegister = new IpsViewComponentLibrary.RightholderRegisterControls.RightholderRegisterControl();
+            this.pvPublishers = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlRightholderPublishers = new IpsViewComponentLibrary.PublisherAndSubpublisher.RightholderPublishersControl();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlSubPublisherInUkraine = new IpsViewComponentLibrary.PublisherAndSubpublisher.SubPublisherInUkraineControl();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -233,6 +236,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).BeginInit();
             this.pvCatalog.SuspendLayout();
             this.pvRegisters.SuspendLayout();
+            this.pvPublishers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -861,6 +865,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageCatalog.Controls.Add(this.pageObjects);
             this.pageCatalog.Controls.Add(this.pvCatalog);
             this.pageCatalog.Controls.Add(this.pvRegisters);
+            this.pageCatalog.Controls.Add(this.pvPublishers);
             this.pageCatalog.DefaultPage = this.Anketa;
             this.pageCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageCatalog.Location = new System.Drawing.Point(0, 0);
@@ -1155,7 +1160,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.externalAnketaPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.externalAnketaPage.Location = new System.Drawing.Point(0, 0);
             this.externalAnketaPage.Name = "externalAnketaPage";
-            this.externalAnketaPage.SelectedPage = this.radPageViewPage12;
+            this.externalAnketaPage.SelectedPage = this.radPageViewPage5;
             this.externalAnketaPage.Size = new System.Drawing.Size(1009, 449);
             this.externalAnketaPage.TabIndex = 3;
             this.externalAnketaPage.ThemeName = "Office2013Light";
@@ -1165,6 +1170,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // radPageViewPage5
             // 
+            this.radPageViewPage5.Controls.Add(this.ctrlSubPublisherInUkraine);
             this.radPageViewPage5.Controls.Add(this.ctrlAnketaExternalRightholder);
             this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage5.Location = new System.Drawing.Point(117, 5);
@@ -1359,6 +1365,23 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightholderRegister.Size = new System.Drawing.Size(1009, 480);
             this.ctrlRightholderRegister.TabIndex = 0;
             // 
+            // pvPublishers
+            // 
+            this.pvPublishers.Controls.Add(this.ctrlRightholderPublishers);
+            this.pvPublishers.ItemSize = new System.Drawing.SizeF(198F, 27F);
+            this.pvPublishers.Location = new System.Drawing.Point(5, 31);
+            this.pvPublishers.Name = "pvPublishers";
+            this.pvPublishers.Size = new System.Drawing.Size(1009, 480);
+            this.pvPublishers.Text = "Повноваження Субвидавництва";
+            // 
+            // ctrlRightholderPublishers
+            // 
+            this.ctrlRightholderPublishers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRightholderPublishers.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRightholderPublishers.Name = "ctrlRightholderPublishers";
+            this.ctrlRightholderPublishers.Size = new System.Drawing.Size(1009, 480);
+            this.ctrlRightholderPublishers.TabIndex = 0;
+            // 
             // termsOfServiceWrapperBindingSource
             // 
             this.termsOfServiceWrapperBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.TermsOfServiceWrapper);
@@ -1366,6 +1389,15 @@ namespace IpsViewComponentLibrary.RightholderControls
             // bsAnketaExternal
             // 
             this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.AnketaExternal);
+            // 
+            // ctrlSubPublisherInUkraine
+            // 
+            this.ctrlSubPublisherInUkraine.Location = new System.Drawing.Point(3, 145);
+            this.ctrlSubPublisherInUkraine.MaximumSize = new System.Drawing.Size(1000, 27);
+            this.ctrlSubPublisherInUkraine.MinimumSize = new System.Drawing.Size(340, 27);
+            this.ctrlSubPublisherInUkraine.Name = "ctrlSubPublisherInUkraine";
+            this.ctrlSubPublisherInUkraine.Size = new System.Drawing.Size(527, 27);
+            this.ctrlSubPublisherInUkraine.TabIndex = 1;
             // 
             // RightholderView
             // 
@@ -1479,6 +1511,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).EndInit();
             this.pvCatalog.ResumeLayout(false);
             this.pvRegisters.ResumeLayout(false);
+            this.pvPublishers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -1598,5 +1631,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadMenuItem mibtnSaveAnketaExternal;
         private Telerik.WinControls.UI.RadMenuItem mibtnSaveAcceptAnketaExternal;
         private Telerik.WinControls.UI.RadButton radButton3;
+        private Telerik.WinControls.UI.RadPageViewPage pvPublishers;
+        private PublisherAndSubpublisher.RightholderPublishersControl ctrlRightholderPublishers;
+        private PublisherAndSubpublisher.SubPublisherInUkraineControl ctrlSubPublisherInUkraine;
     }
 }

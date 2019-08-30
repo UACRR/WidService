@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -32,6 +33,34 @@ namespace ipsmedserviceapp.Controllers
             var list = await _dbContext.getViewData(query, null);
 
             return Ok(list);
+        }
+
+        /// <summary>
+        /// Отримати зв'язаний список видавництва з субвидавництвом по ID
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("list/links/{custId}")]
+        public async Task<IActionResult> GetPublisherAndSubpublisherList(int custId)
+        {
+            var date = GetSqlTodayDate();
+
+            string query = $"select * from vPubSub where custIdSub = {custId} and ('{date}' >= dateBegin and '{date}' <= dateEnd)";
+
+            var list = await _dbContext.getViewData(query, null);
+
+            return Ok(list);
+        }
+
+        [HttpGet("ukrainesubpublisher/{custId}")]
+        public async Task<IActionResult> GetSubpublisherUkraine(int custId)
+        {
+            var date = GetSqlTodayDate();
+
+            string query = $"select * from vPubSub where custIdPub = {custId} and ('{date}' >= dateBegin and '{date}' <= dateEnd)";
+
+            var list = (await _dbContext.getViewData(query, null));
+            var item = list.FirstOrDefault();
+            return Ok(item);
         }
 
         /// <summary>
@@ -109,6 +138,15 @@ namespace ipsmedserviceapp.Controllers
                 transaction?.Rollback();
                 return BadRequest(e.ToString());
             }
+        }
+
+        /// <summary>
+        /// Отримати рядкове представлення дати для SQL параметра
+        /// </summary>
+        /// <returns></returns>
+        private string GetSqlTodayDate()
+        {
+            return $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
         }
     }
 }
