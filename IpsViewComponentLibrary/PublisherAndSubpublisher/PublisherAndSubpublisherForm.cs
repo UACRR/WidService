@@ -125,10 +125,13 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             if (item.DateEnd == null)
                 item.DateEnd = new DateTime(3000, 01, 01);
 
-            _subpublisherViewCache.CustIdPub = item.CustIdPub;
-            _subpublisherViewCache.CustIdSub = item.CustIdSub;
-            _subpublisherViewCache.DateBegin = item.DateBegin;
-            _subpublisherViewCache.DateEnd = item.DateEnd;
+            if (_subpublisherViewCache != null)
+            {
+                _subpublisherViewCache.CustIdPub = item.CustIdPub;
+                _subpublisherViewCache.CustIdSub = item.CustIdSub;
+                _subpublisherViewCache.DateBegin = item.DateBegin;
+                _subpublisherViewCache.DateEnd = item.DateEnd;
+            }
 
             DialogResult = DialogResult.OK;
         }
