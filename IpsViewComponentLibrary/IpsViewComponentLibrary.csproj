@@ -192,6 +192,12 @@
     <Compile Include="PublisherAndSubpublisher\PublisherAndSubpublisherControl.Designer.cs">
       <DependentUpon>PublisherAndSubpublisherControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PublisherAndSubpublisher\PublisherAndSubpublisherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PublisherAndSubpublisher\PublisherAndSubpublisherForm.Designer.cs">
+      <DependentUpon>PublisherAndSubpublisherForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\NewRightholderExternalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1195,6 +1201,9 @@
     <EmbeddedResource Include="PublisherAndSubpublisher\PublisherAndSubpublisherControl.resx">
       <DependentUpon>PublisherAndSubpublisherControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PublisherAndSubpublisher\PublisherAndSubpublisherForm.resx">
+      <DependentUpon>PublisherAndSubpublisherForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\NewRightholderExternalForm.resx">
       <DependentUpon>NewRightholderExternalForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1731,6 +1740,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RelGenrePercent.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RelSubPublish.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RhcatalogItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
@@ -1745,6 +1755,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.ObjectsRight.ObjectRightWithWID.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Other.PublisherAndSubpublisherView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Other.PublishersView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.CommunityControls.InternalModel.RightLimitationsView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
@@ -1833,7 +1844,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConsumerControls\Presenters\" />
-    <Folder Include="PublisherAndSubpublisher\Forms\" />
     <Folder Include="_trash\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -513,6 +513,7 @@
     <Compile Include="ViewModels\ObjectsRight\ObjectRightForTransfering.cs" />
     <Compile Include="ViewModels\ObjectsRight\ObjectRightholderViewModel.cs" />
     <Compile Include="ViewModels\Other\PublisherAndSubpublisherView.cs" />
+    <Compile Include="ViewModels\Other\PublishersView.cs" />
     <Compile Include="ViewModels\Rightholders\LegalBasisType.cs" />
     <Compile Include="ViewModels\Rightholders\TransferParameters.cs" />
     <Compile Include="ViewModels\Users\UserViewModel.cs" />

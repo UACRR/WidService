@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.ViewModels.Other;
 using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
@@ -28,10 +29,49 @@ namespace ipsFormsDesign.Services
             return _sevice;
         }
 
+        /// <summary>
+        /// Отримати список зв'язаних видавництв/субвидавництв
+        /// </summary>
+        /// <returns></returns>
         public List<PublisherAndSubpublisherView> GetPublisherAndSubpublisherList()
         {
-            string url = $"{Prefix}/list";
+            string url = $"{Prefix}/list/links";
             var result = _apiConnector.GetList<PublisherAndSubpublisherView>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Отримати список видавництв
+        /// </summary>
+        /// <returns></returns>
+        public List<PublishersView> GetPublishersList()
+        {
+            string url = $"{Prefix}/list/publishers";
+            var result = _apiConnector.GetList<PublishersView>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Створити зв'язок видавництва/субвидавництва
+        /// </summary>
+        /// <param name="relSubPublish"></param>
+        /// <returns></returns>
+        public bool CreatePublisherSubpublisherLink(RelSubPublish relSubPublish)
+        {
+            string url = $"{Prefix}/link/create";
+            var result = _apiConnector.NewItem(url, relSubPublish);
+            return result;
+        }
+
+        /// <summary>
+        /// Оновити зв'язок видавництва/субвидавництва
+        /// </summary>
+        /// <param name="relSubPublish"></param>
+        /// <returns></returns>
+        public bool UpdatePublisherSubpublisherLink(RelSubPublish relSubPublish)
+        {
+            string url = $"{Prefix}/link/update";
+            var result = _apiConnector.UpdateItem(url, null, relSubPublish);
             return result;
         }
     }
