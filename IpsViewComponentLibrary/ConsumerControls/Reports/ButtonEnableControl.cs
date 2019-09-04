@@ -36,8 +36,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 _create.Enabled = false;
                 return;
             }
-            int[] regStates = new[] { 0, 0, 0, 0, 0, 0 };
-            int countInList = list.Count();
+
+            int[] regStates = new[] {0, 0, 0, 0, 0, 0, 0, 0};
+            int countInList = list.Count;
             // Накоплюємо кіль
             foreach (var item in list)
                 regStates[item.RgStatus ?? 0]++;
@@ -51,8 +52,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                     _addReport.Enabled = true;
                     _create.Enabled = true;
                     _toAcception.Enabled = regStates[0] > 0; // Нових > 0;
-                    _acceptedType1.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
-                    _acceptedType2.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
+                    _acceptedType1.Enabled = countInList > 0 && regStates[7] + regStates[3] + regStates[2] == countInList; // Всі погоджені
+                    _acceptedType2.Enabled = countInList > 0 && regStates[7] + regStates[3] + regStates[2] == countInList; // Всі погоджені
 
                     break;
                 case 2: // Прийом поштів
