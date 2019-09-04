@@ -103,6 +103,7 @@ namespace RightholderWorkplace
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCommunity = new IpsViewComponentLibrary.CommunityControls.CommunityControl();
             this.pvPublisherSubpublisher = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPublisherAndSubpublisher = new IpsViewComponentLibrary.PublisherAndSubpublisher.PublisherAndSubpublisherControl();
             this.rightHolderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.agreementAddRhBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rightHolderBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -115,7 +116,6 @@ namespace RightholderWorkplace
             this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlPublisherAndSubpublisher = new IpsViewComponentLibrary.PublisherAndSubpublisher.PublisherAndSubpublisherControl();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).BeginInit();
@@ -534,17 +534,18 @@ namespace RightholderWorkplace
             // 
             // 
             this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel5.Size = new System.Drawing.Size(1196, 256);
-            this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.06683587F);
-            this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -45);
+            this.splitPanel5.Size = new System.Drawing.Size(1196, 304);
+            this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.0143824F);
+            this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 3);
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
+            this.splitPanel5.ThemeName = "Office2013Light";
             // 
             // btnTransferSelected
             // 
             this.btnTransferSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTransferSelected.Location = new System.Drawing.Point(184, 225);
+            this.btnTransferSelected.Location = new System.Drawing.Point(188, 273);
             this.btnTransferSelected.Name = "btnTransferSelected";
             this.btnTransferSelected.Size = new System.Drawing.Size(175, 24);
             this.btnTransferSelected.TabIndex = 76;
@@ -555,7 +556,7 @@ namespace RightholderWorkplace
             // btnTransferAll
             // 
             this.btnTransferAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTransferAll.Location = new System.Drawing.Point(3, 225);
+            this.btnTransferAll.Location = new System.Drawing.Point(7, 273);
             this.btnTransferAll.Name = "btnTransferAll";
             this.btnTransferAll.Size = new System.Drawing.Size(175, 24);
             this.btnTransferAll.TabIndex = 75;
@@ -569,12 +570,13 @@ namespace RightholderWorkplace
             this.ctrlRightholdersObjectsForChange.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRightholdersObjectsForChange.Location = new System.Drawing.Point(3, 33);
+            this.ctrlRightholdersObjectsForChange.Location = new System.Drawing.Point(3, 31);
             this.ctrlRightholdersObjectsForChange.Name = "ctrlRightholdersObjectsForChange";
             this.ctrlRightholdersObjectsForChange.SelectedObject = null;
             this.ctrlRightholdersObjectsForChange.SelectedRightholder = null;
+            this.ctrlRightholdersObjectsForChange.SelectedRightholderSecondary = null;
             this.ctrlRightholdersObjectsForChange.ShowRightholderSelector = true;
-            this.ctrlRightholdersObjectsForChange.Size = new System.Drawing.Size(1190, 220);
+            this.ctrlRightholdersObjectsForChange.Size = new System.Drawing.Size(1190, 270);
             this.ctrlRightholdersObjectsForChange.TabIndex = 1;
             this.ctrlRightholdersObjectsForChange.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholdersObjectsForChange_RightholderChanged);
             this.ctrlRightholdersObjectsForChange.RightholderChanging += new System.ComponentModel.CancelEventHandler(this.ctrlRightholdersObjectsForChange_RightholderChanging);
@@ -588,7 +590,7 @@ namespace RightholderWorkplace
             this.ctrlChangeRightholderOperation.Location = new System.Drawing.Point(98, 3);
             this.ctrlChangeRightholderOperation.Name = "ctrlChangeRightholderOperation";
             this.ctrlChangeRightholderOperation.SelectedValue = null;
-            this.ctrlChangeRightholderOperation.Size = new System.Drawing.Size(272, 24);
+            this.ctrlChangeRightholderOperation.Size = new System.Drawing.Size(282, 24);
             this.ctrlChangeRightholderOperation.TabIndex = 74;
             this.ctrlChangeRightholderOperation.SelectedValueChanged += new System.EventHandler(this.ctrlChangeRightholderOperation_SelectedValueChanged);
             // 
@@ -646,24 +648,25 @@ namespace RightholderWorkplace
             this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateFrom);
             this.splitPanel6.Controls.Add(this.radLabel22);
             this.splitPanel6.Controls.Add(this.gvObjectRightForTransfering);
-            this.splitPanel6.Location = new System.Drawing.Point(0, 261);
+            this.splitPanel6.Location = new System.Drawing.Point(0, 309);
             this.splitPanel6.Name = "splitPanel6";
             // 
             // 
             // 
             this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel6.Size = new System.Drawing.Size(1196, 335);
-            this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.06683587F);
-            this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 45);
+            this.splitPanel6.Size = new System.Drawing.Size(1196, 287);
+            this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.0143824F);
+            this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -3);
             this.splitPanel6.TabIndex = 1;
             this.splitPanel6.TabStop = false;
             this.splitPanel6.Text = "splitPanel6";
+            this.splitPanel6.ThemeName = "Office2013Light";
             // 
             // lblTextCount
             // 
             this.lblTextCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTextCount.BackColor = System.Drawing.Color.Silver;
-            this.lblTextCount.Location = new System.Drawing.Point(1037, 286);
+            this.lblTextCount.Location = new System.Drawing.Point(1037, 238);
             this.lblTextCount.Name = "lblTextCount";
             this.lblTextCount.Size = new System.Drawing.Size(78, 13);
             this.lblTextCount.TabIndex = 78;
@@ -673,7 +676,7 @@ namespace RightholderWorkplace
             // 
             this.lblCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCount.BackColor = System.Drawing.Color.Silver;
-            this.lblCount.Location = new System.Drawing.Point(1121, 286);
+            this.lblCount.Location = new System.Drawing.Point(1121, 238);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(66, 13);
             this.lblCount.TabIndex = 77;
@@ -683,7 +686,7 @@ namespace RightholderWorkplace
             // btnClearNewCopyright
             // 
             this.btnClearNewCopyright.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClearNewCopyright.Location = new System.Drawing.Point(834, 308);
+            this.btnClearNewCopyright.Location = new System.Drawing.Point(834, 260);
             this.btnClearNewCopyright.Name = "btnClearNewCopyright";
             this.btnClearNewCopyright.Size = new System.Drawing.Size(175, 24);
             this.btnClearNewCopyright.TabIndex = 74;
@@ -694,7 +697,7 @@ namespace RightholderWorkplace
             // btnSaveNewCopyrights
             // 
             this.btnSaveNewCopyrights.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveNewCopyrights.Location = new System.Drawing.Point(1015, 308);
+            this.btnSaveNewCopyrights.Location = new System.Drawing.Point(1015, 260);
             this.btnSaveNewCopyrights.Name = "btnSaveNewCopyrights";
             this.btnSaveNewCopyrights.Size = new System.Drawing.Size(175, 24);
             this.btnSaveNewCopyrights.TabIndex = 73;
@@ -705,7 +708,7 @@ namespace RightholderWorkplace
             // btnAddNewRightholder
             // 
             this.btnAddNewRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddNewRightholder.Location = new System.Drawing.Point(5, 308);
+            this.btnAddNewRightholder.Location = new System.Drawing.Point(5, 260);
             this.btnAddNewRightholder.Name = "btnAddNewRightholder";
             this.btnAddNewRightholder.Size = new System.Drawing.Size(175, 24);
             this.btnAddNewRightholder.TabIndex = 72;
@@ -717,7 +720,7 @@ namespace RightholderWorkplace
             // 
             this.radPanel1.BackColor = System.Drawing.Color.Silver;
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanel1.Location = new System.Drawing.Point(0, 283);
+            this.radPanel1.Location = new System.Drawing.Point(0, 235);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(1196, 52);
             this.radPanel1.TabIndex = 79;
@@ -821,11 +824,16 @@ namespace RightholderWorkplace
             gridViewDecimalColumn6.Width = 100;
             gridViewCheckBoxColumn1.EditMode = Telerik.WinControls.UI.EditMode.OnValueChange;
             gridViewCheckBoxColumn1.EnableExpressionEditor = false;
+            gridViewCheckBoxColumn1.EnableHeaderCheckBox = true;
             gridViewCheckBoxColumn1.FieldName = "ManualDistribution";
             gridViewCheckBoxColumn1.HeaderText = "Ручне редагування відстока";
-            gridViewCheckBoxColumn1.MinWidth = 20;
+            gridViewCheckBoxColumn1.MinWidth = 70;
             gridViewCheckBoxColumn1.Name = "ManualDistribution";
+            gridViewCheckBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCheckBoxColumn1.Width = 70;
             gridViewCommandColumn1.EnableExpressionEditor = false;
+            gridViewCommandColumn1.HeaderImage = global::RightholderWorkplace.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.Image = global::RightholderWorkplace.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "DeleteColumn";
@@ -846,7 +854,7 @@ namespace RightholderWorkplace
             this.gvObjectRightForTransfering.Name = "gvObjectRightForTransfering";
             this.gvObjectRightForTransfering.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvObjectRightForTransfering.ShowGroupPanel = false;
-            this.gvObjectRightForTransfering.Size = new System.Drawing.Size(1185, 252);
+            this.gvObjectRightForTransfering.Size = new System.Drawing.Size(1185, 204);
             this.gvObjectRightForTransfering.TabIndex = 0;
             this.gvObjectRightForTransfering.ThemeName = "Office2013Light";
             this.gvObjectRightForTransfering.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvObjectRightForTransfering_RowFormatting);
@@ -924,6 +932,14 @@ namespace RightholderWorkplace
             this.pvPublisherSubpublisher.Size = new System.Drawing.Size(1206, 632);
             this.pvPublisherSubpublisher.Text = "Видавництво/Субвидавництво";
             // 
+            // ctrlPublisherAndSubpublisher
+            // 
+            this.ctrlPublisherAndSubpublisher.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPublisherAndSubpublisher.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPublisherAndSubpublisher.Name = "ctrlPublisherAndSubpublisher";
+            this.ctrlPublisherAndSubpublisher.Size = new System.Drawing.Size(1206, 632);
+            this.ctrlPublisherAndSubpublisher.TabIndex = 0;
+            // 
             // rightHolderMainViewBindingSource
             // 
             this.rightHolderMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.RightholderMainView);
@@ -971,14 +987,6 @@ namespace RightholderWorkplace
             // objectRightDictionariesBindingSource
             // 
             this.objectRightDictionariesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ObjectRightDictionaries);
-            // 
-            // ctrlPublisherAndSubpublisher
-            // 
-            this.ctrlPublisherAndSubpublisher.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPublisherAndSubpublisher.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPublisherAndSubpublisher.Name = "ctrlPublisherAndSubpublisher";
-            this.ctrlPublisherAndSubpublisher.Size = new System.Drawing.Size(1206, 632);
-            this.ctrlPublisherAndSubpublisher.TabIndex = 0;
             // 
             // RightholderWorkplace
             // 

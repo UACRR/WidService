@@ -496,7 +496,6 @@ namespace ipsmedserviceapp.Controllers
             return Json(list);
         }
 
-
         /// <summary>
         /// Список всіх об'єктів Єкран "Об'єкти (ВСІ)"
         /// </summary>
@@ -542,6 +541,18 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Об'єкти (ВСІ)-от правовласники Grid 2 з додатковим правовласником
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("view/list_0302/{custId}/{custIdSecondary}")]
+        public async Task<IActionResult> vtsk_3_OR_03_V2(int custId, int custIdSecondary)
+        {
+            string query = $"select * from vtsk_3_OR_03_V2 t1 where custId = {custId} and exists (select 1 from vtsk_3_OR_03_V2 t2 where t2.objid = t1.objid and custId = {custIdSecondary})";
+            var list = await _dbContext.getViewData(query, null);
+            return Json(list);
+        }
+
+        /// <summary>
         /// Об'єкти (ВСІ)-от правообл Grid 3
         /// </summary>
         /// <returns></returns>
@@ -555,6 +566,4 @@ namespace ipsmedserviceapp.Controllers
         #endregion
 
     }
-
-
 }

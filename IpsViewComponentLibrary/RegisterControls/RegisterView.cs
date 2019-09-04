@@ -221,9 +221,12 @@ namespace IpsViewComponentLibrary.RegisterControls
             btnSetCanceledStatus.Enabled = false;
             ddlStatus.ForeColor = Color.DarkGreen;
         }
+
         private void btnSetStatus_Click(object sender, EventArgs e)
         {
-            if (_presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag) == false) return; ;
+            if (_presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag) == false)
+                return;
+
             bsRegister.ResetCurrentItem();
             disableButtons();
         }

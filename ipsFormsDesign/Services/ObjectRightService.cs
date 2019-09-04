@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Services
 {
     public class ObjectRightService
     {
-        private ApiConnector _webApi = new ApiConnector();
+        private readonly ApiConnector _webApi = new ApiConnector();
 
         public ObjectRightDictionaries GetDictionary()
         {
@@ -62,9 +62,14 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
-        public IList<ObjectRightForRightholder> GetRightholdersObjectsRights(int custId)
+        public List<ObjectRightForRightholder> GetRightholdersObjectsRights(int? custId, int? custIdSecondary)
         {
-            var list = _webApi.GetList<ObjectRightForRightholder>($"objectright/view/list_0302/{custId}");
+            if (custId == null)
+                return null;
+
+            var url = custIdSecondary != null ? $"objectright/view/list_0302/{custId}/{custIdSecondary}" : $"objectright/view/list_0302/{custId}";
+
+            var list = _webApi.GetList<ObjectRightForRightholder>(url);
             return list;
         }
 

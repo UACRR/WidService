@@ -187,7 +187,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public bool SetStatus(RegisterStatusType status)
         {
-            if (status == RegisterStatusType.OnDistribution && _view.RegisterItemList.Any(item => item.ObjId == null))
+            if (status == RegisterStatusType.OnDistribution && _view.RegisterItemList.Any(item => item.ObjId == null && item.Wic == null))
             {
                 _dialogService.ShowError(_view, "Не всі об'єкти прив'язані. Закінчіть роботу зі звітом.");
                 return false;

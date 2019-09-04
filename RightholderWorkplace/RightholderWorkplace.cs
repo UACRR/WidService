@@ -433,6 +433,7 @@ namespace RightholderWorkplace
             if (!ConfirmClear())
                 return;
 
+            ctrlRightholdersObjectsForChange.SelectedRightholderSecondary = null;
             ctrlRightholdersObjectsForChange.SelectedRightholder = null;
             dtChangeCopyrightDateTill.Value = dtChangeCopyrightDateTill.NullDate;
         }

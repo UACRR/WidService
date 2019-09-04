@@ -140,7 +140,7 @@
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.DataType = typeof(decimal);
             gridViewTextBoxColumn6.FieldName = "UnattachAmount";
-            gridViewTextBoxColumn6.FormatString = "{0:### ### ##0.00}";
+            gridViewTextBoxColumn6.FormatString = "{0:N2}";
             gridViewTextBoxColumn6.HeaderText = "Незакріплені кошти";
             gridViewTextBoxColumn6.MaxWidth = 150;
             gridViewTextBoxColumn6.MinWidth = 100;
@@ -149,7 +149,7 @@
             gridViewTextBoxColumn6.Width = 143;
             gridViewTextBoxColumn7.DataType = typeof(double);
             gridViewTextBoxColumn7.FieldName = "Undistribamount";
-            gridViewTextBoxColumn7.FormatString = "{0:### ### ##0.00}";
+            gridViewTextBoxColumn7.FormatString = "{0:N2}";
             gridViewTextBoxColumn7.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn7.MaxWidth = 150;
             gridViewTextBoxColumn7.MinWidth = 100;
@@ -159,7 +159,7 @@
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.DataType = typeof(decimal);
             gridViewTextBoxColumn8.FieldName = "AmountBorg";
-            gridViewTextBoxColumn8.FormatString = "{0:### ### ##0.00}";
+            gridViewTextBoxColumn8.FormatString = "{0:N2}";
             gridViewTextBoxColumn8.HeaderText = "Борг";
             gridViewTextBoxColumn8.MaxWidth = 150;
             gridViewTextBoxColumn8.MinWidth = 100;
