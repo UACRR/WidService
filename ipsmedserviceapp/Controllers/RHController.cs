@@ -291,7 +291,6 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 DateEnd = new DateTime(3000, 1, 1),
                 RateCommiss = sysConst.GetValueOrDefault(4)?.Rate ?? 20,
                 RateCourt = sysConst.GetValueOrDefault(5)?.Rate ?? 15
-
             });
 
             newCust.AgreementMaster.Add(agrMaster);
@@ -598,31 +597,39 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         /// <summary>
         /// Збереження нового Правовласника
         /// </summary>
-        /// <param name="newRightHolder"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
         [HttpPost("newrightholder")]
-        public async Task<IActionResult> Insertrightholder([FromBody] Customer newRightHolder)
+        public async Task<IActionResult> Insertrightholder([FromBody] Customer source)
         {
             IDbContextTransaction tran = null;
             try
             {
-                Customer addRightHolder = new Customer();
-                _dbContext.Customer.Add(addRightHolder);
-                updateRihtholder(newRightHolder, addRightHolder);
+                var target = new Customer();
+                _dbContext.Customer.Add(target);
+                updateRihtholder(source, target);
 
                 tran = _dbContext.Database.BeginTransaction();
+
                 _dbContext.SaveChanges();
+
+                if (target.AgreementMaster.FirstOrDefault()?.AgrId is int agrId)
+                {
+                    // викликати процедуру присвоєння номеру договору для правовласника
+                    string setAgrNumber = "exec pTsk4_GetRHNdog @agrId";
+                    _dbContext.Database.ExecuteSqlCommand(setAgrNumber, new SqlParameter("@agrId", agrId));
+                }
+
                 tran.Commit();
                 tran = null;
 
-                return await getRh(addRightHolder.CustId);
+                return await getRh(target.CustId);
             }
             catch (Exception ex)
             {
                 tran?.Rollback();
                 return BadRequest(ex.Message);
             }
-
         }
 
         /// <summary>
