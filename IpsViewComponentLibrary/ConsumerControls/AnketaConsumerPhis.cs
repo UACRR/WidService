@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -42,7 +43,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 _licenseAgreement = customer.Client.LicenseAgreement.SingleOrDefault();
                 var licAgr = _licenseAgreement?.LicenseAgrParam.SingleOrDefault();
                 ctrlAgreementPhis.Rights = TypeRights.SmallRights;
-                ctrlAgreementPhis.InitializeObjects(places, _licenseAgreement, licAgr, ConsumerAgreementInitType.AddNewAgreement);
+                ctrlAgreementPhis.InitializeObjects(places, _licenseAgreement, licAgr,AgreementModifyType.CreateNewAgreement);
             }
 
             bsClient.DataSource = customer.Client;

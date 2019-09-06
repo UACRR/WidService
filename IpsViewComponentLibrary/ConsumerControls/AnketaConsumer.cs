@@ -9,6 +9,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.ConsumerControls.BigRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
@@ -152,7 +153,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     var places = _customer.Client.ClnBusinessPlace;
                     var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == 0);
                     var licAgr = license?.LicenseAgrParam.SingleOrDefault();
-                    _ctrlAgreementSmallRights.InitializeObjects(places, license, licAgr, ConsumerAgreementInitType.AddNewAgreement);
+                    _ctrlAgreementSmallRights.InitializeObjects(places, license, licAgr, AgreementModifyType.CreateNewAgreement);
                 }
                     break;
             }

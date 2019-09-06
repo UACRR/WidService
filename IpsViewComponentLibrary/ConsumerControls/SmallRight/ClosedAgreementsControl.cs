@@ -11,6 +11,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight.InternalModel;
 using IpsViewComponentLibrary.ConsumerForms;
 
 namespace IpsViewComponentLibrary.ConsumerControls

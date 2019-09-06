@@ -223,8 +223,9 @@ namespace ipsmedserviceapp.Controllers
         private void PrepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
         {
         }
+
         /// <summary>
-        /// Внутрішній метод збереження змін по Споживачу
+        /// Синхронізація об'єктів Customer 
         /// </summary>
         /// <param name="sorsCustomer"></param>
         /// <param name="destCustomer"></param>
@@ -361,7 +362,7 @@ namespace ipsmedserviceapp.Controllers
                     }
 
                     var license = new LicenseAgreement { LicVersion = 1 };
-                    license.SetFields(item, new[] { "LicId" });
+                    license.SetFields(item, new[] { "LicId", "LicVersion" });
 
                     _dbContext.AppendList(item.LicenseAgrParam, license.LicenseAgrParam, (sors, dest) =>
                     {
@@ -379,8 +380,7 @@ namespace ipsmedserviceapp.Controllers
 
                     if (agreeItem?.AgreementAddBr != null && destAgreeItem?.AgreementAddBr != null)
                         _dbContext.AppendList(agreeItem.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
-                }
-                );
+                });
             }
 
             if (destCustomer.CustType == 3) // Company
@@ -510,7 +510,6 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-
         /// <summary>
         /// Шаблон нового користувача
         /// </summary>
@@ -580,40 +579,47 @@ namespace ipsmedserviceapp.Controllers
         /// <summary>
         /// Збереження нового Споживача
         /// </summary>
-        /// <param name="sorsCustomer"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
         [HttpPost("newconsumer")]
-        public async Task<IActionResult> NewConsumer([FromBody] Customer sorsCustomer)
+        public async Task<IActionResult> NewConsumer([FromBody] Customer source)
         {
-            IDbContextTransaction tran = null;
+            IDbContextTransaction transaction = null;
             try
             {
-                if (sorsCustomer == null)
+                if (source == null)
                     throw new Exception("new consumer is empty");
-                if (!(sorsCustomer.CustType > 0 && sorsCustomer.CustType < 4))
+
+                if (!(source.CustType > 0 && source.CustType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
-                //fillLicenseAgreement(sorsCustomer); // -> визначається контролом GlobalControlConsumerAnketa >371
-                // Збереження Customer
-                Customer destConsumer = new Customer { CustId = 0 };
-                _dbContext.Customer.Add(destConsumer);
+                var target = new Customer { CustId = 0 };
+                _dbContext.Customer.Add(target);
 
-                InternalUpdateConsumer(sorsCustomer, destConsumer);
+                InternalUpdateConsumer(source, target);
 
-                tran = _dbContext.Database.BeginTransaction();
+                transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
-                tran.Commit();
-                tran = null;
 
-                return await GetConsumerById(destConsumer.CustId);
+                if (target.Client.LicenseAgreement.FirstOrDefault()?.LicId is int licId)
+                {
+                    var licVersion = target.Client.LicenseAgreement.FirstOrDefault()?.LicVersion ?? 1;
+                    
+                    // викликати процедуру присвоєння номеру договору для користувача
+                    string setAgrNumber = "exec pTsk4_GetClnNdog @licId, @version";
+                    _dbContext.Database.ExecuteSqlCommand(setAgrNumber, new SqlParameter("@licId", licId), new SqlParameter("@version", licVersion));
+                }
+
+                transaction.Commit();
+                transaction = null;
+
+                return await GetConsumerById(target.CustId);
             }
             catch (Exception ex)
             {
-                if (tran != null)
-                    tran.Rollback();
-                return BadRequest(ex.Message);
+                transaction?.Rollback();
+                return BadRequest(ex.ToString());
             }
-
         }
 
         /// <summary>
@@ -935,7 +941,6 @@ namespace ipsmedserviceapp.Controllers
             return Json(retList);
         }
 
-
         #region Action FOR LICENSEAGREEMENT ******************************************************
 
         [HttpPut("license/type/{licId}/{typeId}")]
@@ -976,7 +981,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="licid"></param>
         /// <param name="version"></param>
         /// <param name="status"></param>
-        private async Task<LicenseAgreement> SetLicAgrStatus(int licid, int version, /*int? oldStatus,*/ int status, bool toChangeVersion)
+        private async Task<LicenseAgreement> SetLicAgrStatus(int licid, int version, int status, bool toChangeVersion)
         {
             // *******  Отримати дані з бази по договорам
             var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)

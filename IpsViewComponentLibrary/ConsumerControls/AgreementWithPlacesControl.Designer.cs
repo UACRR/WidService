@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.Extensions;
+﻿using IpsViewComponentLibrary.Common.Enums;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.ConsumerControls
@@ -235,7 +236,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgrMain.DateEndNullText = "";
-            this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.Extensions.ConsumerAgreementInitType.None;
+            this.ctrlAgrMain.DateTimeType = AgreementModifyType.CreateNewAgreement;
             this.ctrlAgrMain.Location = new System.Drawing.Point(14, 3);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";

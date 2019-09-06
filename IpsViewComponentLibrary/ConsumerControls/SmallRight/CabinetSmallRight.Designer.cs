@@ -2,6 +2,7 @@
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.ConsumerControls.Calculation;
 using IpsViewComponentLibrary.ConsumerControls.Reports;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight.InternalModel;
 
 namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
@@ -41,29 +42,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn2 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartner = new IpsViewComponentLibrary.ConsumerControls.PartnerOfConsumerControl();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
@@ -73,19 +58,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvPayments = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPaysInfo1 = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.calculationCtrl = new CalculationInfoControl();
+            this.calculationCtrl = new IpsViewComponentLibrary.ConsumerControls.Calculation.CalculationInfoControl();
             this.currentAgreementController1 = new IpsViewComponentLibrary.Utilities.CurrentAgreementController();
             this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
-            this.reportsControl = new ReportsControl();
+            this.reportsControl = new IpsViewComponentLibrary.ConsumerControls.Reports.ReportsControl();
             this.pvMoreAgreements = new Telerik.WinControls.UI.RadPageViewPage();
-            this.gvMoreLicenseAgr = new Telerik.WinControls.UI.RadGridView();
-            this.bsGridLicenseAgreementViewNoAccept = new System.Windows.Forms.BindingSource(this.components);
-            this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
-            this.btnAddNewAgrMore = new Telerik.WinControls.UI.RadButton();
-            this.ddBtnChangeStatusMore = new Telerik.WinControls.UI.RadDropDownButton();
-            this.btnAccept = new Telerik.WinControls.UI.RadMenuItem();
-            this.btnDenied = new Telerik.WinControls.UI.RadMenuItem();
-            this.ctrlAgrDetailInfoMore = new IpsViewComponentLibrary.ConsumerControls.ConsumerAgrDetailInfo();
+            this.ctrlLicenseAgreementNotActive = new IpsViewComponentLibrary.ConsumerControls.SmallRight.LicenseAgreementNotActiveControl();
             this.pvActiveAgr = new Telerik.WinControls.UI.RadPageViewPage();
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.bsGridLicenseAgreementView = new System.Windows.Forms.BindingSource(this.components);
@@ -109,13 +87,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvCalculation.SuspendLayout();
             this.pvReports.SuspendLayout();
             this.pvMoreAgreements.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNoAccept)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
-            this.ipsPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNewAgrMore)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddBtnChangeStatusMore)).BeginInit();
             this.pvActiveAgr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
@@ -254,234 +225,20 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             // 
             // pvMoreAgreements
             // 
-            this.pvMoreAgreements.Controls.Add(this.gvMoreLicenseAgr);
-            this.pvMoreAgreements.Controls.Add(this.ipsPanel2);
+            this.pvMoreAgreements.Controls.Add(this.ctrlLicenseAgreementNotActive);
             this.pvMoreAgreements.ItemSize = new System.Drawing.SizeF(166F, 27F);
             this.pvMoreAgreements.Location = new System.Drawing.Point(5, 41);
             this.pvMoreAgreements.Name = "pvMoreAgreements";
             this.pvMoreAgreements.Size = new System.Drawing.Size(985, 444);
             this.pvMoreAgreements.Text = "Не підтверджені договори";
             // 
-            // gvMoreLicenseAgr
+            // ctrlLicenseAgreementNotActive
             // 
-            this.gvMoreLicenseAgr.AutoScroll = true;
-            this.gvMoreLicenseAgr.AutoSizeRows = true;
-            this.gvMoreLicenseAgr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvMoreLicenseAgr.Location = new System.Drawing.Point(0, 0);
-            // 
-            // 
-            // 
-            this.gvMoreLicenseAgr.MasterTemplate.AllowAddNewRow = false;
-            this.gvMoreLicenseAgr.MasterTemplate.AllowDeleteRow = false;
-            this.gvMoreLicenseAgr.MasterTemplate.AllowDragToGroup = false;
-            this.gvMoreLicenseAgr.MasterTemplate.AllowEditRow = false;
-            this.gvMoreLicenseAgr.MasterTemplate.AutoGenerateColumns = false;
-            this.gvMoreLicenseAgr.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.DataType = typeof(int);
-            gridViewTextBoxColumn1.FieldName = "Id";
-            gridViewTextBoxColumn1.HeaderText = "Id";
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "Id";
-            gridViewTextBoxColumn1.Width = 48;
-            gridViewTextBoxColumn1.WrapText = true;
-            gridViewTextBoxColumn2.FieldName = "License";
-            gridViewTextBoxColumn2.HeaderText = "Ліцензія";
-            gridViewTextBoxColumn2.MinWidth = 180;
-            gridViewTextBoxColumn2.Name = "License";
-            gridViewTextBoxColumn2.Width = 180;
-            gridViewTextBoxColumn2.WrapText = true;
-            gridViewTextBoxColumn3.FieldName = "Series";
-            gridViewTextBoxColumn3.HeaderText = "Серія";
-            gridViewTextBoxColumn3.MinWidth = 80;
-            gridViewTextBoxColumn3.Name = "Series";
-            gridViewTextBoxColumn3.Width = 80;
-            gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.FieldName = "AgrMasterNumber";
-            gridViewTextBoxColumn4.HeaderText = "Номер майстер договору";
-            gridViewTextBoxColumn4.MinWidth = 105;
-            gridViewTextBoxColumn4.Name = "AgrMasterNumber";
-            gridViewTextBoxColumn4.Width = 105;
-            gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.FieldName = "AgrNumber";
-            gridViewTextBoxColumn5.HeaderText = "Номер договору-версії";
-            gridViewTextBoxColumn5.MinWidth = 105;
-            gridViewTextBoxColumn5.Name = "AgrNumber";
-            gridViewTextBoxColumn5.Width = 105;
-            gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.FieldName = "DateBegin";
-            gridViewTextBoxColumn6.HeaderText = "Дата початку";
-            gridViewTextBoxColumn6.MaxWidth = 80;
-            gridViewTextBoxColumn6.MinWidth = 80;
-            gridViewTextBoxColumn6.Name = "DateBegin";
-            gridViewTextBoxColumn6.Width = 80;
-            gridViewTextBoxColumn6.WrapText = true;
-            gridViewTextBoxColumn7.FieldName = "DateEnd";
-            gridViewTextBoxColumn7.HeaderText = "Дата завершення";
-            gridViewTextBoxColumn7.MaxWidth = 80;
-            gridViewTextBoxColumn7.MinWidth = 80;
-            gridViewTextBoxColumn7.Name = "DateEnd";
-            gridViewTextBoxColumn7.Width = 80;
-            gridViewTextBoxColumn7.WrapText = true;
-            gridViewTextBoxColumn8.DataType = typeof(decimal);
-            gridViewTextBoxColumn8.FieldName = "MinRate";
-            gridViewTextBoxColumn8.FormatString = "{0:##0.00}";
-            gridViewTextBoxColumn8.HeaderText = "Тариф";
-            gridViewTextBoxColumn8.MaxWidth = 90;
-            gridViewTextBoxColumn8.MinWidth = 90;
-            gridViewTextBoxColumn8.Name = "MinRate";
-            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn8.Width = 90;
-            gridViewTextBoxColumn8.WrapText = true;
-            gridViewTextBoxColumn9.DataType = typeof(decimal);
-            gridViewTextBoxColumn9.FieldName = "MinAmount";
-            gridViewTextBoxColumn9.FormatString = "{0:### ### ##0.00}";
-            gridViewTextBoxColumn9.HeaderText = "Гарантійний платіж";
-            gridViewTextBoxColumn9.MaxWidth = 100;
-            gridViewTextBoxColumn9.MinWidth = 90;
-            gridViewTextBoxColumn9.Name = "MinAmount";
-            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn9.Width = 90;
-            gridViewTextBoxColumn9.WrapText = true;
-            gridViewTextBoxColumn10.FieldName = "PeriodPayment";
-            gridViewTextBoxColumn10.HeaderText = "Періодичність оплати";
-            gridViewTextBoxColumn10.MaxWidth = 100;
-            gridViewTextBoxColumn10.MinWidth = 100;
-            gridViewTextBoxColumn10.Name = "PeriodPayment";
-            gridViewTextBoxColumn10.Width = 100;
-            gridViewTextBoxColumn10.WrapText = true;
-            gridViewTextBoxColumn11.FieldName = "State";
-            gridViewTextBoxColumn11.HeaderText = "Статус";
-            gridViewTextBoxColumn11.MaxWidth = 150;
-            gridViewTextBoxColumn11.MinWidth = 100;
-            gridViewTextBoxColumn11.Name = "State";
-            gridViewTextBoxColumn11.Width = 100;
-            gridViewTextBoxColumn11.WrapText = true;
-            gridViewCheckBoxColumn1.FieldName = "IsAutoprolog";
-            gridViewCheckBoxColumn1.HeaderText = "а-п";
-            gridViewCheckBoxColumn1.MaxWidth = 30;
-            gridViewCheckBoxColumn1.MinWidth = 30;
-            gridViewCheckBoxColumn1.Name = "IsAutoprolog";
-            gridViewCheckBoxColumn1.Width = 30;
-            gridViewCommandColumn1.FieldName = "printBtn";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.MaxWidth = 30;
-            gridViewCommandColumn1.MinWidth = 30;
-            gridViewCommandColumn1.Name = "printBtn";
-            gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "editBtn";
-            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn2.MaxWidth = 30;
-            gridViewCommandColumn2.MinWidth = 30;
-            gridViewCommandColumn2.Name = "editBtn";
-            gridViewCommandColumn2.Width = 30;
-            gridViewCommandColumn3.FieldName = "deleteBtn";
-            gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn3.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn3.MaxWidth = 30;
-            gridViewCommandColumn3.MinWidth = 30;
-            gridViewCommandColumn3.Name = "deleteBtn";
-            gridViewCommandColumn3.Width = 30;
-            this.gvMoreLicenseAgr.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewCheckBoxColumn1,
-            gridViewCommandColumn1,
-            gridViewCommandColumn2,
-            gridViewCommandColumn3});
-            this.gvMoreLicenseAgr.MasterTemplate.DataSource = this.bsGridLicenseAgreementViewNoAccept;
-            this.gvMoreLicenseAgr.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.gvMoreLicenseAgr.MinimumSize = new System.Drawing.Size(300, 100);
-            this.gvMoreLicenseAgr.Name = "gvMoreLicenseAgr";
-            this.gvMoreLicenseAgr.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvMoreLicenseAgr.ReadOnly = true;
-            // 
-            // 
-            // 
-            this.gvMoreLicenseAgr.RootElement.MinSize = new System.Drawing.Size(300, 100);
-            this.gvMoreLicenseAgr.ShowGroupPanel = false;
-            this.gvMoreLicenseAgr.Size = new System.Drawing.Size(985, 183);
-            this.gvMoreLicenseAgr.TabIndex = 0;
-            this.gvMoreLicenseAgr.ThemeName = "Office2013Light";
-            this.gvMoreLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvMoreLicenseAgr_CurrentRowChanged);
-            this.gvMoreLicenseAgr.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvMoreLicenseAgr_CommandCellClick);
-            // 
-            // bsGridLicenseAgreementViewNoAccept
-            // 
-            this.bsGridLicenseAgreementViewNoAccept.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.SmallRight.GridLicenseAgreementView);
-            // 
-            // ipsPanel2
-            // 
-            this.ipsPanel2.BorderVisible = false;
-            this.ipsPanel2.Controls.Add(this.btnAddNewAgrMore);
-            this.ipsPanel2.Controls.Add(this.ddBtnChangeStatusMore);
-            this.ipsPanel2.Controls.Add(this.ctrlAgrDetailInfoMore);
-            this.ipsPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ipsPanel2.Location = new System.Drawing.Point(0, 183);
-            this.ipsPanel2.Name = "ipsPanel2";
-            this.ipsPanel2.Size = new System.Drawing.Size(985, 261);
-            this.ipsPanel2.TabIndex = 1;
-            this.ipsPanel2.ThemeName = "Office2013Light";
-            // 
-            // btnAddNewAgrMore
-            // 
-            this.btnAddNewAgrMore.Location = new System.Drawing.Point(3, 8);
-            this.btnAddNewAgrMore.Name = "btnAddNewAgrMore";
-            this.btnAddNewAgrMore.Size = new System.Drawing.Size(140, 24);
-            this.btnAddNewAgrMore.TabIndex = 0;
-            this.btnAddNewAgrMore.Text = "Додати новий договір";
-            this.btnAddNewAgrMore.TextWrap = true;
-            this.btnAddNewAgrMore.ThemeName = "Office2013Light";
-            this.btnAddNewAgrMore.Click += new System.EventHandler(this.btnAddAgreement_Click);
-            // 
-            // ddBtnChangeStatusMore
-            // 
-            this.ddBtnChangeStatusMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddBtnChangeStatusMore.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.btnAccept,
-            this.btnDenied});
-            this.ddBtnChangeStatusMore.Location = new System.Drawing.Point(842, 8);
-            this.ddBtnChangeStatusMore.Name = "ddBtnChangeStatusMore";
-            this.ddBtnChangeStatusMore.Size = new System.Drawing.Size(140, 24);
-            this.ddBtnChangeStatusMore.TabIndex = 1;
-            this.ddBtnChangeStatusMore.Text = "Змінити статус";
-            this.ddBtnChangeStatusMore.ThemeName = "Office2013Light";
-            // 
-            // btnAccept
-            // 
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Text = "Підтвердити договір";
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
-            // 
-            // btnDenied
-            // 
-            this.btnDenied.Name = "btnDenied";
-            this.btnDenied.Text = "Відхилити договір";
-            this.btnDenied.Click += new System.EventHandler(this.btnDenied_Click);
-            // 
-            // ctrlAgrDetailInfoMore
-            // 
-            this.ctrlAgrDetailInfoMore.Location = new System.Drawing.Point(3, 38);
-            this.ctrlAgrDetailInfoMore.MinimumSize = new System.Drawing.Size(785, 220);
-            this.ctrlAgrDetailInfoMore.Name = "ctrlAgrDetailInfoMore";
-            this.ctrlAgrDetailInfoMore.Size = new System.Drawing.Size(785, 220);
-            this.ctrlAgrDetailInfoMore.TabIndex = 2;
+            this.ctrlLicenseAgreementNotActive.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlLicenseAgreementNotActive.Location = new System.Drawing.Point(0, 0);
+            this.ctrlLicenseAgreementNotActive.Name = "ctrlLicenseAgreementNotActive";
+            this.ctrlLicenseAgreementNotActive.Size = new System.Drawing.Size(985, 444);
+            this.ctrlLicenseAgreementNotActive.TabIndex = 0;
             // 
             // pvActiveAgr
             // 
@@ -508,51 +265,51 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.gvLicenseAgr.MasterTemplate.AllowEditRow = false;
             this.gvLicenseAgr.MasterTemplate.AutoGenerateColumns = false;
             this.gvLicenseAgr.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn12.DataType = typeof(int);
-            gridViewTextBoxColumn12.FieldName = "Id";
-            gridViewTextBoxColumn12.HeaderText = "Id";
-            gridViewTextBoxColumn12.IsVisible = false;
-            gridViewTextBoxColumn12.Name = "Id";
-            gridViewTextBoxColumn12.Width = 48;
-            gridViewTextBoxColumn13.FieldName = "License";
-            gridViewTextBoxColumn13.HeaderText = "Ліцензія";
-            gridViewTextBoxColumn13.MinWidth = 180;
-            gridViewTextBoxColumn13.Name = "License";
-            gridViewTextBoxColumn13.Width = 180;
-            gridViewTextBoxColumn14.FieldName = "Series";
-            gridViewTextBoxColumn14.HeaderText = "Серія";
-            gridViewTextBoxColumn14.MinWidth = 80;
-            gridViewTextBoxColumn14.Name = "Series";
-            gridViewTextBoxColumn14.Width = 80;
-            gridViewTextBoxColumn15.FieldName = "AgrNumber";
-            gridViewTextBoxColumn15.HeaderText = "Номер договору";
-            gridViewTextBoxColumn15.MinWidth = 105;
-            gridViewTextBoxColumn15.Name = "AgrNumber";
-            gridViewTextBoxColumn15.Width = 105;
-            gridViewTextBoxColumn16.FieldName = "DateBegin";
-            gridViewTextBoxColumn16.HeaderText = "Дата початку";
-            gridViewTextBoxColumn16.MaxWidth = 80;
-            gridViewTextBoxColumn16.MinWidth = 80;
-            gridViewTextBoxColumn16.Name = "DateBegin";
-            gridViewTextBoxColumn16.Width = 80;
-            gridViewTextBoxColumn16.WrapText = true;
-            gridViewTextBoxColumn17.FieldName = "DateEnd";
-            gridViewTextBoxColumn17.HeaderText = "Дата завершення";
-            gridViewTextBoxColumn17.MaxWidth = 80;
-            gridViewTextBoxColumn17.MinWidth = 80;
-            gridViewTextBoxColumn17.Name = "DateEnd";
-            gridViewTextBoxColumn17.Width = 80;
-            gridViewTextBoxColumn17.WrapText = true;
-            gridViewTextBoxColumn18.DataType = typeof(decimal);
-            gridViewTextBoxColumn18.FieldName = "MinRate";
-            gridViewTextBoxColumn18.FormatString = "{0:##0.00}";
-            gridViewTextBoxColumn18.HeaderText = "Тариф";
-            gridViewTextBoxColumn18.MaxWidth = 90;
-            gridViewTextBoxColumn18.MinWidth = 90;
-            gridViewTextBoxColumn18.Name = "MinRate";
-            gridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn18.Width = 90;
-            gridViewTextBoxColumn18.WrapText = true;
+            gridViewTextBoxColumn1.DataType = typeof(int);
+            gridViewTextBoxColumn1.FieldName = "Id";
+            gridViewTextBoxColumn1.HeaderText = "Id";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.Name = "Id";
+            gridViewTextBoxColumn1.Width = 48;
+            gridViewTextBoxColumn2.FieldName = "License";
+            gridViewTextBoxColumn2.HeaderText = "Ліцензія";
+            gridViewTextBoxColumn2.MinWidth = 180;
+            gridViewTextBoxColumn2.Name = "License";
+            gridViewTextBoxColumn2.Width = 180;
+            gridViewTextBoxColumn3.FieldName = "Series";
+            gridViewTextBoxColumn3.HeaderText = "Серія";
+            gridViewTextBoxColumn3.MinWidth = 80;
+            gridViewTextBoxColumn3.Name = "Series";
+            gridViewTextBoxColumn3.Width = 80;
+            gridViewTextBoxColumn4.FieldName = "AgrNumber";
+            gridViewTextBoxColumn4.HeaderText = "Номер договору";
+            gridViewTextBoxColumn4.MinWidth = 105;
+            gridViewTextBoxColumn4.Name = "AgrNumber";
+            gridViewTextBoxColumn4.Width = 105;
+            gridViewTextBoxColumn5.FieldName = "DateBegin";
+            gridViewTextBoxColumn5.HeaderText = "Дата початку";
+            gridViewTextBoxColumn5.MaxWidth = 80;
+            gridViewTextBoxColumn5.MinWidth = 80;
+            gridViewTextBoxColumn5.Name = "DateBegin";
+            gridViewTextBoxColumn5.Width = 80;
+            gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.FieldName = "DateEnd";
+            gridViewTextBoxColumn6.HeaderText = "Дата завершення";
+            gridViewTextBoxColumn6.MaxWidth = 80;
+            gridViewTextBoxColumn6.MinWidth = 80;
+            gridViewTextBoxColumn6.Name = "DateEnd";
+            gridViewTextBoxColumn6.Width = 80;
+            gridViewTextBoxColumn6.WrapText = true;
+            gridViewTextBoxColumn7.DataType = typeof(decimal);
+            gridViewTextBoxColumn7.FieldName = "MinRate";
+            gridViewTextBoxColumn7.FormatString = "{0:##0.00}";
+            gridViewTextBoxColumn7.HeaderText = "Тариф";
+            gridViewTextBoxColumn7.MaxWidth = 90;
+            gridViewTextBoxColumn7.MinWidth = 90;
+            gridViewTextBoxColumn7.Name = "MinRate";
+            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn7.Width = 90;
+            gridViewTextBoxColumn7.WrapText = true;
             gridViewDecimalColumn1.FieldName = "MinAmount";
             gridViewDecimalColumn1.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn1.HeaderText = "Гарантійний платіж";
@@ -560,58 +317,58 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             gridViewDecimalColumn1.Name = "MinAmount";
             gridViewDecimalColumn1.Width = 90;
             gridViewDecimalColumn1.WrapText = true;
-            gridViewTextBoxColumn19.FieldName = "State";
-            gridViewTextBoxColumn19.HeaderText = "Статус";
-            gridViewTextBoxColumn19.MaxWidth = 150;
-            gridViewTextBoxColumn19.MinWidth = 100;
-            gridViewTextBoxColumn19.Name = "State";
-            gridViewTextBoxColumn19.Width = 100;
-            gridViewTextBoxColumn20.FieldName = "PeriodPayment";
-            gridViewTextBoxColumn20.HeaderText = "Періодичність оплати";
-            gridViewTextBoxColumn20.MaxWidth = 115;
-            gridViewTextBoxColumn20.MinWidth = 100;
-            gridViewTextBoxColumn20.Name = "PeriodPayment";
-            gridViewTextBoxColumn20.Width = 100;
-            gridViewTextBoxColumn20.WrapText = true;
-            gridViewTextBoxColumn21.FieldName = "DateLastPayment";
-            gridViewTextBoxColumn21.HeaderText = "Дата останньої оплати";
-            gridViewTextBoxColumn21.MaxWidth = 80;
-            gridViewTextBoxColumn21.MinWidth = 80;
-            gridViewTextBoxColumn21.Multiline = true;
-            gridViewTextBoxColumn21.Name = "DateLastPayment";
-            gridViewTextBoxColumn21.Width = 80;
-            gridViewTextBoxColumn21.WrapText = true;
-            gridViewCheckBoxColumn2.FieldName = "IsAutoprolog";
-            gridViewCheckBoxColumn2.HeaderText = "а-п";
-            gridViewCheckBoxColumn2.MaxWidth = 30;
-            gridViewCheckBoxColumn2.MinWidth = 30;
-            gridViewCheckBoxColumn2.Name = "IsAutoprolog";
-            gridViewCheckBoxColumn2.Width = 30;
-            gridViewCommandColumn4.FieldName = "printBtn";
-            gridViewCommandColumn4.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            gridViewCommandColumn4.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn4.MaxWidth = 30;
-            gridViewCommandColumn4.MinWidth = 30;
-            gridViewCommandColumn4.Name = "printBtn";
-            gridViewCommandColumn4.Width = 30;
+            gridViewTextBoxColumn8.FieldName = "State";
+            gridViewTextBoxColumn8.HeaderText = "Статус";
+            gridViewTextBoxColumn8.MaxWidth = 150;
+            gridViewTextBoxColumn8.MinWidth = 100;
+            gridViewTextBoxColumn8.Name = "State";
+            gridViewTextBoxColumn8.Width = 100;
+            gridViewTextBoxColumn9.FieldName = "PeriodPayment";
+            gridViewTextBoxColumn9.HeaderText = "Періодичність оплати";
+            gridViewTextBoxColumn9.MaxWidth = 115;
+            gridViewTextBoxColumn9.MinWidth = 100;
+            gridViewTextBoxColumn9.Name = "PeriodPayment";
+            gridViewTextBoxColumn9.Width = 100;
+            gridViewTextBoxColumn9.WrapText = true;
+            gridViewTextBoxColumn10.FieldName = "DateLastPayment";
+            gridViewTextBoxColumn10.HeaderText = "Дата останньої оплати";
+            gridViewTextBoxColumn10.MaxWidth = 80;
+            gridViewTextBoxColumn10.MinWidth = 80;
+            gridViewTextBoxColumn10.Multiline = true;
+            gridViewTextBoxColumn10.Name = "DateLastPayment";
+            gridViewTextBoxColumn10.Width = 80;
+            gridViewTextBoxColumn10.WrapText = true;
+            gridViewCheckBoxColumn1.FieldName = "IsAutoprolog";
+            gridViewCheckBoxColumn1.HeaderText = "а-п";
+            gridViewCheckBoxColumn1.MaxWidth = 30;
+            gridViewCheckBoxColumn1.MinWidth = 30;
+            gridViewCheckBoxColumn1.Name = "IsAutoprolog";
+            gridViewCheckBoxColumn1.Width = 30;
+            gridViewCommandColumn1.FieldName = "printBtn";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "printBtn";
+            gridViewCommandColumn1.Width = 30;
             this.gvLicenseAgr.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
             gridViewDecimalColumn1,
-            gridViewTextBoxColumn19,
-            gridViewTextBoxColumn20,
-            gridViewTextBoxColumn21,
-            gridViewCheckBoxColumn2,
-            gridViewCommandColumn4});
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewCheckBoxColumn1,
+            gridViewCommandColumn1});
             this.gvLicenseAgr.MasterTemplate.DataSource = this.bsGridLicenseAgreementView;
-            this.gvLicenseAgr.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvLicenseAgr.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvLicenseAgr.MinimumSize = new System.Drawing.Size(300, 100);
             this.gvLicenseAgr.Name = "gvLicenseAgr";
             this.gvLicenseAgr.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -629,7 +386,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             // 
             // bsGridLicenseAgreementView
             // 
-            this.bsGridLicenseAgreementView.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.SmallRight.GridLicenseAgreementView);
+            this.bsGridLicenseAgreementView.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.SmallRight.InternalModel.GridLicenseAgreementView);
             // 
             // ipsPanel1
             // 
@@ -811,13 +568,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvCalculation.ResumeLayout(false);
             this.pvReports.ResumeLayout(false);
             this.pvMoreAgreements.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNoAccept)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).EndInit();
-            this.ipsPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNewAgrMore)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddBtnChangeStatusMore)).EndInit();
             this.pvActiveAgr.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).EndInit();
@@ -848,9 +598,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private Telerik.WinControls.UI.RadPageViewPage pvReports;
         public ReportsControl reportsControl;
         private Telerik.WinControls.UI.RadPageViewPage pvMoreAgreements;
-        private Telerik.WinControls.UI.RadGridView gvMoreLicenseAgr;
-        private Telerik.WinControls.UI.RadButton btnAddNewAgrMore;
-        private ConsumerControls.ConsumerAgrDetailInfo ctrlAgrDetailInfoMore;
         private Telerik.WinControls.UI.RadPageViewPage pvActiveAgr;
         private Telerik.WinControls.UI.RadGridView gvLicenseAgr;
         private Telerik.WinControls.UI.RadButton btnCloseAgr;
@@ -858,9 +605,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private Telerik.WinControls.UI.RadPageViewPage pvAnketa;
         private Telerik.WinControls.UI.RadPageView pvMain;
         private ConsumerControls.ConsumerHeaderInfo ctrlHeaderInfo;
-        private Telerik.WinControls.UI.RadDropDownButton ddBtnChangeStatusMore;
-        private Telerik.WinControls.UI.RadMenuItem btnAccept;
-        private Telerik.WinControls.UI.RadMenuItem btnDenied;
         private Telerik.WinControls.UI.RadDropDownButton btnActionOfAgr;
         private Telerik.WinControls.UI.RadMenuItem btnProlongation;
         private Telerik.WinControls.UI.RadMenuItem btnAddAgrNewVersion;
@@ -870,10 +614,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private MiddleControlCabinetFiles ctrlFiles;
         private Telerik.WinControls.UI.RadPageViewPage pvClosedAgreement;
         private ClosedAgreementsControl ctrlClosedAgreements;
-        private Common.Editors.IpsPanel ipsPanel2;
         private Common.Editors.IpsPanel ipsPanel1;
         private ConsumerAgrDetailInfo ctrlAgrDetailInfo;
         private System.Windows.Forms.BindingSource bsGridLicenseAgreementView;
-        private System.Windows.Forms.BindingSource bsGridLicenseAgreementViewNoAccept;
+        private LicenseAgreementNotActiveControl ctrlLicenseAgreementNotActive;
     }
 }

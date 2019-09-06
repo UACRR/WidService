@@ -1,74 +1,50 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerForms
 {
-    public partial class AgreementActionsForm : RadForm
+    public sealed partial class AgreementActionsForm : RadForm
     {
-        private Customer _customer;
-        private LicenseAgreement _license;
-        private LicenseAgrParam _licAgr;
-        private readonly DialogGoal _goal;
-        
-        public AgreementActionsForm(LicenseAgrParam bindAgr, LicenseAgreement license, Customer customer, DialogGoal goal, TypeRights typeRights = TypeRights.SmallRights)
+        public AgreementActionsForm(ObservableListSource<ClnBusinessPlace> clnBusinessPlace, LicenseAgreement license, LicenseAgrParam licenseAgrParam, AgreementModifyType agreementModifyType)
         {
-            _license = license;
-            _licAgr = bindAgr;
-            _customer = customer;
-            _goal = goal;
-
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            FormClosing += ProlongationWithPlaces_FormClosing;
 
-            ctrlProlongation.Rights = typeRights;
+            ctrlSaveCancelButtons.SaveClck += CtrlSaveCancelButtons_SaveClck;
 
-            ConsumerAgreementInitType caType = ConsumerAgreementInitType.None;
-            //ініціалізувати тип форми (пролонгація, додавання нового і т.д.)
-            if (goal == DialogGoal.forNew)
-                caType = ConsumerAgreementInitType.AddNewAgreement;
-            else if (goal == DialogGoal.forEdit)
-                caType = ConsumerAgreementInitType.EditAgreement;
-            else if (goal == DialogGoal.forProlongation || goal == DialogGoal.forExistProlongation)
-                caType = ConsumerAgreementInitType.Prolongation;
-            else if (goal == DialogGoal.forChange || goal == DialogGoal.forExistChange)
-                caType = ConsumerAgreementInitType.ChangeAgreement;
+            switch (agreementModifyType)
+            {
+                case AgreementModifyType.CreateNewAgreement:
+                    Text = "Додати новий ліцензійний договір";
+                    break;
+                case AgreementModifyType.CreateAgreementVersion:
+                    Text = "Редагувати активний ліцензійний договір";
+                    break;
+                case AgreementModifyType.CreateAgreementProlongation:
+                    Text = "Пролонгувати ліцензійний договір";
+                    break;
+                case AgreementModifyType.EditAgreementOrVersion:
+                    Text = "Редагувати ліцензійний договір";
+                    break;
+                case AgreementModifyType.EditAgreementProlongation:
+                    Text = "Редагувати пролонгований ліцензійний договір";
+                    break;
+            }
 
-            var places = _customer.Client?.ClnBusinessPlace;
-            ctrlProlongation.InitializeObjects(places, license, bindAgr, caType);
-            ctrlProlongation.LicenseEnabled = goal == DialogGoal.forNew;
+            ctrlAgreementWithPlaces.Rights = TypeRights.SmallRights;
+            ctrlAgreementWithPlaces.InitializeObjects(clnBusinessPlace, license, licenseAgrParam, agreementModifyType);
+            ctrlAgreementWithPlaces.LicenseEnabled = agreementModifyType == AgreementModifyType.CreateNewAgreement;
         }
 
-        public bool IsNewAgreement { get; set; }
-
-        private void ProlongationWithPlaces_FormClosing(object sender, FormClosingEventArgs e)
+        private void CtrlSaveCancelButtons_SaveClck(object sender, EventArgs e)
         {
-            if (DialogResult == DialogResult.OK)
-            {
-                ctrlProlongation.UpdatePlaceLicenses();
-                return;
-            }
-
-            if (!IsNewAgreement)
-                return;
-
-            switch (_goal)
-            {
-                case DialogGoal.forNew:
-                    _license.LicenseAgrParam.Remove(_licAgr);
-                    _customer.Client.LicenseAgreement.Remove(_license);
-                    break;
-                case DialogGoal.forProlongation:
-                    _license.LicenseAgrParam.Remove(_licAgr);
-                    _license.ProlongVersion = null;
-                    break;
-                case DialogGoal.forChange:
-                    _license.LicenseAgrParam.Remove(_licAgr);
-                    break;
-            }
+            ctrlAgreementWithPlaces.UpdatePlaceLicenses();
         }
     }
 }

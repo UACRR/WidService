@@ -168,11 +168,26 @@
     <Compile Include="CatalogControls\CatalogShowEdition.Designer.cs">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Enums\AgreementModifyType.cs" />
     <Compile Include="CommunityControls\InternalModel\InternalCommunity.cs" />
     <Compile Include="ConsumerControls\Places\Enums\MeasurementOfPlaces.cs" />
     <Compile Include="ConsumerControls\Places\Enums\PremisesFormTypeInitialization.cs" />
     <Compile Include="ConsumerControls\Reports\ButtonEnableControl.cs" />
     <Compile Include="ConsumerControls\Reports\ReportsHandler.cs" />
+    <Compile Include="ConsumerControls\SmallRight\Enums\GridCallMethod.cs" />
+    <Compile Include="ConsumerControls\SmallRight\LicenseAgreementActions.cs" />
+    <Compile Include="ConsumerControls\SmallRight\LicenseAgreementActiveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\LicenseAgreementActiveControl.Designer.cs">
+      <DependentUpon>LicenseAgreementActiveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\LicenseAgreementNotActiveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\LicenseAgreementNotActiveControl.Designer.cs">
+      <DependentUpon>LicenseAgreementNotActiveControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="InternalControlsModel\ReportPaidPeriod.cs" />
     <Compile Include="ObjectRightControls\ObjectRightSelectionExtendedView.cs">
       <SubType>Form</SubType>
@@ -353,10 +368,10 @@
     <Compile Include="ConsumerControls\AnketaConsumerPhis.Designer.cs">
       <DependentUpon>AnketaConsumerPhis.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\ClosedAgreementsControl.cs">
+    <Compile Include="ConsumerControls\SmallRight\ClosedAgreementsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\ClosedAgreementsControl.Designer.cs">
+    <Compile Include="ConsumerControls\SmallRight\ClosedAgreementsControl.Designer.cs">
       <DependentUpon>ClosedAgreementsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\ManagersControl.cs">
@@ -371,7 +386,7 @@
     <Compile Include="_UnusedControls\AgreementPhis.Designer.cs">
       <DependentUpon>AgreementPhis.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\GridLicenseAgreementView.cs" />
+    <Compile Include="ConsumerControls\SmallRight\InternalModel\GridLicenseAgreementView.cs" />
     <Compile Include="ConsumerDialogForms\ContactPersonActionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1204,6 +1219,9 @@
     <EmbeddedResource Include="CatalogControls\CatalogShowEdition.resx">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\LicenseAgreementNotActiveControl.resx">
+      <DependentUpon>LicenseAgreementNotActiveControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightSelectionExtendedView.resx">
       <DependentUpon>ObjectRightSelectionExtendedView.cs</DependentUpon>
     </EmbeddedResource>
@@ -1285,7 +1303,7 @@
     <EmbeddedResource Include="ConsumerControls\AnketaConsumerPhis.resx">
       <DependentUpon>AnketaConsumerPhis.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\ClosedAgreementsControl.resx">
+    <EmbeddedResource Include="ConsumerControls\SmallRight\ClosedAgreementsControl.resx">
       <DependentUpon>ClosedAgreementsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ManagersControl.resx">

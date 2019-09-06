@@ -1,6 +1,6 @@
 ﻿using ipsFormsDesign.Model;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.InternalModel
 {
     /// <summary>
     /// Intermediate class for grid DataSource

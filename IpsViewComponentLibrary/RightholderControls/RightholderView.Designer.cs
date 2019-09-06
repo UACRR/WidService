@@ -1,4 +1,4 @@
-﻿using IpsViewComponentLibrary.Extensions;
+﻿using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.RightholderControls
@@ -1083,7 +1083,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlAgreementNumberDate.DataSourceRh = this.bsAgreementAddRh;
             this.ctrlAgreementNumberDate.DateEndNullDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.ctrlAgreementNumberDate.DateEndNullText = "Не обмежено";
-            this.ctrlAgreementNumberDate.DateTimeType = IpsViewComponentLibrary.Extensions.ConsumerAgreementInitType.None;
+            this.ctrlAgreementNumberDate.DateTimeType = AgreementModifyType.CreateNewAgreement;
             this.ctrlAgreementNumberDate.Location = new System.Drawing.Point(187, 6);
             this.ctrlAgreementNumberDate.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementNumberDate.Name = "ctrlAgreementNumberDate";

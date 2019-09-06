@@ -1,0 +1,13 @@
+IDbContextTransaction transaction = null;
+try
+{
+    transaction = _dbContext.Database.BeginTransaction();
+    _dbContext.SaveChanges();
+    transaction.Commit();
+    return Ok();
+}
+catch (Exception e)
+{
+    transaction?.Rollback();
+    return BadRequest(e.ToString());
+}
