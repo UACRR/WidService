@@ -503,10 +503,40 @@ namespace ipsmedserviceapp.Controllers
                     }, (l, r) => l.CRightId == r.CRightId);
 
                 // calculate Rate by RoleRate
-                _rateDistributor.DistributeByPropertyAndTotalBaseAmount(license.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Rate, cr => cr.RoleRate, cr => cr.Rate);
+                // перерахувати %
+                if (license.LicenseBigR.Rate.HasValue && license.LicenseBigR.Rate != 0 && license.LicenseBigR.Obj.CopyRight.Any())
+                {
+                    var sumRate = 0m;
+                    foreach (var copyRight in license.LicenseBigR.Obj.CopyRight)
+                    {
+                        copyRight.Rate = Math.Round(((copyRight.RoleRate ?? 0) * 100) / license.LicenseBigR.Rate.Value, 2);
+                        sumRate += copyRight.Rate;
+                    }
+
+                    // згладжування
+                    var delta = Math.Round(100m - sumRate, 2);
+                    if (delta != 0 && sumRate != 0)
+                    {
+                        sumRate = 0m;
+                        var list = license.LicenseBigR.Obj.CopyRight.Where(rec => rec.RoleRate.HasValue && rec.RoleRate.Value != 0).ToList();
+
+                        var divDelta = Math.Round(delta / list.Count, 2);
+                        foreach (var copyRight in list)
+                        {
+                            copyRight.Rate = Math.Round(copyRight.Rate + divDelta, 2);
+                            sumRate += copyRight.Rate;
+                        }
+
+                        // вирівнювання до 100%
+                        delta = Math.Round(100m - sumRate, 2);
+                        if (delta != 0)
+                        {
+                            license.LicenseBigR.Obj.CopyRight.OrderByDescending(rec => rec.Rate).First().Rate += delta;
+                        }
+                    }
+                }
 
                 _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
-
             }
         }
 

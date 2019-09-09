@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Principal;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsCommonTypes.Wrappers;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Shared.Interfaces;
 
 namespace IpsViewComponentLibrary.CatalogControls.Presenters
@@ -40,13 +42,76 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             catalogFile.UserId = identityName;
 
             var PubCatalogItemList = GetPubСatalog(path);
+
+            if (!CheckValidDataLength(PubCatalogItemList))
+                return null;
+
             catalogFile.PubCatalogItem = new ObservableListSource<PubCatalogItem>(PubCatalogItemList);
 
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
             return result;
         }
-        
+
+        private bool CheckValidDataLength(ICollection<PubCatalogItem> pubCatalogItems)
+        {
+            var dbTableLangth = new Dictionary<string, int>
+            {
+                ["itemCode".ToUpper()] = 50,
+                ["iswc".ToUpper()] = 100,
+                ["objName".ToUpper()] = 254,
+                ["genreName".ToUpper()] = 100,
+                ["roleName".ToUpper()] = 100,
+                ["authorMusic".ToUpper()] = 254,
+                ["authorText".ToUpper()] = 254,
+                ["performer".ToUpper()] = 254,
+                ["rhName".ToUpper()] = 254,
+            };
+
+
+            bool ShowWarningNotValidDataLength(PubCatalogItem item, string propertyName)
+            {
+                string length = $"Довжина поля \"{propertyName}\" перевищує допустиму довжину '{dbTableLangth[propertyName.ToUpper()]}' символи!";
+                string msg = $"Помилка завантаження! Запис з кодом (шифр твору) '{item.ItemCode}' не може бути записаний! {length}";
+
+                MessageShow.ShowWarning(msg);
+
+                return false;
+            }
+
+            foreach (var pubCatalogItem in pubCatalogItems)
+            {
+                if (pubCatalogItem.ItemCode.Length > dbTableLangth[nameof(pubCatalogItem.ItemCode).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.ItemCode));
+
+                if (pubCatalogItem.Iswc.Length > dbTableLangth[nameof(pubCatalogItem.Iswc).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.Iswc));
+
+                if (pubCatalogItem.ObjName.Length > dbTableLangth[nameof(pubCatalogItem.ObjName).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.ObjName));
+
+                if (pubCatalogItem.GenreName.Length > dbTableLangth[nameof(pubCatalogItem.GenreName).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.GenreName));
+
+                if (pubCatalogItem.RoleName.Length > dbTableLangth[nameof(pubCatalogItem.RoleName).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.RoleName));
+
+                if (pubCatalogItem.AuthorMusic.Length > dbTableLangth[nameof(pubCatalogItem.AuthorMusic).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.AuthorMusic));
+
+                if (pubCatalogItem.AuthorText.Length > dbTableLangth[nameof(pubCatalogItem.AuthorText).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.AuthorText));
+
+                if (pubCatalogItem.Performer.Length > dbTableLangth[nameof(pubCatalogItem.Performer).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.Performer));
+
+                if (pubCatalogItem.RhName.Length > dbTableLangth[nameof(pubCatalogItem.RhName).ToUpper()])
+                    return ShowWarningNotValidDataLength(pubCatalogItem, nameof(pubCatalogItem.RhName));
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Конвертація Xls файлу в список PubCatalogItem
         /// </summary>
