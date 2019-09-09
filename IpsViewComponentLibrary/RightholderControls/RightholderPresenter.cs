@@ -36,6 +36,21 @@ namespace IpsViewComponentLibrary.RightholderControls
         private bool _canClose;
         public IUniqueChecker UniquChecker { get; private set; }
 
+        public string RightholderName
+        {
+            get
+            {
+                switch (_customer.CustType)
+                {
+                    case 3:
+                        return _anketaCompany.Name;
+                    case 5:
+                        return _anketaExternal.Name;
+                    default:
+                        return $"{_anketaPerson.LastName} {_anketaPerson.FirstName} {_anketaPerson.SurName}";
+                }
+            }
+        }
 
         public RightholderPresenter(IRightholderView view)
         {
@@ -72,19 +87,21 @@ namespace IpsViewComponentLibrary.RightholderControls
             _customer = _rightholderService.GetData(custId);
             SetViewData();
 
-            if (_customer.CustType == 3)
-            {
-                _view.SetHeader(_anketaCompany.Name);
-            }
-            else if (_customer.CustType == 5)
-            {
-                //set title name for Current Action
-                _view.SetHeader(_anketaExternal.Name);
-            }
-            else
-            {
-                _view.SetHeader($"{_anketaPerson.LastName} {_anketaPerson.FirstName} {_anketaPerson.SurName}");
-            }
+            _view.SetHeader(RightholderName);
+
+            //if (_customer.CustType == 3)
+            //{
+            //    _view.SetHeader(_anketaCompany.Name);
+            //}
+            //else if (_customer.CustType == 5)
+            //{
+            //    //set title name for Current Action
+            //    _view.SetHeader(_anketaExternal.Name);
+            //}
+            //else
+            //{
+            //    _view.SetHeader($"{_anketaPerson.LastName} {_anketaPerson.FirstName} {_anketaPerson.SurName}");
+            //}
 
             _view.Run();
         }
@@ -110,11 +127,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
             else if (_customer.CustType == 5)
             {
-                //get data for Exteral Anketa
                 _anketaExternal = _customer.AnketaExternal;
-                //set data to data source
                 _view.AnketaExternalDataSource = _anketaExternal;
-                //set data for term of service of the external anketa
                 _view.TermsOfServiceExternalAnketaDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
             }
             else
@@ -217,9 +231,10 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             using (var view = new ObjectRightSrView())
             {
-                var presenter = new ObjectRightSrPresenter(view);
-                var name = _isCompany ? _anketaCompany.ShortName : String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName);
-                presenter.DefaultRightholder = new RightholderMainView { CustId = _customer.CustId, Name = name };
+                var presenter = new ObjectRightSrPresenter(view)
+                {
+                    DefaultRightholder = new RightholderMainView {CustId = _customer.CustId, Name = RightholderName}
+                };
                 presenter.ShowNew(category);
             }
         }
@@ -251,7 +266,11 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
-            var selectedRightholder = new RightholderMainView { CustId = _customer.CustId, Name = String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName) }; ;
+            var selectedRightholder = new RightholderMainView
+            {
+                CustId = _customer.CustId,
+                Name = RightholderName,
+            };
 
             var objectAuthorRightholder = new ObjectAuthorRightholder(selectedRightholder);
 
