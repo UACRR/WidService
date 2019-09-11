@@ -252,6 +252,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<RelReqMedia> RelReqMedia { get; set; }
         public virtual DbSet<RelReqObj> RelReqObj { get; set; }
         public virtual DbSet<RelSerialEpisode> RelSerialEpisode { get; set; }
+        public virtual DbSet<RelSubPublish> RelSubPublish { get; set; }
         public virtual DbSet<RelTvepisode> RelTvepisode { get; set; }
         public virtual DbSet<ReportList> ReportList { get; set; }
         public virtual DbSet<ReportType> ReportType { get; set; }
@@ -1475,6 +1476,11 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.FirstName)
+                    .HasColumnName("firstName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.InnOkpo)
                     .HasColumnName("innOkpo")
                     .HasMaxLength(12)
@@ -2047,6 +2053,9 @@ namespace ipsmedserviceapp.Model
 
                 entity.HasIndex(e => new { e.AuthorName, e.CustId })
                     .HasName("IdxNames");
+
+                entity.HasIndex(e => new { e.ObjId, e.CustId, e.AuthorName })
+                    .HasName("I_AuthorsObjId");
 
                 entity.Property(e => e.AuthId).HasColumnName("authId");
 
@@ -3545,6 +3554,10 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CustType).HasColumnName("custType");
 
+                entity.Property(e => e.DateCreate)
+                    .HasColumnName("dateCreate")
+                    .HasColumnType("datetime");
+
                 entity.Property(e => e.LoadId).HasColumnName("loadId");
 
                 entity.Property(e => e.Status).HasColumnName("status");
@@ -4350,12 +4363,12 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Account)
                     .HasColumnName("account")
-                    .HasMaxLength(30)
+                    .HasMaxLength(32)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AccountCorr)
                     .HasColumnName("accountCorr")
-                    .HasMaxLength(25)
+                    .HasMaxLength(32)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CodeOper)
@@ -8745,6 +8758,48 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_RELSERIAEP_REF_REQSERIAL");
             });
 
+            modelBuilder.Entity<RelSubPublish>(entity =>
+            {
+                entity.HasKey(e => new { e.CustIdPub, e.CustIdSub, e.DateBegin })
+                    .HasName("PK_RELSUBPUBLISH");
+
+                entity.ToTable("RelSubPublish", "dbo");
+
+                entity.Property(e => e.CustIdPub).HasColumnName("custIdPub");
+
+                entity.Property(e => e.CustIdSub).HasColumnName("custIdSub");
+
+                entity.Property(e => e.DateBegin)
+                    .HasColumnName("dateBegin")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.CreateDate)
+                    .HasColumnName("createDate")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.DateEnd)
+                    .HasColumnName("dateEnd")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.ModifyDate)
+                    .HasColumnName("modifyDate")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.CustIdPubNavigation)
+                    .WithMany(p => p.RelSubPublishCustIdPubNavigation)
+                    .HasForeignKey(d => d.CustIdPub)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RELSUBPU_REFERENCE_RHPUB");
+
+                entity.HasOne(d => d.CustIdSubNavigation)
+                    .WithMany(p => p.RelSubPublishCustIdSubNavigation)
+                    .HasForeignKey(d => d.CustIdSub)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RELSUBPU_REFERENCE_RHSUB");
+            });
+
             modelBuilder.Entity<RelTvepisode>(entity =>
             {
                 entity.HasKey(e => new { e.ReqId, e.EpisodeTypeCode })
@@ -9908,6 +9963,11 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.CreateDate)
+                    .HasColumnName("createDate")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")

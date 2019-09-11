@@ -15,6 +15,8 @@ namespace ipsmedserviceapp.Model
             CopyRight = new HashSet<CopyRight>();
             PubCatalogItem = new HashSet<PubCatalogItem>();
             RegisterCount = new HashSet<RegisterCount>();
+            RelSubPublishCustIdPubNavigation = new HashSet<RelSubPublish>();
+            RelSubPublishCustIdSubNavigation = new HashSet<RelSubPublish>();
             ReqAgreement = new HashSet<ReqAgreement>();
             RhcatalogItem = new HashSet<RhcatalogItem>();
             TermsOfService = new HashSet<TermsOfService>();
@@ -45,6 +47,10 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
         [JsonIgnore]
         public virtual ICollection<RegisterCount> RegisterCount { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<RelSubPublish> RelSubPublishCustIdPubNavigation { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<RelSubPublish> RelSubPublishCustIdSubNavigation { get; set; }
         [JsonIgnore]
         public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
         [JsonIgnore]

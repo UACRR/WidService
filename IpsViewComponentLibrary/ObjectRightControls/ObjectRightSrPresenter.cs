@@ -238,7 +238,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                         CRightId = foundedCopyright?.CRightId,
                         CopyrightStatus = foundedCopyright?.Status,
                         CommunityName = foundedRightholder?.Community_Name,
-                        Rate = foundedCopyright?.Rate,
+                        Rate = foundedCopyright?.Rate ?? 0m,
                         BeginDate = foundedCopyright?.BeginDate,
                         EndDate = foundedCopyright?.EndDate,
                     });

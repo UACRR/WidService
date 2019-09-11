@@ -60,7 +60,7 @@ namespace ipsmedserviceapp.Utilities
             {
                 _oldCopyrights = _oldRightholder.CopyRight.Where(c => c.ObjId == transferedObject.ObjId).ToList();
 
-                _rateTotal = _oldCopyrights.Sum(c => c.Rate ?? 0);
+                _rateTotal = _oldCopyrights.Sum(c => c.Rate);
 
                 if (_rateTotal == 0m)
                 {
@@ -161,7 +161,7 @@ namespace ipsmedserviceapp.Utilities
                 // 1. create new copyrights for each of new rightholders
                 foreach (var newRightholderParams in transferedObject.NewRightholderList)
                 {
-                    var newRate = Math.Round(oldCopyright.Rate.Value * newRightholderParams.Rate / _rateTotal, 2);
+                    var newRate = Math.Round(oldCopyright.Rate * newRightholderParams.Rate / _rateTotal, 2);
 
                     totalTransferedRate += newRate;
 
@@ -228,7 +228,7 @@ namespace ipsmedserviceapp.Utilities
                     LBasis = group.Key.LBasis,
                     BeginDate = group.Key.BeginDate,
                     EndDate = group.Key.EndDate,
-                    Rate = group.Sum(c => c.Copyright.Rate ?? 0),
+                    Rate = group.Sum(c => c.Copyright.Rate),
                 };
 
                 copyrightList.Add(newCopyright);

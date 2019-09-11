@@ -391,6 +391,7 @@
     <Compile Include="Model\RelReqMedia.cs" />
     <Compile Include="Model\RelReqObj.cs" />
     <Compile Include="Model\RelSerialEpisode.cs" />
+    <Compile Include="Model\RelSubPublish.cs" />
     <Compile Include="Model\RelTvepisode.cs" />
     <Compile Include="Model\ReportList.cs" />
     <Compile Include="Model\Reports.cs" />

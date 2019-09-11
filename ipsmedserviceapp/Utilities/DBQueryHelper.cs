@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,6 +9,14 @@ namespace ipsmedserviceapp.Utilities
 {
     public static class DBQueryHelper
     {
+        private const string And = " and ";
+        private const string Or = " or ";
+
+        private static string StrongNormalizeString(string s)
+        {
+            return s.Replace("'", "''");
+        }
+
         public static string ApplySqlWhereCondition(string queryText, Dictionary<string, string> conditionDictionary)
         {
             if (!conditionDictionary.Any())
@@ -16,11 +25,64 @@ namespace ipsmedserviceapp.Utilities
             var conditions = new Collection<string>();
 
             foreach (var condition in conditionDictionary)
-                conditions.Add($"{condition.Key} like \'%{condition.Value}%\'");
+                conditions.Add($"{condition.Key} like \'%{StrongNormalizeString(condition.Value)}%\'");
             
             if (conditions.Any())
-                queryText = $"{queryText} where {string.Join(" and ", conditions)}";
+                queryText += $" where {string.Join(" and ", conditions)}";
             
+            return queryText;
+        }
+
+        public static string ApplySqlWhereEqualCondition(string queryText, Dictionary<string, string> conditionDictionary)
+        {
+            if (!conditionDictionary.Any())
+                return queryText;
+
+            var conditions = new Collection<string>();
+
+            foreach (var condition in conditionDictionary)
+                conditions.Add($"{condition.Key} = \'{StrongNormalizeString(condition.Value)}\'");
+
+            queryText += $" where {string.Join(" and ", conditions)}";
+
+            return queryText;
+        }
+
+        public static string ApplySqlWhereInCondition<T>(string queryText, string parameterName, ICollection<T> valueCollection)
+        {
+            if (valueCollection.Count == 0)
+                return queryText;
+
+            var paramStrings = valueCollection.ToArray().Select(item => $"'{item}'").ToArray();
+
+            queryText += $" where {parameterName} in ({string.Join(", ", paramStrings)})";
+            
+            return queryText;
+        }
+
+        public static string ApplySqlWhereInCondition(string queryText, string parameterName, string stringValues)
+        {
+            if (string.IsNullOrWhiteSpace(stringValues))
+                return queryText;
+
+            queryText += $" where {parameterName} in ({stringValues})";
+
+            return queryText;
+        }
+
+        public static string ApplySqlWhereContainsCondition(string queryText, Dictionary<string[], string> conditionDictionary)
+        {
+            if (!conditionDictionary.Any())
+                return queryText;
+
+            var containsList = new List<string>();
+            foreach (var item in conditionDictionary)
+            {
+                containsList.Add($"contains(({string.Join(", ", item.Key)}), '\"{StrongNormalizeString(item.Value)}\"')");    
+            }
+
+            queryText += $" where {string.Join(" and ", containsList)}";
+
             return queryText;
         }
 
