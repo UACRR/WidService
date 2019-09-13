@@ -64,8 +64,11 @@ namespace ipsmedserviceapp.Controllers
                 _dbContext.SaveChanges();
 
                 // викликати процедуру присвоєння номеру договору
-                string setAgrNumber = "exec pTsk4_GetClnNdog @licId, @version";
-                _dbContext.Database.ExecuteSqlCommand(setAgrNumber, new SqlParameter("@licId", target.LicId), new SqlParameter("@version", target.LicVersion));
+                if (string.IsNullOrWhiteSpace(licenseAgrParam.LicNum))
+                {
+                    string setAgrNumber = "exec pTsk4_GetClnNdog @licId, @version";
+                    _dbContext.Database.ExecuteSqlCommand(setAgrNumber, new SqlParameter("@licId", target.LicId), new SqlParameter("@version", target.LicVersion));
+                }
 
                 transaction.Commit();
 
