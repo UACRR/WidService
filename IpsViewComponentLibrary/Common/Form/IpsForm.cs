@@ -42,7 +42,7 @@ namespace IpsViewComponentLibrary.Common.Form
                 }
                 else if (c is IpsDateTimePicker dt)
                 {
-                    dt.SetReadOnly(_readOnly);
+                    dt.ReadOnly = _readOnly;
                 }
                 else if (c is IpsMaskedEditBox meb)
                 {

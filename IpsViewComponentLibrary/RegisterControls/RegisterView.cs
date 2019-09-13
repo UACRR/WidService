@@ -67,7 +67,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             InitializeComponent();
 
-            dtCreateDate.SetReadOnly(true);
+            dtCreateDate.ReadOnly = true;
 
             SetDictionaries();
 

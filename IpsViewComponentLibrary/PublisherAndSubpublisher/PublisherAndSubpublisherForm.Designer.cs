@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.PublisherAndSubpublisher
+﻿using IpsViewComponentLibrary.Common.Editors;
+
+namespace IpsViewComponentLibrary.PublisherAndSubpublisher
 {
     partial class PublisherAndSubpublisherForm
     {
@@ -37,10 +39,10 @@
             this.bsSubPublishers = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.dtDateBegin = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtDateBegin = new IpsDateTimePicker();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.dtDateEnd = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtDateEnd = new IpsDateTimePicker();
             this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             this.lblInfo = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
@@ -250,10 +252,10 @@
         private Common.Editors.IpsDropDownList ddlSubPublisher;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadDateTimePicker dtDateBegin;
+        private IpsDateTimePicker dtDateBegin;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadLabel radLabel5;
-        private Telerik.WinControls.UI.RadDateTimePicker dtDateEnd;
+        private IpsDateTimePicker dtDateEnd;
         private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
         private Telerik.WinControls.UI.RadLabel lblInfo;
         private System.Windows.Forms.BindingSource bsRelSubPublish;

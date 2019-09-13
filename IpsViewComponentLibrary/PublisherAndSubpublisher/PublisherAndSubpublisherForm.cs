@@ -28,15 +28,13 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         {
             InitializeComponent();
 
-            dtDateBegin.SetUserCalendarSettingsm();
-            dtDateEnd.SetUserCalendarSettingsm();
+            //dtDateBegin.SetUserCalendarSettingsm();
+            //dtDateEnd.SetUserCalendarSettingsm();
 
             ctrlSaveCancelButtons.ButtonSaveDialogResult = DialogResult.None;
             ctrlSaveCancelButtons.SaveClck += CtrlSaveCancelButtons_SaveClck;
 
-            dtDateBegin.MinDate = DateTime.Now;
             dtDateBegin.MaxDate = new DateTime(2999, 12, 31);
-
             dtDateEnd.MaxDate = new DateTime(3000, 01, 01);
         }
 
@@ -46,6 +44,7 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         /// <param name="relSubPublish"></param>
         public PublisherAndSubpublisherForm(RelSubPublish relSubPublish) : this()
         {
+            dtDateBegin.MinDate = DateTime.Now;
             dtDateEnd.MinDate = DateTime.Now.AddDays(1);
 
             var publisherList = PublisherAndSubpublisherSevice.GetInstance().GetPublishersList();
@@ -75,7 +74,6 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         public PublisherAndSubpublisherForm(PublisherAndSubpublisherView subpublisherView) : this()
         {
             _subpublisherViewCache = subpublisherView;
-            dtDateEnd.MinDate = DateTime.Now;
 
             var listPub = new List<PublishersView>
             {
@@ -100,6 +98,8 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             ddlPublisher.ReadOnly = true;
             ddlSubPublisher.ReadOnly = true;
             dtDateBegin.ReadOnly = true;
+            var arrowButtonDateBegin = dtDateBegin.DateTimePickerElement.FindDescendant<RadDateTimePickerArrowButtonElement>();
+            arrowButtonDateBegin.Enabled = false;
             lblInfo.Visible = true;
 
             var relSubPublish = new RelSubPublish
@@ -112,6 +112,10 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
 
             bsRelSubPublish.DataSource = relSubPublish;
 
+            if (relSubPublish.DateEnd < DateTime.Now)
+                dtDateEnd.ReadOnly = true;
+            else
+                dtDateEnd.MinDate = DateTime.Now;
         }
 
         private void CtrlSaveCancelButtons_SaveClck(object sender, EventArgs e)
