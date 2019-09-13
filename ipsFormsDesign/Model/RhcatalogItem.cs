@@ -27,6 +27,8 @@ namespace ipsFormsDesign.Model
         public string ErrComment { get; set; }
         public TimeSpan? Duration { get; set; }
         public int? RhCustId { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
 
         public virtual CopyRight CRight { get; set; }
         public virtual RightHolder Cust { get; set; }

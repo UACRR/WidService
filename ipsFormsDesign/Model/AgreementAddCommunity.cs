@@ -21,6 +21,12 @@ namespace ipsFormsDesign.Model
         public int? AgrStatus { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
+        public DateTime? DateBeginMec { get; set; }
+        public DateTime? DateEndMec { get; set; }
+        public DateTime? DateBeginPer { get; set; }
+        public DateTime? DateEndPer { get; set; }
+        public bool? IsMec { get; set; }
+        public bool? IsPer { get; set; }
 
         public virtual AgreementMaster Agr { get; set; }
         public virtual AgreementStatus AgrStatusNavigation { get; set; }

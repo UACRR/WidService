@@ -79,6 +79,12 @@ public interface IAgreementAddCommunity
          int? AgrStatus { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
+         DateTime? DateBeginMec { get; set; }
+         DateTime? DateEndMec { get; set; }
+         DateTime? DateBeginPer { get; set; }
+         DateTime? DateEndPer { get; set; }
+         bool? IsMec { get; set; }
+         bool? IsPer { get; set; }
 }
 public interface IAgreementAddPartner
     {
@@ -1672,6 +1678,8 @@ public interface IPubCatalogItem
          int? Status { get; set; }
          string ErrComment { get; set; }
          string RhName { get; set; }
+         DateTime? DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
 }
 public interface IRegion
     {    int CodeI { get; set; }
@@ -2130,6 +2138,8 @@ public interface IRhcatalogItem
          string ErrComment { get; set; }
          TimeSpan? Duration { get; set; }
          int? RhCustId { get; set; }
+         DateTime? DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
 }
 public interface IRholderType
     {    int CodeI { get; set; }

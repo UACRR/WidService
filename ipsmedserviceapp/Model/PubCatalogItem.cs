@@ -25,6 +25,8 @@ namespace ipsmedserviceapp.Model
         public int? Status { get; set; }
         public string ErrComment { get; set; }
         public string RhName { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
 
         public virtual CopyRight CRight { get; set; }
         public virtual RightHolder Cust { get; set; }
