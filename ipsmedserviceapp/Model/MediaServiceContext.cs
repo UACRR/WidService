@@ -737,11 +737,31 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("dateBegin")
                     .HasColumnType("date");
 
+                entity.Property(e => e.DateBeginMec)
+                    .HasColumnName("dateBeginMEC")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateBeginPer)
+                    .HasColumnName("dateBeginPER")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.DateEnd)
                     .HasColumnName("dateEnd")
                     .HasColumnType("date");
 
+                entity.Property(e => e.DateEndMec)
+                    .HasColumnName("dateEndMEC")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateEndPer)
+                    .HasColumnName("dateEndPER")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.DayForPay).HasColumnName("dayForPay");
+
+                entity.Property(e => e.IsMec).HasColumnName("isMEC");
+
+                entity.Property(e => e.IsPer).HasColumnName("isPER");
 
                 entity.Property(e => e.ModifyDate)
                     .HasColumnName("modifyDate")
@@ -2976,7 +2996,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.RoleRate)
                     .HasColumnName("roleRate")
-                    .HasColumnType("decimal(5, 2)");
+                    .HasColumnType("decimal(5, 2)")
+                    .HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.SourceName)
                     .HasColumnName("sourceName")
@@ -7678,6 +7699,14 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
+                entity.Property(e => e.DateBegin)
+                    .HasColumnName("dateBegin")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateEnd)
+                    .HasColumnName("dateEnd")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.ErrComment)
                     .HasColumnName("errComment")
                     .HasMaxLength(200)
@@ -9734,6 +9763,14 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
+                entity.Property(e => e.DateBegin)
+                    .HasColumnName("dateBegin")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateEnd)
+                    .HasColumnName("dateEnd")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.Duration).HasColumnName("duration");
 
                 entity.Property(e => e.ErrComment)
@@ -9900,7 +9937,7 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<SaldoDay>(entity =>
             {
                 entity.HasKey(e => new { e.AccId, e.DateBegin, e.DateEnd })
-                    .HasName("PK_SALDODAY");
+                    .HasName("PK_saldoday");
 
                 entity.ToTable("SaldoDay", "dbo");
 
@@ -9956,6 +9993,9 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<SeekObject>(entity =>
             {
                 entity.ToTable("SeekObject", "dbo");
+
+                entity.HasIndex(e => e.Name)
+                    .HasName("SeekObject_Name");
 
                 entity.HasIndex(e => new { e.CodeI, e.ObjId, e.Name })
                     .HasName("idx_search");
