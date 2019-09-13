@@ -141,6 +141,5 @@ namespace IpsViewComponentLibrary.CommunityControls
             ctrlAddressLe.TxtAddress.Text = ctrlAddressFa.TxtAddress.Text;
             ctrlAddressLe.TxtPostIndex.Select();
         }
-
     }
 }

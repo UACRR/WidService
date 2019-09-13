@@ -15,7 +15,15 @@ namespace IpsViewComponentLibrary.CommunityControls
         public CommunityAgreementControl()
         {
             InitializeComponent();
+
+            if (IpsGlobal.AnketaDictionaties?.period != null)
+                bsDictPaidPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
+
             txtDayForPay.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
+            dtDateBeginPER.Enabled = false;
+            dtDateEndPER.Enabled = false;
+            dtDateBeginMEC.Enabled = false;
+            dtDateEndMEC.Enabled = false;
             SetupObjects();
         }
 
@@ -47,9 +55,21 @@ namespace IpsViewComponentLibrary.CommunityControls
             get => bsAgreementAddCommunity.DataSource;
             set
             {
-                if (IpsGlobal.AnketaDictionaties?.period != null)
-                    bsDictPaidPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
                 bsAgreementAddCommunity.DataSource = value;
+                bsAgreementAddCommunity.ResetBindings(false);
+                if (value is AgreementAddCommunity item)
+                {
+                    if (!item.IsPer.HasValue || item.IsPer.Value == false)
+                    {
+                        dtDateBeginPER.Text = null;
+                        dtDateEndPER.Text = null;
+                    }
+                    if (!item.IsMec.HasValue || item.IsMec.Value == false)
+                    {
+                        dtDateBeginMEC.Text = null;
+                        dtDateEndMEC.Text = null;
+                    }
+                }
             }
         }
 
@@ -84,6 +104,18 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             if (dtDateBegin.Value.AddDays(1) is DateTime newDate)
                 dtDateEnd.MinDate = new DateTime(newDate.Year, newDate.Month, newDate.Day);
+        }
+
+        private void checkPER_CheckStateChanged(object sender, EventArgs e)
+        {
+            dtDateBeginPER.Enabled = checkPER.Checked;
+            dtDateEndPER.Enabled = checkPER.Checked;
+        }
+
+        private void checkMEC_CheckStateChanged(object sender, EventArgs e)
+        {
+            dtDateBeginMEC.Enabled = checkMEC.Checked;
+            dtDateEndMEC.Enabled = checkMEC.Checked;
         }
     }
 }

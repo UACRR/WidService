@@ -66,10 +66,24 @@ namespace IpsViewComponentLibrary.CommunityControls
         // agreement save
         private void CtrlSaveCancelButtons_SaveClck(object sender, EventArgs e)
         {
-            var ageement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
-            var result = SaveAgreementChanges?.Invoke(ageement) ?? false;
+            var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
+
+            // ReSharper disable once PossibleNullReferenceException
+            if (agreement.IsPer == null|| agreement.IsPer == false)
+            {
+                agreement.DateBeginPer = null;
+                agreement.DateEndPer = null;
+            }
+            if (agreement.IsMec == null || agreement.IsMec == false)
+            {
+                agreement.DateBeginMec = null;
+                agreement.DateEndMec = null;
+            }
+
+            var result = SaveAgreementChanges?.Invoke(agreement) ?? false;
             //var result = SaveCustomer?.Invoke(_customer) ?? false;
-            MessageShow.ShowInfoAfterChanges(result);
+            UpdateAfterSave(result);
+            //MessageShow.ShowInfoAfterChanges(result);
         }
 
         // anketa save

@@ -70,7 +70,7 @@ namespace IpsViewComponentLibrary.Common.Editors
                 var borderPrimitive = DateTimePickerElement.FindDescendant<BorderPrimitive>();
                 var arrowButton = DateTimePickerElement.FindDescendant<RadDateTimePickerArrowButtonElement>();
 
-                if (value)
+                if (!value)
                 {
                     // display only bottom border
                     arrowButton.Visibility = ElementVisibility.Collapsed;
