@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Tests
     [TestClass]
     public class CatalogServiceTest
     {
-        private readonly CatalogService _catalog = CatalogService.GetInstance();
+        private readonly RightholderCatalogService _catalog = RightholderCatalogService.GetInstance();
         private const int CustID = 42349;
 
 

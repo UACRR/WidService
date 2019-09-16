@@ -17,6 +17,10 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class RightholderView : RadForm, IRightholderView
     {
+        private const string TransferRightholderConfirmMsg = "Перевести зовнішнього Правовласника в УААСП?";
+        private const string TransferRightholderSuccessMsg = "Правовласника переведено. Для подальшої роботи з його з Анкетою та Договором шукайте Правовласника в «Не підтверджені».";
+        private const string TransferRightholderErrorMsg = "Неможливо перевести Правовласника!";
+
         private const int CustomerTypeJuridicalCode = 3;
         private string _pdf;
         private string _doc;
@@ -228,21 +232,6 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             }
         }
-        //define active pages
-        private void ShowActivePages(Customer customer)
-        {
-            //check on exist state field 'CustType'
-            if (customer.CustType == null) { return; }
-            //get all pages
-            foreach (var external in pageCatalog.Pages)
-                //hide current page if it's: Anketa, Contract
-                if (customer.CustType == 5 && (external.Name == "Anketa" || external.Name == "Contract"))
-                    external.Item.Visibility = ElementVisibility.Collapsed;
-                //hide current page if it's: ExternalAnketa
-                else if (customer.CustType != 5 && external.Name == "AnketaExternal")
-                    external.Item.Visibility = ElementVisibility.Collapsed;
-
-        }
 
         public void Run()
         {
@@ -252,8 +241,6 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             ShowPublishers(customer.CustId, customer.RightHolder.RHolderType, customer.CustType);
 
-
-            
             DirectorCustType _director = new DirectorCustType(this, customer);
             _director.CurrentTypeCustomer.ShowPages();
             _director.CurrentTypeCustomer.RunSetings();
@@ -512,6 +499,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        /// <summary>
+        /// Перевести Правовласника в УААСП
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTransferToInternal_Click(object sender, EventArgs e)
+        {
+            if (MessageShow.ConfirmAction(TransferRightholderConfirmMsg) == DialogResult.Yes)
+            {
+                var result = RightholderExternalService.GetInstance().TransferExternalRHToInternal(bsCustomer.DataSource as Customer);
+                MessageShow.ShowInfoByResult(TransferRightholderSuccessMsg, TransferRightholderErrorMsg, result);
+
+                if (result)
+                    _presenter.Close();
+            }
+        }
         
         /// <summary>
         /// define common class for all Types

@@ -274,9 +274,13 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 // .Include(rec => rec.)
                 .AsNoTracking().ToListAsync();
 
+            copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService
+            {
+                CrkindCode = rec.CodeI,
+                OurService = true,
+                CrkindCodeNavigation = rec
+            }));
 
-
-            copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec }));
             var agrMaster = new AgreementMaster {
                 Version = 1,
                 AgrStatus = 0,

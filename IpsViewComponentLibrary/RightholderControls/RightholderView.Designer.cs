@@ -122,6 +122,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.AnketaExternal = new Telerik.WinControls.UI.RadPageViewPage();
             this.externalAnketaPage = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage5 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlSubPublisherInUkraine = new IpsViewComponentLibrary.PublisherAndSubpublisher.SubPublisherInUkraineControl();
             this.ctrlAnketaExternalRightholder = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaExternalRightholderControl();
             this.radPageViewPage12 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRightLimitationsExternal = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
@@ -145,7 +146,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlSubPublisherInUkraine = new IpsViewComponentLibrary.PublisherAndSubpublisher.SubPublisherInUkraineControl();
+            this.btnTransferToInternal = new Telerik.WinControls.UI.RadButton();
+            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -239,6 +241,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pvPublishers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferToInternal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1083,7 +1087,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlAgreementNumberDate.DataSourceRh = this.bsAgreementAddRh;
             this.ctrlAgreementNumberDate.DateEndNullDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.ctrlAgreementNumberDate.DateEndNullText = "Не обмежено";
-            this.ctrlAgreementNumberDate.DateTimeType = AgreementModifyType.CreateNewAgreement;
+            this.ctrlAgreementNumberDate.DateTimeType = IpsViewComponentLibrary.Common.Enums.AgreementModifyType.CreateNewAgreement;
             this.ctrlAgreementNumberDate.Location = new System.Drawing.Point(187, 6);
             this.ctrlAgreementNumberDate.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementNumberDate.Name = "ctrlAgreementNumberDate";
@@ -1170,6 +1174,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // radPageViewPage5
             // 
+            this.radPageViewPage5.Controls.Add(this.radSeparator1);
+            this.radPageViewPage5.Controls.Add(this.btnTransferToInternal);
             this.radPageViewPage5.Controls.Add(this.ctrlSubPublisherInUkraine);
             this.radPageViewPage5.Controls.Add(this.ctrlAnketaExternalRightholder);
             this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(113F, 27F);
@@ -1177,6 +1183,15 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radPageViewPage5.Name = "radPageViewPage5";
             this.radPageViewPage5.Size = new System.Drawing.Size(887, 439);
             this.radPageViewPage5.Text = "Правовласник";
+            // 
+            // ctrlSubPublisherInUkraine
+            // 
+            this.ctrlSubPublisherInUkraine.Location = new System.Drawing.Point(3, 145);
+            this.ctrlSubPublisherInUkraine.MaximumSize = new System.Drawing.Size(1000, 27);
+            this.ctrlSubPublisherInUkraine.MinimumSize = new System.Drawing.Size(340, 27);
+            this.ctrlSubPublisherInUkraine.Name = "ctrlSubPublisherInUkraine";
+            this.ctrlSubPublisherInUkraine.Size = new System.Drawing.Size(527, 27);
+            this.ctrlSubPublisherInUkraine.TabIndex = 1;
             // 
             // ctrlAnketaExternalRightholder
             // 
@@ -1325,6 +1340,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightholdersObjectsRight.Name = "ctrlRightholdersObjectsRight";
             this.ctrlRightholdersObjectsRight.SelectedObject = null;
             this.ctrlRightholdersObjectsRight.SelectedRightholder = null;
+            this.ctrlRightholdersObjectsRight.SelectedRightholderSecondary = null;
             this.ctrlRightholdersObjectsRight.ShowRightholderSelector = false;
             this.ctrlRightholdersObjectsRight.Size = new System.Drawing.Size(1009, 450);
             this.ctrlRightholdersObjectsRight.TabIndex = 8;
@@ -1390,14 +1406,26 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.AnketaExternal);
             // 
-            // ctrlSubPublisherInUkraine
+            // btnTransferToInternal
             // 
-            this.ctrlSubPublisherInUkraine.Location = new System.Drawing.Point(3, 145);
-            this.ctrlSubPublisherInUkraine.MaximumSize = new System.Drawing.Size(1000, 27);
-            this.ctrlSubPublisherInUkraine.MinimumSize = new System.Drawing.Size(340, 27);
-            this.ctrlSubPublisherInUkraine.Name = "ctrlSubPublisherInUkraine";
-            this.ctrlSubPublisherInUkraine.Size = new System.Drawing.Size(527, 27);
-            this.ctrlSubPublisherInUkraine.TabIndex = 1;
+            this.btnTransferToInternal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTransferToInternal.Location = new System.Drawing.Point(15, 412);
+            this.btnTransferToInternal.Name = "btnTransferToInternal";
+            this.btnTransferToInternal.Size = new System.Drawing.Size(247, 24);
+            this.btnTransferToInternal.TabIndex = 2;
+            this.btnTransferToInternal.Text = "Перевести Правовласника в УААСП";
+            this.btnTransferToInternal.ThemeName = "Office2013Light";
+            this.btnTransferToInternal.Click += new System.EventHandler(this.btnTransferToInternal_Click);
+            // 
+            // radSeparator1
+            // 
+            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator1.Location = new System.Drawing.Point(4, 396);
+            this.radSeparator1.Name = "radSeparator1";
+            this.radSeparator1.Size = new System.Drawing.Size(880, 10);
+            this.radSeparator1.TabIndex = 3;
+            this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // RightholderView
             // 
@@ -1514,6 +1542,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pvPublishers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferToInternal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1634,5 +1664,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadPageViewPage pvPublishers;
         private PublisherAndSubpublisher.RightholderPublishersControl ctrlRightholderPublishers;
         private PublisherAndSubpublisher.SubPublisherInUkraineControl ctrlSubPublisherInUkraine;
+        private Telerik.WinControls.UI.RadSeparator radSeparator1;
+        private Telerik.WinControls.UI.RadButton btnTransferToInternal;
     }
 }

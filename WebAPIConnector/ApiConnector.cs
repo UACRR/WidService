@@ -330,7 +330,6 @@ namespace WebAPIConnector
                 return null;
         }
 
-
         /// <summary>
         /// Змінити об'єкт на сервері додатків
         /// </summary>

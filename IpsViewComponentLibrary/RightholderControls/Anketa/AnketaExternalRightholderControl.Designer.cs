@@ -42,6 +42,7 @@
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtInnOkpo = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rhName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
@@ -219,5 +220,6 @@
         private System.Windows.Forms.BindingSource bsAnketaExternal;
         private System.Windows.Forms.BindingSource bsRightHolder;
         private System.Windows.Forms.BindingSource bsDictCountry;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

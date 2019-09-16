@@ -91,6 +91,7 @@
             // 
             this.ctelRightLimitationsExternal.DataSource = typeof(ipsFormsDesign.Dictionary.TermsOfServiceWrapper);
             this.ctelRightLimitationsExternal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctelRightLimitationsExternal.IsExternalRightHolder = false;
             this.ctelRightLimitationsExternal.Location = new System.Drawing.Point(0, 0);
             this.ctelRightLimitationsExternal.Name = "ctelRightLimitationsExternal";
             this.ctelRightLimitationsExternal.Size = new System.Drawing.Size(965, 447);

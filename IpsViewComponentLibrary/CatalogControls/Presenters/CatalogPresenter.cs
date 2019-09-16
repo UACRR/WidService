@@ -13,12 +13,12 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 {
     public class CatalogPresenter: ICatalogFileItemsHandler
     {
-        private readonly CatalogService _service;
+        private readonly RightholderCatalogService _service;
         private readonly ExcelEngine _exelEngine;
 
         public CatalogPresenter()
         {
-            _service = CatalogService.GetInstance();
+            _service = RightholderCatalogService.GetInstance();
             _exelEngine = ExcelEngine.GetInstance();
         }
 

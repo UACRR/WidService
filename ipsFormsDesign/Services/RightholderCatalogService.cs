@@ -6,21 +6,21 @@ using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
 {
-    public class CatalogService
+    public class RightholderCatalogService
     {
         private const string Prefix = "catalog";
         private readonly ApiConnector _apiConnector;
-        private static CatalogService _service;
+        private static RightholderCatalogService _service;
 
-        private CatalogService()
+        private RightholderCatalogService()
         {
             _apiConnector = new ApiConnector();
         }
 
-        public static CatalogService GetInstance()
+        public static RightholderCatalogService GetInstance()
         {
             if (_service == null)
-                _service = new CatalogService();
+                _service = new RightholderCatalogService();
 
             return _service;
         }
