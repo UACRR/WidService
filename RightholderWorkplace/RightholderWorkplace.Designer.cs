@@ -727,6 +727,7 @@ namespace RightholderWorkplace
             // 
             // dtChangeCopyrightDateTill
             // 
+            this.dtChangeCopyrightDateTill.BorderVisible = true;
             this.dtChangeCopyrightDateTill.CalendarSize = new System.Drawing.Size(220, 180);
             this.dtChangeCopyrightDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateTill.Location = new System.Drawing.Point(235, 3);
@@ -752,6 +753,7 @@ namespace RightholderWorkplace
             // 
             // dtChangeCopyrightDateFrom
             // 
+            this.dtChangeCopyrightDateFrom.BorderVisible = true;
             this.dtChangeCopyrightDateFrom.CalendarSize = new System.Drawing.Size(220, 180);
             this.dtChangeCopyrightDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateFrom.Location = new System.Drawing.Point(80, 3);

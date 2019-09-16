@@ -279,9 +279,16 @@ namespace RightholderWorkplace
         private void gvObjectRightForTransfering_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
             if (e.Column.Name == "ManualDistribution")
-                if (e.Row.DataBoundItem is ObjectRightForTransfering obj)
-                    if (!obj.ManualDistribution)
-                        DistributePersentForObject(obj);
+            {
+                if (!(e.Row.DataBoundItem is ObjectRightForTransfering obj))
+                    return;
+
+                if (!obj.ManualDistribution)
+                {
+                    DistributePersentForObject(obj);
+                    bsObjectCopyright.ResetBindings(false);
+                }
+            }
         }
 
         private void DistributePersentForObject(ObjectRightForTransfering obj)
