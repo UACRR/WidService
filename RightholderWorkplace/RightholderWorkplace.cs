@@ -202,8 +202,8 @@ namespace RightholderWorkplace
 
         #region Change rightholders page
 
-        private BindingList<ObjectRightForTransfering> _objects = new BindingList<ObjectRightForTransfering>();
-        private BindingList<ObjectCopyright> _copyrights = new BindingList<ObjectCopyright>();
+        private readonly BindingList<ObjectRightForTransfering> _objects = new BindingList<ObjectRightForTransfering>();
+        private readonly BindingList<ObjectCopyright> _copyrights = new BindingList<ObjectCopyright>();
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
         {
@@ -224,7 +224,7 @@ namespace RightholderWorkplace
                     AgreementStatuses.NotAccepted,
                     AgreementStatuses.OnAcception,
                     AgreementStatuses.Active,
-                    AgreementStatuses.Inheritance,
+                    //AgreementStatuses.Inheritance,
                 });
                 selectionView.RightholderSelected += SelectionView_RightholderSelected;
                 selectionView.ShowDialog();
@@ -252,6 +252,7 @@ namespace RightholderWorkplace
                     {
                         ObjId = obj.ObjId,
                         CustId = addedRightholder.CustId,
+                        CRightId = obj.CRightId,
                         //RoleCode = or.RoleCode, ???
                         InnerCode = addedRightholder.InnerCode,
                         InterCode = addedRightholder.InterCode,
@@ -435,6 +436,21 @@ namespace RightholderWorkplace
             }
         }
 
+        private void ctrlRightholdersObjectsForChange_RightholderSecondaryChanging(object sender, CancelEventArgs e)
+        {
+            if (!ConfirmClear())
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            bsObjectRightForTransfering.DataSource = _objects;
+            bsObjectCopyright.DataSource = _copyrights;
+
+            _objects.Clear();
+            _copyrights.Clear();
+        }
+
         private void btnClearNewCopyright_Click(object sender, EventArgs e)
         {
             if (!ConfirmClear())
@@ -454,52 +470,80 @@ namespace RightholderWorkplace
             return true;
         }
 
+        private const string EmptyInheritorsWarningMsg = "Додайте нових правонаступників!";
+        private const string EmptyDateTillWarningMsg = "Вкажіть дату по яку передаються права на обрані об'єкти!";
+        private const string NotValidParamsWarningMsg = "Не корректно вказаний відсоток переданих прав! Відкорегуйте значення та повторіть збереження!";
+
+        private const string TransferRightSuccessMsg = "Передача об'єктів виконана успішно!";
+        private const string TransferRightErrorMsg = "Не вдалося виконати передачу об'єктів!";
+
+        /// <summary>
+        /// Зберегти передачу прав правовласників
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveNewCopyrights_Click(object sender, EventArgs e)
         {
             if (_copyrights.Count == 0)
             {
-                MessageBox.Show("Додайте нових правонаступників.");
+                //MessageBox.Show("Додайте нових правонаступників.");
+                MessageShow.ShowWarning(EmptyInheritorsWarningMsg);
                 return;
             }
 
-
-
-            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer
-                && dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
+            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer && dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
             {
-                MessageBox.Show("Вкажіть дату по яку передаються права на обрані об'єкти.");
+                MessageShow.ShowWarning(EmptyDateTillWarningMsg);
                 return;
             }
+
             if (dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
                 dtChangeCopyrightDateTill.Value = new DateTime(3000, 1, 1);
 
-            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance && !ValidateTransferedParamsForInheritance())
+            //if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance && !ValidateTransferedParamsForInheritance())
+            //{
+            //    gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
+            //    MessageShow.ShowWarning("Не корректно вказаний відсоток переданих прав! Відкорегуйте значення та повторіть збереження!");
+            //    return;
+            //}
+
+            //if (!ValidateTransferedParams())
+            //{
+            //    gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
+            //    MessageShow.ShowWarning("Не корректно вказаний відсоток переданих прав! Відкорегуйте значення та повторіть збереження!");
+            //    return;
+            //}
+
+            bool IsNotValidParams()
+            {
+                var firstCondition = ctrlChangeRightholderOperation.SelectedValue == (int) LegalBasisType.Inheritance && !ValidateTransferedParamsForInheritance();
+                var secondCondition = !ValidateTransferedParams();
+                return firstCondition || secondCondition;
+            }
+
+            if (IsNotValidParams())
             {
                 gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
-                MessageBox.Show("Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
+                MessageShow.ShowWarning(NotValidParamsWarningMsg);
                 return;
             }
 
-            if (!ValidateTransferedParams())
+            var transferParams = new TransferParameters
             {
-                gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
-                MessageBox.Show("Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
-                return;
-            }
+                DateFrom = dtChangeCopyrightDateFrom.Value,
+                DateTill = dtChangeCopyrightDateTill.Value,
+                OldRightholderId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId,
+                LegalBasis = ctrlChangeRightholderOperation.SelectedValue.Value
+            };
 
-            var transferParams = new TransferParameters();
-            transferParams.DateFrom = dtChangeCopyrightDateFrom.Value;
-            transferParams.DateTill = dtChangeCopyrightDateTill.Value;
-            transferParams.OldRightholderId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId;
-            transferParams.LegalBasis = ctrlChangeRightholderOperation.SelectedValue.Value;
-
-            var groupedCopyright = _copyrights
-                .Where(oc => oc.Rate != 0)
-                .GroupBy(oc => oc.ObjId);
+            var groupedCopyright = _copyrights.Where(oc => oc.Rate != 0).GroupBy(oc => oc.ObjId);
 
             foreach (var objectGroup in groupedCopyright)
             {
-                var transferedObject = new TransferedObject { ObjId = objectGroup.Key };
+                var transferedObject = new TransferedObject
+                {
+                    ObjId = objectGroup.Key,
+                };
                 transferParams.ObjectsRightList.Add(transferedObject);
 
                 foreach (var copyright in objectGroup)
@@ -509,15 +553,15 @@ namespace RightholderWorkplace
                         CustId = copyright.CustId,
                         Rate = copyright.Rate,
                     });
+                    transferedObject.CRightId = copyright.CRightId;
                 }
             }
 
             var result = _rightholderService.Transfer(transferParams);
+            MessageShow.ShowInfoByResult(TransferRightSuccessMsg, TransferRightErrorMsg, result);
 
             if (result)
             {
-                MessageBox.Show("Передача об'єктів виконана успішно.");
-
                 ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
                 ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
@@ -526,8 +570,6 @@ namespace RightholderWorkplace
                 _copyrights.Clear();
                 _objects.Clear();
             }
-            else
-                MessageBox.Show("Не вдалося виконати передачу об'єктів.");
         }
 
         private bool ValidateTransferedParams()
@@ -575,6 +617,7 @@ namespace RightholderWorkplace
 
             return result;
         }
+
         #endregion
     }
 }

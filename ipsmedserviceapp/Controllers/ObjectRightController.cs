@@ -547,7 +547,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("view/list_0302/{custId}/{custIdSecondary}")]
         public async Task<IActionResult> vtsk_3_OR_03_V2(int custId, int custIdSecondary)
         {
-            string query = $"select * from vtsk_3_OR_03_V2 t1 where custId = {custId} and exists (select 1 from vtsk_3_OR_03_V2 t2 where t2.objid = t1.objid and custId = {custIdSecondary})";
+            string query = $"select * from vtsk_3_OR_03_V4 t1 where parentid is not null and custId = {custId} and exists (select 1 from vtsk_3_OR_03_V4 t2 where t2.objid = t1.objid and custId = {custIdSecondary})";
             var list = await _dbContext.getViewData(query, null);
             return Json(list);
         }

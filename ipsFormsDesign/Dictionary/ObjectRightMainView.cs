@@ -25,6 +25,7 @@ namespace ipsFormsDesign.Dictionary
     public class ObjectRightForRightholder : ObjectRightMainView
     {
         public int CustId { get; set; }
+        public int? CRightId { get; set; }
         public string NameClient { get; set; }
         public string RoleName { get; set; }
         public decimal? RateRh { get; set; }

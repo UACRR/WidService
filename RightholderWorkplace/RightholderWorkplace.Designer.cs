@@ -523,8 +523,8 @@ namespace RightholderWorkplace
             // 
             // splitPanel5
             // 
-            this.splitPanel5.Controls.Add(this.btnTransferSelected);
             this.splitPanel5.Controls.Add(this.btnTransferAll);
+            this.splitPanel5.Controls.Add(this.btnTransferSelected);
             this.splitPanel5.Controls.Add(this.ctrlRightholdersObjectsForChange);
             this.splitPanel5.Controls.Add(this.ctrlChangeRightholderOperation);
             this.splitPanel5.Controls.Add(this.radLabel1);
@@ -580,6 +580,7 @@ namespace RightholderWorkplace
             this.ctrlRightholdersObjectsForChange.TabIndex = 1;
             this.ctrlRightholdersObjectsForChange.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholdersObjectsForChange_RightholderChanged);
             this.ctrlRightholdersObjectsForChange.RightholderChanging += new System.ComponentModel.CancelEventHandler(this.ctrlRightholdersObjectsForChange_RightholderChanging);
+            this.ctrlRightholdersObjectsForChange.RightholderSecondaryChanging += new System.ComponentModel.CancelEventHandler(this.ctrlRightholdersObjectsForChange_RightholderSecondaryChanging);
             this.ctrlRightholdersObjectsForChange.MarkedObjectsRightsChanged += new System.EventHandler(this.ctrlRightholdersObjectsForChange_MarkedObjectsRightsChanged);
             // 
             // ctrlChangeRightholderOperation

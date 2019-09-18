@@ -15,6 +15,7 @@ namespace ipsFormsDesign.ViewModels.Rightholders
     public class TransferedObject
     {
         public int ObjId { get; set; }
+        public int? CRightId { get; set; }
         public List<NewRightholder> NewRightholderList { get; set; } = new List<NewRightholder>();
     }
 

@@ -86,6 +86,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             add => ctrlRightholderSelector.RightholderChanging += value;
             remove => ctrlRightholderSelector.RightholderChanging -= value;
         }
+        public event CancelEventHandler RightholderSecondaryChanging
+        {
+            add => ctrlRightholderSelectorSecondary.RightholderChanging += value;
+            remove => ctrlRightholderSelectorSecondary.RightholderChanging -= value;
+        }
         public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted;
         public event EventHandler MarkedObjectsRightsChanged;
 

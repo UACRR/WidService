@@ -5,6 +5,7 @@ namespace ipsFormsDesign.ViewModels.ObjectsRight
     public class ObjectRightForTransfering
     {
         public int ObjId { get; set; }
+        public int? CRightId { get; set; }
         public string Name { get; set; }
         public string RoleName { get; set; }
         public decimal? RateRh { get; set; }
@@ -15,6 +16,7 @@ namespace ipsFormsDesign.ViewModels.ObjectsRight
             return new ObjectRightForTransfering
             {
                 ObjId = sourceObject.ObjId,
+                CRightId = sourceObject.CRightId,
                 Name = sourceObject.Name,
                 RoleName = sourceObject.RoleName,
                 RateRh = sourceObject.RateRh,

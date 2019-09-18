@@ -910,10 +910,7 @@ t2.custId = @custid
         /// <summary>
         /// Зміна правовласника - передача
         /// </summary>
-        /// <param name="rhId">Ід старого правовласника</param>
-        /// <param name="body">Список нових правовласників
-        ///                    та запис по старому правовласнику з датою завершення володінням правами 
-        /// </param>
+        /// <param name="transferParams"></param>
         /// <returns>Ok</returns>
         [HttpPut("objects/transfer")]
         public IActionResult ObjectTransfer([FromBody] TransferParametersResource transferParams)

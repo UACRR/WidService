@@ -43,11 +43,10 @@ namespace ipsmedserviceapp.Repositories
 
         public List<RightholderMainView> GetRightholders(IEnumerable<int> ids = null)
         {
-            var query = _dbContext.RightholderMainView
-                .FromSql("select * from vTsk_1_ListRightHolder01");
+            var query = _dbContext.RightholderMainView.FromSql("select * from vTsk_1_ListRightHolder01").AsNoTracking();
 
             if (ids != null)
-                query = query.Where(r => ids.Contains(r.CustId));
+                query = query.Where(rec => ids.Contains(rec.CustId));
 
             return query.ToList();
         }
