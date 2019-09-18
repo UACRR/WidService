@@ -108,9 +108,7 @@ namespace ipsmedserviceapp.Utilities
 
         private void PrepareDataForTransfering()
         {
-            _oldRightholder = _rightholderRepository.GetRightholderById(
-                _transferParams.OldRightholderId,
-                includeCopyrightsOnDate: _transferParams.DateFrom);
+            _oldRightholder = _rightholderRepository.GetRightholderById(_transferParams.OldRightholderId, includeCopyrightsOnDate: _transferParams.DateFrom);
 
             var newRightholderIds = _transferParams.ObjectsRightList
                 .SelectMany(o => o.NewRightholderList)
@@ -140,6 +138,36 @@ namespace ipsmedserviceapp.Utilities
             return !Result.AreErrorsExist;
         }
 
+        /// <summary>
+        /// Закрити поточні права правовласника
+        /// </summary>
+        private void CloseExistingCopyrightsForOldRightholder()
+        {
+            var endDate = _transferParams.DateFrom.AddDays(-1);
+            foreach (var copyright in _oldCopyrights)
+            {
+                copyright.EndDate = endDate;
+            }
+
+            // clear custId in authors table for old rightholder if rights are transfered at all
+            // Патлякевич Зберігаємо custId
+            //if (_transferParams.DateTill == _maxDate)
+            //{
+            //    var authors = _dbContext.Authors
+            //        .Where(a => _transferParams.ObjectsRightList.Any(o => o.ObjId == a.ObjId))
+            //        .ToList();
+
+            //    foreach (var author in authors)
+            //    {
+            //        author.CustId = null;
+            //    }
+            //}
+        }
+
+        /// <summary>
+        /// Створити нові права для нового правовласника
+        /// </summary>
+        /// <param name="transferedObject"></param>
         private void CreateNewCopyrights(TransferedObjectResource transferedObject)
         {
             _intermidiateCopyrightData.Clear();
@@ -174,6 +202,7 @@ namespace ipsmedserviceapp.Utilities
                         BeginDate = _transferParams.DateFrom,
                         EndDate = _transferParams.DateTill,
                         Rate = newRate,
+                        Status = oldCopyright.Status
                     };
 
                     _intermidiateCopyrightData.Add(new CopyrightData
@@ -196,6 +225,7 @@ namespace ipsmedserviceapp.Utilities
                         BeginDate = _transferParams.DateFrom,
                         EndDate = _transferParams.DateTill,
                         Rate = oldCopyright.Rate - totalTransferedRate,
+                        Status = oldCopyright.Status,
                     };
 
                     _intermidiateCopyrightData.Add(new CopyrightData
@@ -212,7 +242,16 @@ namespace ipsmedserviceapp.Utilities
         {
             // final copyright's list
             var groupedCopyrightData = _intermidiateCopyrightData
-                .GroupBy(cd => new { cd.Copyright.CustId, cd.Copyright.ObjId, cd.Copyright.LBasis, cd.Copyright.BeginDate, cd.Copyright.EndDate, cd.Copyright.RoleCode });
+                .GroupBy(cd => new
+                {
+                    cd.Copyright.CustId,
+                    cd.Copyright.ObjId,
+                    cd.Copyright.LBasis,
+                    cd.Copyright.BeginDate,
+                    cd.Copyright.EndDate,
+                    cd.Copyright.RoleCode,
+                    cd.Copyright.Status,
+                });
 
             var copyrightList = new List<CopyRight>();
             var copyrightHistoryList = new List<CopyRightHistory>();
@@ -221,7 +260,6 @@ namespace ipsmedserviceapp.Utilities
             {
                 var newCopyright = new CopyRight
                 {
-                    //ParentId = 101, // TODO: only for debug
                     CustId = group.Key.CustId,
                     ObjId = group.Key.ObjId,
                     RoleCode = group.Key.RoleCode,
@@ -229,6 +267,7 @@ namespace ipsmedserviceapp.Utilities
                     BeginDate = group.Key.BeginDate,
                     EndDate = group.Key.EndDate,
                     Rate = group.Sum(c => c.Copyright.Rate),
+                    Status = group.Key.Status,
                 };
 
                 copyrightList.Add(newCopyright);
@@ -253,7 +292,15 @@ namespace ipsmedserviceapp.Utilities
             // add new rightholders to authors table
             var groupedCopyrightData1 = _intermidiateCopyrightData
                 .Where(cd => cd.IsNewRightholder)
-                .GroupBy(cd => new { cd.Copyright.CustId, cd.Copyright.ObjId, cd.Copyright.LBasis, cd.Copyright.BeginDate, cd.Copyright.EndDate, cd.Copyright.RoleCode });
+                .GroupBy(cd => new
+                {
+                    cd.Copyright.CustId,
+                    cd.Copyright.ObjId,
+                    cd.Copyright.LBasis,
+                    cd.Copyright.BeginDate,
+                    cd.Copyright.EndDate,
+                    cd.Copyright.RoleCode
+                });
 
             foreach (var group in groupedCopyrightData1)
             {
@@ -294,6 +341,7 @@ namespace ipsmedserviceapp.Utilities
                         BeginDate = _transferParams.DateTill.AddDays(1),
                         EndDate = _maxDate,
                         Rate = oldCopyright.Rate,
+                        Status = oldCopyright.Status,
                     };
 
                     _dbContext.CopyRight.Add(restoredCopyright);
@@ -311,30 +359,6 @@ namespace ipsmedserviceapp.Utilities
                     }
                 }
             }
-        }
-
-        private void CloseExistingCopyrightsForOldRightholder()
-        {
-            var endDate = _transferParams.DateFrom.AddDays(-1);
-
-            foreach (var copyright in _oldCopyrights)
-            {
-                copyright.EndDate = endDate;
-            }
-
-            // clear custId in authors table for old rightholder if rights are transfered at all
-            // Патлякевич Зберігаємо custId
-            //if (_transferParams.DateTill == _maxDate)
-            //{
-            //    var authors = _dbContext.Authors
-            //        .Where(a => _transferParams.ObjectsRightList.Any(o => o.ObjId == a.ObjId))
-            //        .ToList();
-
-            //    foreach (var author in authors)
-            //    {
-            //        author.CustId = null;
-            //    }
-            //}
         }
     }
 }

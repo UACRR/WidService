@@ -135,7 +135,8 @@ namespace RightholderWorkplace
             gvObjectRightForTransfering.Relations.Add(relation);
             gvObjectRightForTransfering.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
-            dtChangeCopyrightDateFrom.Value = DateTime.Now;
+            dtChangeCopyrightDateFrom.MinDate = DateTime.Now.AddDays(1);
+            dtChangeCopyrightDateFrom.Value = DateTime.Now.AddDays(1);
 
             ctrlChangeRightholderOperation.SelectedValue = (int)LegalBasisType.Transfer;
         }

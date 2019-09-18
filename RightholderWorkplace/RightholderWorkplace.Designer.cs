@@ -76,8 +76,8 @@ namespace RightholderWorkplace
             this.rightholdersChangePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
-            this.btnTransferSelected = new Telerik.WinControls.UI.RadButton();
             this.btnTransferAll = new Telerik.WinControls.UI.RadButton();
+            this.btnTransferSelected = new Telerik.WinControls.UI.RadButton();
             this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.Common.RadioPanel();
             this.rdbDeath = new Telerik.WinControls.UI.RadRadioButton();
@@ -133,8 +133,8 @@ namespace RightholderWorkplace
             this.radSplitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).BeginInit();
             this.splitPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnTransferSelected)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTransferAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferSelected)).BeginInit();
             this.ctrlChangeRightholderOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbTransfer)).BeginInit();
@@ -542,17 +542,6 @@ namespace RightholderWorkplace
             this.splitPanel5.Text = "splitPanel5";
             this.splitPanel5.ThemeName = "Office2013Light";
             // 
-            // btnTransferSelected
-            // 
-            this.btnTransferSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTransferSelected.Location = new System.Drawing.Point(188, 273);
-            this.btnTransferSelected.Name = "btnTransferSelected";
-            this.btnTransferSelected.Size = new System.Drawing.Size(175, 24);
-            this.btnTransferSelected.TabIndex = 76;
-            this.btnTransferSelected.Text = "Перенести обрані";
-            this.btnTransferSelected.ThemeName = "Office2013Light";
-            this.btnTransferSelected.Click += new System.EventHandler(this.btnTransferSelected_Click);
-            // 
             // btnTransferAll
             // 
             this.btnTransferAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -563,6 +552,17 @@ namespace RightholderWorkplace
             this.btnTransferAll.Text = "Перенести всі";
             this.btnTransferAll.ThemeName = "Office2013Light";
             this.btnTransferAll.Click += new System.EventHandler(this.btnTransferAll_Click);
+            // 
+            // btnTransferSelected
+            // 
+            this.btnTransferSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTransferSelected.Location = new System.Drawing.Point(188, 273);
+            this.btnTransferSelected.Name = "btnTransferSelected";
+            this.btnTransferSelected.Size = new System.Drawing.Size(175, 24);
+            this.btnTransferSelected.TabIndex = 76;
+            this.btnTransferSelected.Text = "Перенести обрані";
+            this.btnTransferSelected.ThemeName = "Office2013Light";
+            this.btnTransferSelected.Click += new System.EventHandler(this.btnTransferSelected_Click);
             // 
             // ctrlRightholdersObjectsForChange
             // 
@@ -1024,8 +1024,8 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).EndInit();
             this.splitPanel5.ResumeLayout(false);
             this.splitPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnTransferSelected)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTransferAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferSelected)).EndInit();
             this.ctrlChangeRightholderOperation.ResumeLayout(false);
             this.ctrlChangeRightholderOperation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).EndInit();
