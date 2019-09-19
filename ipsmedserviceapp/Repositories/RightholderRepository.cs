@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ipsmedserviceapp.Repositories
 {
@@ -17,7 +16,7 @@ namespace ipsmedserviceapp.Repositories
             _dbContext = dbContext;
         }
 
-        public RightHolder GetRightholderById(int custId, DateTime? includeCopyrightsOnDate = null)
+        public RightHolder GetRightholderById(int custId, DateTime? includeCopyrightsOnDate = null, int[] copyRightIds = null)
         {
             var query = _dbContext.RightHolder;
 
@@ -31,10 +30,24 @@ namespace ipsmedserviceapp.Repositories
 
                 if (rightholder != null)
                 {
-                    var copyrights = _dbContext.Entry(rightholder).Collection(r => r.CopyRight)
-                        .Query()
-                        .Where(cr => cr.BeginDate <= includeCopyrightsOnDate.Value && cr.EndDate >= includeCopyrightsOnDate.Value)
-                        .ToList();
+                    List<CopyRight> copyrights = null;
+                    if(copyRightIds != null && copyRightIds.Any())
+                    {
+                        copyrights = _dbContext.Entry(rightholder)
+                            .Collection(r => r.CopyRight).Query()
+                            .Where(cr => cr.BeginDate <= includeCopyrightsOnDate.Value
+                                         && cr.EndDate >= includeCopyrightsOnDate.Value
+                                         && copyRightIds.Contains(cr.CRightId))
+                            .ToList();
+                    }
+                    else
+                    {
+                        copyrights = _dbContext.Entry(rightholder)
+                            .Collection(r => r.CopyRight).Query()
+                            .Where(cr => cr.BeginDate <= includeCopyrightsOnDate.Value
+                                         && cr.EndDate >= includeCopyrightsOnDate.Value)
+                            .ToList();
+                    }
                 }
             }
 

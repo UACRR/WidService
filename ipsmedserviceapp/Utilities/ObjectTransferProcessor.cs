@@ -108,7 +108,12 @@ namespace ipsmedserviceapp.Utilities
 
         private void PrepareDataForTransfering()
         {
-            _oldRightholder = _rightholderRepository.GetRightholderById(_transferParams.OldRightholderId, includeCopyrightsOnDate: _transferParams.DateFrom);
+            int[] copyRightIds = _transferParams.ObjectsRightList
+                .Where(rec => rec.CRightId.HasValue)
+                .Select(rec => rec.CRightId.Value)
+                .Distinct().ToArray();
+
+            _oldRightholder = _rightholderRepository.GetRightholderById(_transferParams.OldRightholderId, _transferParams.DateFrom, copyRightIds);
 
             var newRightholderIds = _transferParams.ObjectsRightList
                 .SelectMany(o => o.NewRightholderList)
