@@ -9,14 +9,14 @@ using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Shared.Interfaces;
 
-namespace IpsViewComponentLibrary.CatalogControls.Presenters
+namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
 {
-    public class CatalogPresenter: ICatalogFileItemsHandler
+    public class RightholderCatalogPresenter: ICatalogFileItemsHandler
     {
         private readonly RightholderCatalogService _service;
         private readonly ExcelEngine _exelEngine;
 
-        public CatalogPresenter()
+        public RightholderCatalogPresenter()
         {
             _service = RightholderCatalogService.GetInstance();
             _exelEngine = ExcelEngine.GetInstance();
@@ -32,6 +32,12 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.GetCatalogFile(custId, fileId);
         }
 
+        /// <summary>
+        /// Завантажити каталог
+        /// </summary>
+        /// <param name="catalogFile"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
@@ -41,18 +47,26 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
             catalogFile.UserId = identityName;
 
-            var PubCatalogItemList = GetPubСatalog(path);
+            var pubCatalogItemList = GetPubСatalog(path);
 
-            if (!CheckValidDataLength(PubCatalogItemList))
+            if (pubCatalogItemList == null)
                 return null;
 
-            catalogFile.PubCatalogItem = new ObservableListSource<PubCatalogItem>(PubCatalogItemList);
+            if (!CheckValidDataLength(pubCatalogItemList))
+                return null;
+
+            catalogFile.PubCatalogItem = new ObservableListSource<PubCatalogItem>(pubCatalogItemList);
 
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
             return result;
         }
 
+        /// <summary>
+        /// Перевірити коректність даних
+        /// </summary>
+        /// <param name="pubCatalogItems"></param>
+        /// <returns></returns>
         private bool CheckValidDataLength(ICollection<PubCatalogItem> pubCatalogItems)
         {
             var dbTableLangth = new Dictionary<string, int>
@@ -121,19 +135,33 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         {
             try
             {
-                var data = _exelEngine.ReadData(fileName);
-                List<PubCatalogItem> newItems = new List<PubCatalogItem>();
+                var data = _exelEngine.ReadData(fileName, 12);
+
+                if (!data.Any())
+                {
+                    MessageShow.ShowError("Неправильна структура файлу! Дані не завантажились!");
+                    return null;
+                }
+                
+                if (data[0].Count < 12)
+                {
+                    MessageShow.ShowError("Неправильна структура файлу! Кількість колонок з даними повинно бути не меншне 12!");
+                    return null;
+                }
+
+                List<PubCatalogItem> newItemList = new List<PubCatalogItem>();
 
                 foreach (var item in data)
                 {
-                    PubCatalogItem newItem = PubCatalogItemFromXlsRow(item);
-                    newItems.Add(newItem);
+                    var newItem = PubCatalogItemFromXlsRow(item);
+                    newItemList.Add(newItem);
                 }
-                return newItems;
+                return newItemList;
             }
-            catch
+            catch (Exception e)
             {
-                throw;
+                MessageShow.ShowError(e.Message);
+                return null;
             }
         }
 
@@ -144,9 +172,6 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         /// <returns></returns>
         private PubCatalogItem PubCatalogItemFromXlsRow(List<string> item)
         {
-            if (item.Count < 10)
-                throw new ArgumentException("Неправильна структура файлу! Кількість колонок з даними повинна дорівнювати 10!");
-
             var newItem = new PubCatalogItem
             {
                 ItemCode = item[0],
@@ -158,19 +183,27 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
                 AuthorText = item[6],
                 RoleName = item[7],
                 RhName = item[8],
-                Rate = 0
+                Rate = 0,
+                DateBegin = null,
+                DateEnd = null,
             };
 
             if (decimal.TryParse(item[9], out decimal outBuffer))
             {
                 newItem.Rate = outBuffer;
             }
+            
+            if (DateTime.TryParse(item[10], out DateTime dtBegin))
+                newItem.DateBegin = dtBegin;
+
+            if (DateTime.TryParse(item[11], out DateTime dtEnd))
+                newItem.DateEnd = dtEnd;
 
             return newItem;
         }
 
         /// <summary>
-        /// Видалити
+        /// Видалити каталог
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="fileId"></param>
@@ -180,6 +213,11 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.DeleteCatalogFile(custId, fileId);
         }
 
+        /// <summary>
+        /// Зберегти коментад до каталогу
+        /// </summary>
+        /// <param name="catalogFile"></param>
+        /// <returns></returns>
         public bool SaveCatalogFileComment(CatalogFile catalogFile)
         {
             return _service.SaveCatalogFileComment(catalogFile);

@@ -16,7 +16,6 @@ using System.IO;
 using ipsFormsDesign.Data;
 using AutoMapper;
 using System.Dynamic;
-using IpsViewComponentLibrary.CatalogControls.Presenters;
 using System.Collections;
 using ipsFormsDesign.Engines;
 

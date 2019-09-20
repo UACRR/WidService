@@ -42,60 +42,62 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
-            this.bsPubCatalogItem = new System.Windows.Forms.BindingSource(this.components);
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.ctrlNavigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
             this.btnAuditItems = new Telerik.WinControls.UI.RadButton();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlNavigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
-            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
-            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.bsPubCatalogItem = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
             this.gridDetailInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
+            this.backgroundPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.radLabel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
-            this.backgroundPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGetExcel
@@ -186,22 +188,40 @@
             gridViewTextBoxColumn9.MinWidth = 40;
             gridViewTextBoxColumn9.Name = "percent";
             gridViewTextBoxColumn9.Width = 40;
-            gridViewTextBoxColumn10.FieldName = "ErrComment";
-            gridViewTextBoxColumn10.HeaderText = "Помилка";
-            gridViewTextBoxColumn10.MinWidth = 100;
-            gridViewTextBoxColumn10.Name = "error";
-            gridViewTextBoxColumn10.Width = 100;
-            gridViewTextBoxColumn11.DataType = typeof(System.Nullable<int>);
-            gridViewTextBoxColumn11.FieldName = "Status";
-            gridViewTextBoxColumn11.HeaderText = "status";
-            gridViewTextBoxColumn11.IsVisible = false;
-            gridViewTextBoxColumn11.Name = "status";
-            gridViewTextBoxColumn11.Width = 86;
-            gridViewTextBoxColumn12.FieldName = "StatusNavigation.Name";
-            gridViewTextBoxColumn12.HeaderText = "Статус";
-            gridViewTextBoxColumn12.MinWidth = 150;
-            gridViewTextBoxColumn12.Name = "StatusNavigation";
-            gridViewTextBoxColumn12.Width = 150;
+            gridViewTextBoxColumn10.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewTextBoxColumn10.FieldName = "DateBegin";
+            gridViewTextBoxColumn10.FormatString = "{0:d}";
+            gridViewTextBoxColumn10.HeaderText = "Діє \"з\"";
+            gridViewTextBoxColumn10.MaxWidth = 75;
+            gridViewTextBoxColumn10.MinWidth = 75;
+            gridViewTextBoxColumn10.Name = "DateBegin";
+            gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn10.Width = 75;
+            gridViewTextBoxColumn11.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewTextBoxColumn11.FieldName = "DateEnd";
+            gridViewTextBoxColumn11.FormatString = "{0:d}";
+            gridViewTextBoxColumn11.HeaderText = "Діє \"по\"";
+            gridViewTextBoxColumn11.MaxWidth = 75;
+            gridViewTextBoxColumn11.MinWidth = 75;
+            gridViewTextBoxColumn11.Name = "DateEnd";
+            gridViewTextBoxColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn11.Width = 75;
+            gridViewTextBoxColumn12.FieldName = "ErrComment";
+            gridViewTextBoxColumn12.HeaderText = "Помилка";
+            gridViewTextBoxColumn12.MinWidth = 100;
+            gridViewTextBoxColumn12.Name = "error";
+            gridViewTextBoxColumn12.Width = 100;
+            gridViewTextBoxColumn13.DataType = typeof(System.Nullable<int>);
+            gridViewTextBoxColumn13.FieldName = "Status";
+            gridViewTextBoxColumn13.HeaderText = "status";
+            gridViewTextBoxColumn13.IsVisible = false;
+            gridViewTextBoxColumn13.Name = "status";
+            gridViewTextBoxColumn13.Width = 86;
+            gridViewTextBoxColumn14.FieldName = "StatusNavigation.Name";
+            gridViewTextBoxColumn14.HeaderText = "Статус";
+            gridViewTextBoxColumn14.MinWidth = 150;
+            gridViewTextBoxColumn14.Name = "StatusNavigation";
+            gridViewTextBoxColumn14.Width = 150;
             this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn1,
             gridViewTextBoxColumn1,
@@ -215,7 +235,9 @@
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
             gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14});
             this.gridDetailInfo.MasterTemplate.DataSource = this.bsPubCatalogItem;
             this.gridDetailInfo.MasterTemplate.EnableCustomFiltering = true;
             this.gridDetailInfo.MasterTemplate.EnableFiltering = true;
@@ -228,206 +250,21 @@
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
             // 
-            // bsPubCatalogItem
+            // waitingBar
             // 
-            this.bsPubCatalogItem.DataSource = typeof(ipsFormsDesign.Model.PubCatalogItem);
-            // 
-            // btnAuditItems
-            // 
-            this.btnAuditItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAuditItems.Location = new System.Drawing.Point(3, 480);
-            this.btnAuditItems.Name = "btnAuditItems";
-            this.btnAuditItems.Size = new System.Drawing.Size(114, 24);
-            this.btnAuditItems.TabIndex = 4;
-            this.btnAuditItems.Text = "Контроль";
-            this.btnAuditItems.ThemeName = "Office2013Light";
-            this.btnAuditItems.Click += new System.EventHandler(this.btnAuditItems_Click);
-            // 
-            // btnPerform
-            // 
-            this.btnPerform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPerform.Enabled = false;
-            this.btnPerform.Location = new System.Drawing.Point(280, 480);
-            this.btnPerform.Name = "btnPerform";
-            this.btnPerform.Size = new System.Drawing.Size(131, 24);
-            this.btnPerform.TabIndex = 3;
-            this.btnPerform.Text = "Виконати";
-            this.btnPerform.ThemeName = "Office2013Light";
-            this.btnPerform.Click += new System.EventHandler(this.btnPerform_Click);
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.AutoSize = false;
-            this.radLabel1.Location = new System.Drawing.Point(3, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(114, 18);
-            this.radLabel1.TabIndex = 6;
-            this.radLabel1.Text = "Дата завантаження";
-            this.radLabel1.ThemeName = "Office2013Light";
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.AutoSize = false;
-            this.radLabel2.Controls.Add(this.radLabel4);
-            this.radLabel2.Location = new System.Drawing.Point(280, 3);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(131, 18);
-            this.radLabel2.TabIndex = 7;
-            this.radLabel2.Text = "К-ть записів всього";
-            this.radLabel2.ThemeName = "Office2013Light";
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.AutoSize = false;
-            this.radLabel4.Location = new System.Drawing.Point(3, 24);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(55, 18);
-            this.radLabel4.TabIndex = 7;
-            this.radLabel4.Text = "radLabel4";
-            this.radLabel4.ThemeName = "Office2013Light";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.AutoSize = false;
-            this.radLabel3.Location = new System.Drawing.Point(280, 27);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(145, 18);
-            this.radLabel3.TabIndex = 7;
-            this.radLabel3.Text = "К-ть відхилених записів";
-            this.radLabel3.ThemeName = "Office2013Light";
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.AutoSize = false;
-            this.radLabel5.Location = new System.Drawing.Point(3, 75);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(114, 18);
-            this.radLabel5.TabIndex = 8;
-            this.radLabel5.Text = "Хто завантажив";
-            this.radLabel5.ThemeName = "Office2013Light";
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.AutoSize = false;
-            this.radLabel6.Location = new System.Drawing.Point(3, 51);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(114, 18);
-            this.radLabel6.TabIndex = 7;
-            this.radLabel6.Text = "Коментар";
-            this.radLabel6.ThemeName = "Office2013Light";
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.AutoSize = false;
-            this.radLabel7.Location = new System.Drawing.Point(3, 27);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(114, 18);
-            this.radLabel7.TabIndex = 9;
-            this.radLabel7.Text = "Статус файлу";
-            this.radLabel7.ThemeName = "Office2013Light";
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.AutoSize = false;
-            this.radLabel8.Location = new System.Drawing.Point(280, 51);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(155, 18);
-            this.radLabel8.TabIndex = 10;
-            this.radLabel8.Text = "К-ть оброблених записів";
-            this.radLabel8.ThemeName = "Office2013Light";
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.AutoSize = false;
-            this.radLabel9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CreateDate", true));
-            this.radLabel9.Location = new System.Drawing.Point(123, 3);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(151, 18);
-            this.radLabel9.TabIndex = 11;
-            this.radLabel9.Text = "К-ть оброблених записів";
-            this.radLabel9.ThemeName = "Office2013Light";
-            // 
-            // bsCatalogFile
-            // 
-            this.bsCatalogFile.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.AutoSize = false;
-            this.radLabel10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "Status", true));
-            this.radLabel10.Location = new System.Drawing.Point(123, 27);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(151, 18);
-            this.radLabel10.TabIndex = 12;
-            this.radLabel10.Text = "К-ть оброблених записів";
-            this.radLabel10.ThemeName = "Office2013Light";
-            // 
-            // radLabel11
-            // 
-            this.radLabel11.AutoSize = false;
-            this.radLabel11.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "Comment", true));
-            this.radLabel11.Location = new System.Drawing.Point(123, 51);
-            this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(151, 18);
-            this.radLabel11.TabIndex = 12;
-            this.radLabel11.Text = "К-ть оброблених записів";
-            this.radLabel11.ThemeName = "Office2013Light";
-            // 
-            // radLabel12
-            // 
-            this.radLabel12.AutoSize = false;
-            this.radLabel12.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CustName", true));
-            this.radLabel12.Location = new System.Drawing.Point(123, 75);
-            this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(151, 18);
-            this.radLabel12.TabIndex = 12;
-            this.radLabel12.Text = "К-ть оброблених записів";
-            this.radLabel12.ThemeName = "Office2013Light";
-            // 
-            // radLabel13
-            // 
-            this.radLabel13.AutoSize = false;
-            this.radLabel13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountZap", true));
-            this.radLabel13.Location = new System.Drawing.Point(441, 3);
-            this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(111, 18);
-            this.radLabel13.TabIndex = 12;
-            this.radLabel13.Text = "К-ть оброблених записів";
-            this.radLabel13.ThemeName = "Office2013Light";
-            // 
-            // radLabel14
-            // 
-            this.radLabel14.AutoSize = false;
-            this.radLabel14.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountErr", true));
-            this.radLabel14.Location = new System.Drawing.Point(441, 27);
-            this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(111, 18);
-            this.radLabel14.TabIndex = 12;
-            this.radLabel14.Text = "К-ть оброблених записів";
-            this.radLabel14.ThemeName = "Office2013Light";
-            // 
-            // radLabel15
-            // 
-            this.radLabel15.AutoSize = false;
-            this.radLabel15.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountOk", true));
-            this.radLabel15.Location = new System.Drawing.Point(441, 51);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(111, 18);
-            this.radLabel15.TabIndex = 12;
-            this.radLabel15.Text = "К-ть оброблених записів";
-            this.radLabel15.ThemeName = "Office2013Light";
-            // 
-            // ctrlNavigatorPanel
-            // 
-            this.ctrlNavigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlNavigatorPanel.CurrentPage = 1;
-            this.ctrlNavigatorPanel.Location = new System.Drawing.Point(525, 480);
-            this.ctrlNavigatorPanel.Name = "ctrlNavigatorPanel";
-            this.ctrlNavigatorPanel.PageSize = 300;
-            this.ctrlNavigatorPanel.ReadOnlyPageSize = false;
-            this.ctrlNavigatorPanel.Size = new System.Drawing.Size(350, 24);
-            this.ctrlNavigatorPanel.TabIndex = 13;
-            this.ctrlNavigatorPanel.TotalPages = 0;
+            this.waitingBar.AssociatedControl = this.backgroundPanel;
+            this.waitingBar.Location = new System.Drawing.Point(401, 152);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 9;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
             // backgroundPanel
             // 
@@ -457,21 +294,202 @@
             this.backgroundPanel.Size = new System.Drawing.Size(878, 507);
             this.backgroundPanel.TabIndex = 14;
             // 
-            // waitingBar
+            // ctrlNavigatorPanel
             // 
-            this.waitingBar.AssociatedControl = this.backgroundPanel;
-            this.waitingBar.Location = new System.Drawing.Point(401, 152);
-            this.waitingBar.Name = "waitingBar";
-            this.waitingBar.Size = new System.Drawing.Size(70, 70);
-            this.waitingBar.TabIndex = 9;
-            this.waitingBar.Text = "radWaitingBar1";
-            this.waitingBar.ThemeName = "Office2013Light";
-            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
-            this.waitingBar.WaitingSpeed = 50;
-            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
-            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
+            this.ctrlNavigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlNavigatorPanel.CurrentPage = 1;
+            this.ctrlNavigatorPanel.Location = new System.Drawing.Point(525, 480);
+            this.ctrlNavigatorPanel.Name = "ctrlNavigatorPanel";
+            this.ctrlNavigatorPanel.PageSize = 300;
+            this.ctrlNavigatorPanel.ReadOnlyPageSize = false;
+            this.ctrlNavigatorPanel.Size = new System.Drawing.Size(350, 24);
+            this.ctrlNavigatorPanel.TabIndex = 13;
+            this.ctrlNavigatorPanel.TotalPages = 0;
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.AutoSize = false;
+            this.radLabel15.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountOk", true));
+            this.radLabel15.Location = new System.Drawing.Point(441, 51);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(111, 18);
+            this.radLabel15.TabIndex = 12;
+            this.radLabel15.Text = "К-ть оброблених записів";
+            this.radLabel15.ThemeName = "Office2013Light";
+            // 
+            // bsCatalogFile
+            // 
+            this.bsCatalogFile.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
+            // 
+            // btnAuditItems
+            // 
+            this.btnAuditItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAuditItems.Location = new System.Drawing.Point(3, 480);
+            this.btnAuditItems.Name = "btnAuditItems";
+            this.btnAuditItems.Size = new System.Drawing.Size(114, 24);
+            this.btnAuditItems.TabIndex = 4;
+            this.btnAuditItems.Text = "Контроль";
+            this.btnAuditItems.ThemeName = "Office2013Light";
+            this.btnAuditItems.Click += new System.EventHandler(this.btnAuditItems_Click);
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.AutoSize = false;
+            this.radLabel14.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountErr", true));
+            this.radLabel14.Location = new System.Drawing.Point(441, 27);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(111, 18);
+            this.radLabel14.TabIndex = 12;
+            this.radLabel14.Text = "К-ть оброблених записів";
+            this.radLabel14.ThemeName = "Office2013Light";
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.AutoSize = false;
+            this.radLabel13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountZap", true));
+            this.radLabel13.Location = new System.Drawing.Point(441, 3);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(111, 18);
+            this.radLabel13.TabIndex = 12;
+            this.radLabel13.Text = "К-ть оброблених записів";
+            this.radLabel13.ThemeName = "Office2013Light";
+            // 
+            // btnPerform
+            // 
+            this.btnPerform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPerform.Enabled = false;
+            this.btnPerform.Location = new System.Drawing.Point(280, 480);
+            this.btnPerform.Name = "btnPerform";
+            this.btnPerform.Size = new System.Drawing.Size(131, 24);
+            this.btnPerform.TabIndex = 3;
+            this.btnPerform.Text = "Виконати";
+            this.btnPerform.ThemeName = "Office2013Light";
+            this.btnPerform.Click += new System.EventHandler(this.btnPerform_Click);
+            // 
+            // radLabel12
+            // 
+            this.radLabel12.AutoSize = false;
+            this.radLabel12.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CustName", true));
+            this.radLabel12.Location = new System.Drawing.Point(123, 75);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(151, 18);
+            this.radLabel12.TabIndex = 12;
+            this.radLabel12.Text = "К-ть оброблених записів";
+            this.radLabel12.ThemeName = "Office2013Light";
+            // 
+            // radLabel11
+            // 
+            this.radLabel11.AutoSize = false;
+            this.radLabel11.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "Comment", true));
+            this.radLabel11.Location = new System.Drawing.Point(123, 51);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(151, 18);
+            this.radLabel11.TabIndex = 12;
+            this.radLabel11.Text = "К-ть оброблених записів";
+            this.radLabel11.ThemeName = "Office2013Light";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.AutoSize = false;
+            this.radLabel1.Location = new System.Drawing.Point(3, 3);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(114, 18);
+            this.radLabel1.TabIndex = 6;
+            this.radLabel1.Text = "Дата завантаження";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.AutoSize = false;
+            this.radLabel10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "Status", true));
+            this.radLabel10.Location = new System.Drawing.Point(123, 27);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(151, 18);
+            this.radLabel10.TabIndex = 12;
+            this.radLabel10.Text = "К-ть оброблених записів";
+            this.radLabel10.ThemeName = "Office2013Light";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.AutoSize = false;
+            this.radLabel3.Location = new System.Drawing.Point(280, 27);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(145, 18);
+            this.radLabel3.TabIndex = 7;
+            this.radLabel3.Text = "К-ть відхилених записів";
+            this.radLabel3.ThemeName = "Office2013Light";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.AutoSize = false;
+            this.radLabel9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CreateDate", true));
+            this.radLabel9.Location = new System.Drawing.Point(123, 3);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(151, 18);
+            this.radLabel9.TabIndex = 11;
+            this.radLabel9.Text = "К-ть оброблених записів";
+            this.radLabel9.ThemeName = "Office2013Light";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.AutoSize = false;
+            this.radLabel2.Controls.Add(this.radLabel4);
+            this.radLabel2.Location = new System.Drawing.Point(280, 3);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(131, 18);
+            this.radLabel2.TabIndex = 7;
+            this.radLabel2.Text = "К-ть записів всього";
+            this.radLabel2.ThemeName = "Office2013Light";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.AutoSize = false;
+            this.radLabel4.Location = new System.Drawing.Point(3, 24);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(55, 18);
+            this.radLabel4.TabIndex = 7;
+            this.radLabel4.Text = "radLabel4";
+            this.radLabel4.ThemeName = "Office2013Light";
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.AutoSize = false;
+            this.radLabel8.Location = new System.Drawing.Point(280, 51);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(155, 18);
+            this.radLabel8.TabIndex = 10;
+            this.radLabel8.Text = "К-ть оброблених записів";
+            this.radLabel8.ThemeName = "Office2013Light";
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.AutoSize = false;
+            this.radLabel5.Location = new System.Drawing.Point(3, 75);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(114, 18);
+            this.radLabel5.TabIndex = 8;
+            this.radLabel5.Text = "Хто завантажив";
+            this.radLabel5.ThemeName = "Office2013Light";
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.AutoSize = false;
+            this.radLabel7.Location = new System.Drawing.Point(3, 27);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(114, 18);
+            this.radLabel7.TabIndex = 9;
+            this.radLabel7.Text = "Статус файлу";
+            this.radLabel7.ThemeName = "Office2013Light";
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.AutoSize = false;
+            this.radLabel6.Location = new System.Drawing.Point(3, 51);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(114, 18);
+            this.radLabel6.TabIndex = 7;
+            this.radLabel6.Text = "Коментар";
+            this.radLabel6.ThemeName = "Office2013Light";
             // 
             // lineRingWaitingBarIndicatorElement1
             // 
@@ -479,6 +497,10 @@
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
+            // bsPubCatalogItem
+            // 
+            this.bsPubCatalogItem.DataSource = typeof(ipsFormsDesign.Model.PubCatalogItem);
             // 
             // CatalogShowEdition
             // 
@@ -492,29 +514,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
             this.gridDetailInfo.ResumeLayout(false);
             this.gridDetailInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
+            this.backgroundPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.radLabel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
-            this.backgroundPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).EndInit();
             this.ResumeLayout(false);
 
         }

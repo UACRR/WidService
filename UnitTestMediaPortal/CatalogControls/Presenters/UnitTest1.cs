@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IpsViewComponentLibrary.CatalogControls.Presenters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

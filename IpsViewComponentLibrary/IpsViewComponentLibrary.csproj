@@ -150,22 +150,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatalogControls\CatalogControl.cs">
+    <Compile Include="RightholderCatalogControls\RightholderCatalogControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CatalogControls\CatalogControl.Designer.cs">
-      <DependentUpon>CatalogControl.cs</DependentUpon>
+    <Compile Include="RightholderCatalogControls\RightholderCatalogControl.Designer.cs">
+      <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\CatalogDetailForm.cs">
+    <Compile Include="RightholderCatalogControls\RightholderCatalogDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CatalogControls\CatalogDetailForm.Designer.cs">
-      <DependentUpon>CatalogDetailForm.cs</DependentUpon>
+    <Compile Include="RightholderCatalogControls\RightholderCatalogDetailForm.Designer.cs">
+      <DependentUpon>RightholderCatalogDetailForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\CatalogShowEdition.cs">
+    <Compile Include="RightholderCatalogControls\CatalogShowEdition.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CatalogControls\CatalogShowEdition.Designer.cs">
+    <Compile Include="RightholderCatalogControls\CatalogShowEdition.Designer.cs">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Enums\AgreementModifyType.cs" />
@@ -249,7 +249,7 @@
     <Compile Include="Shared\Forms\ChangeCommentForm.Designer.cs">
       <DependentUpon>ChangeCommentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
+    <Compile Include="RightholderCatalogControls\Presenters\RightholderCatalogPresenter.cs" />
     <Compile Include="Shared\Interfaces\ICatalogFileItemsHandler.cs" />
     <Compile Include="Common\Editors\IpsPanel.cs">
       <SubType>Component</SubType>
@@ -1210,13 +1210,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CatalogControls\CatalogControl.resx">
-      <DependentUpon>CatalogControl.cs</DependentUpon>
+    <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogControl.resx">
+      <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\CatalogDetailForm.resx">
-      <DependentUpon>CatalogDetailForm.cs</DependentUpon>
+    <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogDetailForm.resx">
+      <DependentUpon>RightholderCatalogDetailForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\CatalogShowEdition.resx">
+    <EmbeddedResource Include="RightholderCatalogControls\CatalogShowEdition.resx">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\LicenseAgreementNotActiveControl.resx">

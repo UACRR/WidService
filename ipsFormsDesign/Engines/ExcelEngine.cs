@@ -192,31 +192,24 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public List<List<string>> ReadData(string FileName, int countCols = 10)
         {
-            // TODO: extract OpenWorkbook(), CloseWorkbook() methods
             bool percentTypeChecked = false;
             int numberColumnPercent = 0;
 
             var list = new List<List<string>>();
-            int i = 0, iter = 1;
+            int iter = 1;
 
             Excel.Workbook excelAppWorkbook = null;
             try
             {
-                excelAppWorkbook = GetApp().Workbooks.Open(FileName, 0, true, 5, null, null, false,
-                    Excel.XlPlatform.xlWindows, null, null, null);
+                excelAppWorkbook = GetApp().Workbooks.Open(FileName, 0, true, 5, null, null, false, Excel.XlPlatform.xlWindows, null, null, null);
                 var excelAppWorksheets = excelAppWorkbook.Worksheets;
                 var excelSheet = (Excel.Worksheet)excelAppWorksheets.Item[1];
 
                 Excel.Range excelRange = excelSheet.UsedRange;
 
-                int maxCol;
-                int maxRow;
+                var maxColumn = Math.Min(excelRange.Columns.Count, countCols);
+                int maxRow = excelRange.Rows.Count;
 
-                maxCol = Math.Min(excelRange.Columns.Count, countCols);
-                maxRow = excelRange.Rows.Count;
-                // 17-05-2019 блочна обробка excel
-
-                // var dim = ((Range)excelRange.Range[excelRange.Cells[1,1], excelRange.Cells[maxRow, countCols]]).Value;
                 foreach (dynamic item in GetBlockData(excelRange, 1000, countCols))
                 {
                     dynamic dim = item.dim.Value;
@@ -225,7 +218,7 @@ namespace ipsFormsDesign.Services
                     // перевірити чи в exel % формат по всіх стовбцях
                     if (!percentTypeChecked)
                     {
-                        for (byte k = 1; k <= maxCol; k++)
+                        for (byte k = 1; k <= maxColumn; k++)
                         {
                             // перший запис, всі стовбці
                             var format = ((Range)item.dim.Cells[1, k]).NumberFormat;
@@ -237,24 +230,15 @@ namespace ipsFormsDesign.Services
                         }
                         percentTypeChecked = true;
                     }
-
-                    //for (i = 1; i <= maxRow; i++)
-                    for (i = 1; i <= rows; i++, iter++)
+                    
+                    for (int i = 1; i <= rows; i++, iter++)
                     {
-                        //if (dim?[i, 1] == null)
-                        //    continue;
-
                         if (!(dim?[i, 1] is double))
                             continue;
 
-                        // changed
-                        // Патлякевич 10-05-19
-                        //if (!(double.TryParse(dim[i, 1].ToString(), out double tmp)))
-                        //    continue;
-
                         var rowList = new List<string>();
 
-                        for (var j = 1; j <= maxCol; j++)
+                        for (var j = 1; j <= maxColumn; j++)
                         {
                             // якщо numberColumnPercent != 0, пошук стовбця з % форматом 
                             if (j == numberColumnPercent)
@@ -263,19 +247,14 @@ namespace ipsFormsDesign.Services
                                 continue;
                             }
 
-                            //var format = ((Range)item.dim.Cells[i, j]).NumberFormat;
-                            //if (string.Equals(format, PercentFormat))
-                            //{
-                            //    rowList.Add(GetFirst(dim[i, j] * 100));
-                            //    continue;
-                            //}
-
                             rowList.Add(GetFirst(dim[i, j]));
                         }
 
                         list.Add(rowList);
                     }
                 }
+
+                return list;
             }
             catch (Exception excp)
             {
@@ -290,7 +269,6 @@ namespace ipsFormsDesign.Services
                     Marshal.ReleaseComObject(excelAppWorkbook);
                 }
             }
-            return list;
         }
     }
 }

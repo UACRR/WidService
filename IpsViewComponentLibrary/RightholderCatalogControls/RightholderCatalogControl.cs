@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
-using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.RightholderCatalogControls.Presenters;
 using IpsViewComponentLibrary.Shared.Forms;
 using IpsViewComponentLibrary.Utilities;
 
-namespace IpsViewComponentLibrary.CatalogControls
+namespace IpsViewComponentLibrary.RightholderCatalogControls
 {
-    public partial class CatalogControl : UserControl
+    public partial class RightholderCatalogControl : UserControl
     {
         private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
         private const string EditCommentSuccessMsg = "Коментар змінений!";
@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string DeleteCatalogFileSuccessMsg = "Файл видалено!";
         private const string DeleteCatalogFileErrorMsg = "Неможливо видалити файл!";
 
-        private readonly CatalogPresenter _catalogPresenter;
+        private readonly RightholderCatalogPresenter _catalogPresenter;
         private readonly DialogService _dialogService = new DialogService(); 
 
         //public int CustomerId { get; set; }
@@ -30,12 +30,12 @@ namespace IpsViewComponentLibrary.CatalogControls
 
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
-        public CatalogControl()
+        public RightholderCatalogControl()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             if (!IsDesignMode)
-                _catalogPresenter = new CatalogPresenter();
+                _catalogPresenter = new RightholderCatalogPresenter();
 
             Load += CatalogControl_Load;
         }
@@ -107,6 +107,17 @@ namespace IpsViewComponentLibrary.CatalogControls
             switch (e.Column.FieldName)
             {
                 case "infoBtn":
+                    var commentForm = new ChangeCommentForm(row);
+                    if (commentForm.ShowDialog() == DialogResult.OK)
+                    {
+                        var result = _catalogPresenter.SaveCatalogFileComment(row);
+                        MessageShow.ShowInfoByResult(EditCommentSuccessMsg, EditCommentErrorMsg, result);
+                        if (result)
+                            UpdateGridData();
+                    }
+                    break;
+
+                case "editBtn":
                     CatalogFile file = null;
                     waitingBar.StartWaiting();
                     await Task.Factory.StartNew(() =>
@@ -120,18 +131,8 @@ namespace IpsViewComponentLibrary.CatalogControls
                     }
                     else
                     {
-                        var form = new CatalogDetailForm(file);
+                        var form = new RightholderCatalogDetailForm(file);
                         form.ShowDialog();
-                    }
-                    break;
-                case "editBtn":
-                    var commentForm = new ChangeCommentForm(row);
-                    if (commentForm.ShowDialog() == DialogResult.OK)
-                    {
-                        var result = _catalogPresenter.SaveCatalogFileComment(row);
-                        MessageShow.ShowInfoByResult(EditCommentSuccessMsg, EditCommentErrorMsg, result);
-                        if (result)
-                            UpdateGridData();
                     }
 
                     break;
@@ -151,7 +152,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         private void gridCatalogFiles_DoubleClick(object sender, EventArgs e)
         {
             var row = gridCatalogFiles.CurrentRow.DataBoundItem as CatalogFile;
-            var form = new CatalogDetailForm(row);
+            var form = new RightholderCatalogDetailForm(row);
             form.ShowDialog();
         }
     }

@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary.CatalogControls
+﻿namespace IpsViewComponentLibrary.RightholderCatalogControls
 {
-    partial class CatalogControl
+    partial class RightholderCatalogControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -45,20 +43,20 @@ namespace IpsViewComponentLibrary.CatalogControls
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
-            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
             this.gridCatalogFiles.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
             this.backgroundPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -196,6 +194,22 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.gridCatalogFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gridCatalogFiles_CommandCellClick);
             this.gridCatalogFiles.DoubleClick += new System.EventHandler(this.gridCatalogFiles_DoubleClick);
             // 
+            // waitingBar
+            // 
+            this.waitingBar.AssociatedControl = this.backgroundPanel;
+            this.waitingBar.Location = new System.Drawing.Point(419, 163);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 8;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
+            // 
             // backgroundPanel
             // 
             this.backgroundPanel.BorderVisible = false;
@@ -218,32 +232,16 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.btnLoadFile.ThemeName = "Office2013Light";
             this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
-            // bsGridData
-            // 
-            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
-            // 
-            // waitingBar
-            // 
-            this.waitingBar.AssociatedControl = this.backgroundPanel;
-            this.waitingBar.Location = new System.Drawing.Point(419, 163);
-            this.waitingBar.Name = "waitingBar";
-            this.waitingBar.Size = new System.Drawing.Size(70, 70);
-            this.waitingBar.TabIndex = 8;
-            this.waitingBar.Text = "radWaitingBar1";
-            this.waitingBar.ThemeName = "Office2013Light";
-            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
-            this.waitingBar.WaitingSpeed = 50;
-            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
-            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
-            // 
             // lineRingWaitingBarIndicatorElement1
             // 
             this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
+            // bsGridData
+            // 
+            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
             // 
             // CatalogControl
             // 
@@ -256,11 +254,11 @@ namespace IpsViewComponentLibrary.CatalogControls
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
             this.gridCatalogFiles.ResumeLayout(false);
             this.gridCatalogFiles.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
             this.backgroundPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             this.ResumeLayout(false);
 
         }

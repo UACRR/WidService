@@ -1,4 +1,4 @@
-﻿using IpsViewComponentLibrary.Common.Enums;
+﻿using IpsViewComponentLibrary.RightholderCatalogControls;
 using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.RightholderControls
@@ -138,7 +138,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.pvCatalog = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlCatalog = new IpsViewComponentLibrary.CatalogControls.CatalogControl();
+            this.ctrlCatalog = new RightholderCatalogControl();
             this.pvRegisters = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRightholderRegister = new IpsViewComponentLibrary.RightholderRegisterControls.RightholderRegisterControl();
             this.pvPublishers = new Telerik.WinControls.UI.RadPageViewPage();
@@ -1636,7 +1636,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private System.Windows.Forms.BindingSource termsOfServiceWrapperBindingSource;
         private Anketa.RightLimitationsControl ctrlRightLimitationsExternal;
         private Telerik.WinControls.UI.RadPageViewPage pvCatalog;
-        private CatalogControls.CatalogControl ctrlCatalog;
+        private RightholderCatalogControl ctrlCatalog;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadTextBoxControl txtCommentPhis;

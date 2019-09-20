@@ -1,41 +1,47 @@
-﻿using ipsFormsDesign.Model;
-using System;
-using System.ComponentModel;
+﻿using System;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
 using IpsCommonTypes.Enums;
-using IpsViewComponentLibrary.CatalogControls.Presenters;
-using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls.Export;
-using System.IO;
-using System.Threading.Tasks;
-using ipsFormsDesign.Interfaces;
-using IpsCommonTypes.Types;
 using IpsCommonTypes.Wrappers;
+using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.RightholderCatalogControls.Presenters;
 using IpsViewComponentLibrary.Shared.Interfaces;
+using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls.Export;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.CatalogControls
+namespace IpsViewComponentLibrary.RightholderCatalogControls
 {
-    public partial class CatalogShowEdition : UserControl
+    public sealed partial class RightholderCatalogDetailForm : RadForm
     {
         private const string ValidateSuccessMsg = "Контроль виконано!";
 
-        private CatalogFile _catalogFile = null;
+        private CatalogFile _catalogFile;
         private ObservableListSource<PubCatalogItem> _pubCatalogItemList = new ObservableListSource<PubCatalogItem>();
 
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
-        protected bool IsDesingMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-        public CatalogShowEdition()
+
+        public RightholderCatalogDetailForm(CatalogFile file)
         {
             InitializeComponent();
-            if (!IsDesingMode)
-                _catalogFileItemsHandler = new CatalogPresenter();
+            WindowState = FormWindowState.Maximized;
+            Text = file.FileName;
+
+            _catalogFileItemsHandler = new RightholderCatalogPresenter();
+
             ctrlNavigatorPanel.CurrentPageChanged += NavigatorPanel_UpdateData;
             ctrlNavigatorPanel.PageSizeChanged += CtrlNavigatorPanel_PageSizeChanged;
-        }
 
+            gvPubCatalogItem.SubscribeToolTipTextNeeded();
+
+            DataSource = file;
+        }
+        
         private void CtrlNavigatorPanel_PageSizeChanged(object sender, EventArgs e)
         {
             ctrlNavigatorPanel.TotalPages = _pubCatalogItemList.Count / ctrlNavigatorPanel.PageSize;
@@ -99,8 +105,8 @@ namespace IpsViewComponentLibrary.CatalogControls
                 dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
                 bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem;
-                var spreadExporter = new GridViewSpreadExport(gridDetailInfo, SpreadExportFormat.Xlsx);
-                
+                var spreadExporter = new GridViewSpreadExport(gvPubCatalogItem, SpreadExportFormat.Xlsx);
+
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     if (File.Exists(dialog.FileName))
