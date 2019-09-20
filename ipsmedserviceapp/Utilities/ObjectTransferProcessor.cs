@@ -23,6 +23,11 @@ namespace ipsmedserviceapp.Utilities
             public CopyRight CopyrightToDb { get; set; }
         }
 
+        /// <summary>
+        /// Передача прав видавництва, права якого належать іншому субвиданвицтву
+        /// </summary>
+        private bool IsSubpublisherTransfer { get; set; }
+
         private readonly MediaServiceContext _dbContext;
         private readonly RightholderRepository _rightholderRepository;
         private readonly TransferParametersResource _transferParams;
@@ -34,7 +39,7 @@ namespace ipsmedserviceapp.Utilities
         private decimal _rateTotal;
         private decimal _rateTransfer;
         private decimal _kDecrTotal;
-        private DateTime _maxDate = new DateTime(3000, 1, 1);
+        private readonly DateTime _maxDate = new DateTime(3000, 1, 1);
         private List<CopyrightData> _intermidiateCopyrightData = new List<CopyrightData>();
 
         public ValidationResult Result { get; } = new ValidationResult();
@@ -112,6 +117,8 @@ namespace ipsmedserviceapp.Utilities
                 .Where(rec => rec.CRightId.HasValue)
                 .Select(rec => rec.CRightId.Value)
                 .Distinct().ToArray();
+
+            IsSubpublisherTransfer = copyRightIds.Any();
 
             _oldRightholder = _rightholderRepository.GetRightholderById(_transferParams.OldRightholderId, _transferParams.DateFrom, copyRightIds);
 
@@ -325,10 +332,22 @@ namespace ipsmedserviceapp.Utilities
                 }
             }
 
+            if (IsSubpublisherTransfer)
+            {
+                foreach (var copyRight in copyrightList)
+                {
+                    var parentId = copyrightHistoryList.SingleOrDefault(rec => rec.Child.CRightId == copyRight.CRightId)?.ParentId;
+                    copyRight.ParentId = parentId ?? 1;
+                }
+            }
+
             _dbContext.CopyRight.AddRange(copyrightList);
             _dbContext.CopyRightHistory.AddRange(copyrightHistoryList);
         }
 
+        /// <summary>
+        ///  Зробити повернення прав якщо об'єкт було передано на деякий термін
+        /// </summary>
         private void CreateNewCopyrightsForOldrightholder()
         {
             // create new copyrights for old rightholder if object is transfered for a certain time
