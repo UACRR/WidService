@@ -137,7 +137,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             {
                 result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
             });
-            waitingBar.StartWaiting();
+            waitingBar.StopWaiting();
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
             DataSource = result.Data;

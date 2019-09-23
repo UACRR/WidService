@@ -41,6 +41,12 @@ namespace IpsViewComponentLibrary.CommunityControls
                 dtDateBegin.ReadOnly = value;
                 dtDateEnd.ReadOnly = value;
                 ddlPeriodPayment.ReadOnly = value;
+                dtDateBeginMEC.ReadOnly = value;
+                dtDateEndMEC.ReadOnly = value;
+                dtDateBeginPER.ReadOnly = value;
+                dtDateEndPER.ReadOnly = value;
+                checkPER.ReadOnly = value;
+                checkMEC.ReadOnly = value;
             }
         }
 
@@ -56,20 +62,23 @@ namespace IpsViewComponentLibrary.CommunityControls
             set
             {
                 bsAgreementAddCommunity.DataSource = value;
-                bsAgreementAddCommunity.ResetBindings(false);
+
                 if (value is AgreementAddCommunity item)
                 {
-                    if (!item.IsPer.HasValue || item.IsPer.Value == false)
-                    {
+                    if (item.DateBeginPer == null)
                         dtDateBeginPER.Text = null;
+
+                    if (item.DateEndPer == null)
                         dtDateEndPER.Text = null;
-                    }
-                    if (!item.IsMec.HasValue || item.IsMec.Value == false)
-                    {
+
+                    if (item.DateBeginMec == null)
                         dtDateBeginMEC.Text = null;
+
+                    if (item.DateEndMec == null)
                         dtDateEndMEC.Text = null;
-                    }
                 }
+
+                bsAgreementAddCommunity.ResetBindings(false);
             }
         }
 

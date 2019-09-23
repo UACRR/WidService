@@ -336,8 +336,8 @@ namespace ipsmedserviceapp.Utilities
             {
                 foreach (var copyRight in copyrightList)
                 {
-                    var parentId = copyrightHistoryList.SingleOrDefault(rec => rec.Child.CRightId == copyRight.CRightId)?.ParentId;
-                    copyRight.ParentId = parentId ?? 1;
+                    var parentId = copyrightHistoryList.SingleOrDefault(rec => rec.Child.CustId == copyRight.CustId)?.Parent?.CRightId;
+                    copyRight.ParentId = parentId ?? 0;
                 }
             }
 

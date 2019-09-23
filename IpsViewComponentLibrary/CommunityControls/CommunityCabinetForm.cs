@@ -74,16 +74,25 @@ namespace IpsViewComponentLibrary.CommunityControls
                 agreement.DateBeginPer = null;
                 agreement.DateEndPer = null;
             }
+            else
+            {
+                if (agreement.DateEndPer == null || agreement.DateEndPer == DateTime.MinValue)
+                    agreement.DateEndPer = new DateTime(3000, 01, 01);
+            }
+
             if (agreement.IsMec == null || agreement.IsMec == false)
             {
                 agreement.DateBeginMec = null;
                 agreement.DateEndMec = null;
             }
+            else
+            {
+                if (agreement.DateEndMec == null || agreement.DateEndMec == DateTime.MinValue)
+                    agreement.DateEndMec = new DateTime(3000, 01, 01);
+            }
 
             var result = SaveAgreementChanges?.Invoke(agreement) ?? false;
-            //var result = SaveCustomer?.Invoke(_customer) ?? false;
             UpdateAfterSave(result);
-            //MessageShow.ShowInfoAfterChanges(result);
         }
 
         // anketa save
