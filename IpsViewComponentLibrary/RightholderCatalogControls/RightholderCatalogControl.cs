@@ -73,12 +73,8 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         {
             using (var fileExel = new OpenFileDialog())
             {
-                //open dialog
-                // fileExel.InitialDirectory = @"C:\";
                 fileExel.Filter = "Excel files (.xlsx)|*.xlsx";
-                //fileExel.RestoreDirectory = true;
 
-                //show file into grid
                 if (fileExel.ShowDialog() == DialogResult.OK)
                 {
                     var catalogFile = new CatalogFile

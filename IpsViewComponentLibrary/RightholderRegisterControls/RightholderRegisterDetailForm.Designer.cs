@@ -42,6 +42,8 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
@@ -50,6 +52,7 @@
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.ctrlNavigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             this.lblCountAll = new Telerik.WinControls.UI.RadLabel();
             this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
             this.lblCountErr = new Telerik.WinControls.UI.RadLabel();
@@ -68,7 +71,6 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.bsRHCatalogItem = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlNavigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).BeginInit();
@@ -201,39 +203,56 @@
             gridViewTextBoxColumn5.Name = "percent";
             gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn5.Width = 95;
-            gridViewTextBoxColumn6.FieldName = "ErrComment";
-            gridViewTextBoxColumn6.HeaderText = "Помилка";
-            gridViewTextBoxColumn6.MinWidth = 100;
-            gridViewTextBoxColumn6.Name = "error";
-            gridViewTextBoxColumn6.Width = 100;
-            gridViewTextBoxColumn7.FieldName = "StatusNavigation.Name";
-            gridViewTextBoxColumn7.HeaderText = "Статус";
-            gridViewTextBoxColumn7.MaxWidth = 160;
-            gridViewTextBoxColumn7.MinWidth = 160;
-            gridViewTextBoxColumn7.Name = "StatusNavigation";
-            gridViewTextBoxColumn7.Width = 160;
-            gridViewTextBoxColumn8.FieldName = "CmName";
-            gridViewTextBoxColumn8.HeaderText = "Товариство";
-            gridViewTextBoxColumn8.IsVisible = false;
-            gridViewTextBoxColumn8.MinWidth = 150;
-            gridViewTextBoxColumn8.Name = "CmName";
-            gridViewTextBoxColumn8.Width = 150;
-            gridViewTextBoxColumn9.FieldName = "Iswc";
-            gridViewTextBoxColumn9.HeaderText = "ISWC";
-            gridViewTextBoxColumn9.IsVisible = false;
-            gridViewTextBoxColumn9.MinWidth = 75;
-            gridViewTextBoxColumn9.Name = "iswc";
-            gridViewTextBoxColumn9.Width = 75;
-            gridViewTextBoxColumn10.HeaderText = "Назва Правовласника";
+            gridViewTextBoxColumn6.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewTextBoxColumn6.FieldName = "DateBegin";
+            gridViewTextBoxColumn6.FormatString = "{0:d}";
+            gridViewTextBoxColumn6.HeaderText = "Діє \"з\"";
+            gridViewTextBoxColumn6.MaxWidth = 75;
+            gridViewTextBoxColumn6.MinWidth = 75;
+            gridViewTextBoxColumn6.Name = "DateBegin";
+            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn6.Width = 75;
+            gridViewTextBoxColumn7.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewTextBoxColumn7.FieldName = "DateEnd";
+            gridViewTextBoxColumn7.FormatString = "{0:d}";
+            gridViewTextBoxColumn7.HeaderText = "Діє \"по\"";
+            gridViewTextBoxColumn7.MaxWidth = 75;
+            gridViewTextBoxColumn7.MinWidth = 75;
+            gridViewTextBoxColumn7.Name = "DateEnd";
+            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn7.Width = 75;
+            gridViewTextBoxColumn8.FieldName = "ErrComment";
+            gridViewTextBoxColumn8.HeaderText = "Помилка";
+            gridViewTextBoxColumn8.MinWidth = 100;
+            gridViewTextBoxColumn8.Name = "error";
+            gridViewTextBoxColumn8.Width = 100;
+            gridViewTextBoxColumn9.FieldName = "StatusNavigation.Name";
+            gridViewTextBoxColumn9.HeaderText = "Статус";
+            gridViewTextBoxColumn9.MinWidth = 150;
+            gridViewTextBoxColumn9.Name = "StatusNavigation";
+            gridViewTextBoxColumn9.Width = 150;
+            gridViewTextBoxColumn10.FieldName = "CmName";
+            gridViewTextBoxColumn10.HeaderText = "Товариство";
             gridViewTextBoxColumn10.IsVisible = false;
-            gridViewTextBoxColumn10.Name = "rhName";
-            gridViewTextBoxColumn10.Width = 16;
-            gridViewTextBoxColumn11.DataType = typeof(System.Nullable<int>);
-            gridViewTextBoxColumn11.FieldName = "Status";
-            gridViewTextBoxColumn11.HeaderText = "status";
+            gridViewTextBoxColumn10.MinWidth = 150;
+            gridViewTextBoxColumn10.Name = "CmName";
+            gridViewTextBoxColumn10.Width = 150;
+            gridViewTextBoxColumn11.FieldName = "Iswc";
+            gridViewTextBoxColumn11.HeaderText = "ISWC";
             gridViewTextBoxColumn11.IsVisible = false;
-            gridViewTextBoxColumn11.Name = "status";
-            gridViewTextBoxColumn11.Width = 86;
+            gridViewTextBoxColumn11.MinWidth = 75;
+            gridViewTextBoxColumn11.Name = "iswc";
+            gridViewTextBoxColumn11.Width = 75;
+            gridViewTextBoxColumn12.HeaderText = "Назва Правовласника";
+            gridViewTextBoxColumn12.IsVisible = false;
+            gridViewTextBoxColumn12.Name = "rhName";
+            gridViewTextBoxColumn12.Width = 16;
+            gridViewTextBoxColumn13.DataType = typeof(System.Nullable<int>);
+            gridViewTextBoxColumn13.FieldName = "Status";
+            gridViewTextBoxColumn13.HeaderText = "status";
+            gridViewTextBoxColumn13.IsVisible = false;
+            gridViewTextBoxColumn13.Name = "status";
+            gridViewTextBoxColumn13.Width = 86;
             this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn1,
             gridViewTextBoxColumn1,
@@ -247,7 +266,9 @@
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11});
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13});
             this.gridDetailInfo.MasterTemplate.DataSource = this.bsRHCatalogItem;
             this.gridDetailInfo.MasterTemplate.EnableCustomFiltering = true;
             this.gridDetailInfo.MasterTemplate.EnableFiltering = true;
@@ -303,6 +324,19 @@
             this.backgroundPanel.Name = "backgroundPanel";
             this.backgroundPanel.Size = new System.Drawing.Size(897, 489);
             this.backgroundPanel.TabIndex = 38;
+            // 
+            // ctrlNavigatorPanel
+            // 
+            this.ctrlNavigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlNavigatorPanel.CurrentPage = 1;
+            this.ctrlNavigatorPanel.Location = new System.Drawing.Point(544, 462);
+            this.ctrlNavigatorPanel.Name = "ctrlNavigatorPanel";
+            this.ctrlNavigatorPanel.PageSize = 300;
+            this.ctrlNavigatorPanel.ReadOnlyPageSize = false;
+            this.ctrlNavigatorPanel.Size = new System.Drawing.Size(350, 24);
+            this.ctrlNavigatorPanel.TabIndex = 38;
+            this.ctrlNavigatorPanel.TotalPages = 0;
+            this.ctrlNavigatorPanel.Visible = false;
             // 
             // lblCountAll
             // 
@@ -614,19 +648,6 @@
             // bsRHCatalogItem
             // 
             this.bsRHCatalogItem.DataSource = typeof(ipsFormsDesign.Model.RhcatalogItem);
-            // 
-            // ctrlNavigatorPanel
-            // 
-            this.ctrlNavigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlNavigatorPanel.CurrentPage = 1;
-            this.ctrlNavigatorPanel.Location = new System.Drawing.Point(544, 462);
-            this.ctrlNavigatorPanel.Name = "ctrlNavigatorPanel";
-            this.ctrlNavigatorPanel.PageSize = 300;
-            this.ctrlNavigatorPanel.ReadOnlyPageSize = false;
-            this.ctrlNavigatorPanel.Size = new System.Drawing.Size(350, 24);
-            this.ctrlNavigatorPanel.TabIndex = 38;
-            this.ctrlNavigatorPanel.TotalPages = 0;
-            this.ctrlNavigatorPanel.Visible = false;
             // 
             // RightholderRegisterDetailForm
             // 

@@ -93,11 +93,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             switch (e.Column.FieldName)
             {
                 case "infoBtn":
-                    LoadDetailForm(row);
-                    break;
-                case "editBtn":
                     var commentForm = new ChangeCommentForm(row);
-
                     if (commentForm.ShowDialog() == DialogResult.OK)
                     {
                         var result = _presenter.SaveRightholderRegister(row);
@@ -105,6 +101,10 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
                         if (result)
                             UpdateGridData();
                     }
+                    break;
+
+                case "editBtn":
+                    LoadDetailForm(row);
                     break;
 
                 case "deleteBtn":

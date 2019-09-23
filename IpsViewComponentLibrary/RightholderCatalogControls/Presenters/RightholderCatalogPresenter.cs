@@ -11,7 +11,7 @@ using IpsViewComponentLibrary.Shared.Interfaces;
 
 namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
 {
-    public class RightholderCatalogPresenter: ICatalogFileItemsHandler
+    public sealed class RightholderCatalogPresenter: ICatalogFileItemsHandler
     {
         private readonly RightholderCatalogService _service;
         private readonly ExcelEngine _exelEngine;
@@ -189,10 +189,8 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             };
 
             if (decimal.TryParse(item[9], out decimal outBuffer))
-            {
                 newItem.Rate = outBuffer;
-            }
-            
+
             if (DateTime.TryParse(item[10], out DateTime dtBegin))
                 newItem.DateBegin = dtBegin;
 
