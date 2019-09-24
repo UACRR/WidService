@@ -76,6 +76,15 @@ namespace IpsViewComponentLibrary.CommunityControls
 
                     if (item.DateEndMec == null)
                         dtDateEndMEC.Text = null;
+
+                    if (item.AgrDate == null)
+                        dtAgrDate.Text = null;
+
+                    if (item.DateBegin == null)
+                        dtDateBegin.Text = null;
+
+                    if (item.DateEnd == null)
+                        dtDateEnd.Text = null;
                 }
 
                 bsAgreementAddCommunity.ResetBindings(false);

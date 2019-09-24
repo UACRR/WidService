@@ -17,6 +17,8 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityCabinetForm : RadForm
     {
+        private const string ConfirmAcceptAgreement = "Перед зміною статусу договору необхідно зберегти зміни. Незбережені зміни будуть втрачені. Змінити статус договору?";
+
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event Func<AgreementAddCommunity, bool> SaveAgreementChanges;
@@ -207,11 +209,14 @@ namespace IpsViewComponentLibrary.CommunityControls
         // підтвердження договору
         private void btnAcceptAgr_Click(object sender, EventArgs e)
         {
-            var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Activate);
-            if (result ?? false)
+            if (MessageShow.ConfirmAction(ConfirmAcceptAgreement) == DialogResult.Yes)
             {
-                _customer = UpdateCustomer?.Invoke(_customer.CustId);
-                BeginBindings();
+                var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Activate);
+                if (result ?? false)
+                {
+                    _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                    BeginBindings();
+                }
             }
         }
 
