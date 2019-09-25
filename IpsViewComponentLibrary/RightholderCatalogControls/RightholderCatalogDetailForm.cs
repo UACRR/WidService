@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Wrappers;
@@ -22,9 +24,11 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private const string ValidateSuccessMsg = "Контроль виконано!";
 
         private CatalogFile _catalogFile;
-        private ObservableListSource<PubCatalogItem> _pubCatalogItemList = new ObservableListSource<PubCatalogItem>();
 
-        private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
+        private int Skip => (ctrlNavigatorPanel.CurrentPage - 1) * ctrlNavigatorPanel.PageSize;
+        private int Take => ctrlNavigatorPanel.PageSize;
+
+        private readonly ICatalogFileItemsHandler<PubCatalogItem> _catalogFileItemsHandler;
 
         public RightholderCatalogDetailForm(CatalogFile file)
         {
@@ -40,18 +44,38 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             gvPubCatalogItem.SubscribeToolTipTextNeeded();
 
             DataSource = file;
+            Load += RightholderCatalogDetailForm_Load;
         }
-        
+
+        private void RightholderCatalogDetailForm_Load(object sender, EventArgs e)
+        {
+            GetPubCatalogItemFromDB();
+        }
+
         private void CtrlNavigatorPanel_PageSizeChanged(object sender, EventArgs e)
         {
-            ctrlNavigatorPanel.TotalPages = _pubCatalogItemList.Count / ctrlNavigatorPanel.PageSize;
+            // ReSharper disable once PossibleInvalidOperationException
+            ctrlNavigatorPanel.TotalPages = _catalogFile.CountZap.Value / ctrlNavigatorPanel.PageSize;
             ctrlNavigatorPanel.CurrentPage = 1;
         }
 
         private void NavigatorPanel_UpdateData(object sender, EventArgs e)
         {
-            int skip = (ctrlNavigatorPanel.CurrentPage - 1) * ctrlNavigatorPanel.PageSize;
-            bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem.Skip(skip).Take(ctrlNavigatorPanel.PageSize);
+            GetPubCatalogItemFromDB();
+        }
+
+        private async void GetPubCatalogItemFromDB()
+        {
+            List<PubCatalogItem> items = null;
+
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
+            {
+                items = _catalogFileItemsHandler.GetCatalogFileItems(_catalogFile.FileId, Skip, Take);
+            });
+            waitingBar.StopWaiting();
+
+            bsPubCatalogItem.DataSource = items;
             bsPubCatalogItem.ResetBindings(false);
         }
 
@@ -70,12 +94,8 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
 
                 btnPerform.Enabled = _catalogFile.Status == 1;
 
-                if (_catalogFile.PubCatalogItem.Any())
-                {
-                    _pubCatalogItemList = _catalogFile.PubCatalogItem;
-                    ctrlNavigatorPanel.TotalPages = _pubCatalogItemList.Count / ctrlNavigatorPanel.PageSize;
-                    ctrlNavigatorPanel.CurrentPage = 1;
-                }
+                if (_catalogFile.CountZap.HasValue)
+                    ctrlNavigatorPanel.TotalPages = _catalogFile.CountZap.Value / ctrlNavigatorPanel.PageSize;
             }
         }
 

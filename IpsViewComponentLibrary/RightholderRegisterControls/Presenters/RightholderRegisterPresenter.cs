@@ -14,7 +14,7 @@ using TimeSpan = System.TimeSpan;
 
 namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
 {
-    public sealed class RightholderRegisterPresenter: ICatalogFileItemsHandler
+    public sealed class RightholderRegisterPresenter: ICatalogFileItemsHandler<RhcatalogItem>
     {
         private readonly RightholderRegisterService _service;
         private readonly ExcelEngine _exelEngine;
@@ -236,6 +236,11 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
         public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.Process(catalogFile);
+        }
+
+        public List<RhcatalogItem> GetCatalogFileItems(int fileId, int skip, int take)
+        {
+            throw new NotImplementedException();
         }
     }
 }

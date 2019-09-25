@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
         private const string ValidateSuccessMsg = "Контроль виконано!";
 
         private CatalogFile _catalogFile;
-        private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
+        private readonly ICatalogFileItemsHandler<RhcatalogItem> _catalogFileItemsHandler;
 
         protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 

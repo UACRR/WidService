@@ -23,7 +23,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         private CatalogFile _catalogFile = null;
         private ObservableListSource<PubCatalogItem> _pubCatalogItemList = new ObservableListSource<PubCatalogItem>();
 
-        private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
+        private readonly ICatalogFileItemsHandler<PubCatalogItem> _catalogFileItemsHandler;
         protected bool IsDesingMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         public CatalogShowEdition()
         {

@@ -22,6 +22,8 @@ namespace ipsmedserviceapp.Controllers
     [ApiController]
     public class CatalogController : Controller
     {
+        private const int CountOfPart = 5000;
+
         private readonly MediaServiceContext _dbContext;
         private readonly ILogger<CatalogController> _logger;
 
@@ -47,8 +49,8 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> GetCatalogFile(int custId, int fileId)
         {
             var catalogFile = await _dbContext.CatalogFile
-                .Include(rec => rec.PubCatalogItem)
-                    .ThenInclude(rec => rec.StatusNavigation)
+                //.Include(rec => rec.PubCatalogItem)
+                //    .ThenInclude(rec => rec.StatusNavigation)
                 .SingleOrDefaultAsync(rec => rec.CustId == custId && rec.FileId == fileId);
 
             if (catalogFile == null)
@@ -57,88 +59,188 @@ namespace ipsmedserviceapp.Controllers
             return Ok(catalogFile);
         }
 
+        [HttpGet("catalogfileitems/{fileId}/{skip}/{take}")]
+        public async Task<IActionResult> GetCatalogFileItems(int fileId, int skip, int take)
+        {
+            var list = await _dbContext.PubCatalogItem
+                .Where(rec => rec.FileId == fileId)
+                .Skip(skip).Take(take)
+                .ToListAsync();
+
+            return Ok(list);          
+        }
+
+        [DisableRequestSizeLimit]
         [HttpPost("upload/{custId}")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
-            IDbContextTransaction transaction = null;
+            //IDbContextTransaction transaction = null;
+            int? catalogFileLoadedId = null;
+            //bool catalogFileItemsLoaded = false;
             var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {
-                _dbContext.Database.SetCommandTimeout(2400);
+                _dbContext.Database.SetCommandTimeout(3200);
                 if (source == null || !source.PubCatalogItem.Any())
                     return BadRequest("Loaded file is empty or not read!");
 
                 var vcustomer = await _dbContext.vCustomer.SingleOrDefaultAsync(rec => rec.CustId == custId);
 
-                var rightholder = _dbContext.RightHolder.SingleOrDefault(rec => rec.CustId == custId);
+                var rightholder = await _dbContext.RightHolder.SingleOrDefaultAsync(rec => rec.CustId == custId);
                 if (rightholder == null)
                     return NotFound($"RightHolder with ID:{custId} not found!");
 
                 string[] excludedFields = { "CustId", "FileId", "UserId", "Status" };
 
-                var destination = new CatalogFile
+                var target = new CatalogFile
                 {
                     CustId = custId,
                     UserId = source.UserId ?? "system",
                     Status = 0,
                     PubCatalogItem = new List<PubCatalogItem>()
                 };
-                destination.SetFields(source, excludedFields);
+                target.SetFields(source, excludedFields);
+                target.CustName = vcustomer?.name;
+                target.CreateDate = DateTime.Now;
 
-                switch (rightholder.RHolderType)
+                if (rightholder.RHolderType == 3)
+                    target.RhType = 3;
+
+                //var targetPubCatalogItems = new List<PubCatalogItem>();
+                //if (rightholder.RHolderType == 3)
+                //{
+                //    target.RhType = 3;
+                //    foreach (var item in source.PubCatalogItem)
+                //    {
+                //        var PubCatalogItem = new PubCatalogItem
+                //        {
+                //            CustId = target.CustId,
+                //            Status = 0,
+                //        };
+                //        PubCatalogItem.SetFields(item, excludedFields);
+                //        targetPubCatalogItems.Add(PubCatalogItem);
+                //    }
+                //}
+
+                //target.CountZap = targetPubCatalogItems.Count;
+
+                target.CountZap = source.PubCatalogItem.Count;
+
+                // save target
+                _dbContext.CatalogFile.Add(target);
+                _dbContext.SaveChanges();
+                catalogFileLoadedId = target.FileId;
+                
+                //foreach (var item in targetPubCatalogItems)
+                //    item.FileId = target.FileId;
+
+
+                //var div = targetPubCatalogItems.Count / (float)CountOfPart;
+                //int countIteration = (int)Math.Ceiling(div);
+
+                //for (int i = 0; i < countIteration; i++)
+                //{
+                //    var partOfList = targetPubCatalogItems.Skip(i * CountOfPart).Take((i + 1) * CountOfPart);
+                //    _dbContext.PubCatalogItem.AddRange(partOfList);
+                //}
+
+                //var connectionString = _dbContext.Database.GetDbConnection().ConnectionString;
+
+                //using (var sqlConnection = new SqlConnection(connectionString))
+                using (SqlConnection sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
                 {
-                    // видавництво
-                    case 3:
-                        destination.RhType = 3;
+                    sqlConnection.Open();
+                    using (var bulkCopy = new SqlBulkCopy(sqlConnection))
+                    {
+                        bulkCopy.DestinationTableName = nameof(PubCatalogItem);
+
+                        DataTable dataTable = new DataTable(nameof(PubCatalogItem));
+
+                        DataColumn[] dataColumns =
+                        {
+                                new DataColumn("itemId", typeof(int)),
+                                new DataColumn("fileId", typeof(int)),
+                                new DataColumn("cRightId", typeof(int)),
+                                new DataColumn("custId", typeof(int)),
+                                new DataColumn("itemCode", typeof(string)),
+                                new DataColumn("iswc", typeof(string)),
+                                new DataColumn("objName", typeof(string)),
+                                new DataColumn("genreName", typeof(string)),
+                                new DataColumn("roleName", typeof(string)),
+                                new DataColumn("rate", typeof(decimal)),
+                                new DataColumn("authorMusic", typeof(string)),
+                                new DataColumn("authorText", typeof(string)),
+                                new DataColumn("performer", typeof(string)),
+                                new DataColumn("comment", typeof(string)),
+                                new DataColumn("objId", typeof(int)),
+                                new DataColumn("genreCode", typeof(int)),
+                                new DataColumn("roleCode", typeof(int)),
+                                new DataColumn("status", typeof(int)),
+                                new DataColumn("errComment", typeof(string)),
+                                new DataColumn("rhName", typeof(string)),
+                                new DataColumn("dateBegin", typeof(DateTime)),
+                                new DataColumn("dateEnd", typeof(DateTime)),
+                            };
+
+                        dataTable.Columns.AddRange(dataColumns);
+
                         foreach (var item in source.PubCatalogItem)
                         {
-                            var PubCatalogItem = new PubCatalogItem
+                            DataRow row = dataTable.NewRow();
+                            row.ItemArray = new object[]
                             {
-                                CustId = destination.CustId,
-                                Status = 0,
+                                    null,
+                                    target.FileId,
+                                    null,
+                                    target.CustId,
+                                    item.ItemCode,
+                                    item.Iswc,
+                                    item.ObjName,
+                                    item.GenreName,
+                                    item.RoleName,
+                                    item.Rate,
+                                    item.AuthorMusic,
+                                    item.AuthorText,
+                                    item.Performer,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    0,
+                                    null,
+                                    item.RhName,
+                                    item.DateBegin,
+                                    item.DateEnd
                             };
-                            PubCatalogItem.SetFields(item, excludedFields);
-                            destination.PubCatalogItem.Add(PubCatalogItem);
-                        }
-                        break;
 
-                    // правовласник
-                    case 1:
-                        destination.RhType = 1;
-                        break;
-
-                    // інші RHolderType
-                    default:
-                        {
-                            _logger.LogInformation("Unsupported RHolderType!");
-                            return BadRequest("Unsupported RHolderType!");
+                            dataTable.Rows.Add(row);
                         }
+
+                        bulkCopy.WriteToServer(dataTable);
+                    }
                 }
-
-                destination.CustName = vcustomer?.name;
-                destination.CreateDate = DateTime.Now;
-                destination.CountZap = destination.PubCatalogItem.Count;
-
-                await _dbContext.CatalogFile.AddAsync(destination);
-
-                transaction = _dbContext.Database.BeginTransaction();
-                _dbContext.SaveChanges();
-                transaction.Commit();
 
                 if (currentTimeOut.HasValue)
                     _dbContext.Database.SetCommandTimeout(currentTimeOut);
 
-                return Ok(destination);
+                return Ok(target);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString());
-                transaction?.Rollback();
+
+                if (catalogFileLoadedId.HasValue)
+                {
+                    var removeItems = _dbContext.PubCatalogItem.Where(rec => rec.FileId == catalogFileLoadedId.Value).ToList();
+                    _dbContext.PubCatalogItem.RemoveRange(removeItems);
+
+                    var removeCatalogFile = _dbContext.CatalogFile.SingleOrDefault(rec => rec.FileId == catalogFileLoadedId.Value);
+                    if (removeCatalogFile != null)
+                        _dbContext.CatalogFile.Remove(removeCatalogFile);
+
+                    _dbContext.SaveChanges();
+                }
                 throw;
-            }
-            finally
-            {
-                transaction?.Dispose();
             }
         }
 

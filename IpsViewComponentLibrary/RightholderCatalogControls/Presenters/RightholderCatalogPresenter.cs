@@ -11,7 +11,7 @@ using IpsViewComponentLibrary.Shared.Interfaces;
 
 namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
 {
-    public sealed class RightholderCatalogPresenter: ICatalogFileItemsHandler
+    public sealed class RightholderCatalogPresenter: ICatalogFileItemsHandler<PubCatalogItem>
     {
         private readonly RightholderCatalogService _service;
         private readonly ExcelEngine _exelEngine;
@@ -27,7 +27,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             return _service.GetCatalogFileList(custId);
         }
 
-        public CatalogFile GetCatalogFile( int custId, int fileId )
+        public CatalogFile GetCatalogFile(int custId, int fileId)
         {
             return _service.GetCatalogFile(custId, fileId);
         }
@@ -229,6 +229,16 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
         public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.ProcessCatalogFileItems(catalogFile);
+        }
+
+        public List<T> GetCatalogFileItems<T>(int fileId, int skip, int take)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PubCatalogItem> GetCatalogFileItems(int fileId, int skip, int take)
+        {
+            return _service.GetCatalogFileItems(fileId, skip, take);
         }
     }
 }

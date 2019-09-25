@@ -303,7 +303,7 @@
             this.ctrlNavigatorPanel.CurrentPage = 1;
             this.ctrlNavigatorPanel.Location = new System.Drawing.Point(469, 418);
             this.ctrlNavigatorPanel.Name = "ctrlNavigatorPanel";
-            this.ctrlNavigatorPanel.PageSize = 300;
+            this.ctrlNavigatorPanel.PageSize = 200;
             this.ctrlNavigatorPanel.ReadOnlyPageSize = false;
             this.ctrlNavigatorPanel.Size = new System.Drawing.Size(350, 24);
             this.ctrlNavigatorPanel.TabIndex = 13;

@@ -51,6 +51,20 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Отримати частину записів каталогу
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        public List<PubCatalogItem> GetCatalogFileItems(int fileId, int skip, int take)
+        {
+            string url = $"{Prefix}/catalogfileitems/{fileId}/{skip}/{take}";
+            var result = _apiConnector.GetList<PubCatalogItem>(url);
+            return result;
+        }
+
+        /// <summary>
         /// Завантажити CatalogFile на сервер
         /// </summary>
         /// <param name="custId"></param>
