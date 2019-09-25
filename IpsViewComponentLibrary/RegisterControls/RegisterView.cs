@@ -7,12 +7,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
-using IpsViewComponentLibrary.Extensions;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
-    public partial class RegisterView : Telerik.WinControls.UI.RadForm
+    public partial class RegisterView : RadForm
     {
         private RegisterPresenter _presenter;
         public RegisterPresenter Presenter
@@ -45,6 +46,14 @@ namespace IpsViewComponentLibrary.RegisterControls
                     bsRegister.DataSource = value;
                     txtPeriodName.Text = value?.Rm?.Period?.PeriodName;
                     ddlLicCode.SelectedValue = value?.Rm?.Period?.Lic?.LicCode;
+
+                    if (value?.Rm?.Period?.Lic?.LicCode is int licCode)
+                    {
+                        var licenseType = IpsGlobal.AnketaDictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licCode);
+                        bool visible = licenseType?.SchemaId != 1;
+                        mebRegRate.Visible = visible;
+                        lblAuthRateByRegister.Visible = visible;
+                    }
                 }
             }
         }

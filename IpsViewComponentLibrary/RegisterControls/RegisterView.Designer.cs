@@ -66,7 +66,7 @@
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.ddlLicCode = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.mebRegRate = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.lblAuthRateByRegister = new Telerik.WinControls.UI.RadLabel();
             this.txtConsumerName = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
@@ -120,7 +120,7 @@
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebRegRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAuthRateByRegister)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConsumerName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
@@ -501,6 +501,7 @@
             // 
             // dtCreateDate
             // 
+            this.dtCreateDate.BorderVisible = true;
             this.dtCreateDate.CalendarSize = new System.Drawing.Size(220, 180);
             this.dtCreateDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsRegister, "CreateDate", true));
             this.dtCreateDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -548,7 +549,7 @@
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox2.Controls.Add(this.ddlLicCode);
             this.radGroupBox2.Controls.Add(this.mebRegRate);
-            this.radGroupBox2.Controls.Add(this.radLabel9);
+            this.radGroupBox2.Controls.Add(this.lblAuthRateByRegister);
             this.radGroupBox2.Controls.Add(this.txtConsumerName);
             this.radGroupBox2.Controls.Add(this.radLabel8);
             this.radGroupBox2.Controls.Add(this.radLabel7);
@@ -583,14 +584,14 @@
             this.mebRegRate.ThemeName = "Office2013Light";
             this.mebRegRate.Validating += new System.ComponentModel.CancelEventHandler(this.mebRegRate_Validating);
             // 
-            // radLabel9
+            // lblAuthRateByRegister
             // 
-            this.radLabel9.Location = new System.Drawing.Point(5, 76);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(199, 19);
-            this.radLabel9.TabIndex = 103;
-            this.radLabel9.Text = "% авторської винагороди по звіту";
-            this.radLabel9.ThemeName = "Office2013Light";
+            this.lblAuthRateByRegister.Location = new System.Drawing.Point(5, 76);
+            this.lblAuthRateByRegister.Name = "lblAuthRateByRegister";
+            this.lblAuthRateByRegister.Size = new System.Drawing.Size(199, 19);
+            this.lblAuthRateByRegister.TabIndex = 103;
+            this.lblAuthRateByRegister.Text = "% авторської винагороди по звіту";
+            this.lblAuthRateByRegister.ThemeName = "Office2013Light";
             // 
             // txtConsumerName
             // 
@@ -756,7 +757,7 @@
             this.radGroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebRegRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAuthRateByRegister)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConsumerName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
@@ -804,7 +805,7 @@
         private IpsViewComponentLibrary.Common.Editors.IpsTextBox txtConsumerName;
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox mebRegRate;
-        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadLabel lblAuthRateByRegister;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private IpsViewComponentLibrary.Common.Editors.IpsDropDownList ddlLicCode;
         private IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox mebAuthRate;
