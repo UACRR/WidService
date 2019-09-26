@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
+using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.RightholderCatalogControls.Presenters;
 using IpsViewComponentLibrary.Shared.Forms;
@@ -137,8 +138,14 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                     if (MessageShow.ConfirmAction(ConfirmDeleteCatalogFile) == DialogResult.Yes)
                     {
                         var result = _catalogPresenter.DeleteCatalogFile((int)row.CustId, row.FileId);
-                        MessageShow.ShowInfoByResult(DeleteCatalogFileSuccessMsg, DeleteCatalogFileErrorMsg, result);
-                        if (result)
+                        bool boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
+
+                        string successMsg = $"{DeleteCatalogFileSuccessMsg} \n{result.Message}";
+                        string errorMsg = $"{DeleteCatalogFileErrorMsg} \n{result.Message}";
+
+                        MessageShow.ShowInfoByResult(successMsg, errorMsg, boolResult);
+
+                        if (boolResult)
                             UpdateGridData();
                     }
                     break;

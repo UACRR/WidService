@@ -12,6 +12,8 @@ using System.IO;
 using System.Net;
 using IpsCommonTypes.Types;
 using System.Collections;
+using IpsCommonTypes.Enums;
+using IpsCommonTypes.Wrappers;
 
 namespace WebAPIConnector
 {
@@ -538,6 +540,31 @@ namespace WebAPIConnector
         }
 
         /// <summary>
+        /// Видалити об'єкт на сервері додатків з поверненням результату
+        /// </summary>
+        /// <param name="urlData"></param>
+        /// <returns></returns>
+        public ExecSqlResponce DeleteItemWithResponce(string urlData)
+        {
+            var result = client.DeleteAsync(urlData).GetAwaiter().GetResult();
+
+            try
+            {
+                var jobject = JObject.Parse(result.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                var obj = jobject.ToObject<ExecSqlResponce>();
+                return obj;
+            }
+            catch (Exception e)
+            {
+                return new ExecSqlResponce
+                {
+                    Message = e.Message,
+                    StatusCode = ExecSqlResponceStatus.Failed,
+                };
+            }
+        }
+
+        /// <summary>
         /// Збереження файлу в папці споживача
         /// </summary>
         /// <param name="url"></param>
@@ -626,8 +653,14 @@ namespace WebAPIConnector
                 StatusCode = (int) result.StatusCode,
                 ReasonPhrase = result.ReasonPhrase,
                 MethodType = result.RequestMessage.Method.Method,
+                
             };
-            client.PostAsJson(url, item);
+            _responseErrors.Clear();
+            _responseErrors.Add(item);
+            //client.PostAsJson(url, item);
         }
+
+        private readonly List<ResponseError> _responseErrors = new List<ResponseError>();
+        public List<ResponseError> ResponseErrors => _responseErrors;
     }
 }

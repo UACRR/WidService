@@ -59,6 +59,10 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
 
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
+
+            if (result == null)
+                _service.ShowErrors();
+
             return result;
         }
 
@@ -206,7 +210,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
         /// <param name="custId"></param>
         /// <param name="fileId"></param>
         /// <returns></returns>
-        public bool DeleteCatalogFile(int custId, int fileId)
+        public ExecSqlResponce DeleteCatalogFile(int custId, int fileId)
         {
             return _service.DeleteCatalogFile(custId, fileId);
         }

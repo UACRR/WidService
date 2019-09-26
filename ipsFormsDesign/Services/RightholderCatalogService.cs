@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsCommonTypes.Types;
 using IpsCommonTypes.Wrappers;
+using Telerik.WinControls;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -83,10 +85,10 @@ namespace ipsFormsDesign.Services
         /// <param name="custId">ID правовласника/видавництва </param>
         /// <param name="fileId">ID файлу</param>
         /// <returns></returns>
-        public bool DeleteCatalogFile(int custId, int fileId)
+        public ExecSqlResponce DeleteCatalogFile(int custId, int fileId)
         {
-            string url = $"{Prefix}/delete/{custId}";
-            var result = _apiConnector.DeleteItem(url, fileId.ToString());
+            string url = $"{Prefix}/delete/{custId}/{fileId}";
+            var result = _apiConnector.DeleteItemWithResponce(url);
             return result;
         }
 
@@ -109,6 +111,15 @@ namespace ipsFormsDesign.Services
             string url = $"{Prefix}/process";
             var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out ExecSqlResponce<CatalogFile> outCatalogFile);
             return outCatalogFile;
+        }
+
+        public void ShowErrors()
+        {
+            foreach (var error in _apiConnector.ResponseErrors)
+            {
+                string str = $"MethodType:{error.MethodType}, StatusCode: {error.StatusCode}, Message: {error.ReasonPhrase}";
+                MessageBox.Show(str, "request error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

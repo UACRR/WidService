@@ -112,6 +112,8 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
             DataSource = result.Data;
+            ctrlNavigatorPanel.CurrentPage = 1;
+
             UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
             MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
         }
@@ -161,7 +163,9 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
             DataSource = result.Data;
+            ctrlNavigatorPanel.CurrentPage = 1;
             UpdateEventHandlerUtility<PubCatalogItem>.InvokeEvent();
+
             MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);
         }
     }

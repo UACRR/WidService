@@ -22,8 +22,6 @@ namespace ipsmedserviceapp.Controllers
     [ApiController]
     public class CatalogController : Controller
     {
-        private const int CountOfPart = 5000;
-
         private readonly MediaServiceContext _dbContext;
         private readonly ILogger<CatalogController> _logger;
 
@@ -88,7 +86,7 @@ namespace ipsmedserviceapp.Controllers
 
                 var rightholder = await _dbContext.RightHolder.SingleOrDefaultAsync(rec => rec.CustId == custId);
                 if (rightholder == null)
-                    return NotFound($"RightHolder with ID:{custId} not found!");
+                    return BadRequest($"RightHolder with ID:{custId} not found!");
 
                 string[] excludedFields = { "CustId", "FileId", "UserId", "Status" };
 
@@ -106,43 +104,12 @@ namespace ipsmedserviceapp.Controllers
                 if (rightholder.RHolderType == 3)
                     target.RhType = 3;
 
-                //var targetPubCatalogItems = new List<PubCatalogItem>();
-                //if (rightholder.RHolderType == 3)
-                //{
-                //    target.RhType = 3;
-                //    foreach (var item in source.PubCatalogItem)
-                //    {
-                //        var PubCatalogItem = new PubCatalogItem
-                //        {
-                //            CustId = target.CustId,
-                //            Status = 0,
-                //        };
-                //        PubCatalogItem.SetFields(item, excludedFields);
-                //        targetPubCatalogItems.Add(PubCatalogItem);
-                //    }
-                //}
-
-                //target.CountZap = targetPubCatalogItems.Count;
-
                 target.CountZap = source.PubCatalogItem.Count;
 
                 // save target
                 _dbContext.CatalogFile.Add(target);
                 _dbContext.SaveChanges();
                 catalogFileLoadedId = target.FileId;
-                
-                //foreach (var item in targetPubCatalogItems)
-                //    item.FileId = target.FileId;
-
-
-                //var div = targetPubCatalogItems.Count / (float)CountOfPart;
-                //int countIteration = (int)Math.Ceiling(div);
-
-                //for (int i = 0; i < countIteration; i++)
-                //{
-                //    var partOfList = targetPubCatalogItems.Skip(i * CountOfPart).Take((i + 1) * CountOfPart);
-                //    _dbContext.PubCatalogItem.AddRange(partOfList);
-                //}
 
                 //var connectionString = _dbContext.Database.GetDbConnection().ConnectionString;
 
@@ -247,36 +214,38 @@ namespace ipsmedserviceapp.Controllers
         [HttpDelete("delete/{custId}/{fileId}")]
         public async Task<IActionResult> DeleteCatalogFile(int custId, int fileId)
         {
-            IDbContextTransaction transaction = null;
             try
             {
-                var catalogFile = await _dbContext.CatalogFile
-                    .Include(rec => rec.PubCatalogItem)
-                    .SingleOrDefaultAsync(rec => rec.CustId == custId && rec.FileId == fileId);
+                var paramFileId = new SqlParameter("@fileId", fileId);
 
-                if (catalogFile == null)
-                    return NotFound($"CatalogFile with CustId: {custId} and FileId: {fileId} not found!");
+                var message = new SqlParameter("@result", SqlDbType.VarChar, 100)
+                {
+                    Direction = ParameterDirection.Output
+                };
 
-                if (catalogFile.Status == 3 || catalogFile.Status == 4)
-                    return BadRequest("CatalogFile with status 3 or 4 cannot be deleted!");
+                var returnCode = new SqlParameter("@RetCode", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
 
-                _dbContext.PubCatalogItem.RemoveRange(catalogFile.PubCatalogItem);
-                _dbContext.CatalogFile.Remove(catalogFile);
+                string command = "exec CatalogFileDelete @fileId, @result OUTPUT, @RetCode OUTPUT";
 
-                transaction = _dbContext.Database.BeginTransaction();
-                _dbContext.SaveChanges();
-                transaction.Commit();
-                return Ok();
+                await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
+
+                var responce = new ExecSqlResponce
+                {
+                    Message = message.Value.ToString(),
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0
+                        ? ExecSqlResponceStatus.Successed
+                        : ExecSqlResponceStatus.Failed
+                };
+
+                return Ok(responce);
             }
             catch (Exception ex)
             {
-                transaction?.Rollback();
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex.ToString());
                 throw;
-            }
-            finally
-            {
-                transaction?.Dispose();
             }
         }
 
@@ -354,8 +323,8 @@ namespace ipsmedserviceapp.Controllers
                 };
 
                 var validCatalog = await _dbContext.CatalogFile
-                    .Include(rec => rec.PubCatalogItem)
-                    .ThenInclude(pub => pub.StatusNavigation)
+                    //.Include(rec => rec.PubCatalogItem)
+                    //.ThenInclude(pub => pub.StatusNavigation)
                     .AsNoTracking()
                     .FirstOrDefaultAsync(rec => rec.FileId == fileId);
                 responce.Data = validCatalog;
@@ -367,7 +336,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex.ToString());
                 throw;
             }
         }
@@ -409,8 +378,8 @@ namespace ipsmedserviceapp.Controllers
                 };
 
                 var validCatalog = await _dbContext.CatalogFile
-                    .Include(rec => rec.PubCatalogItem)
-                    .ThenInclude(pub => pub.StatusNavigation)
+                    //.Include(rec => rec.PubCatalogItem)
+                    //.ThenInclude(pub => pub.StatusNavigation)
                     .AsNoTracking()
                     .FirstOrDefaultAsync(rec => rec.FileId == fileId);
                 responce.Data = validCatalog;
@@ -422,7 +391,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex.ToString());
                 throw;
             }
         }
