@@ -2,9 +2,6 @@
 using Excel = Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Excel;
@@ -12,24 +9,14 @@ using System.Collections;
 
 namespace ipsFormsDesign.Services
 {
-    public class ExcelEngine
+    public sealed class ExcelEngine
     {
         private const string PercentFormat = "0.00%";
 
-        private Excel.Application excelApp = null;
+        private Excel.Application excelApp;
         private static ExcelEngine _instance;
-        protected ExcelEngine()
-        {
-            // GetApp().GetAwaiter();
-        }
 
-        public static ExcelEngine GetInstance()
-        {
-            if (_instance == null)
-                _instance = new ExcelEngine();
-
-            return _instance;
-        }
+        private ExcelEngine() { }
 
         ~ExcelEngine()
         {
@@ -42,16 +29,23 @@ namespace ipsFormsDesign.Services
                     excelApp = null;
                 }
             }
-            excelApp = null;
         }
 
-        private Excel.Application GetApp()
+        public static ExcelEngine GetInstance()
+        {
+            if (_instance == null)
+                _instance = new ExcelEngine();
+
+            return _instance;
+        }
+
+        private Excel.Application GetExcelApplication()
         {
             lock (this)
             {
-                if (excelApp != null)
-                    return excelApp;
-                excelApp = new Excel.Application();
+                if (excelApp == null)
+                    excelApp = new Excel.Application();
+
                 return excelApp;
             }
         }
@@ -87,7 +81,7 @@ namespace ipsFormsDesign.Services
             try
             {
 
-                excelAppWorkbook = GetApp().Workbooks.Open(FileName, 0, true, 5, null, null, false,
+                excelAppWorkbook = GetExcelApplication().Workbooks.Open(FileName, 0, true, 5, null, null, false,
                 Excel.XlPlatform.xlWindows, null, null, null);
                 var excelAppWorksheets = excelAppWorkbook.Worksheets;
                 var excelSheet = (Excel.Worksheet)excelAppWorksheets.Item[1];
@@ -202,7 +196,7 @@ namespace ipsFormsDesign.Services
             Excel.Workbook excelAppWorkbook = null;
             try
             {
-                excelAppWorkbook = GetApp().Workbooks.Open(FileName, 0, true, 5, null, null, false, Excel.XlPlatform.xlWindows, null, null, null);
+                excelAppWorkbook = GetExcelApplication().Workbooks.Open(FileName, 0, true, 5, null, null, false, Excel.XlPlatform.xlWindows, null, null, null);
                 var excelAppWorksheets = excelAppWorkbook.Worksheets;
                 var excelSheet = (Excel.Worksheet)excelAppWorksheets.Item[1];
 
@@ -269,6 +263,95 @@ namespace ipsFormsDesign.Services
                     excelAppWorkbook.Close(false);
                     Marshal.ReleaseComObject(excelAppWorkbook);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Експорт даних в excel-файл
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="columns"></param>
+        /// <param name="data"></param>
+        public string ExportDataToExcel(string fileName, Dictionary<string, byte> columns, List<object[]> data)
+        {
+            Workbook workbook = null;
+            Worksheet sheet = null;
+            Sheets workSheets = null;
+
+            try
+            {
+                object missValue = System.Reflection.Missing.Value;
+                workbook = GetExcelApplication().Workbooks.Add(missValue);
+                workSheets = workbook.Worksheets;
+                sheet = (Worksheet) workSheets.Item[1];
+
+                SetExcelExportHeader(sheet, columns);
+
+                string rangeString = $"A2:M{data.Count}";
+                Range range = sheet.Range[rangeString];
+
+                for (int i = 0, j = 1; i < data.Count; i++, j++)
+                {
+                    range.Rows[j] = data[i];
+                }
+
+                workbook.SaveAs(fileName);
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            finally
+            {
+
+                if (sheet != null)
+                    Marshal.ReleaseComObject(sheet);
+
+                if (workSheets != null)
+                    Marshal.ReleaseComObject(workSheets);
+
+                if (workbook != null)
+                {
+                    workbook.Close(false);
+                    Marshal.ReleaseComObject(workbook);
+                }
+            }
+        }
+
+        private void SetExcelExportHeader(Worksheet worksheet, string[] columsName)
+        {
+            for (int i = 1; i <= columsName.Length; i++)
+            {
+                worksheet.Cells[1, i] = columsName[i-1];
+                worksheet.Columns[i].ColumnWidth = 20;
+            }
+        }
+
+        private void SetExcelExportHeader(Worksheet worksheet, SortedList<string, byte> columns)
+        {
+            int index = 1;
+            foreach (var column in columns)
+            {
+                worksheet.Cells[1, index] = column.Key;
+                worksheet.Cells[1, index].Interior.Color = System.Drawing.Color.FromArgb(165, 165, 165);
+                worksheet.Columns[index].ColumnWidth = column.Value;
+
+                index++;
+            }
+        }
+
+        private void SetExcelExportHeader(Worksheet worksheet, Dictionary<string, byte> columns)
+        {
+            int index = 1;
+            foreach (var column in columns)
+            {
+                worksheet.Cells[1, index] = column.Key;
+                worksheet.Cells[1, index].Interior.Color = System.Drawing.Color.FromArgb(165, 165, 165);
+                worksheet.Columns[index].ColumnWidth = column.Value;
+
+                index++;
             }
         }
     }

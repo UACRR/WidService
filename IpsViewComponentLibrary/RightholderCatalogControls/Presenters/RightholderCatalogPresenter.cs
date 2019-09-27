@@ -235,14 +235,14 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             return _service.ProcessCatalogFileItems(catalogFile);
         }
 
-        public List<T> GetCatalogFileItems<T>(int fileId, int skip, int take)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<PubCatalogItem> GetCatalogFileItems(int fileId, int skip, int take)
         {
             return _service.GetCatalogFileItems(fileId, skip, take);
+        }
+
+        public List<object[]> GetItemsForExport(int fileId)
+        {
+            return _service.GetItemsForExport(fileId);
         }
     }
 }

@@ -52,6 +52,7 @@
             this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
             this.gvRightholdersObjectsRights = new Telerik.WinControls.UI.RadGridView();
             this.ctrlRightholderSelectorSecondary = new IpsViewComponentLibrary.RightholderControls.RightholderSelectorControl();
+            this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).BeginInit();
             this.bottomPanel.SuspendLayout();
@@ -80,11 +81,12 @@
             // 
             this.bottomPanel.BackColor = System.Drawing.Color.Silver;
             this.bottomPanel.BorderVisible = false;
+            this.bottomPanel.Controls.Add(this.navigatorPanel);
             this.bottomPanel.Controls.Add(this.ctrlGridRowCount);
             this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomPanel.Location = new System.Drawing.Point(0, 375);
+            this.bottomPanel.Location = new System.Drawing.Point(0, 373);
             this.bottomPanel.Name = "bottomPanel";
-            this.bottomPanel.Size = new System.Drawing.Size(909, 32);
+            this.bottomPanel.Size = new System.Drawing.Size(909, 34);
             this.bottomPanel.TabIndex = 7;
             // 
             // ctrlGridRowCount
@@ -233,7 +235,7 @@
             this.gvRightholdersObjectsRights.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvRightholdersObjectsRights.Name = "gvRightholdersObjectsRights";
             this.gvRightholdersObjectsRights.ShowGroupPanel = false;
-            this.gvRightholdersObjectsRights.Size = new System.Drawing.Size(909, 305);
+            this.gvRightholdersObjectsRights.Size = new System.Drawing.Size(909, 303);
             this.gvRightholdersObjectsRights.TabIndex = 8;
             this.gvRightholdersObjectsRights.ThemeName = "Office2013Light";
             this.gvRightholdersObjectsRights.ValueChanged += new System.EventHandler(this.gvRightholdersObjectsRights_ValueChanged);
@@ -254,6 +256,18 @@
             this.ctrlRightholderSelectorSecondary.TabIndex = 9;
             this.ctrlRightholderSelectorSecondary.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelectorSecondary_RightholderChanged);
             this.ctrlRightholderSelectorSecondary.ShowAnketaCommandExecuted += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelector_ShowAnketaCommandExecuted);
+            // 
+            // navigatorPanel
+            // 
+            this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.navigatorPanel.CurrentPage = 1;
+            this.navigatorPanel.Location = new System.Drawing.Point(395, 3);
+            this.navigatorPanel.Name = "navigatorPanel";
+            this.navigatorPanel.PageSize = 100;
+            this.navigatorPanel.ReadOnlyPageSize = false;
+            this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
+            this.navigatorPanel.TabIndex = 2;
+            this.navigatorPanel.TotalPages = 0;
             // 
             // RightholdersObjectsRightsControl
             // 
@@ -283,5 +297,6 @@
         private Common.GridRowCountControl ctrlGridRowCount;
         private Telerik.WinControls.UI.RadGridView gvRightholdersObjectsRights;
         private RightholderSelectorControl ctrlRightholderSelectorSecondary;
+        private Common.NavigatorPanelControl navigatorPanel;
     }
 }

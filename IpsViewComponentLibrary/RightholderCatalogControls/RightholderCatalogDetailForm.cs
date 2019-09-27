@@ -39,7 +39,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             _catalogFileItemsHandler = new RightholderCatalogPresenter();
 
             ctrlNavigatorPanel.CurrentPageChanged += NavigatorPanel_UpdateData;
-            ctrlNavigatorPanel.PageSizeChanged += CtrlNavigatorPanel_PageSizeChanged;
+            ctrlNavigatorPanel.PageSizeChanged += NavigatorPanel_PageSizeChanged;
 
             gvPubCatalogItem.SubscribeToolTipTextNeeded();
 
@@ -52,7 +52,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             GetPubCatalogItemFromDB();
         }
 
-        private void CtrlNavigatorPanel_PageSizeChanged(object sender, EventArgs e)
+        private void NavigatorPanel_PageSizeChanged(object sender, EventArgs e)
         {
             // ReSharper disable once PossibleInvalidOperationException
             ctrlNavigatorPanel.TotalPages = _catalogFile.CountZap.Value / ctrlNavigatorPanel.PageSize;
@@ -121,13 +121,28 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         // вивантажити в excel
         private async void btnGetExcel_Click(object sender, EventArgs e)
         {
+            string msgResult = null;
             using (var dialog = new SaveFileDialog())
             {
-                dialog.FileName = $"{_catalogFile.FileName}_export";
-                dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                dialog.FileName = $"{_catalogFile.FileName.Replace(".xlsx", "")}_export";
+                dialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
-                bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem;
-                var spreadExporter = new GridViewSpreadExport(gvPubCatalogItem, SpreadExportFormat.Xlsx);
+                var columns = new Dictionary<string, byte>
+                {
+                    ["Шифр твору"] = 15,
+                    ["ISWC"] = 15,
+                    ["Назва твору"] = 15,
+                    ["Жанр твору"] = 15,
+                    ["Виконавець"] = 25,
+                    ["Композитор(и)"] = 25,
+                    ["Автор(и) тексту"] = 25,
+                    ["Творча роль правовласника"] = 15,
+                    ["Назва Правовласника"] = 15,
+                    ["%"] = 12,
+                    ["діє \"з\""] = 12,
+                    ["діє \"по\""] = 12,
+                    ["Повідомлення про помилку"] = 38,
+                };
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -138,16 +153,18 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                     string fileName = dialog.FileName;
                     await Task.Factory.StartNew(() =>
                     {
-                        var renderer = new SpreadExportRenderer();
-                        spreadExporter.RunExport(fileName, renderer);
+                        var excelEngine = ExcelEngine.GetInstance();
+                        var exportItems = _catalogFileItemsHandler.GetItemsForExport(_catalogFile.FileId);
+                        msgResult = excelEngine.ExportDataToExcel(fileName, columns, exportItems);
+
+                        if (string.IsNullOrEmpty(msgResult))
+                            msgResult = "Успішно експортовано!";
                     });
                     waitingBar.StopWaiting();
                 }
-
-                int skip = (ctrlNavigatorPanel.CurrentPage - 1) * ctrlNavigatorPanel.PageSize;
-                bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem.Skip(skip).Take(ctrlNavigatorPanel.PageSize);
-                bsPubCatalogItem.ResetBindings(false);
             }
+
+            MessageShow.ShowInfo(msgResult);
         }
 
         // запустити процес завантаження в бд

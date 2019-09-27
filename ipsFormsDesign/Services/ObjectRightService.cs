@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -61,15 +62,16 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<ObjectRightMainView>(url);
             return list;
         }
-
-        public List<ObjectRightForRightholder> GetRightholdersObjectsRights(int? custId, int? custIdSecondary)
+        
+        public ItemListResponse<ObjectRightForRightholder> GetRightholdersObjectsRights(int? custId, int? custIdSecondary, int skip, int take)
         {
             if (custId == null)
                 return null;
 
-            var url = custIdSecondary != null ? $"objectright/view/list_0302/{custId}/{custIdSecondary}" : $"objectright/view/list_0302/{custId}";
+            var url = $"objectright/view/list_0302/{skip}/{take}/";
+            url += custIdSecondary != null ? $"{custId}/{custIdSecondary}" : $"{custId}";
 
-            var list = _webApi.GetList<ObjectRightForRightholder>(url);
+            var list = _webApi.GetItemById<ItemListResponse<ObjectRightForRightholder>>(url, null);
             return list;
         }
 

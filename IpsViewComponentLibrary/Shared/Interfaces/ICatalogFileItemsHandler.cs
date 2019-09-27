@@ -29,5 +29,12 @@ namespace IpsViewComponentLibrary.Shared.Interfaces
         /// <param name="take"></param>
         /// <returns></returns>
         List<T> GetCatalogFileItems(int fileId, int skip, int take);
+
+        /// <summary>
+        /// Отримати дані для експорту
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        List<object[]> GetItemsForExport(int fileId);
     }
 }

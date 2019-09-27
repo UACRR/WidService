@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsCommonTypes.Types;
@@ -63,6 +64,18 @@ namespace ipsFormsDesign.Services
         {
             string url = $"{Prefix}/catalogfileitems/{fileId}/{skip}/{take}";
             var result = _apiConnector.GetList<PubCatalogItem>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Отримати дані для експорту
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public List<object[]> GetItemsForExport(int fileId)
+        {
+            string url = $"{Prefix}/exportdata/{fileId}";
+            var result = _apiConnector.GetList<object[]>(url);
             return result;
         }
 

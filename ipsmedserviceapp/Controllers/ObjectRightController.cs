@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
+using ipsmedserviceapp.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -533,23 +534,47 @@ namespace ipsmedserviceapp.Controllers
         /// Об'єкти (ВСІ)-от правообл Grid 2
         /// </summary>
         /// <returns></returns>
-        [HttpGet("view/list_0302/{id}")]
-        public async Task<IActionResult> vtsk_3_OR_03_V2(int id)
+        [HttpGet("view/list_0302/{skip}/{take}/{id}")]
+        public async Task<IActionResult> vtsk_3_OR_03_V2(int skip, int take, int id)
         {
-            var list = await _dbContext.getViewData($"select * from vtsk_3_OR_03_V2  where custId = {id}", null);
-            return Json(list);
+            var count = await _dbContext.getViewData($"select count(*) from vtsk_3_OR_03_V2 where custId = {id}", null);
+
+            string query = $"select * from vtsk_3_OR_03_V2 where custId = {id}";
+            query = DBQueryHelper.ApplySqlOrderByAndPaging(query, "objid", skip, take);
+
+            var list = await _dbContext.getViewData(query, null);
+
+            var responce = new
+            {
+                TotalItems = count?.FirstOrDefault()?.Values.FirstOrDefault(),
+                List = list,
+            };
+
+            return Ok(responce);
         }
 
         /// <summary>
         /// Об'єкти (ВСІ)-от правовласники Grid 2 з додатковим правовласником
         /// </summary>
         /// <returns></returns>
-        [HttpGet("view/list_0302/{custId}/{custIdSecondary}")]
-        public async Task<IActionResult> vtsk_3_OR_03_V2(int custId, int custIdSecondary)
+        [HttpGet("view/list_0302/{skip}/{take}/{custId}/{custIdSecondary}")]
+        public async Task<IActionResult> vtsk_3_OR_03_V2(int skip, int take, int custId, int custIdSecondary)
         {
+            string queryCount = $"select count(*) from vtsk_3_OR_03_V4 t1 where parentid is not null and custId = {custId} and exists (select 1 from vtsk_3_OR_03_V4 t2 where t2.objid = t1.objid and custId = {custIdSecondary})";
+            var count = await _dbContext.getViewData(queryCount, null);
+
             string query = $"select * from vtsk_3_OR_03_V4 t1 where parentid is not null and custId = {custId} and exists (select 1 from vtsk_3_OR_03_V4 t2 where t2.objid = t1.objid and custId = {custIdSecondary})";
+            query = DBQueryHelper.ApplySqlOrderByAndPaging(query, "objid", skip, take);
+
             var list = await _dbContext.getViewData(query, null);
-            return Json(list);
+
+            var responce = new
+            {
+                TotalItems = count?.FirstOrDefault()?.Values.FirstOrDefault(),
+                List = list,
+            };
+
+            return Ok(responce);
         }
 
         /// <summary>

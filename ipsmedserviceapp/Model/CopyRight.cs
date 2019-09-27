@@ -37,12 +37,15 @@ namespace ipsmedserviceapp.Model
 
         [JsonIgnore]
         public virtual RightHolder Cust { get; set; }
+        [JsonIgnore]
         public virtual ObjectRight Obj { get; set; }
         [JsonIgnore]
         public virtual CreativeRoleType RoleCodeNavigation { get; set; }
         [JsonIgnore]
         public virtual CrightStatus StatusNavigation { get; set; }
+        [JsonIgnore]
         public virtual LicAuthorBr LicAuthorBr { get; set; }
+        [JsonIgnore]
         public virtual WorkRh WorkRh { get; set; }
         [JsonIgnore]
         public virtual ICollection<CopyRightHistory> CopyRightHistoryChild { get; set; }

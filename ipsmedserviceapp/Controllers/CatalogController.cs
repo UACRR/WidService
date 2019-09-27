@@ -68,13 +68,51 @@ namespace ipsmedserviceapp.Controllers
             return Ok(list);          
         }
 
+        /// <summary>
+        /// Отримати дані для експорту
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        [HttpGet("exportdata/{fileId}")]
+        public IActionResult GetDataForExport(int fileId)
+        {
+            try
+            {
+                DataTable table;
+                string query = "select itemCode, iswc, objName, genreName, performer, authorMusic, authorText, roleName, rhName, rate, dateBegin, dateEnd, errComment from PubCatalogItem";
+                query += $" where fileId = {fileId}";
+                using (SqlConnection sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
+                {
+                    sqlConnection.Open();
+                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
+
+                    DataSet dataSet = new DataSet();
+                    sqlDataAdapter.Fill(dataSet);
+
+                    table = dataSet.Tables[0];
+                }
+
+                var list = new List<object[]>();
+                for (int i = 0; i < table.Rows.Count; i++)
+                {
+                    var row = table.Rows[i].ItemArray;
+                    list.Add(row);
+                }
+
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+                throw;
+            }
+        }
+
         [DisableRequestSizeLimit]
         [HttpPost("upload/{custId}")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
-            //IDbContextTransaction transaction = null;
             int? catalogFileLoadedId = null;
-            //bool catalogFileItemsLoaded = false;
             var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             try
             {

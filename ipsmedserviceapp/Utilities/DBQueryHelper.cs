@@ -113,5 +113,22 @@ namespace ipsmedserviceapp.Utilities
             queryText += $" ORDER BY {orderByField} OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
             return queryText;
         }
+
+        /// <summary>
+        /// Apply ORDER BY sort and paging to SQL query by skip/take
+        /// </summary>
+        /// <param name="queryText"></param>
+        /// <param name="orderByField"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        public static string ApplySqlOrderByAndPaging(string queryText, string orderByField, int skip, int take)
+        {
+            if (string.IsNullOrWhiteSpace(orderByField))
+                return queryText;
+
+            queryText += $" ORDER BY {orderByField} OFFSET {skip} ROWS FETCH NEXT {take} ROWS ONLY";
+            return queryText;
+        }
     }
 }

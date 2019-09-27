@@ -13,6 +13,8 @@ using IpsViewComponentLibrary.Utilities;
 using System.Drawing;
 using IpsViewComponentLibrary.ObjectRightControls;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using IpsCommonTypes.Wrappers;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -197,16 +199,24 @@ namespace IpsViewComponentLibrary.RightholderControls
         /// <summary>
         /// Оновити список об'єків права залежно від обраних правовласників
         /// </summary>
-        private void UpdateList()
+        private async void UpdateList()
         {
             var service = new ObjectRightService();
 
             var custId = ctrlRightholderSelector.Rightholder?.CustId;
             var custIdSecondary = ctrlRightholderSelectorSecondary.Rightholder?.CustId;
 
-            var rightholdersObjectsRightsList = service.GetRightholdersObjectsRights(custId, custIdSecondary);
+            ItemListResponse<ObjectRightForRightholder> result = null;
+            
+            //waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
+            {
+                result = service.GetRightholdersObjectsRights(custId, custIdSecondary, navigatorPanel.Skip, navigatorPanel.Take);
+            });
+            //waitingBar.StopWaiting();
 
-            objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
+            objectRightForRightholderBindingSource.DataSource = result?.List;
+            navigatorPanel.TotalPages = (int)Math.Ceiling((double)result?.TotalItems / navigatorPanel.PageSize);
         }
 
         /// <summary>
@@ -266,6 +276,17 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void HandleEvent(ObjectRightUpdatedEvent e)
         {
             UpdateList();
+        }
+
+
+        private void navigatorPanel_CurrentPageChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void navigatorPanel_PageSizeChanged(object sender, EventArgs e)
+        {
+            navigatorPanel.CurrentPage = 1;
         }
     }
 }
