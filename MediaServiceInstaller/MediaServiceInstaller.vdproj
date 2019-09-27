@@ -3277,6 +3277,11 @@
             "AssemblyAsmDisplayName" = "8:IpsCommonTypes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_15696FA6D60A2F1F489F36D187FD3E5C"
+                    {
+                    "Name" = "8:IpsCommonTypes.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:IpsCommonTypes.dll"
             "TargetName" = "8:"
@@ -3768,6 +3773,11 @@
             "AssemblyAsmDisplayName" = "8:WebAPIConnector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_5B37FD1FFB98BC187C8878097FBF1E85"
+                    {
+                    "Name" = "8:WebAPIConnector.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:WebAPIConnector.dll"
             "TargetName" = "8:"
@@ -3825,6 +3835,11 @@
             "AssemblyAsmDisplayName" = "8:IpsCommonTypes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_5D72B633D3E24CAA85DD0E6439BB67C7"
+                    {
+                    "Name" = "8:IpsCommonTypes.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:IpsCommonTypes.dll"
             "TargetName" = "8:"
@@ -3975,6 +3990,11 @@
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_6CC4EA1E56D9F94C7B7A375D8177B8BD"
+                    {
+                    "Name" = "8:Newtonsoft.Json.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Newtonsoft.Json.dll"
             "TargetName" = "8:"
@@ -4311,6 +4331,11 @@
             "AssemblyAsmDisplayName" = "8:IpsViewComponentLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_98B80118D1EC85C037C1E5FAC2FBB7A3"
+                    {
+                    "Name" = "8:IpsViewComponentLibrary.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:IpsViewComponentLibrary.dll"
             "TargetName" = "8:"
@@ -4492,6 +4517,11 @@
             "AssemblyAsmDisplayName" = "8:WebAPIConnector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_B6518D0DE408DC020B9755292CF1B6A0"
+                    {
+                    "Name" = "8:WebAPIConnector.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:WebAPIConnector.dll"
             "TargetName" = "8:"
@@ -4735,6 +4765,11 @@
             "AssemblyAsmDisplayName" = "8:ReportsLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
+                    "_D090C48E10FFE7EC0C50E964CB5244BD"
+                    {
+                    "Name" = "8:ReportsLibrary.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:ReportsLibrary.dll"
             "TargetName" = "8:"
@@ -4885,6 +4920,11 @@
             "AssemblyAsmDisplayName" = "8:Telerik.Windows.Documents.Flow, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_DF236A91FC74B17BCCC1841D53374BC2"
+                    {
+                    "Name" = "8:Telerik.Windows.Documents.Flow.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Telerik.Windows.Documents.Flow.dll"
             "TargetName" = "8:"
@@ -5128,6 +5168,11 @@
             "AssemblyAsmDisplayName" = "8:ipsFormsDesign, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_FF12A98515A27932C7E88C8AC89131B4"
+                    {
+                    "Name" = "8:ipsFormsDesign.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:ipsFormsDesign.dll"
             "TargetName" = "8:"
@@ -5203,15 +5248,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MediaService"
-        "ProductCode" = "8:{8408C02C-F366-40F8-9395-C397140ABA93}"
-        "PackageCode" = "8:{B138D103-B530-48A3-9F51-30F57404AAEE}"
+        "ProductCode" = "8:{C256ADE1-0BD3-459F-9F57-B7709A494CF4}"
+        "PackageCode" = "8:{739438EE-4360-4CEE-858A-09FCD1E812C3}"
         "UpgradeCode" = "8:{250A57E7-49C6-4786-8033-2BBB58F38C61}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.3078"
+        "ProductVersion" = "8:1.1.4108"
         "Manufacturer" = "8:IPS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
