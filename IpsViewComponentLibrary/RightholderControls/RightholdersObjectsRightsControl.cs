@@ -216,7 +216,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             //waitingBar.StopWaiting();
 
             objectRightForRightholderBindingSource.DataSource = result?.List;
-            navigatorPanel.TotalPages = (int)Math.Ceiling((double)result?.TotalItems / navigatorPanel.PageSize);
+            navigatorPanel.TotalPages = (int)Math.Ceiling((result?.TotalItems ?? 0d) / navigatorPanel.PageSize);
         }
 
         /// <summary>
