@@ -65,7 +65,7 @@ namespace ipsmedserviceapp.Controllers
                 .Skip(skip).Take(take)
                 .ToListAsync();
 
-            return Ok(list);          
+            return Ok(list);
         }
 
         /// <summary>

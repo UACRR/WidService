@@ -128,7 +128,9 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                     }
                     else
                     {
-                        var form = new RightholderCatalogDetailForm(file);
+                        //var form = new RightholderCatalogDetailForm(file);
+                        //form.ShowDialog();
+                        var form = new RightholderCatalogDetailWPFForm(file);
                         form.ShowDialog();
                     }
 

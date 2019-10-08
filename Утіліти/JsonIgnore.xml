@@ -78,7 +78,7 @@
     <item Name="AgreementAddBr"></item>
     <item Name="AgreementMaster">
         <noignore>AgreementAddPartner</noignore>
-	<noignore>AgreementAddRh</noignore>
+	      <noignore>AgreementAddRh</noignore>
         <noignore>AgreementAddBr</noignore>     
     </item>
     <item Name="Register">
@@ -106,4 +106,7 @@
 		<noignore>CreativeRoleTypeTr</noignore>
 	</item>
 	<item Name="CreativeRoleTypeTr"></item>
+  <item Name="PubCatalogItem">
+		<noignore>CatalogStatus</noignore>
+  </item>
 </tables>

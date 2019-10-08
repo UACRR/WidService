@@ -90,11 +90,13 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -144,10 +146,12 @@
     </Reference>
     <Reference Include="TelerikData, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikExport, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
       <SpecificVersion>True</SpecificVersion>
     </Reference>
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RightholderCatalogControls\RightholderCatalogControl.cs">
@@ -155,6 +159,12 @@
     </Compile>
     <Compile Include="RightholderCatalogControls\RightholderCatalogControl.Designer.cs">
       <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderCatalogControls\RightholderCatalogDetailWPFForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderCatalogControls\RightholderCatalogDetailWPFForm.Designer.cs">
+      <DependentUpon>RightholderCatalogDetailWPFForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderCatalogControls\RightholderCatalogDetailForm.cs">
       <SubType>Form</SubType>
@@ -1213,6 +1223,9 @@
     <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogControl.resx">
       <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogDetailWPFForm.resx">
+      <DependentUpon>RightholderCatalogDetailWPFForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogDetailForm.resx">
       <DependentUpon>RightholderCatalogDetailForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1841,6 +1854,10 @@
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
       <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IPSViewComponentLibraryWPF\IPSViewComponentLibraryWPF.csproj">
+      <Project>{815967E6-79E6-4CF1-8F5A-F0B40F746AFF}</Project>
+      <Name>IPSViewComponentLibraryWPF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

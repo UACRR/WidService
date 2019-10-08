@@ -320,6 +320,20 @@ namespace ipsFormsDesign.Services
             }
         }
 
+        private object[,] ConvertToArray(List<object[]> data)
+        {
+            int width = data[0].Length;
+            object[,] array = new object[width, data.Count];
+            for (int i = 0; i < data.Count; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    array[j, i] = data[i][j];
+                }
+            }
+            return array;
+        }
+
         private void SetExcelExportHeader(Worksheet worksheet, string[] columsName)
         {
             for (int i = 1; i <= columsName.Length; i++)

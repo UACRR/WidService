@@ -100,8 +100,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             {
                 bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_tempPlaces);
 
-                //gvPlaces.DataSource = _tempPlaces;
-                //
                 foreach (var item in _licenseAgr.License)
                 {
                     var gvPlacesRow = gvPlaces.Rows.SingleOrDefault(row => PlaceChooserPredicate(row, item));
