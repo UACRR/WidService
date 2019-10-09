@@ -159,6 +159,7 @@ namespace ipsmedserviceapp.Controllers
                 sqlConnection.Open();
                 using (var bulkCopy = new SqlBulkCopy(sqlConnection))
                 {
+                    bulkCopy.BulkCopyTimeout = 300;
                     bulkCopy.DestinationTableName = nameof(PubCatalogItem);
 
                     DataTable dataTable = new DataTable(nameof(PubCatalogItem));
