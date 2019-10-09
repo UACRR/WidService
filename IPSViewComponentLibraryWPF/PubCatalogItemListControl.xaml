@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IPSViewComponentLibraryWPF"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="IPSViewComponentLibraryWPF.PubCatalogItemListControl"
-             mc:Ignorable="d" Height="362.5" Width="878">
+             mc:Ignorable="d" Height="400" Width="1000">
     <Grid Margin="1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
@@ -31,15 +31,17 @@
                     IsFilteringAllowed="False"
                     ShowColumnSortIndexes="False"
                     ItemsSource="{Binding ItemsSource}"
+                    ShowToolTipOnTrimmedText="True"
+                    LeftFrozenColumnCount="3"
                     telerik:StyleManager.Theme="VisualStudio2013">
                     <telerik:RadGridView.Columns>
                         <telerik:GridViewDataColumn Header="Шифр твору" DataMemberBinding="{Binding ItemCode}" HeaderTextAlignment="Center" MinWidth="100" />
                         <telerik:GridViewDataColumn Header="ISWC" DataMemberBinding="{Binding Iswc}" HeaderTextAlignment="Center" MinWidth="100" />
-                        <telerik:GridViewDataColumn Header="Назва товару" DataMemberBinding="{Binding ObjName}" HeaderTextAlignment="Center" MinWidth="100" />
-                        <telerik:GridViewDataColumn Header="Жанр твору" DataMemberBinding="{Binding GenreName}" HeaderTextAlignment="Center" MinWidth="100" />
-                        <telerik:GridViewDataColumn Header="Виконавець" DataMemberBinding="{Binding Performer}" HeaderTextAlignment="Center" MinWidth="100" />
-                        <telerik:GridViewDataColumn Header="Композитор(и)" DataMemberBinding="{Binding AuthorMusic}" HeaderTextAlignment="Center" MinWidth="100" />
-                        <telerik:GridViewDataColumn Header="Автор(и) тексту" DataMemberBinding="{Binding AuthorText}" HeaderTextAlignment="Center" MinWidth="100" />
+                        <telerik:GridViewDataColumn Header="Назва товару" DataMemberBinding="{Binding ObjName}" HeaderTextAlignment="Center" Width="350" />
+                        <telerik:GridViewDataColumn Header="Жанр твору" DataMemberBinding="{Binding GenreName}" HeaderTextAlignment="Center" Width="100" />
+                        <telerik:GridViewDataColumn Header="Виконавець" DataMemberBinding="{Binding Performer}" HeaderTextAlignment="Center" Width="350" />
+                        <telerik:GridViewDataColumn Header="Композитор(и)" DataMemberBinding="{Binding AuthorMusic}" HeaderTextAlignment="Center" Width="350" />
+                        <telerik:GridViewDataColumn Header="Автор(и) тексту" DataMemberBinding="{Binding AuthorText}" HeaderTextAlignment="Center" Width="350" />
                         <telerik:GridViewDataColumn Header="Творча роль правовласника" DataMemberBinding="{Binding RoleName}" HeaderTextAlignment="Center" MinWidth="100" />
                         <telerik:GridViewDataColumn Header="Назва Правовласника" DataMemberBinding="{Binding RhName}" HeaderTextAlignment="Center" MinWidth="150" />
                         <telerik:GridViewDataColumn Header="%" DataMemberBinding="{Binding Rate}" HeaderTextAlignment="Center" TextAlignment="Right" MinWidth="50" DataFormatString="N2"/>

@@ -116,26 +116,27 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                     break;
 
                 case "editBtn":
-                    CatalogFile file = null;
+                    //CatalogFile file = null;
 
-                    waitingBar.StartWaiting();
-                    await Task.Factory.StartNew(() =>
-                    {
-                        file = _catalogPresenter.GetCatalogFile(row.CustId ?? 0, row.FileId);
-                    });
-                    waitingBar.StopWaiting();
+                    //waitingBar.StartWaiting();
+                    //await Task.Factory.StartNew(() =>
+                    //{
+                    //    file = _catalogPresenter.GetCatalogFile(row.CustId ?? 0, row.FileId);
+                    //});
+                    //waitingBar.StopWaiting();
 
-                    if (file == null)
-                    {
-                        _dialogService.ShowError("Помилка отримання каталога з бази даних!");
-                    }
-                    else
-                    {
-                        //var form = new RightholderCatalogDetailForm(file);
-                        //form.ShowDialog();
-                        var form = new RightholderCatalogDetailWPFForm(file);
-                        form.ShowDialog();
-                    }
+                    //if (file == null)
+                    //{
+                    //    _dialogService.ShowError("Помилка отримання каталога з бази даних!");
+                    //}
+                    //else
+                    //{
+                    //    var form = new RightholderCatalogDetailWPFForm(file);
+                    //    form.ShowDialog();
+                    //}
+
+                    var form = new RightholderCatalogDetailWPFForm(row);
+                    form.ShowDialog();
 
                     break;
 
@@ -168,8 +169,10 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private void gridCatalogFiles_DoubleClick(object sender, EventArgs e)
         {
             var row = gridCatalogFiles.CurrentRow.DataBoundItem as CatalogFile;
-            var form = new RightholderCatalogDetailForm(row);
+            var form = new RightholderCatalogDetailWPFForm(row);
             form.ShowDialog();
+            //var form = new RightholderCatalogDetailForm(row);
+            //form.ShowDialog();
         }
     }
 }
