@@ -149,6 +149,7 @@
             this.ctrlNavigatorPanel.Size = new System.Drawing.Size(350, 24);
             this.ctrlNavigatorPanel.TabIndex = 13;
             this.ctrlNavigatorPanel.TotalPages = 0;
+            this.ctrlNavigatorPanel.Visible = false;
             // 
             // radLabel15
             // 

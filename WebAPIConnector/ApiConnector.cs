@@ -306,6 +306,19 @@ namespace WebAPIConnector
             return null;
         }
 
+        public TResult NewItemWithResult<TResult, TParam>(string url, TParam data) where TResult : class where TParam : class
+        {
+            var result = client.PostAsJson(url, data);
+
+            if (result.IsSuccessStatusCode)
+            {
+                return result.Content.ReadAs<TResult>();
+            }
+
+            LogError(result);
+            return null;
+        }
+
         public List<T> NewListItemWithResult<T>(string url, List<T> data) where T : class
         {
             var result = client.PostAsJson(url, data);

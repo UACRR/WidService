@@ -35,6 +35,6 @@ namespace IpsViewComponentLibrary.Shared.Interfaces
         /// </summary>
         /// <param name="fileId"></param>
         /// <returns></returns>
-        List<object[]> GetItemsForExport(int fileId);
+        List<object[]> GetCatalogItemList(int fileId);
     }
 }

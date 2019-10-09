@@ -96,6 +96,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                         UpdateGridData();
                 }
             }
+            GC.Collect();
         }
 
         private async void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -116,15 +117,17 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
 
                 case "editBtn":
                     CatalogFile file = null;
+
                     waitingBar.StartWaiting();
                     await Task.Factory.StartNew(() =>
                     {
                         file = _catalogPresenter.GetCatalogFile(row.CustId ?? 0, row.FileId);
                     });
                     waitingBar.StopWaiting();
+
                     if (file == null)
                     {
-                        _dialogService.ShowError("Помилка отримання каталога з бази даних");
+                        _dialogService.ShowError("Помилка отримання каталога з бази даних!");
                     }
                     else
                     {
@@ -139,7 +142,15 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                 case "deleteBtn":
                     if (MessageShow.ConfirmAction(ConfirmDeleteCatalogFile) == DialogResult.Yes)
                     {
-                        var result = _catalogPresenter.DeleteCatalogFile((int)row.CustId, row.FileId);
+                        IpsCommonTypes.Wrappers.ExecSqlResponce result = null;
+                        
+                        waitingBar.StartWaiting();
+                        await Task.Factory.StartNew(() => 
+                        {
+                            result = _catalogPresenter.DeleteCatalogFile((int)row.CustId, row.FileId);
+                        });
+                        waitingBar.StopWaiting();
+
                         bool boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
                         string successMsg = $"{DeleteCatalogFileSuccessMsg} \n{result.Message}";

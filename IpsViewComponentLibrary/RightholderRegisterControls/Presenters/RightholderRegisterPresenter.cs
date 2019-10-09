@@ -243,7 +243,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             throw new NotImplementedException();
         }
 
-        public List<object[]> GetItemsForExport(int fileId)
+        public List<object[]> GetCatalogItemList(int fileId)
         {
             throw new NotImplementedException();
         }

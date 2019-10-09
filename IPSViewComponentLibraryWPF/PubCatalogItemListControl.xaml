@@ -28,6 +28,8 @@
                     AllowDrop="False"
                     IsReadOnly="True"
                     ShowGroupPanel="False"
+                    IsFilteringAllowed="False"
+                    ShowColumnSortIndexes="False"
                     ItemsSource="{Binding ItemsSource}"
                     telerik:StyleManager.Theme="VisualStudio2013">
                     <telerik:RadGridView.Columns>

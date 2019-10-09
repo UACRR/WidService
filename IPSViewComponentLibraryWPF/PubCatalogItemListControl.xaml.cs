@@ -19,24 +19,29 @@ namespace IPSViewComponentLibraryWPF
     /// </summary>
     public partial class PubCatalogItemListControl : UserControl
     {
-        private readonly PubCatalogItemListControlViewModel _model;
+        private readonly PubCatalogItemListControlViewModel _viewModel;
 
         public PubCatalogItemListControl()
         {
             InitializeComponent();
-            _model = new PubCatalogItemListControlViewModel();
-            DataContext = _model;
+            _viewModel = new PubCatalogItemListControlViewModel();
+            DataContext = _viewModel;
             this.Language = System.Windows.Markup.XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
         }
 
         public void LoadData(ICollection<object[]> items)
         {
-            _model.LoadData(items);
+            _viewModel.LoadData(items);
+        }
+
+        public void ClearData()
+        {
+            _viewModel.ClearData();
         }
 
         public void Export(string fileName)
         {
-            _model.Export(fileName);
+            _viewModel.Export(fileName);
         }
     }
 }

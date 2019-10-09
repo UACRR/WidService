@@ -8,6 +8,7 @@ using ipsFormsDesign.Services;
 using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Shared.Interfaces;
+using System.Globalization;
 
 namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
 {
@@ -47,22 +48,29 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
             catalogFile.UserId = identityName;
 
-            var pubCatalogItemList = GetPubСatalog(path);
+            var data = _exelEngine.ReadData(path, 12);
+            TrimNotValidData(data);
 
-            if (pubCatalogItemList == null)
-                return null;
+            var result = _service.UploadCatalogFile(catalogFile, data);
 
-            if (!CheckValidDataLength(pubCatalogItemList))
-                return null;
 
-            catalogFile.PubCatalogItem = new ObservableListSource<PubCatalogItem>(pubCatalogItemList);
+            //var pubCatalogItemList = GetPubСatalog(path);
 
-            // result can be used
-            var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
+            //if (pubCatalogItemList == null)
+            //    return null;
+
+            ////if (!CheckValidDataLength(pubCatalogItemList))
+            ////    return null;
+            //TrimNotValidData(pubCatalogItemList);
+
+            //catalogFile.PubCatalogItem = new ObservableListSource<PubCatalogItem>(pubCatalogItemList);
+
+            //// result can be used
+            //var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
 
             if (result == null)
                 _service.ShowErrors();
-
+            
             return result;
         }
 
@@ -128,6 +136,105 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             }
 
             return true;
+        }
+
+        private void TrimNotValidData(ICollection<PubCatalogItem> pubCatalogItems)
+        {
+            var dbTableLangth = new Dictionary<string, int>
+            {
+                ["itemCode".ToUpper()] = 50,
+                ["iswc".ToUpper()] = 100,
+                ["objName".ToUpper()] = 254,
+                ["genreName".ToUpper()] = 100,
+                ["roleName".ToUpper()] = 100,
+                ["authorMusic".ToUpper()] = 254,
+                ["authorText".ToUpper()] = 254,
+                ["performer".ToUpper()] = 254,
+                ["rhName".ToUpper()] = 254,
+            };
+
+            int length = 0;
+            foreach (var pubCatalogItem in pubCatalogItems)
+            {
+                length = dbTableLangth[nameof(pubCatalogItem.ItemCode).ToUpper()];
+                if (pubCatalogItem.ItemCode.Length > length)
+                    pubCatalogItem.ItemCode = pubCatalogItem.ItemCode.Substring(0, length);
+
+                length = dbTableLangth[nameof(pubCatalogItem.Iswc).ToUpper()];
+                if (pubCatalogItem.Iswc.Length > length)
+                    pubCatalogItem.Iswc = pubCatalogItem.Iswc.Substring(0, length);
+
+                length = dbTableLangth[nameof(pubCatalogItem.ObjName).ToUpper()];
+                if (pubCatalogItem.ObjName.Length > length)
+                    pubCatalogItem.ObjName = pubCatalogItem.ObjName.Substring(0, length);
+
+                length = dbTableLangth[nameof(pubCatalogItem.GenreName).ToUpper()];
+                if (pubCatalogItem.GenreName.Length > length)
+                    pubCatalogItem.GenreName = pubCatalogItem.GenreName.Substring(0, length);
+
+                length = dbTableLangth[nameof(pubCatalogItem.RoleName).ToUpper()];
+                if (pubCatalogItem.RoleName.Length > length)
+                    pubCatalogItem.RoleName = pubCatalogItem.RoleName.Substring(0, length);
+
+                length = dbTableLangth[nameof(pubCatalogItem.AuthorMusic).ToUpper()];
+                if (pubCatalogItem.AuthorMusic.Length > length)
+                    pubCatalogItem.AuthorMusic = pubCatalogItem.AuthorMusic.Substring(0, length);
+
+                length = dbTableLangth[nameof(pubCatalogItem.AuthorText).ToUpper()];
+                if (pubCatalogItem.AuthorText.Length > length)
+                    pubCatalogItem.AuthorText = pubCatalogItem.AuthorText.Substring(0, length);
+
+                length = dbTableLangth[nameof(pubCatalogItem.Performer).ToUpper()];
+                if (pubCatalogItem.Performer.Length > length)
+                    pubCatalogItem.Performer = pubCatalogItem.Performer.Substring(0, length);
+
+                length = dbTableLangth[nameof(pubCatalogItem.RhName).ToUpper()];
+                if (pubCatalogItem.RhName.Length > length)
+                    pubCatalogItem.RhName = pubCatalogItem.RhName.Substring(0, length);
+            }
+        }
+
+        private void TrimNotValidData(ICollection<List<string>> items)
+        {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("uk-UA");
+            DateTimeStyles dateTimeStyles = DateTimeStyles.None;
+            var tableLangth = new Dictionary<int, int>
+            {
+                [0] = 50,
+                [1] = 100,
+                [2] = 254,
+                [3] = 100,
+                [4] = 254,
+                [5] = 254,
+                [6] = 254,
+                [7] = 100,
+                [8] = 254,
+            };
+
+            foreach (var item in items)
+            {
+                foreach(var e in tableLangth)
+                {
+                    if (item[e.Key].Length > e.Value)
+                        item[e.Key] = item[e.Key].Substring(0, e.Value);
+                }
+
+                if (!decimal.TryParse(item[9], out decimal outBuffer))
+                    item[9] = null;
+                else
+                    item[9] = item[9].Replace(",", ".");
+
+                if (string.IsNullOrWhiteSpace(item[10]))
+                    item[10] = null;
+                else if (DateTime.TryParse(item[10], culture, dateTimeStyles, out DateTime dtBegin))
+                    item[10] = dtBegin.ToString("yyyy-MM-dd");
+
+                if (string.IsNullOrWhiteSpace(item[11]))
+                    item[11] = null;
+                else if (DateTime.TryParse(item[11], culture, dateTimeStyles, out DateTime dtEnd))
+                    item[11] = dtEnd.ToString("yyyy-MM-dd");
+
+            }
         }
 
         /// <summary>
@@ -240,8 +347,9 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             return _service.GetCatalogFileItems(fileId, skip, take);
         }
 
-        public List<object[]> GetItemsForExport(int fileId)
+        public List<object[]> GetCatalogItemList(int fileId)
         {
+            GC.Collect();
             return _service.GetItemsForExport(fileId);
         }
     }

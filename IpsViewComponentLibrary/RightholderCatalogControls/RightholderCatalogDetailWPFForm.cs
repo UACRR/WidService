@@ -68,10 +68,14 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private async void GetPubCatalogItemFromDB()
         {
             List<object[]> items = null;
+
+            ctrlGridItemList.ClearData();
+            GC.Collect();
+
             waitingBar.StartWaiting();
             await Task.Factory.StartNew(() =>
             {
-                items = _catalogFileItemsHandler.GetItemsForExport(_catalogFile.FileId);
+                items = _catalogFileItemsHandler.GetCatalogItemList(_catalogFile.FileId);
             });
             waitingBar.StopWaiting();
 
@@ -102,6 +106,9 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private async void btnAuditItems_Click(object sender, EventArgs e)
         {
             ExecSqlResponce<CatalogFile> result = null;
+            
+            GC.Collect();
+            
             waitingBar.StartWaiting();
             await Task.Factory.StartNew(() =>
             {
@@ -130,12 +137,15 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private async void btnPerform_Click(object sender, EventArgs e)
         {
             ExecSqlResponce<CatalogFile> result = null;
-            //waitingBar.StartWaiting();
+            
+            GC.Collect();
+
+            waitingBar.StartWaiting();
             await Task.Factory.StartNew(() =>
             {
                 result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
             });
-            //waitingBar.StopWaiting();
+            waitingBar.StopWaiting();
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
             DataSource = result.Data;

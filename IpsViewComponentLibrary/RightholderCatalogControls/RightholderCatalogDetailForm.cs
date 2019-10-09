@@ -154,7 +154,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                     await Task.Factory.StartNew(() =>
                     {
                         var excelEngine = ExcelEngine.GetInstance();
-                        var exportItems = _catalogFileItemsHandler.GetItemsForExport(_catalogFile.FileId);
+                        var exportItems = _catalogFileItemsHandler.GetCatalogItemList(_catalogFile.FileId);
                         msgResult = excelEngine.ExportDataToExcel(fileName, columns, exportItems);
 
                         if (string.IsNullOrEmpty(msgResult))

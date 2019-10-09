@@ -85,10 +85,11 @@ namespace ipsFormsDesign.Services
         /// <param name="custId"></param>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        public CatalogFile UploadCatalogFile(int custId, CatalogFile catalogFile)
+        public CatalogFile UploadCatalogFile(CatalogFile catalogFile, List<List<string>> items)
         {
-            string url = $"{Prefix}/upload/{custId}";
-            var result = _apiConnector.NewItemWithResult(url, catalogFile);
+            string url = $"{Prefix}/upload/{catalogFile.CustId}";
+            var wrapData = new ObjectAndItemsWrap<CatalogFile, List<string>>(catalogFile, items);
+            var result = _apiConnector.NewItemWithResult<CatalogFile, object>(url, wrapData);
             return result;
         }
 

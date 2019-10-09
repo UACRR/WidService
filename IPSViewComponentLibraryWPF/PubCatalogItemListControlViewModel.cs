@@ -1,10 +1,8 @@
-﻿using ipsFormsDesign.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Telerik.Documents.SpreadsheetStreaming;
 using Telerik.Windows.Controls;
@@ -54,8 +52,8 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        ObservableCollection<PubCatalogItem> _pubCatalogItemList;
-        public ObservableCollection<PubCatalogItem> ItemsSource
+        ObservableCollection<PubCatalogItemModel> _pubCatalogItemList;
+        public ObservableCollection<PubCatalogItemModel> ItemsSource
         {
             get => _pubCatalogItemList;
             set
@@ -83,14 +81,20 @@ namespace IPSViewComponentLibraryWPF
             BusyContent = $"Exported: {percent}%";
         }
 
+        public void ClearData()
+        {
+            ItemsSource = new ObservableCollection<PubCatalogItemModel>();
+            GC.Collect();
+        }
+
         public void LoadData(ICollection<object[]> items)
         {
             _objectsList = items.ToList();
 
-            var itemList = new ObservableCollection<PubCatalogItem>();
+            var itemList = new ObservableCollection<PubCatalogItemModel>();
             foreach (var item in items)
             {
-                itemList.Add(new PubCatalogItem
+                itemList.Add(new PubCatalogItemModel
                 {
                     ItemCode = item[0] as string,
                     Iswc = item[1] as string,
@@ -104,7 +108,7 @@ namespace IPSViewComponentLibraryWPF
                     Rate = (decimal?)(item[9] as double?),
                     DateBegin = item[10] as DateTime?,
                     DateEnd = item[11] as DateTime?,
-                    ErrComment = item[12] as string
+                    ErrComment = item[12] as string,
                 });
             }
 
@@ -228,7 +232,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportItemCode(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportItemCode(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -237,7 +241,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportIswc(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportIswc(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -246,7 +250,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportObjName(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportObjName(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -255,7 +259,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportGenreName(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportGenreName(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -264,7 +268,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportPerformer(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportPerformer(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -273,7 +277,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportAuthorMusic(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportAuthorMusic(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -282,7 +286,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportAuthorText(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportAuthorText(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -291,7 +295,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportRoleName(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportRoleName(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -300,7 +304,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportRhName(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportRhName(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -309,7 +313,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportRate(IRowExporter rowExporter, PubCatalogItem item)
+        private void ExportRate(IRowExporter rowExporter, PubCatalogItemModel item)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -324,7 +328,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportDateBegin(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat dateFormat)
+        private void ExportDateBegin(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat dateFormat)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -337,7 +341,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportDateEnd(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat dateFormat)
+        private void ExportDateEnd(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat dateFormat)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -350,7 +354,7 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ExportErrComment(IRowExporter rowExporter, PubCatalogItem item, SpreadCellFormat format)
+        private void ExportErrComment(IRowExporter rowExporter, PubCatalogItemModel item, SpreadCellFormat format)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -358,7 +362,5 @@ namespace IPSViewComponentLibraryWPF
                 cellExporter.SetFormat(format);
             }
         }
-
-
     }
 }
