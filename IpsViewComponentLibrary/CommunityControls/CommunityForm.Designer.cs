@@ -206,7 +206,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // txtIpi
             // 
             this.txtIpi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCommunity, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
-            this.txtIpi.Location = new System.Drawing.Point(231, 100);
+            this.txtIpi.Location = new System.Drawing.Point(276, 101);
             this.txtIpi.Name = "txtIpi";
             this.txtIpi.Size = new System.Drawing.Size(243, 21);
             this.txtIpi.TabIndex = 1;
@@ -220,9 +220,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             this.radLabel1.Location = new System.Drawing.Point(22, 102);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(203, 19);
+            this.radLabel1.Size = new System.Drawing.Size(248, 19);
             this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Міжнародний код товариства (IPI):";
+            this.radLabel1.Text = "Міжнародний код товариства (SOC CODE):";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel6

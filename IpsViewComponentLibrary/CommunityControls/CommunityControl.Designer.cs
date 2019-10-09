@@ -87,7 +87,7 @@
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.DataType = typeof(int);
             gridViewTextBoxColumn3.FieldName = "InterCode";
-            gridViewTextBoxColumn3.HeaderText = "IPI";
+            gridViewTextBoxColumn3.HeaderText = "SOC CODE";
             gridViewTextBoxColumn3.MaxWidth = 95;
             gridViewTextBoxColumn3.MinWidth = 95;
             gridViewTextBoxColumn3.Name = "InterCode";
