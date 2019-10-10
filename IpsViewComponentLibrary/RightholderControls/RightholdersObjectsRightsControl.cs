@@ -81,6 +81,17 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        private bool _isInheritance = false;
+        public bool IsInheritance
+        {
+            get => _isInheritance;
+            set
+            {
+                _isInheritance = value;
+                ctrlRightholderSelectorSecondary.Visible = !_isInheritance;
+            }
+        }
+
         public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted;
         public event EventHandler<RightholderMainView> RightholderChanged;
         public event CancelEventHandler RightholderChanging

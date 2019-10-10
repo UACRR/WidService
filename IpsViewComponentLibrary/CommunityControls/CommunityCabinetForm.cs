@@ -15,7 +15,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
-    public partial class CommunityCabinetForm : RadForm
+    public sealed partial class CommunityCabinetForm : RadForm
     {
         private const string ConfirmAcceptAgreement = "Перед зміною статусу договору необхідно зберегти зміни. Незбережені зміни будуть втрачені. Змінити статус договору?";
 
@@ -32,14 +32,16 @@ namespace IpsViewComponentLibrary.CommunityControls
         private Customer _customer;
         private readonly CommunityViewsPresenter _presenter;
 
-        protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        public bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public CommunityCabinetForm(Customer customer, List<CommunityAuthorsView> list)
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+
             if (!IsDesignMode)
                 _presenter = new CommunityViewsPresenter();
-            WindowState = FormWindowState.Maximized;
+
             parentGridPanel.PanelElement.PanelBorder.Width = 0f;
             _customer = customer;
             bsCommunityAuthorsView.DataSource = list;
@@ -113,6 +115,10 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             // спільнота
             ctrlClientName.DataSource = anketaCompany;
+
+            //
+            var communityName = !string.IsNullOrWhiteSpace(anketaCompany.ShortName) ? anketaCompany.ShortName : anketaCompany.Name;
+            Text = $"Кабінет товариства «{communityName}»";
 
             // контактна особа
             var relEmployeeContact = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);

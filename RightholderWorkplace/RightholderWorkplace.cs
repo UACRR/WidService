@@ -314,6 +314,7 @@ namespace RightholderWorkplace
             dtChangeCopyrightDateTill.Visible = isTransfer;
 
             ctrlRightholdersObjectsForChange.AllowMarkingRows = isTransfer;
+            ctrlRightholdersObjectsForChange.IsInheritance = isInheritance;
 
             UpdateTransferButtonsEnabling();
         }
@@ -322,7 +323,7 @@ namespace RightholderWorkplace
         {
             var isTransfer = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer;
 
-            btnTransferAll.Enabled = isTransfer;
+            //btnTransferAll.Enabled = isTransfer;
             btnTransferSelected.Enabled = isTransfer && ctrlRightholdersObjectsForChange.MarkedObjectsRights.Count != 0;
         }
 
