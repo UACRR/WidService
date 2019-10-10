@@ -18,18 +18,19 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
 {
     public partial class PublisherAndSubpublisherForm : RadForm
     {
+        private const string DateBeginLessThanDateEndOfExistenLink = "";
+
         private readonly DateTime MaxBeginDate = new DateTime(2999, 12, 31);
         private readonly List<PublishersView> _publisherList = new List<PublishersView>();
         private readonly List<PublishersView> _subPublisherList = new List<PublishersView>();
+
+        private readonly List<PublisherAndSubpublisherView> _view;
 
         private readonly PublisherAndSubpublisherView _subpublisherViewCache;
 
         private PublisherAndSubpublisherForm()
         {
             InitializeComponent();
-
-            //dtDateBegin.SetUserCalendarSettingsm();
-            //dtDateEnd.SetUserCalendarSettingsm();
 
             ctrlSaveCancelButtons.ButtonSaveDialogResult = DialogResult.None;
             ctrlSaveCancelButtons.SaveClck += CtrlSaveCancelButtons_SaveClck;
@@ -42,8 +43,10 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         /// Конструктор для додавання нового зв'язку видавництва/субвидавництва
         /// </summary>
         /// <param name="relSubPublish"></param>
-        public PublisherAndSubpublisherForm(RelSubPublish relSubPublish) : this()
+        public PublisherAndSubpublisherForm(RelSubPublish relSubPublish, List<PublisherAndSubpublisherView> view) : this()
         {
+            _view = view;
+
             dtDateBegin.MinDate = DateTime.Now;
             dtDateEnd.MinDate = DateTime.Now.AddDays(1);
 
@@ -137,8 +140,37 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
                 _subpublisherViewCache.DateEnd = item.DateEnd;
             }
 
-            DialogResult = DialogResult.OK;
+            if (CheckValidNewPublisherSubpublisherLink())
+                DialogResult = DialogResult.OK;
         }
+
+        private bool CheckValidNewPublisherSubpublisherLink()
+        {
+            var item = bsRelSubPublish.DataSource as RelSubPublish;
+
+            var existLinks = _view.Where(rec => rec.CustIdPub == item.CustIdPub).ToList();
+
+            // it's new link
+            if (!existLinks.Any())
+                return true;
+
+            foreach (var link in existLinks)
+            {
+                if (item.DateBegin <= link.DateEnd)
+                {
+                    MessageShow.ShowWarning(DateBeginLessThanDateEndOfExistenLink);
+                    return false;
+                }
+            }
+
+            // else is valid
+            return true;
+        }
+
+        //private bool CheckChangesPublisherSubpublisherLink()
+        //{
+
+        //}
 
         private void BsSubPublishers_CurrentItemChanged(object sender, EventArgs e)
         {

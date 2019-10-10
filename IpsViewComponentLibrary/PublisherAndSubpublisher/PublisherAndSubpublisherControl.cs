@@ -46,7 +46,9 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var relSubPublish = new RelSubPublish();
-            using (var form = new PublisherAndSubpublisherForm(relSubPublish))
+            var pubsubView = (List<PublisherAndSubpublisherView>)bsPublisherAndSubpublisherView.DataSource;
+
+            using (var form = new PublisherAndSubpublisherForm(relSubPublish, pubsubView))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
