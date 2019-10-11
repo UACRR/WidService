@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -18,8 +14,6 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
 {
     public partial class PublisherAndSubpublisherForm : RadForm
     {
-        private const string DateBeginLessThanDateEndOfExistenLink = "";
-
         private readonly DateTime MaxBeginDate = new DateTime(2999, 12, 31);
         private readonly List<PublishersView> _publisherList = new List<PublishersView>();
         private readonly List<PublishersView> _subPublisherList = new List<PublishersView>();
@@ -27,6 +21,10 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         private readonly List<PublisherAndSubpublisherView> _view;
 
         private readonly PublisherAndSubpublisherView _subpublisherViewCache;
+
+        private readonly bool IsEdit = false;
+
+        bool IsValid => IsEdit ? ValidateChangesPublisherSubpublisherLink() : ValidateNewPublisherSubpublisherLink();
 
         private PublisherAndSubpublisherForm()
         {
@@ -74,9 +72,12 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         /// Конструктор для редагування зв'язку видавництва/субвидавництва
         /// </summary>
         /// <param name="subpublisherView"></param>
-        public PublisherAndSubpublisherForm(PublisherAndSubpublisherView subpublisherView) : this()
+        public PublisherAndSubpublisherForm(PublisherAndSubpublisherView subpublisherView, List<PublisherAndSubpublisherView> view) : this()
         {
+            _view = view;
+
             _subpublisherViewCache = subpublisherView;
+            IsEdit = true;
 
             var listPub = new List<PublishersView>
             {
@@ -140,11 +141,50 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
                 _subpublisherViewCache.DateEnd = item.DateEnd;
             }
 
-            if (CheckValidNewPublisherSubpublisherLink())
+            if (IsValid)
                 DialogResult = DialogResult.OK;
         }
 
-        private bool CheckValidNewPublisherSubpublisherLink()
+        /// <summary>
+        /// Verify changed end date of existen link
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidateChangesPublisherSubpublisherLink()
+        {
+            var item = bsRelSubPublish.DataSource as RelSubPublish;
+
+            var existLinks = _view.Where(rec => rec.CustIdPub == item.CustIdPub && rec.CustIdSub != item.CustIdSub).ToList();
+
+            // it's the same link
+            if (!existLinks.Any())
+                return true;
+
+            DateTime? maxValidDate = null;
+            bool isValid = true;
+            foreach (var link in existLinks)
+            {
+                if (item.DateEnd > link.DateBegin && item.DateEnd < link.DateEnd)
+                {
+                    isValid = false;
+                    maxValidDate = link.DateBegin.AddDays(-1);
+                    break;
+                }
+            }
+
+            if (!isValid)
+            {
+                MessageShow.ShowWarning($"Дата «Дії повноважень по» пересікається з періодом іншого існуючого повноваження субвидавницта! " +
+                    $"Максимальна можлива дата «Дії повноважень по» - {maxValidDate.Value.ToString("dd.MM.yyyy")}!");
+            }
+
+            return isValid;
+        }
+
+        /// <summary>
+        /// Verify begin date and end date of new link of publisher and subpublisher 
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidateNewPublisherSubpublisherLink()
         {
             var item = bsRelSubPublish.DataSource as RelSubPublish;
 
@@ -154,23 +194,88 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             if (!existLinks.Any())
                 return true;
 
-            foreach (var link in existLinks)
+            var validDatePairs = GetValidDatePairs(existLinks);
+
+            bool isValid = false;
+
+            foreach (var datePair in validDatePairs)
             {
-                if (item.DateBegin <= link.DateEnd)
+                bool currentPairValid = item.DateBegin >= datePair.Key && item.DateEnd <= datePair.Value;
+                if (currentPairValid)
                 {
-                    MessageShow.ShowWarning(DateBeginLessThanDateEndOfExistenLink);
-                    return false;
+                    isValid = true;
+                    break;
                 }
             }
 
-            // else is valid
-            return true;
+            if (!isValid)
+            {
+                if (validDatePairs.Any())
+                    MessageShow.ShowWarning(Message());
+
+                string Message()
+                {
+                    var values = new List<string> { "Обраний період пересікається з періодом іншого існуючого повноваження субвидавницта! Дія повноважень для нового субвидавництва може бути в таких діапазонах:" };
+                    foreach (var pair in validDatePairs)
+                    {
+                        values.Add($"- від {pair.Key.Value.ToString("dd.MM.yyyy")} по {pair.Value.Value.ToString("dd.MM.yyyy")};");
+                    }
+                    string msg = $"{string.Join("\n", values)}";
+                    return msg;
+                }
+            }
+
+            return isValid;
         }
 
-        //private bool CheckChangesPublisherSubpublisherLink()
-        //{
+        /// <summary>
+        /// Generate a dates pairs that can be in a valid period
+        /// </summary>
+        /// <param name="view"></param>
+        /// <returns></returns>
+        private List<KeyValuePair<DateTime?, DateTime?>> GetValidDatePairs(ICollection<PublisherAndSubpublisherView> view)
+        {
+            DateTime maxDate = new DateTime(3000, 01, 01);
+            var pairs = new List<KeyValuePair<DateTime?, DateTime?>>();
+            var list = view.OrderBy(rec => rec.DateBegin).ToList();
 
-        //}
+            /* pairs search need
+             * date pair example:
+             *  02.10.2015 15.10.2015
+             *  16.10.2015 10.11.2015
+             *   - window: 11.11.2015-19.11.2015
+             *  20.11.2015 30.11.2015
+             *    1)
+             *     - window: 01.12.2015-01.01.3000
+             *    2)
+             *     - window: 01.12.2015-20.02.2016
+             *  21.02.2016 01.01.3000
+            */
+
+            for (int i = 1; i <= list.Count; i++)
+            {
+                // isn't last item
+                if (i != list.Count)
+                {
+                    var possibleDateBegin = list[i - 1].DateEnd.Value.AddDays(1);
+                    if (possibleDateBegin == list[i].DateBegin)
+                        continue;
+
+                    var possibleDateEnd = list[i].DateBegin.AddDays(-1);
+
+                    if (possibleDateBegin < possibleDateEnd)
+                        pairs.Add(new KeyValuePair<DateTime?, DateTime?>(possibleDateBegin, possibleDateEnd));
+
+                    continue;
+                }
+
+                // the last link may be infinite
+                if (list[i - 1].DateEnd != maxDate)
+                    pairs.Add(new KeyValuePair<DateTime?, DateTime?>(list[i - 1].DateEnd, maxDate));
+            }
+
+            return pairs;
+        }
 
         private void BsSubPublishers_CurrentItemChanged(object sender, EventArgs e)
         {

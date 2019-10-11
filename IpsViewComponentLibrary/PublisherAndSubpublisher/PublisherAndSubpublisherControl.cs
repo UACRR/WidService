@@ -64,7 +64,9 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             if (!(e.Row.DataBoundItem is PublisherAndSubpublisherView row))
                 return;
 
-            using (var form = new PublisherAndSubpublisherForm(row))
+            var pubsubView = (List<PublisherAndSubpublisherView>)bsPublisherAndSubpublisherView.DataSource;
+
+            using (var form = new PublisherAndSubpublisherForm(row, pubsubView))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
