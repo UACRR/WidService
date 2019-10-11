@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -117,6 +118,13 @@ namespace ipsmedserviceapp.Controllers
 
                 transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
+
+                if (target.AgreementMaster.FirstOrDefault()?.AgrId is int agrId)
+                {
+                    // викликати процедуру присвоєння номеру договору для правовласника
+                    string setAgrNumber = "exec pTsk4_GetRHNdog @agrId";
+                    _dbContext.Database.ExecuteSqlCommand(setAgrNumber, new SqlParameter("@agrId", agrId));
+                }
 
                 if (removeAnketaExternal != null)
                     _dbContext.AnketaExternal.Remove(removeAnketaExternal);
