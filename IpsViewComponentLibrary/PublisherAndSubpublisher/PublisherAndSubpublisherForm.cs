@@ -210,19 +210,19 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
 
             if (!isValid)
             {
-                if (validDatePairs.Any())
-                    MessageShow.ShowWarning(Message());
+                string msg = "Обраний період пересікається з періодом іншого існуючого повноваження субвидавницта!";
 
-                string Message()
+                if (validDatePairs.Any())
                 {
-                    var values = new List<string> { "Обраний період пересікається з періодом іншого існуючого повноваження субвидавницта! Дія повноважень для нового субвидавництва може бути в таких діапазонах:" };
+                    var values = new List<string> { $"{msg} Дія повноважень для нового субвидавництва може бути в таких діапазонах: " };
                     foreach (var pair in validDatePairs)
                     {
                         values.Add($"- від {pair.Key.Value.ToString("dd.MM.yyyy")} по {pair.Value.Value.ToString("dd.MM.yyyy")};");
                     }
-                    string msg = $"{string.Join("\n", values)}";
-                    return msg;
+                    msg = $"{string.Join("\n", values)}";
                 }
+
+                MessageShow.ShowWarning(msg);
             }
 
             return isValid;
