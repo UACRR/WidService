@@ -228,8 +228,9 @@ namespace ipsFormsDesign.Services
                     
                     for (int i = 1; i <= rows; i++, iter++)
                     {
-                        if (!(dim?[i, 1] is double))
-                            continue;
+                        // commented - in DB is string datatype
+                        //if (!(dim?[i, 1] is double))
+                        //    continue;
 
                         var rowList = new List<string>();
 
