@@ -105,8 +105,11 @@ namespace ipsFormsDesign.Services
 
                 for (index = 1; index <= maxRow; index++)
                 {
-                    if (dim?[index, 1] == null) continue;
-                    if ( !double.TryParse( dim?[index, 1].ToString(), out double temp)) continue;
+                    if (dim?[index, 1] == null) 
+                        continue;
+
+                    if (!double.TryParse( dim?[index, 1].ToString(), out double temp)) 
+                        continue;
 
                     // RegisterItem registerItem = newItems[regitemid];
                     RegisterItem registerItem = new RegisterItem
@@ -226,7 +229,8 @@ namespace ipsFormsDesign.Services
                         percentTypeChecked = true;
                     }
                     
-                    for (int i = 1; i <= rows; i++, iter++)
+                    // index begin from 1, the first record is header
+                    for (int i = 2; i <= rows; i++, iter++)
                     {
                         // commented - in DB is string datatype
                         //if (!(dim?[i, 1] is double))
