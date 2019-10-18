@@ -116,8 +116,8 @@ namespace ipsFormsDesign.Services
         public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/validate";
-            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out ExecSqlResponce<CatalogFile> outCatalogFile);
-            return outCatalogFile;
+            var result = _apiConnector.UpdateItemWithResult<ExecSqlResponce<CatalogFile>>(url, catalogFile.FileId.ToString(), null);
+            return result;
         }
 
         public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)

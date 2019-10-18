@@ -22,6 +22,11 @@ namespace IpsCommonTypes.Wrappers
         /// Дані, що повертає функція/процедура
         /// </summary>
         public T Data { get; set; }
+
+        public override string ToString()
+        {
+            return $"Status Code: {StatusCode.ToString()}, Message: {Message}, DATA: {Data?.ToString()}";
+        }
     }
 
     /// <summary>

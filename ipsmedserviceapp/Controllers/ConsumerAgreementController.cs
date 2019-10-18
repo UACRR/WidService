@@ -263,17 +263,31 @@ namespace ipsmedserviceapp.Controllers
                     }
                     else if (status == 10)
                     {
-                        target.LicStatus = status;
+                        if (target.LicVersion == licenseVersion)
+                        {
+                            target.LicStatus = status;
 
-                        foreach (var licenseAgrParam in target.LicenseAgrParam)
+                            foreach (var param in target.LicenseAgrParam)
+                                param.LicStatus = status;
+                        }
+                        else
+                        {
+                            var licenseAgrParam = target.LicenseAgrParam.FirstOrDefault(rec => rec.LicVersion == licenseVersion);
                             licenseAgrParam.LicStatus = status;
 
-                        // видалити ліцензії бізнес-точок
+                            if (target.ProlongVersion == licenseVersion)
+                                target.ProlongVersion = null;
+                        }
+
+                        // змінити статус видалення ліцензії бізнес-точок
                         var deletePlaceLicenses = await _dbContext.License
-                            .Where(rec => rec.LicId == target.LicId)
+                            .Where(rec => rec.LicId == target.LicId && rec.LicVersion == licenseVersion)
                             .ToListAsync();
 
-                        _dbContext.License.RemoveRange(deletePlaceLicenses);
+                        foreach (var license in deletePlaceLicenses)
+                            license.Status = status;
+
+                        //_dbContext.License.RemoveRange(deletePlaceLicenses);
                     }
                 }
                 else

@@ -162,7 +162,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             btnAccept.Enabled = row.Status == 0 || row.Status == 1;
 
             var license = _licenseAgreements?.Where(rec => rec.LicId == row.LicId).FirstOrDefault(rec => rec.LicStatus < 4);
-            var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+            var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == row.LicVersion);
 
             ctrlAgrDetailInfoMore.SetDataInfo(licenseParam);
         }

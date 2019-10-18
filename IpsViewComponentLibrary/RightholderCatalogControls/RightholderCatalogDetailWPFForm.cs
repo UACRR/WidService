@@ -103,18 +103,17 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         }
 
         // перевірка валідності
-        private async void btnAuditItems_Click(object sender, EventArgs e)
+        private void btnAuditItems_Click(object sender, EventArgs e)
         {
-            ExecSqlResponce<CatalogFile> result = null;
-            
-            GC.Collect();
-            
+            ExecSqlResponce<CatalogFile> result;
+
             waitingBar.StartWaiting();
-            await Task.Factory.StartNew(() =>
-            {
-                result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
-            });
+            result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
             waitingBar.StopWaiting();
+
+            if (result == null)
+                return;
+
             var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
 
             DataSource = result.Data;

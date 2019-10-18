@@ -48,20 +48,20 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvMoreLicenseAgr = new Telerik.WinControls.UI.RadGridView();
+            this.bsGridLicenseAgreementViewNotActive = new System.Windows.Forms.BindingSource(this.components);
             this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.btnAddNewAgrMore = new Telerik.WinControls.UI.RadButton();
             this.ddBtnChangeStatusMore = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnAccept = new Telerik.WinControls.UI.RadMenuItem();
             this.btnDenied = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlAgrDetailInfoMore = new IpsViewComponentLibrary.ConsumerControls.ConsumerAgrDetailInfo();
-            this.bsGridLicenseAgreementViewNotActive = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNotActive)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
             this.ipsPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewAgrMore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnChangeStatusMore)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNotActive)).BeginInit();
             this.SuspendLayout();
             // 
             // gvMoreLicenseAgr
@@ -218,11 +218,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             // 
             this.gvMoreLicenseAgr.RootElement.MinSize = new System.Drawing.Size(300, 100);
             this.gvMoreLicenseAgr.ShowGroupPanel = false;
-            this.gvMoreLicenseAgr.Size = new System.Drawing.Size(1110, 239);
+            this.gvMoreLicenseAgr.Size = new System.Drawing.Size(924, 239);
             this.gvMoreLicenseAgr.TabIndex = 2;
             this.gvMoreLicenseAgr.ThemeName = "Office2013Light";
             this.gvMoreLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvMoreLicenseAgr_CurrentRowChanged);
             this.gvMoreLicenseAgr.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvMoreLicenseAgr_CommandCellClick);
+            // 
+            // bsGridLicenseAgreementViewNotActive
+            // 
+            this.bsGridLicenseAgreementViewNotActive.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.SmallRight.InternalModel.GridLicenseAgreementView);
             // 
             // ipsPanel2
             // 
@@ -233,7 +237,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.ipsPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ipsPanel2.Location = new System.Drawing.Point(0, 239);
             this.ipsPanel2.Name = "ipsPanel2";
-            this.ipsPanel2.Size = new System.Drawing.Size(1110, 261);
+            this.ipsPanel2.Size = new System.Drawing.Size(924, 261);
             this.ipsPanel2.TabIndex = 3;
             this.ipsPanel2.ThemeName = "Office2013Light";
             // 
@@ -254,7 +258,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.ddBtnChangeStatusMore.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnAccept,
             this.btnDenied});
-            this.ddBtnChangeStatusMore.Location = new System.Drawing.Point(967, 8);
+            this.ddBtnChangeStatusMore.Location = new System.Drawing.Point(781, 8);
             this.ddBtnChangeStatusMore.Name = "ddBtnChangeStatusMore";
             this.ddBtnChangeStatusMore.Size = new System.Drawing.Size(140, 24);
             this.ddBtnChangeStatusMore.TabIndex = 1;
@@ -283,10 +287,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.ctrlAgrDetailInfoMore.Size = new System.Drawing.Size(785, 220);
             this.ctrlAgrDetailInfoMore.TabIndex = 2;
             // 
-            // bsGridLicenseAgreementViewNotActive
-            // 
-            this.bsGridLicenseAgreementViewNotActive.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.SmallRight.InternalModel.GridLicenseAgreementView);
-            // 
             // LicenseAgreementNotActiveControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,14 +294,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.Controls.Add(this.gvMoreLicenseAgr);
             this.Controls.Add(this.ipsPanel2);
             this.Name = "LicenseAgreementNotActiveControl";
-            this.Size = new System.Drawing.Size(1110, 500);
+            this.Size = new System.Drawing.Size(924, 500);
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNotActive)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).EndInit();
             this.ipsPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewAgrMore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnChangeStatusMore)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridLicenseAgreementViewNotActive)).EndInit();
             this.ResumeLayout(false);
 
         }

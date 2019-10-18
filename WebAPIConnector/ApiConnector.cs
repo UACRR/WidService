@@ -14,6 +14,7 @@ using IpsCommonTypes.Types;
 using System.Collections;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Wrappers;
+using System.Windows;
 
 namespace WebAPIConnector
 {
@@ -29,13 +30,14 @@ namespace WebAPIConnector
             string Uri = configUrl();
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
+
             client = new HttpClient(handler);
 
             client.BaseAddress = new Uri(Uri);
             client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            client.Timeout = TimeSpan.FromSeconds(1200);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.Timeout = TimeSpan.FromMinutes(20);
+            //client.Timeout = TimeSpan.FromSeconds(1200);
         }
 
         private string configUrl()
@@ -48,7 +50,6 @@ namespace WebAPIConnector
             string url = config.ConnectionStrings.ConnectionStrings["WebApiConnection"].ConnectionString;
 
             return url;
-
         }
 
         private string AsQueryString(IEnumerable<KeyValuePair<string, string>> parameters)
@@ -337,12 +338,22 @@ namespace WebAPIConnector
 
             var result = client.PutAsJson(idUrl, data);
 
-            if (result.IsSuccessStatusCode)
+            //if (result.IsSuccessStatusCode)
+            //    return result.Content.ReadAs<T>();
+            //else
+            //    return null;
+
+            if (result != null)
             {
-                return result.Content.ReadAs<T>();
+                string msg = $"StatusCode: {result.StatusCode}, \nReasonPhrase: {result.ReasonPhrase}, \nRequestMessage: {result.RequestMessage}";
+                MessageBox.Show(msg);
             }
             else
-                return null;
+            {
+                MessageBox.Show("REQUEST RESULT IS NULL!");
+            }
+
+            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<T>() : null;
         }
 
         /// <summary>
@@ -386,32 +397,44 @@ namespace WebAPIConnector
         /// <returns></returns>
         public bool UpdateItemWithResult<T>(string url, string id, T data, out T retObject)
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings
+            try
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            };
-            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
-            HttpResponseMessage result;
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                };
+                StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+                HttpResponseMessage result;
 
-            if (string.IsNullOrEmpty(id) || id == "0")
-            {
-                result = client.PostAsync(url, content).GetAwaiter().GetResult();
-            }
-            else
-            {
-                string idUrl = $"{url}/{id}";
-                result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
-            }
+                if (string.IsNullOrEmpty(id) || id == "0")
+                {
+                    result = client.PostAsync(url, content).GetAwaiter().GetResult();
+                }
+                else
+                {
+                    string idUrl = $"{url}/{id}";
+                    result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+                }
 
-            var retCode = result.IsSuccessStatusCode;
-            if (retCode)
-            {
-                var jobject = JObject.Parse(result.Content.ReadAsStringAsync().GetAwaiter().GetResult());
-                retObject = jobject.ToObject<T>();
+                var retCode = result.IsSuccessStatusCode;
+                if (retCode)
+                {
+                    var jobject = JObject.Parse(result.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                    retObject = jobject.ToObject<T>();
+                }
+                else
+                {
+                    retObject = default(T);
+                }
+
+                return retCode;
             }
-            else
-                retObject = default(T);
-            return retCode;
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                retObject = default;
+                return false;
+            }
         }
 
         /// <summary>

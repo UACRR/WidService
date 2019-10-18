@@ -359,7 +359,7 @@ namespace ipsmedserviceapp.Controllers
 
                 string command = "exec CatalogControlPub @fileId, @result OUTPUT, @RetCode  OUTPUT";
 
-                _dbContext.Database.SetCommandTimeout(1200);
+                _dbContext.Database.SetCommandTimeout(2400);
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
@@ -371,11 +371,11 @@ namespace ipsmedserviceapp.Controllers
                         : ExecSqlResponceStatus.Failed
                 };
 
-                var validCatalog = await _dbContext.CatalogFile
-                    .AsNoTracking()
+                var validCatalog = await _dbContext.CatalogFile.AsNoTracking()
                     .FirstOrDefaultAsync(rec => rec.FileId == fileId);
 
                 responce.Data = validCatalog;
+
 
                 if (currentTimeOut.HasValue)
                     _dbContext.Database.SetCommandTimeout(currentTimeOut);
