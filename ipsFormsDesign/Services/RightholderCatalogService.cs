@@ -6,6 +6,7 @@ using IpsCommonTypes.Types;
 using IpsCommonTypes.Wrappers;
 using Telerik.WinControls;
 using WebAPIConnector;
+using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Services
 {
@@ -118,6 +119,17 @@ namespace ipsFormsDesign.Services
             string url = $"{Prefix}/validate";
             var result = _apiConnector.UpdateItemWithResult<ExecSqlResponce<CatalogFile>>(url, catalogFile.FileId.ToString(), null);
             return result;
+        }
+
+        /// <summary>
+        /// Async call procedure
+        /// </summary>
+        /// <param name="catalogFile"></param>
+        /// <returns></returns>
+        public async Task<ExecSqlResponce<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
+        {
+            string url = $"{Prefix}/validate/{catalogFile.FileId}";
+            return await _apiConnector.UpdateItemWithResultAsync<ExecSqlResponce<CatalogFile>>(url, null);
         }
 
         public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)

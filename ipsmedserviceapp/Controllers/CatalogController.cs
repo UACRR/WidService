@@ -361,7 +361,7 @@ namespace ipsmedserviceapp.Controllers
 
                 _dbContext.Database.SetCommandTimeout(2400);
 
-                await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
+                int x = await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
                 var responce = new ExecSqlResponce<CatalogFile>
                 {

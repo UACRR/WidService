@@ -32,12 +32,10 @@ namespace WebAPIConnector
             handler.UseDefaultCredentials = true;
 
             client = new HttpClient(handler);
-
             client.BaseAddress = new Uri(Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.Timeout = TimeSpan.FromMinutes(20);
-            //client.Timeout = TimeSpan.FromSeconds(1200);
         }
 
         private string configUrl()
@@ -281,19 +279,13 @@ namespace WebAPIConnector
             return result.IsSuccessStatusCode;
         }
 
-        public T NewItemWithReturn<T>(string url, T data) where T : class
-        {
-            StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            var result = client.PostAsync(url, content).GetAwaiter().GetResult();
-
-            if (result.IsSuccessStatusCode)
-            {
-                return result.Content.ReadAs<T>();
-            }
-            else
-                return null;
-        }
-
+        /// <summary>
+        /// Сторити об'єкт на сервері додоатків та повернути
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public T NewItemWithResult<T>(string url, T data) where T : class
         {
             var result = client.PostAsJson(url, data);
@@ -338,20 +330,49 @@ namespace WebAPIConnector
 
             var result = client.PutAsJson(idUrl, data);
 
-            //if (result.IsSuccessStatusCode)
-            //    return result.Content.ReadAs<T>();
-            //else
-            //    return null;
+            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<T>() : null;
+        }
 
-            if (result != null)
-            {
-                string msg = $"StatusCode: {result.StatusCode}, \nReasonPhrase: {result.ReasonPhrase}, \nRequestMessage: {result.RequestMessage}";
-                MessageBox.Show(msg);
-            }
-            else
-            {
-                MessageBox.Show("REQUEST RESULT IS NULL!");
-            }
+        public async Task<T> UpdateItemWithResultAsync<T>(string url, T data) where T : class
+        {
+            var result = await client.PutAsJsonAsync(url, data).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<T>() : null;
+        }
+
+        /// <summary>
+        /// Надіслати PUT запит на сервер з отриманням результату
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public async Task<T> SendPutRequestWithResultAsync<T>(string url, T data = null) where T : class
+        {
+            var result = await client.PutAsJsonAsync(url, data).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<T>() : null;
+        }
+
+        /// <summary>
+        /// Надіслати POST запит на сервер з отриманням результату
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public async Task<T> SendPostRequestWithResultAsync<T>(string url, T data = null) where T : class
+        {
+            var result = await client.PutAsJsonAsync(url, data).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
 
             return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<T>() : null;
         }

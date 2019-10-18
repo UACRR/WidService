@@ -32,6 +32,44 @@ namespace WebAPIConnector
         }
 
         /// <summary>
+        /// Send a PUT request with data to the server by URL async
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static async Task<HttpResponseMessage> PutAsJsonAsync<T>(this HttpClient client, string url, T data)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+            return await client.PutAsync(url, content);
+        }
+
+        /// <summary>
+        /// Send a POST request with data to the server by URL async
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static async Task<HttpResponseMessage> PostAsJsonAsync<T>(this HttpClient client, string url, T data)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+            return await client.PostAsync(url, content);
+        }
+
+        /// <summary>
         /// Send a PATCH request to the specified Uri as an asynchronous operation.
         /// </summary>
         /// 
@@ -64,6 +102,7 @@ namespace WebAPIConnector
         {
             return client.PatchAsync(requestUri, content, CancellationToken.None);
         }
+
         /// <summary>
         /// Send a PATCH request with a cancellation token as an asynchronous operation.
         /// </summary>
@@ -107,6 +146,5 @@ namespace WebAPIConnector
         {
             return string.IsNullOrEmpty(uri) ? null : new Uri(uri, UriKind.RelativeOrAbsolute);
         }
-
     }
 }

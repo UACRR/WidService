@@ -67,7 +67,7 @@ namespace ipsFormsDesign.Services
 
         public Customer SaveNewConsumer(Customer customer)
         {
-            var result = _webApi.NewItemWithReturn<Customer>("consumer/newconsumer", customer);
+            var result = _webApi.NewItemWithResult("consumer/newconsumer", customer);
             return result;
         }
         

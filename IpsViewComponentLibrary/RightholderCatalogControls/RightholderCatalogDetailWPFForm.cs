@@ -103,12 +103,12 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         }
 
         // перевірка валідності
-        private void btnAuditItems_Click(object sender, EventArgs e)
+        private async void btnAuditItems_Click(object sender, EventArgs e)
         {
-            ExecSqlResponce<CatalogFile> result;
+            ExecSqlResponce<CatalogFile> result = null;
 
             waitingBar.StartWaiting();
-            result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
+            result = await RightholderCatalogService.GetInstance().ValidateCatalogFileItemsAsync(_catalogFile);
             waitingBar.StopWaiting();
 
             if (result == null)
