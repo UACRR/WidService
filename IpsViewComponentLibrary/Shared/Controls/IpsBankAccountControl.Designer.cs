@@ -94,9 +94,9 @@
             // 
             this.radLabel5.Location = new System.Drawing.Point(4, 104);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(142, 19);
+            this.radLabel5.Size = new System.Drawing.Size(90, 19);
             this.radLabel5.TabIndex = 4;
-            this.radLabel5.Text = "Розрахунковий рахунок";
+            this.radLabel5.Text = "Рахунок (IBAN)";
             this.radLabel5.ThemeName = "Office2013Light";
             // 
             // txtAccountNumber
@@ -104,6 +104,7 @@
             this.txtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "AccountNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtAccountNumber.Location = new System.Drawing.Point(168, 103);
+            this.txtAccountNumber.MaxLength = 32;
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(261, 21);
             this.txtAccountNumber.TabIndex = 4;
@@ -118,6 +119,7 @@
             this.txtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTransitNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "TransitNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtTransitNumber.Location = new System.Drawing.Point(168, 78);
+            this.txtTransitNumber.MaxLength = 254;
             this.txtTransitNumber.Name = "txtTransitNumber";
             this.txtTransitNumber.Size = new System.Drawing.Size(261, 21);
             this.txtTransitNumber.TabIndex = 3;
@@ -155,6 +157,7 @@
             this.txtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMfoName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "MfoName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtMfoName.Location = new System.Drawing.Point(168, 3);
+            this.txtMfoName.MaxLength = 254;
             this.txtMfoName.Name = "txtMfoName";
             this.txtMfoName.Size = new System.Drawing.Size(261, 21);
             this.txtMfoName.TabIndex = 0;
