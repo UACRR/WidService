@@ -9,6 +9,7 @@ using IpsCommonTypes.Wrappers;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Shared.Interfaces;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
 {
@@ -39,7 +40,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
         /// <param name="catalogFile"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)
+        public async Task<CatalogFile> UploadCatalogFileAsync(CatalogFile catalogFile, string path)
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
@@ -51,7 +52,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             var data = _exelEngine.ReadData(path, 12);
             TrimNotValidData(data);
 
-            var result = _service.UploadCatalogFile(catalogFile, data);
+            var result = await _service.UploadCatalogFileAsync(catalogFile, data);
 
 
             //var pubCatalogItemList = GetPubСatalog(path);

@@ -84,12 +84,11 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                         FileName = fileExel.SafeFileName,
                     };
                     CatalogFile result = null;
+                    
                     waitingBar.StartWaiting();
-                    await Task.Factory.StartNew(() =>
-                    {
-                        result = _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
-                    });
+                    result = await _catalogPresenter.UploadCatalogFileAsync(catalogFile, fileExel.FileName);
                     waitingBar.StopWaiting();
+
                     var boolResult = result != null;
                     MessageShow.ShowInfoByResult(LoadCatalogFileSuccessMsg, LoadCatalogFileErrorMsg, boolResult);
                     if (boolResult)

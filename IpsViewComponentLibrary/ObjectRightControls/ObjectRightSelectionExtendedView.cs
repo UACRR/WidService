@@ -50,20 +50,18 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             waitingBar.StartWaiting();
             SearchObjectRightQuery query = null;
             ItemListResponse<ObjectRightWithWID> result = null;
-            await Task.Factory.StartNew(() =>
-            {
-                query = new SearchObjectRightQuery
-                {
-                    DBSearch = _dbSearch,
-                    Page = navigatorPanel.CurrentPage,
-                    PageSize = navigatorPanel.PageSize,
-                    ObjectName = !string.IsNullOrWhiteSpace(txtObjectName.Text) ? txtObjectName.Text : string.Empty,
-                    Performer = !string.IsNullOrWhiteSpace(txtPerformer.Text) ? txtPerformer.Text : string.Empty,
-                    Author = !string.IsNullOrWhiteSpace(txtAuthorOrRightholder.Text) ? txtAuthorOrRightholder.Text : string.Empty
-                };
 
-                result = _service.GetObjectRightListBySearch(query);
-            });
+            query = new SearchObjectRightQuery
+            {
+                DBSearch = _dbSearch,
+                Page = navigatorPanel.CurrentPage,
+                PageSize = navigatorPanel.PageSize,
+                ObjectName = !string.IsNullOrWhiteSpace(txtObjectName.Text) ? txtObjectName.Text : string.Empty,
+                Performer = !string.IsNullOrWhiteSpace(txtPerformer.Text) ? txtPerformer.Text : string.Empty,
+                Author = !string.IsNullOrWhiteSpace(txtAuthorOrRightholder.Text) ? txtAuthorOrRightholder.Text : string.Empty
+            };
+
+            result = await _service.GetObjectRightListBySearchAsync(query);
 
             bsObjectRightsView.DataSource = result.List;
 

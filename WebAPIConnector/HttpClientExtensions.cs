@@ -9,7 +9,7 @@ namespace WebAPIConnector
 {
     public static class HttpClientExtensions
     {
-        public static HttpResponseMessage PostAsJson<T>(this HttpClient client, string url, T data)
+        public static HttpResponseMessage PostData<T>(this HttpClient client, string url, T data)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -20,7 +20,7 @@ namespace WebAPIConnector
             return client.PostAsync(url, content).GetAwaiter().GetResult();
         }
 
-        public static HttpResponseMessage PutAsJson<T>(this HttpClient client, string url, T data)
+        public static HttpResponseMessage PutData<T>(this HttpClient client, string url, T data)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -39,7 +39,7 @@ namespace WebAPIConnector
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static async Task<HttpResponseMessage> PutAsJsonAsync<T>(this HttpClient client, string url, T data)
+        public static async Task<HttpResponseMessage> PutDataAsync<T>(this HttpClient client, string url, T data)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -51,6 +51,25 @@ namespace WebAPIConnector
         }
 
         /// <summary>
+        /// Send a PUT request with data to the server by URL async
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static async Task<HttpResponseMessage> PutDataAsync<T>(this HttpClient client, string url, T data, CancellationToken cancellationToken)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+            return await client.PutAsync(url, content, cancellationToken);
+        }
+
+        /// <summary>
         /// Send a POST request with data to the server by URL async
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -58,7 +77,7 @@ namespace WebAPIConnector
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static async Task<HttpResponseMessage> PostAsJsonAsync<T>(this HttpClient client, string url, T data)
+        public static async Task<HttpResponseMessage> PostDataAsync<T>(this HttpClient client, string url, T data)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -70,76 +89,126 @@ namespace WebAPIConnector
         }
 
         /// <summary>
-        /// Send a PATCH request to the specified Uri as an asynchronous operation.
+        /// Send a POST request with data to the server by URL async
         /// </summary>
-        /// 
-        /// <returns>
-        /// Returns <see cref="T:System.Threading.Tasks.Task`1"/>.The task object representing the asynchronous operation.
-        /// </returns>
-        /// <param name="client">The instantiated Http Client <see cref="HttpClient"/></param>
-        /// <param name="requestUri">The Uri the request is sent to.</param>
-        /// <param name="content">The HTTP request content sent to the server.</param>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="client"/> was null.</exception>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="requestUri"/> was null.</exception>
-        public static Task<HttpResponseMessage> PatchAsync(this HttpClient client, string requestUri, HttpContent content)
+        /// <typeparam name="T"></typeparam>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static async Task<HttpResponseMessage> PostDataAsync<T>(this HttpClient client, string url, T data, CancellationToken cancellationToken)
         {
-            return client.PatchAsync(CreateUri(requestUri), content);
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+            return await client.PostAsync(url, content, cancellationToken);
         }
 
         /// <summary>
-        /// Send a PATCH request to the specified Uri as an asynchronous operation.
+        /// Send a PATCH request with data to the server by URL async
         /// </summary>
-        /// 
-        /// <returns>
-        /// Returns <see cref="T:System.Threading.Tasks.Task`1"/>.The task object representing the asynchronous operation.
-        /// </returns>
-        /// <param name="client">The instantiated Http Client <see cref="HttpClient"/></param>
-        /// <param name="requestUri">The Uri the request is sent to.</param>
-        /// <param name="content">The HTTP request content sent to the server.</param>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="client"/> was null.</exception>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="requestUri"/> was null.</exception>
-        public static Task<HttpResponseMessage> PatchAsync(this HttpClient client, Uri requestUri, HttpContent content)
+        /// <typeparam name="T"></typeparam>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static async Task<HttpResponseMessage> PatchDataAsync<T>(this HttpClient client, string url, T data)
         {
-            return client.PatchAsync(requestUri, content, CancellationToken.None);
-        }
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
 
-        /// <summary>
-        /// Send a PATCH request with a cancellation token as an asynchronous operation.
-        /// </summary>
-        /// 
-        /// <returns>
-        /// Returns <see cref="T:System.Threading.Tasks.Task`1"/>.The task object representing the asynchronous operation.
-        /// </returns>
-        /// <param name="client">The instantiated Http Client <see cref="HttpClient"/></param>
-        /// <param name="requestUri">The Uri the request is sent to.</param>
-        /// <param name="content">The HTTP request content sent to the server.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="client"/> was null.</exception>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="requestUri"/> was null.</exception>
-        public static Task<HttpResponseMessage> PatchAsync(this HttpClient client, string requestUri, HttpContent content, CancellationToken cancellationToken)
-        {
-            return client.PatchAsync(CreateUri(requestUri), content, cancellationToken);
-        }
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
 
-        /// <summary>
-        /// Send a PATCH request with a cancellation token as an asynchronous operation.
-        /// </summary>
-        /// 
-        /// <returns>
-        /// Returns <see cref="T:System.Threading.Tasks.Task`1"/>.The task object representing the asynchronous operation.
-        /// </returns>
-        /// <param name="client">The instantiated Http Client <see cref="HttpClient"/></param>
-        /// <param name="requestUri">The Uri the request is sent to.</param>
-        /// <param name="content">The HTTP request content sent to the server.</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="client"/> was null.</exception>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="requestUri"/> was null.</exception>
-        public static Task<HttpResponseMessage> PatchAsync(this HttpClient client, Uri requestUri, HttpContent content, CancellationToken cancellationToken)
-        {
-            return client.SendAsync(new HttpRequestMessage(new HttpMethod("PATCH"), requestUri)
+            var uri = CreateUri(url);
+            var requestMessage = new HttpRequestMessage(new HttpMethod("PATCH"), uri)
             {
                 Content = content
-            }, cancellationToken);
+            };
+
+            return await client.SendAsync(requestMessage);
+        }
+
+        /// <summary>
+        /// Send a PATCH request with data to the server by URL async
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static async Task<HttpResponseMessage> PatchDataAsync<T>(this HttpClient client, string url, T data, CancellationToken cancellationToken)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+
+            var uri = CreateUri(url);
+            var requestMessage = new HttpRequestMessage(new HttpMethod("PATCH"), uri)
+            {
+                Content = content
+            };
+
+            return await client.SendAsync(requestMessage, cancellationToken);
+        }
+
+        /// <summary>
+        /// Send a DELETE request with data to the server by URL async
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static async Task<HttpResponseMessage> DeleteDataAsync<T>(this HttpClient client, string url, T data)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+
+            var uri = CreateUri(url);
+            var requestMessage = new HttpRequestMessage(new HttpMethod("DELETE"), uri)
+            {
+                Content = content
+            };
+
+            return await client.SendAsync(requestMessage);
+        }
+
+        /// <summary>
+        /// Send a DELETE request with data to the server by URL async
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static async Task<HttpResponseMessage> DeleteDataAsync<T>(this HttpClient client, string url, T data, CancellationToken cancellationToken)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+
+            var uri = CreateUri(url);
+            var requestMessage = new HttpRequestMessage(new HttpMethod("DELETE"), uri)
+            {
+                Content = content
+            };
+
+            return await client.SendAsync(requestMessage, cancellationToken);
         }
 
         private static Uri CreateUri(string uri)

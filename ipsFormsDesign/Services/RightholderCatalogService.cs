@@ -86,11 +86,12 @@ namespace ipsFormsDesign.Services
         /// <param name="custId"></param>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        public CatalogFile UploadCatalogFile(CatalogFile catalogFile, List<List<string>> items)
+        public async Task<CatalogFile> UploadCatalogFileAsync(CatalogFile catalogFile, List<List<string>> items)
         {
             string url = $"{Prefix}/upload/{catalogFile.CustId}";
             var wrapData = new ObjectAndItemsWrap<CatalogFile, List<string>>(catalogFile, items);
-            var result = _apiConnector.NewItemWithResult<CatalogFile, object>(url, wrapData);
+            //var result = _apiConnector.NewItemWithResult<CatalogFile, object>(url, wrapData);
+            var result = await _apiConnector.SendPostRequestWithResultAsync<CatalogFile, ObjectAndItemsWrap<CatalogFile, List<string>>>(url, wrapData);
             return result;
         }
 
@@ -129,7 +130,7 @@ namespace ipsFormsDesign.Services
         public async Task<ExecSqlResponce<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/validate/{catalogFile.FileId}";
-            return await _apiConnector.UpdateItemWithResultAsync<ExecSqlResponce<CatalogFile>>(url, null);
+            return await _apiConnector.SendPutRequestWithResultAsync<ExecSqlResponce<CatalogFile>>(url, null);
         }
 
         public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)

@@ -118,7 +118,7 @@ namespace ipsFormsDesign.Services
 
         public bool Inherit(int rhId, List<RightHolder> inheritData)
         {
-            return _webApi.ApiAction<RightHolder>("rh/inheritance", rhId, inheritData);
+            return _webApi.NewItem<List<RightHolder>>($"rh/inheritance/{rhId}", inheritData);
         }
 
         public bool Transfer(TransferParameters transferParameters)
@@ -167,22 +167,5 @@ namespace ipsFormsDesign.Services
         }
 
         #endregion
-
-        public class DebugInheritData
-        {
-            public DebugInheritData()
-            {
-                ListCopyRight = new List<CopyRight>();
-                Authtors = new List<Authors>();
-                Inheriers = new List<CopyRight>();
-            }
-            public List<CopyRight> ListCopyRight { get; }
-            public List<Authors> Authtors { get; }
-            public List<CopyRight> Inheriers { get; }
-        }
-        public DebugInheritData InheritDebug(int checkCustId, List<RightHolder> inheritData)
-        {
-            return _webApi.ApiFunc<RightHolder, DebugInheritData>("rh/inheritancedebug", checkCustId, inheritData);
-        }
     }
 }
