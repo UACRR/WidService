@@ -2071,6 +2071,9 @@ namespace ipsmedserviceapp.Model
 
                 entity.ToTable("Authors", "dbo");
 
+                entity.HasIndex(e => e.CustId)
+                    .HasName("iAuthors_CustId");
+
                 entity.HasIndex(e => new { e.AuthorName, e.CustId })
                     .HasName("IdxNames");
 
