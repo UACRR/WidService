@@ -5,6 +5,7 @@ using IpsCommonTypes.Types.ObjectRightInfoWID;
 using IpsCommonTypes.Views;
 using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
+using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Services
 {
@@ -44,10 +45,10 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        public ItemListResponse<ObjectRightWithWID> GetObjectRightListBySearch(SearchObjectRightQuery query)
+        public async Task<ItemListResponse<ObjectRightWithWID>> GetObjectRightListBySearchAsync(SearchObjectRightQuery query)
         {
             string url = $"{Prefix}/searchbyquery";
-            var item = _apiConnector.GetItemByObjectQuery<ItemListResponse<ObjectRightWithWID>, SearchObjectRightQuery>(url, query);
+            var item = await _apiConnector.SendPostRequestWithResultAsync<ItemListResponse<ObjectRightWithWID>, SearchObjectRightQuery>(url, query);
             return item;
         }
 
