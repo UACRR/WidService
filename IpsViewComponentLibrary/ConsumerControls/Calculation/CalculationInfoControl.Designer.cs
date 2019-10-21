@@ -509,6 +509,7 @@
             this.btnCancelDistribute.Enabled = false;
             this.btnCancelDistribute.Name = "btnCancelDistribute";
             this.btnCancelDistribute.Text = "Скасувати прив\'язку";
+            this.btnCancelDistribute.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // CalculationInfoControl
             // 

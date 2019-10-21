@@ -59,6 +59,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.rdbFolk = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbNotProtected = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbAuthorRightholder = new Telerik.WinControls.UI.RadRadioButton();
+            this.mtxtRateMech = new Telerik.WinControls.UI.RadMaskedEditBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.panelCommand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
@@ -86,6 +88,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbAuthorRightholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mtxtRateMech)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,6 +180,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // panelRightholderInfo
             // 
+            this.panelRightholderInfo.Controls.Add(this.mtxtRateMech);
+            this.panelRightholderInfo.Controls.Add(this.radLabel1);
             this.panelRightholderInfo.Controls.Add(this.radLabel5);
             this.panelRightholderInfo.Controls.Add(this.dtEndDate);
             this.panelRightholderInfo.Controls.Add(this.dtBeginDate);
@@ -241,7 +247,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // mtxtRate
             // 
             this.mtxtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "Rate", true));
-            this.mtxtRate.Location = new System.Drawing.Point(120, 15);
+            this.mtxtRate.Location = new System.Drawing.Point(127, 15);
             this.mtxtRate.Mask = "N2";
             this.mtxtRate.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRate.Name = "mtxtRate";
@@ -257,9 +263,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.radLabel3.Location = new System.Drawing.Point(9, 16);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(80, 19);
+            this.radLabel3.Size = new System.Drawing.Size(112, 19);
             this.radLabel3.TabIndex = 64;
-            this.radLabel3.Text = "% володіння:";
+            this.radLabel3.Text = "% володіння (Pub):";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
             // checkIsRightholder
@@ -379,6 +385,28 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.rdbAuthorRightholder.Text = "Охороняється";
             this.rdbAuthorRightholder.ThemeName = "Office2013Light";
             // 
+            // mtxtRateMech
+            // 
+            this.mtxtRateMech.Location = new System.Drawing.Point(330, 15);
+            this.mtxtRateMech.Mask = "N2";
+            this.mtxtRateMech.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
+            this.mtxtRateMech.Name = "mtxtRateMech";
+            this.mtxtRateMech.PromptChar = '0';
+            this.mtxtRateMech.Size = new System.Drawing.Size(69, 21);
+            this.mtxtRateMech.TabIndex = 73;
+            this.mtxtRateMech.TabStop = false;
+            this.mtxtRateMech.Text = "0,00";
+            this.mtxtRateMech.ThemeName = "Office2013Light";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(202, 16);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(122, 19);
+            this.radLabel1.TabIndex = 72;
+            this.radLabel1.Text = "% володіння (Mech):";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
             // AuthorRightholderItemView
             // 
             this.AcceptButton = this.btnSave;
@@ -430,6 +458,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbAuthorRightholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mtxtRateMech)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -465,5 +495,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private Telerik.WinControls.UI.RadRadioButton rdbNotProtected;
         private Telerik.WinControls.UI.RadRadioButton rdbAuthorRightholder;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private Telerik.WinControls.UI.RadMaskedEditBox mtxtRateMech;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
     }
 }
