@@ -79,6 +79,7 @@ namespace ipsFormsDesign.Utilities
                     ObjId = objectAuthorRightholder.ObjId,
                     RoleCode = objectAuthorRightholder.RoleCode,
                     Rate = objectAuthorRightholder.Rate,
+                    RateMech = objectAuthorRightholder.RateMech,
                     BeginDate = objectAuthorRightholder.BeginDate,
                     EndDate = objectAuthorRightholder.EndDate,
                     Status = objectAuthorRightholder.CopyrightStatus,

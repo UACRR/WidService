@@ -31,6 +31,18 @@ namespace ipsFormsDesign.Dictionary
             }
         }
 
+        private decimal _rateMech;
+
+        public decimal RateMech
+        {
+            get => _rateMech;
+            set
+            {
+                _rateMech = value;
+                OnPropertyChanged(nameof(RateMech));
+            }
+        }
+
         private DateTime? _beginDate;
         public DateTime? BeginDate
         {

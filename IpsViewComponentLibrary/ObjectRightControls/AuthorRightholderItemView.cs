@@ -40,7 +40,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _category = category;
             SetDictionaries();
 
-            objectAuthorRightholderBindingSource.DataSource = _authorRightholder;
+            bsObjectAuthorRightholder.DataSource = _authorRightholder;
 
             if (_authorRightholder.CopyrightStatus == 1)
                 SetReadOnlyForConfirmRightholder();
@@ -110,7 +110,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 _authorRightholder.CustId = selectedRightholder.CustId;
             }
 
-            objectAuthorRightholderBindingSource.ResetBindings(false);
+            bsObjectAuthorRightholder.ResetBindings(false);
         }
 
         private void rpanelFolkType_SelectedValueChanged(object sender, EventArgs e)
@@ -124,7 +124,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             else if (_authorRightholder.FolkType == 3)
                 pvParameters.SelectedPage = pvpFolk;
 
-            objectAuthorRightholderBindingSource.CurrencyManager.Refresh();
+            bsObjectAuthorRightholder.CurrencyManager.Refresh();
         }
 
         private void checkIsRightholder_CheckStateChanged(object sender, EventArgs e)

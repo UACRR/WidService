@@ -239,6 +239,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                         CopyrightStatus = foundedCopyright?.Status,
                         CommunityName = foundedRightholder?.Community_Name,
                         Rate = foundedCopyright?.Rate ?? 0m,
+                        RateMech = foundedCopyright?.RateMech ?? 0m,
                         BeginDate = foundedCopyright?.BeginDate,
                         EndDate = foundedCopyright?.EndDate,
                     });
