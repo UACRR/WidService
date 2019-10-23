@@ -263,6 +263,34 @@ namespace WebAPIConnector
             return default(TResult);
         }
 
+        /// <summary>
+        /// Отримати список об'єктів з серверу додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="listParam"></param>
+        /// <returns></returns>
+        public async Task<List<T>> GetListAsync<T>(string url, params KeyValuePair<string, string>[] listParam)
+        {
+            string requestUri = url;
+            try
+            {
+                if (listParam.Any())
+                    requestUri = string.Concat(requestUri, AsQueryString(listParam));
+
+                var result = await client.GetAsync(requestUri);
+
+                if (result != null && !result.IsSuccessStatusCode)
+                    LogError(result);
+
+                return result != null && result.IsSuccessStatusCode ? result.Content.ReadAsList<T>() : default(List<T>);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
 

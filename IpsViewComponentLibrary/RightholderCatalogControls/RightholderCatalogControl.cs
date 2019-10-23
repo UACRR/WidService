@@ -9,6 +9,8 @@ using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.RightholderCatalogControls.Presenters;
 using IpsViewComponentLibrary.Shared.Forms;
 using IpsViewComponentLibrary.Utilities;
+using IPSViewComponentLibraryWPF.Modules.CatalogFileItems;
+using IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Enums;
 
 namespace IpsViewComponentLibrary.RightholderCatalogControls
 {
@@ -134,8 +136,11 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                     //    form.ShowDialog();
                     //}
 
-                    var form = new RightholderCatalogDetailWPFForm(row);
-                    form.ShowDialog();
+                    //var form = new RightholderCatalogDetailWPFForm(row);
+                    //form.ShowDialog();
+
+                    var window = new CatalogFileItemsWindow(row, CatalogFileType.PublisherCatalog);
+                    window.ShowDialog();
 
                     break;
 

@@ -69,7 +69,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         {
             List<object[]> items = null;
 
-            ctrlGridItemList.ClearData();
+            //ctrlGridItemList.ClearData();
             GC.Collect();
 
             waitingBar.StartWaiting();
@@ -79,7 +79,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             });
             waitingBar.StopWaiting();
 
-            ctrlGridItemList.LoadData(items);
+            //ctrlGridItemList.LoadData(items);
         }
 
         public object DataSource
@@ -127,7 +127,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private void btnGetExcel_Click(object sender, EventArgs e)
         {
             var fileName = $"{_catalogFile.FileName.Replace(".xlsx", "")}_export";
-            ctrlGridItemList.Export(fileName);
+            //ctrlGridItemList.Export(fileName);
             //if (result)
             //    MessageShow.ShowInfo(FileExportCompleteMsg);
         }

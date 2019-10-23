@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalogItem;
 using Telerik.Documents.SpreadsheetStreaming;
 using Telerik.Windows.Controls;
 

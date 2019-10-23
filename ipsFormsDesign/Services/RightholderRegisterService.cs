@@ -1,6 +1,7 @@
 ﻿using IpsCommonTypes.Types;
 using ipsFormsDesign.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
 
@@ -46,6 +47,12 @@ namespace ipsFormsDesign.Services
         {
             string url = $"{Prefix}/{custId}/file";
             return _apiConnector.GetItemById<CatalogFile>(url, fileId.ToString());
+        }
+
+        public async Task<List<RhcatalogItem>> GetCatalogFileItems(int fileId)
+        {
+            string url = $"{Prefix}/fileitems/{fileId}";
+            return await _apiConnector.GetListAsync<RhcatalogItem>(url);
         }
 
         /// <summary>

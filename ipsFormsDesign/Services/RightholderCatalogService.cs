@@ -81,6 +81,18 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Отримати дані записів каталогу
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public async Task<List<object[]>> GetItemsForExportAsync(int fileId)
+        {
+            string url = $"{Prefix}/exportdata/{fileId}";
+            var result = await _apiConnector.GetListAsync<object[]>(url);
+            return result;
+        }
+
+        /// <summary>
         /// Завантажити CatalogFile на сервер
         /// </summary>
         /// <param name="custId"></param>

@@ -33,8 +33,11 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// ведомость акц
+        /// Список звітів
         /// </summary>
+        /// <param name="beginDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="status"></param>
         /// <returns></returns>
         [HttpGet("filter")]
         public async Task<IActionResult> GetListByFilter([FromQuery] DateTime? beginDate, [FromQuery] DateTime? endDate, [FromQuery] int? status)

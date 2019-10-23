@@ -227,7 +227,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     foundedRegisterItem.IsAuto = rvm.IsAuto;
                     foundedRegisterItem.CodeItem = rvm.CodeItem;
                     foundedRegisterItem.Wic = rvm.Wic;
-                };
+                }
             }
 
             foreach (var rvm in _view.RegisterItemListStage)
@@ -250,7 +250,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     foundedRegisterItem.IsAuto = rvm.IsAuto;
                     foundedRegisterItem.CodeItem = rvm.CodeItem;
                     foundedRegisterItem.Wic = rvm.Wic;
-                };
+                }
             }
 
             var result = _registerService.Save(_register);

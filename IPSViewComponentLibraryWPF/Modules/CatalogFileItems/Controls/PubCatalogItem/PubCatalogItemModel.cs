@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IPSViewComponentLibraryWPF
+namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalogItem
 {
     public class PubCatalogItemModel
     {

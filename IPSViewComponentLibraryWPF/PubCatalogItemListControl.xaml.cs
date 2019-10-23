@@ -17,31 +17,31 @@ namespace IPSViewComponentLibraryWPF
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class PubCatalogItemListControl : UserControl
+    public sealed partial class PubCatalogItemListControl : UserControl
     {
-        private readonly PubCatalogItemListControlViewModel _viewModel;
+        //private readonly PubCatalogItemListControlViewModel _viewModel;
 
         public PubCatalogItemListControl()
         {
             InitializeComponent();
-            _viewModel = new PubCatalogItemListControlViewModel();
-            DataContext = _viewModel;
+            //_viewModel = new PubCatalogItemListControlViewModel();
+            //DataContext = _viewModel;
             this.Language = System.Windows.Markup.XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
         }
 
-        public void LoadData(ICollection<object[]> items)
-        {
-            _viewModel.LoadData(items);
-        }
+        //public void LoadData(ICollection<object[]> items)
+        //{
+        //    _viewModel.LoadData(items);
+        //}
 
-        public void ClearData()
-        {
-            _viewModel.ClearData();
-        }
+        //public void ClearData()
+        //{
+        //    _viewModel.ClearData();
+        //}
 
-        public void Export(string fileName)
-        {
-            _viewModel.Export(fileName);
-        }
+        //public void Export(string fileName)
+        //{
+        //    _viewModel.Export(fileName);
+        //}
     }
 }
