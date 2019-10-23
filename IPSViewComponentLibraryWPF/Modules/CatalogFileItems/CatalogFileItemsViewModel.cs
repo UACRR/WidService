@@ -10,17 +10,13 @@ using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
 {
-    public sealed class CatalogFileItemsViewModel : ViewModelBase
+    public class CatalogFileItemsViewModel : ViewModelBase
     {
         private RightholderRegisterService _rightholderRegisterService;
         private RightholderCatalogService _rightholderCatalogService;
         private List<object[]> _objectsList;
 
-        public CatalogFileItemsViewModel()
-        {
-            _rightholderRegisterService = RightholderRegisterService.GetInstance();
-            _rightholderCatalogService = RightholderCatalogService.GetInstance();
-        }
+        public CatalogFileItemsViewModel() { }
 
         #region * * * PROPERTIES FOR SETTINGS * * *
 
@@ -176,7 +172,10 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
             set
             {
                 _catalogFile = value;
-                
+
+                _rightholderRegisterService = RightholderRegisterService.GetInstance();
+                _rightholderCatalogService = RightholderCatalogService.GetInstance();
+
                 if (value != null)
                     LoadData();
 

@@ -5,13 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IPSViewComponentLibraryWPF"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="IPSViewComponentLibraryWPF.PubCatalogItemListControl"
-             mc:Ignorable="d" Height="370" Width="740">
+             mc:Ignorable="d" Height="400" Width="740"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
     <Grid Margin="1">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <DockPanel Margin="0" Grid.ColumnSpan="2">
+        <DockPanel>
             <telerik:RadBusyIndicator
                 IsBusy="{Binding IsBusy, IsAsync=True}"
                 BusyContent="{Binding BusyContent}"

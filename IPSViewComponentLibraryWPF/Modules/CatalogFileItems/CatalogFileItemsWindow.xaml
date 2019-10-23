@@ -4,11 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        xmlns:viewmodel= "clr-namespace:IPSViewComponentLibraryWPF.Modules.CatalogFileItems"
+        xmlns:local= "clr-namespace:IPSViewComponentLibraryWPF.Modules.CatalogFileItems"
+        xmlns:ipsViewComponentLibraryWpf="clr-namespace:IPSViewComponentLibraryWPF"
         mc:Ignorable="d"
-        Header="{Binding TitleName}" Height="470" Width="792"
+        Header="{Binding TitleName}" Height="499" Width="741"
         telerik:StyleManager.Theme="VisualStudio2013"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen">
 
     <telerik:RadWindow.Resources>
         <Style TargetType="telerik:RadButton">
@@ -22,7 +24,7 @@
     </telerik:RadWindow.Resources>
 
     <telerik:RadWindow.DataContext>
-        <viewmodel:CatalogFileItemsViewModel/>
+        <local:CatalogFileItemsViewModel/>
     </telerik:RadWindow.DataContext>
 
     <Grid>
@@ -69,7 +71,7 @@
 
         </Grid>
 
-        <telerik:RadDockPanel Name="gridPanel" Margin="2,3,2,3" Background="AliceBlue" Grid.Row="1"/>
+        <telerik:RadDockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Name="gridPanel" Margin="2,3,2,3" Grid.Row="1"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <telerik:RadButton Name="btnValidate" Content="Контроль"/>
