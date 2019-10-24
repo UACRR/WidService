@@ -1,31 +1,31 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using ipsFormsDesign.Model;
 using IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Enums;
-using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
 {
     /// <summary>
-    /// Interaction logic for CatalogFileItemsWindow.xaml
+    /// Interaction logic for CatalogFileItemsListWindow.xaml
     /// </summary>
-    public sealed partial class CatalogFileItemsWindow : RadWindow
+    public partial class CatalogFileItemsListWindow
     {
-        public CatalogFileItemsWindow(CatalogFile catalogFile, CatalogFileType catalogFileType)
+        public CatalogFileItemsListWindow(CatalogFile catalogFile, CatalogFileType catalogFileType)
         {
             InitializeComponent();
-
             if (catalogFileType == CatalogFileType.PublisherCatalog)
             {
                 var ctrlPubCatalogItemList = new PubCatalogItemListControl
                 {
                     DataContext = this.DataContext,
                     Margin = new Thickness(1, 3, 1, 3),
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    VerticalContentAlignment = VerticalAlignment.Stretch,
                     Name = "ctrlPubCatalogItemList",
                 };
-                gridPanel.Children.Add(ctrlPubCatalogItemList);
-                gridPanel.LastChildFill = true;
+
+                panelForControls.Children.Add(ctrlPubCatalogItemList);
 
             }
             else if (catalogFileType == CatalogFileType.RightholderRegister)
@@ -33,8 +33,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
                 // some code
             }
 
-            ((CatalogFileItemsViewModel) DataContext).CatalogFileType = catalogFileType;
-            ((CatalogFileItemsViewModel) DataContext).CatalogFile = catalogFile;
+            ((CatalogFileItemsListViewModel)DataContext).CatalogFileType = catalogFileType;
+            ((CatalogFileItemsListViewModel)DataContext).CatalogFile = catalogFile;
         }
     }
 }

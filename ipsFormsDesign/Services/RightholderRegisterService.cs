@@ -3,11 +3,12 @@ using ipsFormsDesign.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using IpsCommonTypes.Wrappers;
+using ipsFormsDesign.Services.Interfaces;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
 {
-    public class RightholderRegisterService
+    public class RightholderRegisterService : ICatalogFileItemsService
     {
         private const string Prefix = "RightholderRegister";
         private readonly ApiConnector _apiConnector;
@@ -100,6 +101,16 @@ namespace ipsFormsDesign.Services
             string url = $"{Prefix}/{custId}/file/{fileId}/process";
             _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
             return outResult;
+        }
+
+        public Task<ExecSqlResponce<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<ExecSqlResponce<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

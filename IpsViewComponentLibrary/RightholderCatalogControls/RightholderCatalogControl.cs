@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
@@ -11,6 +12,7 @@ using IpsViewComponentLibrary.Shared.Forms;
 using IpsViewComponentLibrary.Utilities;
 using IPSViewComponentLibraryWPF.Modules.CatalogFileItems;
 using IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Enums;
+using Telerik.Windows.Controls;
 
 namespace IpsViewComponentLibrary.RightholderCatalogControls
 {
@@ -139,9 +141,9 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                     //var form = new RightholderCatalogDetailWPFForm(row);
                     //form.ShowDialog();
 
-                    var window = new CatalogFileItemsWindow(row, CatalogFileType.PublisherCatalog);
+                    var window = new CatalogFileItemsListWindow(row, CatalogFileType.PublisherCatalog);
                     window.ShowDialog();
-
+                    
                     break;
 
                 case "deleteBtn":

@@ -12,6 +12,7 @@ namespace IPSViewComponentLibraryWPF
 {
     public class PubCatalogItemListControlViewModel: ViewModelBase
     {
+        // TODO: REMOVE CLASS
         List<object[]> _objectsList;
 
         private string _fileName;
@@ -75,12 +76,6 @@ namespace IPSViewComponentLibraryWPF
             }
         }
 
-        private void ChangeBusyContent(int currentIteration, int count)
-        {
-            // x% = ( n * 100 ) / a
-            var percent = currentIteration * 100 / count;
-            BusyContent = $"Exported: {percent}%";
-        }
 
         public void ClearData()
         {
@@ -117,9 +112,8 @@ namespace IPSViewComponentLibraryWPF
             ItemsSource = itemList;
         }
 
-        public bool Export(string fileName)
+        public async void Export(string fileName)
         {
-            bool result = false;
             _fileName = fileName;
 
             Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog()
@@ -133,17 +127,23 @@ namespace IPSViewComponentLibraryWPF
 
             if (dialogResult)
             {
-                result = true;
-
-                RunExportAsync(dialog);
+                IsBusy = true;
+                await RunExportAsync(dialog, ChangeBusyContent);
+                IsBusy = false;
             }
-
-            return result;
+            
+            // message
         }
 
-        private async void RunExportAsync(Microsoft.Win32.SaveFileDialog dialog)
+        private void ChangeBusyContent(int currentIteration, int count)
         {
-            IsBusy = true;
+            // x% = ( n * 100 ) / a
+            var percent = currentIteration * 100 / count;
+            BusyContent = $"Exported: {percent}%";
+        }
+
+        private async Task RunExportAsync(Microsoft.Win32.SaveFileDialog dialog, Action<int, int> changeBusyContent = null)
+        {
             await Task.Factory.StartNew(() =>
             {
                 using (Stream stream = dialog.OpenFile())
@@ -199,16 +199,13 @@ namespace IPSViewComponentLibraryWPF
                                     ExportErrComment(rowExporter, item, normalFormat);
                                 }
 
-                                InvokeOnUIThread(() =>
-                                {
-                                    ChangeBusyContent(rowIndex, _objectsList.Count);
-                                });
+                                var index = rowIndex;
+                                InvokeOnUIThread(() => changeBusyContent?.Invoke(index, _objectsList.Count));
                             }
                         }
                     }
                 }
             });
-            IsBusy = false;
         }
 
         private void ExportHeaderRows(IWorksheetExporter worksheetExporter)

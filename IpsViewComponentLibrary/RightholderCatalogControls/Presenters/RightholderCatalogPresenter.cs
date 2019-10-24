@@ -340,7 +340,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
 
         public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
-            return _service.ProcessCatalogFileItems(catalogFile);
+            return _service.ProcessCatalogFileItemsAsync(catalogFile).GetAwaiter().GetResult();
         }
 
         public List<PubCatalogItem> GetCatalogFileItems(int fileId, int skip, int take)

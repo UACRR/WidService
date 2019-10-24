@@ -5,22 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IPSViewComponentLibraryWPF"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="IPSViewComponentLibraryWPF.PubCatalogItemListControl"
-             mc:Ignorable="d" Height="400" Width="740"
-             HorizontalAlignment="Stretch"
-             VerticalAlignment="Stretch">
-    <Grid Margin="1">
-        <DockPanel>
-            <telerik:RadBusyIndicator
+             mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
+             HorizontalContentAlignment="Stretch"
+             VerticalContentAlignment="Stretch"
+             Margin="0">
+    <!--Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"-->
+    <Grid>
+        <telerik:RadBusyIndicator
                 IsBusy="{Binding IsBusy, IsAsync=True}"
                 BusyContent="{Binding BusyContent}"
                 Name="busyIndicator"
                 IsIndeterminate="True"
                 telerik:StyleManager.Theme="VisualStudio2013" FontWeight="Bold" FontFamily="Times New Roman" FontSize="20">
-                <telerik:RadGridView 
+            <telerik:RadGridView 
                     x:Name="gvItemList" 
                     HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch"
-                    Margin="3"
                     RowIndicatorVisibility="Collapsed"
                     AutoGenerateColumns="False"
                     AllowDrop="False"
@@ -32,23 +32,22 @@
                     ShowToolTipOnTrimmedText="True"
                     LeftFrozenColumnCount="3"
                     telerik:StyleManager.Theme="VisualStudio2013">
-                    <telerik:RadGridView.Columns>
-                        <telerik:GridViewDataColumn Header="Шифр твору" DataMemberBinding="{Binding ItemCode}" HeaderTextAlignment="Center" MinWidth="100" />
-                        <telerik:GridViewDataColumn Header="ISWC" DataMemberBinding="{Binding Iswc}" HeaderTextAlignment="Center" MinWidth="100" />
-                        <telerik:GridViewDataColumn Header="Назва товару" DataMemberBinding="{Binding ObjName}" HeaderTextAlignment="Center" Width="350" />
-                        <telerik:GridViewDataColumn Header="Жанр твору" DataMemberBinding="{Binding GenreName}" HeaderTextAlignment="Center" Width="100" />
-                        <telerik:GridViewDataColumn Header="Виконавець" DataMemberBinding="{Binding Performer}" HeaderTextAlignment="Center" Width="350" />
-                        <telerik:GridViewDataColumn Header="Композитор(и)" DataMemberBinding="{Binding AuthorMusic}" HeaderTextAlignment="Center" Width="350" />
-                        <telerik:GridViewDataColumn Header="Автор(и) тексту" DataMemberBinding="{Binding AuthorText}" HeaderTextAlignment="Center" Width="350" />
-                        <telerik:GridViewDataColumn Header="Творча роль правовласника" DataMemberBinding="{Binding RoleName}" HeaderTextAlignment="Center" MinWidth="100" />
-                        <telerik:GridViewDataColumn Header="Назва Правовласника" DataMemberBinding="{Binding RhName}" HeaderTextAlignment="Center" MinWidth="150" />
-                        <telerik:GridViewDataColumn Header="%" DataMemberBinding="{Binding Rate}" HeaderTextAlignment="Center" TextAlignment="Right" MinWidth="50" DataFormatString="N2"/>
-                        <telerik:GridViewDataColumn Header='Діє "з"' DataMemberBinding="{Binding DateBegin}" HeaderTextAlignment="Center" TextAlignment="Center" MinWidth="75" DataFormatString="{}{0:d}"/>
-                        <telerik:GridViewDataColumn Header='Діє "по"' DataMemberBinding="{Binding DateEnd, StringFormat='{}{0:d}'}" HeaderTextAlignment="Center" TextAlignment="Center" MinWidth="75"/>
-                        <telerik:GridViewDataColumn Header="Помилка" DataMemberBinding="{Binding ErrComment}" HeaderTextAlignment="Center" MinWidth="100" DataFormatString="N2"/>
-                    </telerik:RadGridView.Columns>
-                </telerik:RadGridView>
-            </telerik:RadBusyIndicator>
-        </DockPanel>
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn Header="Шифр твору" DataMemberBinding="{Binding ItemCode}" HeaderTextAlignment="Center" MinWidth="100" />
+                    <telerik:GridViewDataColumn Header="ISWC" DataMemberBinding="{Binding Iswc}" HeaderTextAlignment="Center" MinWidth="100" />
+                    <telerik:GridViewDataColumn Header="Назва товару" DataMemberBinding="{Binding ObjName}" HeaderTextAlignment="Center" Width="350" />
+                    <telerik:GridViewDataColumn Header="Жанр твору" DataMemberBinding="{Binding GenreName}" HeaderTextAlignment="Center" Width="100" />
+                    <telerik:GridViewDataColumn Header="Виконавець" DataMemberBinding="{Binding Performer}" HeaderTextAlignment="Center" Width="350" />
+                    <telerik:GridViewDataColumn Header="Композитор(и)" DataMemberBinding="{Binding AuthorMusic}" HeaderTextAlignment="Center" Width="350" />
+                    <telerik:GridViewDataColumn Header="Автор(и) тексту" DataMemberBinding="{Binding AuthorText}" HeaderTextAlignment="Center" Width="350" />
+                    <telerik:GridViewDataColumn Header="Творча роль правовласника" DataMemberBinding="{Binding RoleName}" HeaderTextAlignment="Center" MinWidth="100" />
+                    <telerik:GridViewDataColumn Header="Назва Правовласника" DataMemberBinding="{Binding RhName}" HeaderTextAlignment="Center" MinWidth="150" />
+                    <telerik:GridViewDataColumn Header="%" DataMemberBinding="{Binding Rate}" HeaderTextAlignment="Center" TextAlignment="Right" MinWidth="50" DataFormatString="N2"/>
+                    <telerik:GridViewDataColumn Header='Діє "з"' DataMemberBinding="{Binding DateBegin}" HeaderTextAlignment="Center" TextAlignment="Center" MinWidth="75" DataFormatString="{}{0:d}"/>
+                    <telerik:GridViewDataColumn Header='Діє "по"' DataMemberBinding="{Binding DateEnd, StringFormat='{}{0:d}'}" HeaderTextAlignment="Center" TextAlignment="Center" MinWidth="75"/>
+                    <telerik:GridViewDataColumn Header="Помилка" DataMemberBinding="{Binding ErrComment}" HeaderTextAlignment="Center" MinWidth="100" DataFormatString="N2"/>
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </telerik:RadBusyIndicator>
     </Grid>
 </UserControl>

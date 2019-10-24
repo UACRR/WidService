@@ -7,10 +7,11 @@ using IpsCommonTypes.Wrappers;
 using Telerik.WinControls;
 using WebAPIConnector;
 using System.Threading.Tasks;
+using ipsFormsDesign.Services.Interfaces;
 
 namespace ipsFormsDesign.Services
 {
-    public class RightholderCatalogService
+    public class RightholderCatalogService: ICatalogFileItemsService
     {
         private const string Prefix = "catalog";
         private readonly ApiConnector _apiConnector;
@@ -135,21 +136,25 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// Async call procedure
+        /// Begin process Validate CatalogFile items async
         /// </summary>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
         public async Task<ExecSqlResponce<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/validate/{catalogFile.FileId}";
-            return await _apiConnector.SendPutRequestWithResultAsync<ExecSqlResponce<CatalogFile>>(url, null);
+            return await _apiConnector.SendPutRequestWithResultAsync<ExecSqlResponce<CatalogFile>>(url);
         }
 
-        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
+        /// <summary>
+        /// Begin perform process of CatalogFile async
+        /// </summary>
+        /// <param name="catalogFile"></param>
+        /// <returns></returns>
+        public async Task<ExecSqlResponce<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile)
         {
-            string url = $"{Prefix}/process";
-            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out ExecSqlResponce<CatalogFile> outCatalogFile);
-            return outCatalogFile;
+            string url = $"{Prefix}/process/{catalogFile.FileId}";
+            return await _apiConnector.SendPutRequestWithResultAsync<ExecSqlResponce<CatalogFile>>(url);
         }
 
         public void ShowErrors()
