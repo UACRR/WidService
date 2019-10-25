@@ -29,10 +29,10 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             return _service.GetCatalogFileList(custId);
         }
 
-        public CatalogFile GetCatalogFile(int custId, int fileId)
-        {
-            return _service.GetCatalogFile(custId, fileId);
-        }
+        //public CatalogFile GetCatalogFile(int custId, int fileId)
+        //{
+        //    return _service.GetCatalogFile(custId, fileId);
+        //}
 
         /// <summary>
         /// Завантажити каталог
@@ -335,12 +335,12 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
 
         public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
-            return _service.ValidateCatalogFileItems(catalogFile);
+            return null;// _service.ValidateCatalogFileItems(catalogFile);
         }
 
         public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
-            return _service.ProcessCatalogFileItemsAsync(catalogFile).GetAwaiter().GetResult();
+            return null;// _service.ProcessCatalogFileItemsAsync(catalogFile).GetAwaiter().GetResult();
         }
 
         public List<PubCatalogItem> GetCatalogFileItems(int fileId, int skip, int take)
