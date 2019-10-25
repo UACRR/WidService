@@ -18,8 +18,7 @@ using IpsCommonTypes.Wrappers;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholdersObjectsRightsControl : UserControl,
-        ISubscriber<ObjectRightUpdatedEvent>
+    public partial class RightholdersObjectsRightsControl : UserControl, ISubscriber<ObjectRightUpdatedEvent>
     {
         public ObjectRightForRightholder _objectRight;
         public ObjectRightForRightholder SelectedObject
@@ -110,7 +109,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholdersObjectsRightsControl()
         {
             InitializeComponent();
-            ctrlGridRowCount.RadGridViewDataSource = gvRightholdersObjectsRights;
 
             gvRightholdersObjectsRights.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
 
@@ -218,16 +216,17 @@ namespace IpsViewComponentLibrary.RightholderControls
             var custIdSecondary = ctrlRightholderSelectorSecondary.Rightholder?.CustId;
 
             ItemListResponse<ObjectRightForRightholder> result = null;
-            
-            //waitingBar.StartWaiting();
+
+            waitingBar.StartWaiting();
             await Task.Factory.StartNew(() =>
             {
                 result = service.GetRightholdersObjectsRights(custId, custIdSecondary, navigatorPanel.Skip, navigatorPanel.Take);
             });
-            //waitingBar.StopWaiting();
+            waitingBar.StopWaiting();
 
             objectRightForRightholderBindingSource.DataSource = result?.List;
             navigatorPanel.TotalPages = (int)Math.Ceiling((result?.TotalItems ?? 0d) / navigatorPanel.PageSize);
+            ctrlGridRowCount.TotalItems = result?.TotalItems ?? 0;
         }
 
         /// <summary>
