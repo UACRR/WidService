@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.ctrlGridItemList_ = new System.Windows.Forms.Integration.ElementHost();
-            this.ctrlGridItemList = new PubCatalogItemListControl();
+            this._ctrlGridItem = new PubCatalogItemControl();
             this.ctrlNavigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
@@ -138,7 +138,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
             this.ctrlGridItemList_.Name = "ctrlGridItemList_";
             this.ctrlGridItemList_.Size = new System.Drawing.Size(816, 312);
             this.ctrlGridItemList_.TabIndex = 14;
-            this.ctrlGridItemList_.Child = this.ctrlGridItemList;
+            this.ctrlGridItemList_.Child = this._ctrlGridItem;
             // 
             // ctrlNavigatorPanel
             // 
@@ -436,7 +436,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private System.Windows.Forms.Integration.ElementHost ctrlGridItemList_;
-        private PubCatalogItemListControl ctrlGridItemList;
+        private PubCatalogItemControl _ctrlGridItem;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement2;

@@ -163,16 +163,16 @@
     <Compile Include="RightholderCatalogControls\RightholderCatalogControl.Designer.cs">
       <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderCatalogControls\RightholderCatalogDetailWPFForm.cs">
+    <Compile Include="_trash\RightholderCatalogDetailWPFForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RightholderCatalogControls\RightholderCatalogDetailWPFForm.Designer.cs">
+    <Compile Include="_trash\RightholderCatalogDetailWPFForm.Designer.cs">
       <DependentUpon>RightholderCatalogDetailWPFForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderCatalogControls\RightholderCatalogDetailForm.cs">
+    <Compile Include="_trash\RightholderCatalogDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RightholderCatalogControls\RightholderCatalogDetailForm.Designer.cs">
+    <Compile Include="_trash\RightholderCatalogDetailForm.Designer.cs">
       <DependentUpon>RightholderCatalogDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Enums\AgreementModifyType.cs" />
@@ -1220,10 +1220,10 @@
     <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogControl.resx">
       <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogDetailWPFForm.resx">
+    <EmbeddedResource Include="_trash\RightholderCatalogDetailWPFForm.resx">
       <DependentUpon>RightholderCatalogDetailWPFForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogDetailForm.resx">
+    <EmbeddedResource Include="_trash\RightholderCatalogDetailForm.resx">
       <DependentUpon>RightholderCatalogDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\LicenseAgreementNotActiveControl.resx">
@@ -1891,7 +1891,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ConsumerControls\Presenters\" />
-    <Folder Include="_trash\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

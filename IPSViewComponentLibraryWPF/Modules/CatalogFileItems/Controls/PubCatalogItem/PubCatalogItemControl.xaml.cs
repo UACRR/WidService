@@ -4,11 +4,11 @@ using System.Windows.Controls;
 namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalogItem
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for PubCatalogItemControl.xaml
     /// </summary>
-    public sealed partial class PubCatalogItemListControl : UserControl
+    public sealed partial class PubCatalogItemControl : UserControl
     {
-        public PubCatalogItemListControl()
+        public PubCatalogItemControl()
         {
             InitializeComponent();
             Language = System.Windows.Markup.XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);

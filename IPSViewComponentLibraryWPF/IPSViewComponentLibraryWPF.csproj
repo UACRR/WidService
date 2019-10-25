@@ -129,7 +129,7 @@
     <Compile Include="Modules\CatalogFileItems\CatalogFileItemsListViewModel.cs" />
     <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemExport.cs" />
     <Compile Include="Modules\CatalogFileItems\Enums\CatalogFileType.cs" />
-    <Compile Include="PubCatalogItemListControlViewModel.cs" />
+    <Compile Include="_trash\PubCatalogItemListControlViewModel.cs" />
     <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemModel.cs" />
     <Page Include="Modules\CatalogFileItems\CatalogFileItemsListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -139,12 +139,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PubCatalogItemListControl.xaml">
+    <Page Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="PubCatalogItemListControl.xaml.cs">
-      <DependentUpon>PubCatalogItemListControl.xaml</DependentUpon>
+    <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemControl.xaml.cs">
+      <DependentUpon>PubCatalogItemControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -183,6 +183,8 @@
       <Name>ipsFormsDesign</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Modules\CatalogFileItems\Controls\RhCatalogItem\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
