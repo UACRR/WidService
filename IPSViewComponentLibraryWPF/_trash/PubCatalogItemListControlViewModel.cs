@@ -35,11 +35,6 @@ namespace IPSViewComponentLibraryWPF
             "Повідомлення про помилку",
         };
 
-        public PubCatalogItemListControlViewModel()
-        {
-
-        }
-
         private bool _isBusy;
         public bool IsBusy
         {

@@ -16,7 +16,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
             InitializeComponent();
             if (catalogFileType == CatalogFileType.PublisherCatalog)
             {
-                var ctrlPubCatalogItemList = new PubCatalogItemListControl
+                var ctrlPubCatalogItemList = new Controls.PubCatalogItem.PubCatalogItemListControl
                 {
                     DataContext = this.DataContext,
                     Margin = new Thickness(1, 3, 1, 3),

@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.RightholderCatalogControls
+﻿using IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalogItem;
+
+namespace IpsViewComponentLibrary.RightholderCatalogControls
 {
     partial class RightholderCatalogDetailWPFForm
     {
@@ -34,7 +36,7 @@
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.ctrlGridItemList_ = new System.Windows.Forms.Integration.ElementHost();
-            this.ctrlGridItemList = new IPSViewComponentLibraryWPF.PubCatalogItemListControl();
+            this.ctrlGridItemList = new PubCatalogItemListControl();
             this.ctrlNavigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
@@ -434,7 +436,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private System.Windows.Forms.Integration.ElementHost ctrlGridItemList_;
-        private IPSViewComponentLibraryWPF.PubCatalogItemListControl ctrlGridItemList;
+        private PubCatalogItemListControl ctrlGridItemList;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement2;

@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Controls;
 
-namespace IPSViewComponentLibraryWPF
+namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalogItem
 {
     /// <summary>
     /// Interaction logic for UserControl1.xaml
