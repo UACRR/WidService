@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Wrappers;
@@ -28,7 +26,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
 
         public CatalogFileItemsListViewModel() { }
 
-        #region * * * DATA PROPERTIES * * *
+        #region * * * INTERNAL PROPERTIES * * *
 
         private CatalogFileType _catalogFileType = CatalogFileType.None;
         public CatalogFileType CatalogFileType
@@ -56,37 +54,9 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
             }
         }
 
-        private CatalogFile _catalogFile = new CatalogFile
-        {
-            Comment = "Коментарій. Наявні дублі записів",
-            CountErr = 12,
-            CountOk = 343,
-            CountZap = 355,
-            CreateDate = new DateTime(2019, 06, 21, 5, 25, 44),
-            UserId = "Батя =)",
-            StatusNavigation = new CatalogStatus { CodeI = 1, Name = "Статус файлу" },
-            Status = 2,
-
-        };
-        public CatalogFile CatalogFile
-        {
-            get => _catalogFile;
-            set
-            {
-                _catalogFile = value;
-                CanExecuteValidateCommand = _catalogFile.Status != 3;
-                CanExecuteBeginPerformProcess = _catalogFile.Status == 1;
-
-                if (value != null)
-                    UpdateDataItems();
-
-                OnPropertyChanged(() => CatalogFile);
-            }
-        }
-
         #endregion
 
-        #region * * * Grid busy state * * *
+        #region * * * Grid busy HANDLERS * * *
 
         private bool _isBusy;
         public bool IsBusy
@@ -113,6 +83,11 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
             }
         }
 
+        /// <summary>
+        /// Calculate how much percent is exported
+        /// </summary>
+        /// <param name="currentIteration"></param>
+        /// <param name="count"></param>
         private void ChangeBusyContent(int currentIteration, int count)
         {
             // x% = ( n * 100 ) / a
@@ -122,7 +97,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
 
         #endregion
 
-        #region * * * GridView Items Source * * *
+        #region * * * GridView Items Source PROPERTIES * * *
 
         ObservableCollection<PubCatalogItemModel> _pubCatalogItemList;
         public ObservableCollection<PubCatalogItemModel> ItemsSourcePubCatalog
@@ -148,6 +123,28 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
 
         #endregion
 
+        #region * * * DATA HANDLERS * * *
+
+        private CatalogFile _catalogFile;
+        public CatalogFile CatalogFile
+        {
+            get => _catalogFile;
+            set
+            {
+                _catalogFile = value;
+                CanExecuteValidateCommand = _catalogFile?.Status != 3;
+                CanExecuteBeginPerformProcess = _catalogFile?.Status == 1;
+
+                if (value != null)
+                    UpdateDataItems();
+
+                OnPropertyChanged(() => CatalogFile);
+            }
+        }
+
+        /// <summary>
+        /// Load and update items of CatalogFile
+        /// </summary>
         private async void UpdateDataItems()
         {
             IsBusy = true;
@@ -170,6 +167,20 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
             IsBusy = false;
         }
 
+        /// <summary>
+        /// Clear old reference and execute GC.Collect() method
+        /// </summary>
+        private void ClearData()
+        {
+            ItemsSourcePubCatalog = new ObservableCollection<PubCatalogItemModel>();
+            ItemsSourceRhCatalogItem = new ObservableCollection<RhcatalogItem>();
+            GC.Collect();
+        }
+
+        /// <summary>
+        /// Convert data collection of object array to internal model
+        /// </summary>
+        /// <param name="items"></param>
         private void ConvertToPubCatalogItems(ICollection<object[]> items)
         {
             _objectsList = items.ToList();
@@ -198,12 +209,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
             ItemsSourcePubCatalog = itemList;
         }
 
-        private void ClearData()
-        {
-            ItemsSourcePubCatalog = new ObservableCollection<PubCatalogItemModel>();
-            ItemsSourceRhCatalogItem = new ObservableCollection<RhcatalogItem>();
-            GC.Collect();
-        }
+        #endregion
 
         #region * * * COMMANDS * * *
 

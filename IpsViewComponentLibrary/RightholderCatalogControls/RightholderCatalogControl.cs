@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
@@ -9,10 +8,8 @@ using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.RightholderCatalogControls.Presenters;
 using IpsViewComponentLibrary.Shared.Forms;
-using IpsViewComponentLibrary.Utilities;
 using IPSViewComponentLibraryWPF.Modules.CatalogFileItems;
 using IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Enums;
-using Telerik.Windows.Controls;
 
 namespace IpsViewComponentLibrary.RightholderCatalogControls
 {
@@ -28,7 +25,6 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private const string DeleteCatalogFileErrorMsg = "Неможливо видалити файл!";
 
         private readonly RightholderCatalogPresenter _catalogPresenter;
-        private readonly DialogService _dialogService = new DialogService(); 
 
         //public int CustomerId { get; set; }
         public int CustId { get; set; }
@@ -119,31 +115,8 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                     break;
 
                 case "editBtn":
-                    //CatalogFile file = null;
-
-                    //waitingBar.StartWaiting();
-                    //await Task.Factory.StartNew(() =>
-                    //{
-                    //    file = _catalogPresenter.GetCatalogFile(row.CustId ?? 0, row.FileId);
-                    //});
-                    //waitingBar.StopWaiting();
-
-                    //if (file == null)
-                    //{
-                    //    _dialogService.ShowError("Помилка отримання каталога з бази даних!");
-                    //}
-                    //else
-                    //{
-                    //    var form = new RightholderCatalogDetailWPFForm(file);
-                    //    form.ShowDialog();
-                    //}
-
-                    //var form = new RightholderCatalogDetailWPFForm(row);
-                    //form.ShowDialog();
-
                     var window = new CatalogFileItemsListWindow(row, CatalogFileType.PublisherCatalog);
                     window.ShowDialog();
-                    
                     break;
 
                 case "deleteBtn":
@@ -175,10 +148,8 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         private void gridCatalogFiles_DoubleClick(object sender, EventArgs e)
         {
             var row = gridCatalogFiles.CurrentRow.DataBoundItem as CatalogFile;
-            var form = new RightholderCatalogDetailWPFForm(row);
-            form.ShowDialog();
-            //var form = new RightholderCatalogDetailForm(row);
-            //form.ShowDialog();
+            var window = new CatalogFileItemsListWindow(row, CatalogFileType.PublisherCatalog);
+            window.ShowDialog();
         }
     }
 }

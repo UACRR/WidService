@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
-using IpsCommonTypes.Types;
 using IpsCommonTypes.Wrappers;
-using Telerik.WinControls;
 using WebAPIConnector;
 using System.Threading.Tasks;
 using ipsFormsDesign.Services.Interfaces;
