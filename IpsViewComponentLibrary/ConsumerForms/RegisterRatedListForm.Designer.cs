@@ -354,6 +354,7 @@
             gridViewTextBoxColumn6.MinWidth = 110;
             gridViewTextBoxColumn6.Name = "AuthAmount";
             gridViewTextBoxColumn6.ReadOnly = true;
+            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn6.Width = 110;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "MusicRate";
@@ -376,7 +377,7 @@
             gridViewTextBoxColumn8.Multiline = true;
             gridViewTextBoxColumn8.Name = "MusicAmount";
             gridViewTextBoxColumn8.ReadOnly = true;
-            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn8.Width = 118;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
@@ -530,6 +531,7 @@
             // 
             // ctrlSaveCancelButtons
             // 
+            this.ctrlSaveCancelButtons.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
             this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 394);
             this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);

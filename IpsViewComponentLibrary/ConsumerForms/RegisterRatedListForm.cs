@@ -284,9 +284,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 }
                 else if (e.Column.FieldName == "Amount")
                 {
-                    reg.RegAmount = item.Amount;
-                    reg.AuthAmount = reg.RegAmount / 100 * reg.AuthRate;
-                    reg.MusicAmount = reg.RegAmount / 100 * reg.MusicRate;
+                    reg.RegAmount = Math.Round(item.Amount ?? 0m, 2);
+                    reg.AuthAmount = Math.Round((reg.RegAmount / 100 * reg.AuthRate) ?? 0m, 2);
+                    reg.MusicAmount = Math.Round((reg.RegAmount / 100 * reg.MusicRate) ?? 0m, 2);
                 }
                 else if (e.Column.FieldName == "CountUse")
                 {
