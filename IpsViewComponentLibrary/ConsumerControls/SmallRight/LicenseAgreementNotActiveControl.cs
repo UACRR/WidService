@@ -299,6 +299,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             if (!(gvMoreLicenseAgr.CurrentRow?.DataBoundItem is GridLicenseAgreementView item))
                 return false;
 
+            //IpsGlobal.AnketaDictionaties.grLicenseType.Single();
+
             var license = _licenseAgreements.SingleOrDefault(rec => rec.LicId == item.LicId);
             var licParam = license?.LicenseAgrParam?.LastOrDefault();
             var success = !string.IsNullOrEmpty(licParam?.LicNum)

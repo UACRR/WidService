@@ -368,7 +368,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 {
                     //RunDialogForLicenseAgrParam(license, currentAgreement, DialogGoal.forChange, false);
 
-                    var isOK = LicenseAgreementActions.GetInstance().EditLicenseAgreement(_customer, license, currentAgreement, AgreementModifyType.EditAgreementProlongation);
+                    var isOK = LicenseAgreementActions.GetInstance().EditLicenseAgreement(_customer, license, currentAgreement, AgreementModifyType.EditAgreementOrVersion);
                     if (isOK)
                     {
                         //var result = SaveCustomer?.Invoke(_customer) ?? false;
@@ -405,11 +405,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 if (licParam != null && licParam.License.Any())
                     SyncLicensePlaces(changeLicense.License, licParam.License, changeLicense.LicVersion);
 
-                //license.LicenseAgrParam?.Add(changeLicense);
-
-                //RunDialogForLicenseAgrParam(license, changeLicense, DialogGoal.forChange, true);
-
-                var isOK = LicenseAgreementActions.GetInstance().EditLicenseAgreement(_customer, license, changeLicense, AgreementModifyType.CreateAgreementProlongation);
+                var isOK = LicenseAgreementActions.GetInstance().EditLicenseAgreement(_customer, license, changeLicense, AgreementModifyType.CreateAgreementVersion);
                 if (isOK)
                 {
                     //var result = SaveCustomer?.Invoke(_customer) ?? false;
