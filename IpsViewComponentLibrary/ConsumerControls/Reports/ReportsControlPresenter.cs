@@ -117,7 +117,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             int? custId = _control?.Customer?.CustId;
             if (custId == null)
                 return;
-            List<PaidPeriod> retList = _service.SavePeriods((int)custId, e);
+            List<PaidPeriod> retList = _service.SavePeriods(custId.Value, e);
             if (retList != null)
             {
                 var dic = retList.ToDictionary(di => new { di.LicId ,di.PeriodName } );

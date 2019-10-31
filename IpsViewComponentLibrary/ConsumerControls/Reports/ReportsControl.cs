@@ -714,9 +714,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
         private void BtnAddPeriod_Click(object sender, EventArgs e)
         {
-            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData item))
                 return;
-            var lic = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData).Lic;
+
+            var lic = item.Lic;
             CreatePeriod form = new CreatePeriod(lic);
 
             if (form.ShowDialog() == DialogResult.OK)

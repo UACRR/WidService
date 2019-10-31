@@ -87,6 +87,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             Func<DateTime, string> namePariod = namePeriods[0];
             int PeriodCode = 0;
             decimal? MinAmount = 0;
+            int[] schemaTypesWhereAmountIsZero = { 2, 3 };
 
             if ( _licenseAgreement.LicClass == 1 )
             {
@@ -97,9 +98,11 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             else
             {
                 var agree = _licenseAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == _licenseAgreement.LicVersion);
-                var licType = _licenseAgreement.LicCodeNavigation;
                 PeriodCode = agree.PeriodCode ?? 1;
-                MinAmount = licType?.SchemaId == 2 ? 0 : agree.MinAmount;
+
+                var licType = _licenseAgreement.LicCodeNavigation;
+                //MinAmount = licType?.SchemaId == 2 ? 0 : agree.MinAmount;
+                MinAmount = licType.SchemaId.HasValue && schemaTypesWhereAmountIsZero.Contains(licType.SchemaId.Value) ? 0 : agree.MinAmount;
             }
 
             switch (PeriodCode)
@@ -131,12 +134,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                     BeginDate = beginDateNewPeriod,
                     EndDate = beginDateNewPeriod.AddMonths(cntMonth).AddDays(-1),
                     PeriodName = namePariod(beginDateNewPeriod),
-                    PeriodType = (int)PeriodCode,
+                    PeriodType = PeriodCode,
                     Amount = MinAmount ?? 0,
                     Distribamount = 0,
                     Undistribamount = 0,
                     Status = 1,
-                    CustId = (int)_licenseAgreement.CustId,
+                    CustId = _licenseAgreement.CustId.Value,
                     StatusNavigation = dicStatus
                 };
 
