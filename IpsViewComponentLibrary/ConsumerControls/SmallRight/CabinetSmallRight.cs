@@ -77,7 +77,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             ctrlTabNavigation.SaveClick += OnSaveCommentNeed;
             ctrlTabNavigation.CancelClick += UpdateCustomer;
 
-            ctrlLicenseAgreementNotActive.UpdateDataNeed += CtrlLicenseAgreementNotActive_UpdateDataNeed;
+            ctrlLicenseAgreementNotActive.UpdateDataNeed += UpdateCustomer;
 
             ctrlAgrDetailInfo.OnSaveCommentNeed += CtrlAgrDetailInfo_OnSaveCommentNeed;
             //ctrlAgrDetailInfoMore.OnSaveCommentNeed += OnSaveCommentNeed;
@@ -101,11 +101,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void CtrlAgrDetailInfo_OnSaveCommentNeed(LicenseAgrParam obj)
         {
             _agreementService.SaveAgreementComment(obj);
-        }
-
-        private void CtrlLicenseAgreementNotActive_UpdateDataNeed()
-        {
-            UpdateCustomer();
         }
 
         private bool DeleteCurrentFile(int id)
@@ -210,6 +205,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 return;
 
             var result = _agreementService.CreateAgreement(license);
+            if(result)
+                UpdateCustomer();
             MessageShow.ShowInfoAfterChanges(result);
         }
 

@@ -1464,8 +1464,10 @@ namespace ipsmedserviceapp.Controllers
 
             retDictionary.Add("isAuthorType", await _dbContext.IsAuthorType.AsNoTracking().ToListAsync());
 
-            retDictionary.Add("Communities",
-                await _dbContext.getViewData("select t2.name, t2.custId from community t1 join vCustomer t2 on t2.custId = t1.custId", new SqlParameter[0]));
+            string queryCommunities = "select t2.name, t2.custId from community t1 join vCustomer t2 on t2.custId = t1.custId";
+            retDictionary.Add("Communities", await _dbContext.getViewData(queryCommunities, new SqlParameter[0]));
+
+            retDictionary.Add("schemaType", await _dbContext.SchemaType.AsNoTracking().ToListAsync());
 
             return Json(retDictionary);
         }

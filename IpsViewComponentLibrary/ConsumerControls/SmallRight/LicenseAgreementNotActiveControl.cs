@@ -83,13 +83,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     var agrParam = license.LicenseAgrParam?.SingleOrDefault();
                     if (agrParam?.LicStatus == 10)
                         continue;
+
+                    var agrLicenseType = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode);
                     source.Add(new GridLicenseAgreementView
                     {
                         Id = license.AgrId,
                         LicVersion = agrParam?.LicVersion,
                         LicId = license.LicId,
-                        License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode)?.Name,
-                        Series = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode)?.Series,
+                        License = agrLicenseType?.Name,
+                        Series = agrLicenseType?.Series,
+                        SchemaId = agrLicenseType?.SchemaId,
                         MinAmount = agrParam?.MinAmount ?? default(decimal),
                         MinRate = agrParam?.RateAmount ?? default(decimal),
                         AgrNumber = agrParam?.LicNum ?? string.Empty,
@@ -299,17 +302,37 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             if (!(gvMoreLicenseAgr.CurrentRow?.DataBoundItem is GridLicenseAgreementView item))
                 return false;
 
-            //IpsGlobal.AnketaDictionaties.grLicenseType.Single();
+            var schemaType = _dictionaties.schemaType.SingleOrDefault(rec => rec.CodeI == item.SchemaId);
+            bool minAmountValid(LicenseAgrParam param)
+            {
+                bool minAmountWithoutValue = schemaType?.IsMinAmount == 0;
+
+                if (minAmountWithoutValue)
+                    param.MinAmount = 0;
+
+                return minAmountWithoutValue || param.MinAmount.HasValue && param.MinAmount.Value > 0;
+            }
+
+            bool rateAmountValid(LicenseAgrParam param)
+            {
+                bool rateAmountWithoutValue = schemaType?.IsRateAmount == 0;
+
+                if (rateAmountWithoutValue)
+                    param.RateAmount = 0;
+
+                return rateAmountWithoutValue || param.RateAmount.HasValue && param.RateAmount.Value > 0;
+            }
 
             var license = _licenseAgreements.SingleOrDefault(rec => rec.LicId == item.LicId);
             var licParam = license?.LicenseAgrParam?.LastOrDefault();
             var success = !string.IsNullOrEmpty(licParam?.LicNum)
-                          && licParam.LicDate != null
-                          && licParam.DateBegin != null
-                          && licParam.DateEnd != null
-                          && licParam.PeriodCode != null
-                          && licParam.MinAmount != null
-                          && licParam.RateAmount != null;
+                          && licParam.LicDate.HasValue
+                          && licParam.DateBegin.HasValue
+                          && licParam.DateEnd.HasValue
+                          && licParam.PeriodCode.HasValue
+                          && minAmountValid(licParam)
+                          && rateAmountValid(licParam);
+
             return success;
         }
 

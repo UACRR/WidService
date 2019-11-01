@@ -12,6 +12,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.InternalModel
         public int? LicVersion { get; set; }
         public string License { get; set; }
         public string Series { get; set; }
+        public int? SchemaId { get; set; }
         public string AgrNumber { get; set; }
         public string AgrMasterNumber { get; set; }
         public string DateBegin { get; set; }
