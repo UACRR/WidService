@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -8,9 +9,8 @@ namespace ipsmedserviceapp.Model
         public PaidPeriod()
         {
             BrRegister = new HashSet<BrRegister>();
-            Distribution = new HashSet<Distribution>();
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
-            Register = new HashSet<Register>();
+            RegisterRatedList = new HashSet<RegisterRatedList>();
         }
 
         public int PeriodId { get; set; }
@@ -27,13 +27,17 @@ namespace ipsmedserviceapp.Model
         public bool? FagFirst { get; set; }
         public DateTime? DateActPrint { get; set; }
 
-        public Client Cust { get; set; }
-        public LicenseAgreement Lic { get; set; }
-        public Period PeriodTypeNavigation { get; set; }
-        public PeriodStatus StatusNavigation { get; set; }
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ICollection<Register> Register { get; set; }
+        [JsonIgnore]
+        public virtual Client Cust { get; set; }
+        [JsonIgnore]
+        public virtual LicenseAgreement Lic { get; set; }
+        [JsonIgnore]
+        public virtual Period PeriodTypeNavigation { get; set; }
+        [JsonIgnore]
+        public virtual PeriodStatus StatusNavigation { get; set; }
+        public virtual ICollection<BrRegister> BrRegister { get; set; }
+        public virtual ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ICollection<RegisterRatedList> RegisterRatedList { get; set; }
     }
 }
+

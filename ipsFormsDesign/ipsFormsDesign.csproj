@@ -422,6 +422,7 @@
     <Compile Include="Model\RholderTypeTr.cs" />
     <Compile Include="Model\RightHolder.cs" />
     <Compile Include="Model\SaldoDay.cs" />
+    <Compile Include="Model\SchemaType.cs" />
     <Compile Include="Model\SeekObject.cs" />
     <Compile Include="Model\SeekType.cs" />
     <Compile Include="Model\SeekTypeTr.cs" />

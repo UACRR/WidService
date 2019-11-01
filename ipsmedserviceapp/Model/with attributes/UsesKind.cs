@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -15,8 +16,12 @@ namespace ipsmedserviceapp.Model
         public int? UsesType { get; set; }
         public string Name { get; set; }
 
+        [JsonIgnore]
         public virtual UsesType UsesTypeNavigation { get; set; }
+        [JsonIgnore]
         public virtual ICollection<AgrLicenseType> AgrLicenseType { get; set; }
+        [JsonIgnore]
         public virtual ICollection<UsesKindTr> UsesKindTr { get; set; }
     }
 }
+
