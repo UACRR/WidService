@@ -1,4 +1,5 @@
 using ipsFormsDesign.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -32,13 +33,18 @@ namespace ipsFormsDesign.Model
         public int? GenreType { get; set; }
         public int? Wic { get; set; }
 
+        [JsonIgnore]
         public virtual RegisterItemType CodeItemNavigation { get; set; }
+        [JsonIgnore]
         public virtual GenreType GenreTypeNavigation { get; set; }
         public virtual ObjectRight Obj { get; set; }
+        [JsonIgnore]
         public virtual Register Reg { get; set; }
         public virtual RegisterItemFix RegisterItemFix { get; set; }
         public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
         public virtual ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
     }
 }
+
+
 

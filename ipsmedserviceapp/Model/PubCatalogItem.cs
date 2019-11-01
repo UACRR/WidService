@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace ipsmedserviceapp.Model
 {
@@ -28,11 +27,8 @@ namespace ipsmedserviceapp.Model
         public string RhName { get; set; }
         public DateTime? DateBegin { get; set; }
         public DateTime? DateEnd { get; set; }
-        [JsonIgnore]
-        public virtual CopyRight CRight { get; set; }
-        [JsonIgnore]
+
         public virtual RightHolder Cust { get; set; }
-        [JsonIgnore]
         public virtual CatalogFile File { get; set; }
         public virtual CatalogStatus StatusNavigation { get; set; }
     }

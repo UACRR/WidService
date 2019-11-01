@@ -11,7 +11,6 @@ namespace ipsmedserviceapp.Model
             CopyRightHistoryChild = new HashSet<CopyRightHistory>();
             CopyRightHistoryParent = new HashSet<CopyRightHistory>();
             Distribution = new HashSet<Distribution>();
-            PubCatalogItem = new HashSet<PubCatalogItem>();
             RhcatalogItem = new HashSet<RhcatalogItem>();
         }
 
@@ -54,9 +53,9 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public virtual ICollection<Distribution> Distribution { get; set; }
         [JsonIgnore]
-        public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
-        [JsonIgnore]
         public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }
+
+
 

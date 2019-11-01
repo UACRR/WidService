@@ -1,4 +1,5 @@
 using ipsFormsDesign.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -22,10 +23,16 @@ namespace ipsFormsDesign.Model
         public decimal DestribAmount { get; set; }
         public decimal? DestribPrepay { get; set; }
 
+        [JsonIgnore]
         public virtual Client Cust { get; set; }
+        [JsonIgnore]
         public virtual MoneyType MoneyTypeNavigation { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
+
+
 

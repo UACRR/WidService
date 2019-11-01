@@ -282,6 +282,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<RholderTypeTr> RholderTypeTr { get; set; }
         public virtual DbSet<RightHolder> RightHolder { get; set; }
         public virtual DbSet<SaldoDay> SaldoDay { get; set; }
+        public virtual DbSet<SchemaType> SchemaType { get; set; }
         public virtual DbSet<SeekObject> SeekObject { get; set; }
         public virtual DbSet<SeekType> SeekType { get; set; }
         public virtual DbSet<SeekTypeTr> SeekTypeTr { get; set; }
@@ -7764,11 +7765,6 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
-                entity.HasOne(d => d.CRight)
-                    .WithMany(p => p.PubCatalogItem)
-                    .HasForeignKey(d => d.CRightId)
-                    .HasConstraintName("FK_PUBCATAL_REFERENCE_COPYRIGH");
-
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.PubCatalogItem)
                     .HasForeignKey(d => d.CustId)
@@ -9991,6 +9987,27 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.RestCourt)
                     .HasColumnName("restCourt")
                     .HasColumnType("numeric(20, 2)");
+            });
+
+            modelBuilder.Entity<SchemaType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI)
+                    .HasName("PK_SCHEMATYPE");
+
+                entity.ToTable("SchemaType", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.IsMinAmount).HasColumnName("isMinAmount");
+
+                entity.Property(e => e.IsRateAmount).HasColumnName("isRateAmount");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<SeekObject>(entity =>

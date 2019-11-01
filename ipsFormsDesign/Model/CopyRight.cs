@@ -1,4 +1,5 @@
 using ipsFormsDesign.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +12,6 @@ namespace ipsFormsDesign.Model
             CopyRightHistoryChild = new ObservableListSource<CopyRightHistory>();
             CopyRightHistoryParent = new ObservableListSource<CopyRightHistory>();
             Distribution = new ObservableListSource<Distribution>();
-            PubCatalogItem = new ObservableListSource<PubCatalogItem>();
             RhcatalogItem = new ObservableListSource<RhcatalogItem>();
         }
 
@@ -35,17 +35,25 @@ namespace ipsFormsDesign.Model
         public int? LoadId { get; set; }
         public string SourceName { get; set; }
 
+        [JsonIgnore]
         public virtual RightHolder Cust { get; set; }
         public virtual ObjectRight Obj { get; set; }
+        [JsonIgnore]
         public virtual CreativeRoleType RoleCodeNavigation { get; set; }
+        [JsonIgnore]
         public virtual CrightStatus StatusNavigation { get; set; }
         public virtual LicAuthorBr LicAuthorBr { get; set; }
         public virtual WorkRh WorkRh { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryChild { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryParent { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<Distribution> Distribution { get; set; }
-        public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }
+
+
 
