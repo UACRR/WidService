@@ -36,6 +36,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         private const string DeleteRegisterSuccessMsg = "Звіт видалено!";
         private const string DeleteRegisterErrorMsg = "Неможливо видалити звіт!";
 
+        private const string DifferentAmountsWarningMsg = "Сума авторської винагороди по Р/Л не співпадає з загальною сумою по введеним рапортичкам! Виконайте необхідні коригування суми!";
+        private const string HasNotValidRegisterStatusWarningMsg = "Наявний звіт зі статусом «Новий» або «На погодженні»!";
+
         private readonly ExcelEngine _excel = ExcelEngine.GetInstance();
 
         public event Func<RegisterRatedList, bool> SaveRegisterRatedListExecuted;
@@ -245,17 +248,28 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 buttonController.SetPeriodState(null, null);
             }
 
-            var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.SingleOrDefault(rec => rec.CodeI == lic.Lic.LicCode);
-            // Цирк,Філармонія,Концертна діяльність
-            bool isCollapsed = agrType?.SchemaId == 2;
+            // Цирк,Філармонія,Концертна діяльність, YouTube
+            //bool isCollapsed = SchemaId == 2 || SchemaId == 3;
+            bool isCollapsed = SchemaId == 1;
             // AddReport Xls disable for Цирк, Філармонія, Концертна діяльність
-            btnAddReport.Enabled = !isCollapsed;
+            btnAddReport.Enabled = isCollapsed;
 
-            splitPanelRatedList.Collapsed = !isCollapsed;
-            btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
+            splitPanelRatedList.Collapsed = isCollapsed;
+            btnAcceptType1.Visible = isCollapsed;
             if (CurrentAgreementController != null && !CurrentAgreementController.Broadcast && lic.Lic?.LicId != CurrentAgreementController.LicId)
             {
                 CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
+            }
+        }
+
+        private int? SchemaId
+        {
+            get
+            {
+                var agreementData = gvLicenseAgr.CurrentRow?.DataBoundItem as IAgreementData;
+                var licCode = agreementData?.Lic.LicCode;
+                var schemaId = IpsGlobal.AnketaDictionaties.agrLicenseType.SingleOrDefault(rec => rec.CodeI == licCode)?.SchemaId;
+                return schemaId;
             }
         }
 
@@ -648,7 +662,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         {
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
             if (period.RegisterRatedList.Sum(rec => rec.Register.Count(item => item.RgStatus < 2)) > 0)
+            {
+                MessageShow.ShowWarning(HasNotValidRegisterStatusWarningMsg);
                 return;
+            }
+
+            if (SchemaId == 2)
+            {
+                var amounrRatedList = period.RegisterRatedList.SingleOrDefault().Amount;
+                var registersAmount = period.RegisterRatedList.SingleOrDefault().Register.Sum(rec => rec.RegAmount);
+                if (amounrRatedList != registersAmount)
+                {
+                    MessageShow.ShowWarning(DifferentAmountsWarningMsg);
+                    return;
+                }
+            }
 
             period.Status = 2;
             period.StatusNavigation = dicPeriodStatus[2];

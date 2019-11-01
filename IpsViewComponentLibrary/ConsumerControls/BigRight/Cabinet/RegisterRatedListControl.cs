@@ -146,7 +146,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 }
             }
             // view
-            else if (item.Status == 1)
+            else if (item.Status == 1 || item.Status == 3)
             {
                 var addform = new RegisterRatedListForm(ScopeOfUseForm.View, _customer, spectacles, ratedList);
                 addform.ShowDialog();
