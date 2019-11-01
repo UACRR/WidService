@@ -273,6 +273,7 @@
 "SexTypeTr",
 "SpecType",
 "SpecTypeTr",
+"SchemaType",
 "sysdiagrams",
 "SystemConstant",
 "SystemConstantTr",
