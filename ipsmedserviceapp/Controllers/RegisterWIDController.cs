@@ -132,7 +132,7 @@ namespace ipsmedserviceapp.Controllers
                             Direction = ParameterDirection.Output,
                         };
 
-                        string execProcedureString = @"exec [WID_IPI].[dbo].[sp_ObjectsRightForLink] @searchObjectRightQuery, @offset, @fetch, @count OUT";
+                        string execProcedureString = @"exec sp_ObjectsRightForLink @searchObjectRightQuery, @offset, @fetch, @count OUT";
                         var objlist = _dbContext.ObjectsRightForLink.FromSql(execProcedureString, queryWIDParam, offset, fetch, count).AsNoTracking().ToList();
                         
                         var totalItemsWID = count.Value;
