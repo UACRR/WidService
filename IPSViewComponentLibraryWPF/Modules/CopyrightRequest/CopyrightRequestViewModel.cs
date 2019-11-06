@@ -4,6 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IPSViewComponentLibraryWPF.Extensions;
 using Telerik.Windows.Controls;
@@ -18,7 +21,6 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 
         public CopyrightRequestViewModel() {}
 
-
         #region * * * PROPERTIES * * *
 
         private bool _isCheckedAll;
@@ -31,6 +33,20 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 
                 foreach (var obj in _itemSourceCopyrightRequestObjects)
                     obj.IsSelected = value;
+
+                if (ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected))
+                {
+                    if (_objectCurrentItemMultiple == null)
+                        _objectCurrentItemMultiple = new CopyrightRequestObjectsModel();
+                    ObjectCurrentItemProperty = null;
+                }
+                else
+                {
+                    ObjectCurrentItemProperty = ObjectCurrentItem;
+                    _objectCurrentItemMultiple = null;
+                }
+
+                //ObjectCurrentItemProperty = ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected) ? null : ObjectCurrentItem;
 
                 OnPropertyChanged(() => IsCheckedAll);
                 OnPropertyChanged(() => ItemSourceCopyrightRequestObjects);
@@ -59,6 +75,17 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             }
         }
 
+        private string _comment;
+        public string Comment
+        {
+            get => _comment;
+            set
+            {
+                _comment = value;
+                OnPropertyChanged(() => Comment);
+            }
+        }
+
         #endregion
 
         private ObservableCollection<CopyrightRequestRightholdersModel> _itemSourceCopyrightRequestRightholders = new ObservableCollection<CopyrightRequestRightholdersModel>
@@ -71,7 +98,17 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 InnerCode = "ЙЙ-9585АА4/4",
                 InterCode = "5045-78-4540",
                 RegistrDate = new DateTime(2008,10,10),
-                WorkDateRH = new DateTime(2018,07,15)
+                WorkDateRH = new DateTime(2018,07,15),
+            },
+            new CopyrightRequestRightholdersModel
+            {
+                CustId = 123,
+                Name = "Орбіт Ігор Юрійович",
+                CntObj = 44515,
+                InnerCode = "QQ/8744-A-FF3",
+                InterCode = "0003-7845/FF",
+                RegistrDate = new DateTime(2017,03,22),
+                WorkDateRH = new DateTime(2018,12,11)
             }
         };
         public ObservableCollection<CopyrightRequestRightholdersModel> ItemSourceCopyrightRequestRightholders
@@ -104,6 +141,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 ObjName = "Васильки",
                 GenreName = "Пісня",
                 Duration = "00:05:59",
+                WorkCommentRH = "Дуже важлива функція для роботи з об'єктами права."
             },
             new CopyrightRequestObjectsModel
             {
@@ -111,6 +149,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 ObjName = "OnPropertyChanged",
                 GenreName = "Музика",
                 Duration = "00:05:59",
+                WorkCommentRH = "З зовнішньої бази внесені дані з загальним процентом більше 100 (права не підтверджені)"
             },
             new CopyrightRequestObjectsModel
             {
@@ -119,6 +158,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 ObjName = "Васильки",
                 GenreName = "Джаз",
                 Duration = "00:05:59",
+                WorkCommentRH = "",
+                WorkTypeRH = 2
             },
             new CopyrightRequestObjectsModel
             {
@@ -126,6 +167,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 ObjName = "Васильки",
                 GenreName = "Блюз",
                 Duration = "00:05:59",
+                WorkCommentRH = "Відсутня можливість відібрати такі ОП для виправлення.",
+                WorkTypeRH = 1,
             },
         };
         public ObservableCollection<CopyrightRequestObjectsModel> ItemSourceCopyrightRequestObjects
@@ -139,12 +182,83 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             }
         }
 
+        private CopyrightRequestObjectsModel _objectCurrentItem;
+        public CopyrightRequestObjectsModel ObjectCurrentItem
+        {
+            get => _objectCurrentItem;
+            set
+            {
+                _objectCurrentItem = value;
+
+                if (ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected))
+                {
+                    if (_objectCurrentItemMultiple == null)
+                        _objectCurrentItemMultiple = new CopyrightRequestObjectsModel();
+                    ObjectCurrentItemProperty = null;
+                }
+                else
+                {
+                    ObjectCurrentItemProperty = ObjectCurrentItem;
+                    _objectCurrentItemMultiple = null;
+                }
+
+                //ObjectCurrentItemProperty = ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected) ? null : ObjectCurrentItem;
+                
+                OnPropertyChanged(() => ObjectCurrentItem);
+            }
+        }
+
+        private CopyrightRequestObjectsModel _objectCurrentItemMultiple;
+        private CopyrightRequestObjectsModel _objectCurrentItemProperty;
+        public CopyrightRequestObjectsModel ObjectCurrentItemProperty
+        {
+            get => _objectCurrentItemProperty;
+            set
+            {
+                if (value == null)
+                {
+                    _objectCurrentItemProperty = _objectCurrentItemMultiple;
+                    BackgroundProperty = null;
+                }
+                else
+                {
+                    _objectCurrentItemProperty = value;
+                    BackgroundProperty = new SolidColorBrush(Color.FromArgb(255, 245, 245, 245));
+                }
+                
+                OnPropertyChanged(() => ObjectCurrentItemProperty);
+            }
+        }
+        
+        // "WhiteSmoke" Color.FromArgb(255, 245, 245, 245)
+        private SolidColorBrush _backgroundProperty;
+        public SolidColorBrush BackgroundProperty
+        {
+            get => _backgroundProperty;
+            set
+            {
+                _backgroundProperty = value;
+                OnPropertyChanged(() => BackgroundProperty);
+            }
+        }
+
+        private ObservableCollection<WorkType> _workTypeDictionary;
+        public ObservableCollection<WorkType> WorkTypeDictionary
+        {
+            get => _workTypeDictionary;
+            set
+            {
+                _workTypeDictionary = value;
+                OnPropertyChanged(() => WorkTypeDictionary);
+            }
+        }
+
         #region * * * COMMANDS * * *
 
         public ICommand LoadDataCommand => new IPSDelegateCommand(LoadDataCommandExecute);
         private void LoadDataCommandExecute(object o)
         {
-
+            WorkTypeDictionary = new ObservableCollection<WorkType>(IpsGlobal.AnketaDictionaties.workType);
         }
 
         public ICommand SaveCommand => new IPSDelegateCommand(SaveCommandExecute);
@@ -157,6 +271,12 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         private void PrintCopyrightRequestCommandExecute(object o)
         {
             var copyrightRequestRightholdersModel = (CopyrightRequestRightholdersModel) o;
+
+        }
+
+        public ICommand SelectedPropertyChangedCommand => new IPSDelegateCommand(SelectedPropertyChangedCommandExecute);
+        private void SelectedPropertyChangedCommandExecute(object o)
+        {
 
         }
 

@@ -7,7 +7,7 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1200">
+             d:DesignHeight="450" d:DesignWidth="1000">
 
     <UserControl.Resources>
         <Style TargetType="telerik:RadGridView">
@@ -43,7 +43,10 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <GridSplitter ShowsPreview="True" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <GridSplitter ShowsPreview="True" 
+                      Grid.Row="0" Grid.RowSpan="2" 
+                      VerticalAlignment="Stretch" 
+                      HorizontalAlignment="Stretch"/>
 
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
@@ -91,57 +94,99 @@
         <Grid Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <telerik:RadGridView Grid.Row="0" ItemsSource="{Binding ItemSourceCopyrightRequestObjects, Mode=TwoWay}">
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <telerik:RadGridView.Columns>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="25"/>
+                        </Grid.RowDefinitions>
 
-                        <telerik:GridViewCheckBoxColumn IsSortable="False" AutoSelectOnEdit="True" IsResizable="False" DataMemberBinding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}">
-                            <telerik:GridViewCheckBoxColumn.Header>
-                                <CheckBox telerik:StyleManager.Theme="VisualStudio2013" 
-                                          HorizontalAlignment="Center"
-                                          IsChecked="{Binding DataContext.IsCheckedAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadGridView}}}"/>
-                            </telerik:GridViewCheckBoxColumn.Header>
+                        <telerik:RadGridView Grid.Row="0" 
+                                             ItemsSource="{Binding ItemSourceCopyrightRequestObjects, Mode=TwoWay}"
+                                             ColumnWidth="*"
+                                             SelectionMode="Single"
+                                             SelectedItem="{Binding ObjectCurrentItem, Mode=TwoWay}">
+                            <telerik:RadGridView.Columns>
+                                <telerik:GridViewDataColumn IsSortable="False" DataMemberBinding="{Binding IsSelected}" IsReadOnly="True">
+                                    <telerik:GridViewDataColumn.Header>
+                                        <CheckBox telerik:StyleManager.Theme="VisualStudio2013" 
+                                                  HorizontalAlignment="Center"
+                                                  IsChecked="{Binding DataContext.IsCheckedAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadGridView}}}"/>
+                                    </telerik:GridViewDataColumn.Header>
 
-                            <telerik:GridViewCheckBoxColumn.CellStyle>
-                                <Style TargetType="telerik:GridViewCell">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </telerik:GridViewCheckBoxColumn.CellStyle>
-                        </telerik:GridViewCheckBoxColumn>
+                                    <telerik:GridViewDataColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox telerik:StyleManager.Theme="VisualStudio2013"
+                                                      HorizontalAlignment="Center"
+                                                      IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                        </DataTemplate>
+                                    </telerik:GridViewDataColumn.CellTemplate>
+                                </telerik:GridViewDataColumn>
 
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="Шифр твору" DataMemberBinding="{Binding ObjId}"/>
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="Назва твору" DataMemberBinding="{Binding ObjName}"/>
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="Жанр" DataMemberBinding="{Binding GenreName}"/>
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="Тривалість виконання" TextAlignment="Center" DataMemberBinding="{Binding Duration}"/>
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="Творчий профіль" DataMemberBinding="{Binding RoleName}"/>
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="Переклад/обробка/оригінал" DataMemberBinding="{Binding SpecName}"/>
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="% володіння" TextAlignment="Right" DataMemberBinding="{Binding Rate, StringFormat='N2'}"/>
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="Виконавці" DataMemberBinding="{Binding Performer}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="Шифр твору" DataMemberBinding="{Binding ObjId}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="Назва твору" DataMemberBinding="{Binding ObjName}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="Жанр" DataMemberBinding="{Binding GenreName}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="Тривалість виконання" TextAlignment="Center" DataMemberBinding="{Binding Duration}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="Творчий профіль" DataMemberBinding="{Binding RoleName}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="Переклад/обробка/оригінал" DataMemberBinding="{Binding SpecName}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="% володіння" TextAlignment="Right" DataMemberBinding="{Binding Rate, StringFormat='N2'}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="Виконавці" DataMemberBinding="{Binding Performer}"/>
+                                <telerik:GridViewDataColumn IsReadOnly="true" Header="Дата формування" DataMemberBinding="{Binding WorkDateRH, StringFormat='dd.MM.yyyy'}"/>
+                            </telerik:RadGridView.Columns>
 
-                        <telerik:GridViewDataColumn IsReadOnly="true" Header="Дата формування" DataMemberBinding="{Binding WorkDateRH, StringFormat='dd.MM.yyyy'}"/>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="CellEditEnded">
+                                    <i:InvokeCommandAction Command="{Binding SelectedPropertyChangedCommand}" CommandName="selectedPropertyChanged"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </telerik:RadGridView>
 
-                        <telerik:GridViewColumn Header="Статус">
-                            <telerik:GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <telerik:RadComboBox ItemsSource="{Binding}">
-                                        
-                                    </telerik:RadComboBox>
-                                </DataTemplate>
-                            </telerik:GridViewColumn.CellTemplate>
-                        </telerik:GridViewColumn>
-                        <telerik:GridViewDataColumn Header="Коментар" DataMemberBinding="{Binding WorkCommentRH}"/>
+                        <telerik:Label Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0,0,5,0" Content="{Binding ObjectsCount, Mode=TwoWay}"/>
+                    </Grid>
 
-                    </telerik:RadGridView.Columns>
-                </telerik:RadGridView>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28"/>
+                            <RowDefinition Height="28"/>
+                            <RowDefinition Height="28"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-                <telerik:Label Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0,0,5,0" Content="{Binding ObjectsCount, Mode=TwoWay}"/>
+                        <telerik:Label Grid.Row="0" Grid.Column="0" Content="Статус"/>
+                        <telerik:Label Grid.Row="1" Grid.Column="0" Content="Коментар"/>
 
-                <DockPanel Grid.Row="2" Background="Silver">
+                        <telerik:RadComboBox Grid.Row="0" Grid.Column="1" 
+                                             telerik:StyleManager.Theme="VisualStudio2013" 
+                                             Margin="3"
+                                             Background="{Binding BackgroundProperty}"
+                                             ItemsSource="{Binding WorkTypeDictionary}"
+                                             SelectedValue="{Binding ObjectCurrentItemProperty.WorkTypeRH, Mode=TwoWay}"
+                                             SelectedValuePath="CodeI"
+                                             DisplayMemberPath="Name"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" 
+                                 Margin="3,3,3,5" 
+                                 Background="{Binding BackgroundProperty}" 
+                                 TextWrapping="Wrap"
+                                 Text="{Binding Path=ObjectCurrentItemProperty.WorkCommentRH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    </Grid>
+
+                </Grid>
+
+                <DockPanel Grid.Row="1" Background="Silver">
                     <telerik:RadButton Name="btnSave"
                                        Width="150"
                                        HorizontalAlignment="Right" 

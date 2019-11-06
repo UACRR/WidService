@@ -25,8 +25,29 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         public string SpecName { get; set; }
         public decimal Rate { get; set; }
         public string Performer { get; set; }
-        public string WorkCommentRH { get; set; }
+
+        private string _workCommentRH;
+        public string WorkCommentRH
+        {
+            get => _workCommentRH;
+            set
+            {
+                _workCommentRH = value;
+                OnPropertyChanged(() => WorkCommentRH);
+            }
+        }
+
         public DateTime? WorkDateRH { get; set; }
-        public int? WorkTypeRH { get; set; }
+        
+        private int? _workTypeRH;
+        public int? WorkTypeRH
+        {
+            get => _workTypeRH;
+            set
+            {
+                _workTypeRH = value;
+                OnPropertyChanged(() => WorkTypeRH);
+            }
+        }
     }
 }
