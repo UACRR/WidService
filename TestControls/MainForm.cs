@@ -10,16 +10,20 @@ using IpsViewComponentLibrary;
 using System.Threading.Tasks;
 using Telerik.WinControls;
 using IpsCommonTypes.Enums;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 
 namespace TestControls
 {
     public partial class MainForm : Telerik.WinControls.UI.RadForm
     {
-        //private ConsumerService _service;
+        private ConsumerService _service;
         private EditPay payForm = null;
-        //private ConsumerMainView _curItem = null;
-        //private bool isInit = false;
+        private dynamic _curItem = null;
+        private bool isInit = false;
         public MainForm()
         {
             _service = new ConsumerService();
@@ -62,7 +66,7 @@ namespace TestControls
 
         private void radGridView2_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            _curItem = (ConsumerMainView)radGridView2.CurrentRow.DataBoundItem;
+            _curItem = (object)radGridView2.CurrentRow.DataBoundItem;
             if (_curItem == null)
                 return;
             var listPays = _service.GetCustomerPays(_curItem.CustId);

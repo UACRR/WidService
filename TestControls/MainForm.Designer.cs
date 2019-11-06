@@ -491,7 +491,6 @@ namespace TestControls
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
             // 
             // bindingSource2
             // 

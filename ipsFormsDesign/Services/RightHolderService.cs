@@ -15,6 +15,15 @@ namespace ipsFormsDesign.Services
     public class RightholderService : IRightHolderService
     {
         private ApiConnector _webApi = new ApiConnector();
+        private static RightholderService _service;
+
+        public static RightholderService GetInstance()
+        {
+            if (_service == null)
+                _service = new RightholderService();
+
+            return _service;
+        }
 
         /* Info */
         public vCustomer GetOwnerName()

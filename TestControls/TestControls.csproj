@@ -56,8 +56,11 @@
     <Reference Include="ipsFormsDesign">
       <HintPath>..\ipsFormsDesign\bin\Debug\ipsFormsDesign.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -110,6 +113,9 @@
       <HintPath>..\lib\RCWF\2019.1.219.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EditPay.cs">
@@ -129,6 +135,12 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WpfControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WpfControls.Designer.cs">
+      <DependentUpon>WpfControls.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="EditPay.resx">
       <DependentUpon>EditPay.cs</DependentUpon>
@@ -151,6 +163,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WpfControls.resx">
+      <DependentUpon>WpfControls.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
@@ -179,6 +194,10 @@
     <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
       <Project>{B17076A8-B8F9-4F60-AAC0-3845773A4D43}</Project>
       <Name>IpsCommonTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IPSViewComponentLibraryWPF\IPSViewComponentLibraryWPF.csproj">
+      <Project>{815967E6-79E6-4CF1-8F5A-F0B40F746AFF}</Project>
+      <Name>IPSViewComponentLibraryWPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
       <Project>{C0C413B4-086C-422C-82D6-A02E6284ABDF}</Project>

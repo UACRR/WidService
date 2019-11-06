@@ -34,7 +34,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         [AttributeProvider(typeof(IListSource))]
         public object RightholderListDataSource
         {
-            get { return rightolderBindingSource.DataSource; }
+            get => rightolderBindingSource.DataSource;
             set
             {
                 if (rightolderBindingSource.DataSource != value)
@@ -50,7 +50,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         [AttributeProvider(typeof(IListSource))]
         public object ObjectRightListDataSource
         {
-            get { return objectRightBindingSource.DataSource; }
+            get => objectRightBindingSource.DataSource;
             set
             {
                 if (objectRightBindingSource.DataSource != value)
@@ -65,13 +65,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private RightolderWithNotAcceptedCopyrightViewModel _selectedRightholder;
         public RightolderWithNotAcceptedCopyrightViewModel SelectedRightholder
         {
-            get
-            {
-                if (gvRightholdersList.CurrentRow == null)
-                    return null;
-
-                return gvRightholdersList.CurrentRow.DataBoundItem as RightolderWithNotAcceptedCopyrightViewModel;
-            }
+            get => gvRightholdersList.CurrentRow?.DataBoundItem as RightolderWithNotAcceptedCopyrightViewModel;
             set
             {
                 if (_selectedRightholder != value)
@@ -185,7 +179,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             _presenter.UpdateRightholderList();
             _presenter.UpdateObjectsList();
-
         }
 
         public void HandleEvent(RightholderUpdatedEvent e)

@@ -51,7 +51,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                     Rate = obj.Rate,
                 };
 
-                if (obj.WorkTypeRH.HasValue || obj.WorkDateRH.HasValue || !String.IsNullOrEmpty(obj.WorkCommentRH))
+                if (obj.WorkTypeRH.HasValue || obj.WorkDateRH.HasValue || !string.IsNullOrEmpty(obj.WorkCommentRH))
                 {
                     copyright.WorkRh = new WorkRh
                     {
