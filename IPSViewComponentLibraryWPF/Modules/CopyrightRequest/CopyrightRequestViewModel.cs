@@ -23,6 +23,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 
         #region * * * PROPERTIES * * *
 
+        private bool _isCheckedAllRunable = false;
         private bool _isCheckedAll;
         public bool IsCheckedAll
         {
@@ -30,23 +31,15 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             set
             {
                 _isCheckedAll = value;
-                
+
+                _isCheckedAllRunable = true;
+
                 foreach (var obj in _itemSourceCopyrightRequestObjects)
                     obj.IsSelected = value;
 
-                if (ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected))
-                {
-                    if (_objectCurrentItemMultiple == null)
-                        _objectCurrentItemMultiple = new CopyrightRequestObjectsModel();
-                    ObjectCurrentItemProperty = null;
-                }
-                else
-                {
-                    ObjectCurrentItemProperty = ObjectCurrentItem;
-                    _objectCurrentItemMultiple = null;
-                }
+                _isCheckedAllRunable = false;
 
-                //ObjectCurrentItemProperty = ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected) ? null : ObjectCurrentItem;
+                UpdatePanelData();
 
                 OnPropertyChanged(() => IsCheckedAll);
                 OnPropertyChanged(() => ItemSourceCopyrightRequestObjects);
@@ -190,20 +183,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             {
                 _objectCurrentItem = value;
 
-                if (ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected))
-                {
-                    if (_objectCurrentItemMultiple == null)
-                        _objectCurrentItemMultiple = new CopyrightRequestObjectsModel();
-                    ObjectCurrentItemProperty = null;
-                }
-                else
-                {
-                    ObjectCurrentItemProperty = ObjectCurrentItem;
-                    _objectCurrentItemMultiple = null;
-                }
+                UpdatePanelData();
 
-                //ObjectCurrentItemProperty = ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected) ? null : ObjectCurrentItem;
-                
                 OnPropertyChanged(() => ObjectCurrentItem);
             }
         }
@@ -253,6 +234,21 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             }
         }
 
+        private void UpdatePanelData()
+        {
+            if (ItemSourceCopyrightRequestObjects.Any(rec => rec.IsSelected))
+            {
+                if (_objectCurrentItemMultiple == null)
+                    _objectCurrentItemMultiple = new CopyrightRequestObjectsModel();
+                ObjectCurrentItemProperty = null;
+            }
+            else
+            {
+                ObjectCurrentItemProperty = ObjectCurrentItem;
+                _objectCurrentItemMultiple = null;
+            }
+        }
+
         #region * * * COMMANDS * * *
 
         public ICommand LoadDataCommand => new IPSDelegateCommand(LoadDataCommandExecute);
@@ -278,6 +274,15 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         private void SelectedPropertyChangedCommandExecute(object o)
         {
 
+        }
+
+        public ICommand CheckedChangedCommand => new IPSDelegateCommand(CheckedChangedCommandExecute);
+        private void CheckedChangedCommandExecute(object o)
+        {
+            if (_isCheckedAllRunable)
+                return;
+
+            UpdatePanelData();
         }
 
         #endregion
