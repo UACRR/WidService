@@ -28,8 +28,6 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
-                <Button Grid.Row="0"></Button>
             </Grid>
             <!--<Grid>
                 <Grid.RowDefinitions>

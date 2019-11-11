@@ -64,7 +64,7 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MediaServiceInstaller", "Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPSViewComponentLibraryWPF", "IPSViewComponentLibraryWPF\IPSViewComponentLibraryWPF.csproj", "{815967E6-79E6-4CF1-8F5A-F0B40F746AFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWPFControls", "TestWPFControls\TestWPFControls.csproj", "{044503FC-A36E-4A3D-AED4-7DC21B3306E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWPFControls", "TestWPFControls\TestWPFControls.csproj", "{044503FC-A36E-4A3D-AED4-7DC21B3306E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

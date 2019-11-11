@@ -3,6 +3,7 @@
   &lt;Assembly Path="C:\Users\vpysmennyi\ipssysadmin\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\vpysmennyi\ipssysadmin\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\vpysmennyi\.nuget\packages\microsoft.extensions.configuration.fileextensions\2.0.2\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\Progress\Telerik UI for WPF R1 2019\Binaries\WPF40\Telerik.Windows.Controls.FixedDocumentViewersUI.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark6/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark6/Coords/@EntryValue">(Doc Ln 43 Col 74)</s:String>

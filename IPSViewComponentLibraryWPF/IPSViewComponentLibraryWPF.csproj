@@ -135,6 +135,10 @@
     <Compile Include="Modules\CopyrightRequest\CopyrightRequestObjectsModel.cs" />
     <Compile Include="Modules\CopyrightRequest\CopyrightRequestRightholdersModel.cs" />
     <Compile Include="Modules\CopyrightRequest\CopyrightRequestViewModel.cs" />
+    <Compile Include="Modules\Document\DocumentViewer\DocumentViewerViewModel.cs" />
+    <Compile Include="Modules\Document\DocumentViewer\DocumentViewerWindow.xaml.cs">
+      <DependentUpon>DocumentViewerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="_trash\PubCatalogItemListControlViewModel.cs" />
     <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemModel.cs" />
     <Page Include="Modules\CatalogFileItems\CatalogFileItemsListWindow.xaml">
@@ -144,6 +148,10 @@
     <Page Include="Modules\CopyrightRequest\CopyrightRequestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Document\DocumentViewer\DocumentViewerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Properties\UaDictionary.xaml">
       <SubType>Designer</SubType>

@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
+using IPSViewComponentLibraryWPF.Modules.Document.DocumentViewer;
 
 namespace TestWPFControls
 {
@@ -23,11 +24,21 @@ namespace TestWPFControls
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             var objectrightService = new ObjectRightService();
             IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
             var rightholderService = new RightholderService();
             IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            DocumentViewerWindow window = new DocumentViewerWindow
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+            window.Show();
         }
     }
 }

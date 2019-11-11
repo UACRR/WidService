@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
 using IPSViewComponentLibraryWPF.Modules.CopyrightRequest;
+using IPSViewComponentLibraryWPF.Modules.Document.DocumentViewer;
 
 namespace TestControls
 {
@@ -24,9 +25,8 @@ namespace TestControls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Window window = new Window();
-            CopyrightRequestControl control = new CopyrightRequestControl();
-            window.Content = control;
+
+            DocumentViewerWindow window = new DocumentViewerWindow();
             window.Show();
         }
     }
