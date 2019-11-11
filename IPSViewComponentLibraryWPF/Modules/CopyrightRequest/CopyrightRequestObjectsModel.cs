@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using ipsFormsDesign.Data;
 using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
@@ -46,7 +48,22 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             set
             {
                 _workTypeRH = value;
+                WorkTypeRHName = IpsGlobal.AnketaDictionaties?.workType.SingleOrDefault(rec => rec.CodeI == value)?.Name;
                 OnPropertyChanged(() => WorkTypeRH);
+            }
+        }
+
+        private string _workTypeRHName;
+        public string WorkTypeRHName
+        {
+            get => _workTypeRHName;
+            set
+            {
+                if (_workTypeRHName == value)
+                    return;
+
+                _workTypeRHName = value;
+                OnPropertyChanged(() => WorkTypeRHName);
             }
         }
     }
