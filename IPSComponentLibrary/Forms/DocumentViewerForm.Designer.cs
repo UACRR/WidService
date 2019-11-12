@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerForms
+﻿namespace IPSComponentLibrary.Forms
 {
     partial class DocumentViewerForm
     {

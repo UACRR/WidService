@@ -5,6 +5,7 @@ using ipsFormsDesign.ViewModels.Fixations;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IPSComponentLibrary.Forms;
 using IpsViewComponentLibrary.ConsumerForms;
 
 namespace IpsViewComponentLibrary.Utilities

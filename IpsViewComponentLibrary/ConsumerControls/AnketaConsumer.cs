@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;

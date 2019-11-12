@@ -13,7 +13,7 @@ using ipsFormsDesign.Services;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerForms
+namespace IPSComponentLibrary.Forms
 {
     public partial class DocumentViewerForm : RadForm
     {

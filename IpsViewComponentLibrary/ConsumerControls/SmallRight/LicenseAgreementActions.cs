@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Common.Enums;

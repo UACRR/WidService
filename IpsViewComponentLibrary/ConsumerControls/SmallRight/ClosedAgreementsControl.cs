@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;

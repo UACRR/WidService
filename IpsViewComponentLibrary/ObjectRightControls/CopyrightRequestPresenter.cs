@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using IpsViewComponentLibrary.ConsumerForms;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
