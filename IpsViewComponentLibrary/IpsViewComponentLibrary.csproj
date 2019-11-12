@@ -157,12 +157,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsumerForms\DocumentViewerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConsumerForms\DocumentViewerForm.Designer.cs">
-      <DependentUpon>DocumentViewerForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="RightholderCatalogControls\RightholderCatalogControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1217,9 +1211,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ConsumerForms\DocumentViewerForm.resx">
-      <DependentUpon>DocumentViewerForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogControl.resx">
       <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1840,6 +1831,10 @@
     <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
       <Project>{B17076A8-B8F9-4F60-AAC0-3845773A4D43}</Project>
       <Name>IpsCommonTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IPSComponentLibrary\IPSComponentLibrary.csproj">
+      <Project>{5882f17a-4e15-4e89-aec6-9cb163b43316}</Project>
+      <Name>IPSComponentLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
