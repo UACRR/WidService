@@ -34,10 +34,13 @@ namespace TestWPFControls
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            DocumentViewerWindow window = new DocumentViewerWindow
-            {
-                WindowStartupLocation = WindowStartupLocation.CenterScreen
-            };
+            //DocumentViewerWindow window = new DocumentViewerWindow
+            //{
+            //    WindowStartupLocation = WindowStartupLocation.CenterScreen
+            //};
+            //window.Show();
+
+            TestWPFControls.Controls.MainWindow window = new Controls.MainWindow();
             window.Show();
         }
     }

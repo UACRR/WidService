@@ -120,6 +120,7 @@ namespace IPSComponentLibrary.Forms
 
         public async void ShowCopyrightRequest(RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
         {
+            Text = $"Запит - {rightholder.Name}";
             Show();
 
             radWaitingBar1.StartWaiting();
@@ -167,6 +168,9 @@ namespace IPSComponentLibrary.Forms
         {
             _pdf = pathPdf;
             _docx = pathDocx;
+
+            if (string.IsNullOrEmpty(pathPdf))
+                return;
 
             radPdfViewer.LoadDocument(pathPdf);
         }

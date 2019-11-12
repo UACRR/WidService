@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using IPSComponentLibrary.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IPSViewComponentLibraryWPF.Extensions;
+using IPSViewComponentLibraryWPF.Modules.Document.DocumentViewer;
 using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
@@ -47,7 +49,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             }
         }
 
-        private bool _isEnabledRightholdersGrid;
+        private bool _isEnabledRightholdersGrid = true;
         public bool IsEnabledRightholdersGrid
         {
             get => _isEnabledRightholdersGrid;
@@ -71,6 +73,9 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 IsEnabledRightholdersGrid = !value;
             }
         }
+
+        private IList<ObjectRightNotAccepted> ListObjects { get; set; }
+
 
         private bool _isCheckedAllRunable;
         private bool _isCheckedAll;
@@ -128,29 +133,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             }
         }
 
-        private ObservableCollection<CopyrightRequestRightholdersModel> _rightholdersItemSource = new ObservableCollection<CopyrightRequestRightholdersModel>
-        {
-            new CopyrightRequestRightholdersModel
-            {
-                CustId = 123,
-                Name = "Дірол Вадим Гетьманович",
-                CntObj = 24,
-                InnerCode = "ЙЙ-9585АА4/4",
-                InterCode = "5045-78-4540",
-                RegistrDate = new DateTime(2008,10,10),
-                WorkDateRH = new DateTime(2018,07,15),
-            },
-            new CopyrightRequestRightholdersModel
-            {
-                CustId = 123,
-                Name = "Орбіт Ігор Юрійович",
-                CntObj = 44515,
-                InnerCode = "QQ/8744-A-FF3",
-                InterCode = "0003-7845/FF",
-                RegistrDate = new DateTime(2017,03,22),
-                WorkDateRH = new DateTime(2018,12,11)
-            }
-        };
+        private ObservableCollection<CopyrightRequestRightholdersModel> _rightholdersItemSource;
         public ObservableCollection<CopyrightRequestRightholdersModel> RightholdersItemSource
         {
             get => _rightholdersItemSource;
@@ -180,44 +163,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             }
         }
 
-        private ObservableCollection<CopyrightRequestObjectsModel> _objectsItemSource = new ObservableCollection<CopyrightRequestObjectsModel>
-        {
-            new CopyrightRequestObjectsModel
-            {
-                ObjId = 12245,
-                ObjName = "Васильки",
-                GenreName = "Пісня",
-                Duration = "00:05:59",
-                WorkCommentRH = "Дуже важлива функція для роботи з об'єктами права."
-            },
-            new CopyrightRequestObjectsModel
-            {
-                ObjId = 354345,
-                ObjName = "OnPropertyChanged",
-                GenreName = "Музика",
-                Duration = "00:05:59",
-                WorkCommentRH = "З зовнішньої бази внесені дані з загальним процентом більше 100 (права не підтверджені)"
-            },
-            new CopyrightRequestObjectsModel
-            {
-                IsSelected = true,
-                ObjId = 8544,
-                ObjName = "Васильки",
-                GenreName = "Джаз",
-                Duration = "00:05:59",
-                WorkCommentRH = "",
-                WorkTypeRH = 2
-            },
-            new CopyrightRequestObjectsModel
-            {
-                ObjId = 245,
-                ObjName = "Васильки",
-                GenreName = "Блюз",
-                Duration = "00:05:59",
-                WorkCommentRH = "Відсутня можливість відібрати такі ОП для виправлення.",
-                WorkTypeRH = 1,
-            },
-        };
+        private ObservableCollection<CopyrightRequestObjectsModel> _objectsItemSource;
         public ObservableCollection<CopyrightRequestObjectsModel> ObjectsItemSource
         {
             get => _objectsItemSource;
@@ -243,33 +189,19 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             {
                 _isProgrammaticallyChanging = true;
                 _currentObjectItem = value;
-                IsEnabledPropertyPanel = value != null;
                 UpdatePropertyPanelData();
                 OnPropertyChanged(() => CurrentObjectItem);
                 _isProgrammaticallyChanging = false;
             }
         }
 
-        private CopyrightRequestObjectsModel _currentObjectItemMultiple;
         private CopyrightRequestObjectsModel _currentObjectItemProperty;
         public CopyrightRequestObjectsModel CurrentObjectItemProperty
         {
             get => _currentObjectItemProperty;
             set
             {
-                if (value == null)
-                {
-                    _currentObjectItemProperty = _currentObjectItemMultiple;
-                    BackgroundProperty = null;
-                }
-                else
-                {
-                    _currentObjectItemProperty = value;
-                    
-                    // "WhiteSmoke"
-                    BackgroundProperty = new SolidColorBrush(Color.FromArgb(255, 245, 245, 245));
-                }
-                
+                _currentObjectItemProperty = value;
                 OnPropertyChanged(() => CurrentObjectItemProperty);
             }
         }
@@ -308,17 +240,25 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 
             if (ObjectsItemSource.Any(rec => rec.IsSelected))
             {
-                if (_currentObjectItemMultiple == null)
-                    _currentObjectItemMultiple = new CopyrightRequestObjectsModel();
-                CurrentObjectItemProperty = null;
+                CurrentObjectItemProperty = new CopyrightRequestObjectsModel();
+
+                BackgroundProperty = null;
                 MultiplyChangeInfoVisibility = Visibility.Visible;
             }
             else
             {
-                CurrentObjectItemProperty = CurrentObjectItem;
+                CurrentObjectItemProperty = new CopyrightRequestObjectsModel
+                {
+                    WorkTypeRH = CurrentObjectItem?.WorkTypeRH,
+                    WorkCommentRH = CurrentObjectItem?.WorkCommentRH,
+                };
+
+                BackgroundProperty = new SolidColorBrush(Color.FromArgb(255, 245, 245, 245));
                 MultiplyChangeInfoVisibility = Visibility.Collapsed;
-                _currentObjectItemMultiple = null;
             }
+
+            IsEnabledPropertyPanel = CurrentObjectItem != null || ObjectsItemSource.Any(rec => rec.IsSelected);
+            OnPropertyChanged(() => CurrentObjectItemProperty);
         }
 
         /// <summary>
@@ -334,8 +274,11 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 
             IsBusy = true;
             var list = await _service.GetNotAcceptedObjectsByRightholder(CurrentRightholderItem.CustId);
-            await Task.Factory.StartNew(() => ConvertToModel(list));
+            ConvertToModel(list);
+            //await Task.Factory.StartNew(() => ConvertToModel(list));
             IsBusy = false;
+
+            HasUnsavedData = false;
         }
 
         /// <summary>
@@ -364,6 +307,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 
         private void ConvertToModel(IList<ObjectRightNotAccepted> list)
         {
+            ListObjects = list;
             var modelList = new ObservableCollection<CopyrightRequestObjectsModel>();
             foreach (var item in list)
             {
@@ -431,34 +375,50 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             }
 
             var result = _service.UpdateCopyrights(copyrighList);
-
+            // TODO: add result handler
             //if (result)
 
-            HasUnsavedData = false;
             UpdateCopyrightRequestObjectList();
-
-            
-            //_dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
         }
 
         public ICommand CancelCommand => new IPSDelegateCommand(CancelCommandExecute);
         private void CancelCommandExecute(object o)
         {
-            HasUnsavedData = false;
+            //IsBusy = true;
+            //var list = await _service.GetNotAcceptedObjectsByRightholder(CurrentRightholderItem.CustId);
+            //await Task.Factory.StartNew(() => ConvertToModel(list));
+            //IsBusy = false;
+
+            //HasUnsavedData = false;
             UpdateCopyrightRequestObjectList();
         }
 
         public ICommand PrintCopyrightRequestCommand => new IPSDelegateCommand(PrintCopyrightRequestCommandExecute);
         private void PrintCopyrightRequestCommandExecute(object o)
         {
-            var copyrightRequestRightholdersModel = (CopyrightRequestRightholdersModel) o;
+            var model = (CopyrightRequestRightholdersModel) o;
+            RightolderWithNotAcceptedCopyrightViewModel rightolder = new RightolderWithNotAcceptedCopyrightViewModel
+            {
+                CustId = model.CustId,
+                Name = model.Name,
+                InnerCode = model.InnerCode,
+                InterCode = model.InterCode,
+                WorkDateRH = model.WorkDateRH,
+                RegistrDate = model.RegistrDate,
+                CntObj = model.CntObj
+            };
 
-            
-            //var printView = new IPSViewComponentLibrary. ViewAndPrintAgreementForm();
-            //printView.Text = $"Запит - {copyrightRequestRightholdersModel.Name}";
-            //printView.ShowCopyrightRequest(copyrightRequestRightholdersModel, ObjectsItemSource);
+            var printView = new DocumentViewerForm();
+            printView.ShowCopyrightRequest(rightolder, ListObjects);
 
-            //UpdateStatusAndDate(objectRightList);
+            CurrentRightholderItem.WorkDateRH = DateTime.Now;
+            foreach (var obj in ObjectsItemSource)
+            {
+                obj.WorkDateRH = DateTime.Now;
+                obj.WorkTypeRH = 1;
+            }
+
+            SaveCommand.Execute(null);
         }
 
         public ICommand CheckedChangedCommand => new IPSDelegateCommand(CheckedChangedCommandExecute);
@@ -467,7 +427,9 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             if (_isCheckedAllRunable)
                 return;
 
+            _isProgrammaticallyChanging = true;
             UpdatePropertyPanelData();
+            _isProgrammaticallyChanging = false;
         }
 
         private bool _isProgrammaticallyChanging = false;
