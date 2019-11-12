@@ -229,7 +229,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
             var licenseAgreement = _customer?.Client?.LicenseAgreement?.FirstOrDefault();
-            var printForm = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+            var printForm = new DocumentViewerForm(_customer, licenseAgreement);
             if (printForm.ValidTemplate)
                 printForm.ShowDialog();
         }

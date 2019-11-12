@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.ConsumerForms
 {
-    partial class ViewAndPrintAgreementForm
+    partial class DocumentViewerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewAndPrintAgreementForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentViewerForm));
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();

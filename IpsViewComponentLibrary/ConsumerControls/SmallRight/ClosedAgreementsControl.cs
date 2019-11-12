@@ -77,7 +77,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             var row = e.Row.DataBoundItem as GridLicenseAgreementView;
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == row.LicId);
-            var print = new ViewAndPrintAgreementForm(_customer, license, (int)row.LicVersion);
+            var print = new DocumentViewerForm(_customer, license, (int)row.LicVersion);
             print.ShowDialog();
         }
     }

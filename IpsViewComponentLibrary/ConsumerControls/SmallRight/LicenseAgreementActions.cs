@@ -61,7 +61,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         /// <param name="version"></param>
         public void PrintAgreement(Customer customer, LicenseAgreement licenseAgreement, int? version = null)
         {
-            var print = version.HasValue ? new ViewAndPrintAgreementForm(customer, licenseAgreement, version.Value) : new ViewAndPrintAgreementForm(customer, licenseAgreement);
+            var print = version.HasValue ? new DocumentViewerForm(customer, licenseAgreement, version.Value) : new DocumentViewerForm(customer, licenseAgreement);
             print.ShowDialog();
         }
 

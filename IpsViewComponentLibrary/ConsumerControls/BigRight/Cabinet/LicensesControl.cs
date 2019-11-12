@@ -91,7 +91,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                     break;
                 case "printBtn":
                     var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == item.LicId);
-                    var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+                    var print = new DocumentViewerForm(_customer, licenseAgreement);
                     print.ShowDialog();
                     break;
             }

@@ -70,7 +70,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             var row = e.Row.DataBoundItem as GeneralAgreementBigRightView;
             var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
-            var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+            var print = new DocumentViewerForm(_customer, licenseAgreement);
             if (print.ValidTemplate)
                 print.ShowDialog();
         }

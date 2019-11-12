@@ -12,12 +12,15 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <!--<Style TargetType="telerik:RadPdfViewerToolBar">
+        <Style TargetType="telerik:RadToolBar">
+            <Setter Property="telerik:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+        <!--<Style TargetType="pdf:RadPdfViewer">
             <Setter Property="telerik:StyleManager.Theme" Value="VisualStudio2013"/>
         </Style>-->
-        <!--<Style TargetType="telerik:RadPdfViewer">
-            <Setter Property="telerik:StyleManager.Theme" Value="VisualStudio2013"/>
-        </Style>-->
+        <telerik:IconSources x:Key="IconPaths" LightBasePath="/Telerik.Windows.Controls.FixedDocumentViewers;component/Images/"
+                             ModernBasePath="/Telerik.Windows.Controls.FixedDocumentViewers;component/Images/Modern/"
+                             DarkBasePath="/Telerik.Windows.Controls.FixedDocumentViewers;component/Images/Dark/"/>
     </Window.Resources>
 
     <Grid>
@@ -26,21 +29,30 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
+
+                <telerik:RadToolBar DataContext="{Binding ElementName=pdfViewer, Path=CommandDescriptors}">
+                    <telerik:RadButton Command="{Binding OpenCommandDescriptor.Command}" 
+                                       Visibility="{Binding OpenCommandDescriptor.IsEnabled}" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Stretch" 
+                                       Margin="2" 
+                                       Padding="0" 
+                                       HorizontalContentAlignment="Center" 
+                                       VerticalContentAlignment="Center" 
+                                       IsBackgroundVisible="False">
+                        <!--<TextBlock>Save As</TextBlock>-->
+                        <ToolTipService.ToolTip>
+                            <TextBlock Text="Save As..." />
+                        </ToolTipService.ToolTip>
+                        <Image Source="{telerik:IconResource IconRelativePath=save.png, IconSources={StaticResource IconPaths}}" Stretch="None" />
+                    </telerik:RadButton>
+                </telerik:RadToolBar>
+                <telerik:RadPdfViewer Grid.Row="1" x:Name="pdfViewer"
+                                      DataContext="{Binding CommandDescriptors, ElementName=pdfViewer}"
+                                      DocumentSource="{Binding}"
+                                      RenderOptions.BitmapScalingMode="HighQuality"/>
             </Grid>
-            <!--<Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <telerik:RadPdfViewerToolBar Grid.Row="0"/>
-                <telerik:RadPdfViewer Grid.Row="1"/>
-                <telerik:RadButton Grid.Row="2"></telerik:RadButton>
-
-            </Grid>-->
         </telerik:RadBusyIndicator>
     </Grid>
 </Window>

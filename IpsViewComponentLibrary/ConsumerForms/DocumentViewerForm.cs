@@ -15,7 +15,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerForms
 {
-    public partial class ViewAndPrintAgreementForm : RadForm
+    public partial class DocumentViewerForm : RadForm
     {
         private WordEngine _wordEngine;
         private readonly AnketaDictionaties _dictionaties;
@@ -27,7 +27,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         public bool ValidTemplate { get; private set; }
 
-        public ViewAndPrintAgreementForm()
+        public DocumentViewerForm()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
@@ -37,12 +37,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
             SetupCustomSaveAsButton();
         }
 
-        public ViewAndPrintAgreementForm(Customer customer, LicenseAgreement licenseAgreement) : this()
+        public DocumentViewerForm(Customer customer, LicenseAgreement licenseAgreement) : this()
         {
             LoadDocument(customer, licenseAgreement);
         }
 
-        public ViewAndPrintAgreementForm(Customer customer, LicenseAgreement licenseAgreement, int version) : this()
+        public DocumentViewerForm(Customer customer, LicenseAgreement licenseAgreement, int version) : this()
         {
             LoadDocument(customer, licenseAgreement, version);
         }

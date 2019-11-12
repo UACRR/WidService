@@ -73,7 +73,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
-            var printForm = new ViewAndPrintAgreementForm(_customer, _licenseAgreement);
+            var printForm = new DocumentViewerForm(_customer, _licenseAgreement);
             if (printForm.ValidTemplate)
                 printForm.ShowDialog();
         }

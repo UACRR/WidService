@@ -84,7 +84,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
             var objectRightList = (ICollection<ObjectRightNotAccepted>)_view.ObjectRightListDataSource;
 
-            var printView = new ViewAndPrintAgreementForm();
+            var printView = new DocumentViewerForm();
             printView.Text = "Запит - " + _view.SelectedRightholder.Name;
             printView.ShowCopyrightRequest(_view.SelectedRightholder, objectRightList);
 
