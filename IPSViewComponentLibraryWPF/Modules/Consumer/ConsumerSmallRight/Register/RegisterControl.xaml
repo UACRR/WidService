@@ -6,16 +6,24 @@
              xmlns:local="clr-namespace:IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:resx="clr-namespace:IPSViewComponentLibraryWPF.Properties"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              Background="WhiteSmoke"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             
              d:DesignHeight="600" d:DesignWidth="1000">
     <UserControl.DataContext>
         <local:RegisterViewModel/>
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <ResourceDictionary Source="../../../../Properties/RDDefaultElementStyle.xaml"/>
+        <ResourceDictionary Source="RegisterStyleResourceDictionary.xaml"/>
     </UserControl.Resources>
+
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction Command="{Binding LoadDataCommand}" x:Name="controlLoaded"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
 
     <Grid>
         <telerik:RadBusyIndicator>
@@ -73,25 +81,26 @@
                             </Grid>
 
                             <telerik:RadGridView Grid.Column="1" 
-                                             ShowToolTipOnTrimmedText="True" 
-                                             IsReadOnly="True" 
-                                             ShowSearchPanel="True"
-                                             ColumnWidth="*"
-                                             ItemsSource="{Binding}"
-                                             SelectedItem="{Binding}">
+                                                 ShowToolTipOnTrimmedText="True" 
+                                                 IsReadOnly="True" 
+                                                 ShowSearchPanel="True"
+                                                 ColumnWidth="*"
+                                                 ItemsSource="{Binding LicenseAgreementsItemSource}"
+                                                 SelectedItem="{Binding CurrentLicenseAgreement}">
                                 <telerik:RadGridView.Columns>
-                                    <telerik:GridViewDataColumn Header="Тип ліцензії" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="Серія" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="Номер договору" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="Сума вимоги" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="Періодичність оплати" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="Наявний борг" DataMemberBinding="{Binding}"/>
-
+                                    <telerik:GridViewDataColumn Header="ID" DataMemberBinding="{Binding LicId}" Width="75" />
+                                    <telerik:GridViewDataColumn Header="Тип ліцензії" DataMemberBinding="{Binding LicenseTypeName}"/>
+                                    <telerik:GridViewDataColumn Header="Серія" DataMemberBinding="{Binding LicenseSeries}" Width="50" />
+                                    <telerik:GridViewDataColumn Header="Номер договору" DataMemberBinding="{Binding AgrNumber}"/>
+                                    <telerik:GridViewDataColumn Header="Дата початку" DataMemberBinding="{Binding DateBegin, StringFormat='{}{0:d}'}" Width="90" />
+                                    <telerik:GridViewDataColumn Header="Дата завершення" DataMemberBinding="{Binding DateEnd, StringFormat='{}{0:d}'}" Width="90" />
+                                    <telerik:GridViewDataColumn Header="Періодичність оплати" DataMemberBinding="{Binding PeriodPaymentName}"/>
+                                    <telerik:GridViewDataColumn Header="Сума вимоги" DataMemberBinding="{Binding MinAmount, StringFormat='{}{0:N2}'}"/>
+                                    <telerik:GridViewDataColumn Header="Наявний борг" DataMemberBinding="{Binding Debt, StringFormat='{}{0:N2}'}"/>
                                 </telerik:RadGridView.Columns>
                             </telerik:RadGridView>
                         </Grid>
                     </Grid>
-                    <!--<telerik:RadToolBarSeparator Grid.Row="1" Grid.Column="0" Margin="10,0,10,0" VerticalAlignment="Center" Background="LightSlateGray" Height="1" telerik:StyleManager.Theme="VisualStudio2013"/>-->
 
                     <!--періоди-->
                     <Grid Grid.Row="1" Margin="2,0,0,0">
@@ -125,13 +134,20 @@
 
                             <telerik:RadGridView Grid.Row="1" 
                                                  IsReadOnly="True"
-                                                 ColumnWidth="*">
+                                                 ColumnWidth="*"
+                                                 ItemsSource="{Binding PeriodsOfLicenseItemSource}"
+                                                 SelectedItem="{Binding CurrentPeriodOfLicense}">
                                 <telerik:RadGridView.Columns>
-                                    <telerik:GridViewDataColumn Header="Період" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="Стан періоду" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="Вимога по періоду" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="Розподілено" DataMemberBinding="{Binding}"/>
-                                    <telerik:GridViewDataColumn Header="К-сть звітів" DataMemberBinding="{Binding}"/>
+                                    <telerik:GridViewDataColumn Header="ID" DataMemberBinding="{Binding PeriodId}" Width="75" />
+                                    <telerik:GridViewDataColumn Header="Назва періоду" DataMemberBinding="{Binding PeriodName}"/>
+                                    <telerik:GridViewDataColumn Header="Стан періоду" DataMemberBinding="{Binding PeriodStatusName}"/>
+                                    <telerik:GridViewDataColumn Header="Вимога по періоду" DataMemberBinding="{Binding Amount, StringFormat='{}{0:N2}'}"/>
+                                    <telerik:GridViewDataColumn Header="Розподілено" DataMemberBinding="{Binding Distribamount, StringFormat='{}{0:N2}'}"/>
+                                    <telerik:GridViewDataColumn Header="К-сть звітів" 
+                                                                DataMemberBinding="{Binding CountReportsOfPeriod}" 
+                                                                HeaderTextAlignment="Center" 
+                                                                TextAlignment="Center"
+                                                                Width="80"/>
                                 </telerik:RadGridView.Columns>
                             </telerik:RadGridView>
 
@@ -160,15 +176,30 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <telerik:Label Grid.Row="0"
-                                           Content="Розрахунковийй лист"
-                                           FontSize="13"
-                                           Background="AliceBlue"/>
-                        <Grid Grid.Row="1">
+                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="7"/>
+                        </Grid.ColumnDefinitions>
+
+                         <!--<telerik:Label Grid.Row="0" Grid.Column="0"
+                                            Content="Розрахунковий лист"
+                                            FontSize="13"
+                                            Background="AliceBlue"/>-->
+
+                        <telerik:RadToggleButton Grid.Row="0" Grid.Column="0"
+                                                  Background="AliceBlue"
+                                                  telerik:StyleManager.Theme="VisualStudio2013"
+                                                  Margin="2"
+                                                  FontSize="13"
+                                                  HorizontalContentAlignment="Left"
+                                                  IsChecked="{Binding RegisterRatedListInfoButtonChecked}"
+                                                  Content="{Binding RegisterRatedListInfoButtonContent}"/>
+
+
+                        <Grid Grid.Row="1" Grid.Column="0" Visibility="{Binding RegisterRatedListInfoMinimize}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition MinWidth="80"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
@@ -186,14 +217,14 @@
                             <telerik:Label Grid.Row="3" Grid.Column="0" Content="К-сть звітів"/>
                             <telerik:Label Grid.Row="4" Grid.Column="0" Content="Сформовано звітів"/>
                             <!--дані-->
-                            <TextBox Grid.Row="0" Grid.Column="1" Margin="1" Background="Transparent" IsReadOnly="True" IsReadOnlyCaretVisible="False" VerticalContentAlignment="Center" Text="226"/>
-                            <TextBox Grid.Row="1" Grid.Column="1" Margin="1" Text="105 000 555.0045"/>
-                            <TextBox Grid.Row="2" Grid.Column="1" Margin="1" Text="154555.55"/>
-                            <TextBox Grid.Row="3" Grid.Column="1" Margin="1" Text="20"/>
-                            <TextBox Grid.Row="4" Grid.Column="1" Margin="1" Text="13"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RegisterRatedList.RmId}" IsReadOnly="True" Background="Transparent" IsReadOnlyCaretVisible="False" VerticalContentAlignment="Center"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterRatedList.Amount}"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RegisterRatedList.Royalty}"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding RegisterRatedList.CountReport}"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding RegistersItemSource.Count}"/>
                         </Grid>
 
-                        <Grid Grid.Row="2">
+                        <Grid Grid.Row="2" Grid.Column="0" Visibility="{Binding RegisterRatedListInfoMinimize}">
                             <StackPanel Orientation="Horizontal" Margin="3">
                                 <telerik:RadButton Content="Створити" Margin="0,0,5,0"/>
                                 <telerik:RadButton Content="Редагувати"/>
@@ -221,52 +252,63 @@
                                                    FontSize="13"
                                                    Background="AliceBlue"/>
                                 <telerik:RadGridView Grid.Row="1"
-                                                     ColumnWidth="*">
+                                                     ColumnWidth="*"
+                                                     ItemsSource="{Binding RegistersItemSource}">
                                     <telerik:RadGridView.Columns>
-                                        <telerik:GridViewDataColumn Header="ID" DataMemberBinding="{Binding}"/>
-                                        <telerik:GridViewDataColumn Header="Назва звіту" DataMemberBinding="{Binding}"/>
-                                        <telerik:GridViewDataColumn Header="№ Р/Л" DataMemberBinding="{Binding}"/>
-                                        <telerik:GridViewDataColumn Header="%" DataMemberBinding="{Binding}"/>
-                                        <telerik:GridViewDataColumn Header="Сума" DataMemberBinding="{Binding}"/>
-                                        <telerik:GridViewDataColumn Header="Стан" DataMemberBinding="{Binding}"/>
+                                        <telerik:GridViewDataColumn Header="ID" DataMemberBinding="{Binding RegId}" Width="75"/>
+                                        <telerik:GridViewDataColumn Header="Назва звіту" DataMemberBinding="{Binding FileName}"/>
+                                        <telerik:GridViewDataColumn Header="Сума валового збору" 
+                                                                    DataMemberBinding="{Binding RegAmount, StringFormat='{}{0:N2}'}"
+                                                                    IsVisible="{Binding IsRegisterRatedList}"/>
+                                        <telerik:GridViewDataColumn Header="% А/В від валового збору" 
+                                                                    DataMemberBinding="{Binding RegRate, StringFormat='{}{0:N2}'}"
+                                                                    IsVisible="{Binding IsRegisterRatedList}"/>
+                                        <telerik:GridViewDataColumn Header="Сума авторської винагороди" 
+                                                                    DataMemberBinding="{Binding RegRoyalty, StringFormat='{}{0:N2}'}"
+                                                                    IsVisible="{Binding IsRegisterRatedList}"/>
+                                        <telerik:GridViewDataColumn Header="Сума звіту" 
+                                                                    DataMemberBinding="{Binding RegRoyalty, StringFormat='{}{0:N2}'}"
+                                                                    IsVisible="{Binding RegisterAmountVisible}"/>
+                                        <telerik:GridViewDataColumn Header="Стан звіту" DataMemberBinding="{Binding RgStatusName}"/>
+                                        <telerik:GridViewDataColumn Header="К-сть записів у звіті" DataMemberBinding="{Binding CountRows}"/>
                                         <!--змінити курс валют-->
-                                        <telerik:GridViewColumn Width="25" IsVisible="False">
+                                        <telerik:GridViewColumn Width="25" IsVisible="{Binding CurrencyExchangeVisible}">
                                             <telerik:GridViewColumn.Header>
-                                                <Image Width="15" Source="../../../../Resources/Icons/currency-exchange-icon.ico"/>
+                                                <Image Width="18" Source="../../../../Resources/Icons/currency-exchange-icon.png"/>
                                             </telerik:GridViewColumn.Header>
                                             <telerik:GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <telerik:RadButton Margin="0" Command="{Binding}">
+                                                    <telerik:RadButton Margin="0" Command="{Binding ChangeCurrencyExchangeCommand}">
                                                         <telerik:RadButton.ToolTip>
                                                             <ToolTip Content="Змінити курс валют"/>
                                                         </telerik:RadButton.ToolTip>
-                                                        <Image Width="15" Source="../../../../Resources/Icons/currency-exchange-icon.ico"/>
+                                                        <Image Width="15" Source="../../../../Resources/Icons/currency-exchange-icon.png"/>
                                                     </telerik:RadButton>
                                                 </DataTemplate>
                                             </telerik:GridViewColumn.CellTemplate>
                                         </telerik:GridViewColumn>
                                         <!--редагувати переглянути звичайний звіт-->
-                                        <telerik:GridViewColumn Width="25" IsVisible="True">
+                                        <telerik:GridViewColumn Width="25">
                                             <telerik:GridViewColumn.Header>
-                                                <Image Width="15" Source="../../../../Resources/Icons/edit-icon.ico"/>
+                                                <Image Width="17" Source="../../../../Resources/Icons/edit-icon.png"/>
                                             </telerik:GridViewColumn.Header>
                                             <telerik:GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <telerik:RadButton Margin="0" Command="{Binding}">
-                                                        <Image Width="15" Source="../../../../Resources/Icons/edit-icon.ico"/>
+                                                    <telerik:RadButton Margin="0" Command="{Binding OpenRegisterCommand}">
+                                                        <Image Width="15" Source="../../../../Resources/Icons/edit-icon.png"/>
                                                     </telerik:RadButton>
                                                 </DataTemplate>
                                             </telerik:GridViewColumn.CellTemplate>
                                         </telerik:GridViewColumn>
                                         <!--видалити звіт-->
-                                        <telerik:GridViewColumn Width="25" IsVisible="True">
+                                        <telerik:GridViewColumn Width="25" IsVisible="{Binding RemoveRegisterVisible, Mode=TwoWay}">
                                             <telerik:GridViewColumn.Header>
-                                                <Image Width="15" Source="../../../../Resources/Icons/delete-icon.ico"/>
+                                                <Image Width="16" Source="../../../../Resources/Icons/delete-icon.png"/>
                                             </telerik:GridViewColumn.Header>
                                             <telerik:GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <telerik:RadButton Margin="0" Command="{Binding}">
-                                                        <Image Width="15" Source="../../../../Resources/Icons/delete-icon.ico"/>
+                                                    <telerik:RadButton Margin="0" Command="{Binding RemoveRegisterCommand}">
+                                                        <Image Width="15" Source="../../../../Resources/Icons/delete-icon.png"/>
                                                     </telerik:RadButton>
                                                 </DataTemplate>
                                             </telerik:GridViewColumn.CellTemplate>

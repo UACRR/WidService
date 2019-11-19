@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ApplicationCustomerData.cs" />
     <Compile Include="Dictionary\AgreementStatuses.cs" />
     <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />
@@ -469,6 +470,8 @@
     <Compile Include="Model\WorkRh.cs" />
     <Compile Include="Model\WorkType.cs" />
     <Compile Include="Model\WorkTypeTr.cs" />
+    <Compile Include="Patterns\Notifier\INotifier.cs" />
+    <Compile Include="Patterns\Notifier\ISubscriber.cs" />
     <Compile Include="Presenters\UniqueCheckerPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CopyrightRequestService.cs" />
@@ -580,6 +583,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

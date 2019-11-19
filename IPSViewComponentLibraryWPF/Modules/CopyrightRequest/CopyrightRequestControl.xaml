@@ -91,7 +91,7 @@
                                     <DataTemplate>
                                         <telerik:RadButton Margin="0" Width="25" Height="20" Command="{Binding DataContext.PrintCopyrightRequestCommand, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
                                                    CommandParameter="{Binding}">
-                                            <Image Source="../../Resources/Icons/print-icon.ico"/>
+                                            <Image Source="../../Resources/Icons/print-icon.png"/>
                                         </telerik:RadButton>
                                     </DataTemplate>
                                 </telerik:GridViewColumn.CellTemplate>

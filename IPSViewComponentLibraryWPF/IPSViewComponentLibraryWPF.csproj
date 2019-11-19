@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\IPSDelegateCommand.cs" />
+    <Compile Include="Extensions\IViewModelDataChange.cs" />
     <Compile Include="Extensions\ShowMessage.cs" />
     <Compile Include="Modules\CatalogFileItems\CatalogFileItemsListWindow.xaml.cs">
       <DependentUpon>CatalogFileItemsListWindow.xaml</DependentUpon>
@@ -165,6 +166,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterStyleResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,25 +243,23 @@
     <Folder Include="Modules\CopyrightRequest\Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\print-icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\edit-icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\delete-icon.ico" />
-    <Resource Include="Resources\Icons\view-icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\currency-exchange-icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Icons\filter-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\currency-exchange-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\delete-icon.png" />
+    <Resource Include="Resources\Icons\edit-icon.png" />
+    <Resource Include="Resources\Icons\view-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\print-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
