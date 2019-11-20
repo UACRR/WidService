@@ -474,6 +474,7 @@
     <Compile Include="Patterns\Notifier\ISubscriber.cs" />
     <Compile Include="Presenters\UniqueCheckerPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ConsumerRegisterService.cs" />
     <Compile Include="Services\CopyrightRequestService.cs" />
     <Compile Include="Services\Interfaces\ICatalogFileItemsService.cs" />
     <Compile Include="Services\RightholderCatalogService.cs" />

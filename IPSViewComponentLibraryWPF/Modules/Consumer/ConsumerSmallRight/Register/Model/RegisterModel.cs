@@ -13,7 +13,6 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public int RegId { get; set; }
         public int? RmId { get; set; }
         public string Number { get; set; }
-
         public string FileName { get; set; }
 
         private int? _rgStatus;
@@ -29,6 +28,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         }
 
         public string RgStatusName { get; set; }
+
         public int CountRows { get; set; }
         public decimal? RegAmount { get; set; }
         public decimal? RegRate { get; set; }
@@ -47,18 +47,15 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
         private void ResetData()
         {
-
+            RegId = _register.RegId;
+            RmId = _register.RmId;
+            Number = _register.Number;
+            FileName = _register.FileName;
+            RgStatus = _register.RgStatus;
+            CountRows = _register.CountRows;
+            RegAmount = _register.RegAmount;
+            RegRate = _register.RegRate;
+            RegRoyalty = _register.RegRoyalty;
         }
-
-
-
-        public decimal? MusicAmount { get; set; }
-        public decimal? MusicRate { get; set; }
-        public decimal? AuthAmount { get; set; }
-        public decimal? AuthRate { get; set; }
-        public decimal? PaidAmount { get; set; }
-        public int? LicId { get; set; }
-        public int? SchemaId { get; set; }
-        public int? AlgorithmId { get; set; }
     }
 }

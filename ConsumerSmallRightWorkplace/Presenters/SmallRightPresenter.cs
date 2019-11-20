@@ -10,6 +10,7 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.ViewModels.Consumer;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Wrappers;
+using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerControls.Calculation;
 using IpsViewComponentLibrary.ConsumerControls.Reports;
@@ -155,6 +156,8 @@ namespace ConsumerSmallRightWorkplace.Presenters
             CloneRegisterRL(mainCust, regCust);
 
             GridDataUpdate();
+
+            ApplicationCustomerData.GetInstance().CurrentCustomer = mainCust;
 
             _cabinetSmallRightForm.SetCustomer(mainCust);
             _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;

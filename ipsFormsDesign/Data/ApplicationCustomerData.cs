@@ -51,7 +51,7 @@ namespace ipsFormsDesign.Data
         {
             foreach (var subscriber in _subscribers)
             {
-                subscriber.UpdateOnNotified(CurrentCustomer);
+                subscriber.UpdateOnNotified();
             }
         }
     }

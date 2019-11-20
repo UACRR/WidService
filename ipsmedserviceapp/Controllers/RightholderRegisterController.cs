@@ -21,9 +21,9 @@ namespace ipsmedserviceapp.Controllers
     public class RightholderRegisterController : ControllerBase
     {
         private readonly MediaServiceContext _dbContext;
-        private readonly ILogger<CatalogController> _logger;
+        private readonly ILogger<RightholderRegisterController> _logger;
 
-        public RightholderRegisterController(MediaServiceContext dbContext, ILogger<CatalogController> logger)
+        public RightholderRegisterController(MediaServiceContext dbContext, ILogger<RightholderRegisterController> logger)
         {
             _dbContext = dbContext;
             _logger = logger;

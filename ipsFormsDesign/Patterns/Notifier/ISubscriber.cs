@@ -2,6 +2,6 @@
 {
     public interface ISubscriber
     {
-        void UpdateOnNotified(object o);
+        void UpdateOnNotified();
     }
 }

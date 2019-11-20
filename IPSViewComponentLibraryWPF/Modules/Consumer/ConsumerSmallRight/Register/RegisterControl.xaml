@@ -5,19 +5,54 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-             xmlns:resx="clr-namespace:IPSViewComponentLibraryWPF.Properties"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              Background="WhiteSmoke"
              mc:Ignorable="d"
              
              d:DesignHeight="600" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <Style TargetType="telerik:RadGridView">
+            <Setter Property="telerik:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="RowIndicatorVisibility" Value="Collapsed"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="AllowDrop" Value="False"/>
+            <Setter Property="ShowGroupPanel" Value="False"/>
+            <Setter Property="IsFilteringAllowed" Value="False"/>
+        </Style>
+        <Style TargetType="telerik:GridViewHeaderCell">
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        </Style>
+
+        <Style TargetType="telerik:Label">
+            <Setter Property="telerik:StyleManager.Theme" Value="VisualStudio2013"/>
+
+        </Style>
+
+        <Style TargetType="telerik:RadButton">
+            <Setter Property="telerik:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+
+        <Style TargetType="telerik:RadDropDownButton">
+            <Setter Property="telerik:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="RegisterStyleResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+    </UserControl.Resources>
+
     <UserControl.DataContext>
         <local:RegisterViewModel/>
     </UserControl.DataContext>
-
-    <UserControl.Resources>
-        <ResourceDictionary Source="RegisterStyleResourceDictionary.xaml"/>
-    </UserControl.Resources>
 
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
@@ -85,7 +120,7 @@
                                                  IsReadOnly="True" 
                                                  ShowSearchPanel="True"
                                                  ColumnWidth="*"
-                                                 ItemsSource="{Binding LicenseAgreementsItemSource}"
+                                                 ItemsSource="{Binding LicenseAgreementsItemSource, Mode=OneWay}"
                                                  SelectedItem="{Binding CurrentLicenseAgreement}">
                                 <telerik:RadGridView.Columns>
                                     <telerik:GridViewDataColumn Header="ID" DataMemberBinding="{Binding LicId}" Width="75" />
@@ -135,7 +170,7 @@
                             <telerik:RadGridView Grid.Row="1" 
                                                  IsReadOnly="True"
                                                  ColumnWidth="*"
-                                                 ItemsSource="{Binding PeriodsOfLicenseItemSource}"
+                                                 ItemsSource="{Binding PeriodsOfLicenseItemSource, Mode=OneWay}"
                                                  SelectedItem="{Binding CurrentPeriodOfLicense}">
                                 <telerik:RadGridView.Columns>
                                     <telerik:GridViewDataColumn Header="ID" DataMemberBinding="{Binding PeriodId}" Width="75" />
@@ -253,7 +288,8 @@
                                                    Background="AliceBlue"/>
                                 <telerik:RadGridView Grid.Row="1"
                                                      ColumnWidth="*"
-                                                     ItemsSource="{Binding RegistersItemSource}">
+                                                     ItemsSource="{Binding RegistersItemSource, Mode=OneWay}"
+                                                     SelectedItem="{Binding CurrentRegister}">
                                     <telerik:RadGridView.Columns>
                                         <telerik:GridViewDataColumn Header="ID" DataMemberBinding="{Binding RegId}" Width="75"/>
                                         <telerik:GridViewDataColumn Header="Назва звіту" DataMemberBinding="{Binding FileName}"/>
@@ -301,7 +337,7 @@
                                             </telerik:GridViewColumn.CellTemplate>
                                         </telerik:GridViewColumn>
                                         <!--видалити звіт-->
-                                        <telerik:GridViewColumn Width="25" IsVisible="{Binding RemoveRegisterVisible, Mode=TwoWay}">
+                                        <telerik:GridViewColumn Width="25" IsVisible="{Binding RemoveRegisterVisible}">
                                             <telerik:GridViewColumn.Header>
                                                 <Image Width="16" Source="../../../../Resources/Icons/delete-icon.png"/>
                                             </telerik:GridViewColumn.Header>
@@ -318,43 +354,36 @@
                             </Grid>
                         </Grid>
                         <!--панель кнопок-->
-                        <Grid Grid.Row="1">
-                            <Grid Margin="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="1" 
+                                    Margin="1" 
+                                    Orientation="Horizontal">
+                            <!--додати звіт-->
+                            <telerik:RadDropDownButton HorizontalAlignment="Left"
+                                                       Content="Додати звіт"
+                                                       telerik:StyleManager.Theme="VisualStudio2013" 
+                                                       Margin="3"
+                                                       Width="120">
+                                <telerik:RadDropDownButton.DropDownContent>
+                                    <StackPanel>
+                                        <telerik:RadButton Margin="0" HorizontalContentAlignment="Left" Content="Додати звіт з файлу"/>
+                                        <telerik:RadButton Margin="0,5,0,0" Content="Додати звіт через ручне введення"/>
+                                    </StackPanel>
+                                </telerik:RadDropDownButton.DropDownContent>
+                            </telerik:RadDropDownButton>
 
-                                <!--додати звіт-->
-                                <telerik:RadDropDownButton Grid.Column="0" 
-                                                           HorizontalAlignment="Left"
-                                                           Content="Додати звіт"
-                                                           telerik:StyleManager.Theme="VisualStudio2013" 
-                                                           Margin="3"
-                                                           Width="120">
-                                    <telerik:RadDropDownButton.DropDownContent>
-                                        <StackPanel>
-                                            <telerik:RadButton Margin="0" HorizontalContentAlignment="Left" Content="Додати звіт з файлу"/>
-                                            <telerik:RadButton Margin="0,5,0,0" Content="Додати звіт через ручне введення"/>
-                                        </StackPanel>
-                                    </telerik:RadDropDownButton.DropDownContent>
-                                </telerik:RadDropDownButton>
-
-                                <!--дії зі звітами-->
-                                <telerik:RadDropDownButton Grid.Column="1" 
-                                                           HorizontalAlignment="Right" 
-                                                           Content="Дії" 
-                                                           Margin="3"
-                                                           Width="120">
-                                    <telerik:RadDropDownButton.DropDownContent>
-                                        <StackPanel>
-                                            <telerik:RadButton Content="Відправити на погодження"/>
-                                            <telerik:RadButton Content="Зафіксувати перелік звітів"/>
-                                        </StackPanel>
-                                    </telerik:RadDropDownButton.DropDownContent>
-                                </telerik:RadDropDownButton>
-                            </Grid>
-                        </Grid>
+                            <!--дії зі звітами-->
+                            <telerik:RadDropDownButton HorizontalAlignment="Left"
+                                                       Content="Дії" 
+                                                       Margin="3"
+                                                       Width="120">
+                                <telerik:RadDropDownButton.DropDownContent>
+                                    <StackPanel>
+                                        <telerik:RadButton Margin="0" Content="Відправити на погодження"/>
+                                        <telerik:RadButton Margin="0,5,0,0"  Content="Зафіксувати перелік звітів"/>
+                                    </StackPanel>
+                                </telerik:RadDropDownButton.DropDownContent>
+                            </telerik:RadDropDownButton>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>

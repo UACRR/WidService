@@ -2,7 +2,6 @@
 using System.Linq;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
-using IPSViewComponentLibraryWPF.Extensions;
 using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Model

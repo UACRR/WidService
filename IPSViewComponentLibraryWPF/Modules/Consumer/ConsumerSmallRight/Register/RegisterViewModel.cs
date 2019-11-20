@@ -9,6 +9,7 @@ using System.Windows.Input;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Patterns.Notifier;
+using ipsFormsDesign.Services;
 using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Model;
 using Telerik.Windows.Controls;
@@ -19,13 +20,10 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
     {
         private const string RegisterRatedListButtonContentFull = "Розрахунковий лист";
         private const string RegisterRatedListButtonContentShort = "Р/Л";
-        private ApplicationCustomerData _applicationCustomerData;
 
-        public RegisterViewModel()
-        {
-            _applicationCustomerData = ApplicationCustomerData.GetInstance();
-            _applicationCustomerData.Subscribe(this);
-        }
+        private ConsumerRegisterService _service;
+
+        public RegisterViewModel() {}
 
         #region * * * BEHAVIOR PROPERTIES * * *
 
@@ -218,7 +216,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             set
             {
                 _currentLicenseAgreement = value;
-                ChangeElementVisibleBySchemaType(value.SchemaTypeId);
+                ChangeElementVisibleBySchemaType(value?.SchemaTypeId);
+                UpdatePeriodList();
                 OnPropertyChanged(() => CurrentLicenseAgreement);
             }
         }
@@ -247,6 +246,11 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             set
             {
                 _currentPeriodOfLicense = value;
+                RegisterRatedList = new RegisterRatedListModel
+                {
+                    RegisterRatedList = value?.PaidPeriod?.RegisterRatedList.FirstOrDefault(),
+                };
+
                 OnPropertyChanged(() => CurrentPeriodOfLicense);
             }
         }
@@ -261,6 +265,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             set
             {
                 _registerRatedList = value;
+                UpdateRegisterList();
                 OnPropertyChanged(() => RegisterRatedList);
             }
         }
@@ -279,9 +284,109 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             }
         }
 
+        private RegisterModel _currentRegister;
+        public RegisterModel CurrentRegister
+        {
+            get => _currentRegister;
+            set
+            {
+                _currentRegister = value;
+                OnPropertyChanged(() => CurrentRegister);
+            }
+        }
+
         #endregion
 
         #region * * * METHODS * * *
+
+        /// <summary>
+        /// Завантажити дані з серверу
+        /// </summary>
+        private async void LoadData()
+        {
+            var customer = ApplicationCustomerData.GetInstance().CurrentCustomer;
+            if (customer == null)
+            {
+                ClearData();
+                return;
+            }
+
+            var list = new ObservableCollection<RegisterLicenseAgreementModel>();
+
+            IsBusy = true;
+            var resultList = await _service.GetLicenseAgreementList(customer.CustId);
+
+            foreach (var item in resultList)
+            {
+                list.Add(new RegisterLicenseAgreementModel
+                {
+                    LicenseAgreement = item,
+                });
+            }
+
+            LicenseAgreementsItemSource = list;
+
+            IsBusy = false;
+        }
+
+        /// <summary>
+        /// Очистити дані
+        /// </summary>
+        private void ClearData()
+        {
+            //CurrentPeriodOfLicense = null;
+            //CurrentLicenseAgreement = null;
+            RegistersItemSource = null;
+            PeriodsOfLicenseItemSource = null;
+            LicenseAgreementsItemSource = null;
+        }
+
+        public void UpdateOnNotified()
+        {
+            LoadData();
+        }
+
+        /// <summary>
+        /// Оновити список періодів по обраній ліцензії
+        /// </summary>
+        private void UpdatePeriodList()
+        {
+            var periodList = new ObservableCollection<RegisterPeriodModel>();
+
+            if (CurrentLicenseAgreement?.LicenseAgreement?.PaidPeriod != null)
+            {
+                foreach (var period in CurrentLicenseAgreement.LicenseAgreement.PaidPeriod)
+                {
+                    periodList.Add(new RegisterPeriodModel
+                    {
+                        PaidPeriod = period,
+                    });
+                }
+            }
+
+            PeriodsOfLicenseItemSource = periodList;
+        }
+
+        /// <summary>
+        /// Оновити список звітів по обраному періоду
+        /// </summary>
+        private void UpdateRegisterList()
+        {
+            var registerList = new ObservableCollection<RegisterModel>();
+
+            if (RegisterRatedList?.RegisterRatedList != null)
+            {
+                foreach (var register in RegisterRatedList?.RegisterRatedList.Register)
+                {
+                    registerList.Add(new RegisterModel
+                    {
+                        Register = register,
+                    });
+                }
+            }
+
+            RegistersItemSource = registerList;
+        }
 
         /// <summary>
         /// Змінити вигляд відображених елементів залежно від схеми звітів
@@ -332,22 +437,6 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             RegisterAmountVisible = true;
         }
 
-        private void LoadData()
-        {
-
-        }
-
-        private void ClearData()
-        {
-
-        }
-
-        public void UpdateOnNotified(object o)
-        {
-            var customer = o as Customer;
-
-        }
-
         #endregion
 
         #region * * * COMMANDS * * *
@@ -355,7 +444,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public ICommand LoadDataCommand => new IPSDelegateCommand(LoadDataCommandExecute);
         private void LoadDataCommandExecute(object o)
         {
-            var customer = _applicationCustomerData?.CurrentCustomer;
+            ApplicationCustomerData.GetInstance().Subscribe(this);
+            _service = ConsumerRegisterService.GetInstance();
+            LoadData();
         }
 
         public ICommand CreatePeriodCommand => new IPSDelegateCommand(CreatePeriodCommandExecute, (o) => CanExecuteCreatePeriodCommand);
