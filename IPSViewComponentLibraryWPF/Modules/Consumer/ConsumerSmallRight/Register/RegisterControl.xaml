@@ -216,12 +216,7 @@
                             <ColumnDefinition Width="7"/>
                         </Grid.ColumnDefinitions>
 
-                         <!--<telerik:Label Grid.Row="0" Grid.Column="0"
-                                            Content="Розрахунковий лист"
-                                            FontSize="13"
-                                            Background="AliceBlue"/>-->
-
-                        <telerik:RadToggleButton Grid.Row="0" Grid.Column="0"
+                         <telerik:RadToggleButton Grid.Row="0" Grid.Column="0"
                                                   Background="AliceBlue"
                                                   telerik:StyleManager.Theme="VisualStudio2013"
                                                   Margin="2"
@@ -256,7 +251,7 @@
                             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterRatedList.Amount}"/>
                             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RegisterRatedList.Royalty}"/>
                             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding RegisterRatedList.CountReport}"/>
-                            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding RegistersItemSource.Count}"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding RegistersItemSource.Count, Mode=OneWay}"/>
                         </Grid>
 
                         <Grid Grid.Row="2" Grid.Column="0" Visibility="{Binding RegisterRatedListInfoMinimize}">
@@ -288,6 +283,7 @@
                                                    Background="AliceBlue"/>
                                 <telerik:RadGridView Grid.Row="1"
                                                      ColumnWidth="*"
+                                                     IsReadOnly="True"
                                                      ItemsSource="{Binding RegistersItemSource, Mode=OneWay}"
                                                      SelectedItem="{Binding CurrentRegister}">
                                     <telerik:RadGridView.Columns>

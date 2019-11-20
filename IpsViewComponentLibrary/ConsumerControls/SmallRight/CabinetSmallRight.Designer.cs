@@ -82,7 +82,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.ctrlClosedAgreements = new IpsViewComponentLibrary.ConsumerControls.ClosedAgreementsControl();
             this.pvReportWPF = new Telerik.WinControls.UI.RadPageViewPage();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.registerControl1 = new IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.RegisterControl();
             this.pvAgent.SuspendLayout();
             this.pvFiles.SuspendLayout();
             this.pvContacts.SuspendLayout();
@@ -574,7 +573,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.elementHost1.Size = new System.Drawing.Size(985, 444);
             this.elementHost1.TabIndex = 0;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.registerControl1;
             // 
             // CabinetSmallRight
             // 
@@ -645,6 +643,5 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private LicenseAgreementNotActiveControl ctrlLicenseAgreementNotActive;
         private Telerik.WinControls.UI.RadPageViewPage pvReportWPF;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.RegisterControl registerControl1;
     }
 }
