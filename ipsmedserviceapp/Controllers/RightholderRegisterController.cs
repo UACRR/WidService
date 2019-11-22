@@ -159,7 +159,7 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>
+                var responce = new ExecSqlResponse<CatalogFile>
                 {
                     Message = message.Value.ToString(),
                     StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
@@ -227,7 +227,7 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>
+                var responce = new ExecSqlResponse<CatalogFile>
                 {
                     Message = message.Value.ToString(),
                     StatusCode = Convert.ToInt32(returnCode.Value) == 0

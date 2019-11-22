@@ -105,7 +105,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         // перевірка валідності
         private async void btnAuditItems_Click(object sender, EventArgs e)
         {
-            ExecSqlResponce<CatalogFile> result = null;
+            ExecSqlResponse<CatalogFile> result = null;
 
             waitingBar.StartWaiting();
             result = await RightholderCatalogService.GetInstance().ValidateCatalogFileItemsAsync(_catalogFile);
@@ -135,7 +135,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
         // запустити процес завантаження в бд
         private async void btnPerform_Click(object sender, EventArgs e)
         {
-            ExecSqlResponce<CatalogFile> result = null;
+            ExecSqlResponse<CatalogFile> result = null;
             
             GC.Collect();
 

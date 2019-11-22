@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace IPSViewComponentLibraryWPF.Extensions
+namespace IPSViewComponentLibraryWPF.IPSExtensions
 {
     public class IPSDelegateCommand : ICommand
     {

@@ -9,7 +9,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Services.Interfaces;
 using ipsFormsDesign.Utilities;
-using IPSViewComponentLibraryWPF.Extensions;
+using IPSViewComponentLibraryWPF.IPSExtensions;
 using IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalogItem;
 using IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Enums;
 using Telerik.Windows.Controls;
@@ -222,7 +222,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
         private async void OnValidateCommandExecute(object o)
         {
             IsBusy = true;
-            ExecSqlResponce<CatalogFile>  result = await _catalogFileІService.ValidateCatalogFileItemsAsync(_catalogFile);
+            ExecSqlResponse<CatalogFile>  result = await _catalogFileІService.ValidateCatalogFileItemsAsync(_catalogFile);
             IsBusy = false;
 
             if (result == null)
@@ -282,7 +282,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
         private async void OnBeginPerformProcessCommandExecute(object o)
         {
             IsBusy = true;
-            ExecSqlResponce<CatalogFile> result = await _catalogFileІService.ProcessCatalogFileItemsAsync(_catalogFile);
+            ExecSqlResponse<CatalogFile> result = await _catalogFileІService.ProcessCatalogFileItemsAsync(_catalogFile);
             IsBusy = false;
 
             if (result == null)

@@ -80,7 +80,6 @@ namespace ipsFormsDesign.Services
         /// <summary>
         /// Завантажити CatalogFile на сервер
         /// </summary>
-        /// <param name="custId"></param>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
         public async Task<CatalogFile> UploadCatalogFileAsync(CatalogFile catalogFile, List<List<string>> items)
@@ -117,10 +116,10 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        public async Task<ExecSqlResponce<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
+        public async Task<ExecSqlResponse<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/validate/{catalogFile.FileId}";
-            return await _apiConnector.SendPutRequestWithResultAsync<ExecSqlResponce<CatalogFile>>(url);
+            return await _apiConnector.SendPutRequestWithResultAsync<ExecSqlResponse<CatalogFile>>(url);
         }
 
         /// <summary>
@@ -128,10 +127,10 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        public async Task<ExecSqlResponce<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile)
+        public async Task<ExecSqlResponse<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/process/{catalogFile.FileId}";
-            return await _apiConnector.SendPutRequestWithResultAsync<ExecSqlResponce<CatalogFile>>(url);
+            return await _apiConnector.SendPutRequestWithResultAsync<ExecSqlResponse<CatalogFile>>(url);
         }
 
         public void ShowErrors()

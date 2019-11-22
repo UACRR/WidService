@@ -228,12 +228,12 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             return _service.SaveFileComment(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponse<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.Validate(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponse<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.Process(catalogFile);
         }

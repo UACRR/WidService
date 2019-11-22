@@ -6,7 +6,7 @@ namespace ipsFormsDesign.Services.Interfaces
 {
     public interface ICatalogFileItemsService
     {
-        Task<ExecSqlResponce<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile);
-        Task<ExecSqlResponce<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile);
+        Task<ExecSqlResponse<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile);
+        Task<ExecSqlResponse<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile);
     }
 }

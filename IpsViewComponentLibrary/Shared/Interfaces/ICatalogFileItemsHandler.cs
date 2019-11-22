@@ -12,14 +12,14 @@ namespace IpsViewComponentLibrary.Shared.Interfaces
         /// </summary>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile);
+        ExecSqlResponse<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile);
 
         /// <summary>
         /// Виконати прив'язку
         /// </summary>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile);
+        ExecSqlResponse<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile);
 
         /// <summary>
         /// Отримати частину каталогу

@@ -14,6 +14,7 @@ using IpsViewComponentLibrary.ConsumerControls.SmallRight.Enums;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight.InternalModel;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register;
 using Telerik.WinControls.UI;
 using LicenseForPlace = ipsFormsDesign.Model.License;
 
@@ -71,6 +72,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             {
                 Dock = DockStyle.Fill,
             };
+
+            RegisterControl registerControl = new RegisterControl();
+            ehRegister.Child = registerControl;
 
             pvMain.SelectedPage = pvAnketa;
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);

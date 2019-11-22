@@ -12,7 +12,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using IPSViewComponentLibraryWPF.Extensions;
+using IPSViewComponentLibraryWPF.IPSExtensions;
 using IPSViewComponentLibraryWPF.Modules.Document.DocumentViewer;
 using Telerik.Windows.Controls;
 

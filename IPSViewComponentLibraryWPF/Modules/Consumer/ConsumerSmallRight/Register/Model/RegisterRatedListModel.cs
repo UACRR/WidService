@@ -1,5 +1,5 @@
 ﻿using ipsFormsDesign.Model;
-using IPSViewComponentLibraryWPF.Extensions;
+using IPSViewComponentLibraryWPF.IPSExtensions;
 using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Model

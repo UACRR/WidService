@@ -1804,7 +1804,7 @@
       <Name>ipsFormsDesign</Name>
     </ProjectReference>
     <ProjectReference Include="..\IPSViewComponentLibraryWPF\IPSViewComponentLibraryWPF.csproj">
-      <Project>{815967E6-79E6-4CF1-8F5A-F0B40F746AFF}</Project>
+      <Project>{815967e6-79e6-4cf1-8f5a-f0b40f746aff}</Project>
       <Name>IPSViewComponentLibraryWPF</Name>
     </ProjectReference>
   </ItemGroup>

@@ -81,7 +81,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.pvClosedAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClosedAgreements = new IpsViewComponentLibrary.ConsumerControls.ClosedAgreementsControl();
             this.pvReportWPF = new Telerik.WinControls.UI.RadPageViewPage();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.ehRegister = new System.Windows.Forms.Integration.ElementHost();
             this.pvAgent.SuspendLayout();
             this.pvFiles.SuspendLayout();
             this.pvContacts.SuspendLayout();
@@ -517,7 +517,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             // 
             // 
             this.pvMain.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.pvMain.SelectedPage = this.pvActiveAgr;
+            this.pvMain.SelectedPage = this.pvAnketa;
             this.pvMain.Size = new System.Drawing.Size(995, 490);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";
@@ -558,21 +558,22 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             // 
             // pvReportWPF
             // 
-            this.pvReportWPF.Controls.Add(this.elementHost1);
+            this.pvReportWPF.Controls.Add(this.ehRegister);
             this.pvReportWPF.ItemSize = new System.Drawing.SizeF(78F, 27F);
             this.pvReportWPF.Location = new System.Drawing.Point(5, 41);
             this.pvReportWPF.Name = "pvReportWPF";
             this.pvReportWPF.Size = new System.Drawing.Size(985, 444);
             this.pvReportWPF.Text = "Звіти (WPF)";
             // 
-            // elementHost1
+            // ehRegister
             // 
-            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementHost1.Location = new System.Drawing.Point(0, 0);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(985, 444);
-            this.elementHost1.TabIndex = 0;
-            this.elementHost1.Text = "elementHost1";
+            this.ehRegister.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ehRegister.Location = new System.Drawing.Point(0, 0);
+            this.ehRegister.Name = "ehRegister";
+            this.ehRegister.Size = new System.Drawing.Size(985, 444);
+            this.ehRegister.TabIndex = 0;
+            this.ehRegister.Text = "elementHost1";
+            this.ehRegister.Child = null;
             // 
             // CabinetSmallRight
             // 
@@ -642,6 +643,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private System.Windows.Forms.BindingSource bsGridLicenseAgreementView;
         private LicenseAgreementNotActiveControl ctrlLicenseAgreementNotActive;
         private Telerik.WinControls.UI.RadPageViewPage pvReportWPF;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private System.Windows.Forms.Integration.ElementHost ehRegister;
     }
 }

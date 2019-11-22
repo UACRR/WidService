@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace IPSViewComponentLibraryWPF.Extensions
+namespace IPSViewComponentLibraryWPF.IPSExtensions
 {
     public static class ShowMessage
     {

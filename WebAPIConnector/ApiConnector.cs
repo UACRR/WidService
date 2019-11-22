@@ -142,7 +142,8 @@ namespace WebAPIConnector
         /// <summary>
         /// Надіслати PUT запит на сервер з отриманням результату
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TData"></typeparam>
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <returns></returns>

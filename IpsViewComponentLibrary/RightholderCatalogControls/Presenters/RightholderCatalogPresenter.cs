@@ -29,11 +29,6 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             return _service.GetCatalogFileList(custId);
         }
 
-        //public CatalogFile GetCatalogFile(int custId, int fileId)
-        //{
-        //    return _service.GetCatalogFile(custId, fileId);
-        //}
-
         /// <summary>
         /// Завантажити каталог
         /// </summary>
@@ -333,12 +328,12 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             return _service.SaveCatalogFileComment(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponse<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             return null;// _service.ValidateCatalogFileItems(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponse<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             return null;// _service.ProcessCatalogFileItemsAsync(catalogFile).GetAwaiter().GetResult();
         }

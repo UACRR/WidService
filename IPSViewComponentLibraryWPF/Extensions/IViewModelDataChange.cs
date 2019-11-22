@@ -1,4 +1,4 @@
-﻿namespace IPSViewComponentLibraryWPF.Extensions
+﻿namespace IPSViewComponentLibraryWPF.IPSExtensions
 {
     public interface IViewModelDataChange
     {

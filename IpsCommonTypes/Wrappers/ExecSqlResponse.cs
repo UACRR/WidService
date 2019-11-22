@@ -6,7 +6,7 @@ namespace IpsCommonTypes.Wrappers
     /// Обгортка для результату обробки SQL процедур/функцій
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ExecSqlResponce<T> where T: class
+    public class ExecSqlResponse<T> where T: class
     {
         /// <summary>
         /// Код результату обробки

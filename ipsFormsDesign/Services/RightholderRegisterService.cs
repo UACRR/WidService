@@ -87,28 +87,28 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
-        public ExecSqlResponce<CatalogFile> Validate(CatalogFile file)
+        public ExecSqlResponse<CatalogFile> Validate(CatalogFile file)
         {
             int custId = file.CustId ?? 0, fileId = file.FileId;
             string url = $"{Prefix}/{custId}/file/{fileId}/validate";
-            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
+            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponse<CatalogFile> outResult);
             return outResult;
         }
 
-        public ExecSqlResponce<CatalogFile> Process(CatalogFile file)
+        public ExecSqlResponse<CatalogFile> Process(CatalogFile file)
         {
             int custId = file.CustId ?? 0, fileId = file.FileId;
             string url = $"{Prefix}/{custId}/file/{fileId}/process";
-            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
+            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponse<CatalogFile> outResult);
             return outResult;
         }
 
-        public Task<ExecSqlResponce<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
+        public Task<ExecSqlResponse<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<ExecSqlResponce<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile)
+        public Task<ExecSqlResponse<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile)
         {
             throw new System.NotImplementedException();
         }
