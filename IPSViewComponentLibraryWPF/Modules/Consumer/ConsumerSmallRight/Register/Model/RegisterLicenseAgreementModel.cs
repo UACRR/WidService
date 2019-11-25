@@ -23,6 +23,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 LicenseSeries = licType?.Series;
                 LicenseTypeName = licType?.Name;
                 SchemaTypeId = licType?.SchemaId;
+                AlgorithmId = licType?.AlgorithmId;
 
                 Debt = _licenseAgreement.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount);
             }
@@ -31,6 +32,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public string LicenseSeries { get; set; }
         public string LicenseTypeName { get; set; }
         public int? SchemaTypeId { get; set; }
+        public int? AlgorithmId { get; set; }
 
         public string AgrNumber { get; set; }
         public DateTime? DateBegin { get; set; }

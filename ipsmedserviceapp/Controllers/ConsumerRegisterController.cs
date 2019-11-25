@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
@@ -65,6 +67,117 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpGet("register/getitems/{registerId}")]
+        public IActionResult GetRegisterItems(int registerId)
+        {
+            try
+            {
+                DataTable table;
+                string query = "select t1.itemName, t1.performer, t1.authorMusic, t1.authorText, " +
+                               "t2.amountPerfCur, t2.amountPerf, t2.amountMechCur, t2.amountMech " +
+                               "from registerItem t1 " +
+                               "join RegisterCCIDMW t2 on t2.regId = t1.regId and t2.regIItemId = t1.regIItemId " + 
+                               $"where t1.regId = {registerId}";
+
+                using (SqlConnection sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
+                {
+                    sqlConnection.Open();
+                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
+
+                    DataSet dataSet = new DataSet();
+                    sqlDataAdapter.Fill(dataSet);
+
+                    table = dataSet.Tables[0];
+                }
+
+                var list = new List<object[]>();
+                for (int i = 0; i < table.Rows.Count; i++)
+                {
+                    var row = table.Rows[i].ItemArray;
+                    list.Add(row);
+                }
+
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Створити новий звіт
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPost("register/create")]
+        public async Task<IActionResult> CreateRegister([FromBody] Register source)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                var targetRegister = new Register
+                {
+                    CreateDate = DateTime.Now,
+                };
+                targetRegister.SetFields(source, new[] { "RegId", "CreateDate" });
+
+                foreach (var item in source.RegisterItem)
+                {
+                    var registerItem = new RegisterItem();
+                    registerItem.SetFields(item, new []{ "RegId", "RegIitemId" });
+                    targetRegister.RegisterItem.Add(registerItem);
+                }
+
+                RegisterRatedList targetRll = null;
+                if (source.Rm != null && source.Rm.RmId == 0)
+                {
+                    targetRll = new RegisterRatedList
+                    {
+                        CreateDate = DateTime.Now,
+                    };
+                    targetRll.SetFields(source, new[] { "RmId", "CreateDate" });
+
+                    targetRll.Register.Add(targetRegister);
+                }
+
+
+                if (targetRll != null)
+                    await _dbContext.RegisterRatedList.AddAsync(targetRll);
+                else
+                    await _dbContext.Register.AddAsync(targetRegister);
+
+                await _dbContext.SaveChangesAsync();
+
+                response = new ResponseOfRequest("Новий звіт збережено!");
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest
+                {
+                    InnerMessage = e.ToString(),
+                    StatusCode = e.HResult,
+                    Message = "Неможливо зберегти звіт!"
+                };
+                return BadRequest(response);
+            }
+        }
+
+        [HttpPut("register/update")]
+        public async Task<IActionResult> UpdateRegister([FromBody] Register source)
+        {
+            return Ok();
+        }
+
+        [HttpDelete("register/delete/{regId}")]
+        public async Task<IActionResult> DeleteRegister(int regId)
+        {
+            return Ok();
+        }
+
         /// <summary>
         /// Відправити звіт на погодження
         /// </summary>
@@ -98,7 +211,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     StatusCode = 0,
                     InnerMessage = ex.ToString(),
-                    ResponseMessage = "Неможливо виконати дію!"
+                    Message = "Неможливо виконати дію!"
                 });
             }
         }

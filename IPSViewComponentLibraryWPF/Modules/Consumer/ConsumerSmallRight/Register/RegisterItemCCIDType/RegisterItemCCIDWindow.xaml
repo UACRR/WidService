@@ -21,7 +21,8 @@
         <Style TargetType="t:RadGridView">
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
             <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="ColumnWidth" Value="*"/>
+            <Setter Property="CanUserFreezeColumns" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
             <Setter Property="AllowDrop" Value="False"/>
             <Setter Property="ShowGroupPanel" Value="False"/>
             <Setter Property="ShowSearchPanel" Value="True"/>
@@ -32,19 +33,41 @@
             <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         </Style>
     </Window.Resources>
+
     <Grid>
-        <t:RadGridView ItemsSource="{Binding RegisterItemsItemSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <t:RadGridView Grid.Row="0" x:Name="gvRegisterItems"
+                       ItemsSource="{Binding RegisterItemsItemSource}"
+                       ColumnWidth="*">
             <t:RadGridView.Columns>
                 <t:GridViewDataColumn Header="Назва використаного твору" DataMemberBinding="{Binding ItemName}"/>
                 <t:GridViewDataColumn Header="Виконавець - П.І.Б. виконавця (співвиконавців) або назва колективу виконавців" DataMemberBinding="{Binding Performer}"/>
                 <t:GridViewDataColumn Header="Автор музики (П.І.Б.)" DataMemberBinding="{Binding AuthorMusic}"/>
                 <t:GridViewDataColumn Header="Автор тексту (П.І.Б.)" DataMemberBinding="{Binding AuthorText}"/>
 
-                <t:GridViewDataColumn Header="Сума за публічне використання (в валюті звіту)" DataMemberBinding="{Binding AmountMechCurrency, StringFormat='{}{0:N2}'}"/>
-                <t:GridViewDataColumn Header="Сума за публічне використання (в грн)" DataMemberBinding="{Binding AmountMech, StringFormat='{}{0:N2}'}"/>
-                <t:GridViewDataColumn Header="Сума за механічне використання (в валюті звіту)" DataMemberBinding="{Binding AmountMechCurrency, StringFormat='{}{0:N2}'}"/>
-                <t:GridViewDataColumn Header="Сума за механічне використання (в грн)" DataMemberBinding="{Binding AmountMech, StringFormat='{}{0:N2}'}"/>
+                <t:GridViewDataColumn Header="Сума за публічне використання (в валюті звіту)" 
+                                      DataMemberBinding="{Binding AmountPerfCurrency}"
+                                      TextAlignment="Right"/>
+                <t:GridViewDataColumn Header="Сума за публічне використання (в грн)" 
+                                      DataMemberBinding="{Binding AmountPerf, StringFormat='{}{0:} грн'}"
+                                      TextAlignment="Right"/>
+                <t:GridViewDataColumn Header="Сума за механічне використання (в валюті звіту)" 
+                                      DataMemberBinding="{Binding AmountMechCurrency}"
+                                      TextAlignment="Right"/>
+                <t:GridViewDataColumn Header="Сума за механічне використання (в грн)" 
+                                      DataMemberBinding="{Binding AmountMech, StringFormat='{}{0:} грн'}"
+                                      TextAlignment="Right"/>
             </t:RadGridView.Columns>
         </t:RadGridView>
+        <t:RadDataPager Grid.Row="1"
+                        t:StyleManager.Theme="VisualStudio2013"
+                        PageSize="250"
+                        Source="{Binding Items, ElementName=gvRegisterItems}"
+                        IsTotalItemCountFixed="True"
+                        DisplayMode="FirstLastPreviousNextNumeric, Text"/>
     </Grid>
 </Window>

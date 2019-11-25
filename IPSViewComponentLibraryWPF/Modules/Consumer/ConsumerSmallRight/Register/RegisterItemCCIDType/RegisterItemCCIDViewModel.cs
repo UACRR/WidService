@@ -35,9 +35,32 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             }
         }
 
+        /// <summary>
+        /// Сконвертувати масив даних у внутрішню модель
+        /// </summary>
+        /// <param name="collection"></param>
         public void ConvertToInternalModel(ICollection<object[]> collection)
         {
+            var itemsSource = new ObservableCollection<RegisterItemCCIDModel>();
 
+            foreach (var item in collection)
+            {
+                itemsSource.Add(new RegisterItemCCIDModel
+                {
+                    ItemName = item[0] as string,
+                    Performer = item[1] as string,
+                    AuthorMusic = item[2] as string,
+                    AuthorText = item[3] as string,
+
+                    AmountPerfCurrency = (decimal?)(item[4] as double?) ?? 0m,
+                    AmountPerf = (decimal?)(item[5] as double?) ?? 0m,
+
+                    AmountMechCurrency = (decimal?)(item[6] as double?) ?? 0m,
+                    AmountMech = (decimal?)(item[7] as double?) ?? 0m,
+                });
+            }
+
+            RegisterItemsItemSource = itemsSource;
         }
     }
 }

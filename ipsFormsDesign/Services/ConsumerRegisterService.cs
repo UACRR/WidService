@@ -106,10 +106,10 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="register"></param>
         /// <returns></returns>
-        public async Task<ObjectAndItemsWrap<Register, object[]>> GetRegisterItems(Register register)
+        public async Task<List<object[]>> GetRegisterItems(Register register)
         {
             string url = $"{Prefix}/register/getitems/{register.RegId}";
-            var result = await _apiConnector.SendGetRequestAsync<ObjectAndItemsWrap<Register, object[]>>(url);
+            var result = await _apiConnector.GetListAsync<object[]>(url);
             return result;
         }
 

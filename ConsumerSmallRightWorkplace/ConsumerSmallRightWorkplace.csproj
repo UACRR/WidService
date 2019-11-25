@@ -67,6 +67,8 @@
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2019.1.116.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2019.1.116.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2019.1.219.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>

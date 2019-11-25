@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ipsFormsDesign.Data;
@@ -10,6 +13,9 @@ using ipsFormsDesign.Patterns.Notifier;
 using ipsFormsDesign.Services;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Model;
+using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.RegisterItemCCIDType;
+using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Utility;
+using Microsoft.Win32;
 using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register
@@ -339,7 +345,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                     };
                 }
 
-                CanExecuteCreateRegisterFromFileCommand = value != null;
+                CanExecuteCreateRegisterFromFileCommand = value != null && CurrentLicenseAgreement.SchemaTypeId == 1;
                 CanExecuteCreateRegisterManuallyCommand = value != null;
                 CanExecuteFixingRegisterListCommand = value != null && CheckCanFixingRegisterList(value);
 
@@ -707,7 +713,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         {
             IsBusy = true;
             var items = await _service.GetRegisterItems(CurrentRegister.Register);
+            RegisterItemCCIDWindow window = new RegisterItemCCIDWindow(items, CurrentRegister.FileName);
             IsBusy = false;
+            window.ShowDialog();
         }
 
         #endregion
@@ -822,8 +830,81 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         /// Створити звіт через введення вручну
         /// </summary>
         public ICommand CreateRegisterManuallyCommand => new IPSDelegateCommand(CreateRegisterManuallyCommandExecute, o => CanExecuteCreateRegisterManuallyCommand);
-        private void CreateRegisterManuallyCommandExecute(object o)
+        private async void CreateRegisterManuallyCommandExecute(object o)
         {
+
+            var period = CurrentPeriodOfLicense;
+
+            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
+            RegisterRatedList tempRegisterRatedList = null;
+
+            if (!CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Any())
+            {
+                tempRegisterRatedList = CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.First();
+            }
+            else
+            {
+                //CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Add();
+                tempRegisterRatedList = new RegisterRatedList
+                {
+                    PeriodId = CurrentPeriodOfLicense.PeriodId,
+                    UserId = identityName,
+                    Status = 0
+                };
+            }
+
+            //об'єкт звіт
+            var register = new ipsFormsDesign.Model.Register
+            {
+                RgStatus = 0,
+                FileName = string.Empty,
+                CustId = CurrentLicenseAgreement.CustId,
+                LicId = CurrentPeriodOfLicense.LicId,
+                AlgorithmId = CurrentLicenseAgreement.AlgorithmId,
+                PeriodId = CurrentPeriodOfLicense.PeriodId,
+                SchemaId = CurrentLicenseAgreement.SchemaTypeId,
+                UserId = identityName,
+            };
+
+            // рапортичка
+            if (CurrentLicenseAgreement.SchemaTypeId == 2)
+            {
+                var progReportBigRight = new ReportExtendedForm(register)
+                {
+                    HeaderInfoCustomerName = GetCustomerName(),
+                    HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
+                    HeaderInfoPeriodName = period.PeriodName,
+                    HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
+                };
+
+                if (progReportBigRight.ShowDialog() == DialogResult.OK)
+                {
+                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(register);
+                    bindingReports.Add(register);
+
+                    var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
+                    MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
+                }
+            }
+            // не рапотричка
+            else
+            {
+                var viewForm = new ReportExcelForm(register, true);
+                if (viewForm.ShowDialog() == DialogResult.OK)
+                {
+                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(register);
+                    bindingReports.Add(register);
+                    var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
+                    MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
+                }
+            }
+
+            // ok
+            register.RmId = tempRegisterRatedList.RmId;
+            register.Rm = tempRegisterRatedList;
+
+            // send
+            var result0 = await _service.CreateRegister(register);
 
         }
 
@@ -833,9 +914,65 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         /// Створити звіт з файлу Excel
         /// </summary>
         public ICommand CreateRegisterFromFileCommand => new IPSDelegateCommand(CreateRegisterFromFileCommandExecute, o => CanExecuteCreateRegisterFromFileCommand);
-        private void CreateRegisterFromFileCommandExecute(object o)
+        private async void CreateRegisterFromFileCommandExecute(object o)
         {
+            var dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
+            var dialogResult = dialog.ShowDialog() ?? false;
+            if (dialogResult)
+            {
+                ipsFormsDesign.Model.Register register = null;
+                bool repeatableRecordExist = false;
 
+                IsBusy = true;
+
+                await Task.Factory.StartNew(() =>
+                {
+                    var excelEngine = ExcelEngine.GetInstance();
+                    var list = excelEngine.GetReportItems(dialog.FileName);
+
+                    repeatableRecordExist = RegisterUtility.CheckRepeatableRecords(list);
+                    if (repeatableRecordExist)
+                        return;
+
+                    string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
+
+                    if (!CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Any())
+                    {
+                        CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Add(new RegisterRatedList
+                        {
+                            PeriodId = CurrentPeriodOfLicense.PeriodId,
+                            UserId = identityName,
+                            Status = 0
+                        });
+                    }
+
+                    var registerRatedList = CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.First();
+
+                    // Створення Звіту
+                    register = new ipsFormsDesign.Model.Register
+                    {
+                        RgStatus = 0,
+                        FileName = Path.GetFileName(dialog.FileName),
+                        CustId = CurrentLicenseAgreement.CustId,
+                        PeriodId = CurrentPeriodOfLicense.PeriodId,
+                        RmId = registerRatedList.RmId,
+                        Rm = registerRatedList,
+                        LicId = CurrentPeriodOfLicense.LicId,
+                        SchemaId = CurrentLicenseAgreement?.SchemaTypeId ?? 1,
+                        AlgorithmId = CurrentLicenseAgreement?.AlgorithmId ?? 1,
+                        UserId = identityName
+                    };
+
+                    foreach (var item in list)
+                        register.RegisterItem.Add(item);
+
+                });
+
+                var result = await _service.CreateRegister(register);
+
+                IsBusy = false;
+                ShowMessage.ShowInfo(result.Message);
+            }
         }
 
         public bool CanExecuteCreateRegisterFromFileCommand { get; set; }

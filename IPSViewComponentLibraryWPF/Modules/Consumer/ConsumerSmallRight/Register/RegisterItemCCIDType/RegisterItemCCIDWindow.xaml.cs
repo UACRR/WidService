@@ -23,7 +23,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         {
             InitializeComponent();
             ((RegisterItemCCIDViewModel) DataContext).Title = registerName;
-            ((RegisterItemCCIDViewModel)DataContext).ConvertToInternalModel(collection);
+            ((RegisterItemCCIDViewModel) DataContext).ConvertToInternalModel(collection);
         }
     }
 }
