@@ -37,6 +37,8 @@ namespace ipsFormsDesign.Data
             }
         }
 
+        public string CustomerName { get; set; }
+
         public void Subscribe(ISubscriber subscriber)
         {
             _subscribers.Add(subscriber);

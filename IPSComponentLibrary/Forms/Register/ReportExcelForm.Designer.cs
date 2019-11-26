@@ -49,7 +49,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             this.btnAddRow = new Telerik.WinControls.UI.RadButton();
             this.txtReportPeriod = new Telerik.WinControls.UI.RadTextBoxControl();
             this.bsRegisterName = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
+            this.ctrlGridRowCount = new IPSComponentLibrary.Common.GridRowCountControl();
             ((System.ComponentModel.ISupportInitialize)(this.btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView.MasterTemplate)).BeginInit();
@@ -157,9 +157,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             gridViewTimeSpanColumn2.Width = 95;
             gridViewTimeSpanColumn2.WrapText = true;
             gridViewCommandColumn1.FieldName = "Delete";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.HeaderImage = global::IPSComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.Image = global::IPSComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.IsVisible = false;
             gridViewCommandColumn1.MaxWidth = 25;
@@ -282,6 +282,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
         private Telerik.WinControls.UI.RadButton btnAddRow;
         private Telerik.WinControls.UI.RadTextBoxControl txtReportPeriod;
         private BindingSource bsRegisterName;
-        private Common.GridRowCountControl ctrlGridRowCount;
+        private IPSComponentLibrary.Common.GridRowCountControl ctrlGridRowCount;
     }
 }

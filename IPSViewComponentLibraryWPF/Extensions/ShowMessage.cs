@@ -67,6 +67,19 @@ namespace IPSViewComponentLibraryWPF.IPSExtensions
         }
 
         /// <summary>
+        /// Показати повідомлення залежно від результату обробки
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="result">Результат обробки</param>
+        public static void ShowInfoByResult(string message, bool result)
+        {
+            string caption = result ? SuccessTitle : ErrorTitle;
+            MessageBoxImage icon = result ? MessageBoxImage.Information : MessageBoxImage.Error;
+
+            MessageBox.Show(message, caption, MessageBoxButton.OK, icon);
+        }
+
+        /// <summary>
         /// Show Confirmation MessageBox and return choosed result as MessageBoxResult.Yes or MessageBoxResult.No
         /// </summary>
         /// <param name="message">Confirmation question"</param>

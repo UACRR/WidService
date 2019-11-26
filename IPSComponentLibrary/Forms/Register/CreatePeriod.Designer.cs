@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
+﻿namespace IPSComponentLibrary.Forms.Register
 {
     partial class CreatePeriod
     {

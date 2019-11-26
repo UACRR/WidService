@@ -2,13 +2,14 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Extensions;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.ConsumerControls.Reports.Forms;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
+namespace IPSComponentLibrary.Forms.Register
 {
     public partial class ReportExtendedForm : RadForm
     {
@@ -16,9 +17,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
         private const string NotSelectedGenreWarningMsg = "Оберіть жанр постановки!";
         private const string DeleteItemConfirmMsg = "Видалити автора?";
 
-        private readonly Register _register;
+        private readonly ipsFormsDesign.Model.Register _register;
         
-        public ReportExtendedForm(Register register)
+        public ReportExtendedForm(ipsFormsDesign.Model.Register register)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -49,7 +50,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             Closing += ReportExtendedForm_Closing;
         }
 
-        public ReportExtendedForm(Register register, bool isEdit) : this(register)
+        public ReportExtendedForm(ipsFormsDesign.Model.Register register, bool isEdit) : this(register)
         {
             MusicDesingDataSource = _register;
 
@@ -114,9 +115,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             set => lblRlNumber.Text = value;
         }
 
-        public Register MusicDesingDataSource
+        public ipsFormsDesign.Model.Register MusicDesingDataSource
         {
-            get => bsRegisterItemMusic.DataSource as Register;
+            get => bsRegisterItemMusic.DataSource as ipsFormsDesign.Model.Register;
             set
             {
                 var list = value.RegisterItem.Where(rec => rec.CodeItem == 3).ToList();

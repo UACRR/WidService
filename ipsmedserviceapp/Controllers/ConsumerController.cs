@@ -1369,19 +1369,19 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                         // TICKS *********************************
                         // Виправлення даних для вирахування пропорціність використання твору
                         if (destRec.DurationItem == null)
-                            {
-                                destRec.DurationItem = TimeSpan.FromTicks( TimeSpan.TicksPerMillisecond ); 
-                                destRec.Ticks = 1;
-                            }
+                        {
+                            destRec.DurationItem = TimeSpan.FromTicks( TimeSpan.TicksPerMillisecond ); 
+                            destRec.Ticks = 1;
+                        }
 
-                            if (destRec.Ticks == 0)
-                            {
-                                if (destItem.AlgorithmId == 1)  // Duration
-                                destRec.Ticks = Math.Max(1,
-                                                             (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / TimeSpan.TicksPerMillisecond ));
+                        if (destRec.Ticks == 0)
+                        {
+                            // Duration
+                            if (destItem.AlgorithmId == 1)  
+                                destRec.Ticks = Math.Max(1, (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / TimeSpan.TicksPerMillisecond ));
                                 else
                                     destRec.Ticks = 1;          // Count
-                        }
+                            }
                         // TICKS *********************************
 
                         if (isNew)

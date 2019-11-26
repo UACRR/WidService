@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
+using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,11 @@ namespace ipsmedserviceapp.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Отримати список ліцензій для перегляду звітів
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         [HttpGet("licenses/{custId}")]
         public async Task<IActionResult> GetLicenseAgreementList(int custId)
         {
@@ -67,8 +73,349 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        [HttpGet("register/getitems/{registerId}")]
-        public IActionResult GetRegisterItems(int registerId)
+        /// <summary>
+        /// Створити період платежів
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPost("paidperiod/create")]
+        public async Task<IActionResult> CreatePaidPeriod(PaidPeriod source)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                var target = new PaidPeriod
+                {
+                    Status = 1,
+                };
+                target.SetFields(source, new []{ "PeriodId", "Status" });
+
+                await _dbContext.PaidPeriod.AddAsync(target);
+                await _dbContext.SaveChangesAsync();
+
+                response = new ResponseOfRequest("Період створено!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest("Неможливо створити період!", e);
+                return BadRequest(response);
+            }
+        }
+
+        /// <summary>
+        /// Видалити період
+        /// </summary>
+        /// <param name="paidPeriodId"></param>
+        /// <returns></returns>
+        [HttpDelete("paidperiod/delete/{paidPeriodId}")]
+        public async Task<IActionResult> DeletePaidPeriod(int paidPeriodId)
+        {
+            ResponseOfRequest response;
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = await _dbContext.PaidPeriod.SingleOrDefaultAsync(rec => rec.PeriodId == paidPeriodId);
+
+                var registerExist = _dbContext.Register.Any(rec => rec.PeriodId == target.PeriodId);
+                if (registerExist)
+                {
+                    response = new ResponseOfRequest
+                    {
+                        Message = "Неможливо видалити період до якого вже додано звіти!",
+                        IsSuccess = false,
+                    };
+                    return BadRequest(response);
+                }
+
+                var registerRatedList = await _dbContext.RegisterRatedList.SingleOrDefaultAsync(rec => rec.PeriodId == target.PeriodId);
+
+                _dbContext.RegisterRatedList.Remove(registerRatedList);
+                _dbContext.PaidPeriod.Remove(target);
+
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                response = new ResponseOfRequest("Період видалено!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                response = new ResponseOfRequest("Неможливо видалити період!", e);
+                return BadRequest(response);
+            }
+            finally
+            {
+                transaction?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Створити розрахунковий лист
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPost("rrl/create")]
+        public async Task<IActionResult> CreateRegiterRatedList([FromBody] RegisterRatedList source)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                var target = new RegisterRatedList
+                {
+                    CreateDate = DateTime.Now
+                };
+                target.SetFields(source, new[] {"RmId", "CreateDate"});
+
+                await _dbContext.RegisterRatedList.AddAsync(target);
+                await _dbContext.SaveChangesAsync();
+
+                response = new ResponseOfRequest("Розрахунковий лист створено!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest("Неможливо створити розрахунковий лист!", e);
+                return BadRequest(response);
+            }
+        }
+
+        /// <summary>
+        /// Оновити дані розрахункового листа
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPut("rrl/update")]
+        public async Task<IActionResult> UpdateRegiterRatedList([FromBody] RegisterRatedList source)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                var target = await _dbContext.RegisterRatedList.SingleOrDefaultAsync(rec => rec.RmId == source.RmId);
+
+                target.SetFields(source, new[] {"RmId", "CreateDate", "UserId"});
+
+                await _dbContext.SaveChangesAsync();
+
+                response = new ResponseOfRequest("Розрахунковий лист оновлено!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest("Неможливо оновити розрахунковий лист!", e);
+                return BadRequest(response);
+            }
+        }
+
+        /// <summary>
+        /// Створити новий звіт
+        /// </summary>
+        /// <param name="objcetSource"></param>
+        /// <returns></returns>
+        [HttpPost("register/create")]
+        public async Task<IActionResult> CreateRegister([FromBody] NewRegisterWrapResource objcetSource)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                Register source = objcetSource.Register;
+                source.Rm = objcetSource.RegisterRatedList;
+
+                var targetRegister = new Register
+                {
+                    CreateDate = DateTime.Now,
+                };
+                targetRegister.SetFields(source, new[] { "RegId", "CreateDate" });
+
+                int i = 1;
+                foreach (var item in source.RegisterItem)
+                {
+                    var registerItem = new RegisterItem
+                    {
+                        RegIitemId = i++,
+                    };
+                    registerItem.SetFields(item, new []{ "RegId", "RegIitemId" });
+                    targetRegister.RegisterItem.Add(registerItem);
+                }
+
+                RegisterRatedList targetRll = null;
+                if (source.Rm != null && source.Rm.RmId == 0)
+                {
+                    targetRll = new RegisterRatedList
+                    {
+                        CreateDate = DateTime.Now,
+                    };
+                    targetRll.SetFields(source.Rm, new[] { "RmId", "CreateDate" });
+
+                    targetRll.Register.Add(targetRegister);
+                }
+
+
+                if (targetRll != null)
+                    await _dbContext.RegisterRatedList.AddAsync(targetRll);
+                else
+                    await _dbContext.Register.AddAsync(targetRegister);
+
+                await _dbContext.SaveChangesAsync();
+
+                response = new ResponseOfRequest("Новий звіт збережено!");
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest
+                {
+                    InnerMessage = e.ToString(),
+                    StatusCode = e.HResult,
+                    Message = "Неможливо зберегти звіт!",
+                };
+                return Ok(response);
+            }
+        }
+
+        /// <summary>
+        /// Оновити дані звіту
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPut("register/update")]
+        public async Task<IActionResult> UpdateRegister([FromBody] Register source)
+        {
+            ResponseOfRequest response;
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var targetRegister = await _dbContext.Register
+                    .Include(item => item.RegisterItem)
+                    .SingleOrDefaultAsync(rec => rec.RegId == source.RegId);
+
+                targetRegister.SetFields(source, new[] { "RegId", "PeriodId", "RmId", "LicId", "CreateDate", "UserId" });
+                
+                // початковий ідентифікатор для нових записів
+                int regItemId = 1;
+                if (targetRegister.RegisterItem.Any())
+                    regItemId += targetRegister.RegisterItem.Max(rec => rec.RegIitemId);
+
+                _dbContext.ChangeTracker.AutoDetectChangesEnabled = false;
+
+                if (source.RegisterItem.Count > 0)
+                {
+                    _dbContext.UpdateListExtra(source.RegisterItem, targetRegister.RegisterItem,
+                        (isNew, sourceItem, targetItem) =>
+                        {
+                            targetItem.SetFields(sourceItem);
+
+                            if (targetItem.DurationItem == null)
+                            {
+                                targetItem.DurationItem = TimeSpan.FromTicks(TimeSpan.TicksPerMillisecond);
+                                targetItem.Ticks = 1;
+                            }
+
+                            if (targetItem.Ticks == 0)
+                            {
+                                if (targetRegister.AlgorithmId == 1)
+                                    targetItem.Ticks = Math.Max(1, (int)(((TimeSpan)targetItem.DurationItem).Ticks * Math.Max((targetItem.CountUse ?? 0), 1) / TimeSpan.TicksPerMillisecond));
+                                else
+                                    targetItem.Ticks = 1;
+                            }
+                            
+                            if (isNew)
+                                targetItem.RegIitemId = regItemId++;
+
+                            _dbContext.UpdateList(sourceItem.RegisterExtra, targetItem.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
+                        }, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+                }
+
+                _dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
+
+                targetRegister.CountRows = targetRegister.RegisterItem.Count;
+                
+                if (targetRegister.AlgorithmId == 1)
+                {
+                    var sumTicks = targetRegister.RegisterItem.Sum(rec => (long)(rec.Ticks));
+                    targetRegister.Durationticks = (int)sumTicks;
+                }
+                else
+                {
+                    targetRegister.Durationticks = targetRegister.RegisterItem.Count(rec => rec.Ticks != 0);
+                }
+
+
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                response = new ResponseOfRequest("Дані звіту оновлено");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                response = new ResponseOfRequest("Неможливо оновити дані звіту!", e);
+                return BadRequest(response);
+            }
+            finally
+            {
+                transaction?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Видалити звіт
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpDelete("register/delete/{regId}")]
+        public async Task<IActionResult> DeleteRegister(int regId)
+        {
+            ResponseOfRequest response;
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var targetRegister = await _dbContext.Register.SingleOrDefaultAsync(rec => rec.RegId == regId);
+                var targetRegisterItem = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId).ToListAsync();
+
+                if (targetRegister == null)
+                {
+                    response = new ResponseOfRequest
+                    {
+                        Message = "Звіт не знайдено!"
+                    };
+                    return NotFound(response);
+                }
+
+                _dbContext.RegisterItem.RemoveRange(targetRegisterItem);
+                _dbContext.Register.Remove(targetRegister);
+
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                response = new ResponseOfRequest("Звіт видалено!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                response = new ResponseOfRequest("Неможливо видалити звіт!", e);
+                return BadRequest(response);
+            }
+            finally
+            {
+                transaction?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Отримати вміст звіту CCID типу
+        /// </summary>
+        /// <param name="registerId"></param>
+        /// <returns></returns>
+        [HttpGet("register/getitems/ccid/{registerId}")]
+        public IActionResult GetCCIDRegisterItems(int registerId)
         {
             try
             {
@@ -76,7 +423,7 @@ namespace ipsmedserviceapp.Controllers
                 string query = "select t1.itemName, t1.performer, t1.authorMusic, t1.authorText, " +
                                "t2.amountPerfCur, t2.amountPerf, t2.amountMechCur, t2.amountMech " +
                                "from registerItem t1 " +
-                               "join RegisterCCIDMW t2 on t2.regId = t1.regId and t2.regIItemId = t1.regIItemId " + 
+                               "join RegisterCCIDMW t2 on t2.regId = t1.regId and t2.regIItemId = t1.regIItemId " +
                                $"where t1.regId = {registerId}";
 
                 using (SqlConnection sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
@@ -107,85 +454,30 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// Створити новий звіт
+        /// Отримати вміст звіту стандартного типу
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="regiterId"></param>
         /// <returns></returns>
-        [HttpPost("register/create")]
-        public async Task<IActionResult> CreateRegister([FromBody] Register source)
+        [HttpGet("register/getitems/default/{registerId}")]
+        public async Task<IActionResult> GetDefaultRegisterItems(int regiterId)
         {
-            ResponseOfRequest response;
-            try
-            {
-                var targetRegister = new Register
-                {
-                    CreateDate = DateTime.Now,
-                };
-                targetRegister.SetFields(source, new[] { "RegId", "CreateDate" });
+            var items = await _dbContext.RegisterItem
+                .Where(rec => rec.RegId == regiterId)
+                .Include(item => item.RegisterExtra)
+                .ToListAsync();
 
-                foreach (var item in source.RegisterItem)
-                {
-                    var registerItem = new RegisterItem();
-                    registerItem.SetFields(item, new []{ "RegId", "RegIitemId" });
-                    targetRegister.RegisterItem.Add(registerItem);
-                }
-
-                RegisterRatedList targetRll = null;
-                if (source.Rm != null && source.Rm.RmId == 0)
-                {
-                    targetRll = new RegisterRatedList
-                    {
-                        CreateDate = DateTime.Now,
-                    };
-                    targetRll.SetFields(source, new[] { "RmId", "CreateDate" });
-
-                    targetRll.Register.Add(targetRegister);
-                }
-
-
-                if (targetRll != null)
-                    await _dbContext.RegisterRatedList.AddAsync(targetRll);
-                else
-                    await _dbContext.Register.AddAsync(targetRegister);
-
-                await _dbContext.SaveChangesAsync();
-
-                response = new ResponseOfRequest("Новий звіт збережено!");
-
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                response = new ResponseOfRequest
-                {
-                    InnerMessage = e.ToString(),
-                    StatusCode = e.HResult,
-                    Message = "Неможливо зберегти звіт!"
-                };
-                return BadRequest(response);
-            }
-        }
-
-        [HttpPut("register/update")]
-        public async Task<IActionResult> UpdateRegister([FromBody] Register source)
-        {
-            return Ok();
-        }
-
-        [HttpDelete("register/delete/{regId}")]
-        public async Task<IActionResult> DeleteRegister(int regId)
-        {
-            return Ok();
+            return Ok(items);
         }
 
         /// <summary>
-        /// Відправити звіт на погодження
+        /// Змінити статус звіту "на погодженні"
         /// </summary>
         /// <param name="registerId"></param>
         /// <returns></returns>
         [HttpPut("register/accept/{registerId}")]
-        public async Task<IActionResult> SetRegisterState(int registerId)
+        public async Task<IActionResult> AcceptRegister(int registerId)
         {
+            ResponseOfRequest response;
             IDbContextTransaction transaction = null;
             try
             {
@@ -200,19 +492,62 @@ namespace ipsmedserviceapp.Controllers
                 transaction = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
                 transaction.Commit();
-                
-                return Ok();
+
+                response = new ResponseOfRequest("Звіт відправлено на погодження!");
+                return Ok(response);
             }
             catch (Exception ex)
             {
                 transaction?.Rollback();
+                response = new ResponseOfRequest("Неможливо відправити звіт на погодження!", ex);
+                return BadRequest(response);
+            }
+            finally
+            {
+                transaction?.Dispose();
+            }
+        }
 
-                return BadRequest(new ResponseOfRequest
-                {
-                    StatusCode = 0,
-                    InnerMessage = ex.ToString(),
-                    Message = "Неможливо виконати дію!"
-                });
+        /// <summary>
+        /// Зафіксувати перелік звітів
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPut("register/fixate")]
+        public async Task<IActionResult> FixateRegistersList([FromBody]RegisterRatedList source)
+        {
+            IDbContextTransaction transaction = null;
+            ResponseOfRequest response;
+            try
+            {
+                var targetRegisterRatedList = await _dbContext.RegisterRatedList.SingleOrDefaultAsync(rec => rec.RmId == source.RmId);
+                
+                // RegisterListStatus
+                // 1	Погоджений
+                targetRegisterRatedList.Status = 1;
+
+                var targetPaidPeriod = await _dbContext.PaidPeriod.SingleOrDefaultAsync(rec => rec.PeriodId == targetRegisterRatedList.PeriodId);
+
+                // PeriodStatus
+                // 2	Прийом коштів
+                targetPaidPeriod.Status = 2;
+
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                response = new ResponseOfRequest("Перелік звітів зафіксовано!");
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                response = new ResponseOfRequest("Неможливо зафіксувати перелік звітів!", ex);
+                return BadRequest(response);
+            }
+            finally
+            {
+                transaction?.Dispose();
             }
         }
     }

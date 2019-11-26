@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
+namespace IPSComponentLibrary.Forms.Register
 {
     partial class ReportExtendedForm
     {
@@ -126,7 +126,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.lblRlNumber = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
+            this.ctrlSaveCancelButtons = new IpsComponentLibrary.Common.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictRelGenrePercent)).BeginInit();
@@ -326,18 +326,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             gridViewDecimalColumn18.Width = 80;
             gridViewDecimalColumn18.WrapText = true;
             gridViewCommandColumn4.FieldName = "btnEdit";
-            gridViewCommandColumn4.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn4.HeaderImage = global::IPSComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn4.Image = global::IPSComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn4.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn4.MaxWidth = 30;
             gridViewCommandColumn4.MinWidth = 30;
             gridViewCommandColumn4.Name = "btnEdit";
             gridViewCommandColumn4.Width = 30;
             gridViewCommandColumn5.FieldName = "btnDelete";
-            gridViewCommandColumn5.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn5.HeaderImage = global::IPSComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn5.HeaderText = "";
-            gridViewCommandColumn5.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn5.Image = global::IPSComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn5.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn5.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewCommandColumn5.MaxWidth = 30;
@@ -826,9 +826,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             gridViewTextBoxColumn28.Name = "Name";
             gridViewTextBoxColumn28.Width = 546;
             gridViewCommandColumn6.FieldName = "btnsDelete";
-            gridViewCommandColumn6.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn6.HeaderImage = global::IPSComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn6.HeaderText = "";
-            gridViewCommandColumn6.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn6.Image = global::IPSComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn6.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn6.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewCommandColumn6.MaxWidth = 30;
@@ -1358,7 +1358,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadLabel lblRlNumber;
         private Telerik.WinControls.UI.RadLabel radLabel15;
-        private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
+        private IpsComponentLibrary.Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
         private System.Windows.Forms.BindingSource bsDictRelGenrePercent;
         private System.Windows.Forms.BindingSource bsDictGenreType;
     }

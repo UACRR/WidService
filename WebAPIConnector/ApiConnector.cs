@@ -84,7 +84,7 @@ namespace WebAPIConnector
             if (result != null && !result.IsSuccessStatusCode)
                 LogError(result);
 
-            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<T>() : default(T);
+            return result?.Content != null ? result.Content.ReadAs<T>() : default(T);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace WebAPIConnector
             if (result != null && !result.IsSuccessStatusCode)
                 LogError(result);
 
-            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<TResult>() : default(TResult);
+            return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace WebAPIConnector
             if (result != null && !result.IsSuccessStatusCode)
                 LogError(result);
 
-            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<T>() : default(T);
+            return result?.Content != null ? result.Content.ReadAs<T>() : default(T);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace WebAPIConnector
             if (result != null && !result.IsSuccessStatusCode)
                 LogError(result);
 
-            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<TResult>() : default(TResult);
+            return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
         }
 
         /// <summary>
@@ -177,7 +177,8 @@ namespace WebAPIConnector
         /// <summary>
         /// Надіслати PATCH запит на сервер з отриманням результату
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TData"></typeparam>
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -204,7 +205,7 @@ namespace WebAPIConnector
             if (result != null && !result.IsSuccessStatusCode)
                 LogError(result);
 
-            return result != null && result.IsSuccessStatusCode ? result.Content.ReadAs<TResult>() : default(TResult);
+            return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
         }
 
         /// <summary>

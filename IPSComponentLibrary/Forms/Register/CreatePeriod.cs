@@ -3,17 +3,18 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Extensions;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerDialogForms
+namespace IPSComponentLibrary.Forms.Register
 {
     public partial class CreatePeriod : Form
     {
         private readonly LicenseAgreement _licenseAgreement;
         private readonly PeriodStatus dicStatus;
+
         public CreatePeriod(LicenseAgreement licenseAgreement)
         {
             _licenseAgreement = licenseAgreement;
@@ -64,7 +65,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         }
 
         /// <summary>
-        /// 
+        /// Механізм створення найменування періода залежно від типу
         /// </summary>
         /// <param name="beginDateNewPeriod"></param>
         /// <param name="cntInList"></param>

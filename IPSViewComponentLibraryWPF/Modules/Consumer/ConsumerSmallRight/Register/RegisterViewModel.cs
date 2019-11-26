@@ -6,17 +6,23 @@ using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
+using IpsCommonTypes.Types;
+using IPSComponentLibrary.Extensions;
+using IPSComponentLibrary.Forms.Register;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Patterns.Notifier;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerControls.Reports.Forms;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Model;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.RegisterItemCCIDType;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Utility;
-using Microsoft.Win32;
 using Telerik.Windows.Controls;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register
 {
@@ -345,8 +351,10 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                     };
                 }
 
-                CanExecuteCreateRegisterFromFileCommand = value != null && CurrentLicenseAgreement.SchemaTypeId == 1;
-                CanExecuteCreateRegisterManuallyCommand = value != null;
+                // PeriodStatus
+                // 1	Прийом звітів
+                CanExecuteCreateRegisterFromFileCommand = value != null && value.PeriodStatus == 1 && CurrentLicenseAgreement.SchemaTypeId == 1;
+                CanExecuteCreateRegisterManuallyCommand = value != null && value.PeriodStatus == 1;
                 CanExecuteFixingRegisterListCommand = value != null && CheckCanFixingRegisterList(value);
 
                 OnPropertyChanged(() => CurrentPeriodOfLicense);
@@ -412,7 +420,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         /// <summary>
         /// Завантажити дані з серверу
         /// </summary>
-        private async void LoadData()
+        private async Task LoadData()
         {
             var customer = ApplicationCustomerData.GetInstance().CurrentCustomer;
             if (customer == null)
@@ -440,6 +448,54 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         }
 
         /// <summary>
+        /// Оновити дані після внесених змін та відновити стан
+        /// </summary>
+        private async void UpdateData()
+        {
+            var saveCurrentLicense = CurrentLicenseAgreement.LicId;
+            var saveCurrentPeriodOfLicense = CurrentPeriodOfLicense.PeriodId;
+            var saveCurrentRegister = CurrentRegister?.RegId;
+
+            var customer = ApplicationCustomerData.GetInstance().CurrentCustomer;
+            if (customer == null)
+            {
+                ClearData();
+                return;
+            }
+
+            var list = new ObservableCollection<RegisterLicenseAgreementModel>();
+
+            IsBusy = true;
+            var resultList = await _service.GetLicenseAgreementList(customer.CustId);
+
+            foreach (var item in resultList)
+            {
+                list.Add(new RegisterLicenseAgreementModel
+                {
+                    LicenseAgreement = item,
+                });
+            }
+
+            LicenseAgreementsItemSource = list;
+
+            IsBusy = false;
+
+            var license = LicenseAgreementsItemSource.SingleOrDefault(rec => rec.LicId == saveCurrentLicense);
+            CurrentLicenseAgreement = license;
+
+            var period = PeriodsOfLicenseItemSource.SingleOrDefault(rec => rec.PeriodId == saveCurrentPeriodOfLicense);
+            CurrentPeriodOfLicense = period;
+
+            if (RegistersItemSource.Any())
+            {
+                var register = RegistersItemSource.SingleOrDefault(rec => rec.RegId == saveCurrentRegister);
+                // якщо не видалений
+                if (register != null)
+                    CurrentRegister = register;
+            }
+        }
+
+        /// <summary>
         /// Очистити дані
         /// </summary>
         private void ClearData()
@@ -453,7 +509,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
         public void UpdateOnNotified()
         {
-            LoadData();
+            Task.Factory.StartNew(() => LoadData());
         }
 
         /// <summary>
@@ -698,21 +754,21 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         private async void ShowItemDataDefaultType()
         {
             IsBusy = true;
-            var items = await _service.GetRegisterItems(CurrentRegister.Register);
+            var items = await _service.GetDefaultRegisterItems(CurrentRegister.Register);
             IsBusy = false;
         }
 
         private async void ShowItemDataRrlType()
         {
             IsBusy = true;
-            var items = await _service.GetRegisterItems(CurrentRegister.Register);
+            var items = await _service.GetDefaultRegisterItems(CurrentRegister.Register);
             IsBusy = false;
         }
 
         private async void ShowItemDataExternalType()
         {
             IsBusy = true;
-            var items = await _service.GetRegisterItems(CurrentRegister.Register);
+            var items = await _service.GetCCIDRegisterItems(CurrentRegister.Register);
             RegisterItemCCIDWindow window = new RegisterItemCCIDWindow(items, CurrentRegister.FileName);
             IsBusy = false;
             window.ShowDialog();
@@ -720,6 +776,50 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
         #endregion
 
+        /// <summary>
+        /// Створити шаблон нового звіту
+        /// </summary>
+        /// <returns></returns>
+        private ipsFormsDesign.Model.Register GetRegisterTemplate()
+        {
+            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
+
+            RegisterRatedList tempRegisterRatedList;
+
+            if (CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Any())
+            {
+                tempRegisterRatedList = CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.First();
+            }
+            else
+            {
+                // RegisterRatedList is empty, create
+                tempRegisterRatedList = new RegisterRatedList
+                {
+                    PeriodId = CurrentPeriodOfLicense.PeriodId,
+                    UserId = identityName,
+                    Status = 0
+                };
+            }
+
+
+            //об'єкт звіт
+            var register = new ipsFormsDesign.Model.Register
+            {
+                RgStatus = 0,
+                FileName = string.Empty,
+                CustId = CurrentLicenseAgreement.CustId,
+                LicId = CurrentPeriodOfLicense.LicId,
+                AlgorithmId = CurrentLicenseAgreement.AlgorithmId,
+                PeriodId = CurrentPeriodOfLicense.PeriodId,
+                SchemaId = CurrentLicenseAgreement.SchemaTypeId,
+                UserId = identityName,
+
+                Rm = tempRegisterRatedList,
+                RmId = tempRegisterRatedList.RmId,
+            };
+
+            return register;
+        }
 
 
         #endregion
@@ -727,7 +827,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         #region * * * COMMANDS * * *
 
         public ICommand LoadDataCommand => new IPSDelegateCommand(LoadDataCommandExecute);
-        private void LoadDataCommandExecute(object o)
+        private async void LoadDataCommandExecute(object o)
         {
             ApplicationCustomerData.GetInstance().Subscribe(this);
             _service = ConsumerRegisterService.GetInstance();
@@ -737,16 +837,29 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             RrlSaveButtonVisibility = Visibility.Collapsed;
             RrlCancelButtonVisibility = Visibility.Collapsed;
 
-            LoadData();
+            await LoadData();
         }
 
         /// <summary>
         /// Створити період до обраної ліцензії
         /// </summary>
         public ICommand CreatePeriodCommand => new IPSDelegateCommand(CreatePeriodCommandExecute, (o) => CanExecuteCreatePeriodCommand);
-        private void CreatePeriodCommandExecute(object o)
+        private async void CreatePeriodCommandExecute(object o)
         {
+            var form = new CreatePeriod(CurrentLicenseAgreement.LicenseAgreement);
+            var saveNeed = form.ShowDialog() == DialogResult.OK; 
+            
+            if (saveNeed)
+            {
+                var period = CurrentLicenseAgreement.LicenseAgreement.PaidPeriod.Single(rec => rec.PeriodId == 0);
+                period.CustId = CurrentLicenseAgreement.CustId;
+                period.LicId = CurrentLicenseAgreement.LicId;
 
+                var result = await _service.CreatePaidPeriod(period);
+                ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
+            }
+
+            UpdateData();
         }
 
         public bool CanExecuteCreatePeriodCommand { get; set; }
@@ -785,24 +898,28 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             IsEnabledGrid = false;
         }
 
+        /// <summary>
+        /// Зберегти створений/змінений розрахунковий лист
+        /// </summary>
         public ICommand SaveRegisterRatedListCommand => new IPSDelegateCommand(SaveRegisterRatedListCommandExecute);
-        private void SaveRegisterRatedListCommandExecute(object o)
+        private async void SaveRegisterRatedListCommandExecute(object o)
         {
             RegisterRatedListReadOnly = true;
             RegisterRatedList.UpdateData();
 
-            object result = null;
+            ResponseOfRequest result;
             
             if (IsCreateRegisterRated)
-                result = _service.CreateRegisterRatedList(RegisterRatedList.RegisterRatedList);
+                result = await _service.CreateRegisterRatedList(RegisterRatedList.RegisterRatedList);
             else
-                result = _service.UpdateRegisterRatedList(RegisterRatedList.RegisterRatedList);
+                result = await _service.UpdateRegisterRatedList(RegisterRatedList.RegisterRatedList);
 
             IsCreateRegisterRated = false;
             IsEnabledGrid = true;
             RrlSaveButtonVisibility = Visibility.Collapsed;
             RrlCancelButtonVisibility = Visibility.Collapsed;
-            LoadData();
+            MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
+            UpdateData();
         }
 
         public ICommand CancelChangesRegisterRatedListCommand=>new IPSDelegateCommand(CancelChangesRegisterRatedListCommandExecute);
@@ -832,80 +949,39 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public ICommand CreateRegisterManuallyCommand => new IPSDelegateCommand(CreateRegisterManuallyCommandExecute, o => CanExecuteCreateRegisterManuallyCommand);
         private async void CreateRegisterManuallyCommandExecute(object o)
         {
-
-            var period = CurrentPeriodOfLicense;
-
-            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
-            RegisterRatedList tempRegisterRatedList = null;
-
-            if (!CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Any())
-            {
-                tempRegisterRatedList = CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.First();
-            }
-            else
-            {
-                //CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Add();
-                tempRegisterRatedList = new RegisterRatedList
-                {
-                    PeriodId = CurrentPeriodOfLicense.PeriodId,
-                    UserId = identityName,
-                    Status = 0
-                };
-            }
-
             //об'єкт звіт
-            var register = new ipsFormsDesign.Model.Register
-            {
-                RgStatus = 0,
-                FileName = string.Empty,
-                CustId = CurrentLicenseAgreement.CustId,
-                LicId = CurrentPeriodOfLicense.LicId,
-                AlgorithmId = CurrentLicenseAgreement.AlgorithmId,
-                PeriodId = CurrentPeriodOfLicense.PeriodId,
-                SchemaId = CurrentLicenseAgreement.SchemaTypeId,
-                UserId = identityName,
-            };
+            var register = GetRegisterTemplate();
+            bool saveNeed;
 
             // рапортичка
             if (CurrentLicenseAgreement.SchemaTypeId == 2)
             {
                 var progReportBigRight = new ReportExtendedForm(register)
                 {
-                    HeaderInfoCustomerName = GetCustomerName(),
-                    HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
-                    HeaderInfoPeriodName = period.PeriodName,
-                    HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
+                    HeaderInfoCustomerName = ApplicationCustomerData.GetInstance().CustomerName,
+                    HeaderInfoLicenseNumberString = CurrentLicenseAgreement.AgrNumber,
+                    HeaderInfoPeriodName = CurrentPeriodOfLicense.PeriodName,
+                    HeaderInfoRatedListNumber = RegisterRatedList?.RmId.ToString(),
                 };
 
-                if (progReportBigRight.ShowDialog() == DialogResult.OK)
-                {
-                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(register);
-                    bindingReports.Add(register);
-
-                    var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
-                    MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
-                }
+                saveNeed = progReportBigRight.ShowDialog() == DialogResult.OK;
             }
             // не рапотричка
             else
             {
                 var viewForm = new ReportExcelForm(register, true);
-                if (viewForm.ShowDialog() == DialogResult.OK)
-                {
-                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(register);
-                    bindingReports.Add(register);
-                    var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
-                    MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
-                }
+                saveNeed = viewForm.ShowDialog() == DialogResult.OK;
             }
 
-            // ok
-            register.RmId = tempRegisterRatedList.RmId;
-            register.Rm = tempRegisterRatedList;
+            if (saveNeed)
+            {
+                IsBusy = true;
+                var result = await _service.CreateRegister(register);
+                IsBusy = false;
 
-            // send
-            var result0 = await _service.CreateRegister(register);
-
+                ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
+                UpdateData();
+            }
         }
 
         public bool CanExecuteCreateRegisterManuallyCommand { get; set; }
@@ -934,34 +1010,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                     if (repeatableRecordExist)
                         return;
 
-                    string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
-
-                    if (!CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Any())
-                    {
-                        CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.Add(new RegisterRatedList
-                        {
-                            PeriodId = CurrentPeriodOfLicense.PeriodId,
-                            UserId = identityName,
-                            Status = 0
-                        });
-                    }
-
-                    var registerRatedList = CurrentPeriodOfLicense.PaidPeriod.RegisterRatedList.First();
-
-                    // Створення Звіту
-                    register = new ipsFormsDesign.Model.Register
-                    {
-                        RgStatus = 0,
-                        FileName = Path.GetFileName(dialog.FileName),
-                        CustId = CurrentLicenseAgreement.CustId,
-                        PeriodId = CurrentPeriodOfLicense.PeriodId,
-                        RmId = registerRatedList.RmId,
-                        Rm = registerRatedList,
-                        LicId = CurrentPeriodOfLicense.LicId,
-                        SchemaId = CurrentLicenseAgreement?.SchemaTypeId ?? 1,
-                        AlgorithmId = CurrentLicenseAgreement?.AlgorithmId ?? 1,
-                        UserId = identityName
-                    };
+                    register = GetRegisterTemplate();
 
                     foreach (var item in list)
                         register.RegisterItem.Add(item);
@@ -969,9 +1018,10 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 });
 
                 var result = await _service.CreateRegister(register);
-
                 IsBusy = false;
-                ShowMessage.ShowInfo(result.Message);
+
+                UpdateData();
+                ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
             }
         }
 
@@ -981,9 +1031,10 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         /// Відправити на погодження
         /// </summary>
         public ICommand SendRegisterToAcceptCommand => new IPSDelegateCommand(SendRegisterToAcceptCommandExecute, o => CanExecuteSendRegisterToAcceptCommand);
-        private void SendRegisterToAcceptCommandExecute(object o)
+        private async void SendRegisterToAcceptCommandExecute(object o)
         {
-            var result = _service.SendRegisterToAccept(CurrentRegister.Register);
+            var result = await _service.SendRegisterToAccept(CurrentRegister.Register);
+            MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
         }
 
         public bool CanExecuteSendRegisterToAcceptCommand { get; set; }
@@ -998,6 +1049,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 return;
 
             var result = await _service.FixateRegistersList(RegisterRatedList.RegisterRatedList);
+            MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
         }
 
         public bool CanExecuteFixingRegisterListCommand { get; set; }
@@ -1020,7 +1072,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         /// Видалити звіт
         /// </summary>
         public ICommand RemoveRegisterCommand => new IPSDelegateCommand(RemoveRegisterCommandExecute);
-        private void RemoveRegisterCommandExecute(object o)
+        private async void RemoveRegisterCommandExecute(object o)
         {
             if (!(o is RegisterModel e))
                 return;
@@ -1034,8 +1086,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
             if (yes)
             {
-                var result = _service.DeleteRegister(e.Register);
-                // update
+                var result = await _service.DeleteRegister(e.Register);
+                MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
+                UpdateData();
             }
         }
 

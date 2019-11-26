@@ -42,6 +42,31 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Створити період платежів
+        /// </summary>
+        /// <param name="paidPeriod"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> CreatePaidPeriod(PaidPeriod paidPeriod)
+        {
+            string url = $"{Prefix}/paidperiod/create";
+            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, PaidPeriod>(url, paidPeriod);
+            return result;
+        }
+
+        /// <summary>
+        /// Видалити період платежів
+        /// </summary>
+        /// <param name="paidPeriod"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> DeletePaidPeriod(PaidPeriod paidPeriod)
+        {
+            string url = $"{Prefix}/paidperiod/delete/{paidPeriod.PeriodId}";
+            var result = await _apiConnector.SendDeleteRequestWithResultAsync<ResponseOfRequest>(url);
+            return result;
+        }
+
+
+        /// <summary>
         /// Створити розрахунковий лист
         /// </summary>
         /// <param name="registerRatedList"></param>
@@ -60,7 +85,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<ResponseOfRequest> UpdateRegisterRatedList(RegisterRatedList registerRatedList)
         {
-            string url = $"{Prefix}/rrl/create";
+            string url = $"{Prefix}/rrl/update";
             var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, RegisterRatedList>(url, registerRatedList);
             return result;
         }
@@ -73,7 +98,12 @@ namespace ipsFormsDesign.Services
         public async Task<ResponseOfRequest> CreateRegister(Register register)
         {
             string url = $"{Prefix}/register/create";
-            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, Register>(url, register);
+            var registerWrap = new NewRegisterWrap
+            {
+                Register = register,
+                RegisterRatedList = register.Rm,
+            };
+            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, NewRegisterWrap>(url, registerWrap);
             return result;
         }
 
@@ -106,10 +136,22 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="register"></param>
         /// <returns></returns>
-        public async Task<List<object[]>> GetRegisterItems(Register register)
+        public async Task<List<object[]>> GetCCIDRegisterItems(Register register)
         {
-            string url = $"{Prefix}/register/getitems/{register.RegId}";
+            string url = $"{Prefix}/register/getitems/ccid/{register.RegId}";
             var result = await _apiConnector.GetListAsync<object[]>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Отримати дані звіту для перегляду / редагування
+        /// </summary>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        public async Task<List<RegisterItem>> GetDefaultRegisterItems(Register register)
+        {
+            string url = $"{Prefix}/register/getitems/default/{register.RegId}";
+            var result = await _apiConnector.GetListAsync<RegisterItem>(url);
             return result;
         }
 
@@ -136,6 +178,12 @@ namespace ipsFormsDesign.Services
             string url = $"{Prefix}/register/accept/{register.RegId}";
             var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest>(url);
             return result;
+        }
+
+        private class NewRegisterWrap
+        {
+            public Register Register { get; set; }
+            public RegisterRatedList RegisterRatedList { get; set; }
         }
     }
 }

@@ -51,7 +51,7 @@
             this.bsRegisterExtra = new System.Windows.Forms.BindingSource(this.components);
             this.nudCountUse = new System.Windows.Forms.NumericUpDown();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
+            this.ctrlSaveCancelButtons = new IpsComponentLibrary.Common.SaveCancelButtonsControl();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.lblRate = new Telerik.WinControls.UI.RadLabel();
             this.bsDictRelGenrePercent = new System.Windows.Forms.BindingSource(this.components);
@@ -175,9 +175,9 @@
             gridViewTextBoxColumn1.Name = "Name";
             gridViewTextBoxColumn1.Width = 330;
             gridViewCommandColumn1.FieldName = "btnsDelete";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.HeaderImage = global::IPSComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.Image = global::IPSComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewCommandColumn1.MaxWidth = 30;
@@ -406,7 +406,7 @@
         private System.Windows.Forms.BindingSource bsRegisterExtra;
         private System.Windows.Forms.NumericUpDown nudCountUse;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
+        private IpsComponentLibrary.Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
         private System.Windows.Forms.BindingSource bsDictGenreType;
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadLabel lblRate;

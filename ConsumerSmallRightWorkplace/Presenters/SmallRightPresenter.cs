@@ -158,6 +158,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
             GridDataUpdate();
 
             ApplicationCustomerData.GetInstance().CurrentCustomer = mainCust;
+            ApplicationCustomerData.GetInstance().CustomerName = _mainGrid.ViewRow?.Name;
 
             _cabinetSmallRightForm.SetCustomer(mainCust);
             _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;

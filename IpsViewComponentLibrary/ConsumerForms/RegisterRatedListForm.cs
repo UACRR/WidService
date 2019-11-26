@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms.Register;
 using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
