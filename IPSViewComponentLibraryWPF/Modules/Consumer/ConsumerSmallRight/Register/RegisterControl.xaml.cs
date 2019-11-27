@@ -24,6 +24,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public RegisterControl()
         {
             InitializeComponent();
+            Language = ((RegisterViewModel) DataContext).Language;
         }
     }
 }

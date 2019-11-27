@@ -239,6 +239,8 @@ namespace ipsmedserviceapp.Controllers
                     registerItem.SetFields(item, new []{ "RegId", "RegIitemId" });
                     targetRegister.RegisterItem.Add(registerItem);
                 }
+                targetRegister.CountRows = targetRegister.RegisterItem.Count;
+
 
                 RegisterRatedList targetRll = null;
                 if (source.Rm != null && source.Rm.RmId == 0)
@@ -290,6 +292,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 var targetRegister = await _dbContext.Register
                     .Include(item => item.RegisterItem)
+                    .ThenInclude(item => item.RegisterExtra)
                     .SingleOrDefaultAsync(rec => rec.RegId == source.RegId);
 
                 targetRegister.SetFields(source, new[] { "RegId", "PeriodId", "RmId", "LicId", "CreateDate", "UserId" });
@@ -456,13 +459,13 @@ namespace ipsmedserviceapp.Controllers
         /// <summary>
         /// Отримати вміст звіту стандартного типу
         /// </summary>
-        /// <param name="regiterId"></param>
+        /// <param name="registerId"></param>
         /// <returns></returns>
         [HttpGet("register/getitems/default/{registerId}")]
-        public async Task<IActionResult> GetDefaultRegisterItems(int regiterId)
+        public async Task<IActionResult> GetDefaultRegisterItems(int registerId)
         {
             var items = await _dbContext.RegisterItem
-                .Where(rec => rec.RegId == regiterId)
+                .Where(rec => rec.RegId == registerId)
                 .Include(item => item.RegisterExtra)
                 .ToListAsync();
 

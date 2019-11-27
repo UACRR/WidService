@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Markup;
 using IpsCommonTypes.Types;
 using IPSComponentLibrary.Extensions;
 using IPSComponentLibrary.Forms.Register;
@@ -38,6 +41,23 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         private ConsumerRegisterService _service;
 
         public RegisterViewModel() {}
+
+        private XmlLanguage _language;
+        public XmlLanguage Language
+        {
+            get
+            {
+                if (_language == null)
+                    return XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
+
+                return _language;
+            }
+            set
+            {
+                _language = value;
+                OnPropertyChanged(() => Language);
+            }
+        }
 
         #region * * * BEHAVIOR PROPERTIES * * *
 
@@ -610,6 +630,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             RegistersItemSource = registerList;
         }
 
+        #region * зміна відображення компонентів по SchemaType *
+
         /// <summary>
         /// Змінити вигляд відображених елементів залежно від схеми звітів
         /// </summary>
@@ -662,6 +684,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             RegisterAmountVisible = true;
         }
 
+        #endregion
+
         /// <summary>
         /// Перевірити навність необхідних даних для активації кнопки фіксації перекілку звітів
         /// </summary>
@@ -679,8 +703,12 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             if (!hasRegister)
                 return false;
 
+
+
             return true;
         }
+
+        #region * фіксація переліку звітів * 
 
         /// <summary>
         /// Перевірити дані для фіксації переліку звітів
@@ -721,6 +749,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
         private bool ValidateExternalReportType()
         {
+            // RegisterStatus
+            // 7	Синхронізація виконано. До розподілу.
+            // 12  Погоджено.Сконвертовано
             int?[] validStatus = {7, 12};
             bool hasInvalidStatus = RegisterRatedList.RegisterRatedList.Register.Any(rec => !validStatus.Contains(rec.RgStatus));
 
@@ -730,6 +761,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             ShowMessage.ShowWarning(HasInvalidRegisterStatusSchema3WarningMsg);
             return false;
         }
+
+        #endregion
 
         #region * перегляд/редагування звіту *
 
@@ -746,26 +779,76 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 case 2: ShowItemDataRrlType();
                     return;
                 
-                case 3: ShowItemDataExternalType();
+                case 3: ShowItemDataCCIDType();
                     return;
             }
         }
 
+        /// <summary>
+        /// Звіт звичайного типу
+        /// </summary>
         private async void ShowItemDataDefaultType()
         {
             IsBusy = true;
             var items = await _service.GetDefaultRegisterItems(CurrentRegister.Register);
             IsBusy = false;
+
+            CurrentRegister.Register.RegisterItem.Clear();
+            items.ForEach(item => CurrentRegister.Register.RegisterItem.Add(item));
+
+            bool isEdit = CurrentRegister.Register.RgStatus == 0 || CurrentRegister.Register.RgStatus == 5;
+
+            var registerExcelTypeForm = new ReportExcelForm(CurrentRegister.Register, isEdit);
+            if (registerExcelTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                var result = await _service.UpdateRegister(CurrentRegister.Register);
+                ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
+            }
+
+            if (!registerExcelTypeForm.IsDisposed)
+                registerExcelTypeForm.Dispose();
+
+            UpdateData();
         }
 
+        /// <summary>
+        /// Звіт - рапртичка
+        /// </summary>
         private async void ShowItemDataRrlType()
         {
             IsBusy = true;
             var items = await _service.GetDefaultRegisterItems(CurrentRegister.Register);
             IsBusy = false;
+
+            CurrentRegister.Register.RegisterItem.Clear();
+            items.ForEach(item => CurrentRegister.Register.RegisterItem.Add(item));
+
+            bool isEdit = CurrentRegister.Register.RgStatus == 0 || CurrentRegister.Register.RgStatus == 5;
+
+            var registerRrlTypeForm = new ReportExtendedForm(CurrentRegister.Register, isEdit)
+            {
+                HeaderInfoCustomerName = ApplicationCustomerData.GetInstance().CustomerName,
+                HeaderInfoLicenseNumberString = CurrentLicenseAgreement.AgrNumber,
+                HeaderInfoPeriodName = CurrentPeriodOfLicense.PeriodName,
+                HeaderInfoRatedListNumber = RegisterRatedList?.RmId.ToString()
+            };
+
+            if (registerRrlTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                var result = await _service.UpdateRegister(CurrentRegister.Register);
+                ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
+            }
+
+            if (!registerRrlTypeForm.IsDisposed)
+                registerRrlTypeForm.Dispose();
+
+            UpdateData();
         }
 
-        private async void ShowItemDataExternalType()
+        /// <summary>
+        /// Звіт CCID типу
+        /// </summary>
+        private async void ShowItemDataCCIDType()
         {
             IsBusy = true;
             var items = await _service.GetCCIDRegisterItems(CurrentRegister.Register);
@@ -821,7 +904,6 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             return register;
         }
 
-
         #endregion
 
         #region * * * COMMANDS * * *
@@ -829,6 +911,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public ICommand LoadDataCommand => new IPSDelegateCommand(LoadDataCommandExecute);
         private async void LoadDataCommandExecute(object o)
         {
+            Language = XmlLanguage.GetLanguage(ApplicationSettings.GetInstance().ApplicationCulture.Name);
+
             ApplicationCustomerData.GetInstance().Subscribe(this);
             _service = ConsumerRegisterService.GetInstance();
 
@@ -846,6 +930,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public ICommand CreatePeriodCommand => new IPSDelegateCommand(CreatePeriodCommandExecute, (o) => CanExecuteCreatePeriodCommand);
         private async void CreatePeriodCommandExecute(object o)
         {
+            var agrLicenseType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == CurrentLicenseAgreement.LicenseAgreement.LicCode);
+            CurrentLicenseAgreement.LicenseAgreement.LicCodeNavigation = agrLicenseType;
+
             var form = new CreatePeriod(CurrentLicenseAgreement.LicenseAgreement);
             var saveNeed = form.ShowDialog() == DialogResult.OK; 
             
@@ -1015,6 +1102,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                     foreach (var item in list)
                         register.RegisterItem.Add(item);
 
+                    register.FileName = dialog.SafeFileName;
                 });
 
                 var result = await _service.CreateRegister(register);
@@ -1086,7 +1174,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
             if (yes)
             {
+                IsBusy = true;
                 var result = await _service.DeleteRegister(e.Register);
+                IsBusy = false;
                 MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
                 UpdateData();
             }

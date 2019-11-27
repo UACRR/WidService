@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\ApplicationCustomerData.cs" />
+    <Compile Include="Data\ApplicationSettings.cs" />
     <Compile Include="Dictionary\AgreementStatuses.cs" />
     <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />

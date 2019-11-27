@@ -65,7 +65,6 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
-
         /// <summary>
         /// Створити розрахунковий лист
         /// </summary>

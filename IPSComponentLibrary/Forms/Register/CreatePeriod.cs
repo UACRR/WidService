@@ -42,7 +42,12 @@ namespace IPSComponentLibrary.Forms.Register
         {
             var lastPeriod = _licenseAgreement.PaidPeriod.Any() ? _licenseAgreement.PaidPeriod.OrderBy(rec => rec.BeginDate).LastOrDefault() : null;
             var beginDate = lastPeriod?.EndDate.AddDays(1) ?? DateTime.Today;
-            
+            // заборонити редагування через введення
+            dtStartDate.DateTimePickerElement.TextBoxElement.ValueChanging += (o, e) =>
+            {
+                if (!dtStartDate.DateTimePickerElement.Calendar.Visible)
+                    e.Cancel = true;
+            };
             computeFirstDate(beginDate);
         }
 
@@ -169,14 +174,17 @@ namespace IPSComponentLibrary.Forms.Register
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            var check = _licenseAgreement.PaidPeriod.FirstOrDefault(rec => rec.BeginDate == dtStartDate.Value);
-            if (check == null)
+            var periodExist = _licenseAgreement.PaidPeriod.Any(rec => rec.BeginDate <= dtStartDate.Value && rec.EndDate >= dtStartDate.Value);
+            if (periodExist)
             {
-                var addPeriod = (PaidPeriod)ddlPeriod.SelectedItem.Tag;
-                if (_licenseAgreement.PaidPeriod.Count == 0) // firstPeriod
-                    addPeriod.FagFirst = true;
-                _licenseAgreement.PaidPeriod.Add(addPeriod);
+                MessageShow.ShowWarning("Такий період вже існує!");
+                return;
             }
+            
+            var addPeriod = (PaidPeriod)ddlPeriod.SelectedItem.Tag;
+            if (_licenseAgreement.PaidPeriod.Count == 0) // firstPeriod
+                addPeriod.FagFirst = true;
+            _licenseAgreement.PaidPeriod.Add(addPeriod);
 
             DialogResult = DialogResult.OK;
         }

@@ -8,7 +8,6 @@
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              Background="WhiteSmoke"
              mc:Ignorable="d"
-             
              d:DesignHeight="600" d:DesignWidth="1000">
 
     <UserControl.Resources>
