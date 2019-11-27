@@ -168,7 +168,6 @@
     <Compile Include="Modules\Document\DocumentViewer\DocumentViewerWindow.xaml.cs">
       <DependentUpon>DocumentViewerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="_trash\PubCatalogItemListControlViewModel.cs" />
     <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemModel.cs" />
     <Page Include="Modules\CatalogFileItems\CatalogFileItemsListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -256,6 +255,7 @@
     <Folder Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterItemDefaultType\" />
     <Folder Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterItemsRRLType\" />
     <Folder Include="Modules\CopyrightRequest\Models\" />
+    <Folder Include="_trash\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
