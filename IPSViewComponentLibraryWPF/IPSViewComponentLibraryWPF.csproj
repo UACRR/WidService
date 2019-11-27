@@ -144,6 +144,11 @@
     <Compile Include="Modules\CatalogFileItems\CatalogFileItemsListViewModel.cs" />
     <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemExport.cs" />
     <Compile Include="Modules\CatalogFileItems\Enums\CatalogFileType.cs" />
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeModel.cs" />
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeViewModel.cs" />
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeWindow.xaml.cs">
+      <DependentUpon>CurrencyChangeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\Model\RegisterLicenseAgreementModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\Model\RegisterModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\Model\RegisterPeriodModel.cs" />
@@ -172,6 +177,10 @@
     <Page Include="Modules\CatalogFileItems\CatalogFileItemsListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterControl.xaml">
       <SubType>Designer</SubType>

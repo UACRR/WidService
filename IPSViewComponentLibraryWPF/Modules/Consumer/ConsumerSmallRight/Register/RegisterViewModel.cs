@@ -21,6 +21,7 @@ using ipsFormsDesign.Patterns.Notifier;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.Reports.Forms;
 using IPSViewComponentLibraryWPF.IPSExtensions;
+using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.CurrencyChange;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Model;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.RegisterItemCCIDType;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Utility;
@@ -952,7 +953,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public bool CanExecuteCreatePeriodCommand { get; set; }
 
         /// <summary>
-        /// Створити розрахунковий лист для періода
+        /// Режим створення розрахункового листа для періода
         /// </summary>
         public ICommand CreateRegisterRatedListCommand => new IPSDelegateCommand(CreateRegisterRatedListCommandExecute);
         private void CreateRegisterRatedListCommandExecute(object o)
@@ -975,6 +976,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             };
         }
 
+        /// <summary>
+        /// Режим редагування розрахункового листа для періода
+        /// </summary>
         public ICommand EditRegisterRatedListCommand => new IPSDelegateCommand(EditRegisterRatedListCommandExecute);
         private void EditRegisterRatedListCommandExecute(object o)
         {
@@ -1009,6 +1013,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             UpdateData();
         }
 
+        /// <summary>
+        /// Скасувати зміни розрахункового листа
+        /// </summary>
         public ICommand CancelChangesRegisterRatedListCommand=>new IPSDelegateCommand(CancelChangesRegisterRatedListCommandExecute);
         private void CancelChangesRegisterRatedListCommandExecute(object o)
         {
@@ -1192,6 +1199,18 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 return;
 
             CurrentRegister = e;
+
+            // RegisterStatus
+            // 2	Погоджений
+
+            //if (CurrentRegister.RgStatus != 2)
+            //    return;
+
+            var window = new CurrencyChangeWindow(CurrentRegister);
+            bool result = window.ShowDialog() ?? false;
+            
+            if (result)
+                UpdateData();
         }
 
         #endregion
