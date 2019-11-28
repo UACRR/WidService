@@ -43,6 +43,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
         public RegisterViewModel() {}
 
+        #region * * * BEHAVIOR PROPERTIES * * *
+
         private XmlLanguage _language;
         public XmlLanguage Language
         {
@@ -59,8 +61,6 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 OnPropertyChanged(() => Language);
             }
         }
-
-        #region * * * BEHAVIOR PROPERTIES * * *
 
         private bool _isBusy;
         /// <summary>

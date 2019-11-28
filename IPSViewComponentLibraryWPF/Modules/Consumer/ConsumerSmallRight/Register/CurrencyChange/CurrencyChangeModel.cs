@@ -17,6 +17,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             set
             {
                 _regRoyalty = value;
+                CheckDataValid?.Invoke(value > 0);
                 OnPropertyChanged(() => RegRoyalty);
             }
         }
@@ -28,6 +29,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             set
             {
                 _exchangeRate = value;
+                CheckDataValid?.Invoke(value > 0);
                 OnPropertyChanged(() => ExchangeRate);
             }
         }
@@ -50,6 +52,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             set
             {
                 _currencyType = value;
+                CheckDataValid?.Invoke(!string.IsNullOrEmpty(value));
                 OnPropertyChanged(() => CurrencyType);
             }
         }
@@ -67,5 +70,15 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 CurrencyType = value.R030;
             }
         }
+
+        public void UpdateData()
+        {
+            _registerCcidCurrencyData.RegRoyalty = RegRoyalty;
+            _registerCcidCurrencyData.ExchangeRate = ExchangeRate;
+            _registerCcidCurrencyData.R030 = CurrencyType;
+        }
+
+        public Action<bool> CheckDataValid { get; set; }
+
     }
 }

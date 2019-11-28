@@ -24,6 +24,12 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         {
             InitializeComponent();
             ((CurrencyChangeViewModel) DataContext).RegisterModel = registerModel;
+            Language = ((CurrencyChangeViewModel) DataContext).Language;
+        }
+
+        private void Validation_OnError(object sender, ValidationErrorEventArgs e)
+        {
+            ((CurrencyChangeViewModel) DataContext).HandleValidationError(e.Action);
         }
     }
 }

@@ -105,7 +105,8 @@
                             <telerik:Label Grid.Column="1" 
                                            Content="Ліцензійні договори"
                                            FontSize="13"
-                                           Background="AliceBlue"/>
+                                           FontWeight="DemiBold"
+                                           Background="LightBlue"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -167,7 +168,8 @@
                             <telerik:Label Grid.Column="1" 
                                                Content="Періоди платежів по ліцензії"
                                                FontSize="13"
-                                               Background="AliceBlue"/>
+                                               FontWeight="DemiBold"
+                                               Background="LightBlue"/>
                         </Grid>
 
                         <telerik:RadGridView Grid.Row="1" 
@@ -250,30 +252,38 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <!--заголовки-->
                             <telerik:Label Margin="1" Grid.Row="0" Grid.Column="0" Content="Номер Р/Л"/>
-                            <telerik:Label Grid.Row="1" Grid.Column="0" Content="Сума валового збору"/>
-                            <telerik:Label Grid.Row="2" Grid.Column="0" Content="Сума авторської винагороди"/>
-                            <telerik:Label Grid.Row="3" Grid.Column="0" Content="К-сть звітів"/>
-                            <telerik:Label Grid.Row="4" Grid.Column="0" Content="Сформовано звітів"/>
+                            <telerik:Label Margin="1" Grid.Row="1" Grid.Column="0" Content="Статус"/>
+                            <telerik:Label Margin="1" Grid.Row="2" Grid.Column="0" Content="Сума валового збору"/>
+                            <telerik:Label Margin="1" Grid.Row="3" Grid.Column="0" Content="Сума авторської винагороди"/>
+                            <telerik:Label Margin="1" Grid.Row="4" Grid.Column="0" Content="К-сть звітів"/>
+                            <telerik:Label Margin="1" Grid.Row="5" Grid.Column="0" Content="Сформовано звітів"/>
                             <!--дані-->
                             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RegisterRatedList.RmId}" 
                                      IsReadOnly="True" 
                                      Background="Transparent" 
                                      IsReadOnlyCaretVisible="False" 
                                      VerticalContentAlignment="Center"/>
-                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterRatedList.Amount}" 
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RegisterRatedList.StatusName}" 
+                                     IsReadOnly="True" 
+                                     Background="Transparent" 
+                                     IsReadOnlyCaretVisible="False" 
+                                     VerticalContentAlignment="Center"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RegisterRatedList.Amount, StringFormat='{}{0:N2}'}" 
                                      IsReadOnly="{Binding RegisterRatedListReadOnly}" 
                                      IsReadOnlyCaretVisible="False"/>
-                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RegisterRatedList.Royalty}" 
+                            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding RegisterRatedList.Royalty, StringFormat='{}{0:N2}'}" 
                                      IsReadOnly="{Binding RegisterRatedListReadOnly}" 
                                      IsReadOnlyCaretVisible="False"/>
-                            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding RegisterRatedList.CountReport}" 
+                            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding RegisterRatedList.CountReport}" 
                                      IsReadOnly="{Binding RegisterRatedListReadOnly}" 
                                      IsReadOnlyCaretVisible="False"/>
-                            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding RegistersItemSource.Count, Mode=OneWay}" 
+                            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding RegistersItemSource.Count, Mode=OneWay}" 
                                      IsReadOnly="True" 
                                      Background="Transparent" 
                                      IsReadOnlyCaretVisible="False"/>
@@ -321,7 +331,8 @@
                                 <telerik:Label Grid.Row="0" 
                                                    Content="Звіти обраного періода" 
                                                    FontSize="13"
-                                                   Background="AliceBlue"/>
+                                                   FontWeight="DemiBold"
+                                                   Background="LightBlue"/>
                                 <telerik:RadGridView Grid.Row="1"
                                                      ColumnWidth="*"
                                                      IsReadOnly="True"

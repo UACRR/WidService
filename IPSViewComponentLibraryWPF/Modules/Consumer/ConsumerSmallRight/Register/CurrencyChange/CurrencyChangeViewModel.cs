@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
-using IpsCommonTypes.IntermediaryTypes;
+using System.Windows.Markup;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -19,6 +17,41 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
     public class CurrencyChangeViewModel : ViewModelBase
     {
         public CurrencyChangeViewModel() { }
+
+        #region * * * BEHAVIOR PROPERTIES * * *
+
+        private XmlLanguage _language;
+        public XmlLanguage Language
+        {
+            get
+            {
+                if (_language == null)
+                    return XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
+
+                return _language;
+            }
+            set
+            {
+                _language = value;
+                OnPropertyChanged(() => Language);
+            }
+        }
+
+        private bool _isBusy;
+        /// <summary>
+        /// Changing state of busy indicator
+        /// </summary>
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged(() => IsBusy);
+            }
+        }
+
+        #endregion
 
         #region * * * DATA PROPERTIES * * *
 
@@ -79,9 +112,29 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             CurrencyChangeData = new CurrencyChangeModel
             {
                 RegisterCcidCurrencyData = data,
+                CheckDataValid = (isValid) =>
+                {
+                    CanExecuteChangeCurrencyCommand = _errorCount == 0 && isValid;
+                }
             };
+        }
 
-            //CurrentCurrencyType = CurrencyTypeItemSource.SingleOrDefault(rec => rec.R030 == CurrencyChangeData.CurrencyType);
+        private int _errorCount = 0;
+        public void HandleValidationError(ValidationErrorEventAction action)
+        {
+            if (action == ValidationErrorEventAction.Added)
+                _errorCount++;
+            else if (action == ValidationErrorEventAction.Removed)
+                _errorCount--;
+
+            CanExecuteChangeCurrencyCommand = _errorCount == 0;
+        }
+
+        private bool ValidateDataCalculation()
+        {
+            var regRoyalty = CurrencyChangeData.ExchangeRate * CurrencyChangeData.CurrencyAmount;
+            var isValid = CurrencyChangeData.RegRoyalty == decimal.Round(regRoyalty, 2, MidpointRounding.AwayFromZero);
+            return isValid;
         }
 
         #endregion
@@ -98,14 +151,23 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             if (window == null)
                 return;
 
+            if (!ValidateDataCalculation())
+            {
+                ShowMessage.ShowWarning("Не коректний курс конвертації або сума звіту!");
+                return;
+            }
+
+            CurrencyChangeData.UpdateData();
+            IsBusy = true;
             var result = await ConsumerRegisterService.GetInstance().ChangeCCIDRegisterCurrency(CurrencyChangeData.RegisterCcidCurrencyData);
+            IsBusy = false;
             ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
 
             window.DialogResult = true;
             window.Close();
         }
 
-        private bool CanExecuteChangeCurrencyCommand { get; set; }
+        public bool CanExecuteChangeCurrencyCommand { get; set; }
 
         /// <summary>
         /// Закрити вікно
@@ -122,7 +184,5 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         }
 
         #endregion
-
-
     }
 }

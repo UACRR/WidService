@@ -603,13 +603,25 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("register/ccid/currency/change")]
         public async Task<IActionResult> ChangeCurrency([FromBody] RegisterCCIDCurrencyData currencyData)
         {
+            IDbContextTransaction transaction = null;
             ResponseOfRequest response;
             try
             {
+                // записати дані в таблиці
+                var targetRegister = await _dbContext.Register.SingleOrDefaultAsync(rec => rec.RegId == currencyData.RegId);
+                var targetRegisterCCID = await _dbContext.RegisterCcid.SingleOrDefaultAsync(rec => rec.RegId == currencyData.RegId);
 
+                targetRegister.RegRoyalty = currencyData.RegRoyalty;
+                targetRegisterCCID.ExchangeRate = currencyData.ExchangeRate;
+                targetRegisterCCID.R030 = currencyData.R030;
 
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
 
-                // 7431
+                await Task.Delay(15000);
+
+                // запустити процедуру конвертації
                 string exec = "exec p_CreateDistribution_DDEX_valuation1 @registerId";
                 var parameter = new SqlParameter("registerId", currencyData.RegId);
 
@@ -630,8 +642,13 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception e)
             {
+                transaction?.Rollback();
                 response = new ResponseOfRequest("Неможливо змінити курс звіту!", e);
                 return BadRequest(response);
+            }
+            finally
+            {
+                transaction?.Dispose();
             }
         }
 

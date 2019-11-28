@@ -367,6 +367,7 @@
     <Compile Include="Model\RegionTr.cs" />
     <Compile Include="Model\Register.cs" />
     <Compile Include="Model\RegisterAuthors.cs" />
+    <Compile Include="Model\RegisterCcid.cs" />
     <Compile Include="Model\RegisterCount.cs" />
     <Compile Include="Model\RegisterExtra.cs" />
     <Compile Include="Model\RegisterItem.cs" />
