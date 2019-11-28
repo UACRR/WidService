@@ -207,6 +207,7 @@
 "Region",
 "RegionTr",
 "Register",
+"RegisterCCID"
 "RegisterAuthors",
 "RegisterCount",
 "RegisterExtra",
