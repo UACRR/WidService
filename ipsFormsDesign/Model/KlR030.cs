@@ -11,6 +11,7 @@ namespace ipsFormsDesign.Model
             BankAccount = new ObservableListSource<BankAccount>();
             CurrencyCourse = new ObservableListSource<CurrencyCourse>();
             KlR030tr = new ObservableListSource<KlR030tr>();
+            RegisterCcid = new ObservableListSource<RegisterCcid>();
         }
 
         public string R030 { get; set; }
@@ -27,6 +28,7 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<BankAccount> BankAccount { get; set; }
         public virtual ObservableListSource<CurrencyCourse> CurrencyCourse { get; set; }
         public virtual ObservableListSource<KlR030tr> KlR030tr { get; set; }
+        public virtual ObservableListSource<RegisterCcid> RegisterCcid { get; set; }
     }
 }
 

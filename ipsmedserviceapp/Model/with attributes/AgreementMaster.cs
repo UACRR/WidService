@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -23,19 +22,13 @@ namespace ipsmedserviceapp.Model
         public int? AgrType { get; set; }
         public int? Version { get; set; }
 
-        [JsonIgnore]
         public virtual AgreementStatus AgrStatusNavigation { get; set; }
-        [JsonIgnore]
         public virtual AgreementType AgrTypeNavigation { get; set; }
-        [JsonIgnore]
         public virtual Customer Cust { get; set; }
         public virtual ICollection<AgreementAddBr> AgreementAddBr { get; set; }
-        [JsonIgnore]
         public virtual ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
         public virtual ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
         public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        [JsonIgnore]
         public virtual ICollection<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
-

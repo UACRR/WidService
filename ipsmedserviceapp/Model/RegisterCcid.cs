@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ipsmedserviceapp.Model
+{
+    public partial class RegisterCcid
+    {
+        public int RegId { get; set; }
+        public int DdexReportId { get; set; }
+        public int CcidClFileId { get; set; }
+        public decimal? AmountCur { get; set; }
+        public decimal? ExchangeRate { get; set; }
+        public string R030 { get; set; }
+
+        public virtual KlR030 R030Navigation { get; set; }
+        public virtual Register Reg { get; set; }
+    }
+}

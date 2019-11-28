@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -20,14 +19,9 @@ namespace ipsmedserviceapp.Model
         public string ModifyLogin { get; set; }
         public int? CustId { get; set; }
 
-        [JsonIgnore]
         public virtual AgreementMaster Agr { get; set; }
-        [JsonIgnore]
         public virtual AgreementStatus AgrStatusNavigation { get; set; }
-        [JsonIgnore]
         public virtual Client Cust { get; set; }
-        [JsonIgnore]
         public virtual Period PeriodCodeNavigation { get; set; }
     }
 }
-

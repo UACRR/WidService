@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -20,10 +19,7 @@ namespace ipsmedserviceapp.Model
         public decimal? PrepayRest { get; set; }
         public decimal? PrepayUsed { get; set; }
 
-        [JsonIgnore]
         public virtual CopyRight CRight { get; set; }
-        [JsonIgnore]
         public virtual PrePayType PrepayTypeNavigation { get; set; }
     }
 }
-
