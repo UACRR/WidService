@@ -76,16 +76,15 @@
                            SelectedValuePath="R030"
                            DisplayMemberPath="R030Name"/>
 
-                <t:Label Grid.Row="2" Grid.Column="0" Content="Курс (грн за одиницю валюти)"/>
+                <t:Label Grid.Row="2" Grid.Column="0" Content="Сума звіту, в грн"/>
                 <TextBox Grid.Row="2" Grid.Column="1" 
+                         Text="{Binding CurrencyChangeData.RegRoyalty, StringFormat='{}{0:N2}', NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                         Validation.Error="Validation_OnError"/>
+
+                <t:Label Grid.Row="3" Grid.Column="0" Content="Курс (грн за одиницю валюти)"/>
+                <TextBox Grid.Row="3" Grid.Column="1" 
                      Text="{Binding CurrencyChangeData.ExchangeRate, StringFormat='{}{0:N2}', NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.Error="Validation_OnError"/>
-
-                <t:Label Grid.Row="3" Grid.Column="0" Content="Сума звіту, в грн"/>
-                <TextBox Grid.Row="3" Grid.Column="1" 
-                     Text="{Binding CurrencyChangeData.RegRoyalty, StringFormat='{}{0:N2}', NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
-                     Validation.Error="Validation_OnError"/>
-
             </Grid>
 
             <StackPanel Grid.Row="1" FlowDirection="RightToLeft" Orientation="Horizontal" Background="Silver">

@@ -605,8 +605,11 @@ namespace ipsmedserviceapp.Controllers
         {
             IDbContextTransaction transaction = null;
             ResponseOfRequest response;
+            int commandTimeout = 30;
+
             try
             {
+
                 // записати дані в таблиці
                 var targetRegister = await _dbContext.Register.SingleOrDefaultAsync(rec => rec.RegId == currencyData.RegId);
                 var targetRegisterCCID = await _dbContext.RegisterCcid.SingleOrDefaultAsync(rec => rec.RegId == currencyData.RegId);
@@ -619,8 +622,8 @@ namespace ipsmedserviceapp.Controllers
                 _dbContext.SaveChanges();
                 transaction.Commit();
 
-                await Task.Delay(15000);
-
+                commandTimeout = _dbContext.Database.GetCommandTimeout() ?? commandTimeout;
+                _dbContext.Database.SetCommandTimeout(600);
                 // запустити процедуру конвертації
                 string exec = "exec p_CreateDistribution_DDEX_valuation1 @registerId";
                 var parameter = new SqlParameter("registerId", currencyData.RegId);
@@ -649,6 +652,7 @@ namespace ipsmedserviceapp.Controllers
             finally
             {
                 transaction?.Dispose();
+                _dbContext.Database.SetCommandTimeout(commandTimeout);
             }
         }
 

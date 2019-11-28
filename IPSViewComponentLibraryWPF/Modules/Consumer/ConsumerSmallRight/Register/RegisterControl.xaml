@@ -203,7 +203,7 @@
 
                         <telerik:RadButton Grid.Row="2"
                                            Margin="3"
-                                           HorizontalAlignment="Left" 
+                                           HorizontalAlignment="Right" 
                                            Height="22"
                                            Command="{Binding CreatePeriodCommand}"
                                            Content="Додати період"/>
@@ -297,16 +297,24 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <telerik:RadButton Grid.Column="0" Margin="3" Content="Створити Р/Л" 
+                            <telerik:RadButton Grid.Column="0" Margin="3" 
+                                               HorizontalAlignment="Right"
+                                               Content="Створити Р/Л" 
                                                Visibility="{Binding RrlCreateButtonVisibility}"
                                                Command="{Binding CreateRegisterRatedListCommand}"/>
-                            <telerik:RadButton Grid.Column="1" Margin="3" Content="Редагувати Р/Л" 
+                            <telerik:RadButton Grid.Column="1" Margin="3"
+                                               HorizontalAlignment="Right"
+                                               Content="Редагувати Р/Л" 
                                                Visibility="{Binding RrlEditButtonVisibility}"
                                                Command="{Binding EditRegisterRatedListCommand}"/>
-                            <telerik:RadButton Grid.Column="2" Margin="3" Content="Зберегти" 
+                            <telerik:RadButton Grid.Column="2" Margin="3" 
+                                               HorizontalAlignment="Right"
+                                               Content="Зберегти"
                                                Visibility="{Binding RrlSaveButtonVisibility}"
                                                Command="{Binding SaveRegisterRatedListCommand}"/>
-                            <telerik:RadButton Grid.Column="3" Margin="3" Content="Скасувати" 
+                            <telerik:RadButton Grid.Column="3" Margin="3" 
+                                               HorizontalAlignment="Right"
+                                               Content="Скасувати"
                                                Visibility="{Binding RrlCancelButtonVisibility}"
                                                Command="{Binding CancelChangesRegisterRatedListCommand}"/>
 
@@ -410,10 +418,11 @@
                         </Grid>
                         <!--панель кнопок-->
                         <StackPanel Grid.Row="1" 
-                                    Margin="1" 
+                                    Margin="1"
+                                    HorizontalAlignment="Right"
                                     Orientation="Horizontal">
                             <!--додати звіт-->
-                            <telerik:RadDropDownButton HorizontalAlignment="Left"
+                            <telerik:RadDropDownButton HorizontalAlignment="Right"
                                                        Content="Додати звіт"
                                                        telerik:StyleManager.Theme="VisualStudio2013"
                                                        CloseOnPopupMouseLeftButtonUp="True"
@@ -433,7 +442,7 @@
                             </telerik:RadDropDownButton>
 
                             <!--дії зі звітами-->
-                            <telerik:RadDropDownButton HorizontalAlignment="Left"
+                            <telerik:RadDropDownButton HorizontalAlignment="Right"
                                                        Content="Дії" 
                                                        telerik:StyleManager.Theme="VisualStudio2013"
                                                        CloseOnPopupMouseLeftButtonUp="True"

@@ -1202,9 +1202,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
             // RegisterStatus
             // 2	Погоджений
-
-            //if (CurrentRegister.RgStatus != 2)
-            //    return;
+            if (CurrentRegister.RgStatus != 2)
+                return;
 
             var window = new CurrencyChangeWindow(CurrentRegister);
             bool result = window.ShowDialog() ?? false;
