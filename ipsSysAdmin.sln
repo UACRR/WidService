@@ -68,6 +68,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWPFControls", "TestWPFC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPSComponentLibrary", "IPSComponentLibrary\IPSComponentLibrary.csproj", "{5882F17A-4E15-4E89-AEC6-9CB163B43316}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageService", "LanguageService\LanguageService.csproj", "{9E29C830-7268-40B8-9CD5-69110A0F8FA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -348,6 +350,18 @@ Global
 		{5882F17A-4E15-4E89-AEC6-9CB163B43316}.Release|x64.Build.0 = Release|Any CPU
 		{5882F17A-4E15-4E89-AEC6-9CB163B43316}.Release|x86.ActiveCfg = Release|Any CPU
 		{5882F17A-4E15-4E89-AEC6-9CB163B43316}.Release|x86.Build.0 = Release|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Debug|x64.Build.0 = Debug|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Debug|x86.Build.0 = Debug|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Release|x64.ActiveCfg = Release|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Release|x64.Build.0 = Release|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Release|x86.ActiveCfg = Release|Any CPU
+		{9E29C830-7268-40B8-9CD5-69110A0F8FA0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
