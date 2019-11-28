@@ -11,4 +11,10 @@
     <Folder Include="Controls\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\lib\RCWPF\2019.1.116.300\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
