@@ -163,7 +163,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<ResponseOfRequest> FixateRegistersList(RegisterRatedList registerRatedList)
         {
-            string url = $"{Prefix}/registers/fixate";
+            string url = $"{Prefix}/register/fixate";
             var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, RegisterRatedList>(url, registerRatedList);
             return result;
         }

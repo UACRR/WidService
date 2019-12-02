@@ -633,7 +633,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     response = new ResponseOfRequest
                     {
-                        Message = "Курс звіту змінено! Процедура конвертації НЕ виконана!",
+                        Message = "Курс звіту змінено! Процедура конвертації НЕ виконана! \nКод: 1",
                         IsSuccess = false,
                     };
                     return BadRequest(response);
