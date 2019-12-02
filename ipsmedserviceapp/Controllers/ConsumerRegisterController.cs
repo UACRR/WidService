@@ -629,7 +629,7 @@ namespace ipsmedserviceapp.Controllers
                 var parameter = new SqlParameter("registerId", currencyData.RegId);
 
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(exec, parameter);
-                if (result != 0)
+                if (result == 1)
                 {
                     response = new ResponseOfRequest
                     {

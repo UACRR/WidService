@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -47,6 +48,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<RegisterListViewModel> RegisterSelected = delegate { };
         public event EventHandler<RegisterListViewModel> EditCommandExecuted = delegate { };
 
+        public bool IsExternalRegister { get; set; }
+
         public RegisterListControl()
         {
             InitializeComponent();
@@ -64,7 +67,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 _registerService = new RegisterService();
 
                 SetDictionaries();
-                UpdateList();
+                //UpdateList();
 
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
             }
@@ -99,7 +102,8 @@ namespace IpsViewComponentLibrary.RegisterControls
             if (dtCreateDateTill.Value != DateTime.MinValue)
                 filter.EndDate = dtCreateDateTill.Value;
 
-            var list = _registerService.GetListByFilter(filter);
+            var list = IsExternalRegister ? _registerService.GetExternalListByFilter(filter) : _registerService.GetListByFilter(filter);
+
             registerListViewModelBindingSource.DataSource = list;
 
             SelectedRegister = currentRegister;
@@ -157,10 +161,21 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void EditRegister(RegisterListViewModel selectedRegister)
         {
-            using (var view = new RegisterView())
+            if (IsExternalRegister)
             {
-                var presenter = new RegisterPresenter(view, _registerService);
-                presenter.Show(selectedRegister.RegId);
+                using (var view = new RegisterCCIDView())
+                {
+                    var presenter = new RegisterCCIDPresenter(view, _registerService);
+                    presenter.Show(selectedRegister.RegId);
+                }
+            }
+            else
+            {
+                using (var view = new RegisterView())
+                {
+                    var presenter = new RegisterPresenter(view, _registerService);
+                    presenter.Show(selectedRegister.RegId);
+                }
             }
         }
 
