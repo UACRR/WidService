@@ -1145,6 +1145,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
             var result = await _service.FixateRegistersList(RegisterRatedList.RegisterRatedList);
             MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
+            UpdateData();
         }
 
         public bool CanExecuteFixingRegisterListCommand { get; set; }

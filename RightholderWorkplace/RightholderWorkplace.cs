@@ -19,9 +19,11 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Extensions;
+using IPSViewComponentLibraryWPF.Modules.CopyrightRequest;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
+using WPFControls = IPSViewComponentLibraryWPF.Modules.CopyrightRequest;
 
 namespace RightholderWorkplace
 {
@@ -55,6 +57,9 @@ namespace RightholderWorkplace
             _communityPresenter = new CommunityPresenter(ctrlCommunity);
 
             var copyrightRequestPresenter = new CopyrightRequestPresenter(ctrlCopyrightRequests, _rightholderService);
+
+            var control = new WPFControls.CopyrightRequestControl();
+            ehCopyrightRequests.Child = control;
         }
 
         #region Rightholders page

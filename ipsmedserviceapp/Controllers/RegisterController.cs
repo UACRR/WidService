@@ -151,7 +151,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     response = new ResponseOfRequest
                     {
-                        Message = "Процедура синхронізації ",
+                        Message = "Процедура синхронізації повернула помилку! \nКод: 1",
                         IsSuccess = false,
                     };
 
@@ -187,7 +187,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     response = new ResponseOfRequest
                     {
-                        Message = "",
+                        Message = "Процедура розподілу повернула помилку! \nКод: 1",
                         IsSuccess = false,
                     };
 
@@ -227,7 +227,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     response = new ResponseOfRequest
                     {
-                        Message = "",
+                        Message = "Процедура оплати повернула помилку! \nКод: 1",
                         IsSuccess = false,
                     };
 

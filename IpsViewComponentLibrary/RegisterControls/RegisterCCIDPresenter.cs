@@ -54,7 +54,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public async void BeginSync()
         {
-            var isConfirm = MessageShow.ConfirmAction("") == DialogResult.Yes;
+            var isConfirm = MessageShow.ConfirmAction("Запустити процедуру синхронізації?") == DialogResult.Yes;
             if (isConfirm)
             {
                 _view.IsBusy = true;
@@ -68,7 +68,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public async void BeginDistribution()
         {
-            var isConfirm = MessageShow.ConfirmAction("") == DialogResult.Yes;
+            var isConfirm = MessageShow.ConfirmAction("Запустити процедуру розподілу?") == DialogResult.Yes;
             if (isConfirm)
             {
                 _view.IsBusy = true;
@@ -82,7 +82,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public async void BeginPayment()
         {
-            var isConfirm = MessageShow.ConfirmAction("") == DialogResult.Yes;
+            var isConfirm = MessageShow.ConfirmAction("Запустити процедуру оплати?") == DialogResult.Yes;
             if (isConfirm)
             {
                 _view.IsBusy = true;
