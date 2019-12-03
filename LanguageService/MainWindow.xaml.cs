@@ -23,6 +23,13 @@ namespace LanguageService
         public MainWindow()
         {
             InitializeComponent();
+
+
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = (Button)sender;
+            MessageBox.Show(clickedButton.Content.ToString());
         }
     }
 }
