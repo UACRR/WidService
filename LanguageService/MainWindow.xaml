@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LanguageService"
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:viewModel="clr-namespace:LanguageService.ViewModel"
+        xmlns:lang="clr-namespace:LanguageLibrary.Languages;assembly=LanguageLibrary"
+        Title="{x:Static lang:Language.languageName}"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Height="450" Width="800">
 
+    <!--Title="Applications language settings"-->
     <Window.Resources>
         <Style x:Key="categoryStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
@@ -19,6 +23,11 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
+
+    <Window.DataContext>
+        <viewModel:LanguageServiceViewModel/>
+    </Window.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -44,6 +53,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding AllCategoryCommand}"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center"
                             VerticalAlignment="Center">
