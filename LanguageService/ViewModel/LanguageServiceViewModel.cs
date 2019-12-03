@@ -5,9 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Markup;
+using LanguageLibrary;
 using LanguageService.Model;
 using Telerik.Windows.Controls;
+using IPSDelegateCommand = LanguageService.Extensions.IPSDelegateCommand;
 
 namespace LanguageService.ViewModel
 {
@@ -15,7 +18,7 @@ namespace LanguageService.ViewModel
     {
         public LanguageServiceViewModel()
         {
-            
+
         }
 
         #region * * * BEHAVIOR PROPERTIES * * *
@@ -84,7 +87,23 @@ namespace LanguageService.ViewModel
 
         #region * * * COMMANDS * * *
 
+        /// <summary>
+        /// Всі елементи по обраній мові
+        /// </summary>
+        public ICommand AllCategoryCommand => new IPSDelegateCommand(AllCategoryCommandExecute);
+        private void AllCategoryCommandExecute(object o)
+        {
+            ApplicationLanguageLibrary.GetExistLanguages();
+        }
 
+        /// <summary>
+        /// Незавповнені по обраній мові
+        /// </summary>
+        public ICommand IncompletenessCategoryCommand => new IPSDelegateCommand(IncompletenessCategoryCommandExecute);
+        private void IncompletenessCategoryCommandExecute(object o)
+        {
+
+        }
 
         #endregion
 

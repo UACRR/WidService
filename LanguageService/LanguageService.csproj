@@ -63,6 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Extensions\IPSDelegateCommand.cs" />
     <Compile Include="Model\LanguageCompletenessModel.cs" />
     <Compile Include="Model\LanguageDataModel.cs" />
     <Compile Include="Model\LanguageInfoModel.cs" />
@@ -106,6 +107,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LanguageLibrary\LanguageLibrary.csproj">
+      <Project>{fcddbe23-8a62-4eee-a2c1-57879a44d5a4}</Project>
+      <Name>LanguageLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
