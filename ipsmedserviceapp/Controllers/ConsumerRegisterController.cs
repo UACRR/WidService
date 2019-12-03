@@ -621,6 +621,7 @@ namespace ipsmedserviceapp.Controllers
                 transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
                 transaction.Commit();
+                transaction = null;
 
                 commandTimeout = _dbContext.Database.GetCommandTimeout() ?? commandTimeout;
                 _dbContext.Database.SetCommandTimeout(600);

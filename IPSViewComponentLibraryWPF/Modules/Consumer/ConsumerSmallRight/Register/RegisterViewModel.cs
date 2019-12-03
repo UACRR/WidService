@@ -1203,6 +1203,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
             // RegisterStatus
             // 2	Погоджений
+            // TODO: UNCOMMENTED!
             //if (CurrentRegister.RgStatus != 2)
             //    return;
 
