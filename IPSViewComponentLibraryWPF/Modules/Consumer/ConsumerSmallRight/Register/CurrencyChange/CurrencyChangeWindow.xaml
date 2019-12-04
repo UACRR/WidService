@@ -64,27 +64,30 @@
 
                 <t:Label Grid.Row="0" Grid.Column="0" Content="Сума звіту, в валюті"/>
                 <TextBox Grid.Row="0" Grid.Column="1" 
-                     IsReadOnly="True" 
-                     IsReadOnlyCaretVisible="False" 
-                     Background="GhostWhite"
-                     Text="{Binding CurrencyChangeData.CurrencyAmount, StringFormat='{}{0:N10}'}"/>
+                         IsReadOnly="True" 
+                         IsReadOnlyCaretVisible="False" 
+                         Background="GhostWhite"
+                         Text="{Binding CurrencyChangeData.CurrencyAmount, StringFormat='{}{0:N10}'}"/>
 
                 <t:Label Grid.Row="1" Grid.Column="0" Content="Валюта"/>
-                <t:RadComboBox Grid.Row="1" Grid.Column="1" 
-                           ItemsSource="{Binding CurrencyTypeItemSource}"
-                           SelectedValue="{Binding CurrencyChangeData.CurrencyType, Mode=TwoWay}"
-                           SelectedValuePath="R030"
-                           DisplayMemberPath="R030Name"/>
+                <t:RadComboBox Grid.Row="1" Grid.Column="1"
+                               IsReadOnly="{Binding IsReadonly}"
+                               ItemsSource="{Binding CurrencyTypeItemSource}"
+                               SelectedValue="{Binding CurrencyChangeData.CurrencyType, Mode=TwoWay}"
+                               SelectedValuePath="R030"
+                               DisplayMemberPath="R030Name"/>
 
                 <t:Label Grid.Row="2" Grid.Column="0" Content="Сума звіту, в грн"/>
-                <TextBox Grid.Row="2" Grid.Column="1" 
+                <TextBox Grid.Row="2" Grid.Column="1"
+                         IsReadOnly="{Binding IsReadonly}" IsReadOnlyCaretVisible="False"
                          Text="{Binding CurrencyChangeData.RegRoyalty, StringFormat='{}{0:N2}', NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
                          Validation.Error="Validation_OnError"/>
 
                 <t:Label Grid.Row="3" Grid.Column="0" Content="Курс (грн за одиницю валюти)"/>
-                <TextBox Grid.Row="3" Grid.Column="1" 
-                     Text="{Binding CurrencyChangeData.ExchangeRate, StringFormat='{}{0:N2}', NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
-                     Validation.Error="Validation_OnError"/>
+                <TextBox Grid.Row="3" Grid.Column="1"
+                         IsReadOnly="{Binding IsReadonly}" IsReadOnlyCaretVisible="False"
+                         Text="{Binding CurrencyChangeData.ExchangeRate, StringFormat='{}{0:N2}', NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                         Validation.Error="Validation_OnError"/>
             </Grid>
 
             <StackPanel Grid.Row="1" FlowDirection="RightToLeft" Orientation="Horizontal" Background="Silver">

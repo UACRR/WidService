@@ -103,17 +103,22 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 string query = $"select * from ft_Tsk_3_Report_CCID ({regId})";
-
                 DataTable table;
                 using (SqlConnection sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
                 {
                     sqlConnection.Open();
-                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
 
-                    DataSet dataSet = new DataSet();
-                    sqlDataAdapter.Fill(dataSet);
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.CommandTimeout = 300;
 
-                    table = dataSet.Tables[0];
+                        SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+
+                        DataSet dataSet = new DataSet();
+                        sqlDataAdapter.Fill(dataSet);
+
+                        table = dataSet.Tables[0];
+                    }
                 }
 
                 var list = new List<object[]>();

@@ -751,9 +751,10 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         private bool ValidateExternalReportType()
         {
             // RegisterStatus
-            // 7	Синхронізація виконано. До розподілу.
-            // 12  Погоджено.Сконвертовано
-            int?[] validStatus = {7, 12};
+            // 7    Синхронізація виконано. До розподілу.
+            // 12   Погоджено.Сконвертовано
+            // 13   Розполділ розраховано
+            int?[] validStatus = {7, 12, 13};
             bool hasInvalidStatus = RegisterRatedList.RegisterRatedList.Register.Any(rec => !validStatus.Contains(rec.RgStatus));
 
             if (!hasInvalidStatus)
@@ -1200,12 +1201,6 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 return;
 
             CurrentRegister = e;
-
-            // RegisterStatus
-            // 2	Погоджений
-            // TODO: UNCOMMENTED!
-            //if (CurrentRegister.RgStatus != 2)
-            //    return;
 
             var window = new CurrencyChangeWindow(CurrentRegister);
             bool result = window.ShowDialog() ?? false;

@@ -51,6 +51,17 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             }
         }
 
+        private bool _isReadonly;
+        public bool IsReadonly
+        {
+            get => _isReadonly;
+            set
+            {
+                _isReadonly = value;
+                OnPropertyChanged(() => IsReadonly);
+            }
+        }
+
         #endregion
 
         #region * * * DATA PROPERTIES * * *
@@ -117,6 +128,10 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                     CanExecuteChangeCurrencyCommand = _errorCount == 0 && isValid;
                 }
             };
+
+            // RegisterStatus
+            // 2	Погоджений
+            IsReadonly = RegisterModel.RgStatus != 2;
         }
 
         private int _errorCount = 0;
