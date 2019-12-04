@@ -1,4 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguagesInfo>
-
+  <language specificationCode="en-US">
+    <name>English</name>
+    <ua-name>Англійська</ua-name>
+    <incompletenessItemCount>1204</incompletenessItemCount>
+  </language>
+  <language specificationCode="en-US">
+    <name>Ukrainian</name>
+    <ua-name>Українська</ua-name>
+    <incompletenessItemCount>15</incompletenessItemCount>
+  </language>
+  <language specificationCode="ru-RU">
+    <name>Русский</name>
+    <ua-name>Російська</ua-name>
+    <incompletenessItemCount>1654</incompletenessItemCount>
+  </language>
 </LanguagesInfo>

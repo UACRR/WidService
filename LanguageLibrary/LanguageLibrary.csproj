@@ -44,6 +44,9 @@
     <Compile Include="ApplicationLanguageLibrary.cs" />
     <Compile Include="Kernel\LanguageLibraryHelper.cs" />
     <Compile Include="Kernel\LanguageName.cs" />
+    <Compile Include="Model\LanguageData.cs" />
+    <Compile Include="Model\LanguageDataNested\CopyrightRequestLD.cs" />
+    <Compile Include="Model\LanguageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ApplicationLanguage.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -70,9 +73,7 @@
     <EmbeddedResource Include="Resources\Language.ru-RU.resx" />
     <EmbeddedResource Include="Resources\Language.uk-UA.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Languages\LanguagesInfo.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

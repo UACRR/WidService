@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LanguageLibrary.Kernel;
+using LanguageLibrary.Model;
 
 namespace LanguageLibrary
 {
@@ -45,7 +46,20 @@ namespace LanguageLibrary
 
         public static List<object> GetExistLanguages()
         {
-            _LanguageLibraryHelper.LoadLanguageInfo();
+            var random = new Random();
+            //_LanguageLibraryHelper.LoadLanguageInfo();
+            //_LanguageLibraryHelper.UpdateLanguageInfo(new LanguageInfo
+            //{
+            //    IncompletenessItemCount = random.Next(1, 2000),
+            //    SpecificationCode = "ru-RU",
+            //});
+            _LanguageLibraryHelper.CreateNewLanguage(new LanguageInfo
+            {
+                LanguageName = "Русский",
+                UkrainianName = "Російська",
+                IncompletenessItemCount = 1654,
+                SpecificationCode = "ru-RU",
+            });
             return null;
         }
 
@@ -56,7 +70,7 @@ namespace LanguageLibrary
 
         public static void CreateLanguage()
         {
-            _LanguageLibraryHelper.CreateLanguageTemplate();
+
         }
 
         public static void GetLanguageData()
