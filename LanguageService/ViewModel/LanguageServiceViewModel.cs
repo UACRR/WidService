@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Markup;
 using LanguageLibrary;
@@ -59,7 +60,6 @@ namespace LanguageService.ViewModel
                 IconPath = @"..\Images\russia.png"
             },
         };
-
         public ObservableCollection<NavigationItemModel> LanguagesItemsSource
         {
             get => _languagesItemsSource;
@@ -69,6 +69,36 @@ namespace LanguageService.ViewModel
                 OnPropertyChanged(() => LanguagesItemsSource);
             }
         }
+
+        private Visibility _editPanelVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Видимість панелі редагування
+        /// </summary>
+        public Visibility EditPanelVisibility
+        {
+            get => _editPanelVisibility;
+            set
+            {
+                _editPanelVisibility = value;
+                OnPropertyChanged(() => EditPanelVisibility);
+            }
+        }
+
+
+        private Visibility _categoryPanelVisibility = Visibility.Visible;
+        /// <summary>
+        /// Видимість панелі категорії 
+        /// </summary>
+        public Visibility CategoryPanelVisibility
+        {
+            get => _categoryPanelVisibility;
+            set
+            {
+                _categoryPanelVisibility = value;
+                OnPropertyChanged(() => CategoryPanelVisibility);
+            }
+        }
+
 
         #endregion
 
@@ -161,6 +191,13 @@ namespace LanguageService.ViewModel
             PossibleLanguagesItemSource = new ObservableCollection<LanguageInfo>(list);
         }
 
+        public ICommand BackToCategoryCommand => new IPSDelegateCommand(BackToCategoryCommandExecute);
+        private void BackToCategoryCommandExecute(object o)
+        {
+            EditPanelVisibility = Visibility.Collapsed;
+            CategoryPanelVisibility = Visibility.Visible;
+        }
+
 
         /// <summary>
         /// Всі елементи по обраній мові
@@ -168,8 +205,11 @@ namespace LanguageService.ViewModel
         public ICommand AllCategoryCommand => new IPSDelegateCommand(AllCategoryCommandExecute);
         private void AllCategoryCommandExecute(object o)
         {
+            EditPanelVisibility = Visibility.Visible;
+            CategoryPanelVisibility = Visibility.Collapsed;
+
             //var data = ApplicationLanguageLibrary.GetLanguageData(new LanguageInfo{ SpecificationCode = "ru-RU"});
-            ApplicationLanguageLibrary.Sync();
+            //ApplicationLanguageLibrary.Sync();
 
             //ApplicationLanguageLibrary.CreateLanguage(new LanguageInfo
             //{
