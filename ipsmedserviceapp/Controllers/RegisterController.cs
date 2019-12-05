@@ -150,7 +150,8 @@ namespace ipsmedserviceapp.Controllers
             {
                 string query = $"exec pTsk10_LoadWICRegister @regId";
                 var param = new SqlParameter("regId", regId);
-
+                
+                _dbContext.Database.SetCommandTimeout(600);
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param);
                 if (result == 1)
                 {
@@ -163,6 +164,7 @@ namespace ipsmedserviceapp.Controllers
                     return BadRequest(response);
                 }
 
+                _dbContext.Database.SetCommandTimeout(30);
                 response = new ResponseOfRequest("Процедуру синхронізації виконано!");
                 return Ok(response);
             }
@@ -187,6 +189,7 @@ namespace ipsmedserviceapp.Controllers
                 string query = $"exec p_CreateDistribution_DDEX @regId";
                 var param = new SqlParameter("regId", regId);
 
+                _dbContext.Database.SetCommandTimeout(600);
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param);
                 if (result == 1)
                 {
@@ -199,6 +202,7 @@ namespace ipsmedserviceapp.Controllers
                     return BadRequest(response);
                 }
 
+                _dbContext.Database.SetCommandTimeout(30);
                 response = new ResponseOfRequest("Процедуру розподілу виконано!");
                 return Ok(response);
             }
@@ -227,6 +231,7 @@ namespace ipsmedserviceapp.Controllers
 
                 var param = new SqlParameter("regId", regId);
 
+                _dbContext.Database.SetCommandTimeout(600);
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param);
                 if (result == 1)
                 {
@@ -239,6 +244,7 @@ namespace ipsmedserviceapp.Controllers
                     return BadRequest(response);
                 }
 
+                _dbContext.Database.SetCommandTimeout(30);
                 response = new ResponseOfRequest("Процедуру оплати виконано!");
                 return Ok(response);
             }
