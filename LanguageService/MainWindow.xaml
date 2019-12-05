@@ -72,491 +72,434 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-
-        <StackPanel x:Name="languageMenu" Grid.Column="0">
-
-            <Expander Header="Languages">
-                <StackPanel>
-                    <Grid>
-                        <TextBlock Text="English"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Russian"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Ukrainian"/>
-                    </Grid>
-                </StackPanel>
-            </Expander>
-
-            <Expander Header="Categories">
-                <StackPanel>
-                    <Grid>
-                        <TextBlock Text="All"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="General"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Category"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Category"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Category"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Category"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Category"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Category"/>
-                    </Grid>
-                </StackPanel>
-            </Expander>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
             
-        </StackPanel>
-
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            
-            <Grid x:Name="languageHeader" Grid.Row="0" Background="#1a237e"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50">
-                <TextBlock
-                            Margin="50, 0"
-                            Text="Language"
-                            Foreground="White"
-                            FontSize="28"
-                            Height="40"
-                            VerticalAlignment="Center"/>
+        <Grid x:Name="languageHeader" Grid.Row="0" Background="#1a237e"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50">
+            <TextBlock
+                        Margin="50, 0"
+                        Text="Language"
+                        Foreground="White"
+                        FontSize="28"
+                        Height="40"
+                        VerticalAlignment="Center"/>
 
 
-            </Grid>
-
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding CategoryPanelVisibility}">
-                <WrapPanel x:Name="categories" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding AllCategoryCommand}"/>
-                        </Border.InputBindings>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="All"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(2000)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="1999"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="General"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(200)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="100"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="Category"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(350)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="9"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="All"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(2000)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="1999"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="All"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(2000)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="1999"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="All"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(2000)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="1999"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="All"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(2000)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="1999"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="All"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(2000)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="1999"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock
-                                            Text="All"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="36"/>
-                                <TextBlock
-                                            Text="(2000)"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            FontSize="28"/>
-                            </StackPanel>
-                            <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                                <TextBlock
-                                            Text="1999"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Foreground="White" 
-                                            FontWeight="Bold"/>
-                            </Border>
-                        </Grid>
-                    </Border>
-
-
-
-
-                </WrapPanel>
-            </ScrollViewer>
-
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding EditPanelVisibility}" Padding="0, 20">
-                <StackPanel>
-
-                    <t:RadButton Content="Back" 
-                                 HorizontalAlignment="Left" 
-                                 t:StyleManager.Theme="VisualStudio2013"
-                                 Width="75" 
-                                 Margin="25,15,15,15"
-                                 Command="{Binding BackToCategoryCommand}"/>
-
-                    <Border Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Border CornerRadius="10,0,0,10" BorderThickness="0, 1, 0, 0">
-                                <Border.Background>
-                                    <ImageBrush Stretch="Fill" />
-                                </Border.Background>
-                            </Border>
-                            <StackPanel Grid.Column="1" Margin="30 10">
-                                <TextBlock
-                                    Text="Confirm"
-                                    Foreground="Black" 
-                                    FontWeight="Bold"
-                                    FontSize="24"></TextBlock>
-                                <TextBlock Margin="0 5"
-                                    Text="confirm_btn"
-                                    Foreground="Black"
-                                    FontSize="14"></TextBlock>
-                                <TextBlock Margin="0 2 0 5"
-                                    Text="Button of main page"
-                                    Foreground="Black" 
-                                    FontStyle="Italic"
-                                    FontWeight="DemiBold"
-                                    FontSize="14"></TextBlock>
-                                <TextBox Margin="0 10" Height="40"></TextBox>
-                                <WrapPanel>
-                                    <Button  Style="{StaticResource buttonSubmit}"
-                                       Content="Submit"
-                                       FontFamily="Century Gothic"
-                                       Foreground="white"
-                                       BorderThickness="0"
-                                       Padding="10"
-                                       Margin="0,0,10,0"
-                                        Cursor="Hand"
-                                        MinWidth="80">
-                                        <Button.Resources>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Setter Property="CornerRadius" Value="10"/>
-                                            </Style>
-                                        </Button.Resources>
-                                    </Button>
-                                    <Button  Style="{StaticResource buttonCancel}"
-                                       Content="Cancel"
-                                       FontFamily="Century Gothic"
-                                       Foreground="white"
-                                       BorderThickness="0"
-                                       Padding="10"
-                                       Margin="0,0,10,0"
-                                        Cursor="Hand"
-                                        MinWidth="80">
-                                        <Button.Resources>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Setter Property="CornerRadius" Value="10"/>
-                                            </Style>
-                                        </Button.Resources>
-                                    </Button>
-                                </WrapPanel>
-                            </StackPanel>
-                        </Grid>
-                        
-                    </Border>
-
-
-
-                    <Border Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Border CornerRadius="10,0,0,10" BorderThickness="0, 1, 0, 0">
-                                <Border.Background>
-                                    <ImageBrush Stretch="Fill" />
-                                </Border.Background>
-                            </Border>
-                            <StackPanel Grid.Column="1" Margin="30 10">
-                                <TextBlock
-                                    Text="Confirm"
-                                    Foreground="Black" 
-                                    FontWeight="Bold"
-                                    FontSize="24"></TextBlock>
-                                <TextBlock Margin="0 5"
-                                    Text="confirm_btn"
-                                    Foreground="Black"
-                                    FontSize="14"></TextBlock>
-                                <TextBlock Margin="0 2 0 5"
-                                    Text="Button of main page"
-                                    Foreground="Black" 
-                                    FontStyle="Italic"
-                                    FontWeight="DemiBold"
-                                    FontSize="14"></TextBlock>
-                                <TextBox Margin="0 10" Height="40"></TextBox>
-                                <WrapPanel>
-                                    <Button  Style="{StaticResource buttonSubmit}"
-                                       Content="Submit"
-                                       FontFamily="Century Gothic"
-                                       Foreground="white"
-                                       BorderThickness="0"
-                                       Padding="10"
-                                       Margin="0,0,10,0"
-                                        Cursor="Hand"
-                                        MinWidth="80">
-                                        <Button.Resources>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Setter Property="CornerRadius" Value="10"/>
-                                            </Style>
-                                        </Button.Resources>
-                                    </Button>
-                                    <Button  Style="{StaticResource buttonCancel}"
-                                       Content="Cancel"
-                                       FontFamily="Century Gothic"
-                                       Foreground="white"
-                                       BorderThickness="0"
-                                       Padding="10"
-                                       Margin="0,0,10,0"
-                                        Cursor="Hand"
-                                        MinWidth="80">
-                                        <Button.Resources>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Setter Property="CornerRadius" Value="10"/>
-                                            </Style>
-                                        </Button.Resources>
-                                    </Button>
-                                </WrapPanel>
-                            </StackPanel>
-                        </Grid>
-
-                    </Border>
-                    
-                    
-                </StackPanel>
-            </ScrollViewer>
         </Grid>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding CategoryPanelVisibility}">
+            <WrapPanel x:Name="categories" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding AllCategoryCommand}"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="All"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(2000)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="General"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(200)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="100"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="Category"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(350)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="9"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="All"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(2000)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="All"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(2000)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="All"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(2000)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="All"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(2000)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="All"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(2000)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                        Text="All"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="36"/>
+                            <TextBlock
+                                        Text="(2000)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+
+
+
+            </WrapPanel>
+        </ScrollViewer>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding EditPanelVisibility}" Padding="0, 20">
+            <StackPanel>
+
+                <t:RadButton Content="Back" 
+                                HorizontalAlignment="Left" 
+                                t:StyleManager.Theme="VisualStudio2013"
+                                Width="75" 
+                                Margin="25,15,15,15"
+                                Command="{Binding BackToCategoryCommand}"/>
+
+                <Border Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="10,0,0,10" BorderThickness="0, 1, 0, 0">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" />
+                            </Border.Background>
+                        </Border>
+                        <StackPanel Grid.Column="1" Margin="30 10">
+                            <TextBlock
+                                Text="Confirm"
+                                Foreground="Black" 
+                                FontWeight="Bold"
+                                FontSize="24"></TextBlock>
+                            <TextBlock Margin="0 5"
+                                Text="confirm_btn"
+                                Foreground="Black"
+                                FontSize="14"></TextBlock>
+                            <TextBlock Margin="0 2 0 5"
+                                Text="Button of main page"
+                                Foreground="Black" 
+                                FontStyle="Italic"
+                                FontWeight="DemiBold"
+                                FontSize="14"></TextBlock>
+                            <TextBox Margin="0 10" Height="40"></TextBox>
+                            <WrapPanel>
+                                <Button  Style="{StaticResource buttonSubmit}"
+                                    Content="Submit"
+                                    FontFamily="Century Gothic"
+                                    Foreground="white"
+                                    BorderThickness="0"
+                                    Padding="10"
+                                    Margin="0,0,10,0"
+                                    Cursor="Hand"
+                                    MinWidth="80">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button  Style="{StaticResource buttonCancel}"
+                                    Content="Cancel"
+                                    FontFamily="Century Gothic"
+                                    Foreground="white"
+                                    BorderThickness="0"
+                                    Padding="10"
+                                    Margin="0,0,10,0"
+                                    Cursor="Hand"
+                                    MinWidth="80">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+
+                </Border>
+
+
+
+                <Border Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="10,0,0,10" BorderThickness="0, 1, 0, 0">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" />
+                            </Border.Background>
+                        </Border>
+                        <StackPanel Grid.Column="1" Margin="30 10">
+                            <TextBlock
+                                Text="Confirm"
+                                Foreground="Black" 
+                                FontWeight="Bold"
+                                FontSize="24"></TextBlock>
+                            <TextBlock Margin="0 5"
+                                Text="confirm_btn"
+                                Foreground="Black"
+                                FontSize="14"></TextBlock>
+                            <TextBlock Margin="0 2 0 5"
+                                Text="Button of main page"
+                                Foreground="Black" 
+                                FontStyle="Italic"
+                                FontWeight="DemiBold"
+                                FontSize="14"></TextBlock>
+                            <TextBox Margin="0 10" Height="40"></TextBox>
+                            <WrapPanel>
+                                <Button  Style="{StaticResource buttonSubmit}"
+                                    Content="Submit"
+                                    FontFamily="Century Gothic"
+                                    Foreground="white"
+                                    BorderThickness="0"
+                                    Padding="10"
+                                    Margin="0,0,10,0"
+                                    Cursor="Hand"
+                                    MinWidth="80">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button  Style="{StaticResource buttonCancel}"
+                                    Content="Cancel"
+                                    FontFamily="Century Gothic"
+                                    Foreground="white"
+                                    BorderThickness="0"
+                                    Padding="10"
+                                    Margin="0,0,10,0"
+                                    Cursor="Hand"
+                                    MinWidth="80">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
 
