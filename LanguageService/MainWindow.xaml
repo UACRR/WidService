@@ -23,7 +23,52 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
+        <Style x:Key="listLangStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="buttonSubmit" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1a237e"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#000969"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="buttonCancel" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#8aa4e6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#7696e8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
 
     <Grid>
@@ -97,7 +142,7 @@
 
             </Grid>
 
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="Collapsed">
                 <WrapPanel x:Name="categories" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
                     <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
                         <Border.Effect>
@@ -358,6 +403,149 @@
 
 
                 </WrapPanel>
+            </ScrollViewer>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="Visible" Padding="0, 20">
+                <StackPanel>
+                    <Border Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                        </Border.Effect>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border CornerRadius="10,0,0,10" BorderThickness="0, 1, 0, 0">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Fill" />
+                                </Border.Background>
+                            </Border>
+                            <StackPanel Grid.Column="1" Margin="30 10">
+                                <TextBlock
+                                    Text="Confirm"
+                                    Foreground="Black" 
+                                    FontWeight="Bold"
+                                    FontSize="24"></TextBlock>
+                                <TextBlock Margin="0 5"
+                                    Text="confirm_btn"
+                                    Foreground="Black"
+                                    FontSize="14"></TextBlock>
+                                <TextBlock Margin="0 2 0 5"
+                                    Text="Button of main page"
+                                    Foreground="Black" 
+                                    FontStyle="Italic"
+                                    FontWeight="DemiBold"
+                                    FontSize="14"></TextBlock>
+                                <TextBox Margin="0 10" Height="40"></TextBox>
+                                <WrapPanel>
+                                    <Button  Style="{StaticResource buttonSubmit}"
+                                       Content="Submit"
+                                       FontFamily="Century Gothic"
+                                       Foreground="white"
+                                       BorderThickness="0"
+                                       Padding="10"
+                                       Margin="0,0,10,0"
+                                        Cursor="Hand"
+                                        MinWidth="80">
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="10"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                    <Button  Style="{StaticResource buttonCancel}"
+                                       Content="Cancel"
+                                       FontFamily="Century Gothic"
+                                       Foreground="white"
+                                       BorderThickness="0"
+                                       Padding="10"
+                                       Margin="0,0,10,0"
+                                        Cursor="Hand"
+                                        MinWidth="80">
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="10"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Grid>
+                        
+                    </Border>
+
+
+
+                    <Border Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                        </Border.Effect>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border CornerRadius="10,0,0,10" BorderThickness="0, 1, 0, 0">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Fill" />
+                                </Border.Background>
+                            </Border>
+                            <StackPanel Grid.Column="1" Margin="30 10">
+                                <TextBlock
+                                    Text="Confirm"
+                                    Foreground="Black" 
+                                    FontWeight="Bold"
+                                    FontSize="24"></TextBlock>
+                                <TextBlock Margin="0 5"
+                                    Text="confirm_btn"
+                                    Foreground="Black"
+                                    FontSize="14"></TextBlock>
+                                <TextBlock Margin="0 2 0 5"
+                                    Text="Button of main page"
+                                    Foreground="Black" 
+                                    FontStyle="Italic"
+                                    FontWeight="DemiBold"
+                                    FontSize="14"></TextBlock>
+                                <TextBox Margin="0 10" Height="40"></TextBox>
+                                <WrapPanel>
+                                    <Button  Style="{StaticResource buttonSubmit}"
+                                       Content="Submit"
+                                       FontFamily="Century Gothic"
+                                       Foreground="white"
+                                       BorderThickness="0"
+                                       Padding="10"
+                                       Margin="0,0,10,0"
+                                        Cursor="Hand"
+                                        MinWidth="80">
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="10"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                    <Button  Style="{StaticResource buttonCancel}"
+                                       Content="Cancel"
+                                       FontFamily="Century Gothic"
+                                       Foreground="white"
+                                       BorderThickness="0"
+                                       Padding="10"
+                                       Margin="0,0,10,0"
+                                        Cursor="Hand"
+                                        MinWidth="80">
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="10"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Grid>
+
+                    </Border>
+                    
+                    
+                </StackPanel>
             </ScrollViewer>
         </Grid>
     </Grid>
