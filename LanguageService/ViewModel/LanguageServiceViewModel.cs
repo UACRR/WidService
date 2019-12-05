@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Markup;
 using LanguageLibrary;
+using LanguageLibrary.Model;
 using LanguageService.Model;
 using Telerik.Windows.Controls;
 using IPSDelegateCommand = LanguageService.Extensions.IPSDelegateCommand;
@@ -55,8 +56,8 @@ namespace LanguageService.ViewModel
             }
         }
 
-        private ObservableCollection<LanguageInfoModel> _languagesItemSource;
-        public ObservableCollection<LanguageInfoModel> LanguagesItemSource
+        private ObservableCollection<LanguageInfo> _languagesItemSource;
+        public ObservableCollection<LanguageInfo> LanguagesItemSource
         {
             get => _languagesItemSource;
             set
@@ -66,14 +67,37 @@ namespace LanguageService.ViewModel
             }
         }
 
-        private LanguageInfoModel _currentLanguage;
-        public LanguageInfoModel CurrentLanguage
+        private LanguageInfo _currentLanguage;
+        public LanguageInfo CurrentLanguage
         {
             get => _currentLanguage;
             set
             {
                 _currentLanguage = value;
                 OnPropertyChanged(() => CurrentLanguage);
+            }
+        }
+
+
+        private ObservableCollection<LanguageInfo> _possibleLanguagesItemSource;
+        public ObservableCollection<LanguageInfo> PossibleLanguagesItemSource
+        {
+            get => _possibleLanguagesItemSource;
+            set
+            {
+                _possibleLanguagesItemSource = value;
+                OnPropertyChanged(() => PossibleLanguagesItemSource);
+            }
+        }
+
+        private LanguageInfo _currentPossibleLanguage;
+        public LanguageInfo CurrentPossibleLanguage
+        {
+            get => _currentPossibleLanguage;
+            set
+            {
+                _currentPossibleLanguage = value;
+                OnPropertyChanged(() => CurrentPossibleLanguage);
             }
         }
 
@@ -87,13 +111,24 @@ namespace LanguageService.ViewModel
 
         #region * * * COMMANDS * * *
 
+        public ICommand LoadLanguagesListCommand => new IPSDelegateCommand(LoadLanguagesListCommandExecute);
+        private void LoadLanguagesListCommandExecute(object o)
+        {
+            var languageList = ApplicationLanguageLibrary.GetLanguagesList();
+            LanguagesItemSource = new ObservableCollection<LanguageInfo>(languageList);
+            
+            var languageNotExistList = ApplicationLanguageLibrary.GetLanguageListForCreate();
+            
+        }
+
+
         /// <summary>
         /// Всі елементи по обраній мові
         /// </summary>
         public ICommand AllCategoryCommand => new IPSDelegateCommand(AllCategoryCommandExecute);
         private void AllCategoryCommandExecute(object o)
         {
-            ApplicationLanguageLibrary.GetExistLanguages();
+            ApplicationLanguageLibrary.GetLanguagesList();
         }
 
         /// <summary>

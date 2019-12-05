@@ -1,7 +1,9 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Xml;
 using LanguageLibrary.Model;
@@ -17,7 +19,7 @@ namespace LanguageLibrary.Kernel
         private const string LanguageInfoPathInternal = @"..\..\..\LanguageLibrary\Languages";
         private const string LanguageInfoFileName = "LanguagesInfo.xml";
 
-        private const string LanguageDataTemplate = "LanguageData";
+        private const string LanguageDataTemplate = "LanguageObjectModel";
         private const string UIContainer = "uiContainer";
         private const string UIItem = "uiItem";
 
@@ -28,7 +30,7 @@ namespace LanguageLibrary.Kernel
             _xmlDocument = new XmlDocument();
         }
 
-        internal List<LanguageInfo> GetLanguagesInfo()
+        internal List<LanguageInfo> GetLanguagesInfoList()
         {
             string fullPathApp = $@"{LanguageInfoPathApp}\{LanguageInfoFileName}";
             string fullPathInternal = $@"{LanguageInfoPathInternal}\{LanguageInfoFileName}";
@@ -74,6 +76,32 @@ namespace LanguageLibrary.Kernel
             }
 
             return list;
+        }
+
+        internal void UpdateLanguageInfo(LanguageInfo languageInfo)
+        {
+            string fullPathApp = $@"{LanguageInfoPathApp}\{LanguageInfoFileName}";
+            string fullPathInternal = $@"{LanguageInfoPathInternal}\{LanguageInfoFileName}";
+
+            if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
+                _xmlDocument.Load(fullPathInternal);
+            else
+                _xmlDocument.Load(fullPathApp);
+
+            // some code
+            XmlNode root = _xmlDocument.DocumentElement;
+            string xPath = $"language[@{LanguageInfo.XMLMapper[nameof(languageInfo.SpecificationCode)]}='{languageInfo.SpecificationCode}']";
+            XmlNode node = root.SelectSingleNode(xPath);
+
+            string nodeName = LanguageInfo.XMLMapper[nameof(languageInfo.IncompletenessItemCount)];
+            XmlNode childNode = node.SelectSingleNode(nodeName);
+            childNode.InnerText = languageInfo.IncompletenessItemCount.ToString();
+
+            _xmlDocument.Save(fullPathApp);
+
+            // server sync
+            if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
+                _xmlDocument.Save(fullPathInternal);
         }
 
         internal void CreateNewLanguage(LanguageInfo languageInfo)
@@ -127,7 +155,7 @@ namespace LanguageLibrary.Kernel
             root.Attributes.Append(attribute);
 
             // створити ui контейнери
-            var type = typeof(LanguageData);
+            var type = typeof(LanguageObjectModel);
             var properties = type.GetProperties();
             foreach (var propertyInfo in properties)
             {
@@ -147,30 +175,12 @@ namespace LanguageLibrary.Kernel
             xmlDocument.Save(pathApp);
         }
 
-        internal void UpdateLanguageInfo(LanguageInfo languageInfo)
+        internal LanguageObjectModel GetLanguageData(CultureInfo cultureInfo)
         {
-            string fullPathApp = $@"{LanguageInfoPathApp}\{LanguageInfoFileName}";
-            string fullPathInternal = $@"{LanguageInfoPathInternal}\{LanguageInfoFileName}";
+            var language = new LanguageObjectModel();
 
-            if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
-                _xmlDocument.Load(fullPathInternal);
-            else
-                _xmlDocument.Load(fullPathApp);
 
-            // some code
-            XmlNode root = _xmlDocument.DocumentElement;
-            string xPath = $"language[@{LanguageInfo.XMLMapper[nameof(languageInfo.SpecificationCode)]}='{languageInfo.SpecificationCode}']";
-            XmlNode node = root.SelectSingleNode(xPath);
-
-            string nodeName = LanguageInfo.XMLMapper[nameof(languageInfo.IncompletenessItemCount)];
-            XmlNode childNode = node.SelectSingleNode(nodeName);
-            childNode.InnerText = languageInfo.IncompletenessItemCount.ToString();
-
-            _xmlDocument.Save(fullPathApp);
-
-            // server sync
-            if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
-                _xmlDocument.Save(fullPathInternal);
+            return language;
         }
 
         internal void UpdateLanguageData()
@@ -183,7 +193,7 @@ namespace LanguageLibrary.Kernel
         /// </summary>
         internal void SyncLanguageDataObjectModel()
         {
-            var langs = GetLanguagesInfo();
+            var langs = GetLanguagesInfoList();
             foreach (var languageInfo in langs)
             {
                 string fileName = $"Language.{languageInfo.SpecificationCode}.xml";
@@ -191,7 +201,10 @@ namespace LanguageLibrary.Kernel
                 string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
                 string fullPathInternal = $@"{LanguageInfoPathInternal}\{fileName}";
 
-                if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
+                if (!File.Exists(fullPathApp) && !File.Exists(fullPathInternal))
+                    continue;
+
+                if (Directory.Exists(LanguageInfoPathInternal))
                     _xmlDocument.Load(fullPathInternal);
                 else
                     _xmlDocument.Load(fullPathApp);
@@ -199,7 +212,7 @@ namespace LanguageLibrary.Kernel
                 var root = _xmlDocument.DocumentElement;
 
                 // ui контейнери
-                var type = typeof(LanguageData);
+                var type = typeof(LanguageObjectModel);
                 var properties = type.GetProperties();
                 foreach (var propertyInfo in properties)
                 {
@@ -214,11 +227,11 @@ namespace LanguageLibrary.Kernel
                     }
 
                     // створити iu елементи
-                    var propertyType = propertyInfo.GetType();
+                    var propertyType = propertyInfo.PropertyType;
                     var propertiesTypeInfo = propertyType.GetProperties();
                     foreach (var propertyTypeInfo in propertiesTypeInfo)
                     {
-                        string xPathUIitem = $@"{UIItem}[@name='{propertyInfo.Name}']";
+                        string xPathUIitem = $@"{UIItem}[@name='{propertyTypeInfo.Name}']";
                         var uiItem = container.SelectSingleNode(xPathUIitem);
                         
                         if (uiItem == null)
@@ -226,6 +239,56 @@ namespace LanguageLibrary.Kernel
 
                         container.AppendChild(uiItem);
                     }
+                }
+
+                // вторинна синхронізація, видалення блоків якщо немає в об'єкті моделі
+                // створити найменування наявних властивостей об'єкта моделі
+                var existObjectModelNames = new Dictionary<string, string[]>();
+
+                foreach (var propertyInfo in properties)
+                {
+                    var propertyType = propertyInfo.PropertyType;
+                    var propertiesTypeInfo = propertyType.GetProperties();
+
+                    string[] childNames = propertiesTypeInfo.Select(rec => rec.Name).ToArray();
+
+                    existObjectModelNames.Add(propertyInfo.Name, childNames);
+                }
+
+                var removeContainerNodes = new List<XmlNode>();
+
+                // покуш відсутніх у об'єкті моделі властивостей
+                foreach (XmlNode rootChildNode in root.ChildNodes)
+                {
+                    // пошук відсутніх ui контейнерів, якшо відсутні видаляється блок
+                    if (!existObjectModelNames.ContainsKey(rootChildNode.Attributes[0].Value))
+                    {
+                        removeContainerNodes.Add(rootChildNode);
+                        continue;
+                    }
+
+                    // пошук відсутніх ui елементів у ui модулі
+                    var removeItemNodes = new List<XmlNode>();
+
+                    foreach (XmlNode childNode in rootChildNode.ChildNodes)
+                    {
+                        var childNodes = existObjectModelNames[rootChildNode.Attributes[0].Value];
+
+                        if (!childNodes.Contains(childNode.Attributes[0].Value))
+                            removeItemNodes.Add(childNode);
+                    }
+
+                    // видалення елемента ui
+                    foreach (var removeItemNode in removeItemNodes)
+                    {
+                        rootChildNode.RemoveChild(removeItemNode);
+                    }
+                }
+
+                // видалення блоку контейнера
+                foreach (var removeNode in removeContainerNodes)
+                {
+                    root.RemoveChild(removeNode);
                 }
 
 

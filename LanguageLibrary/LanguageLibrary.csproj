@@ -44,8 +44,12 @@
     <Compile Include="ApplicationLanguageLibrary.cs" />
     <Compile Include="Kernel\LanguageLibraryHelper.cs" />
     <Compile Include="Kernel\LanguageName.cs" />
-    <Compile Include="Model\LanguageData.cs" />
+    <Compile Include="Model\LanguageItem.cs" />
+    <Compile Include="Model\LanguageObjectModel.cs" />
     <Compile Include="Model\LanguageDataNested\CopyrightRequestLD.cs" />
+    <Compile Include="Model\LanguageDataNested\RegisterCurrencyChangeLD.cs" />
+    <Compile Include="Model\LanguageDataNested\RegisterItemCCIDTypeLD.cs" />
+    <Compile Include="Model\LanguageDataNested\RemoveClass.cs" />
     <Compile Include="Model\LanguageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ApplicationLanguage.Designer.cs">

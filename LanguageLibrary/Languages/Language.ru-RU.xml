@@ -9,5 +9,49 @@
       <originalContent>
       </originalContent>
     </uiItem>
+    <uiItem name="UIbtnCancel">
+      <content>
+      </content>
+      <description>
+      </description>
+      <originalContent>
+      </originalContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RemoveClass">
+    <uiItem name="Property1">
+      <content>
+      </content>
+      <description>
+      </description>
+      <originalContent>
+      </originalContent>
+    </uiItem>
+    <uiItem name="Property3">
+      <content>
+      </content>
+      <description>
+      </description>
+      <originalContent>
+      </originalContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RegisterCurrencyChangeLD">
+    <uiItem name="UITitle">
+      <content>
+      </content>
+      <description>
+      </description>
+      <originalContent>
+      </originalContent>
+    </uiItem>
+    <uiItem name="UICurrency">
+      <content>
+      </content>
+      <description>
+      </description>
+      <originalContent>
+      </originalContent>
+    </uiItem>
   </uiContainer>
 </LanguageData>

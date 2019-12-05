@@ -20,12 +20,25 @@ namespace LanguageLibrary
 
         private static readonly LanguageLibraryHelper _LanguageLibraryHelper = new LanguageLibraryHelper();
 
-        public static void LoadLanguage()
+        private static LanguageObjectModel _language;
+
+        /// <summary>
+        /// Отримати кофігурацію мови
+        /// </summary>
+        /// <param name="cultureInfo"></param>
+        /// <returns></returns>
+        public static LanguageObjectModel GetLanguage(CultureInfo cultureInfo)
         {
-            //if (_languageDictionary.ContainsKey(languageName))
-            //    Languages.Language.Culture = _languageDictionary[languageName];
-            //else
-            //    Languages.Language.Culture = null;
+            if (_language == null)
+                _language = _LanguageLibraryHelper.GetLanguageData(cultureInfo);
+
+            return _language;
+        }
+
+        public static List<LanguageInfo> GetLanguagesList()
+        {
+            var list = _LanguageLibraryHelper.GetLanguagesInfoList();
+            return list;
         }
 
         public static void ChangeLanguage(LanguageName languageName)
@@ -44,41 +57,60 @@ namespace LanguageLibrary
             }
         }
 
-        public static List<object> GetExistLanguages()
+        public static List<LanguageInfo> GetLanguageListForCreate()
         {
-            var random = new Random();
-            //_LanguageLibraryHelper.LoadLanguageInfo();
-            //_LanguageLibraryHelper.UpdateLanguageInfo(new LanguageInfo
-            //{
-            //    IncompletenessItemCount = random.Next(1, 2000),
-            //    SpecificationCode = "ru-RU",
-            //});
-            _LanguageLibraryHelper.CreateNewLanguage(new LanguageInfo
+            var list = new List<LanguageInfo>
             {
-                LanguageName = "Русский",
-                UkrainianName = "Російська",
-                IncompletenessItemCount = 1654,
-                SpecificationCode = "ru-RU",
-            });
-            return null;
+                new LanguageInfo
+                {
+                    LanguageName = "Français",
+                    UkrainianName = "Французька",
+                    SpecificationCode = "fr-FR",
+                    IncompletenessItemCount = 2000,
+                },
+
+                new LanguageInfo
+                {
+                    LanguageName = "Español",
+                    UkrainianName = "Іспанська",
+                    SpecificationCode = "es-ES",
+                    IncompletenessItemCount = 2000,
+                },
+
+                new LanguageInfo
+                {
+                    LanguageName = "Deutsch",
+                    UkrainianName = "Німецька",
+                    SpecificationCode = "de-DE",
+                    IncompletenessItemCount = 2000,
+                },
+
+                new LanguageInfo
+                {
+                    LanguageName = "Български",
+                    UkrainianName = "Болгарська",
+                    SpecificationCode = "bg-BG",
+                    IncompletenessItemCount = 2000,
+                },
+
+                new LanguageInfo
+                {
+                    LanguageName = "Қазақ",
+                    UkrainianName = "Казахська",
+                    SpecificationCode = "kk-KZ",
+                    IncompletenessItemCount = 2000,
+                },
+            };
+
+            return list;
         }
 
-        public static List<object> GetLanguagesForCreate()
+        public static void CreateLanguage(LanguageInfo languageInfo)
         {
-            return null;
+            _LanguageLibraryHelper.CreateNewLanguage(languageInfo);
         }
 
-        public static void CreateLanguage()
-        {
-
-        }
-
-        public static void GetLanguageData()
-        {
-
-        }
-
-        public static void UpdateLanguageData()
+        public static void UpdateLanguage(object o)
         {
 
         }
