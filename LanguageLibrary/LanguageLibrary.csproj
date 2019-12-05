@@ -44,6 +44,7 @@
     <Compile Include="ApplicationLanguageLibrary.cs" />
     <Compile Include="Kernel\LanguageLibraryHelper.cs" />
     <Compile Include="Kernel\LanguageName.cs" />
+    <Compile Include="Model\LanguageDataModel.cs" />
     <Compile Include="Model\LanguageItem.cs" />
     <Compile Include="Model\LanguageObjectModel.cs" />
     <Compile Include="Model\LanguageDataNested\CopyrightRequestLD.cs" />
@@ -79,6 +80,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Languages\LanguageSettings.xml" />
     <Content Include="Languages\LanguagesInfo.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

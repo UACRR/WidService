@@ -8,7 +8,7 @@
             get
             {
                 if (string.IsNullOrEmpty(_content))
-                    return OriginalContent;
+                    return DefaultContent;
 
                 return _content;
             }
@@ -17,6 +17,6 @@
 
         public string Description { get; internal set; }
 
-        public string OriginalContent { get; internal set; }
+        public string DefaultContent { get; internal set; }
     }
 }

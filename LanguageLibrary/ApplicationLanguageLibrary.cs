@@ -30,9 +30,30 @@ namespace LanguageLibrary
         public static LanguageObjectModel GetLanguage(CultureInfo cultureInfo)
         {
             if (_language == null)
-                _language = _LanguageLibraryHelper.GetLanguageData(cultureInfo);
+                _language = _LanguageLibraryHelper.GetLanguage(cultureInfo);
 
             return _language;
+        }
+
+        /// <summary>
+        /// Отримати дані для редагування мови
+        /// </summary>
+        /// <param name="cultureInfo"></param>
+        /// <returns></returns>
+        public static List<LanguageDataModel> GetLanguageData(LanguageInfo cultureInfo)
+        {
+            var item = _LanguageLibraryHelper.GetLanguageData(cultureInfo);
+            return item;
+        }
+
+        /// <summary>
+        /// Оновити дані мови
+        /// </summary>
+        /// <param name="languageInfo"></param>
+        /// <param name="dataModel"></param>
+        public static void UpdateLanguageData(LanguageInfo languageInfo, List<LanguageDataModel> dataModel)
+        {
+            _LanguageLibraryHelper.UpdateLanguageData(languageInfo, dataModel);
         }
 
         public static List<LanguageInfo> GetLanguagesList()
@@ -57,7 +78,7 @@ namespace LanguageLibrary
             }
         }
 
-        public static List<LanguageInfo> GetLanguageListForCreate()
+        public static List<LanguageInfo> GetPossibleLanguageList()
         {
             var list = new List<LanguageInfo>
             {
@@ -110,9 +131,9 @@ namespace LanguageLibrary
             _LanguageLibraryHelper.CreateNewLanguage(languageInfo);
         }
 
-        public static void UpdateLanguage(object o)
+        public static void Sync()
         {
-
+            _LanguageLibraryHelper.SyncDefaultContent();
         }
     }
 }

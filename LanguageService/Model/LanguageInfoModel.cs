@@ -9,7 +9,6 @@ namespace LanguageService.Model
 {
     public class LanguageInfoModel
     {
-
         public LanguageInfo LanguageInfo { get; set; }
     }
 }

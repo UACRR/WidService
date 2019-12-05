@@ -1,21 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<LanguageData specificationCode="ru-RU">
+<LanguageObjectModel specificationCode="uk-UA">
   <uiContainer name="CopyrightRequestLD">
     <uiItem name="UIbtnSave">
-      <content>
-      </content>
+      <content>Зберегти</content>
       <description>
       </description>
-      <originalContent>
-      </originalContent>
+      <defaultContent>Зберегти</defaultContent>
     </uiItem>
     <uiItem name="UIbtnCancel">
-      <content>
-      </content>
+      <content>Скасувати</content>
       <description>
       </description>
-      <originalContent>
-      </originalContent>
+      <defaultContent>Скасувати</defaultContent>
     </uiItem>
   </uiContainer>
   <uiContainer name="RemoveClass">
@@ -24,34 +20,30 @@
       </content>
       <description>
       </description>
-      <originalContent>
-      </originalContent>
+      <defaultContent>
+      </defaultContent>
     </uiItem>
     <uiItem name="Property3">
       <content>
       </content>
       <description>
       </description>
-      <originalContent>
-      </originalContent>
+      <defaultContent>
+      </defaultContent>
     </uiItem>
   </uiContainer>
   <uiContainer name="RegisterCurrencyChangeLD">
     <uiItem name="UITitle">
-      <content>
-      </content>
+      <content>Змінити курс</content>
       <description>
       </description>
-      <originalContent>
-      </originalContent>
+      <defaultContent>Змінити курс</defaultContent>
     </uiItem>
     <uiItem name="UICurrency">
-      <content>
-      </content>
+      <content>Курс валюти</content>
       <description>
       </description>
-      <originalContent>
-      </originalContent>
+      <defaultContent>Курс валюти</defaultContent>
     </uiItem>
   </uiContainer>
-</LanguageData>
+</LanguageObjectModel>

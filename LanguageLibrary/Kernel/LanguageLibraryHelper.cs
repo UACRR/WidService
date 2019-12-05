@@ -22,6 +22,10 @@ namespace LanguageLibrary.Kernel
         private const string LanguageDataTemplate = "LanguageObjectModel";
         private const string UIContainer = "uiContainer";
         private const string UIItem = "uiItem";
+        private const string Content = "content";
+        private const string Description = "description";
+        private const string DefaultContent = "defaultContent";
+
 
         private readonly XmlDocument _xmlDocument;
         
@@ -32,17 +36,8 @@ namespace LanguageLibrary.Kernel
 
         internal List<LanguageInfo> GetLanguagesInfoList()
         {
-            string fullPathApp = $@"{LanguageInfoPathApp}\{LanguageInfoFileName}";
-            string fullPathInternal = $@"{LanguageInfoPathInternal}\{LanguageInfoFileName}";
-
-
-            if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
-                _xmlDocument.Load(fullPathInternal);
-            else
-                _xmlDocument.Load(fullPathApp);
-
-
-            XmlElement root = _xmlDocument.DocumentElement;
+            var xmlDocument = LoadXmlDocument(LanguageInfoFileName);
+            XmlElement root = xmlDocument.DocumentElement;
             
             var list = new List<LanguageInfo>();
 
@@ -99,7 +94,7 @@ namespace LanguageLibrary.Kernel
 
             _xmlDocument.Save(fullPathApp);
 
-            // server sync
+            // TODO: server sync
             if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
                 _xmlDocument.Save(fullPathInternal);
         }
@@ -139,6 +134,7 @@ namespace LanguageLibrary.Kernel
                 _xmlDocument.Save(fullPathInternal);
 
             CreateLanguageTemplate(languageInfo);
+            SyncDefaultContent(languageInfo);
         }
 
         private void CreateLanguageTemplate(LanguageInfo languageInfo)
@@ -175,17 +171,76 @@ namespace LanguageLibrary.Kernel
             xmlDocument.Save(pathApp);
         }
 
-        internal LanguageObjectModel GetLanguageData(CultureInfo cultureInfo)
+        internal LanguageObjectModel GetLanguage(CultureInfo cultureInfo)
         {
             var language = new LanguageObjectModel();
-
+            
 
             return language;
         }
 
-        internal void UpdateLanguageData()
+        /// <summary>
+        /// Отримати XML дані по обраній мові
+        /// </summary>
+        /// <param name="languageInfo"></param>
+        /// <returns></returns>
+        internal List<LanguageDataModel> GetLanguageData(LanguageInfo languageInfo)
         {
+            string fileName = $"Language.{languageInfo.SpecificationCode}.xml";
+            string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
+            string fullPathInternal = $@"{LanguageInfoPathInternal}\{fileName}";
 
+            if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
+                _xmlDocument.Load(fullPathInternal);
+            else
+                _xmlDocument.Load(fullPathApp);
+
+            var dataModel = new List<LanguageDataModel>();
+
+            var root = _xmlDocument.DocumentElement;
+            foreach (XmlNode rootChildNode in root.ChildNodes)
+            {
+                foreach (XmlNode childNode in rootChildNode.ChildNodes)
+                {
+                    var langdata = new LanguageDataModel
+                    {
+                        ContainerName = rootChildNode.Attributes[0].Value,
+                        PropertyName = childNode.Attributes[0].Value,
+                        Content = childNode.SelectSingleNode(Content).InnerText,
+                        Description = childNode.SelectSingleNode(Description).InnerText,
+                        DefaultContent = childNode.SelectSingleNode(DefaultContent).InnerText,
+                    };
+                    dataModel.Add(langdata);
+                }
+            }
+
+            return dataModel;
+        }
+
+        /// <summary>
+        /// Оновити XML дані мови
+        /// </summary>
+        /// <param name="languageInfo"></param>
+        /// <param name="dataModel"></param>
+        internal void UpdateLanguageData(LanguageInfo languageInfo, List<LanguageDataModel> dataModel)
+        {
+            string fileName = $"Language.{languageInfo.SpecificationCode}.xml";
+            var xmlDocument = LoadXmlDocument(fileName);
+
+            var root = xmlDocument.DocumentElement;
+            foreach (XmlNode rootChildNode in root.ChildNodes)
+            {
+                foreach (XmlNode childNode in rootChildNode.ChildNodes)
+                {
+                    var item = dataModel.SingleOrDefault(rec => rec.ContainerName == rootChildNode.Attributes[0].Value &&
+                                                                rec.PropertyName == childNode.Attributes[0].Value);
+
+                    childNode.SelectSingleNode(Content).InnerText = item.Content;
+                    childNode.SelectSingleNode(Description).InnerText = item.Description;
+                }
+            }
+
+            SaveXmlDocument(xmlDocument, fileName);
         }
 
         /// <summary>
@@ -329,19 +384,108 @@ namespace LanguageLibrary.Kernel
 
             uiItem.Attributes.Append(attributeItem);
 
-            var content = xmlDocument.CreateElement("content");
+            var content = xmlDocument.CreateElement(Content);
             content.InnerText = string.Empty;
             uiItem.AppendChild(content);
 
-            var description = xmlDocument.CreateElement("description");
+            var description = xmlDocument.CreateElement(Description);
             description.InnerText = string.Empty;
             uiItem.AppendChild(description);
 
-            var originalContent = xmlDocument.CreateElement("originalContent");
+            var originalContent = xmlDocument.CreateElement(DefaultContent);
             originalContent.InnerText = string.Empty;
             uiItem.AppendChild(originalContent);
 
             return uiItem;
+        }
+
+        /// <summary>
+        /// Синхронізувати стандарний вміст мовних конфігурацій
+        /// </summary>
+        internal void SyncDefaultContent()
+        {
+            string settingsFileName = "LanguageSettings.xml";
+            var xmlDocument = LoadXmlDocument(settingsFileName);
+
+            var rootSettings = xmlDocument.DocumentElement;
+            var defaultLangCode = rootSettings.SelectSingleNode("defaultLanguage").InnerText;
+            
+            // load default xml config
+            string langFileName = $"Language.{defaultLangCode}.xml";
+            var defaultXmlDocument = LoadXmlDocument(langFileName);
+
+            var langlist = GetLanguagesInfoList();
+
+            foreach (var languageInfo in langlist)
+            {
+                SyncDefaultContent(languageInfo, defaultXmlDocument, languageInfo.SpecificationCode == defaultLangCode);
+            }
+        }
+
+        private void SyncDefaultContent(LanguageInfo languageInfo, XmlDocument defaultXmlDocument = null, bool itself = false)
+        {
+            if (defaultXmlDocument == null)
+            {
+                string settingsFileName = "LanguageSettings.xml";
+                var xmlDoc = LoadXmlDocument(settingsFileName);
+
+                var rootSettings = xmlDoc.DocumentElement;
+                var defaultLangCode = rootSettings.SelectSingleNode("defaultLanguage").InnerText;
+
+                string fileName = $"Language.{defaultLangCode}.xml";
+                defaultXmlDocument = LoadXmlDocument(fileName);
+            }
+
+            string langFileName = $"Language.{languageInfo.SpecificationCode}.xml";
+            var xmlDocument = LoadXmlDocument(langFileName);
+
+            // оновлення стандартного контенту в основной мові
+            string sourceName = itself ? Content : DefaultContent;
+
+            foreach (XmlNode rootNodes in xmlDocument.DocumentElement.ChildNodes)
+            {
+                foreach (XmlNode childNodes in rootNodes.ChildNodes)
+                {
+                    XmlNode item = defaultXmlDocument.DocumentElement;
+                    string xPath = $"{UIContainer}[@name='{rootNodes.Attributes[0].Value}']";
+                    XmlNode node = item.SelectSingleNode(xPath);
+
+                    string xPathChild = $"{UIItem}[@name='{childNodes.Attributes[0].Value}']";
+                    XmlNode itemChild = node.SelectSingleNode(xPathChild);
+                    
+                    XmlNode sourceItem = itemChild.SelectSingleNode(sourceName);
+                    childNodes.SelectSingleNode(DefaultContent).InnerText = sourceItem.InnerText;
+                }
+            }
+
+            SaveXmlDocument(xmlDocument, langFileName);
+        }
+
+        private XmlDocument LoadXmlDocument(string fileName)
+        {
+            var xmlDocument = new XmlDocument();
+            string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
+            string fullPathInternal = $@"{LanguageInfoPathInternal}\{fileName}";
+
+            if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
+                xmlDocument.Load(fullPathInternal);
+            else
+                xmlDocument.Load(fullPathApp);
+
+            return xmlDocument;
+        }
+
+        private void SaveXmlDocument(XmlDocument xmlDocument, string fileName)
+        {
+            string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
+            string fullPathInternal = $@"{LanguageInfoPathInternal}\{fileName}";
+
+
+            xmlDocument.Save(fullPathApp);
+
+            // TODO: server sync
+            if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
+                xmlDocument.Save(fullPathInternal);
         }
 
     }

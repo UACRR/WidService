@@ -57,6 +57,9 @@ namespace LanguageService.ViewModel
         }
 
         private ObservableCollection<LanguageInfo> _languagesItemSource;
+        /// <summary>
+        /// Список наявних мов
+        /// </summary>
         public ObservableCollection<LanguageInfo> LanguagesItemSource
         {
             get => _languagesItemSource;
@@ -74,12 +77,15 @@ namespace LanguageService.ViewModel
             set
             {
                 _currentLanguage = value;
+                UpdateLanguageByCurrent();
                 OnPropertyChanged(() => CurrentLanguage);
             }
         }
 
-
         private ObservableCollection<LanguageInfo> _possibleLanguagesItemSource;
+        /// <summary>
+        /// Список мов які можна створити
+        /// </summary>
         public ObservableCollection<LanguageInfo> PossibleLanguagesItemSource
         {
             get => _possibleLanguagesItemSource;
@@ -105,7 +111,12 @@ namespace LanguageService.ViewModel
 
         #region * * * METHODS * * *
 
+        private void UpdateLanguageByCurrent()
+        {
+            var data = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
+            // handle this
 
+        }
 
         #endregion
 
@@ -117,8 +128,8 @@ namespace LanguageService.ViewModel
             var languageList = ApplicationLanguageLibrary.GetLanguagesList();
             LanguagesItemSource = new ObservableCollection<LanguageInfo>(languageList);
             
-            var languageNotExistList = ApplicationLanguageLibrary.GetLanguageListForCreate();
-            
+            var list = ApplicationLanguageLibrary.GetPossibleLanguageList();
+            PossibleLanguagesItemSource = new ObservableCollection<LanguageInfo>(list);
         }
 
 
@@ -128,7 +139,16 @@ namespace LanguageService.ViewModel
         public ICommand AllCategoryCommand => new IPSDelegateCommand(AllCategoryCommandExecute);
         private void AllCategoryCommandExecute(object o)
         {
-            ApplicationLanguageLibrary.GetLanguagesList();
+            //var data = ApplicationLanguageLibrary.GetLanguageData(new LanguageInfo{ SpecificationCode = "ru-RU"});
+            ApplicationLanguageLibrary.Sync();
+
+            //ApplicationLanguageLibrary.CreateLanguage(new LanguageInfo
+            //{
+            //    SpecificationCode = "ru-RU",
+            //    IncompletenessItemCount = 2000,
+            //    LanguageName = "Русский",
+            //    UkrainianName = "Російська",
+            //});
         }
 
         /// <summary>
