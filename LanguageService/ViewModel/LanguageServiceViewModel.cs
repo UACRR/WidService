@@ -41,6 +41,35 @@ namespace LanguageService.ViewModel
             }
         }
 
+        private ObservableCollection<NavigationItemModel> _languagesItemsSource = new ObservableCollection<NavigationItemModel>
+        {
+            new NavigationItemModel
+            {
+                Title = "English",
+                IconPath = @"..\Images\united-kingdom.png"
+            },
+            new NavigationItemModel
+            {
+                Title = "Ураїнська",
+                IconPath = @"..\Images\ukraine.png"
+            },
+            new NavigationItemModel
+            {
+                Title = "Русский",
+                IconPath = @"..\Images\russia.png"
+            },
+        };
+
+        public ObservableCollection<NavigationItemModel> LanguagesItemsSource
+        {
+            get => _languagesItemsSource;
+            set
+            {
+                _languagesItemsSource = value;
+                OnPropertyChanged(() => LanguagesItemsSource);
+            }
+        }
+
         #endregion
 
         #region * * * DATA PROPERTIES * * *

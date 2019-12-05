@@ -68,6 +68,7 @@
     <Compile Include="Model\LanguageCompletenessModel.cs" />
     <Compile Include="Model\LanguageDataModel.cs" />
     <Compile Include="Model\LanguageInfoModel.cs" />
+    <Compile Include="Model\NavigationItemModel.cs" />
     <Compile Include="ViewModel\LanguageServiceViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +114,12 @@
       <Project>{fcddbe23-8a62-4eee-a2c1-57879a44d5a4}</Project>
       <Name>LanguageLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\russia.png" />
+    <Resource Include="Images\ukraine.png" />
+    <Resource Include="Images\united-kingdom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
