@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
-    <value>select innerCode,iswc, objName, genreName, roleName, rhName, rhInnerCode, IPI, rate,  cRightStatusName, agrStatusName, createDate,
- performers from ft_Tsk_5_36_ObjectsTST_1 (@dateBegin, @dateEnd,@range,@length_) 
-
-</value>
-  </data>
   <data name="sqlDataSource3.SelectCommand" xml:space="preserve">
     <value>select 10000 length_
 union
@@ -143,6 +137,12 @@ union
 select 90000 length_
 union
 select 100000 length_</value>
+  </data>
+  <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
+    <value>select innerCode,iswc, objName, genreName, roleName, rhName, rhInnerCode, IPI, rate,  cRightStatusName, agrStatusName, createDate,
+ performers from ft_Tsk_5_36_ObjectsTST_1 (@dateBegin, @dateEnd,@range,@length_) 
+
+</value>
   </data>
   <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

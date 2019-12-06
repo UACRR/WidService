@@ -570,7 +570,7 @@ namespace WebAPIConnector
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
-                retObject = default;
+                retObject = default(T);
                 return false;
             }
         }

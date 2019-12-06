@@ -65,6 +65,8 @@ namespace ReportsLibrary
             this.textBox30 = new Telerik.Reporting.TextBox();
             this.textBox32 = new Telerik.Reporting.TextBox();
             this.textBox45 = new Telerik.Reporting.TextBox();
+            this.sqlDataSource2 = new Telerik.Reporting.SqlDataSource();
+            this.sqlDataSource3 = new Telerik.Reporting.SqlDataSource();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
             this.textBox28 = new Telerik.Reporting.TextBox();
             this.detailSection1 = new Telerik.Reporting.DetailSection();
@@ -86,8 +88,6 @@ namespace ReportsLibrary
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.textBox29 = new Telerik.Reporting.TextBox();
             this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
-            this.sqlDataSource2 = new Telerik.Reporting.SqlDataSource();
-            this.sqlDataSource3 = new Telerik.Reporting.SqlDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // textBox14
@@ -283,8 +283,28 @@ namespace ReportsLibrary
             this.textBox45.StyleName = "BlueOpal.TableHeader";
             this.textBox45.Value = "=\"36. Реєстр об\'єктів права (Малі права) зареєстрованих\"";
             // 
+            // sqlDataSource2
+            // 
+            this.sqlDataSource2.CommandTimeout = 1200;
+            this.sqlDataSource2.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
+            this.sqlDataSource2.Name = "sqlDataSource2";
+            this.sqlDataSource2.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
+            new Telerik.Reporting.SqlDataSourceParameter("@datebegin", System.Data.DbType.String, "= Parameters.dateBegin.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.String, "= Parameters.dateEnd.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@length", System.Data.DbType.String, "= Parameters.length_.Value")});
+            this.sqlDataSource2.SelectCommand = "SELECT OFFSET_,OFFSET_Str FROM [dbo].[ft_list_count2] (@datebegin, @dateEnd , @le" +
+    "ngth)";
+            // 
+            // sqlDataSource3
+            // 
+            this.sqlDataSource3.CommandTimeout = 1200;
+            this.sqlDataSource3.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
+            this.sqlDataSource3.Name = "sqlDataSource3";
+            this.sqlDataSource3.SelectCommand = resources.GetString("sqlDataSource3.SelectCommand");
+            // 
             // sqlDataSource1
             // 
+            this.sqlDataSource1.CommandTimeout = 1200;
             this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
@@ -622,23 +642,6 @@ namespace ReportsLibrary
             this.reportHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox28});
             this.reportHeaderSection1.Name = "reportHeaderSection1";
-            // 
-            // sqlDataSource2
-            // 
-            this.sqlDataSource2.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
-            this.sqlDataSource2.Name = "sqlDataSource2";
-            this.sqlDataSource2.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@datebegin", System.Data.DbType.String, "= Parameters.dateBegin.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.String, "= Parameters.dateEnd.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@length", System.Data.DbType.String, "= Parameters.length_.Value")});
-            this.sqlDataSource2.SelectCommand = "SELECT OFFSET_,OFFSET_Str FROM [dbo].[ft_list_count2] (@datebegin, @dateEnd , @le" +
-    "ngth)";
-            // 
-            // sqlDataSource3
-            // 
-            this.sqlDataSource3.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
-            this.sqlDataSource3.Name = "sqlDataSource3";
-            this.sqlDataSource3.SelectCommand = resources.GetString("sqlDataSource3.SelectCommand");
             // 
             // R_5_36
             // 
