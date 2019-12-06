@@ -116,6 +116,7 @@ namespace ReportsLibrary
             // 
             // sqlDataSource1
             // 
+            this.sqlDataSource1.CommandTimeout = 1200;
             this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
@@ -129,18 +130,21 @@ namespace ReportsLibrary
             // 
             // sqlDataSource2
             // 
+            this.sqlDataSource2.CommandTimeout = 1200;
             this.sqlDataSource2.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource2.Name = "sqlDataSource2";
             this.sqlDataSource2.SelectCommand = "select name,positionNmae,bossShortName,jaCity from vMyAnk";
             // 
             // sqlDataSource3
             // 
+            this.sqlDataSource3.CommandTimeout = 1200;
             this.sqlDataSource3.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource3.Name = "sqlDataSource3";
             this.sqlDataSource3.SelectCommand = "select * from dbo.ft_vCommunity()";
             // 
             // sqlDataSource4
             // 
+            this.sqlDataSource4.CommandTimeout = 1200;
             this.sqlDataSource4.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource4.Name = "sqlDataSource4";
             this.sqlDataSource4.SelectCommand = "select -1 as id,\'Âñ³\'  prcnt\r\nunion\r\nselect \r\nrateCommiss, convert(varchar(5),  c" +
