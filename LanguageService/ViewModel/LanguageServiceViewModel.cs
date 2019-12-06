@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Markup;
+using ipsFormsDesign.Services;
 using LanguageLibrary;
 using LanguageLibrary.Model;
 using LanguageService.Model;
@@ -216,8 +217,10 @@ namespace LanguageService.ViewModel
         public ICommand AllCategoryCommand => new IPSDelegateCommand(AllCategoryCommandExecute);
         private void AllCategoryCommandExecute(object o)
         {
-            EditPanelVisibility = Visibility.Visible;
-            CategoryPanelVisibility = Visibility.Collapsed;
+            LanguagesService.GetInstance().Test();
+
+            //EditPanelVisibility = Visibility.Visible;
+            //CategoryPanelVisibility = Visibility.Collapsed;
 
             //var data = ApplicationLanguageLibrary.GetLanguageData(new LanguageInfo{ SpecificationCode = "ru-RU"});
             //ApplicationLanguageLibrary.Sync();

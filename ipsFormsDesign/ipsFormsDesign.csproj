@@ -480,6 +480,7 @@
     <Compile Include="Services\ConsumerRegisterService.cs" />
     <Compile Include="Services\CopyrightRequestService.cs" />
     <Compile Include="Services\Interfaces\ICatalogFileItemsService.cs" />
+    <Compile Include="Services\LanguagesService.cs" />
     <Compile Include="Services\RightholderCatalogService.cs" />
     <Compile Include="Services\CommunityService.cs" />
     <Compile Include="Services\ConsumerAgreementService.cs" />

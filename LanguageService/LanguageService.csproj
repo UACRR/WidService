@@ -105,11 +105,18 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="workplace.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{21DA4297-A0F3-4E44-BD98-CAF3605B243A}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LanguageLibrary\LanguageLibrary.csproj">
       <Project>{fcddbe23-8a62-4eee-a2c1-57879a44d5a4}</Project>
       <Name>LanguageLibrary</Name>
