@@ -114,11 +114,12 @@ namespace IpsViewComponentLibrary.RegisterControls
         private void UpdateButtonsEnable()
         {
             var status = Register.RgStatus;
+            bool validMoney = Register.RegRoyalty <= Register.Rm.Period.Undistribamount;
             
             ddlStatus.SelectedValue = status;
             btnBeginSync.Enabled = status == 12;
-            btnBeginDistribution.Enabled = status == 7;
-            btnBeginPayment.Enabled = status == 13;
+            btnBeginDistribution.Enabled = status == 7 && validMoney;
+            btnBeginPayment.Enabled = status == 13 && validMoney;
         }
 
         private void SetupRegisterItemListElementVisible()
