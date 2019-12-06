@@ -226,9 +226,6 @@ namespace ipsmedserviceapp.Controllers
             {
                 string query = "exec MPPay_#DDEX @regId";
 
-                if(string.IsNullOrEmpty(query))
-                    return BadRequest(new ResponseOfRequest("Процедуру оплати не визначено!"));
-
                 var param = new SqlParameter("regId", regId);
 
                 _dbContext.Database.SetCommandTimeout(600);
