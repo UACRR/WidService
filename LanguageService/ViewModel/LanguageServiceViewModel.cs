@@ -42,34 +42,6 @@ namespace LanguageService.ViewModel
             }
         }
 
-        private ObservableCollection<NavigationItemModel> _languagesItemsSource = new ObservableCollection<NavigationItemModel>
-        {
-            new NavigationItemModel
-            {
-                Title = "English",
-                IconPath = @"..\Images\united-kingdom.png"
-            },
-            new NavigationItemModel
-            {
-                Title = "Ураїнська",
-                IconPath = @"..\Images\ukraine.png"
-            },
-            new NavigationItemModel
-            {
-                Title = "Русский",
-                IconPath = @"..\Images\russia.png"
-            },
-        };
-        public ObservableCollection<NavigationItemModel> LanguagesItemsSource
-        {
-            get => _languagesItemsSource;
-            set
-            {
-                _languagesItemsSource = value;
-                OnPropertyChanged(() => LanguagesItemsSource);
-            }
-        }
-
         private Visibility _editPanelVisibility = Visibility.Collapsed;
         /// <summary>
         /// Видимість панелі редагування
@@ -84,7 +56,6 @@ namespace LanguageService.ViewModel
             }
         }
 
-
         private Visibility _categoryPanelVisibility = Visibility.Visible;
         /// <summary>
         /// Видимість панелі категорії 
@@ -98,7 +69,6 @@ namespace LanguageService.ViewModel
                 OnPropertyChanged(() => CategoryPanelVisibility);
             }
         }
-
 
         #endregion
 
@@ -212,12 +182,18 @@ namespace LanguageService.ViewModel
 
         }
 
+        /// <summary>
+        /// Перейти на наступний елемент
+        /// </summary>
         public ICommand MoveToNextItemCommand => new IPSDelegateCommand(MoveToNextItemCommandExecute);
         private void MoveToNextItemCommandExecute(object o)
         {
 
         }
 
+        /// <summary>
+        /// Перейти на попередній елемент
+        /// </summary>
         public ICommand MoveToPreviousItemCommand => new IPSDelegateCommand(MoveToPreviousItemCommandExecute);
         private void MoveToPreviousItemCommandExecute(object o)
         {
