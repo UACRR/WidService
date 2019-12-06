@@ -148,12 +148,18 @@ namespace ipsmedserviceapp.Controllers
             ResponseOfRequest response;
             try
             {
-                string query = $"exec pTsk10_LoadWICRegister @regId";
+                string query = $"exec @retCode = pTsk10_LoadWICRegister @regId";
                 var param = new SqlParameter("regId", regId);
-                
+                var returnedCode = new SqlParameter
+                {
+                    ParameterName = "@retCode", 
+                    SqlDbType = SqlDbType.Int, 
+                    Direction = ParameterDirection.Output
+                };
+
                 _dbContext.Database.SetCommandTimeout(600);
-                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param);
-                if (result == 1)
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
+                if ((int)returnedCode.Value == 1)
                 {
                     response = new ResponseOfRequest
                     {
@@ -186,12 +192,18 @@ namespace ipsmedserviceapp.Controllers
             ResponseOfRequest response;
             try
             {
-                string query = $"exec p_CreateDistribution_DDEX @regId";
+                string query = $"exec @retCode = p_CreateDistribution_DDEX @regId";
                 var param = new SqlParameter("regId", regId);
+                var returnedCode = new SqlParameter
+                {
+                    ParameterName = "@retCode",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
 
                 _dbContext.Database.SetCommandTimeout(600);
-                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param);
-                if (result == 1)
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
+                if ((int)returnedCode.Value == 1)
                 {
                     response = new ResponseOfRequest
                     {
@@ -224,13 +236,19 @@ namespace ipsmedserviceapp.Controllers
             ResponseOfRequest response;
             try
             {
-                string query = "exec MPPay_#DDEX @regId";
+                string query = "exec @retCode = MPPay_#DDEX @regId";
+                var returnedCode = new SqlParameter
+                {
+                    ParameterName = "@retCode",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
 
                 var param = new SqlParameter("regId", regId);
 
                 _dbContext.Database.SetCommandTimeout(600);
-                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param);
-                if (result == 1)
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
+                if ((int)returnedCode.Value == 1)
                 {
                     response = new ResponseOfRequest
                     {
