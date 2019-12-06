@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public object DataSourceRegisterExtra
         {
-            get { return bsRegisterExtra.DataSource; }
+            get => bsRegisterExtra.DataSource;
             set
             {
                 if (bsRegisterExtra.DataSource != value)
@@ -119,8 +119,18 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        
-        private bool _allowShowDeleteCommand = true;
+        private bool _allowShowDurationItem;
+        public bool AllowShowDurationItem
+        {
+            get => _allowShowDurationItem;
+            set
+            {
+                _allowShowDurationItem = value;
+                gvRegisterItemList.SetColumnVisibility("DurationItem", value);
+            }
+        }
+
+            private bool _allowShowDeleteCommand = true;
         /// <summary>
         /// Видимість командної кнопки "Видалити"
         /// </summary>
@@ -203,7 +213,6 @@ namespace IpsViewComponentLibrary.RegisterControls
                 gvRegisterItemList.SetColumnVisibility("Linked", _showLinked);
             }
         }
-
         public bool MultiSelect
         {
             get => gvRegisterItemList.MultiSelect;

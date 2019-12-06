@@ -224,6 +224,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<RegionTr> RegionTr { get; set; }
         public virtual DbSet<Register> Register { get; set; }
         public virtual DbSet<RegisterAuthors> RegisterAuthors { get; set; }
+        public virtual DbSet<RegisterCcid> RegisterCcid { get; set; }
         public virtual DbSet<RegisterCount> RegisterCount { get; set; }
         public virtual DbSet<RegisterExtra> RegisterExtra { get; set; }
         public virtual DbSet<RegisterItem> RegisterItem { get; set; }
@@ -7949,6 +7950,41 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeRole)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REG_REF_CREAROLE");
+            });
+
+            modelBuilder.Entity<RegisterCcid>(entity =>
+            {
+                entity.HasKey(e => e.RegId)
+                    .HasName("PK_REGISTERCCID");
+
+                entity.ToTable("RegisterCCID", "dbo");
+
+                entity.Property(e => e.RegId)
+                    .HasColumnName("regId")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.AmountCur)
+                    .HasColumnName("amountCur")
+                    .HasColumnType("numeric(30, 10)");
+
+                entity.Property(e => e.ExchangeRate).HasColumnType("numeric(30, 10)");
+
+                entity.Property(e => e.R030)
+                    .HasColumnName("r030")
+                    .HasMaxLength(3)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.HasOne(d => d.R030Navigation)
+                    .WithMany(p => p.RegisterCcid)
+                    .HasForeignKey(d => d.R030)
+                    .HasConstraintName("FK_RegisterCCIDR030");
+
+                entity.HasOne(d => d.Reg)
+                    .WithOne(p => p.RegisterCcid)
+                    .HasForeignKey<RegisterCcid>(d => d.RegId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_REGISTER_REF_REGCCID");
             });
 
             modelBuilder.Entity<RegisterCount>(entity =>

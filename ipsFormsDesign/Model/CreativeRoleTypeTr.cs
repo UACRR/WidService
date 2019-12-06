@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -11,9 +10,7 @@ namespace ipsFormsDesign.Model
         public string Lang { get; set; }
         public string Name { get; set; }
 
-        [JsonIgnore]
         public virtual CreativeRoleType CodeINavigation { get; set; }
     }
 }
-
 

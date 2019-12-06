@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -27,14 +26,10 @@ namespace ipsmedserviceapp.Model
         public short? LicTerm { get; set; }
         public decimal? RateMusic { get; set; }
 
-        [JsonIgnore]
         public virtual Language LangCodeNavigation { get; set; }
-        [JsonIgnore]
         public virtual LicenseAgreement Lic { get; set; }
         public virtual ObjectRight Obj { get; set; }
-        [JsonIgnore]
         public virtual PerformType PerformTypeNavigation { get; set; }
         public virtual ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }
-

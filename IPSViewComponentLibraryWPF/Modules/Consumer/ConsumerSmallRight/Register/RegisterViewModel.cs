@@ -21,6 +21,7 @@ using ipsFormsDesign.Patterns.Notifier;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.Reports.Forms;
 using IPSViewComponentLibraryWPF.IPSExtensions;
+using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.CurrencyChange;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Model;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.RegisterItemCCIDType;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Utility;
@@ -42,6 +43,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
         public RegisterViewModel() {}
 
+        #region * * * BEHAVIOR PROPERTIES * * *
+
         private XmlLanguage _language;
         public XmlLanguage Language
         {
@@ -58,8 +61,6 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 OnPropertyChanged(() => Language);
             }
         }
-
-        #region * * * BEHAVIOR PROPERTIES * * *
 
         private bool _isBusy;
         /// <summary>
@@ -750,9 +751,10 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         private bool ValidateExternalReportType()
         {
             // RegisterStatus
-            // 7	Синхронізація виконано. До розподілу.
-            // 12  Погоджено.Сконвертовано
-            int?[] validStatus = {7, 12};
+            // 7    Синхронізація виконано. До розподілу.
+            // 12   Погоджено.Сконвертовано
+            // 13   Розполділ розраховано
+            int?[] validStatus = {7, 12, 13};
             bool hasInvalidStatus = RegisterRatedList.RegisterRatedList.Register.Any(rec => !validStatus.Contains(rec.RgStatus));
 
             if (!hasInvalidStatus)
@@ -952,7 +954,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         public bool CanExecuteCreatePeriodCommand { get; set; }
 
         /// <summary>
-        /// Створити розрахунковий лист для періода
+        /// Режим створення розрахункового листа для періода
         /// </summary>
         public ICommand CreateRegisterRatedListCommand => new IPSDelegateCommand(CreateRegisterRatedListCommandExecute);
         private void CreateRegisterRatedListCommandExecute(object o)
@@ -975,6 +977,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             };
         }
 
+        /// <summary>
+        /// Режим редагування розрахункового листа для періода
+        /// </summary>
         public ICommand EditRegisterRatedListCommand => new IPSDelegateCommand(EditRegisterRatedListCommandExecute);
         private void EditRegisterRatedListCommandExecute(object o)
         {
@@ -1009,6 +1014,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             UpdateData();
         }
 
+        /// <summary>
+        /// Скасувати зміни розрахункового листа
+        /// </summary>
         public ICommand CancelChangesRegisterRatedListCommand=>new IPSDelegateCommand(CancelChangesRegisterRatedListCommandExecute);
         private void CancelChangesRegisterRatedListCommandExecute(object o)
         {
@@ -1138,6 +1146,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
             var result = await _service.FixateRegistersList(RegisterRatedList.RegisterRatedList);
             MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
+            UpdateData();
         }
 
         public bool CanExecuteFixingRegisterListCommand { get; set; }
@@ -1192,6 +1201,12 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 return;
 
             CurrentRegister = e;
+
+            var window = new CurrencyChangeWindow(CurrentRegister);
+            bool result = window.ShowDialog() ?? false;
+            
+            if (result)
+                UpdateData();
         }
 
         #endregion

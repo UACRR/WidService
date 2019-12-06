@@ -3,6 +3,8 @@ using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using IpsCommonTypes.Types;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -16,9 +18,54 @@ namespace ipsFormsDesign.Services
             _webApi = new ApiConnector();
         }
 
+        /// <summary>
+        /// Отримати дані звіту по ID для перегляду
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        public Register GetCCIDRegister(int regId)
+        {
+            string url = $"register/ccid/{regId}";
+            var result = _webApi.GetItemById<LicenseAgreement>(url, null);
+
+            foreach (var period in result.PaidPeriod)
+            {
+                period.Lic = result;
+
+                foreach (var rateList in period.RegisterRatedList)
+                {
+                    rateList.Period = period;
+                    foreach (var register in rateList.Register)
+                    {
+                        register.Rm = rateList;
+                    }
+                }
+            }
+
+            return result.PaidPeriod?.FirstOrDefault()?.RegisterRatedList?.FirstOrDefault()?.Register.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Отримати вміст звіту для перегляду
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        public async Task<List<object[]>> GetCCIDRegisterItems(int regId)
+        {
+            string url = $"register/ccid/items/{regId}";
+            var result = await _webApi.GetListAsync<object[]>(url);
+            return result;
+        }
+
         public List<RegisterListViewModel> GetListByFilter(RegisterFilter registerFilter)
         {
             var result = _webApi.GetList<RegisterListViewModel>("register/filter", registerFilter.GetKeyValuePairParameters());
+            return result;
+        }
+
+        public List<RegisterListViewModel> GetExternalListByFilter(RegisterFilter registerFilter)
+        {
+            var result = _webApi.GetList<RegisterListViewModel>("register/ccid/filter", registerFilter.GetKeyValuePairParameters());
             return result;
         }
 
@@ -86,6 +133,42 @@ namespace ipsFormsDesign.Services
         {
             var list = _webApi.GetList<RegisterItemViewModel>($"register/{regId}/autolinkedobjects");
             return list;
+        }
+
+        /// <summary>
+        /// Запустити процедуру синхронізації
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> ExecuteSyncProcedure(int regId)
+        {
+            string url = $"register/ccid/sync/{regId}";
+            var result = await _webApi.SendGetRequestAsync<ResponseOfRequest>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Запустити процедуру розподілу
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> ExecuteDistributionProcedure(int regId)
+        {
+            string url = $"register/ccid/distribution/{regId}";
+            var result = await _webApi.SendGetRequestAsync<ResponseOfRequest>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Запустити процедуру оплати
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> ExecutePaymentProcedure(int regId)
+        {
+            string url = $"register/ccid/payment/{regId}";
+            var result = await _webApi.SendGetRequestAsync<ResponseOfRequest>(url);
+            return result;
         }
     }
 }

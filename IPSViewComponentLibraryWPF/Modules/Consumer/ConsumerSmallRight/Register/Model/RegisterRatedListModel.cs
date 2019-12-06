@@ -1,4 +1,6 @@
-﻿using ipsFormsDesign.Model;
+﻿using System.Linq;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using Telerik.Windows.Controls;
 
@@ -52,6 +54,29 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             }
         }
 
+        private int? _status;
+        public int? Status
+        {
+            get => _status;
+            set
+            {
+                _status = value;
+                var status = IpsGlobal.AnketaDictionaties?.registerListStatus?.SingleOrDefault(rec => rec.CodeI == value);
+                StatusName = status?.Name;
+            }
+        }
+
+        private string _statusName;
+        public string StatusName
+        {
+            get => _statusName;
+            set
+            {
+                _statusName = value;
+                OnPropertyChanged(() => StatusName);
+            }
+        }
+
         private RegisterRatedList _registerRatedList;
         public RegisterRatedList RegisterRatedList
         {
@@ -70,6 +95,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             Amount = _registerRatedList?.Amount;
             Royalty = _registerRatedList?.Royalty;
             CountReport = _registerRatedList?.CntReport;
+            Status = _registerRatedList?.Status;
         }
 
         public void UpdateData()

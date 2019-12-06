@@ -119,6 +119,13 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RegisterControls\RegisterCCIDView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterCCIDView.Designer.cs">
+      <DependentUpon>RegisterCCIDView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterCCIDPresenter.cs" />
     <Compile Include="RightholderCatalogControls\RightholderCatalogControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1149,6 +1156,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="RegisterControls\RegisterCCIDView.resx">
+      <DependentUpon>RegisterCCIDView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogControl.resx">
       <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </EmbeddedResource>

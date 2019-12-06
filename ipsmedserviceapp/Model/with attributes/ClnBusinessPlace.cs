@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -24,14 +23,10 @@ namespace ipsmedserviceapp.Model
         public string PlacePhone { get; set; }
         public bool? FreeEntry { get; set; }
 
-        [JsonIgnore]
         public virtual Client Cust { get; set; }
         public virtual TypePlace PlCodeNavigation { get; set; }
         public virtual ICollection<ClnPlaceHoll> ClnPlaceHoll { get; set; }
-        [JsonIgnore]
         public virtual ICollection<LicPlace> LicPlace { get; set; }
-        [JsonIgnore]
         public virtual ICollection<License> License { get; set; }
     }
 }
-

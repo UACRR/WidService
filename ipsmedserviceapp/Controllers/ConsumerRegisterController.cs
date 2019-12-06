@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.IntermediaryTypes;
 using IpsCommonTypes.Types;
 using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
@@ -417,7 +418,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="registerId"></param>
         /// <returns></returns>
-        [HttpGet("register/getitems/ccid/{registerId}")]
+        [HttpGet("register/ccid/getitems/{registerId}")]
         public IActionResult GetCCIDRegisterItems(int registerId)
         {
             try
@@ -461,7 +462,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="registerId"></param>
         /// <returns></returns>
-        [HttpGet("register/getitems/default/{registerId}")]
+        [HttpGet("register/getitems/{registerId}")]
         public async Task<IActionResult> GetDefaultRegisterItems(int registerId)
         {
             var items = await _dbContext.RegisterItem
@@ -552,6 +553,137 @@ namespace ipsmedserviceapp.Controllers
             {
                 transaction?.Dispose();
             }
+        }
+
+        /// <summary>
+        /// Отримати дані по курсу звіту
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpGet("register/ccid/currency/data/{regId}")]
+        public IActionResult GetCCIDRegisterCurrencyData(int regId)
+        {
+            try
+            {
+                string query = "select t1.regId, t1.regRoyalty, " +
+                               "t2.amountCur, t2.ExchangeRate, t2.r030 " +
+                               "from Register t1 " +
+                               "left join RegisterCCID t2 on t2.regId = t1.regId " +
+                               $"where t1.regId = {regId}";
+
+                var list = GetDataSetByQuery(query);
+                
+                var item = list.FirstOrDefault();
+                if (item == null)
+                    return Ok();
+
+                var data = new RegisterCCIDCurrencyData
+                {
+                    RegId = (int)item[0],
+                    RegRoyalty = item[1] as decimal?,
+                    AmountCur = item[2] as decimal?,
+                    ExchangeRate = item[3] as decimal?,
+                    R030 = item[4] as string,
+                };
+
+                return Ok(data);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Змінити курс звіту
+        /// </summary>
+        /// <param name="currencyData"></param>
+        /// <returns></returns>
+        [HttpPut("register/ccid/currency/change")]
+        public async Task<IActionResult> ChangeCurrency([FromBody] RegisterCCIDCurrencyData currencyData)
+        {
+            IDbContextTransaction transaction = null;
+            ResponseOfRequest response;
+            int commandTimeout = 30;
+
+            try
+            {
+
+                // записати дані в таблиці
+                var targetRegister = await _dbContext.Register.SingleOrDefaultAsync(rec => rec.RegId == currencyData.RegId);
+                var targetRegisterCCID = await _dbContext.RegisterCcid.SingleOrDefaultAsync(rec => rec.RegId == currencyData.RegId);
+
+                targetRegister.RegRoyalty = currencyData.RegRoyalty;
+                targetRegisterCCID.ExchangeRate = currencyData.ExchangeRate;
+                targetRegisterCCID.R030 = currencyData.R030;
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                transaction = null;
+
+                commandTimeout = _dbContext.Database.GetCommandTimeout() ?? commandTimeout;
+                _dbContext.Database.SetCommandTimeout(600);
+                // запустити процедуру конвертації
+                string exec = "exec p_CreateDistribution_DDEX_valuation1 @registerId";
+                var parameter = new SqlParameter("registerId", currencyData.RegId);
+
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(exec, parameter);
+                if (result == 1)
+                {
+                    response = new ResponseOfRequest
+                    {
+                        Message = "Курс звіту змінено! Процедура конвертації НЕ виконана! \nКод: 1",
+                        IsSuccess = false,
+                    };
+                    return BadRequest(response);
+                }
+
+                // Курс змінено!
+                response = new ResponseOfRequest("Курс звіту змінено! Процедура конвертації виконана успішно!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                response = new ResponseOfRequest("Неможливо змінити курс звіту!", e);
+                return BadRequest(response);
+            }
+            finally
+            {
+                transaction?.Dispose();
+                _dbContext.Database.SetCommandTimeout(commandTimeout);
+            }
+        }
+
+        /// <summary>
+        /// Отримати масив даних з БД
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        private List<object[]> GetDataSetByQuery(string query)
+        {
+            DataTable table;
+            using (SqlConnection sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
+            {
+                sqlConnection.Open();
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
+
+                DataSet dataSet = new DataSet();
+                sqlDataAdapter.Fill(dataSet);
+
+                table = dataSet.Tables[0];
+            }
+
+            var list = new List<object[]>();
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                var row = table.Rows[i].ItemArray;
+                list.Add(row);
+            }
+
+            return list;
         }
     }
 }

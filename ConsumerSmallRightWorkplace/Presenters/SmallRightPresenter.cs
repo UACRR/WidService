@@ -57,7 +57,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
             _cabinetSmallRightForm.cabinet.OnViewCurrentFile += Cabinet_OnViewCurrentFile;
             _cabinetSmallRightForm.cabinet.OnDeleteCurrentFile += Cabinet_OnDeleteCurrentFile;
             new CalculationInfoControlPresenter(_cabinetSmallRightForm.cabinet.calculationCtrl, _service);
-            new ReportsControlPresenter(_cabinetSmallRightForm.cabinet.reportsControl, _service);
+            //new ReportsControlPresenter(_cabinetSmallRightForm.cabinet.reportsControl, _service);
         }
 
         private bool Cabinet_OnDeleteCurrentFile(int id)
@@ -161,7 +161,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
             ApplicationCustomerData.GetInstance().CustomerName = _mainGrid.ViewRow?.Name;
 
             _cabinetSmallRightForm.SetCustomer(mainCust);
-            _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;
+            //_cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;
             _cabinetSmallRightForm.Title = _mainGrid.ViewRow?.Name;
 
             WindowsFormsVisible.ShowHiddenWindow(_cabinetSmallRightForm);

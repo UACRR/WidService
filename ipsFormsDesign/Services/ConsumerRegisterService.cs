@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IpsCommonTypes.IntermediaryTypes;
 using IpsCommonTypes.Types;
 using IpsCommonTypes.Wrappers;
 using ipsFormsDesign.Model;
@@ -137,7 +138,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<List<object[]>> GetCCIDRegisterItems(Register register)
         {
-            string url = $"{Prefix}/register/getitems/ccid/{register.RegId}";
+            string url = $"{Prefix}/register/ccid/getitems/{register.RegId}";
             var result = await _apiConnector.GetListAsync<object[]>(url);
             return result;
         }
@@ -149,7 +150,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<List<RegisterItem>> GetDefaultRegisterItems(Register register)
         {
-            string url = $"{Prefix}/register/getitems/default/{register.RegId}";
+            string url = $"{Prefix}/register/getitems/{register.RegId}";
             var result = await _apiConnector.GetListAsync<RegisterItem>(url);
             return result;
         }
@@ -162,7 +163,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<ResponseOfRequest> FixateRegistersList(RegisterRatedList registerRatedList)
         {
-            string url = $"{Prefix}/registers/fixate";
+            string url = $"{Prefix}/register/fixate";
             var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, RegisterRatedList>(url, registerRatedList);
             return result;
         }
@@ -176,6 +177,30 @@ namespace ipsFormsDesign.Services
         {
             string url = $"{Prefix}/register/accept/{register.RegId}";
             var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Отримати дані по курсу звіту CCID
+        /// </summary>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        public async Task<RegisterCCIDCurrencyData> GetCCIDRegisterCurrencyData(Register register)
+        {
+            string url = $"{Prefix}/register/ccid/currency/data/{register.RegId}";
+            var result = await _apiConnector.SendGetRequestAsync<RegisterCCIDCurrencyData>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Змінити курс звіту CCID
+        /// </summary>
+        /// <param name="currencyData"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> ChangeCCIDRegisterCurrency(RegisterCCIDCurrencyData currencyData)
+        {
+            string url = $"{Prefix}/register/ccid/currency/change";
+            var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, RegisterCCIDCurrencyData>(url, currencyData);
             return result;
         }
 

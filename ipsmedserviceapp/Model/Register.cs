@@ -45,10 +45,11 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public virtual RegisterRatedList Rm { get; set; }
         [JsonIgnore]
+        public virtual RegisterCcid RegisterCcid { get; set; }
+        [JsonIgnore]
         public virtual ICollection<BrRegItem> BrRegItem { get; set; }
         public virtual ICollection<Distribution> Distribution { get; set; }
         public virtual ICollection<RegisterItem> RegisterItem { get; set; }
     }
 }
-
 

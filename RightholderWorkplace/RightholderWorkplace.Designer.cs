@@ -116,6 +116,8 @@ namespace RightholderWorkplace
             this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pvCopyrightRequests = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ehCopyrightRequests = new System.Windows.Forms.Integration.ElementHost();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).BeginInit();
@@ -170,6 +172,7 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightDictionariesBindingSource)).BeginInit();
+            this.pvCopyrightRequests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -399,9 +402,10 @@ namespace RightholderWorkplace
             this.rightholdersPageView.Controls.Add(this.rightholdersPage);
             this.rightholdersPageView.Controls.Add(this.rightholdersChangePage);
             this.rightholdersPageView.Controls.Add(this.copyrightRequestsPage);
+            this.rightholdersPageView.Controls.Add(this.pvCopyrightRequests);
             this.rightholdersPageView.DefaultPage = this.rightholdersPage;
             this.rightholdersPageView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightholdersPageView.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
+            this.rightholdersPageView.ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.Individual;
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
             this.rightholdersPageView.SelectedPage = this.rightholdersPage;
@@ -411,7 +415,7 @@ namespace RightholderWorkplace
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rightholdersPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rightholdersPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Top;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rightholdersPageView.GetChildAt(0))).ItemSpacing = 0;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rightholdersPageView.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rightholdersPageView.GetChildAt(0))).ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.Individual;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rightholdersPageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
             // 
             // rightholdersPage
@@ -420,7 +424,7 @@ namespace RightholderWorkplace
             this.rightholdersPage.Controls.Add(this.ddbNewRightholderExternal);
             this.rightholdersPage.Controls.Add(this.ddbNewRightholder);
             this.rightholdersPage.Controls.Add(this.ctrlRightholderList);
-            this.rightholdersPage.ItemSize = new System.Drawing.SizeF(136F, 27F);
+            this.rightholdersPage.ItemSize = new System.Drawing.SizeF(103F, 27F);
             this.rightholdersPage.Location = new System.Drawing.Point(5, 31);
             this.rightholdersPage.Name = "rightholdersPage";
             this.rightholdersPage.Size = new System.Drawing.Size(1196, 596);
@@ -540,7 +544,6 @@ namespace RightholderWorkplace
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
-            this.splitPanel5.ThemeName = "Office2013Light";
             // 
             // btnTransferAll
             // 
@@ -570,6 +573,7 @@ namespace RightholderWorkplace
             this.ctrlRightholdersObjectsForChange.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlRightholdersObjectsForChange.IsInheritance = false;
             this.ctrlRightholdersObjectsForChange.Location = new System.Drawing.Point(3, 31);
             this.ctrlRightholdersObjectsForChange.Name = "ctrlRightholdersObjectsForChange";
             this.ctrlRightholdersObjectsForChange.SelectedObject = null;
@@ -661,7 +665,6 @@ namespace RightholderWorkplace
             this.splitPanel6.TabIndex = 1;
             this.splitPanel6.TabStop = false;
             this.splitPanel6.Text = "splitPanel6";
-            this.splitPanel6.ThemeName = "Office2013Light";
             // 
             // lblTextCount
             // 
@@ -873,7 +876,7 @@ namespace RightholderWorkplace
             // copyrightRequestsPage
             // 
             this.copyrightRequestsPage.Controls.Add(this.ctrlCopyrightRequests);
-            this.copyrightRequestsPage.ItemSize = new System.Drawing.SizeF(136F, 27F);
+            this.copyrightRequestsPage.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.copyrightRequestsPage.Location = new System.Drawing.Point(5, 31);
             this.copyrightRequestsPage.Name = "copyrightRequestsPage";
             this.copyrightRequestsPage.Size = new System.Drawing.Size(1196, 596);
@@ -991,6 +994,25 @@ namespace RightholderWorkplace
             // 
             this.objectRightDictionariesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ObjectRightDictionaries);
             // 
+            // pvCopyrightRequests
+            // 
+            this.pvCopyrightRequests.Controls.Add(this.ehCopyrightRequests);
+            this.pvCopyrightRequests.ItemSize = new System.Drawing.SizeF(82F, 27F);
+            this.pvCopyrightRequests.Location = new System.Drawing.Point(5, 31);
+            this.pvCopyrightRequests.Name = "pvCopyrightRequests";
+            this.pvCopyrightRequests.Size = new System.Drawing.Size(1196, 596);
+            this.pvCopyrightRequests.Text = "Запити WPF";
+            // 
+            // ehCopyrightRequests
+            // 
+            this.ehCopyrightRequests.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ehCopyrightRequests.Location = new System.Drawing.Point(0, 0);
+            this.ehCopyrightRequests.Name = "ehCopyrightRequests";
+            this.ehCopyrightRequests.Size = new System.Drawing.Size(1196, 596);
+            this.ehCopyrightRequests.TabIndex = 0;
+            this.ehCopyrightRequests.Text = "elementHost1";
+            this.ehCopyrightRequests.Child = null;
+            // 
             // RightholderWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1063,6 +1085,7 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightDictionariesBindingSource)).EndInit();
+            this.pvCopyrightRequests.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1137,5 +1160,7 @@ namespace RightholderWorkplace
         private Telerik.WinControls.UI.RadMenuItem btnAddRightholderExternal;
         private Telerik.WinControls.UI.RadMenuItem btnAddRightholderPublisherExternal;
         private IpsViewComponentLibrary.PublisherAndSubpublisher.PublisherAndSubpublisherControl ctrlPublisherAndSubpublisher;
+        private Telerik.WinControls.UI.RadPageViewPage pvCopyrightRequests;
+        private System.Windows.Forms.Integration.ElementHost ehCopyrightRequests;
     }
 }

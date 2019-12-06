@@ -75,8 +75,10 @@
   <ItemGroup>
     <Reference Include="netstandard" />
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -185,7 +187,9 @@
       <HintPath>..\lib\RCWF\2019.1.219.40\TelerikData.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presenters\CommunityPresenter.cs" />
@@ -274,9 +278,17 @@
       <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
       <Name>ipsFormsDesign</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IPSViewComponentLibraryWPF\IPSViewComponentLibraryWPF.csproj">
+      <Project>{815967e6-79e6-4cf1-8f5a-f0b40f746aff}</Project>
+      <Name>IPSViewComponentLibraryWPF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
       <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
       <Name>IpsViewComponentLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LanguageLibrary\LanguageLibrary.csproj">
+      <Project>{fcddbe23-8a62-4eee-a2c1-57879a44d5a4}</Project>
+      <Name>LanguageLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
       <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
