@@ -221,10 +221,12 @@ namespace ipsFormsDesign.Services
             string PasportIssued = string.Empty;
             string CstNikName = string.Empty;
             string NikName = string.Empty;
+            string CitizenShip = string.Empty;
 
 
             if (cust.CustType < 3) // фіз. особа
             {
+                CitizenShip = $" {anketaPerson.Citizenship ?? string.Empty}";
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
                     $"{countries[anketaPerson.LeCountry ?? "804"].CountryName}, {anketaPerson.LeCity}, {anketaPerson.LeAddress}, {anketaPerson.LePostIndex}" : leAddress;
@@ -321,6 +323,9 @@ namespace ipsFormsDesign.Services
 
                 switch (title)
                 {
+                    case "CstCitizenship":
+                        item.Range.Text = CitizenShip;
+                        break;
                     case "docNumberC":
                         item.Range.Text = agrRh.AgrNumber;
                         break;
