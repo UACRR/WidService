@@ -181,6 +181,9 @@ namespace LanguageService.ViewModel
 
         #region * * * COMMANDS * * *
 
+        /// <summary>
+        /// Завантажити дані
+        /// </summary>
         public ICommand LoadLanguagesListCommand => new IPSDelegateCommand(LoadLanguagesListCommandExecute);
         private void LoadLanguagesListCommandExecute(object o)
         {
@@ -191,13 +194,45 @@ namespace LanguageService.ViewModel
             PossibleLanguagesItemSource = new ObservableCollection<LanguageInfo>(list);
         }
 
+        /// <summary>
+        /// Створити нову мову
+        /// </summary>
+        public ICommand CreateNewLanguageCommand => new IPSDelegateCommand(CreateNewLanguageCommandExecute);
+        private void CreateNewLanguageCommandExecute(object o)
+        {
+
+        }
+
+        /// <summary>
+        /// Зберегти зміни
+        /// </summary>
+        public ICommand SaveItemChangeCommand => new IPSDelegateCommand(SaveItemChangeCommandExecute);
+        private void SaveItemChangeCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand MoveToNextItemCommand => new IPSDelegateCommand(MoveToNextItemCommandExecute);
+        private void MoveToNextItemCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand MoveToPreviousItemCommand => new IPSDelegateCommand(MoveToPreviousItemCommandExecute);
+        private void MoveToPreviousItemCommandExecute(object o)
+        {
+
+        }
+
+        /// <summary>
+        /// Повернутись до розділу категорій
+        /// </summary>
         public ICommand BackToCategoryCommand => new IPSDelegateCommand(BackToCategoryCommandExecute);
         private void BackToCategoryCommandExecute(object o)
         {
             EditPanelVisibility = Visibility.Collapsed;
             CategoryPanelVisibility = Visibility.Visible;
         }
-
 
         /// <summary>
         /// Всі елементи по обраній мові
