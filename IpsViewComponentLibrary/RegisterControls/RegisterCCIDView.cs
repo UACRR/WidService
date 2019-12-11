@@ -119,7 +119,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             ddlStatus.SelectedValue = status;
             btnBeginSync.Enabled = status == 12;
             btnBeginDistribution.Enabled = status == 7 && validMoney;
-            btnBeginPayment.Enabled = status == 13 && validMoney;
+            btnBeginPayment.Enabled = status == 13;
         }
 
         private void SetupRegisterItemListElementVisible()

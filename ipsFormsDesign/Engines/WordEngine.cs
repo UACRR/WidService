@@ -226,7 +226,9 @@ namespace ipsFormsDesign.Services
 
             if (cust.CustType < 3) // фіз. особа
             {
-                CitizenShip = $" {anketaPerson.Citizenship ?? string.Empty}";
+                var countryName = countries.ContainsKey(anketaPerson?.Citizenship ?? string.Empty) ? countries[anketaPerson.Citizenship].CountryName : string.Empty;
+                CitizenShip = $"{countryName}";
+
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
                     $"{countries[anketaPerson.LeCountry ?? "804"].CountryName}, {anketaPerson.LeCity}, {anketaPerson.LeAddress}, {anketaPerson.LePostIndex}" : leAddress;

@@ -163,7 +163,7 @@ namespace ipsmedserviceapp.Controllers
 
                         var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
 
-                        queryText = ApplySqlOrderByAndPaging(queryText, "objId", searchObjectRightQuery.Page, searchObjectRightQuery.PageSize);
+                        queryText = ApplySqlOrderByAndPaging(queryText, "objId", page: searchObjectRightQuery.Page, pageSize: searchObjectRightQuery.PageSize);
 
                         var list = await _dbContext.getViewData(queryText, null);
 
