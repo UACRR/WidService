@@ -217,10 +217,8 @@ namespace LanguageService.ViewModel
         public ICommand AllCategoryCommand => new IPSDelegateCommand(AllCategoryCommandExecute);
         private void AllCategoryCommandExecute(object o)
         {
-            LanguagesService.GetInstance().Test();
-
-            //EditPanelVisibility = Visibility.Visible;
-            //CategoryPanelVisibility = Visibility.Collapsed;
+            EditPanelVisibility = Visibility.Visible;
+            CategoryPanelVisibility = Visibility.Collapsed;
 
             //var data = ApplicationLanguageLibrary.GetLanguageData(new LanguageInfo{ SpecificationCode = "ru-RU"});
             //ApplicationLanguageLibrary.Sync();

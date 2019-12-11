@@ -87,7 +87,17 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.FoundedObjectList.Clear();
 
             string name = registerItem.ItemName;
-            string authors = registerItem.AuthorMusic + ", " + registerItem.AuthorText;
+
+            string authors = string.Empty;
+            if (!string.IsNullOrWhiteSpace(registerItem.AuthorMusic) && !string.IsNullOrWhiteSpace(registerItem.AuthorText))
+            {
+                authors = registerItem.AuthorMusic + ", " + registerItem.AuthorText;
+            }
+            else
+            {
+                authors = registerItem.AuthorMusic + registerItem.AuthorText;
+            }
+
             string performer = registerItem.Performer;
 
             List<RegisterSearchObject> foundedObject = null;
