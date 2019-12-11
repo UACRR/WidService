@@ -1,0 +1,70 @@
+﻿<Window x:Class="Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher"
+        xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="Media Service" Height="437.812" Width="935.938" Icon="main-icon.png">
+
+    <Window.Resources>
+        <Style TargetType="t:RadButton">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="Margin" Value="25"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Width" Value="120"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="DodgerBlue">
+            <t:Label HorizontalAlignment="Right" Background="WhiteSmoke" Height="20" Content="Username: Admin" Margin="0,0,30,0"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <WrapPanel>
+                <t:RadButton>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <t:Label Grid.Row="0" 
+                                 FontSize="15" 
+                                 Content="Малі права" 
+                                 HorizontalContentAlignment="Center"/>
+                        <Separator Grid.Row="1" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="2" 
+                                   TextWrapping="Wrap" 
+                                   FontSize="11"
+                                   FontStyle="Italic" 
+                                   Foreground="Gray" 
+                                   TextTrimming="CharacterEllipsis"
+                                   VerticalAlignment="Stretch"
+                                   ToolTip="Інтерфейс роботи з клієнтами малих првав"
+                                   Text="Інтерфейс роботи з клієнтами малих првав"/>
+
+                    </Grid>
+                </t:RadButton>
+                <t:RadButton Content="Великі права" ToolTip="Інтерфейс роботи з клієнтами великих првав (театри)"></t:RadButton>
+                <t:RadButton IsEnabled="False" Content="Розподіл А/В"></t:RadButton>
+                <t:RadButton Content="Звіти"></t:RadButton>
+            </WrapPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" Background="DodgerBlue">
+            <t:Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Background="DeepSkyBlue" FontWeight="DemiBold" Content="IPS" Margin="3" Width="55"/>
+        </Grid>
+
+    </Grid>
+</Window>
