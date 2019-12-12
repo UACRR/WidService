@@ -61,6 +61,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReportAs.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportAs.Designer.cs">
+      <DependentUpon>ReportAs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports1.Designer.cs">
+      <DependentUpon>Reports1.cs</DependentUpon>
+    </Compile>
     <Compile Include="IpsReportGlobal.cs" />
     <Compile Include="LIcAgr.cs">
       <SubType>Component</SubType>
@@ -381,6 +393,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ReportAs.resx">
+      <DependentUpon>ReportAs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports1.resx">
+      <DependentUpon>Reports1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LIcAgr.resx">
       <DependentUpon>LIcAgr.cs</DependentUpon>
     </EmbeddedResource>
