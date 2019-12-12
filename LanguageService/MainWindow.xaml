@@ -150,71 +150,79 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+            
+        <Grid x:Name="languageHeader" Grid.Row="0" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Button x:Name="back" Margin="50, 0, 20, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand" Visibility="{Binding EditPanelVisibility}" Command="{Binding BackToCategoryCommand}">
+                    <Image Source="/Images/go-back-left-arrow.png" Stretch="Uniform" Margin="1"/>
+                </Button>
+                <Grid Margin="50, 0, 20, 0" Width="50" Visibility="{Binding CategoryPanelVisibility}" >
+                </Grid>
+            
+            
+                <ComboBox x:Name="languageList" Height="50" 
+                          Padding="0,0" HorizontalAlignment="Left" 
+                          Background="#1a237e" Cursor="Hand"
+                          Style="{StaticResource languageList}"
+                          ItemsSource="{Binding LanguagesItemSource}"
+                          SelectedValuePath="SpecificationCode"
+                          SelectedItem="{Binding CurrentLanguage}"
+                          BorderBrush="Transparent">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding LanguageName}" 
+                                           Foreground="White"
+                                           FontSize="28"
+                                           Height="40"
+                                           Padding="20,0"
+                                           Cursor="Hand"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
 
-        <StackPanel x:Name="languageHeader" Grid.Row="0" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50" Orientation="Horizontal" >
-            <Button x:Name="back" Margin="50, 0, 20, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand">
-                <Image Source="/Images/go-back-left-arrow.svg"/>
-            </Button>
-
-            <Button x:Name="addLanguage" Margin="50, 0, 20, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand">
+                    <!--<TextBlock 
+                           
+                          DisplayMemberPath="LanguageName"
+                
+                            Text="English"
+                            Foreground="White"
+                            FontSize="28"
+                            Height="40"
+                            Padding="20,0"
+                            Cursor="Hand"
+                            VerticalAlignment="Center"/>
+                    <TextBlock
+                            Text="Russian"
+                            Foreground="White"
+                            FontSize="28"
+                            Height="40"
+                            Padding="20,0"
+                            Cursor="Hand"
+                            VerticalAlignment="Center"/>
+                    <TextBlock
+                            Text="Ukrainian"
+                            Foreground="White"
+                            FontSize="28"
+                            Padding="20,0"
+                            Height="40"
+                            Cursor="Hand"
+                            VerticalAlignment="Center"/>-->
+                </ComboBox>
+            </StackPanel>
+            <Button x:Name="addLanguage" Margin="0, 0, 50, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand" Grid.Column="1">
                 <Path Data="M0.5,0 L0.5,1 M0,0.5 L1,0.5"
                   StrokeThickness="4"
                   Stretch="Fill"
                   Stroke="White" />
             </Button>
-            <ComboBox x:Name="languageList" Height="50" 
-                      Padding="0,0" HorizontalAlignment="Left" 
-                      Background="#1a237e" Cursor="Hand"
-                      Style="{StaticResource languageList}"
-                      ItemsSource="{Binding LanguagesItemSource}"
-                      SelectedValuePath="SpecificationCode"
-                      SelectedItem="{Binding CurrentLanguage}"
-                      BorderBrush="Transparent">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding LanguageName}" 
-                                       Foreground="White"
-                                       FontSize="28"
-                                       Height="40"
-                                       Padding="20,0"
-                                       Cursor="Hand"
-                                       VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
 
-                <!--<TextBlock 
-                           
-                      DisplayMemberPath="LanguageName"
-                
-                        Text="English"
-                        Foreground="White"
-                        FontSize="28"
-                        Height="40"
-                        Padding="20,0"
-                        Cursor="Hand"
-                        VerticalAlignment="Center"/>
-                <TextBlock
-                        Text="Russian"
-                        Foreground="White"
-                        FontSize="28"
-                        Height="40"
-                        Padding="20,0"
-                        Cursor="Hand"
-                        VerticalAlignment="Center"/>
-                <TextBlock
-                        Text="Ukrainian"
-                        Foreground="White"
-                        FontSize="28"
-                        Padding="20,0"
-                        Height="40"
-                        Cursor="Hand"
-                        VerticalAlignment="Center"/>-->
-            </ComboBox>
-
-
-        </StackPanel>
+        </Grid>
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding CategoryPanelVisibility}">
             <WrapPanel x:Name="categories" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
@@ -461,13 +469,6 @@
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding EditPanelVisibility}" Padding="0, 20">
             <StackPanel>
-
-                <t:RadButton Content="Back" 
-                                HorizontalAlignment="Left" 
-                                t:StyleManager.Theme="VisualStudio2013"
-                                Width="75" 
-                                Margin="25,15,15,15"
-                                Command="{Binding BackToCategoryCommand}"/>
                 <Border Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200" MaxWidth="800">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>

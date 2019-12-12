@@ -123,7 +123,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\go-back-left-arrow.svg" />
+    <Resource Include="Images\go-back-left-arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\russia.png" />
