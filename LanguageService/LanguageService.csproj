@@ -122,7 +122,9 @@
       <Name>LanguageLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\go-back-left-arrow.svg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\russia.png" />
     <Resource Include="Images\ukraine.png" />
