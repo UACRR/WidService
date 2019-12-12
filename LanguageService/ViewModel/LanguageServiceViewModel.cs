@@ -86,7 +86,29 @@ namespace LanguageService.ViewModel
             }
         }
 
-        private ObservableCollection<LanguageInfo> _languagesItemSource;
+        private ObservableCollection<LanguageInfo> _languagesItemSource = new ObservableCollection<LanguageInfo>
+        {
+            new LanguageInfo
+            {
+                SpecificationCode = "uk-UA",
+                LanguageName = "Ukrainian",
+            },
+            new LanguageInfo
+            {
+                SpecificationCode = "en-US",
+                LanguageName = "English",
+            },
+            new LanguageInfo
+            {
+                SpecificationCode = "ru-RU",
+                LanguageName = "Russian",
+            },
+            new LanguageInfo
+            {
+                SpecificationCode = "es-ES",
+                LanguageName = "Spanish",
+            },
+        };
         /// <summary>
         /// Список наявних мов
         /// </summary>
@@ -101,6 +123,9 @@ namespace LanguageService.ViewModel
         }
 
         private LanguageInfo _currentLanguage;
+        /// <summary>
+        ///  Обрана мова серед наявних
+        /// </summary>
         public LanguageInfo CurrentLanguage
         {
             get => _currentLanguage;
@@ -127,6 +152,9 @@ namespace LanguageService.ViewModel
         }
 
         private LanguageInfo _currentPossibleLanguage;
+        /// <summary>
+        /// Обрана мова для створення
+        /// </summary>
         public LanguageInfo CurrentPossibleLanguage
         {
             get => _currentPossibleLanguage;

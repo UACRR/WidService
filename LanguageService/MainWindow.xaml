@@ -158,11 +158,32 @@
                   Stretch="Fill"
                   Stroke="White" />
             </Button>
-            <ComboBox x:Name="languageList" Height="50" Padding="0,0" HorizontalAlignment="Left" Background="#1a237e" Cursor="Hand"
-                     Style="{StaticResource languageList}"  BorderBrush="Transparent">
+            <ComboBox x:Name="languageList" Height="50" 
+                      Padding="0,0" HorizontalAlignment="Left" 
+                      Background="#1a237e" Cursor="Hand"
+                      Style="{StaticResource languageList}"
+                      ItemsSource="{Binding LanguagesItemSource}"
+                      SelectedValuePath="SpecificationCode"
+                      SelectedItem="{Binding CurrentLanguage}"
+                      BorderBrush="Transparent">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding LanguageName}" 
+                                       Foreground="White"
+                                       FontSize="28"
+                                       Height="40"
+                                       Padding="20,0"
+                                       Cursor="Hand"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
 
-                <TextBlock 
+                <!--<TextBlock 
                            
+                      DisplayMemberPath="LanguageName"
+                
                         Text="English"
                         Foreground="White"
                         FontSize="28"
@@ -185,7 +206,7 @@
                         Padding="20,0"
                         Height="40"
                         Cursor="Hand"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center"/>-->
             </ComboBox>
 
 

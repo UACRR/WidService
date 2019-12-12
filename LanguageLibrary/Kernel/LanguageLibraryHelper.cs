@@ -186,6 +186,7 @@ namespace LanguageLibrary.Kernel
         /// <returns></returns>
         internal List<LanguageDataModel> GetLanguageData(LanguageInfo languageInfo)
         {
+            return null;
             string fileName = $"Language.{languageInfo.SpecificationCode}.xml";
             string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
             string fullPathInternal = $@"{LanguageInfoPathInternal}\{fileName}";
