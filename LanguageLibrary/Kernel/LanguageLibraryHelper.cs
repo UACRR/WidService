@@ -62,9 +62,6 @@ namespace LanguageLibrary.Kernel
 
                     if (childNode.Name == LanguageInfo.XMLMapper[nameof(langInfo.UkrainianName)])
                         langInfo.UkrainianName = childNode.InnerText;
-
-                    if (childNode.Name == LanguageInfo.XMLMapper[nameof(langInfo.IncompletenessItemCount)])
-                        langInfo.IncompletenessItemCount = string.IsNullOrEmpty(childNode.InnerText) ? 0 : int.Parse(childNode.InnerText);
                 }
 
                 list.Add(langInfo);
@@ -87,10 +84,6 @@ namespace LanguageLibrary.Kernel
             XmlNode root = _xmlDocument.DocumentElement;
             string xPath = $"language[@{LanguageInfo.XMLMapper[nameof(languageInfo.SpecificationCode)]}='{languageInfo.SpecificationCode}']";
             XmlNode node = root.SelectSingleNode(xPath);
-
-            string nodeName = LanguageInfo.XMLMapper[nameof(languageInfo.IncompletenessItemCount)];
-            XmlNode childNode = node.SelectSingleNode(nodeName);
-            childNode.InnerText = languageInfo.IncompletenessItemCount.ToString();
 
             _xmlDocument.Save(fullPathApp);
 
@@ -122,10 +115,6 @@ namespace LanguageLibrary.Kernel
             XmlNode ukrName = _xmlDocument.CreateElement(LanguageInfo.XMLMapper[nameof(languageInfo.UkrainianName)]);
             ukrName.InnerText = languageInfo.UkrainianName;
             element.AppendChild(ukrName);
-
-            XmlNode incompletenessItemCount = _xmlDocument.CreateElement(LanguageInfo.XMLMapper[nameof(languageInfo.IncompletenessItemCount)]);
-            incompletenessItemCount.InnerText = languageInfo.IncompletenessItemCount.ToString();
-            element.AppendChild(incompletenessItemCount);
 
             _xmlDocument.Save(fullPathApp);
 

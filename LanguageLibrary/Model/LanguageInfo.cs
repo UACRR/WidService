@@ -9,7 +9,6 @@ namespace LanguageLibrary.Model
             [nameof(LanguageName)] = "name",
             [nameof(UkrainianName)] = "ua-name",
             [nameof(SpecificationCode)] = "specificationCode",
-            [nameof(IncompletenessItemCount)] = "incompletenessItemCount",
         };
 
         public string LanguageName { get; set; }
@@ -17,7 +16,5 @@ namespace LanguageLibrary.Model
         public string UkrainianName { get; set; }
 
         public string SpecificationCode { get; set; }
-
-        public int IncompletenessItemCount { get; set; }
     }
 }

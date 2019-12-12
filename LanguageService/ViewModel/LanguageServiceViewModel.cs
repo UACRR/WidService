@@ -75,7 +75,11 @@ namespace LanguageService.ViewModel
 
         #region * * * DATA PROPERTIES * * *
 
-        private LanguageCompletenessModel _currentLanguageCompleteness;
+        private LanguageCompletenessModel _currentLanguageCompleteness = new LanguageCompletenessModel
+        {
+            AllCategoryCountItems = 0,
+            AllCategoryIncompletenessCountItems = 0,
+        };
         public LanguageCompletenessModel CurrentLanguageCompleteness
         {
             get => _currentLanguageCompleteness;

@@ -88,7 +88,13 @@
             </Style.Triggers>
         </Style>
 
-        
+        <Style x:Key="textBlockButtons" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
 
         <Style x:Key="languageList" TargetType="{x:Type ComboBox}">
             <Setter Property="Template">
@@ -136,7 +142,7 @@
             </Style.Triggers>
         </Style>
 
-        
+
     </Window.Resources>
 
     <Grid>
@@ -144,12 +150,12 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-            
+
         <StackPanel x:Name="languageHeader" Grid.Row="0" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50" Orientation="Horizontal" >
             <Button x:Name="back" Margin="50, 0, 20, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand">
                 <Image Source="/Images/go-back-left-arrow.svg"/>
             </Button>
-            
+
             <Button x:Name="addLanguage" Margin="50, 0, 20, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand">
                 <Path Data="M0.5,0 L0.5,1 M0,0.5 L1,0.5"
                   StrokeThickness="4"
@@ -212,6 +218,8 @@
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding CategoryPanelVisibility}">
             <WrapPanel x:Name="categories" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
+
+                <!--Всі елементи-->
                 <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
@@ -221,46 +229,40 @@
                     </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                        Text="All"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="36"/>
-                            <TextBlock
-                                        Text="(2000)"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"/>
+                            <TextBlock Text="Всі елементи"
+                                       Style="{StaticResource textBlockButtons}"/>
+
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.AllCategoryCountItems, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
                         </StackPanel>
                         <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="1999"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.AllCategoryIncompletenessCountItems, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Foreground="White" 
+                                       FontWeight="Bold" Margin="0,-3"/>
                         </Border>
                     </Grid>
                 </Border>
 
+                <!--Назви кнопок-->
                 <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                        Text="General"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="36"/>
+                            <TextBlock Text="Назви кнопок"
+                                       Style="{StaticResource textBlockButtons}"/>
                             <TextBlock
                                         Text="(200)"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="28"/>
                         </StackPanel>
-                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                        <Border Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
                             <TextBlock
                                         Text="100"
                                         HorizontalAlignment="Center"
@@ -271,22 +273,20 @@
                     </Grid>
                 </Border>
 
+                <!--статичні надписи-->
                 <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                        Text="Category"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="36"/>
-                            <TextBlock
-                                        Text="(350)"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"/>
+                            <TextBlock Text="Статичні надписи"
+                                       Style="{StaticResource textBlockButtons}"/>
+                            
+                            <TextBlock Text="(350)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
                         </StackPanel>
                         <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
                             <TextBlock
@@ -299,17 +299,92 @@
                     </Grid>
                 </Border>
 
+                <!--Назви колонок таблиць-->
                 <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Назви колонок таблиць"
+                                       Style="{StaticResource textBlockButtons}"/>
+
+                            <TextBlock Text="(2000)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
                             <TextBlock
-                                        Text="All"
+                                        Text="1999"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        FontSize="36"/>
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Назви меню та вкладок-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Назви меню та вкладок" 
+                                       Style="{StaticResource textBlockButtons}"/>
+                            <TextBlock
+                                Text="(2000)"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                Text="1999"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="White" 
+                                FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Системні повідомлення-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Системні повідомлення" 
+                                       Style="{StaticResource textBlockButtons}"/>
+                            <TextBlock Text="(2000)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Спливаючі підказки-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Спливаючі підказки"
+                                       Style="{StaticResource textBlockButtons}"/>
                             <TextBlock
                                         Text="(2000)"
                                         HorizontalAlignment="Center"
@@ -333,11 +408,9 @@
                     </Border.Effect>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                        Text="All"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="36"/>
+                            <TextBlock Text="Категорія"
+                                       Style="{StaticResource textBlockButtons}"/>
+
                             <TextBlock
                                         Text="(2000)"
                                         HorizontalAlignment="Center"
@@ -361,95 +434,8 @@
                     </Border.Effect>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                        Text="All"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="36"/>
-                            <TextBlock
-                                        Text="(2000)"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"/>
-                        </StackPanel>
-                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="1999"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
-                        </Border>
-                    </Grid>
-                </Border>
-
-                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                    </Border.Effect>
-                    <Grid>
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                        Text="All"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="36"/>
-                            <TextBlock
-                                        Text="(2000)"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"/>
-                        </StackPanel>
-                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="1999"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
-                        </Border>
-                    </Grid>
-                </Border>
-
-                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                    </Border.Effect>
-                    <Grid>
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                        Text="All"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="36"/>
-                            <TextBlock
-                                        Text="(2000)"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"/>
-                        </StackPanel>
-                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="1999"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
-                        </Border>
-                    </Grid>
-                </Border>
-
-                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                    </Border.Effect>
-                    <Grid>
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock
-                                        Text="All"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="36"/>
+                            <TextBlock Text="Категорія"
+                                       Style="{StaticResource textBlockButtons}"/>
                             <TextBlock
                                         Text="(2000)"
                                         HorizontalAlignment="Center"

@@ -87,7 +87,6 @@ namespace LanguageLibrary
                     LanguageName = "Français",
                     UkrainianName = "Французька",
                     SpecificationCode = "fr-FR",
-                    IncompletenessItemCount = 2000,
                 },
 
                 new LanguageInfo
@@ -95,7 +94,6 @@ namespace LanguageLibrary
                     LanguageName = "Español",
                     UkrainianName = "Іспанська",
                     SpecificationCode = "es-ES",
-                    IncompletenessItemCount = 2000,
                 },
 
                 new LanguageInfo
@@ -103,7 +101,6 @@ namespace LanguageLibrary
                     LanguageName = "Deutsch",
                     UkrainianName = "Німецька",
                     SpecificationCode = "de-DE",
-                    IncompletenessItemCount = 2000,
                 },
 
                 new LanguageInfo
@@ -111,7 +108,6 @@ namespace LanguageLibrary
                     LanguageName = "Български",
                     UkrainianName = "Болгарська",
                     SpecificationCode = "bg-BG",
-                    IncompletenessItemCount = 2000,
                 },
 
                 new LanguageInfo
@@ -119,7 +115,6 @@ namespace LanguageLibrary
                     LanguageName = "Қазақ",
                     UkrainianName = "Казахська",
                     SpecificationCode = "kk-KZ",
-                    IncompletenessItemCount = 2000,
                 },
             };
 
