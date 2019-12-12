@@ -66,5 +66,16 @@ namespace LanguageLibrary.Model
                 OnPropertyChanged(nameof(DefaultContent));
             }
         }
+
+        private ComponentCategory _componentCategory;
+        public ComponentCategory ComponentCategory
+        {
+            get => _componentCategory;
+            set
+            {
+                _componentCategory = value;
+                OnPropertyChanged(nameof(ComponentCategory));
+            }
+        }
     }
 }

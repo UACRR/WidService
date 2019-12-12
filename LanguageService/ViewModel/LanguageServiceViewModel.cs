@@ -14,6 +14,7 @@ using LanguageLibrary.Model;
 using LanguageService.Model;
 using Telerik.Windows.Controls;
 using IPSDelegateCommand = LanguageService.Extensions.IPSDelegateCommand;
+using LanguageDataModel = LanguageLibrary.Model.LanguageDataModel;
 
 namespace LanguageService.ViewModel
 {
@@ -176,16 +177,38 @@ namespace LanguageService.ViewModel
 
         private void UpdateLanguageByCurrent()
         {
-            var data = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
+            List<LanguageDataModel> data = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
             
             CurrentLanguageCompleteness.AllCategoryCountItems = data.Count;
             CurrentLanguageCompleteness.AllCategoryIncompletenessCountItems = data.Count(rec => string.IsNullOrEmpty(rec.Content));
+            
+            CurrentLanguageCompleteness.ButtonsCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Buttons);
+            CurrentLanguageCompleteness.ButtonsCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Buttons
+                                                                                            && string.IsNullOrEmpty(rec.Content));
 
-            // parse concrete category count 
-            foreach (var languageDataModel in data)
-            {
-                //languageDataModel.
-            }
+            CurrentLanguageCompleteness.StaticTextCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.StaticText);
+            CurrentLanguageCompleteness.StaticTextCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.StaticText
+                                                                                               && string.IsNullOrEmpty(rec.Content));
+
+            CurrentLanguageCompleteness.ColumnCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Column);
+            CurrentLanguageCompleteness.ColumnCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Column
+                                                                                           && string.IsNullOrEmpty(rec.Content));
+
+            CurrentLanguageCompleteness.MenuAndTabCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.MenuAndTab);
+            CurrentLanguageCompleteness.MenuAndTabCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.MenuAndTab
+                                                                                               && string.IsNullOrEmpty(rec.Content));
+
+            CurrentLanguageCompleteness.SystemMessagesCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.SystemMessages);
+            CurrentLanguageCompleteness.SystemMessagesCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.SystemMessages
+                                                                                                   && string.IsNullOrEmpty(rec.Content));
+
+            CurrentLanguageCompleteness.ToolTipTextCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.ToolTipText);
+            CurrentLanguageCompleteness.ToolTipTextCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.ToolTipText
+                                                                                                && string.IsNullOrEmpty(rec.Content));
+
+            CurrentLanguageCompleteness.OtherCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Other);
+            CurrentLanguageCompleteness.OtherCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Other
+                                                                                          && string.IsNullOrEmpty(rec.Content));
         }
 
         #endregion

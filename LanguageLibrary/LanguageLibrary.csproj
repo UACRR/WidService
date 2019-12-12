@@ -44,6 +44,7 @@
     <Compile Include="ApplicationLanguageLibrary.cs" />
     <Compile Include="Kernel\LanguageLibraryHelper.cs" />
     <Compile Include="Kernel\LanguageName.cs" />
+    <Compile Include="Model\ComponentCategory.cs" />
     <Compile Include="Model\LanguageDataModel.cs" />
     <Compile Include="Model\LanguageItem.cs" />
     <Compile Include="Model\LanguageObjectModel.cs" />

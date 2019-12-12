@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LanguageService"
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModel="clr-namespace:LanguageService.ViewModel"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
@@ -143,6 +144,12 @@
 
     </Window.Resources>
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadLanguagesListCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -232,19 +239,17 @@
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Назви кнопок"
                                        Style="{StaticResource textBlockButtons}"/>
-                            <TextBlock
-                                        Text="(200)"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ButtonsCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
                         </StackPanel>
                         <Border Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="100"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ButtonsCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
                         </Border>
                     </Grid>
                 </Border>
@@ -258,19 +263,18 @@
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Статичні надписи"
                                        Style="{StaticResource textBlockButtons}"/>
-                            
-                            <TextBlock Text="(350)"
+
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.StaticTextCategoryCount, StringFormat='{}({0})'}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="28"/>
                         </StackPanel>
                         <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="9"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.StaticTextCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
                         </Border>
                     </Grid>
                 </Border>
@@ -285,18 +289,17 @@
                             <TextBlock Text="Назви колонок таблиць"
                                        Style="{StaticResource textBlockButtons}"/>
 
-                            <TextBlock Text="(2000)"
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ColumnCategoryCount, StringFormat='{}({0})'}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="28"/>
                         </StackPanel>
                         <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="1999"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ColumnCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
                         </Border>
                     </Grid>
                 </Border>
@@ -310,19 +313,17 @@
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Назви меню та вкладок" 
                                        Style="{StaticResource textBlockButtons}"/>
-                            <TextBlock
-                                Text="(2000)"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontSize="28"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.MenuAndTabCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
                         </StackPanel>
                         <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                Text="1999"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Foreground="White" 
-                                FontWeight="Bold"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.MenuAndTabCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
                         </Border>
                     </Grid>
                 </Border>
@@ -336,18 +337,17 @@
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Системні повідомлення" 
                                        Style="{StaticResource textBlockButtons}"/>
-                            <TextBlock Text="(2000)"
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.SystemMessagesCategoryCount, StringFormat='{}({0})'}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="28"/>
                         </StackPanel>
                         <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="1999"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.SystemMessagesCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
                         </Border>
                     </Grid>
                 </Border>
@@ -361,39 +361,38 @@
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Спливаючі підказки"
                                        Style="{StaticResource textBlockButtons}"/>
-                            <TextBlock
-                                        Text="(2000)"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="28"/>
-                        </StackPanel>
-                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock
-                                        Text="1999"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Foreground="White" 
-                                        FontWeight="Bold"/>
-                        </Border>
-                    </Grid>
-                </Border>
-
-                <Border IsEnabled="False" Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                    </Border.Effect>
-                    <Grid>
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="Категорія"
-                                       Style="{StaticResource textBlockButtons}"/>
-
-                            <TextBlock Text="(2000)"
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ToolTipTextCategoryCount, StringFormat='{}({0})'}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="28"/>
                         </StackPanel>
                         <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
-                            <TextBlock Text="1999"
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ToolTipTextCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Інше (або без категорії)-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Інше (або без категорії)"
+                                       Style="{StaticResource textBlockButtons}"/>
+
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.OtherCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.OtherCategoryIncompletenessCount, StringFormat='{}({0})'}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        Foreground="White" 

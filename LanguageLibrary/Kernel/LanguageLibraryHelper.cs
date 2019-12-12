@@ -26,7 +26,6 @@ namespace LanguageLibrary.Kernel
         private const string Description = "description";
         private const string DefaultContent = "defaultContent";
 
-
         private readonly XmlDocument _xmlDocument;
         
         public LanguageLibraryHelper()
@@ -200,6 +199,7 @@ namespace LanguageLibrary.Kernel
                         Content = childNode.SelectSingleNode(Content).InnerText,
                         Description = childNode.SelectSingleNode(Description).InnerText,
                         DefaultContent = childNode.SelectSingleNode(DefaultContent).InnerText,
+                        ComponentCategory = ComponentCategoryResource.GetComponentCategory(childNode.Attributes[0].Value),
                     };
                     dataModel.Add(langdata);
                 }
