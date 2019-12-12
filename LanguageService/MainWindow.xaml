@@ -147,9 +147,8 @@
             
         <StackPanel x:Name="languageHeader" Grid.Row="0" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50" Orientation="Horizontal" >
             <Button x:Name="back" Margin="50, 0, 20, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand">
-                <Path Stretch="Fill" Fill="White" 
-              Data="M 0 115 95 115 65 90 85 90 120 120 85 150 65 150 95 125 0 125 Z"
-              HorizontalAlignment="Center"  Width="20" Height="20" />
+                <!--<Image Source="/Images/go-back-left-arrow.svg"></Image>-->
+                <Image Source="."/>
             </Button>
             
             <Button x:Name="addLanguage" Margin="50, 0, 20, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand">
