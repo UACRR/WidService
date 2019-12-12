@@ -119,6 +119,7 @@ namespace LanguageService.ViewModel
             {
                 _languagesItemSource = value;
                 OnPropertyChanged(() => LanguagesItemSource);
+                CurrentLanguage = LanguagesItemSource.FirstOrDefault();
             }
         }
 
@@ -172,8 +173,15 @@ namespace LanguageService.ViewModel
         private void UpdateLanguageByCurrent()
         {
             var data = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
-            // handle this
+            
+            CurrentLanguageCompleteness.AllCategoryCountItems = data.Count;
+            CurrentLanguageCompleteness.AllCategoryIncompletenessCountItems = data.Count(rec => string.IsNullOrEmpty(rec.Content));
 
+            // parse concrete category count 
+            foreach (var languageDataModel in data)
+            {
+                //languageDataModel.
+            }
         }
 
         #endregion

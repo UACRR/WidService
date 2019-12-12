@@ -186,15 +186,16 @@ namespace LanguageLibrary.Kernel
         /// <returns></returns>
         internal List<LanguageDataModel> GetLanguageData(LanguageInfo languageInfo)
         {
-            return null;
             string fileName = $"Language.{languageInfo.SpecificationCode}.xml";
             string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
             string fullPathInternal = $@"{LanguageInfoPathInternal}\{fileName}";
 
             if (Directory.Exists(LanguageInfoPathInternal) && File.Exists(fullPathInternal))
                 _xmlDocument.Load(fullPathInternal);
-            else
+            else if (File.Exists(fullPathApp))
                 _xmlDocument.Load(fullPathApp);
+            else
+                return null;
 
             var dataModel = new List<LanguageDataModel>();
 
