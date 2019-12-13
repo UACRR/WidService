@@ -13,6 +13,7 @@ using LanguageLibrary;
 using LanguageLibrary.Model;
 using LanguageService.Model;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Data;
 using IPSDelegateCommand = LanguageService.Extensions.IPSDelegateCommand;
 using LanguageDataModel = LanguageLibrary.Model.LanguageDataModel;
 
@@ -181,7 +182,12 @@ namespace LanguageService.ViewModel
             }
         }
 
-        private LanguageDataModel _currentLanguageDataModel;
+        private LanguageDataModel _currentLanguageDataModel = new LanguageDataModel
+        {
+            DefaultContent = "Confirm",
+            PropertyName = "confirm_btn",
+            Description = "Button of main page",
+        };
         /// <summary>
         /// Конкретний обраний елемент
         /// </summary>
@@ -333,8 +339,21 @@ namespace LanguageService.ViewModel
                     break;
             }
 
+            FilterDescriptor = new FilterDescriptor(categoryName, FilterOperator.IsEqualTo, _componentCategories[categoryName]);
+
             EditPanelVisibility = Visibility.Visible;
             CategoryPanelVisibility = Visibility.Collapsed;
+        }
+
+        private FilterDescriptor _filterDescriptor;
+        public FilterDescriptor FilterDescriptor
+        {
+            get => _filterDescriptor;
+            set
+            {
+                _filterDescriptor = value;
+                OnPropertyChanged(() => FilterDescriptor);
+            }
         }
 
         private readonly Dictionary<string, ComponentCategory> _componentCategories = new Dictionary<string, ComponentCategory>
