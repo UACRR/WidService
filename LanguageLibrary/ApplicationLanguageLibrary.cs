@@ -11,11 +11,63 @@ namespace LanguageLibrary
 {
     public static class ApplicationLanguageLibrary
     {
-        private static readonly Dictionary<string, CultureInfo> _languageDictionary = new Dictionary<string, CultureInfo>
+        private static readonly List<LanguageInfo> _languagesList = new List<LanguageInfo>
         {
-            ["en-US"] = new CultureInfo("en-US"),
-            ["uk-UA"] = new CultureInfo("uk-UA"),
-            ["ru-RU"] = new CultureInfo("ru-RU"),
+            new LanguageInfo
+            {
+                LanguageName = "Українська",
+                UkrainianName = "Українська",
+                SpecificationCode = "uk-UA",
+            },
+
+            new LanguageInfo
+            {
+                LanguageName = "English",
+                UkrainianName = "Англійська",
+                SpecificationCode = "en-US"
+            },
+
+            new LanguageInfo
+            {
+                LanguageName = "Русский",
+                UkrainianName = "Російська",
+                SpecificationCode = "ru-RU"
+            },
+
+            new LanguageInfo
+            {
+                LanguageName = "Français",
+                UkrainianName = "Французька",
+                SpecificationCode = "fr-FR",
+            },
+
+            new LanguageInfo
+            {
+                LanguageName = "Español",
+                UkrainianName = "Іспанська",
+                SpecificationCode = "es-ES",
+            },
+
+            new LanguageInfo
+            {
+                LanguageName = "Deutsch",
+                UkrainianName = "Німецька",
+                SpecificationCode = "de-DE",
+            },
+
+            new LanguageInfo
+            {
+                LanguageName = "Български",
+                UkrainianName = "Болгарська",
+                SpecificationCode = "bg-BG",
+            },
+
+            new LanguageInfo
+            {
+                LanguageName = "Қазақ",
+                UkrainianName = "Казахська",
+                SpecificationCode = "kk-KZ",
+            },
         };
 
         private static readonly LanguageLibraryHelper _LanguageLibraryHelper = new LanguageLibraryHelper();
@@ -56,10 +108,32 @@ namespace LanguageLibrary
             _LanguageLibraryHelper.UpdateLanguageData(languageInfo, dataModel);
         }
 
+        /// <summary>
+        /// Отримати список мов
+        /// </summary>
+        /// <returns></returns>
         public static List<LanguageInfo> GetLanguagesList()
         {
-            var list = _LanguageLibraryHelper.GetLanguagesInfoList();
+            List<LanguageInfo> list = _LanguageLibraryHelper.GetLanguagesInfoList();
+            
+            foreach (var item in list)
+            {
+                var removeItem = _languagesList.SingleOrDefault(rec => rec.SpecificationCode == item.SpecificationCode);
+                
+                if (removeItem != null)
+                    _languagesList.Remove(removeItem);
+            }
+
             return list;
+        }
+
+        /// <summary>
+        /// Отримати список мов які можна створити
+        /// </summary>
+        /// <returns></returns>
+        public static List<LanguageInfo> GetPossibleLanguageList()
+        {
+            return _languagesList;
         }
 
         public static void ChangeLanguage(LanguageName languageName)
@@ -76,49 +150,6 @@ namespace LanguageLibrary
                     //Resources.ApplicationLanguage["ApplicationLanguage"] = "";
                     break;
             }
-        }
-
-        public static List<LanguageInfo> GetPossibleLanguageList()
-        {
-            var list = new List<LanguageInfo>
-            {
-                new LanguageInfo
-                {
-                    LanguageName = "Français",
-                    UkrainianName = "Французька",
-                    SpecificationCode = "fr-FR",
-                },
-
-                new LanguageInfo
-                {
-                    LanguageName = "Español",
-                    UkrainianName = "Іспанська",
-                    SpecificationCode = "es-ES",
-                },
-
-                new LanguageInfo
-                {
-                    LanguageName = "Deutsch",
-                    UkrainianName = "Німецька",
-                    SpecificationCode = "de-DE",
-                },
-
-                new LanguageInfo
-                {
-                    LanguageName = "Български",
-                    UkrainianName = "Болгарська",
-                    SpecificationCode = "bg-BG",
-                },
-
-                new LanguageInfo
-                {
-                    LanguageName = "Қазақ",
-                    UkrainianName = "Казахська",
-                    SpecificationCode = "kk-KZ",
-                },
-            };
-
-            return list;
         }
 
         public static void CreateLanguage(LanguageInfo languageInfo)

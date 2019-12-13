@@ -76,11 +76,7 @@ namespace LanguageService.ViewModel
 
         #region * * * DATA PROPERTIES * * *
 
-        private LanguageCompletenessModel _currentLanguageCompleteness = new LanguageCompletenessModel
-        {
-            AllCategoryCountItems = 0,
-            AllCategoryIncompletenessCountItems = 0,
-        };
+        private LanguageCompletenessModel _currentLanguageCompleteness = new LanguageCompletenessModel();
         public LanguageCompletenessModel CurrentLanguageCompleteness
         {
             get => _currentLanguageCompleteness;
@@ -168,6 +164,34 @@ namespace LanguageService.ViewModel
             {
                 _currentPossibleLanguage = value;
                 OnPropertyChanged(() => CurrentPossibleLanguage);
+            }
+        }
+
+        private ObservableCollection<LanguageDataModel> _languageDataModelItemSource;
+        /// <summary>
+        /// Список елементів обраної мови
+        /// </summary>
+        public ObservableCollection<LanguageDataModel> LanguageDataModelItemSource
+        {
+            get => _languageDataModelItemSource;
+            set
+            {
+                _languageDataModelItemSource = value;
+                OnPropertyChanged(() => LanguageDataModelItemSource);
+            }
+        }
+
+        private LanguageDataModel _currentLanguageDataModel;
+        /// <summary>
+        /// Конкретний обраний елемент
+        /// </summary>
+        public LanguageDataModel CurrentLanguageDataModel
+        {
+            get => _currentLanguageDataModel;
+            set
+            {
+                _currentLanguageDataModel = value;
+                OnPropertyChanged(() => CurrentLanguageDataModel);
             }
         }
 
@@ -275,34 +299,54 @@ namespace LanguageService.ViewModel
         }
 
         /// <summary>
-        /// Всі елементи по обраній мові
+        /// Показати елементи категорії по обраній мові
         /// </summary>
-        public ICommand AllCategoryCommand => new IPSDelegateCommand(AllCategoryCommandExecute);
-        private void AllCategoryCommandExecute(object o)
+        public ICommand SelectCategoryCommand => new IPSDelegateCommand(SelectCategoryCommandExecute);
+        private void SelectCategoryCommandExecute(object o)
         {
+            string categoryName = o as string;
+            if (string.IsNullOrEmpty(categoryName))
+                return;
+
+            List<LanguageDataModel> data = null;
+            if (categoryName == "all")
+            {
+                data = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
+                // load data
+            }
+
+            switch (_componentCategories[categoryName])
+            {
+                case ComponentCategory.Buttons:
+                    break;
+                case ComponentCategory.StaticText:
+                    break;
+                case ComponentCategory.Column:
+                    break;
+                case ComponentCategory.MenuAndTab:
+                    break;
+                case ComponentCategory.SystemMessages:
+                    break;
+                case ComponentCategory.ToolTipText:
+                    break;
+                case ComponentCategory.Other:
+                    break;
+            }
+
             EditPanelVisibility = Visibility.Visible;
             CategoryPanelVisibility = Visibility.Collapsed;
-
-            //var data = ApplicationLanguageLibrary.GetLanguageData(new LanguageInfo{ SpecificationCode = "ru-RU"});
-            //ApplicationLanguageLibrary.Sync();
-
-            //ApplicationLanguageLibrary.CreateLanguage(new LanguageInfo
-            //{
-            //    SpecificationCode = "ru-RU",
-            //    IncompletenessItemCount = 2000,
-            //    LanguageName = "Русский",
-            //    UkrainianName = "Російська",
-            //});
         }
 
-        /// <summary>
-        /// Незавповнені по обраній мові
-        /// </summary>
-        public ICommand IncompletenessCategoryCommand => new IPSDelegateCommand(IncompletenessCategoryCommandExecute);
-        private void IncompletenessCategoryCommandExecute(object o)
+        private readonly Dictionary<string, ComponentCategory> _componentCategories = new Dictionary<string, ComponentCategory>
         {
-
-        }
+            ["buttons"] = ComponentCategory.Buttons,
+            ["staticText"] = ComponentCategory.StaticText,
+            ["column"] = ComponentCategory.Column,
+            ["menuAndTab"] = ComponentCategory.MenuAndTab,
+            ["systemMessages"] = ComponentCategory.SystemMessages,
+            ["toolTipText"] = ComponentCategory.ToolTipText,
+            ["other"] = ComponentCategory.Other,
+        };
 
         #endregion
 

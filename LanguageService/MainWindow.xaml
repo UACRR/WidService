@@ -208,7 +208,7 @@
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
                     <Border.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding AllCategoryCommand}"/>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
                     </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -235,6 +235,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="buttons"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Назви кнопок"
@@ -259,6 +262,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="staticText"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Статичні надписи"
@@ -284,6 +290,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="column"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Назви колонок таблиць"
@@ -309,6 +318,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="menuAndTab"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Назви меню та вкладок" 
@@ -333,6 +345,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="systemMessages"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Системні повідомлення" 
@@ -357,6 +372,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="toolTipText"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Спливаючі підказки"
@@ -381,6 +399,9 @@
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="other"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Інше (або без категорії)"
