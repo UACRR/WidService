@@ -2,7 +2,13 @@
 {
     public class RegisterCurrencyChangeLD
     {
-        public string UITitle { get; set; }
-        public string UICurrency { get; set; }
+        public RegisterCurrencyChangeLD()
+        {
+            UITitle = new LanguageItem();
+            UICurrency = new LanguageItem();
+        }
+
+        public LanguageItem UITitle { get; set; }
+        public LanguageItem UICurrency { get; set; }
     }
 }

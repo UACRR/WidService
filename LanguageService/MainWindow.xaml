@@ -8,8 +8,9 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModel="clr-namespace:LanguageService.ViewModel"
         WindowStartupLocation="CenterScreen"
+        Icon="Images/language-icon.png"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Language Service" Height="600" Width="1000">
 
     <Window.DataContext>
         <viewModel:LanguageServiceViewModel/>
@@ -159,15 +160,20 @@
         <Grid x:Name="languageHeader" Grid.Row="0" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Button x:Name="back" Margin="50, 0, 20, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand" Visibility="{Binding EditPanelVisibility}" Command="{Binding BackToCategoryCommand}">
+                <Button x:Name="back" Margin="50, 0, 20, 0" Width="50" Padding="13" 
+                        ToolTip="Назад"
+                        Style="{StaticResource addLanguage}" Cursor="Hand" Visibility="{Binding EditPanelVisibility}" 
+                        Command="{Binding BackToCategoryCommand}">
                     <Image Source="/Images/go-back-left-arrow.png" Stretch="Uniform" Margin="1"/>
                 </Button>
                 <Grid Margin="50, 0, 20, 0" Width="50" Visibility="{Binding CategoryPanelVisibility}" />
             
                 <ComboBox x:Name="languageList" Height="50" 
+                          ToolTip="Обрати мову"
                           Padding="0,0" HorizontalAlignment="Left" 
                           Background="#1a237e" Cursor="Hand"
                           Style="{StaticResource languageList}"
@@ -190,13 +196,33 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
-            <Button x:Name="addLanguage" Margin="0, 0, 50, 0" Width="50" Padding="13" Style="{StaticResource addLanguage}" Cursor="Hand" Grid.Column="1">
+
+            <Button x:Name="syncLanguage" 
+                    ToolTip="Синхронізувати дані"
+                    Grid.Column="1"
+                    Margin="0, 0, 0, 0" 
+                    Width="50" 
+                    Cursor="Hand"
+                    Padding="13" 
+                    Style="{StaticResource addLanguage}"
+                    Command="{Binding SyncLanguagesDataCommand}">
+                <Image Source="Images/sync-icon.png"/>
+            </Button>
+
+            <Button x:Name="addLanguage" 
+                    ToolTip="Створити нову мовну локалізацію"
+                    Grid.Column="2"
+                    Margin="0, 0, 50, 0" 
+                    Width="50" 
+                    Cursor="Hand"
+                    Padding="13" 
+                    Style="{StaticResource addLanguage}"
+                    Command="{Binding CreateNewLanguageCommand}">
                 <Path Data="M0.5,0 L0.5,1 M0,0.5 L1,0.5"
                   StrokeThickness="4"
                   Stretch="Fill"
                   Stroke="White" />
             </Button>
-
         </Grid>
 
         <!--Visibility="{Binding CategoryPanelVisibility}"-->
@@ -423,13 +449,16 @@
                     </Grid>
                 </Border>
 
-                <Border IsEnabled="False" Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding TestCommand}"/>
+                    </Border.InputBindings>
                     <Grid>
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="Категорія"
+                            <TextBlock Text="ТЕСТ"
                                        Style="{StaticResource textBlockButtons}"/>
                             <TextBlock
                                         Text="(2000)"
@@ -496,23 +525,23 @@
                             </Border.Background>
                         </Border>
                         <StackPanel Grid.Column="1" Margin="30 10">
-                            <TextBlock Text="{Binding CurrentLanguageDataModel.DefaultContent}"
+                            <TextBlock Text="{Binding EditedLanguageDataModel.DefaultContent}"
                                        Foreground="Black" 
                                        FontWeight="Bold"
                                        FontSize="24"/>
                             <TextBlock Margin="0 5"
-                                       Text="{Binding CurrentLanguageDataModel.PropertyName}"
+                                       Text="{Binding EditedLanguageDataModel.PropertyName}"
                                        Foreground="Black"
                                        FontSize="14"/>
                             <TextBlock Margin="0 2 0 5"
-                                       Text="{Binding CurrentLanguageDataModel.Description}"
+                                       Text="{Binding EditedLanguageDataModel.Description}"
                                        Foreground="Black" 
                                        FontStyle="Italic"
                                        FontWeight="DemiBold"
                                        FontSize="14"
                                        TextTrimming="CharacterEllipsis"
-                                       ToolTip="{Binding CurrentLanguageDataModel.Description}"/>
-                            <TextBox Margin="0 10" Height="40" Text="{Binding CurrentLanguageDataModel.Content}"/>
+                                       ToolTip="{Binding EditedLanguageDataModel.Description}"/>
+                            <TextBox Margin="0 10" Height="40" Text="{Binding EditedLanguageDataModel.Content}"/>
                             <WrapPanel>
                                 <Button Style="{StaticResource buttonCancel}"
                                         Command="{Binding MoveToPreviousItemCommand}"

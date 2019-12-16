@@ -2,7 +2,13 @@
 {
     public class CopyrightRequestLD
     {
-        public string UIbtnSave { get; set; }
-        public string UIbtnCancel { get; set; }
+        public CopyrightRequestLD()
+        {
+            UIbtnSave = new LanguageItem();
+            UIbtnCancel = new LanguageItem();
+        }
+
+        public LanguageItem UIbtnSave { get; set; }
+        public LanguageItem UIbtnCancel { get; set; }
     }
 }

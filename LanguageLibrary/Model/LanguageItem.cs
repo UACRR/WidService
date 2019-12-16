@@ -15,8 +15,6 @@
             internal set => _content = value;
         }
 
-        public string Description { get; internal set; }
-
         public string DefaultContent { get; internal set; }
     }
 }

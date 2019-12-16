@@ -14,24 +14,6 @@
       <defaultContent>Скасувати</defaultContent>
     </uiItem>
   </uiContainer>
-  <uiContainer name="RemoveClass">
-    <uiItem name="Property1">
-      <content>
-      </content>
-      <description>
-      </description>
-      <defaultContent>
-      </defaultContent>
-    </uiItem>
-    <uiItem name="Property3">
-      <content>
-      </content>
-      <description>
-      </description>
-      <defaultContent>
-      </defaultContent>
-    </uiItem>
-  </uiContainer>
   <uiContainer name="RegisterCurrencyChangeLD">
     <uiItem name="UITitle">
       <content>Змінити курс</content>
@@ -44,6 +26,16 @@
       <description>
       </description>
       <defaultContent>Курс валюти</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RegisterItemCcidTypeLD">
+    <uiItem name="UITitle">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
     </uiItem>
   </uiContainer>
 </LanguageObjectModel>

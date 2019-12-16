@@ -125,6 +125,10 @@ namespace LanguageLibrary.Kernel
             SyncDefaultContent(languageInfo);
         }
 
+        /// <summary>
+        /// Створити шаблон мовної конфігурації
+        /// </summary>
+        /// <param name="languageInfo"></param>
         private void CreateLanguageTemplate(LanguageInfo languageInfo)
         {
             var xmlDocument = new XmlDocument();
@@ -159,10 +163,60 @@ namespace LanguageLibrary.Kernel
             xmlDocument.Save(pathApp);
         }
 
+        /// <summary>
+        /// Отримати мовну конфігурацію
+        /// </summary>
+        /// <param name="cultureInfo"></param>
+        /// <returns></returns>
         internal LanguageObjectModel GetLanguage(CultureInfo cultureInfo)
         {
             var language = new LanguageObjectModel();
             
+            string fileName = $"Language.{cultureInfo.Name}.xml";
+
+            string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
+            string fullPathInternal = $@"{LanguageInfoPathInternal}\{fileName}";
+
+            if (!File.Exists(fullPathApp) && !File.Exists(fullPathInternal))
+                return null;
+
+            if (Directory.Exists(LanguageInfoPathInternal))
+                _xmlDocument.Load(fullPathInternal);
+            else
+                _xmlDocument.Load(fullPathApp);
+
+            var root = _xmlDocument.DocumentElement;
+
+            foreach (var propertyInfo in language.GetType().GetProperties())
+            {
+                string xPath = $@"{UIContainer}[@name='{propertyInfo.Name}']";
+                var container = root.SelectSingleNode(xPath);
+
+                if (container == null)
+                    continue;
+
+                var parentObject = propertyInfo.GetValue(language, null);
+
+                var propertyType = propertyInfo.PropertyType;
+                var propertiesTypeInfo = propertyType.GetProperties();
+                foreach (var propertyTypeInfo in propertiesTypeInfo)
+                {
+                    string xPathUIitem = $@"{UIItem}[@name='{propertyTypeInfo.Name}']";
+                    var uiItem = container.SelectSingleNode(xPathUIitem);
+                    
+                    var itemType = propertyTypeInfo.PropertyType;
+
+                    var propertyObject = propertyTypeInfo.GetValue(parentObject, null);
+
+                    var content = uiItem.SelectSingleNode(Content).InnerText;
+                    var contentProperty = itemType.GetProperty("Content");
+                    contentProperty.SetValue(propertyObject, content);
+
+                    var defaultContent = uiItem.SelectSingleNode(DefaultContent).InnerText;
+                    var defaultContentProperty = itemType.GetProperty("DefaultContent");
+                    defaultContentProperty.SetValue(propertyObject, defaultContent);
+                }
+            }
 
             return language;
         }
@@ -213,24 +267,23 @@ namespace LanguageLibrary.Kernel
         /// </summary>
         /// <param name="languageInfo"></param>
         /// <param name="dataModel"></param>
-        internal void UpdateLanguageData(LanguageInfo languageInfo, List<LanguageDataModel> dataModel)
+        internal void UpdateLanguageData(LanguageInfo languageInfo, LanguageDataModel dataModel)
         {
             string fileName = $"Language.{languageInfo.SpecificationCode}.xml";
             var xmlDocument = LoadXmlDocument(fileName);
 
             var root = xmlDocument.DocumentElement;
-            foreach (XmlNode rootChildNode in root.ChildNodes)
-            {
-                foreach (XmlNode childNode in rootChildNode.ChildNodes)
-                {
-                    var item = dataModel.SingleOrDefault(rec => rec.ContainerName == rootChildNode.Attributes[0].Value &&
-                                                                rec.PropertyName == childNode.Attributes[0].Value);
 
-                    childNode.SelectSingleNode(Content).InnerText = item.Content;
-                    childNode.SelectSingleNode(Description).InnerText = item.Description;
-                }
-            }
+            string xPath = $@"{UIContainer}[@name='{dataModel.ContainerName}']";
+            var container = root.SelectSingleNode(xPath);
 
+            string xPathUIitem = $@"{UIItem}[@name='{dataModel.PropertyName}']";
+            var uiItem = container.SelectSingleNode(xPathUIitem);
+
+
+            var content = uiItem.SelectSingleNode(Content);
+            content.InnerText = dataModel.Content;
+            
             SaveXmlDocument(xmlDocument, fileName);
         }
 

@@ -67,12 +67,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\CreateLanguage\CreateLanguageModel.cs" />
+    <Compile Include="Controls\CreateLanguage\CreateLanguageViewModel.cs" />
+    <Compile Include="Controls\CreateLanguage\CreateLanguageWindow.xaml.cs">
+      <DependentUpon>CreateLanguageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\IPSDelegateCommand.cs" />
     <Compile Include="Model\LanguageCompletenessModel.cs" />
     <Compile Include="Model\LanguageDataModel.cs" />
     <Compile Include="Model\LanguageInfoModel.cs" />
     <Compile Include="Model\NavigationItemModel.cs" />
     <Compile Include="ViewModel\LanguageServiceViewModel.cs" />
+    <Page Include="Controls\CreateLanguage\CreateLanguageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,6 +145,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\empty-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sync-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\language-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

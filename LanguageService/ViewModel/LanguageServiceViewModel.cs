@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -11,6 +12,7 @@ using System.Windows.Markup;
 using ipsFormsDesign.Services;
 using LanguageLibrary;
 using LanguageLibrary.Model;
+using LanguageService.Controls.CreateLanguage;
 using LanguageService.Model;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
@@ -22,6 +24,16 @@ namespace LanguageService.ViewModel
     public class LanguageServiceViewModel : ViewModelBase
     {
         private List<LanguageDataModel> _languageDataModel;
+        private readonly Dictionary<string, ComponentCategory> _componentCategories = new Dictionary<string, ComponentCategory>
+        {
+            ["buttons"] = ComponentCategory.Buttons,
+            ["staticText"] = ComponentCategory.StaticText,
+            ["column"] = ComponentCategory.Column,
+            ["menuAndTab"] = ComponentCategory.MenuAndTab,
+            ["systemMessages"] = ComponentCategory.SystemMessages,
+            ["toolTipText"] = ComponentCategory.ToolTipText,
+            ["other"] = ComponentCategory.Other,
+        };
 
         public LanguageServiceViewModel()
         {
@@ -122,8 +134,8 @@ namespace LanguageService.ViewModel
             set
             {
                 _languagesItemSource = value;
-                OnPropertyChanged(() => LanguagesItemSource);
                 CurrentLanguage = LanguagesItemSource.FirstOrDefault();
+                OnPropertyChanged(() => LanguagesItemSource);
             }
         }
 
@@ -137,36 +149,8 @@ namespace LanguageService.ViewModel
             set
             {
                 _currentLanguage = value;
-                UpdateLanguageByCurrent();
+                LoadCurrentLanguageLocalization();
                 OnPropertyChanged(() => CurrentLanguage);
-            }
-        }
-
-        private ObservableCollection<LanguageInfo> _possibleLanguagesItemSource;
-        /// <summary>
-        /// Список мов які можна створити
-        /// </summary>
-        public ObservableCollection<LanguageInfo> PossibleLanguagesItemSource
-        {
-            get => _possibleLanguagesItemSource;
-            set
-            {
-                _possibleLanguagesItemSource = value;
-                OnPropertyChanged(() => PossibleLanguagesItemSource);
-            }
-        }
-
-        private LanguageInfo _currentPossibleLanguage;
-        /// <summary>
-        /// Обрана мова для створення
-        /// </summary>
-        public LanguageInfo CurrentPossibleLanguage
-        {
-            get => _currentPossibleLanguage;
-            set
-            {
-                _currentPossibleLanguage = value;
-                OnPropertyChanged(() => CurrentPossibleLanguage);
             }
         }
 
@@ -199,7 +183,29 @@ namespace LanguageService.ViewModel
             set
             {
                 _currentLanguageDataModel = value;
+                EditedLanguageDataModel = new LanguageDataModel
+                {
+                    Content = value?.Content,
+                    Description = value?.Description,
+                    DefaultContent = value?.DefaultContent,
+                    PropertyName = value?.PropertyName,
+                    ContainerName = value?.ContainerName,
+                };
                 OnPropertyChanged(() => CurrentLanguageDataModel);
+            }
+        }
+
+        private LanguageDataModel _editedLanguageDataModel;
+        /// <summary>
+        /// Об'єкт редагування
+        /// </summary>
+        public LanguageDataModel EditedLanguageDataModel
+        {
+            get => _editedLanguageDataModel;
+            set
+            {
+                _editedLanguageDataModel = value;
+                OnPropertyChanged(() => EditedLanguageDataModel);
             }
         }
 
@@ -207,7 +213,10 @@ namespace LanguageService.ViewModel
 
         #region * * * METHODS * * *
 
-        private void UpdateLanguageByCurrent()
+        /// <summary>
+        /// Завантажити дані відображення після зміни мови
+        /// </summary>
+        private void LoadCurrentLanguageLocalization()
         {
             _languageDataModel = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
             
@@ -248,16 +257,23 @@ namespace LanguageService.ViewModel
         #region * * * COMMANDS * * *
 
         /// <summary>
-        /// Завантажити дані
+        /// Завантажити список наявних мовних конфігурацій
         /// </summary>
         public ICommand LoadLanguagesListCommand => new IPSDelegateCommand(LoadLanguagesListCommandExecute);
         private void LoadLanguagesListCommandExecute(object o)
         {
             var languageList = ApplicationLanguageLibrary.GetLanguagesList();
             LanguagesItemSource = new ObservableCollection<LanguageInfo>(languageList);
-            
-            var list = ApplicationLanguageLibrary.GetPossibleLanguageList();
-            PossibleLanguagesItemSource = new ObservableCollection<LanguageInfo>(list);
+        }
+
+        /// <summary>
+        /// Синхронізувати дані об'єкта моделі да XML документів
+        /// </summary>
+        public ICommand SyncLanguagesDataCommand => new IPSDelegateCommand(SyncLanguagesDataCommandExecute);
+        private void SyncLanguagesDataCommandExecute(object o)
+        {
+            ApplicationLanguageLibrary.Sync();
+            MessageBox.Show("Файли локалізацій успішно синхронізовано з об'єктом локалізації!", "Повідомлення", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         /// <summary>
@@ -266,16 +282,26 @@ namespace LanguageService.ViewModel
         public ICommand CreateNewLanguageCommand => new IPSDelegateCommand(CreateNewLanguageCommandExecute);
         private void CreateNewLanguageCommandExecute(object o)
         {
-
+            var window = new CreateLanguageWindow();
+            var result = window.ShowDialog() ?? false;
+            
+            if (result)
+            {
+                var languageList = ApplicationLanguageLibrary.GetLanguagesList();
+                LanguagesItemSource = new ObservableCollection<LanguageInfo>(languageList);
+                MessageBox.Show("Нову мовну локалізацію створено!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         /// <summary>
-        /// Зберегти зміни
+        /// Зберегти зміни редагованого елемента
         /// </summary>
         public ICommand SaveItemChangeCommand => new IPSDelegateCommand(SaveItemChangeCommandExecute);
         private void SaveItemChangeCommandExecute(object o)
         {
-
+            CurrentLanguageDataModel.Content = EditedLanguageDataModel.Content;
+            ApplicationLanguageLibrary.UpdateLanguageData(CurrentLanguage, EditedLanguageDataModel);
+            MoveToNextItemCommand.Execute(null);
         }
 
         /// <summary>
@@ -284,7 +310,12 @@ namespace LanguageService.ViewModel
         public ICommand MoveToNextItemCommand => new IPSDelegateCommand(MoveToNextItemCommandExecute);
         private void MoveToNextItemCommandExecute(object o)
         {
+            int index = LanguageDataModelItemSource.IndexOf(CurrentLanguageDataModel);
+            if (index == -1 || index == LanguageDataModelItemSource.Count - 1)
+                return;
 
+            index++;
+            CurrentLanguageDataModel = LanguageDataModelItemSource[index];
         }
 
         /// <summary>
@@ -293,7 +324,13 @@ namespace LanguageService.ViewModel
         public ICommand MoveToPreviousItemCommand => new IPSDelegateCommand(MoveToPreviousItemCommandExecute);
         private void MoveToPreviousItemCommandExecute(object o)
         {
+            int index = LanguageDataModelItemSource.IndexOf(CurrentLanguageDataModel);
+            
+            if (index == -1 || index == 0)
+                return;
 
+            index--;
+            CurrentLanguageDataModel = LanguageDataModelItemSource[index];
         }
 
         /// <summary>
@@ -335,18 +372,12 @@ namespace LanguageService.ViewModel
             CategoryPanelVisibility = Visibility.Collapsed;
         }
 
-        private readonly Dictionary<string, ComponentCategory> _componentCategories = new Dictionary<string, ComponentCategory>
-        {
-            ["buttons"] = ComponentCategory.Buttons,
-            ["staticText"] = ComponentCategory.StaticText,
-            ["column"] = ComponentCategory.Column,
-            ["menuAndTab"] = ComponentCategory.MenuAndTab,
-            ["systemMessages"] = ComponentCategory.SystemMessages,
-            ["toolTipText"] = ComponentCategory.ToolTipText,
-            ["other"] = ComponentCategory.Other,
-        };
-
         #endregion
 
+        public ICommand TestCommand => new IPSDelegateCommand(TestCommandExecute);
+        private async void TestCommandExecute(object o)
+        {
+            await ApplicationLanguageLibrary.GetLanguage(new CultureInfo("uk-UA"));
+        }
     }
 }

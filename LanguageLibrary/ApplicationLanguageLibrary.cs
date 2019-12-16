@@ -79,10 +79,10 @@ namespace LanguageLibrary
         /// </summary>
         /// <param name="cultureInfo"></param>
         /// <returns></returns>
-        public static LanguageObjectModel GetLanguage(CultureInfo cultureInfo)
+        public static async Task<LanguageObjectModel> GetLanguage(CultureInfo cultureInfo)
         {
             if (_language == null)
-                _language = _LanguageLibraryHelper.GetLanguage(cultureInfo);
+                _language = await Task.Factory.StartNew(() => _LanguageLibraryHelper.GetLanguage(cultureInfo));
 
             return _language;
         }
@@ -103,7 +103,7 @@ namespace LanguageLibrary
         /// </summary>
         /// <param name="languageInfo"></param>
         /// <param name="dataModel"></param>
-        public static void UpdateLanguageData(LanguageInfo languageInfo, List<LanguageDataModel> dataModel)
+        public static void UpdateLanguageData(LanguageInfo languageInfo, LanguageDataModel dataModel)
         {
             _LanguageLibraryHelper.UpdateLanguageData(languageInfo, dataModel);
         }
@@ -136,21 +136,6 @@ namespace LanguageLibrary
             return _languagesList;
         }
 
-        public static void ChangeLanguage(LanguageName languageName)
-        {
-            switch (languageName)
-            {
-                case LanguageName.English:
-                    break;
-                case LanguageName.Ukrainian:
-                    break;
-                case LanguageName.Russian:
-                    break;
-                default:
-                    //Resources.ApplicationLanguage["ApplicationLanguage"] = "";
-                    break;
-            }
-        }
 
         public static void CreateLanguage(LanguageInfo languageInfo)
         {
@@ -159,6 +144,7 @@ namespace LanguageLibrary
 
         public static void Sync()
         {
+            _LanguageLibraryHelper.SyncLanguageDataObjectModel();
             _LanguageLibraryHelper.SyncDefaultContent();
         }
     }

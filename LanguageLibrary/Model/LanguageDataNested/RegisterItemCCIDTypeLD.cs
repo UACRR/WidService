@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LanguageLibrary.Model.LanguageDataNested
+﻿namespace LanguageLibrary.Model.LanguageDataNested
 {
     public class RegisterItemCCIDTypeLD
     {
-        public string UITitle { get; set; }
+        public RegisterItemCCIDTypeLD()
+        {
+            UITitle = new LanguageItem();
+        }
+
+        public LanguageItem UITitle { get; set; }
     }
 }
