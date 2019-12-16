@@ -1,4 +1,4 @@
-namespace RepNew
+namespace ReportsLibrary
 {
     using System;
     using System.ComponentModel;
@@ -8,11 +8,11 @@ namespace RepNew
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for ReportAs.
+    /// Summary description for ReportB.
     /// </summary>
-    public partial class ReportAs : Telerik.Reporting.Report
+    public partial class ReportB : Telerik.Reporting.Report
     {
-        public ReportAs()
+        public ReportB()
         {
             //
             // Required for telerik Reporting designer support

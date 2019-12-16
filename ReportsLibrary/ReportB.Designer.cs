@@ -1,6 +1,6 @@
-namespace RepNew
+namespace ReportsLibrary
 {
-    partial class ReportAs
+    partial class ReportB
     {
         #region Component Designer generated code
         /// <summary>
@@ -14,20 +14,32 @@ namespace RepNew
             Telerik.Reporting.NavigateToReportAction navigateToReportAction2 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource2 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
+            this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
             this.detail = new Telerik.Reporting.DetailSection();
+            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.textBox1 = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
+            // pageHeaderSection1
+            // 
+            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
+            this.pageHeaderSection1.Name = "pageHeaderSection1";
+            // 
             // detail
             // 
-            this.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(11.3D);
+            this.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(10.6D);
             this.detail.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox1,
             this.textBox2});
             this.detail.Name = "detail";
             this.detail.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.detail.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
+            this.detail.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(2D);
+            // 
+            // pageFooterSection1
+            // 
+            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
+            this.pageFooterSection1.Name = "pageFooterSection1";
             // 
             // textBox1
             // 
@@ -35,7 +47,7 @@ namespace RepNew
     "eyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox1.Action = navigateToReportAction1;
-            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.8D), Telerik.Reporting.Drawing.Unit.Cm(5.2D));
+            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.1D), Telerik.Reporting.Drawing.Unit.Cm(4.1D));
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox1.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -55,7 +67,7 @@ namespace RepNew
     "KeyToken=null";
             navigateToReportAction2.ReportSource = typeReportSource2;
             this.textBox2.Action = navigateToReportAction2;
-            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.9D), Telerik.Reporting.Drawing.Unit.Cm(5.2D));
+            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(10.1D), Telerik.Reporting.Drawing.Unit.Cm(4.1D));
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.5D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox2.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -69,11 +81,13 @@ namespace RepNew
             this.textBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox2.Value = "²íø³ çâ³òè";
             // 
-            // ReportAs
+            // ReportB
             // 
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.detail});
-            this.Name = "ReportAs";
+            this.pageHeaderSection1,
+            this.detail,
+            this.pageFooterSection1});
+            this.Name = "ReportB";
             this.PageSettings.ContinuousPaper = false;
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Mm(20D), Telerik.Reporting.Drawing.Unit.Mm(20D), Telerik.Reporting.Drawing.Unit.Mm(20D), Telerik.Reporting.Drawing.Unit.Mm(20D));
@@ -86,12 +100,15 @@ namespace RepNew
             styleRule1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.StyleSheet.AddRange(new Telerik.Reporting.Drawing.StyleRule[] {
             styleRule1});
-            this.Width = Telerik.Reporting.Drawing.Unit.Cm(23.9D);
+            this.Width = Telerik.Reporting.Drawing.Unit.Cm(25.3D);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
         #endregion
+
+        private Telerik.Reporting.PageHeaderSection pageHeaderSection1;
         private Telerik.Reporting.DetailSection detail;
+        private Telerik.Reporting.PageFooterSection pageFooterSection1;
         private Telerik.Reporting.TextBox textBox1;
         private Telerik.Reporting.TextBox textBox2;
     }

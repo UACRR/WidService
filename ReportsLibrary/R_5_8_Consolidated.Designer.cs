@@ -458,7 +458,7 @@ namespace ReportsLibrary
             // 
             // textBox1
             // 
-            typeReportSource2.TypeName = "ReportsLibrary.ReportS, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
+            typeReportSource2.TypeName = "ReportsLibrary.ReportB, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
     "eyToken=null";
             navigateToReportAction2.ReportSource = typeReportSource2;
             this.textBox1.Action = navigateToReportAction2;
