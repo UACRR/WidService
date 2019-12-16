@@ -200,7 +200,7 @@
         </Grid>
 
         <!--Visibility="{Binding CategoryPanelVisibility}"-->
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="Collapsed">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding CategoryPanelVisibility}">
             <WrapPanel x:Name="categories" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
 
                 <!--Всі елементи-->
@@ -452,11 +452,11 @@
         </ScrollViewer>
 
         <!--Visibility="{Binding EditPanelVisibility}"-->
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="Visible" Padding="0, 20">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding EditPanelVisibility}" Padding="0, 20">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <t:RadGridView x:Name="gridView" Grid.Row="0"
@@ -464,6 +464,7 @@
                                SelectedItem="{Binding CurrentLanguageDataModel}"
                                IsFilteringAllowed="False"
                                ShowSearchPanel="True"
+                               AutoGenerateColumns="False"
                                AllowDrop="False"
                                ColumnWidth="*"
                                t:StyleManager.Theme="VisualStudio2013"
@@ -472,10 +473,10 @@
                                CanUserSortColumns="False"
                                ShowGroupPanel="False">
                     <t:RadGridView.Columns>
-                        <t:GridViewDataColumn Header="UI item name" Width="105"/>
-                        <t:GridViewDataColumn Header="Назва мовою оригіналу" Width="1*"/>
-                        <t:GridViewDataColumn Header="Назва мовою перекладу" Width="1*"/>
-                        <t:GridViewDataColumn Header="Опис" Width="2*"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding PropertyName}" Header="UI item name" Width="105"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding DefaultContent}" Header="Стандартна назва" Width="1*"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding Content}" Header="Назва мовою перекладу" Width="1*"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding Description}" Header="Опис" Width="2*"/>
                     </t:RadGridView.Columns>
 
                 </t:RadGridView>

@@ -21,6 +21,8 @@ namespace LanguageService.ViewModel
 {
     public class LanguageServiceViewModel : ViewModelBase
     {
+        private List<LanguageDataModel> _languageDataModel;
+
         public LanguageServiceViewModel()
         {
 
@@ -207,37 +209,37 @@ namespace LanguageService.ViewModel
 
         private void UpdateLanguageByCurrent()
         {
-            List<LanguageDataModel> data = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
+            _languageDataModel = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
             
-            CurrentLanguageCompleteness.AllCategoryCountItems = data.Count;
-            CurrentLanguageCompleteness.AllCategoryIncompletenessCountItems = data.Count(rec => string.IsNullOrEmpty(rec.Content));
+            CurrentLanguageCompleteness.AllCategoryCountItems = _languageDataModel.Count;
+            CurrentLanguageCompleteness.AllCategoryIncompletenessCountItems = _languageDataModel.Count(rec => string.IsNullOrEmpty(rec.Content));
             
-            CurrentLanguageCompleteness.ButtonsCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Buttons);
-            CurrentLanguageCompleteness.ButtonsCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Buttons
+            CurrentLanguageCompleteness.ButtonsCategoryCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.Buttons);
+            CurrentLanguageCompleteness.ButtonsCategoryIncompletenessCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.Buttons
                                                                                             && string.IsNullOrEmpty(rec.Content));
 
-            CurrentLanguageCompleteness.StaticTextCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.StaticText);
-            CurrentLanguageCompleteness.StaticTextCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.StaticText
+            CurrentLanguageCompleteness.StaticTextCategoryCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.StaticText);
+            CurrentLanguageCompleteness.StaticTextCategoryIncompletenessCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.StaticText
                                                                                                && string.IsNullOrEmpty(rec.Content));
 
-            CurrentLanguageCompleteness.ColumnCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Column);
-            CurrentLanguageCompleteness.ColumnCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Column
+            CurrentLanguageCompleteness.ColumnCategoryCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.Column);
+            CurrentLanguageCompleteness.ColumnCategoryIncompletenessCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.Column
                                                                                            && string.IsNullOrEmpty(rec.Content));
 
-            CurrentLanguageCompleteness.MenuAndTabCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.MenuAndTab);
-            CurrentLanguageCompleteness.MenuAndTabCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.MenuAndTab
+            CurrentLanguageCompleteness.MenuAndTabCategoryCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.MenuAndTab);
+            CurrentLanguageCompleteness.MenuAndTabCategoryIncompletenessCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.MenuAndTab
                                                                                                && string.IsNullOrEmpty(rec.Content));
 
-            CurrentLanguageCompleteness.SystemMessagesCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.SystemMessages);
-            CurrentLanguageCompleteness.SystemMessagesCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.SystemMessages
+            CurrentLanguageCompleteness.SystemMessagesCategoryCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.SystemMessages);
+            CurrentLanguageCompleteness.SystemMessagesCategoryIncompletenessCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.SystemMessages
                                                                                                    && string.IsNullOrEmpty(rec.Content));
 
-            CurrentLanguageCompleteness.ToolTipTextCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.ToolTipText);
-            CurrentLanguageCompleteness.ToolTipTextCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.ToolTipText
+            CurrentLanguageCompleteness.ToolTipTextCategoryCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.ToolTipText);
+            CurrentLanguageCompleteness.ToolTipTextCategoryIncompletenessCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.ToolTipText
                                                                                                 && string.IsNullOrEmpty(rec.Content));
 
-            CurrentLanguageCompleteness.OtherCategoryCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Other);
-            CurrentLanguageCompleteness.OtherCategoryIncompletenessCount = data.Count(rec => rec.ComponentCategory == ComponentCategory.Other
+            CurrentLanguageCompleteness.OtherCategoryCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.Other);
+            CurrentLanguageCompleteness.OtherCategoryIncompletenessCount = _languageDataModel.Count(rec => rec.ComponentCategory == ComponentCategory.Other
                                                                                           && string.IsNullOrEmpty(rec.Content));
         }
 
@@ -314,46 +316,23 @@ namespace LanguageService.ViewModel
             if (string.IsNullOrEmpty(categoryName))
                 return;
 
-            List<LanguageDataModel> data = null;
             if (categoryName == "all")
             {
-                data = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
-                // load data
-            }
+                LanguageDataModelItemSource = new ObservableCollection<LanguageDataModel>(_languageDataModel);
 
-            switch (_componentCategories[categoryName])
+            }
+            else if (_componentCategories.ContainsKey(categoryName))
             {
-                case ComponentCategory.Buttons:
-                    break;
-                case ComponentCategory.StaticText:
-                    break;
-                case ComponentCategory.Column:
-                    break;
-                case ComponentCategory.MenuAndTab:
-                    break;
-                case ComponentCategory.SystemMessages:
-                    break;
-                case ComponentCategory.ToolTipText:
-                    break;
-                case ComponentCategory.Other:
-                    break;
+                var data = _languageDataModel.Where(rec => rec.ComponentCategory == _componentCategories[categoryName]).ToList();
+                LanguageDataModelItemSource = new ObservableCollection<LanguageDataModel>(data);
             }
-
-            FilterDescriptor = new FilterDescriptor(categoryName, FilterOperator.IsEqualTo, _componentCategories[categoryName]);
+            else
+            {
+                return;
+            }
 
             EditPanelVisibility = Visibility.Visible;
             CategoryPanelVisibility = Visibility.Collapsed;
-        }
-
-        private FilterDescriptor _filterDescriptor;
-        public FilterDescriptor FilterDescriptor
-        {
-            get => _filterDescriptor;
-            set
-            {
-                _filterDescriptor = value;
-                OnPropertyChanged(() => FilterDescriptor);
-            }
         }
 
         private readonly Dictionary<string, ComponentCategory> _componentCategories = new Dictionary<string, ComponentCategory>
