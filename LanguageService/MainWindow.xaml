@@ -149,6 +149,9 @@
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadLanguagesListCommand}"/>
         </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SyncOnServerWhenClosingCommand}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <Grid>
@@ -449,7 +452,7 @@
                     </Grid>
                 </Border>
 
-                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                <Border Visibility="Collapsed" Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>

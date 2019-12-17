@@ -126,6 +126,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{B17076A8-B8F9-4F60-AAC0-3845773A4D43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{21DA4297-A0F3-4E44-BD98-CAF3605B243A}</Project>
       <Name>ipsFormsDesign</Name>

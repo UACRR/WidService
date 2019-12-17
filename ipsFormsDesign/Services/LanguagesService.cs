@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using IpsCommonTypes.Types;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -26,10 +24,24 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
-        public async void Test()
+        /// <summary>
+        /// Синхронізувати на сервері
+        /// </summary>
+        public async Task<ResponseOfRequest> SyncOnServer(Dictionary<string, byte[]> dictionary)
         {
-            string url = $"{Prefix}/execprocedure";
-            var result = await _apiConnector.SendGetRequestAsync<object>(url);
+            string url = $"{Prefix}/sync/server";
+            var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, Dictionary<string, byte[]>>(url, dictionary);
+            return result;
+        }
+
+        /// <summary>
+        /// Синхронізувати на клієнті
+        /// </summary>
+        public async Task<Dictionary<string, byte[]>> SyncOnClient()
+        {
+            string url = $"{Prefix}/sync/client";
+            var result = await _apiConnector.SendGetRequestAsync<Dictionary<string, byte[]>>(url);
+            return result;
         }
     }
 }

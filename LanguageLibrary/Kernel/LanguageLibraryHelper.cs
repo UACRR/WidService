@@ -5,7 +5,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Xml;
+using IpsCommonTypes.Types;
+using ipsFormsDesign.Services;
 using LanguageLibrary.Model;
 
 namespace LanguageLibrary.Kernel
@@ -31,6 +34,56 @@ namespace LanguageLibrary.Kernel
         public LanguageLibraryHelper()
         {
             _xmlDocument = new XmlDocument();
+        }
+
+        internal async Task<ResponseOfRequest> SyncOnServer()
+        {
+            var dictionary = new Dictionary<string, byte[]>();
+
+            string langInfo = $@"{LanguageInfoPathApp}\{LanguageInfoFileName}";
+            if (File.Exists(langInfo))
+            {
+                dictionary.Add(LanguageInfoFileName, File.ReadAllBytes(langInfo));
+            }
+
+            var langs = GetLanguagesInfoList();
+            foreach (var languageInfo in langs)
+            {
+                string fileName = $"Language.{languageInfo.SpecificationCode}.xml";
+
+                string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
+
+                if (File.Exists(fullPathApp))
+                    dictionary.Add(fileName, File.ReadAllBytes(fullPathApp));
+            }
+
+            var result = await LanguagesService.GetInstance().SyncOnServer(dictionary);
+            return result;
+        }
+
+        internal async Task SyncOnClient()
+        {
+            var result = await LanguagesService.GetInstance().SyncOnClient();
+
+            foreach (var content in result)
+            {
+                string path = $@"{LanguageInfoPathApp}\{content.Key}";
+
+                if (!Directory.Exists(LanguageInfoPathApp))
+                    Directory.CreateDirectory(LanguageInfoPathApp);
+
+                if (!File.Exists(path))
+                {
+                    using (var fs = File.Create(path))
+                    {
+                        await fs.WriteAsync(content.Value, 0, content.Value.Length);
+                    }
+                }
+                else
+                {
+                    File.WriteAllBytes(path, content.Value);
+                }
+            }
         }
 
         internal List<LanguageInfo> GetLanguagesInfoList()

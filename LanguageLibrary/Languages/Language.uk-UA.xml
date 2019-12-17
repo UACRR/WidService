@@ -30,8 +30,7 @@
   </uiContainer>
   <uiContainer name="RegisterItemCcidTypeLD">
     <uiItem name="UITitle">
-      <content>
-      </content>
+      <content>Звіт</content>
       <description>
       </description>
       <defaultContent>

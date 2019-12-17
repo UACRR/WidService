@@ -23,6 +23,7 @@ namespace LanguageService.ViewModel
 {
     public class LanguageServiceViewModel : ViewModelBase
     {
+        private bool _someValueChanged = false;
         private List<LanguageDataModel> _languageDataModel;
         private readonly Dictionary<string, ComponentCategory> _componentCategories = new Dictionary<string, ComponentCategory>
         {
@@ -35,10 +36,7 @@ namespace LanguageService.ViewModel
             ["other"] = ComponentCategory.Other,
         };
 
-        public LanguageServiceViewModel()
-        {
-
-        }
+        public LanguageServiceViewModel() { }
 
         #region * * * BEHAVIOR PROPERTIES * * *
 
@@ -150,6 +148,7 @@ namespace LanguageService.ViewModel
             {
                 _currentLanguage = value;
                 LoadCurrentLanguageLocalization();
+                BackToCategoryCommand.Execute(null);
                 OnPropertyChanged(() => CurrentLanguage);
             }
         }
@@ -290,6 +289,7 @@ namespace LanguageService.ViewModel
                 var languageList = ApplicationLanguageLibrary.GetLanguagesList();
                 LanguagesItemSource = new ObservableCollection<LanguageInfo>(languageList);
                 MessageBox.Show("Нову мовну локалізацію створено!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                _someValueChanged = true;
             }
         }
 
@@ -302,6 +302,7 @@ namespace LanguageService.ViewModel
             CurrentLanguageDataModel.Content = EditedLanguageDataModel.Content;
             ApplicationLanguageLibrary.UpdateLanguageData(CurrentLanguage, EditedLanguageDataModel);
             MoveToNextItemCommand.Execute(null);
+            _someValueChanged = true;
         }
 
         /// <summary>
@@ -372,12 +373,28 @@ namespace LanguageService.ViewModel
             CategoryPanelVisibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Синхронізація з сервером при виході з програми
+        /// </summary>
+        public ICommand SyncOnServerWhenClosingCommand => new IPSDelegateCommand(SyncOnServerWhenClosingCommandExecute);
+        private async void SyncOnServerWhenClosingCommandExecute(object o)
+        {
+            if (!_someValueChanged)
+                return;
+
+            var result = await ApplicationLanguageLibrary.SyncOnServer();
+            if (!result.IsSuccess)
+                MessageBox.Show("Помилка синхронізації з сервером!", result.InnerMessage, MessageBoxButton.OK,MessageBoxImage.Warning);
+        }
+
         #endregion
 
         public ICommand TestCommand => new IPSDelegateCommand(TestCommandExecute);
         private async void TestCommandExecute(object o)
         {
-            await ApplicationLanguageLibrary.GetLanguage(new CultureInfo("uk-UA"));
+            //var result1 = await ApplicationLanguageLibrary.SyncOnServer();
+            
+            //await ApplicationLanguageLibrary.SyncOnClient();
         }
     }
 }

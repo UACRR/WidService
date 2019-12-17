@@ -77,7 +77,7 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public async Task<T> SendGetRequestAsync<T>(string url) where T : class
+        public async Task<T> SendGetRequestAsync<T>(string url)
         {
             var result = await client.GetAsync(url);
 

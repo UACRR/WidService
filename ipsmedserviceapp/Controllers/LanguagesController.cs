@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
+using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +18,8 @@ namespace ipsmedserviceapp.Controllers
     [ApiController]
     public class LanguagesController : ControllerBase
     {
+        private const string RootDirectory = "Languages";
+
         private readonly MediaServiceContext _dbContext;
 
         public LanguagesController(MediaServiceContext dbContext)
@@ -22,38 +27,70 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet("execprocedure")]
-        public async Task<IActionResult> ExecutProcedure()
+        [DisableRequestSizeLimit]
+        [HttpPut("sync/server")]
+        public async Task<IActionResult> UpdateLanguagesOnAppServer([FromBody] Dictionary<string, byte[]> dictionary)
         {
+            ResponseOfRequest responseOfRequest;
             try
             {
-                int a = 11;
-                
-                var sqlparam = new SqlParameter("a", a);
-                var returnedCode = new SqlParameter();
-                returnedCode.ParameterName = "@retCode";
-                returnedCode.SqlDbType = SqlDbType.Int;
-                returnedCode.Direction = ParameterDirection.Output;
+                foreach (var content in dictionary)
+                {
+                    string path = $@"{RootDirectory}\{content.Key}";
 
-                var query = "exec @retCode = TestExecProc @a";
+                    if (!Directory.Exists(RootDirectory))
+                        Directory.CreateDirectory(RootDirectory);
 
-                ;
-                var result =  await _dbContext.Database.ExecuteSqlCommandAsync(query, sqlparam, returnedCode);
-                ;
+                    if (!System.IO.File.Exists(path))
+                    {
+                        using (var fs = System.IO.File.Create(path))
+                        {
+                            await fs.WriteAsync(content.Value, 0, content.Value.Length);
+                        }
+                    }
+                    else
+                    {
+                        await System.IO.File.WriteAllBytesAsync(path, content.Value);
+                    }
+                }
 
-                a = 27;
-                sqlparam = new SqlParameter("a", a);
-
-                ;
-                var result2 = await _dbContext.Database.ExecuteSqlCommandAsync(query, sqlparam, returnedCode);
-                ;
-
-                return Ok();
+                responseOfRequest = new ResponseOfRequest("Синхронізовано на сервері.");
+                return Ok(responseOfRequest);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                responseOfRequest = new ResponseOfRequest(e.Message, e);
+                return BadRequest(responseOfRequest);
+            }
+        }
+
+        [DisableRequestSizeLimit]
+        [HttpGet("sync/client")]
+        public async Task<IActionResult> UpdateLanguagesOnAppClient()
+        {
+            try
+            {
+                var dictionary = new Dictionary<string, byte[]>();
+
+                if (!Directory.Exists(RootDirectory))
+                    return Ok(dictionary);
+                
+                Directory.CreateDirectory(RootDirectory);
+
+                var files = Directory.GetFiles(RootDirectory);
+
+                foreach (var file in files)
+                {
+                    var bytes = await System.IO.File.ReadAllBytesAsync(file);
+                    dictionary.Add(file, bytes);
+                }
+
+                return Ok(dictionary);
+            }
+            catch (Exception e)
+            {
+                var responseOfRequest = new ResponseOfRequest(e.Message, e);
+                return BadRequest(responseOfRequest);
             }
         }
     }

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using LanguageLibrary;
-using LanguageLibrary.Model;
 using LanguageService.Extensions;
 using Telerik.Windows.Controls;
 
@@ -15,6 +9,8 @@ namespace LanguageService.Controls.CreateLanguage
 {
     public class CreateLanguageViewModel : ViewModelBase
     {
+        #region * * * PROPERTIES * * *
+
         private ObservableCollection<CreateLanguageModel> _languageModelItemSource;
         public ObservableCollection<CreateLanguageModel> LanguageModelItemSource
         {
@@ -39,6 +35,8 @@ namespace LanguageService.Controls.CreateLanguage
                 OnPropertyChanged(() => SelectedLanguage);
             }
         }
+
+        #endregion
 
         #region * * * COMMANDS * * * 
 

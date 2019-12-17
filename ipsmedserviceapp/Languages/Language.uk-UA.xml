@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageObjectModel specificationCode="uk-UA">
+  <uiContainer name="CopyrightRequestLD">
+    <uiItem name="UIbtnSave">
+      <content>Зберегти</content>
+      <description>
+      </description>
+      <defaultContent>Зберегти</defaultContent>
+    </uiItem>
+    <uiItem name="UIbtnCancel">
+      <content>Скасувати</content>
+      <description>
+      </description>
+      <defaultContent>Скасувати</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RegisterCurrencyChangeLD">
+    <uiItem name="UITitle">
+      <content>Змінити курс</content>
+      <description>
+      </description>
+      <defaultContent>Змінити курс</defaultContent>
+    </uiItem>
+    <uiItem name="UICurrency">
+      <content>Курс валюти</content>
+      <description>
+      </description>
+      <defaultContent>Курс валюти</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RegisterItemCcidTypeLD">
+    <uiItem name="UITitle">
+      <content>Звіт</content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+  </uiContainer>
+</LanguageObjectModel>

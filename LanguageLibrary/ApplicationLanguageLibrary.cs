@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IpsCommonTypes.Types;
 using LanguageLibrary.Kernel;
 using LanguageLibrary.Model;
 
@@ -136,16 +137,41 @@ namespace LanguageLibrary
             return _languagesList;
         }
 
-
+        /// <summary>
+        /// Створити нову мову
+        /// </summary>
+        /// <param name="languageInfo"></param>
         public static void CreateLanguage(LanguageInfo languageInfo)
         {
             _LanguageLibraryHelper.CreateNewLanguage(languageInfo);
         }
 
+        /// <summary>
+        /// Синхронізація об'єктів
+        /// </summary>
         public static void Sync()
         {
             _LanguageLibraryHelper.SyncLanguageDataObjectModel();
             _LanguageLibraryHelper.SyncDefaultContent();
+        }
+
+        /// <summary>
+        /// Синхронізація на клієнті
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SyncOnClient()
+        {
+            await _LanguageLibraryHelper.SyncOnClient();
+        }
+
+        /// <summary>
+        /// Синхронізувати на сервері
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<ResponseOfRequest> SyncOnServer()
+        {
+            var result = await _LanguageLibraryHelper.SyncOnServer();
+            return result;
         }
     }
 }
