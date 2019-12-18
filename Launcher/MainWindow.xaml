@@ -4,11 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Launcher"
+        xmlns:vm="clr-namespace:Launcher.General"
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="Media Service" Height="437.812" Width="935.938" Icon="main-icon.png">
+        Title="Media Service" Height="440" Width="900" Icon="main-icon.png">
+
+    <Window.DataContext>
+        <vm:LauncherViewModel/>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger x:Name="loadEvent" EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Window.Resources>
         <Style TargetType="t:RadButton">
@@ -27,7 +39,39 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="DodgerBlue">
-            <t:Label HorizontalAlignment="Right" Background="WhiteSmoke" Height="20" Content="Username: Admin" Margin="0,0,30,0"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="languageList"
+                      Grid.Column="1"
+                      MinWidth="120"
+                      Margin="3,3,30,3"
+                      ToolTip="Обрати мову"
+                      Padding="0,0" HorizontalAlignment="Left" 
+                      Background="#1a237e" Cursor="Hand"
+                      ItemsSource="{Binding LanguagesItemSource}"
+                      SelectedItem="{Binding CurrentLanguage}"
+                      SelectedValuePath="SpecificationCode"
+                      BorderBrush="Transparent">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding LanguageName}" 
+                                       Foreground="White"
+                                       FontSize="28"
+                                       Height="40"
+                                       Padding="20,0"
+                                       Cursor="Hand"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <t:Label Grid.Column="2" HorizontalAlignment="Right" Background="WhiteSmoke" Height="20" Content="Username: Admin" Margin="0,0,30,0"/>
         </Grid>
 
         <ScrollViewer Grid.Row="1">
