@@ -44,7 +44,7 @@ namespace LanguageService.Controls.CreateLanguage
         private void LoadWindowCommandExecute(object o)
         {
             var languages = new ObservableCollection<CreateLanguageModel>();
-            var list = ApplicationLanguageLibrary.GetPossibleLanguageList();
+            var list = LanguageLibraryManager.GetPossibleLanguageList();
             foreach (var languageInfo in list)
             {
                 var language = new CreateLanguageModel
@@ -65,7 +65,7 @@ namespace LanguageService.Controls.CreateLanguage
             if (SelectedLanguage == null)
                 return;
 
-            ApplicationLanguageLibrary.CreateLanguage(SelectedLanguage.LanguageInfo);
+            LanguageLibraryManager.CreateLanguage(SelectedLanguage.LanguageInfo);
             if (o is Window window)
             {
                 window.DialogResult = true;

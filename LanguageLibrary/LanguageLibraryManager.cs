@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
 using LanguageLibrary.Kernel;
@@ -11,7 +7,7 @@ using LanguageLibrary.Model;
 
 namespace LanguageLibrary
 {
-    public static class ApplicationLanguageLibrary
+    public static class LanguageLibraryManager
     {
         private static readonly List<LanguageInfo> _languagesList = new List<LanguageInfo>
         {

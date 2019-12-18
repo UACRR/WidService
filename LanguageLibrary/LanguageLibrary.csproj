@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppLanguageLibrary.cs" />
-    <Compile Include="ApplicationLanguageLibrary.cs" />
+    <Compile Include="LanguageLibraryManager.cs" />
     <Compile Include="Kernel\LanguageLibraryHelper.cs" />
     <Compile Include="Model\ComponentCategory.cs" />
     <Compile Include="Model\LanguageDataModel.cs" />

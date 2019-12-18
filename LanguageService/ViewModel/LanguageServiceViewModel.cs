@@ -217,7 +217,7 @@ namespace LanguageService.ViewModel
         /// </summary>
         private void LoadCurrentLanguageLocalization()
         {
-            _languageDataModel = ApplicationLanguageLibrary.GetLanguageData(CurrentLanguage);
+            _languageDataModel = LanguageLibraryManager.GetLanguageData(CurrentLanguage);
             
             CurrentLanguageCompleteness.AllCategoryCountItems = _languageDataModel.Count;
             CurrentLanguageCompleteness.AllCategoryIncompletenessCountItems = _languageDataModel.Count(rec => string.IsNullOrEmpty(rec.Content));
@@ -261,7 +261,7 @@ namespace LanguageService.ViewModel
         public ICommand LoadLanguagesListCommand => new IPSDelegateCommand(LoadLanguagesListCommandExecute);
         private void LoadLanguagesListCommandExecute(object o)
         {
-            var languageList = ApplicationLanguageLibrary.GetLanguagesList();
+            var languageList = LanguageLibraryManager.GetLanguagesList();
             LanguagesItemSource = new ObservableCollection<LanguageInfo>(languageList);
         }
 
@@ -271,7 +271,7 @@ namespace LanguageService.ViewModel
         public ICommand SyncLanguagesDataCommand => new IPSDelegateCommand(SyncLanguagesDataCommandExecute);
         private void SyncLanguagesDataCommandExecute(object o)
         {
-            ApplicationLanguageLibrary.Sync();
+            LanguageLibraryManager.Sync();
             MessageBox.Show("Файли локалізацій успішно синхронізовано з об'єктом локалізації!", "Повідомлення", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -286,7 +286,7 @@ namespace LanguageService.ViewModel
             
             if (result)
             {
-                var languageList = ApplicationLanguageLibrary.GetLanguagesList();
+                var languageList = LanguageLibraryManager.GetLanguagesList();
                 LanguagesItemSource = new ObservableCollection<LanguageInfo>(languageList);
                 MessageBox.Show("Нову мовну локалізацію створено!", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 _someValueChanged = true;
@@ -300,7 +300,7 @@ namespace LanguageService.ViewModel
         private void SaveItemChangeCommandExecute(object o)
         {
             CurrentLanguageDataModel.Content = EditedLanguageDataModel.Content;
-            ApplicationLanguageLibrary.UpdateLanguageData(CurrentLanguage, EditedLanguageDataModel);
+            LanguageLibraryManager.UpdateLanguageData(CurrentLanguage, EditedLanguageDataModel);
             MoveToNextItemCommand.Execute(null);
             _someValueChanged = true;
         }
@@ -382,7 +382,7 @@ namespace LanguageService.ViewModel
             if (!_someValueChanged)
                 return;
 
-            var result = await ApplicationLanguageLibrary.SyncOnServer();
+            var result = await LanguageLibraryManager.SyncOnServer();
             if (!result.IsSuccess)
                 MessageBox.Show("Помилка синхронізації з сервером!", result.InnerMessage, MessageBoxButton.OK,MessageBoxImage.Warning);
         }
@@ -392,9 +392,9 @@ namespace LanguageService.ViewModel
         public ICommand TestCommand => new IPSDelegateCommand(TestCommandExecute);
         private async void TestCommandExecute(object o)
         {
-            //var result1 = await ApplicationLanguageLibrary.SyncOnServer();
+            //var result1 = await LanguageLibraryManager.SyncOnServer();
             
-            //await ApplicationLanguageLibrary.SyncOnClient();
+            //await LanguageLibraryManager.SyncOnClient();
         }
     }
 }
