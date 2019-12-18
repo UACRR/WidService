@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
 using LanguageLibrary.Kernel;
@@ -73,21 +74,6 @@ namespace LanguageLibrary
 
         private static readonly LanguageLibraryHelper _LanguageLibraryHelper = new LanguageLibraryHelper();
 
-        private static LanguageObjectModel _language;
-
-        /// <summary>
-        /// Отримати кофігурацію мови
-        /// </summary>
-        /// <param name="cultureInfo"></param>
-        /// <returns></returns>
-        public static async Task<LanguageObjectModel> GetLanguage(CultureInfo cultureInfo)
-        {
-            if (_language == null)
-                _language = await Task.Factory.StartNew(() => _LanguageLibraryHelper.GetLanguage(cultureInfo));
-
-            return _language;
-        }
-
         /// <summary>
         /// Отримати дані для редагування мови
         /// </summary>
@@ -153,15 +139,6 @@ namespace LanguageLibrary
         {
             _LanguageLibraryHelper.SyncLanguageDataObjectModel();
             _LanguageLibraryHelper.SyncDefaultContent();
-        }
-
-        /// <summary>
-        /// Синхронізація на клієнті
-        /// </summary>
-        /// <returns></returns>
-        public static async Task SyncOnClient()
-        {
-            await _LanguageLibraryHelper.SyncOnClient();
         }
 
         /// <summary>

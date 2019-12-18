@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppLanguageLibrary.cs" />
     <Compile Include="ApplicationLanguageLibrary.cs" />
     <Compile Include="Kernel\LanguageLibraryHelper.cs" />
     <Compile Include="Model\ComponentCategory.cs" />
@@ -52,30 +53,6 @@
     <Compile Include="Model\LanguageDataNested\RegisterItemCCIDTypeLD.cs" />
     <Compile Include="Model\LanguageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\ApplicationLanguage.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ApplicationLanguage.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Language.Designer.cs">
-      <DependentUpon>Language.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ApplicationLanguage.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ApplicationLanguage.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Language.en-US.resx" />
-    <EmbeddedResource Include="Resources\Language.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Language.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>LanguageLibrary.Languages</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Language.ru-RU.resx" />
-    <EmbeddedResource Include="Resources\Language.uk-UA.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">

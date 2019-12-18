@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using IpsCommonTypes.Types;
@@ -494,6 +495,43 @@ namespace LanguageLibrary.Kernel
             uiItem.AppendChild(originalContent);
 
             return uiItem;
+        }
+
+        internal void LoadApplicationCultureInfo()
+        {
+            string settingsFileName = "LanguageSettings.xml";
+            var xmlDocument = LoadXmlDocument(settingsFileName);
+
+            var rootSettings = xmlDocument.DocumentElement;
+            var langCode = rootSettings.SelectSingleNode("currentLanguage").InnerText;
+
+            if (string.IsNullOrWhiteSpace(langCode))
+                langCode = rootSettings.SelectSingleNode("defaultLanguage").InnerText;
+
+            var ci = new CultureInfo(langCode);
+
+            Thread.CurrentThread.CurrentCulture = ci;
+        }
+
+        internal void SetApplicationCultureInfo(CultureInfo cultureInfo)
+        {
+            string settingsFileName = "LanguageSettings.xml";
+            var xmlDocument = LoadXmlDocument(settingsFileName);
+
+            var rootSettings = xmlDocument.DocumentElement;
+
+            var currentLanguage = rootSettings.SelectSingleNode("currentLanguage");
+            if (currentLanguage == null)
+            {
+                currentLanguage = xmlDocument.CreateElement("currentLanguage");
+                rootSettings.AppendChild(currentLanguage);
+            }
+
+            currentLanguage.InnerText = cultureInfo.Name;
+            
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+
+            SaveXmlDocument(xmlDocument,settingsFileName);
         }
 
         /// <summary>
