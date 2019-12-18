@@ -68,6 +68,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="General\LauncherViewModel.cs" />
+    <Compile Include="General\Model\LM_Launcher.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,6 +115,10 @@
     <Resource Include="main-icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IPSViewComponentLibraryWPF\IPSViewComponentLibraryWPF.csproj">
+      <Project>{815967E6-79E6-4CF1-8F5A-F0B40F746AFF}</Project>
+      <Name>IPSViewComponentLibraryWPF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LanguageLibrary\LanguageLibrary.csproj">
       <Project>{FCDDBE23-8A62-4EEE-A2C1-57879A44D5A4}</Project>
       <Name>LanguageLibrary</Name>

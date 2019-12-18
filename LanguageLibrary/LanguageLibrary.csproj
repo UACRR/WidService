@@ -46,6 +46,7 @@
     <Compile Include="Kernel\LanguageLibraryHelper.cs" />
     <Compile Include="Model\ComponentCategory.cs" />
     <Compile Include="Model\LanguageDataModel.cs" />
+    <Compile Include="Model\LanguageDataNested\LauncherLD.cs" />
     <Compile Include="Model\LanguageItem.cs" />
     <Compile Include="Model\LanguageObjectModel.cs" />
     <Compile Include="Model\LanguageDataNested\CopyrightRequestLD.cs" />

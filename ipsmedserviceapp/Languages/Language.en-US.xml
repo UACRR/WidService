@@ -4,29 +4,24 @@
     <uiItem name="UIbtnSave">
       <content>
       </content>
-      <description>
-      </description>
+      <description>save button</description>
       <defaultContent>Зберегти</defaultContent>
     </uiItem>
     <uiItem name="UIbtnCancel">
-      <content>
-      </content>
-      <description>
-      </description>
+      <content>Cancel</content>
+      <description>cancel button</description>
       <defaultContent>Скасувати</defaultContent>
     </uiItem>
   </uiContainer>
   <uiContainer name="RegisterCurrencyChangeLD">
     <uiItem name="UITitle">
-      <content>
-      </content>
+      <content>Change currency</content>
       <description>
       </description>
       <defaultContent>Змінити курс</defaultContent>
     </uiItem>
     <uiItem name="UICurrency">
-      <content>
-      </content>
+      <content>Currency</content>
       <description>
       </description>
       <defaultContent>Курс валюти</defaultContent>
@@ -34,12 +29,81 @@
   </uiContainer>
   <uiContainer name="RegisterItemCcidTypeLD">
     <uiItem name="UITitle">
+      <content>Report</content>
+      <description>назва вікна</description>
+      <defaultContent>Звіт</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="LauncherLD">
+    <uiItem name="RH_OR">
       <content>
       </content>
       <description>
       </description>
-      <defaultContent>
-      </defaultContent>
+      <defaultContent>Адміністратор авторів/правовласників та об'єктів права</defaultContent>
+    </uiItem>
+    <uiItem name="ReportsAndRoyalty">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Робоче місце по управлінню розподілу авторської виногороди (обробка звітів користувачів)</defaultContent>
+    </uiItem>
+    <uiItem name="AnalyticsAndReports">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Аналітична звітність</defaultContent>
+    </uiItem>
+    <uiItem name="OperativeReporting">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Оперативна звітність</defaultContent>
+    </uiItem>
+    <uiItem name="Clients_WP">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Робоче місце по роботі з «малими правами»</defaultContent>
+    </uiItem>
+    <uiItem name="Theatres_WP">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Робоче місце по роботі з «великими правами»</defaultContent>
+    </uiItem>
+    <uiItem name="Partner_WP">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Робоче місце адміністратора по роботі з представниками компанії</defaultContent>
+    </uiItem>
+    <uiItem name="FixationOfViolations">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Фіксація порушень прав</defaultContent>
+    </uiItem>
+    <uiItem name="SystemDictionaries">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Довідники системи</defaultContent>
+    </uiItem>
+    <uiItem name="AnketaOfTheCompany">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
   </uiContainer>
 </LanguageObjectModel>

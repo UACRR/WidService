@@ -228,7 +228,9 @@
             </Button>
         </Grid>
 
-        <!--Visibility="{Binding CategoryPanelVisibility}"-->
+        <!--
+        Visibility="{Binding CategoryPanelVisibility}"
+        -->
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding CategoryPanelVisibility}">
             <WrapPanel x:Name="categories" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
 
@@ -483,7 +485,9 @@
             </WrapPanel>
         </ScrollViewer>
 
-        <!--Visibility="{Binding EditPanelVisibility}"-->
+        <!--
+        Visibility="{Binding EditPanelVisibility}"
+        -->
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding EditPanelVisibility}" Padding="0, 20">
             <Grid>
                 <Grid.RowDefinitions>
@@ -505,7 +509,8 @@
                                CanUserSortColumns="False"
                                ShowGroupPanel="False">
                     <t:RadGridView.Columns>
-                        <t:GridViewDataColumn DataMemberBinding="{Binding PropertyName}" Header="UI item name" Width="105"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding ComponentCategory}" Header="UI_category" Width="105"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding PropertyName}" Header="UI_item_name" Width="105"/>
                         <t:GridViewDataColumn DataMemberBinding="{Binding DefaultContent}" Header="Стандартна назва" Width="1*"/>
                         <t:GridViewDataColumn DataMemberBinding="{Binding Content}" Header="Назва мовою перекладу" Width="1*"/>
                         <t:GridViewDataColumn DataMemberBinding="{Binding Description}" Header="Опис" Width="2*"/>
@@ -536,15 +541,21 @@
                                        Text="{Binding EditedLanguageDataModel.PropertyName}"
                                        Foreground="Black"
                                        FontSize="14"/>
-                            <TextBlock Margin="0 2 0 5"
-                                       Text="{Binding EditedLanguageDataModel.Description}"
-                                       Foreground="Black" 
-                                       FontStyle="Italic"
-                                       FontWeight="DemiBold"
-                                       FontSize="14"
-                                       TextTrimming="CharacterEllipsis"
-                                       ToolTip="{Binding EditedLanguageDataModel.Description}"/>
-                            <TextBox Margin="0 10" Height="40" Text="{Binding EditedLanguageDataModel.Content}"/>
+                            <TextBox Margin="0 2 0 5"
+                                     Height="30"
+                                     Foreground="Black" 
+                                     FontStyle="Italic"
+                                     FontSize="12"
+                                     Text="{Binding EditedLanguageDataModel.Description}"/>
+                            <TextBox Margin="0 5" 
+                                     Height="30" 
+                                     Text="{Binding EditedLanguageDataModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger x:Name="keyDownEvent" EventName="KeyDown">
+                                        <i:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
                             <WrapPanel>
                                 <Button Style="{StaticResource buttonCancel}"
                                         Command="{Binding MoveToPreviousItemCommand}"

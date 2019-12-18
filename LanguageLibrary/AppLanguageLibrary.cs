@@ -9,6 +9,7 @@ namespace LanguageLibrary
 {
     public static class AppLanguageLibrary
     {
+        private static bool _cultureLoaded;
         private static readonly LanguageLibraryHelper _LanguageLibraryHelper = new LanguageLibraryHelper();
 
         private static LanguageObjectModel _language;
@@ -19,13 +20,25 @@ namespace LanguageLibrary
         {
             get
             {
-                if (_language == null)
+                _language = _LanguageLibraryHelper.GetLanguage(Thread.CurrentThread.CurrentCulture);
+                return _language;
+            }
+        }
+
+        /// <summary>
+        /// Поточні культурні налаштування
+        /// </summary>
+        public static CultureInfo CurrentAppCultureInfo
+        {
+            get
+            {
+                if (!_cultureLoaded)
                 {
                     _LanguageLibraryHelper.LoadApplicationCultureInfo();
-                    _language = _LanguageLibraryHelper.GetLanguage(Thread.CurrentThread.CurrentCulture);
+                    _cultureLoaded = true;
                 }
 
-                return _language;
+                return Thread.CurrentThread.CurrentCulture;
             }
         }
 

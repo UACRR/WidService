@@ -18,7 +18,7 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger x:Name="loadEvent" EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding}"/>
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -28,6 +28,58 @@
             <Setter Property="Margin" Value="25"/>
             <Setter Property="Height" Value="80"/>
             <Setter Property="Width" Value="120"/>
+        </Style>
+
+        <Style x:Key="textBlock" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="languageList" TargetType="{x:Type ComboBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="8*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="5" Background="DeepSkyBlue" />
+                                            <Border Grid.Column="0"  Margin="1"  Background="Transparent"   />
+                                            <Path x:Name="Arrow" Grid.Column="1"  Fill="White" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#0e1666" />
+                                            </Trigger>
+                                            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#0e1666" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3"  />
+                            <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder" Background="#1a229a"/>
+                                    <ScrollViewer SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
 
@@ -52,21 +104,21 @@
                       ToolTip="Обрати мову"
                       Padding="0,0" HorizontalAlignment="Left" 
                       Background="#1a237e" Cursor="Hand"
+                      Style="{StaticResource languageList}"
                       ItemsSource="{Binding LanguagesItemSource}"
                       SelectedItem="{Binding CurrentLanguage}"
                       SelectedValuePath="SpecificationCode"
                       BorderBrush="Transparent">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding LanguageName}" 
-                                       Foreground="White"
-                                       FontSize="28"
-                                       Height="40"
-                                       Padding="20,0"
-                                       Cursor="Hand"
-                                       VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <TextBlock Text="{Binding LanguageName}" 
+                                   HorizontalAlignment="Stretch"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   Height="30"
+                                   Padding="20,0"
+                                   Cursor="Hand"
+                                   VerticalAlignment="Center"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
@@ -85,24 +137,82 @@
                         </Grid.RowDefinitions>
                         <t:Label Grid.Row="0" 
                                  FontSize="15" 
-                                 Content="Малі права" 
+                                 Content="(тест) Малі права" 
                                  HorizontalContentAlignment="Center"/>
                         <Separator Grid.Row="1" HorizontalAlignment="Stretch"/>
                         <TextBlock Grid.Row="2" 
                                    TextWrapping="Wrap" 
-                                   FontSize="11"
+                                   FontSize="10"
                                    FontStyle="Italic" 
                                    Foreground="Gray" 
                                    TextTrimming="CharacterEllipsis"
                                    VerticalAlignment="Stretch"
-                                   ToolTip="Інтерфейс роботи з клієнтами малих првав"
-                                   Text="Інтерфейс роботи з клієнтами малих првав"/>
+                                   ToolTip="(тест) Інтерфейс роботи з клієнтами малих првав"
+                                   Text="(тест) Інтерфейс роботи з клієнтами малих првав"/>
 
                     </Grid>
                 </t:RadButton>
-                <t:RadButton Content="Великі права" ToolTip="Інтерфейс роботи з клієнтами великих првав (театри)"></t:RadButton>
-                <t:RadButton IsEnabled="False" Content="Розподіл А/В"></t:RadButton>
-                <t:RadButton Content="Звіти"></t:RadButton>
+
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.RH_OR}"
+                               Text="{Binding LM_Launcher.RH_OR}"/>
+                </t:RadButton>
+
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.ReportsAndRoyalty}"
+                               Text="{Binding LM_Launcher.ReportsAndRoyalty}"/>
+                </t:RadButton>
+
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.AnalyticsAndReports}"
+                               Text="{Binding LM_Launcher.AnalyticsAndReports}"/>
+                </t:RadButton>
+
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.OperativeReporting}"
+                               Text="{Binding LM_Launcher.OperativeReporting}"/>
+                </t:RadButton>
+
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.Clients_WP}"
+                               Text="{Binding LM_Launcher.Clients_WP}"/>
+                </t:RadButton>
+                
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.Theatres_WP}"
+                               Text="{Binding LM_Launcher.Theatres_WP}"/>
+                </t:RadButton>
+                
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.Partner_WP}"
+                               Text="{Binding LM_Launcher.Partner_WP}"/>
+                </t:RadButton>
+                
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.FixationOfViolations}"
+                               Text="{Binding LM_Launcher.FixationOfViolations}"/>
+                </t:RadButton>
+                
+                <t:RadButton>
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.SystemDictionaries}"
+                               Text="{Binding LM_Launcher.SystemDictionaries}"/>
+                </t:RadButton>
+
+                <t:RadButton IsEnabled="False">
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip="{Binding LM_Launcher.AnketaOfTheCompany}"
+                               Text="{Binding LM_Launcher.AnketaOfTheCompany}"/>
+                </t:RadButton>
+
             </WrapPanel>
         </ScrollViewer>
 

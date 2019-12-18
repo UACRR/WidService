@@ -337,6 +337,9 @@ namespace LanguageLibrary.Kernel
 
             var content = uiItem.SelectSingleNode(Content);
             content.InnerText = dataModel.Content;
+
+            var description = uiItem.SelectSingleNode(Description);
+            description.InnerText = dataModel.Description;
             
             SaveXmlDocument(xmlDocument, fileName);
         }
@@ -515,6 +518,9 @@ namespace LanguageLibrary.Kernel
 
         internal void SetApplicationCultureInfo(CultureInfo cultureInfo)
         {
+            if(Thread.CurrentThread.CurrentCulture.Name == cultureInfo.Name)
+                return;
+
             string settingsFileName = "LanguageSettings.xml";
             var xmlDocument = LoadXmlDocument(settingsFileName);
 
@@ -590,6 +596,12 @@ namespace LanguageLibrary.Kernel
                     
                     XmlNode sourceItem = itemChild.SelectSingleNode(sourceName);
                     childNodes.SelectSingleNode(DefaultContent).InnerText = sourceItem.InnerText;
+
+                    XmlNode sourceItemDescription = itemChild.SelectSingleNode(Description);
+                    XmlNode description = childNodes.SelectSingleNode(Description);
+                    
+                    if (string.IsNullOrWhiteSpace(description.InnerText))
+                        description.InnerText = sourceItemDescription.InnerText;
                 }
             }
 

@@ -9,10 +9,12 @@ namespace LanguageLibrary.Model
             CopyrightRequestLD = new CopyrightRequestLD();
             RegisterCurrencyChangeLD = new RegisterCurrencyChangeLD();
             RegisterItemCcidTypeLD = new RegisterItemCCIDTypeLD();
+            LauncherLD = new LauncherLD();
         }
 
         public CopyrightRequestLD CopyrightRequestLD { get; set; }
         public RegisterCurrencyChangeLD RegisterCurrencyChangeLD { get; set; }
         public RegisterItemCCIDTypeLD  RegisterItemCcidTypeLD { get; set; }
+        public LauncherLD LauncherLD { get; set; }
     }
 }

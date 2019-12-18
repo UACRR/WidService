@@ -6,14 +6,19 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using LanguageLibrary;
 using Telerik.Windows.Controls;
+using IPSViewComponentLibraryWPF.IPSExtensions;
+using Launcher.General.Model;
 
 namespace Launcher.General
 {
     public class LauncherViewModel : ViewModelBase
     {
         #region * * * DATA PROPERTIES * * *
+
+        public LM_Launcher LM_Launcher { get; } = new LM_Launcher();
 
         private ObservableCollection<LanguageInfo> _languagesItemSource = new ObservableCollection<LanguageInfo>
         {
@@ -47,7 +52,8 @@ namespace Launcher.General
             set
             {
                 _languagesItemSource = value;
-                CurrentLanguage = LanguagesItemSource.FirstOrDefault();
+                string name = AppLanguageLibrary.CurrentAppCultureInfo.Name;
+                CurrentLanguage = LanguagesItemSource.FirstOrDefault(rec => rec.SpecificationCode == name);
                 OnPropertyChanged(() => LanguagesItemSource);
             }
         }
@@ -74,8 +80,18 @@ namespace Launcher.General
         private void LoadLanguage()
         {
             Task.Factory.StartNew(async () => await AppLanguageLibrary.SyncOnClient()).Wait();
-            
-            LanguageObjectModel lang = AppLanguageLibrary.CurrentLanguage;
+            AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
+            LM_Launcher.UpdateLanguageLocalizations();
+        }
+
+        #endregion
+
+        #region * * * COMMANDS * * *
+
+        public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
+        private void LoadCommandExecute(object o)
+        {
+            LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
         }
 
         #endregion

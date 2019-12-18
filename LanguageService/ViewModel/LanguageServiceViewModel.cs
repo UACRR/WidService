@@ -300,6 +300,7 @@ namespace LanguageService.ViewModel
         private void SaveItemChangeCommandExecute(object o)
         {
             CurrentLanguageDataModel.Content = EditedLanguageDataModel.Content;
+            CurrentLanguageDataModel.Description = EditedLanguageDataModel.Description;
             LanguageLibraryManager.UpdateLanguageData(CurrentLanguage, EditedLanguageDataModel);
             MoveToNextItemCommand.Execute(null);
             _someValueChanged = true;
@@ -385,6 +386,13 @@ namespace LanguageService.ViewModel
             var result = await LanguageLibraryManager.SyncOnServer();
             if (!result.IsSuccess)
                 MessageBox.Show("Помилка синхронізації з сервером!", result.InnerMessage, MessageBoxButton.OK,MessageBoxImage.Warning);
+        }
+
+        public ICommand KeyDownCommand => new IPSDelegateCommand(KeyDownCommandExecute);
+        private void KeyDownCommandExecute(object o)
+        {
+            if (((KeyEventArgs) o).Key == Key.Enter)
+                SaveItemChangeCommand.Execute(null);
         }
 
         #endregion

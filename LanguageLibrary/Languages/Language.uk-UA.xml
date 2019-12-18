@@ -3,14 +3,12 @@
   <uiContainer name="CopyrightRequestLD">
     <uiItem name="UIbtnSave">
       <content>Зберегти</content>
-      <description>
-      </description>
+      <description>кнопка збереження</description>
       <defaultContent>Зберегти</defaultContent>
     </uiItem>
     <uiItem name="UIbtnCancel">
       <content>Скасувати</content>
-      <description>
-      </description>
+      <description>кнопка скасування</description>
       <defaultContent>Скасувати</defaultContent>
     </uiItem>
   </uiContainer>
@@ -31,10 +29,70 @@
   <uiContainer name="RegisterItemCcidTypeLD">
     <uiItem name="UITitle">
       <content>Звіт</content>
+      <description>назва вікна</description>
+      <defaultContent>Звіт</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="LauncherLD">
+    <uiItem name="RH_OR">
+      <content>Адміністратор авторів/правовласників та об'єктів права</content>
       <description>
       </description>
-      <defaultContent>
-      </defaultContent>
+      <defaultContent>Адміністратор авторів/правовласників та об'єктів права</defaultContent>
+    </uiItem>
+    <uiItem name="ReportsAndRoyalty">
+      <content>Робоче місце по управлінню розподілу авторської виногороди (обробка звітів користувачів)</content>
+      <description>
+      </description>
+      <defaultContent>Робоче місце по управлінню розподілу авторської виногороди (обробка звітів користувачів)</defaultContent>
+    </uiItem>
+    <uiItem name="AnalyticsAndReports">
+      <content>Аналітична звітність</content>
+      <description>
+      </description>
+      <defaultContent>Аналітична звітність</defaultContent>
+    </uiItem>
+    <uiItem name="OperativeReporting">
+      <content>Оперативна звітність</content>
+      <description>
+      </description>
+      <defaultContent>Оперативна звітність</defaultContent>
+    </uiItem>
+    <uiItem name="Clients_WP">
+      <content>Робоче місце по роботі з «малими правами»</content>
+      <description>
+      </description>
+      <defaultContent>Робоче місце по роботі з «малими правами»</defaultContent>
+    </uiItem>
+    <uiItem name="Theatres_WP">
+      <content>Робоче місце по роботі з «великими правами»</content>
+      <description>
+      </description>
+      <defaultContent>Робоче місце по роботі з «великими правами»</defaultContent>
+    </uiItem>
+    <uiItem name="Partner_WP">
+      <content>Робоче місце адміністратора по роботі з представниками компанії</content>
+      <description>
+      </description>
+      <defaultContent>Робоче місце адміністратора по роботі з представниками компанії</defaultContent>
+    </uiItem>
+    <uiItem name="FixationOfViolations">
+      <content>Фіксація порушень прав</content>
+      <description>
+      </description>
+      <defaultContent>Фіксація порушень прав</defaultContent>
+    </uiItem>
+    <uiItem name="SystemDictionaries">
+      <content>Довідники системи</content>
+      <description>
+      </description>
+      <defaultContent>Довідники системи</defaultContent>
+    </uiItem>
+    <uiItem name="AnketaOfTheCompany">
+      <content>Анкета компанії</content>
+      <description>
+      </description>
+      <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
   </uiContainer>
 </LanguageObjectModel>
