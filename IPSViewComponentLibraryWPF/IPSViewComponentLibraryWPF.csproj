@@ -198,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Modules\TransferOfRights\TransferOfRightsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Properties\RDDefaultElementStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +220,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\TransferOfRights\Model\LM_TransferOfRights.cs" />
+    <Compile Include="Modules\TransferOfRights\Model\ObjectsRightOfRightholder.cs" />
+    <Compile Include="Modules\TransferOfRights\Model\RightholderInfoModel.cs" />
+    <Compile Include="Modules\TransferOfRights\Model\TransferedObjectsRightModel.cs" />
+    <Compile Include="Modules\TransferOfRights\TransferOfRightsControl.xaml.cs">
+      <DependentUpon>TransferOfRightsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TransferOfRights\TransferOfRightsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -259,7 +271,7 @@
     <Folder Include="Modules\Consumer\ConsumerBigRight\" />
     <Folder Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterItemDefaultType\" />
     <Folder Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterItemsRRLType\" />
-    <Folder Include="Modules\CopyrightRequest\Models\" />
+    <Folder Include="Modules\CopyrightRequest\Model\" />
     <Folder Include="_trash\" />
   </ItemGroup>
   <ItemGroup>
@@ -268,18 +280,30 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\filter-icon.png" />
+    <Resource Include="Resources\Icons\filter-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\currency-exchange-icon.png" />
+    <Resource Include="Resources\Icons\currency-exchange-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\delete-icon.png" />
-    <Resource Include="Resources\Icons\edit-icon.png" />
-    <Resource Include="Resources\Icons\view-icon.png" />
+    <Resource Include="Resources\Icons\delete-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\edit-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\view-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\print-icon.png" />
+    <Resource Include="Resources\Icons\print-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,7 +19,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Extensions;
-using IPSViewComponentLibraryWPF.Modules.CopyrightRequest;
+using IPSViewComponentLibraryWPF;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
@@ -60,6 +60,9 @@ namespace RightholderWorkplace
 
             var control = new WPFControls.CopyrightRequestControl();
             ehCopyrightRequests.Child = control;
+
+            var control2 = new IPSViewComponentLibraryWPF.Modules.TransferOfRights.TransferOfRightsControl();
+            ehTransferOfRights.Child = control2;
         }
 
         #region Rightholders page
