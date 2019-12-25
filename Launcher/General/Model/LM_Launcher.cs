@@ -115,7 +115,7 @@ namespace Launcher.General.Model
             }
         }
 
-        public void UpdateLanguageLocalizations()
+        public void UpdateLanguageLocalization()
         {
             RH_OR = AppLanguageLibrary.CurrentLanguage.LauncherLD.RH_OR.Content;
             ReportsAndRoyalty = AppLanguageLibrary.CurrentLanguage.LauncherLD.ReportsAndRoyalty.Content;

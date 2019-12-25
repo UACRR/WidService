@@ -6,16 +6,73 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using LanguageLibrary;
 using Telerik.Windows.Controls;
 using IPSViewComponentLibraryWPF.IPSExtensions;
+using Launcher.Controls.LoginWindow;
 using Launcher.General.Model;
 
 namespace Launcher.General
 {
     public class LauncherViewModel : ViewModelBase
     {
+        public LauncherViewModel()
+        {
+            UserInfoVisibility = Visibility.Collapsed;
+        }
+
+        #region * * * BEHAVIOR PROPERTIES * * *
+
+        private bool _isSignIn;
+        public bool IsSignIn
+        {
+            get => _isSignIn;
+            set
+            {
+                _isSignIn = value;
+                LoginButtonVisibility = Visibility.Collapsed;
+                UserInfoVisibility = Visibility.Visible;
+                OnPropertyChanged(() => IsSignIn);
+            }
+        }
+
+        private string _userName = "...";
+        public string UserName
+        {
+            get => _userName;
+            set
+            {
+                _userName = value;
+                OnPropertyChanged(() => UserName);
+            }
+        }
+
+        private Visibility _loginButtonVisibility = Visibility.Visible;
+        public Visibility LoginButtonVisibility
+        {
+            get => _loginButtonVisibility;
+            set
+            {
+                _loginButtonVisibility = value;
+                OnPropertyChanged(() => LoginButtonVisibility);
+            }
+        }
+
+        private Visibility _userInfoVisibility = Visibility.Visible;
+        public Visibility UserInfoVisibility
+        {
+            get => _userInfoVisibility;
+            set
+            {
+                _userInfoVisibility = value;
+                OnPropertyChanged(() => UserInfoVisibility);
+            }
+        }
+
+        #endregion
+
         #region * * * DATA PROPERTIES * * *
 
         public LM_Launcher LM_Launcher { get; } = new LM_Launcher();
@@ -81,7 +138,7 @@ namespace Launcher.General
         {
             Task.Factory.StartNew(async () => await AppLanguageLibrary.SyncOnClient()).Wait();
             AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
-            LM_Launcher.UpdateLanguageLocalizations();
+            LM_Launcher.UpdateLanguageLocalization();
         }
 
         #endregion
@@ -89,9 +146,24 @@ namespace Launcher.General
         #region * * * COMMANDS * * *
 
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
-        private void LoadCommandExecute(object o)
+        private async void LoadCommandExecute(object o)
         {
             LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
+            await Task.Delay(1500);
+            LoginCommandExecute(null);
+        }
+
+        public ICommand LoginCommand => new IPSDelegateCommand(LoginCommandExecute);
+        private void LoginCommandExecute(object o)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            bool result = loginWindow.ShowDialog() ?? false;
+            if (result)
+            {
+                var userInfo =((LoginViewModel) loginWindow.DataContext).UserInfo;
+                UserName = userInfo.UserName;
+                IsSignIn = true;
+            }
         }
 
         #endregion
