@@ -4,6 +4,7 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
 {
     public class ObjectsRightOfRightholder
     {
+        public bool IsSelected { get; set; }
         public int ObjId { get; set; }
         public string InnerCode { get; set; }
         public string Name { get; set; }

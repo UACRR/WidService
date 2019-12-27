@@ -412,7 +412,7 @@ namespace RightholderWorkplace
             this.rightholdersPageView.ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.Individual;
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
-            this.rightholdersPageView.SelectedPage = this.rightholdersChangePage;
+            this.rightholdersPageView.SelectedPage = this.rightholdersPage;
             this.rightholdersPageView.Size = new System.Drawing.Size(1206, 632);
             this.rightholdersPageView.TabIndex = 0;
             this.rightholdersPageView.ThemeName = "Office2013Light";
@@ -883,9 +883,9 @@ namespace RightholderWorkplace
             // 
             this.transferOfRights.Controls.Add(this.ehTransferOfRights);
             this.transferOfRights.ItemSize = new System.Drawing.SizeF(171F, 27F);
-            this.transferOfRights.Location = new System.Drawing.Point(5, 29);
+            this.transferOfRights.Location = new System.Drawing.Point(5, 31);
             this.transferOfRights.Name = "transferOfRights";
-            this.transferOfRights.Size = new System.Drawing.Size(1196, 600);
+            this.transferOfRights.Size = new System.Drawing.Size(1196, 596);
             this.transferOfRights.Text = "Зміна правовласника (WPF)";
             // 
             // ehTransferOfRights
@@ -893,7 +893,7 @@ namespace RightholderWorkplace
             this.ehTransferOfRights.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ehTransferOfRights.Location = new System.Drawing.Point(0, 0);
             this.ehTransferOfRights.Name = "ehTransferOfRights";
-            this.ehTransferOfRights.Size = new System.Drawing.Size(1196, 600);
+            this.ehTransferOfRights.Size = new System.Drawing.Size(1196, 596);
             this.ehTransferOfRights.TabIndex = 0;
             this.ehTransferOfRights.Text = "ehTransferOfRights";
             this.ehTransferOfRights.Child = null;

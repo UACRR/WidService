@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model;
+using IPSViewComponentLibraryWPF.Modules.TransferOfRights.Windows;
 using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
@@ -27,6 +29,16 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
             }
         }
 
+        private Visibility _rightholderAddVisibility;
+        public Visibility RightholderAddVisibility
+        {
+            get => _rightholderAddVisibility;
+            set
+            {
+                _rightholderAddVisibility = value;
+                OnPropertyChanged(() =>  RightholderAddVisibility);
+            }
+        }
 
         private bool _isAllCheck;
         public bool IsAllCheck
@@ -38,7 +50,6 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
                 OnPropertyChanged(() => IsAllCheck);
             }
         }
-
 
         #endregion
 
@@ -151,7 +162,12 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
             }
         }
 
-        private RightholderInfoModel _selectedRightholder;
+        private RightholderInfoModel _selectedRightholder = new RightholderInfoModel
+        {
+            RightholderName = "1234",
+            Profit = 12345.56m,
+            RightholderBirthday = DateTime.Today,
+        };
         public RightholderInfoModel SelectedRightholder
         {
             get => _selectedRightholder;
@@ -173,6 +189,16 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
             }
         }
 
+        private DateProperty _dateProperty;
+        public DateProperty DateProperty
+        {
+            get => _dateProperty;
+            set
+            {
+                _dateProperty = value;
+                OnPropertyChanged(() => DateProperty);
+            }
+        }
         #endregion
 
         #region * * * METHODS * * *
@@ -234,13 +260,18 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
             {
                 CustId = i ?? 0,
                 RightholderName = $"Василькович Адам Герцович ({i})",
+                RightholderBirthday = new DateTime(1992,08,08),
+                Profit = 1254.45m
             };
+
+            RightholdersListWindow window = new RightholdersListWindow();
+            window.Show();
         }
 
         /// <summary>
         /// Показати анкету правовласника
         /// </summary>
-        public ICommand OpenRightholderAnketaCommand => new IPSDelegateCommand(OpenRightholderAnketaCommandExecute);
+        public ICommand OpenRightholderAnketaCommand => new IPSDelegateCommand(OpenRightholderAnketaCommandExecute, o => SelectedRightholder != null);
         private void OpenRightholderAnketaCommandExecute(object o)
         {
 
@@ -258,11 +289,48 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
         /// <summary>
         /// Показати анкету додаткового правовласника
         /// </summary>
-        public ICommand OpenRightholderAddAnketaCommand => new IPSDelegateCommand(OpenRightholderAnketaAddCommandExecute);
+        public ICommand OpenRightholderAddAnketaCommand => new IPSDelegateCommand(OpenRightholderAnketaAddCommandExecute, o => SelectedRightholderAdd != null);
         private void OpenRightholderAnketaAddCommandExecute(object o)
         {
 
         }
+
+        public ICommand MoveSelectedObjectsCommand => new IPSDelegateCommand(MoveSelectedObjectsCommandExecute);
+        private void MoveSelectedObjectsCommandExecute(object o)
+        {
+            var items = ObjectsRightItemSource.Where(rec => rec.IsSelected).ToList();
+            DateProperty = new DateProperty();
+
+        }
+
+        public ICommand MoveAllObjectsCommand => new IPSDelegateCommand(MoveAllObjectsCommandExecute);
+        private void MoveAllObjectsCommandExecute(object o)
+        {
+
+        }
+
+
+        #region - нижня панель - 
+
+        public ICommand AddRightholderToTransferCommand => new IPSDelegateCommand(AddRightholderToTransferCommandExecute);
+        private void AddRightholderToTransferCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand ClearObjectsCommand => new IPSDelegateCommand(ClearObjectsCommandExecute);
+        private void ClearObjectsCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand SaveCommand => new IPSDelegateCommand(SaveCommandExecute);
+        private void SaveCommandExecute(object o)
+        {
+
+        }
+
+        #endregion
 
 
         #endregion

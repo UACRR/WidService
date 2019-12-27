@@ -1,4 +1,5 @@
-﻿using Telerik.Windows.Controls;
+﻿using System;
+using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
 {
@@ -9,6 +10,8 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
         public string RightholderCode { get; set; }
         public string IPI { get; set; }
         public string RightholderName { get; set; }
+        public decimal Profit { get; set; }
+        public DateTime? RightholderBirthday { get; set; }
 
         private decimal _rightholderRate;
         public decimal RightholderRate
@@ -17,6 +20,13 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
             set
             {
                 _rightholderRate = value;
+                
+                if (_rightholderRate > 100)
+                    _rightholderRate = 100m;
+                
+                if (_rightholderRate < 0)
+                    _rightholderRate = 0;
+
                 OnPropertyChanged(() => RightholderRate);
             }
         }

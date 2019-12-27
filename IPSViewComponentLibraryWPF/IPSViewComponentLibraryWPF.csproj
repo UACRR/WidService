@@ -202,6 +202,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\TransferOfRights\Windows\RightholdersListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Properties\RDDefaultElementStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,6 +224,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\TransferOfRights\Model\DateProperty.cs" />
     <Compile Include="Modules\TransferOfRights\Model\LM_TransferOfRights.cs" />
     <Compile Include="Modules\TransferOfRights\Model\ObjectsRightOfRightholder.cs" />
     <Compile Include="Modules\TransferOfRights\Model\RightholderInfoModel.cs" />
@@ -228,6 +233,12 @@
       <DependentUpon>TransferOfRightsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\TransferOfRights\TransferOfRightsViewModel.cs" />
+    <Compile Include="Modules\TransferOfRights\Windows\Model\PublishersCopyrightModel.cs" />
+    <Compile Include="Modules\TransferOfRights\Windows\Model\RightholderCopyrightModel.cs" />
+    <Compile Include="Modules\TransferOfRights\Windows\RightholdersListViewModel.cs" />
+    <Compile Include="Modules\TransferOfRights\Windows\RightholdersListWindow.xaml.cs">
+      <DependentUpon>RightholdersListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

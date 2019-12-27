@@ -1,13 +1,91 @@
 ﻿<Window x:Class="TestWPFControls.Controls.MainWindow"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-                xmlns:uc="clr-namespace:IPSViewComponentLibraryWPF.Modules.CopyrightRequest;assembly=IPSViewComponentLibraryWPF"
+                xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+                xmlns:local="clr-namespace:TestWPFControls.Controls"
+                xmlns:uc="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights;assembly=IPSViewComponentLibraryWPF"
                 Title="MainWindow" Height="600" Width="900">
     <Window.WindowStartupLocation>CenterScreen</Window.WindowStartupLocation>
+
+    <Window.DataContext>
+        <local:DefaultViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="t:RadGridView">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="ShowGroupPanel" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsFilteringAllowed" Value="False"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <DockPanel>
-            <uc:CopyrightRequestControl/>
-        </DockPanel>
+        <t:RadGridView x:Name="RadGridView" 
+                       ItemsSource="{Binding SelectedObjectsRightItemSource}"
+                       AutoGenerateColumns="False"
+                       GroupRenderMode="Flat"
+                       ShowToolTipOnTrimmedText="True">
+
+
+            <t:RadGridView.ChildTableDefinitions>
+                <t:GridViewTableDefinition>
+                    <t:GridViewTableDefinition.Relation>
+                        <t:PropertyRelation ParentPropertyName="Rightholders"/>
+                    </t:GridViewTableDefinition.Relation>
+                </t:GridViewTableDefinition>
+            </t:RadGridView.ChildTableDefinitions>
+
+
+            <t:RadGridView.Columns>
+                <!--<t:GridViewToggleRowDetailsColumn/>-->
+                <t:GridViewDataColumn Header="Творча роль" DataMemberBinding="{Binding RoleName}"/>
+                <t:GridViewDataColumn Header="Назва об'єкта" DataMemberBinding="{Binding Name}"/>
+                <t:GridViewDataColumn Header="% володіння" DataMemberBinding="{Binding RateRh}"/>
+                <!--обрати-->
+                <t:GridViewColumn Width="75" ShowToolTipOnTrimmedText="True">
+                    <t:GridViewColumn.Header>
+                        <CheckBox x:Name="headerCheckBox"
+                                      Content="Ручне редагування відсотка"
+                                      FontWeight="SemiBold"
+                                      IsChecked="{Binding Path=DataContext.IsAllCheck, RelativeSource={RelativeSource AncestorType=t:RadGridView}}">
+                        </CheckBox>
+                    </t:GridViewColumn.Header>
+                    <t:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center"
+                                          IsChecked="{Binding ManualDistribution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </t:GridViewColumn.CellTemplate>
+                </t:GridViewColumn>
+                <!--видалити-->
+                <t:GridViewColumn MinWidth="35" Width="35">
+                    <t:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <t:RadButton Background="Transparent" BorderThickness="0" Margin="-2,0,-2,0" Width="30" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                             Command="{Binding DataContext.RemoveObjectRightCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                             CommandParameter="{Binding}">
+                                <Image Source="../../Resources/Icons/delete-icon.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            </t:RadButton>
+                        </DataTemplate>
+                    </t:GridViewColumn.CellTemplate>
+                </t:GridViewColumn>
+            </t:RadGridView.Columns>
+
+            <t:RadGridView.HierarchyChildTemplate>
+                <DataTemplate>
+                    <t:RadGridView x:Name="RadGridView"
+                                   BorderThickness="0,1,0,1"
+                                   ItemsSource="{Binding Rightholders}">
+                        <t:RadGridView.Columns>
+                            <t:GridViewDataColumn Header="Шифр правовласника" DataMemberBinding="{Binding RightholderCode}"/>
+                            <t:GridViewDataColumn Header="IPI" DataMemberBinding="{Binding IPI}"/>
+                            <t:GridViewDataColumn Header="Правовласник" DataMemberBinding="{Binding RightholderName}"/>
+                            <t:GridViewDataColumn Header="% володіння" DataMemberBinding="{Binding RightholderRate, StringFormat='{}{0:N2}'}"/>
+                        </t:RadGridView.Columns>
+                    </t:RadGridView>
+                </DataTemplate>
+            </t:RadGridView.HierarchyChildTemplate>
+        </t:RadGridView>
     </Grid>
 </Window>
