@@ -6,12 +6,9 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
     public class RightholderInfoModel : ViewModelBase
     {
         public int CustId { get; set; }
-        public int ObjId { get; set; }
         public string RightholderCode { get; set; }
         public string IPI { get; set; }
         public string RightholderName { get; set; }
-        public decimal Profit { get; set; }
-        public DateTime? RightholderBirthday { get; set; }
 
         private decimal _rightholderRate;
         public decimal RightholderRate

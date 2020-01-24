@@ -1,0 +1,262 @@
+﻿<UserControl x:Class="IPSViewComponentLibraryWPF.Modules.TransferOfRights.Views.PublisherSubpublisherTransferView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights.Views"
+             xmlns:vm="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             Background="WhiteSmoke"
+             d:DesignHeight="500" d:DesignWidth="937">
+
+    <UserControl.DataContext>
+        <vm:PublisherSubpublisherTransferViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="8,3,3,3"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="textBlock" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style x:Key="textBlockDefault" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="t:RadGridView">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="ShowGroupPanel" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="RowIndicatorVisibility" Value="Collapsed"/>
+            <Setter Property="IsFilteringAllowed" Value="False"/>
+        </Style>
+        <Style TargetType="t:RadButton">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Width" Value="160"/>
+        </Style>
+        <Style TargetType="t:RadComboBox">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+        <Style TargetType="t:RadDatePicker">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Width" Value="125"/>
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+    </UserControl.Resources>
+
+    <t:RadBusyIndicator IsBusy="{Binding IsBusy}" t:StyleManager.Theme="VisualStudio2013">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1">
+                <!--обрати правовласника-->
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding LM.PubSubTransferType}"/>
+                    <ComboBox MinWidth="125" 
+                                  Margin="3" 
+                                  ItemsSource="{Binding PubSubTransferTypeItemSource}"
+                                  SelectedValuePath="Value" 
+                                  DisplayMemberPath="Name" 
+                                  SelectedItem="{Binding SelectedPubSubTransferType}"/>
+                    <Label Content="{Binding LM.PubSub}"/>
+                    <t:RadDropDownButton t:StyleManager.Theme="VisualStudio2013" Margin="3" MinWidth="175"
+                                         Content="{Binding SelectedRightholder.RightholderName}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding SelectRightholderCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </t:RadDropDownButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="Visible">
+                    <Label Content="передаються об'єкти"/>
+                    <TextBlock Style="{StaticResource textBlock}" Text="Sony"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!--список правовласників-->
+            <t:RadGridView x:Name="gvObjectsRight" Grid.Row="2"
+                           SelectionMode="Single"
+                           IsReadOnly="True"
+                           ItemsSource="{Binding ObjectsRightItemSource}"
+                           ColumnWidth="*">
+                <t:RadGridView.Columns>
+                    <t:GridViewColumn Width="35" ShowToolTipOnTrimmedText="True">
+                        <t:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center"
+                                          IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </t:GridViewColumn.CellTemplate>
+                    </t:GridViewColumn>
+                    <t:GridViewDataColumn Width="100" Header="Шифр твору" DataMemberBinding="{Binding ObjId}"/>
+                    <t:GridViewDataColumn Width="250" Header="Назва твору" DataMemberBinding="{Binding Name}"/>
+                    <t:GridViewDataColumn Header=" В/М" DataMemberBinding="{Binding Category}"/>
+                    <t:GridViewDataColumn Header="Жанр" DataMemberBinding="{Binding GenreName}"/>
+                    <t:GridViewDataColumn Header="Час" DataMemberBinding="{Binding Duration}"/>
+                    <t:GridViewDataColumn Header="Творчий профіль" DataMemberBinding="{Binding RoleName}"/>
+                    <t:GridViewDataColumn Header="Переклад / обробка / оригінал" DataMemberBinding="{Binding SpecName}"/>
+                    <t:GridViewDataColumn Header="Спільний % володіння" DataMemberBinding="{Binding RateTotal, StringFormat='{}{0:N2}'}"/>
+                    <t:GridViewDataColumn Header="Його % володіння" DataMemberBinding="{Binding RateRh, StringFormat='{}{0:N2}'}"/>
+                    <t:GridViewDataColumn Header="Виконавець" DataMemberBinding="{Binding Performer}"/>
+                    <t:GridViewDataColumn Header="Дохід з початку року" DataMemberBinding="{Binding Profit, StringFormat='{}{0:N2}'}"/>
+                    <t:GridViewColumn MinWidth="35" Width="35">
+                        <t:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <t:RadButton Background="Transparent" BorderThickness="0" Margin="-2,0,-2,0" Width="30" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                             Command="{Binding DataContext.ViewObjectRightCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                             CommandParameter="{Binding}">
+                                    <Image Source="../../../Resources/Icons/edit-icon.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                </t:RadButton>
+                            </DataTemplate>
+                        </t:GridViewColumn.CellTemplate>
+                    </t:GridViewColumn>
+                </t:RadGridView.Columns>
+            </t:RadGridView>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <t:RadButton Grid.Column="0" 
+                                 Content="Перенести обрані"
+                                 Command="{Binding MoveSelectedObjectsCommand}"/>
+
+                <t:RadButton Grid.Column="1" 
+                             Content="Перенести всі"
+                             Command="{Binding MoveAllObjectsCommand}"/>
+            </Grid>
+
+            <StackPanel Grid.Row="4">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Об'єкти передаються від"/>
+                    <Label Content="___"/>
+                    <Label Content="до"/>
+                    <Label Content="___"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="З якої дати: "/>
+                    <t:RadDatePicker SelectedValue="{Binding DateProperty.DateBegin}"/>
+                    <Label Content="по"/>
+                    <t:RadDatePicker SelectedValue="{Binding DateProperty.DateEnd}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <t:RadGridView x:Name="RadGridView" 
+                           t:StyleManager.Theme="Windows7"
+                           Grid.Row="5"
+                           ItemsSource="{Binding SelectedObjectsRightItemSource}"
+                           AutoGenerateColumns="False"
+                           GroupRenderMode="Flat"
+                           IsReadOnly="True"
+                           ShowToolTipOnTrimmedText="True">
+
+                <t:RadGridView.ChildTableDefinitions>
+                    <t:GridViewTableDefinition>
+                        <t:GridViewTableDefinition.Relation>
+                            <t:PropertyRelation ParentPropertyName="Rightholders"/>
+                        </t:GridViewTableDefinition.Relation>
+                    </t:GridViewTableDefinition>
+                </t:RadGridView.ChildTableDefinitions>
+
+                <t:RadGridView.Columns>
+                    <!--<t:GridViewToggleRowDetailsColumn/>-->
+                    <t:GridViewDataColumn Width="250" Header="Творча роль" DataMemberBinding="{Binding RoleName}"/>
+                    <t:GridViewDataColumn Width="275" Header="Назва об'єкта" DataMemberBinding="{Binding Name}"/>
+                    <t:GridViewDataColumn Width="100" TextAlignment="Right" Header="% володіння" DataMemberBinding="{Binding RateRh}"/>
+                    <!--обрати-->
+                    <t:GridViewColumn Width="140" ShowToolTipOnTrimmedText="True">
+                        <t:GridViewColumn.Header>
+                            <!--Content="Ручне редагування відсотка"-->
+
+                            <CheckBox x:Name="headerCheckBox"
+                                      Content="Авторозрахунок %"
+                                      FontWeight="SemiBold"
+                                      IsChecked="{Binding Path=DataContext.IsAllCheck, RelativeSource={RelativeSource AncestorType=t:RadGridView}}">
+                            </CheckBox>
+                        </t:GridViewColumn.Header>
+                        <t:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center"
+                                          IsChecked="{Binding ManualDistribution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </t:GridViewColumn.CellTemplate>
+                    </t:GridViewColumn>
+                    <!--видалити-->
+                    <t:GridViewColumn MinWidth="35" Width="35">
+                        <t:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <t:RadButton Background="Transparent" BorderThickness="0" Margin="-2,0,-2,0" Width="30" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                             Command="{Binding DataContext.RemoveObjectRightCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                             CommandParameter="{Binding}">
+                                    <Image Source="../../Resources/Icons/delete-icon.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                </t:RadButton>
+                            </DataTemplate>
+                        </t:GridViewColumn.CellTemplate>
+                    </t:GridViewColumn>
+                </t:RadGridView.Columns>
+
+                <t:RadGridView.HierarchyChildTemplate>
+                    <DataTemplate>
+                        <t:RadGridView x:Name="RadGridView"
+                                       Margin="20,0,0,0"
+                                       t:StyleManager.Theme="OfficeBlue"
+                                       BorderThickness="0,1,0,1"
+                                       ItemsSource="{Binding Rightholders}">
+                            <t:RadGridView.Columns>
+                                <t:GridViewDataColumn MinWidth="125" IsReadOnly="True" Header="Шифр правовласника" DataMemberBinding="{Binding RightholderCode}"/>
+                                <t:GridViewDataColumn MinWidth="125" IsReadOnly="True"  Header="IPI" DataMemberBinding="{Binding IPI}"/>
+                                <t:GridViewDataColumn MinWidth="175" IsReadOnly="True"  Header="Правовласник" DataMemberBinding="{Binding RightholderName}"/>
+                                <t:GridViewDataColumn MinWidth="90" IsReadOnly="{Binding ManualDistribution}" TextAlignment="Right" Header="% володіння" DataMemberBinding="{Binding RightholderRate, StringFormat='{}{0:N2}'}"/>
+                            </t:RadGridView.Columns>
+                        </t:RadGridView>
+                    </DataTemplate>
+                </t:RadGridView.HierarchyChildTemplate>
+            </t:RadGridView>
+
+            <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <t:RadButton Grid.Column="0" 
+                             Content="Додати правонаступника" 
+                             HorizontalAlignment="Left"
+                             Command="{Binding AddRightholderToTransferCommand}"/>
+                <t:RadButton Grid.Column="1" 
+                             Content="Очистити" 
+                             HorizontalAlignment="Right"
+                             Command="{Binding ClearObjectsCommand}"/>
+                <t:RadButton Grid.Column="2" 
+                             HorizontalAlignment="Right"
+                             Content="Зберегти" 
+                             Command="{Binding SaveCommand}"/>
+            </Grid>
+
+        </Grid>
+    </t:RadBusyIndicator>
+</UserControl>

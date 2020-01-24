@@ -5,9 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model;
+using IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels;
+using IPSViewComponentLibraryWPF.Modules.TransferOfRights.Views;
 using IPSViewComponentLibraryWPF.Modules.TransferOfRights.Windows;
 using Telerik.Windows.Controls;
 
@@ -29,25 +32,25 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
             }
         }
 
-        private Visibility _rightholderAddVisibility;
-        public Visibility RightholderAddVisibility
+        private Visibility _defaultTransferVisibility = Visibility.Visible;
+        public Visibility DefaultTransferVisibility
         {
-            get => _rightholderAddVisibility;
+            get => _defaultTransferVisibility;
             set
             {
-                _rightholderAddVisibility = value;
-                OnPropertyChanged(() =>  RightholderAddVisibility);
+                _defaultTransferVisibility = value;
+                OnPropertyChanged(() => DefaultTransferVisibility);
             }
         }
 
-        private bool _isAllCheck;
-        public bool IsAllCheck
+        private Visibility _pubSubTransferVisibility = Visibility.Collapsed;
+        public Visibility PubSubTransferVisibility
         {
-            get => _isAllCheck;
+            get => _pubSubTransferVisibility;
             set
             {
-                _isAllCheck = value;
-                OnPropertyChanged(() => IsAllCheck);
+                _pubSubTransferVisibility = value;
+                OnPropertyChanged(() =>  PubSubTransferVisibility);
             }
         }
 
@@ -87,7 +90,6 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
                 {
                     new RightholderInfoModel
                     {
-                        ObjId = 1,
                         CustId = 1,
                         RightholderCode = "454DS",
                         IPI = "555/AD4D/DF",
@@ -95,7 +97,6 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
                     },
                     new RightholderInfoModel
                     {
-                        ObjId = 1,
                         CustId = 2,
                         RightholderCode = "454DS",
                         IPI = "888-99-425/15",
@@ -113,7 +114,6 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
                 {
                     new RightholderInfoModel
                     {
-                        ObjId = 2,
                         CustId = 1,
                         RightholderCode = "454DS",
                         IPI = "555/AD4D/DF",
@@ -121,7 +121,6 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
                     },
                     new RightholderInfoModel
                     {
-                        ObjId = 1,
                         CustId = 2,
                         RightholderCode = "454DS",
                         IPI = "888-99-425/15",
@@ -129,7 +128,6 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
                     },
                     new RightholderInfoModel
                     {
-                        ObjId = 2,
                         CustId = 2,
                         RightholderCode = "454DS",
                         IPI = "888-99-425/15",
@@ -139,14 +137,12 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
             },
             new TransferedObjectsRightModel
             {
-                ObjId = 3,
                 Name = "objectname6",
                 RateRh = 44.54m,
                 RoleName = "Композитор",
             },
             new TransferedObjectsRightModel
             {
-                ObjId = 4,
                 Name = "underground",
                 RateRh = 44.54m,
                 RoleName = "Композитор",
@@ -165,8 +161,6 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
         private RightholderInfoModel _selectedRightholder = new RightholderInfoModel
         {
             RightholderName = "1234",
-            Profit = 12345.56m,
-            RightholderBirthday = DateTime.Today,
         };
         public RightholderInfoModel SelectedRightholder
         {
@@ -209,129 +203,38 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights
 
         #region * * * COMMANDS * * *
 
-        /// <summary>
-        /// Завантаження
-        /// </summary>
-        public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
-        private void LoadCommandExecute(object o)
+        public ICommand SelectDefaultTransferCommand => new IPSDelegateCommand(SelectTransferCommandExecute);
+        private void SelectTransferCommandExecute(object o)
         {
+            DefaultTransferVisibility = Visibility.Visible;
+            PubSubTransferVisibility = Visibility.Collapsed;
 
+            var d = (DefaultTransferView)o;
+            ((DefaultTransferViewModel) d.DataContext).TransferTypeOfRight = TransferTypeOfRight.Default;
         }
 
-        /// <summary>
-        /// Відкрити об'єкт права на перегляд
-        /// </summary>
-        public ICommand ViewObjectRightCommand => new IPSDelegateCommand(ViewObjectRightCommandExecute);
-        private void ViewObjectRightCommandExecute(object o)
+        public ICommand SelectHeritageTransferCommand => new IPSDelegateCommand(SelectHeritageTransferCommandExecute);
+        private void SelectHeritageTransferCommandExecute(object o)
         {
+            
+            DefaultTransferVisibility = Visibility.Visible;
+            PubSubTransferVisibility = Visibility.Collapsed;
 
+            var d = (DefaultTransferView)o;
+            ((DefaultTransferViewModel)d.DataContext).TransferTypeOfRight = TransferTypeOfRight.Haritage;
         }
 
-        /// <summary>
-        /// Відкрити об'єкт права на перегляд
-        /// </summary>
-        public ICommand RemoveObjectRightCommand => new IPSDelegateCommand(RemoveObjectRightCommandExecute);
-        private void RemoveObjectRightCommandExecute(object o)
+        public ICommand SelectPubSubTransferCommand => new IPSDelegateCommand(SelectPubSubTransferCommandExecute);
+        private void SelectPubSubTransferCommandExecute(object o)
         {
+            DefaultTransferVisibility = Visibility.Collapsed;
+            PubSubTransferVisibility = Visibility.Visible;
+
+            var d = (PublisherSubpublisherTransferView)o;
+            var lm = ((PublisherSubpublisherTransferViewModel)d.DataContext).LM;
+
 
         }
-
-        public ICommand ChangeTransferTypeCommand => new IPSDelegateCommand(ChangeTransferTypeCommandExecute);
-        private void ChangeTransferTypeCommandExecute(object o)
-        {
-
-        }
-
-        public ICommand CheckAllCommand => new IPSDelegateCommand(CheckAllCommandExecute);
-        private void CheckAllCommandExecute(object o)
-        {
-
-        }
-
-        /// <summary>
-        /// Обрати правовласника
-        /// </summary>
-        public ICommand SelectRightholderCommand => new IPSDelegateCommand(SelectRightholderCommandExecute);
-        private void SelectRightholderCommandExecute(object o)
-        {
-            int? i = SelectedRightholder?.CustId + 1;
-
-            SelectedRightholder = new RightholderInfoModel
-            {
-                CustId = i ?? 0,
-                RightholderName = $"Василькович Адам Герцович ({i})",
-                RightholderBirthday = new DateTime(1992,08,08),
-                Profit = 1254.45m
-            };
-
-            RightholdersListWindow window = new RightholdersListWindow();
-            window.Show();
-        }
-
-        /// <summary>
-        /// Показати анкету правовласника
-        /// </summary>
-        public ICommand OpenRightholderAnketaCommand => new IPSDelegateCommand(OpenRightholderAnketaCommandExecute, o => SelectedRightholder != null);
-        private void OpenRightholderAnketaCommandExecute(object o)
-        {
-
-        }
-
-        /// <summary>
-        /// Обрати додаткового правовласника
-        /// </summary>
-        public ICommand SelectRightholderAddCommand => new IPSDelegateCommand(SelectRightholderAddCommandExecute);
-        private void SelectRightholderAddCommandExecute(object o)
-        {
-
-        }
-
-        /// <summary>
-        /// Показати анкету додаткового правовласника
-        /// </summary>
-        public ICommand OpenRightholderAddAnketaCommand => new IPSDelegateCommand(OpenRightholderAnketaAddCommandExecute, o => SelectedRightholderAdd != null);
-        private void OpenRightholderAnketaAddCommandExecute(object o)
-        {
-
-        }
-
-        public ICommand MoveSelectedObjectsCommand => new IPSDelegateCommand(MoveSelectedObjectsCommandExecute);
-        private void MoveSelectedObjectsCommandExecute(object o)
-        {
-            var items = ObjectsRightItemSource.Where(rec => rec.IsSelected).ToList();
-            DateProperty = new DateProperty();
-
-        }
-
-        public ICommand MoveAllObjectsCommand => new IPSDelegateCommand(MoveAllObjectsCommandExecute);
-        private void MoveAllObjectsCommandExecute(object o)
-        {
-
-        }
-
-
-        #region - нижня панель - 
-
-        public ICommand AddRightholderToTransferCommand => new IPSDelegateCommand(AddRightholderToTransferCommandExecute);
-        private void AddRightholderToTransferCommandExecute(object o)
-        {
-
-        }
-
-        public ICommand ClearObjectsCommand => new IPSDelegateCommand(ClearObjectsCommandExecute);
-        private void ClearObjectsCommandExecute(object o)
-        {
-
-        }
-
-        public ICommand SaveCommand => new IPSDelegateCommand(SaveCommandExecute);
-        private void SaveCommandExecute(object o)
-        {
-
-        }
-
-        #endregion
-
 
         #endregion
     }

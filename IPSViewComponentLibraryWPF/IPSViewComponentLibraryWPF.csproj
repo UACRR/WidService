@@ -202,6 +202,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modules\TransferOfRights\Views\DefaultTransferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\TransferOfRights\Views\PublisherSubpublisherTransferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\TransferOfRights\Windows\PublisherSubpublisherListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\TransferOfRights\Windows\RightholdersListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,21 +236,36 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\TransferOfRights\Model\CopyrightOfObject.cs" />
     <Compile Include="Modules\TransferOfRights\Model\DateProperty.cs" />
     <Compile Include="Modules\TransferOfRights\Model\LM_TransferOfRights.cs" />
     <Compile Include="Modules\TransferOfRights\Model\ObjectsRightOfRightholder.cs" />
+    <Compile Include="Modules\TransferOfRights\Model\PubSubTransferType.cs" />
     <Compile Include="Modules\TransferOfRights\Model\RightholderInfoModel.cs" />
     <Compile Include="Modules\TransferOfRights\Model\TransferedObjectsRightModel.cs" />
     <Compile Include="Modules\TransferOfRights\TransferOfRightsControl.xaml.cs">
       <DependentUpon>TransferOfRightsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\TransferOfRights\TransferOfRightsViewModel.cs" />
-    <Compile Include="Modules\TransferOfRights\Windows\Model\PublishersCopyrightModel.cs" />
-    <Compile Include="Modules\TransferOfRights\Windows\Model\RightholderCopyrightModel.cs" />
-    <Compile Include="Modules\TransferOfRights\Windows\RightholdersListViewModel.cs" />
+    <Compile Include="Modules\TransferOfRights\ViewModels\DefaultTransferViewModel.cs" />
+    <Compile Include="Modules\TransferOfRights\ViewModels\PublisherSubpublisherTransferViewModel.cs" />
+    <Compile Include="Modules\TransferOfRights\Views\DefaultTransferView.xaml.cs">
+      <DependentUpon>DefaultTransferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TransferOfRights\Views\PublisherSubpublisherTransferView.xaml.cs">
+      <DependentUpon>PublisherSubpublisherTransferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TransferOfRights\Windows\Models\PublishersCopyrightModel.cs" />
+    <Compile Include="Modules\TransferOfRights\Windows\Models\RightholderCopyrightModel.cs" />
+    <Compile Include="Modules\TransferOfRights\Model\TransferTypeOfRight.cs" />
+    <Compile Include="Modules\TransferOfRights\Windows\PublisherSubpublisherListWindow.xaml.cs">
+      <DependentUpon>PublisherSubpublisherListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\TransferOfRights\Windows\ViewModels\RightholdersListViewModel.cs" />
     <Compile Include="Modules\TransferOfRights\Windows\RightholdersListWindow.xaml.cs">
       <DependentUpon>RightholdersListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\TransferOfRights\Windows\ViewModels\PublisherSubpublisherListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

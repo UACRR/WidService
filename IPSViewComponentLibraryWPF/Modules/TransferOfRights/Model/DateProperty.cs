@@ -3,18 +3,36 @@ using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
 {
+    /*
+     *  передані права вступають в силу мінімум з наступного дня
+     */
     public class DateProperty : ViewModelBase
     {
-        private readonly DateTime? _minDate = new DateTime(1900,01,01);
-        private readonly DateTime? _maxDate = new DateTime(3000,01,01);
+        public DateProperty()
+        {
+            DateBegin = _minDate;
+        }
+
+        private readonly DateTime _minDate = DateTime.Today.AddDays(1);
+        private readonly DateTime _maxDate = new DateTime(3000,01,01);
 
         private void CheckBetween(ref DateTime? date, DateTime? value)
         {
             if (value < _minDate)
                 date = _minDate;
-
-            if (value > _maxDate)
+            else if (value > _maxDate)
                 date = _maxDate;
+            else
+                date = value;
+        }
+
+        private void CheckValidRange()
+        {
+            if (_dateBegin == _maxDate)
+                _dateBegin = _maxDate.AddDays(-1);
+
+            if (_dateBegin >= _dateEnd)
+                _dateEnd = _dateBegin.Value.AddDays(1);
         }
 
         private DateTime? _dateBegin;
@@ -24,6 +42,7 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
             set
             {
                 CheckBetween(ref _dateBegin, value);
+                CheckValidRange();
                 OnPropertyChanged(() => DateBegin);
             }
         }
@@ -35,6 +54,7 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
             set
             {
                 CheckBetween(ref _dateEnd, value);
+                CheckValidRange();
                 OnPropertyChanged(() => DateEnd);
             }
         }

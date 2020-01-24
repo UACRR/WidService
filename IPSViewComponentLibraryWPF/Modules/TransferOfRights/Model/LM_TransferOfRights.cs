@@ -54,6 +54,17 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
             }
         }
 
+        private string _transferPubSub = "Передача між Видавництво/Субвидавництво";
+        public string TransferPubSub
+        {
+            get => _transferPubSub;
+            set
+            {
+                _transferPubSub = value;
+                OnPropertyChanged(() => TransferPubSub);
+            }
+        }
+
         private string _rightholder = "Правовласник";
         public string Rightholder
         {
@@ -108,6 +119,32 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
                 OnPropertyChanged(() => gvc_ObjCode);
             }
         }
+
+        #region видавництво/субвидавництво
+
+        private string _pubSub = "Видавництво/Субвидавництво";
+        public string PubSub
+        {
+            get => _pubSub;
+            set
+            {
+                _pubSub = value;
+                OnPropertyChanged(() => PubSub);
+            }
+        }
+
+        private string _pubSubTransferType = "Оберіть тип передачі";
+        public string PubSubTransferType
+        {
+            get => _pubSubTransferType;
+            set
+            {
+                _pubSubTransferType = value;
+                OnPropertyChanged(() => PubSubTransferType);
+            }
+        }
+
+        #endregion
 
 
         public void UpdateLanguageLocalization()

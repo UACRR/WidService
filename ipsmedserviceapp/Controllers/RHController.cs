@@ -177,6 +177,8 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         {
             try
             {
+                _dbContext.Database.SetCommandTimeout(300);
+
                 var rightHolderBox = new vTsk1ListRightHolder01Box();
 
                 var qlist = _dbContext.vTsk_1_ListRightHolder01.AsQueryable();

@@ -506,6 +506,7 @@
     <Compile Include="Services\RightholderExternalService.cs" />
     <Compile Include="Services\RightholderRegisterService.cs" />
     <Compile Include="Services\RightHolderService.cs" />
+    <Compile Include="Services\TransferOfRightService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Utils.cs" />
     <Compile Include="Engines\WordEngine.cs" />
