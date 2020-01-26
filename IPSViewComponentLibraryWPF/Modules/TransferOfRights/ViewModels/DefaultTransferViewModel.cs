@@ -540,6 +540,20 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
                 transferData.TransferObjects.Add(item);
             }
 
+            var service = TransferOfRightService.GetInstance();
+            object result;
+
+            if (TransferTypeOfRight == TransferTypeOfRight.Default)
+            {
+                result = service.TransferRightsOfObjectsDetault(transferData);
+            }
+            else if (TransferTypeOfRight == TransferTypeOfRight.Haritage)
+            {
+                result = service.TransferRightsOfObjectsHeritage(transferData);
+            }
+
+            LazyRightholdersCollection = null;
+            ClearData();
             ShowMessage.ShowInfo("Bingo!");
         }
 

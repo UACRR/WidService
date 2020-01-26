@@ -153,14 +153,17 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("transfer/heritage")]
         public async Task<IActionResult> TransferRightsOfObjectsHeritage([FromBody] ObjectTransferDataParameters parameters)
         {
+            ResponseOfRequest response;
             try
             {
 
-                return Ok();
+                response = new ResponseOfRequest("Предачу прав виконано!");
+                return Ok(response);
             }
             catch (Exception e)
             {
-                throw;
+                response = new ResponseOfRequest("Неможливо виконати передачу прав!", e);
+                return BadRequest(response);
             }
         }
     }
