@@ -74,17 +74,17 @@ namespace ipsFormsDesign.Services
         }
 
 
-        public async Task<object> TransferRightsOfObjectsDetault(ObjectTransferDataParameters dataParameters)
+        public async Task<ResponseOfRequest> TransferRightsOfObjectsDetault(ObjectTransferDataParameters dataParameters)
         {
             string url = $"{Prefix}/transfer/default";
-            var data = await _apiConnector.SendPutRequestWithResultAsync<object, ObjectTransferDataParameters>(url, dataParameters);
+            var data = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, ObjectTransferDataParameters>(url, dataParameters);
             return data;
         }
 
-        public async Task<object> TransferRightsOfObjectsHeritage(ObjectTransferDataParameters dataParameters)
+        public async Task<ResponseOfRequest> TransferRightsOfObjectsHeritage(ObjectTransferDataParameters dataParameters)
         {
             string url = $"{Prefix}/transfer/heritage";
-            var data = await _apiConnector.SendPutRequestWithResultAsync<object, ObjectTransferDataParameters>(url, dataParameters);
+            var data = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, ObjectTransferDataParameters>(url, dataParameters);
             return data;
         }
     }

@@ -15,6 +15,7 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
         public int ObjId { get; set; }
         public int? CRightId { get; set; }
         public string Name { get; set; }
+        public int RoleCode { get; set; }
         public string RoleName { get; set; }
 
         public decimal? RateRh { get; set; }

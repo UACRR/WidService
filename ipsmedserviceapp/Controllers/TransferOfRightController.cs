@@ -9,6 +9,7 @@ using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -131,37 +132,250 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Звичайна передача прав правовласників
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpPut("transfer/default")]
         public async Task<IActionResult> TransferRightsOfObjectsDetault([FromBody] ObjectTransferDataParameters parameters)
         {
+            IDbContextTransaction transaction = null;
             ResponseOfRequest response;
             try
             {
+                var targetCopyRightList = new List<CopyRight>();
+                var targetCRHistoryList = new List<CopyRightHistory>();
+                var maxDate = new DateTime(3000, 01, 01);
+
+                var ids = parameters.TransferObjects.Select(rec => rec.ParentCRightId.Value).ToArray();
+
+                var copyrightlist = await _dbContext.CopyRight.Where(rec => ids.Contains(rec.CRightId)).ToListAsync();
+
+                foreach (var copyRight in copyrightlist)
+                {
+                    var obj = parameters.TransferObjects.Single(rec => rec.ParentCRightId == copyRight.CRightId && rec.RoleCode == copyRight.RoleCode);
+
+                    foreach (var rightholder in obj.TransferRightholders)
+                    {
+                        var newCopyRight = new CopyRight
+                        {
+                            CustId = rightholder.CustId,
+                            Rate = rightholder.Rate,
+
+                            ObjId = obj.ObjId,
+                            ParentId = obj.ParentCRightId,
+                            RoleCode = obj.RoleCode,
+                            BeginDate = parameters.BeginDate,
+                            EndDate = parameters.EndDate,
+                            Status = copyRight.Status,
+                            LBasis = parameters.LegalBasis,
+
+                            CreateDate = DateTime.Today,
+                            ModifyLogin = parameters.UserName,
+                        };
+
+                        targetCopyRightList.Add(newCopyRight);
+
+                        targetCRHistoryList.Add(new CopyRightHistory
+                        {
+                            Rate = rightholder.Rate,
+                            Parent = copyRight,
+                            Child = newCopyRight,
+                        });
+                    }
+
+                    // new copyright for current 
+                    if (obj.RemainderRate != 0m)
+                    {
+                        var currentCopyRight = new CopyRight
+                        {
+                            CustId = copyRight.CustId,
+                            ObjId = copyRight.ObjId,
+
+                            Rate = obj.RemainderRate,
+                            RateMech = copyRight.RateMech,
+
+                            ParentId = copyRight.CRightId,
+                            RoleCode = copyRight.RoleCode,
+
+                            BeginDate = copyRight.BeginDate,
+                            EndDate = parameters.EndDate,
+
+                            Status = copyRight.Status,
+                            LBasis = parameters.LegalBasis,
+
+                            CreateDate = DateTime.Today,
+                            ModifyLogin = parameters.UserName,
+                        };
+
+                        targetCopyRightList.Add(currentCopyRight);
+
+                        targetCRHistoryList.Add(new CopyRightHistory
+                        {
+                            Rate = currentCopyRight.Rate,
+                            Parent = copyRight,
+                            Child = currentCopyRight,
+                        });
+                    }
+
+                    // returned copyright
+                    if (parameters.EndDate != maxDate)
+                    {
+                        var returnCopyright = new CopyRight
+                        {
+                            CustId = copyRight.CustId,
+                            ObjId = copyRight.ObjId,
+
+                            Rate = copyRight.Rate,
+                            RateMech = copyRight.RateMech,
+
+                            ParentId = copyRight.CRightId,
+                            RoleCode = copyRight.RoleCode,
+
+                            BeginDate = parameters.EndDate.Value.AddDays(1),
+                            EndDate = copyRight.EndDate,
+
+                            Status = copyRight.Status,
+                            LBasis = parameters.LegalBasis,
+
+                            CreateDate = DateTime.Today,
+                            ModifyLogin = parameters.UserName,
+                            LBasisComment = "returning copyright",
+                        };
+
+                        targetCopyRightList.Add(returnCopyright);
+
+                        foreach (var copyRightHistory in targetCRHistoryList.Where(rec => rec.Parent.CRightId == copyRight.CRightId).ToList())
+                        {
+                            targetCRHistoryList.Add(new CopyRightHistory
+                            {
+                                Rate = copyRightHistory.Rate,
+                                Parent = copyRightHistory.Child,
+                                Child = returnCopyright,
+                            });
+                        }
+                    }
+
+                    copyRight.EndDate = parameters.BeginDate.AddDays(-1);
+                    copyRight.ModifyDate = DateTime.Today;
+                    copyRight.ModifyLogin = parameters.UserName;
+                }
+
+                transaction = _dbContext.Database.BeginTransaction();
+
+                await _dbContext.CopyRight.AddRangeAsync(targetCopyRightList);
+                await _dbContext.CopyRightHistory.AddRangeAsync(targetCRHistoryList);
+                await _dbContext.SaveChangesAsync();
+
+                transaction.Commit();
 
                 response = new ResponseOfRequest("Предачу прав виконано!");
                 return Ok(response);
             }
             catch (Exception e)
             {
+                transaction?.Rollback();
+
                 response = new ResponseOfRequest("Неможливо виконати передачу прав!", e);
                 return BadRequest(response);
             }
         }
 
-
+        /// <summary>
+        /// Передача прав через спадщину
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpPut("transfer/heritage")]
         public async Task<IActionResult> TransferRightsOfObjectsHeritage([FromBody] ObjectTransferDataParameters parameters)
         {
+            IDbContextTransaction transaction = null;
             ResponseOfRequest response;
             try
             {
+                var targetCopyRightList = new List<CopyRight>();
+                var targetCRHistoryList = new List<CopyRightHistory>();
+
+                var ids = parameters.TransferObjects.Select(rec => rec.ParentCRightId.Value).ToArray();
+
+                var copyrightlist = await _dbContext.CopyRight.Where(rec => ids.Contains(rec.CRightId)).ToListAsync();
+                
+                foreach (var copyRight in copyrightlist)
+                {
+                    var obj = parameters.TransferObjects.Single(rec => rec.ParentCRightId == copyRight.CRightId && rec.RoleCode == copyRight.RoleCode);
+
+                    if (DateTime.Today.Date > parameters.BeginDate.AddDays(-1).Date)
+                    {
+                        response = new ResponseOfRequest
+                        {
+                            IsSuccess = false,
+                            Message = "Нові права можуть вступити в силу не раніше завтрішнього дня!",
+                        };
+                        return BadRequest(response);
+                    }
+
+                    if (parameters.BeginDate.Date > copyRight.EndDate.Value.Date)
+                    {
+                        response = new ResponseOfRequest
+                        {
+                            IsSuccess = false,
+                            Message = $"Дата початку дії нових прав перевищує дату завершення дії поточних прав!\nID об'єкта:{obj.ObjId}, ID-CR:{obj.ParentCRightId}",
+                        };
+                        return BadRequest(response);
+                    }
+
+                    foreach (var rightholder in obj.TransferRightholders)
+                    {
+                        var newCopyRight = new CopyRight
+                        {
+                            CustId = rightholder.CustId,
+                            Rate = rightholder.Rate,
+                            
+                            ObjId = obj.ObjId,
+                            ParentId = obj.ParentCRightId,
+                            RoleCode = obj.RoleCode,
+                            BeginDate = parameters.BeginDate,
+                            // передача в спадок
+                            EndDate = copyRight.EndDate,
+                            Status = copyRight.Status,
+                            LBasis = parameters.LegalBasis,
+
+                            CreateDate = DateTime.Today,
+                            ModifyLogin = parameters.UserName,
+                        };
+
+                        targetCopyRightList.Add(newCopyRight);
+
+                        targetCRHistoryList.Add(new CopyRightHistory
+                        {
+                            Rate = rightholder.Rate,
+                            Parent = copyRight,
+                            Child = newCopyRight,
+                        });
+                    }
+
+                    copyRight.EndDate = parameters.BeginDate.AddDays(-1);
+                    copyRight.ModifyDate = DateTime.Today;
+                    copyRight.ModifyLogin = parameters.UserName;
+                }
+
+
+                transaction = _dbContext.Database.BeginTransaction();
+
+                await _dbContext.CopyRight.AddRangeAsync(targetCopyRightList);
+                await _dbContext.CopyRightHistory.AddRangeAsync(targetCRHistoryList);
+                await _dbContext.SaveChangesAsync();
+
+                transaction.Commit();
 
                 response = new ResponseOfRequest("Предачу прав виконано!");
                 return Ok(response);
             }
             catch (Exception e)
             {
+                transaction?.Rollback();
+                
                 response = new ResponseOfRequest("Неможливо виконати передачу прав!", e);
                 return BadRequest(response);
             }

@@ -71,6 +71,7 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
                     HeritageDateEndVisibility = Visibility.Collapsed;
                 }
 
+                IsVisibleAutocalculatePercent = isDefault;
             }
         }
 
@@ -103,6 +104,17 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
             {
                 _heritageDateEndVisibility = value;
                 OnPropertyChanged(() => HeritageDateEndVisibility);
+            }
+        }
+
+        private bool _isVisibleAutocalculatePercent = true;
+        public bool IsVisibleAutocalculatePercent
+        {
+            get => _isVisibleAutocalculatePercent;
+            set
+            {
+                _isVisibleAutocalculatePercent = value;
+                OnPropertyChanged(() => IsVisibleAutocalculatePercent);
             }
         }
 
@@ -316,6 +328,12 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
                 return false;
             }
 
+            if (DateProperty.DateEnd == null)
+            {
+                ShowMessage.ShowWarning("Введіть дату по яку передаються права!");
+                return false;
+            }
+
             return true;
         }
 
@@ -416,6 +434,7 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
                     ObjId = rec.ObjId,
                     CRightId = rec.CRightId,
                     RoleName = rec.RoleName,
+                    RoleCode = rec.RoleCode,
                     RateRh = (decimal) rec.RatePer,
                 });
 
@@ -436,6 +455,7 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
                     ObjId = rec.ObjId,
                     CRightId = rec.CRightId,
                     RoleName = rec.RoleName,
+                    RoleCode = rec.RoleCode,
                     RateRh = (decimal)rec.RatePer,
                 });
 
@@ -499,12 +519,11 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
                 ClearData();
         }
 
-        // TODO:
         /// <summary>
         /// Зберегти
         /// </summary>
         public ICommand SaveCommand => new IPSDelegateCommand(SaveCommandExecute);
-        private void SaveCommandExecute(object o)
+        private async void SaveCommandExecute(object o)
         {
             if (IsInfinityDateEnd)
                 DateProperty.DateEnd = new DateTime(3000, 01, 01);
@@ -516,6 +535,8 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
             {
                 ParentCustId = SelectedRightholder.CustId,
                 LegalBasis = TransferTypeOfRight == TransferTypeOfRight.Default ? 5 : 3,
+                BeginDate = DateProperty.DateBegin.Value,
+                EndDate = DateProperty.DateEnd,
             };
 
             foreach (var transferedObject in SelectedObjectsRightItemSource)
@@ -524,8 +545,7 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
                 {
                     ObjId = transferedObject.ObjId,
                     ParentCRightId = transferedObject.CRightId,
-                    BeginDate = DateProperty.DateBegin.Value,
-                    EndDate = DateProperty.DateEnd.Value,
+                    RoleCode = transferedObject.RoleCode,
                 };
 
                 foreach (var rightholder in transferedObject.Rightholders)
@@ -537,24 +557,36 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
                     });
                 }
 
+                item.RemainderRate = transferedObject.RateRh.Value - item.TransferRightholders.Sum(rec => rec.Rate);
+
                 transferData.TransferObjects.Add(item);
             }
 
             var service = TransferOfRightService.GetInstance();
-            object result;
+            ResponseOfRequest result = null;
 
             if (TransferTypeOfRight == TransferTypeOfRight.Default)
             {
-                result = service.TransferRightsOfObjectsDetault(transferData);
+                result = await service.TransferRightsOfObjectsDetault(transferData);
             }
             else if (TransferTypeOfRight == TransferTypeOfRight.Haritage)
             {
-                result = service.TransferRightsOfObjectsHeritage(transferData);
+                result = await service.TransferRightsOfObjectsHeritage(transferData);
             }
 
-            LazyRightholdersCollection = null;
-            ClearData();
-            ShowMessage.ShowInfo("Bingo!");
+            if (result == null)
+            {
+                ShowMessage.ShowError("Server not responding!");
+                return;
+            }
+
+            ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
+
+            if (result.IsSuccess)
+            {
+                LazyRightholdersCollection = null;
+                ClearData();
+            }
         }
 
         #endregion

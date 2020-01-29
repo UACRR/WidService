@@ -289,7 +289,7 @@
                                           Header="% володіння" 
                                           DataMemberBinding="{Binding RateRh, StringFormat='{}{0:N2}'}"/>
                     <!--авторозрахунок %-->
-                    <t:GridViewColumn Width="140" ShowToolTipOnTrimmedText="True">
+                    <t:GridViewColumn Width="140" ShowToolTipOnTrimmedText="True" IsVisible="{Binding IsVisibleAutocalculatePercent}">
                         <t:GridViewColumn.Header>
                             <CheckBox x:Name="headerCheckBox"
                                       Content="Авторозрахунок %"
