@@ -31,6 +31,7 @@ namespace WebAPIConnector
             string Uri = configUrl();
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
+            handler.MaxRequestContentBufferSize = 352428800;
 
             client = new HttpClient(handler);
             client.BaseAddress = new Uri(Uri);
@@ -506,7 +507,7 @@ namespace WebAPIConnector
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             };
             string idUrl = string.IsNullOrEmpty(id) ? url : $"{url}/{id}";
 

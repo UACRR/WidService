@@ -87,11 +87,11 @@
                                           TextAlignment="Center"
                                           IsFilterable="True"
                                           Header="Тип правовласника"/>
-                    <t:GridViewDataColumn DataMemberBinding="{Binding CustomerStatusName}"
+                    <!--<t:GridViewDataColumn DataMemberBinding="{Binding CustomerStatusName}"
                                           Width="150"
                                           TextAlignment="Center"
                                           IsFilterable="True"
-                                          Header="Статус"/>
+                                          Header="Статус"/>-->
                 </t:RadGridView.Columns>
             </t:RadGridView>
 

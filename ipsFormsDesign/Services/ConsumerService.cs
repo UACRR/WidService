@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using WebAPIConnector;
@@ -205,6 +206,8 @@ namespace ipsFormsDesign.Services
                 return _webApi.NewItem<Customer>("consumer/newconsumer", cust);
             }
 
+            cust.Client.MoneyReceived.Clear();
+            
             return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
 

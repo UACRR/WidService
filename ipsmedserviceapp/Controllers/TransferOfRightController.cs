@@ -199,7 +199,7 @@ namespace ipsmedserviceapp.Controllers
                             ParentId = copyRight.CRightId,
                             RoleCode = copyRight.RoleCode,
 
-                            BeginDate = copyRight.BeginDate,
+                            BeginDate = parameters.BeginDate,
                             EndDate = parameters.EndDate,
 
                             Status = copyRight.Status,

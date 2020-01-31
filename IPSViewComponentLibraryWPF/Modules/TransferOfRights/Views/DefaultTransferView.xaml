@@ -174,7 +174,7 @@
                                               DataMemberBinding="{Binding Performer}"/>
                         <t:GridViewDataColumn Header="Автори" 
                                               DataMemberBinding="{Binding Author}"/>
-                        <t:GridViewColumn MinWidth="35" Width="35">
+                        <t:GridViewColumn MinWidth="35" Width="35" IsVisible="False">
                             <t:GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <t:RadButton Background="Transparent" BorderThickness="0" Margin="-2,0,-2,0" Width="30" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -289,14 +289,17 @@
                                           Header="% володіння" 
                                           DataMemberBinding="{Binding RateRh, StringFormat='{}{0:N2}'}"/>
                     <!--авторозрахунок %-->
-                    <t:GridViewColumn Width="140" ShowToolTipOnTrimmedText="True" IsVisible="{Binding IsVisibleAutocalculatePercent}">
-                        <t:GridViewColumn.Header>
+                    <t:GridViewColumn Width="140" 
+                                      ShowToolTipOnTrimmedText="True" 
+                                      Header="Авторозрахунок %">
+                        <!--IsVisible="{Binding IsVisibleAutocalculatePercent}"-->
+                        <!--<t:GridViewColumn.Header>
                             <CheckBox x:Name="headerCheckBox"
                                       Content="Авторозрахунок %"
                                       FontWeight="SemiBold"
                                       IsChecked="{Binding Path=DataContext.IsAutocalculatePercent, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=t:RadGridView}}">
                             </CheckBox>
-                        </t:GridViewColumn.Header>
+                        </t:GridViewColumn.Header>-->
                         <t:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox HorizontalAlignment="Center"
@@ -305,7 +308,9 @@
                         </t:GridViewColumn.CellTemplate>
                     </t:GridViewColumn>
                     <!--видалити-->
-                    <t:GridViewColumn MinWidth="35" Width="35">
+                    <t:GridViewColumn MinWidth="35" 
+                                      Width="35"
+                                      IsVisible="{Binding IsVisibleAutocalculatePercent}">
                         <t:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <t:RadButton Background="Transparent" BorderThickness="0" Margin="-2,0,-2,0" Width="30" Height="25" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"

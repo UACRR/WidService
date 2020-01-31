@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.DATA;
@@ -15,11 +16,15 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using IpsCommonTypes.Enums;
+using Microsoft.AspNetCore.Mvc.Internal;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace ipsmedserviceapp.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Consumer")]
+    [Route("api/[controller]")]
+    //[Route("api/Consumer")]
+    [ApiController]
     public class ConsumerController : Controller
     {
         private readonly AmountDistributor _rateDistributor;
@@ -161,6 +166,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
         [HttpPut("detail/{id}")]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> SaveConsumerById(int id, [FromBody] Customer sorsCustomer)
         {
             IDbContextTransaction tran = null;
@@ -174,7 +180,6 @@ namespace ipsmedserviceapp.Controllers
                 _dbContext.SaveChanges();
                 tran.Commit();
                 tran = null;
-
 
                 return Json(destConsumer);
             }

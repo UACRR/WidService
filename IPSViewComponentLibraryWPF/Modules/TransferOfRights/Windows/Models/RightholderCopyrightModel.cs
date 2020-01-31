@@ -18,15 +18,15 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Windows.Models
             set
             {
                 _custStatus = value;
-                if (IpsGlobal.AnketaDictionaties != null)
-                {
-                    var customerStatus = IpsGlobal.AnketaDictionaties.customerStatus.FirstOrDefault(rec => rec.CodeI == value);
-                    CustomerStatusName = customerStatus?.Name;
-                }
+                //if (IpsGlobal.AnketaDictionaties != null)
+                //{
+                //    var customerStatus = IpsGlobal.AnketaDictionaties.customerStatus.FirstOrDefault(rec => rec.CodeI == value);
+                //    CustomerStatusName = customerStatus?.Name;
+                //}
             }
         }
 
-        public string CustomerStatusName { get; set; }
+        //public string CustomerStatusName { get; set; }
 
         private int _rHolderType;
         public int RHolderType
