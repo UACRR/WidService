@@ -73,7 +73,7 @@ namespace RightholderWorkplace
             this.miNewRightholderPerson = new Telerik.WinControls.UI.RadMenuItem();
             this.miNewRigthholderCompany = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholderList = new IpsViewComponentLibrary.RightholderControls.RightholderListControl();
-            this.rightholdersChangePage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.oldRightholdersChangePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
             this.btnTransferAll = new Telerik.WinControls.UI.RadButton();
@@ -99,7 +99,7 @@ namespace RightholderWorkplace
             this.bsObjectRightForTransfering = new System.Windows.Forms.BindingSource(this.components);
             this.transferOfRights = new Telerik.WinControls.UI.RadPageViewPage();
             this.ehTransferOfRights = new System.Windows.Forms.Integration.ElementHost();
-            this.copyrightRequestsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.oldCopyrightRequestsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCopyrightRequests = new IpsViewComponentLibrary.ObjectRightControls.CopyrightRequestControl();
             this.pvCopyrightRequests = new Telerik.WinControls.UI.RadPageViewPage();
             this.ehCopyrightRequests = new System.Windows.Forms.Integration.ElementHost();
@@ -132,7 +132,7 @@ namespace RightholderWorkplace
             this.rightholdersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddbNewRightholderExternal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbNewRightholder)).BeginInit();
-            this.rightholdersChangePage.SuspendLayout();
+            this.oldRightholdersChangePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer3)).BeginInit();
             this.radSplitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).BeginInit();
@@ -158,7 +158,7 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightForTransfering.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).BeginInit();
             this.transferOfRights.SuspendLayout();
-            this.copyrightRequestsPage.SuspendLayout();
+            this.oldCopyrightRequestsPage.SuspendLayout();
             this.pvCopyrightRequests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
@@ -403,9 +403,9 @@ namespace RightholderWorkplace
             // rightholdersPageView
             // 
             this.rightholdersPageView.Controls.Add(this.rightholdersPage);
-            this.rightholdersPageView.Controls.Add(this.rightholdersChangePage);
+            this.rightholdersPageView.Controls.Add(this.oldRightholdersChangePage);
             this.rightholdersPageView.Controls.Add(this.transferOfRights);
-            this.rightholdersPageView.Controls.Add(this.copyrightRequestsPage);
+            this.rightholdersPageView.Controls.Add(this.oldCopyrightRequestsPage);
             this.rightholdersPageView.Controls.Add(this.pvCopyrightRequests);
             this.rightholdersPageView.DefaultPage = this.rightholdersPage;
             this.rightholdersPageView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -502,14 +502,14 @@ namespace RightholderWorkplace
             this.ctrlRightholderList.TabIndex = 5;
             this.ctrlRightholderList.RightholderSelected += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderList_RightholderSelected);
             // 
-            // rightholdersChangePage
+            // oldRightholdersChangePage
             // 
-            this.rightholdersChangePage.Controls.Add(this.radSplitContainer3);
-            this.rightholdersChangePage.ItemSize = new System.Drawing.SizeF(136F, 27F);
-            this.rightholdersChangePage.Location = new System.Drawing.Point(5, 31);
-            this.rightholdersChangePage.Name = "rightholdersChangePage";
-            this.rightholdersChangePage.Size = new System.Drawing.Size(1196, 596);
-            this.rightholdersChangePage.Text = "Зміна правовласника";
+            this.oldRightholdersChangePage.Controls.Add(this.radSplitContainer3);
+            this.oldRightholdersChangePage.ItemSize = new System.Drawing.SizeF(164F, 27F);
+            this.oldRightholdersChangePage.Location = new System.Drawing.Point(5, 31);
+            this.oldRightholdersChangePage.Name = "oldRightholdersChangePage";
+            this.oldRightholdersChangePage.Size = new System.Drawing.Size(1196, 596);
+            this.oldRightholdersChangePage.Text = "Зміна правовласника (old)";
             // 
             // radSplitContainer3
             // 
@@ -882,11 +882,11 @@ namespace RightholderWorkplace
             // transferOfRights
             // 
             this.transferOfRights.Controls.Add(this.ehTransferOfRights);
-            this.transferOfRights.ItemSize = new System.Drawing.SizeF(171F, 27F);
+            this.transferOfRights.ItemSize = new System.Drawing.SizeF(136F, 27F);
             this.transferOfRights.Location = new System.Drawing.Point(5, 31);
             this.transferOfRights.Name = "transferOfRights";
             this.transferOfRights.Size = new System.Drawing.Size(1196, 596);
-            this.transferOfRights.Text = "Зміна правовласника (WPF)";
+            this.transferOfRights.Text = "Зміна правовласника";
             // 
             // ehTransferOfRights
             // 
@@ -898,14 +898,14 @@ namespace RightholderWorkplace
             this.ehTransferOfRights.Text = "ehTransferOfRights";
             this.ehTransferOfRights.Child = null;
             // 
-            // copyrightRequestsPage
+            // oldCopyrightRequestsPage
             // 
-            this.copyrightRequestsPage.Controls.Add(this.ctrlCopyrightRequests);
-            this.copyrightRequestsPage.ItemSize = new System.Drawing.SizeF(54F, 27F);
-            this.copyrightRequestsPage.Location = new System.Drawing.Point(5, 31);
-            this.copyrightRequestsPage.Name = "copyrightRequestsPage";
-            this.copyrightRequestsPage.Size = new System.Drawing.Size(1196, 596);
-            this.copyrightRequestsPage.Text = "Запити";
+            this.oldCopyrightRequestsPage.Controls.Add(this.ctrlCopyrightRequests);
+            this.oldCopyrightRequestsPage.ItemSize = new System.Drawing.SizeF(79F, 27F);
+            this.oldCopyrightRequestsPage.Location = new System.Drawing.Point(5, 31);
+            this.oldCopyrightRequestsPage.Name = "oldCopyrightRequestsPage";
+            this.oldCopyrightRequestsPage.Size = new System.Drawing.Size(1196, 596);
+            this.oldCopyrightRequestsPage.Text = "Запити(old)";
             // 
             // ctrlCopyrightRequests
             // 
@@ -922,11 +922,11 @@ namespace RightholderWorkplace
             // pvCopyrightRequests
             // 
             this.pvCopyrightRequests.Controls.Add(this.ehCopyrightRequests);
-            this.pvCopyrightRequests.ItemSize = new System.Drawing.SizeF(82F, 27F);
+            this.pvCopyrightRequests.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvCopyrightRequests.Location = new System.Drawing.Point(5, 31);
             this.pvCopyrightRequests.Name = "pvCopyrightRequests";
             this.pvCopyrightRequests.Size = new System.Drawing.Size(1196, 596);
-            this.pvCopyrightRequests.Text = "Запити WPF";
+            this.pvCopyrightRequests.Text = "Запити";
             // 
             // ehCopyrightRequests
             // 
@@ -1065,7 +1065,7 @@ namespace RightholderWorkplace
             this.rightholdersPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ddbNewRightholderExternal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbNewRightholder)).EndInit();
-            this.rightholdersChangePage.ResumeLayout(false);
+            this.oldRightholdersChangePage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer3)).EndInit();
             this.radSplitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).EndInit();
@@ -1094,7 +1094,7 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightForTransfering)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).EndInit();
             this.transferOfRights.ResumeLayout(false);
-            this.copyrightRequestsPage.ResumeLayout(false);
+            this.oldCopyrightRequestsPage.ResumeLayout(false);
             this.pvCopyrightRequests.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
             this.MainPageView.ResumeLayout(false);
@@ -1147,7 +1147,7 @@ namespace RightholderWorkplace
         private Telerik.WinControls.UI.RadPageView rightholdersPageView;
         private Telerik.WinControls.UI.RadPageViewPage rightholdersPage;
         private RightholderListControl ctrlRightholderList;
-        private Telerik.WinControls.UI.RadPageViewPage rightholdersChangePage;
+        private Telerik.WinControls.UI.RadPageViewPage oldRightholdersChangePage;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer3;
         private Telerik.WinControls.UI.SplitPanel splitPanel5;
         private Telerik.WinControls.UI.RadButton btnTransferSelected;
@@ -1169,7 +1169,7 @@ namespace RightholderWorkplace
         private IpsDateTimePicker dtChangeCopyrightDateFrom;
         private Telerik.WinControls.UI.RadLabel radLabel22;
         private Telerik.WinControls.UI.RadGridView gvObjectRightForTransfering;
-        private Telerik.WinControls.UI.RadPageViewPage copyrightRequestsPage;
+        private Telerik.WinControls.UI.RadPageViewPage oldCopyrightRequestsPage;
         private IpsViewComponentLibrary.ObjectRightControls.CopyrightRequestControl ctrlCopyrightRequests;
         private Telerik.WinControls.UI.RadPageView MainPageView;
         private IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl ctrlObjectRightList;

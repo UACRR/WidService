@@ -20,8 +20,6 @@ namespace IpsCommonTypes.Types
         public int? ParentCRightId { get; set; }
         public decimal RemainderRate { get; set; }
         public int RoleCode { get; set; }
-        //public DateTime BeginDate { get; set; }
-        //public DateTime? EndDate { get; set; }
         public List<TransferRightholder> TransferRightholders { get; set; } = new List<TransferRightholder>();
     }
 

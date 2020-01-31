@@ -146,6 +146,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 var targetCopyRightList = new List<CopyRight>();
                 var targetCRHistoryList = new List<CopyRightHistory>();
+                var targetAuthorsList = new List<Authors>();
                 var maxDate = new DateTime(3000, 01, 01);
 
                 var ids = parameters.TransferObjects.Select(rec => rec.ParentCRightId.Value).ToArray();
@@ -154,7 +155,7 @@ namespace ipsmedserviceapp.Controllers
 
                 foreach (var copyRight in copyrightlist)
                 {
-                    var obj = parameters.TransferObjects.Single(rec => rec.ParentCRightId == copyRight.CRightId && rec.RoleCode == copyRight.RoleCode);
+                    var obj = parameters.TransferObjects.Single(rec => rec.ParentCRightId == copyRight.CRightId);
 
                     foreach (var rightholder in obj.TransferRightholders)
                     {
@@ -165,7 +166,9 @@ namespace ipsmedserviceapp.Controllers
 
                             ObjId = obj.ObjId,
                             ParentId = obj.ParentCRightId,
-                            RoleCode = obj.RoleCode,
+                            // CreativeRoleType
+                            // 8 Правовласник
+                            RoleCode = 8,
                             BeginDate = parameters.BeginDate,
                             EndDate = parameters.EndDate,
                             Status = copyRight.Status,
@@ -183,6 +186,20 @@ namespace ipsmedserviceapp.Controllers
                             Parent = copyRight,
                             Child = newCopyRight,
                         });
+
+                        var exist = _dbContext.Authors.Any(rec => rec.CustId == rightholder.CustId && rec.ObjId == obj.ObjId);
+                        if (!exist)
+                        {
+                            var customer = await _dbContext.vCustomer.FirstOrDefaultAsync(rec => rec.CustId == rightholder.CustId);
+                            targetAuthorsList.Add(new Authors
+                            {
+                                CustId = rightholder.CustId,
+                                ObjId = obj.ObjId,
+                                AuthorName = customer.name,
+                                FolkType = 1,
+                                RoleCode = 8,
+                            });
+                        }
                     }
 
                     // new copyright for current 
@@ -264,6 +281,9 @@ namespace ipsmedserviceapp.Controllers
 
                 transaction = _dbContext.Database.BeginTransaction();
 
+                if (targetAuthorsList.Any())
+                    await _dbContext.Authors.AddRangeAsync(targetAuthorsList);
+                
                 await _dbContext.CopyRight.AddRangeAsync(targetCopyRightList);
                 await _dbContext.CopyRightHistory.AddRangeAsync(targetCRHistoryList);
                 await _dbContext.SaveChangesAsync();
@@ -296,6 +316,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 var targetCopyRightList = new List<CopyRight>();
                 var targetCRHistoryList = new List<CopyRightHistory>();
+                var targetAuthorsList = new List<Authors>();
 
                 var ids = parameters.TransferObjects.Select(rec => rec.ParentCRightId.Value).ToArray();
 
@@ -334,7 +355,9 @@ namespace ipsmedserviceapp.Controllers
                             
                             ObjId = obj.ObjId,
                             ParentId = obj.ParentCRightId,
-                            RoleCode = obj.RoleCode,
+                            // CreativeRoleType
+                            // 8 Правовласник
+                            RoleCode = 8,
                             BeginDate = parameters.BeginDate,
                             // передача в спадок
                             EndDate = copyRight.EndDate,
@@ -353,6 +376,20 @@ namespace ipsmedserviceapp.Controllers
                             Parent = copyRight,
                             Child = newCopyRight,
                         });
+
+                        var exist = _dbContext.Authors.Any(rec => rec.CustId == rightholder.CustId && rec.ObjId == obj.ObjId);
+                        if (!exist)
+                        {
+                            var customer = await _dbContext.vCustomer.FirstOrDefaultAsync(rec => rec.CustId == rightholder.CustId);
+                            targetAuthorsList.Add(new Authors
+                            {
+                                CustId = rightholder.CustId,
+                                ObjId = obj.ObjId,
+                                AuthorName = customer.name,
+                                FolkType = 1,
+                                RoleCode = 8,
+                            });
+                        }
                     }
 
                     copyRight.EndDate = parameters.BeginDate.AddDays(-1);
@@ -362,6 +399,9 @@ namespace ipsmedserviceapp.Controllers
 
 
                 transaction = _dbContext.Database.BeginTransaction();
+
+                if (targetAuthorsList.Any())
+                    await _dbContext.Authors.AddRangeAsync(targetAuthorsList);
 
                 await _dbContext.CopyRight.AddRangeAsync(targetCopyRightList);
                 await _dbContext.CopyRightHistory.AddRangeAsync(targetCRHistoryList);

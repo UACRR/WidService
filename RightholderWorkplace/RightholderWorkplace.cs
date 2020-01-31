@@ -63,6 +63,9 @@ namespace RightholderWorkplace
 
             var control2 = new IPSViewComponentLibraryWPF.Modules.TransferOfRights.TransferOfRightsControl();
             ehTransferOfRights.Child = control2;
+
+            oldCopyrightRequestsPage.Item.Visibility = ElementVisibility.Collapsed;
+            oldRightholdersChangePage.Item.Visibility = ElementVisibility.Collapsed;
         }
 
         #region Rightholders page
