@@ -608,6 +608,7 @@ namespace ReportsLibrary
             this.table1.RowGroups.Add(tableGroup17);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.87D), Telerik.Reporting.Drawing.Unit.Cm(3.411D));
             this.table1.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.table1.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(63)))), ((int)(((byte)(89)))));
             this.table1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
             this.table1.StyleName = "Normal.TableNormal";
@@ -985,13 +986,11 @@ namespace ReportsLibrary
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "                               з";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
-            reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
             reportParameter2.Text = "по";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
@@ -1061,7 +1060,6 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox35;
         private Telerik.Reporting.Table table1;
         private Telerik.Reporting.TextBox textBox9;
-        private Telerik.Reporting.TextBox textBox10;
         private Telerik.Reporting.TextBox textBox11;
         private Telerik.Reporting.TextBox textBox12;
         private Telerik.Reporting.TextBox textBox13;
@@ -1089,5 +1087,6 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox25;
         private Telerik.Reporting.TextBox textBox7;
         private Telerik.Reporting.TextBox textBox4;
+        public Telerik.Reporting.TextBox textBox10;
     }
 }

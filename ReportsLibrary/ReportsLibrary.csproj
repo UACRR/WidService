@@ -169,6 +169,12 @@
     <Compile Include="R_5_18_TurnAccounN.Designer.cs">
       <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_1921_SRSH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_1921_SRSH.Designer.cs">
+      <DependentUpon>R_5_1921_SRSH.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_19_0_BR.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -445,6 +451,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_18_TurnAccounN.resx">
       <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_1921_SRSH.resx">
+      <DependentUpon>R_5_1921_SRSH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_19_0_BR.resx">
       <DependentUpon>R_5_19_0_BR.cs</DependentUpon>

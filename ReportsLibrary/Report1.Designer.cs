@@ -396,15 +396,16 @@ namespace ReportsLibrary
             this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(27.615D), Telerik.Reporting.Drawing.Unit.Cm(1.188D));
             this.textBox8.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox8.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
-            this.textBox8.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox8.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox8.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox8.Style.BorderStyle.Top = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox8.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.None;
+            this.textBox8.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
+            this.textBox8.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.None;
+            this.textBox8.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.None;
+            this.textBox8.Style.BorderStyle.Top = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox8.Style.BorderWidth.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(0D);
             this.textBox8.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox8.Style.Color = System.Drawing.Color.Black;
             this.textBox8.Style.Font.Bold = true;
-            this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
+            this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox8.Style.LineWidth = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox8.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox8.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -570,6 +571,7 @@ namespace ReportsLibrary
             this.table1.RowGroups.Add(tableGroup17);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(27.615D), Telerik.Reporting.Drawing.Unit.Cm(3.623D));
             this.table1.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.table1.Style.BorderWidth.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(2D);
             this.table1.StyleName = "Normal.TableNormal";
             // 
@@ -885,13 +887,11 @@ namespace ReportsLibrary
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "                               з";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
-            reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
             reportParameter2.Text = "по";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;

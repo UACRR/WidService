@@ -109,6 +109,7 @@ namespace ReportsLibrary
             this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(23.959D), Telerik.Reporting.Drawing.Unit.Cm(1.267D));
             this.textBox15.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox15.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox15.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox15.Style.BorderWidth.Bottom = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.textBox15.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(2D);
             this.textBox15.Style.BorderWidth.Left = Telerik.Reporting.Drawing.Unit.Point(2D);
@@ -222,6 +223,7 @@ namespace ReportsLibrary
             tableGroup8.Name = "detail";
             this.table1.RowGroups.Add(tableGroup8);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(23.959D), Telerik.Reporting.Drawing.Unit.Cm(2.876D));
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox7
@@ -317,7 +319,6 @@ namespace ReportsLibrary
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "За дату";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;

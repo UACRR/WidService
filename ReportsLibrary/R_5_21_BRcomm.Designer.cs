@@ -106,7 +106,7 @@ namespace ReportsLibrary
             this.textBox14.Style.BorderColor.Default = System.Drawing.Color.White;
             this.textBox14.Style.Color = System.Drawing.Color.Black;
             this.textBox14.Style.Font.Bold = true;
-            this.textBox14.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox14.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox14.StyleName = "BlueOpal.TableHeader";
             this.textBox14.Value = "Всього:";
             // 
@@ -272,6 +272,7 @@ namespace ReportsLibrary
             tableGroup10.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.rateCommiss", Telerik.Reporting.SortDirection.Asc));
             this.table1.RowGroups.Add(tableGroup10);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.648D), Telerik.Reporting.Drawing.Unit.Cm(4.8D));
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox7
@@ -339,8 +340,8 @@ namespace ReportsLibrary
             this.textBox25.Style.Font.Bold = true;
             this.textBox25.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox25.StyleName = "BlueOpal.TableBody";
-            this.textBox25.Value = "=\'Всьго по регістру \'+ Substr( CStr(Fields.rateCommiss),0, Len(CStr(Fields.rateCo" +
-    "mmiss))-1)";
+            this.textBox25.Value = "=\'Всьго по регістру \'+ IIf( (IsNull(Fields.rateCommiss,0)=0),\'НЕ ВИЗНАЧЕНИЙ\' ,Sub" +
+    "str( CStr(Fields.rateCommiss),0, Len(CStr(Fields.rateCommiss))-1))";
             // 
             // textBox16
             // 
@@ -453,19 +454,16 @@ namespace ReportsLibrary
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "За період з ";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
-            reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
             reportParameter2.Text = "по";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "= Today()";
             reportParameter2.Visible = true;
-            reportParameter3.AutoRefresh = true;
             reportParameter3.AvailableValues.DataSource = this.sqlDataSource3;
             reportParameter3.AvailableValues.DisplayMember = "= Fields.prcnt";
             reportParameter3.AvailableValues.ValueMember = "= Fields.id";

@@ -130,9 +130,10 @@ namespace ReportsLibrary
             // textBox8
             // 
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(23.838D), Telerik.Reporting.Drawing.Unit.Cm(1.214D));
+            this.textBox8.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(23.837D), Telerik.Reporting.Drawing.Unit.Cm(1.214D));
             this.textBox8.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox8.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox8.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox8.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox8.Style.Color = System.Drawing.Color.Black;
             this.textBox8.Style.Font.Bold = true;
@@ -261,6 +262,7 @@ namespace ReportsLibrary
             this.table1.RowGroups.Add(tableGroup10);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(23.837D), Telerik.Reporting.Drawing.Unit.Cm(4.458D));
             this.table1.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.table1.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(63)))), ((int)(((byte)(89)))));
             this.table1.StyleName = "Normal.TableNormal";
             // 
@@ -501,14 +503,12 @@ namespace ReportsLibrary
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "beginDate";
             reportParameter1.Text = "            з";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AllowBlank = false;
-            reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "endDate";
             reportParameter2.Text = "по";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;

@@ -166,6 +166,7 @@ namespace ReportsLibrary
             this.table1.RowHeadersPrintOnEveryPage = true;
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.668D), Telerik.Reporting.Drawing.Unit.Cm(3.984D));
             this.table1.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.table1.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(63)))), ((int)(((byte)(89)))));
             this.table1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
             this.table1.StyleName = "Normal.TableNormal";
@@ -287,6 +288,8 @@ namespace ReportsLibrary
             this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.668D), Telerik.Reporting.Drawing.Unit.Cm(1.188D));
             this.textBox21.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox21.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox21.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
+            this.textBox21.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox21.Style.BorderWidth.Bottom = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.textBox21.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox21.Style.BorderWidth.Left = Telerik.Reporting.Drawing.Unit.Point(1D);
@@ -500,20 +503,17 @@ namespace ReportsLibrary
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             reportParameter1.AllowBlank = false;
-            reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "За період     з";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AllowBlank = false;
-            reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
             reportParameter2.Text = "по";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "= Today()";
             reportParameter2.Visible = true;
-            reportParameter3.AutoRefresh = true;
             reportParameter3.AvailableValues.DataSource = this.sqlDataSource2;
             reportParameter3.AvailableValues.DisplayMember = "= Fields.cmName";
             reportParameter3.AvailableValues.ValueMember = "= Fields.cmCustid";

@@ -164,7 +164,7 @@ namespace ReportsLibrary
             tableGroup1.Name = "id";
             tableGroup1.ReportItem = this.textBox2;
             this.table1.ColumnGroups.Add(tableGroup1);
-            this.table1.ColumnHeadersPrintOnEveryPage = true;
+            this.table1.ColumnHeadersPrintOnEveryPage = false;
             this.table1.DataSource = this.sqlDataSource3;
             this.table1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox18,
@@ -198,6 +198,7 @@ namespace ReportsLibrary
             tableGroup15.Name = "detail";
             this.table1.RowGroups.Add(tableGroup15);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(27.144D), Telerik.Reporting.Drawing.Unit.Cm(4.805D));
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox18
@@ -310,12 +311,13 @@ namespace ReportsLibrary
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(27.144D), Telerik.Reporting.Drawing.Unit.Cm(1.532D));
             this.textBox2.Style.BackgroundColor = System.Drawing.Color.White;
+            this.textBox2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox2.Style.Color = System.Drawing.Color.Black;
             this.textBox2.Style.Font.Bold = true;
             this.textBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox2.StyleName = "BlueOpal.TableHeader";
-            this.textBox2.Value = "=\'24. Реєстр переданого до розподілу роялті з \"великих прав\" за період з \'+ Subst" +
+            this.textBox2.Value = "=\'23. Реєстр переданого до розподілу роялті з \"великих прав\" за період з \'+ Subst" +
     "r(CStr(Parameters.dateBegin.Value),0,10)+\' по \'+Substr(CStr(Parameters.dateEnd.V" +
     "alue),0,10)";
             // 
@@ -325,6 +327,7 @@ namespace ReportsLibrary
             this.textBox13.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.666D), Telerik.Reporting.Drawing.Unit.Cm(1.082D));
             this.textBox13.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox13.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox13.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox13.Style.Color = System.Drawing.Color.Black;
             this.textBox13.Style.Font.Bold = true;
             this.textBox13.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
@@ -348,6 +351,7 @@ namespace ReportsLibrary
             this.textBox40.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.709D), Telerik.Reporting.Drawing.Unit.Cm(1.082D));
             this.textBox40.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox40.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox40.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox40.Style.Font.Bold = true;
             this.textBox40.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox40.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
@@ -369,6 +373,7 @@ namespace ReportsLibrary
             this.textBox41.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(19.769D), Telerik.Reporting.Drawing.Unit.Cm(1.082D));
             this.textBox41.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox41.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.textBox41.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox41.Style.Color = System.Drawing.Color.Black;
             this.textBox41.Style.Font.Bold = true;
             this.textBox41.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
@@ -484,7 +489,7 @@ namespace ReportsLibrary
             // 
             // detailSection1
             // 
-            this.detailSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(5D);
+            this.detailSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(5.6D);
             this.detailSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.table1});
             this.detailSection1.KeepTogether = false;
@@ -493,7 +498,7 @@ namespace ReportsLibrary
             // 
             // pageFooterSection1
             // 
-            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.4D);
+            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(4.1D);
             this.pageFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox3});
             this.pageFooterSection1.Name = "pageFooterSection1";
@@ -511,7 +516,7 @@ namespace ReportsLibrary
             // 
             // reportHeaderSection1
             // 
-            this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(0.8D);
+            this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1D);
             this.reportHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox33});
             this.reportHeaderSection1.Name = "reportHeaderSection1";
@@ -550,13 +555,11 @@ namespace ReportsLibrary
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(1.5D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "За період з ";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
-            reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
             reportParameter2.Text = "по ";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
@@ -564,7 +567,6 @@ namespace ReportsLibrary
             reportParameter2.Visible = true;
             reportParameter3.AllowBlank = false;
             reportParameter3.AllowNull = true;
-            reportParameter3.AutoRefresh = true;
             reportParameter3.AvailableValues.DataSource = this.sqlDataSource3;
             reportParameter3.AvailableValues.ValueMember = "= Sum(IsNull(Fields.amount,0))";
             reportParameter3.Name = "all_amount";
@@ -576,7 +578,6 @@ namespace ReportsLibrary
             reportParameter5.Name = "clName";
             reportParameter5.Value = "=\'\'";
             reportParameter6.AllowNull = true;
-            reportParameter6.AutoRefresh = true;
             reportParameter6.AvailableValues.DataSource = this.sqlDataSource4;
             reportParameter6.AvailableValues.DisplayMember = "= Fields.howmoney";
             reportParameter6.AvailableValues.ValueMember = "= Fields.howmoney";

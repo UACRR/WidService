@@ -283,7 +283,7 @@ namespace ReportsLibrary
             this.detailSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.table1});
             this.detailSection1.Name = "detailSection1";
-            this.detailSection1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(1.5D);
+            this.detailSection1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
             // 
             // table1
             // 
@@ -319,7 +319,7 @@ namespace ReportsLibrary
             this.textBox4,
             this.textBox6,
             this.textBox7});
-            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.2D));
+            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.438D));
             this.table1.Name = "table1";
             tableGroup5.Name = "group";
             tableGroup6.Groupings.Add(new Telerik.Reporting.Grouping(null));
@@ -331,6 +331,7 @@ namespace ReportsLibrary
             tableGroup4.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.rateCommiss", Telerik.Reporting.SortDirection.Asc));
             this.table1.RowGroups.Add(tableGroup4);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.165D), Telerik.Reporting.Drawing.Unit.Cm(1.976D));
+            this.table1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox8
@@ -407,6 +408,7 @@ namespace ReportsLibrary
             this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox21.Style.Font.Bold = true;
             this.textBox21.Style.Font.Name = "Segoe UI Light";
+            this.textBox21.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
             this.textBox21.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox21.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox21.Value = "=\'- \' +PageNumber+\' -\'";

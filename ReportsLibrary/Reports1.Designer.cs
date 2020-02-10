@@ -41,6 +41,8 @@ namespace ReportsLibrary
             Telerik.Reporting.TypeReportSource typeReportSource15 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.NavigateToReportAction navigateToReportAction16 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource16 = new Telerik.Reporting.TypeReportSource();
+            Telerik.Reporting.NavigateToReportAction navigateToReportAction17 = new Telerik.Reporting.NavigateToReportAction();
+            Telerik.Reporting.TypeReportSource typeReportSource17 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             this.detail = new Telerik.Reporting.DetailSection();
             this.textBox2 = new Telerik.Reporting.TextBox();
@@ -59,6 +61,7 @@ namespace ReportsLibrary
             this.textBox32 = new Telerik.Reporting.TextBox();
             this.textBox33 = new Telerik.Reporting.TextBox();
             this.textBox31 = new Telerik.Reporting.TextBox();
+            this.textBox1 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // detail
@@ -80,7 +83,8 @@ namespace ReportsLibrary
             this.textBox28,
             this.textBox32,
             this.textBox33,
-            this.textBox31});
+            this.textBox31,
+            this.textBox1});
             this.detail.Name = "detail";
             this.detail.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
             // 
@@ -232,7 +236,7 @@ namespace ReportsLibrary
     "licKeyToken=null";
             navigateToReportAction9.ReportSource = typeReportSource9;
             this.textBox19.Action = navigateToReportAction9;
-            this.textBox19.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3D), Telerik.Reporting.Drawing.Unit.Cm(7.548D));
+            this.textBox19.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3D), Telerik.Reporting.Drawing.Unit.Cm(9.83D));
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox19.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -251,7 +255,7 @@ namespace ReportsLibrary
     "ublicKeyToken=null";
             navigateToReportAction10.ReportSource = typeReportSource10;
             this.textBox20.Action = navigateToReportAction10;
-            this.textBox20.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3D), Telerik.Reporting.Drawing.Unit.Cm(10.074D));
+            this.textBox20.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3D), Telerik.Reporting.Drawing.Unit.Cm(12.1D));
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox20.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -270,7 +274,7 @@ namespace ReportsLibrary
     "cKeyToken=null";
             navigateToReportAction11.ReportSource = typeReportSource11;
             this.textBox21.Action = navigateToReportAction11;
-            this.textBox21.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3D), Telerik.Reporting.Drawing.Unit.Cm(12.6D));
+            this.textBox21.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3D), Telerik.Reporting.Drawing.Unit.Cm(14.446D));
             this.textBox21.Name = "textBox21";
             this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox21.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -373,6 +377,24 @@ namespace ReportsLibrary
             this.textBox31.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox31.Value = "33.  Журнал системних робіт";
             // 
+            // textBox1
+            // 
+            typeReportSource17.TypeName = "ReportsLibrary.R_5_1921_SRSH, ReportsLibrary, Version=1.0.0.0, Culture=neutral, P" +
+    "ublicKeyToken=null";
+            navigateToReportAction17.ReportSource = typeReportSource17;
+            this.textBox1.Action = navigateToReportAction17;
+            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3D), Telerik.Reporting.Drawing.Unit.Cm(7.422D));
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox1.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
+            this.textBox1.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox1.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.textBox1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
+            this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox1.Value = "19-2. Малі права. Звіт про авторську винагороду по Автору  за період.(пошук: по ш" +
+    "ифру, по міжнародному коду IP, по коду BASE)";
+            // 
             // Reports1
             // 
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
@@ -411,5 +433,6 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox32;
         private Telerik.Reporting.TextBox textBox33;
         private Telerik.Reporting.TextBox textBox31;
+        private Telerik.Reporting.TextBox textBox1;
     }
 }

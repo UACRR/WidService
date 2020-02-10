@@ -183,6 +183,7 @@ namespace ReportsLibrary
             this.table2.RowGroups.Add(tableGroup12);
             this.table2.RowGroups.Add(tableGroup13);
             this.table2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(27.09D), Telerik.Reporting.Drawing.Unit.Cm(5.081D));
+            this.table2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.table2.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox42
@@ -589,20 +590,17 @@ namespace ReportsLibrary
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(1.5D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "               з";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
-            reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
             reportParameter2.Text = "по";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "= Today()";
             reportParameter2.Visible = true;
             reportParameter3.AllowBlank = false;
-            reportParameter3.AutoRefresh = true;
             reportParameter3.AvailableValues.DataSource = this.sqlDataSource1;
             reportParameter3.AvailableValues.DisplayMember = "= Fields.cmName";
             reportParameter3.AvailableValues.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.id", Telerik.Reporting.SortDirection.Asc));
