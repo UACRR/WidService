@@ -251,17 +251,34 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetObjectRights([FromQuery] ObjectRightQueryResource query)
         {
-            var queryText = "select * from vtsk_3_OR_01";
+            //var queryText = "select * from vtsk_3_OR_01";
+            var queryText = "select t1.* from vtsk_3_OR_01 t1 join ft_tsk_3_OR_01_SEEK(@searchText) t2 on t1.objid = t2.objid";
 
-            queryText = ApplyFiltering(queryText, query);
+            //queryText = ApplyFiltering(queryText, query);
 
-            var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
+            if (query?.State == 0) // Not active
+                queryText += " where statusNoActive = 1";
+            if (query?.State == 1) // Not linked
+                queryText += " where statusNoRelate = 1";
+            if (query?.State == 2) // Undistributed
+                queryText += " where statusUnDistrib = 1";
 
-            queryText = ApplyPaging(queryText, query);
+            //var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
 
-            var list = await _dbContext.getViewData(queryText, null);
+            //queryText = ApplyPaging(queryText, query);
 
-            return Ok(new { List = list, TotalItems = totalItems });
+            //queryText += $" ORDER BY ObjId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
+            // 
+            int skip = (query.Page.Value - 1) * query.PageSize.Value;
+            int take = query.PageSize.Value;
+
+            var list = await _dbContext.getViewData(queryText, new[]{new SqlParameter("@searchText", query.SearchText) });
+            
+            return Ok(new
+            {
+                List = list.Skip(skip).Take(take), 
+                TotalItems = list.Count
+            });
         }
 
         private string ApplyFiltering(string queryText, ObjectRightQueryResource query)
