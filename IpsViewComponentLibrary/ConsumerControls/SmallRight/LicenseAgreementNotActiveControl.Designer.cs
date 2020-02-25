@@ -145,7 +145,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             gridViewTextBoxColumn9.Width = 90;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.FieldName = "PeriodPayment";
-            gridViewTextBoxColumn10.HeaderText = "Періодичність оплати";
+            gridViewTextBoxColumn10.HeaderText = "Періодичність звітності";
             gridViewTextBoxColumn10.MaxWidth = 100;
             gridViewTextBoxColumn10.MinWidth = 100;
             gridViewTextBoxColumn10.Name = "PeriodPayment";

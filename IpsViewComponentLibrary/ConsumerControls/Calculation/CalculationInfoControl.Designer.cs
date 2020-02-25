@@ -318,7 +318,7 @@
             gridViewTextBoxColumn11.Name = "State";
             gridViewTextBoxColumn11.Width = 97;
             gridViewTextBoxColumn12.FieldName = "PeriodPaymentName";
-            gridViewTextBoxColumn12.HeaderText = "Періодичність оплати";
+            gridViewTextBoxColumn12.HeaderText = "Періодичність звітності";
             gridViewTextBoxColumn12.Name = "PeriodPayment";
             gridViewTextBoxColumn12.Width = 132;
             gridViewDecimalColumn10.EnableExpressionEditor = false;

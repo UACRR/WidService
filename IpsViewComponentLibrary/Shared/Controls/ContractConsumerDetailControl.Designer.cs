@@ -89,9 +89,9 @@
             // 
             this.radLabel4.Location = new System.Drawing.Point(4, 78);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(141, 19);
+            this.radLabel4.Size = new System.Drawing.Size(139, 19);
             this.radLabel4.TabIndex = 5;
-            this.radLabel4.Text = "Періодичність платежів";
+            this.radLabel4.Text = "Періодичність звітності";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
             // rtxtBoxAuthorPaymentPercent

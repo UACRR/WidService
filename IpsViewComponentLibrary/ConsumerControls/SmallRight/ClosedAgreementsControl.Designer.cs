@@ -72,7 +72,7 @@
             gridViewTextBoxColumn2.HeaderText = "Ліцензія";
             gridViewTextBoxColumn2.MinWidth = 120;
             gridViewTextBoxColumn2.Name = "License";
-            gridViewTextBoxColumn2.Width = 251;
+            gridViewTextBoxColumn2.Width = 158;
             gridViewTextBoxColumn3.FieldName = "Series";
             gridViewTextBoxColumn3.HeaderText = "Серія";
             gridViewTextBoxColumn3.MinWidth = 50;
@@ -118,7 +118,7 @@
             gridViewTextBoxColumn8.Name = "State";
             gridViewTextBoxColumn8.Width = 120;
             gridViewTextBoxColumn9.FieldName = "PeriodPayment";
-            gridViewTextBoxColumn9.HeaderText = "Періодичність оплати";
+            gridViewTextBoxColumn9.HeaderText = "Періодичність звітності";
             gridViewTextBoxColumn9.MaxWidth = 120;
             gridViewTextBoxColumn9.MinWidth = 100;
             gridViewTextBoxColumn9.Name = "PeriodPayment";
