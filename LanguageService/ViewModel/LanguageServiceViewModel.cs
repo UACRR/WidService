@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Markup;
-using ipsFormsDesign.Services;
 using LanguageLibrary;
 using LanguageLibrary.Model;
 using LanguageService.Controls.CreateLanguage;
 using LanguageService.Model;
 using Telerik.Windows.Controls;
-using Telerik.Windows.Data;
 using IPSDelegateCommand = LanguageService.Extensions.IPSDelegateCommand;
 using LanguageDataModel = LanguageLibrary.Model.LanguageDataModel;
 

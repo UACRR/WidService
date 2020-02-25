@@ -198,15 +198,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                     
                     // Окрім правовласників і нові записи
                     if (!RightHolderOnlyCode.Contains(a.RoleCode) && cntPresent == 0)
-                    _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
-                    {
-                        IsRightholder = false,
-                        AuthId = a.AuthId,
-                        ObjId = a.ObjId,
-                        RoleCode = a.RoleCode,
-                        FolkType = a.FolkType,
-                        AuthorName = a.AuthorName.Trim()
-                    });
+                        _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
+                        {
+                            IsRightholder = false,
+                            AuthId = a.AuthId,
+                            ObjId = a.ObjId,
+                            RoleCode = a.RoleCode,
+                            FolkType = a.FolkType,
+                            AuthorName = a.AuthorName.Trim()
+                        });
 
                     continue;
                 }
