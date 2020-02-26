@@ -95,4 +95,422 @@
       <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
   </uiContainer>
+  <uiContainer name="SmRoPermitLD">
+    <uiItem name="ERR">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="INFO">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="WARN">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="QUEST">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CONF_SAVE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="NEW_USER">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="DEL_USER">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_DELETE_SELF">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="PROVIDE_USER_LOGIN">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_LOGIN">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_BLOCK_LOGIN">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="DEF_PWD_CREATED">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="PLEASE_PASTE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="UNSAVED_CHANGES">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_PERM">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_PWD">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CONFIRM_PWD_RESET">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="USER_LIST">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="ADMIN_CONSOLE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="ADD">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="DELETE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="RESET_PWD">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="FIRST_NAME">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="SURNAME">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="LAST_NAME">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="SAVE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CANCEL">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CODE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="ROLE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CAN_READ">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CAN_WRITE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="SYS_INFO">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="MODIFIED_ON">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CODE_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CREATED_ON">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="USER_ACCOUNT">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="BLOCKED">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="PASSWORD_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="PERSONAL_DATA">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="FIRST_NAME_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="SURNAME_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="LAST_NAME_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="EMAIL_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="COMMENT_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="PHONE_LAB">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="CLOSE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="PERMIT">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="WILL_TERMINATE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_CANCELLED">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_NOT_UNIQUE">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
+  </uiContainer>
 </LanguageObjectModel>
