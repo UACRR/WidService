@@ -73,9 +73,11 @@ namespace ipsmedserviceapp.Controllers
                 var dictionary = new Dictionary<string, byte[]>();
 
                 if (!Directory.Exists(RootDirectory))
+                {
+                    Directory.CreateDirectory(RootDirectory);
                     return Ok(dictionary);
-                
-                Directory.CreateDirectory(RootDirectory);
+                }
+
 
                 var files = Directory.GetFiles(RootDirectory);
 

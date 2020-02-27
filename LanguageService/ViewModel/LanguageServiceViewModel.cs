@@ -389,6 +389,12 @@ namespace LanguageService.ViewModel
                 SaveItemChangeCommand.Execute(null);
         }
 
+        public ICommand LoadDCopyrightAdminWorkplaceCommand => new IPSDelegateCommand(LoadDCopyrightAdminWorkplaceCommand);
+        private void LoadDCopyrightAdminWorkplaceCommand(object o)
+        {
+
+        }
+
         #endregion
 
         public ICommand TestCommand => new IPSDelegateCommand(TestCommandExecute);

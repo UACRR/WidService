@@ -143,9 +143,10 @@ namespace Launcher.General
 
         #region * * * METHODS * * *
 
-        private void LoadLanguage()
+        private async void LoadLanguage()
         {
-            Task.Factory.StartNew(async () => await AppLanguageLibrary.SyncOnClient()).Wait();
+            await AppLanguageLibrary.SyncOnClient();
+            //Task.Factory.StartNew(async () => await AppLanguageLibrary.SyncOnClient()).Wait();
             AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
             LM_Launcher.UpdateLanguageLocalization();
         }

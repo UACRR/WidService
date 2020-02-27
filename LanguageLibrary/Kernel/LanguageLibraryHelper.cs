@@ -68,7 +68,7 @@ namespace LanguageLibrary.Kernel
 
             foreach (var content in result)
             {
-                string path = $@"{LanguageInfoPathApp}\{content.Key}";
+                string path = $@"{content.Key}";
 
                 if (!Directory.Exists(LanguageInfoPathApp))
                     Directory.CreateDirectory(LanguageInfoPathApp);
@@ -518,9 +518,6 @@ namespace LanguageLibrary.Kernel
 
         internal void SetApplicationCultureInfo(CultureInfo cultureInfo)
         {
-            if(Thread.CurrentThread.CurrentCulture.Name == cultureInfo.Name)
-                return;
-
             string settingsFileName = "LanguageSettings.xml";
             var xmlDocument = LoadXmlDocument(settingsFileName);
 
@@ -534,9 +531,11 @@ namespace LanguageLibrary.Kernel
             }
 
             currentLanguage.InnerText = cultureInfo.Name;
-            
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
 
+            CultureInfo.CurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+            
             SaveXmlDocument(xmlDocument,settingsFileName);
         }
 
