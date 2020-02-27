@@ -23,7 +23,7 @@ namespace SmRoPermitAdmin
         private bool isNewUser = false;
         private GridViewRowInfo currentRow;
 
-        private Dictionary<string, string> Txt = Translator.Load();
+        private Dictionary<string, string> Txt = Translator.GetDict();
 
         #region Form Level Functions
 

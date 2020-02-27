@@ -18,6 +18,7 @@ namespace SmRoPermitClientLib
         public static void Load(string baseUri, int userCodeI)
         {
             Permissions = new Dictionary<string, UserPermission>();
+            PermitApiProxy.BaseUri = baseUri;
             foreach (var perm in PermitApiProxy.GetUserPermissions(userCodeI))
             {
                 Permissions.Add(perm.FuncCode, perm);

@@ -1,17 +1,20 @@
-﻿using System;
+﻿using LanguageLibrary;
+using LanguageLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LanguageLibrary;
+
 
 namespace SmRoPermitAdmin
 {
     public class Translator
     {
-        public static Dictionary<string, string> Txt = new Dictionary<string, string>()
+        public static Dictionary<string, string> Txt;
+        /*public static Dictionary<string, string> Txt = new Dictionary<string, string>()
             {
                 { "ERR", "Помилка"},
                 { "INFO", "Інформація"},
@@ -66,6 +69,7 @@ namespace SmRoPermitAdmin
                 { "LOGIN_CANCELLED", "Користувач відмінив спробу зайти в систему"},
                 { "LOGIN_NOT_UNIQUE", "Логін вже використовується, будь ласка, введіть інший логін"},
            };
+           */
 
         /*
     public static Dictionary<string, string> Txt = new Dictionary<string, string>()
@@ -125,14 +129,24 @@ namespace SmRoPermitAdmin
    };*/
 
 
-        public static Dictionary<string, string> Load()
+        public static void Load()
         {
-            // AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo("en-EN"));
-            Txt["ERR"] = AppLanguageLibrary.CurrentLanguage.SmRoPermitLD.ERR.Content;
-            Txt["INFO"] = AppLanguageLibrary.CurrentLanguage.SmRoPermitLD.INFO.Content;
+            AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo("uk-UA"));
 
-            // . . . 
+            Txt = new Dictionary<string, string>();
 
+            Type type = AppLanguageLibrary.CurrentLanguage.SmRoPermitLD.GetType();
+            foreach(var prop in type.GetProperties())
+            {
+                LanguageItem li = (LanguageItem)prop.GetValue(AppLanguageLibrary.CurrentLanguage.SmRoPermitLD);
+                Txt[prop.Name] = string.IsNullOrEmpty(li.Content) ? prop.Name : li.Content;
+            }
+        }
+
+        public static Dictionary<string, string> GetDict()
+        {
+            if (Txt == null)
+                Load();
             return Txt;
         }
 

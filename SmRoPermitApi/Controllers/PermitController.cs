@@ -51,22 +51,22 @@ namespace SmartRoyaltyPermitApi.Controllers
         // GET: api/Permit/Users
         [HttpGet("Users", Name = "GetAllUsers")]
         [Permit("UserAdmin", "Read")]
-        public RspGetAllUsers GetAllUsers()
+        public RspGetAllUsers GetAllUsers(string lang)
         {
             return RunProtectedOperation<RspGetAllUsers>(rsp =>
             {
-                rsp.Result = PermitAdminOperations.GetAllUsers();
+                rsp.Result = PermitAdminOperations.GetAllUsers(lang);
             });
         }
 
         // GET: api/Permit/Users
         [HttpGet("UserRoles/{codeI}", Name = "GetUserRoles")]
         [Permit("UserAdmin", "Read")]
-        public RspGetUserRoles GetUserRoles(int codeI)
+        public RspGetUserRoles GetUserRoles(int codeI, string lang)
         {
             return RunProtectedOperation<RspGetUserRoles>(rsp =>
             {
-                rsp.Result = PermitAdminOperations.GetUserRoles(codeI);
+                rsp.Result = PermitAdminOperations.GetUserRoles(codeI, lang);
             });
         }
 

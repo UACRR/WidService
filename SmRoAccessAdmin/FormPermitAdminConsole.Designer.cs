@@ -500,7 +500,7 @@
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.77424F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.22576F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel4.Controls.Add(this.radTbUserModifyDate, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.radTbUserCreateDate, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.radLabel11, 0, 2);
@@ -521,7 +521,7 @@
             // 
             this.radTbUserModifyDate.AccessibleDescription = "Yes";
             this.radTbUserModifyDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTbUserModifyDate.Location = new System.Drawing.Point(112, 63);
+            this.radTbUserModifyDate.Location = new System.Drawing.Point(111, 63);
             this.radTbUserModifyDate.Name = "radTbUserModifyDate";
             this.radTbUserModifyDate.ReadOnly = true;
             this.radTbUserModifyDate.Size = new System.Drawing.Size(576, 20);
@@ -532,7 +532,7 @@
             // 
             this.radTbUserCreateDate.AccessibleDescription = "Yes";
             this.radTbUserCreateDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTbUserCreateDate.Location = new System.Drawing.Point(112, 33);
+            this.radTbUserCreateDate.Location = new System.Drawing.Point(111, 33);
             this.radTbUserCreateDate.Name = "radTbUserCreateDate";
             this.radTbUserCreateDate.ReadOnly = true;
             this.radTbUserCreateDate.Size = new System.Drawing.Size(576, 20);
@@ -567,7 +567,7 @@
             // 
             this.radTbUserCodeI.AccessibleDescription = "Yes";
             this.radTbUserCodeI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTbUserCodeI.Location = new System.Drawing.Point(112, 3);
+            this.radTbUserCodeI.Location = new System.Drawing.Point(111, 3);
             this.radTbUserCodeI.Name = "radTbUserCodeI";
             this.radTbUserCodeI.ReadOnly = true;
             this.radTbUserCodeI.Size = new System.Drawing.Size(576, 20);
@@ -641,7 +641,7 @@
             this.radTbUserPasswordHash.Name = "radTbUserPasswordHash";
             this.radTbUserPasswordHash.PasswordChar = '*';
             this.radTbUserPasswordHash.ReadOnly = true;
-            this.radTbUserPasswordHash.Size = new System.Drawing.Size(584, 20);
+            this.radTbUserPasswordHash.Size = new System.Drawing.Size(584, 24);
             this.radTbUserPasswordHash.TabIndex = 1;
             this.radTbUserPasswordHash.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -651,7 +651,7 @@
             this.radTbUserLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserLogin.Location = new System.Drawing.Point(113, 3);
             this.radTbUserLogin.Name = "radTbUserLogin";
-            this.radTbUserLogin.Size = new System.Drawing.Size(584, 20);
+            this.radTbUserLogin.Size = new System.Drawing.Size(584, 24);
             this.radTbUserLogin.TabIndex = 1;
             this.radTbUserLogin.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -723,7 +723,7 @@
             this.radTbUserLastName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserLastName.Location = new System.Drawing.Point(113, 63);
             this.radTbUserLastName.Name = "radTbUserLastName";
-            this.radTbUserLastName.Size = new System.Drawing.Size(626, 20);
+            this.radTbUserLastName.Size = new System.Drawing.Size(626, 24);
             this.radTbUserLastName.TabIndex = 1;
             this.radTbUserLastName.TextChanged += new System.EventHandler(this.radTbUserPassword_TextChanged);
             // 
@@ -733,7 +733,7 @@
             this.radTbUserSurName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserSurName.Location = new System.Drawing.Point(113, 33);
             this.radTbUserSurName.Name = "radTbUserSurName";
-            this.radTbUserSurName.Size = new System.Drawing.Size(626, 20);
+            this.radTbUserSurName.Size = new System.Drawing.Size(626, 24);
             this.radTbUserSurName.TabIndex = 1;
             this.radTbUserSurName.TextChanged += new System.EventHandler(this.radTbUserLogin_TextChanged);
             // 
@@ -759,7 +759,7 @@
             this.radTbUserComment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserComment.Location = new System.Drawing.Point(113, 153);
             this.radTbUserComment.Name = "radTbUserComment";
-            this.radTbUserComment.Size = new System.Drawing.Size(626, 20);
+            this.radTbUserComment.Size = new System.Drawing.Size(626, 29);
             this.radTbUserComment.TabIndex = 1;
             this.radTbUserComment.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -769,7 +769,7 @@
             this.radTbUserPhoneNumber.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserPhoneNumber.Location = new System.Drawing.Point(113, 123);
             this.radTbUserPhoneNumber.Name = "radTbUserPhoneNumber";
-            this.radTbUserPhoneNumber.Size = new System.Drawing.Size(626, 20);
+            this.radTbUserPhoneNumber.Size = new System.Drawing.Size(626, 24);
             this.radTbUserPhoneNumber.TabIndex = 1;
             this.radTbUserPhoneNumber.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -779,7 +779,7 @@
             this.radTbUserEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserEmail.Location = new System.Drawing.Point(113, 93);
             this.radTbUserEmail.Name = "radTbUserEmail";
-            this.radTbUserEmail.Size = new System.Drawing.Size(626, 20);
+            this.radTbUserEmail.Size = new System.Drawing.Size(626, 24);
             this.radTbUserEmail.TabIndex = 1;
             this.radTbUserEmail.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -821,7 +821,7 @@
             this.radTbUserFirstName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserFirstName.Location = new System.Drawing.Point(113, 3);
             this.radTbUserFirstName.Name = "radTbUserFirstName";
-            this.radTbUserFirstName.Size = new System.Drawing.Size(626, 20);
+            this.radTbUserFirstName.Size = new System.Drawing.Size(626, 24);
             this.radTbUserFirstName.TabIndex = 1;
             this.radTbUserFirstName.TextChanged += new System.EventHandler(this.radTbUserPosition_TextChanged);
             // 

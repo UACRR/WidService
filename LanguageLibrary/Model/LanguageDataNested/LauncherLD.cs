@@ -26,5 +26,6 @@
         public LanguageItem FixationOfViolations { get; set; }
         public LanguageItem SystemDictionaries { get; set; }
         public LanguageItem AnketaOfTheCompany { get; set; }
+        //public LanguageItem SysAdmin { get; set; }
     }
 }

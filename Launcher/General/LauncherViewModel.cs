@@ -13,11 +13,15 @@ using Telerik.Windows.Controls;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using Launcher.Controls.LoginWindow;
 using Launcher.General.Model;
+using SmRoPermitAdmin;
+using System.Runtime.InteropServices;
+using System.Configuration;
 
 namespace Launcher.General
 {
     public class LauncherViewModel : ViewModelBase
     {
+        private string _authString;
         public LauncherViewModel()
         {
             UserInfoVisibility = Visibility.Collapsed;
@@ -70,6 +74,11 @@ namespace Launcher.General
                 OnPropertyChanged(() => UserInfoVisibility);
             }
         }
+
+        /// <summary>
+        /// Доступи до запуску підпрогам
+        /// </summary>
+        public LauncherPermits LauncherPermits { get; set; } = new LauncherPermits();
 
         #endregion
 
@@ -160,10 +169,30 @@ namespace Launcher.General
             bool result = loginWindow.ShowDialog() ?? false;
             if (result)
             {
-                var userInfo =((LoginViewModel) loginWindow.DataContext).UserInfo;
-                UserName = userInfo.UserName;
+                var user = ((LoginViewModel)loginWindow.DataContext).User;
+
+                UserName = user.UserName;
                 IsSignIn = true;
+
+                _authString = user.AuthString;
+                SmRoPermitClientLib.UserPermissions.Load(ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"], user.CodeI);
+
+                LauncherPermits.RightsAdmin = SmRoPermitClientLib.UserPermissions.CanRead("RightsAdmin");
+                LauncherPermits.RoyaltyAdmin = SmRoPermitClientLib.UserPermissions.CanRead("RoyaltyAdmin");
+                LauncherPermits.SRightsWp = SmRoPermitClientLib.UserPermissions.CanRead("SRightsWp");
+                LauncherPermits.BRightsWp = SmRoPermitClientLib.UserPermissions.CanRead("BRightsWp");
+                LauncherPermits.PRAdmin = SmRoPermitClientLib.UserPermissions.CanRead("PRAdmin");
+                LauncherPermits.Violation = SmRoPermitClientLib.UserPermissions.CanRead("Violation");
+                LauncherPermits.Directory = SmRoPermitClientLib.UserPermissions.CanRead("Directory");
+                LauncherPermits.UserAdmin = SmRoPermitClientLib.UserPermissions.CanRead("UserAdmin");
             }
+        }
+
+        public ICommand LoadPermitWindowCommand => new IPSDelegateCommand(LoadPermitWindowCommandExecute);
+        private void LoadPermitWindowCommandExecute(object o)
+        {
+            FormPermitAdminConsole form = new FormPermitAdminConsole(_authString);
+            form.Show();
         }
 
         #endregion

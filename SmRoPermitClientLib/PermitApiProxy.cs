@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SmRoPermitClientLib
@@ -125,13 +126,13 @@ namespace SmRoPermitClientLib
 
         public static List<User> GetAllUsers()
         {
-            var rsp = Get<RspGetAllUsers>("Permit/Users");
+            var rsp = Get<RspGetAllUsers>($"Permit/Users?lang={Thread.CurrentThread.CurrentCulture.Name}");
             return rsp.Result;
         }
 
         public static List<Role> GetUserRoles(int userCodeI)
         {
-            var rsp = Get<RspGetUserRoles>($"Permit/UserRoles/{userCodeI}");
+            var rsp = Get<RspGetUserRoles>($"Permit/UserRoles/{userCodeI}?lang={Thread.CurrentThread.CurrentCulture.Name}");
             return rsp.Result;
         }
 

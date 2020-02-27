@@ -186,7 +186,7 @@ namespace SmartRoyaltyPermitApi
             };
         }
 
-        private static void LoadData()
+        private static void LoadData(string lang)
         {
             userList = new List<User>();
             roleList = new List<Role>();
@@ -206,9 +206,13 @@ namespace SmartRoyaltyPermitApi
                 }
 
                 cmd.CommandText = @"
-                    select *
-                    from PermitRole
+                    select t1.codeI
+                        , coalesce(t2.name, t1.Name) Name
+                    from PermitRole t1
+                        left join PermitRoleTr t2 on t1.codeI = t2.codeI
+                    where t2.lang = @lang
                 ";
+                cmd.Parameters.AddWithValue("@lang", lang);
                 da = new SqlDataAdapter(cmd);
                 dt = new DataTable();
                 da.Fill(dt);
@@ -231,18 +235,18 @@ namespace SmartRoyaltyPermitApi
             });
         }
 
-        public static List<User> GetAllUsers()
+        public static List<User> GetAllUsers(string lang)
         {
             if (userList != null)
                 return userList;
-            LoadData();
+            LoadData(lang);
             return userList;
         }
 
-        public static List<Role> GetUserRoles(int userCodeI)
+        public static List<Role> GetUserRoles(int userCodeI, string lang)
         {
             if (userList == null)
-                LoadData();
+                LoadData(lang);
             roleList.ToList().ForEach(role =>
             {
                 role.IsRead = false;
