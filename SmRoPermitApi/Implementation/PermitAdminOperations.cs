@@ -15,6 +15,7 @@ namespace SmartRoyaltyPermitApi
     {
         public static IConfiguration config;
         private delegate void SqlOperation(SqlCommand cmd);
+        private static string lastLang = "";
 
         private static void RunSqlOperation(SqlOperation oper, bool throwException = false)
         {
@@ -245,8 +246,9 @@ namespace SmartRoyaltyPermitApi
 
         public static List<Role> GetUserRoles(int userCodeI, string lang)
         {
-            if (userList == null)
+            if (userList == null || lastLang != lang)
                 LoadData(lang);
+            lastLang = lang;
             roleList.ToList().ForEach(role =>
             {
                 role.IsRead = false;

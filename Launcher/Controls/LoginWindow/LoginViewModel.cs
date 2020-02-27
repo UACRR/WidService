@@ -187,6 +187,7 @@ namespace Launcher.Controls.LoginWindow
                 RspLogin res = PermitApiProxy.ChangePasswordAndLogin(User.UserName, User.PlainPassword, User.PlainNewPassword);
                 IsBusy = false;
                 User.CodeI = res.UserCodeI;
+                User.Password = User.NewPassword;
                 window.DialogResult = true;
                 window.Close();
             }

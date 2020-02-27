@@ -131,7 +131,7 @@ namespace SmRoPermitAdmin
 
         public static void Load()
         {
-            AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo("uk-UA"));
+            //AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo("uk-UA"));
 
             Txt = new Dictionary<string, string>();
 
