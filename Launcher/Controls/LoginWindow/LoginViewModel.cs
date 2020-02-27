@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security;
 using System.Security.Principal;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using IPSViewComponentLibraryWPF.IPSExtensions;
+using SmRoPermitClientLib;
+using SmRoPermitCommonLib;
 using Telerik.Windows.Controls;
 
 namespace Launcher.Controls.LoginWindow
@@ -50,6 +54,28 @@ namespace Launcher.Controls.LoginWindow
             {
                 _passwordEnabled = value;
                 OnPropertyChanged(() => PasswordEnabled);
+            }
+        }
+
+        private Visibility _passwordVisible = Visibility.Visible;
+        public Visibility PasswordVisible
+        {
+            get => _passwordVisible;
+            set
+            {
+                _passwordVisible = value;
+                OnPropertyChanged(() => PasswordVisible);
+            }
+        }
+
+        private Visibility _newPasswordVisible = Visibility.Collapsed;
+        public Visibility NewPasswordVisible
+        {
+            get => _newPasswordVisible;
+            set
+            {
+                _newPasswordVisible = value;
+                OnPropertyChanged(() => NewPasswordVisible);
             }
         }
 
@@ -96,6 +122,14 @@ namespace Launcher.Controls.LoginWindow
 
         #region * * * METHODS * * *
 
+        private static bool IsPasswordStrong(string password)
+        {
+            return password.Length >= 8
+                && Regex.IsMatch(password, @"[0-9]+(\.[0-9][0-9]?)?", RegexOptions.ECMAScript)
+                && Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z]).+$", RegexOptions.ECMAScript)
+                && Regex.IsMatch(password, @"[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]", RegexOptions.ECMAScript);
+        }
+
         private void AuthorizationThroughWindows(Window window)
         {
             var identity = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity;
@@ -107,14 +141,55 @@ namespace Launcher.Controls.LoginWindow
             window.Close();
         }
 
-        private async void AuthorizationThroughServerAccount(Window window)
+        private void AuthorizationThroughServerAccount(LoginWindow window)
         {
-            // send request
             IsBusy = true;
-            await Task.Delay(965);
-            IsBusy = false;
-
-            MessageBox.Show("Unknown user!", "Not authorized", MessageBoxButton.OK, MessageBoxImage.Stop);
+            PermitApiProxy.UserLogin = User.UserName;
+            PermitApiProxy.UserPassword = User.PlainPassword;
+            PermitApiProxy.BaseUri = ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"];
+            if (PasswordVisible ==  Visibility.Visible)
+            {
+                RspLogin rsp = PermitApiProxy.Login(User.UserName, User.PlainPassword);
+                IsBusy = false;
+                if (rsp.Result == RspLogin.LoginResult.Success)
+                {
+                    User.CodeI = rsp.UserCodeI;
+                    window.DialogResult = true;
+                    window.Close();
+                }
+                else if (rsp.Result == RspLogin.LoginResult.Failed)
+                {
+                    MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if (rsp.Result == RspLogin.LoginResult.ChangePassword)
+                {
+                    MessageBox.Show("Please, change password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    PasswordVisible = Visibility.Collapsed;
+                    NewPasswordVisible = Visibility.Visible;
+                    return;
+                }
+            }
+            else
+            {
+                if (!User.PlainNewPassword.Equals(User.PlainConfirmPassword))
+                {
+                    IsBusy = false;
+                    MessageBox.Show("Input passwords are not the same. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if (!IsPasswordStrong(User.PlainNewPassword))
+                {
+                    IsBusy = false;
+                    MessageBox.Show("Password is not strong enough. Please. make sure that it is not less than 8 characters in length and contains digits, letters in lower and upper cases, and at least one special character.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                RspLogin res = PermitApiProxy.ChangePasswordAndLogin(User.UserName, User.PlainPassword, User.PlainNewPassword);
+                IsBusy = false;
+                User.CodeI = res.UserCodeI;
+                window.DialogResult = true;
+                window.Close();
+            }
         }
 
         #endregion
@@ -125,16 +200,23 @@ namespace Launcher.Controls.LoginWindow
         private void LoginCommandExecute(object o)
         {
             var window = (LoginWindow) o;
-            if (WindowsAuthentication)
-            {
-                AuthorizationThroughWindows(window);
-            }
-            else
-            {
-                var pb = window.pwBox;
-                User.Password = pb.SecurePassword;
-                AuthorizationThroughServerAccount(window);
-            }
+
+            User.Password = window.pwBox.SecurePassword;
+            User.NewPassword = window.newPwBox.SecurePassword;
+            User.ConfirmPassword = window.confirmPwBox.SecurePassword;
+            AuthorizationThroughServerAccount(window);
+            
+            // old:
+            //if (WindowsAuthentication)
+            //{
+            //    AuthorizationThroughWindows(window);
+            //}
+            //else
+            //{
+            //    var pb = window.pwBox;
+            //    User.Password = pb.SecurePassword;
+            //    AuthorizationThroughServerAccount(window);
+            //}
         }
 
         private bool CanExecuteLoginCommand(object o)

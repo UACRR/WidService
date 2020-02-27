@@ -18,6 +18,7 @@ namespace SmRoPermitAdmin
         [STAThread]
         static void Main(string[] arguments)
         {
+            return;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

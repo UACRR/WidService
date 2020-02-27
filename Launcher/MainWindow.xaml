@@ -181,7 +181,7 @@
                     </Grid>
                 </t:RadButton>
 
-                <t:RadButton>
+                <t:RadButton IsEnabled="True">
                     <TextBlock Style="{StaticResource textBlock}"
                                ToolTip="{Binding LM_Launcher.RH_OR}"
                                Text="{Binding LM_Launcher.RH_OR}"/>
@@ -239,6 +239,13 @@
                     <TextBlock Style="{StaticResource textBlock}"
                                ToolTip="{Binding LM_Launcher.AnketaOfTheCompany}"
                                Text="{Binding LM_Launcher.AnketaOfTheCompany}"/>
+                </t:RadButton>
+
+                <t:RadButton IsEnabled="{Binding LauncherPermits.UserAdmin}"
+                             Command="{Binding LoadPermitWindowCommand}">
+                    <TextBlock Style="{StaticResource textBlock}"
+                               ToolTip=""
+                               Text="Права доступу"/>
                 </t:RadButton>
 
             </WrapPanel>

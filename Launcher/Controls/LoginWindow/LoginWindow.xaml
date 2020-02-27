@@ -143,14 +143,20 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" 
+                                   Visibility="{Binding PasswordVisible}"
                                    Style="{StaticResource textBlock}"
                                    Text="Username" 
                                    IsEnabled="{Binding LoginEnabled}"/>
                             <TextBox Grid.Row="1" 
+                                 Visibility="{Binding PasswordVisible}"
                                  Margin="1" 
                                  Width="200" 
                                  Height="30" 
@@ -159,25 +165,59 @@
                                  Text="{Binding User.UserName, UpdateSourceTrigger=PropertyChanged}"/>
 
                             <TextBlock Grid.Row="2"
+                                   Visibility="{Binding PasswordVisible}"
                                    Style="{StaticResource textBlock}"
                                    Padding="0,10,0,0" 
                                    Text="Password" 
                                    IsEnabled="{Binding PasswordEnabled}"/>
                             <PasswordBox Grid.Row="3" 
+                                     Visibility="{Binding PasswordVisible}"
                                      x:Name="pwBox"
                                      Margin="1" 
                                      Width="200" 
                                      Height="30"
                                      VerticalContentAlignment="Center"
-                                     IsEnabled="{Binding PasswordEnabled}">
-                                <!--<i:Interaction.Triggers>
+                                     IsEnabled="{Binding PasswordEnabled}" />
+
+                            <TextBlock Grid.Row="4"
+                                   Visibility="{Binding NewPasswordVisible}"
+                                   Style="{StaticResource textBlock}"
+                                   Padding="0,10,0,0" 
+                                   Text="New Password" 
+                                   IsEnabled="{Binding PasswordEnabled}"/>
+                            <PasswordBox Grid.Row="5" 
+                                     Visibility="{Binding NewPasswordVisible}"
+                                     x:Name="newPwBox"
+                                     Margin="1" 
+                                     Width="200" 
+                                     Height="30"
+                                     VerticalContentAlignment="Center"
+                                     IsEnabled="{Binding PasswordEnabled}" />
+
+                            <TextBlock Grid.Row="6"
+                                   Visibility="{Binding NewPasswordVisible}"
+                                   Style="{StaticResource textBlock}"
+                                   Padding="0,10,0,0" 
+                                   Text="Confirm Password" 
+                                   IsEnabled="{Binding PasswordEnabled}"/>
+                            <PasswordBox Grid.Row="7" 
+                                     Visibility="{Binding NewPasswordVisible}"
+                                     x:Name="confirmPwBox"
+                                     Margin="1" 
+                                     Width="200" 
+                                     Height="30"
+                                     VerticalContentAlignment="Center"
+                                     IsEnabled="{Binding PasswordEnabled}" />
+
+                            <!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PasswordChanged">
                                     <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" PassEventArgsToCommand="True"/>
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>-->
-                            </PasswordBox>
+                            </i:Interaction.Triggers>
+                            </PasswordBox>-->
 
-                            <CheckBox Grid.Row="4"
+                            <CheckBox Grid.Row="8"
+                                      Visibility="Collapsed"
                                   Style="{StaticResource checkBox}"
                                   Content="Windows authentication" 
                                   IsChecked="{Binding WindowsAuthentication}"/>

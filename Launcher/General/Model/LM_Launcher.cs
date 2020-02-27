@@ -115,6 +115,19 @@ namespace Launcher.General.Model
             }
         }
 
+        /*
+        private string _sysAdmin = "Системний адміністратор";
+        public string SysAdmin
+        {
+            get => _sysAdmin;
+            set
+            {
+                _sysAdmin = value;
+                OnPropertyChanged(() => SysAdmin);
+            }
+        }
+        */
+
         public void UpdateLanguageLocalization()
         {
             RH_OR = AppLanguageLibrary.CurrentLanguage.LauncherLD.RH_OR.Content;
@@ -127,6 +140,7 @@ namespace Launcher.General.Model
             FixationOfViolations = AppLanguageLibrary.CurrentLanguage.LauncherLD.FixationOfViolations.Content;
             SystemDictionaries = AppLanguageLibrary.CurrentLanguage.LauncherLD.SystemDictionaries.Content;
             AnketaOfTheCompany = AppLanguageLibrary.CurrentLanguage.LauncherLD.AnketaOfTheCompany.Content;
+            //SysAdmin = AppLanguageLibrary.CurrentLanguage.LauncherLD.SysAdmin.Content;
         }
     }
 }

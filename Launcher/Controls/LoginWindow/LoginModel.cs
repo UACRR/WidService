@@ -1,30 +1,33 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Security;
 
 namespace Launcher.Controls.LoginWindow
 {
     public class LoginModel
     {
-        //public Func<object, bool> IsValid { get; set; }
-
-        private string _userName;
-        public string UserName
+        private string ConvertPassword(SecureString pw)
         {
-            get => _userName;
-            set
+            IntPtr valuePtr = IntPtr.Zero;
+            try
             {
-                _userName = value;
+                valuePtr = Marshal.SecureStringToGlobalAllocUnicode(pw);
+                return Marshal.PtrToStringUni(valuePtr);
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(valuePtr);
             }
         }
 
-        private SecureString _password;
-        public SecureString Password
-        {
-            get => _password;
-            set
-            {
-                _password = value;
-            }
-        }
+        public int CodeI { get; set; }
+        public string UserName { get; set; }
+        public SecureString Password { get; set; }
+        public SecureString NewPassword { get; set; }
+        public SecureString ConfirmPassword { get; set; }
+        public string PlainPassword => ConvertPassword(Password);
+        public string PlainNewPassword => ConvertPassword(NewPassword);
+        public string PlainConfirmPassword => ConvertPassword(ConfirmPassword);
+        public string AuthString => $"{UserName}:{PlainPassword}";
     }
 }

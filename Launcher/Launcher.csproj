@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -86,6 +87,7 @@
     </Compile>
     <Compile Include="Controls\LoginWindow\UserInfoModel.cs" />
     <Compile Include="General\LauncherViewModel.cs" />
+    <Compile Include="General\Model\LauncherPermit.cs" />
     <Compile Include="General\Model\LM_Launcher.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -149,6 +151,18 @@
     <ProjectReference Include="..\LanguageLibrary\LanguageLibrary.csproj">
       <Project>{FCDDBE23-8A62-4EEE-A2C1-57879A44D5A4}</Project>
       <Name>LanguageLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmRoAccessAdmin\SmRoPermitAdmin.csproj">
+      <Project>{225D4E3C-466A-4DA5-B27C-7448F130A93A}</Project>
+      <Name>SmRoPermitAdmin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmRoPermitClientLib\SmRoPermitClientLib.csproj">
+      <Project>{fe8cfa8a-591d-4e67-939b-c8f460376af7}</Project>
+      <Name>SmRoPermitClientLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmRoPermitCommonLib\SmRoPermitCommonLib.csproj">
+      <Project>{223a8848-cb73-48f1-aca4-a3df71e14bc3}</Project>
+      <Name>SmRoPermitCommonLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
