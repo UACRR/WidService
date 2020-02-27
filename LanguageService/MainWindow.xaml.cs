@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Telerik.Windows.Controls;
 
 namespace LanguageService
 {
@@ -16,12 +17,14 @@ namespace LanguageService
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void GridView_OnCopyingCellClipboardContent(object sender, GridViewCellClipboardEventArgs e)
         {
-            Button clickedButton = (Button)sender;
-            MessageBox.Show(clickedButton.Content.ToString());
+            var selectedColumn = ((Telerik.Windows.Controls.GridView.GridViewDataControl)e.OriginalSource).CurrentColumn.UniqueName;
+            if (e.Cell.Column.UniqueName != selectedColumn)
+            {
+                e.Cancel = true;
+            }
         }
-        
     }
     public class MultiplyConverter : IMultiValueConverter
     {

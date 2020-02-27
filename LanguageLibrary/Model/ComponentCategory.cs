@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using LanguageLibrary.Model.LanguageDataNested;
+using CC = LanguageLibrary.Model.ComponentCategory;
 
 namespace LanguageLibrary.Model
 {
     public static class ComponentCategoryResource
     {
-        private static readonly Dictionary<string, ComponentCategory> ComponentCategories = new Dictionary<string, ComponentCategory>
+        private static readonly Dictionary<string, CC> ComponentCategories = new Dictionary<string, CC>
         {
-            [""] = ComponentCategory.Other,
+            [""] = CC.Other,
 
             //[""] = ComponentCategory.Buttons,
-            [nameof(CopyrightRequestLD.UIbtnSave)] = ComponentCategory.Buttons,
-            [nameof(CopyrightRequestLD.UIbtnCancel)] = ComponentCategory.Buttons,
+            [nameof(CopyrightRequestLD.UIbtnSave)] = CC.Buttons,
+            [nameof(CopyrightRequestLD.UIbtnCancel)] = CC.Buttons,
 
             //[""] = ComponentCategory.StaticText,
 
@@ -24,10 +25,10 @@ namespace LanguageLibrary.Model
             //[""] = ComponentCategory.ToolTipText,
         };
 
-        public static ComponentCategory GetComponentCategory(string name)
+        public static CC GetComponentCategory(string name)
         {
             if (!ComponentCategories.ContainsKey(name))
-                return ComponentCategory.Other;
+                return CC.Other;
 
             return ComponentCategories[name];
         }

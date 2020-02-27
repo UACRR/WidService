@@ -488,14 +488,14 @@
         <!--
         Visibility="{Binding EditPanelVisibility}"
         -->
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding EditPanelVisibility}" Padding="0, 20">
-            <Grid>
+            <Grid Grid.Row="1" Visibility="{Binding EditPanelVisibility}">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
-                <t:RadGridView x:Name="gridView" Grid.Row="0"
+                <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Padding="0, 20">
+                <!--SelectedItem="{Binding CurrentLanguageDataModel}"-->
+                <t:RadGridView x:Name="gridView"
                                ItemsSource="{Binding LanguageDataModelItemSource}"
                                SelectedItem="{Binding CurrentLanguageDataModel}"
                                IsFilteringAllowed="False"
@@ -507,6 +507,8 @@
                                IsReadOnly="True"
                                ShowToolTipOnTrimmedText="True"
                                CanUserSortColumns="False"
+                               CurrentItem="{Binding O}"
+                               CopyingCellClipboardContent="GridView_OnCopyingCellClipboardContent"
                                ShowGroupPanel="False">
                     <t:RadGridView.Columns>
                         <t:GridViewDataColumn DataMemberBinding="{Binding ComponentCategory}" Header="UI_category" Width="105"/>
@@ -517,6 +519,7 @@
                     </t:RadGridView.Columns>
 
                 </t:RadGridView>
+                </ScrollViewer>
 
                 <Border Grid.Row="1" Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200" MaxWidth="800">
                     <Border.Effect>
@@ -533,30 +536,75 @@
                             </Border.Background>
                         </Border>
                         <StackPanel Grid.Column="1" Margin="30 10">
-                            <TextBlock Text="{Binding EditedLanguageDataModel.DefaultContent}"
-                                       Foreground="Black" 
-                                       FontWeight="Bold"
-                                       FontSize="24"/>
-                            <TextBlock Margin="0 5"
-                                       Text="{Binding EditedLanguageDataModel.PropertyName}"
-                                       Foreground="Black"
-                                       FontSize="14"/>
-                            <TextBox Margin="0 2 0 5"
-                                     Height="30"
-                                     Foreground="Black" 
-                                     FontStyle="Italic"
-                                     FontSize="12"
-                                     Text="{Binding EditedLanguageDataModel.Description}"/>
-                            <TextBox Margin="0 5" 
-                                     Height="30" 
-                                     Text="{Binding EditedLanguageDataModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger x:Name="keyDownEvent" EventName="KeyDown">
-                                        <i:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </TextBox>
-                            <WrapPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Стандартна назва: " 
+                                           FontStyle="Italic" 
+                                           Foreground="Gray"
+                                           FontSize="16"/>
+                                <TextBlock Text="{Binding EditedLanguageDataModel.DefaultContent}"
+                                           Foreground="Black" 
+                                           FontWeight="SemiBold"
+                                           FontSize="16"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="UI name: " 
+                                           Margin="0 5"
+                                           FontStyle="Italic" 
+                                           Foreground="Gray"
+                                           FontSize="14"/>
+                                <TextBlock Margin="0 5"
+                                           Text="{Binding EditedLanguageDataModel.PropertyName}"
+                                           Foreground="Black"
+                                           FontSize="14"/>
+                            </StackPanel>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Text="Опис: " 
+                                           Margin="0 2 0 5"
+                                           FontStyle="Italic" 
+                                           Foreground="Gray"
+                                           FontSize="16"/>
+                                <TextBox Margin="0 2 0 5"
+                                         Grid.Column="1"
+                                         Height="28"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalAlignment="Stretch"
+                                         Foreground="Black" 
+                                         FontSize="12"
+                                         Text="{Binding EditedLanguageDataModel.Description}"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Переклад: " 
+                                           Margin="0 5"
+                                           FontStyle="Italic" 
+                                           Foreground="Gray"
+                                           FontSize="16"/>
+
+                                <TextBox Margin="0 5" 
+                                         Height="30" Grid.Column="1"
+                                         VerticalContentAlignment="Center"
+                                         Text="{Binding EditedLanguageDataModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger x:Name="keyDownEvent" EventName="KeyDown">
+                                            <i:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBox>
+                            </Grid>
+
+                            <WrapPanel Margin="0,10,0,0">
                                 <Button Style="{StaticResource buttonCancel}"
                                         Command="{Binding MoveToPreviousItemCommand}"
                                         Content="Previous"
@@ -610,7 +658,6 @@
                     </Grid>
                 </Border>
             </Grid>
-        </ScrollViewer>
     </Grid>
 </Window>
 
