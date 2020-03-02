@@ -171,20 +171,26 @@
                                    Text="Password" 
                                    IsEnabled="{Binding PasswordEnabled}"/>
                             <PasswordBox Grid.Row="3" 
-                                     Visibility="{Binding PasswordVisible}"
-                                     x:Name="pwBox"
-                                     Margin="1" 
-                                     Width="200" 
-                                     Height="30"
-                                     VerticalContentAlignment="Center"
-                                     IsEnabled="{Binding PasswordEnabled}" />
+                                         Visibility="{Binding PasswordVisible}"
+                                         x:Name="pwBox"
+                                         Margin="1" 
+                                         Width="200" 
+                                         Height="30"
+                                         VerticalContentAlignment="Center"
+                                         IsEnabled="{Binding PasswordEnabled}" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="KeyUp">
+                                        <i:InvokeCommandAction Command="{Binding KeyUpCommand}" PassEventArgsToCommand="True"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
 
                             <TextBlock Grid.Row="4"
-                                   Visibility="{Binding NewPasswordVisible}"
-                                   Style="{StaticResource textBlock}"
-                                   Padding="0,10,0,0" 
-                                   Text="New Password" 
-                                   IsEnabled="{Binding PasswordEnabled}"/>
+                                       Visibility="{Binding NewPasswordVisible}"
+                                       Style="{StaticResource textBlock}"
+                                       Padding="0,10,0,0" 
+                                       Text="New Password" 
+                                       IsEnabled="{Binding PasswordEnabled}"/>
                             <PasswordBox Grid.Row="5" 
                                      Visibility="{Binding NewPasswordVisible}"
                                      x:Name="newPwBox"
@@ -218,14 +224,15 @@
 
                             <CheckBox Grid.Row="8"
                                       Visibility="Collapsed"
-                                  Style="{StaticResource checkBox}"
-                                  Content="Windows authentication" 
-                                  IsChecked="{Binding WindowsAuthentication}"/>
+                                      Style="{StaticResource checkBox}"
+                                      Content="Windows authentication" 
+                                      IsChecked="{Binding WindowsAuthentication}"/>
 
                         </Grid>
                     </Border>
 
                     <Button Grid.Row="1" 
+                            Margin="0 5"
                             Content="LOGIN" 
                             Style="{StaticResource submitButton}"
                             Command="{Binding LoginCommand}"

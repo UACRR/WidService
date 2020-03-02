@@ -16,6 +16,9 @@ using Launcher.General.Model;
 using SmRoPermitAdmin;
 using System.Runtime.InteropServices;
 using System.Configuration;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Services;
+using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
 
 namespace Launcher.General
 {
@@ -151,6 +154,19 @@ namespace Launcher.General
             LM_Launcher.UpdateLanguageLocalization();
         }
 
+        private async void Initialize()
+        {
+            var _rightholderService = new RightholderService();
+
+            var objectrightService = new ObjectRightService();
+            IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
+
+            var rightholderService = new RightholderService();
+            IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+
+            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name);
+
+        }
         #endregion
 
         #region * * * COMMANDS * * *
@@ -161,6 +177,7 @@ namespace Launcher.General
             LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
             await Task.Delay(1500);
             LoginCommandExecute(null);
+            Initialize();
         }
 
         public ICommand LoginCommand => new IPSDelegateCommand(LoginCommandExecute);
@@ -194,6 +211,14 @@ namespace Launcher.General
         {
             FormPermitAdminConsole form = new FormPermitAdminConsole(_authString);
             form.Show();
+        }
+
+        public ICommand LoadCopyrightAdminWorkplaceCommand => new IPSDelegateCommand(LoadCopyrightAdminWorkplaceCommandExecute);
+        private void LoadCopyrightAdminWorkplaceCommandExecute(object o)
+        {
+
+            var adminWorkplace = new CopyrightAdminWorkplaceWindow();
+            adminWorkplace.Show();
         }
 
         #endregion

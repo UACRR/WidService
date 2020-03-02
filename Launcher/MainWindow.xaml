@@ -181,7 +181,8 @@
                     </Grid>
                 </t:RadButton>
 
-                <t:RadButton IsEnabled="True">
+                <t:RadButton IsEnabled="True"
+                             Command="{Binding LoadCopyrightAdminWorkplaceCommand}">
                     <TextBlock Style="{StaticResource textBlock}"
                                ToolTip="{Binding LM_Launcher.RH_OR}"
                                Text="{Binding LM_Launcher.RH_OR}"/>

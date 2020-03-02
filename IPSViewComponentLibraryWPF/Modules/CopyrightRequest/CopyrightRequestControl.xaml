@@ -123,24 +123,44 @@
                                 </Grid.RowDefinitions>
 
                                 <telerik:RadGridView Grid.Row="0" 
-                                             ItemsSource="{Binding ObjectsItemSource, Mode=TwoWay}"
-                                             ColumnWidth="*"
-                                             SelectionMode="Single"
-                                             ShowToolTipOnTrimmedText="True"
-                                             SelectedItem="{Binding CurrentObjectItem, Mode=TwoWay}">
+                                                     x:Name="RadGridView"
+                                                     ItemsSource="{Binding ObjectsItemSource, Mode=TwoWay}"
+                                                     ColumnWidth="*"
+                                                     SelectionMode="Single"
+                                                     ShowToolTipOnTrimmedText="True"
+                                                     SelectedItem="{Binding CurrentObjectItem, Mode=TwoWay}">
                                     <telerik:RadGridView.Columns>
-                                        <telerik:GridViewDataColumn Width="40" IsSortable="False" DataMemberBinding="{Binding IsSelected}" IsReadOnly="True">
-                                            <telerik:GridViewDataColumn.Header>
+                                        <telerik:GridViewDataColumn Width="40" IsSortable="False" IsReadOnly="True">
+                                            <telerik:GridViewColumn.Header>
                                                 <CheckBox telerik:StyleManager.Theme="VisualStudio2013" 
-                                                  HorizontalAlignment="Center"
-                                                  IsChecked="{Binding DataContext.IsCheckedAll, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type telerik:RadGridView}}}"/>
-                                            </telerik:GridViewDataColumn.Header>
+                                                          x:Name="headerCheckBox"
+                                                          Command="{Binding CheckedAllCommand}"
+                                                          HorizontalAlignment="Center"
+                                                          IsChecked="{Binding 
+                                                    Path=DataContext.IsCheckedAll, 
+                                                    Mode=TwoWay, 
+                                                    UpdateSourceTrigger=PropertyChanged, 
+                                                    NotifyOnSourceUpdated=True, 
+                                                    NotifyOnTargetUpdated=True, 
+                                                    RelativeSource={RelativeSource FindAncestor, AncestorType=telerik:RadGridView}}">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Checked">
+                                                            <i:InvokeCommandAction x:Name="checkAll" Command="{Binding DataContext.CheckedAllCommand,
+                                                                RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"/>
+                                                        </i:EventTrigger>
+                                                        <i:EventTrigger EventName="Unchecked">
+                                                            <i:InvokeCommandAction x:Name="uncheckedAll" Command="{Binding DataContext.CheckedAllCommand,
+                                                                RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </CheckBox>
+                                            </telerik:GridViewColumn.Header>
 
                                             <telerik:GridViewDataColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <CheckBox telerik:StyleManager.Theme="VisualStudio2013"
                                                       HorizontalAlignment="Center"
-                                                      IsChecked="{Binding IsSelected, Mode=TwoWay}">
+                                                      IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                         <i:Interaction.Triggers>
                                                             <i:EventTrigger EventName="Checked">
                                                                 <i:InvokeCommandAction x:Name="checkedEvent" Command="{Binding DataContext.CheckedChangedCommand, 

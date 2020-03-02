@@ -133,6 +133,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\SearchControl\Model\SearchItem.cs" />
+    <Compile Include="Controls\SearchControl\SearchControl.xaml.cs">
+      <DependentUpon>SearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchControl\SearchControlViewModel.cs" />
     <Compile Include="Extensions\IPSExtensions.cs" />
     <Compile Include="Extensions\IPSDelegateCommand.cs" />
     <Compile Include="Extensions\IViewModelDataChange.cs" />
@@ -174,6 +179,10 @@
       <DependentUpon>DocumentViewerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemModel.cs" />
+    <Page Include="Controls\SearchControl\SearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\CatalogFileItems\CatalogFileItemsListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
