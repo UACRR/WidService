@@ -126,7 +126,6 @@ namespace Launcher.General.Model
             }
         }
 
-
         public void UpdateLanguageLocalization()
         {
             RH_OR = AppLanguageLibrary.CurrentLanguage.LauncherLD.RH_OR.Content;

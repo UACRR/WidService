@@ -19,6 +19,7 @@ namespace SmRoPermitAdmin
         static void Main(string[] arguments)
         {
             return;
+            /*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -32,8 +33,9 @@ namespace SmRoPermitAdmin
                 MessageBox.Show($"{Translator.GetText(ex.Message)}{Translator.GetText("WILL_TERMINATE")}", Translator.GetText("ADMIN_CONSOLE"), MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
+            */
 
-            Application.Run(new FormPermitAdminConsole(credentials));
+            //Application.Run(new FormPermitAdminConsole(credentials));
             //Application.Run(new FormLogin());
         }
     }

@@ -208,8 +208,7 @@ namespace Launcher.General
         public ICommand LoadPermitWindowCommand => new IPSDelegateCommand(LoadPermitWindowCommandExecute);
         private void LoadPermitWindowCommandExecute(object o)
         {
-            FormPermitAdminConsole form = new FormPermitAdminConsole(_authString);
-            form.Show();
+            FormPermitAdminConsole.Show(_authString);
         }
 
         public ICommand LoadCopyrightAdminWorkplaceCommand => new IPSDelegateCommand(LoadCopyrightAdminWorkplaceCommandExecute);

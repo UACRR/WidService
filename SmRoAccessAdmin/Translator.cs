@@ -150,11 +150,14 @@ namespace SmRoPermitAdmin
             return Txt;
         }
 
+        /*
         public static string GetText(string code)
         {
             return Txt[code];
         }
+        */
 
+            /*
         public static void Translate(Control control)
         {
             if (!string.IsNullOrEmpty(control.Text))
@@ -190,5 +193,6 @@ namespace SmRoPermitAdmin
                 Translate(ctrl);
             }
         }
+        */
     }
 }
