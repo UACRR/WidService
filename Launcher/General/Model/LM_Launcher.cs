@@ -115,7 +115,6 @@ namespace Launcher.General.Model
             }
         }
 
-        /*
         private string _sysAdmin = "Системний адміністратор";
         public string SysAdmin
         {
@@ -126,7 +125,6 @@ namespace Launcher.General.Model
                 OnPropertyChanged(() => SysAdmin);
             }
         }
-        */
 
         public void UpdateLanguageLocalization()
         {

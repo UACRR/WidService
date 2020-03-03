@@ -1,4 +1,6 @@
-﻿using SmRoPermitClientLib;
+﻿using LanguageLibrary;
+using LanguageLibrary.Model;
+using SmRoPermitClientLib;
 using SmRoPermitCommonLib;
 using System;
 using System.Collections.Generic;
@@ -23,11 +25,65 @@ namespace SmRoPermitAdmin
         private bool isNewUser = false;
         private GridViewRowInfo currentRow;
 
-        private Dictionary<string, string> Txt = Translator.GetDict();
+        private static FormPermitAdminConsole Instance = null;
+
+        private Dictionary<string, string> Txt = null;
 
         #region Form Level Functions
 
-        public FormPermitAdminConsole(string userCredentials)
+        public void Translate(Control control)
+        {
+            if (!string.IsNullOrEmpty(control.Text))
+            {
+                control.Text = GetText(control.Text);
+            }
+            Type type = control.GetType();
+            if (type.Name == "RadCollapsiblePanel")
+            {
+                var panel = control as Telerik.WinControls.UI.RadCollapsiblePanel;
+                panel.HeaderText = GetText(panel.HeaderText);
+            }
+            else if (type.Name == "RadGridView")
+            {
+                var panel = control as Telerik.WinControls.UI.RadGridView;
+                foreach (var col in panel.Columns)
+                    col.HeaderText = GetText(col.HeaderText);
+            }
+            foreach (Control ctrl in control.Controls)
+            {
+                Translate(ctrl);
+            }
+        }
+
+        private string GetText(string code)
+        {
+            return Txt[code];
+        }
+
+        public static void Show(string userCredentials)
+        {
+            if(Instance != null && !Instance.IsDisposed)
+            {
+                Instance.Show();
+                Instance.Activate();
+            }
+            else
+            {
+                Instance = new FormPermitAdminConsole(userCredentials);
+                Instance.Txt = new Dictionary<string, string>();
+
+                Type type = AppLanguageLibrary.CurrentLanguage.SmRoPermitLD.GetType();
+                foreach (var prop in type.GetProperties())
+                {
+                    LanguageItem li = (LanguageItem)prop.GetValue(AppLanguageLibrary.CurrentLanguage.SmRoPermitLD);
+                    Instance.Txt[prop.Name] = string.IsNullOrEmpty(li.Content) ? prop.Name : li.Content;
+                }
+
+                Instance.Show();
+            }
+        }
+
+        private FormPermitAdminConsole(string userCredentials)
         {
             string[] arr = userCredentials.Split(':');
             PermitApiProxy.UserLogin = arr[0];
@@ -37,7 +93,14 @@ namespace SmRoPermitAdmin
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            Translator.Transalate(this);
+           if (!string.IsNullOrEmpty(Text))
+            {
+                Text = GetText(Text);
+            }
+            foreach (Control ctrl in Controls)
+            {
+                Translate(ctrl);
+            }
             Text += $" ({PermitApiProxy.UserLogin})";
 
             try
