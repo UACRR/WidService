@@ -390,13 +390,5 @@ namespace LanguageService.ViewModel
         }
 
         #endregion
-
-        public ICommand TestCommand => new IPSDelegateCommand(TestCommandExecute);
-        private async void TestCommandExecute(object o)
-        {
-            //var result1 = await LanguageLibraryManager.SyncOnServer();
-            
-            //await LanguageLibraryManager.SyncOnClient();
-        }
     }
 }

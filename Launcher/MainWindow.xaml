@@ -246,7 +246,7 @@
                              Command="{Binding LoadPermitWindowCommand}">
                     <TextBlock Style="{StaticResource textBlock}"
                                ToolTip=""
-                               Text="Права доступу"/>
+                               Text="{Binding LM_Launcher.SysAdmin}"/>
                 </t:RadButton>
 
             </WrapPanel>

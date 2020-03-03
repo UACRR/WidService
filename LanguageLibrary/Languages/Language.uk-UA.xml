@@ -94,6 +94,12 @@
       </description>
       <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
+    <uiItem name="SysAdmin">
+      <content>Управління правами доступу</content>
+      <description>
+      </description>
+      <defaultContent>Управління правами доступу</defaultContent>
+    </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">
     <uiItem name="ERR">
@@ -280,13 +286,13 @@
       <content>Може переглядати дані</content>
       <description>
       </description>
-      <defaultContent>Може читати</defaultContent>
+      <defaultContent>Може переглядати дані</defaultContent>
     </uiItem>
     <uiItem name="CAN_WRITE">
       <content>Може редагувати дані</content>
       <description>
       </description>
-      <defaultContent>Може редагувати</defaultContent>
+      <defaultContent>Може редагувати дані</defaultContent>
     </uiItem>
     <uiItem name="SYS_INFO">
       <content>Системна інформація</content>

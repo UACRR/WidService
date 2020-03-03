@@ -9,6 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using IpsCommonTypes.Enums;
+using IpsCommonTypes.Types;
 using IPSViewComponentLibraryWPF.Controls.SearchControl.Model;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using Telerik.Windows.Controls;
@@ -56,6 +58,19 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                 OnPropertyChanged(() => ListBoxExtendedItemsSource);
             }
         }
+
+        private SimpleSearchParameters _simpleSearchParameters = new SimpleSearchParameters();
+        public SimpleSearchParameters SimpleSearchParameters
+        {
+            get => _simpleSearchParameters;
+            set
+            {
+                _simpleSearchParameters = value;
+                OnPropertyChanged(() => SimpleSearchParameters);
+            }
+        }
+
+        public Action<object> RunSearchQuery { get; set; }
 
         #endregion
 
@@ -108,6 +123,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                     {
                         Content = searchItem.NameField,
                         MinWidth = 175,
+                        IsTabStop = false,
                     },
                     new StackPanel
                     {
@@ -120,14 +136,16 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                                 Content = "Точне значення",
                                 IsChecked = true,
                                 VerticalContentAlignment = VerticalAlignment.Center,
-                                Margin = new Thickness(5,3,3,3)
+                                Margin = new Thickness(5,3,3,3),
+                                IsTabStop = false,
                             },
                             new RadioButton
                             {
                                 Name = PartValue,
                                 Content = "Містить текст",
                                 VerticalContentAlignment = VerticalAlignment.Center,
-                                Margin = new Thickness(5,3,3,3)
+                                Margin = new Thickness(5,3,3,3),
+                                IsTabStop = false,
                             },
                         }
                     }
@@ -164,7 +182,87 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
         #region * * * COMMANDS * * *
 
+        /// <summary>
+        /// запустити простий пошук
+        /// </summary>
+        public ICommand RunSearchCommand => new IPSDelegateCommand(RunSearchCommandExecute);
+        private void RunSearchCommandExecute(object serachText)
+        {
+            var propertyList = new List<string>();
+            foreach (var checkBox in ListBoxItemsSource)
+            {
+                if (checkBox.IsChecked ?? false)
+                    propertyList.Add(checkBox.Name);
+            }
 
+            if(string.IsNullOrEmpty(SimpleSearchParameters.SearchText))
+            {
+                ShowMessage.ShowWarning("Не введено пошукове слово!");
+                return;
+            }
+
+            if (!propertyList.Any())
+            {
+                ShowMessage.ShowWarning("Не обрано жодного поля для пошуку!");
+                return;
+            }
+
+            var searchData = new SearchData
+            {
+                SearchText = SimpleSearchParameters.SearchText,
+                MatchTextOfSearch = SimpleSearchParameters.MatchTextOfSearch,
+                SearchParametersValue = propertyList,
+            };
+
+            // exec search
+            RunSearchQuery?.Invoke(searchData);
+        }
+
+        /// <summary>
+        /// запустити простий пошук
+        /// </summary>
+        public ICommand RunSearchExtendedCommand => new IPSDelegateCommand(RunSearchExtendedCommandExecute);
+        private void RunSearchExtendedCommandExecute(object o)
+        {
+            var propertyList = new List<SearchDataExtended>();
+
+            foreach (var stackPanel in ListBoxExtendedItemsSource)
+            {
+                var txt = (TextBox)stackPanel.Children[0];
+
+                if (string.IsNullOrWhiteSpace(txt.Text))
+                    continue;
+
+                MatchTextOfSearch getMatchType()
+                { 
+                    var isFullValue = ((RadioButton)((StackPanel)stackPanel.Children[2]).Children[0]).IsChecked ?? false;
+                    var isPartValue = ((RadioButton)((StackPanel)stackPanel.Children[2]).Children[1]).IsChecked ?? false;
+
+                    if (isFullValue)
+                        return MatchTextOfSearch.Equal;
+                    if (isPartValue)
+                        return MatchTextOfSearch.Like;
+
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                propertyList.Add(new SearchDataExtended
+                {
+                    SearchParameterValue = txt.Name,
+                    SearchText = txt.Text,
+                    MatchTextOfSearch = getMatchType()
+                });
+            }
+
+            if (!propertyList.Any())
+            {
+                ShowMessage.ShowWarning("Відсутні дані для пошуку!");
+                return;
+            }
+
+            // exec search
+            RunSearchQuery?.Invoke(propertyList);
+        }
 
         #endregion
     }

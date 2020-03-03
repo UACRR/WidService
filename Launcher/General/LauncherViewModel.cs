@@ -149,7 +149,6 @@ namespace Launcher.General
         private async void LoadLanguage()
         {
             await AppLanguageLibrary.SyncOnClient();
-            //Task.Factory.StartNew(async () => await AppLanguageLibrary.SyncOnClient()).Wait();
             AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
             LM_Launcher.UpdateLanguageLocalization();
         }

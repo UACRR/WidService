@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\SearchControl\Model\SearchItem.cs" />
+    <Compile Include="Controls\SearchControl\Model\SimpleSearchParameters.cs" />
     <Compile Include="Controls\SearchControl\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>

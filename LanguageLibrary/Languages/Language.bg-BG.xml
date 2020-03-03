@@ -107,6 +107,14 @@
       </description>
       <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
+    <uiItem name="SysAdmin">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">
     <uiItem name="ERR">
@@ -163,7 +171,7 @@
       </content>
       <description>
       </description>
-      <defaultContent>Не можна видалити себе самого</defaultContent>
+      <defaultContent>Не можна видалити власний аккаунт</defaultContent>
     </uiItem>
     <uiItem name="PROVIDE_USER_LOGIN">
       <content>
@@ -177,14 +185,14 @@
       </content>
       <description>
       </description>
-      <defaultContent>Не можна змінити свій власний логін</defaultContent>
+      <defaultContent>Не можна змінити власний логін</defaultContent>
     </uiItem>
     <uiItem name="CANNOT_BLOCK_LOGIN">
       <content>
       </content>
       <description>
       </description>
-      <defaultContent>Не можна заблокувати свій власний логін</defaultContent>
+      <defaultContent>Не можна заблокувати власний логін</defaultContent>
     </uiItem>
     <uiItem name="DEF_PWD_CREATED">
       <content>
@@ -198,7 +206,7 @@
       </content>
       <description>
       </description>
-      <defaultContent>Вставте його в надійне місце для подальшого використання. Текст паролю знаходиться всередині лапок (').</defaultContent>
+      <defaultContent>Вставте значення з буферу в будь-який локальний файл і збережіть його для подальшого використання. Текст паролю знаходиться всередині лапок (')</defaultContent>
     </uiItem>
     <uiItem name="UNSAVED_CHANGES">
       <content>
@@ -324,14 +332,14 @@
       </content>
       <description>
       </description>
-      <defaultContent>Може читати</defaultContent>
+      <defaultContent>Може переглядати дані</defaultContent>
     </uiItem>
     <uiItem name="CAN_WRITE">
       <content>
       </content>
       <description>
       </description>
-      <defaultContent>Може редагувати</defaultContent>
+      <defaultContent>Може редагувати дані</defaultContent>
     </uiItem>
     <uiItem name="SYS_INFO">
       <content>

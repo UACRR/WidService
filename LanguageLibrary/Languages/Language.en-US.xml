@@ -94,6 +94,14 @@
       </description>
       <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
+    <uiItem name="SysAdmin">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">
     <uiItem name="ERR">
@@ -141,7 +149,7 @@
       <content>Cannot delete yourself</content>
       <description>
       </description>
-      <defaultContent>Не можна видалити себе самого</defaultContent>
+      <defaultContent>Не можна видалити власний аккаунт</defaultContent>
     </uiItem>
     <uiItem name="PROVIDE_USER_LOGIN">
       <content>Please, provide user login</content>
@@ -153,13 +161,13 @@
       <content>Cannot change your own login</content>
       <description>
       </description>
-      <defaultContent>Не можна змінити свій власний логін</defaultContent>
+      <defaultContent>Не можна змінити власний логін</defaultContent>
     </uiItem>
     <uiItem name="CANNOT_BLOCK_LOGIN">
       <content>Cannot block your own login</content>
       <description>
       </description>
-      <defaultContent>Не можна заблокувати свій власний логін</defaultContent>
+      <defaultContent>Не можна заблокувати власний логін</defaultContent>
     </uiItem>
     <uiItem name="DEF_PWD_CREATED">
       <content>Temporary password is created and placed into clipbord.</content>
@@ -171,7 +179,7 @@
       <content>Please,  paste it into some secure place to inform the user later on. The password is enclosed into single quates.</content>
       <description>
       </description>
-      <defaultContent>Вставте його в надійне місце для подальшого використання. Текст паролю знаходиться всередині лапок (').</defaultContent>
+      <defaultContent>Вставте значення з буферу в будь-який локальний файл і збережіть його для подальшого використання. Текст паролю знаходиться всередині лапок (')</defaultContent>
     </uiItem>
     <uiItem name="UNSAVED_CHANGES">
       <content>There are unsaved changes. Please, save or cancel.</content>
@@ -279,13 +287,13 @@
       <content>Can Read</content>
       <description>
       </description>
-      <defaultContent>Може читати</defaultContent>
+      <defaultContent>Може переглядати дані</defaultContent>
     </uiItem>
     <uiItem name="CAN_WRITE">
       <content>Can Write</content>
       <description>
       </description>
-      <defaultContent>Може редагувати</defaultContent>
+      <defaultContent>Може редагувати дані</defaultContent>
     </uiItem>
     <uiItem name="SYS_INFO">
       <content>System Information</content>

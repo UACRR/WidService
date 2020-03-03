@@ -19,13 +19,14 @@
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
             <Setter Property="Margin" Value="3"/>
         </Style>
+        <Style TargetType="ListBox" >
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="Continue" />
+        </Style>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="IsTabStop" Value="false"/>
+        </Style>
     </UserControl.Resources>
-
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
 
     <Grid>
         <TabControl>
@@ -36,13 +37,19 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    
+
                     <StackPanel Orientation="Horizontal" Margin="3" VerticalAlignment="Center" Background="AliceBlue">
-                        <TextBox Margin="3" VerticalContentAlignment="Center" MinWidth="250"/>
-                        <t:RadButton Content="Пошук" MinWidth="95"/>
+                        <TextBox Text="{Binding SimpleSearchParameters.SearchText}"
+                                 Margin="3" 
+                                 VerticalContentAlignment="Center" 
+                                 MinWidth="250"/>
+                        <t:RadButton Content="Пошук"
+                                     MinWidth="95" 
+                                     Command="{Binding RunSearchCommand}">
+                        </t:RadButton>
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton Margin="5 0" IsChecked="True" Content="Точне значення" VerticalAlignment="Center"/>
-                            <RadioButton Margin="5 0" Content="Містить текст" VerticalAlignment="Center"/>
+                            <RadioButton Margin="5 0" IsChecked="{Binding SimpleSearchParameters.IsEqualSelected}" Content="Точне значення" VerticalAlignment="Center"/>
+                            <RadioButton Margin="5 0" IsChecked="{Binding SimpleSearchParameters.IsLikeSelected}" Content="Містить текст" VerticalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -70,7 +77,17 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <ListBox Margin="3" ItemsSource="{Binding ListBoxExtendedItemsSource}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                        <Label Grid.Row="0" Content="Введіть дані в поля, в яких буде здійснюватись пошук:" Background="GhostWhite"/>
+
+                        <ListBox Grid.Row="1" 
+                                 Margin="3" 
+                                 Focusable="False"
+                                 IsTabStop="false" 
+                                 ItemsSource="{Binding ListBoxExtendedItemsSource}" 
+                                 HorizontalAlignment="Stretch" 
+                                 HorizontalContentAlignment="Stretch"
+                                 IsSelected="False"
+                                 Grid.ColumnSpan="2">
                             <ListBox.Template>
                                 <ControlTemplate>
                                     <StackPanel IsItemsHost="True"/>
@@ -99,12 +116,15 @@
                             </StackPanel>
                         </StackPanel>-->
 
-                        <Grid Grid.Row="1">
+                        <Grid Grid.Row="2" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <t:RadButton Grid.Column="1" Content="Пошук" MinWidth="95"/>
+                            <t:RadButton Grid.Column="1" 
+                                         Content="Пошук" 
+                                         MinWidth="95"
+                                         Command="{Binding RunSearchExtendedCommand}"/>
                         </Grid>
 
 

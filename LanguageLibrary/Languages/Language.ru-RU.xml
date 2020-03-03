@@ -94,6 +94,13 @@
       </description>
       <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
+    <uiItem name="SysAdmin">
+      <content>Управление правами доступа</content>
+      <description>
+      </description>
+      <defaultContent>
+      </defaultContent>
+    </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">
     <uiItem name="ERR">
@@ -142,7 +149,7 @@
       <content>Нельзя удалить собстенный аккаунт</content>
       <description>
       </description>
-      <defaultContent>Не можна видалити себе самого</defaultContent>
+      <defaultContent>Не можна видалити власний аккаунт</defaultContent>
     </uiItem>
     <uiItem name="PROVIDE_USER_LOGIN">
       <content>Необходимо указать логин пользователя</content>
@@ -154,13 +161,13 @@
       <content>Нельзя изменить собственный логин</content>
       <description>
       </description>
-      <defaultContent>Не можна змінити свій власний логін</defaultContent>
+      <defaultContent>Не можна змінити власний логін</defaultContent>
     </uiItem>
     <uiItem name="CANNOT_BLOCK_LOGIN">
       <content>Нельзя заблокировать собственный логин</content>
       <description>
       </description>
-      <defaultContent>Не можна заблокувати свій власний логін</defaultContent>
+      <defaultContent>Не можна заблокувати власний логін</defaultContent>
     </uiItem>
     <uiItem name="DEF_PWD_CREATED">
       <content>Временный пароль создано и размещено в буфере обмена</content>
@@ -172,7 +179,7 @@
       <content>Вставьте значения из буфера в любой локальный  файл и сохраните его для дальнейшего использования. Текст пароля находится в середине кавычек (')</content>
       <description>
       </description>
-      <defaultContent>Вставте його в надійне місце для подальшого використання. Текст паролю знаходиться всередині лапок (').</defaultContent>
+      <defaultContent>Вставте значення з буферу в будь-який локальний файл і збережіть його для подальшого використання. Текст паролю знаходиться всередині лапок (')</defaultContent>
     </uiItem>
     <uiItem name="UNSAVED_CHANGES">
       <content>Были внесены изменения. Сохраните или отмените</content>
@@ -280,13 +287,13 @@
       <content>Может просмотривать данные</content>
       <description>
       </description>
-      <defaultContent>Може читати</defaultContent>
+      <defaultContent>Може переглядати дані</defaultContent>
     </uiItem>
     <uiItem name="CAN_WRITE">
       <content>Может редактировать данные</content>
       <description>
       </description>
-      <defaultContent>Може редагувати</defaultContent>
+      <defaultContent>Може редагувати дані</defaultContent>
     </uiItem>
     <uiItem name="SYS_INFO">
       <content>Системная информация</content>

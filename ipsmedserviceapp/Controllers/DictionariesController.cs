@@ -1405,6 +1405,8 @@ namespace ipsmedserviceapp.Controllers
         // -
         #endregion
 
+        #region * * *  ОТРИМАТИ ДОВІДНИКИ СИСТЕМИ * * *
+
         /// <summary>
         /// Отримати довідники для інтерфейсів роботи з анкетами та договорами
         /// </summary>
@@ -1473,6 +1475,471 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Отримати довідники для інтерфейсів роботи з анкетами та договорами
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("anketa/{lang}")]
+        public async Task<ActionResult> GetAnketaDictionary(string lang)
+        {
+            var dictionary = new Dictionary<string, object>
+            {
+                {
+                    "activityType", TranslateDictionary(
+                        await _dbContext.ActivityType.Include(rec => rec.ActivityTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.ActivityTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.ActivityTypeTr.Clear();
+                        })
+                },
+                {
+                    "agreementStatus", TranslateDictionary(
+                        await _dbContext.AgreementStatus.Include(rec => rec.AgreementStatusTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.AgreementStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.AgreementStatusTr.Clear();
+                        })
+                },
+                {
+                    "agreementType", TranslateDictionary(
+                        await _dbContext.AgreementType.Include(rec => rec.AgreementTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.AgreementTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.AgreementTypeTr.Clear();
+                        })
+                },
+                {
+                    "agrLicenseType", TranslateDictionary(
+                        await _dbContext.AgrLicenseType.Include(rec => rec.AgrLicenseTypeTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.AgrLicenseTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.AgrLicenseTypeTr.Clear();
+                        })
+                },
+                {
+                    "algorithmType", TranslateDictionary(
+                        await _dbContext.AlgorithmType.Include(rec => rec.AlgorithmTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.AlgorithmTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.AlgorithmTypeTr.Clear();
+                        })
+                },
+                {
+                    "anketaStatus", TranslateDictionary(
+                        await _dbContext.AnketaStatus.Include(rec => rec.AnketaStatusTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.AnketaStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.AnketaStatusTr.Clear();
+                        })
+                },
+                {
+                    "catalogStatus", TranslateDictionary(
+                        await _dbContext.CatalogStatus.Include(rec => rec.CatalogStatusTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CatalogStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CatalogStatusTr.Clear();
+                        })
+                },
+                {
+                    "category", TranslateDictionary(
+                        await _dbContext.Category.Include(rec => rec.CategoryTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.CategoryTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CategoryTr.Clear();
+                        })
+                },
+                {
+                    "categoryStatusType", TranslateDictionary(
+                        await _dbContext.CategoryStatusType.Include(rec => rec.CategoryStatusTypeTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.CategoryStatusTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CategoryStatusTypeTr.Clear();
+                        })
+                },
+                {
+                    "continent", TranslateDictionary(
+                        await _dbContext.Continent.Include(rec => rec.ContinentTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.ContinentTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.ContinentTr.Clear();
+                        })
+                },
+                {
+                    "copyrightKind", TranslateDictionary(
+                        await _dbContext.CopyrightKind.Include(rec => rec.CopyrightKindTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CopyrightKindTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CopyrightKindTr.Clear();
+                        })
+                },
+                {
+                    "copyrightType", TranslateDictionary(
+                        await _dbContext.CopyrightType.Include(rec => rec.CopyrightTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CopyrightTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CopyrightTypeTr.Clear();
+                        })
+                },
+                {
+                    "country", TranslateDictionary(
+                        await _dbContext.Country.Include(rec => rec.CountryTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.CountryTr.SingleOrDefault(tr => tr.Lang == lang)?.CountryName;
+                            rec.CountryName = name ?? rec.CountryName;
+                            rec.CountryTr.Clear();
+                        })
+                },
+                {
+                    "creativeRoleType", TranslateDictionary(
+                        await _dbContext.CreativeRoleType.Include(rec => rec.CreativeRoleTypeTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.CreativeRoleTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CreativeRoleTypeTr.Clear();
+                        })
+                },
+                {
+                    "cRightStatus", TranslateDictionary(
+                        await _dbContext.CrightStatus.Include(rec => rec.CrightStatusTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CrightStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CrightStatusTr.Clear();
+                        })
+                },
+                {
+                    "cRKindGroup", TranslateDictionary(
+                        await _dbContext.CrkindGroup.Include(rec => rec.CrkindGroupTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CrkindGroupTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CrkindGroupTr.Clear();
+                        })
+                },
+                {
+                    "customerStatus", TranslateDictionary(
+                        await _dbContext.CustomerStatus.Include(rec => rec.CustomerStatusTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.CustomerStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CustomerStatusTr.Clear();
+                        })
+                },
+                {
+                    "customerType", TranslateDictionary(
+                        await _dbContext.CustomerType.Include(rec => rec.CustomerTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CustomerTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CustomerTypeTr.Clear();
+                        })
+                },
+                {
+                    "documentType", TranslateDictionary(
+                        await _dbContext.DocumentType.Include(rec => rec.DocumentTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.DocumentTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.DocumentTypeTr.Clear();
+                        })
+                },
+                {
+                    "genreType", TranslateDictionary(
+                        await _dbContext.GenreType.Include(rec => rec.GenreTypeTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.GenreTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.GenreTypeTr.Clear();
+                        })
+                },
+                {
+                    "klR030", TranslateDictionary(
+                        await _dbContext.KlR030.Include(rec => rec.KlR030tr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.KlR030tr.SingleOrDefault(tr => tr.Lang == lang)?.R030Name;
+                            rec.R030Name = name ?? rec.R030Name;
+                            rec.KlR030tr.Clear();
+                        })
+                },
+                {
+                    "lang", TranslateDictionary(
+                        await _dbContext.Lang.Include(rec => rec.LangTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.LangTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.LangTr.Clear();
+                        })
+                },
+                {
+                    "legalBasis", TranslateDictionary(
+                        await _dbContext.LegalBasis.Include(rec => rec.LegalBasisTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.LegalBasisTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.LegalBasisTr.Clear();
+                        })
+                },
+                {
+                    "licenseType", TranslateDictionary(
+                        await _dbContext.LicenseType.Include(rec => rec.LicenseTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.LicenseTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.LicenseTypeTr.Clear();
+                        })
+                },
+                {
+                    "monthName", TranslateDictionary(
+                        await _dbContext.MonthName.Include(rec => rec.MonthNameTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.MonthNameTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.MonthNameTr.Clear();
+                        })
+                },
+                {
+                    "objAct", TranslateDictionary(
+                        await _dbContext.ObjAct.Include(rec => rec.ObjActTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.ObjActTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.ObjActTr.Clear();
+                        })
+                },
+                {
+                    "objectStatus", TranslateDictionary(
+                        await _dbContext.ObjectStatus.Include(rec => rec.ObjectStatusTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.ObjectStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.ObjectStatusTr.Clear();
+                        })
+                },
+                {
+                    "paymentKind", TranslateDictionary(
+                        await _dbContext.PaymentKind.Include(rec => rec.PaymentKindTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.PaymentKindTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.PaymentKindTr.Clear();
+                        })
+                },
+                {
+                    "paymentStatus", TranslateDictionary(
+                        await _dbContext.PaymentStatus.Include(rec => rec.PaymentStatusTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.PaymentStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.PaymentStatusTr.Clear();
+                        })
+                },
+                {
+                    "payMethodType", TranslateDictionary(
+                        await _dbContext.PayMethodType.Include(rec => rec.PayMethodTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.PayMethodTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.PayMethodTypeTr.Clear();
+                        })
+                },
+                {
+                    "period", TranslateDictionary(
+                        await _dbContext.Period.Include(rec => rec.PeriodTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.PeriodTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.PeriodTr.Clear();
+                        })
+                },
+                {
+                    "permitType", TranslateDictionary(
+                        await _dbContext.PermitType.Include(rec => rec.PermitTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.PermitTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.PermitTypeTr.Clear();
+                        })
+                },
+                {
+                    "positionType", TranslateDictionary(
+                        await _dbContext.PositionType.Include(rec => rec.PositionTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.PositionTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.PositionTypeTr.Clear();
+                        })
+                },
+                {
+                    "region", TranslateDictionary(
+                        await _dbContext.Region.Include(rec => rec.RegionTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.RegionTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.RegionTr.Clear();
+                        })
+                },
+                {
+                    "registerStatus", TranslateDictionary(
+                        await _dbContext.RegisterStatus.Include(rec => rec.RegisterStatusTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.RegisterStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.RegisterStatusTr.Clear();
+                        })
+                },
+                {
+                    "residentType", TranslateDictionary(
+                        await _dbContext.ResidentType.Include(rec => rec.ResidentTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.ResidentTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.ResidentTypeTr.Clear();
+                        })
+                },
+                {
+                    "rHolderType", TranslateDictionary(
+                        await _dbContext.RholderType.Include(rec => rec.RholderTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.RholderTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.RholderTypeTr.Clear();
+                        })
+                },
+                {
+                    "seekType", TranslateDictionary(
+                        await _dbContext.SeekType.Include(rec => rec.SeekTypeTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.SeekTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.SeekTypeTr.Clear();
+                        })
+                },
+                {
+                    "sexType", TranslateDictionary(
+                        await _dbContext.SexType.Include(rec => rec.SexTypeTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.SexTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.SexTypeTr.Clear();
+                        })
+                },
+                {
+                    "systemConstant", TranslateDictionary(
+                        await _dbContext.SystemConstant.Include(rec => rec.SystemConstantTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.SystemConstantTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.SystemConstantTr.Clear();
+                        })
+                },
+                {
+                    "typeMethodGet", TranslateDictionary(
+                        await _dbContext.TypeMethodGet.Include(rec => rec.TypeMethodGetTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.TypeMethodGetTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.TypeMethodGetTr.Clear();
+                        })
+                },
+                {
+                    "typePlace", TranslateDictionary(
+                        await _dbContext.TypePlace.Include(rec => rec.TypePlaceTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.TypePlaceTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.TypePlaceTr.Clear();
+                        })
+                },
+                {
+                    "typePlaceParam", TranslateDictionary(
+                        await _dbContext.TypePlaceParam.Include(rec => rec.TypePlaceParamTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.TypePlaceParamTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.TypePlaceParamTr.Clear();
+                        })
+                },
+                {
+                    "typeVAT", TranslateDictionary(
+                        await _dbContext.TypeVat.Include(rec => rec.TypeVattr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.TypeVattr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.TypeVattr.Clear();
+                        })
+                },
+                {
+                    "workType", TranslateDictionary(
+                        await _dbContext.WorkType.Include(rec => rec.WorkTypeTr).AsNoTracking().ToListAsync(), 
+                        rec =>
+                        {
+                            var name = rec.WorkTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.WorkTypeTr.Clear();
+                        })
+                },
+            };
+
+
+            return Json(dictionary);
+        }
+
+        /// <summary>
         /// Довідники об'єкту права
         /// </summary>
         /// <returns></returns>
@@ -1499,5 +1966,171 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(retDictionary);
         }
+
+        /// <summary>
+        /// Довідники об'єкту права
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("objectright/{lang}")]
+        public async Task<ActionResult> GetObjectRightDictionary(string lang)
+        {
+            var dictionary = new Dictionary<string, object>
+            {
+                {
+                    "category", TranslateDictionary(
+                        await _dbContext.Category.Include(rec => rec.CategoryTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CategoryTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CategoryTr.Clear();
+                        })
+                },
+                {
+                    "copyrightType", TranslateDictionary(
+                        await _dbContext.CopyrightType.Include(rec => rec.CopyrightTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CopyrightTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CopyrightTypeTr.Clear();
+                        })
+                },
+                {
+                    "creativeRoleType", TranslateDictionary(
+                        await _dbContext.CreativeRoleType.Include(rec => rec.CreativeRoleTypeTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.CreativeRoleTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CreativeRoleTypeTr.Clear();
+                        })
+                },
+                {
+                    "etGenre", await _dbContext.EtGenre.AsNoTracking().ToListAsync()
+                },
+                {
+                    "etRole", await _dbContext.EtRole.AsNoTracking().ToListAsync()
+                },
+                {
+                    "genreType", TranslateDictionary(
+                        await _dbContext.GenreType.Include(rec => rec.GenreTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.GenreTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.GenreTypeTr.Clear();
+                        })
+                },
+                {
+                    "legalBasis", TranslateDictionary(
+                        await _dbContext.LegalBasis.Include(rec => rec.LegalBasisTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.LegalBasisTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.LegalBasisTr.Clear();
+                        })
+                },
+                {
+                    "objAct", TranslateDictionary(
+                        await _dbContext.ObjAct.Include(rec => rec.ObjActTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.ObjActTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.ObjActTr.Clear();
+                        })
+                },
+                {
+                    "objectStatus", TranslateDictionary(
+                        await _dbContext.ObjectStatus.Include(rec => rec.ObjectStatusTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.ObjectStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.ObjectStatusTr.Clear();
+                        })
+                },
+                {
+                    "permitType", TranslateDictionary(
+                        await _dbContext.PermitType.Include(rec => rec.PermitTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.PermitTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.PermitTypeTr.Clear();
+                        })
+                },
+                {
+                    "seekType", TranslateDictionary(
+                        await _dbContext.SeekType.Include(rec => rec.SeekTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.SeekTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.SeekTypeTr.Clear();
+                        })
+                },
+                {
+                    "specType", TranslateDictionary(
+                        await _dbContext.SpecType.Include(rec => rec.SpecTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.SpecTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.SpecTypeTr.Clear();
+                        })
+                },
+                {
+                    "folkType", TranslateDictionary(
+                        await _dbContext.FolkType.Include(rec => rec.FolkTypeTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.FolkTypeTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.FolkTypeTr.Clear();
+                        })
+                },
+                {
+                    "registerStatuses", TranslateDictionary(
+                        await _dbContext.RegisterStatus.Include(rec => rec.RegisterStatusTr).AsNoTracking()
+                            .ToListAsync(), rec =>
+                        {
+                            var name = rec.RegisterStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.RegisterStatusTr.Clear();
+                        })
+                },
+                {
+                    "catalogStatus", TranslateDictionary(
+                        await _dbContext.CatalogStatus.Include(rec => rec.CatalogStatusTr).AsNoTracking().ToListAsync(),
+                        rec =>
+                        {
+                            var name = rec.CatalogStatusTr.SingleOrDefault(tr => tr.Lang == lang)?.Name;
+                            rec.Name = name ?? rec.Name;
+                            rec.CatalogStatusTr.Clear();
+                        })
+                },
+            };
+            
+            return Json(dictionary);
+        }
+
+        [HttpGet("searchhelper")]
+        public async Task<IActionResult> GetSearchHelperDictionary(string lang)
+        {
+            return Ok();
+        }
+
+        private static List<T> TranslateDictionary<T>(List<T> dictionaries, Action<T> setValue)
+        {
+            foreach (var item in dictionaries)
+                setValue(item);
+
+            return dictionaries;
+        }
+
+        #endregion
     }
 }
