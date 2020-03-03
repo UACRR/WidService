@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -28,6 +29,7 @@ namespace SmRoPermitClientLib
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(authToken));
 
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
                 HttpResponseMessage result = client.PutAsync($"{BaseUri}api/{uri}", content).Result;
                 string returnValue = result.Content.ReadAsStringAsync().Result;
                 if (result.StatusCode != System.Net.HttpStatusCode.OK)
@@ -52,6 +54,7 @@ namespace SmRoPermitClientLib
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(authToken));
 
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
                 HttpResponseMessage result = client.PostAsync($"{BaseUri}api/{uri}", content).Result;
                 string returnValue = result.Content.ReadAsStringAsync().Result;
                 if (result.StatusCode != System.Net.HttpStatusCode.OK)
@@ -75,6 +78,7 @@ namespace SmRoPermitClientLib
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(authToken));
 
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
                 HttpResponseMessage result = client.GetAsync($"{BaseUri}api/{uri}").Result;
                 string returnValue = result.Content.ReadAsStringAsync().Result;
                 if (result.StatusCode != System.Net.HttpStatusCode.OK)
@@ -96,6 +100,7 @@ namespace SmRoPermitClientLib
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(authToken));
 
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
                 HttpResponseMessage result = client.DeleteAsync($"{BaseUri}api/{uri}").Result;
                 string returnValue = result.Content.ReadAsStringAsync().Result;
                 if (result.StatusCode != System.Net.HttpStatusCode.OK)
