@@ -98,8 +98,7 @@
       <content>Управление правами доступа</content>
       <description>
       </description>
-      <defaultContent>
-      </defaultContent>
+      <defaultContent>Управління правами доступу</defaultContent>
     </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">

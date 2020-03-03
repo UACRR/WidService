@@ -121,7 +121,7 @@ namespace Launcher.General
             set
             {
                 _languagesItemSource = value;
-                string name = AppLanguageLibrary.CurrentAppCultureInfo.Name;
+                string name = AppLanguageLibrary.ApplicationCultureInfo.Name;
                 CurrentLanguage = LanguagesItemSource.FirstOrDefault(rec => rec.SpecificationCode == name);
                 OnPropertyChanged(() => LanguagesItemSource);
             }
@@ -174,7 +174,6 @@ namespace Launcher.General
         private async void LoadCommandExecute(object o)
         {
             LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
-            await Task.Delay(1500);
             LoginCommandExecute(null);
             Initialize();
         }

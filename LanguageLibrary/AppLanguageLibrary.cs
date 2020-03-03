@@ -9,7 +9,6 @@ namespace LanguageLibrary
 {
     public static class AppLanguageLibrary
     {
-        private static bool _cultureLoaded;
         private static readonly LanguageLibraryHelper _LanguageLibraryHelper = new LanguageLibraryHelper();
 
         private static LanguageObjectModel _language;
@@ -20,7 +19,8 @@ namespace LanguageLibrary
         {
             get
             {
-                _language = _LanguageLibraryHelper.GetLanguage(Thread.CurrentThread.CurrentCulture);
+                _language = _LanguageLibraryHelper.CurrentLanguageObjectModel;
+                //_language = _LanguageLibraryHelper.GetLanguage();
                 return _language;
             }
         }
@@ -28,19 +28,7 @@ namespace LanguageLibrary
         /// <summary>
         /// Поточні культурні налаштування
         /// </summary>
-        public static CultureInfo CurrentAppCultureInfo
-        {
-            get
-            {
-                if (!_cultureLoaded)
-                {
-                    _LanguageLibraryHelper.LoadApplicationCultureInfo();
-                    _cultureLoaded = true;
-                }
-
-                return Thread.CurrentThread.CurrentCulture;
-            }
-        }
+        public static CultureInfo ApplicationCultureInfo => _LanguageLibraryHelper.ApplicationCultureInfo;
 
         /// <summary>
         /// Змінити мовну локалізацію
@@ -48,7 +36,10 @@ namespace LanguageLibrary
         /// <param name="cultureInfo"></param>
         public static void ChangeCurrentCulture(CultureInfo cultureInfo)
         {
-            _LanguageLibraryHelper.SetApplicationCultureInfo(cultureInfo);
+            if (cultureInfo == null)
+                return;
+
+            _LanguageLibraryHelper.ApplicationCultureInfo = cultureInfo;
         }
 
         /// <summary>

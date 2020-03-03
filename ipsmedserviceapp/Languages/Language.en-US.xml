@@ -2,8 +2,7 @@
 <LanguageObjectModel specificationCode="en-US">
   <uiContainer name="CopyrightRequestLD">
     <uiItem name="UIbtnSave">
-      <content>
-      </content>
+      <content>Save</content>
       <description>save button</description>
       <defaultContent>Зберегти</defaultContent>
     </uiItem>
@@ -36,74 +35,383 @@
   </uiContainer>
   <uiContainer name="LauncherLD">
     <uiItem name="RH_OR">
-      <content>
-      </content>
+      <content>Admin workplace with the authors / rights holders and objects</content>
       <description>
       </description>
-      <defaultContent>Адміністратор авторів/правовласників та об'єктів права</defaultContent>
+      <defaultContent>Робоче місце адміністратора по роботі з Авторами/Правовласниками та Об'єктами прав</defaultContent>
     </uiItem>
     <uiItem name="ReportsAndRoyalty">
-      <content>
-      </content>
+      <content>Admin workplace to distribution of royalties (processing user reports)</content>
       <description>
       </description>
-      <defaultContent>Робоче місце по управлінню розподілу авторської виногороди (обробка звітів користувачів)</defaultContent>
+      <defaultContent>Робоче місце адмінастратора по розподілу авторської виногороди (обробка звітів від Користувачів)</defaultContent>
     </uiItem>
     <uiItem name="AnalyticsAndReports">
-      <content>
-      </content>
+      <content>Analytical reports</content>
       <description>
       </description>
       <defaultContent>Аналітична звітність</defaultContent>
     </uiItem>
     <uiItem name="OperativeReporting">
-      <content>
-      </content>
+      <content>Operational reports</content>
       <description>
       </description>
       <defaultContent>Оперативна звітність</defaultContent>
     </uiItem>
     <uiItem name="Clients_WP">
-      <content>
-      </content>
+      <content>Admin workplace with users "small rights" </content>
       <description>
       </description>
-      <defaultContent>Робоче місце по роботі з «малими правами»</defaultContent>
+      <defaultContent>Робоче місце адміністратора по роботі з Користувачами «малими правами»</defaultContent>
     </uiItem>
     <uiItem name="Theatres_WP">
-      <content>
-      </content>
+      <content>Admin workplace with users "great rights" </content>
       <description>
       </description>
-      <defaultContent>Робоче місце по роботі з «великими правами»</defaultContent>
+      <defaultContent>Робоче місце адміністратора  по роботі з Користувачами «великими правами»</defaultContent>
     </uiItem>
     <uiItem name="Partner_WP">
-      <content>
-      </content>
+      <content>Admin workplace with company representatives</content>
       <description>
       </description>
-      <defaultContent>Робоче місце адміністратора по роботі з представниками компанії</defaultContent>
+      <defaultContent>Робоче місце адміністратора по роботі з Представниками компанії</defaultContent>
     </uiItem>
     <uiItem name="FixationOfViolations">
-      <content>
-      </content>
+      <content>Fixation rights violations</content>
       <description>
       </description>
       <defaultContent>Фіксація порушень прав</defaultContent>
     </uiItem>
     <uiItem name="SystemDictionaries">
-      <content>
-      </content>
+      <content>System Directories</content>
       <description>
       </description>
       <defaultContent>Довідники системи</defaultContent>
     </uiItem>
     <uiItem name="AnketaOfTheCompany">
-      <content>
-      </content>
+      <content>Company Profile</content>
       <description>
       </description>
       <defaultContent>Анкета компанії</defaultContent>
+    </uiItem>
+    <uiItem name="SysAdmin">
+      <content>Permission manager</content>
+      <description>
+      </description>
+      <defaultContent>Управління правами доступу</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="SmRoPermitLD">
+    <uiItem name="ERR">
+      <content>Error</content>
+      <description>Помилка</description>
+      <defaultContent>Помилка</defaultContent>
+    </uiItem>
+    <uiItem name="INFO">
+      <content>Information</content>
+      <description>
+      </description>
+      <defaultContent>Інформація</defaultContent>
+    </uiItem>
+    <uiItem name="WARN">
+      <content>Warning</content>
+      <description>
+      </description>
+      <defaultContent>Попередження</defaultContent>
+    </uiItem>
+    <uiItem name="QUEST">
+      <content>Question</content>
+      <description>
+      </description>
+      <defaultContent>Питання</defaultContent>
+    </uiItem>
+    <uiItem name="CONF_SAVE">
+      <content>There are unsaved changes. Please, save or cancel.</content>
+      <description>
+      </description>
+      <defaultContent>Були внесені зміни. Збережіть або відмініть.</defaultContent>
+    </uiItem>
+    <uiItem name="NEW_USER">
+      <content>New User</content>
+      <description>
+      </description>
+      <defaultContent>Новий користувач</defaultContent>
+    </uiItem>
+    <uiItem name="DEL_USER">
+      <content>Delete User?</content>
+      <description>
+      </description>
+      <defaultContent>Видалити користувача?</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_DELETE_SELF">
+      <content>Cannot delete yourself</content>
+      <description>
+      </description>
+      <defaultContent>Не можна видалити власний аккаунт</defaultContent>
+    </uiItem>
+    <uiItem name="PROVIDE_USER_LOGIN">
+      <content>Please, provide user login</content>
+      <description>
+      </description>
+      <defaultContent>Потрібно вказати логін користувача</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_LOGIN">
+      <content>Cannot change your own login</content>
+      <description>
+      </description>
+      <defaultContent>Не можна змінити власний логін</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_BLOCK_LOGIN">
+      <content>Cannot block your own login</content>
+      <description>
+      </description>
+      <defaultContent>Не можна заблокувати власний логін</defaultContent>
+    </uiItem>
+    <uiItem name="DEF_PWD_CREATED">
+      <content>Temporary password is created and placed into clipbord.</content>
+      <description>
+      </description>
+      <defaultContent>Тимчасовий пароль створено і розміщено в буфері обміну.</defaultContent>
+    </uiItem>
+    <uiItem name="PLEASE_PASTE">
+      <content>Please,  paste it into some secure place to inform the user later on. The password is enclosed into single quates.</content>
+      <description>
+      </description>
+      <defaultContent>Вставте значення з буферу в будь-який локальний файл і збережіть його для подальшого використання. Текст паролю знаходиться всередині лапок (')</defaultContent>
+    </uiItem>
+    <uiItem name="UNSAVED_CHANGES">
+      <content>There are unsaved changes. Please, save or cancel.</content>
+      <description>
+      </description>
+      <defaultContent>Були внесені зміни. Збережіть або відмініть.</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_PERM">
+      <content>Cannot change your own permissions</content>
+      <description>
+      </description>
+      <defaultContent>Не можна змінити власні права доступу</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_PWD">
+      <content>Cannot reset your own password</content>
+      <description>
+      </description>
+      <defaultContent>Не можна змінити свій власний пароль</defaultContent>
+    </uiItem>
+    <uiItem name="CONFIRM_PWD_RESET">
+      <content>User password is about to be reset. Please, confirm.</content>
+      <description>
+      </description>
+      <defaultContent>Пароль буде змінено. Півдтвердіть, будь ласка.</defaultContent>
+    </uiItem>
+    <uiItem name="USER_LIST">
+      <content>User List</content>
+      <description>
+      </description>
+      <defaultContent>Користувачі</defaultContent>
+    </uiItem>
+    <uiItem name="ADMIN_CONSOLE">
+      <content>User Admin Console</content>
+      <description>
+      </description>
+      <defaultContent>Адміністрування користувачів</defaultContent>
+    </uiItem>
+    <uiItem name="ADD">
+      <content>Add</content>
+      <description>
+      </description>
+      <defaultContent>Додати</defaultContent>
+    </uiItem>
+    <uiItem name="DELETE">
+      <content>Delete</content>
+      <description>
+      </description>
+      <defaultContent>Видалити</defaultContent>
+    </uiItem>
+    <uiItem name="RESET_PWD">
+      <content>Reset Password</content>
+      <description>
+      </description>
+      <defaultContent>Оновити пароль</defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN">
+      <content>Login</content>
+      <description>
+      </description>
+      <defaultContent>Логін</defaultContent>
+    </uiItem>
+    <uiItem name="FIRST_NAME">
+      <content>First Name</content>
+      <description>
+      </description>
+      <defaultContent>Ім'я</defaultContent>
+    </uiItem>
+    <uiItem name="SURNAME">
+      <content>Surname</content>
+      <description>
+      </description>
+      <defaultContent>По-батькові</defaultContent>
+    </uiItem>
+    <uiItem name="LAST_NAME">
+      <content>Last Name</content>
+      <description>
+      </description>
+      <defaultContent>Прізвище</defaultContent>
+    </uiItem>
+    <uiItem name="SAVE">
+      <content>Save</content>
+      <description>
+      </description>
+      <defaultContent>Зберегти</defaultContent>
+    </uiItem>
+    <uiItem name="CANCEL">
+      <content>Cancel</content>
+      <description>
+      </description>
+      <defaultContent>Відмінити</defaultContent>
+    </uiItem>
+    <uiItem name="CODE">
+      <content>Code</content>
+      <description>
+      </description>
+      <defaultContent>Код</defaultContent>
+    </uiItem>
+    <uiItem name="ROLE">
+      <content>Role</content>
+      <description>
+      </description>
+      <defaultContent>Роль</defaultContent>
+    </uiItem>
+    <uiItem name="CAN_READ">
+      <content>Can Read</content>
+      <description>
+      </description>
+      <defaultContent>Може переглядати дані</defaultContent>
+    </uiItem>
+    <uiItem name="CAN_WRITE">
+      <content>Can Write</content>
+      <description>
+      </description>
+      <defaultContent>Може редагувати дані</defaultContent>
+    </uiItem>
+    <uiItem name="SYS_INFO">
+      <content>System Information</content>
+      <description>
+      </description>
+      <defaultContent>Системна інформація</defaultContent>
+    </uiItem>
+    <uiItem name="MODIFIED_ON">
+      <content>Modified On:</content>
+      <description>
+      </description>
+      <defaultContent>Час зміни:</defaultContent>
+    </uiItem>
+    <uiItem name="CODE_LAB">
+      <content>Code:</content>
+      <description>
+      </description>
+      <defaultContent>Код:</defaultContent>
+    </uiItem>
+    <uiItem name="CREATED_ON">
+      <content>Created On:</content>
+      <description>
+      </description>
+      <defaultContent>Час створення:</defaultContent>
+    </uiItem>
+    <uiItem name="USER_ACCOUNT">
+      <content>User Account</content>
+      <description>
+      </description>
+      <defaultContent>Обліковий запис</defaultContent>
+    </uiItem>
+    <uiItem name="BLOCKED">
+      <content>Blocked</content>
+      <description>
+      </description>
+      <defaultContent>Заблоковано</defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_LAB">
+      <content>Login:</content>
+      <description>
+      </description>
+      <defaultContent>Логін:</defaultContent>
+    </uiItem>
+    <uiItem name="PASSWORD_LAB">
+      <content>Password:</content>
+      <description>
+      </description>
+      <defaultContent>Пароль:</defaultContent>
+    </uiItem>
+    <uiItem name="PERSONAL_DATA">
+      <content>Personal Data</content>
+      <description>
+      </description>
+      <defaultContent>Персональні дані</defaultContent>
+    </uiItem>
+    <uiItem name="FIRST_NAME_LAB">
+      <content>First Name:</content>
+      <description>
+      </description>
+      <defaultContent>Ім'я:</defaultContent>
+    </uiItem>
+    <uiItem name="SURNAME_LAB">
+      <content>Surname:</content>
+      <description>
+      </description>
+      <defaultContent>По-батькові:</defaultContent>
+    </uiItem>
+    <uiItem name="LAST_NAME_LAB">
+      <content>Last Name:</content>
+      <description>
+      </description>
+      <defaultContent>Прізвище:</defaultContent>
+    </uiItem>
+    <uiItem name="EMAIL_LAB">
+      <content>E-Mail:</content>
+      <description>
+      </description>
+      <defaultContent>E-Mail:</defaultContent>
+    </uiItem>
+    <uiItem name="COMMENT_LAB">
+      <content>Comment:</content>
+      <description>
+      </description>
+      <defaultContent>Коментар:</defaultContent>
+    </uiItem>
+    <uiItem name="PHONE_LAB">
+      <content>Phone:</content>
+      <description>
+      </description>
+      <defaultContent>Телефон:</defaultContent>
+    </uiItem>
+    <uiItem name="CLOSE">
+      <content>Close</content>
+      <description>
+      </description>
+      <defaultContent>Вийти</defaultContent>
+    </uiItem>
+    <uiItem name="PERMIT">
+      <content>Permissions</content>
+      <description>
+      </description>
+      <defaultContent>Дозволи</defaultContent>
+    </uiItem>
+    <uiItem name="WILL_TERMINATE">
+      <content>, application will be terminated</content>
+      <description>
+      </description>
+      <defaultContent>, програма буде завершена</defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_CANCELLED">
+      <content>Login attempt was canceled by user</content>
+      <description>
+      </description>
+      <defaultContent>Користувач відмінив спробу зайти в систему</defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_NOT_UNIQUE">
+      <content>Login is already used, please, provide another login</content>
+      <description>
+      </description>
+      <defaultContent>Логін вже використовується,  будь ласка, введіть інший логін</defaultContent>
     </uiItem>
   </uiContainer>
 </LanguageObjectModel>

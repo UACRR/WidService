@@ -30,6 +30,69 @@ namespace LanguageLibrary.Kernel
         private const string Description = "description";
         private const string DefaultContent = "defaultContent";
 
+        private CultureInfo _applicationCultureInfo;
+        public CultureInfo ApplicationCultureInfo
+        {
+            get
+            {
+                if (_applicationCultureInfo == null)
+                {
+                    string settingsFileName = "LanguageSettings.xml";
+                    var xmlDocument = LoadXmlDocument(settingsFileName);
+
+                    var rootSettings = xmlDocument.DocumentElement;
+                    var langCode = rootSettings.SelectSingleNode("currentLanguage").InnerText;
+
+                    if (string.IsNullOrWhiteSpace(langCode))
+                        langCode = rootSettings.SelectSingleNode("defaultLanguage").InnerText;
+
+                    var ci = new CultureInfo(langCode);
+
+                    _applicationCultureInfo = ci;
+                }
+
+                return _applicationCultureInfo;
+            }
+            set
+            {
+                string settingsFileName = "LanguageSettings.xml";
+                var xmlDocument = LoadXmlDocument(settingsFileName);
+
+                var rootSettings = xmlDocument.DocumentElement;
+
+                var currentLanguage = rootSettings.SelectSingleNode("currentLanguage");
+                if (currentLanguage == null)
+                {
+                    currentLanguage = xmlDocument.CreateElement("currentLanguage");
+                    rootSettings.AppendChild(currentLanguage);
+                }
+
+                currentLanguage.InnerText = value.Name;
+
+                CultureInfo.CurrentCulture = value;
+                CultureInfo.DefaultThreadCurrentCulture = value;
+                CultureInfo.DefaultThreadCurrentUICulture = value;
+
+                SaveXmlDocument(xmlDocument, settingsFileName);
+
+                _applicationCultureInfo = value;
+                GetLanguage();
+            }
+        }
+
+        private LanguageObjectModel _currentObjectModel;
+        public LanguageObjectModel CurrentLanguageObjectModel
+        {
+            get
+            {
+                if (_currentObjectModel == null)
+                    GetLanguage();
+
+                return _currentObjectModel;
+            }
+            private set => _currentObjectModel = value;
+        }
+
         private readonly XmlDocument _xmlDocument;
         
         public LanguageLibraryHelper()
@@ -218,21 +281,20 @@ namespace LanguageLibrary.Kernel
         }
 
         /// <summary>
-        /// Отримати мовну конфігурацію
+        /// Отримати мовну локалізацію
         /// </summary>
-        /// <param name="cultureInfo"></param>
         /// <returns></returns>
-        internal LanguageObjectModel GetLanguage(CultureInfo cultureInfo)
+        private void GetLanguage()
         {
             var language = new LanguageObjectModel();
             
-            string fileName = $"Language.{cultureInfo.Name}.xml";
+            string fileName = $"Language.{ApplicationCultureInfo.Name}.xml";
 
             string fullPathApp = $@"{LanguageInfoPathApp}\{fileName}";
             string fullPathInternal = $@"{LanguageInfoPathInternal}\{fileName}";
 
             if (!File.Exists(fullPathApp) && !File.Exists(fullPathInternal))
-                return null;
+                throw new FileNotFoundException();
 
             if (Directory.Exists(LanguageInfoPathInternal))
                 _xmlDocument.Load(fullPathInternal);
@@ -272,7 +334,8 @@ namespace LanguageLibrary.Kernel
                 }
             }
 
-            return language;
+            CurrentLanguageObjectModel = language;
+            //return language;
         }
 
         /// <summary>
@@ -500,6 +563,7 @@ namespace LanguageLibrary.Kernel
             return uiItem;
         }
 
+        // redundant
         internal void LoadApplicationCultureInfo()
         {
             string settingsFileName = "LanguageSettings.xml";
@@ -513,9 +577,10 @@ namespace LanguageLibrary.Kernel
 
             var ci = new CultureInfo(langCode);
 
-            Thread.CurrentThread.CurrentCulture = ci;
+            ApplicationCultureInfo = ci;
         }
 
+        // redundant
         internal void SetApplicationCultureInfo(CultureInfo cultureInfo)
         {
             string settingsFileName = "LanguageSettings.xml";
@@ -537,6 +602,7 @@ namespace LanguageLibrary.Kernel
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
             
             SaveXmlDocument(xmlDocument,settingsFileName);
+            ApplicationCultureInfo = cultureInfo;
         }
 
         /// <summary>

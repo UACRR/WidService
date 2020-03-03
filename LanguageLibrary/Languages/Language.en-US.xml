@@ -95,12 +95,10 @@
       <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
     <uiItem name="SysAdmin">
-      <content>
-      </content>
+      <content>Permision manager</content>
       <description>
       </description>
-      <defaultContent>
-      </defaultContent>
+      <defaultContent>Управління правами доступу</defaultContent>
     </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">

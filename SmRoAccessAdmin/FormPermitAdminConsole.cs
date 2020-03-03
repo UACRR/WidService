@@ -93,22 +93,28 @@ namespace SmRoPermitAdmin
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-           if (!string.IsNullOrEmpty(Text))
+            if (!string.IsNullOrEmpty(Text))
             {
                 Text = GetText(Text);
             }
+
             foreach (Control ctrl in Controls)
             {
                 Translate(ctrl);
             }
+
             Text += $" ({PermitApiProxy.UserLogin})";
 
             try
             {
-                radCollapsiblePanelUserPersonalData.ControlsContainer.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
-                radCollapsiblePanelUserAccount.ControlsContainer.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
-                radCollapsiblePanelUserSysInfo.ControlsContainer.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
-                radCollapsiblePanelUserPermissions.ControlsContainer.PanelElement.Border.Visibility = ElementVisibility.Collapsed;
+                radCollapsiblePanelUserPersonalData.ControlsContainer.PanelElement.Border.Visibility =
+                    ElementVisibility.Collapsed;
+                radCollapsiblePanelUserAccount.ControlsContainer.PanelElement.Border.Visibility =
+                    ElementVisibility.Collapsed;
+                radCollapsiblePanelUserSysInfo.ControlsContainer.PanelElement.Border.Visibility =
+                    ElementVisibility.Collapsed;
+                radCollapsiblePanelUserPermissions.ControlsContainer.PanelElement.Border.Visibility =
+                    ElementVisibility.Collapsed;
                 radGridUserList.DataSource = PermitApiProxy.GetAllUsers();
                 UpdateControlsState();
                 SetUserDirty(false);
@@ -120,7 +126,6 @@ namespace SmRoPermitAdmin
                 MessageBox.Show(this, ex.Message, Txt["ERR"], MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
-            
         }
 
         private void radSplitUsers_SplitterMoved(object sender, SplitterEventArgs e)
