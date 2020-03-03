@@ -3,7 +3,7 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
                 xmlns:local="clr-namespace:TestWPFControls.Controls"
-                xmlns:uc="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights;assembly=IPSViewComponentLibraryWPF"
+                xmlns:uc="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl;assembly=IPSViewComponentLibraryWPF"
                 Title="MainWindow" Height="600" Width="900">
     <Window.WindowStartupLocation>CenterScreen</Window.WindowStartupLocation>
 
@@ -21,7 +21,9 @@
     </Window.Resources>
 
     <Grid>
-        <t:RadGridView x:Name="RadGridView" 
+        <uc:SearchControl/>
+
+        <!--<t:RadGridView x:Name="RadGridView" 
                        ItemsSource="{Binding SelectedObjectsRightItemSource}"
                        AutoGenerateColumns="False"
                        GroupRenderMode="Flat"
@@ -38,11 +40,11 @@
 
 
             <t:RadGridView.Columns>
-                <!--<t:GridViewToggleRowDetailsColumn/>-->
+                --><!--<t:GridViewToggleRowDetailsColumn/>--><!--
                 <t:GridViewDataColumn Header="Творча роль" DataMemberBinding="{Binding RoleName}"/>
                 <t:GridViewDataColumn Header="Назва об'єкта" DataMemberBinding="{Binding Name}"/>
                 <t:GridViewDataColumn Header="% володіння" DataMemberBinding="{Binding RateRh}"/>
-                <!--обрати-->
+                --><!--обрати--><!--
                 <t:GridViewColumn Width="75" ShowToolTipOnTrimmedText="True">
                     <t:GridViewColumn.Header>
                         <CheckBox x:Name="headerCheckBox"
@@ -58,7 +60,7 @@
                         </DataTemplate>
                     </t:GridViewColumn.CellTemplate>
                 </t:GridViewColumn>
-                <!--видалити-->
+                --><!--видалити--><!--
                 <t:GridViewColumn MinWidth="35" Width="35">
                     <t:GridViewColumn.CellTemplate>
                         <DataTemplate>
@@ -86,6 +88,6 @@
                     </t:RadGridView>
                 </DataTemplate>
             </t:RadGridView.HierarchyChildTemplate>
-        </t:RadGridView>
+        </t:RadGridView>-->
     </Grid>
 </Window>

@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="IPSViewComponentLibraryWPF.Controls.SearchControl.SearchControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             Background="WhiteSmoke"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <local:SearchControlViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="t:RadButton">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </UserControl.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Default">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="3" VerticalAlignment="Center" Background="AliceBlue">
+                        <TextBox Margin="3" VerticalContentAlignment="Center" MinWidth="250"/>
+                        <t:RadButton Content="Пошук" MinWidth="95"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Margin="5 0" IsChecked="True" Content="Точне значення" VerticalAlignment="Center"/>
+                            <RadioButton Margin="5 0" Content="Містить текст" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <t:Label Grid.Row="1" Content="Шукати в таких полях:" Background="GhostWhite"/>
+
+                    <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                        <ListBox Margin="3" ItemsSource="{Binding ListBoxItemsSource}">
+                            <ListBox.Template>
+                                <ControlTemplate>
+                                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                </ControlTemplate>
+                            </ListBox.Template>
+                        </ListBox>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Extended">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <ListBox Margin="3" ItemsSource="{Binding ListBoxExtendedItemsSource}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                            <ListBox.Template>
+                                <ControlTemplate>
+                                    <StackPanel IsItemsHost="True"/>
+                                </ControlTemplate>
+                            </ListBox.Template>
+                        </ListBox>
+
+                        <!--<StackPanel Grid.Row="1" Margin="3" Orientation="Horizontal" Background="AliceBlue">
+                            <TextBox Width="250" Margin="3"/>
+                            <Label Content="Альтернативна назва"/>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Margin="5 0" IsChecked="True" Content="Точне значення" VerticalAlignment="Center"/>
+                                <RadioButton Margin="5 0" Content="Містить текст" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Margin="3" Orientation="Horizontal">
+                            <Grid>
+
+                            </Grid>
+                            <TextBox Width="250" Margin="3"/>
+                            <Label Content="Назва"/>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Margin="5 0" IsChecked="True" Content="Точне значення" VerticalAlignment="Center"/>
+                                <RadioButton Margin="5 0" Content="Містить текст" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>-->
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <t:RadButton Grid.Column="1" Content="Пошук" MinWidth="95"/>
+                        </Grid>
+
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

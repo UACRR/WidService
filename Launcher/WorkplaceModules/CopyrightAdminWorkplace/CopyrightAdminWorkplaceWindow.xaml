@@ -9,6 +9,7 @@
         xmlns:transferControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights;assembly=IPSViewComponentLibraryWPF"
         xmlns:rightholders="clr-namespace:IpsViewComponentLibrary.RightholderControls;assembly=IpsViewComponentLibrary"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="{Binding LOC.Title}" Height="450" Width="800">
 
     <Window.DataContext>

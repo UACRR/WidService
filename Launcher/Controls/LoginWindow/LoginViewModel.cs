@@ -225,7 +225,34 @@ namespace Launcher.Controls.LoginWindow
             var pbValid = (o as LoginWindow)?.pwBox?.Password.Length >= 6;
             
             var result = (!string.IsNullOrEmpty(User.UserName) && ((o as bool? ?? false) || pbValid)) || WindowsAuthentication;
+            CanLogin = result;
             return result;
+        }
+
+        private bool CanLogin { get; set; }
+
+        public ICommand KeyUpCommand => new IPSDelegateCommand(KeyUpCommandExecute);
+        private void KeyUpCommandExecute(object o)
+        {
+            if (!CanLogin)
+                return;
+
+            var key = (KeyEventArgs) o;
+            if (key.Key == Key.Enter)
+            {
+                var window =
+                    ((FrameworkElement) ((FrameworkElement) (
+                            (FrameworkElement) ((FrameworkElement)
+                                ((FrameworkElement) ((FrameworkElement)
+                                    ((FrameworkElement) key.Source).Parent).Parent).Parent).Parent)
+                        .Parent)
+                        .Parent).Parent as LoginWindow;
+                if (window == null)
+                    return;
+
+                if (LoginCommand.CanExecute(window))
+                    LoginCommand.Execute(window);
+            }
         }
 
         #endregion

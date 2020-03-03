@@ -238,12 +238,24 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 return;
             }
 
-            if (ObjectsItemSource.Any(rec => rec.IsSelected))
+            if (ObjectsItemSource.Any(rec => rec.IsSelected) && ObjectsItemSource.Where(rec => rec.IsSelected).ToList().Count > 1)
             {
                 CurrentObjectItemProperty = new CopyrightRequestObjectsModel();
 
                 BackgroundProperty = null;
                 MultiplyChangeInfoVisibility = Visibility.Visible;
+            }
+            else if (ObjectsItemSource.Any(rec => rec.IsSelected) && ObjectsItemSource.Where(rec => rec.IsSelected).ToList().Count == 1)
+            {
+                var item = ObjectsItemSource.Single(rec => rec.IsSelected);
+                CurrentObjectItemProperty = new CopyrightRequestObjectsModel
+                {
+                    WorkTypeRH = item?.WorkTypeRH,
+                    WorkCommentRH = item?.WorkCommentRH,
+                };
+
+                BackgroundProperty = new SolidColorBrush(Color.FromArgb(255, 245, 245, 245));
+                MultiplyChangeInfoVisibility = Visibility.Collapsed;
             }
             else
             {
@@ -257,7 +269,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 MultiplyChangeInfoVisibility = Visibility.Collapsed;
             }
 
-            IsEnabledPropertyPanel = CurrentObjectItem != null || ObjectsItemSource.Any(rec => rec.IsSelected);
+            IsEnabledPropertyPanel = CurrentObjectItem != null && ObjectsItemSource.Any(rec => rec.IsSelected);
             OnPropertyChanged(() => CurrentObjectItemProperty);
         }
 
@@ -450,6 +462,12 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             }
 
             HasUnsavedData = true;
+        }
+
+        public ICommand CheckedAllCommand => new IPSDelegateCommand(CheckedAllCommandExecute);
+        private void CheckedAllCommandExecute(object o)
+        {
+            ;
         }
 
         #endregion

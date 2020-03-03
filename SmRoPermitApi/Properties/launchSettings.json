@@ -11,19 +11,27 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    // not work
     "SmartRoyaltyPermitApi": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "api/values",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      //"applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "windowsAuthentication": false,
+      "anonymousAuthentication": true,
+      "applicationUrl": "https://localhost:44313/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "iisExpress": {
+        "applicationUrl": "http://localhost:53502",
+        "sslPort": 44313
       }
     }
   }
