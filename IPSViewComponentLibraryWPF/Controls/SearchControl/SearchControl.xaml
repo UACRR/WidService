@@ -30,7 +30,7 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="Default">
+            <TabItem Header="Simple row search">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -67,7 +67,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Extended">
+            <TabItem Header="Multiply row search">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
                     <Grid>
                         <Grid.RowDefinitions>

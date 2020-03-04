@@ -23,12 +23,6 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         private const string FullValue = "Full";
         private const string PartValue = "Part";
 
-        public SearchControlViewModel()
-        {
-            // call in other path
-            LoadConfiguration(new object());
-        }
-
         #region * * * PROPERTIES * * *
 
         private ObservableCollection<CheckBox> _listBoxItemsSource = new ObservableCollection<CheckBox>();
@@ -161,6 +155,11 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
         public void LoadConfiguration(object config)
         {
+            if (config != null)
+            {
+                MessageBox.Show(config.ToString());
+            }
+
             var list = new List<SearchItem>
             {
                 new SearchItem("ALL", "Всі поля"),
