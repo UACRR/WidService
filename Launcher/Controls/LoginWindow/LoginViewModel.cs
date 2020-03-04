@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Security;
 using System.Security.Principal;
@@ -146,7 +147,9 @@ namespace Launcher.Controls.LoginWindow
             IsBusy = true;
             PermitApiProxy.UserLogin = User.UserName;
             PermitApiProxy.UserPassword = User.PlainPassword;
-            PermitApiProxy.BaseUri = ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"];
+            //PermitApiProxy.BaseUri = ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"];
+            PermitApiProxy.BaseUri = GetPermitUri();
+
             if (PasswordVisible ==  Visibility.Visible)
             {
                 RspLogin rsp = PermitApiProxy.Login(User.UserName, User.PlainPassword);
@@ -191,6 +194,17 @@ namespace Launcher.Controls.LoginWindow
                 window.DialogResult = true;
                 window.Close();
             }
+        }
+
+        private string GetPermitUri()
+        {
+            string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
+            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+            configFile.ExeConfigFilename = configName;
+            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+
+            string uri = config.AppSettings.Settings["SmRoPermitApiBaseUri"].Value;
+            return uri;
         }
 
         #endregion
