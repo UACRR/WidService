@@ -8,13 +8,13 @@ namespace ipsmedserviceapp.Model
         public PayMethodType()
         {
             PayMethodTypeTr = new HashSet<PayMethodTypeTr>();
-            PaymentCase = new HashSet<PaymentCase>();
+            PayServiceType = new HashSet<PayServiceType>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<PayMethodTypeTr> PayMethodTypeTr { get; set; }
-        public virtual ICollection<PaymentCase> PaymentCase { get; set; }
+        public virtual ICollection<PayServiceType> PayServiceType { get; set; }
     }
 }

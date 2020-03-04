@@ -33,6 +33,7 @@ namespace ipsmedserviceapp.Model
         public decimal RateMech { get; set; }
         public int? LoadId { get; set; }
         public string SourceName { get; set; }
+        public int? LoadSeqNr { get; set; }
 
         [JsonIgnore]
         public virtual RightHolder Cust { get; set; }

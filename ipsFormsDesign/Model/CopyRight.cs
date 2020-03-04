@@ -33,6 +33,7 @@ namespace ipsFormsDesign.Model
         public decimal RateMech { get; set; }
         public int? LoadId { get; set; }
         public string SourceName { get; set; }
+        public int? LoadSeqNr { get; set; }
 
         public virtual RightHolder Cust { get; set; }
         public virtual ObjectRight Obj { get; set; }

@@ -28,6 +28,7 @@ namespace ipsmedserviceapp.Model
         public string ModifyLogin { get; set; }
         public int? AnkVersion { get; set; }
         public string Comment { get; set; }
+        public int? CntMonth { get; set; }
 
         public virtual LicenseAgreement Lic { get; set; }
         public virtual AgreementStatus LicStatusNavigation { get; set; }

@@ -9,13 +9,14 @@ namespace ipsFormsDesign.Model
         public PeriodStatus()
         {
             PaidPeriod = new ObservableListSource<PaidPeriod>();
+            PeriodStatusTr = new ObservableListSource<PeriodStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public virtual PeriodStatusTr PeriodStatusTr { get; set; }
         public virtual ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
+        public virtual ObservableListSource<PeriodStatusTr> PeriodStatusTr { get; set; }
     }
 }
 

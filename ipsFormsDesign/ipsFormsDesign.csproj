@@ -270,11 +270,14 @@
     <Compile Include="Model\FixStorageDevice.cs" />
     <Compile Include="Model\FolkType.cs" />
     <Compile Include="Model\FolkTypeTr.cs" />
+    <Compile Include="Model\FrameParam.cs" />
+    <Compile Include="Model\FrameTask.cs" />
     <Compile Include="Model\GenreType.cs" />
     <Compile Include="Model\GenreTypeTr.cs" />
     <Compile Include="Model\HandDocPay.cs" />
     <Compile Include="Model\InputFile.cs" />
     <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\InvoiceStatus.cs" />
     <Compile Include="Model\IsAuthorType.cs" />
     <Compile Include="Model\ItemStatus.cs" />
     <Compile Include="Model\ItemStatusTr.cs" />
@@ -298,6 +301,7 @@
     <Compile Include="Model\LicenseAgrParam.cs" />
     <Compile Include="Model\LicenseBigR.cs" />
     <Compile Include="Model\LicenseClass.cs" />
+    <Compile Include="Model\LicenseMethodType.cs" />
     <Compile Include="Model\LicenseType.cs" />
     <Compile Include="Model\LicenseTypeTr.cs" />
     <Compile Include="Model\LicPlace.cs" />
@@ -339,6 +343,7 @@
     <Compile Include="Model\PaymentStatusTr.cs" />
     <Compile Include="Model\PayMethodType.cs" />
     <Compile Include="Model\PayMethodTypeTr.cs" />
+    <Compile Include="Model\PayServiceType.cs" />
     <Compile Include="Model\PayTurn.cs" />
     <Compile Include="Model\PayTurnCm.cs" />
     <Compile Include="Model\PayTurnExtra.cs" />
@@ -351,8 +356,15 @@
     <Compile Include="Model\PeriodStatus.cs" />
     <Compile Include="Model\PeriodStatusTr.cs" />
     <Compile Include="Model\PeriodTr.cs" />
+    <Compile Include="Model\PermitRole.cs" />
+    <Compile Include="Model\PermitRoleTask.cs" />
+    <Compile Include="Model\PermitRoleTr.cs" />
+    <Compile Include="Model\PermitTask.cs" />
+    <Compile Include="Model\PermitTaskTr.cs" />
     <Compile Include="Model\PermitType.cs" />
     <Compile Include="Model\PermitTypeTr.cs" />
+    <Compile Include="Model\PermitUser.cs" />
+    <Compile Include="Model\PermitUserRole.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\PopGenre.cs" />
     <Compile Include="Model\PopGenreTr.cs" />
