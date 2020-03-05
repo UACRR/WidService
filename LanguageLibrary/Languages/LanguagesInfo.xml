@@ -12,8 +12,4 @@
     <name>Русский</name>
     <ua-name>Російська</ua-name>
   </language>
-  <language specificationCode="bg-BG">
-    <name>Български</name>
-    <ua-name>Болгарська</ua-name>
-  </language>
 </LanguagesInfo>

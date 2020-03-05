@@ -47,6 +47,7 @@
     <Compile Include="Model\ComponentCategory.cs" />
     <Compile Include="Model\LanguageDataModel.cs" />
     <Compile Include="Model\LanguageDataNested\LauncherLD.cs" />
+    <Compile Include="Model\LanguageDataNested\SearchControlLD.cs" />
     <Compile Include="Model\LanguageDataNested\SmRoPermitLD.cs" />
     <Compile Include="Model\LanguageItem.cs" />
     <Compile Include="Model\LanguageObjectModel.cs" />

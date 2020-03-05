@@ -29,6 +29,7 @@ namespace Launcher.General
         public LauncherViewModel()
         {
             UserInfoVisibility = Visibility.Collapsed;
+            AppLanguageLibrary.LanguagesMap.Add(LM_Launcher, nameof(AppLanguageLibrary.CurrentLanguage.LauncherLD));
         }
 
         #region * * * BEHAVIOR PROPERTIES * * *
@@ -79,6 +80,17 @@ namespace Launcher.General
             }
         }
 
+        private Visibility _contentVisibility = Visibility.Visible;
+        public Visibility ContentVisibility
+        {
+            get => _contentVisibility;
+            set
+            {
+                _contentVisibility = value;
+                OnPropertyChanged(() => ContentVisibility);
+            }
+        }
+
         /// <summary>
         /// Доступи до запуску підпрогам
         /// </summary>
@@ -90,29 +102,30 @@ namespace Launcher.General
 
         public LM_Launcher LM_Launcher { get; } = new LM_Launcher();
 
-        private ObservableCollection<LanguageInfo> _languagesItemSource = new ObservableCollection<LanguageInfo>
-        {
-            new LanguageInfo
-            {
-                SpecificationCode = "uk-UA",
-                LanguageName = "Ukrainian",
-            },
-            new LanguageInfo
-            {
-                SpecificationCode = "en-US",
-                LanguageName = "English",
-            },
-            new LanguageInfo
-            {
-                SpecificationCode = "ru-RU",
-                LanguageName = "Russian",
-            },
-            new LanguageInfo
-            {
-                SpecificationCode = "es-ES",
-                LanguageName = "Spanish",
-            },
-        };
+        private ObservableCollection<LanguageInfo> _languagesItemSource;
+        //    = new ObservableCollection<LanguageInfo>
+        //{
+        //    new LanguageInfo
+        //    {
+        //        SpecificationCode = "uk-UA",
+        //        LanguageName = "Ukrainian",
+        //    },
+        //    new LanguageInfo
+        //    {
+        //        SpecificationCode = "en-US",
+        //        LanguageName = "English",
+        //    },
+        //    new LanguageInfo
+        //    {
+        //        SpecificationCode = "ru-RU",
+        //        LanguageName = "Russian",
+        //    },
+        //    new LanguageInfo
+        //    {
+        //        SpecificationCode = "es-ES",
+        //        LanguageName = "Spanish",
+        //    },
+        //};
         /// <summary>
         /// Список наявних мов
         /// </summary>
@@ -153,16 +166,18 @@ namespace Launcher.General
             {
                 await AppLanguageLibrary.SyncOnClient();
                 AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
-                LM_Launcher.UpdateLanguageLocalization();
+                AppLanguageLibrary.UpdateLanguageLocalizations();
+
+                if (ContentVisibility == Visibility.Hidden)
+                    ContentVisibility = Visibility.Visible;
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return;
             }
         }
 
-        private async void Initialize()
+        private async Task Initialize()
         {
             try
             {
@@ -181,10 +196,8 @@ namespace Launcher.General
             }
             catch(Exception ex)
             {
-
+                ShowMessage.ShowError(ex.Message);
             }
-            
-
         }
 
         private string GetPermitUri()
@@ -206,11 +219,12 @@ namespace Launcher.General
         {
             try
             {
+                ContentVisibility = Visibility.Hidden;
                 LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
                 LoginCommand.Execute(null);
-                Initialize();
+                ContentVisibility = Visibility.Visible;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ShowMessage.ShowError(ex.Message);
                 return;
@@ -218,7 +232,7 @@ namespace Launcher.General
         }
 
         public ICommand LoginCommand => new IPSDelegateCommand(LoginCommandExecute);
-        private void LoginCommandExecute(object o)
+        private async void LoginCommandExecute(object o)
         {
             try
             {
@@ -244,9 +258,13 @@ namespace Launcher.General
                     LauncherPermits.Violation = SmRoPermitClientLib.UserPermissions.CanRead("Violation");
                     LauncherPermits.Directory = SmRoPermitClientLib.UserPermissions.CanRead("Directory");
                     LauncherPermits.Permit = SmRoPermitClientLib.UserPermissions.CanRead("Permit");
+
+                    await Initialize();
                 }
                 else
-                    throw new Exception("Login attempt cancelled by user");
+                    ShowMessage.ShowWarning("Login attempt cancelled by user");
+                
+                //throw new Exception("Login attempt cancelled by user");
             }
             catch (Exception ex)
             {
@@ -264,7 +282,6 @@ namespace Launcher.General
         public ICommand LoadCopyrightAdminWorkplaceCommand => new IPSDelegateCommand(LoadCopyrightAdminWorkplaceCommandExecute);
         private void LoadCopyrightAdminWorkplaceCommandExecute(object o)
         {
-
             var adminWorkplace = new CopyrightAdminWorkplaceWindow();
             adminWorkplace.Show();
         }

@@ -1,11 +1,17 @@
-﻿using LanguageLibrary;
-using Telerik.Windows.Controls;
+﻿using Telerik.Windows.Controls;
 
 namespace Launcher.General.Model
 {
     public class LM_Launcher : ViewModelBase
     {
         private string _rh_or = "Адміністратор авторів/правовласників та об'єктів права";
+        private string _sysAdmin = "Управління правами доступу";
+        private string _catSys = "Система";
+        private string _catOther = "Інше";
+        private string _catConsumers = "Користувачі";
+        private string _catRights = "Права";
+
+
         public string RH_OR
         {
             get => _rh_or;
@@ -115,7 +121,8 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _sysAdmin = "Управління правами доступу";
+
+
         public string SysAdmin
         {
             get => _sysAdmin;
@@ -126,19 +133,44 @@ namespace Launcher.General.Model
             }
         }
 
-        public void UpdateLanguageLocalization()
+        public string CAT_SYS
         {
-            RH_OR = AppLanguageLibrary.CurrentLanguage.LauncherLD.RH_OR.Content;
-            ReportsAndRoyalty = AppLanguageLibrary.CurrentLanguage.LauncherLD.ReportsAndRoyalty.Content;
-            AnalyticsAndReports = AppLanguageLibrary.CurrentLanguage.LauncherLD.AnalyticsAndReports.Content;
-            OperativeReporting = AppLanguageLibrary.CurrentLanguage.LauncherLD.OperativeReporting.Content;
-            Clients_WP = AppLanguageLibrary.CurrentLanguage.LauncherLD.Clients_WP.Content;
-            Theatres_WP = AppLanguageLibrary.CurrentLanguage.LauncherLD.Theatres_WP.Content;
-            Partner_WP = AppLanguageLibrary.CurrentLanguage.LauncherLD.Partner_WP.Content;
-            FixationOfViolations = AppLanguageLibrary.CurrentLanguage.LauncherLD.FixationOfViolations.Content;
-            SystemDictionaries = AppLanguageLibrary.CurrentLanguage.LauncherLD.SystemDictionaries.Content;
-            AnketaOfTheCompany = AppLanguageLibrary.CurrentLanguage.LauncherLD.AnketaOfTheCompany.Content;
-            SysAdmin = AppLanguageLibrary.CurrentLanguage.LauncherLD.SysAdmin.Content;
+            get => _catSys;
+            set
+            {
+                _catSys = value;
+                OnPropertyChanged(() => CAT_SYS);
+            }
+        }
+
+        public string CAT_OTHER
+        {
+            get => _catOther;
+            set
+            {
+                _catOther = value;
+                OnPropertyChanged(() => CAT_OTHER);
+            }
+        }
+
+        public string CAT_CONSUMERS
+        {
+            get => _catConsumers;
+            set
+            {
+                _catConsumers = value;
+                OnPropertyChanged(() => CAT_CONSUMERS);
+            }
+        }
+
+        public string CAT_RIGHTS
+        {
+            get => _catRights;
+            set
+            {
+                _catRights = value;
+                OnPropertyChanged(() => CAT_RIGHTS);
+            }
         }
     }
 }

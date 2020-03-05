@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace LanguageLibrary
     {
         private static readonly LanguageLibraryHelper _LanguageLibraryHelper = new LanguageLibraryHelper();
 
+        public static Dictionary<object, string> LanguagesMap { get; } = new Dictionary<object, string>();
+
         private static LanguageObjectModel _language;
         /// <summary>
         /// Поточний об'єкт мовної локалізації
@@ -20,7 +23,6 @@ namespace LanguageLibrary
             get
             {
                 _language = _LanguageLibraryHelper.CurrentLanguageObjectModel;
-                //_language = _LanguageLibraryHelper.GetLanguage();
                 return _language;
             }
         }
@@ -59,6 +61,32 @@ namespace LanguageLibrary
         public static async Task SyncOnClient()
         {
             await _LanguageLibraryHelper.SyncOnClient();
+        }
+
+        public static void UpdateLanguageLocalizations()
+        {
+            foreach (var item in LanguagesMap)
+            {
+                UpdateLanguageLocalization(item.Key, item.Value);
+            }
+        }
+
+        public static void UpdateLanguageLocalization<TTarget>(TTarget target, string sourceName)
+        {
+            var source = CurrentLanguage.GetType().GetProperty(sourceName)?.GetValue(CurrentLanguage);
+            if (source == null)
+                return;
+
+            foreach (var prop in source.GetType().GetProperties())
+            {
+                LanguageItem li = (LanguageItem)prop.GetValue(source);
+
+                var sourceProperty = target.GetType().GetProperty(prop.Name);
+                if (sourceProperty != null)
+                {
+                    sourceProperty.SetValue(target, string.IsNullOrEmpty(li.Content) ? li.DefaultContent : li.Content);
+                }
+            }
         }
     }
 }

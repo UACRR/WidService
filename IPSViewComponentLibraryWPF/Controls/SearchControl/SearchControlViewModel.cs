@@ -11,8 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Types;
+using ipsFormsDesign.Model;
 using IPSViewComponentLibraryWPF.Controls.SearchControl.Model;
 using IPSViewComponentLibraryWPF.IPSExtensions;
+using LanguageLibrary;
 using Telerik.Windows.Controls;
 using Label = System.Windows.Controls.Label;
 
@@ -22,6 +24,11 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
     {
         private const string FullValue = "Full";
         private const string PartValue = "Part";
+
+        public SearchControlViewModel()
+        {
+            AppLanguageLibrary.UpdateLanguageLocalization(LM_SEARCH, nameof(AppLanguageLibrary.CurrentLanguage.SearchControlLD));
+        }
 
         #region * * * PROPERTIES * * *
 
@@ -65,6 +72,8 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         }
 
         public Action<object> RunSearchQuery { get; set; }
+
+        public LM_SEARCH LM_SEARCH { get; set; } = new LM_SEARCH();
 
         #endregion
 
@@ -153,22 +162,27 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
         #region * * * _PUBLIC_ METHOD * * *
 
-        public void LoadConfiguration(object config)
+        public void LoadConfiguration(ICollection<FrameParam> config)
         {
-            if (config != null)
-            {
-                MessageBox.Show(config.ToString());
-            }
-
             var list = new List<SearchItem>
             {
-                new SearchItem("ALL", "Всі поля"),
-                new SearchItem("altName", "Альтернативна назва"),
-                new SearchItem("author", "Автор"),
-                new SearchItem("performer", "Виконавець"),
-                new SearchItem("objCode", "Шифр твору"),
-                new SearchItem("google", "в Google :)"),
+                new SearchItem("ALL", LM_SEARCH.ALL_CHECK_ITEM),
             };
+
+            foreach (var frameParam in config)
+            {
+                list.Add(new SearchItem(frameParam.SeekCodeName, frameParam.SeekName));
+            }
+
+            //var list = new List<SearchItem>
+            //{
+            //    new SearchItem("ALL", "Всі поля"),
+            //    new SearchItem("altName", "Альтернативна назва"),
+            //    new SearchItem("author", "Автор"),
+            //    new SearchItem("performer", "Виконавець"),
+            //    new SearchItem("objCode", "Шифр твору"),
+            //    new SearchItem("google", "в Google :)"),
+            //};
 
             foreach (var searchItem in list)
                 ListBoxItemsSource.Add(CreateCheckBox(searchItem));
