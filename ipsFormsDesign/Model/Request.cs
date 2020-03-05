@@ -49,7 +49,6 @@ namespace ipsFormsDesign.Model
         public virtual RequestType ReqTypeNavigation { get; set; }
         public virtual RequestStatusType ReqstatusNavigation { get; set; }
         public virtual TermUse TermUseCodeNavigation { get; set; }
-        public virtual PaymentCase PaymentCase { get; set; }
         public virtual RequestAdapt RequestAdapt { get; set; }
         public virtual RequestAdvertising RequestAdvertising { get; set; }
         public virtual RequestInternet RequestInternet { get; set; }

@@ -6,8 +6,15 @@ namespace ipsFormsDesign.Model
 {
     public partial class LicenseClass : ILicenseClass
     {
+        public LicenseClass()
+        {
+            AgrLicenseType = new ObservableListSource<AgrLicenseType>();
+        }
+
         public int CodeI { get; set; }
         public string Name { get; set; }
+
+        public virtual ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
     }
 }
 

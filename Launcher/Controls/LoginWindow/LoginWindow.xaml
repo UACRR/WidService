@@ -80,7 +80,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="AliceBlue"/>
-            <Setter Property="Margin" Value="1,15,1,1"/>
+            <Setter Property="Margin" Value="1,15,15,1"/>
 
             <Style.Triggers>
                 <Trigger Property="IsChecked" Value="True">
@@ -130,11 +130,11 @@
                     </Grid.RowDefinitions>
 
                     <Border Grid.Row="0"
-                    Background="GhostWhite" 
-                    BorderThickness="2" 
-                    CornerRadius="10"
-                    VerticalAlignment="Top"
-                    BorderBrush="Silver">
+                            Background="GhostWhite" 
+                            BorderThickness="2" 
+                            CornerRadius="10"
+                            VerticalAlignment="Top"
+                            BorderBrush="Silver">
 
                         <Grid Margin="10" >
                             <Grid.RowDefinitions>
@@ -147,7 +147,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="10"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" 
@@ -215,18 +215,11 @@
                                      VerticalContentAlignment="Center"
                                      IsEnabled="{Binding PasswordEnabled}" />
 
-                            <!--<i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PasswordChanged">
-                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" PassEventArgsToCommand="True"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            </PasswordBox>-->
-
                             <CheckBox Grid.Row="8"
-                                      Visibility="Collapsed"
+                                      IsEnabled="False"
                                       Style="{StaticResource checkBox}"
-                                      Content="Windows authentication" 
-                                      IsChecked="{Binding WindowsAuthentication}"/>
+                                      Content="Remember" 
+                                      IsChecked="{Binding Remember}"/>
 
                         </Grid>
                     </Border>

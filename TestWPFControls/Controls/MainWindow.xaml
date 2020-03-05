@@ -4,6 +4,7 @@
                 xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
                 xmlns:local="clr-namespace:TestWPFControls.Controls"
                 xmlns:uc="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl;assembly=IPSViewComponentLibraryWPF"
+                xmlns:m="clr-namespace:IPSModulesLibrary.ObjectsRightList;assembly=IPSModulesLibrary"
                 Title="MainWindow" Height="600" Width="900">
     <Window.WindowStartupLocation>CenterScreen</Window.WindowStartupLocation>
 
@@ -21,7 +22,10 @@
     </Window.Resources>
 
     <Grid>
-        <uc:SearchControl/>
+
+        <m:ObjectsRightListControl/>
+        
+        <!--<uc:SearchControl/>-->
 
         <!--<t:RadGridView x:Name="RadGridView" 
                        ItemsSource="{Binding SelectedObjectsRightItemSource}"

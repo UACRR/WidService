@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj" />
+    <ProjectReference Include="..\IPSModulesLibrary\IPSModulesLibrary.csproj" />
     <ProjectReference Include="..\IPSViewComponentLibraryWPF\IPSViewComponentLibraryWPF.csproj" />
   </ItemGroup>
   <ItemGroup>

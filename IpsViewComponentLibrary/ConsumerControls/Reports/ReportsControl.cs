@@ -74,8 +74,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
             if (IpsGlobal.AnketaDictionaties != null)
                 SubscribeDictionary(null, null);
-            else
-                IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
+            //else
+            //    IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
         }
 
         public Customer Customer
@@ -137,7 +137,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
             dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
             dicRatedListStatus = IpsGlobal.AnketaDictionaties.registerListStatus.ToDictionary(rec => rec.CodeI);
-
         }
 
         public void RefreshData()

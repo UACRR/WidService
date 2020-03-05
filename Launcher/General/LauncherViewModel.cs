@@ -174,6 +174,9 @@ namespace Launcher.General
                 var rightholderService = new RightholderService();
                 IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
 
+                var dictionary = await DictionaryService.GetInstance().GetFrameTaskDictionary(CurrentLanguage.SpecificationCode);
+                IpsGlobal.SetFrameTaskDictionary(dictionary);
+
                 IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name);
             }
             catch(Exception ex)

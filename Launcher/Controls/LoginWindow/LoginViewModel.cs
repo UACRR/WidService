@@ -106,16 +106,14 @@ namespace Launcher.Controls.LoginWindow
             }
         }
 
-        private bool _windowsAuthentication;
-        public bool WindowsAuthentication
+        private bool _remember;
+        public bool Remember
         {
-            get => _windowsAuthentication;
+            get => _remember;
             set
             {
-                _windowsAuthentication = value;
-                LoginEnabled = !value;
-                PasswordEnabled = !value;
-                OnPropertyChanged(() =>  WindowsAuthentication);
+                _remember = value;
+                OnPropertyChanged(() =>  Remember);
             }
         }
 
@@ -229,7 +227,7 @@ namespace Launcher.Controls.LoginWindow
             
             
             // old:
-            //if (WindowsAuthentication)
+            //if (Remember)
             //{
             //    AuthorizationThroughWindows(window);
             //}
@@ -245,7 +243,7 @@ namespace Launcher.Controls.LoginWindow
         {
             var pbValid = (o as LoginWindow)?.pwBox?.Password.Length >= 6;
             
-            var result = (!string.IsNullOrEmpty(User.UserName) && ((o as bool? ?? false) || pbValid)) || WindowsAuthentication;
+            var result = (!string.IsNullOrEmpty(User.UserName) && ((o as bool? ?? false) || pbValid)) || Remember;
             CanLogin = result;
             return result;
         }
