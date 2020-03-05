@@ -28,6 +28,7 @@ namespace Launcher.General
         public LauncherViewModel()
         {
             UserInfoVisibility = Visibility.Collapsed;
+            AppLanguageLibrary.LanguagesMap.Add(LM_Launcher, nameof(AppLanguageLibrary.CurrentLanguage.LauncherLD));
         }
 
         #region * * * BEHAVIOR PROPERTIES * * *
@@ -89,29 +90,30 @@ namespace Launcher.General
 
         public LM_Launcher LM_Launcher { get; } = new LM_Launcher();
 
-        private ObservableCollection<LanguageInfo> _languagesItemSource = new ObservableCollection<LanguageInfo>
-        {
-            new LanguageInfo
-            {
-                SpecificationCode = "uk-UA",
-                LanguageName = "Ukrainian",
-            },
-            new LanguageInfo
-            {
-                SpecificationCode = "en-US",
-                LanguageName = "English",
-            },
-            new LanguageInfo
-            {
-                SpecificationCode = "ru-RU",
-                LanguageName = "Russian",
-            },
-            new LanguageInfo
-            {
-                SpecificationCode = "es-ES",
-                LanguageName = "Spanish",
-            },
-        };
+        private ObservableCollection<LanguageInfo> _languagesItemSource;
+        //    = new ObservableCollection<LanguageInfo>
+        //{
+        //    new LanguageInfo
+        //    {
+        //        SpecificationCode = "uk-UA",
+        //        LanguageName = "Ukrainian",
+        //    },
+        //    new LanguageInfo
+        //    {
+        //        SpecificationCode = "en-US",
+        //        LanguageName = "English",
+        //    },
+        //    new LanguageInfo
+        //    {
+        //        SpecificationCode = "ru-RU",
+        //        LanguageName = "Russian",
+        //    },
+        //    new LanguageInfo
+        //    {
+        //        SpecificationCode = "es-ES",
+        //        LanguageName = "Spanish",
+        //    },
+        //};
         /// <summary>
         /// Список наявних мов
         /// </summary>
@@ -150,7 +152,7 @@ namespace Launcher.General
         {
             await AppLanguageLibrary.SyncOnClient();
             AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
-            LM_Launcher.UpdateLanguageLocalization();
+            AppLanguageLibrary.UpdateLanguageLocalizations();
         }
 
         private async void Initialize()
@@ -167,7 +169,6 @@ namespace Launcher.General
             IpsGlobal.SetFrameTaskDictionary(dictionary);
 
             IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name);
-
         }
         #endregion
 

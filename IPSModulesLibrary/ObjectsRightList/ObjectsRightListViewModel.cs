@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using IpsCommonTypes.Types;
+using ipsFormsDesign.Data;
 using IPSViewComponentLibraryWPF.Controls.SearchControl;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using Telerik.Windows.Controls;
@@ -112,8 +113,7 @@ namespace IPSModulesLibrary.ObjectsRightList
         private async void LoadCommandExecute(object o)
         {
             var searchControl = ((ObjectsRightListControl) o).searchControl;
-            // load config 
-            var config = new {Name = "Hello world!"};
+            var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 1).FrameParam;
             ((SearchControlViewModel) searchControl.DataContext).LoadConfiguration(config);
             ((SearchControlViewModel) searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
 

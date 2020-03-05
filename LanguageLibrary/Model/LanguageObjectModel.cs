@@ -11,6 +11,7 @@ namespace LanguageLibrary.Model
             RegisterItemCcidTypeLD = new RegisterItemCCIDTypeLD();
             LauncherLD = new LauncherLD();
             SmRoPermitLD = new SmRoPermitLD();
+            SearchControlLD = new SearchControlLD();
         }
 
         public CopyrightRequestLD CopyrightRequestLD { get; set; }
@@ -18,5 +19,6 @@ namespace LanguageLibrary.Model
         public RegisterItemCCIDTypeLD  RegisterItemCcidTypeLD { get; set; }
         public LauncherLD LauncherLD { get; set; }
         public SmRoPermitLD SmRoPermitLD { get; set; }
+        public SearchControlLD SearchControlLD { get; set; }
     }
 }

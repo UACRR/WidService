@@ -1,5 +1,4 @@
-﻿using LanguageLibrary;
-using Telerik.Windows.Controls;
+﻿using Telerik.Windows.Controls;
 
 namespace Launcher.General.Model
 {
@@ -124,21 +123,6 @@ namespace Launcher.General.Model
                 _sysAdmin = value;
                 OnPropertyChanged(() => SysAdmin);
             }
-        }
-
-        public void UpdateLanguageLocalization()
-        {
-            RH_OR = AppLanguageLibrary.CurrentLanguage.LauncherLD.RH_OR.Content;
-            ReportsAndRoyalty = AppLanguageLibrary.CurrentLanguage.LauncherLD.ReportsAndRoyalty.Content;
-            AnalyticsAndReports = AppLanguageLibrary.CurrentLanguage.LauncherLD.AnalyticsAndReports.Content;
-            OperativeReporting = AppLanguageLibrary.CurrentLanguage.LauncherLD.OperativeReporting.Content;
-            Clients_WP = AppLanguageLibrary.CurrentLanguage.LauncherLD.Clients_WP.Content;
-            Theatres_WP = AppLanguageLibrary.CurrentLanguage.LauncherLD.Theatres_WP.Content;
-            Partner_WP = AppLanguageLibrary.CurrentLanguage.LauncherLD.Partner_WP.Content;
-            FixationOfViolations = AppLanguageLibrary.CurrentLanguage.LauncherLD.FixationOfViolations.Content;
-            SystemDictionaries = AppLanguageLibrary.CurrentLanguage.LauncherLD.SystemDictionaries.Content;
-            AnketaOfTheCompany = AppLanguageLibrary.CurrentLanguage.LauncherLD.AnketaOfTheCompany.Content;
-            SysAdmin = AppLanguageLibrary.CurrentLanguage.LauncherLD.SysAdmin.Content;
         }
     }
 }

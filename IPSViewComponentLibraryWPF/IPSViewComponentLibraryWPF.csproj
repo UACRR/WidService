@@ -133,6 +133,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\SearchControl\Model\LM_SEARCH.cs" />
     <Compile Include="Controls\SearchControl\Model\SearchItem.cs" />
     <Compile Include="Controls\SearchControl\Model\SimpleSearchParameters.cs" />
     <Compile Include="Controls\SearchControl\SearchControl.xaml.cs">
@@ -312,6 +313,10 @@
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{21DA4297-A0F3-4E44-BD98-CAF3605B243A}</Project>
       <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LanguageLibrary\LanguageLibrary.csproj">
+      <Project>{FCDDBE23-8A62-4EEE-A2C1-57879A44D5A4}</Project>
+      <Name>LanguageLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
