@@ -28,6 +28,7 @@ namespace SmRoPermitAdmin
         private static FormPermitAdminConsole Instance = null;
 
         private Dictionary<string, string> Txt = null;
+        private string Lang;
 
         #region Form Level Functions
 
@@ -70,6 +71,7 @@ namespace SmRoPermitAdmin
             else
             {
                 Instance = new FormPermitAdminConsole(userCredentials);
+                Instance.Lang = AppLanguageLibrary.ApplicationCultureInfo.Name;
                 Instance.Txt = new Dictionary<string, string>();
 
                 Type type = AppLanguageLibrary.CurrentLanguage.SmRoPermitLD.GetType();
@@ -115,7 +117,7 @@ namespace SmRoPermitAdmin
                     ElementVisibility.Collapsed;
                 radCollapsiblePanelUserPermissions.ControlsContainer.PanelElement.Border.Visibility =
                     ElementVisibility.Collapsed;
-                var userList = PermitApiProxy.GetAllUsers();
+                var userList = PermitApiProxy.GetAllUsers(Lang);
                 radGridUserList.DataSource = userList;
                 UpdateControlsState();
                 SetUserDirty(false);
@@ -219,7 +221,7 @@ namespace SmRoPermitAdmin
             ignoreTextChanged = false;
 
             radGridUserRoles.DataSource = null;
-            radGridUserRoles.DataSource = PermitApiProxy.GetUserRoles(user.CodeI);
+            radGridUserRoles.DataSource = PermitApiProxy.GetUserRoles(user.CodeI, Lang);
         }
 
         private void radGridUserList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
@@ -242,7 +244,7 @@ namespace SmRoPermitAdmin
             radGridUserList.CurrentRow = null;
             RefreshUserProps();
             radGridUserRoles.DataSource = null;
-            radGridUserRoles.DataSource = PermitApiProxy.GetUserRoles(0);
+            radGridUserRoles.DataSource = PermitApiProxy.GetUserRoles(0, Lang);
             SetUserDirty(true);
             radBtnSaveUser.Visible =
                 panelUserInfoContainer.Visible =
@@ -352,7 +354,7 @@ namespace SmRoPermitAdmin
                 }
 
                 radGridUserList.DataSource = null;
-                radGridUserList.DataSource = PermitApiProxy.GetAllUsers();
+                radGridUserList.DataSource = PermitApiProxy.GetAllUsers(Lang);
                 var updatedGridRow = radGridUserList.Rows.Single(x => ((User)x.DataBoundItem).CodeI == user.CodeI);
                 radGridUserList.CurrentRow = updatedGridRow;
 

@@ -130,23 +130,15 @@ namespace SmRoPermitClientLib
             return Put<RspLogin>($"Login/Password/{login}", json);
         }
 
-        public static List<User> GetAllUsers()
+        public static List<User> GetAllUsers(string lang)
         {
-            string name = "uk-UA";
-            if (AppLanguageLibrary.ApplicationCultureInfo != null)
-                name = AppLanguageLibrary.ApplicationCultureInfo.Name;
-            
-            var rsp = Get<RspGetAllUsers>($"Permit/Users?lang={name}");
+            var rsp = Get<RspGetAllUsers>($"Permit/Users?lang={lang}");
             return rsp.Result;
         }
 
-        public static List<Role> GetUserRoles(int userCodeI)
+        public static List<Role> GetUserRoles(int userCodeI, string lang)
         {
-            string name = "uk-UA";
-            if (AppLanguageLibrary.ApplicationCultureInfo != null)
-                name = AppLanguageLibrary.ApplicationCultureInfo.Name;
-
-            var rsp = Get<RspGetUserRoles>($"Permit/UserRoles/{userCodeI}?lang={name}");
+            var rsp = Get<RspGetUserRoles>($"Permit/UserRoles/{userCodeI}?lang={lang}");
             return rsp.Result;
         }
 

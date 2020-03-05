@@ -207,11 +207,15 @@ namespace SmartRoyaltyPermitApi
                 }
 
                 cmd.CommandText = @"
+                    with Tr as (
+                        select codeI, name
+                        from PermitRoleTr
+                        where lang = @lang
+                    )
                     select t1.codeI
                         , coalesce(t2.name, t1.Name) Name
                     from PermitRole t1
-                        left join PermitRoleTr t2 on t1.codeI = t2.codeI
-                    where t2.lang = @lang
+                        left join Tr t2 on t1.codeI = t2.codeI
                 ";
                 cmd.Parameters.AddWithValue("@lang", lang);
                 da = new SqlDataAdapter(cmd);
