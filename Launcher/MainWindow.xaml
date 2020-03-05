@@ -82,6 +82,67 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="launchButton" TargetType="Button">
+            <Setter Property="Width" Value="210"/>
+            <Setter Property="Height" Value="130"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="#FFFBF6F6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="LightSteelBlue" BorderThickness="5,5,5,5" >
+                            <ContentPresenter x:Name="contentPresenter" 
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                              Content="{TemplateBinding Content}" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{TemplateBinding Content}" TextWrapping="Wrap" TextAlignment="Center" Margin="10"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightSteelBlue"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="SteelBlue"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Gray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="groupBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="30"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="20"/>
+        </Style>
+        <Style x:Key="groupPanel" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="groupTitle" TargetType="Label">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Margin" Value="0, -30, 0, 0"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -154,6 +215,7 @@
 
         </Grid>
 
+        <!--
         <ScrollViewer Grid.Row="1" IsEnabled="{Binding IsSignIn}">
             <WrapPanel>
                 <t:RadButton>
@@ -248,6 +310,52 @@
                                ToolTip=""
                                Text="{Binding LM_Launcher.SysAdmin}"/>
                 </t:RadButton>
+
+            </WrapPanel>
+        </ScrollViewer>
+-->
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <Border Style="{StaticResource groupBorder}" BorderBrush="#FFF47B60" Background="#FFF3D7D4" >
+                    <StackPanel Style="{StaticResource groupPanel}">
+                        <Label Style="{StaticResource groupTitle}" Content="Права" Background="#FFF3D7D4" BorderBrush="#FFF47B60"/>
+                        <Button Style="{StaticResource launchButton}" Content="Правовласники та Об'єкти права" />
+                        <Button Style="{StaticResource launchButton}" Content="Обробка звіті від користувачів (ідентифікація)" />
+                        <Button Style="{StaticResource launchButton}" Content="Управління технологічними процесами" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource groupBorder}" BorderBrush="#FF6082F4" Background="#FFDCF5F3">
+                    <StackPanel Style="{StaticResource groupPanel}">
+                        <Label Style="{StaticResource groupTitle}" Content="Користувачі" Background="#FFDCF5F3" BorderBrush="#FF6082F4"/>
+                        <Button Style="{StaticResource launchButton}" Content="Користувачі малих прав" />
+                        <Button Style="{StaticResource launchButton}" Content="Користувачі великих прав" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource groupBorder}" BorderBrush="#FF29DE29" Background="#FFE3F5DC">
+                    <StackPanel  Style="{StaticResource groupPanel}">
+                        <Label Style="{StaticResource groupTitle}" Content="Інше" Background="#FFE3F5DC" BorderBrush="#FF29DE29"/>
+                        <Button Style="{StaticResource launchButton}" Content="Представники" />
+                        <Button Style="{StaticResource launchButton}" Content="Фіксація порушень" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource groupBorder}" BorderBrush="SandyBrown" Background="Beige">
+                    <StackPanel  Style="{StaticResource groupPanel}">
+                        <Label Style="{StaticResource groupTitle}" Content="Система" Background="Beige" BorderBrush="SandyBrown"/>
+                        <Button Style="{StaticResource launchButton}" Content="Звітність (Аналітика)" />
+                        <Button Style="{StaticResource launchButton}" Content="Довідники" />
+                        <Button Style="{StaticResource launchButton}" Content="Анкета компанії" />
+                        <Button Style="{StaticResource launchButton}" 
+                                Content="{Binding LM_Launcher.SysAdmin}" 
+                                IsEnabled="{Binding LauncherPermits.UserAdmin}"
+                                Command="{Binding LoadPermitWindowCommand}"/>
+                    </StackPanel>
+                </Border>
 
             </WrapPanel>
         </ScrollViewer>

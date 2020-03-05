@@ -1,38 +1,36 @@
-﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:53502",
       "sslPort": 44313
     }
   },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    // not work
     "SmartRoyaltyPermitApi": {
       "commandName": "Project",
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "api/values",
-      //"applicationUrl": "https://localhost:5001;http://localhost:5000",
-      "windowsAuthentication": false,
-      "anonymousAuthentication": true,
-      "applicationUrl": "https://localhost:44313/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "iisExpress": {
         "applicationUrl": "http://localhost:53502",
-        "sslPort": 44313
-      }
+        "sslPort": "44313"
+      },
+      "windowsAuthentication": false,
+      "applicationUrl": "https://localhost:44313/",
+      "anonymousAuthentication": true
     }
   }
 }

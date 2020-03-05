@@ -214,12 +214,19 @@ namespace Launcher.Controls.LoginWindow
         public ICommand LoginCommand => new IPSDelegateCommand(LoginCommandExecute, CanExecuteLoginCommand);
         private void LoginCommandExecute(object o)
         {
-            var window = (LoginWindow) o;
+            try
+            {
+                var window = (LoginWindow) o;
+                User.Password = window.pwBox.SecurePassword;
+                User.NewPassword = window.newPwBox.SecurePassword;
+                User.ConfirmPassword = window.confirmPwBox.SecurePassword;
+                AuthorizationThroughServerAccount(window);
+            }
+            catch(Exception Ex)
+            {
 
-            User.Password = window.pwBox.SecurePassword;
-            User.NewPassword = window.newPwBox.SecurePassword;
-            User.ConfirmPassword = window.confirmPwBox.SecurePassword;
-            AuthorizationThroughServerAccount(window);
+            }
+            
             
             // old:
             //if (WindowsAuthentication)

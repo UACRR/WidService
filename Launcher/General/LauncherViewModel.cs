@@ -19,6 +19,7 @@ using System.Configuration;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
 using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
+using System.IO;
 
 namespace Launcher.General
 {
@@ -148,59 +149,106 @@ namespace Launcher.General
 
         private async void LoadLanguage()
         {
-            await AppLanguageLibrary.SyncOnClient();
-            AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
-            LM_Launcher.UpdateLanguageLocalization();
+            try
+            {
+                await AppLanguageLibrary.SyncOnClient();
+                AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
+                LM_Launcher.UpdateLanguageLocalization();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
 
         private async void Initialize()
         {
-            var _rightholderService = new RightholderService();
+            try
+            {
+                var _rightholderService = new RightholderService();
 
-            var objectrightService = new ObjectRightService();
-            IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
+                var objectrightService = new ObjectRightService();
+                IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
-            var rightholderService = new RightholderService();
-            IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+                var rightholderService = new RightholderService();
+                IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
 
-            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name);
+                IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name);
+            }
+            catch(Exception ex)
+            {
 
+            }
+            
+
+        }
+
+        private string GetPermitUri()
+        {
+            string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
+            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+            configFile.ExeConfigFilename = configName;
+            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+
+            string uri = config.AppSettings.Settings["SmRoPermitApiBaseUri"].Value;
+            return uri;
         }
         #endregion
 
         #region * * * COMMANDS * * *
 
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
-        private async void LoadCommandExecute(object o)
+        private void LoadCommandExecute(object o)
         {
-            LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
-            LoginCommandExecute(null);
-            Initialize();
+            try
+            {
+                LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
+                LoginCommand.Execute(null);
+                Initialize();
+            }
+            catch(Exception ex)
+            {
+                ShowMessage.ShowError(ex.Message);
+                return;
+            }
         }
 
         public ICommand LoginCommand => new IPSDelegateCommand(LoginCommandExecute);
         private void LoginCommandExecute(object o)
         {
-            LoginWindow loginWindow = new LoginWindow();
-            bool result = loginWindow.ShowDialog() ?? false;
-            if (result)
+            try
             {
-                var user = ((LoginViewModel)loginWindow.DataContext).User;
+                LoginWindow loginWindow = new LoginWindow();
+                bool result = loginWindow.ShowDialog() ?? false;
+                if (result)
+                {
+                    var user = ((LoginViewModel)loginWindow.DataContext).User;
 
-                UserName = user.UserName;
-                IsSignIn = true;
+                    UserName = user.UserName;
+                    IsSignIn = true;
 
-                _authString = user.AuthString;
-                SmRoPermitClientLib.UserPermissions.Load(ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"], user.CodeI);
+                    _authString = user.AuthString;
+                    string baseUri = GetPermitUri();
+                    SmRoPermitClientLib.UserPermissions.Load(baseUri, user.CodeI);
+                    //SmRoPermitClientLib.UserPermissions.Load(ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"], user.CodeI);
 
-                LauncherPermits.RightsAdmin = SmRoPermitClientLib.UserPermissions.CanRead("RightsAdmin");
-                LauncherPermits.RoyaltyAdmin = SmRoPermitClientLib.UserPermissions.CanRead("RoyaltyAdmin");
-                LauncherPermits.SRightsWp = SmRoPermitClientLib.UserPermissions.CanRead("SRightsWp");
-                LauncherPermits.BRightsWp = SmRoPermitClientLib.UserPermissions.CanRead("BRightsWp");
-                LauncherPermits.PRAdmin = SmRoPermitClientLib.UserPermissions.CanRead("PRAdmin");
-                LauncherPermits.Violation = SmRoPermitClientLib.UserPermissions.CanRead("Violation");
-                LauncherPermits.Directory = SmRoPermitClientLib.UserPermissions.CanRead("Directory");
-                LauncherPermits.UserAdmin = SmRoPermitClientLib.UserPermissions.CanRead("UserAdmin");
+                    LauncherPermits.RightsAdmin = SmRoPermitClientLib.UserPermissions.CanRead("RightsAdmin");
+                    LauncherPermits.RoyaltyAdmin = SmRoPermitClientLib.UserPermissions.CanRead("RoyaltyAdmin");
+                    LauncherPermits.SRightsWp = SmRoPermitClientLib.UserPermissions.CanRead("SRightsWp");
+                    LauncherPermits.BRightsWp = SmRoPermitClientLib.UserPermissions.CanRead("BRightsWp");
+                    LauncherPermits.PRAdmin = SmRoPermitClientLib.UserPermissions.CanRead("PRAdmin");
+                    LauncherPermits.Violation = SmRoPermitClientLib.UserPermissions.CanRead("Violation");
+                    LauncherPermits.Directory = SmRoPermitClientLib.UserPermissions.CanRead("Directory");
+                    LauncherPermits.Permit = SmRoPermitClientLib.UserPermissions.CanRead("Permit");
+                }
+                else
+                    throw new Exception("Login attempt cancelled by user");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                //throw;
             }
         }
 
