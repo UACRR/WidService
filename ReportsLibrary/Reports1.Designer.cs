@@ -11,6 +11,7 @@ namespace ReportsLibrary
         {
             Telerik.Reporting.NavigateToReportAction navigateToReportAction1 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reports1));
             Telerik.Reporting.NavigateToReportAction navigateToReportAction2 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource2 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.NavigateToReportAction navigateToReportAction3 = new Telerik.Reporting.NavigateToReportAction();
@@ -103,7 +104,7 @@ namespace ReportsLibrary
             this.textBox2.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox2.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox2.Value = "4. Дохідність . Звіт по видам";
+            resources.ApplyResources(this.textBox2, "textBox2");
             // 
             // textBox4
             // 
@@ -120,7 +121,7 @@ namespace ReportsLibrary
             this.textBox4.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox4.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox4.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox4.Value = "5. Дохідність по правовласникам";
+            resources.ApplyResources(this.textBox4, "textBox4");
             // 
             // textBox5
             // 
@@ -137,7 +138,7 @@ namespace ReportsLibrary
             this.textBox5.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox5.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox5.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox5.Value = "7.  Дохідність по об\'єктам";
+            resources.ApplyResources(this.textBox5, "textBox5");
             // 
             // textBox6
             // 
@@ -154,7 +155,7 @@ namespace ReportsLibrary
             this.textBox6.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox6.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox6.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox6.Value = "8. Користувачі";
+            resources.ApplyResources(this.textBox6, "textBox6");
             // 
             // textBox17
             // 
@@ -173,7 +174,7 @@ namespace ReportsLibrary
             this.textBox17.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox17.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox17.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox17.Value = "20. Великі права. Звіт про авторську винагороду по Автору за період";
+            resources.ApplyResources(this.textBox17, "textBox17");
             // 
             // textBox15
             // 
@@ -190,7 +191,7 @@ namespace ReportsLibrary
             this.textBox15.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox15.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox15.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox15.Value = "17. Відомість \'Розподіл авторської винагороди на правовласників\' за період";
+            resources.ApplyResources(this.textBox15, "textBox15");
             // 
             // textBox16
             // 
@@ -207,7 +208,7 @@ namespace ReportsLibrary
             this.textBox16.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox16.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox16.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox16.Value = "18. Реєстр неприв\'язаних та в пошуку об\'єктів права (малі права)  за дату";
+            resources.ApplyResources(this.textBox16, "textBox16");
             // 
             // textBox18
             // 
@@ -226,7 +227,7 @@ namespace ReportsLibrary
             this.textBox18.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox18.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox18.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox18.Value = "19. Малі права. Звіт про авторську винагороду по Автору  за період";
+            resources.ApplyResources(this.textBox18, "textBox18");
             // 
             // textBox19
             // 
@@ -245,7 +246,7 @@ namespace ReportsLibrary
             this.textBox19.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox19.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox19.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox19.Value = "21. Роялті до розподілу від користувачів з \"великих прав\"\n";
+            resources.ApplyResources(this.textBox19, "textBox19");
             // 
             // textBox20
             // 
@@ -264,7 +265,7 @@ namespace ReportsLibrary
             this.textBox20.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox20.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox20.Value = "22. Реєстр переданого до розподілу роялті від користувачів з \"великих прав\"";
+            resources.ApplyResources(this.textBox20, "textBox20");
             // 
             // textBox21
             // 
@@ -283,7 +284,7 @@ namespace ReportsLibrary
             this.textBox21.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox21.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox21.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox21.Value = "23. Реєстр переданого до розподілу роялті по \"великим правам\"";
+            resources.ApplyResources(this.textBox21, "textBox21");
             // 
             // textBox22
             // 
@@ -302,7 +303,7 @@ namespace ReportsLibrary
             this.textBox22.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox22.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox22.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox22.Value = "24. Реєстр переданого до розподілу  роялті по \"малим правам\"";
+            resources.ApplyResources(this.textBox22, "textBox22");
             // 
             // textBox28
             // 
@@ -321,8 +322,7 @@ namespace ReportsLibrary
             this.textBox28.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox28.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox28.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox28.Value = "30. Роялті до розподілу від  користувачів з \"малих прав\" за видами договорів(зага" +
-    "льний)";
+            resources.ApplyResources(this.textBox28, "textBox28");
             // 
             // textBox32
             // 
@@ -339,7 +339,7 @@ namespace ReportsLibrary
             this.textBox32.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox32.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox32.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox32.Value = "36.      Реєстр об\'єктів права";
+            resources.ApplyResources(this.textBox32, "textBox32");
             // 
             // textBox33
             // 
@@ -356,7 +356,7 @@ namespace ReportsLibrary
             this.textBox33.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox33.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox33.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox33.Value = "37.    Реєстр переданого до розподілу  роялті";
+            resources.ApplyResources(this.textBox33, "textBox33");
             // 
             // textBox31
             // 
@@ -375,7 +375,7 @@ namespace ReportsLibrary
             this.textBox31.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox31.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox31.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox31.Value = "33.  Журнал системних робіт";
+            resources.ApplyResources(this.textBox31, "textBox31");
             // 
             // textBox1
             // 
@@ -385,18 +385,18 @@ namespace ReportsLibrary
             this.textBox1.Action = navigateToReportAction17;
             this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.3D), Telerik.Reporting.Drawing.Unit.Cm(7.422D));
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
+            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2.126D));
             this.textBox1.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.textBox1.Style.BorderColor.Default = System.Drawing.Color.LightSteelBlue;
             this.textBox1.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox1.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox1.Value = "19-2. Малі права. Звіт про авторську винагороду по Автору  за період.(пошук: по ш" +
-    "ифру, по міжнародному коду IP, по коду BASE)";
+            resources.ApplyResources(this.textBox1, "textBox1");
             // 
             // Reports1
             // 
+            this.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.detail});
             this.Name = "Balans";

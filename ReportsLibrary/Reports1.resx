@@ -117,10 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="textBox28.Value" xml:space="preserve">
+    <value>30. Роялті до розподілу від  користувачів з "малих прав" за видами договорів(загальний)</value>
+  </data>
+  <data name="textBox33.Value" xml:space="preserve">
+    <value>37.    Реєстр переданого до розподілу  роялті</value>
+  </data>
+  <data name="textBox5.Value" xml:space="preserve">
+    <value>7.  Дохідність по об'єктам</value>
+  </data>
+  <data name="textBox20.Value" xml:space="preserve">
+    <value>22. Реєстр переданого до розподілу роялті від користувачів з "великих прав"</value>
+  </data>
+  <data name="textBox32.Value" xml:space="preserve">
+    <value>36.      Реєстр об'єктів права</value>
+  </data>
+  <data name="textBox22.Value" xml:space="preserve">
+    <value>24. Реєстр переданого до розподілу  роялті по "малим правам"</value>
+  </data>
+  <data name="textBox2.Value" xml:space="preserve">
+    <value>4. Дохідність . Звіт по видам</value>
+  </data>
+  <data name="textBox6.Value" xml:space="preserve">
+    <value>8. Користувачі</value>
+  </data>
+  <data name="textBox31.Value" xml:space="preserve">
+    <value>33.  Журнал системних робіт</value>
+  </data>
+  <data name="textBox21.Value" xml:space="preserve">
+    <value>23. Реєстр переданого до розподілу роялті по "великим правам"</value>
+  </data>
+  <data name="textBox17.Value" xml:space="preserve">
+    <value>20. Великі права. Звіт про авторську винагороду по Автору за період</value>
+  </data>
+  <data name="textBox4.Value" xml:space="preserve">
+    <value>5. Дохідність по правовласникам</value>
+  </data>
+  <data name="textBox18.Value" xml:space="preserve">
+    <value>19. Малі права. Звіт про авторську винагороду по Автору  за період</value>
+  </data>
+  <data name="textBox1.Value" xml:space="preserve">
+    <value>19-2. Малі права. Звіт про авторську винагороду по Автору  за період.(пошук: по шифру, по міжнародному коду IP, по коду BASE)</value>
+  </data>
+  <data name="textBox16.Value" xml:space="preserve">
+    <value>18. Реєстр неприв'язаних та в пошуку об'єктів права (малі права)  за дату</value>
+  </data>
+  <data name="textBox19.Value" xml:space="preserve">
+    <value>21. Роялті до розподілу від користувачів з "великих прав"
+</value>
+  </data>
+  <data name="textBox15.Value" xml:space="preserve">
+    <value>17. Відомість 'Розподіл авторської винагороди на правовласників' за період</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
     <value>0.1cm</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>en-US</value>
+  </metadata>
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>
