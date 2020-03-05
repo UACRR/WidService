@@ -215,15 +215,16 @@ namespace Launcher.General
         #region * * * COMMANDS * * *
 
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
-        private async void LoadCommandExecute(object o)
+        private void LoadCommandExecute(object o)
         {
             try
             {
+                ContentVisibility = Visibility.Hidden;
                 LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
                 LoginCommand.Execute(null);
-                await Initialize();
+                ContentVisibility = Visibility.Visible;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ShowMessage.ShowError(ex.Message);
                 return;
@@ -231,7 +232,7 @@ namespace Launcher.General
         }
 
         public ICommand LoginCommand => new IPSDelegateCommand(LoginCommandExecute);
-        private void LoginCommandExecute(object o)
+        private async void LoginCommandExecute(object o)
         {
             try
             {
@@ -257,9 +258,13 @@ namespace Launcher.General
                     LauncherPermits.Violation = SmRoPermitClientLib.UserPermissions.CanRead("Violation");
                     LauncherPermits.Directory = SmRoPermitClientLib.UserPermissions.CanRead("Directory");
                     LauncherPermits.Permit = SmRoPermitClientLib.UserPermissions.CanRead("Permit");
+
+                    await Initialize();
                 }
                 else
-                    throw new Exception("Login attempt cancelled by user");
+                    ShowMessage.ShowWarning("Login attempt cancelled by user");
+                
+                //throw new Exception("Login attempt cancelled by user");
             }
             catch (Exception ex)
             {
