@@ -5,6 +5,13 @@ namespace Launcher.General.Model
     public class LM_Launcher : ViewModelBase
     {
         private string _rh_or = "Адміністратор авторів/правовласників та об'єктів права";
+        private string _sysAdmin = "Управління правами доступу";
+        private string _catSys = "Система";
+        private string _catOther = "Інше";
+        private string _catConsumers = "Користувачі";
+        private string _catRights = "Права";
+
+
         public string RH_OR
         {
             get => _rh_or;
@@ -114,7 +121,8 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _sysAdmin = "Управління правами доступу";
+
+
         public string SysAdmin
         {
             get => _sysAdmin;
@@ -122,6 +130,46 @@ namespace Launcher.General.Model
             {
                 _sysAdmin = value;
                 OnPropertyChanged(() => SysAdmin);
+            }
+        }
+
+        public string CAT_SYS
+        {
+            get => _catSys;
+            set
+            {
+                _catSys = value;
+                OnPropertyChanged(() => CAT_SYS);
+            }
+        }
+
+        public string CAT_OTHER
+        {
+            get => _catOther;
+            set
+            {
+                _catOther = value;
+                OnPropertyChanged(() => CAT_OTHER);
+            }
+        }
+
+        public string CAT_CONSUMERS
+        {
+            get => _catConsumers;
+            set
+            {
+                _catConsumers = value;
+                OnPropertyChanged(() => CAT_CONSUMERS);
+            }
+        }
+
+        public string CAT_RIGHTS
+        {
+            get => _catRights;
+            set
+            {
+                _catRights = value;
+                OnPropertyChanged(() => CAT_RIGHTS);
             }
         }
     }

@@ -80,6 +80,17 @@ namespace Launcher.General
             }
         }
 
+        private Visibility _contentVisibility = Visibility.Visible;
+        public Visibility ContentVisibility
+        {
+            get => _contentVisibility;
+            set
+            {
+                _contentVisibility = value;
+                OnPropertyChanged(() => ContentVisibility);
+            }
+        }
+
         /// <summary>
         /// Доступи до запуску підпрогам
         /// </summary>
@@ -156,15 +167,17 @@ namespace Launcher.General
                 await AppLanguageLibrary.SyncOnClient();
                 AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
                 AppLanguageLibrary.UpdateLanguageLocalizations();
+
+                if (ContentVisibility == Visibility.Hidden)
+                    ContentVisibility = Visibility.Visible;
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return;
             }
         }
 
-        private async void Initialize()
+        private async Task Initialize()
         {
             try
             {
@@ -183,10 +196,8 @@ namespace Launcher.General
             }
             catch(Exception ex)
             {
-
+                ShowMessage.ShowError(ex.Message);
             }
-            
-
         }
 
         private string GetPermitUri()
@@ -204,13 +215,13 @@ namespace Launcher.General
         #region * * * COMMANDS * * *
 
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
-        private void LoadCommandExecute(object o)
+        private async void LoadCommandExecute(object o)
         {
             try
             {
                 LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
                 LoginCommand.Execute(null);
-                Initialize();
+                await Initialize();
             }
             catch(Exception ex)
             {
@@ -266,7 +277,6 @@ namespace Launcher.General
         public ICommand LoadCopyrightAdminWorkplaceCommand => new IPSDelegateCommand(LoadCopyrightAdminWorkplaceCommandExecute);
         private void LoadCopyrightAdminWorkplaceCommandExecute(object o)
         {
-
             var adminWorkplace = new CopyrightAdminWorkplaceWindow();
             adminWorkplace.Show();
         }

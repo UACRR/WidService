@@ -215,144 +215,74 @@
 
         </Grid>
 
-        <!--
-        <ScrollViewer Grid.Row="1" IsEnabled="{Binding IsSignIn}">
-            <WrapPanel>
-                <t:RadButton>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <t:Label Grid.Row="0" 
-                                 FontSize="15" 
-                                 Content="(тест) Малі права" 
-                                 HorizontalContentAlignment="Center"/>
-                        <Separator Grid.Row="1" HorizontalAlignment="Stretch"/>
-                        <TextBlock Grid.Row="2" 
-                                   TextWrapping="Wrap" 
-                                   FontSize="10"
-                                   FontStyle="Italic" 
-                                   Foreground="Gray" 
-                                   TextTrimming="CharacterEllipsis"
-                                   VerticalAlignment="Stretch"
-                                   ToolTip="(тест) Інтерфейс роботи з клієнтами малих првав"
-                                   Text="(тест) Інтерфейс роботи з клієнтами малих првав"/>
-
-                    </Grid>
-                </t:RadButton>
-
-                <t:RadButton IsEnabled="True"
-                             Command="{Binding LoadCopyrightAdminWorkplaceCommand}">
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.RH_OR}"
-                               Text="{Binding LM_Launcher.RH_OR}"/>
-                </t:RadButton>
-
-                <t:RadButton>
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.ReportsAndRoyalty}"
-                               Text="{Binding LM_Launcher.ReportsAndRoyalty}"/>
-                </t:RadButton>
-
-                <t:RadButton>
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.AnalyticsAndReports}"
-                               Text="{Binding LM_Launcher.AnalyticsAndReports}"/>
-                </t:RadButton>
-
-                <t:RadButton>
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.OperativeReporting}"
-                               Text="{Binding LM_Launcher.OperativeReporting}"/>
-                </t:RadButton>
-
-                <t:RadButton>
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.Clients_WP}"
-                               Text="{Binding LM_Launcher.Clients_WP}"/>
-                </t:RadButton>
-                
-                <t:RadButton>
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.Theatres_WP}"
-                               Text="{Binding LM_Launcher.Theatres_WP}"/>
-                </t:RadButton>
-                
-                <t:RadButton>
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.Partner_WP}"
-                               Text="{Binding LM_Launcher.Partner_WP}"/>
-                </t:RadButton>
-                
-                <t:RadButton>
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.FixationOfViolations}"
-                               Text="{Binding LM_Launcher.FixationOfViolations}"/>
-                </t:RadButton>
-                
-                <t:RadButton>
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.SystemDictionaries}"
-                               Text="{Binding LM_Launcher.SystemDictionaries}"/>
-                </t:RadButton>
-
-                <t:RadButton IsEnabled="False">
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip="{Binding LM_Launcher.AnketaOfTheCompany}"
-                               Text="{Binding LM_Launcher.AnketaOfTheCompany}"/>
-                </t:RadButton>
-
-                <t:RadButton IsEnabled="{Binding LauncherPermits.UserAdmin}"
-                             Command="{Binding LoadPermitWindowCommand}">
-                    <TextBlock Style="{StaticResource textBlock}"
-                               ToolTip=""
-                               Text="{Binding LM_Launcher.SysAdmin}"/>
-                </t:RadButton>
-
-            </WrapPanel>
-        </ScrollViewer>
--->
-
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+        <ScrollViewer Grid.Row="1" 
+                      HorizontalScrollBarVisibility="Disabled" 
+                      VerticalScrollBarVisibility="Visible" 
+                      Visibility="{Binding ContentVisibility}">
 
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
                 <Border Style="{StaticResource groupBorder}" BorderBrush="#FFF47B60" Background="#FFF3D7D4" >
                     <StackPanel Style="{StaticResource groupPanel}">
-                        <Label Style="{StaticResource groupTitle}" Content="Права" Background="#FFF3D7D4" BorderBrush="#FFF47B60"/>
-                        <Button Style="{StaticResource launchButton}" Content="Правовласники та Об'єкти права" />
-                        <Button Style="{StaticResource launchButton}" Content="Обробка звіті від користувачів (ідентифікація)" />
-                        <Button Style="{StaticResource launchButton}" Content="Управління технологічними процесами" />
+                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_RIGHTS}" Background="#FFF3D7D4" BorderBrush="#FFF47B60"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.RightsAdmin}"
+                                Content="{Binding LM_Launcher.RH_OR}"
+                                Command="{Binding LoadCopyrightAdminWorkplaceCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.RoyaltyAdmin}"
+                                Content="{Binding LM_Launcher.ReportsAndRoyalty}" />
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="False"
+                                Content="Управління технологічними процесами" />
                     </StackPanel>
                 </Border>
 
                 <Border Style="{StaticResource groupBorder}" BorderBrush="#FF6082F4" Background="#FFDCF5F3">
                     <StackPanel Style="{StaticResource groupPanel}">
-                        <Label Style="{StaticResource groupTitle}" Content="Користувачі" Background="#FFDCF5F3" BorderBrush="#FF6082F4"/>
-                        <Button Style="{StaticResource launchButton}" Content="Користувачі малих прав" />
-                        <Button Style="{StaticResource launchButton}" Content="Користувачі великих прав" />
+                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_CONSUMERS}" Background="#FFDCF5F3" BorderBrush="#FF6082F4"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.SRightsWp}"
+                                Content="{Binding LM_Launcher.Clients_WP}" />
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.BRightsWp}"
+                                Content="{Binding LM_Launcher.Theatres_WP}" />
                     </StackPanel>
                 </Border>
 
                 <Border Style="{StaticResource groupBorder}" BorderBrush="#FF29DE29" Background="#FFE3F5DC">
                     <StackPanel  Style="{StaticResource groupPanel}">
-                        <Label Style="{StaticResource groupTitle}" Content="Інше" Background="#FFE3F5DC" BorderBrush="#FF29DE29"/>
-                        <Button Style="{StaticResource launchButton}" Content="Представники" />
-                        <Button Style="{StaticResource launchButton}" Content="Фіксація порушень" />
+                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_OTHER}" Background="#FFE3F5DC" BorderBrush="#FF29DE29"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.Represent}"
+                                Content="{Binding LM_Launcher.Partner_WP}" 
+                                Command="{Binding}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.Violation}"
+                                Content="{Binding LM_Launcher.FixationOfViolations}" 
+                                Command="{Binding}"/>
                     </StackPanel>
                 </Border>
 
                 <Border Style="{StaticResource groupBorder}" BorderBrush="SandyBrown" Background="Beige">
                     <StackPanel  Style="{StaticResource groupPanel}">
-                        <Label Style="{StaticResource groupTitle}" Content="Система" Background="Beige" BorderBrush="SandyBrown"/>
-                        <Button Style="{StaticResource launchButton}" Content="Звітність (Аналітика)" />
-                        <Button Style="{StaticResource launchButton}" Content="Довідники" />
-                        <Button Style="{StaticResource launchButton}" Content="Анкета компанії" />
+                        <Label Style="{StaticResource groupTitle}" 
+                               Content="{Binding LM_Launcher.CAT_SYS}" Background="Beige" BorderBrush="SandyBrown"/>
+                        <Button Style="{StaticResource launchButton}"
+                                IsEnabled="{Binding LauncherPermits.Analytics}"
+                                Content="{Binding LM_Launcher.AnalyticsAndReports}" 
+                                Command="{Binding}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.Directory}"
+                                Content="{Binding LM_Launcher.SystemDictionaries}" 
+                                Command="{Binding}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                Content="{Binding LM_Launcher.AnketaOfTheCompany}"
+                                IsEnabled="{Binding LauncherPermits.OurProfile}"
+                                Command="{Binding}"/>
                         <Button Style="{StaticResource launchButton}" 
                                 Content="{Binding LM_Launcher.SysAdmin}" 
-                                IsEnabled="{Binding LauncherPermits.UserAdmin}"
+                                IsEnabled="{Binding LauncherPermits.Permit}"
                                 Command="{Binding LoadPermitWindowCommand}"/>
                     </StackPanel>
                 </Border>

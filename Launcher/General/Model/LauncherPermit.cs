@@ -92,5 +92,10 @@ namespace Launcher.General.Model
                 OnPropertyChanged(() => Permit);
             }
         }
+
+        public bool OurProfile { get; set; }
+        public bool Analytics { get; set; }
+
+        public bool Represent { get; set; }
     }
 }
