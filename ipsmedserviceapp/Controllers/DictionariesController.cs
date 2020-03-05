@@ -2117,10 +2117,30 @@ namespace ipsmedserviceapp.Controllers
             return Json(dictionary);
         }
 
-        [HttpGet("searchhelper")]
+        /// <summary>
+        /// Довідник параметрів пошуку
+        /// </summary>
+        /// <param name="lang"></param>
+        /// <returns></returns>
+        [HttpGet("searchhelper/{lang}")]
         public async Task<IActionResult> GetSearchHelperDictionary(string lang)
         {
-            return Ok();
+            var data = await _dbContext.FrameTask
+                .Include(item => item.FrameParam)
+                .ThenInclude(item => item.FrameParamTr)
+                .ToListAsync();
+
+            foreach (var frameTask in data)
+            {
+                foreach (var frameParam in frameTask.FrameParam)
+                {
+                    var name = frameParam.FrameParamTr.SingleOrDefault(tr => tr.Lang == lang)?.SeekName;
+                    frameParam.SeekName = name ?? frameParam.SeekName;
+                    frameParam.FrameParamTr.Clear();
+                }
+            }
+
+            return Ok(data);
         }
 
         private static List<T> TranslateDictionary<T>(List<T> dictionaries, Action<T> setValue)

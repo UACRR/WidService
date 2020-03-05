@@ -271,6 +271,7 @@
     <Compile Include="Model\FolkType.cs" />
     <Compile Include="Model\FolkTypeTr.cs" />
     <Compile Include="Model\FrameParam.cs" />
+    <Compile Include="Model\FrameParamTr.cs" />
     <Compile Include="Model\FrameTask.cs" />
     <Compile Include="Model\GenreType.cs" />
     <Compile Include="Model\GenreTypeTr.cs" />

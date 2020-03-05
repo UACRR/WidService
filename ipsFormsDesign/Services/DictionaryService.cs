@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using WebAPIConnector;
@@ -10,6 +11,7 @@ namespace ipsFormsDesign.Services
     public class DictionaryService
     {
         private readonly ApiConnector _webApi = new ApiConnector();
+        private const string Prefix = "dictionary";
         private readonly string _prefix = "dictionary/";
         private const string _prefixExtra = "dictionary/extra";
 
@@ -47,6 +49,13 @@ namespace ipsFormsDesign.Services
         {
             var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
             return dictionaries;
+        }
+
+        public async Task<List<FrameTask>> GetFrameTaskDictionary(string lang)
+        {
+            string url = $"{Prefix}/searchhelper/{lang}";
+            var data = await _webApi.SendGetRequestWithListResultAsync<FrameTask>(url);
+            return data;
         }
 
         #region * * * ПРОСТІ ДОВІДНИКИ * * *

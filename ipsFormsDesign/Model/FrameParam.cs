@@ -6,6 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class FrameParam : IFrameParam
     {
+        public FrameParam()
+        {
+            FrameParamTr = new ObservableListSource<FrameParamTr>();
+        }
+
         public int SeekCode { get; set; }
         public int? FrameCode { get; set; }
         public string SeekCodeName { get; set; }
@@ -17,6 +22,7 @@ namespace ipsFormsDesign.Model
         public string SeekOut { get; set; }
 
         public virtual FrameTask FrameCodeNavigation { get; set; }
+        public virtual ObservableListSource<FrameParamTr> FrameParamTr { get; set; }
     }
 }
 

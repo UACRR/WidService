@@ -151,7 +151,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
         #endregion
 
-        #region _PUBLIC_ METHOD
+        #region * * * _PUBLIC_ METHOD * * *
 
         public void LoadConfiguration(object config)
         {

@@ -128,6 +128,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<FolkType> FolkType { get; set; }
         public virtual DbSet<FolkTypeTr> FolkTypeTr { get; set; }
         public virtual DbSet<FrameParam> FrameParam { get; set; }
+        public virtual DbSet<FrameParamTr> FrameParamTr { get; set; }
         public virtual DbSet<FrameTask> FrameTask { get; set; }
         public virtual DbSet<GenreType> GenreType { get; set; }
         public virtual DbSet<GenreTypeTr> GenreTypeTr { get; set; }
@@ -4855,6 +4856,32 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.FrameParam)
                     .HasForeignKey(d => d.FrameCode)
                     .HasConstraintName("FK_FRAMEPAR_REFERENCE_FRAMETAS");
+            });
+
+            modelBuilder.Entity<FrameParamTr>(entity =>
+            {
+                entity.HasKey(e => new { e.SeekCode, e.Lang })
+                    .HasName("PK_FRAMEPARAMTR");
+
+                entity.ToTable("FrameParamTr", "dbo");
+
+                entity.Property(e => e.SeekCode).HasColumnName("seekCode");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SeekName)
+                    .HasColumnName("seekName")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.SeekCodeNavigation)
+                    .WithMany(p => p.FrameParamTr)
+                    .HasForeignKey(d => d.SeekCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FRAMEPAR_REFERENCE_FRAMEPAR");
             });
 
             modelBuilder.Entity<FrameTask>(entity =>

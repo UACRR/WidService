@@ -88,6 +88,17 @@ namespace WebAPIConnector
             return result?.Content != null ? result.Content.ReadAs<T>() : default(T);
         }
 
+        public async Task<List<T>> SendGetRequestWithListResultAsync<T>(string url)
+        {
+            var result = await client.GetAsync(url);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content?.ReadAsList<T>();
+        }
+
+
         /// <summary>
         /// Надіслати POST запит на сервер з отриманням результату
         /// </summary>

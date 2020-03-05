@@ -113,6 +113,7 @@
 "FolkTypeTr",
 "FrameTask",
 "FrameParam",
+"FrameParamTr",
 "GenreType",
 "GenreTypeTr",
 "HandDocPay",

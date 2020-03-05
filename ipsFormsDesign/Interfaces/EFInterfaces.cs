@@ -986,8 +986,7 @@ public interface IFolkTypeTr
          string Name { get; set; }
 }
 public interface IFrameParam
-    {
-         int SeekCode { get; set; }
+    {    int SeekCode { get; set; }
          int? FrameCode { get; set; }
          string SeekCodeName { get; set; }
          string SeekName { get; set; }
@@ -996,6 +995,12 @@ public interface IFrameParam
          string SeekString { get; set; }
          string SeekComment { get; set; }
          string SeekOut { get; set; }
+}
+public interface IFrameParamTr
+    {
+         int SeekCode { get; set; }
+         string Lang { get; set; }
+         string SeekName { get; set; }
 }
 public interface IFrameTask
     {    int TaskCode { get; set; }
