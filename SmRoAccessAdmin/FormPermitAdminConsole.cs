@@ -115,7 +115,8 @@ namespace SmRoPermitAdmin
                     ElementVisibility.Collapsed;
                 radCollapsiblePanelUserPermissions.ControlsContainer.PanelElement.Border.Visibility =
                     ElementVisibility.Collapsed;
-                radGridUserList.DataSource = PermitApiProxy.GetAllUsers();
+                var userList = PermitApiProxy.GetAllUsers();
+                radGridUserList.DataSource = userList;
                 UpdateControlsState();
                 SetUserDirty(false);
                 RefreshUserProps();

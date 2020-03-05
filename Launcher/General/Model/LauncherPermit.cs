@@ -5,7 +5,7 @@ namespace Launcher.General.Model
     public class LauncherPermits : ViewModelBase
     {
         private bool _rightsAdmin;
-        private bool _userAdmin;
+        private bool _permit;
         private bool _directory;
         private bool _violation;
         private bool _prAdmin;
@@ -83,13 +83,13 @@ namespace Launcher.General.Model
             }
         }
 
-        public bool UserAdmin
+        public bool Permit
         {
-            get => _userAdmin;
+            get => _permit;
             set
             {
-                _userAdmin = value;
-                OnPropertyChanged(() => UserAdmin);
+                _permit = value;
+                OnPropertyChanged(() => Permit);
             }
         }
     }

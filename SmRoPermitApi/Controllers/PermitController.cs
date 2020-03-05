@@ -50,7 +50,7 @@ namespace SmartRoyaltyPermitApi.Controllers
 
         // GET: api/Permit/Users
         [HttpGet("Users", Name = "GetAllUsers")]
-        [Permit("UserAdmin", "Read")]
+        [Permit("Permit", "Read")]
         public RspGetAllUsers GetAllUsers(string lang)
         {
             return RunProtectedOperation<RspGetAllUsers>(rsp =>
@@ -61,7 +61,7 @@ namespace SmartRoyaltyPermitApi.Controllers
 
         // GET: api/Permit/Users
         [HttpGet("UserRoles/{codeI}", Name = "GetUserRoles")]
-        [Permit("UserAdmin", "Read")]
+        [Permit("Permit", "Read")]
         public RspGetUserRoles GetUserRoles(int codeI, string lang)
         {
             return RunProtectedOperation<RspGetUserRoles>(rsp =>
@@ -72,7 +72,7 @@ namespace SmartRoyaltyPermitApi.Controllers
 
         // Post: api/Permit/User/CodeI
         [HttpPost("User/{codeI}", Name = "SaveUser")]
-        [Permit("UserAdmin", "Write")]
+        [Permit("Permit", "Write")]
         public Response SaveUser(RqSaveUser rq)
         {
             return RunProtectedOperation<Response>(rsp =>
@@ -83,7 +83,7 @@ namespace SmartRoyaltyPermitApi.Controllers
 
         // Post: api/Permit/User
         [HttpPut("User", Name = "AddUser")]
-        [Permit("UserAdmin", "Write")]
+        [Permit("Permit", "Write")]
         public Response AddUser(RqAddUser rq)
         {
             return RunProtectedOperation<RspAddUser>(rsp =>
@@ -94,7 +94,7 @@ namespace SmartRoyaltyPermitApi.Controllers
 
         // Delete: api/Permit/User/{CodeI}
         [HttpDelete("User/{codeI}", Name = "DeleteUser")]
-        [Permit("UserAdmin", "Write")]
+        [Permit("Permit", "Write")]
         public Response DeleteUser(int codeI)
         {
             return RunProtectedOperation<RspAddUser>(rsp =>
@@ -105,7 +105,7 @@ namespace SmartRoyaltyPermitApi.Controllers
 
         // Post: api/Permit/User/CodeI
         [HttpPost("User/{codeI}/ResetPassword", Name = "ResetPassword")]
-        [Permit("UserAdmin", "Write")]
+        [Permit("Permit", "Write")]
         public RspResetPassword ResetPassword(int codeI)
         {
             return RunProtectedOperation<RspResetPassword>(rsp =>
