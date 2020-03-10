@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.Types;
 using ipsmedserviceapp.Controllers.Resources;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
 using ipsmedserviceapp.Utilities;
 using Microsoft.AspNetCore.Http;
@@ -606,6 +609,37 @@ namespace ipsmedserviceapp.Controllers
         }
 
         #endregion
+
+        /// <summary>
+        /// Get object right list
+        /// </summary>
+        /// <param name="searchResource"></param>
+        /// <returns></returns>
+        [HttpPost("list")]
+        public async Task<IActionResult> GetObjectsRightList([FromBody] ObjectRightSearchResource searchResource)
+        {
+            ResponseOfRequest<DataTable> response;
+            try
+            {
+                DataTable data = null;
+
+                string query = $"select t0.* from vtsk_3_OR_01_wpf t0";
+
+                using (var sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
+                {
+                    await Task.Factory.StartNew(() => data = ExecuteQuery.GetDataFromSqlServer(sqlConnection, query));
+
+                    response = new ResponseOfRequest<DataTable>(data);
+
+                    return Ok(response);
+                }
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest<DataTable>(e);
+                return Ok(response);
+            }
+        }
 
     }
 }

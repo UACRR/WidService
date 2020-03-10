@@ -228,9 +228,10 @@
                     <StackPanel Style="{StaticResource groupPanel}">
                         <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_RIGHTS}" Background="#FFF3D7D4" BorderBrush="#FFF47B60"/>
                         <Button Style="{StaticResource launchButton}" 
-                                IsEnabled="{Binding LauncherPermits.RightsAdmin}"
+                                IsEnabled="True"
                                 Content="{Binding LM_Launcher.RH_OR}"
                                 Command="{Binding LoadCopyrightAdminWorkplaceCommand}"/>
+                        <!--IsEnabled="{Binding LauncherPermits.RightsAdmin}"-->
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.RoyaltyAdmin}"
                                 Content="{Binding LM_Launcher.ReportsAndRoyalty}" />

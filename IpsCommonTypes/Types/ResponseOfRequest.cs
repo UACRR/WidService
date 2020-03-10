@@ -29,11 +29,32 @@ namespace IpsCommonTypes.Types
             Message = errorMessage;
             InnerMessage = e.ToString();
             StatusCode = e.HResult;
+            Exception = e;
         }
 
         public string Message { get; set; }
         public string InnerMessage { get; set; }
         public int StatusCode { get; set; }
         public bool IsSuccess { get; set; }
+        public Exception Exception { get; set; }
+    }
+
+    public class ResponseOfRequest<T> : ResponseOfRequest
+    {
+        public ResponseOfRequest() { }
+
+        public ResponseOfRequest(T data)
+        {
+            IsSuccess = true;
+            Data = data;
+        }
+
+        public ResponseOfRequest(Exception exception)
+        {
+            IsSuccess = false;
+            Exception = exception;
+        }
+
+        public T Data { get; set; }
     }
 }

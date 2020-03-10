@@ -75,6 +75,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectsRightList\Model\ObjectsRightListModel.cs" />
     <Compile Include="ObjectsRightList\ObjectsRightListControl.xaml.cs">
       <DependentUpon>ObjectsRightListControl.xaml</DependentUpon>
     </Compile>
@@ -108,9 +109,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ObjectsRightList\Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
       <Project>{B17076A8-B8F9-4F60-AAC0-3845773A4D43}</Project>
@@ -133,6 +132,11 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.19</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\edit-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,7 +23,7 @@
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
             <Setter Property="ShowGroupPanel" Value="False"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="IsFilteringAllowed" Value="False"/>
+            <!--<Setter Property="IsFilteringAllowed" Value="False"/>-->
             <Setter Property="ShowSearchPanel" Value="True"/>
             <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
         </Style>
@@ -32,6 +32,10 @@
         </Style>
         <Style TargetType="t:RadExpander">
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+        <Style TargetType="t:GridViewDataColumn">
+            <Setter Property="HeaderTextAlignment" Value="Center"/>
+            <Setter Property="IsFilterable" Value="False"/>
         </Style>
     </Control.Resources>
 
@@ -60,6 +64,7 @@
                 <t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
                                MinWidth="100"
                                Margin="3"
+                               Background="OldLace"
                                HorizontalAlignment="Stretch"
                                HorizontalContentAlignment="Stretch"
                                ItemsSource="{Binding TreeViewItemSource}"
@@ -74,6 +79,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
 
@@ -82,8 +88,66 @@
                     </t:RadExpander>
                         
                     <t:RadGridView Grid.Row="1"
+                                   x:Name="gridView"
+                                   ItemsSource="{Binding ObjectsRightsItemSource}"
                                    Margin="3">
+                        <t:RadGridView.Columns>
+                            <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding ObjId}"/>
+                            <t:GridViewDataColumn Width="1*" Header="Шифр твору" DataMemberBinding="{Binding InnerCode}"/>
+                            <t:GridViewDataColumn Width="85" Header="ISWC" DataMemberBinding="{Binding ISWC}"/>
+                            <t:GridViewDataColumn Width="1*" Header="Назва твору" DataMemberBinding="{Binding Name}"/>
+                            <t:GridViewDataColumn Width="25" Header="В/М" 
+                                                  IsFilterable="True"
+                                                  ToolTip="Об'єкт великих/малих прав" 
+                                                  DataMemberBinding="{Binding CategoryName}" 
+                                                  TextAlignment="Center"/>
+                            <t:GridViewDataColumn Width="1*" 
+                                                  Header="Жанр" 
+                                                  IsFilterable="True"
+                                                  DataMemberBinding="{Binding GenreName}"/>
+
+                            <t:GridViewDataColumn Width="1*" 
+                                                  Header="Автори" 
+                                                  ShowToolTipOnTrimmedText="True"
+                                                  DataMemberBinding="{Binding Author}"/>
+                            <t:GridViewDataColumn Width="1*" 
+                                                  Header="Виконавець" 
+                                                  ShowToolTipOnTrimmedText="True"
+                                                  DataMemberBinding="{Binding Performer}"/>
+                            <t:GridViewDataColumn Width="75" 
+                                                  ShowToolTipOnTrimmedText="True" 
+                                                  Header="Спільний % володіння" 
+                                                  DataMemberBinding="{Binding RateTotal}"
+                                                  DataFormatString="{}{0:N2}"
+                                                  TextAlignment="Right"/>
+                            <t:GridViewDataColumn Width="120" 
+                                                  Header="Нерозподілена сума" 
+                                                  TextAlignment="Right" 
+                                                  DataFormatString="{}{0:N2}"
+                                                  DataMemberBinding="{Binding Profit}"/>
+
+                            <t:GridViewColumn Width="25">
+                                <t:GridViewColumn.Header>
+                                    <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                                </t:GridViewColumn.Header>
+                                <t:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <t:RadButton Margin="0" Width="25" Height="20" 
+                                                     Command="{Binding DataContext.OpenObjectRightCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                     CommandParameter="{Binding}">
+                                            <Image Source="../Resources/Icons/edit-icon.png"/>
+                                        </t:RadButton>
+                                    </DataTemplate>
+                                </t:GridViewColumn.CellTemplate>
+                            </t:GridViewColumn>
+                        </t:RadGridView.Columns>
                     </t:RadGridView>
+                    <t:RadDataPager Grid.Row="2"
+                                    t:StyleManager.Theme="VisualStudio2013"
+                                    PageSize="250"
+                                    Source="{Binding Items, ElementName=gridView}"
+                                    IsTotalItemCountFixed="False"
+                                    DisplayMode="All, All"/>
                 </Grid>
 
 

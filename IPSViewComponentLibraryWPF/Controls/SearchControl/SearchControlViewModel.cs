@@ -25,11 +25,6 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         private const string FullValue = "Full";
         private const string PartValue = "Part";
 
-        public SearchControlViewModel()
-        {
-            AppLanguageLibrary.UpdateLanguageLocalization(LM_SEARCH, nameof(AppLanguageLibrary.CurrentLanguage.SearchControlLD));
-        }
-
         #region * * * PROPERTIES * * *
 
         private ObservableCollection<CheckBox> _listBoxItemsSource = new ObservableCollection<CheckBox>();
@@ -136,7 +131,8 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                             new RadioButton
                             {
                                 Name = FullValue,
-                                Content = "Точне значення",
+                                //Content = "Точне значення",
+                                Content = LM_SEARCH.EQ_VAL,
                                 IsChecked = true,
                                 VerticalContentAlignment = VerticalAlignment.Center,
                                 Margin = new Thickness(5,3,3,3),
@@ -145,7 +141,8 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                             new RadioButton
                             {
                                 Name = PartValue,
-                                Content = "Містить текст",
+                                //Content = "Містить текст",
+                                Content = LM_SEARCH.LIKE_VAL,
                                 VerticalContentAlignment = VerticalAlignment.Center,
                                 Margin = new Thickness(5,3,3,3),
                                 IsTabStop = false,
@@ -173,16 +170,6 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             {
                 list.Add(new SearchItem(frameParam.SeekCodeName, frameParam.SeekName));
             }
-
-            //var list = new List<SearchItem>
-            //{
-            //    new SearchItem("ALL", "Всі поля"),
-            //    new SearchItem("altName", "Альтернативна назва"),
-            //    new SearchItem("author", "Автор"),
-            //    new SearchItem("performer", "Виконавець"),
-            //    new SearchItem("objCode", "Шифр твору"),
-            //    new SearchItem("google", "в Google :)"),
-            //};
 
             foreach (var searchItem in list)
                 ListBoxItemsSource.Add(CreateCheckBox(searchItem));
@@ -275,6 +262,12 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
             // exec search
             RunSearchQuery?.Invoke(propertyList);
+        }
+
+        public ICommand LoadedCommand => new IPSDelegateCommand(LoadedCommandExecute);
+        private void LoadedCommandExecute(object o)
+        {
+            AppLanguageLibrary.UpdateLanguageLocalization(LM_SEARCH, nameof(AppLanguageLibrary.CurrentLanguage.SearchControlLD));
         }
 
         #endregion
