@@ -229,6 +229,9 @@
     <EmbeddedResource Include="DictionaryControls\SimpleDictionaryControl.resx">
       <DependentUpon>SimpleDictionaryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictBaseTypeI.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictTrI.datasource" />

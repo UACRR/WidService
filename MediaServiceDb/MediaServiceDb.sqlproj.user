@@ -3,7 +3,7 @@
   <PropertyGroup>
     <StartupScript>(Пусто)</StartupScript>
     <StartAction>StartNone</StartAction>
-    <TargetConnectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MediaService;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</TargetConnectionString>
+    <TargetConnectionString>Data Source=IPSDATA,60675;Initial Catalog=MediaService;Persist Security Info=True;User ID=robot;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</TargetConnectionString>
     <TargetDatabase>MediaService</TargetDatabase>
     <CreateNewDatabase>False</CreateNewDatabase>
   </PropertyGroup>

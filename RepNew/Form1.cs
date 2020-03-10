@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ReportsLibrary;
-using Telerik.Reporting;
+//using Telerik.Reporting;
 
 
 namespace RepNew
@@ -17,6 +17,7 @@ namespace RepNew
     {
         public Аналітика()
         {
+            
             language.Currenlanguage = "uk-UA";
             var cultureInfo = new System.Globalization.CultureInfo(language.Currenlanguage);
 
