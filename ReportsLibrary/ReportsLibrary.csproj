@@ -467,7 +467,13 @@
     <EmbeddedResource Include="R_5_16_AuthorSRFact.resx">
       <DependentUpon>R_5_16_AuthorSRFact.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.en-US.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_Balance.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.ru-RU.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
