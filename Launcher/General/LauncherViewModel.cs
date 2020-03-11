@@ -261,10 +261,6 @@ namespace Launcher.General
 
                     await Initialize();
                 }
-                else
-                    ShowMessage.ShowWarning("Login attempt cancelled by user");
-                
-                //throw new Exception("Login attempt cancelled by user");
             }
             catch (Exception ex)
             {

@@ -161,7 +161,8 @@ namespace SmartRoyaltyPermitApi
                 CreateDate = ConvertToDateTime(row["createDate"]),
                 ModifyDate = ConvertToDateTime(row["modifyDate"]),
                 IsLock = ConvertToBoolean(row["isLock"]),
-                Comment = ConvertToString(row["comment"])
+                Comment = ConvertToString(row["comment"]),
+                IsWindowsAuth = ConvertToBoolean(row["isWindowsAuth"])
             };
         }
 
@@ -296,6 +297,7 @@ namespace SmartRoyaltyPermitApi
                         , comment
                         , modifyDate
                         , isTempPassword
+                        , isWindowsAuth
                     ) 
                     values(
                           @login
@@ -308,7 +310,8 @@ namespace SmartRoyaltyPermitApi
                         , @isLock
                         , @comment
                         , getdate()
-                        , 1
+                        , @isTempPassword
+                        , @isWindowsAuth
                     );
                     set @codeI = scope_identity();
 
@@ -327,6 +330,8 @@ namespace SmartRoyaltyPermitApi
                 cmd.Parameters.AddWithValue("@passwordHash", defaultPassword);
                 cmd.Parameters.AddWithValue("@isLock", user.IsLock);
                 cmd.Parameters.AddWithValue("@comment", user.Comment);
+                cmd.Parameters.AddWithValue("@isTempPassword", user.IsTempPassword);
+                cmd.Parameters.AddWithValue("@isWindowsAuth", user.IsWindowsAuth);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -445,6 +450,7 @@ namespace SmartRoyaltyPermitApi
             userFromList.PasswordHash = user.PasswordHash;
             userFromList.IsLock = user.IsLock;
             userFromList.Comment = user.Comment;
+            userFromList.IsWindowsAuth = user.IsWindowsAuth;
         }
 
         public static void SaveUser(User user, List<Role> roles)
@@ -468,6 +474,7 @@ namespace SmartRoyaltyPermitApi
                         , isLock = @isLock
                         , comment = @comment
                         , modifyDate = getdate()
+                        , isWindowsAuth = @isWindowsAuth
                     where codeI = @codeI
                 ";
                 cmd.Parameters.AddWithValue("@login", user.Login);
@@ -479,6 +486,7 @@ namespace SmartRoyaltyPermitApi
                 //cmd.Parameters.AddWithValue("@passwordHash", user.PasswordHash);
                 cmd.Parameters.AddWithValue("@isLock", user.IsLock);
                 cmd.Parameters.AddWithValue("@comment", user.Comment);
+                cmd.Parameters.AddWithValue("@isWindowsAuth", user.IsWindowsAuth);
                 cmd.Parameters.AddWithValue("@codeI", user.CodeI);
                 cmd.ExecuteNonQuery();
 
@@ -514,14 +522,17 @@ namespace SmartRoyaltyPermitApi
             };
             RunSqlOperation(cmd => {
                 cmd.CommandText = @"
-                    select codeI, isTempPassword
+                    select codeI, isTempPassword, isWindowsAuth
                     from PermitUser
                     where login = @login
-                        and passwordHash = hashbytes('SHA2_512', @password)
                         and isLock = 0
                ";
                 cmd.Parameters.AddWithValue("@login", login);
-                cmd.Parameters.AddWithValue("@password", password);
+                if (!string.IsNullOrEmpty(password))
+                {
+                    cmd.CommandText += "and passwordHash = hashbytes('SHA2_512', @password)";
+                    cmd.Parameters.AddWithValue("@password", password);
+                }
                 using (var r = cmd.ExecuteReader())
                 {
                     if (!r.HasRows)
@@ -532,14 +543,14 @@ namespace SmartRoyaltyPermitApi
                     {
                         r.Read();
                         retVal.UserCodeI = r.GetInt32(0);
-                        retVal.Result = r.GetBoolean(1) ? RspLogin.LoginResult.ChangePassword : RspLogin.LoginResult.Success;
+                        retVal.Result = r.GetBoolean(1) && !r.GetBoolean(2) ? RspLogin.LoginResult.ChangePassword : RspLogin.LoginResult.Success;
                     }
                 }
             });
             return retVal;
         }
 
-        public static RspLogin ChangePasswordAndLogin(string login, string password)
+        public static RspLogin ChangePasswordAndLogin(string login, string password, string newPassword)
         {
             RspLogin retVal = new RspLogin
             {
@@ -548,18 +559,36 @@ namespace SmartRoyaltyPermitApi
             RunSqlOperation(cmd => {
                 cmd.CommandText = @"
                     update PermitUser
-                    set passwordHash = hashbytes('SHA2_512', @password)
+                    set passwordHash = hashbytes('SHA2_512', @newPassword)
                         , isTempPassword = 0
                     from PermitUser
                     where login = @login
+                        and passwordHash = hashbytes('SHA2_512', @password)
+                        and isLock = 0
 
                     select codeI
                     from PermitUser
                     where login = @login 
+                        and passwordHash = hashbytes('SHA2_512', @newPassword)
+                        and isLock = 0
                 ";
                 cmd.Parameters.AddWithValue("@login", login);
                 cmd.Parameters.AddWithValue("@password", password);
-                retVal.UserCodeI = (int)cmd.ExecuteScalar();
+                cmd.Parameters.AddWithValue("@newPassword", newPassword);
+
+                using (SqlDataReader r = cmd.ExecuteReader())
+                {
+                    if(r.HasRows)
+                    {
+                        r.Read();
+                        retVal.UserCodeI = r.GetInt32(0);
+                    }
+                    else
+                    {
+                        retVal.Result = RspLogin.LoginResult.Failed;
+                    }
+                }
+                    
             });
             return retVal;
         }

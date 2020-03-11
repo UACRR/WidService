@@ -28,11 +28,40 @@ namespace SmRoPermitServerLib
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            string auth = context.HttpContext.Request.Headers["Authorization"];
-            string loginPasswordEncoded = auth.Split(' ')[1];
-            var encoding = Encoding.GetEncoding("iso-8859-1");
-            string[] loginPassword = encoding.GetString(Convert.FromBase64String(loginPasswordEncoded)).Split(':');
-            if (!AllPermissions.HasPermit(loginPassword[0], loginPassword[1], _claim.Type, _claim.Value))
+            string login;
+            string password;
+            if (context.HttpContext.User.Identity.IsAuthenticated) // Windows Authentication
+            {
+                string auth = context.HttpContext.Request.Headers["Basic"];
+                if (auth == null)
+                {
+                    login = context.HttpContext.User.Identity.Name;
+                    password = "";
+                }
+                else
+                {
+                    var encoding = Encoding.GetEncoding("iso-8859-1");
+                    string[] loginPassword = encoding.GetString(Convert.FromBase64String(auth)).Split(':');
+                    login = loginPassword[0];
+                    password = loginPassword[1];
+                }
+            }
+            else // Basic Authentication
+            {
+                string auth = context.HttpContext.Request.Headers["Authorization"];
+                if (auth == null)
+                {
+                    login = "";
+                    password = "";
+                    return;
+                }
+                string loginPasswordEncoded = auth.Split(' ')[1];
+                var encoding = Encoding.GetEncoding("iso-8859-1");
+                string[] loginPassword = encoding.GetString(Convert.FromBase64String(loginPasswordEncoded)).Split(':');
+                login = loginPassword[0];
+                password = loginPassword[1];
+            }
+            if (!AllPermissions.HasPermit(login, password, _claim.Type, _claim.Value))
             {
                 context.Result = new StatusCodeResult((int)System.Net.HttpStatusCode.Forbidden);
             }

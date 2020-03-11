@@ -21,21 +21,52 @@ namespace SmRoPermitClientLib
 
         public static string BaseUri { get; set; }
 
-        private static ResponseT Put<ResponseT>(string uri, string json) where ResponseT: Response
+        private static ResponseT MakeRequest<ResponseT>(string uri, string json, string requestType) where ResponseT : Response
         {
-            using(HttpClient client = new HttpClient())
-            using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
+            using (HttpClient client = new HttpClient(new HttpClientHandler() { UseDefaultCredentials = true }))
             {
-                var authToken = Encoding.ASCII.GetBytes($"{UserLogin}:{UserPassword}");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                        Convert.ToBase64String(authToken));
+                if (!string.IsNullOrEmpty(UserPassword))
+                {
+                    var authToken = Encoding.ASCII.GetBytes($"{UserLogin}:{UserPassword}");
+                    client.DefaultRequestHeaders.Add("Basic", Convert.ToBase64String(authToken));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                            Convert.ToBase64String(authToken));
+                }
 
-                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                HttpResponseMessage result = client.PutAsync($"{BaseUri}api/{uri}", content).Result;
+                string fullUri = $"{BaseUri}api/{uri}";
+
+                HttpResponseMessage result = null;
+                if (requestType.Equals("Put"))
+                {
+                    using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
+                    {
+                        result = client.PutAsync(fullUri, content).Result;
+                    }
+                }
+                else if (requestType.Equals("Post"))
+                {
+                    using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
+                    {
+                        result = client.PostAsync(fullUri, content).Result;
+                    }
+                }
+                else if (requestType.Equals("Get"))
+                {
+                    result = client.GetAsync(fullUri).Result;
+                }
+                else if (requestType.Equals("Delete"))
+                {
+                    result = client.DeleteAsync(fullUri).Result;
+                }
+                else
+                {
+                    return null;
+                }
+
                 string returnValue = result.Content.ReadAsStringAsync().Result;
                 if (result.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    throw new Exception(returnValue);
+                    throw new Exception("Application server returned error - " + result.StatusCode.ToString());
                 }
                 var retVal = JsonConvert.DeserializeObject<ResponseT>(returnValue);
                 if (retVal.Code == -1)
@@ -44,82 +75,31 @@ namespace SmRoPermitClientLib
                     throw new LoginNotUniqueException();
                 return retVal;
             }
+        }
+
+        private static ResponseT Put<ResponseT>(string uri, string json) where ResponseT : Response
+        {
+            return MakeRequest<ResponseT>(uri, json, "Put");
         }
 
         private static ResponseT Post<ResponseT>(string uri, string json) where ResponseT : Response
         {
-            using (HttpClient client = new HttpClient())
-            using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
-            {
-                var authToken = Encoding.ASCII.GetBytes($"{UserLogin}:{UserPassword}");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                        Convert.ToBase64String(authToken));
-
-                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                HttpResponseMessage result = client.PostAsync($"{BaseUri}api/{uri}", content).Result;
-                string returnValue = result.Content.ReadAsStringAsync().Result;
-                if (result.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(returnValue);
-                }
-                var retVal = JsonConvert.DeserializeObject<ResponseT>(returnValue);
-                if (retVal.Code == -1)
-                    throw new Exception(retVal.Message);
-                else if (retVal.Code == -2)
-                    throw new LoginNotUniqueException();
-                return retVal;
-            }
+            return MakeRequest<ResponseT>(uri, json, "Post");
         }
 
-        private static ResponseT Get<ResponseT>(string uri) where ResponseT: Response
+        private static ResponseT Get<ResponseT>(string uri) where ResponseT : Response
         {
-            using (HttpClient client = new HttpClient())
-            {
-                var authToken = Encoding.ASCII.GetBytes($"{UserLogin}:{UserPassword}");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                        Convert.ToBase64String(authToken));
-
-                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                HttpResponseMessage result = client.GetAsync($"{BaseUri}api/{uri}").Result;
-                string returnValue = result.Content.ReadAsStringAsync().Result;
-                if (result.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(returnValue);
-                }
-                var retVal = JsonConvert.DeserializeObject<ResponseT>(returnValue);
-                if (retVal.Code == -1)
-                    throw new Exception(retVal.Message);
-                return retVal;
-            }
+            return MakeRequest<ResponseT>(uri, null, "Get");
         }
 
         private static ResponseT Delete<ResponseT>(string uri) where ResponseT : Response
         {
-            using (HttpClient client = new HttpClient())
-            {
-                var authToken = Encoding.ASCII.GetBytes($"{UserLogin}:{UserPassword}");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                        Convert.ToBase64String(authToken));
-
-                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                HttpResponseMessage result = client.DeleteAsync($"{BaseUri}api/{uri}").Result;
-                string returnValue = result.Content.ReadAsStringAsync().Result;
-                if (result.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    throw new Exception(returnValue);
-                }
-                var retVal = JsonConvert.DeserializeObject<ResponseT>(returnValue);
-                if (retVal.Code == -1)
-                    throw new Exception(retVal.Message);
-                return retVal;
-            }
+            return MakeRequest<ResponseT>(uri, null, "Delete");
         }
 
-        public static RspLogin Login(string login, string password)
+        public static RspLogin Login()
         {
-            var rq = new RqLogin { UserLogin = login, UserPassword = password };
-            string json = JsonConvert.SerializeObject(rq);
-            var rsp = Put<RspLogin>($"Login/{login}", json);
+            var rsp = Get<RspLogin>($"Login");
             return rsp;
         }
 

@@ -58,7 +58,7 @@ namespace SmRoPermitAdmin
 
         private string GetText(string code)
         {
-            return Txt[code];
+            return Txt.ContainsKey(code) ? Txt[code] : code;
         }
 
         public static void Show(string userCredentials)
@@ -162,6 +162,12 @@ namespace SmRoPermitAdmin
             radBtnSaveUser.Visible =
             panelUserInfoContainer.Visible = 
             radBtnCancelUser.Visible = radGridUserList.CurrentRow != null;
+
+            if (radGridUserList.CurrentRow != null)
+            {
+                User user = (User)radGridUserList.CurrentRow.DataBoundItem;
+                radBtnResetPassword.Enabled = !user.IsWindowsAuth;
+            }
         }
 
         private void SetUserDirty(bool isDirty)
@@ -192,9 +198,9 @@ namespace SmRoPermitAdmin
                 radTbUserPasswordHash.Text = "";
                 radTbUserCreateDate.Text = "";
                 radTbUserModifyDate.Text = "";
+                radChkUseWindowsAuth.Checked = false;
                 radChkUserIsLock.Checked = false;
                 radTbUserComment.Text = "";
-
 
                 ignoreTextChanged = false;
                 return;
@@ -214,9 +220,11 @@ namespace SmRoPermitAdmin
             radTbUserPasswordHash.Text = user.PasswordHash;
             radTbUserCreateDate.Text = user.CreateDate.ToString("yyyy-MM-dd");
             radTbUserModifyDate.Text = user.ModifyDate.ToString("yyyy-MM-dd");
+            radChkUseWindowsAuth.Checked = user.IsWindowsAuth;
             radChkUserIsLock.Checked = user.IsLock;
             radTbUserComment.Text = user.Comment;
 
+            UpdateControlsState();
 
             ignoreTextChanged = false;
 
@@ -329,7 +337,9 @@ namespace SmRoPermitAdmin
                 PhoneNumber = radTbUserPhoneNumber.Text,
                 PasswordHash = radTbUserPasswordHash.Text,
                 IsLock = radChkUserIsLock.Checked,
-                Comment = radTbUserComment.Text
+                Comment = radTbUserComment.Text,
+                IsTempPassword = isNewUser && !radChkUseWindowsAuth.Checked,
+                IsWindowsAuth = radChkUseWindowsAuth.Checked
             };
 
             List<Role> roles = (List<Role>)radGridUserRoles.DataSource;
@@ -341,10 +351,13 @@ namespace SmRoPermitAdmin
                     RspAddUser.AddUserResult res = PermitApiProxy.AddUser(user, roles);
                     user.CodeI = res.CodeI;
                     isNewUser = false;
-                    Clipboard.SetText($"CodeI: {res.CodeI}, Pwd: '{res.Password}'");
-                    MessageBox.Show(this, Txt["DEF_PWD_CREATED"]
-                        + Txt["PLEASE_PASTE"]
-                        , Txt["INFO"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!radChkUseWindowsAuth.Checked)
+                    {
+                        Clipboard.SetText($"CodeI: {res.CodeI}, Pwd: '{res.Password}'");
+                        MessageBox.Show(this, Txt["DEF_PWD_CREATED"]
+                            + Txt["PLEASE_PASTE"]
+                            , Txt["INFO"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     splitPanel1.Collapsed = false;
                     radGridUserList.CurrentRow = currentRow;
                 }
@@ -500,6 +513,13 @@ namespace SmRoPermitAdmin
             {
                 MessageBox.Show(this, ex.Message, Txt["ERR"], MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void radChkUseWindowsAuth_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (ignoreTextChanged)
+                return;
+            SetUserDirty(true);
         }
     }
 }

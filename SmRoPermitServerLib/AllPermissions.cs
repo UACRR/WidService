@@ -96,6 +96,7 @@ namespace SmRoPermitServerLib
             using (SqlCommand cmd = conn.CreateCommand())
             {
                 conn.Open();
+                string filterByPwd = !string.IsNullOrEmpty(password) ? "and t1.passwordHash = hashbytes('SHA2_512', @password)" : "";
                 cmd.CommandText = $@"
                     select count(*)
                     from PermitUser t1
@@ -104,13 +105,14 @@ namespace SmRoPermitServerLib
                         join PermitRoleTask t4 on t4.roleCode = t3.codeI
                         join PermitTask t5 on t5.codeI = t4.taskCode
                     where t1.login = @login
-                        and t1.passwordHash = hashbytes('SHA2_512', @password)
+                        {filterByPwd}
                         and t5.codeName = @funcCodeName
                         and t2.Is{permit} = 1
                     option (recompile)
                 ";
                 cmd.Parameters.AddWithValue("@login", login);
-                cmd.Parameters.AddWithValue("@password", password);
+                if (!string.IsNullOrEmpty(password))
+                    cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@funcCodeName", funcCodeName);
                 return (int)cmd.ExecuteScalar() > 0;
             }

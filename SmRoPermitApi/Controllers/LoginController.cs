@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,9 @@ namespace SmartRoyaltyPermitApi.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private string login;
+        private string password;
+
         private delegate void ProtectedOperation<ResponseT>(ResponseT rsp);
         private static ResponseT RunProtectedOperation<ResponseT>(ProtectedOperation<ResponseT> oper) where ResponseT : Response, new()
         {
@@ -29,13 +33,49 @@ namespace SmartRoyaltyPermitApi.Controllers
             }
         }
 
-        // PUT: api/Login/Admin
-        [HttpPut("{login}", Name = "Login")]
-        public RspLogin Login([FromBody] RqLogin rq)
+        private void Authenticate()
         {
-            return RunProtectedOperation<RspLogin>( rsp =>
+            if (User.Identity.IsAuthenticated) // Windows Authentication
             {
-                var res = PermitAdminOperations.Login(rq.UserLogin, rq.UserPassword);
+                string auth = Request.Headers["Basic"];
+                if (auth == null)
+                {
+                    login = User.Identity.Name;
+                    password = "";
+                }
+                else
+                {
+                    var encoding = Encoding.GetEncoding("iso-8859-1");
+                    string[] loginPassword = encoding.GetString(Convert.FromBase64String(auth)).Split(':');
+                    login = loginPassword[0];
+                    password = loginPassword[1];
+                }
+            }
+            else // Basic Authentication
+            {
+                string auth = Request.Headers["Authorization"];
+                if(auth == null)
+                {
+                    login = "";
+                    password = "";
+                    return;
+                }
+                string loginPasswordEncoded = auth.Split(' ')[1];
+                var encoding = Encoding.GetEncoding("iso-8859-1");
+                string[] loginPassword = encoding.GetString(Convert.FromBase64String(loginPasswordEncoded)).Split(':');
+                login = loginPassword[0];
+                password = loginPassword[1];
+            }
+        }
+        // GET: api/Login
+        [HttpGet]
+        public RspLogin Login()
+        {
+            Authenticate();
+            return RunProtectedOperation<RspLogin>(rsp =>
+            {
+
+                var res = PermitAdminOperations.Login(login, password);
                 rsp.UserCodeI = res.UserCodeI;
                 rsp.Result = res.Result;
             });
@@ -47,7 +87,7 @@ namespace SmartRoyaltyPermitApi.Controllers
         {
             return RunProtectedOperation<RspLogin>(rsp =>
             {
-                var res = PermitAdminOperations.ChangePasswordAndLogin(rq.UserLogin, rq.NewPassword);
+                var res = PermitAdminOperations.ChangePasswordAndLogin(rq.UserLogin, rq.UserPassword, rq.NewPassword);
                 rsp.UserCodeI = res.UserCodeI;
                 rsp.Result = res.Result;
             });

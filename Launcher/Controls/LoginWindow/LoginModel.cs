@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using Telerik.Windows.Controls;
 
 namespace Launcher.Controls.LoginWindow
 {
-    public class LoginModel
+    public class LoginModel : ViewModelBase
     {
         private string ConvertPassword(SecureString pw)
         {
@@ -21,7 +22,25 @@ namespace Launcher.Controls.LoginWindow
         }
 
         public int CodeI { get; set; }
-        public string UserName { get; set; }
+
+        private string _userName = "";
+        public string UserName
+        {
+            get => _userName;
+            set
+            {
+                _userName = value;
+                OnPropertyChanged(() => _userName);
+            }
+        }
+
+        /*
+        private void OnPropertyChanged(Func<string> p)
+        {
+            throw new NotImplementedException();
+        }
+        */
+
         public SecureString Password { get; set; }
         public SecureString NewPassword { get; set; }
         public SecureString ConfirmPassword { get; set; }
