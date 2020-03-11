@@ -14,6 +14,9 @@ namespace IPSViewComponentLibraryWPF.Extensions
 
         public static int CastInt(object obj)
         {
+            if (obj == null)
+                return default(int);
+
             return (int)(long)obj;
         }
 

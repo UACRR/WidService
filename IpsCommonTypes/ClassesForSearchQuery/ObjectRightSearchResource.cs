@@ -9,6 +9,5 @@ namespace IpsCommonTypes.ClassesForSearchQuery
     {
         public SearchData SimpleSearch { get; set; }
         public List<SearchDataExtended> MultiplySearch { get; set; }
-        public string FilterParameter { get; set; }
     }
 }

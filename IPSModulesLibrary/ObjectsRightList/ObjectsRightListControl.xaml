@@ -64,7 +64,7 @@
                 <t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
                                MinWidth="100"
                                Margin="3"
-                               Background="OldLace"
+                               Background="MintCream"
                                HorizontalAlignment="Stretch"
                                HorizontalContentAlignment="Stretch"
                                ItemsSource="{Binding TreeViewItemSource}"
@@ -78,16 +78,23 @@
                 <Grid Grid.Column="2" Margin="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
+                    <t:RadButton Grid.Row="0"
+                                 Margin="3"
+                                 HorizontalAlignment="Left"
+                                 IsEnabled="False"
+                                 MinWidth="95"
+                                 Content="Оновити"/>
 
-                    <t:RadExpander Header="Extended search" IsExpanded="True">
+                    <t:RadExpander Grid.Row="1" Header="Extended search" IsExpanded="True">
                         <search:SearchControl x:Name="searchControl"/>
                     </t:RadExpander>
                         
-                    <t:RadGridView Grid.Row="1"
+                    <t:RadGridView Grid.Row="2"
                                    x:Name="gridView"
                                    ItemsSource="{Binding ObjectsRightsItemSource}"
                                    Margin="3">
@@ -142,7 +149,7 @@
                             </t:GridViewColumn>
                         </t:RadGridView.Columns>
                     </t:RadGridView>
-                    <t:RadDataPager Grid.Row="2"
+                    <t:RadDataPager Grid.Row="3"
                                     t:StyleManager.Theme="VisualStudio2013"
                                     PageSize="250"
                                     Source="{Binding Items, ElementName=gridView}"

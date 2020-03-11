@@ -191,7 +191,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             var propertyList = new List<string>();
             foreach (var checkBox in ListBoxItemsSource)
             {
-                if (checkBox.IsChecked ?? false)
+                if ((checkBox.IsChecked ?? false) && checkBox.Name != "ALL")
                     propertyList.Add(checkBox.Name);
             }
 

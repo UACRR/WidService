@@ -36,6 +36,8 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
         }
 
+        public bool IsLoaded { get; set; }
+
         private ObservableCollection<RadTreeViewItem> _treeViewItemSource = new ObservableCollection<RadTreeViewItem>
         {
             new RadTreeViewItem
@@ -141,7 +143,7 @@ namespace IPSModulesLibrary.ObjectsRightList
 
         private void FilterList(string filterName)
         {
-            if (ObjectsRightsItemSourceTemp == null || !ObjectsRightsItemSourceTemp.Any())
+            if (ObjectsRightsItemSourceTemp == null)
                 return;
 
             if (!string.IsNullOrEmpty(filterName))
@@ -166,7 +168,7 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
         }
 
-        private void RunSearchDelegateMethod(object o)
+        private async void RunSearchDelegateMethod(object o)
         {
             var searchResource = new ObjectRightSearchResource();
 
@@ -179,7 +181,7 @@ namespace IPSModulesLibrary.ObjectsRightList
                 searchResource.MultiplySearch = new List<SearchDataExtended>((ICollection<SearchDataExtended>)o);
             }
 
-            var task = LoadData(searchResource);
+            await LoadData(searchResource);
         }
 
         private ObservableCollection<ObjectsRightListModel> ConvertToInternalModel(DataTable dataTable)
@@ -194,20 +196,20 @@ namespace IPSModulesLibrary.ObjectsRightList
 
                 var item = new ObjectsRightListModel
                 {
-                    ObjId = DTC.CastInt(obj[index(nameof(ObjectsRightListModel.ObjId))]),
-                    ISWC = DTC.Cast<string>(obj[index(nameof(ObjectsRightListModel.ISWC))]),
-                    CategoryCode = DTC.CastInt(obj[index(nameof(ObjectsRightListModel.CategoryCode))]),
-                    GenreType = DTC.CastIntNull(obj[index(nameof(ObjectsRightListModel.GenreType))]),
-                    Name = DTC.Cast<string>(obj[index(nameof(ObjectsRightListModel.Name))]),
-                    RateTotal = DTC.Cast<double>(obj[index(nameof(ObjectsRightListModel.RateTotal))]),
+                    ObjId = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.ObjId))),
+                    ISWC = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.ISWC))),
+                    CategoryCode = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.CategoryCode))),
+                    GenreType = DTC.CastIntNull(getObject(obj, nameof(ObjectsRightListModel.GenreType))),
+                    Name = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Name))),
+                    RateTotal = DTC.Cast<double>(getObject(obj, nameof(ObjectsRightListModel.RateTotal))),
 
-                    Author = DTC.Cast<string>(obj[index(nameof(ObjectsRightListModel.Author))]),
-                    Performer = DTC.Cast<string>(obj[index(nameof(ObjectsRightListModel.Performer))]),
-                    InnerCode = DTC.Cast<string>(obj[index(nameof(ObjectsRightListModel.InnerCode))]),
+                    Author = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Author))),
+                    Performer = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Performer))),
+                    InnerCode = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.InnerCode))),
 
-                    StatusNoActive = DTC.CastInt(obj[index(nameof(ObjectsRightListModel.StatusNoActive))]),
-                    StatusNoRelate = DTC.CastInt(obj[index(nameof(ObjectsRightListModel.StatusNoRelate))]),
-                    StatusUnDistrib = DTC.CastInt(obj[index(nameof(ObjectsRightListModel.StatusUnDistrib))]),
+                    StatusNoActive = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusNoActive))),
+                    StatusNoRelate = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusNoRelate))),
+                    StatusUnDistrib = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusUnDistrib))),
 
                 };
 
@@ -226,9 +228,12 @@ namespace IPSModulesLibrary.ObjectsRightList
                 return temp;
             }
 
-            int index(string name)
+            object getObject(object[] obj, string fieldName)
             {
-                return d_TO[name.ToLower()];
+                if (!d_TO.ContainsKey(fieldName.ToLower()))
+                    return null;
+                
+                return obj[d_TO[fieldName.ToLower()]];
             }
 
             return itemSource;
@@ -241,12 +246,16 @@ namespace IPSModulesLibrary.ObjectsRightList
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
         private async void LoadCommandExecute(object o)
         {
+            if (IsLoaded)
+                return;
+
             var searchControl = ((ObjectsRightListControl) o).searchControl;
             var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 1).FrameParam;
             ((SearchControlViewModel) searchControl.DataContext).LoadConfiguration(config);
             ((SearchControlViewModel) searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
 
             var search = new ObjectRightSearchResource();
+            IsLoaded = true;
             await LoadData(search);
         }
 

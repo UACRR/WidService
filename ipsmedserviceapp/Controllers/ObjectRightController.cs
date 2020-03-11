@@ -622,12 +622,25 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 DataTable data = null;
+                var frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 1).ToListAsync();
 
                 string query = $"select t0.* from vtsk_3_OR_01_wpf t0";
 
                 using (var sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
                 {
-                    await Task.Factory.StartNew(() => data = ExecuteQuery.GetDataFromSqlServer(sqlConnection, query));
+                    List<SqlParameter> parameters = new List<SqlParameter>();
+                    if (searchResource.SimpleSearch != null)
+                    {
+                        query = SearchQueryHelper.CreateSearchQuery(query, frameParam, searchResource.SimpleSearch, out SqlParameter sqlParameter);
+                        parameters.Add(sqlParameter);
+                    }
+                    if (searchResource.MultiplySearch != null)
+                    {
+                        query = SearchQueryHelper.CreateSearchQuery(query, frameParam, searchResource.MultiplySearch, out List<SqlParameter> sqlParameters);
+                        parameters = sqlParameters;
+                    }
+
+                    await Task.Factory.StartNew(() => data = ExecuteQuery.GetDataFromSqlServer(sqlConnection, query, parameters));
 
                     response = new ResponseOfRequest<DataTable>(data);
 
