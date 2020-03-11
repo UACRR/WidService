@@ -29,7 +29,6 @@ namespace Launcher.General
         public LauncherViewModel()
         {
             UserInfoVisibility = Visibility.Collapsed;
-            AppLanguageLibrary.LanguagesMap.Add(LM_Launcher, nameof(AppLanguageLibrary.CurrentLanguage.LauncherLD));
         }
 
         #region * * * BEHAVIOR PROPERTIES * * *
@@ -166,8 +165,8 @@ namespace Launcher.General
             {
                 await AppLanguageLibrary.SyncOnClient();
                 AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
-                AppLanguageLibrary.UpdateLanguageLocalizations();
-
+                AppLanguageLibrary.UpdateLanguageLocalization(LM_Launcher, nameof(AppLanguageLibrary.CurrentLanguage.LauncherLD));
+                
                 if (ContentVisibility == Visibility.Hidden)
                     ContentVisibility = Visibility.Visible;
             }

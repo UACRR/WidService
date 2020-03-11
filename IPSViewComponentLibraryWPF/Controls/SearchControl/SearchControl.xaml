@@ -14,6 +14,12 @@
         <local:SearchControlViewModel/>
     </UserControl.DataContext>
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <UserControl.Resources>
         <Style TargetType="t:RadButton">
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
@@ -30,7 +36,7 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="Simple row search">
+            <TabItem Header="{Binding LM_SEARCH.TAB_SIMPLE}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -43,17 +49,25 @@
                                  Margin="3" 
                                  VerticalContentAlignment="Center" 
                                  MinWidth="250"/>
-                        <t:RadButton Content="Пошук"
+                        <t:RadButton Content="{Binding LM_SEARCH.BTN_SEARCH}"
                                      MinWidth="95" 
                                      Command="{Binding RunSearchCommand}">
                         </t:RadButton>
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton Margin="5 0" IsChecked="{Binding SimpleSearchParameters.IsEqualSelected}" Content="Точне значення" VerticalAlignment="Center"/>
-                            <RadioButton Margin="5 0" IsChecked="{Binding SimpleSearchParameters.IsLikeSelected}" Content="Містить текст" VerticalAlignment="Center"/>
+                            <RadioButton Margin="5 0" 
+                                         IsChecked="{Binding SimpleSearchParameters.IsEqualSelected}" 
+                                         Content="{Binding LM_SEARCH.EQ_VAL}" 
+                                         VerticalAlignment="Center"/>
+                            <RadioButton Margin="5 0" 
+                                         IsChecked="{Binding SimpleSearchParameters.IsLikeSelected}" 
+                                         Content="{Binding LM_SEARCH.LIKE_VAL}"
+                                         VerticalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
 
-                    <t:Label Grid.Row="1" Content="Шукати в таких полях:" Background="GhostWhite"/>
+                    <t:Label Grid.Row="1"
+                             Background="GhostWhite"
+                             Content="{Binding LM_SEARCH.CHECK_SEARCH_ENUM}"/>
 
                     <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
                         <ListBox Margin="3" ItemsSource="{Binding ListBoxItemsSource}">
@@ -67,7 +81,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Multiply row search">
+            <TabItem Header="{Binding LM_SEARCH.TAB_MULTI}">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -77,7 +91,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Content="Введіть дані в поля, в яких буде здійснюватись пошук:" Background="GhostWhite"/>
+                        <Label Grid.Row="0" Content="{Binding LM_SEARCH.TXT_SEARCH_ENUM}" Background="GhostWhite"/>
 
                         <ListBox Grid.Row="1" 
                                  Margin="3" 
@@ -95,37 +109,22 @@
                             </ListBox.Template>
                         </ListBox>
 
-                        <!--<StackPanel Grid.Row="1" Margin="3" Orientation="Horizontal" Background="AliceBlue">
-                            <TextBox Width="250" Margin="3"/>
-                            <Label Content="Альтернативна назва"/>
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton Margin="5 0" IsChecked="True" Content="Точне значення" VerticalAlignment="Center"/>
-                                <RadioButton Margin="5 0" Content="Містить текст" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </StackPanel>
+                        <t:RadButton Grid.Row="2" 
+                                     Content="{Binding LM_SEARCH.BTN_SEARCH}" 
+                                     HorizontalAlignment="Left"
+                                     MinWidth="95"
+                                     Command="{Binding RunSearchExtendedCommand}"/>
 
-                        <StackPanel Grid.Row="2" Margin="3" Orientation="Horizontal">
-                            <Grid>
-
-                            </Grid>
-                            <TextBox Width="250" Margin="3"/>
-                            <Label Content="Назва"/>
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton Margin="5 0" IsChecked="True" Content="Точне значення" VerticalAlignment="Center"/>
-                                <RadioButton Margin="5 0" Content="Містить текст" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </StackPanel>-->
-
-                        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                        <!--<Grid Grid.Row="2" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <t:RadButton Grid.Column="1" 
-                                         Content="Пошук" 
+                                         Content="{Binding LM_SEARCH.BTN_SEARCH}" 
                                          MinWidth="95"
                                          Command="{Binding RunSearchExtendedCommand}"/>
-                        </Grid>
+                        </Grid>-->
 
 
                     </Grid>

@@ -6,8 +6,11 @@ using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.ObjectsRight;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types;
 using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
 
@@ -39,6 +42,13 @@ namespace ipsFormsDesign.Services
         public async Task<ObjectRightListResponse> GetObjectRightsAsync(ObjectRightQuery query)
         {
             return await Task.Factory.StartNew(() => GetObjectRights(query));
+        }
+
+        public async Task<ResponseOfRequest<DataTable>> GetObjectRightListAsync(ObjectRightSearchResource resource)
+        {
+            string url = "objectright/list";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, ObjectRightSearchResource>(url, resource);
+            return result;
         }
 
         public ObjectRight New(int categoryCode)

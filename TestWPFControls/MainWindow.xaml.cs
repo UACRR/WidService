@@ -30,6 +30,15 @@ namespace TestWPFControls
 
             var rightholderService = new RightholderService();
             IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+
+            LOAD();
+
+        }
+
+        private async void LOAD()
+        {
+            var dictionary = await DictionaryService.GetInstance().GetFrameTaskDictionary("uk-UA");
+            IpsGlobal.SetFrameTaskDictionary(dictionary);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

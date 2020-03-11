@@ -11,20 +11,15 @@ namespace ReportsLibrary
         {
             Telerik.Reporting.NavigateToReportAction navigateToReportAction1 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportB));
             Telerik.Reporting.NavigateToReportAction navigateToReportAction2 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource2 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
-            this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
             this.detail = new Telerik.Reporting.DetailSection();
-            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.textBox1 = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
+            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
-            // pageHeaderSection1
-            // 
-            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
-            this.pageHeaderSection1.Name = "pageHeaderSection1";
             // 
             // detail
             // 
@@ -36,17 +31,13 @@ namespace ReportsLibrary
             this.detail.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
             this.detail.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(2D);
             // 
-            // pageFooterSection1
-            // 
-            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
-            this.pageFooterSection1.Name = "pageFooterSection1";
-            // 
             // textBox1
             // 
             typeReportSource1.TypeName = "ReportsLibrary.ReportS, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
     "eyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox1.Action = navigateToReportAction1;
+            this.textBox1.Culture = new System.Globalization.CultureInfo("en-US");
             this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.1D), Telerik.Reporting.Drawing.Unit.Cm(4.1D));
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(2D));
@@ -59,7 +50,7 @@ namespace ReportsLibrary
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
             this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox1.Value = "Оперативні звіти";
+            resources.ApplyResources(this.textBox1, "textBox1");
             // 
             // textBox2
             // 
@@ -67,6 +58,7 @@ namespace ReportsLibrary
     "KeyToken=null";
             navigateToReportAction2.ReportSource = typeReportSource2;
             this.textBox2.Action = navigateToReportAction2;
+            this.textBox2.Culture = new System.Globalization.CultureInfo("en-US");
             this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(10.1D), Telerik.Reporting.Drawing.Unit.Cm(4.1D));
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.5D), Telerik.Reporting.Drawing.Unit.Cm(2D));
@@ -79,12 +71,17 @@ namespace ReportsLibrary
             this.textBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
             this.textBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox2.Value = "Інші звіти";
+            resources.ApplyResources(this.textBox2, "textBox2");
+            // 
+            // pageFooterSection1
+            // 
+            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
+            this.pageFooterSection1.Name = "pageFooterSection1";
             // 
             // ReportB
             // 
+            this.Culture = new System.Globalization.CultureInfo("en-US");
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.pageHeaderSection1,
             this.detail,
             this.pageFooterSection1});
             this.Name = "ReportB";
@@ -105,8 +102,6 @@ namespace ReportsLibrary
 
         }
         #endregion
-
-        private Telerik.Reporting.PageHeaderSection pageHeaderSection1;
         private Telerik.Reporting.DetailSection detail;
         private Telerik.Reporting.PageFooterSection pageFooterSection1;
         private Telerik.Reporting.TextBox textBox1;

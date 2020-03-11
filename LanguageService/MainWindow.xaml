@@ -149,9 +149,6 @@
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadLanguagesListCommand}"/>
         </i:EventTrigger>
-        <i:EventTrigger EventName="Closing">
-            <i:InvokeCommandAction Command="{Binding SyncOnServerWhenClosingCommand}"/>
-        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <Grid>
@@ -163,6 +160,7 @@
         <Grid x:Name="languageHeader" Grid.Row="0" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -199,10 +197,20 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
-
+            <Button x:Name="sendToServer"
+                    ToolTip="Надіслати на сервер"
+                    Grid.Column="1"
+                    Margin="0, 0, 0, 0" 
+                    Width="50" 
+                    Cursor="Hand"
+                    Padding="13" 
+                    Style="{StaticResource addLanguage}"
+                    Command="{Binding SyncOnServerWhenClosingCommand}">
+                <Image Source="Images/empty-image.png"/>
+            </Button>
             <Button x:Name="syncLanguage" 
                     ToolTip="Синхронізувати дані"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     Margin="0, 0, 0, 0" 
                     Width="50" 
                     Cursor="Hand"
@@ -214,7 +222,7 @@
 
             <Button x:Name="addLanguage" 
                     ToolTip="Створити нову мовну локалізацію"
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Margin="0, 0, 50, 0" 
                     Width="50" 
                     Cursor="Hand"

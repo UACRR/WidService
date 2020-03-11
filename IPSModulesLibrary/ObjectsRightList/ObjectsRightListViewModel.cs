@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Types;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Services;
+using IPSModulesLibrary.ObjectsRightList.Model;
 using IPSViewComponentLibraryWPF.Controls.SearchControl;
+using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using Telerik.Windows.Controls;
+using DTC = IPSViewComponentLibraryWPF.Extensions.DataTableConverter;
 
 namespace IPSModulesLibrary.ObjectsRightList
 {
@@ -29,6 +36,8 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
         }
 
+        public bool IsLoaded { get; set; }
+
         private ObservableCollection<RadTreeViewItem> _treeViewItemSource = new ObservableCollection<RadTreeViewItem>
         {
             new RadTreeViewItem
@@ -42,7 +51,6 @@ namespace IPSModulesLibrary.ObjectsRightList
                 {
                     new RadTreeViewItem
                     {
-                        Name = "all",
                         Header = "Всі",
                         IsSelected = true,
                         HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -50,21 +58,21 @@ namespace IPSModulesLibrary.ObjectsRightList
                     },
                     new RadTreeViewItem
                     {
-                        Name = "notAccept",
+                        Name = "statusNoActive",
                         Header = "Не підтверджені",
                         HorizontalAlignment = HorizontalAlignment.Stretch,
                         HorizontalContentAlignment = HorizontalAlignment.Stretch,
                     },
                     new RadTreeViewItem
                     {
-                        Name = "notAttach",
+                        Name = "statusNoRelate",
                         Header = "Не прив'язані",
                         HorizontalAlignment = HorizontalAlignment.Stretch,
                         HorizontalContentAlignment = HorizontalAlignment.Stretch,
                     },
                     new RadTreeViewItem
                     {
-                        Name = "notDistributed",
+                        Name = "statusUnDistrib",
                         Header = "Не розподілені",
                         HorizontalAlignment = HorizontalAlignment.Stretch,
                         HorizontalContentAlignment = HorizontalAlignment.Stretch,
@@ -89,7 +97,22 @@ namespace IPSModulesLibrary.ObjectsRightList
             set
             {
                 _selectedTreeViewItem = value;
+                
+                string name = _selectedTreeViewItem.Name;
+                Task.Factory.StartNew(() => FilterList(name));
                 OnPropertyChanged(() => SelectedTreeViewItem);
+            }
+        }
+
+        private ObservableCollection<ObjectsRightListModel> ObjectsRightsItemSourceTemp { get; set; }
+        private ObservableCollection<ObjectsRightListModel> _objectsRightsItemSource;
+        public ObservableCollection<ObjectsRightListModel> ObjectsRightsItemSource
+        {
+            get => _objectsRightsItemSource;
+            set
+            {
+                _objectsRightsItemSource = value;
+                OnPropertyChanged(() => ObjectsRightsItemSource);
             }
         }
 
@@ -97,12 +120,123 @@ namespace IPSModulesLibrary.ObjectsRightList
 
         #region * * * METHODS * * *
 
-        private void RunSearchDelegateMethod(object o)
+        private async Task LoadData(ObjectRightSearchResource searchResource)
         {
+            var service = new ObjectRightService();
+            IsBusy = true;
+            var data = await service.GetObjectRightListAsync(searchResource);
+
+            if (data.IsSuccess)
+            {
+                ObjectsRightsItemSourceTemp = await Task.Factory.StartNew(() => ConvertToInternalModel(data.Data));
+                string name = SelectedTreeViewItem.Name;
+                await Task.Factory.StartNew(() => FilterList(name));
+            }
+            else
+            {
+                // todo : add handler for returned Exception
+                ShowMessage.ShowError(data.Exception?.Message);
+            }
+
+            IsBusy = false;
+        }
+
+        private void FilterList(string filterName)
+        {
+            if (ObjectsRightsItemSourceTemp == null)
+                return;
+
+            if (!string.IsNullOrEmpty(filterName))
+            {
+                IEnumerable<ObjectsRightListModel> list = null;
+                filterName = filterName.ToUpper();
+
+                if (filterName == nameof(ObjectsRightListModel.StatusNoRelate).ToUpper())
+                    list = ObjectsRightsItemSourceTemp.Where(rec => rec.StatusNoRelate == 1);
+
+                if (filterName == nameof(ObjectsRightListModel.StatusNoActive).ToUpper())
+                    list = ObjectsRightsItemSourceTemp.Where(rec => rec.StatusNoActive == 1);
+
+                if (filterName == nameof(ObjectsRightListModel.StatusUnDistrib).ToUpper())
+                    list = ObjectsRightsItemSourceTemp.Where(rec => rec.StatusUnDistrib == 1);
+
+                ObjectsRightsItemSource = new ObservableCollection<ObjectsRightListModel>(list);
+            }
+            else
+            {
+                ObjectsRightsItemSource = new ObservableCollection<ObjectsRightListModel>(ObjectsRightsItemSourceTemp);
+            }
+        }
+
+        private async void RunSearchDelegateMethod(object o)
+        {
+            var searchResource = new ObjectRightSearchResource();
+
             if (typeof(SearchData).IsEquivalentTo(o.GetType()))
-                ;
+            {
+                searchResource.SimpleSearch = (SearchData)o;
+            }
             else if (o.GetType().GetInterface(nameof(ICollection<SearchDataExtended>)) != null)
-                ;
+            {
+                searchResource.MultiplySearch = new List<SearchDataExtended>((ICollection<SearchDataExtended>)o);
+            }
+
+            await LoadData(searchResource);
+        }
+
+        private ObservableCollection<ObjectsRightListModel> ConvertToInternalModel(DataTable dataTable)
+        {
+            var itemSource = new ObservableCollection<ObjectsRightListModel>();
+            
+            var d_TO = getColumnDictionary(dataTable.Columns);
+            
+            foreach (DataRow row in dataTable.Rows)
+            {
+                var obj = row.ItemArray;
+
+                var item = new ObjectsRightListModel
+                {
+                    ObjId = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.ObjId))),
+                    ISWC = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.ISWC))),
+                    CategoryCode = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.CategoryCode))),
+                    GenreType = DTC.CastIntNull(getObject(obj, nameof(ObjectsRightListModel.GenreType))),
+                    Name = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Name))),
+                    RateTotal = DTC.Cast<double>(getObject(obj, nameof(ObjectsRightListModel.RateTotal))),
+
+                    Author = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Author))),
+                    Performer = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Performer))),
+                    InnerCode = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.InnerCode))),
+
+                    StatusNoActive = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusNoActive))),
+                    StatusNoRelate = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusNoRelate))),
+                    StatusUnDistrib = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusUnDistrib))),
+
+                };
+
+                itemSource.Add(item);
+            }
+
+            Dictionary<string, int> getColumnDictionary(DataColumnCollection columns)
+            {
+                var temp = new Dictionary<string, int>();
+
+                for (int i = 0; i < columns.Count; i++)
+                {
+                    temp.Add(columns[i].ColumnName.ToLower(), i);
+                }
+
+                return temp;
+            }
+
+            object getObject(object[] obj, string fieldName)
+            {
+                if (!d_TO.ContainsKey(fieldName.ToLower()))
+                    return null;
+                
+                return obj[d_TO[fieldName.ToLower()]];
+            }
+
+            return itemSource;
         }
 
         #endregion
@@ -112,15 +246,23 @@ namespace IPSModulesLibrary.ObjectsRightList
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
         private async void LoadCommandExecute(object o)
         {
+            if (IsLoaded)
+                return;
+
             var searchControl = ((ObjectsRightListControl) o).searchControl;
             var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 1).FrameParam;
             ((SearchControlViewModel) searchControl.DataContext).LoadConfiguration(config);
             ((SearchControlViewModel) searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
 
-            var rnd = new Random().Next(1000, 3500);
-            IsBusy = true;
-            await Task.Delay(rnd);
-            IsBusy = false;
+            var search = new ObjectRightSearchResource();
+            IsLoaded = true;
+            await LoadData(search);
+        }
+
+        public ICommand OpenObjectRightCommand => new IPSDelegateCommand(OpenObjectRightCommandExecute);
+        private void OpenObjectRightCommandExecute(object o)
+        {
+
         }
 
         #endregion

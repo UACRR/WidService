@@ -140,6 +140,7 @@
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SearchControl\SearchControlViewModel.cs" />
+    <Compile Include="Extensions\DataTableConverter.cs" />
     <Compile Include="Extensions\IPSExtensions.cs" />
     <Compile Include="Extensions\IPSDelegateCommand.cs" />
     <Compile Include="Extensions\IViewModelDataChange.cs" />

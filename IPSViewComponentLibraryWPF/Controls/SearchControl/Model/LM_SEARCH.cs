@@ -4,14 +4,14 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
 {
     public class LM_SEARCH : ViewModelBase
     {
-        private string _tabSimple;
-        private string _tabMulti;
-        private string _btnSearch;
-        private string _checkSearchEnum;
-        private string _eqVal;
-        private string _likeVal;
-        private string _containsVal;
-        private string _txtSearchEnum;
+        private string _tabSimple = "Пошук з одним параметром";
+        private string _tabMulti = "Пошук з окремими параметрами";
+        private string _btnSearch = "Пошук";
+        private string _checkSearchEnum = "Шукати в таких полях:";
+        private string _eqVal = "Точне значення";
+        private string _likeVal = "Містить текст";
+        private string _containsVal = "Містить слово";
+        private string _txtSearchEnum = "Введіть дані в поля, в яких буде здійснюватись пошук:";
         private string _allCheckItem = "Всі поля";
 
         public string TAB_SIMPLE

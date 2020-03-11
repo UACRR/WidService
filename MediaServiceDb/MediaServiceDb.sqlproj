@@ -14,7 +14,7 @@
     </RootPath>
     <RootNamespace>MediaServiceDb</RootNamespace>
     <AssemblyName>MediaServiceDb</AssemblyName>
-    <ModelCollation>1058,CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -28,6 +28,9 @@
     <PermissionSet>SAFE</PermissionSet>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>ipskeys.snk</AssemblyOriginatorKeyFile>
+    <ValidateCasingOnIdentifiers>False</ValidateCasingOnIdentifiers>
+    <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+    <GenerateSqlClrSymbols>False</GenerateSqlClrSymbols>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -51,6 +54,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>.\bin\Output\MediaServiceDb.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -80,6 +84,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
@@ -98,30 +103,33 @@
   <ItemGroup>
     <Reference Include="Microsoft.SqlServer.PolicyEnum">
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.PolicyEnum.dll</HintPath>
+      <IsModelAware>True</IsModelAware>
     </Reference>
     <Reference Include="Microsoft.SqlServer.RegSvrEnum">
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
+      <IsModelAware>True</IsModelAware>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Smo">
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+      <IsModelAware>True</IsModelAware>
     </Reference>
     <Reference Include="Microsoft.SqlServer.SmoExtended">
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.SmoExtended.dll</HintPath>
+      <IsModelAware>True</IsModelAware>
     </Reference>
     <Reference Include="Microsoft.SqlServer.SqlEnum">
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="MediaServiceDb">
-      <HintPath>Assemblies\MediaServiceDb.dll</HintPath>
-      <SqlAssemblyName>MediaServiceDb</SqlAssemblyName>
       <IsModelAware>True</IsModelAware>
-      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
-      <SqlOwnerName>dbo</SqlOwnerName>
-      <SqlPermissionSet>SAFE</SqlPermissionSet>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Data">
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+    <Reference Include="System">
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+    <Reference Include="System.Xml">
+      <IsModelAware>True</IsModelAware>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="ipskeys.snk" />

@@ -8,6 +8,7 @@
         xmlns:requestControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.CopyrightRequest;assembly=IPSViewComponentLibraryWPF"
         xmlns:transferControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights;assembly=IPSViewComponentLibraryWPF"
         xmlns:rightholders="clr-namespace:IpsViewComponentLibrary.RightholderControls;assembly=IpsViewComponentLibrary"
+        xmlns:objectsRight="clr-namespace:IPSModulesLibrary.ObjectsRightList;assembly=IPSModulesLibrary"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="{Binding LOC.Title}" Height="450" Width="800">
@@ -39,7 +40,9 @@
                     </t:RadTabItem>
                 </t:RadTabControl>
             </t:RadTabItem>
-            <t:RadTabItem Header="{Binding LOC.OR}"></t:RadTabItem>
+            <t:RadTabItem Header="{Binding LOC.OR}">
+                <objectsRight:ObjectsRightListControl/>
+            </t:RadTabItem>
             <t:RadTabItem Header="{Binding LOC.PARTNERS}">
                 <WindowsFormsHost>
 

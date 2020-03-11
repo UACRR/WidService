@@ -399,8 +399,32 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ReportB.en-US.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportB.resx">
       <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportB.ru-RU.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportB.uk-UA.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportB.uk.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.en-US.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.ru-RU.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.uk-UA.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports1.en-US.resx">
+      <DependentUpon>Reports1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports1.resx">
       <DependentUpon>Reports1.cs</DependentUpon>
@@ -425,6 +449,9 @@
     <EmbeddedResource Include="ReportS.resx">
       <DependentUpon>ReportS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports1.ru-RU.resx">
+      <DependentUpon>Reports1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_14_RegisterSR.resx">
       <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
     </EmbeddedResource>
@@ -440,7 +467,13 @@
     <EmbeddedResource Include="R_5_16_AuthorSRFact.resx">
       <DependentUpon>R_5_16_AuthorSRFact.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.en-US.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_Balance.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.ru-RU.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
