@@ -30,6 +30,21 @@ namespace SmRoPermitAdmin
         private Dictionary<string, string> Txt = null;
         private string Lang;
 
+        private delegate void ProtectedOperation();
+        private void RunProtectedOperation(ProtectedOperation oper)
+        {
+            try
+            {
+                oper();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Txt["ERR"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
         #region Form Level Functions
 
         public void Translate(Control control)
@@ -63,25 +78,32 @@ namespace SmRoPermitAdmin
 
         public static void Show(string userCredentials)
         {
-            if(Instance != null && !Instance.IsDisposed)
+            try
             {
-                Instance.Show();
-                Instance.Activate();
-            }
-            else
-            {
-                Instance = new FormPermitAdminConsole(userCredentials);
-                Instance.Lang = AppLanguageLibrary.ApplicationCultureInfo.Name;
-                Instance.Txt = new Dictionary<string, string>();
-
-                Type type = AppLanguageLibrary.CurrentLanguage.SmRoPermitLD.GetType();
-                foreach (var prop in type.GetProperties())
+                if (Instance != null && !Instance.IsDisposed)
                 {
-                    LanguageItem li = (LanguageItem)prop.GetValue(AppLanguageLibrary.CurrentLanguage.SmRoPermitLD);
-                    Instance.Txt[prop.Name] = string.IsNullOrEmpty(li.Content) ? prop.Name : li.Content;
+                    Instance.Show();
+                    Instance.Activate();
                 }
+                else
+                {
+                    Instance = new FormPermitAdminConsole(userCredentials);
+                    Instance.Lang = AppLanguageLibrary.ApplicationCultureInfo.Name;
+                    Instance.Txt = new Dictionary<string, string>();
 
-                Instance.Show();
+                    Type type = AppLanguageLibrary.CurrentLanguage.SmRoPermitLD.GetType();
+                    foreach (var prop in type.GetProperties())
+                    {
+                        LanguageItem li = (LanguageItem)prop.GetValue(AppLanguageLibrary.CurrentLanguage.SmRoPermitLD);
+                        Instance.Txt[prop.Name] = string.IsNullOrEmpty(li.Content) ? prop.Name : li.Content;
+                    }
+
+                    Instance.Show();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, Instance.Txt["ERR"], MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -156,7 +178,6 @@ namespace SmRoPermitAdmin
 
         private void UpdateControlsState()
         {
-
             radBtnDeleteUser.Enabled =
             radBtnResetPassword.Enabled =
             radBtnSaveUser.Visible =
@@ -229,7 +250,10 @@ namespace SmRoPermitAdmin
             ignoreTextChanged = false;
 
             radGridUserRoles.DataSource = null;
-            radGridUserRoles.DataSource = PermitApiProxy.GetUserRoles(user.CodeI, Lang);
+            RunProtectedOperation(() =>
+            {
+                radGridUserRoles.DataSource = PermitApiProxy.GetUserRoles(user.CodeI, Lang);
+            });
         }
 
         private void radGridUserList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
@@ -239,39 +263,23 @@ namespace SmRoPermitAdmin
 
         private void radBtnAddUser_Click(object sender, EventArgs e)
         {
-            /*splitPanel1.Visible = false;
-            leftSplitterPanelWidth = splitPanel1.SizeInfo.AbsoluteSize.Width;
-            splitPanel1.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
-            splitPanel1.SizeInfo.AbsoluteSize = new Size(1, 0);*/
-            panelMain.Visible = false;
-            splitPanel1.Collapsed = true;
-            panelMain.Visible = true;
+            RunProtectedOperation(() =>
+            {
+                panelMain.Visible = false;
+                splitPanel1.Collapsed = true;
+                panelMain.Visible = true;
 
-            isNewUser = true;
-            currentRow = radGridUserList.CurrentRow;
-            radGridUserList.CurrentRow = null;
-            RefreshUserProps();
-            radGridUserRoles.DataSource = null;
-            radGridUserRoles.DataSource = PermitApiProxy.GetUserRoles(0, Lang);
-            SetUserDirty(true);
-            radBtnSaveUser.Visible =
-                panelUserInfoContainer.Visible =
-                    radBtnCancelUser.Visible = true;
-            return;
-            /*try
-            {
-                int codeI = AccessAdminOperations.AddUser();
-                //radGridUserList.DataSource = null;
-                //radGridUserList.DataSource = AccessAdminOperations.GetAllUsers();
-                var newGridRow = radGridUserList.Rows.Single(x => ((User)x.DataBoundItem).CodeI == codeI);
-                radGridUserList.CurrentRow = newGridRow;
-                UpdateControlsState();
+                isNewUser = true;
+                currentRow = radGridUserList.CurrentRow;
+                radGridUserList.CurrentRow = null;
+                RefreshUserProps();
+                radGridUserRoles.DataSource = null;
+                radGridUserRoles.DataSource = PermitApiProxy.GetUserRoles(0, Lang);
                 SetUserDirty(true);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+                radBtnSaveUser.Visible =
+                    panelUserInfoContainer.Visible =
+                        radBtnCancelUser.Visible = true;
+            });
         }
 
         private void radBtnDeleteUser_Click(object sender, EventArgs e)
@@ -286,22 +294,18 @@ namespace SmRoPermitAdmin
                 MessageBox.Show(this, Txt["CANNOT_DELETE_SELF"], Txt["WARN"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            try
+            RunProtectedOperation(() =>
             {
                 PermitApiProxy.DeleteUser(user.CodeI);
                 radGridUserList.Refresh();
                 radGridUserList.CurrentRow.Delete();
                 UpdateControlsState();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, Txt["ERR"], MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            });
         }
 
         private void radBtnSaveUser_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(radTbUserLogin.Text))
+            if (string.IsNullOrEmpty(radTbUserLogin.Text))
             {
                 MessageBox.Show(this, Txt["PROVIDE_USER_LOGIN"], Txt["WARN"], MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -501,18 +505,14 @@ namespace SmRoPermitAdmin
                 return;
             }
 
-            try
+            RunProtectedOperation(() =>
             {
                 string res = PermitApiProxy.ResetPassword(user.CodeI);
                 Clipboard.SetText($"CodeI: {user.CodeI}, Pwd: '{res}'");
                     MessageBox.Show(this, Txt["DEF_PWD_CREATED"]
                         + Txt["PLEASE_PASTE"]
                         , Txt["INFO"], MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, Txt["ERR"], MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            });
         }
 
         private void radChkUseWindowsAuth_CheckStateChanged(object sender, EventArgs e)

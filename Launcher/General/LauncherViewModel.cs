@@ -159,11 +159,11 @@ namespace Launcher.General
 
         #region * * * METHODS * * *
 
-        private async void LoadLanguage()
+        private void LoadLanguage()
         {
             try
             {
-                await AppLanguageLibrary.SyncOnClient();
+                new Task(async () => await AppLanguageLibrary.SyncOnClient()).RunSynchronously();
                 AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
                 AppLanguageLibrary.UpdateLanguageLocalization(LM_Launcher, nameof(AppLanguageLibrary.CurrentLanguage.LauncherLD));
                 
@@ -219,7 +219,8 @@ namespace Launcher.General
             try
             {
                 ContentVisibility = Visibility.Hidden;
-                LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
+                var langList = AppLanguageLibrary.GetLanguagesList();
+                LanguagesItemSource = new ObservableCollection<LanguageInfo>(langList);
                 LoginCommand.Execute(null);
                 ContentVisibility = Visibility.Visible;
             }

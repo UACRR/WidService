@@ -33,6 +33,8 @@ namespace SmRoPermitClientLib
                             Convert.ToBase64String(authToken));
                 }
 
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
                 string fullUri = $"{BaseUri}api/{uri}";
 
                 HttpResponseMessage result = null;

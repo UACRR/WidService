@@ -255,7 +255,11 @@ namespace Launcher.Controls.LoginWindow
             }
             catch(Exception Ex)
             {
-
+                MessageBox.Show("Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                IsBusy = false;
             }
             
             
