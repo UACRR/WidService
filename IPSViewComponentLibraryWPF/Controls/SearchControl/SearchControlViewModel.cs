@@ -160,7 +160,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         #region * * * _PUBLIC_ METHOD * * *
 
         public void LoadConfiguration(ICollection<FrameParam> config)
-        {
+        {  
             var list = new List<SearchItem>
             {
                 new SearchItem("ALL", LM_SEARCH.ALL_CHECK_ITEM),
