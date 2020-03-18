@@ -88,6 +88,7 @@
             this.radTbUserFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabUserInfoTitle = new Telerik.WinControls.UI.RadLabel();
             this.radBtnClose = new Telerik.WinControls.UI.RadButton();
+            this.radChkUseWindowsAuth = new Telerik.WinControls.UI.RadCheckBox();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitUsers)).BeginInit();
             this.radSplitUsers.SuspendLayout();
@@ -147,6 +148,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radTbUserFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabUserInfoTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radChkUseWindowsAuth)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -192,9 +194,9 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(415, 770);
-            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2016535F, 0F);
-            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-191, 0);
+            this.splitPanel1.Size = new System.Drawing.Size(308, 770);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.2785766F, 0F);
+            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-298, 0);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             // 
@@ -214,7 +216,7 @@
             this.panelUserList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelUserList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.panelUserList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelUserList.Size = new System.Drawing.Size(415, 770);
+            this.panelUserList.Size = new System.Drawing.Size(308, 770);
             this.panelUserList.TabIndex = 0;
             // 
             // panelUserCommands
@@ -233,13 +235,13 @@
             this.panelUserCommands.Name = "panelUserCommands";
             this.panelUserCommands.RowCount = 1;
             this.panelUserCommands.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelUserCommands.Size = new System.Drawing.Size(409, 27);
+            this.panelUserCommands.Size = new System.Drawing.Size(302, 27);
             this.panelUserCommands.TabIndex = 0;
             // 
             // radBtnAddUser
             // 
             this.radBtnAddUser.AccessibleDescription = "Yes";
-            this.radBtnAddUser.Location = new System.Drawing.Point(234, 3);
+            this.radBtnAddUser.Location = new System.Drawing.Point(127, 3);
             this.radBtnAddUser.Name = "radBtnAddUser";
             this.radBtnAddUser.Size = new System.Drawing.Size(77, 21);
             this.radBtnAddUser.TabIndex = 0;
@@ -249,7 +251,7 @@
             // radBtnDeleteUser
             // 
             this.radBtnDeleteUser.AccessibleDescription = "Yes";
-            this.radBtnDeleteUser.Location = new System.Drawing.Point(317, 3);
+            this.radBtnDeleteUser.Location = new System.Drawing.Point(210, 3);
             this.radBtnDeleteUser.Name = "radBtnDeleteUser";
             this.radBtnDeleteUser.Size = new System.Drawing.Size(89, 21);
             this.radBtnDeleteUser.TabIndex = 1;
@@ -313,7 +315,7 @@
             this.radGridUserList.ShowCellErrors = false;
             this.radGridUserList.ShowGroupPanel = false;
             this.radGridUserList.ShowGroupPanelScrollbars = false;
-            this.radGridUserList.Size = new System.Drawing.Size(409, 700);
+            this.radGridUserList.Size = new System.Drawing.Size(302, 700);
             this.radGridUserList.TabIndex = 1;
             this.radGridUserList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.radGridUserList_CurrentRowChanged);
             this.radGridUserList.CurrentRowChanging += new Telerik.WinControls.UI.CurrentRowChangingEventHandler(this.radGridUserList_CurrentRowChanging);
@@ -326,7 +328,7 @@
             this.radLabUserList.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.radLabUserList.Location = new System.Drawing.Point(3, 3);
             this.radLabUserList.Name = "radLabUserList";
-            this.radLabUserList.Size = new System.Drawing.Size(409, 25);
+            this.radLabUserList.Size = new System.Drawing.Size(302, 25);
             this.radLabUserList.TabIndex = 3;
             this.radLabUserList.Text = "USER_LIST";
             // 
@@ -334,15 +336,15 @@
             // 
             this.splitPanelUserProps.BackColor = System.Drawing.Color.AliceBlue;
             this.splitPanelUserProps.Controls.Add(this.panelUserInfoContainer);
-            this.splitPanelUserProps.Location = new System.Drawing.Point(417, 0);
+            this.splitPanelUserProps.Location = new System.Drawing.Point(310, 0);
             this.splitPanelUserProps.Name = "splitPanelUserProps";
             // 
             // 
             // 
             this.splitPanelUserProps.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelUserProps.Size = new System.Drawing.Size(976, 770);
-            this.splitPanelUserProps.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2016535F, 0F);
-            this.splitPanelUserProps.SizeInfo.SplitterCorrection = new System.Drawing.Size(191, 0);
+            this.splitPanelUserProps.Size = new System.Drawing.Size(1083, 770);
+            this.splitPanelUserProps.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.2785766F, 0F);
+            this.splitPanelUserProps.SizeInfo.SplitterCorrection = new System.Drawing.Size(298, 0);
             this.splitPanelUserProps.TabIndex = 1;
             this.splitPanelUserProps.TabStop = false;
             // 
@@ -360,7 +362,7 @@
             this.panelUserInfoContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.panelUserInfoContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelUserInfoContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.panelUserInfoContainer.Size = new System.Drawing.Size(976, 770);
+            this.panelUserInfoContainer.Size = new System.Drawing.Size(1083, 770);
             this.panelUserInfoContainer.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -376,13 +378,13 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(970, 26);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1077, 26);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // radBtnSaveUser
             // 
             this.radBtnSaveUser.AccessibleDescription = "Yes";
-            this.radBtnSaveUser.Location = new System.Drawing.Point(733, 3);
+            this.radBtnSaveUser.Location = new System.Drawing.Point(840, 3);
             this.radBtnSaveUser.Name = "radBtnSaveUser";
             this.radBtnSaveUser.Size = new System.Drawing.Size(124, 20);
             this.radBtnSaveUser.TabIndex = 0;
@@ -392,7 +394,7 @@
             // radBtnCancelUser
             // 
             this.radBtnCancelUser.AccessibleDescription = "Yes";
-            this.radBtnCancelUser.Location = new System.Drawing.Point(863, 3);
+            this.radBtnCancelUser.Location = new System.Drawing.Point(970, 3);
             this.radBtnCancelUser.Name = "radBtnCancelUser";
             this.radBtnCancelUser.Size = new System.Drawing.Size(104, 20);
             this.radBtnCancelUser.TabIndex = 0;
@@ -408,7 +410,7 @@
             this.radPanelUsersMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanelUsersMain.Location = new System.Drawing.Point(3, 34);
             this.radPanelUsersMain.Name = "radPanelUsersMain";
-            this.radPanelUsersMain.Size = new System.Drawing.Size(970, 701);
+            this.radPanelUsersMain.Size = new System.Drawing.Size(1077, 701);
             this.radPanelUsersMain.TabIndex = 2;
             // 
             // radCollapsiblePanelUserPermissions
@@ -425,9 +427,9 @@
             // 
             this.radCollapsiblePanelUserPermissions.PanelContainer.BackColor = System.Drawing.Color.AliceBlue;
             this.radCollapsiblePanelUserPermissions.PanelContainer.Controls.Add(this.radGridUserRoles);
-            this.radCollapsiblePanelUserPermissions.PanelContainer.Size = new System.Drawing.Size(968, 227);
+            this.radCollapsiblePanelUserPermissions.PanelContainer.Size = new System.Drawing.Size(1075, 227);
             this.radCollapsiblePanelUserPermissions.ShowHeaderLine = false;
-            this.radCollapsiblePanelUserPermissions.Size = new System.Drawing.Size(970, 255);
+            this.radCollapsiblePanelUserPermissions.Size = new System.Drawing.Size(1077, 255);
             this.radCollapsiblePanelUserPermissions.TabIndex = 0;
             // 
             // radGridUserRoles
@@ -473,7 +475,7 @@
             this.radGridUserRoles.Name = "radGridUserRoles";
             this.radGridUserRoles.ShowGroupPanel = false;
             this.radGridUserRoles.ShowGroupPanelScrollbars = false;
-            this.radGridUserRoles.Size = new System.Drawing.Size(968, 227);
+            this.radGridUserRoles.Size = new System.Drawing.Size(1075, 227);
             this.radGridUserRoles.TabIndex = 1;
             this.radGridUserRoles.ValueChanged += new System.EventHandler(this.radGridUserRoles_ValueChanged);
             // 
@@ -490,9 +492,9 @@
             // radCollapsiblePanelUserSysInfo.PanelContainer
             // 
             this.radCollapsiblePanelUserSysInfo.PanelContainer.Controls.Add(this.tableLayoutPanel4);
-            this.radCollapsiblePanelUserSysInfo.PanelContainer.Size = new System.Drawing.Size(968, 86);
+            this.radCollapsiblePanelUserSysInfo.PanelContainer.Size = new System.Drawing.Size(1075, 86);
             this.radCollapsiblePanelUserSysInfo.ShowHeaderLine = false;
-            this.radCollapsiblePanelUserSysInfo.Size = new System.Drawing.Size(970, 114);
+            this.radCollapsiblePanelUserSysInfo.Size = new System.Drawing.Size(1077, 114);
             this.radCollapsiblePanelUserSysInfo.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -500,7 +502,7 @@
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.77424F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.22576F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.tableLayoutPanel4.Controls.Add(this.radTbUserModifyDate, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.radTbUserCreateDate, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.radLabel11, 0, 2);
@@ -514,17 +516,17 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(968, 86);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1075, 86);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // radTbUserModifyDate
             // 
             this.radTbUserModifyDate.AccessibleDescription = "Yes";
             this.radTbUserModifyDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTbUserModifyDate.Location = new System.Drawing.Point(146, 63);
+            this.radTbUserModifyDate.Location = new System.Drawing.Point(162, 63);
             this.radTbUserModifyDate.Name = "radTbUserModifyDate";
             this.radTbUserModifyDate.ReadOnly = true;
-            this.radTbUserModifyDate.Size = new System.Drawing.Size(758, 20);
+            this.radTbUserModifyDate.Size = new System.Drawing.Size(846, 20);
             this.radTbUserModifyDate.TabIndex = 1;
             this.radTbUserModifyDate.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -532,10 +534,10 @@
             // 
             this.radTbUserCreateDate.AccessibleDescription = "Yes";
             this.radTbUserCreateDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTbUserCreateDate.Location = new System.Drawing.Point(146, 33);
+            this.radTbUserCreateDate.Location = new System.Drawing.Point(162, 33);
             this.radTbUserCreateDate.Name = "radTbUserCreateDate";
             this.radTbUserCreateDate.ReadOnly = true;
-            this.radTbUserCreateDate.Size = new System.Drawing.Size(758, 20);
+            this.radTbUserCreateDate.Size = new System.Drawing.Size(846, 20);
             this.radTbUserCreateDate.TabIndex = 1;
             this.radTbUserCreateDate.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -567,10 +569,10 @@
             // 
             this.radTbUserCodeI.AccessibleDescription = "Yes";
             this.radTbUserCodeI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radTbUserCodeI.Location = new System.Drawing.Point(146, 3);
+            this.radTbUserCodeI.Location = new System.Drawing.Point(162, 3);
             this.radTbUserCodeI.Name = "radTbUserCodeI";
             this.radTbUserCodeI.ReadOnly = true;
-            this.radTbUserCodeI.Size = new System.Drawing.Size(758, 20);
+            this.radTbUserCodeI.Size = new System.Drawing.Size(846, 20);
             this.radTbUserCodeI.TabIndex = 1;
             this.radTbUserCodeI.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -587,9 +589,9 @@
             // radCollapsiblePanelUserAccount.PanelContainer
             // 
             this.radCollapsiblePanelUserAccount.PanelContainer.Controls.Add(this.tableLayoutPanel3);
-            this.radCollapsiblePanelUserAccount.PanelContainer.Size = new System.Drawing.Size(968, 91);
+            this.radCollapsiblePanelUserAccount.PanelContainer.Size = new System.Drawing.Size(1075, 91);
             this.radCollapsiblePanelUserAccount.ShowHeaderLine = false;
-            this.radCollapsiblePanelUserAccount.Size = new System.Drawing.Size(970, 119);
+            this.radCollapsiblePanelUserAccount.Size = new System.Drawing.Size(1077, 119);
             this.radCollapsiblePanelUserAccount.TabIndex = 0;
             ((Telerik.WinControls.UI.RadCollapsiblePanelElement)(this.radCollapsiblePanelUserAccount.GetChildAt(0))).AnimationInterval = 10;
             ((Telerik.WinControls.UI.RadCollapsiblePanelElement)(this.radCollapsiblePanelUserAccount.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.OuterInnerBorders;
@@ -599,12 +601,13 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 259F));
             this.tableLayoutPanel3.Controls.Add(this.radChkUserIsLock, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.radLabel8, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.radTbUserPasswordHash, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.radTbUserLogin, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.radLabel9, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.radChkUseWindowsAuth, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -612,7 +615,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(968, 91);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1075, 91);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // radChkUserIsLock
@@ -641,7 +644,7 @@
             this.radTbUserPasswordHash.Name = "radTbUserPasswordHash";
             this.radTbUserPasswordHash.PasswordChar = '*';
             this.radTbUserPasswordHash.ReadOnly = true;
-            this.radTbUserPasswordHash.Size = new System.Drawing.Size(802, 20);
+            this.radTbUserPasswordHash.Size = new System.Drawing.Size(700, 20);
             this.radTbUserPasswordHash.TabIndex = 1;
             this.radTbUserPasswordHash.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -651,7 +654,7 @@
             this.radTbUserLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserLogin.Location = new System.Drawing.Point(113, 3);
             this.radTbUserLogin.Name = "radTbUserLogin";
-            this.radTbUserLogin.Size = new System.Drawing.Size(802, 20);
+            this.radTbUserLogin.Size = new System.Drawing.Size(700, 20);
             this.radTbUserLogin.TabIndex = 1;
             this.radTbUserLogin.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -676,9 +679,9 @@
             // radCollapsiblePanelUserPersonalData.PanelContainer
             // 
             this.radCollapsiblePanelUserPersonalData.PanelContainer.Controls.Add(this.panelTableUserPersonalData);
-            this.radCollapsiblePanelUserPersonalData.PanelContainer.Size = new System.Drawing.Size(968, 185);
+            this.radCollapsiblePanelUserPersonalData.PanelContainer.Size = new System.Drawing.Size(1075, 185);
             this.radCollapsiblePanelUserPersonalData.ShowHeaderLine = false;
-            this.radCollapsiblePanelUserPersonalData.Size = new System.Drawing.Size(970, 213);
+            this.radCollapsiblePanelUserPersonalData.Size = new System.Drawing.Size(1077, 213);
             this.radCollapsiblePanelUserPersonalData.TabIndex = 0;
             ((Telerik.WinControls.UI.RadCollapsiblePanelElement)(this.radCollapsiblePanelUserPersonalData.GetChildAt(0))).AnimationInterval = 10;
             ((Telerik.WinControls.UI.RadCollapsiblePanelElement)(this.radCollapsiblePanelUserPersonalData.GetChildAt(0))).AnimationEasingType = Telerik.WinControls.RadEasingType.Default;
@@ -714,7 +717,7 @@
             this.panelTableUserPersonalData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.panelTableUserPersonalData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelTableUserPersonalData.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelTableUserPersonalData.Size = new System.Drawing.Size(968, 185);
+            this.panelTableUserPersonalData.Size = new System.Drawing.Size(1075, 185);
             this.panelTableUserPersonalData.TabIndex = 0;
             // 
             // radTbUserLastName
@@ -723,7 +726,7 @@
             this.radTbUserLastName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserLastName.Location = new System.Drawing.Point(113, 63);
             this.radTbUserLastName.Name = "radTbUserLastName";
-            this.radTbUserLastName.Size = new System.Drawing.Size(844, 20);
+            this.radTbUserLastName.Size = new System.Drawing.Size(951, 20);
             this.radTbUserLastName.TabIndex = 1;
             this.radTbUserLastName.TextChanged += new System.EventHandler(this.radTbUserPassword_TextChanged);
             // 
@@ -733,7 +736,7 @@
             this.radTbUserSurName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserSurName.Location = new System.Drawing.Point(113, 33);
             this.radTbUserSurName.Name = "radTbUserSurName";
-            this.radTbUserSurName.Size = new System.Drawing.Size(844, 20);
+            this.radTbUserSurName.Size = new System.Drawing.Size(951, 20);
             this.radTbUserSurName.TabIndex = 1;
             this.radTbUserSurName.TextChanged += new System.EventHandler(this.radTbUserLogin_TextChanged);
             // 
@@ -759,7 +762,7 @@
             this.radTbUserComment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserComment.Location = new System.Drawing.Point(113, 153);
             this.radTbUserComment.Name = "radTbUserComment";
-            this.radTbUserComment.Size = new System.Drawing.Size(844, 20);
+            this.radTbUserComment.Size = new System.Drawing.Size(951, 20);
             this.radTbUserComment.TabIndex = 1;
             this.radTbUserComment.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -769,7 +772,7 @@
             this.radTbUserPhoneNumber.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserPhoneNumber.Location = new System.Drawing.Point(113, 123);
             this.radTbUserPhoneNumber.Name = "radTbUserPhoneNumber";
-            this.radTbUserPhoneNumber.Size = new System.Drawing.Size(844, 20);
+            this.radTbUserPhoneNumber.Size = new System.Drawing.Size(951, 20);
             this.radTbUserPhoneNumber.TabIndex = 1;
             this.radTbUserPhoneNumber.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -779,7 +782,7 @@
             this.radTbUserEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserEmail.Location = new System.Drawing.Point(113, 93);
             this.radTbUserEmail.Name = "radTbUserEmail";
-            this.radTbUserEmail.Size = new System.Drawing.Size(844, 20);
+            this.radTbUserEmail.Size = new System.Drawing.Size(951, 20);
             this.radTbUserEmail.TabIndex = 1;
             this.radTbUserEmail.TextChanged += new System.EventHandler(this.radTbUserName_TextChanged);
             // 
@@ -821,7 +824,7 @@
             this.radTbUserFirstName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radTbUserFirstName.Location = new System.Drawing.Point(113, 3);
             this.radTbUserFirstName.Name = "radTbUserFirstName";
-            this.radTbUserFirstName.Size = new System.Drawing.Size(844, 20);
+            this.radTbUserFirstName.Size = new System.Drawing.Size(951, 20);
             this.radTbUserFirstName.TabIndex = 1;
             this.radTbUserFirstName.TextChanged += new System.EventHandler(this.radTbUserPosition_TextChanged);
             // 
@@ -833,7 +836,7 @@
             this.radLabUserInfoTitle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.radLabUserInfoTitle.Location = new System.Drawing.Point(3, 3);
             this.radLabUserInfoTitle.Name = "radLabUserInfoTitle";
-            this.radLabUserInfoTitle.Size = new System.Drawing.Size(970, 25);
+            this.radLabUserInfoTitle.Size = new System.Drawing.Size(1077, 25);
             this.radLabUserInfoTitle.TabIndex = 3;
             this.radLabUserInfoTitle.Text = "NEW_USER";
             // 
@@ -846,6 +849,16 @@
             this.radBtnClose.TabIndex = 0;
             this.radBtnClose.Text = "CLOSE";
             this.radBtnClose.Click += new System.EventHandler(this.radBtnClose_Click);
+            // 
+            // radChkUseWindowsAuth
+            // 
+            this.radChkUseWindowsAuth.AccessibleDescription = "Yes";
+            this.radChkUseWindowsAuth.Location = new System.Drawing.Point(819, 3);
+            this.radChkUseWindowsAuth.Name = "radChkUseWindowsAuth";
+            this.radChkUseWindowsAuth.Size = new System.Drawing.Size(133, 18);
+            this.radChkUseWindowsAuth.TabIndex = 0;
+            this.radChkUseWindowsAuth.Text = "USE_WINDOWS_AUTH";
+            this.radChkUseWindowsAuth.CheckStateChanged += new System.EventHandler(this.radChkUseWindowsAuth_CheckStateChanged);
             // 
             // FormPermitAdminConsole
             // 
@@ -921,6 +934,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radTbUserFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabUserInfoTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radChkUseWindowsAuth)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -976,6 +990,7 @@
         private Telerik.WinControls.UI.RadLabel radLabUserInfoTitle;
         private Telerik.WinControls.UI.RadButton radBtnResetPassword;
         private Telerik.WinControls.UI.RadLabel radLabUserList;
+        private Telerik.WinControls.UI.RadCheckBox radChkUseWindowsAuth;
     }
 }
 

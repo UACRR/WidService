@@ -82,7 +82,9 @@ namespace SmRoPermitClientLib
             RunProtectedOperation( () => {
                 if (!IsChangePasswordMode)
                 {
-                    RspLogin res = PermitApiProxy.Login(radTbLogin.Text, radTbPassword.Text);
+                    PermitApiProxy.UserLogin = radTbLogin.Text;
+                    PermitApiProxy.UserPassword = radTbPassword.Text;
+                    RspLogin res = PermitApiProxy.Login();
                     switch (res.Result)
                     {
                         case RspLogin.LoginResult.Success:
