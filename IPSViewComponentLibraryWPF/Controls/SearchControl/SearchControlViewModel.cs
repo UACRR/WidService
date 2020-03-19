@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Types;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IPSViewComponentLibraryWPF.Controls.SearchControl.Model;
 using IPSViewComponentLibraryWPF.IPSExtensions;
@@ -26,6 +28,9 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         private const string PartValue = "Part";
 
         #region * * * PROPERTIES * * *
+        public bool IsLoaded { get; set; }
+
+        public ICollection<FrameParam> Config { get; set; }
 
         private ObservableCollection<CheckBox> _listBoxItemsSource = new ObservableCollection<CheckBox>();
         /// <summary>
@@ -67,6 +72,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         }
 
         public Action<object> RunSearchQuery { get; set; }
+        public Action Clear { get; set; }
 
         public LM_SEARCH LM_SEARCH { get; set; } = new LM_SEARCH();
 
@@ -155,18 +161,40 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             return item;
         }
 
-        #endregion
+        private void ClearSimpleSearch()
+        {
+            foreach (var checkBox in ListBoxItemsSource)
+                checkBox.IsChecked = false;
+            
+            SimpleSearchParameters.SearchText = string.Empty;
+        }
 
-        #region * * * _PUBLIC_ METHOD * * *
+        private void ClearExtendedSearch()
+        {
+            foreach (var stackPanel in ListBoxExtendedItemsSource)
+            {
+                var txt = (TextBox)stackPanel.Children[0];
+                txt.Text = string.Empty;
 
-        public void LoadConfiguration(ICollection<FrameParam> config)
-        {  
+                var fullValue = ((RadioButton)((StackPanel)stackPanel.Children[2]).Children[0]);
+                fullValue.IsChecked = true;
+
+                //var partValue = ((RadioButton)((StackPanel)stackPanel.Children[2]).Children[1]);
+                //partValue.IsChecked = true;
+            }
+        }
+
+        private void LoadConfiguration()
+        {
+            if (Config == null)
+                return;
+            
             var list = new List<SearchItem>
             {
                 new SearchItem("ALL", LM_SEARCH.ALL_CHECK_ITEM),
             };
 
-            foreach (var frameParam in config)
+            foreach (var frameParam in Config)
             {
                 list.Add(new SearchItem(frameParam.SeekCodeName, frameParam.SeekName));
             }
@@ -267,7 +295,21 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         public ICommand LoadedCommand => new IPSDelegateCommand(LoadedCommandExecute);
         private void LoadedCommandExecute(object o)
         {
+            if (IsLoaded)
+                return;
+
             AppLanguageLibrary.UpdateLanguageLocalization(LM_SEARCH, nameof(AppLanguageLibrary.CurrentLanguage.SearchControlLD));
+            LoadConfiguration();
+            
+            IsLoaded = true;
+        }
+
+        public ICommand ClearCommand => new IPSDelegateCommand(ClearCommandExecute);
+        private void ClearCommandExecute(object o)
+        {
+            ClearSimpleSearch();
+            ClearExtendedSearch();
+            Clear?.Invoke();
         }
 
         #endregion

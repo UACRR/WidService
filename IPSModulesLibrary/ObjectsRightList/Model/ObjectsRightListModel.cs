@@ -29,10 +29,10 @@ namespace IPSModulesLibrary.ObjectsRightList.Model
         }
 
         public string GenreName { get; set; }
-        public double RateTotal { get; set; }
+        public float RateTotal { get; set; }
         public string Author { get; set; }
         public string Performer { get; set; }
-        public double Profit { get; set; }
+        public float Profit { get; set; }
 
         public int CategoryCode
         {
@@ -48,9 +48,9 @@ namespace IPSModulesLibrary.ObjectsRightList.Model
         }
         public string CategoryName { get; set; }
 
-        public int StatusNoRelate { get; set; }
-        public int StatusNoActive { get; set; }
-        public int StatusUnDistrib { get; set; }
+        public byte StatusNoRelate { get; set; }
+        public byte StatusNoActive { get; set; }
+        public byte StatusUnDistrib { get; set; }
 
     }
 }

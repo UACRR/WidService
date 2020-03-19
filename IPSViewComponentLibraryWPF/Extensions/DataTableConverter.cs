@@ -27,5 +27,21 @@ namespace IPSViewComponentLibraryWPF.Extensions
 
             return (int?)(long?)obj;
         }
+
+        public static Single CastFloat(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+                return default(Single);
+
+            return (float) (double) obj;
+        }
+
+        public static Byte CastByte(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+                return default(Byte);
+
+            return (Byte) (long) obj;
+        }
     }
 }

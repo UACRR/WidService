@@ -104,6 +104,7 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
         }
 
+        private DataTable TempDataTable { get; set; }
         private ObservableCollection<ObjectsRightListModel> ObjectsRightsItemSourceTemp { get; set; }
         private ObservableCollection<ObjectsRightListModel> _objectsRightsItemSource;
         public ObservableCollection<ObjectsRightListModel> ObjectsRightsItemSource
@@ -119,7 +120,6 @@ namespace IPSModulesLibrary.ObjectsRightList
         #endregion
 
         #region * * * METHODS * * *
-
         private async Task LoadData(ObjectRightSearchResource searchResource)
         {
             var service = new ObjectRightService();
@@ -128,6 +128,9 @@ namespace IPSModulesLibrary.ObjectsRightList
 
             if (data.IsSuccess)
             {
+                if (TempDataTable == null)
+                    TempDataTable = data.Data;
+                
                 ObjectsRightsItemSourceTemp = await Task.Factory.StartNew(() => ConvertToInternalModel(data.Data));
                 string name = SelectedTreeViewItem.Name;
                 await Task.Factory.StartNew(() => FilterList(name));
@@ -201,16 +204,15 @@ namespace IPSModulesLibrary.ObjectsRightList
                     CategoryCode = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.CategoryCode))),
                     GenreType = DTC.CastIntNull(getObject(obj, nameof(ObjectsRightListModel.GenreType))),
                     Name = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Name))),
-                    RateTotal = DTC.Cast<double>(getObject(obj, nameof(ObjectsRightListModel.RateTotal))),
+                    RateTotal = DTC.CastFloat(getObject(obj, nameof(ObjectsRightListModel.RateTotal))),
 
                     Author = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Author))),
                     Performer = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Performer))),
                     InnerCode = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.InnerCode))),
 
-                    StatusNoActive = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusNoActive))),
-                    StatusNoRelate = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusNoRelate))),
-                    StatusUnDistrib = DTC.CastInt(getObject(obj, nameof(ObjectsRightListModel.StatusUnDistrib))),
-
+                    StatusNoActive = DTC.CastByte(getObject(obj, nameof(ObjectsRightListModel.StatusNoActive))),
+                    StatusNoRelate = DTC.CastByte(getObject(obj, nameof(ObjectsRightListModel.StatusNoRelate))),
+                    StatusUnDistrib = DTC.CastByte(getObject(obj, nameof(ObjectsRightListModel.StatusUnDistrib))),
                 };
 
                 itemSource.Add(item);
@@ -239,6 +241,15 @@ namespace IPSModulesLibrary.ObjectsRightList
             return itemSource;
         }
 
+        private async void Clear()
+        {
+            IsBusy = true;
+            ObjectsRightsItemSourceTemp = await Task.Factory.StartNew(() => ConvertToInternalModel(TempDataTable));
+            string name = SelectedTreeViewItem.Name;
+            await Task.Factory.StartNew(() => FilterList(name));
+            IsBusy = false;
+        }
+
         #endregion
 
         #region * * * COMMANDS * * *
@@ -251,8 +262,9 @@ namespace IPSModulesLibrary.ObjectsRightList
 
             var searchControl = ((ObjectsRightListControl) o).searchControl;
             var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 1).FrameParam;
-            ((SearchControlViewModel) searchControl.DataContext).LoadConfiguration(config);
+            ((SearchControlViewModel)searchControl.DataContext).Config = config;
             ((SearchControlViewModel) searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
+            ((SearchControlViewModel) searchControl.DataContext).Clear = Clear;
 
             var search = new ObjectRightSearchResource();
             IsLoaded = true;

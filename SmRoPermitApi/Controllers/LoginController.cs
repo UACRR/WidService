@@ -92,5 +92,12 @@ namespace SmartRoyaltyPermitApi.Controllers
                 rsp.Result = res.Result;
             });
         }
+
+
+        [HttpGet("test")]
+        public IActionResult TestMethod()
+        {
+            return Ok("Hello world!");
+        }
     }
 }

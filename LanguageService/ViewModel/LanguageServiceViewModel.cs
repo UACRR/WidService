@@ -374,12 +374,16 @@ namespace LanguageService.ViewModel
         public ICommand SyncOnServerWhenClosingCommand => new IPSDelegateCommand(SyncOnServerWhenClosingCommandExecute);
         private async void SyncOnServerWhenClosingCommandExecute(object o)
         {
-            if (!_someValueChanged)
-                return;
-
             var result = await LanguageLibraryManager.SyncOnServer();
-            if (!result.IsSuccess)
+            if (result.IsSuccess)
+            {
+                MessageBox.Show("Ok!", string.Empty, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
                 MessageBox.Show("Помилка синхронізації з сервером!", result.InnerMessage, MessageBoxButton.OK,MessageBoxImage.Warning);
+            }
+
         }
 
         public ICommand KeyDownCommand => new IPSDelegateCommand(KeyDownCommandExecute);
