@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +12,22 @@ namespace LanguageLibrary
     public static class AppLanguageLibrary
     {
         private static readonly LanguageLibraryHelper _LanguageLibraryHelper = new LanguageLibraryHelper();
+
+        private static bool LanguageLoadNeed { get; set; }
+
+        static AppLanguageLibrary()
+        {
+            try
+            {
+                string languageLoadNeed = ConfigurationManager.AppSettings["LanguageLoadNeed"];
+                bool.TryParse(languageLoadNeed, out bool result);
+                LanguageLoadNeed = result;
+            }
+            catch
+            {
+                LanguageLoadNeed = false;
+            }
+        }
 
         public static Dictionary<object, string> LanguagesMap { get; } = new Dictionary<object, string>();
 
@@ -73,6 +90,9 @@ namespace LanguageLibrary
 
         public static void UpdateLanguageLocalization<TTarget>(TTarget target, string sourceName)
         {
+            if (!LanguageLoadNeed)
+                return;
+
             var source = CurrentLanguage.GetType().GetProperty(sourceName)?.GetValue(CurrentLanguage);
             if (source == null)
                 return;

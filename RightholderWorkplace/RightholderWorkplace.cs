@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Extensions;
 using IPSViewComponentLibraryWPF;
@@ -45,6 +46,13 @@ namespace RightholderWorkplace
             var rightholderService = new RightholderService();
             IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
 
+            var t = Task.Factory.StartNew(async () =>
+            {
+                var dictionary = await DictionaryService.GetInstance().GetFrameTaskDictionary("uk-UA");
+                IpsGlobal.SetFrameTaskDictionary(dictionary);
+            });
+            t.Wait();
+            
             IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name);
 
             InitializeComponent();
@@ -63,6 +71,9 @@ namespace RightholderWorkplace
 
             var control2 = new IPSViewComponentLibraryWPF.Modules.TransferOfRights.TransferOfRightsControl();
             ehTransferOfRights.Child = control2;
+
+            var control3 = new IPSModulesLibrary.ObjectsRightList.ObjectsRightListControl();
+            ehObjectRight.Child = control3;
 
             oldCopyrightRequestsPage.Item.Visibility = ElementVisibility.Collapsed;
             oldRightholdersChangePage.Item.Visibility = ElementVisibility.Collapsed;

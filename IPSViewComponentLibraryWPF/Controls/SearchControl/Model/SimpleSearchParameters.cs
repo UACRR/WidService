@@ -17,7 +17,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
 
         public SimpleSearchParameters()
         {
-            IsEqualSelected = true;
+            IsLikeSelected = true;
         }
 
         public string SearchText
