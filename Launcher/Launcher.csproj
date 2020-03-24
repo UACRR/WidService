@@ -54,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Controls.Ribbon" />
@@ -72,6 +73,15 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.ReportViewer.Wpf, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.Windows.Controls, Version=2019.1.116.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.ConversationalUI, Version=2019.1.116.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Data, Version=2019.1.116.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
@@ -107,6 +117,7 @@
     <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Documents.Flow, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -192,6 +203,22 @@
     <Resource Include="Images\main-icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsumerBigRightWorkplace\ConsumerBigRightWorkplace.csproj">
+      <Project>{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}</Project>
+      <Name>ConsumerBigRightWorkplace</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsumerSmallRightWorkplace\ConsumerSmallRightWorkplace.csproj">
+      <Project>{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}</Project>
+      <Name>ConsumerSmallRightWorkplace</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fixation\Fixation.csproj">
+      <Project>{e3dbf12c-7505-4e83-882d-0570f4cd1e32}</Project>
+      <Name>Fixation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{b17076a8-b8f9-4f60-aac0-3845773a4d43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
       <Name>ipsFormsDesign</Name>
@@ -212,6 +239,22 @@
       <Project>{FCDDBE23-8A62-4EEE-A2C1-57879A44D5A4}</Project>
       <Name>LanguageLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PartnersWorkplace\PartnersWorkplace.csproj">
+      <Project>{c5c79d2e-f748-428f-965d-32bf69be33ea}</Project>
+      <Name>PartnersWorkplace</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepNew\RepNew.csproj">
+      <Project>{89315cb9-919f-494a-91eb-1047f92c0eeb}</Project>
+      <Name>RepNew</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReportsLibrary\ReportsLibrary.csproj">
+      <Project>{16a23fdd-f783-4f80-9141-43b5c03cb3d1}</Project>
+      <Name>ReportsLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RightholderWorkplace\RightholderWorkplace.csproj">
+      <Project>{be2b9387-9119-454b-b94f-297dce752d8d}</Project>
+      <Name>RightholderWorkplace</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SmRoAccessAdmin\SmRoPermitAdmin.csproj">
       <Project>{225D4E3C-466A-4DA5-B27C-7448F130A93A}</Project>
       <Name>SmRoPermitAdmin</Name>
@@ -223,6 +266,18 @@
     <ProjectReference Include="..\SmRoPermitCommonLib\SmRoPermitCommonLib.csproj">
       <Project>{223a8848-cb73-48f1-aca4-a3df71e14bc3}</Project>
       <Name>SmRoPermitCommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sysAdminwp\sysAdminwp.csproj">
+      <Project>{c08cd8f1-bc04-4eb9-99d1-be924649f23a}</Project>
+      <Name>sysAdminwp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
+      <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
+      <Name>WebAPIConnector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkReport\WorkReport.csproj">
+      <Project>{ce1665e0-cc91-4d0b-8778-95d5556effae}</Project>
+      <Name>WorkReport</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

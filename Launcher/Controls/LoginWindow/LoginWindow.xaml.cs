@@ -27,7 +27,7 @@ namespace Launcher.Controls.LoginWindow
 
         private void AuthType_Selected(object sender, RoutedEventArgs e)
         {
-            var dc = DataContext as LoginViewModel;
+            var dc = (LoginViewModel)DataContext;
             ComboBox comboBox = (ComboBox)sender;
             var userName = FindName("UserName");
             if(comboBox.SelectedIndex == 0)
@@ -54,7 +54,7 @@ namespace Launcher.Controls.LoginWindow
                 if (userName != null)
                     ((TextBox)userName).Text = dc.User.UserName;
             }
-       }
+        }
  
     }
 }

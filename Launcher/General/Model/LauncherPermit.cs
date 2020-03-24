@@ -8,10 +8,13 @@ namespace Launcher.General.Model
         private bool _permit;
         private bool _directory;
         private bool _violation;
-        private bool _prAdmin;
         private bool _bRightsWp;
         private bool _sRightsWp;
         private bool _royaltyAdmin;
+        private bool _processes;
+        private bool _analytics;
+        private bool _ourProfile;
+        private bool _represent;
 
         public bool RightsAdmin
         {
@@ -53,16 +56,6 @@ namespace Launcher.General.Model
             }
         }
 
-        public bool PRAdmin
-        {
-            get => _prAdmin;
-            set
-            {
-                _prAdmin = value;
-                OnPropertyChanged(() => PRAdmin);
-            }
-        }
-
         public bool Violation
         {
             get => _violation;
@@ -93,9 +86,44 @@ namespace Launcher.General.Model
             }
         }
 
-        public bool OurProfile { get; set; }
-        public bool Analytics { get; set; }
+        public bool Processes
+        {
+            get => _processes;
+            set
+            {
+                _processes = value;
+                OnPropertyChanged(() => Processes);
+            }
+        }
 
-        public bool Represent { get; set; }
+        public bool OurProfile
+        {
+            get => _ourProfile;
+            set
+            {
+                _ourProfile = value; 
+                OnPropertyChanged(() => OurProfile);
+            }
+        }
+
+        public bool Analytics
+        {
+            get => _analytics;
+            set
+            {
+                _analytics = value; 
+                OnPropertyChanged(() => Analytics);
+            }
+        }
+
+        public bool Represent
+        {
+            get => _represent;
+            set
+            {
+                _represent = value;
+                OnPropertyChanged(() =>  Represent);
+            }
+        }
     }
 }

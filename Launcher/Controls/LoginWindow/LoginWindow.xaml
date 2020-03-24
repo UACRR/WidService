@@ -11,7 +11,9 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Icon="../../Images/login-icon.png"
-        Title="" Height="622.932" Width="400" SizeToContent="Height">
+        Width="400" 
+        Title="" 
+        SizeToContent="Height">
 
     <Window.DataContext>
         <local:LoginViewModel/>
@@ -106,10 +108,10 @@
 
             <Border >
                 <TextBlock Text="SING IN"
-                       FontSize="25"
-                       Foreground="WhiteSmoke"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                           FontSize="25"
+                           Foreground="WhiteSmoke"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
             </Border>
 
             <StackPanel Orientation="Vertical">
@@ -124,10 +126,10 @@
                     <StackPanel Orientation="Vertical" Margin="10" >
 
                         <ComboBox Margin="1,1,1,10" 
-                                Height="30" 
-                                HorizontalAlignment="Stretch"
-                                VerticalContentAlignment="Center"
-                                SelectionChanged="AuthType_Selected">
+                                  Height="30" 
+                                  HorizontalAlignment="Stretch"
+                                  SelectionChanged="AuthType_Selected"
+                                  VerticalContentAlignment="Center"> 
                             <ComboBoxItem IsSelected="True">Use Windows Identification</ComboBoxItem>
                             <ComboBoxItem>Use Application Identification</ComboBoxItem>
                         </ComboBox>

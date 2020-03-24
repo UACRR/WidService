@@ -6,11 +6,20 @@ namespace Launcher.General.Model
     {
         private string _rh_or = "Адміністратор авторів/правовласників та об'єктів права";
         private string _sysAdmin = "Управління правами доступу";
+        private string _anketaOfTheCompany = "Анкета компанії";
+        private string _processes = "Управління технологічними процесами";
+        private string _partner_WP = "Робоче місце адміністратора по роботі з представниками компанії";
+        private string _fixationOfViolations = "Фіксація порушень прав";
+        private string _systemDictionaries = "Довідники системи";
+        private string _clients_WP = "Робоче місце по роботі з «малими правами»";
+        private string _theatres_WP = "Робоче місце по роботі з «великими правами»";
+        private string _analyticsAndReports = "Аналітична звітність";
+        private string _reportsAndRoyalty = "Робоче місце по управлінню розподілу авторської виногороди (обробка звітів користувачів)";
+
         private string _catSys = "Система";
         private string _catOther = "Інше";
         private string _catConsumers = "Користувачі";
         private string _catRights = "Права";
-
 
         public string RH_OR
         {
@@ -22,7 +31,6 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _reportsAndRoyalty = "Робоче місце по управлінню розподілу авторської виногороди (обробка звітів користувачів)";
         public string ReportsAndRoyalty
         {
             get => _reportsAndRoyalty;
@@ -33,7 +41,7 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _analyticsAndReports = "Аналітична звітність";
+
         public string AnalyticsAndReports
         {
             get => _analyticsAndReports;
@@ -44,18 +52,6 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _operativeReporting = "Оперативна звітність";
-        public string OperativeReporting
-        {
-            get => _operativeReporting;
-            set
-            {
-                _operativeReporting = value;
-                OnPropertyChanged(() => OperativeReporting);
-            }
-        }
-
-        private string _clients_WP = "Робоче місце по роботі з «малими правами»";
         public string Clients_WP
         {
             get => _clients_WP;
@@ -66,7 +62,6 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _theatres_WP = "Робоче місце по роботі з «великими правами»";
         public string Theatres_WP
         {
             get => _theatres_WP;
@@ -77,7 +72,7 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _partner_WP = "Робоче місце адміністратора по роботі з представниками компанії";
+
         public string Partner_WP
         {
             get => _partner_WP;
@@ -88,7 +83,7 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _fixationOfViolations = "Фіксація порушень прав";
+
         public string FixationOfViolations
         {
             get => _fixationOfViolations;
@@ -99,7 +94,6 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _systemDictionaries = "Довідники системи";
         public string SystemDictionaries
         {
             get => _systemDictionaries;
@@ -110,7 +104,6 @@ namespace Launcher.General.Model
             }
         }
 
-        private string _anketaOfTheCompany = "Анкета компанії";
         public string AnketaOfTheCompany
         {
             get => _anketaOfTheCompany;
@@ -121,8 +114,6 @@ namespace Launcher.General.Model
             }
         }
 
-
-
         public string SysAdmin
         {
             get => _sysAdmin;
@@ -130,6 +121,16 @@ namespace Launcher.General.Model
             {
                 _sysAdmin = value;
                 OnPropertyChanged(() => SysAdmin);
+            }
+        }
+
+        public string Processes
+        {
+            get => _processes;
+            set
+            {
+                _processes = value;
+                OnPropertyChanged(() => Processes);
             }
         }
 
