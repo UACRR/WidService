@@ -408,6 +408,9 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         public ICommand PrintCopyrightRequestCommand => new IPSDelegateCommand(PrintCopyrightRequestCommandExecute);
         private void PrintCopyrightRequestCommandExecute(object o)
         {
+            if (CurrentRightholderItem == null)
+                return;
+
             var model = (CopyrightRequestRightholdersModel) o;
             RightolderWithNotAcceptedCopyrightViewModel rightolder = new RightolderWithNotAcceptedCopyrightViewModel
             {

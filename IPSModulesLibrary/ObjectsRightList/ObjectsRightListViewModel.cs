@@ -22,7 +22,7 @@ using DTC = IPSViewComponentLibraryWPF.Extensions.DataTableConverter;
 
 namespace IPSModulesLibrary.ObjectsRightList
 {
-    public class ObjectsRightListViewModel : ViewModelBase
+    public class ObjectsRightListViewModel : ViewModelBase, ILazyLoadData
     {
         #region * * * PROPERTIES * * *
 
@@ -38,6 +38,7 @@ namespace IPSModulesLibrary.ObjectsRightList
         }
 
         public bool IsLoaded { get; set; }
+        private bool IsDataLoaded { get; set; }
 
         private ObservableCollection<RadTreeViewItem> _treeViewItemSource = new ObservableCollection<RadTreeViewItem>
         {
@@ -106,9 +107,9 @@ namespace IPSModulesLibrary.ObjectsRightList
         }
 
         private DataTable TempDataTable { get; set; }
-        private ObservableCollection<ObjectsRightListModel> ObjectsRightsItemSourceTemp { get; set; }
-        private ObservableCollection<ObjectsRightListModel> _objectsRightsItemSource;
-        public ObservableCollection<ObjectsRightListModel> ObjectsRightsItemSource
+        private ICollection<ObjectsRightListModel> ObjectsRightsItemSourceTemp { get; set; }
+        private ICollection<ObjectsRightListModel> _objectsRightsItemSource;
+        public ICollection<ObjectsRightListModel> ObjectsRightsItemSource
         {
             get => _objectsRightsItemSource;
             set
@@ -121,6 +122,16 @@ namespace IPSModulesLibrary.ObjectsRightList
         #endregion
 
         #region * * * METHODS * * *
+
+        public void LazyLoadData()
+        {
+            if (IsDataLoaded)
+                return;
+
+            LoadData(new ObjectRightSearchResource());
+            IsDataLoaded = true;
+        }
+
         private async Task LoadData(ObjectRightSearchResource searchResource)
         {
             var service = new ObjectRightService();
@@ -143,6 +154,8 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
 
             IsBusy = false;
+
+            GC.Collect();
         }
 
         private void FilterList(string filterName)
@@ -164,11 +177,11 @@ namespace IPSModulesLibrary.ObjectsRightList
                 if (filterName == nameof(ObjectsRightListModel.StatusUnDistrib).ToUpper())
                     list = ObjectsRightsItemSourceTemp.Where(rec => rec.StatusUnDistrib == 1);
 
-                ObjectsRightsItemSource = new ObservableCollection<ObjectsRightListModel>(list);
+                ObjectsRightsItemSource = list?.ToList();
             }
             else
             {
-                ObjectsRightsItemSource = new ObservableCollection<ObjectsRightListModel>(ObjectsRightsItemSourceTemp);
+                ObjectsRightsItemSource = ObjectsRightsItemSourceTemp.ToList();
             }
         }
 
@@ -188,9 +201,9 @@ namespace IPSModulesLibrary.ObjectsRightList
             await LoadData(searchResource);
         }
 
-        private ObservableCollection<ObjectsRightListModel> ConvertToInternalModel(DataTable dataTable)
+        private List<ObjectsRightListModel> ConvertToInternalModel(DataTable dataTable)
         {
-            var itemSource = new ObservableCollection<ObjectsRightListModel>();
+            var itemSource = new List<ObjectsRightListModel>();
             
             var d_TO = getColumnDictionary(dataTable.Columns);
             

@@ -139,6 +139,7 @@
     <Compile Include="Interfaces\IConsumerService.cs" />
     <Compile Include="Interfaces\IDBFPresenter.cs" />
     <Compile Include="Interfaces\IFilteredControl.cs" />
+    <Compile Include="Interfaces\ILazyLoadData.cs" />
     <Compile Include="Interfaces\IModel.cs" />
     <Compile Include="Interfaces\IObjectRightItemPresenter.cs" />
     <Compile Include="Interfaces\IObjectRightItemView.cs" />

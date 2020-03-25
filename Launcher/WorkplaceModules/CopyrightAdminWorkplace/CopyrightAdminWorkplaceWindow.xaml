@@ -24,13 +24,13 @@
     </Window.Resources>
 
     <Grid>
-        <t:RadTabControl >
-            <t:RadTabItem Header="{Binding LOC.RH_1}">
-                <t:RadTabControl Margin="1 0 0 0">
-                    <t:RadTabItem Header="{Binding LOC.RH_2}">
-                        <!--<WindowsFormsHost>
+        <t:RadTabControl SelectedItem="{Binding MainTabItem}">
+            <t:RadTabItem Header="{Binding LOC.RH_1}" IsSelected="True">
+                <t:RadTabControl Margin="1 0 0 0" SelectedItem="{Binding RightholderNestedTabItem}">
+                    <t:RadTabItem Header="{Binding LOC.RH_2}" IsSelected="True">
+                        <WindowsFormsHost>
                             <rightholders:RightholderListControl/>
-                        </WindowsFormsHost>-->
+                        </WindowsFormsHost>
                     </t:RadTabItem>
                     <t:RadTabItem Header="{Binding LOC.RH_CHANGE}">
                         <transferControl:TransferOfRightsControl/>
@@ -48,7 +48,9 @@
 
                 </WindowsFormsHost>-->
             </t:RadTabItem>
-            <t:RadTabItem Header="{Binding LOC.PUB_SUB}"/>
+            <t:RadTabItem Header="{Binding LOC.PUB_SUB}">
+
+            </t:RadTabItem>
         </t:RadTabControl>
     </Grid>
 </Window>
