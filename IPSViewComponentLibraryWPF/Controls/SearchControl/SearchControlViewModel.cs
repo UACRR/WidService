@@ -139,7 +139,6 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                                 Name = FullValue,
                                 //Content = "Точне значення",
                                 Content = LM_SEARCH.EQ_VAL,
-                                IsChecked = true,
                                 VerticalContentAlignment = VerticalAlignment.Center,
                                 Margin = new Thickness(5,3,3,3),
                                 IsTabStop = false,
@@ -149,6 +148,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                                 Name = PartValue,
                                 //Content = "Містить текст",
                                 Content = LM_SEARCH.LIKE_VAL,
+                                IsChecked = true,
                                 VerticalContentAlignment = VerticalAlignment.Center,
                                 Margin = new Thickness(5,3,3,3),
                                 IsTabStop = false,
@@ -175,7 +175,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             {
                 var txt = (TextBox)stackPanel.Children[0];
                 txt.Text = string.Empty;
-
+                
                 var fullValue = ((RadioButton)((StackPanel)stackPanel.Children[2]).Children[0]);
                 fullValue.IsChecked = true;
 

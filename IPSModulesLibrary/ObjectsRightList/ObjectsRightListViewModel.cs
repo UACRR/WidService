@@ -13,6 +13,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
 using IPSModulesLibrary.ObjectsRightList.Model;
+using IpsViewComponentLibrary.ObjectRightControls;
 using IPSViewComponentLibraryWPF.Controls.SearchControl;
 using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
@@ -274,7 +275,35 @@ namespace IPSModulesLibrary.ObjectsRightList
         public ICommand OpenObjectRightCommand => new IPSDelegateCommand(OpenObjectRightCommandExecute);
         private void OpenObjectRightCommandExecute(object o)
         {
+            var objectRight = (ObjectsRightListModel) o;
+            // CategoryCode == 5 - малі права
+            if (objectRight.CategoryCode == 5)
+            {
+                using (var view = new ObjectRightSrView())
+                {
+                    var presenter = new ObjectRightSrPresenter(view);
+                    presenter.Show(objectRight.ObjId);
+                }
+            }
+            else
+            {
+                using (var view = new ObjectRightBrView())
+                {
+                    var presenter = new ObjectRightBrPresenter(view);
+                    presenter.Show(objectRight.ObjId);
+                }
+            }
+        }
 
+        public ICommand CreateObjectRightCommand => new IPSDelegateCommand(CreateObjectRightCommandExecute);
+        private void CreateObjectRightCommandExecute(object o)
+        {
+            using (var view = new ObjectRightSrView())
+            {
+                var presenter = new ObjectRightSrPresenter(view);
+                presenter.DefaultRightholder = null;
+                presenter.ShowNew(5);
+            }
         }
 
         #endregion

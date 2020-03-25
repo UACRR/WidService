@@ -320,6 +320,9 @@ namespace LanguageLibrary.Kernel
                     string xPathUIitem = $@"{UIItem}[@name='{propertyTypeInfo.Name}']";
                     var uiItem = container.SelectSingleNode(xPathUIitem);
                     
+                    if (uiItem == null)
+                        continue;
+
                     var itemType = propertyTypeInfo.PropertyType;
 
                     var propertyObject = propertyTypeInfo.GetValue(parentObject, null);

@@ -117,8 +117,9 @@
             // 
             // ConsumerBigRightWorkplace
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AccessibleDescription = "Consum(BR)";
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1318, 567);
             this.Controls.Add(this.pageParentConsumers);
             this.Name = "ConsumerBigRightWorkplace";

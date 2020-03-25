@@ -163,8 +163,9 @@
             <StackPanel Grid.Row="1" Background="Silver">
                 <t:RadButton MinWidth="100"
                              HorizontalAlignment="Left"
-                             Content="Додати" 
-                             Margin="3"/>
+                             Content="Додати"
+                             Margin="3"
+                             Command="{Binding CreateObjectRightCommand}"/>
             </StackPanel>
 
         </Grid>

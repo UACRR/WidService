@@ -33,5 +33,19 @@ namespace workReport
             ctrlExternalRegisterList.IsExternalRegister = true;
             ctrlExternalRegisterList.UpdateList();
         }
+
+        public WorkReportForm(string[] args)
+        {
+            InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+
+            ThemeResolutionService.ApplicationThemeName = "Office2013Light";
+
+            ctrlRegisterList.IsExternalRegister = false;
+            ctrlRegisterList.UpdateList();
+
+            ctrlExternalRegisterList.IsExternalRegister = true;
+            ctrlExternalRegisterList.UpdateList();
+        }
     }
 }

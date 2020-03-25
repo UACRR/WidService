@@ -13,5 +13,11 @@
         public LanguageItem SystemDictionaries { get; set; } = new LanguageItem();
         public LanguageItem AnketaOfTheCompany { get; set; } = new LanguageItem();
         public LanguageItem SysAdmin { get; set; } = new LanguageItem();
+        public LanguageItem Processes { get; set; } = new LanguageItem();
+
+        public LanguageItem CAT_SYS { get; set; } = new LanguageItem();
+        public LanguageItem CAT_OTHER { get; set; } = new LanguageItem();
+        public LanguageItem CAT_CONSUMERS { get; set; } = new LanguageItem();
+        public LanguageItem CAT_RIGHTS { get; set; } = new LanguageItem();
     }
 }
