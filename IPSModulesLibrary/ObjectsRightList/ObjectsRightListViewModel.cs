@@ -267,9 +267,9 @@ namespace IPSModulesLibrary.ObjectsRightList
             ((SearchControlViewModel) searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
             ((SearchControlViewModel) searchControl.DataContext).Clear = Clear;
 
-            var search = new ObjectRightSearchResource();
+            //var search = new ObjectRightSearchResource();
             IsLoaded = true;
-            await LoadData(search);
+            //await LoadData(search);
         }
 
         public ICommand OpenObjectRightCommand => new IPSDelegateCommand(OpenObjectRightCommandExecute);

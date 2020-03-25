@@ -28,9 +28,9 @@
             <t:RadTabItem Header="{Binding LOC.RH_1}">
                 <t:RadTabControl Margin="1 0 0 0">
                     <t:RadTabItem Header="{Binding LOC.RH_2}">
-                        <WindowsFormsHost>
+                        <!--<WindowsFormsHost>
                             <rightholders:RightholderListControl/>
-                        </WindowsFormsHost>
+                        </WindowsFormsHost>-->
                     </t:RadTabItem>
                     <t:RadTabItem Header="{Binding LOC.RH_CHANGE}">
                         <transferControl:TransferOfRightsControl/>
@@ -44,11 +44,11 @@
                 <objectsRight:ObjectsRightListControl/>
             </t:RadTabItem>
             <t:RadTabItem Header="{Binding LOC.PARTNERS}">
-                <WindowsFormsHost>
+                <!--<WindowsFormsHost>
 
-                </WindowsFormsHost>
+                </WindowsFormsHost>-->
             </t:RadTabItem>
-            <t:RadTabItem Header="{Binding LOC.PUB_SUB}"></t:RadTabItem>
+            <t:RadTabItem Header="{Binding LOC.PUB_SUB}"/>
         </t:RadTabControl>
     </Grid>
 </Window>

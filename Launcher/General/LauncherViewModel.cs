@@ -282,9 +282,9 @@ namespace Launcher.General
         public ICommand LoadCopyrightAdminWorkplaceCommand => new IPSDelegateCommand(LoadCopyrightAdminWorkplaceCommandExecute);
         private void LoadCopyrightAdminWorkplaceCommandExecute(object o)
         {
-            //var adminWorkplace = new CopyrightAdminWorkplaceWindow();
-            var adminWorkplace = new RightholderWorkplace.RightholderWorkplace(null);
-            UserPermissions.ImposeRestrictions(adminWorkplace);
+            var adminWorkplace = new CopyrightAdminWorkplaceWindow();
+            //var adminWorkplace = new RightholderWorkplace.RightholderWorkplace(null);
+            //UserPermissions.ImposeRestrictions(adminWorkplace);
             adminWorkplace.Show();
         }
 

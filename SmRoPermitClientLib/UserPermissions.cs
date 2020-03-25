@@ -61,7 +61,7 @@ namespace SmRoPermitClientLib
                     {
                         ImposeRestrictions(ctrl);
                     }
-                }
+                } 
             }
         }
 
