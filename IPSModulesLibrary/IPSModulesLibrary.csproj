@@ -98,6 +98,8 @@
     <Compile Include="RightholdersList\RightholdersListControl.xaml.cs">
       <DependentUpon>RightholdersListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RightholdersList\RightholdersListModel.cs" />
+    <Compile Include="RightholdersList\RightholdersListViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

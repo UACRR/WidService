@@ -3,28 +3,123 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:search="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl;assembly=IPSViewComponentLibraryWPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:local="clr-namespace:IPSModulesLibrary.RightholdersList"
              mc:Ignorable="d" 
              Background="WhiteSmoke"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <Control.DataContext>
+        <local:RightholdersListViewModel/>
+    </Control.DataContext>
+
+    <Control.Resources>
+        <Style TargetType="t:RadTreeViewItem">
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        <Style TargetType="t:RadGridView">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="ShowGroupPanel" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="ShowSearchPanel" Value="True"/>
+            <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
+        </Style>
+        <Style TargetType="t:RadButton">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+        <Style TargetType="t:RadExpander">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+        <Style TargetType="t:GridViewDataColumn">
+            <Setter Property="HeaderTextAlignment" Value="Center"/>
+            <Setter Property="IsFilterable" Value="False"/>
+        </Style>
+    </Control.Resources>
+
+
     <Grid>
-        <DockPanel LastChildFill="True">
-            <StackPanel Background="LightGray" DockPanel.Dock="Bottom" Orientation="Horizontal" Height="30">
-                <TextBlock>Test</TextBlock>
-            </StackPanel>
-            <Border BorderBrush="Black" DockPanel.Dock="Left" BorderThickness="1">
-                <StackPanel MinWidth="150">
-                    <TextBlock Margin="5,5,5,5" FontSize="14">Test</TextBlock>
-                    <TextBlock Margin="5,5,5,5" FontSize="14">Test</TextBlock>
-                    <TextBlock Margin="5,5,5,5" FontSize="14">Test</TextBlock>
-                    <TextBlock Margin="5,5,5,5" FontSize="14">Test</TextBlock>
-                    <TextBlock Margin="5,5,5,5" FontSize="14">Test</TextBlock>
-                </StackPanel>
-            </Border>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                <TextBlock>Search</TextBlock>
-            </StackPanel>
-        </DockPanel>
-        <Grid ></Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
+                               MinWidth="100"
+                               Margin="3"
+                               Background="MintCream"
+                               HorizontalAlignment="Stretch"
+                               HorizontalContentAlignment="Stretch"
+                               ItemsSource="{Binding TreeViewItemSource}"
+                               SelectionMode="Single"
+                               SelectedItem="{Binding Path=SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <GridSplitter Grid.Column="1" 
+                          Margin="0,3,0,3"
+                          Width="3" Background="Silver" ShowsPreview="False"/>
+
+            <Grid Grid.Column="2" Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <t:RadButton Grid.Row="0"
+                                 Margin="3"
+                                 HorizontalAlignment="Left"
+                                 IsEnabled="False"
+                                 MinWidth="95"
+                                 Content="Оновити"/>
+
+                <t:RadExpander Grid.Row="1" Header="Extended search" IsExpanded="True">
+                    <search:SearchControl x:Name="searchControl"/>
+                </t:RadExpander>
+
+                <t:RadGridView Grid.Row="2"
+                               x:Name="gridView"
+                               ItemsSource="{Binding ObjectsRightsItemSource}"
+                               Margin="3">
+                    <t:RadGridView.Columns>
+                        <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding}"/>
+                        <t:GridViewColumn Width="25">
+                            <t:GridViewColumn.Header>
+                                <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                            </t:GridViewColumn.Header>
+                            <t:GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <t:RadButton Margin="0" Width="25" Height="20" 
+                                                     Command="{Binding DataContext.OpenObjectRightCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                     CommandParameter="{Binding}">
+                                        <Image Source="../Resources/Icons/edit-icon.png"/>
+                                    </t:RadButton>
+                                </DataTemplate>
+                            </t:GridViewColumn.CellTemplate>
+                        </t:GridViewColumn>
+                    </t:RadGridView.Columns>
+                </t:RadGridView>
+                <t:RadDataPager Grid.Row="3"
+                                    t:StyleManager.Theme="VisualStudio2013"
+                                    PageSize="250"
+                                    Source="{Binding Items, ElementName=gridView}"
+                                    IsTotalItemCountFixed="False"
+                                    DisplayMode="All, All"/>
+            </Grid>
+
+
+        </Grid>
+
+        <StackPanel Grid.Row="1" Background="Silver">
+            <TextBlock>кнопочки</TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>
