@@ -77,6 +77,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunitiesList\CommunitiesListControl.xaml.cs">
+      <DependentUpon>CommunitiesListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObjectsRightList\Model\ObjectsRightListModel.cs" />
     <Compile Include="ObjectsRightList\ObjectsRightListControl.xaml.cs">
       <DependentUpon>ObjectsRightListControl.xaml</DependentUpon>
@@ -111,6 +114,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="CommunitiesList\CommunitiesListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObjectsRightList\ObjectsRightListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
