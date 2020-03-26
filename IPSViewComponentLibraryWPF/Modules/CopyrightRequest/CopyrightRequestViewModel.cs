@@ -75,7 +75,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         }
 
         private IList<ObjectRightNotAccepted> ListObjects { get; set; }
-
+        
 
         private bool _isCheckedAllRunable;
         private bool _isCheckedAll;
@@ -269,7 +269,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 MultiplyChangeInfoVisibility = Visibility.Collapsed;
             }
 
-            IsEnabledPropertyPanel = CurrentObjectItem != null && ObjectsItemSource.Any(rec => rec.IsSelected);
+            //IsEnabledPropertyPanel = CurrentObjectItem != null && ObjectsItemSource.Any(rec => rec.IsSelected);
+            IsEnabledPropertyPanel = ObjectsItemSource.Any(rec => rec.IsSelected);
             OnPropertyChanged(() => CurrentObjectItemProperty);
         }
 
@@ -339,6 +340,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                     WorkCommentRH = item.WorkCommentRH,
                     WorkDateRH = item.WorkDateRH,
                     WorkTypeRH = item.WorkTypeRH,
+                    SelectedChanged = UpdatePropertyPanelData,
                 });
             }
 
@@ -408,19 +410,17 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         public ICommand PrintCopyrightRequestCommand => new IPSDelegateCommand(PrintCopyrightRequestCommandExecute);
         private void PrintCopyrightRequestCommandExecute(object o)
         {
-            if (CurrentRightholderItem == null)
-                return;
+            CurrentRightholderItem = (CopyrightRequestRightholdersModel)o;
 
-            var model = (CopyrightRequestRightholdersModel) o;
             RightolderWithNotAcceptedCopyrightViewModel rightolder = new RightolderWithNotAcceptedCopyrightViewModel
             {
-                CustId = model.CustId,
-                Name = model.Name,
-                InnerCode = model.InnerCode,
-                InterCode = model.InterCode,
-                WorkDateRH = model.WorkDateRH,
-                RegistrDate = model.RegistrDate,
-                CntObj = model.CntObj
+                CustId = CurrentRightholderItem.CustId,
+                Name = CurrentRightholderItem.Name,
+                InnerCode = CurrentRightholderItem.InnerCode,
+                InterCode = CurrentRightholderItem.InterCode,
+                WorkDateRH = CurrentRightholderItem.WorkDateRH,
+                RegistrDate = CurrentRightholderItem.RegistrDate,
+                CntObj = CurrentRightholderItem.CntObj
             };
 
             var printView = new DocumentViewerForm();

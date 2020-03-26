@@ -1,8 +1,7 @@
 ﻿<Window x:Class="TestWPFControls.MainWindow"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-                xmlns:uc="clr-namespace:IPSViewComponentLibraryWPF.Modules.CopyrightRequest;assembly=IPSViewComponentLibraryWPF"
+                ResizeMode="NoResize"
                 Title="MainWindow" Height="200" Width="300">
     <Window.WindowStartupLocation>CenterScreen</Window.WindowStartupLocation>
     <Grid>

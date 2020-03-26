@@ -89,8 +89,9 @@
                             <telerik:GridViewColumn Width="25">
                                 <telerik:GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <telerik:RadButton Margin="0" Width="25" Height="20" Command="{Binding DataContext.PrintCopyrightRequestCommand, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
-                                                   CommandParameter="{Binding}">
+                                        <telerik:RadButton Margin="0" Width="25" Height="20" 
+                                                           Command="{Binding DataContext.PrintCopyrightRequestCommand, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
+                                                           CommandParameter="{Binding}">
                                             <Image Source="../../Resources/Icons/print-icon.png"/>
                                         </telerik:RadButton>
                                     </DataTemplate>
@@ -118,11 +119,17 @@
 
                             <Grid Grid.Column="0">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
                                     <RowDefinition/>
                                     <RowDefinition Height="25"/>
                                 </Grid.RowDefinitions>
 
-                                <telerik:RadGridView Grid.Row="0" 
+                                <telerik:Label Grid.Row="0" 
+                                               VerticalAlignment="Stretch" 
+                                               Content="Оберіть об'єкти права" 
+                                               FontWeight="Bold"/>
+
+                                <telerik:RadGridView Grid.Row="1" 
                                                      x:Name="RadGridView"
                                                      ItemsSource="{Binding ObjectsItemSource, Mode=TwoWay}"
                                                      ColumnWidth="*"
@@ -134,15 +141,15 @@
                                             <telerik:GridViewColumn.Header>
                                                 <CheckBox telerik:StyleManager.Theme="VisualStudio2013" 
                                                           x:Name="headerCheckBox"
+                                                          Visibility="Collapsed"
                                                           Command="{Binding CheckedAllCommand}"
                                                           HorizontalAlignment="Center"
-                                                          IsChecked="{Binding 
-                                                    Path=DataContext.IsCheckedAll, 
-                                                    Mode=TwoWay, 
-                                                    UpdateSourceTrigger=PropertyChanged, 
-                                                    NotifyOnSourceUpdated=True, 
-                                                    NotifyOnTargetUpdated=True, 
-                                                    RelativeSource={RelativeSource FindAncestor, AncestorType=telerik:RadGridView}}">
+                                                          IsChecked="{Binding Path=DataContext.IsCheckedAll, 
+                                                                              Mode=TwoWay, 
+                                                                              UpdateSourceTrigger=PropertyChanged, 
+                                                                              NotifyOnSourceUpdated=True, 
+                                                                              NotifyOnTargetUpdated=True, 
+                                                                              RelativeSource={RelativeSource FindAncestor, AncestorType=telerik:RadGridView}}">
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="Checked">
                                                             <i:InvokeCommandAction x:Name="checkAll" Command="{Binding DataContext.CheckedAllCommand,
@@ -190,10 +197,12 @@
                                     </telerik:RadGridView.Columns>
                                 </telerik:RadGridView>
 
-                                <telerik:Label Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0,0,5,0" Content="{Binding ObjectsCount, Mode=TwoWay}"/>
+                                <telerik:Label Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0,0,5,0" Content="{Binding ObjectsCount, Mode=TwoWay}"/>
                             </Grid>
 
-                            <Grid IsEnabled="{Binding IsEnabledPropertyPanel}" Grid.Column="1">
+                            <Grid IsEnabled="{Binding IsEnabledPropertyPanel}" 
+                                  Background="#E9F1FC"
+                                  Grid.Column="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition/>
@@ -207,9 +216,9 @@
                                            Visibility="{Binding MultiplyChangeInfoVisibility}">
                                         <telerik:Label.Background>
                                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                                <GradientStop Offset="0.0" Color="WhiteSmoke"/>
-                                                <GradientStop Offset="0.5" Color="Silver"/>
-                                                <GradientStop Offset="1.0" Color="WhiteSmoke"/>
+                                                <GradientStop Offset="0.0" Color="AliceBlue"/>
+                                                <GradientStop Offset="0.5" Color="Azure"/>
+                                                <GradientStop Offset="1.0" Color="AliceBlue"/>
                                             </LinearGradientBrush>
                                         </telerik:Label.Background>
                                     </telerik:Label>

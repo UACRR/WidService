@@ -89,30 +89,28 @@
         </Style>
     </Control.Resources>
 
-
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="145*"/>
-            <RowDefinition Height="72*"/>
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.RowSpan="2">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
-                               MinWidth="100"
-                               Margin="3"
-                               Background="MintCream"
-                               HorizontalAlignment="Stretch"
-                               HorizontalContentAlignment="Stretch"
-                               ItemsSource="{Binding TreeViewItemSource}"
-                               SelectionMode="Single"
-                               SelectedItem="{Binding Path=SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <!--<t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
+                           MinWidth="100"
+                           Margin="3"
+                           Background="MintCream"
+                           HorizontalAlignment="Stretch"
+                           HorizontalContentAlignment="Stretch"
+                           ItemsSource="{Binding TreeViewItemSource}"
+                           SelectionMode="Single"
+                           SelectedItem="{Binding Path=SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
             <GridSplitter Grid.Column="1" 
                           Margin="0,3,0,3"
@@ -187,15 +185,48 @@
 
         </Grid>
 
-        <StackPanel Grid.Row="2" Background="Silver" Orientation="Horizontal">
-            <ComboBox Name="AddRightholderUASSP" VerticalAlignment="Top" IsEditable="True" IsReadOnly="True" Text="Додати правовласника УААСП" Margin="20,3,20,3">
-                <TextBlock>Фізична особа</TextBlock>
+        <StackPanel Grid.Row="1" Background="Silver" Orientation="Horizontal">
+            <!--<ComboBox Name="AddRightholderUASSP" VerticalAlignment="Top" IsEditable="True" HorizontalContentAlignment="Center" IsReadOnly="True" Text="Додати правовласника УААСП" Margin="5,3,20,3">
+                <TextBlock HorizontalAlignment="Stretch">Фізична особа</TextBlock>
                 <TextBlock>Юридична особа</TextBlock>
             </ComboBox>
             <ComboBox Name="AddRightholderEx" VerticalAlignment="Top" IsEditable="True" IsReadOnly="True" Text="Додати зовнішнього правовласника" Margin="0,3,20,3">
                 <TextBlock>Правовласник</TextBlock>
                 <TextBlock>Видавництво</TextBlock>
-            </ComboBox>
+            </ComboBox>-->
+            <t:RadDropDownButton HorizontalAlignment="Right"
+                                 Content="Додати правовласника УААСП"
+                                 t:StyleManager.Theme="VisualStudio2013"
+                                 CloseOnPopupMouseLeftButtonUp="True"
+                                 Margin="3">
+                <t:RadDropDownButton.DropDownContent>
+                    <StackPanel>
+                        <t:RadButton Margin="0" HorizontalContentAlignment="Left"
+                                     Content="Фізична особа"
+                                     Command="{Binding}"/>
+                        <t:RadButton Margin="0,1,0,0" 
+                                     Content="Юридична особа"
+                                     Command="{Binding}"/>
+                    </StackPanel>
+                </t:RadDropDownButton.DropDownContent>
+            </t:RadDropDownButton>
+
+            <t:RadDropDownButton HorizontalAlignment="Right"
+                                 Content="Додати зовнішнього правовласника"
+                                 t:StyleManager.Theme="VisualStudio2013"
+                                 CloseOnPopupMouseLeftButtonUp="True"
+                                 Margin="3">
+                <t:RadDropDownButton.DropDownContent>
+                    <StackPanel>
+                        <t:RadButton Margin="0" HorizontalContentAlignment="Left"
+                                     Content="Правовласник"
+                                     Command="{Binding}"/>
+                        <t:RadButton Margin="0,1,0,0" 
+                                     Content="Видавництво"
+                                     Command="{Binding}"/>
+                    </StackPanel>
+                </t:RadDropDownButton.DropDownContent>
+            </t:RadDropDownButton>
         </StackPanel>
     </Grid>
 </UserControl>
