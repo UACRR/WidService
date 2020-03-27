@@ -83,6 +83,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GetUserId", "GetUserId\GetU
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MediaServiceDb", "MediaServiceDb\MediaServiceDb.sqlproj", "{F08CC997-76A4-4CDD-BD90-F186ACC54FE9}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RoyaltyServiceInstaller", "RoyaltyServiceInstaller\RoyaltyServiceInstaller.vdproj", "{A61DE95E-598A-400E-89FF-A70D2188BE1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug HttpSys|Any CPU = Debug HttpSys|Any CPU
@@ -850,6 +852,18 @@ Global
 		{F08CC997-76A4-4CDD-BD90-F186ACC54FE9}.Release|x86.ActiveCfg = Release|Any CPU
 		{F08CC997-76A4-4CDD-BD90-F186ACC54FE9}.Release|x86.Build.0 = Release|Any CPU
 		{F08CC997-76A4-4CDD-BD90-F186ACC54FE9}.Release|x86.Deploy.0 = Release|Any CPU
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug HttpSys|Any CPU.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug HttpSys|x64.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug HttpSys|x86.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug IIS|Any CPU.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug IIS|x64.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug IIS|x86.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug|Any CPU.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug|x64.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Debug|x86.ActiveCfg = Debug
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Release|Any CPU.ActiveCfg = Release
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Release|x64.ActiveCfg = Release
+		{A61DE95E-598A-400E-89FF-A70D2188BE1F}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

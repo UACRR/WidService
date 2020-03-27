@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BE2B9387-9119-454B-B94F-297DCE752D8D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RightholderWorkplace</RootNamespace>
     <AssemblyName>RightholderWorkplace</AssemblyName>
@@ -71,6 +71,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Jonas-Rask-Pry-System-Aluport-server.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="netstandard" />

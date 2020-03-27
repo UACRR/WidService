@@ -40,7 +40,8 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
 
         private void PublisherAndSubpublisherControl_Load(object sender, EventArgs e)
         {
-            UpdateData();
+            if (!IsDesignMode)
+                UpdateData();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

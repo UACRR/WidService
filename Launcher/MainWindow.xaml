@@ -297,7 +297,19 @@
         </ScrollViewer>
 
         <Grid Grid.Row="2" Background="DodgerBlue">
-            <t:Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Background="DeepSkyBlue" FontWeight="DemiBold" Content="IPS" Margin="3" Width="55"/>
+            <t:Label HorizontalAlignment="Center" 
+                     HorizontalContentAlignment="Center" 
+                     Background="DeepSkyBlue" 
+                     FontWeight="DemiBold" 
+                     Content="IPS" 
+                     Margin="3"
+                     Width="55">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SAAuthCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </t:Label>
         </Grid>
 
     </Grid>

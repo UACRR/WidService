@@ -100,6 +100,41 @@
       </description>
       <defaultContent>Права доступу</defaultContent>
     </uiItem>
+    <uiItem name="Processes">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Управління технологічними процесами</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_SYS">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Система</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_OTHER">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Інше</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_CONSUMERS">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Користувачі</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_RIGHTS">
+      <content>
+      </content>
+      <description>
+      </description>
+      <defaultContent>Права</defaultContent>
+    </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">
     <uiItem name="ERR">

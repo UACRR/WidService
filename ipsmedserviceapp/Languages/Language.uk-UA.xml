@@ -41,7 +41,7 @@
       <defaultContent>Правовласники та Об`єкти прав</defaultContent>
     </uiItem>
     <uiItem name="ReportsAndRoyalty">
-      <content>Обробка звіті Користувачів (ідентифікація)</content>
+      <content>Обробка звітів Користувачів (ідентифікація)</content>
       <description>
       </description>
       <defaultContent>Обробка звіті Користувачів (ідентифікація)</defaultContent>
@@ -99,6 +99,36 @@
       <description>
       </description>
       <defaultContent>Права доступу</defaultContent>
+    </uiItem>
+    <uiItem name="Processes">
+      <content>Управління технологічними процесами</content>
+      <description>
+      </description>
+      <defaultContent>Управління технологічними процесами</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_SYS">
+      <content>Система</content>
+      <description>
+      </description>
+      <defaultContent>Система</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_OTHER">
+      <content>Інше</content>
+      <description>
+      </description>
+      <defaultContent>Інше</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_CONSUMERS">
+      <content>Користувачі</content>
+      <description>
+      </description>
+      <defaultContent>Користувачі</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_RIGHTS">
+      <content>Права</content>
+      <description>
+      </description>
+      <defaultContent>Права</defaultContent>
     </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">

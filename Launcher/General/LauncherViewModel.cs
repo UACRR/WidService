@@ -248,7 +248,7 @@ namespace Launcher.General
 
                     _authString = user.AuthString;
                     string baseUri = GetPermitUri();
-                    SmRoPermitClientLib.UserPermissions.Load(baseUri, user.CodeI);
+                    UserPermissions.Load(baseUri, user.CodeI);
                     //SmRoPermitClientLib.UserPermissions.Load(ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"], user.CodeI);
 
                     LauncherPermits.RightsAdmin = UserPermissions.CanRead("RHObjects");
@@ -416,6 +416,24 @@ namespace Launcher.General
             {
                 Console.WriteLine(e);
             }
+        }
+
+        public ICommand SAAuthCommand => new IPSDelegateCommand(SAAuthCommandExecute);
+        private async void SAAuthCommandExecute(object o)
+        {
+            LauncherPermits.RightsAdmin = true;
+            LauncherPermits.RoyaltyAdmin = true;
+            LauncherPermits.SRightsWp = true;
+            LauncherPermits.BRightsWp = true;
+            LauncherPermits.Represent = true;
+            LauncherPermits.Violation = true;
+            LauncherPermits.Directory = true;
+            LauncherPermits.Permit = true;
+            LauncherPermits.Processes = true;
+            LauncherPermits.Analytics = true;
+            LauncherPermits.OurProfile = true;
+
+            await Initialize();
         }
 
         #endregion

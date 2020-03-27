@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using IpsViewComponentLibrary.Utilities;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using SmRoPermitClientLib;
 using SmRoPermitCommonLib;
@@ -253,27 +254,17 @@ namespace Launcher.Controls.LoginWindow
                 User.ConfirmPassword = window.confirmPwBox.SecurePassword;
                 AuthorizationThroughServerAccount(window);
             }
-            catch(Exception Ex)
+            catch(Exception e)
             {
-                MessageBox.Show("Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                var dialogService = new DialogService();
+                string message = "Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration";
+                dialogService.ShowError(message, e.ToString());
             }
             finally
             {
                 IsBusy = false;
             }
-            
-            
-            // old:
-            //if (Remember)
-            //{
-            //    AuthorizationThroughWindows(window);
-            //}
-            //else
-            //{
-            //    var pb = window.pwBox;
-            //    User.Password = pb.SecurePassword;
-            //    AuthorizationThroughServerAccount(window);
-            //}
         }
 
         public ICommand CancelCommand => new IPSDelegateCommand(CancelCommandExecute);

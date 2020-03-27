@@ -8,7 +8,8 @@
         xmlns:requestControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.CopyrightRequest;assembly=IPSViewComponentLibraryWPF"
         xmlns:transferControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights;assembly=IPSViewComponentLibraryWPF"
         xmlns:rightholders="clr-namespace:IpsViewComponentLibrary.RightholderControls;assembly=IpsViewComponentLibrary"
-        xmlns:objectsRight="clr-namespace:IPSModulesLibrary.ObjectsRightList;assembly=IPSModulesLibrary"
+        xmlns:objectsRightList="clr-namespace:IPSModulesLibrary.ObjectsRightList;assembly=IPSModulesLibrary"
+        xmlns:rightholdersList="clr-namespace:IPSModulesLibrary.RightholdersList;assembly=IPSModulesLibrary"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="{Binding LOC.Title}" Height="450" Width="800">
@@ -28,9 +29,10 @@
             <t:RadTabItem Header="{Binding LOC.RH_1}" IsSelected="True">
                 <t:RadTabControl Margin="1 0 0 0" SelectedItem="{Binding RightholderNestedTabItem}">
                     <t:RadTabItem Header="{Binding LOC.RH_2}" IsSelected="True">
-                        <WindowsFormsHost>
+                        <rightholdersList:RightholdersListControl/>
+                        <!--<WindowsFormsHost>
                             <rightholders:RightholderListControl/>
-                        </WindowsFormsHost>
+                        </WindowsFormsHost>-->
                     </t:RadTabItem>
                     <t:RadTabItem Header="{Binding LOC.RH_CHANGE}">
                         <transferControl:TransferOfRightsControl/>
@@ -41,15 +43,17 @@
                 </t:RadTabControl>
             </t:RadTabItem>
             <t:RadTabItem Header="{Binding LOC.OR}">
-                <objectsRight:ObjectsRightListControl/>
+                <objectsRightList:ObjectsRightListControl/>
             </t:RadTabItem>
             <t:RadTabItem Header="{Binding LOC.PARTNERS}">
-                <!--<WindowsFormsHost>
+                <WindowsFormsHost>
 
-                </WindowsFormsHost>-->
+                </WindowsFormsHost>
             </t:RadTabItem>
             <t:RadTabItem Header="{Binding LOC.PUB_SUB}">
+                <WindowsFormsHost>
 
+                </WindowsFormsHost>
             </t:RadTabItem>
         </t:RadTabControl>
     </Grid>

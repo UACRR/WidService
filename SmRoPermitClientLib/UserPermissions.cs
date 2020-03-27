@@ -43,6 +43,9 @@ namespace SmRoPermitClientLib
 
         public static void ImposeRestrictions(Form form)
         {
+            if (Permissions == null)
+                return;
+
             if(!string.IsNullOrEmpty(form.AccessibleDescription))
             {
                 string accessToken = form.AccessibleDescription;
