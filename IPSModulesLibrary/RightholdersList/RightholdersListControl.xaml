@@ -50,7 +50,7 @@
                                 </Grid>
                             </BulletDecorator.Bullet>
                             <!--Text element-->
-                            <TextBlock Margin="3,1,0,0" Foreground="#FF3E3E3E" FontFamily="Calibri"  FontSize="12">
+                            <TextBlock Margin="3,1,0,0" Foreground="#FF3E3E3E" FontFamily="Calibri" FontSize="12">
                         <ContentPresenter />
                             </TextBlock>
                         </BulletDecorator>

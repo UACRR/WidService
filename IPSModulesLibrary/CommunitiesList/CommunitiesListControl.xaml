@@ -10,6 +10,15 @@
              Background="WhiteSmoke"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <Control.Resources>
+        <Style TargetType="t:RadGridView">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="ShowGroupPanel" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="ShowSearchPanel" Value="True"/>
+            <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
+        </Style>
+    </Control.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -31,9 +40,9 @@
           
 
             <t:RadGridView Grid.Row="2"
-                               x:Name="gridView"
-                               ItemsSource="{Binding ObjectsRightsItemSource}"
-                               Margin="3">
+                           x:Name="gridView"
+                           ItemsSource="{Binding ObjectsRightsItemSource}"
+                           Margin="3">
                 <t:RadGridView.Columns>
                     <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding}"/>
                     <t:GridViewColumn Width="25">
@@ -61,9 +70,9 @@
         </Grid>
         <StackPanel Grid.Row="2" Background="Silver" Orientation="Horizontal">
             <Button HorizontalAlignment="Right"
-                    Content="Додати правовласника УААСП"
+                    Content="Додати нове товариство"
                     t:StyleManager.Theme="VisualStudio2013"
-                    Margin="3"></Button>
+                    Margin="3"/>
         </StackPanel>
     </Grid>
 </UserControl>
