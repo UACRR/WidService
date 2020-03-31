@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Types;
 using ipsFormsDesign.Data;
@@ -71,7 +72,8 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             }
         }
 
-        public Action<object> RunSearchQuery { get; set; }
+        public Action<ObjectRightSearchResource> RunSearchQuery { get; set; }
+
         public Action Clear { get; set; }
 
         public LM_SEARCH LM_SEARCH { get; set; } = new LM_SEARCH();
@@ -225,13 +227,13 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
             if(string.IsNullOrEmpty(SimpleSearchParameters.SearchText))
             {
-                ShowMessage.ShowWarning("Не введено пошукове слово!");
+                ShowMessage.ShowWarning(LM_SEARCH.WARN_EMPTY_SWORD);
                 return;
             }
 
             if (!propertyList.Any())
             {
-                ShowMessage.ShowWarning("Не обрано жодного поля для пошуку!");
+                ShowMessage.ShowWarning(LM_SEARCH.WARN_NO_SELECT_FIELD);
                 return;
             }
 
@@ -243,7 +245,11 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             };
 
             // exec search
-            RunSearchQuery?.Invoke(searchData);
+            var searchResource = new ObjectRightSearchResource
+            {
+                SimpleSearch = searchData
+            };
+            RunSearchQuery?.Invoke(searchResource);
         }
 
         /// <summary>
@@ -284,12 +290,16 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
             if (!propertyList.Any())
             {
-                ShowMessage.ShowWarning("Відсутні дані для пошуку!");
+                ShowMessage.ShowWarning(LM_SEARCH.WARN_SEARCH_DATA_EMPTY);
                 return;
             }
 
             // exec search
-            RunSearchQuery?.Invoke(propertyList);
+            var searchResource = new ObjectRightSearchResource
+            {
+                MultiplySearch = propertyList
+            };
+            RunSearchQuery?.Invoke(searchResource);
         }
 
         public ICommand LoadedCommand => new IPSDelegateCommand(LoadedCommandExecute);

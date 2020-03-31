@@ -43,5 +43,21 @@ namespace IPSViewComponentLibraryWPF.Extensions
 
             return (Byte) (long) obj;
         }
+
+        public static short CastShort(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+                return default(short);
+            
+            return (short) (long) obj;
+        }
+
+        public static short? CastShortNull(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+                return default(short?);
+
+            return (short?)(long?)obj;
+        }
     }
 }

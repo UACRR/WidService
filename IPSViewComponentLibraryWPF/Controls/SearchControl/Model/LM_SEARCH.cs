@@ -1,4 +1,5 @@
-﻿using Telerik.Windows.Controls;
+﻿using System.Runtime.InteropServices.ComTypes;
+using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
 {
@@ -13,6 +14,9 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
         private string _containsVal = "Містить слово";
         private string _txtSearchEnum = "Введіть дані в поля, в яких буде здійснюватись пошук:";
         private string _allCheckItem = "Всі поля";
+        private string _warnEmptySword = "Не введено пошукове слово!";
+        private string _warnNoSelectField = "Не обрано жодного поля для пошуку!";
+        private string _warnSearchDataEmpty = "Відсутні дані для пошуку!";
 
         public string TAB_SIMPLE
         {
@@ -101,6 +105,36 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
             {
                 _allCheckItem = value;
                 OnPropertyChanged(() => ALL_CHECK_ITEM);
+            }
+        }
+
+        public string WARN_EMPTY_SWORD
+        {
+            get => _warnEmptySword;
+            set
+            {
+                _warnEmptySword = value;
+                OnPropertyChanged(() => WARN_EMPTY_SWORD);
+            }
+        }
+
+        public string WARN_NO_SELECT_FIELD
+        {
+            get => _warnNoSelectField;
+            set
+            {
+                _warnNoSelectField = value; 
+                OnPropertyChanged(() => WARN_NO_SELECT_FIELD);
+            }
+        }
+
+        public string WARN_SEARCH_DATA_EMPTY
+        {
+            get => _warnSearchDataEmpty;
+            set
+            {
+                _warnSearchDataEmpty = value;
+                OnPropertyChanged(() => WARN_SEARCH_DATA_EMPTY);
             }
         }
     }

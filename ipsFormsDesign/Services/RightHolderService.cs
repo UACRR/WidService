@@ -4,8 +4,11 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Model.SQLViewsData;
 using ipsFormsDesign.ViewModels.Rightholders;
 using System.Collections.Generic;
+using System.Data;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types;
 using WebAPIConnector;
 
 [assembly: InternalsVisibleTo("ipsFormsDesign.Tests")]
@@ -75,6 +78,13 @@ namespace ipsFormsDesign.Services
         public async Task<vTsk1ListRightHolder01Box> GetRightholdersPageAsync(RightholderListQuery query)
         {
             return await Task.Factory.StartNew(() => GetRightholdersPage(query));
+        }
+
+        public async Task<ResponseOfRequest<DataTable>> GetRightholdersList(ObjectRightSearchResource searchResource)
+        {
+            string url = "rh/list";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, ObjectRightSearchResource>(url, searchResource);
+            return result;
         }
 
         public Customer NewCustomer(int custType)

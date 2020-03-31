@@ -128,7 +128,7 @@ namespace IPSModulesLibrary.ObjectsRightList
             if (IsDataLoaded)
                 return;
 
-            LoadData(new ObjectRightSearchResource());
+            var task = LoadData(new ObjectRightSearchResource());
             IsDataLoaded = true;
         }
 
@@ -185,19 +185,9 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
         }
 
-        private async void RunSearchDelegateMethod(object o)
+        private async void RunSearchDelegateMethod(ObjectRightSearchResource searchResource)
         {
-            var searchResource = new ObjectRightSearchResource();
-
-            if (typeof(SearchData).IsEquivalentTo(o.GetType()))
-            {
-                searchResource.SimpleSearch = (SearchData)o;
-            }
-            else if (o.GetType().GetInterface(nameof(ICollection<SearchDataExtended>)) != null)
-            {
-                searchResource.MultiplySearch = new List<SearchDataExtended>((ICollection<SearchDataExtended>)o);
-            }
-
+            // wrap
             await LoadData(searchResource);
         }
 
@@ -269,7 +259,7 @@ namespace IPSModulesLibrary.ObjectsRightList
         #region * * * COMMANDS * * *
 
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
-        private async void LoadCommandExecute(object o)
+        private void LoadCommandExecute(object o)
         {
             if (IsLoaded)
                 return;
@@ -280,9 +270,7 @@ namespace IPSModulesLibrary.ObjectsRightList
             ((SearchControlViewModel) searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
             ((SearchControlViewModel) searchControl.DataContext).Clear = Clear;
 
-            //var search = new ObjectRightSearchResource();
             IsLoaded = true;
-            //await LoadData(search);
         }
 
         public ICommand OpenObjectRightCommand => new IPSDelegateCommand(OpenObjectRightCommandExecute);

@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="IPSModulesLibrary.RightholdersList.RightholdersListControl"
+             x:Name="thisControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,6 +16,12 @@
         <local:RightholdersListViewModel/>
     </Control.DataContext>
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" CommandParameter="{Binding ElementName=thisControl}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Control.Resources>
         <Style TargetType="t:RadTreeViewItem">
             <Setter Property="Margin" Value="0,0,10,0"/>
@@ -24,6 +31,7 @@
             <Setter Property="ShowGroupPanel" Value="False"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
             <Setter Property="ShowSearchPanel" Value="True"/>
+            <Setter Property="ShowToolTipOnTrimmedText" Value="True"/>
             <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
         </Style>
         <Style TargetType="t:RadButton">
@@ -35,6 +43,8 @@
         <Style TargetType="t:GridViewDataColumn">
             <Setter Property="HeaderTextAlignment" Value="Center"/>
             <Setter Property="IsFilterable" Value="False"/>
+            <Setter Property="ShowToolTipOnTrimmedText" Value="True"/>
+            <Setter Property="HeaderTextTrimming" Value="CharacterEllipsis"/>
         </Style>
         <Style TargetType="{x:Type RadioButton}" >
             <Setter Property="Template">
@@ -98,40 +108,24 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <!--<t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
-                           MinWidth="100"
+            <t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
                            Margin="3"
+                           MinWidth="200"
                            Background="MintCream"
                            HorizontalAlignment="Stretch"
                            HorizontalContentAlignment="Stretch"
                            ItemsSource="{Binding TreeViewItemSource}"
                            SelectionMode="Single"
-                           SelectedItem="{Binding Path=SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+                           SelectedItem="{Binding Path=SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <GridSplitter Grid.Column="1" 
                           Margin="0,3,0,3"
+                          HorizontalAlignment="Stretch"
                           Width="3" Background="Silver" ShowsPreview="False"/>
-
-            <Grid Grid.Column="0" Margin="3">
-                <StackPanel>
-                    <TextBlock FontWeight="Bold">Всі правовласники</TextBlock>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" IsChecked="True" Content="Всі"   HorizontalContentAlignment="Left"></ToggleButton>
-                    <TextBlock FontWeight="Bold">Правовласники УААСП</TextBlock>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" IsChecked="True" Content="Всі" HorizontalContentAlignment="Left"></ToggleButton>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" Content="Не підтверджені"   HorizontalContentAlignment="Left"></ToggleButton>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" Content="На акцепті"   HorizontalContentAlignment="Left"></ToggleButton>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" Content="Активний"  HorizontalContentAlignment="Left"></ToggleButton>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" Content="Закритий"   HorizontalContentAlignment="Left"></ToggleButton>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" Content="Оформлення спадщини"   HorizontalContentAlignment="Left"></ToggleButton>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" Content="Заблокований"   HorizontalContentAlignment="Left"></ToggleButton>
-                    <TextBlock FontWeight="Bold">Зовнішні правовласники</TextBlock>
-                    <ToggleButton Style="{StaticResource SidebarToggle}" IsChecked="True" Content="Всі"   HorizontalContentAlignment="Left"></ToggleButton>
-                </StackPanel>
-            </Grid>
 
             <Grid Grid.Column="2" Margin="3">
                 <Grid.RowDefinitions>
@@ -154,10 +148,19 @@
 
                 <t:RadGridView Grid.Row="2"
                                x:Name="gridView"
+                               ColumnWidth="*"
                                ItemsSource="{Binding ObjectsRightsItemSource}"
                                Margin="3">
                     <t:RadGridView.Columns>
-                        <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding}"/>
+                        <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding CustId}"/>
+                        <t:GridViewDataColumn Width="100" Header="Шифр автор/правовласника" DataMemberBinding="{Binding InnerCode}"/>
+                        <t:GridViewDataColumn Width="100" Header="IPI" DataMemberBinding="{Binding InterCode}"/>
+                        <t:GridViewDataColumn Header="Правовласник" DataMemberBinding="{Binding Name}"/>
+                        <t:GridViewDataColumn Width="75" Header="Дата договору" DataMemberBinding="{Binding AgreementDate}" DataFormatString="{}{0:d}"/>
+                        <t:GridViewDataColumn Width="75" Header="К-сть об'єктів" TextAlignment="Right" DataMemberBinding="{Binding CntObj}"/>
+                        <t:GridViewDataColumn Width="75" Header="Дохід з початку року" TextAlignment="Right" DataMemberBinding="{Binding YearProfit}" DataFormatString="{}{0:N2}"/>
+                        <t:GridViewDataColumn Width="100" Header="Тип правовласника" IsFilterable="True" DataMemberBinding="{Binding RHolderTypeName}"/>
+
                         <t:GridViewColumn Width="25">
                             <t:GridViewColumn.Header>
                                 <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
@@ -175,11 +178,12 @@
                     </t:RadGridView.Columns>
                 </t:RadGridView>
                 <t:RadDataPager Grid.Row="3"
-                                    t:StyleManager.Theme="VisualStudio2013"
-                                    PageSize="250"
-                                    Source="{Binding Items, ElementName=gridView}"
-                                    IsTotalItemCountFixed="False"
-                                    DisplayMode="All, All"/>
+                                Margin="3 0"
+                                t:StyleManager.Theme="VisualStudio2013"
+                                PageSize="250"
+                                Source="{Binding Items, ElementName=gridView}"
+                                IsTotalItemCountFixed="False"
+                                DisplayMode="All, All"/>
             </Grid>
 
 
