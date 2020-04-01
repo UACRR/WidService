@@ -36,7 +36,7 @@
 
     <Grid>
         <TabControl>
-            <TabItem Header="{Binding LM_SEARCH.TAB_SIMPLE}">
+            <TabItem Header="{Binding LOC.TAB_SIMPLE}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -55,31 +55,31 @@
                                  Margin="3" 
                                  VerticalContentAlignment="Center" 
                                  MinWidth="250"/>
-                            <t:RadButton Content="{Binding LM_SEARCH.BTN_SEARCH}"
+                            <t:RadButton Content="{Binding LOC.BTN_SEARCH}"
                                      MinWidth="95" 
                                      Command="{Binding RunSearchCommand}">
                             </t:RadButton>
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton Margin="5 0" 
                                          IsChecked="{Binding SimpleSearchParameters.IsEqualSelected}" 
-                                         Content="{Binding LM_SEARCH.EQ_VAL}" 
+                                         Content="{Binding LOC.EQ_VAL}" 
                                          VerticalAlignment="Center"/>
                                 <RadioButton Margin="5 0" 
                                          IsChecked="{Binding SimpleSearchParameters.IsLikeSelected}" 
-                                         Content="{Binding LM_SEARCH.LIKE_VAL}"
+                                         Content="{Binding LOC.LIKE_VAL}"
                                          VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                         <t:RadButton Grid.Column="1" 
                                      MinWidth="80" 
                                      HorizontalAlignment="Right" 
-                                     Content="Clear"
+                                     Content="{Binding LOC.CLEAR_SEARCH}"
                                      Command="{Binding ClearCommand}"/>
                     </Grid>
 
                     <t:Label Grid.Row="1"
                              Background="GhostWhite"
-                             Content="{Binding LM_SEARCH.CHECK_SEARCH_ENUM}"/>
+                             Content="{Binding LOC.CHECK_SEARCH_ENUM}"/>
 
                     <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
                         <ListBox Margin="3" ItemsSource="{Binding ListBoxItemsSource}">
@@ -93,7 +93,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{Binding LM_SEARCH.TAB_MULTI}">
+            <TabItem Header="{Binding LOC.TAB_MULTI}">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -109,11 +109,11 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" Content="{Binding LM_SEARCH.TXT_SEARCH_ENUM}" Background="GhostWhite"/>
+                            <Label Grid.Column="0" Content="{Binding LOC.TXT_SEARCH_ENUM}" Background="GhostWhite"/>
                             <t:RadButton Grid.Column="1" 
                                          MinWidth="80" 
                                          HorizontalAlignment="Right" 
-                                         Content="Clear"
+                                         Content="{Binding LOC.CLEAR_SEARCH}"
                                          Command="{Binding ClearCommand}"/>
                         </Grid>
 
@@ -134,23 +134,10 @@
                         </ListBox>
 
                         <t:RadButton Grid.Row="2" 
-                                     Content="{Binding LM_SEARCH.BTN_SEARCH}" 
+                                     Content="{Binding LOC.BTN_SEARCH}" 
                                      HorizontalAlignment="Left"
                                      MinWidth="95"
                                      Command="{Binding RunSearchExtendedCommand}"/>
-
-                        <!--<Grid Grid.Row="2" Grid.ColumnSpan="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <t:RadButton Grid.Column="1" 
-                                         Content="{Binding LM_SEARCH.BTN_SEARCH}" 
-                                         MinWidth="95"
-                                         Command="{Binding RunSearchExtendedCommand}"/>
-                        </Grid>-->
-
-
                     </Grid>
                 </ScrollViewer>
             </TabItem>

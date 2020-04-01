@@ -17,6 +17,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
         private string _warnEmptySword = "Не введено пошукове слово!";
         private string _warnNoSelectField = "Не обрано жодного поля для пошуку!";
         private string _warnSearchDataEmpty = "Відсутні дані для пошуку!";
+        private string _clearSearch = "Очистити";
 
         public string TAB_SIMPLE
         {
@@ -135,6 +136,16 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
             {
                 _warnSearchDataEmpty = value;
                 OnPropertyChanged(() => WARN_SEARCH_DATA_EMPTY);
+            }
+        }
+
+        public string CLEAR_SEARCH
+        {
+            get => _clearSearch;
+            set
+            {
+                _clearSearch = value;
+                OnPropertyChanged(() => CLEAR_SEARCH);
             }
         }
     }

@@ -7,16 +7,25 @@
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:requestControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.CopyrightRequest;assembly=IPSViewComponentLibraryWPF"
         xmlns:transferControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights;assembly=IPSViewComponentLibraryWPF"
-        xmlns:rightholders="clr-namespace:IpsViewComponentLibrary.RightholderControls;assembly=IpsViewComponentLibrary"
+        xmlns:communityList="clr-namespace:IpsViewComponentLibrary.CommunityControls;assembly=IpsViewComponentLibrary"
+        xmlns:pubsubList="clr-namespace:IpsViewComponentLibrary.PublisherAndSubpublisher;assembly=IpsViewComponentLibrary"
         xmlns:objectsRightList="clr-namespace:IPSModulesLibrary.ObjectsRightList;assembly=IPSModulesLibrary"
         xmlns:rightholdersList="clr-namespace:IPSModulesLibrary.RightholdersList;assembly=IPSModulesLibrary"
+        xmlns:communitiesList="clr-namespace:IPSModulesLibrary.CommunitiesList;assembly=IPSModulesLibrary"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="{Binding LOC.Title}" Height="450" Width="800">
+        Title="{Binding LOC.TITLE_CRIGHT_ADMIN_WP}" Height="450" Width="800">
 
     <Window.DataContext>
         <local:CopyrightAdminWorkplaceViewModel/>
     </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Window.Resources>
         <Style TargetType="t:RadTabControl">
@@ -30,9 +39,6 @@
                 <t:RadTabControl Margin="1 0 0 0" SelectedItem="{Binding RightholderNestedTabItem}">
                     <t:RadTabItem Header="{Binding LOC.RH_2}" IsSelected="True">
                         <rightholdersList:RightholdersListControl/>
-                        <!--<WindowsFormsHost>
-                            <rightholders:RightholderListControl/>
-                        </WindowsFormsHost>-->
                     </t:RadTabItem>
                     <t:RadTabItem Header="{Binding LOC.RH_CHANGE}">
                         <transferControl:TransferOfRightsControl/>
@@ -45,14 +51,15 @@
             <t:RadTabItem Header="{Binding LOC.OR}">
                 <objectsRightList:ObjectsRightListControl/>
             </t:RadTabItem>
-            <t:RadTabItem Header="{Binding LOC.PARTNERS}">
-                <WindowsFormsHost>
-
-                </WindowsFormsHost>
+            <t:RadTabItem Header="{Binding LOC.COMMUNITIES}">
+                <communitiesList:CommunitiesListControl/>
+                <!--<WindowsFormsHost>
+                    <communityList:CommunityControl/>
+                </WindowsFormsHost>-->
             </t:RadTabItem>
             <t:RadTabItem Header="{Binding LOC.PUB_SUB}">
                 <WindowsFormsHost>
-
+                    <pubsubList:PublisherAndSubpublisherControl/>
                 </WindowsFormsHost>
             </t:RadTabItem>
         </t:RadTabControl>

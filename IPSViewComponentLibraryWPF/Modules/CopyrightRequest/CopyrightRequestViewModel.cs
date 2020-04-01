@@ -18,12 +18,10 @@ using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 {
-    public class CopyrightRequestViewModel : ViewModelBase
+    public class CopyrightRequestViewModel : ViewModelBase, ILazyLoadData
     {
         private readonly string _recordCount = "К-сть записів";
         private CopyrightRequestService _service;
-
-        public CopyrightRequestViewModel() {}
 
         #region * * * PROPERTIES * * *
 
@@ -76,7 +74,6 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 
         private IList<ObjectRightNotAccepted> ListObjects { get; set; }
         
-
         private bool _isCheckedAllRunable;
         private bool _isCheckedAll;
         public bool IsCheckedAll
@@ -227,8 +224,10 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 OnPropertyChanged(() => WorkTypeDictionary);
             }
         }
-        
+
         #endregion
+
+        #region * * * METHOD * * *
 
         private void UpdatePropertyPanelData()
         {
@@ -347,10 +346,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             ObjectsItemSource = modelList;
         }
 
-        #region * * * COMMANDS * * *
-
-        public ICommand LoadDataCommand => new IPSDelegateCommand(LoadDataCommandExecute);
-        private async void LoadDataCommandExecute(object o)
+        public async void LazyLoadData()
         {
             WorkTypeDictionary = new ObservableCollection<WorkType>(IpsGlobal.AnketaDictionaties.workType);
             _service = CopyrightRequestService.GetInstance();
@@ -360,6 +356,10 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             await Task.Factory.StartNew(() => ConvertToModel(rightholderList));
             IsBusy = false;
         }
+
+        #endregion
+
+        #region * * * COMMANDS * * *
 
         public ICommand SaveCommand => new IPSDelegateCommand(SaveCommandExecute);
         private void SaveCommandExecute(object o)

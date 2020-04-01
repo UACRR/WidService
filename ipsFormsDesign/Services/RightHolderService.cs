@@ -80,10 +80,15 @@ namespace ipsFormsDesign.Services
             return await Task.Factory.StartNew(() => GetRightholdersPage(query));
         }
 
-        public async Task<ResponseOfRequest<DataTable>> GetRightholdersList(ObjectRightSearchResource searchResource)
+        /// <summary>
+        /// Отримати список правовласників
+        /// </summary>
+        /// <param name="searchModuleResource"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest<DataTable>> GetRightholdersList(SearchModuleResource searchModuleResource)
         {
             string url = "rh/list";
-            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, ObjectRightSearchResource>(url, searchResource);
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, searchModuleResource);
             return result;
         }
 

@@ -44,10 +44,10 @@ namespace ipsFormsDesign.Services
             return await Task.Factory.StartNew(() => GetObjectRights(query));
         }
 
-        public async Task<ResponseOfRequest<DataTable>> GetObjectRightListAsync(ObjectRightSearchResource resource)
+        public async Task<ResponseOfRequest<DataTable>> GetObjectRightListAsync(SearchModuleResource moduleResource)
         {
             string url = "objectright/list";
-            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, ObjectRightSearchResource>(url, resource);
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, moduleResource);
             return result;
         }
 

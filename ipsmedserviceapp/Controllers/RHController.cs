@@ -220,6 +220,11 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             }
         }
 
+        /// <summary>
+        /// Отримати список правовласників
+        /// </summary>
+        /// <param name="searchResource"></param>
+        /// <returns></returns>
         [HttpPost("list")]
         public async Task<IActionResult> GetRightholdersList([FromBody] ObjectRightSearchResource searchResource)
         {

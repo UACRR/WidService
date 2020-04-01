@@ -9,22 +9,22 @@ namespace Launcher.WorkplaceModules.CopyrightAdminWorkplace
 {
     public class LM_CopyrightAdminWorkplace : ViewModelBase
     {
-        private string _title = "Робоче місце адмінстратора права";
+        private string _titleCrightAdminWp = "Робоче місце адмінстратора права";
         private string _rh1 = "Правовласники";
         private string _rh2 = "Список правовласників";
         private string _rhChange = "Зміна правовласника";
         private string _rhRequest = "Запити";
         private string _or = "Об'єкти права";
-        private string _partners = "Товариства";
+        private string _communities = "Товариства";
         private string _pubSub = "Видавництва/Субвидаництва";
 
-        public string Title
+        public string TITLE_CRIGHT_ADMIN_WP
         {
-            get => _title;
+            get => _titleCrightAdminWp;
             set
             {
-                _title = value;
-                OnPropertyChanged(() => Title);
+                _titleCrightAdminWp = value;
+                OnPropertyChanged(() => TITLE_CRIGHT_ADMIN_WP);
             }
         }
 
@@ -78,13 +78,13 @@ namespace Launcher.WorkplaceModules.CopyrightAdminWorkplace
             }
         }
 
-        public string PARTNERS
+        public string COMMUNITIES
         {
-            get => _partners;
+            get => _communities;
             set
             {
-                _partners = value;
-                OnPropertyChanged(() => PARTNERS);
+                _communities = value;
+                OnPropertyChanged(() => COMMUNITIES);
             }
         }
 

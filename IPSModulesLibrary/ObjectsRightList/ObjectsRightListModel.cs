@@ -1,18 +1,16 @@
 ﻿using System.Linq;
 using ipsFormsDesign.Data;
 
-namespace IPSModulesLibrary.ObjectsRightList.Model
+namespace IPSModulesLibrary.ObjectsRightList
 {
     public class ObjectsRightListModel
     {
-        private int _categoryCode;
-        private int? _genreType;
-
         public int ObjId { get; set; }
         public string InnerCode { get; set; }
         public string ISWC { get; set; }
         public string Name { get; set; }
 
+        private int? _genreType;
         public int? GenreType
         {
             get => _genreType;
@@ -21,10 +19,8 @@ namespace IPSModulesLibrary.ObjectsRightList.Model
                 _genreType = value;
                 if (value.HasValue)
                 {
-                    var genre = IpsGlobal.AnketaDictionaties.genreType.Single(rec => rec.CodeI == value);
-                    GenreName = genre.Name;
+                    GenreName = IpsGlobal.AnketaDictionaties.genreType.Single(rec => rec.CodeI == value).Name;
                 }
-
             }
         }
 
@@ -34,6 +30,7 @@ namespace IPSModulesLibrary.ObjectsRightList.Model
         public string Performer { get; set; }
         public float Profit { get; set; }
 
+        private int _categoryCode;
         public int CategoryCode
         {
             get => _categoryCode;

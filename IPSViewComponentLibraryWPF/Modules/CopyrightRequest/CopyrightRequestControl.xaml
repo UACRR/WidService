@@ -42,12 +42,6 @@
         <local:CopyrightRequestViewModel/>
     </UserControl.DataContext>
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadDataCommand}" x:Name="controlLoaded"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
     <Grid>
         <telerik:RadBusyIndicator
             IsBusy="{Binding IsBusy, IsAsync=True}"

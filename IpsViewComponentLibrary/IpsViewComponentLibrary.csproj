@@ -111,6 +111,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunityControls\Presenters\CommunityPresenter.cs" />
     <Compile Include="RegisterControls\RegisterCCIDView.cs">
       <SubType>Form</SubType>
     </Compile>

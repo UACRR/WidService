@@ -326,7 +326,6 @@
     <Folder Include="Modules\Consumer\ConsumerBigRight\" />
     <Folder Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterItemDefaultType\" />
     <Folder Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterItemsRRLType\" />
-    <Folder Include="Modules\CopyrightRequest\Model\" />
     <Folder Include="_trash\" />
   </ItemGroup>
   <ItemGroup>

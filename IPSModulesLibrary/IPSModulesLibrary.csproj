@@ -80,7 +80,11 @@
     <Compile Include="CommunitiesList\CommunitiesListControl.xaml.cs">
       <DependentUpon>CommunitiesListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ObjectsRightList\Model\ObjectsRightListModel.cs" />
+    <Compile Include="CommunitiesList\CommunitiesListModel.cs" />
+    <Compile Include="CommunitiesList\CommunitiesListViewModel.cs" />
+    <Compile Include="CommunitiesList\LM_CommunitiesList.cs" />
+    <Compile Include="ObjectsRightList\LM_ObjectsRightList.cs" />
+    <Compile Include="ObjectsRightList\ObjectsRightListModel.cs" />
     <Compile Include="ObjectsRightList\ObjectsRightListControl.xaml.cs">
       <DependentUpon>ObjectsRightListControl.xaml</DependentUpon>
     </Compile>
@@ -152,6 +156,10 @@
     <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
       <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
       <Name>IpsViewComponentLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LanguageLibrary\LanguageLibrary.csproj">
+      <Project>{FCDDBE23-8A62-4EEE-A2C1-57879A44D5A4}</Project>
+      <Name>LanguageLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

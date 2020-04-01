@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Data;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -14,6 +15,7 @@ using IpsViewComponentLibrary.RightholderControls;
 using IPSViewComponentLibraryWPF.Controls.SearchControl;
 using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
+using LanguageLibrary;
 using Telerik.Windows.Controls;
 using DTC = IPSViewComponentLibraryWPF.Extensions.DataTableConverter;
 
@@ -38,118 +40,9 @@ namespace IPSModulesLibrary.RightholdersList
 
         private bool IsDataLoaded { get; set; }
 
-        private ObservableCollection<RadTreeViewItem> _treeViewItemSource = new ObservableCollection<RadTreeViewItem>
-        {
-            new RadTreeViewItem
-            {
-                Header = "Всі правовласники",
-                IsExpanded = true,
-                IsSelectable = false,
-                FontWeight = FontWeights.SemiBold,
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                ItemsSource = new ObservableCollection<RadTreeViewItem>
-                {
-                    new RadTreeViewItem
-                    {
-                        Header = "Всі",
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                }
-            },
-            new RadTreeViewItem
-            {
-                Header = "Правовласники УААСП",
-                IsExpanded = true,
-                IsSelectable = false,
-                FontWeight = FontWeights.SemiBold,
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                ItemsSource = new ObservableCollection<RadTreeViewItem>
-                {
-                    new RadTreeViewItem
-                    {
-                        Name = "all_internal",
-                        Header = "Всі",
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "no_accepted",
-                        Header = "Не підтверджені",
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "on_accepted",
-                        Header = "На акцепті",
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "active",
-                        Header = "Активний",
-                        IsSelected = true,
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "closed",
-                        Header = "Закритий",
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "heritage",
-                        Header = "Оформлення спадщини",
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "blocked",
-                        Header = "Заблокований",
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
+        private bool IsReloadData { get; set; }
 
-                }
-            },
-            new RadTreeViewItem
-            {
-                Header = "Зовнішні правовласники",
-                IsExpanded = true,
-                IsSelectable = false,
-                FontWeight = FontWeights.SemiBold,
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                ItemsSource = new ObservableCollection<RadTreeViewItem>
-                {
-                    new RadTreeViewItem
-                    {
-                        Name = "all_external",
-                        Header = "Всі",
-                        FontWeight = FontWeights.Normal,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                }
-            },
-        };
+        private ObservableCollection<RadTreeViewItem> _treeViewItemSource;
         public ObservableCollection<RadTreeViewItem> TreeViewItemSource
         {
             get => _treeViewItemSource;
@@ -168,13 +61,10 @@ namespace IPSModulesLibrary.RightholdersList
             {
                 _selectedTreeViewItem = value;
                 OnPropertyChanged(() => SelectedTreeViewItem);
-
                 string name = _selectedTreeViewItem.Name;
                 using (var task = Task.Factory.StartNew(() => FilterList(name)))
                 {
-                    IsBusy = true;   
                     task.Wait();
-                    IsBusy = false;
                 }
             }
         }
@@ -192,6 +82,17 @@ namespace IPSModulesLibrary.RightholdersList
             }
         }
 
+        private LM_RightholdersList _loc = new LM_RightholdersList();
+        public LM_RightholdersList LOC
+        {
+            get => _loc;
+            set
+            {
+                _loc = value;
+                OnPropertyChanged(() => LOC);
+            }
+        }
+
         #endregion
 
         #region * * * METHODS * * *
@@ -201,20 +102,20 @@ namespace IPSModulesLibrary.RightholdersList
             if (IsDataLoaded)
                 return;
 
-            var task = LoadData(new ObjectRightSearchResource());
+            var task = LoadData(new SearchModuleResource());
             IsDataLoaded = true;
         }
 
-        private async Task LoadData(ObjectRightSearchResource searchResource)
+        private async Task LoadData(SearchModuleResource searchModuleResource)
         {
             var service = new RightholderService();
             
             IsBusy = true;
-            var data = await service.GetRightholdersList(searchResource);
+            var data = await service.GetRightholdersList(searchModuleResource);
 
             if (data.IsSuccess)
             {
-                if (TempDataTable == null)
+                if (TempDataTable == null || IsReloadData)
                     TempDataTable = data.Data;
 
                 ObjectsRightsItemSourceTemp = await Task.Factory.StartNew(() => ConvertToInternalModel(data.Data));
@@ -228,6 +129,10 @@ namespace IPSModulesLibrary.RightholdersList
             }
 
             IsBusy = false;
+
+            // reload complete
+            if (IsReloadData)
+                IsReloadData = false;
 
             GC.Collect();
         }
@@ -263,7 +168,6 @@ namespace IPSModulesLibrary.RightholdersList
             return itemSource;
         }
 
-
         private void FilterList(string filterName)
         {
             if (ObjectsRightsItemSourceTemp == null)
@@ -272,10 +176,36 @@ namespace IPSModulesLibrary.RightholdersList
             if (!string.IsNullOrEmpty(filterName))
             {
                 IEnumerable<RightholdersListModel> list = null;
-                filterName = filterName.ToUpper();
 
-                if (filterName.ToUpper() == "active".ToUpper())
-                    list = ObjectsRightsItemSourceTemp.Where(rec => rec.AgrStatus == 2);
+                switch (filterName)
+                {
+                    case "all_internal":
+                        list = ObjectsRightsItemSourceTemp.Where(rec => rec.CustType != 5);
+                        break;
+                    case "no_accepted":
+                        list = ObjectsRightsItemSourceTemp.Where(rec => rec.CustType != 5 && rec.AgrStatus == 0);
+                        break;
+                    case "on_accepted":
+                        list = ObjectsRightsItemSourceTemp.Where(rec => rec.CustType != 5 && (rec.AgrStatus == 1 || rec.AgrStatus == 3));
+                        break;
+                    case "active":
+                        list = ObjectsRightsItemSourceTemp.Where(rec => rec.CustType != 5 && rec.AgrStatus == 2);
+                        break;
+                    case "closed":
+                        list = ObjectsRightsItemSourceTemp.Where(rec => rec.CustType != 5 && rec.AgrStatus == 4);
+                        break;
+                    case "heritage":
+                        list = ObjectsRightsItemSourceTemp.Where(rec => rec.CustType != 5 && rec.AgrStatus == 7);
+                        break;
+                    case "blocked":
+                        list = ObjectsRightsItemSourceTemp.Where(rec => rec.CustType != 5 && rec.AgrStatus == 8);
+                        break;
+
+                    case "all_external":
+                        list = ObjectsRightsItemSourceTemp.Where(rec => rec.CustType == 5);
+                        break;
+
+                }
 
                 ObjectsRightsItemSource = list?.ToList();
             }
@@ -285,10 +215,10 @@ namespace IPSModulesLibrary.RightholdersList
             }
         }
 
-        private async void RunSearchDelegateMethod(ObjectRightSearchResource searchResource)
+        private async void RunSearchDelegateMethod(SearchModuleResource searchModuleResource)
         {
             // wrap
-            await LoadData(searchResource);
+            await LoadData(searchModuleResource);
         }
 
         private async void Clear()
@@ -298,6 +228,134 @@ namespace IPSModulesLibrary.RightholdersList
             string name = SelectedTreeViewItem.Name;
             await Task.Factory.StartNew(() => FilterList(name));
             IsBusy = false;
+        }
+
+        private void GenerateTreeViewItems()
+        {
+            TreeViewItemSource = new ObservableCollection<RadTreeViewItem>
+            {
+                new RadTreeViewItem
+                {
+                    //Header = "Всі правовласники",
+                    Header = LOC.TV_CAT_ALL_RH,
+                    IsExpanded = true,
+                    IsSelectable = false,
+                    FontWeight = FontWeights.SemiBold,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    ItemsSource = new ObservableCollection<RadTreeViewItem>
+                    {
+                        new RadTreeViewItem
+                        {
+                            //Header = "Всі",
+                            Header = LOC.TV_ALL,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                    }
+                },
+                new RadTreeViewItem
+                {
+                    //Header = "Правовласники ОКУ",
+                    Header = LOC.TV_CAT_OCM_RH,
+                    IsExpanded = true,
+                    IsSelectable = false,
+                    FontWeight = FontWeights.SemiBold,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    ItemsSource = new ObservableCollection<RadTreeViewItem>
+                    {
+                        new RadTreeViewItem
+                        {
+                            Name = "all_internal",
+                            //Header = "Всі",
+                            Header = LOC.TV_ALL,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "no_accepted",
+                            //Header = "Не підтверджені",
+                            Header = LOC.TV_NO_ACCEPTED,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "on_accepted",
+                            //Header = "На акцепті",
+                            Header = LOC.TV_ON_ACCEPTED,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "active",
+                            //Header = "Активний",
+                            Header = LOC.TV_ACTIVE,
+                            IsSelected = true,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "closed",
+                            //Header = "Закритий",
+                            Header = LOC.TV_CLOSED,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "heritage",
+                            //Header = "Оформлення спадщини",
+                            Header = LOC.TV_HERITAGE,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "blocked",
+                            //Header = "Заблокований",
+                            Header = LOC.TV_BLOCKED,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+
+                    }
+                },
+                new RadTreeViewItem
+                {
+                    //Header = "Зовнішні правовласники",
+                    Header = LOC.TV_CAT_EXTERNAL_RH,
+                    IsExpanded = true,
+                    IsSelectable = false,
+                    FontWeight = FontWeights.SemiBold,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    ItemsSource = new ObservableCollection<RadTreeViewItem>
+                    {
+                        new RadTreeViewItem
+                        {
+                            Name = "all_external",
+                            //Header = "Всі",
+                            Header = LOC.TV_ALL,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                    }
+                },
+            };
         }
 
         #endregion
@@ -310,35 +368,16 @@ namespace IPSModulesLibrary.RightholdersList
             if (IsLoaded)
                 return;
 
-
-#if DEBUG
-
-            //var rightholderService = new RightholderService();
-            //IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
-
-            //var searchControl = ((RightholdersListControl)o).searchControl;
-
-            //var t = Task.Factory.StartNew(async () =>
-            //{
-            //    var dictionary = await DictionaryService.GetInstance().GetFrameTaskDictionary("uk-UA");
-            //    IpsGlobal.SetFrameTaskDictionary(dictionary);
-            //    // debug
-            //    var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 2).FrameParam;
-            //    ((SearchControlViewModel)searchControl.DataContext).Config = config;
-            //});
-            //t.Wait();
-
-#endif
-
             var searchControl = ((RightholdersListControl)o).searchControl;
             var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 2).FrameParam;
             ((SearchControlViewModel)searchControl.DataContext).Config = config;
             ((SearchControlViewModel)searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
             ((SearchControlViewModel)searchControl.DataContext).Clear = Clear;
 
-            IsLoaded = true;
+            AppLanguageLibrary.UpdateLanguageLocalization(LOC, nameof(AppLanguageLibrary.CurrentLanguage.RightholdersListLD));
+            GenerateTreeViewItems();
 
-            var task = LoadData(new ObjectRightSearchResource());
+            IsLoaded = true;
         }
 
         public ICommand OpenRightholderCommand => new IPSDelegateCommand(OpenRightholderCommandExecute);
@@ -381,13 +420,10 @@ namespace IPSModulesLibrary.RightholdersList
                 if (externalRightHolderForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     var result = service.SaveRightholderExternal(customer);
-                    ShowMessage.ShowInfoByResult(SaveNewRightholderExternalSuccessMsg, SaveNewRightholderExternalErrorMsg, result);
+                    ShowMessage.ShowInfoByResult(LOC.CREATE_RH_EXT_SUCC_MSG, LOC.CREATE_RH_EXT_ERR_MSG, result);
                 }
             }
         }
-
-        private const string SaveNewRightholderExternalSuccessMsg = "Нового зовнішнього правовласника/видавництво додано!";
-        private const string SaveNewRightholderExternalErrorMsg = "Неможливо додати нового зовнішнього правовласника/видавництво!";
 
         public ICommand CreateRHPhisCommand => new IPSDelegateCommand(CreateRhPhisCommandExecute);
         private void CreateRhPhisCommandExecute(object o)
@@ -408,6 +444,16 @@ namespace IPSModulesLibrary.RightholdersList
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
                 rightholderPresenter.ShowNew(custType);
             }
+        }
+
+        /// <summary>
+        /// Оновити дані
+        /// </summary>
+        public ICommand UpdateDataCommand => new IPSDelegateCommand(UpdateDataCommandExecute);
+        private async void UpdateDataCommandExecute(object o)
+        {
+            IsReloadData = true;
+            await LoadData(new SearchModuleResource());
         }
 
         #endregion

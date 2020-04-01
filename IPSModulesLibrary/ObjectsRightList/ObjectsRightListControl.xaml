@@ -73,6 +73,7 @@
 
                 <GridSplitter Grid.Column="1"
                               Margin="0,3,0,3"
+                              HorizontalAlignment="Stretch"
                               Width="3" Background="Silver" ShowsPreview="False"/>
 
                 <Grid Grid.Column="2" Margin="3">
@@ -86,11 +87,11 @@
                     <t:RadButton Grid.Row="0"
                                  Margin="3"
                                  HorizontalAlignment="Left"
-                                 IsEnabled="False"
                                  MinWidth="95"
-                                 Content="Оновити"/>
+                                 Content="{Binding LOC.BTN_UPDATE}"
+                                 Command="{Binding UpdateDataCommand}"/>
 
-                    <t:RadExpander Grid.Row="1" Header="Extended search" IsExpanded="True">
+                    <t:RadExpander Grid.Row="1" Header="{Binding LOC.}" IsExpanded="True">
                         <search:SearchControl x:Name="searchControl"/>
                     </t:RadExpander>
                         
@@ -100,35 +101,35 @@
                                    Margin="3">
                         <t:RadGridView.Columns>
                             <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding ObjId}"/>
-                            <t:GridViewDataColumn Width="1*" Header="Шифр твору" DataMemberBinding="{Binding InnerCode}"/>
+                            <t:GridViewDataColumn Width="1*" Header="{Binding LOC.GV_IN_CODE}" DataMemberBinding="{Binding InnerCode}"/>
                             <t:GridViewDataColumn Width="85" Header="ISWC" DataMemberBinding="{Binding ISWC}"/>
-                            <t:GridViewDataColumn Width="1*" Header="Назва твору" DataMemberBinding="{Binding Name}"/>
-                            <t:GridViewDataColumn Width="25" Header="В/М" 
+                            <t:GridViewDataColumn Width="1*" Header="{Binding LOC.GV_OBJ_NAME}" DataMemberBinding="{Binding Name}"/>
+                            <t:GridViewDataColumn Width="25" Header="{Binding LOC.GV_BS_CAT_NAME}" 
                                                   IsFilterable="True"
-                                                  ToolTip="Об'єкт великих/малих прав" 
+                                                  ToolTip="{Binding LOC.GVTT_BS_CAT_NAME}" 
                                                   DataMemberBinding="{Binding CategoryName}" 
                                                   TextAlignment="Center"/>
                             <t:GridViewDataColumn Width="1*" 
-                                                  Header="Жанр" 
+                                                  Header="{Binding LOC.GV_GENRE}" 
                                                   IsFilterable="True"
                                                   DataMemberBinding="{Binding GenreName}"/>
 
                             <t:GridViewDataColumn Width="1*" 
-                                                  Header="Автори" 
+                                                  Header="{Binding LOC.GV_AUTHOR}" 
                                                   ShowToolTipOnTrimmedText="True"
                                                   DataMemberBinding="{Binding Author}"/>
                             <t:GridViewDataColumn Width="1*" 
-                                                  Header="Виконавець" 
+                                                  Header="{Binding LOC.GV_PERFORMER}" 
                                                   ShowToolTipOnTrimmedText="True"
                                                   DataMemberBinding="{Binding Performer}"/>
                             <t:GridViewDataColumn Width="75" 
                                                   ShowToolTipOnTrimmedText="True" 
-                                                  Header="Спільний % володіння" 
+                                                  Header="{Binding LOC.GV_RATE}" 
                                                   DataMemberBinding="{Binding RateTotal}"
                                                   DataFormatString="{}{0:N2}"
                                                   TextAlignment="Right"/>
                             <t:GridViewDataColumn Width="120" 
-                                                  Header="Нерозподілена сума" 
+                                                  Header="{Binding LOC.GV_UNDISTRIB_MONEY}" 
                                                   TextAlignment="Right" 
                                                   DataFormatString="{}{0:N2}"
                                                   DataMemberBinding="{Binding Profit}"/>
@@ -163,7 +164,7 @@
             <StackPanel Grid.Row="1" Background="Silver">
                 <t:RadButton MinWidth="100"
                              HorizontalAlignment="Left"
-                             Content="Додати"
+                             Content="{Binding LOC.BTN_CREATE_OBJ}"
                              Margin="3"
                              Command="{Binding CreateObjectRightCommand}"/>
             </StackPanel>

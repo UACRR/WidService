@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using IpsCommonTypes.ClassesForSearchQuery;
-using IpsCommonTypes.Types;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
-using IPSModulesLibrary.ObjectsRightList.Model;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IPSViewComponentLibraryWPF.Controls.SearchControl;
-using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
+using LanguageLibrary;
 using Telerik.Windows.Controls;
 using DTC = IPSViewComponentLibraryWPF.Extensions.DataTableConverter;
 
@@ -37,51 +34,24 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
         }
 
-        public bool IsLoaded { get; set; }
+        private bool IsLoaded { get; set; }
+        
         private bool IsDataLoaded { get; set; }
+        
+        private bool IsReloadData { get; set; }
 
-        private ObservableCollection<RadTreeViewItem> _treeViewItemSource = new ObservableCollection<RadTreeViewItem>
+        private LM_ObjectsRightList _loc = new LM_ObjectsRightList();
+        public LM_ObjectsRightList LOC
         {
-            new RadTreeViewItem
+            get => _loc;
+            set
             {
-                Header = "Стан",
-                IsExpanded = true,
-                IsSelectable = false,
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                ItemsSource = new ObservableCollection<RadTreeViewItem>
-                {
-                    new RadTreeViewItem
-                    {
-                        Header = "Всі",
-                        IsSelected = true,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "statusNoActive",
-                        Header = "Не підтверджені",
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "statusNoRelate",
-                        Header = "Не прив'язані",
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                    new RadTreeViewItem
-                    {
-                        Name = "statusUnDistrib",
-                        Header = "Не розподілені",
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    },
-                }
-            },
-        };
+                _loc = value; 
+                OnPropertyChanged(() => LOC);
+            }
+        }
+
+        private ObservableCollection<RadTreeViewItem> _treeViewItemSource;
         public ObservableCollection<RadTreeViewItem> TreeViewItemSource
         {
             get => _treeViewItemSource;
@@ -128,19 +98,19 @@ namespace IPSModulesLibrary.ObjectsRightList
             if (IsDataLoaded)
                 return;
 
-            var task = LoadData(new ObjectRightSearchResource());
+            var task = LoadData(new SearchModuleResource());
             IsDataLoaded = true;
         }
 
-        private async Task LoadData(ObjectRightSearchResource searchResource)
+        private async Task LoadData(SearchModuleResource searchModuleResource)
         {
             var service = new ObjectRightService();
             IsBusy = true;
-            var data = await service.GetObjectRightListAsync(searchResource);
+            var data = await service.GetObjectRightListAsync(searchModuleResource);
 
             if (data.IsSuccess)
             {
-                if (TempDataTable == null)
+                if (TempDataTable == null || IsReloadData)
                     TempDataTable = data.Data;
                 
                 ObjectsRightsItemSourceTemp = await Task.Factory.StartNew(() => ConvertToInternalModel(data.Data));
@@ -154,6 +124,10 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
 
             IsBusy = false;
+
+            // reload complete
+            if (IsReloadData)
+                IsReloadData = false;
 
             GC.Collect();
         }
@@ -185,10 +159,10 @@ namespace IPSModulesLibrary.ObjectsRightList
             }
         }
 
-        private async void RunSearchDelegateMethod(ObjectRightSearchResource searchResource)
+        private async void RunSearchDelegateMethod(SearchModuleResource searchModuleResource)
         {
             // wrap
-            await LoadData(searchResource);
+            await LoadData(searchModuleResource);
         }
 
         private List<ObjectsRightListModel> ConvertToInternalModel(DataTable dataTable)
@@ -254,6 +228,62 @@ namespace IPSModulesLibrary.ObjectsRightList
             IsBusy = false;
         }
 
+        private void GenerateTreeViewItems()
+        {
+            TreeViewItemSource = new ObservableCollection<RadTreeViewItem>
+            {
+                new RadTreeViewItem
+                {
+                    //Header = "Стан",
+                    Header = LOC.TV_CAT_STATE,
+                    IsExpanded = true,
+                    IsSelectable = false,
+                    FontWeight = FontWeights.SemiBold,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    ItemsSource = new ObservableCollection<RadTreeViewItem>
+                    {
+                        new RadTreeViewItem
+                        {
+                            //Header = "Всі",
+                            Header = LOC.TV_ALL,
+                            IsSelected = true,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "statusNoActive",
+                            //Header = "Не підтверджені",
+                            Header = LOC.TV_NO_ACCEPT,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "statusNoRelate",
+                            //Header = "Не прив'язані",
+                            Header = LOC.TV_NO_ATTACH,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                        new RadTreeViewItem
+                        {
+                            Name = "statusUnDistrib",
+                            //Header = "Не розподілені",
+                            Header = LOC.TV_NO_DISTRIB,
+                            FontWeight = FontWeights.Normal,
+                            HorizontalAlignment = HorizontalAlignment.Stretch,
+                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                        },
+                    }
+                },
+            };
+        }
+
         #endregion
 
         #region * * * COMMANDS * * *
@@ -269,6 +299,9 @@ namespace IPSModulesLibrary.ObjectsRightList
             ((SearchControlViewModel)searchControl.DataContext).Config = config;
             ((SearchControlViewModel) searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
             ((SearchControlViewModel) searchControl.DataContext).Clear = Clear;
+
+            AppLanguageLibrary.UpdateLanguageLocalization(LOC, nameof(AppLanguageLibrary.CurrentLanguage.ObjectsRightListLD));
+            GenerateTreeViewItems();
 
             IsLoaded = true;
         }
@@ -305,6 +338,16 @@ namespace IPSModulesLibrary.ObjectsRightList
                 presenter.DefaultRightholder = null;
                 presenter.ShowNew(5);
             }
+        }
+
+        /// <summary>
+        /// Оновити дані
+        /// </summary>
+        public ICommand UpdateDataCommand => new IPSDelegateCommand(UpdateDataCommandExecute);
+        private async void UpdateDataCommandExecute(object o)
+        {
+            IsReloadData = true;
+            await LoadData(new SearchModuleResource());
         }
 
         #endregion

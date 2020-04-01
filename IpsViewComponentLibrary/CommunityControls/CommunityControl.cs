@@ -13,6 +13,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.CommunityControls.InternalModel;
+using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -38,6 +39,8 @@ namespace IpsViewComponentLibrary.CommunityControls
         public CommunityControl()
         {
             InitializeComponent();
+            new CommunityPresenter(this);
+
             ctrlGridRowCount.RadGridViewDataSource = gvViewPartners;
             panelBottom.PanelElement.PanelBorder.Width = 0f;
             ctrlSearch.SetUsageGrid(gvViewPartners);
@@ -105,15 +108,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             cabinetForm.GetTermsOfService += CabinetForm_GetTermsOfService;
             cabinetForm.SaveCustCmRightLimitedRights += CabinetFormSaveCustCmRightLimitedRights;
             cabinetForm.SaveTermsOfServiceLimitedRights += CabinetForm_SaveTermsOfServiceLimitedRights;
-            cabinetForm.UpdateAutorsList += CabinetForm_UpdateAutorsList;
             cabinetForm.Show();
-        }
-
-        private List<CommunityAuthorsView> CabinetForm_UpdateAutorsList()
-        {
-            if (gvViewPartners.CurrentRow.DataBoundItem is CommunityListView item)
-                return GetCommunityAutorsList?.Invoke(item.CustId);
-            return null;
         }
 
         private bool CabinetFormSaveCustCmRightLimitedRights(int cmCustId, int custId, List<CustCmRight> listObj)

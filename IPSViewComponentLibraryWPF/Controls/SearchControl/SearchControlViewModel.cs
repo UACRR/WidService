@@ -29,6 +29,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         private const string PartValue = "Part";
 
         #region * * * PROPERTIES * * *
+
         public bool IsLoaded { get; set; }
 
         public ICollection<FrameParam> Config { get; set; }
@@ -72,11 +73,11 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             }
         }
 
-        public Action<ObjectRightSearchResource> RunSearchQuery { get; set; }
+        public Action<SearchModuleResource> RunSearchQuery { get; set; }
 
         public Action Clear { get; set; }
 
-        public LM_SEARCH LM_SEARCH { get; set; } = new LM_SEARCH();
+        public LM_SEARCH LOC { get; set; } = new LM_SEARCH();
 
         #endregion
 
@@ -140,7 +141,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                             {
                                 Name = FullValue,
                                 //Content = "Точне значення",
-                                Content = LM_SEARCH.EQ_VAL,
+                                Content = LOC.EQ_VAL,
                                 VerticalContentAlignment = VerticalAlignment.Center,
                                 Margin = new Thickness(5,3,3,3),
                                 IsTabStop = false,
@@ -149,7 +150,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                             {
                                 Name = PartValue,
                                 //Content = "Містить текст",
-                                Content = LM_SEARCH.LIKE_VAL,
+                                Content = LOC.LIKE_VAL,
                                 IsChecked = true,
                                 VerticalContentAlignment = VerticalAlignment.Center,
                                 Margin = new Thickness(5,3,3,3),
@@ -193,7 +194,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             
             var list = new List<SearchItem>
             {
-                new SearchItem("ALL", LM_SEARCH.ALL_CHECK_ITEM),
+                new SearchItem("ALL", LOC.ALL_CHECK_ITEM),
             };
 
             foreach (var frameParam in Config)
@@ -227,13 +228,13 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
             if(string.IsNullOrEmpty(SimpleSearchParameters.SearchText))
             {
-                ShowMessage.ShowWarning(LM_SEARCH.WARN_EMPTY_SWORD);
+                ShowMessage.ShowWarning(LOC.WARN_EMPTY_SWORD);
                 return;
             }
 
             if (!propertyList.Any())
             {
-                ShowMessage.ShowWarning(LM_SEARCH.WARN_NO_SELECT_FIELD);
+                ShowMessage.ShowWarning(LOC.WARN_NO_SELECT_FIELD);
                 return;
             }
 
@@ -245,7 +246,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             };
 
             // exec search
-            var searchResource = new ObjectRightSearchResource
+            var searchResource = new SearchModuleResource
             {
                 SimpleSearch = searchData
             };
@@ -290,12 +291,12 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
             if (!propertyList.Any())
             {
-                ShowMessage.ShowWarning(LM_SEARCH.WARN_SEARCH_DATA_EMPTY);
+                ShowMessage.ShowWarning(LOC.WARN_SEARCH_DATA_EMPTY);
                 return;
             }
 
             // exec search
-            var searchResource = new ObjectRightSearchResource
+            var searchResource = new SearchModuleResource
             {
                 MultiplySearch = propertyList
             };
@@ -308,7 +309,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             if (IsLoaded)
                 return;
 
-            AppLanguageLibrary.UpdateLanguageLocalization(LM_SEARCH, nameof(AppLanguageLibrary.CurrentLanguage.SearchControlLD));
+            AppLanguageLibrary.UpdateLanguageLocalization(LOC, nameof(AppLanguageLibrary.CurrentLanguage.SearchControlLD));
             LoadConfiguration();
             
             IsLoaded = true;
