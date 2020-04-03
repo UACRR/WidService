@@ -11,6 +11,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.CommunityControls;
+using IpsViewComponentLibrary.CommunityControls.InternalModel;
 using IPSViewComponentLibraryWPF.Controls.SearchControl;
 using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
@@ -60,6 +61,23 @@ namespace IPSModulesLibrary.CommunitiesList
             set
             {
                 _objectsRightsItemSource = value;
+
+
+                if (InternalCommunity.InternalCommunityInfo == null)
+                {
+                    var i = _objectsRightsItemSource?.SingleOrDefault(rec => rec.IsMy == 1);
+                    InternalCommunity.InternalCommunityInfo = new CommunityListView
+                    {
+                        CustId = i.CustId,
+                        Name = i.Name,
+                        InnerCode = i.InnerCode,
+                        InterCode = i.InterCode,
+                        RegistrDate = i.RegistrDate,
+                        IsMy = i.IsMy,
+                        CountAuthors = i.CountAuthors,
+                    };
+                }
+
                 OnPropertyChanged(() => ObjectsRightsItemSource);
             }
         }

@@ -5,7 +5,7 @@ namespace IPSModulesLibrary.RightholdersList
     public class LM_RightholdersList : ViewModelBase
     {
         private string _btnUpdate = "Оновити";
-        private string _ddbtnAddRh = "Додати правовласника УААСП";
+        private string _ddbtnAddRh = "Додати правовласника до ОКУ";
         private string _ddbtnAddExternalRh = "Додати зовнішнього правовласника";
         private string _btnRhPhis = "Фізична особа";
         private string _btnRhJur = "Юридична особа";

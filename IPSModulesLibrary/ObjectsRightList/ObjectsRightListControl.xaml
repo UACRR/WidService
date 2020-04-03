@@ -91,7 +91,7 @@
                                  Content="{Binding LOC.BTN_UPDATE}"
                                  Command="{Binding UpdateDataCommand}"/>
 
-                    <t:RadExpander Grid.Row="1" Header="{Binding LOC.}" IsExpanded="True">
+                    <t:RadExpander Grid.Row="1" Header="{Binding LOC.EXT_SEARCH_EXP}" IsExpanded="True">
                         <search:SearchControl x:Name="searchControl"/>
                     </t:RadExpander>
                         
