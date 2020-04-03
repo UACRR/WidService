@@ -23,7 +23,6 @@
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
             <Setter Property="ShowGroupPanel" Value="False"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
-            <!--<Setter Property="IsFilteringAllowed" Value="False"/>-->
             <Setter Property="ShowSearchPanel" Value="True"/>
             <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
         </Style>
