@@ -24,5 +24,15 @@ namespace IPSModulesLibrary.ResourceControl
         {
             InitializeComponent();
         }
+
+        private void RadButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RadComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
