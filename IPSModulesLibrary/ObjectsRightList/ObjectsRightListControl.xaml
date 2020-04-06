@@ -32,6 +32,9 @@
         <Style TargetType="t:RadExpander">
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
         </Style>
+        <Style TargetType="t:RadTreeView">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
         <Style TargetType="t:GridViewDataColumn">
             <Setter Property="HeaderTextAlignment" Value="Center"/>
             <Setter Property="IsFilterable" Value="False"/>
@@ -60,8 +63,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
-                               MinWidth="100"
+                <t:RadTreeView MinWidth="100"
                                Margin="3"
                                Background="MintCream"
                                HorizontalAlignment="Stretch"
@@ -149,12 +151,38 @@
                             </t:GridViewColumn>
                         </t:RadGridView.Columns>
                     </t:RadGridView>
-                    <t:RadDataPager Grid.Row="3"
-                                    t:StyleManager.Theme="VisualStudio2013"
-                                    PageSize="250"
-                                    Source="{Binding Items, ElementName=gridView}"
-                                    IsTotalItemCountFixed="False"
-                                    DisplayMode="All, All"/>
+
+                    <Grid Grid.Row="3"> 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                            <t:RadDataPager Grid.Column="0"
+                                            Margin="3 0"
+                                            BorderThickness="0"
+                                            x:Name="DataPager"
+                                            t:StyleManager.Theme="VisualStudio2013"
+                                            PageSize="250"
+                                            Source="{Binding Items, ElementName=gridView}"
+                                            IsTotalItemCountFixed="False"
+                                            DisplayMode="All, All"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Margin="5 0 0 0" Content="К-сть на сторінку:"/>
+
+                                <TextBox Text="{Binding ElementName=DataPager, Path=PageSize, Mode=TwoWay, StringFormat='{}{0:N0}'}"
+                                         VerticalContentAlignment="Center"
+                                         MaxLength="5"
+                                         HorizontalContentAlignment="Right"
+                                         MinWidth="50"
+                                         Margin="3"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Margin="10 0" Content="К-сть записів:"/>
+                                <Label Margin="0 0 10 0" Content="{Binding ElementName=DataPager, Path=ItemCount}"/>
+                            </StackPanel>
+                    </Grid>
                 </Grid>
 
 

@@ -60,6 +60,7 @@
       <HintPath>..\lib\RCWPF\2019.1.116.45\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWPF\2019.1.116.45\Telerik.Windows.Controls.dll</HintPath>
@@ -136,6 +137,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ItemsCountControl\ItemsCountControl.xaml.cs">
+      <DependentUpon>ItemsCountControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SearchControl\Model\LM_SEARCH.cs" />
     <Compile Include="Controls\SearchControl\Model\SearchItem.cs" />
     <Compile Include="Controls\SearchControl\Model\SimpleSearchParameters.cs" />
@@ -147,6 +151,7 @@
     <Compile Include="Extensions\DataTableHelper.cs" />
     <Compile Include="Extensions\IPSExtensions.cs" />
     <Compile Include="Extensions\IPSDelegateCommand.cs" />
+    <Compile Include="Extensions\IPSViewModel.cs" />
     <Compile Include="Extensions\IViewModelDataChange.cs" />
     <Compile Include="Extensions\ShowMessage.cs" />
     <Compile Include="Extensions\SortingProperty.cs" />
@@ -186,6 +191,10 @@
       <DependentUpon>DocumentViewerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemModel.cs" />
+    <Page Include="Controls\ItemsCountControl\ItemsCountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SearchControl\SearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

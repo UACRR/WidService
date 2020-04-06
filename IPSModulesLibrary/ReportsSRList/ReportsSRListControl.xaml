@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="IPSModulesLibrary.ReportsSRList.ReportsSRListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IPSModulesLibrary.ReportsSRList"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:search="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl;assembly=IPSViewComponentLibraryWPF"
+             xmlns:items="clr-namespace:IPSViewComponentLibraryWPF.Controls.ItemsCountControl;assembly=IPSViewComponentLibraryWPF"
+             Background="WhiteSmoke"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Control.DataContext>
+        <local:ReportsSRListViewModel/>
+    </Control.DataContext>
+
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/GridViewResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
+    <t:RadBusyIndicator IsBusy="{Binding IsBusy}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <t:RadButton Grid.Row="0"
+                         Margin="3"
+                         HorizontalAlignment="Left"
+                         MinWidth="95"
+                         Content="{Binding LOC.BTN_UPDATE}"
+                         Command="{Binding UpdateDataCommand}"/>
+
+            <t:RadExpander Grid.Row="1" Header="{Binding LOC.EXT_SEARCH_EXP}" IsExpanded="True">
+                <search:SearchControl  x:Name="searchControl"/>
+            </t:RadExpander>
+
+            <t:RadGridView Grid.Row="2"
+                                   x:Name="gridView"
+                                   ItemsSource="{Binding ObjectsRightsItemSource}"
+                                   Margin="3">
+                <t:RadGridView.Columns>
+                    <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding ObjId}"/>
+                    
+                    <t:GridViewColumn Width="25">
+                        <t:GridViewColumn.Header>
+                            <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                        </t:GridViewColumn.Header>
+                        <t:GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <t:RadButton Margin="0" Width="25" Height="20" 
+                                                     Command="{Binding DataContext.OpenObjectRightCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                     CommandParameter="{Binding}">
+                                    <Image Source="../Resources/Icons/edit-icon.png"/>
+                                </t:RadButton>
+                            </DataTemplate>
+                        </t:GridViewColumn.CellTemplate>
+                    </t:GridViewColumn>
+                </t:RadGridView.Columns>
+            </t:RadGridView>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <t:RadDataPager Grid.Column="0"
+                                t:StyleManager.Theme="VisualStudio2013"
+                                PageSize="250"
+                                Source="{Binding Items, ElementName=gridView}"
+                                IsTotalItemCountFixed="False"
+                                DisplayMode="All, All"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Label Margin="10 0" Content="К-сть записів:"/>
+                    <Label Margin="0 0 10 0" Content="{Binding ElementName=gridView, Path=Items.Count}"/>
+                </StackPanel>
+                <!--<items:ItemsCountControl Grid.Column="1" ItemsCount="{Binding}"/>-->
+            </Grid>
+
+    </Grid>
+    </t:RadBusyIndicator>
+</UserControl>

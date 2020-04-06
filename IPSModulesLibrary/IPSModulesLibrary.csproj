@@ -203,6 +203,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ReportsSRList\LM_ReportsSRList.cs" />
+    <Compile Include="ReportsSRList\ReportsSRListControl.xaml.cs">
+      <DependentUpon>ReportsSRListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportsSRList\ReportsSRListModel.cs" />
+    <Compile Include="ReportsSRList\ReportsSRListViewModel.cs" />
     <Compile Include="ResourceControl\ResourceControl.xaml.cs">
       <DependentUpon>ResourceControl.xaml</DependentUpon>
     </Compile>
@@ -231,9 +237,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ReportsSRList\ReportsSRListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceControl\ResourceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ResourceDictionaries\GridViewResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="RightholdersList\RightholdersListControl.xaml">
       <SubType>Designer</SubType>
@@ -242,6 +256,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CopyrightRequest\" />
+    <Folder Include="ReportsBRList\" />
+    <Folder Include="ReportsDDEXList\" />
     <Folder Include="TransferOfRights\" />
   </ItemGroup>
   <ItemGroup>

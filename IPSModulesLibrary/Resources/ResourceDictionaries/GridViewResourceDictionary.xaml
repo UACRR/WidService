@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:t="http://schemas.telerik.com/2008/xaml/presentation">
+    <Style TargetType="t:RadGridView">
+        <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        <Setter Property="ShowGroupPanel" Value="False"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="ShowSearchPanel" Value="True"/>
+        <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
+    </Style>
+    <Style TargetType="t:RadButton">
+        <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+    </Style>
+    <Style TargetType="t:RadExpander">
+        <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+    </Style>
+    <Style TargetType="t:GridViewDataColumn">
+        <Setter Property="HeaderTextAlignment" Value="Center"/>
+        <Setter Property="IsFilterable" Value="False"/>
+    </Style>
+</ResourceDictionary>
