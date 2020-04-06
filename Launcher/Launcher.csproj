@@ -234,6 +234,9 @@
       <DependentUpon>CopyrightAdminWorkplaceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkplaceModules\CopyrightAdminWorkplace\LM_CopyrightAdminWorkplace.cs" />
+    <Compile Include="WorkplaceModules\ReportWorkplace\ReportWorkplaceWindow.xaml.cs">
+      <DependentUpon>ReportWorkplaceWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\LoginWindow\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -260,6 +263,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="WorkplaceModules\CopyrightAdminWorkplace\CopyrightAdminWorkplaceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkplaceModules\ReportWorkplace\ReportWorkplaceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
