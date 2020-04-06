@@ -89,14 +89,12 @@
                          Content="Button" 
                          MinWidth="100" Click="RadButton_Click" Padding="5,5,5,9" UseLayoutRounding="True"/>
 
-            <Border BorderThickness="1.2 1.2 0 0" CornerRadius="8" Background="#470fa9">
                 <t:RadComboBox Style="{DynamicResource dropdownBtn}"
                            HorizontalAlignment="Left" 
                            Margin="0 20 0 0" Width="100">
                     <t:RadComboBoxItem Content="Save"/>
                     <t:RadComboBoxItem Content="Save 2 3 4"/>
                 </t:RadComboBox>
-            </Border>
 
             <t:RadComboBox HorizontalAlignment="Left" 
                            Margin="0 20 0 20" Width="200"
