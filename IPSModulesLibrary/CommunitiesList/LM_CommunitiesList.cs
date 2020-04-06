@@ -24,7 +24,6 @@ namespace IPSModulesLibrary.CommunitiesList
             }
         }
 
-
         public string CREATE_COMM_ERR_MSG
         {
             get => _createCommErrMsg;

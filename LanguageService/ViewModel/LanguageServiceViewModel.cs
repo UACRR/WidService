@@ -18,7 +18,10 @@ namespace LanguageService.ViewModel
     public class LanguageServiceViewModel : ViewModelBase
     {
         private bool _someValueChanged = false;
+        
         private List<LanguageDataModel> _languageDataModel;
+        private ObservableCollection<LanguageDataModel> _languageDataModelItemSourceTemp;
+
         private readonly Dictionary<string, ComponentCategory> _componentCategories = new Dictionary<string, ComponentCategory>
         {
             ["buttons"] = ComponentCategory.Buttons,
@@ -202,6 +205,17 @@ namespace LanguageService.ViewModel
             }
         }
 
+        private bool _isShowOnlyEmptyCommand;
+        public bool IsShowOnlyEmptyCommand
+        {
+            get => _isShowOnlyEmptyCommand;
+            set
+            {
+                _isShowOnlyEmptyCommand = value;
+                OnPropertyChanged(() => IsShowOnlyEmptyCommand);
+            }
+        }
+
         #endregion
 
         #region * * * METHODS * * *
@@ -351,17 +365,26 @@ namespace LanguageService.ViewModel
 
             if (categoryName == "all")
             {
-                LanguageDataModelItemSource = new ObservableCollection<LanguageDataModel>(_languageDataModel);
-
+                _languageDataModelItemSourceTemp = new ObservableCollection<LanguageDataModel>(_languageDataModel);
             }
             else if (_componentCategories.ContainsKey(categoryName))
             {
-                var data = _languageDataModel.Where(rec => rec.ComponentCategory == _componentCategories[categoryName]).ToList();
-                LanguageDataModelItemSource = new ObservableCollection<LanguageDataModel>(data);
+                var listByCategory = _languageDataModel.Where(rec => rec.ComponentCategory == _componentCategories[categoryName]).ToList();
+                _languageDataModelItemSourceTemp = new ObservableCollection<LanguageDataModel>(listByCategory);
             }
             else
             {
                 return;
+            }
+
+            if (IsShowOnlyEmptyCommand)
+            {
+                var list = _languageDataModelItemSourceTemp.Where(rec => string.IsNullOrEmpty(rec.Content));
+                LanguageDataModelItemSource = new ObservableCollection<LanguageDataModel>(list);
+            }
+            else
+            {
+                LanguageDataModelItemSource = new ObservableCollection<LanguageDataModel>(_languageDataModelItemSourceTemp);
             }
 
             EditPanelVisibility = Visibility.Visible;
@@ -391,6 +414,21 @@ namespace LanguageService.ViewModel
         {
             if (((KeyEventArgs) o).Key == Key.Enter)
                 SaveItemChangeCommand.Execute(null);
+        }
+
+        public ICommand ShowOnlyEmptyCommand => new IPSDelegateCommand(ShowOnlyEmptyCommandExecute);
+        private void ShowOnlyEmptyCommandExecute(object o)
+        {
+            var isChecked = (bool) o;
+            if (isChecked)
+            {
+                var list = _languageDataModelItemSourceTemp.Where(rec => string.IsNullOrEmpty(rec.Content));
+                LanguageDataModelItemSource = new ObservableCollection<LanguageDataModel>(list);
+            }
+            else
+            {
+                LanguageDataModelItemSource = new ObservableCollection<LanguageDataModel>(_languageDataModelItemSourceTemp);
+            }
         }
 
         #endregion

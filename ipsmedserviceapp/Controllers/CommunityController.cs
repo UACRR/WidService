@@ -51,7 +51,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="searchResource"></param>
         /// <returns></returns>
         [HttpPost("list")]
-        public async Task<IActionResult> GetCommunitiesList(SearchModuleResource searchResource)
+        public async Task<IActionResult> GetCommunitiesList([FromBody] SearchModuleResource searchResource)
         {
             ResponseOfRequest<DataTable> response;
             try

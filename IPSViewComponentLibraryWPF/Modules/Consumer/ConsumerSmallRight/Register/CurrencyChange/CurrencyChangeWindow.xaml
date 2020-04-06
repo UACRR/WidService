@@ -36,7 +36,7 @@
         </Style>
     </Window.Resources>
 
-    <t:RadBusyIndicator 
+    <t:RadBusyIndicator
         IsBusy="{Binding IsBusy, IsAsync=True}"
         Name="busyIndicator"
         IsIndeterminate="True"
@@ -100,5 +100,6 @@
                          CommandParameter="{Binding ElementName=thisWindow}"/>
             </StackPanel>
         </Grid>
+
     </t:RadBusyIndicator>
 </Window>
