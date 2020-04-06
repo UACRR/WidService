@@ -83,20 +83,22 @@
 
     </Control.Resources>
 
-    <Grid>
-        <StackPanel Margin="20">
-            <t:RadButton HorizontalAlignment="Left"
+    <TabControl>
+        <TabItem Header="Tab1">
+            <Grid>
+                <StackPanel Margin="20">
+                    <t:RadButton HorizontalAlignment="Left"
                          Content="Button" 
                          MinWidth="100" Click="RadButton_Click" Padding="5,5,5,9" UseLayoutRounding="True"/>
 
-                <t:RadComboBox Style="{DynamicResource dropdownBtn}"
+                    <t:RadComboBox Style="{DynamicResource dropdownBtn}"
                            HorizontalAlignment="Left" 
                            Margin="0 20 0 0" Width="100">
-                    <t:RadComboBoxItem Content="Save"/>
-                    <t:RadComboBoxItem Content="Save 2 3 4"/>
-                </t:RadComboBox>
+                        <t:RadComboBoxItem Content="Save"/>
+                        <t:RadComboBoxItem Content="Save 2 3 4"/>
+                    </t:RadComboBox>
 
-            <t:RadComboBox HorizontalAlignment="Left" 
+                    <t:RadComboBox HorizontalAlignment="Left" 
                            Margin="0 20 0 20" Width="200"
                            IsEditable="True"
                            IsReadOnly="True"
@@ -105,96 +107,149 @@
 
 
 
-            <WrapPanel>
-                <TextBlock Style="{DynamicResource dropdownBlock}">Додати правовласника:</TextBlock>
-                <t:RadComboBox HorizontalAlignment="Left" 
+                    <WrapPanel>
+                        <TextBlock Style="{DynamicResource dropdownBlock}">Додати правовласника:</TextBlock>
+                        <t:RadComboBox HorizontalAlignment="Left" 
                             Width="200"
                            />
+                    </WrapPanel>
+
+
+                    <StackPanel HorizontalAlignment="Left"  >
+
+                        <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
+                            <Border CornerRadius="3" Width="25" Height="25">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#8F41F8"/>
+                                        <GradientStop Color="#B025D8" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Image Width="13" Height="13" Source="../Resources/Icons/chart1.png"/>
+                                </Grid>
+                            </Border>
+                            <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
+                            <Border CornerRadius="3" Width="25" Height="25">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#F2994A"/>
+                                        <GradientStop Color="#F2C94C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Image Width="13" Height="13" Source="../Resources/Icons/connection-1.png"/>
+                                </Grid>
+                            </Border>
+                            <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
+                            <Border CornerRadius="3" Width="25" Height="25">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#EA715E"/>
+                                        <GradientStop Color="#D3417F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Image Width="13" Height="13" Source="../Resources/Icons/target.png"/>
+                                </Grid>
+                            </Border>
+                            <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
+                            <Border CornerRadius="3" Width="25" Height="25">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#41EDF8"/>
+                                        <GradientStop Color="#35E4EF" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Image Width="13" Height="13" Source="../Resources/Icons/promotion-1.png"/>
+                                </Grid>
+                            </Border>
+                            <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
+                            <Border CornerRadius="3" Width="25" Height="25">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF7E9D"/>
+                                        <GradientStop Color="#EA5EB2" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid>
+                                    <Image Width="13" Height="13" Source="../Resources/Icons/backlink-1.png"/>
+                                </Grid>
+                            </Border>
+                            <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
+                        </StackPanel>
+                    </StackPanel>
+
+
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Buttons">
+            <WrapPanel Orientation="Vertical">
+                <t:RadButton Margin="3" Content="1"/>
+                <t:RadButton Margin="3" Content="2"/>
+                <t:RadButton Margin="3" Content="3"/>
+
             </WrapPanel>
+        </TabItem>
 
+        <TabItem Header="Tree Views">
+            <StackPanel Orientation="Horizontal">
+                <t:RadTreeView Width="120" Margin="5" Background="GreenYellow">
+                    <t:RadTreeViewItem Header="12345"/>
+                    <t:RadTreeViewItem Header="12345"/>
+                    <t:RadTreeViewItem Header="12345"/>
+                </t:RadTreeView>
 
-            <StackPanel HorizontalAlignment="Left"  >
+                <t:RadTreeView Width="120" Margin="5" Background="Beige">
+                    <t:RadTreeViewItem IsExpanded="True" Header="Category" FontWeight="Bold">
+                        <t:RadTreeViewItem Header="subCategory" FontWeight="Normal"/>
+                    </t:RadTreeViewItem>
+                    <t:RadTreeViewItem Header="12345" FontWeight="Bold"/>
+                    <t:RadTreeViewItem Header="12345" FontWeight="Bold"/>
+                </t:RadTreeView>
 
-                <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
-                    <Border CornerRadius="3" Width="25" Height="25">
-                        <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#8F41F8"/>
-                                <GradientStop Color="#B025D8" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Grid>
-                            <Image Width="13" Height="13" Source="../Resources/Icons/chart1.png"/>
-                        </Grid>
-                    </Border>
-                    <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
-                    <Border CornerRadius="3" Width="25" Height="25">
-                        <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#F2994A"/>
-                                <GradientStop Color="#F2C94C" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Grid>
-                            <Image Width="13" Height="13" Source="../Resources/Icons/connection-1.png"/>
-                        </Grid>
-                    </Border>
-                    <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
-                </StackPanel>
-               
-                <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
-                    <Border CornerRadius="3" Width="25" Height="25">
-                        <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#EA715E"/>
-                                <GradientStop Color="#D3417F" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Grid>
-                            <Image Width="13" Height="13" Source="../Resources/Icons/target.png"/>
-                        </Grid>
-                    </Border>
-                    <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
-                </StackPanel>
-             
-                <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
-                    <Border CornerRadius="3" Width="25" Height="25">
-                        <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#41EDF8"/>
-                                <GradientStop Color="#35E4EF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Grid>
-                            <Image Width="13" Height="13" Source="../Resources/Icons/promotion-1.png"/>
-                        </Grid>
-                    </Border>
-                    <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
-                </StackPanel>
-                
-                <StackPanel Orientation="Horizontal" MaxHeight="33.5" Margin="0 20 0 0">
-                    <Border CornerRadius="3" Width="25" Height="25">
-                        <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF7E9D"/>
-                                <GradientStop Color="#EA5EB2" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Grid>
-                            <Image Width="13" Height="13" Source="../Resources/Icons/backlink-1.png"/>
-                        </Grid>
-                    </Border>
-                    <TextBlock Margin="8 0 0 0" Text="Label" Style="{DynamicResource labelText}" VerticalAlignment="Center" FontFamily="Calibri" FontSize="18"  />
-                </StackPanel>
             </StackPanel>
+        </TabItem>
 
-            
-        </StackPanel>
-
-        
-        
-    </Grid>
+        <TabItem Header="Tab Controls">
+            <WrapPanel Orientation="Horizontal">
+                <Label/>
+                <TabControl Height="100" Width="250" Margin="5">
+                    <TabItem Header="FirstTab">
+                        <Label/>
+                    </TabItem>
+                    <TabItem Header="SecondTab">
+                        <Label/>
+                    </TabItem>
+                </TabControl>
+                <TabControl  TabStripPlacement="Left" Height="100" Width="250" Margin="5">
+                    <TabItem Header="FirstTab">
+                        <Label/>
+                    </TabItem>
+                    <TabItem Header="SecondTab">
+                        <Label/>
+                    </TabItem>
+                </TabControl>
+                <TabControl Height="100" TabStripPlacement="Left" Width="250" Margin="5">
+                    <TabItem Header="FirstTab"></TabItem>
+                    <TabItem Header="SecondTab"></TabItem>
+                </TabControl>
+            </WrapPanel>
+        </TabItem>
+    </TabControl>
 </UserControl>
