@@ -228,7 +228,6 @@
                 </Setter.Value>
             </Setter>
         </Style>-->
-
     </Control.Resources>
 
     <TabControl>
@@ -358,48 +357,279 @@
         </TabItem>
 
         <TabItem Header="Tree Views">
-            <StackPanel Orientation="Horizontal">
-                <t:RadTreeView Width="200" Margin="5">
-                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Category"/>
-                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Lorem"/>
-                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Ipsum"/>
-                </t:RadTreeView>
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Height="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-                <t:RadTreeView Width="200" Margin="5">
-                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" IsExpanded="True" Header="Category" FontWeight="Bold">
-                        <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="subCategory" FontWeight="Normal"/>
-                    </t:RadTreeViewItem>
-                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Onetwo" FontWeight="Bold"/>
-                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Three" FontWeight="Bold"/>
-                </t:RadTreeView>
+                            <t:RadTreeView Width="150" Margin="5">
+                                <t:RadTreeViewItem Template="{DynamicResource RadTreeViewItemControlTemplate1}" Header="Category"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}"  Header="Lorem"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Ipsum"/>
+                            </t:RadTreeView>
 
-            </StackPanel>
+                            <!--заглушка-->
+                            <Border Background="AliceBlue" Grid.Column="1" Width="150">
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="CONTENT"/>
+                            </Border>
+                        </Grid>
+
+                        <Grid Margin="50 0" Height="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <t:RadTreeView Width="150" Margin="5">
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" IsExpanded="True" Header="Category" FontWeight="Bold">
+                                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="subCategory" FontWeight="Normal"/>
+                                </t:RadTreeViewItem>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Onetwo" FontWeight="Bold"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Three" FontWeight="Bold"/>
+                            </t:RadTreeView>
+
+                            <!--заглушка-->
+                            <Border Background="AliceBlue" Grid.Column="1" Width="150">
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="CONTENT"/>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+
+                    <Separator Margin="0 25"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Height="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <t:RadTreeView Width="150" Margin="5">
+                                <t:RadTreeViewItem Template="{DynamicResource RadTreeViewItemControlTemplate1}" Header="Category"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}"  Header="Lorem"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Ipsum"/>
+                            </t:RadTreeView>
+
+                            <!--заглушка-->
+                            <Border Background="AliceBlue" Grid.Column="1" Width="150">
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="CONTENT"/>
+                            </Border>
+                        </Grid>
+
+                        <Grid Margin="50 0" Height="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <t:RadTreeView Width="150" Margin="5">
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" IsExpanded="True" Header="Category" FontWeight="Bold">
+                                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="subCategory" FontWeight="Normal"/>
+                                </t:RadTreeViewItem>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Onetwo" FontWeight="Bold"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Three" FontWeight="Bold"/>
+                            </t:RadTreeView>
+
+                            <!--заглушка-->
+                            <Border Background="AliceBlue" Grid.Column="1" Width="150">
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="CONTENT"/>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+
+                    <Separator Margin="0 25"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Height="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <t:RadTreeView Width="150" Margin="5">
+                                <t:RadTreeViewItem Template="{DynamicResource RadTreeViewItemControlTemplate1}" Header="Category"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}"  Header="Lorem"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Ipsum"/>
+                            </t:RadTreeView>
+
+                            <!--заглушка-->
+                            <Border Background="AliceBlue" Grid.Column="1" Width="150">
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="CONTENT"/>
+                            </Border>
+                        </Grid>
+
+                        <Grid Margin="50 0" Height="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <t:RadTreeView Width="150" Margin="5">
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" IsExpanded="True" Header="Category" FontWeight="Bold">
+                                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="subCategory" FontWeight="Normal"/>
+                                </t:RadTreeViewItem>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Onetwo" FontWeight="Bold"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Three" FontWeight="Bold"/>
+                            </t:RadTreeView>
+
+                            <!--заглушка-->
+                            <Border Background="AliceBlue" Grid.Column="1" Width="150">
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="CONTENT"/>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+
+                    <Separator Margin="0 25"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Height="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <t:RadTreeView Width="150" Margin="5">
+                                <t:RadTreeViewItem Template="{DynamicResource RadTreeViewItemControlTemplate1}" Header="Category"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}"  Header="Lorem"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Ipsum"/>
+                            </t:RadTreeView>
+
+                            <!--заглушка-->
+                            <Border Background="AliceBlue" Grid.Column="1" Width="150">
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="CONTENT"/>
+                            </Border>
+                        </Grid>
+
+                        <Grid Margin="50 0" Height="180">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <t:RadTreeView Width="150" Margin="5">
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" IsExpanded="True" Header="Category" FontWeight="Bold">
+                                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="subCategory" FontWeight="Normal"/>
+                                </t:RadTreeViewItem>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Onetwo" FontWeight="Bold"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Three" FontWeight="Bold"/>
+                            </t:RadTreeView>
+
+                            <!--заглушка-->
+                            <Border Background="AliceBlue" Grid.Column="1" Width="150">
+                                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="CONTENT"/>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+
         </TabItem>
 
         <TabItem Header="Tab Controls">
-            <WrapPanel Orientation="Horizontal">
-                <Label/>
-                <TabControl Height="100" Width="250" Margin="5">
-                    <TabItem Header="FirstTab">
-                        <Label/>
-                    </TabItem>
-                    <TabItem Header="SecondTab">
-                        <Label/>
-                    </TabItem>
-                </TabControl>
-                <TabControl  TabStripPlacement="Left" Height="100" Width="250" Margin="5">
-                    <TabItem Header="FirstTab">
-                        <Label/>
-                    </TabItem>
-                    <TabItem Header="SecondTab">
-                        <Label/>
-                    </TabItem>
-                </TabControl>
-                <TabControl Height="100" TabStripPlacement="Left" Width="250" Margin="5">
-                    <TabItem Header="FirstTab"></TabItem>
-                    <TabItem Header="SecondTab"></TabItem>
-                </TabControl>
-            </WrapPanel>
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TabControl Height="100" Width="250" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                        <TabControl  TabStripPlacement="Left" Height="100" Width="350" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+
+                    <Separator Margin="0 25"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TabControl Height="100" Width="250" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                        <TabControl  TabStripPlacement="Left" Height="100" Width="350" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+
+                    <Separator Margin="0 25"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TabControl Height="100" Width="250" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                        <TabControl  TabStripPlacement="Left" Height="100" Width="350" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+
+                    <Separator Margin="0 25"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TabControl Height="100" Width="250" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                        <TabControl  TabStripPlacement="Left" Height="100" Width="350" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+
+                    <Separator Margin="0 25"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TabControl Height="100" Width="250" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                        <TabControl  TabStripPlacement="Left" Height="100" Width="350" Margin="5">
+                            <TabItem Header="FirstTab">
+                                <Label/>
+                            </TabItem>
+                            <TabItem Header="SecondTab">
+                                <Label/>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
         </TabItem>
     </TabControl>
 </UserControl>
