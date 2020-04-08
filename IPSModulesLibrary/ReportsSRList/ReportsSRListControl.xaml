@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="IPSModulesLibrary.ReportsSRList.ReportsSRListControl"
+             x:Name="thisControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +8,6 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:search="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl;assembly=IPSViewComponentLibraryWPF"
-             xmlns:items="clr-namespace:IPSViewComponentLibraryWPF.Controls.ItemsCountControl;assembly=IPSViewComponentLibraryWPF"
              Background="WhiteSmoke"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -23,6 +23,12 @@
         </ResourceDictionary>
     </Control.Resources>
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" CommandParameter="{Binding ElementName=thisControl}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <t:RadBusyIndicator IsBusy="{Binding IsBusy}">
         <Grid>
             <Grid.RowDefinitions>
@@ -32,24 +38,56 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <t:RadButton Grid.Row="0"
-                         Margin="3"
-                         HorizontalAlignment="Left"
-                         MinWidth="95"
-                         Content="{Binding LOC.BTN_UPDATE}"
-                         Command="{Binding UpdateDataCommand}"/>
+            <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
 
-            <t:RadExpander Grid.Row="1" Header="{Binding LOC.EXT_SEARCH_EXP}" IsExpanded="True">
-                <search:SearchControl  x:Name="searchControl"/>
-            </t:RadExpander>
+            <StackPanel Grid.Row="1" Margin="3 1" Orientation="Horizontal">
+                <Label Content="Дата створення:"/>
+                <t:RadDatePicker Margin="3" SelectedValue="{Binding DateBegin}" DisplayFormat="Short" InputMode="DatePicker" DateTimeWatermarkContent="оберіть дату" Width="120"/>
+                <Label Content=" - "/>
+                <t:RadDatePicker Margin="3" SelectedValue="{Binding DateEnd}" DisplayFormat="Short" InputMode="DatePicker" DateTimeWatermarkContent="оберіть дату" Width="120"/>
+                <Label Margin="15 0 0 0" Content="Статус:"/>
+                <ComboBox Width="125" Margin="3"
+                          SelectedValuePath="CodeI"
+                          DisplayMemberPath="Name"
+                          ItemsSource="{Binding StatusItemSource}"
+                          SelectedItem="{Binding SelectedStatus}"/>
+                <t:RadButton Margin="10 3" Width="25" 
+                             Content="X"
+                             ToolTip="Очистити фільтри"
+                             Command="{Binding ClearFiltersCommand}"/>
+            </StackPanel>
 
             <t:RadGridView Grid.Row="2"
-                                   x:Name="gridView"
-                                   ItemsSource="{Binding ObjectsRightsItemSource}"
-                                   Margin="3">
+                           x:Name="gridView"
+                           ColumnWidth="*"
+                           ItemsSource="{Binding ReportsItemSource}"
+                           Margin="3">
+                <!--<t:RadGridView.ColumnGroups>
+                    <t:GridViewColumnGroup Name="other" Header=""/>
+                    <t:GridViewColumnGroup Name="consumer" Header="Користувач"/>
+                    <t:GridViewColumnGroup Name="period" Header="Період"/>
+                </t:RadGridView.ColumnGroups>-->
                 <t:RadGridView.Columns>
-                    <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding ObjId}"/>
+                    <t:GridViewDataColumn Width="75" Header="ID звіту" DataMemberBinding="{Binding RegId}"/>
+                    <t:GridViewDataColumn Header="Назва файлу" DataMemberBinding="{Binding FileName}"/>
+                    <t:GridViewDataColumn Width="75" Header="Дата створення" TextAlignment="Center" DataMemberBinding="{Binding CreateDate, StringFormat='{}{0:d}'}"/>
+                    <t:GridViewDataColumn Width="75" Header="ID ліцензії" DataMemberBinding="{Binding LicId}"/>
                     
+                    <t:GridViewDataColumn Width="75" 
+                                          Header="ID користувача" 
+                                          DataMemberBinding="{Binding CustId}"/>
+                    <t:GridViewDataColumn Header="Назва користувача" 
+                                          DataMemberBinding="{Binding CustName}"/>
+                    <t:GridViewDataColumn Width="75" 
+                                          Header="ID періода" 
+                                          DataMemberBinding="{Binding PeriodId}"/>
+                    <t:GridViewDataColumn Header="Назва періода" 
+                                          DataMemberBinding="{Binding PeriodName}"/>
+                    <t:GridViewDataColumn Width="150" Header="Хто завантажив" DataMemberBinding="{Binding UserWho}"/>
+                    <t:GridViewDataColumn Width="125" TextTrimming="CharacterEllipsis" ShowToolTipOnTrimmedText="True" Header="Статус" DataMemberBinding="{Binding RgStatusName}"/>
+                    <t:GridViewDataColumn Width="75" TextAlignment="Right" Header="К-сть всього" DataMemberBinding="{Binding CountItem}"/>
+                    <t:GridViewDataColumn Width="75" TextAlignment="Right" Header="К-сть не знайдених" DataMemberBinding="{Binding CountNoFound}"/>
+
                     <t:GridViewColumn Width="25">
                         <t:GridViewColumn.Header>
                             <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
@@ -57,8 +95,8 @@
                         <t:GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <t:RadButton Margin="0" Width="25" Height="20" 
-                                                     Command="{Binding DataContext.OpenObjectRightCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
-                                                     CommandParameter="{Binding}">
+                                             Command="{Binding DataContext.OpenReportCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                             CommandParameter="{Binding}">
                                     <Image Source="../Resources/Icons/edit-icon.png"/>
                                 </t:RadButton>
                             </DataTemplate>
@@ -66,24 +104,39 @@
                     </t:GridViewColumn>
                 </t:RadGridView.Columns>
             </t:RadGridView>
+
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <t:RadDataPager Grid.Column="0"
-                                t:StyleManager.Theme="VisualStudio2013"
-                                PageSize="250"
-                                Source="{Binding Items, ElementName=gridView}"
-                                IsTotalItemCountFixed="False"
-                                DisplayMode="All, All"/>
+                                            Margin="3 0"
+                                            BorderThickness="0"
+                                            x:Name="DataPager"
+                                            t:StyleManager.Theme="VisualStudio2013"
+                                            PageSize="250"
+                                            Source="{Binding Items, ElementName=gridView}"
+                                            IsTotalItemCountFixed="False"
+                                            DisplayMode="All, All"/>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Label Margin="10 0" Content="К-сть записів:"/>
-                    <Label Margin="0 0 10 0" Content="{Binding ElementName=gridView, Path=Items.Count}"/>
+                    <Label Margin="5 0 0 0" Content="К-сть на сторінку:"/>
+
+                    <TextBox Text="{Binding ElementName=DataPager, Path=PageSize, Mode=TwoWay, StringFormat='{}{0:N0}'}"
+                                         VerticalContentAlignment="Center"
+                                         MaxLength="5"
+                                         HorizontalContentAlignment="Right"
+                                         MinWidth="50"
+                                         Margin="3"/>
                 </StackPanel>
-                <!--<items:ItemsCountControl Grid.Column="1" ItemsCount="{Binding}"/>-->
+                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Label Margin="10 0" Content="К-сть записів:"/>
+                    <Label Margin="0 0 10 0" Content="{Binding ElementName=DataPager, Path=ItemCount}"/>
+                </StackPanel>
             </Grid>
 
-    </Grid>
+        </Grid>
     </t:RadBusyIndicator>
 </UserControl>

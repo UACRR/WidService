@@ -26,6 +26,10 @@ namespace IpsViewComponentLibrary.Utilities
             RadMessageBox.Show(parent, message, "Інформація", MessageBoxButtons.OK, RadMessageIcon.Info, MessageBoxDefaultButton.Button1, RightToLeft.Inherit, details);
         }
 
+        public void ShowErrorByException(string message, string details)
+        {
+            RadMessageBox.Show(null, message, "UnhandledException", MessageBoxButtons.OK, RadMessageIcon.Error, MessageBoxDefaultButton.Button1, RightToLeft.Inherit, details);
+        }
 
         public void ShowError(string message)
         {

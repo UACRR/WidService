@@ -51,6 +51,8 @@
     <Compile Include="Model\LanguageDataNested\CopyrightAdminWorkplaceLD.cs" />
     <Compile Include="Model\LanguageDataNested\LauncherLD.cs" />
     <Compile Include="Model\LanguageDataNested\ObjectsRightListLD.cs" />
+    <Compile Include="Model\LanguageDataNested\ReportsSRListLD.cs" />
+    <Compile Include="Model\LanguageDataNested\ReportWorkplaceLD.cs" />
     <Compile Include="Model\LanguageDataNested\RightholdersListLD.cs" />
     <Compile Include="Model\LanguageDataNested\SearchControlLD.cs" />
     <Compile Include="Model\LanguageDataNested\SmRoPermitLD.cs" />

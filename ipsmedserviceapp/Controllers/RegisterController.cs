@@ -4,7 +4,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Types;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +34,34 @@ namespace ipsmedserviceapp.Controllers
         {
             var list = await _dbContext.getViewData("select * from vtsk_3_R_04 where rgStatus <> 0", null);
             return Json(list);
+        }
+
+        /// <summary>
+        /// Список звітів малих прав
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        [HttpPost("list/sr")]
+        public async Task<IActionResult> GetSRReportsList([FromBody] SearchModuleResource resource)
+        { 
+            string query = "select t0.* from vtsk_3_R_04_wpf t0";
+            List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 6).ToListAsync();
+            var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Список звітів онлайн ресурси
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        [HttpPost("list/online")]
+        public async Task<IActionResult> GetOnlineReportsList([FromBody] SearchModuleResource resource)
+        {
+            string query = "select t0.* from vtsk_3_R_04_ccid_wpf t0";
+            List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 8).ToListAsync();
+            var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
+            return Ok(result);
         }
 
         /// <summary>

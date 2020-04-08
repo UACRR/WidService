@@ -1,17 +1,16 @@
 begin
-declare @viewName varchar(100) = 'vTsk_vBRLicense'
---select '01 public class ' + @viewName 
---union
---select '02 {' 
---union
+declare @viewName varchar(100) = 'vtsk_3_R_04'
 select CONCAT(
 'public  ', 
 case t2.name when 'date' then 'DateTime'
+			 when 'datetime' then 'DateTime'
 			 when 'money' then 'decimal'
+			 when 'smallint' then 'short'
 			 when 'bit' then 'bool'
 			 when 'numeric' then 'decimal'
 			 when 'varchar' then 'string'
 			 when 'char' then 'string'
+			 when 'nvarchar' then 'string'
 			 else t2.name
 	end
 
@@ -20,8 +19,4 @@ case t2.name when 'date' then 'DateTime'
 from sys.syscolumns t1
 join sys.systypes t2 on t2.xtype = t1.xtype
 where id = object_id(@viewName)
---union
---select  '04 }'
-
 end
-

@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace ipsmedserviceapp.Extensions
 {
@@ -90,6 +95,41 @@ namespace ipsmedserviceapp.Extensions
             searchText = searchText.Replace("ь", "Ь");
 
             return searchText;
+        }
+
+        public static async Task<ResponseOfRequest<DataTable>> GetItemsListAsync(this DatabaseFacade facade, string query, List<FrameParam> frameParam, SearchModuleResource resource)
+        {
+            ResponseOfRequest<DataTable> response;
+            try
+            {
+                DataTable data = null;
+
+                using (var sqlConnection = (SqlConnection)facade.GetDbConnection())
+                {
+                    List<SqlParameter> parameters = new List<SqlParameter>();
+                    if (resource.SimpleSearch != null)
+                    {
+                        query = SearchQueryHelper.CreateSearchQuery(query, frameParam, resource.SimpleSearch, out SqlParameter sqlParameter);
+                        parameters.Add(sqlParameter);
+                    }
+                    if (resource.MultiplySearch != null)
+                    {
+                        query = SearchQueryHelper.CreateSearchQuery(query, frameParam, resource.MultiplySearch, out List<SqlParameter> sqlParameters);
+                        parameters = sqlParameters;
+                    }
+
+                    await Task.Factory.StartNew(() => data = ExecuteQuery.GetDataFromSqlServer(sqlConnection, query, parameters));
+
+                    response = new ResponseOfRequest<DataTable>(data);
+
+                    return response;
+                }
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest<DataTable>(e);
+                return response;
+            }
         }
     }
 }

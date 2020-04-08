@@ -163,6 +163,12 @@ namespace IPSModulesLibrary.CommunitiesList
             IsDataLoaded = true;
         }
 
+        private async void UpdateData()
+        {
+            IsReloadData = true;
+            await LoadData(new SearchModuleResource());
+        }
+
         #endregion
 
         #region * * * COMMANDS * * *
@@ -178,6 +184,7 @@ namespace IPSModulesLibrary.CommunitiesList
             ((SearchControlViewModel)searchControl.DataContext).Config = config;
             ((SearchControlViewModel)searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
             ((SearchControlViewModel)searchControl.DataContext).Clear = Clear;
+            ((SearchControlViewModel)searchControl.DataContext).UpdateData = UpdateData;
 
             AppLanguageLibrary.UpdateLanguageLocalization(LOC, nameof(AppLanguageLibrary.CurrentLanguage.CommunitiesListLD));
 
@@ -205,7 +212,7 @@ namespace IPSModulesLibrary.CommunitiesList
             {
                 var result = service.SaveCommunity(c);
                 if (result)
-                    UpdateDataCommand.Execute(null);
+                    UpdateData();
                 return result;
             };
             cabinetForm.SaveAgreementChanges += service.SaveAgreement;
@@ -230,19 +237,9 @@ namespace IPSModulesLibrary.CommunitiesList
                 {
                     var result = service.SaveCommunity(community);
                     ShowMessage.ShowInfoByResult(LOC.CREATE_COMM_SUCC_MSG, LOC.CREATE_COMM_ERR_MSG, result);
-                    UpdateDataCommand.Execute(null);
+                    UpdateData();
                 }
             }
-        }
-        
-        /// <summary>
-        /// Оновити дані
-        /// </summary>
-        public ICommand UpdateDataCommand => new IPSDelegateCommand(UpdateDataCommandExecute);
-        private async void UpdateDataCommandExecute(object o)
-        {
-            IsReloadData = true;
-            await LoadData(new SearchModuleResource());
         }
 
         #endregion

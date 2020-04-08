@@ -234,6 +234,8 @@
       <DependentUpon>CopyrightAdminWorkplaceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkplaceModules\CopyrightAdminWorkplace\LM_CopyrightAdminWorkplace.cs" />
+    <Compile Include="WorkplaceModules\ReportWorkplace\LM_ReportWorkplace.cs" />
+    <Compile Include="WorkplaceModules\ReportWorkplace\ReportWorkplaceViewModel.cs" />
     <Compile Include="WorkplaceModules\ReportWorkplace\ReportWorkplaceWindow.xaml.cs">
       <DependentUpon>ReportWorkplaceWindow.xaml</DependentUpon>
     </Compile>

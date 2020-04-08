@@ -80,23 +80,13 @@
                 <Grid Grid.Column="2" Margin="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <t:RadButton Grid.Row="0"
-                                 Margin="3"
-                                 HorizontalAlignment="Left"
-                                 MinWidth="95"
-                                 Content="{Binding LOC.BTN_UPDATE}"
-                                 Command="{Binding UpdateDataCommand}"/>
+                    <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
 
-                    <t:RadExpander Grid.Row="1" Header="{Binding LOC.EXT_SEARCH_EXP}" IsExpanded="True">
-                        <search:SearchControl x:Name="searchControl"/>
-                    </t:RadExpander>
-                        
-                    <t:RadGridView Grid.Row="2"
+                    <t:RadGridView Grid.Row="1"
                                    x:Name="gridView"
                                    ItemsSource="{Binding ObjectsRightsItemSource}"
                                    Margin="3">
@@ -152,7 +142,7 @@
                         </t:RadGridView.Columns>
                     </t:RadGridView>
 
-                    <Grid Grid.Row="3"> 
+                    <Grid Grid.Row="2"> 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>

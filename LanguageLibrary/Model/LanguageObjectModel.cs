@@ -11,8 +11,10 @@ namespace LanguageLibrary.Model
         public SmRoPermitLD SmRoPermitLD { get; set; } = new SmRoPermitLD();
         public SearchControlLD SearchControlLD { get; set; } = new SearchControlLD();
         public CopyrightAdminWorkplaceLD CopyrightAdminWorkplaceLD { get; set; } = new CopyrightAdminWorkplaceLD();
+        public ReportWorkplaceLD ReportWorkplaceLD { get; set; } = new ReportWorkplaceLD();
         public RightholdersListLD RightholdersListLD { get; set; } = new RightholdersListLD();
         public ObjectsRightListLD ObjectsRightListLD { get; set; } = new ObjectsRightListLD();
         public CommunitiesListLD CommunitiesListLD { get; set; } = new CommunitiesListLD();
+        public ReportsSRListLD ReportsSRListLD { get; set; } = new ReportsSRListLD();
     }
 }

@@ -31,8 +31,8 @@ namespace Launcher.WorkplaceModules.CopyrightAdminWorkplace
             }
         }
 
-        private RadTabItem _mainTabItem;
-        public RadTabItem MainTabItem
+        private TabItem _mainTabItem;
+        public TabItem MainTabItem
         {
             get => _mainTabItem;
             set
@@ -48,8 +48,8 @@ namespace Launcher.WorkplaceModules.CopyrightAdminWorkplace
             }
         }
 
-        private RadTabItem _rightholderNestedTabItem;
-        public RadTabItem RightholderNestedTabItem
+        private TabItem _rightholderNestedTabItem;
+        public TabItem RightholderNestedTabItem
         {
             get => _rightholderNestedTabItem;
             set

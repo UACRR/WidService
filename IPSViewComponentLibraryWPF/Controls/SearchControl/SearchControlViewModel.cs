@@ -30,9 +30,15 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
         #region * * * PROPERTIES * * *
 
-        public bool IsLoaded { get; set; }
+        private bool IsLoaded { get; set; }
 
         public ICollection<FrameParam> Config { get; set; }
+
+        public Action<SearchModuleResource> RunSearchQuery { get; set; }
+
+        public Action Clear { get; set; }
+
+        public Action UpdateData { get; set; }
 
         private ObservableCollection<CheckBox> _listBoxItemsSource = new ObservableCollection<CheckBox>();
         /// <summary>
@@ -72,10 +78,6 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                 OnPropertyChanged(() => SimpleSearchParameters);
             }
         }
-
-        public Action<SearchModuleResource> RunSearchQuery { get; set; }
-
-        public Action Clear { get; set; }
 
         public LM_SEARCH LOC { get; set; } = new LM_SEARCH();
 
@@ -315,12 +317,24 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             IsLoaded = true;
         }
 
+        /// <summary>
+        /// Очистити пошукові параметри
+        /// </summary>
         public ICommand ClearCommand => new IPSDelegateCommand(ClearCommandExecute);
         private void ClearCommandExecute(object o)
         {
             ClearSimpleSearch();
             ClearExtendedSearch();
             Clear?.Invoke();
+        }
+
+        /// <summary>
+        /// Оновити дані
+        /// </summary>
+        public ICommand UpdateDataCommand => new IPSDelegateCommand(UpdateDataCommandExecute);
+        private void UpdateDataCommandExecute(object o)
+        {
+            UpdateData?.Invoke();
         }
 
         #endregion

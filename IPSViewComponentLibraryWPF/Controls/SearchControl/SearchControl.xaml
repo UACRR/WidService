@@ -35,89 +35,102 @@
     </UserControl.Resources>
 
     <Grid>
-        <TabControl>
-            <TabItem Header="{Binding LOC.TAB_SIMPLE}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-                    <Grid Margin="3" Background="AliceBlue">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+        <t:RadButton Grid.Row="0"
+                     Margin="3"
+                     HorizontalAlignment="Left"
+                     MinWidth="95"
+                     Content="{Binding LOC.BTN_UPDATE}"
+                     Command="{Binding UpdateDataCommand}"/>
 
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
-                            <TextBox Text="{Binding SimpleSearchParameters.SearchText}"
-                                 Margin="3" 
-                                 VerticalContentAlignment="Center" 
-                                 MinWidth="250"/>
-                            <t:RadButton Content="{Binding LOC.BTN_SEARCH}"
-                                     MinWidth="95" 
-                                     Command="{Binding RunSearchCommand}">
-                            </t:RadButton>
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton Margin="5 0" 
-                                         IsChecked="{Binding SimpleSearchParameters.IsEqualSelected}" 
-                                         Content="{Binding LOC.EQ_VAL}" 
-                                         VerticalAlignment="Center"/>
-                                <RadioButton Margin="5 0" 
-                                         IsChecked="{Binding SimpleSearchParameters.IsLikeSelected}" 
-                                         Content="{Binding LOC.LIKE_VAL}"
-                                         VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </StackPanel>
-                        <t:RadButton Grid.Column="1" 
-                                     MinWidth="80" 
-                                     HorizontalAlignment="Right" 
-                                     Content="{Binding LOC.CLEAR_SEARCH}"
-                                     Command="{Binding ClearCommand}"/>
-                    </Grid>
-
-                    <t:Label Grid.Row="1"
-                             Background="GhostWhite"
-                             Content="{Binding LOC.CHECK_SEARCH_ENUM}"/>
-
-                    <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
-                        <ListBox Margin="3" ItemsSource="{Binding ListBoxItemsSource}">
-                            <ListBox.Template>
-                                <ControlTemplate>
-                                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
-                                </ControlTemplate>
-                            </ListBox.Template>
-                        </ListBox>
-                    </ScrollViewer>
-                </Grid>
-            </TabItem>
-
-            <TabItem Header="{Binding LOC.TAB_MULTI}">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+        <t:RadExpander Grid.Row="1" Header="{Binding LOC.EXT_SEARCH_EXP}" IsExpanded="True">
+            <TabControl>
+                <TabItem Header="{Binding LOC.TAB_SIMPLE}">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="0">
+                        <Grid Margin="3" Background="AliceBlue">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" Content="{Binding LOC.TXT_SEARCH_ENUM}" Background="GhostWhite"/>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <TextBox Text="{Binding SimpleSearchParameters.SearchText}"
+                                 Margin="3" 
+                                 VerticalContentAlignment="Center" 
+                                 MinWidth="250"/>
+                                <t:RadButton Content="{Binding LOC.BTN_SEARCH}"
+                                     MinWidth="95" 
+                                     Command="{Binding RunSearchCommand}">
+                                </t:RadButton>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton Margin="5 0" 
+                                         IsChecked="{Binding SimpleSearchParameters.IsEqualSelected}" 
+                                         Content="{Binding LOC.EQ_VAL}" 
+                                         VerticalAlignment="Center"/>
+                                    <RadioButton Margin="5 0" 
+                                         IsChecked="{Binding SimpleSearchParameters.IsLikeSelected}" 
+                                         Content="{Binding LOC.LIKE_VAL}"
+                                         VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
                             <t:RadButton Grid.Column="1" 
+                                     MinWidth="80" 
+                                     HorizontalAlignment="Right" 
+                                     Content="{Binding LOC.CLEAR_SEARCH}"
+                                     Command="{Binding ClearCommand}"/>
+                        </Grid>
+
+                        <t:Label Grid.Row="1"
+                             Background="GhostWhite"
+                             Content="{Binding LOC.CHECK_SEARCH_ENUM}"/>
+
+                        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                            <ListBox Margin="3" ItemsSource="{Binding ListBoxItemsSource}">
+                                <ListBox.Template>
+                                    <ControlTemplate>
+                                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                    </ControlTemplate>
+                                </ListBox.Template>
+                            </ListBox>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="{Binding LOC.TAB_MULTI}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Content="{Binding LOC.TXT_SEARCH_ENUM}" Background="GhostWhite"/>
+                                <t:RadButton Grid.Column="1" 
                                          MinWidth="80" 
                                          HorizontalAlignment="Right" 
                                          Content="{Binding LOC.CLEAR_SEARCH}"
                                          Command="{Binding ClearCommand}"/>
-                        </Grid>
+                            </Grid>
 
-                        <ListBox Grid.Row="1" 
+                            <ListBox Grid.Row="1" 
                                  Margin="3" 
                                  Focusable="False"
                                  IsTabStop="false" 
@@ -126,21 +139,22 @@
                                  HorizontalContentAlignment="Stretch"
                                  IsSelected="False"
                                  Grid.ColumnSpan="2">
-                            <ListBox.Template>
-                                <ControlTemplate>
-                                    <StackPanel IsItemsHost="True"/>
-                                </ControlTemplate>
-                            </ListBox.Template>
-                        </ListBox>
+                                <ListBox.Template>
+                                    <ControlTemplate>
+                                        <StackPanel IsItemsHost="True"/>
+                                    </ControlTemplate>
+                                </ListBox.Template>
+                            </ListBox>
 
-                        <t:RadButton Grid.Row="2" 
+                            <t:RadButton Grid.Row="2" 
                                      Content="{Binding LOC.BTN_SEARCH}" 
                                      HorizontalAlignment="Left"
                                      MinWidth="95"
                                      Command="{Binding RunSearchExtendedCommand}"/>
-                    </Grid>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </t:RadExpander>
     </Grid>
 </UserControl>

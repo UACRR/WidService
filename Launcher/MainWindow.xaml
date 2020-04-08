@@ -267,7 +267,11 @@
                                 IsEnabled="{Binding LauncherPermits.Violation}"
                                 Content="{Binding LM_Launcher.FixationOfViolations}" 
                                 Command="{Binding LoadViolationCommand}"/>
-                    </StackPanel>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="False"
+                                Content="Звіти онлайн-ресурсів" 
+                                Command="{Binding}"/>
+                        </StackPanel>
                 </Border>
 
                 <Border Style="{StaticResource groupBorder}" BorderBrush="SandyBrown" Background="Beige">

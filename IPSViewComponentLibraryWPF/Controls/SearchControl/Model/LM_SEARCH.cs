@@ -5,6 +5,8 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
 {
     public class LM_SEARCH : ViewModelBase
     {
+        private string _extSearchExp = "Розширений пошук";
+        private string _btnUpdate = "Оновити";
         private string _tabSimple = "Пошук з одним параметром";
         private string _tabMulti = "Пошук з окремими параметрами";
         private string _btnSearch = "Пошук";
@@ -18,6 +20,26 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
         private string _warnNoSelectField = "Не обрано жодного поля для пошуку!";
         private string _warnSearchDataEmpty = "Відсутні дані для пошуку!";
         private string _clearSearch = "Очистити";
+        
+        public string EXT_SEARCH_EXP
+        {
+            get => _extSearchExp;
+            set
+            {
+                _extSearchExp = value;
+                OnPropertyChanged(() => EXT_SEARCH_EXP);
+            }
+        }
+
+        public string BTN_UPDATE
+        {
+            get => _btnUpdate;
+            set
+            {
+                _btnUpdate = value;
+                OnPropertyChanged(() => BTN_UPDATE);
+            }
+        }
 
         public string TAB_SIMPLE
         {

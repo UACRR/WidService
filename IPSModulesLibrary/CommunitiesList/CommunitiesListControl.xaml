@@ -49,23 +49,13 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <t:RadButton Grid.Row="0"
-                         Margin="3"
-                         HorizontalAlignment="Left"
-                         MinWidth="95"
-                         Content="{Binding LOC.BTN_UPDATE}"
-                         Command="{Binding UpdateDataCommand}"/>
+            <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
 
-            <t:RadExpander Grid.Row="1" Header="{Binding LOC.EXT_SEARCH_EXP}" IsExpanded="True">
-                <search:SearchControl x:Name="searchControl"/>
-            </t:RadExpander>
-
-            <Grid Grid.Row="2" Margin="3">
+            <Grid Grid.Row="1" Margin="3">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
@@ -105,15 +95,41 @@
                         </t:GridViewColumn>
                     </t:RadGridView.Columns>
                 </t:RadGridView>
-                <t:RadDataPager Grid.Row="1"
-                                t:StyleManager.Theme="VisualStudio2013"
-                                PageSize="250"
-                                Source="{Binding Items, ElementName=gridView}"
-                                IsTotalItemCountFixed="False"
-                                DisplayMode="All, All"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <t:RadDataPager Grid.Column="0"
+                                    Margin="3 0"
+                                    BorderThickness="0"
+                                    x:Name="DataPager"
+                                    t:StyleManager.Theme="VisualStudio2013"
+                                    PageSize="250"
+                                    Source="{Binding Items, ElementName=gridView}"
+                                    IsTotalItemCountFixed="False"
+                                    DisplayMode="All, All"/>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Margin="5 0 0 0" Content="К-сть на сторінку:"/>
+
+                        <TextBox Text="{Binding ElementName=DataPager, Path=PageSize, Mode=TwoWay, StringFormat='{}{0:N0}'}"
+                                 VerticalContentAlignment="Center"
+                                 MaxLength="5"
+                                 HorizontalContentAlignment="Right"
+                                 MinWidth="50"
+                                 Margin="3"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Margin="10 0" Content="К-сть записів:"/>
+                        <Label Margin="0 0 10 0" Content="{Binding ElementName=DataPager, Path=ItemCount}"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
 
-            <StackPanel Grid.Row="3" Background="Silver" Orientation="Horizontal">
+            <StackPanel Grid.Row="2" Background="Silver" Orientation="Horizontal">
                 <t:RadButton HorizontalAlignment="Right"
                              Content="{Binding LOC.BTN_CREATE_COMMUNITY}"
                              Margin="3"

@@ -33,35 +33,30 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
-        <t:RadTabControl SelectedItem="{Binding MainTabItem}">
-            <t:RadTabItem Header="{Binding LOC.RH_1}" IsSelected="True">
-                <t:RadTabControl Margin="1 0 0 0" SelectedItem="{Binding RightholderNestedTabItem}">
-                    <t:RadTabItem Header="{Binding LOC.RH_2}" IsSelected="True">
-                        <rightholdersList:RightholdersListControl/>
-                    </t:RadTabItem>
-                    <t:RadTabItem Header="{Binding LOC.RH_CHANGE}">
-                        <transferControl:TransferOfRightsControl/>
-                    </t:RadTabItem>
-                    <t:RadTabItem Header="{Binding LOC.RH_REQUEST}">
-                        <requestControl:CopyrightRequestControl/>
-                    </t:RadTabItem>
-                </t:RadTabControl>
-            </t:RadTabItem>
-            <t:RadTabItem Header="{Binding LOC.OR}">
-                <objectsRightList:ObjectsRightListControl/>
-            </t:RadTabItem>
-            <t:RadTabItem Header="{Binding LOC.COMMUNITIES}">
-                <communitiesList:CommunitiesListControl/>
-                <!--<WindowsFormsHost>
-                    <communityList:CommunityControl/>
-                </WindowsFormsHost>-->
-            </t:RadTabItem>
-            <t:RadTabItem Header="{Binding LOC.PUB_SUB}">
-                <WindowsFormsHost>
-                    <pubsubList:PublisherAndSubpublisherControl/>
-                </WindowsFormsHost>
-            </t:RadTabItem>
-        </t:RadTabControl>
-    </Grid>
+    <TabControl SelectedItem="{Binding MainTabItem}">
+        <TabItem Header="{Binding LOC.RH_1}" IsSelected="True">
+            <TabControl Margin="1 0 0 0" SelectedItem="{Binding RightholderNestedTabItem}">
+                <TabItem Header="{Binding LOC.RH_2}" IsSelected="True">
+                    <rightholdersList:RightholdersListControl/>
+                </TabItem>
+                <TabItem Header="{Binding LOC.RH_CHANGE}">
+                    <transferControl:TransferOfRightsControl/>
+                </TabItem>
+                <TabItem Header="{Binding LOC.RH_REQUEST}">
+                    <requestControl:CopyrightRequestControl/>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="{Binding LOC.OR}">
+            <objectsRightList:ObjectsRightListControl/>
+        </TabItem>
+        <TabItem Header="{Binding LOC.COMMUNITIES}">
+            <communitiesList:CommunitiesListControl/>
+        </TabItem>
+        <TabItem Header="{Binding LOC.PUB_SUB}">
+            <WindowsFormsHost>
+                <pubsubList:PublisherAndSubpublisherControl/>
+            </WindowsFormsHost>
+        </TabItem>
+    </TabControl>
 </Window>

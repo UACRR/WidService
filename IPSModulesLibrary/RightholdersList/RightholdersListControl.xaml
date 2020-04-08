@@ -40,6 +40,9 @@
         <Style TargetType="t:RadExpander">
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
         </Style>
+        <Style TargetType="t:RadTreeView">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
         <Style TargetType="t:GridViewDataColumn">
             <Setter Property="HeaderTextAlignment" Value="Center"/>
             <Setter Property="IsFilterable" Value="False"/>
@@ -114,8 +117,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
-                               Margin="3"
+                <t:RadTreeView Margin="3"
                                MinWidth="200"
                                Background="MintCream"
                                HorizontalAlignment="Stretch"
@@ -132,23 +134,13 @@
                 <Grid Grid.Column="2" Margin="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <t:RadButton Grid.Row="0"
-                             Margin="3"
-                             HorizontalAlignment="Left"
-                             MinWidth="95"
-                             Content="{Binding LOC.BTN_UPDATE}"
-                             Command="{Binding UpdateDataCommand}"/>
+                    <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
 
-                    <t:RadExpander Grid.Row="1" Header="{Binding LOC.EXT_SEARCH_EXP}" IsExpanded="True">
-                        <search:SearchControl x:Name="searchControl"/>
-                    </t:RadExpander>
-
-                    <t:RadGridView Grid.Row="2"
+                    <t:RadGridView Grid.Row="1"
                                    x:Name="gridView"
                                    ColumnWidth="*"
                                    ItemsSource="{Binding ObjectsRightsItemSource}"
@@ -179,13 +171,38 @@
                             </t:GridViewColumn>
                         </t:RadGridView.Columns>
                     </t:RadGridView>
-                    <t:RadDataPager Grid.Row="3"
-                                Margin="3 0"
-                                t:StyleManager.Theme="VisualStudio2013"
-                                PageSize="250"
-                                Source="{Binding Items, ElementName=gridView}"
-                                IsTotalItemCountFixed="False"
-                                DisplayMode="All, All"/>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <t:RadDataPager Grid.Column="0"
+                                        Margin="3 0"
+                                        BorderThickness="0"
+                                        x:Name="DataPager"
+                                        t:StyleManager.Theme="VisualStudio2013"
+                                        PageSize="250"
+                                        Source="{Binding Items, ElementName=gridView}"
+                                        IsTotalItemCountFixed="False"
+                                        DisplayMode="All, All"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Margin="5 0 0 0" Content="К-сть на сторінку:"/>
+
+                            <TextBox Text="{Binding ElementName=DataPager, Path=PageSize, Mode=TwoWay, StringFormat='{}{0:N0}'}"
+                                     VerticalContentAlignment="Center"
+                                     MaxLength="5"
+                                     HorizontalContentAlignment="Right"
+                                     MinWidth="50"
+                                     Margin="3"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Margin="10 0" Content="К-сть записів:"/>
+                            <Label Margin="0 0 10 0" Content="{Binding ElementName=DataPager, Path=ItemCount}"/>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
 
 

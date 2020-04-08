@@ -299,6 +299,11 @@ namespace IPSModulesLibrary.ObjectsRightList
             ((SearchControlViewModel)searchControl.DataContext).Config = config;
             ((SearchControlViewModel) searchControl.DataContext).RunSearchQuery = RunSearchDelegateMethod;
             ((SearchControlViewModel) searchControl.DataContext).Clear = Clear;
+            ((SearchControlViewModel)searchControl.DataContext).UpdateData = async () =>
+            {
+                IsReloadData = true;
+                await LoadData(new SearchModuleResource());
+            };
 
             AppLanguageLibrary.UpdateLanguageLocalization(LOC, nameof(AppLanguageLibrary.CurrentLanguage.ObjectsRightListLD));
             GenerateTreeViewItems();
@@ -338,16 +343,6 @@ namespace IPSModulesLibrary.ObjectsRightList
                 presenter.DefaultRightholder = null;
                 presenter.ShowNew(5);
             }
-        }
-
-        /// <summary>
-        /// Оновити дані
-        /// </summary>
-        public ICommand UpdateDataCommand => new IPSDelegateCommand(UpdateDataCommandExecute);
-        private async void UpdateDataCommandExecute(object o)
-        {
-            IsReloadData = true;
-            await LoadData(new SearchModuleResource());
         }
 
         #endregion

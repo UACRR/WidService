@@ -20,6 +20,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
 using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
 using System.IO;
+using Launcher.WorkplaceModules.ReportWorkplace;
 using SmRoPermitClientLib;
 
 namespace Launcher.General
@@ -293,8 +294,9 @@ namespace Launcher.General
         {
             try
             {
-                var royaltyAdmin = new workReport.WorkReportForm(null);
-                UserPermissions.ImposeRestrictions(royaltyAdmin);
+                var royaltyAdmin = new ReportWorkplaceWindow();
+                //var royaltyAdmin = new workReport.WorkReportForm(null);
+                //UserPermissions.ImposeRestrictions(royaltyAdmin);
                 royaltyAdmin.Show();
             }
             catch (Exception e)

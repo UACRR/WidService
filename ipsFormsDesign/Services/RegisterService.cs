@@ -2,8 +2,10 @@
 using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Types;
 using WebAPIConnector;
 
@@ -12,6 +14,7 @@ namespace ipsFormsDesign.Services
     public class RegisterService
     {
         private readonly ApiConnector _webApi;
+        private const string Prefix = "register";
 
         public RegisterService()
         {
@@ -54,6 +57,30 @@ namespace ipsFormsDesign.Services
         {
             string url = $"register/ccid/items/{regId}";
             var result = await _webApi.GetListAsync<object[]>(url);
+            return result;
+        }
+
+        /// <summary>
+        /// Отримати список звітів малих прав
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest<DataTable>> GetSRReportsList(SearchModuleResource resource)
+        {
+            string url = $"{Prefix}/list/sr";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, resource);
+            return result;
+        }
+
+        /// <summary>
+        /// Отримати список звітів онлайн-ресурси
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest<DataTable>> GetOnlineReportsList(SearchModuleResource resource)
+        {
+            string url = $"{Prefix}/list/online";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, resource);
             return result;
         }
 
