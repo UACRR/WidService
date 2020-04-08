@@ -11,6 +11,7 @@
 
     <Control.Resources>
         
+        
         <Style TargetType="t:RadButton">
             <Setter Property="Background" Value="#470fa9"/>
             <Setter Property="MinHeight" Value="33.5"/>
@@ -47,6 +48,53 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="8" Background="#1c0347" BorderBrush="#1c0347" BorderThickness="0,1,1,0" >
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="t:RadButton" x:Key="blueBtn">
+            <Setter Property="Background" Value="#3B83FF"/>
+            <Setter Property="MinHeight" Value="33.5"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="8 3 5 8"/>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="#3B83FF" BorderBrush="#3B83FF" BorderThickness="0,1,1,0" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="8" Background="#2e6edb" BorderBrush="#2e6edb" BorderThickness="0,1,1,0" >
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="#2e6edb"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#2760c2"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="8" Background="#2760c2" BorderBrush="#2760c2" BorderThickness="0,1,1,0" >
                                     <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 </Border>
                             </ControlTemplate>
@@ -111,6 +159,8 @@
         </Style>
 
         <Style TargetType="TabItem">
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
@@ -137,24 +187,17 @@
             </Setter>
         </Style>
 
-      <Style TargetType="t:RadTreeViewItem">
-            <Setter Property="Background" Value="White"/>
-            
-            <Setter Property="Padding" Value="8 3 5 8"/>
+        <Style TargetType="t:RadTreeViewItem">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Cursor" Value="Hand"/>
-                    <Setter Property="Background" Value="White"/>
-
-                </Trigger>
-
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Foreground" Value="#470fa9"/>
                 </Trigger>
                 <Trigger Property="IsSelected" Value="False">
-                    <Setter Property="Background" Value="White"/>
-                    <Setter Property="Foreground" Value="Black"/>
-
+                    <Setter Property="Foreground" Value="#a0a0a0"/>
+                    
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -197,20 +240,19 @@
                          MinWidth="100" Click="RadButton_Click" Padding="5,5,5,9" UseLayoutRounding="True"/>
 
                     <t:RadComboBox Style="{DynamicResource dropdownBtn}"
+                                   Template="{DynamicResource RadComboBoxControlTemplate1}"
                            HorizontalAlignment="Left" 
-                           Margin="0 20 0 0" Width="100">
+                           Margin="0 20 0 20" Width="100">
                         <t:RadComboBoxItem Style="{DynamicResource dropdownBtnItem}" Content="Save"/>
                         <t:RadComboBoxItem Style="{DynamicResource dropdownBtnItem}" Content="Save 2 3 4"/>
                     </t:RadComboBox>
 
-                 <!--  <t:RadComboBox HorizontalAlignment="Left" 
+                 <!--<t:RadComboBox HorizontalAlignment="Left" 
                            Margin="0 20 0 20" Width="200"
                            IsEditable="True"
                            IsReadOnly="True"
                            Text="Додати правовласника" 
-                           />
-
--->
+                           />-->
 
                     <WrapPanel>
                         <TextBlock Style="{DynamicResource dropdownBlock}">Додати правовласника:</TextBlock>
@@ -309,7 +351,7 @@
         <TabItem Header="Buttons">
             <WrapPanel Orientation="Vertical">
                 <t:RadButton Margin="3" Content="1"/>
-                <t:RadButton Margin="3" Content="2"/>
+                <t:RadButton Style="{DynamicResource blueBtn}"  Margin="3" Content="2"/>
                 <t:RadButton Margin="3" Content="3"/>
 
             </WrapPanel>
@@ -317,18 +359,18 @@
 
         <TabItem Header="Tree Views">
             <StackPanel Orientation="Horizontal">
-                <t:RadTreeView Width="120" Margin="5">
-                    <t:RadTreeViewItem Header="12345"/>
-                    <t:RadTreeViewItem Header="12345"/>
-                    <t:RadTreeViewItem Header="12345"/>
+                <t:RadTreeView Width="200" Margin="5">
+                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Category"/>
+                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Lorem"/>
+                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Ipsum"/>
                 </t:RadTreeView>
 
-                <t:RadTreeView Width="120" Margin="5">
-                    <t:RadTreeViewItem IsExpanded="True" Header="Category" FontWeight="Bold">
-                        <t:RadTreeViewItem Header="subCategory" FontWeight="Normal"/>
+                <t:RadTreeView Width="200" Margin="5">
+                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" IsExpanded="True" Header="Category" FontWeight="Bold">
+                        <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="subCategory" FontWeight="Normal"/>
                     </t:RadTreeViewItem>
-                    <t:RadTreeViewItem Header="12345" FontWeight="Bold"/>
-                    <t:RadTreeViewItem Header="12345" FontWeight="Bold"/>
+                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Onetwo" FontWeight="Bold"/>
+                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Three" FontWeight="Bold"/>
                 </t:RadTreeView>
 
             </StackPanel>
