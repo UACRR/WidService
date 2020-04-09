@@ -178,6 +178,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientSRList\ClientSRListControl.xaml.cs">
+      <DependentUpon>ClientSRListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientSRList\ClientSRListModel.cs" />
+    <Compile Include="ClientSRList\ClientSRListViewModel.cs" />
+    <Compile Include="ClientSRList\LM_ClientSRList.cs" />
     <Compile Include="CommunitiesList\CommunitiesListControl.xaml.cs">
       <DependentUpon>CommunitiesListControl.xaml</DependentUpon>
     </Compile>
@@ -241,6 +247,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ClientSRList\ClientSRListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CommunitiesList\CommunitiesListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -275,6 +285,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClientBRList\" />
     <Folder Include="CopyrightRequest\" />
     <Folder Include="TransferOfRights\" />
   </ItemGroup>
