@@ -203,6 +203,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ReportsBRList\LM_ReportsBRList.cs" />
+    <Compile Include="ReportsBRList\ReportsBRListControl.xaml.cs">
+      <DependentUpon>ReportsBRListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportsBRList\ReportsBRListModel.cs" />
+    <Compile Include="ReportsBRList\ReportsBRListViewModel.cs" />
     <Compile Include="ReportsOnlineList\LM_ReportsOnlineList.cs" />
     <Compile Include="ReportsOnlineList\ReportsOnlineListControl.xaml.cs">
       <DependentUpon>ReportsOnlineListControl.xaml</DependentUpon>
@@ -243,6 +249,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ReportsBRList\ReportsBRListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ReportsOnlineList\ReportsOnlineListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,7 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CopyrightRequest\" />
-    <Folder Include="ReportsBRList\" />
     <Folder Include="TransferOfRights\" />
   </ItemGroup>
   <ItemGroup>

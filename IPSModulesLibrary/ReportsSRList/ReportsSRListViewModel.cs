@@ -196,7 +196,9 @@ namespace IPSModulesLibrary.ReportsSRList
         {
             ControlLoad(() =>
             {
-                StatusItemSource = IpsGlobal.AnketaDictionaties.registerStatus.ToList();
+                int[] status = new[] { 1, 2, 3, 4, 5, 6, 7 };
+                
+                StatusItemSource = IpsGlobal.AnketaDictionaties.registerStatus.Where(rec => status.Contains(rec.CodeI)).ToList();
 
                 var searchControl = ((ReportsSRListControl)o).searchControl;
                 var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 6).FrameParam;
