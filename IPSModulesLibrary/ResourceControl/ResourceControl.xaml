@@ -201,6 +201,21 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="t:RadTreeViewItem" x:Key="Custom">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="False">
+                    <Setter Property="Foreground" Value="#a0a0a0"/>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <!-- 
         <Style TargetType="t:RadTreeViewItem">
             <Setter Property="Template">
@@ -408,9 +423,9 @@
                             </Grid.ColumnDefinitions>
 
                             <t:RadTreeView Width="150" Margin="5">
-                                <t:RadTreeViewItem Template="{DynamicResource RadTreeViewItemControlTemplate1}" Header="Category"/>
-                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}"  Header="Lorem"/>
-                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Ipsum"/>
+                                <t:RadTreeViewItem Template="{DynamicResource RadTreeViewItemControlTemplate2}" Style="{DynamicResource Custom}" Header="Category"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplat2}"  Style="{DynamicResource Custom}" Header="Lorem"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate2}" Style="{DynamicResource Custom}" Header="Ipsum"/>
                             </t:RadTreeView>
 
                             <!--заглушка-->
@@ -426,11 +441,11 @@
                             </Grid.ColumnDefinitions>
 
                             <t:RadTreeView Width="150" Margin="5">
-                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" IsExpanded="True" Header="Category" FontWeight="Bold">
-                                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="subCategory" FontWeight="Normal"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate2}" Style="{DynamicResource Custom}" IsExpanded="True" Header="Category" FontWeight="Bold">
+                                    <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate2}" Style="{DynamicResource Custom}" Header="subCategory" FontWeight="Normal"/>
                                 </t:RadTreeViewItem>
-                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Onetwo" FontWeight="Bold"/>
-                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate1}" Header="Three" FontWeight="Bold"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate2}" Style="{DynamicResource Custom}" Header="Onetwo" FontWeight="Bold"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate2}" Style="{DynamicResource Custom}" Header="Three" FontWeight="Bold"/>
                             </t:RadTreeView>
 
                             <!--заглушка-->
