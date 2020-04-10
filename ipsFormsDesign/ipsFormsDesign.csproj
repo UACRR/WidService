@@ -494,7 +494,7 @@
     <Compile Include="Services\DbfService.cs" />
     <Compile Include="Services\DictionaryService.cs" />
     <Compile Include="Services\FixationService.cs" />
-    <Compile Include="Services\LicenseDataService.cs" />
+    <Compile Include="Services\LicenseBRService.cs" />
     <Compile Include="Services\ObjectUploading\ObjectRightData.cs" />
     <Compile Include="Services\ObjectUploading\ObjectRightDataClientSideValidator.cs" />
     <Compile Include="Services\ObjectUploading\ObjectRightDataParser.cs" />

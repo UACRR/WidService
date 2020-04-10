@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Launcher.WorkplaceModules.ReportWorkplace"
         xmlns:reportsSR="clr-namespace:IPSModulesLibrary.ReportsSRList;assembly=IPSModulesLibrary"
         xmlns:reportsOnline="clr-namespace:IPSModulesLibrary.ReportsOnlineList;assembly=IPSModulesLibrary"
-        xmlns:reportsBR="clr-namespace:IpsViewComponentLibrary.RightholderControls;assembly=IpsViewComponentLibrary"
+        xmlns:reportsBR="clr-namespace:IPSModulesLibrary.ReportsBRList;assembly=IPSModulesLibrary"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Управління розподілу АВ" Height="450" Width="800">
@@ -22,17 +22,23 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ResourceDictionaries/TabControlResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <TabControl SelectedItem="{Binding MainTabItem}">
-        <TabItem Header="Звіти МП" IsSelected="True">
+        <TabItem Header="Звіти МП" IsSelected="True" Style="{StaticResource TabItemStyle}">
             <reportsSR:ReportsSRListControl/>
         </TabItem>
-        <TabItem Header="Звіти онлайн-ресурси">
+        <TabItem Header="Звіти онлайн-ресурси" Style="{StaticResource TabItemStyle}">
             <reportsOnline:ReportsOnlineListControl/>
         </TabItem>
-        <TabItem Header="Заявки/Довідки ВП">
-            <WindowsFormsHost>
-                <reportsBR:LicenseAgreementListControl/>
-            </WindowsFormsHost>
+        <TabItem Header="Заявки/Довідки ВП" Style="{StaticResource TabItemStyle}">
+            <reportsBR:LicenseBRListControl/>
         </TabItem>
     </TabControl>
 </Window>
