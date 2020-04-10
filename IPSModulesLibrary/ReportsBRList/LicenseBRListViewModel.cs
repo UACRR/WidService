@@ -57,7 +57,6 @@ namespace IPSModulesLibrary.ReportsBRList
             }
         }
 
-        private ICollection<LicenseBRListModel> ReportsItemSourceTemp;
         private ICollection<LicenseBRListModel> _reportsItemSource;
         public ICollection<LicenseBRListModel> ReportsItemSource
         {
@@ -77,18 +76,6 @@ namespace IPSModulesLibrary.ReportsBRList
             {
                 _statusItemSource = value;
                 OnPropertyChanged(() => StatusItemSource);
-            }
-        }
-
-        private AgreementStatus _selectedStatus;
-        public AgreementStatus SelectedStatus
-        {
-            get => _selectedStatus;
-            set
-            {
-                _selectedStatus = value;
-                FilterItemsList();
-                OnPropertyChanged(() => SelectedStatus);
             }
         }
 
@@ -124,8 +111,7 @@ namespace IPSModulesLibrary.ReportsBRList
                 if (TempDataTable == null || IsReloadData)
                     TempDataTable = data.Data;
 
-                ReportsItemSourceTemp = await Task.Factory.StartNew(() => ConvertToInternalModel(data.Data));
-                FilterItemsList();
+                ReportsItemSource = await Task.Factory.StartNew(() => ConvertToInternalModel(data.Data));
             }
             else
             {
@@ -181,27 +167,6 @@ namespace IPSModulesLibrary.ReportsBRList
             return itemSource;
         }
 
-        private void FilterItemsList()
-        {
-            Task.Factory.StartNew(() =>
-            {
-                Func<LicenseBRListModel, bool> predicate = item =>
-                {
-                    bool e = true;
-
-                    if (LicenseTypeCodes.Any())
-                        e = LicenseTypeCodes.Contains(item.LicType);
-
-                    if (SelectedStatus != null)
-                        e = e && item.LicStatus == SelectedStatus.CodeI;
-
-                    return e;
-                };
-
-                ReportsItemSource = ReportsItemSourceTemp?.Where(predicate).ToList();
-            });
-        }
-
         #endregion
 
         #region * * * COMMANDS * * *
@@ -238,9 +203,8 @@ namespace IPSModulesLibrary.ReportsBRList
                 ((SearchControlViewModel)searchControl.DataContext).Clear = async () =>
                 {
                     IsBusy = true;
-                    ReportsItemSourceTemp = await Task.Factory.StartNew(() => ConvertToInternalModel(TempDataTable));
+                    ReportsItemSource = await Task.Factory.StartNew(() => ConvertToInternalModel(TempDataTable));
                     IsBusy = false;
-                    FilterItemsList();
                 };
                 ((SearchControlViewModel)searchControl.DataContext).UpdateData = async () =>
                 {
@@ -302,21 +266,6 @@ namespace IPSModulesLibrary.ReportsBRList
                 }
             }
         }
-
-        //public ICommand LicenseTypeChangedCommand => new IPSDelegateCommand(LicenseTypeChangedCommandExecute);
-        //private void LicenseTypeChangedCommandExecute(object o)
-        //{
-        //    LicenseTypeCodes.Clear();
-
-        //    var list = (System.Collections.ICollection) o;
-        //    foreach (var item in list)
-        //    {
-        //        var code = ((LicenseType) item).CodeI;
-        //        LicenseTypeCodes.Add(code);
-        //    }
-
-        //    FilterItemsList();
-        //}
 
         #endregion
     }
