@@ -50,6 +50,7 @@
                            ColumnWidth="*"
                            IsReadOnly="True"
                            CanUserSearchInHiddenColumns="True"
+                           DistinctValuesLoading="GridView_OnDistinctValuesLoading"
                            RowDetailsVisibilityMode="{Binding RowDetailsVisibilityMode}"
                            ItemsSource="{Binding ReportsItemSource}"
                            Margin="3">

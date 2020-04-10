@@ -282,6 +282,9 @@ namespace IPSModulesLibrary.ReportsBRList
             var consumer = consumerService.GetData(custId);
             var bigRightView = consumerService.GetMainBigRightView().FirstOrDefault(rec => rec.CustId == custId);
 
+            if (bigRightView == null)
+                return;
+
             var view = new RequestForm(consumer, bigRightView, ScopeOfUseForm.Edit, item.LicId, RequestForm.FormMode.ForSmallRightAdmin);
 
             if (view.ShowDialog() == DialogResult.OK)

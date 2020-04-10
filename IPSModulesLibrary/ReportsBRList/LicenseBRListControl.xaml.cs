@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls.GridView;
 
 namespace IPSModulesLibrary.ReportsBRList
 {
@@ -23,6 +24,14 @@ namespace IPSModulesLibrary.ReportsBRList
         public LicenseBRListControl()
         {
             InitializeComponent();
+        }
+
+        private void GridView_OnDistinctValuesLoading(object sender, GridViewDistinctValuesLoadingEventArgs e)
+        {
+            // This will make the grid display absolutely all distinct values for 
+            // each column regardless of what filters might exist on other columns.
+            var filterDistinctValues = false;
+            e.ItemsSource = gridView.GetDistinctValues(e.Column, filterDistinctValues);
         }
     }
 }

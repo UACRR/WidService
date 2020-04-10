@@ -26,7 +26,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("list")]
         public async Task<IActionResult> GetLicenseBRList([FromBody] SearchModuleResource resource)
         {
-            string query = "select t0.* from vTsk_1_BRAllDocs t0";
+            string query = "select t0.* from vTsk_1_BRAllDocs_wpf t0";
             List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 7).ToListAsync();
             var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
             return Ok(result);
