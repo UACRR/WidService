@@ -6,17 +6,30 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using ipsmedserviceapp.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ipsmedserviceapp.Controllers
 {
-    [Route("api/licenseAgreements")]
-    public class LicenseController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class LicenseBRController : Controller
     {
         private readonly MediaServiceContext _dbContext;
 
-        public LicenseController(MediaServiceContext dbContext)
+        public LicenseBRController(MediaServiceContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        [HttpPost("list")]
+        public async Task<IActionResult> GetLicenseBRList([FromBody] SearchModuleResource resource)
+        {
+            string query = "select t0.* from vTsk_1_BRAllDocs t0";
+            List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 7).ToListAsync();
+            var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
+            return Ok(result);
         }
 
         [HttpGet]

@@ -50,6 +50,7 @@
     <Compile Include="Model\LanguageDataNested\CommunitiesListLD.cs" />
     <Compile Include="Model\LanguageDataNested\CopyrightAdminWorkplaceLD.cs" />
     <Compile Include="Model\LanguageDataNested\LauncherLD.cs" />
+    <Compile Include="Model\LanguageDataNested\LicenseBRListLD.cs" />
     <Compile Include="Model\LanguageDataNested\ObjectsRightListLD.cs" />
     <Compile Include="Model\LanguageDataNested\ReportsSRListLD.cs" />
     <Compile Include="Model\LanguageDataNested\ReportWorkplaceLD.cs" />

@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary.RightholderControls
     {
         private RequestsOrReferenceBigRightView _licenseAgreement;
 
-        private readonly LicenseDataService _licenseDataService;
+        private readonly LicenseBRService _licenseDataService;
         private readonly DialogService _dialogService;
         private readonly AgreementStatuses[] _allowedStatuses =
         {
@@ -41,7 +41,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (!IsDesignMode)
             {
-                _licenseDataService = new LicenseDataService();
+                _licenseDataService = LicenseBRService.GetInstance();
                 _dialogService = new DialogService();
             }
         }

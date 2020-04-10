@@ -209,12 +209,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ReportsBRList\LM_ReportsBRList.cs" />
-    <Compile Include="ReportsBRList\ReportsBRListControl.xaml.cs">
-      <DependentUpon>ReportsBRListControl.xaml</DependentUpon>
+    <Compile Include="ReportsBRList\LM_LicenseBRList.cs" />
+    <Compile Include="ReportsBRList\LicenseBRListControl.xaml.cs">
+      <DependentUpon>LicenseBRListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReportsBRList\ReportsBRListModel.cs" />
-    <Compile Include="ReportsBRList\ReportsBRListViewModel.cs" />
+    <Compile Include="ReportsBRList\LicenseBRListModel.cs" />
+    <Compile Include="ReportsBRList\LicenseBRListViewModel.cs" />
     <Compile Include="ReportsOnlineList\LM_ReportsOnlineList.cs" />
     <Compile Include="ReportsOnlineList\ReportsOnlineListControl.xaml.cs">
       <DependentUpon>ReportsOnlineListControl.xaml</DependentUpon>
@@ -259,7 +259,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ReportsBRList\ReportsBRListControl.xaml">
+    <Page Include="ReportsBRList\LicenseBRListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +278,10 @@
     <Page Include="Resources\ResourceDictionaries\GridViewResourceDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ResourceDictionaries\StyleManagerResoureDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RightholdersList\RightholdersListControl.xaml">
       <SubType>Designer</SubType>
@@ -318,6 +322,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\edit-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\delete-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\print-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\view-icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

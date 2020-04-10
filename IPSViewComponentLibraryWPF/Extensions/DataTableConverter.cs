@@ -36,6 +36,14 @@ namespace IPSViewComponentLibraryWPF.Extensions
             return (float) (double) obj;
         }
 
+        public static Single? CastFloatNull(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+                return default(Single?);
+
+            return (float?)(double?)obj;
+        }
+
         public static Byte CastByte(object obj)
         {
             if (obj == null || obj == DBNull.Value)

@@ -16,5 +16,6 @@ namespace LanguageLibrary.Model
         public ObjectsRightListLD ObjectsRightListLD { get; set; } = new ObjectsRightListLD();
         public CommunitiesListLD CommunitiesListLD { get; set; } = new CommunitiesListLD();
         public ReportsSRListLD ReportsSRListLD { get; set; } = new ReportsSRListLD();
+        public LicenseBRListLD LicenseBRListLD { get; set; } = new LicenseBRListLD();
     }
 }

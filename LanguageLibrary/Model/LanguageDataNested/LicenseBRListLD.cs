@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IPSModulesLibrary.ReportsBRList
+namespace LanguageLibrary.Model.LanguageDataNested
 {
-    public class LM_ReportsBRList
+    public class LicenseBRListLD
     {
     }
 }

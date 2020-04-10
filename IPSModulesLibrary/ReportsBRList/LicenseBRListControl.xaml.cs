@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace IPSModulesLibrary.ReportsBRList
 {
     /// <summary>
-    /// Interaction logic for ReportsBRListControl.xaml
+    /// Interaction logic for LicenseBRListControl.xaml
     /// </summary>
-    public partial class ReportsBRListControl : UserControl
+    public partial class LicenseBRListControl : UserControl
     {
-        public ReportsBRListControl()
+        public LicenseBRListControl()
         {
             InitializeComponent();
         }
