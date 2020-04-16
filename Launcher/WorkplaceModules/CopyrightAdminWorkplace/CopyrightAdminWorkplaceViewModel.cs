@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using ipsFormsDesign.Interfaces;
 using IPSModulesLibrary.ObjectsRightList;

@@ -289,8 +289,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             // 
             // LicenseAgreementNotActiveControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.gvMoreLicenseAgr);
             this.Controls.Add(this.ipsPanel2);
             this.Name = "LicenseAgreementNotActiveControl";

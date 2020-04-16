@@ -41,8 +41,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
+            this.ctrlAgrSecond = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerDetailControl();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
+            this.bsPlacesForAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
             this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
@@ -51,15 +53,14 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtSeries = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSourceAgr = new System.Windows.Forms.BindingSource(this.components);
-            this.bsPlacesForAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgrMain = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerMainControl();
-            this.ctrlAgrSecond = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerDetailControl();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPlacesForAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
@@ -67,7 +68,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeries)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPlacesForAgreement)).BeginInit();
             this.SuspendLayout();
             // 
             // panel
@@ -91,6 +91,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.checkAttach.TabIndex = 1;
             this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
             this.checkAttach.ThemeName = "Office2013Light";
+            // 
+            // ctrlAgrSecond
+            // 
+            this.ctrlAgrSecond.AutoprolongationDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            this.ctrlAgrSecond.AutoprolongationPercent = null;
+            this.ctrlAgrSecond.DataSourceBinding = null;
+            this.ctrlAgrSecond.IsAutoprolongation = false;
+            this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
+            this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.MinPayment = null;
+            this.ctrlAgrSecond.Name = "ctrlAgrSecond";
+            this.ctrlAgrSecond.PercentPayment = null;
+            this.ctrlAgrSecond.PeriodPaymentDataMember = null;
+            this.ctrlAgrSecond.PeriodPaymentDataSource = null;
+            this.ctrlAgrSecond.PeriodPaymentDisplayMember = "";
+            this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
+            this.ctrlAgrSecond.PeriodPaymentValueMember = "";
+            this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.TabIndex = 0;
             // 
             // radLabel3
             // 
@@ -166,6 +186,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.gvPlaces.TabIndex = 0;
             this.gvPlaces.ThemeName = "Office2013Light";
             // 
+            // bsPlacesForAgreement
+            // 
+            this.bsPlacesForAgreement.DataSource = typeof(IpsViewComponentLibrary.InternalControlsModel.PlacesForAgreement);
+            // 
             // ddlLicType
             // 
             this.ddlLicType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -226,47 +250,23 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.bindingSourceAgr.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
-            // bsPlacesForAgreement
-            // 
-            this.bsPlacesForAgreement.DataSource = typeof(IpsViewComponentLibrary.InternalControlsModel.PlacesForAgreement);
-            // 
             // ctrlAgrMain
             // 
             this.ctrlAgrMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgrMain.DateEndNullText = "";
-            this.ctrlAgrMain.DateTimeType = AgreementModifyType.CreateNewAgreement;
+            this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.Common.Enums.AgreementModifyType.CreateNewAgreement;
             this.ctrlAgrMain.Location = new System.Drawing.Point(14, 3);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";
             this.ctrlAgrMain.Size = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.TabIndex = 0;
             // 
-            // ctrlAgrSecond
-            // 
-            this.ctrlAgrSecond.AutoprolongationDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
-            this.ctrlAgrSecond.AutoprolongationPercent = null;
-            this.ctrlAgrSecond.DataSourceBinding = null;
-            this.ctrlAgrSecond.IsAutoprolongation = false;
-            this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
-            this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.MinPayment = null;
-            this.ctrlAgrSecond.Name = "ctrlAgrSecond";
-            this.ctrlAgrSecond.PercentPayment = null;
-            this.ctrlAgrSecond.PeriodPaymentDataMember = null;
-            this.ctrlAgrSecond.PeriodPaymentDataSource = null;
-            this.ctrlAgrSecond.PeriodPaymentDisplayMember = "";
-            this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
-            this.ctrlAgrSecond.PeriodPaymentValueMember = "";
-            this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.TabIndex = 0;
-            // 
             // AgreementWithPlacesControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.txtSeries);
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.ddlLicType);
@@ -286,6 +286,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPlacesForAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
@@ -293,7 +294,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeries)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPlacesForAgreement)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

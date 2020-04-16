@@ -39,8 +39,15 @@ namespace IpsViewComponentLibrary.ImportDBF
 
         public TypeRights TypeRights { get; set; }
 
+        private bool CheckNullUpdateProvider => _updateProviderSmallRight != null || _updateProviderBigRight != null;
+
         // оновити дані
         private void Control_Paint(object sender, PaintEventArgs e)
+        {
+            LoadData();
+        }
+
+        private void LoadData()
         {
             if (_presenter == null)
                 return;
@@ -141,7 +148,9 @@ namespace IpsViewComponentLibrary.ImportDBF
 
         private void ImportDBFControl_Load(object sender, EventArgs e)
         {
-            if (IpsGlobal.Instances.Any())
+            LoadData();
+
+            if (!CheckNullUpdateProvider && IpsGlobal.Instances.Any())
             {
                 if (TypeRights == TypeRights.SmallRights)
                     _updateProviderSmallRight = IpsGlobal.Instances[typeof(IUpdateProviderSmallRight)] as IUpdateProviderSmallRight;

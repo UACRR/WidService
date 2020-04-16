@@ -44,7 +44,7 @@
       <content>Обробка звітів Користувачів (ідентифікація)</content>
       <description>
       </description>
-      <defaultContent>Обробка звіті Користувачів (ідентифікація)</defaultContent>
+      <defaultContent>Обробка звітів Користувачів (ідентифікація)</defaultContent>
     </uiItem>
     <uiItem name="AnalyticsAndReports">
       <content>Звітність (аналітика)</content>
@@ -499,6 +499,374 @@
       <description>
       </description>
       <defaultContent>Всі поля</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="CopyrightAdminWorkplaceLD">
+    <uiItem name="TITLE_CRIGHT_ADMIN_WP">
+      <content>Правовласники та Об`єкти прав</content>
+      <description>
+      </description>
+      <defaultContent>Правовласники та Об`єкти прав</defaultContent>
+    </uiItem>
+    <uiItem name="RH_1">
+      <content>Правовласники</content>
+      <description>
+      </description>
+      <defaultContent>Правовласники</defaultContent>
+    </uiItem>
+    <uiItem name="RH_2">
+      <content>Список правовласників</content>
+      <description>
+      </description>
+      <defaultContent>Список правовласників</defaultContent>
+    </uiItem>
+    <uiItem name="RH_CHANGE">
+      <content>Зміна правовласника</content>
+      <description>
+      </description>
+      <defaultContent>Зміна правовласника</defaultContent>
+    </uiItem>
+    <uiItem name="RH_REQUEST">
+      <content>Запити</content>
+      <description>
+      </description>
+      <defaultContent>Запити</defaultContent>
+    </uiItem>
+    <uiItem name="OR">
+      <content>Об'єкти права</content>
+      <description>
+      </description>
+      <defaultContent>Об'єкти права</defaultContent>
+    </uiItem>
+    <uiItem name="COMMUNITIES">
+      <content>Товариства</content>
+      <description>
+      </description>
+      <defaultContent>Товариства</defaultContent>
+    </uiItem>
+    <uiItem name="PUB_SUB">
+      <content>Видавництва/Субвидаництва</content>
+      <description>
+      </description>
+      <defaultContent>Видавництва/Субвидаництва</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RightholdersListLD">
+    <uiItem name="BTN_UPDATE">
+      <content>Оновити</content>
+      <description>
+      </description>
+      <defaultContent>Оновити</defaultContent>
+    </uiItem>
+    <uiItem name="DDBTN_ADD_RH">
+      <content>Додати Правовласника ОКУ</content>
+      <description>
+      </description>
+      <defaultContent>Додати Правовласника ОКУ</defaultContent>
+    </uiItem>
+    <uiItem name="DDBTN_ADD_EXTERNAL_RH">
+      <content>Додати зовнішнього правовласника</content>
+      <description>
+      </description>
+      <defaultContent>Додати зовнішнього правовласника</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_RH_PHIS">
+      <content>Фізична особа</content>
+      <description>
+      </description>
+      <defaultContent>Фізична особа</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_RH_JUR">
+      <content>Юридична особа</content>
+      <description>
+      </description>
+      <defaultContent>Юридична особа</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_EXT_RH">
+      <content>Правовласник</content>
+      <description>
+      </description>
+      <defaultContent>Правовласник</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_EXT_PUBL">
+      <content>Видавництво</content>
+      <description>
+      </description>
+      <defaultContent>Видавництво</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RH_CODE">
+      <content>Шифр автор/правовласника</content>
+      <description>
+      </description>
+      <defaultContent>Шифр автор/правовласника</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RH_NAME">
+      <content>Правовласник</content>
+      <description>
+      </description>
+      <defaultContent>Правовласник</defaultContent>
+    </uiItem>
+    <uiItem name="GV_AGR_DATE">
+      <content>Дата договору</content>
+      <description>
+      </description>
+      <defaultContent>Дата договору</defaultContent>
+    </uiItem>
+    <uiItem name="GV_COUNT_OBJ">
+      <content>К-сть об'єктів</content>
+      <description>
+      </description>
+      <defaultContent>К-сть об'єктів</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RH_PROFIT">
+      <content>Дохід з початку року</content>
+      <description>
+      </description>
+      <defaultContent>Дохід з початку року</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RH_TYPE">
+      <content>Тип правовласника</content>
+      <description>
+      </description>
+      <defaultContent>Тип правовласника</defaultContent>
+    </uiItem>
+    <uiItem name="TV_CAT_ALL_RH">
+      <content>Всі правовласники</content>
+      <description>
+      </description>
+      <defaultContent>Всі правовласники</defaultContent>
+    </uiItem>
+    <uiItem name="TV_CAT_OKM_RH">
+      <content>Правовласники ОКУ</content>
+      <description>
+      </description>
+      <defaultContent>Правовласники ОКУ</defaultContent>
+    </uiItem>
+    <uiItem name="TV_CAT_EXTERNAL_RH">
+      <content>Зовнішні правовласники</content>
+      <description>
+      </description>
+      <defaultContent>Зовнішні правовласники</defaultContent>
+    </uiItem>
+    <uiItem name="TV_ALL">
+      <content>Всі</content>
+      <description>
+      </description>
+      <defaultContent>Всі</defaultContent>
+    </uiItem>
+    <uiItem name="TV_NO_ACCEPTED">
+      <content>Не підтверджені</content>
+      <description>
+      </description>
+      <defaultContent>Не підтверджені</defaultContent>
+    </uiItem>
+    <uiItem name="TV_ON_ACCEPTED">
+      <content>На акцепті</content>
+      <description>
+      </description>
+      <defaultContent>На акцепті</defaultContent>
+    </uiItem>
+    <uiItem name="TV_ACTIVE">
+      <content>Активний</content>
+      <description>
+      </description>
+      <defaultContent>Активний</defaultContent>
+    </uiItem>
+    <uiItem name="TV_CLOSED">
+      <content>Закритий</content>
+      <description>
+      </description>
+      <defaultContent>Закритий</defaultContent>
+    </uiItem>
+    <uiItem name="TV_HERITAGE">
+      <content>Оформлення спадщини</content>
+      <description>
+      </description>
+      <defaultContent>Оформлення спадщини</defaultContent>
+    </uiItem>
+    <uiItem name="TV_BLOCKED">
+      <content>Заблокований</content>
+      <description>
+      </description>
+      <defaultContent>Заблокований</defaultContent>
+    </uiItem>
+    <uiItem name="CREATE_RH_EXT_SUCC_MSG">
+      <content>Нового зовнішнього Правовласника(Видавництво) додано!</content>
+      <description>
+      </description>
+      <defaultContent>Нового зовнішнього Правовласника(Видавництво) додано!</defaultContent>
+    </uiItem>
+    <uiItem name="CREATE_RH_EXT_ERR_MSG">
+      <content>Неможливо додати нового зовнішнього правовласника/видавництво!</content>
+      <description>
+      </description>
+      <defaultContent>Неможливо додати нового зовнішнього правовласника/видавництво!</defaultContent>
+    </uiItem>
+    <uiItem name="EXT_SEARCH_EXP">
+      <content>Розширений пошук</content>
+      <description>
+      </description>
+      <defaultContent>Розширений пошук</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="ObjectsRightListLD">
+    <uiItem name="TV_CAT_STATE">
+      <content>Стан</content>
+      <description>
+      </description>
+      <defaultContent>Стан</defaultContent>
+    </uiItem>
+    <uiItem name="TV_ALL">
+      <content>Всі</content>
+      <description>
+      </description>
+      <defaultContent>Всі</defaultContent>
+    </uiItem>
+    <uiItem name="TV_NO_ACCEPT">
+      <content>Не підтверджені</content>
+      <description>
+      </description>
+      <defaultContent>Не підтверджені</defaultContent>
+    </uiItem>
+    <uiItem name="TV_NO_ATTACH">
+      <content>Не прив'язані</content>
+      <description>
+      </description>
+      <defaultContent>Не прив'язані</defaultContent>
+    </uiItem>
+    <uiItem name="TV_NO_DISTRIB">
+      <content>Не розподілені</content>
+      <description>
+      </description>
+      <defaultContent>Не розподілені</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_UPDATE">
+      <content>Оновити</content>
+      <description>
+      </description>
+      <defaultContent>Оновити</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_CREATE_OBJ">
+      <content>Додати</content>
+      <description>
+      </description>
+      <defaultContent>Додати</defaultContent>
+    </uiItem>
+    <uiItem name="GV_IN_CODE">
+      <content>Шифр Об'єту</content>
+      <description>
+      </description>
+      <defaultContent>Шифр Об'єту</defaultContent>
+    </uiItem>
+    <uiItem name="GV_OBJ_NAME">
+      <content>Назва Об'єкту</content>
+      <description>
+      </description>
+      <defaultContent>Назва Об'єкту</defaultContent>
+    </uiItem>
+    <uiItem name="GV_BS_CAT_NAME">
+      <content>В/М</content>
+      <description>
+      </description>
+      <defaultContent>В/М</defaultContent>
+    </uiItem>
+    <uiItem name="GVTT_BS_CAT_NAME">
+      <content>Об'єкт великих/малих прав</content>
+      <description>
+      </description>
+      <defaultContent>Об'єкт великих/малих прав</defaultContent>
+    </uiItem>
+    <uiItem name="GV_GENRE">
+      <content>Жанр</content>
+      <description>
+      </description>
+      <defaultContent>Жанр</defaultContent>
+    </uiItem>
+    <uiItem name="GV_AUTHOR">
+      <content>Автори</content>
+      <description>
+      </description>
+      <defaultContent>Автори</defaultContent>
+    </uiItem>
+    <uiItem name="GV_PERFORMER">
+      <content>Виконавець</content>
+      <description>
+      </description>
+      <defaultContent>Виконавець</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RATE">
+      <content>Спільний % володіння</content>
+      <description>
+      </description>
+      <defaultContent>Спільний % володіння</defaultContent>
+    </uiItem>
+    <uiItem name="GV_UNDISTRIB_MONEY">
+      <content>Нерозподілена сума</content>
+      <description>
+      </description>
+      <defaultContent>Нерозподілена сума</defaultContent>
+    </uiItem>
+    <uiItem name="EXT_SEARCH_EXP">
+      <content>Розширений пошук</content>
+      <description>
+      </description>
+      <defaultContent>Розширений пошук</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="CommunitiesListLD">
+    <uiItem name="CREATE_COMM_SUCC_MSG">
+      <content>Нове товариство додано!</content>
+      <description>
+      </description>
+      <defaultContent>Нове товариство додано!</defaultContent>
+    </uiItem>
+    <uiItem name="CREATE_COMM_ERR_MSG">
+      <content>Неможливо додати нове товариство!</content>
+      <description>
+      </description>
+      <defaultContent>Неможливо додати нове товариство!</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_UPDATE">
+      <content>Оновити</content>
+      <description>
+      </description>
+      <defaultContent>Оновити</defaultContent>
+    </uiItem>
+    <uiItem name="EXT_SEARCH_EXP">
+      <content>Розширений пошук</content>
+      <description>
+      </description>
+      <defaultContent>Розширений пошук</defaultContent>
+    </uiItem>
+    <uiItem name="IN_CODE">
+      <content>Шифр</content>
+      <description>
+      </description>
+      <defaultContent>Шифр</defaultContent>
+    </uiItem>
+    <uiItem name="COMMUNITY_NAME">
+      <content>Назва товариства</content>
+      <description>
+      </description>
+      <defaultContent>Назва товариства</defaultContent>
+    </uiItem>
+    <uiItem name="COMM_REG_DATE">
+      <content>Дата створення</content>
+      <description>
+      </description>
+      <defaultContent>Дата створення</defaultContent>
+    </uiItem>
+    <uiItem name="AUTH_COUNT">
+      <content>К-сть авторів</content>
+      <description>
+      </description>
+      <defaultContent>К-сть авторів</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_CREATE_COMMUNITY">
+      <content>Додати нове товариство</content>
+      <description>
+      </description>
+      <defaultContent>Додати нове товариство</defaultContent>
     </uiItem>
   </uiContainer>
 </LanguageObjectModel>

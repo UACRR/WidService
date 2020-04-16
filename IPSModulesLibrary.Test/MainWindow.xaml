@@ -4,11 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPSModulesLibrary.Test"
+        xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:control="clr-namespace:IPSModulesLibrary.ResourceControl;assembly=IPSModulesLibrary"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="t:RadDropDownButton">
+            <Style.Setters>
+                <Setter Property="Background" Value="#470fa9"/>
+                <Setter Property="MinHeight" Value="33.5"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Padding" Value="8 3 5 8"/>
+                <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#32077d"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Background" Value="#470fa9"/>
+                <Setter Property="MinHeight" Value="33.5"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Padding" Value="8 3 5 8"/>
+                <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style.Setters>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#32077d"/>
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <control:ResourceControl/>
+        <!--<control:ResourceControl/>-->
+        <StackPanel>
+            <t:RadDropDownButton Width="200" Height="75" Content="Button"/>
+            <Button Width="200" Height="75" Content="Button2"/>
+        </StackPanel>
+
     </Grid>
 </Window>

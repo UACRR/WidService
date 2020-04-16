@@ -51,3 +51,18 @@ catch (Exception e)
     response = new ResponseOfRequest<DataTable>(e);
     return Ok(response);
 }
+
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="resource"></param>
+/// <returns></returns>
+[HttpPost("")]
+public async Task<IActionResult> GetList([FromBody] SearchModuleResource resource)
+{ 
+    string query = "select t0.* from vtsk_3_R_04_wpf t0";
+    List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 6).ToListAsync();
+    var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
+    return Ok(result);
+}

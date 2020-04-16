@@ -1,11 +1,12 @@
 begin
-declare @viewName varchar(100) = 'vtsk_3_R_04'
+declare @viewName varchar(100) = ''
 select CONCAT(
 'public  ', 
 case t2.name when 'date' then 'DateTime'
 			 when 'datetime' then 'DateTime'
 			 when 'money' then 'decimal'
 			 when 'smallint' then 'short'
+			 when 'tinyint' then 'byte'
 			 when 'bit' then 'bool'
 			 when 'numeric' then 'decimal'
 			 when 'varchar' then 'string'

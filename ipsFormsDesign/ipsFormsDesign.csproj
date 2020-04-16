@@ -490,7 +490,7 @@
     <Compile Include="Data\Global.cs" />
     <Compile Include="Engines\DbfEngine.cs" />
     <Compile Include="Engines\ExcelEngine.cs" />
-    <Compile Include="Services\ConsumerSmallRightService.cs" />
+    <Compile Include="Services\ClientSmallRightService.cs" />
     <Compile Include="Services\DbfService.cs" />
     <Compile Include="Services\DictionaryService.cs" />
     <Compile Include="Services\FixationService.cs" />

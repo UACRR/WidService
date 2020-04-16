@@ -72,7 +72,7 @@
             // 
             // mtxtRateCommission
             // 
-            this.mtxtRateCommission.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.agreementAddRhBindingSource, "RateCommiss", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.mtxtRateCommission.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.agreementAddRhBindingSource, "RateCommiss", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.mtxtRateCommission.Location = new System.Drawing.Point(329, 11);
             this.mtxtRateCommission.Mask = "N0";
             this.mtxtRateCommission.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
@@ -91,7 +91,7 @@
             // 
             // mtxtRateCourt
             // 
-            this.mtxtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.agreementAddRhBindingSource, "RateCourt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.mtxtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.agreementAddRhBindingSource, "RateCourt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.mtxtRateCourt.Location = new System.Drawing.Point(329, 53);
             this.mtxtRateCourt.Mask = "N0";
             this.mtxtRateCourt.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
@@ -131,8 +131,8 @@
             // 
             // ServiceComissionControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.mtxtRateCourt);
             this.Controls.Add(this.radLabel4);

@@ -29,13 +29,13 @@ namespace ConsumerSmallRightWorkplace.Presenters
 
         private readonly CabinetSmallRightForm _cabinetSmallRightForm;
         private ConsumersSmallRightFilter _currentNodeValue = ConsumersSmallRightFilter.None;
-        private readonly ConsumerSmallRightService _service;
+        private readonly ClientSmallRightService _service;
         private readonly PartnerService _partnerService;
         private readonly ConsumersViewSmallRightControl _mainGrid;
 
         public SmallRightPresenter(RadTreeView treeView, ConsumersViewSmallRightControl mainGrid)
         {
-            _service = ConsumerSmallRightService.GetInstance();
+            _service = ClientSmallRightService.GetInstance();
             _cabinetSmallRightForm = new CabinetSmallRightForm();
 
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
@@ -47,7 +47,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
 
             _cabinetSmallRightForm.OnUpdate += SmallRightForm_OnUpdate;
             _cabinetSmallRightForm.cabinet.SaveCustomer += SaveCustomer;
-            _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
+            //_cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
             _cabinetSmallRightForm.cabinet.GetPartner += Cabinet_GetPartner;
             _cabinetSmallRightForm.cabinet.OnSetPartner += Cabinet_OnSetPartner;
             _cabinetSmallRightForm.cabinet.OnChangePartner += Cabinet_OnChangePartner;
@@ -237,12 +237,12 @@ namespace ConsumerSmallRightWorkplace.Presenters
             return relust;
         }
 
-        //змінити статус ліцензії
-        private bool ChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
-        {
-            var relust = _service.SetLicAgreementStatus(agr, version, status, changeVer);
-            return relust;
-        }
+        ////змінити статус ліцензії
+        //private bool ChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
+        //{
+        //    var relust = _service.SetLicAgreementStatus(agr, version, status, changeVer);
+        //    return relust;
+        //}
 
         /// <summary>
         /// Оновлення даних основного гріда

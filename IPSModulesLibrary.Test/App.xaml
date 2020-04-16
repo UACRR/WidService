@@ -2,7 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:IPSModulesLibrary.Test"
-             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Chromes="clr-namespace:Telerik.Windows.Controls.Chromes;assembly=Telerik.Windows.Controls" x:Class="IPSModulesLibrary.Test.App"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib" 
+             xmlns:Chromes="clr-namespace:Telerik.Windows.Controls.Chromes;assembly=Telerik.Windows.Controls" 
+             x:Class="IPSModulesLibrary.Test.App"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
@@ -369,14 +372,6 @@
                 </Popup>
             </Grid>
         </ControlTemplate>
-
-
-
-
-
-
-
-
 
         <ControlTemplate x:Key="RadTreeViewItemControlTemplate2" TargetType="{x:Type telerik:RadTreeViewItem}">
             <Grid x:Name="RootElement" UseLayoutRounding="True">

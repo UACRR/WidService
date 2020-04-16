@@ -9,13 +9,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
     public class ConsumerListPresenter
     {
         private readonly ConsumerListControl _view;
-        private readonly ConsumerSmallRightService _consumerService;
+        private readonly ClientSmallRightService _consumerService;
         private readonly DialogService _dialogService;
         
         public ConsumerListPresenter(ConsumerListControl view)
         {
             _view = view;
-            _consumerService = ConsumerSmallRightService.GetInstance();
+            _consumerService = ClientSmallRightService.GetInstance();
             _dialogService = new DialogService();
         }
 

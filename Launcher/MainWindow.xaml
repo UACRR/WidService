@@ -248,7 +248,7 @@
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.SRightsWp}"
                                 Content="{Binding LM_Launcher.Clients_WP}"
-                                Command="{Binding LoadConsumerSmallRightCommand}"/>
+                                Command="{Binding LoadClientsSmallRightCommand}"/>
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.BRightsWp}"
                                 Content="{Binding LM_Launcher.Theatres_WP}"

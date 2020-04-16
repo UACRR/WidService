@@ -49,8 +49,6 @@ namespace Launcher
 
             var dialogService = new DialogService();
             dialogService.ShowErrorByException(message, e.ToString());
-
-            Current.Shutdown(-1);
         }
     }
 }

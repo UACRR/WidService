@@ -7,4 +7,10 @@
     <Style TargetType="t:RadDataPager">
         <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
     </Style>
+    <Style TargetType="t:RadButton">
+        <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+    </Style>
+    <Style TargetType="t:RadExpander">
+        <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+    </Style>
 </ResourceDictionary>

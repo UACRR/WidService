@@ -20,6 +20,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
 using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
 using System.IO;
+using Launcher.WorkplaceModules.ClientsSRWorkplace;
 using Launcher.WorkplaceModules.ReportWorkplace;
 using SmRoPermitClientLib;
 
@@ -305,14 +306,17 @@ namespace Launcher.General
             }
         }
 
-        public ICommand LoadConsumerSmallRightCommand => new IPSDelegateCommand(LoadConsumerSmallRightCommandExecute);
+        public ICommand LoadClientsSmallRightCommand => new IPSDelegateCommand(LoadConsumerSmallRightCommandExecute);
         private void LoadConsumerSmallRightCommandExecute(object o)
         {
             try
             {
-                var consumerSmallRight = new ConsumerSmallRightWorkplace.ConsumerSmallRightWorkplace();
-                UserPermissions.ImposeRestrictions(consumerSmallRight);
-                consumerSmallRight.Show();
+                //var consumerSmallRight = new ConsumerSmallRightWorkplace.ConsumerSmallRightWorkplace();
+                //UserPermissions.ImposeRestrictions(consumerSmallRight);
+                //consumerSmallRight.Show();
+
+                var clientsSR = new ClientsSRWorkplaceWindow();
+                clientsSR.Show();
             }
             catch (Exception e)
             {

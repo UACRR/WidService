@@ -36,6 +36,16 @@ namespace IPSViewComponentLibraryWPF.Extensions
             return (float) (double) obj;
         }
 
+        public static Single CastAsFloat(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+                return default(Single);
+
+            var dObj = (double?) obj;
+            
+            return (float) dObj.Value;
+        }
+
         public static Single? CastFloatNull(object obj)
         {
             if (obj == null || obj == DBNull.Value)
@@ -50,6 +60,16 @@ namespace IPSViewComponentLibraryWPF.Extensions
                 return default(Byte);
 
             return (Byte) (long) obj;
+        }
+
+        public static Byte CastAsByte(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+                return default(Byte);
+
+            var lObj = (long?) obj;
+
+            return (Byte)lObj.Value;
         }
 
         public static short CastShort(object obj)

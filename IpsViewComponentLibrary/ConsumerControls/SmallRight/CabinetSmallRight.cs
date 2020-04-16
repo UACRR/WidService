@@ -36,7 +36,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
         public event SaveCustomerEventHandler SaveCustomer;
         public event UpdateCustomerDataEventHandler UpdateData;
-        public event LicenseStatusChangeEventHandler OnChangeLicenseStatus;
 
         public event ReturnObjectEventHandler<Customer> GetPartner;
         public event SetPartnerEventHandler OnSetPartner;
@@ -452,9 +451,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
             if (MessageShow.ConfirmAction(LicenseCloseQuestion) == DialogResult.Yes)
             {
-                //var result = OnChangeLicenseStatus?.Invoke(license, license.LicVersion ?? default(int), 4, false) ?? false;
-
-                // ReSharper disable once PossibleInvalidOperationException
                 var result = _agreementService.ChangeLicenseAgreementStatus(row.LicId, row.LicVersion.Value, 4, false);
                 UpdateCustomer();
                 MessageShow.ShowInfoByResult(LicenseCloseSuccess, LicenseCloseError, result);

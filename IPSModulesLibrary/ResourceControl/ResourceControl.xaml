@@ -383,7 +383,7 @@
 
         <TabItem Header="Buttons">
             <WrapPanel Orientation="Vertical">
-                <t:RadButton Margin="3" Content="1"/>
+                <t:RadButton Margin="3" Content="Кнопка жопка"/>
                 <t:RadButton Style="{DynamicResource blueBtn}"  Margin="3" Content="2"/>
                 <t:RadButton Margin="3" Content="3"/>
 
@@ -443,7 +443,7 @@
 
                             <t:RadTreeView Width="150" Margin="5">
                                 <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate2}" Style="{DynamicResource Custom}" Header="Category"/>
-                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplat2}"  Style="{DynamicResource Custom}" Header="Lorem"/>
+                                <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate2}"  Style="{DynamicResource Custom}" Header="Lorem"/>
                                 <t:RadTreeViewItem Template="{StaticResource RadTreeViewItemControlTemplate2}" Style="{DynamicResource Custom}" Header="Ipsum"/>
                             </t:RadTreeView>
 

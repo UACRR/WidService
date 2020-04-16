@@ -27,7 +27,6 @@ namespace ipsmedserviceapp.Controllers
     [ApiController]
     public class ConsumerController : Controller
     {
-        private readonly AmountDistributor _rateDistributor;
         private MediaServiceContext _dbContext;
         private IConfiguration _config;
         private ILogger<ConsumerController> _logger;
@@ -37,11 +36,6 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = dbContext;
             _config = config;
             _logger = logger;
-
-            _rateDistributor = new AmountDistributor
-            {
-                Amount = 100
-            };
         }
 
         /// <summary>
@@ -667,7 +661,7 @@ namespace ipsmedserviceapp.Controllers
             ConsumersSmallRightFilter what = Enum.Parse<ConsumersSmallRightFilter>(whatId.ToString());
 
             string function = "select * from ft_tsk_1_LicenseAgreementList (@strSeek)";
-
+             
             switch (what)
             {
                 case ConsumersSmallRightFilter.All:

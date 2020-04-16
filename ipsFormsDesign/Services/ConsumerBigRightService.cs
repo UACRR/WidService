@@ -1,19 +1,23 @@
 ﻿using ipsFormsDesign.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsCommonTypes.Enums;
+using IpsCommonTypes.Types;
 
 namespace ipsFormsDesign.Services
 {
     public class ConsumerBigRightService : ConsumerService
     {
         private static ConsumerBigRightService _service;
+        private const string prefix = "clientBigRight";
 
         private ConsumerBigRightService() { }
 
@@ -29,6 +33,13 @@ namespace ipsFormsDesign.Services
                 IpsGlobal.SetObjectRightDictionaries(_service.GetObjectRightDictionaries());
 
             return _service;
+        }
+
+        public async Task<ResponseOfRequest<DataTable>> GetClientsBRListAsync(SearchModuleResource moduleResource)
+        {
+            string url = $"{prefix}/list";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, moduleResource);
+            return result;
         }
 
         /// <summary>

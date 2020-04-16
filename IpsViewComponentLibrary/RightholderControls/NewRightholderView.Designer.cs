@@ -47,6 +47,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.ctrlFaAddress = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.ctrlLeAddress = new IpsViewComponentLibrary.Shared.Controls.AddressLetter();
             this.btnCopyAddressReLe = new Telerik.WinControls.UI.RadButton();
             this.btnCopyAddressFaLe = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
@@ -100,7 +101,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlLeAddress = new IpsViewComponentLibrary.Shared.Controls.AddressLetter();
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).BeginInit();
             this.mainPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -289,6 +289,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radGroupBox3.TabIndex = 30;
             this.radGroupBox3.Text = "Адреса листування";
             this.radGroupBox3.ThemeName = "Office2013Light";
+            // 
+            // ctrlLeAddress
+            // 
+            this.ctrlLeAddress.AddressDataMember = "LeAddress";
+            this.ctrlLeAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlLeAddress.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ctrlLeAddress.CityDataMember = "LeCity";
+            this.ctrlLeAddress.CountryDataMember = "LeCountry";
+            this.ctrlLeAddress.DataSource = this.bsAnketaPerson;
+            this.ctrlLeAddress.Location = new System.Drawing.Point(137, 52);
+            this.ctrlLeAddress.Name = "ctrlLeAddress";
+            this.ctrlLeAddress.PostIndexDataMember = "LePostIndex";
+            this.ctrlLeAddress.RegionDataMember = "LeRegion";
+            this.ctrlLeAddress.Size = new System.Drawing.Size(699, 54);
+            this.ctrlLeAddress.TabIndex = 31;
             // 
             // btnCopyAddressReLe
             // 
@@ -491,7 +507,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlAgreementNumberDate.DataSourceRh = this.bsAgreementAddRh;
             this.ctrlAgreementNumberDate.DateEndNullDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.ctrlAgreementNumberDate.DateEndNullText = "Не обмежено";
-            this.ctrlAgreementNumberDate.DateTimeType = AgreementModifyType.CreateNewAgreement;
+            this.ctrlAgreementNumberDate.DateTimeType = IpsViewComponentLibrary.Common.Enums.AgreementModifyType.CreateNewAgreement;
             this.ctrlAgreementNumberDate.Location = new System.Drawing.Point(187, 6);
             this.ctrlAgreementNumberDate.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementNumberDate.Name = "ctrlAgreementNumberDate";
@@ -652,6 +668,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRightLimitations.DataSource = typeof(ipsFormsDesign.Dictionary.TermsOfServiceWrapper);
+            this.ctrlRightLimitations.IsExternalRightHolder = false;
             this.ctrlRightLimitations.Location = new System.Drawing.Point(3, 3);
             this.ctrlRightLimitations.Name = "ctrlRightLimitations";
             this.ctrlRightLimitations.Size = new System.Drawing.Size(843, 421);
@@ -843,26 +860,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.Customer);
             // 
-            // ctrlLeAddress
-            // 
-            this.ctrlLeAddress.AddressDataMember = "LeAddress";
-            this.ctrlLeAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlLeAddress.CityDataMember = "LeCity";
-            this.ctrlLeAddress.CountryDataMember = "LeCountry";
-            this.ctrlLeAddress.DataSource = this.bsAnketaPerson;
-            this.ctrlLeAddress.Location = new System.Drawing.Point(137, 52);
-            this.ctrlLeAddress.Name = "ctrlLeAddress";
-            this.ctrlLeAddress.PostIndexDataMember = "LePostIndex";
-            this.ctrlLeAddress.RegionDataMember = "LeRegion";
-            this.ctrlLeAddress.Size = new System.Drawing.Size(699, 54);
-            this.ctrlLeAddress.TabIndex = 31;
-            // 
             // NewRightholderView
             // 
             this.AcceptButton = this.miSave;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(998, 474);
             this.Controls.Add(this.radPanel1);

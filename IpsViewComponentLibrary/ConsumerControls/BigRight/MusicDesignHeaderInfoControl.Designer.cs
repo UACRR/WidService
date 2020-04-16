@@ -73,7 +73,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSpectacleName.AutoSize = false;
             this.lblSpectacleName.BorderVisible = true;
-            this.lblSpectacleName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "ObjName", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.lblSpectacleName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "ObjName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.lblSpectacleName.Location = new System.Drawing.Point(97, 4);
             this.lblSpectacleName.Name = "lblSpectacleName";
             // 
@@ -116,7 +116,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.lblAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAmount.AutoSize = false;
             this.lblAmount.BorderVisible = true;
-            this.lblAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "Amount", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.lblAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.lblAmount.Location = new System.Drawing.Point(370, 4);
             this.lblAmount.Name = "lblAmount";
             // 
@@ -156,7 +156,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.lblAuthAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAuthAmount.AutoSize = false;
             this.lblAuthAmount.BorderVisible = true;
-            this.lblAuthAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "AuthAmount", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.lblAuthAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "AuthAmount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.lblAuthAmount.Location = new System.Drawing.Point(750, 4);
             this.lblAuthAmount.Name = "lblAuthAmount";
             // 
@@ -196,7 +196,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.lblAuthRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAuthRate.AutoSize = false;
             this.lblAuthRate.BorderVisible = true;
-            this.lblAuthRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "AuthRate", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.lblAuthRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "AuthRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.lblAuthRate.Location = new System.Drawing.Point(538, 4);
             this.lblAuthRate.Name = "lblAuthRate";
             // 
@@ -236,7 +236,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.lblMusicRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMusicRate.AutoSize = false;
             this.lblMusicRate.BorderVisible = true;
-            this.lblMusicRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "MusicRate", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.lblMusicRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "MusicRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.lblMusicRate.Location = new System.Drawing.Point(538, 29);
             this.lblMusicRate.Name = "lblMusicRate";
             // 
@@ -276,7 +276,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.lblMusicAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMusicAmount.AutoSize = false;
             this.lblMusicAmount.BorderVisible = true;
-            this.lblMusicAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "MusicAmount", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.lblMusicAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "MusicAmount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.lblMusicAmount.Location = new System.Drawing.Point(750, 29);
             this.lblMusicAmount.Name = "lblMusicAmount";
             // 
@@ -315,7 +315,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             // 
             this.lblActCode.AutoSize = false;
             this.lblActCode.BorderVisible = true;
-            this.lblActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "ActCode", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.lblActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "ActCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.lblActCode.Location = new System.Drawing.Point(75, 29);
             this.lblActCode.Name = "lblActCode";
             // 
@@ -353,7 +353,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             // 
             this.lblCountUse.AutoSize = false;
             this.lblCountUse.BorderVisible = true;
-            this.lblCountUse.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "CountUse", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.lblCountUse.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSpectacleView, "CountUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.lblCountUse.Location = new System.Drawing.Point(253, 29);
             this.lblCountUse.Name = "lblCountUse";
             // 
@@ -389,8 +389,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             // 
             // MusicDesignHeaderInfoControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.lblCountUse);
             this.Controls.Add(this.radLabel12);
             this.Controls.Add(this.lblMusicRate);

@@ -8,12 +8,7 @@
         <Setter Property="ShowSearchPanel" Value="True"/>
         <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
     </Style>
-    <Style TargetType="t:RadButton">
-        <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
-    </Style>
-    <Style TargetType="t:RadExpander">
-        <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
-    </Style>
+
     <Style TargetType="t:GridViewDataColumn">
         <Setter Property="HeaderTextAlignment" Value="Center"/>
         <Setter Property="IsFilterable" Value="False"/>

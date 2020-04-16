@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -229,6 +229,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WorkplaceModules\ClientsBRWorkplace\ClientsBRWorkplaceViewModel.cs" />
+    <Compile Include="WorkplaceModules\ClientsBRWorkplace\ClientsBRWorkplaceWindow.xaml.cs">
+      <DependentUpon>ClientsBRWorkplaceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkplaceModules\ClientsBRWorkplace\LM_ClientsBRWorkplace.cs" />
+    <Compile Include="WorkplaceModules\ClientsSRWorkplace\ClientsSRWorkplaceViewModel.cs" />
+    <Compile Include="WorkplaceModules\ClientsSRWorkplace\ClientsSRWorkplaceWindow.xaml.cs">
+      <DependentUpon>ClientsSRWorkplaceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkplaceModules\ClientsSRWorkplace\LM_ClientsSRWorkplace.cs" />
     <Compile Include="WorkplaceModules\CopyrightAdminWorkplace\CopyrightAdminWorkplaceViewModel.cs" />
     <Compile Include="WorkplaceModules\CopyrightAdminWorkplace\CopyrightAdminWorkplaceWindow.xaml.cs">
       <DependentUpon>CopyrightAdminWorkplaceWindow.xaml</DependentUpon>
@@ -265,6 +275,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ResourceDictionaries\TabControlResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkplaceModules\ClientsBRWorkplace\ClientsBRWorkplaceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkplaceModules\ClientsSRWorkplace\ClientsSRWorkplaceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
