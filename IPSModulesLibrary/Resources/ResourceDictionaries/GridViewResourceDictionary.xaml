@@ -11,6 +11,8 @@
 
     <Style TargetType="t:GridViewDataColumn">
         <Setter Property="HeaderTextAlignment" Value="Center"/>
+        <Setter Property="HeaderTextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="IsFilterable" Value="False"/>
     </Style>
 </ResourceDictionary>

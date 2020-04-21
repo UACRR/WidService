@@ -20,6 +20,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
 using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
 using System.IO;
+using Launcher.WorkplaceModules.ClientsBRWorkplace;
 using Launcher.WorkplaceModules.ClientsSRWorkplace;
 using Launcher.WorkplaceModules.ReportWorkplace;
 using SmRoPermitClientLib;
@@ -105,29 +106,6 @@ namespace Launcher.General
         public LM_Launcher LM_Launcher { get; } = new LM_Launcher();
 
         private ObservableCollection<LanguageInfo> _languagesItemSource;
-        //    = new ObservableCollection<LanguageInfo>
-        //{
-        //    new LanguageInfo
-        //    {
-        //        SpecificationCode = "uk-UA",
-        //        LanguageName = "Ukrainian",
-        //    },
-        //    new LanguageInfo
-        //    {
-        //        SpecificationCode = "en-US",
-        //        LanguageName = "English",
-        //    },
-        //    new LanguageInfo
-        //    {
-        //        SpecificationCode = "ru-RU",
-        //        LanguageName = "Russian",
-        //    },
-        //    new LanguageInfo
-        //    {
-        //        SpecificationCode = "es-ES",
-        //        LanguageName = "Spanish",
-        //    },
-        //};
         /// <summary>
         /// Список наявних мов
         /// </summary>
@@ -329,9 +307,13 @@ namespace Launcher.General
         {
             try
             {
-                var consumerBigRight = new ConsumerBigRightWorkplace.ConsumerBigRightWorkplace();
-                UserPermissions.ImposeRestrictions(consumerBigRight);
-                consumerBigRight.Show();
+                //var consumerBigRight = new ConsumerBigRightWorkplace.ConsumerBigRightWorkplace();
+                //UserPermissions.ImposeRestrictions(consumerBigRight);
+                //consumerBigRight.Show();
+
+
+                var clientsBR = new ClientsBRWorkplaceWindow();
+                clientsBR.Show();
             }
             catch (Exception e)
             {

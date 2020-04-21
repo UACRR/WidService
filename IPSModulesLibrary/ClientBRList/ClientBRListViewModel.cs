@@ -7,14 +7,20 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using IpsCommonTypes.ClassesForSearchQuery;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Services;
 using IPSModulesLibrary.ClientSRList;
+using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerForms;
+using IpsViewComponentLibrary.Extensions;
 using IPSViewComponentLibraryWPF.Controls.SearchControl;
 using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using Telerik.Windows.Controls;
+using DTC = IPSViewComponentLibraryWPF.Extensions.DataTableConverter;
 
 namespace IPSModulesLibrary.ClientBRList
 {
@@ -29,14 +35,15 @@ namespace IPSModulesLibrary.ClientBRList
 
         private bool IsReloadData { get; set; }
 
-        private ObservableCollection<RadTreeViewItem> _treeViewItemSource;
-        public ObservableCollection<RadTreeViewItem> TreeViewItemSource
+        private CabinetBigRightForm _cabinetBigRightForm;
+        private CabinetBigRightForm CabinetBigRightForm
         {
-            get => _treeViewItemSource;
-            set
+            get
             {
-                _treeViewItemSource = value;
-                OnPropertyChanged(() => TreeViewItemSource);
+                if (_cabinetBigRightForm == null)
+                    _cabinetBigRightForm = new CabinetBigRightForm();
+
+                return _cabinetBigRightForm;
             }
         }
 
@@ -70,43 +77,12 @@ namespace IPSModulesLibrary.ClientBRList
 
         #region * * * METHODS  * * *
 
-        private List<ClientBRListModel> ConvertToInternalModel(DataTable dataTable)
-        {
-            var itemSource = new List<ClientBRListModel>();
-
-            var DTH = new DataTableHelper(dataTable.Columns);
-
-            foreach (DataRow row in dataTable.Rows)
-            {
-                var obj = row.ItemArray;
-
-                var item = new ClientBRListModel
-                {
-                    //RegId = DTC.CastInt(DTH.GetObject(obj, nameof(ClientSRListModel.RegId))),
-                    //CustId = DTC.CastInt(DTH.GetObject(obj, nameof(ClientSRListModel.CustId))),
-                    //CustName = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientSRListModel.CustName))),
-                    //PeriodId = DTC.CastInt(DTH.GetObject(obj, nameof(ClientSRListModel.PeriodId))),
-                    //PeriodName = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientSRListModel.PeriodName))),
-                    //LicId = DTC.CastInt(DTH.GetObject(obj, nameof(ClientSRListModel.LicId))),
-                    //FileName = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientSRListModel.FileName))),
-                    //CreateDate = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(ClientSRListModel.CreateDate))),
-                    //UserWho = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientSRListModel.UserWho))),
-                    //RgStatus = DTC.CastInt(DTH.GetObject(obj, nameof(ClientSRListModel.RgStatus))),
-
-                    //CountItem = DTC.CastInt(DTH.GetObject(obj, nameof(ClientSRListModel.CountItem))),
-                    //CountNoFound = DTC.CastInt(DTH.GetObject(obj, nameof(ClientSRListModel.CountNoFound))),
-
-                };
-
-                itemSource.Add(item);
-            }
-
-            return itemSource;
-        }
-
         private async Task LoadData(SearchModuleResource searchModuleResource = null)
         {
             var service = ConsumerBigRightService.GetInstance();
+
+            if (searchModuleResource == null)
+                searchModuleResource = new SearchModuleResource();
 
             IsBusy = true;
             var data = await service.GetClientsBRListAsync(searchModuleResource);
@@ -117,7 +93,7 @@ namespace IPSModulesLibrary.ClientBRList
                     TempDataTable = data.Data;
 
                 ClientsBRItemSourceTemp = await Task.Factory.StartNew(() => ConvertToInternalModel(data.Data));
-                string name = SelectedTreeViewItem.Name;
+                string name = SelectedTreeViewItem?.Name;
                 await Task.Factory.StartNew(() => FilterList(name));
             }
             else
@@ -135,6 +111,63 @@ namespace IPSModulesLibrary.ClientBRList
             GC.Collect();
         }
 
+        private List<ClientBRListModel> ConvertToInternalModel(DataTable dataTable)
+        {
+            var itemSource = new List<ClientBRListModel>();
+
+            var DTH = new DataTableHelper(dataTable.Columns);
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                var obj = row.ItemArray;
+
+                var item = new ClientBRListModel
+                {
+                    AgrDate = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(ClientBRListModel.AgrDate))),
+                    DateBegin = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(ClientBRListModel.DateBegin))),
+                    DateEnd = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(ClientBRListModel.DateEnd))),
+                    DatePayLast = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(ClientBRListModel.DatePayLast))),
+                    CustId = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CustId))),
+                    AgrId = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.AgrId))),
+                    AgrStatus = DTC.CastIntNull(DTH.GetObject(obj, nameof(ClientBRListModel.AgrStatus))),
+                    AddStatus = DTC.CastIntNull(DTH.GetObject(obj, nameof(ClientBRListModel.AddStatus))),
+                    CountLic1Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic1Active))),
+                    CountLic1NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic1NoActive))),
+                    CountLic1ToProlong = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic1ToProlong))),
+                    CountLic2Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic2Active))),
+                    CountLic2NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic2NoActive))),
+                    CountLic3Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic3Active))),
+                    CountLic3NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic3NoActive))),
+                    ClcustId = DTC.CastIntNull(DTH.GetObject(obj, nameof(ClientBRListModel.ClcustId))),
+                    StatusMasterActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusMasterActive))),
+                    StatusMasterNoactive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusMasterNoactive))),
+                    StatusMasterProlong = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusMasterProlong))),
+                    StatusUndistribute = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusUndistribute))),
+                    StatusLic1Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic1Active))),
+                    StatusLic1NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic1NoActive))),
+                    StatusLic1ToProlong = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic1ToProlong))),
+                    StatusLic2Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic2Active))),
+                    StatusLic2NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic2NoActive))),
+                    StatusLic3Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic3Active))),
+                    StatusLic3NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic3NoActive))),
+                    UndistribAmount = DTC.CastFloat(DTH.GetObject(obj, nameof(ClientBRListModel.UndistribAmount))),
+                    Borg = DTC.CastFloat(DTH.GetObject(obj, nameof(ClientBRListModel.Borg))),
+                    UnattachAmount = DTC.CastAsFloat(DTH.GetObject(obj, nameof(ClientBRListModel.UnattachAmount))),
+                    PrePayRest = DTC.CastAsFloat(DTH.GetObject(obj, nameof(ClientBRListModel.PrePayRest))),
+                    Innokpo = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientBRListModel.Innokpo))),
+                    Name = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientBRListModel.Name))),
+                    AgrNumber = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientBRListModel.AgrNumber))),
+                    JaCity = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientBRListModel.JaCity))),
+                    PartnerName = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientBRListModel.PartnerName))),
+                    JaAddress = DTC.Cast<string>(DTH.GetObject(obj, nameof(ClientBRListModel.JaAddress))),
+                };
+
+                itemSource.Add(item);
+            }
+
+            return itemSource;
+        }
+
         private void FilterList(string filterName)
         {
             if (ClientsBRItemSourceTemp == null)
@@ -145,14 +178,73 @@ namespace IPSModulesLibrary.ClientBRList
                 IEnumerable<ClientBRListModel> list = null;
                 filterName = filterName.ToUpper();
 
-                //if (filterName == nameof(ClientSRListModel.StatusNoRelate).ToUpper())
-                //    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusNoRelate == 1);
+                // Working
+                if (filterName == nameof(ClientBRListModel.StatusMasterActive).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusMasterActive == 1);
 
-                //if (filterName == nameof(ClientSRListModel.StatusNoActive).ToUpper())
-                //    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusNoActive == 1);
+                // NotAccepted
+                if (filterName == "NotAccepted".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.AgrStatus == 1);
 
-                //if (filterName == nameof(ClientSRListModel.StatusUnDistrib).ToUpper())
-                //    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusUnDistrib == 1);
+                // NotConfirmed
+                if (filterName == "NotConfirmed".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.AgrStatus == 0);
+
+                // ForProlongation
+                if (filterName == nameof(ClientBRListModel.StatusMasterProlong).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusMasterProlong == 1);
+
+                // Closed
+                if (filterName == "Closed".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.AgrStatus == 4);
+
+                // ліцензії
+                // All
+                if (filterName == "licenseAll".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic1NoActive + rec.CountLic1Active > 0);
+                // Working
+                if (filterName == nameof(ClientBRListModel.StatusLic1Active).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusLic1Active == 1);
+                // NotActive
+                if (filterName == nameof(ClientBRListModel.StatusLic1NoActive).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusLic1NoActive == 1);
+                // ForProlongation
+                if (filterName == nameof(ClientBRListModel.StatusLic1ToProlong).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusLic1ToProlong == 1);
+
+                // заявки
+                // All
+                if (filterName == "requestAll".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2Active + rec.CountLic2NoActive > 0);
+                // Working
+                if (filterName == nameof(ClientBRListModel.CountLic2Active).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2Active == 1);
+                // NotActive
+                if (filterName == nameof(ClientBRListModel.CountLic2NoActive).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2NoActive == 1);
+
+                // довідки
+                // All
+                if (filterName == "referenceALl".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3Active + rec.CountLic3NoActive > 0);
+                // Working
+                if (filterName == nameof(ClientBRListModel.CountLic3Active).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3Active == 1);
+                // NotActive
+                if (filterName == nameof(ClientBRListModel.CountLic3NoActive).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3NoActive == 1);
+
+                // Debt
+                if (filterName == "Debt".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.Borg > 0);
+
+                // UnattachAmount
+                if (filterName == nameof(ClientBRListModel.UnattachAmount).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.UnattachAmount > 0);
+
+                // ForDistribution
+                if (filterName == nameof(ClientBRListModel.StatusUndistribute).ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusUndistribute == 1);
 
                 ClientsBRItemSource = list?.ToList();
             }
@@ -161,63 +253,6 @@ namespace IPSModulesLibrary.ClientBRList
                 ClientsBRItemSource = ClientsBRItemSourceTemp.ToList();
             }
         }
-
-        private void GenerateTreeViewItems()
-        {
-            TreeViewItemSource = new ObservableCollection<RadTreeViewItem>
-            {
-                new RadTreeViewItem
-                {
-                    //Header = "Стан",
-                    //Header = LOC.TV_CAT_STATE,
-                    IsExpanded = true,
-                    IsSelectable = false,
-                    FontWeight = FontWeights.SemiBold,
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    ItemsSource = new ObservableCollection<RadTreeViewItem>
-                    {
-                        new RadTreeViewItem
-                        {
-                            //Header = "Всі",
-                            //Header = LOC.TV_ALL,
-                            IsSelected = true,
-                            FontWeight = FontWeights.Normal,
-                            HorizontalAlignment = HorizontalAlignment.Stretch,
-                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                        },
-                        new RadTreeViewItem
-                        {
-                            Name = "statusNoActive",
-                            //Header = "Не підтверджені",
-                            //Header = LOC.TV_NO_ACCEPT,
-                            FontWeight = FontWeights.Normal,
-                            HorizontalAlignment = HorizontalAlignment.Stretch,
-                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                        },
-                        new RadTreeViewItem
-                        {
-                            Name = "statusNoRelate",
-                            //Header = "Не прив'язані",
-                            //Header = LOC.TV_NO_ATTACH,
-                            FontWeight = FontWeights.Normal,
-                            HorizontalAlignment = HorizontalAlignment.Stretch,
-                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                        },
-                        new RadTreeViewItem
-                        {
-                            Name = "statusUnDistrib",
-                            //Header = "Не розподілені",
-                            //Header = LOC.TV_NO_DISTRIB,
-                            FontWeight = FontWeights.Normal,
-                            HorizontalAlignment = HorizontalAlignment.Stretch,
-                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                        },
-                    }
-                },
-            };
-        }
-
         #endregion
 
         #region * * * COMMANDS * * *
@@ -227,8 +262,8 @@ namespace IPSModulesLibrary.ClientBRList
         {
             ControlLoad(() =>
             {
-                var searchControl = ((ClientSRListControl)o).searchControl;
-                var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 3).FrameParam;
+                var searchControl = ((ClientBRListControl)o).searchControl;
+                var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 4).FrameParam;
                 ((SearchControlViewModel)searchControl.DataContext).Config = config;
                 ((SearchControlViewModel)searchControl.DataContext).RunSearchQuery = async (search) => await LoadData(search);
                 ((SearchControlViewModel)searchControl.DataContext).Clear = async () =>
@@ -247,27 +282,46 @@ namespace IPSModulesLibrary.ClientBRList
 
                 // todo implemented needed
                 //AppLanguageLibrary.UpdateLanguageLocalization(LOC, nameof(AppLanguageLibrary.CurrentLanguage.ReportsSRListLD));
-
-                GenerateTreeViewItems();
-
             });
         }
 
         public ICommand OpenClientCommand => new IPSDelegateCommand(OpenClientCommandExecute);
         private void OpenClientCommandExecute(object o)
         {
+            //var consumer = (ClientBRListModel) o;
+            //ViewsSingleton.SetConsumerBigRightView(consumer);
+            //if (!CabinetBigRightForm.IsInit)
+            //{
+            //    SubscribeBRCabinet();
+            //}
 
+            //// завантаження даних
+            //CabinetBigRightForm.cabinet.LoadData(item.CustId);
+            //CabinetBigRightForm.Title = item.Name;
+
+            //WindowsFormsVisible.ShowHiddenWindow(CabinetBigRightForm);
         }
 
-        public ICommand Create_J_ClientCommand => new IPSDelegateCommand(Create_J_ClientCommandExecute);
-        private void Create_J_ClientCommandExecute(object o)
+        private const string AddNewConsumerSuccess = "Нового користувача додано!";
+        private const string AddNewConsumerError = "Не вдалося додати нового користувача!";
+        public ICommand CreateClientCommand => new IPSDelegateCommand(Create_J_ClientCommandExecute);
+        private async void Create_J_ClientCommandExecute(object o)
         {
+            var service = ClientSmallRightService.GetInstance();
 
-        }
-        public ICommand Create_P_ClientCommand => new IPSDelegateCommand(Create_P_ClientCommandExecute);
-        private void Create_P_ClientCommandExecute(object o)
-        {
-
+            int custType = 3; // Юридична особа
+            var customer = service.NewCustomer(custType);
+            using (var form = new AnketaConsumerJurForm(customer, service.GetAutoCompleteList, service.GetData, TypeRights.BigRights))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var relust = service.Save(customer);
+                    MessageShow.ShowInfoByResult(AddNewConsumerSuccess, AddNewConsumerError, relust);
+                    
+                    IsReloadData = true;
+                    await LoadData();
+                }
+            }
         }
 
         #endregion
