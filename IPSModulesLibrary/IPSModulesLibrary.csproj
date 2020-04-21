@@ -202,6 +202,9 @@
       <DependentUpon>ObjectsRightListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ObjectsRightList\ObjectsRightListViewModel.cs" />
+    <Compile Include="PartnerList\PartnerListControl.xaml.cs">
+      <DependentUpon>PartnerListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -266,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ObjectsRightList\ObjectsRightListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartnerList\PartnerListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
