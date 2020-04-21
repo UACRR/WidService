@@ -34,5 +34,10 @@ namespace IPSModulesLibrary.ResourceControl
         {
 
         }
+
+        private void RadComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
