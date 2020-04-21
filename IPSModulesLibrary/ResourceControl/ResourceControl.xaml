@@ -275,7 +275,7 @@
                     <t:RadComboBox Style="{DynamicResource dropdownBtn}"
                                    Template="{DynamicResource RadComboBoxControlTemplate1}"
                            HorizontalAlignment="Left" 
-                           Margin="0 20 0 20" Width="100">
+                           Margin="0 20 0 20" Width="100" SelectionChanged="RadComboBox_SelectionChanged_1">
                         <t:RadComboBoxItem Style="{DynamicResource dropdownBtnItem}" Content="Save"/>
                         <t:RadComboBoxItem Style="{DynamicResource dropdownBtnItem}" Content="Save 2 3 4"/>
                     </t:RadComboBox>
@@ -286,6 +286,25 @@
                            IsReadOnly="True"
                            Text="Додати правовласника" 
                            />-->
+
+                    <t:RadDropDownButton
+                        HorizontalAlignment="Left"
+                                     Content="dropdownbtn"
+                                     CloseOnPopupMouseLeftButtonUp="True"
+                                     Margin="3" Template="{DynamicResource RadDropDownButtonControlTemplate1}">
+                        <t:RadDropDownButton.DropDownContent>
+                            <StackPanel>
+                                <t:RadButton Margin="0"
+                                     MinWidth="120"
+                                     HorizontalContentAlignment="Left"
+                                     Content="dropdownbtn"/>
+                                <t:RadButton Margin="0"
+                                     MinWidth="120"
+                                     HorizontalContentAlignment="Left"
+                                     Content="dropdownbtn"/>
+                            </StackPanel>
+                        </t:RadDropDownButton.DropDownContent>
+                    </t:RadDropDownButton>
 
                     <WrapPanel>
                         <TextBlock Style="{DynamicResource dropdownBlock}">Додати правовласника:</TextBlock>
