@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
@@ -47,14 +48,20 @@ namespace ipsFormsDesign.Engines
             string tableName = Path.GetFileNameWithoutExtension(tempFile);
 
             DataTable data = new DataTable();
-            using (OleDbConnection dbfConnection = new OleDbConnection($"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Extended Properties=dBASE IV"))
+            //using (OleDbConnection dbfConnection = new OleDbConnection($"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Extended Properties=dBASE IV"))
             //using (OleDbConnection dbfConnection = new OleDbConnection($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={path};Extended Properties=dBASE IV"))
+            using (OleDbConnection dbfConnection = new OleDbConnection($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={path};Extended Properties=dBASE IV;"))
             {
                 try
                 {
                     dbfConnection.Open();
                     OleDbCommand readCom = new OleDbCommand($"select * from [{tableName}]", dbfConnection);
                     data.Load(readCom.ExecuteReader());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
                 }
                 finally
                 {
@@ -67,9 +74,10 @@ namespace ipsFormsDesign.Engines
 
             // Перевіряємо структуру переданих даних
             if (СheckFields(data) == false)
-                return null;
+                throw new ArgumentException("В файлі відсутні необхідні колонки!");
+
             // Завантажити дані
-            LoadData(dest, data);
+            LoadData(dest, data);     
 
             return dest;
         }
@@ -84,25 +92,24 @@ namespace ipsFormsDesign.Engines
                     continue;
                 try
                 {
-                    dest.CheckParamPays.Add(
-                        new CheckParamPays
-                        {
-                            CheckId = index++,
-                            AccountCorr = item["ACCCOR"].ToString(),
-                            OkpoCorr = item["OKPOCOR"].ToString(),
-                            MfoCorr = item["MFOCOR"].ToString(),
-                            DocNum = item["NDOC"].ToString(),
-                            DocDate = item.Field<DateTime>("DT"),
-                            SCredit = Convert.ToDecimal(item["SUMMA"]) / 100,
-                            Nplat = item.Field<string>("NAZN")
-                        });
+                    dest.CheckParamPays.Add(new CheckParamPays
+                    {
+                        CheckId = index++,
+                        AccountCorr = item["ACCCOR"].ToString(),
+                        OkpoCorr = item["OKPOCOR"].ToString(),
+                        MfoCorr = item["MFOCOR"].ToString(),
+                        DocNum = item["NDOC"].ToString(),
+                        DocDate = item.Field<DateTime>("DT"),
+                        SCredit = Convert.ToDecimal(item["SUMMA"]) / 100,
+                        Nplat = item.Field<string>("NAZN")
+                    });
                     dest.ExternalPay.Add(new ExternalPay
                     {
                         InputDate = DateTime.Today,
                         Mfo = item["MFOCLI"].ToString(),
                         Okpol = item["OKPOCLI"].ToString(),
                         Account = item["ACCCLI"].ToString(),
-                        DateOper = item.Field<DateTime>("DT"),
+                        DateOper = item.Field<DateTime?>("DT"),
                         R030 = "980",
                         CodeOper = "1",
                         MfoCorr = item["MFOCOR"].ToString(),
@@ -111,7 +118,7 @@ namespace ipsFormsDesign.Engines
                         OkpoCorr = item["OKPOCOR"].ToString(),
                         NameCorr = item["NAMECOR"].ToString(),
                         DocNum = item["NDOC"].ToString(),
-                        DocDate = item.Field<DateTime>("DT"),
+                        DocDate = item.Field<DateTime?>("DT"),
                         SDebet = 0,
                         SCredit = Convert.ToDecimal(item["SUMMA"]) / 100,
                         SNcCur = Convert.ToDecimal(item["SUMMA"]) / 100,

@@ -34,7 +34,7 @@
         </TabItem>
         <TabItem Header="Розбір платежів" Style="{StaticResource TabItemStyle}">
             <WindowsFormsHost>
-                <importDBF:ImportDBFControl/>
+                <importDBF:ImportDBFControl x:Name="ImportDbfControl"/>
             </WindowsFormsHost>
         </TabItem>
     </TabControl>
