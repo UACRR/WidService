@@ -166,6 +166,7 @@
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="MaxHeight" Value="33.5"/>
+            
             <Setter Property="Foreground" Value="#a0a0a0"/>
             <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
         </Style>
