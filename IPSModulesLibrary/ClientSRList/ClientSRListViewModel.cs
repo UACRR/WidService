@@ -78,7 +78,6 @@ namespace IPSModulesLibrary.ClientSRList
 
         private async Task LoadData(SearchModuleResource searchModuleResource = null)
         {
-
             if (searchModuleResource == null)
                 searchModuleResource = new SearchModuleResource();
 

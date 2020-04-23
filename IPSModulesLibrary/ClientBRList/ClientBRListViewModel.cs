@@ -90,10 +90,10 @@ namespace IPSModulesLibrary.ClientBRList
 
         private async Task LoadData(SearchModuleResource searchModuleResource = null)
         {
-            var service = ConsumerBigRightService.GetInstance();
-
             if (searchModuleResource == null)
                 searchModuleResource = new SearchModuleResource();
+
+            var service = ConsumerBigRightService.GetInstance();
 
             IsBusy = true;
             var data = await service.GetClientsBRListAsync(searchModuleResource);
