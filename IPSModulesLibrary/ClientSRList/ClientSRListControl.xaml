@@ -16,7 +16,10 @@
         <local:ClientSRListViewModel/>
     </Control.DataContext>
 
+    
+
     <Control.Resources>
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/GridViewResourceDictionary.xaml"/>
@@ -25,7 +28,26 @@
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/TreeViewItemResourceDictionary.xaml"/>
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/ButtonsResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="t:RadDropDownButton">
+                <Setter Property="Background" Value="#470fa9"/>
+                <Setter Property="MinHeight" Value="33.5"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Padding" Value="8 3 5 8"/>
+                <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+
+                        <Setter Property="Background" Value="#32077d"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
+        
     </Control.Resources>
 
     <i:Interaction.Triggers>
@@ -48,71 +70,25 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Content="Фільтр реєстру" Margin="3" FontWeight="SemiBold"/>
-
                 <t:RadTreeView Grid.Row="1" 
                                MinWidth="200" 
-                               SelectedItem="{Binding SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                Margin="5">
-                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
                                        IsSelected="True"
-                                       Header="* всі"/>
+                                       Header="Всі"/>
                     
-                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}"
                                        IsSelectable="False"
-                                       Header="* по статусу договорів">
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusActive"
-                                           Header="Діючі"/>
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusForAccept"
-                                           Header="Не підтверджені" />
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusNoAccept"
-                                           Header="На акцепті" />
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusProlong"
-                                           Header="Для пролонгації" />
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusClose"
-                                           Header="Закриті" />
-                    </t:RadTreeViewItem>
+                                       Header="Активні"/>
 
-                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
                                        IsSelectable="False"
-                                       Header="* по стану обліку коштів" >
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusUnattach"
-                                           Header="Незакріплені" />
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusUndistribute"
-                                           Header="Нерозподіленні" />
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusBorg"
-                                           Header="Борг" />
-                    </t:RadTreeViewItem>
-                    
-                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
-                                       IsSelectable="False"
-                                       Header="* по статусу звітніх періодів" >
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusNoMoney"
-                                           Header="Прийом коштів"/>
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="statusNoReport"
-                                           Header="Прийом звітів" />
-                    </t:RadTreeViewItem>
+                                       Header="На акцепті"/>
 
-                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold" 
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
                                        IsSelectable="False"
-                                       Header="* по статусу звітів">
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"  
-                                           Name="rgStatusOk"
-                                           Header="Погоджені звіти"/>
-                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="rgStatusRefuse"
-                                           Header="Відхилені звіти"/>
-                    </t:RadTreeViewItem>
+                                       Header="Не підтверджені"/>
+
                 </t:RadTreeView>
             </Grid>
 
@@ -134,32 +110,51 @@
                 <t:RadGridView Grid.Row="1"
                                    x:Name="gridView"
                                    ColumnWidth="*"
-                                   ItemsSource="{Binding ClientsSRItemSource}"
                                    Margin="3">
                     <t:RadGridView.Columns>
                         <t:GridViewDataColumn Width="75" 
-                                              Header="ID" 
-                                              DataMemberBinding="{Binding CustId}"/>
-                        <t:GridViewDataColumn Width="125" 
-                                              Header="ЄДРПОУ"
-                                              DataMemberBinding="{Binding INNOKPO}"/>
-                        <t:GridViewDataColumn Header="Назва"
-                                              DataMemberBinding="{Binding Name}"/>
-                        <t:GridViewDataColumn Width="100" 
-                                              Header="К-сть діючих договорів"
+                                              Header="ID договору" 
                                               TextAlignment="Center"
-                                              DataMemberBinding="{Binding CountActive}"/>
-                        <t:GridViewDataColumn Width="120" 
-                                              Header="Незакріплені кошти"
-                                              TextAlignment="Right"
-                                              DataMemberBinding="{Binding UnattachAmount, StringFormat='{}{0:N2}'}"/>
-                        <t:GridViewDataColumn Width="120" Header="Нерозподіленні кошти" 
-                                              TextAlignment="Right" 
-                                              DataMemberBinding="{Binding UndistribAmount, StringFormat='{}{0:N2}'}"/>
-                        <t:GridViewDataColumn Width="120" Header="Борг" 
-                                              TextAlignment="Right"
-                                              DataMemberBinding="{Binding AmountBorg, StringFormat='{}{0:N2}'}"/>
-
+                                              
+                                              />
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="ОКПОЛД"
+                                              TextAlignment="Center"
+                                              
+                                              />
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="Співробітник компанії"
+                                              TextAlignment="Center"
+                                              
+                                              />
+                        <t:GridViewDataColumn 
+                                              Header="Представник"
+                                              TextAlignment="Center"
+                                              />
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="№ договору"
+                                              TextAlignment="Center"
+                                              />
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="Дата договору" 
+                                              TextAlignment="Center" 
+                                              />
+                        <t:GridViewDataColumn 
+                                              Header="Місто реєстрації" 
+                                              TextAlignment="Center" 
+                                              />
+                        <t:GridViewDataColumn Width="100" 
+                                              Header="Статус договору" 
+                                              TextAlignment="Center"
+                                              />
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="К-сть договорів (всі/активні)" 
+                                              TextAlignment="Center"
+                                              />
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="К-сть користувачів" 
+                                              TextAlignment="Center"
+                                              />
                         <t:GridViewColumn Width="25">
                             <t:GridViewColumn.Header>
                                 <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
@@ -211,26 +206,12 @@
 
                 <Grid Grid.Row="3">
                     <t:RadDropDownButton HorizontalAlignment="Left"
-                                         Content="Новий користувач"
+                                         Content="Створити нового представника"
                                          MinWidth="175"
                                          CloseOnPopupMouseLeftButtonUp="True"
+                                         Template="{DynamicResource RadDropDownButtonControlTemplate1}"
                                          Margin="3">
-                        <t:RadDropDownButton.DropDownContent>
-                            <StackPanel>
-                                <t:RadButton Margin="0"
-                                             MinWidth="140"
-                                             Style="{StaticResource ddButton}"
-                                             HorizontalContentAlignment="Left"
-                                             Content="Фізична особа"
-                                             Command="{Binding Create_P_ClientCommand}"/>
-                                <t:RadButton Margin="0"
-                                             MinWidth="140"
-                                             Style="{StaticResource ddButton}"
-                                             HorizontalContentAlignment="Left"
-                                             Content="Юридична особа"
-                                             Command="{Binding Create_J_ClientCommand}"/>
-                            </StackPanel>
-                        </t:RadDropDownButton.DropDownContent>
+                        
                     </t:RadDropDownButton>
                 </Grid>
             </Grid>
