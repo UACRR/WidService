@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,6 +12,9 @@ using System.Windows.Forms;
 using IpsCommonTypes.ClassesForSearchQuery;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Enums;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IPSModulesLibrary.ClientSRList;
 using IpsViewComponentLibrary.ConsumerControls;
@@ -41,7 +45,14 @@ namespace IPSModulesLibrary.ClientBRList
             get
             {
                 if (_cabinetBigRightForm == null)
+                {
                     _cabinetBigRightForm = new CabinetBigRightForm();
+                    _cabinetBigRightForm.cabinet.UpdateDatAction = async () =>
+                    {
+                        IsReloadData = true;
+                        await LoadData();
+                    };
+                }
 
                 return _cabinetBigRightForm;
             }
@@ -148,8 +159,10 @@ namespace IPSModulesLibrary.ClientBRList
                     StatusLic1ToProlong = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic1ToProlong))),
                     StatusLic2Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic2Active))),
                     StatusLic2NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic2NoActive))),
+                    
                     StatusLic3Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic3Active))),
                     StatusLic3NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic3NoActive))),
+
                     UndistribAmount = DTC.CastFloat(DTH.GetObject(obj, nameof(ClientBRListModel.UndistribAmount))),
                     Borg = DTC.CastFloat(DTH.GetObject(obj, nameof(ClientBRListModel.Borg))),
                     UnattachAmount = DTC.CastAsFloat(DTH.GetObject(obj, nameof(ClientBRListModel.UnattachAmount))),
@@ -288,24 +301,20 @@ namespace IPSModulesLibrary.ClientBRList
         public ICommand OpenClientCommand => new IPSDelegateCommand(OpenClientCommandExecute);
         private void OpenClientCommandExecute(object o)
         {
-            //var consumer = (ClientBRListModel) o;
-            //ViewsSingleton.SetConsumerBigRightView(consumer);
-            //if (!CabinetBigRightForm.IsInit)
-            //{
-            //    SubscribeBRCabinet();
-            //}
-
+            var client = (ClientBRListModel)o;
+            ViewsSingleton.SetConsumerBigRightView(client);
+            
             //// завантаження даних
-            //CabinetBigRightForm.cabinet.LoadData(item.CustId);
-            //CabinetBigRightForm.Title = item.Name;
+            CabinetBigRightForm.cabinet.LoadData(client.CustId);
+            CabinetBigRightForm.Title = client.Name;
 
-            //WindowsFormsVisible.ShowHiddenWindow(CabinetBigRightForm);
+            WindowsFormsVisible.ShowHiddenWindow(CabinetBigRightForm);
         }
 
         private const string AddNewConsumerSuccess = "Нового користувача додано!";
         private const string AddNewConsumerError = "Не вдалося додати нового користувача!";
-        public ICommand CreateClientCommand => new IPSDelegateCommand(Create_J_ClientCommandExecute);
-        private async void Create_J_ClientCommandExecute(object o)
+        public ICommand CreateClientCommand => new IPSDelegateCommand(CreateClientCommandExecute);
+        private async void CreateClientCommandExecute(object o)
         {
             var service = ClientSmallRightService.GetInstance();
 

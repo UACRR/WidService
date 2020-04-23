@@ -311,7 +311,6 @@ namespace Launcher.General
                 //UserPermissions.ImposeRestrictions(consumerBigRight);
                 //consumerBigRight.Show();
 
-
                 var clientsBR = new ClientsBRWorkplaceWindow();
                 clientsBR.Show();
             }

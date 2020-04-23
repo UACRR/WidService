@@ -107,9 +107,9 @@ namespace IpsViewComponentLibrary.ImportDBF
         {
             using (var fileDialog = new OpenFileDialog())
             {
-                fileDialog.InitialDirectory = @"C:\";
+                //fileDialog.InitialDirectory = @"C:\";
                 fileDialog.Filter = "DBF files (*.dbf)|*.dbf";
-                fileDialog.RestoreDirectory = true;
+                //fileDialog.RestoreDirectory = true;
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     lblFileName.Text = fileDialog.SafeFileName;

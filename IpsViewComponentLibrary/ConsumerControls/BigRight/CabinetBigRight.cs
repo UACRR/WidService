@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -15,7 +14,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
     public partial class CabinetBigRight : UserControl
     {
-        //назви табів
+        private readonly ConsumerBigRightService _service;
+        private readonly PartnerService _partnerService;
+
         private readonly Dictionary<string, CabinetTabType> _cabinetTab = new Dictionary<string, CabinetTabType>
         {
             {string.Empty, CabinetTabType.None},
@@ -35,48 +36,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
         private readonly Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
-        //дані
         private Customer _customer;
 
-        #region events точечного отримання даних
-
-        public event ActionByIdEventHandler UpdateAllViews;
-
-        public event ReturnObjectEventHandler<Customer> GetCustomer;
-
-        public event GetPartnerList OnGetPartnerListNeed;
-        public event ReturnObjectEventHandler<Customer> GetPartner;
-
-        #endregion
-
-        public event SetPartnerEventHandler OnSetPartner;
-        public event SetPartnerEventHandler OnRemovePartner;
-        public event ChangePartnerEventHandler OnChangePartner;
-
-        public event SaveObjectByIdEventHandler<LicenseAgreement> SaveAgreementAddBrChanges;
-
-        /// <summary>
-        /// Виникиє при необхідності зберегти Customer
-        /// </summary>
-        public event SaveCustomerEventHandler OnSaveCustomerNeed;
-
-        public event LicenseStatusChangeEventHandler OnChangeLicenseStatus;
-
-        public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
-        public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
-        public event ActionByIdDelegate OnFileDelete;
-        public event RegisterRatedListControl.GetSpectacleView OnGetSpectacleNeed;
-        public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
-        public event SaveRegisterRatedListEventHandler OnSaveRegisterRatedList;
-        public event GetRegisterRatedList OnGetRegisterRatedList;
-        public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
-        public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
-        public event ActionWithTwoId DeleteRegisterRatedList;
-
+        public Action UpdateDatAction { get; set; }
 
         public CabinetBigRight()
         {
             InitializeComponent();
+            
+            _service = ConsumerBigRightService.GetInstance();
+            _partnerService = PartnerService.GetInstance();
+
+            new Calculation.CalculationInfoControlPresenter(ctrlCalculation, _service);
 
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
@@ -85,7 +56,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
 
-            this.VisibleChanged += OnVisibleChanged;
+            VisibleChanged += OnVisibleChanged;
             SubscribeEvents();
             SubscribeUpdateDataEvents();
 
@@ -123,7 +94,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlFiles.DeleteCurrentFile += CtrlFiles_DeleteCurrentFile;
             // генеральна угода
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
-            ctrlGeneralAgreement.GeneralAgreementSaveChanges += CtrlGeneralAgreementGeneralAgreementSaveChanges;
+            ctrlGeneralAgreement.GeneralAgreementSaveChanges += (agrId, licenseAgreement) => _service.SaveAgreementAddBrById(agrId, licenseAgreement);
             // ліцензія
             ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
@@ -139,14 +110,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
             ctrlPayslips.OnSavePayslip += CtrlPayslips_OnSavePayslip;
             ctrlPayslips.DeleteRegisterRatedList += CtrlPayslips_DeleteRegisterRatedList;
-            ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
-            ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
-            ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
+            ctrlPayslips.OnGetRegisterRatedList += (custId) => _service.GetRatedListForCust(custId);
+            ctrlPayslips.OnRegisterItemListNeed += (regId) => _service.GetRegisterItems(regId);
+            ctrlPayslips.SavePariodCommandExecuted += (id, e) => _service.SavePeriods(id, e);
             // представник
-            ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
-            ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
-            ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
-            ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
+            ctrlPartner.OnGetPartnerListNeed += () => _partnerService.GetPartnerList();
+            ctrlPartner.OnSetPartner += (clientId, partnerId) => _partnerService.SetPartnerForCustomer(clientId, partnerId);
+            ctrlPartner.OnChangePartner += (clientId, partnerId, oldClientId) => _partnerService.ChangePartnerForCustomer(clientId, partnerId, oldClientId);
+            ctrlPartner.OnRemovePartner += (clientId, partnerId) => _partnerService.RemovePartnerForCustomer(clientId, partnerId);
         }
 
         // підписка на події * * ОНОВЛЕННЯ ДАНИХ * *
@@ -165,7 +136,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         private void CancelChange()
         {
-            _customer = GetCustomer?.Invoke(_customer.CustId);
+            _customer = _service.GetData(_customer.CustId);
             ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
             ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
         }
@@ -173,82 +144,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         // оновлення даних
         private void UpdateData()
         {
-            UpdateCurentTab(_currenCabinetTab);
-        }
-
-        // збереження анкети
-        private void CtrlTabNavigation_SaveClick(object sender, EventArgs e)
-        {
-            var result = OnSaveCustomerNeed?.Invoke(_customer) ?? false;
-            if (result)
-                UpdateData();
-            MessageShow.ShowInfoAfterChanges(result);
-        }
-
-        private bool CtrlPayslips_DeleteRegisterRatedList(int custId, int id)
-        {
-            return DeleteRegisterRatedList?.Invoke(custId, id) ?? false;
-        }
-
-        private bool CtrlGeneralAgreementGeneralAgreementSaveChanges(int id, LicenseAgreement saveObj)
-        {
-            return SaveAgreementAddBrChanges?.Invoke(id, saveObj) ?? false;
-        }
-
-        private bool CtrlPartner_OnRemovePartner(int clientId, int partnerId)
-        {
-            return OnRemovePartner?.Invoke(clientId, partnerId) ?? false;
-        }
-
-        private bool CtrlPartner_OnChangePartner(int clientId, int partnerId, int oldclientId)
-        {
-            return OnChangePartner?.Invoke(clientId, partnerId, oldclientId) ?? false;
-        }
-
-        private bool CtrlPartner_OnSetPartner(int clientId, int partnerId)
-        {
-            return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
-        }
-
-        public void LoadData(int custId)
-        {
-            UpdateAllViews?.Invoke(custId);
-            _customer = GetCustomer?.Invoke(custId);
-
-            ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
-            ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
-            ctrlGeneralAgreement.SetAndUpdateData(_customer);
-            ctrlLicense.SetData(_customer);
-            ctrlPayslips.SetAndUpdateData(_customer);
-            var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
-            SetupRl(_customer, custRl);
-            ctrlCalculation.Customer = _customer;
-            ctrlPaysInfo.Customer = _customer;
-            ctrlRequest.SetAndUpdateData(_customer);
-            ctrlReference.SetAndUpdateData(_customer);
-            ctrlContactHeader.SetControlTextInfoBigRight(_customer);
-            ctrlFiles.SetAndUpdateData(_customer);
-            ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
-        }
-
-        //оновлення даних обраної вкладки
-        public void UpdateCurentTab(CabinetTabType tab)
-        {
             if (_customer == null)
                 return;
 
             int custId = _customer.CustId;
 
-            if (tab == CabinetTabType.All)
+            if (_currenCabinetTab == CabinetTabType.All)
             {
                 LoadData(custId);
                 return;
             }
 
-            UpdateAllViews?.Invoke(custId);
-            _customer = GetCustomer?.Invoke(custId);
+            UpdateAllViews(custId);
+            _customer = _service.GetData(custId);
 
-            switch (tab)
+            switch (_currenCabinetTab)
             {
                 case CabinetTabType.None: break;
 
@@ -265,7 +175,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 case CabinetTabType.RegisterRatedList:
                 case CabinetTabType.Calculations:
                     ctrlPayslips.SetAndUpdateData(_customer);
-                    var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
+                    var custRl = _service.GetRatedListForCust(custId);
                     SetupRl(_customer, custRl);
                     ctrlCalculation.Customer = _customer;
                     break;
@@ -294,9 +204,78 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                     break;
 
                 case CabinetTabType.Agent:
-                    ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
+                    ctrlPartner.SetPartnerData(_partnerService.GetPartnerAnketa(custId), custId);
                     break;
             }
+        }
+
+        // збереження анкети
+        private void CtrlTabNavigation_SaveClick(object sender, EventArgs e)
+        {
+            var result = _service.Save(_customer);
+            UpdateDatAction?.Invoke();
+
+            if (result)
+                UpdateData();
+            MessageShow.ShowInfoAfterChanges(result);
+        }
+
+        private bool CtrlPayslips_DeleteRegisterRatedList(int custId, int rmId)
+        {
+            var result = _service.DeleteRatedList(rmId);
+
+            if (result)
+                UpdateDatAction?.Invoke();
+
+            return result;
+        }
+
+        public void LoadData(int custId)
+        {
+            UpdateAllViews(custId);
+            _customer = _service.GetData(custId);
+
+            ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
+            ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
+            ctrlGeneralAgreement.SetAndUpdateData(_customer);
+            ctrlLicense.SetData(_customer);
+            ctrlPayslips.SetAndUpdateData(_customer);
+            var custRl = _service.GetRatedListForCust(custId);
+            SetupRl(_customer, custRl);
+            ctrlCalculation.Customer = _customer;
+            ctrlPaysInfo.Customer = _customer;
+            ctrlRequest.SetAndUpdateData(_customer);
+            ctrlReference.SetAndUpdateData(_customer);
+            ctrlContactHeader.SetControlTextInfoBigRight(_customer);
+            ctrlFiles.SetAndUpdateData(_customer);
+            ctrlPartner.SetPartnerData(_partnerService.GetPartnerAnketa(custId), custId);
+        }
+
+        private void UpdateAllViews(int id)
+        {
+            var generalAgreementBigRightViews = _service.GetBigRightViewByName(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>();
+            ViewsSingleton.SetGeneralAgreementBigRightView(generalAgreementBigRightViews);
+
+            var licenseAgreementBigRightViews = _service.GetBigRightViewByName(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();
+            ViewsSingleton.SetLicenseAgreementBigRightView(licenseAgreementBigRightViews);
+
+            var requestsBigRightViews = _service.GetBigRightViewByName(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>();
+            ViewsSingleton.SetRequestsBigRightView(requestsBigRightViews);
+
+            var referenceBigRightViews = _service.GetBigRightViewByName(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>();
+            ViewsSingleton.SetReferenceBigRightView(referenceBigRightViews);
+
+            var ratedListBigRightViews = _service.GetBigRightViewByName(typeof(RatedListBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListBigRightView>();
+            ViewsSingleton.SetRatedListBigRightView(ratedListBigRightViews);
+
+            var spectacleBigRightViews = _service.GetBigRightViewByName(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
+            ViewsSingleton.SetRatedListSpectacleBigRightView(spectacleBigRightViews);
+
+            var authorsForLicenseBigRightViews = _service.GetBigRightViewByName(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>();
+            ViewsSingleton.SetAuthorsForLicenseBigRightView(authorsForLicenseBigRightViews);
+
+            var ratedListMusicDesignBigRightViews = _service.GetBigRightViewByName(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();
+            ViewsSingleton.SetRatedListMusicDesignBigRightView(ratedListMusicDesignBigRightViews);
         }
 
         /// <summary>
@@ -323,64 +302,86 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             }
         }
 
-        private List<Customer> CtrlPartner_OnGetPartnerListNeed()
-        {
-            return OnGetPartnerListNeed?.Invoke();
-        }
-
-        private List<PaidPeriod> CtrlPayslips_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
-        {
-            return SavePariodCommandExecuted?.Invoke(id, e);
-        }
-
-        private List<RegisterItem> CtrlPayslips_OnRegisterItemListNeed(int regId)
-        {
-            return OnRegisterItemListNeed?.Invoke(regId);
-        }
-
-        private Customer CtrlPayslips_OnGetRegisterRatedList(int custId)
-        {
-            return OnGetRegisterRatedList?.Invoke(custId);
-        }
 
         private bool CtrlPayslips_OnSavePayslip(RegisterRatedList list)
         {
-            return OnSaveRegisterRatedList?.Invoke(list) ?? false;
+            var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
+            
+            if (result)
+                UpdateDatAction?.Invoke();
+
+            return result;
         }
 
         //збереження customer
         private bool Ctrls_OnSaveCustomer(Customer customer)
         {
-            return OnSaveCustomerNeed?.Invoke(customer) ?? false;
+            var result = _service.Save(customer);
+            UpdateDatAction?.Invoke();
+            return result;
         }
 
         private bool CtrlRequest_OnLicenseTypeChange(LicenseAgreement agreement, LicType licType)
         {
-            return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
+            var result = _service.SetLicenseType(agreement, licType);
+
+            if (result)
+                UpdateDatAction?.Invoke();
+
+            return result;
         }
 
         private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            return OnChangeLicenseStatus?.Invoke(agr, version, status, false) ?? false;
+            var result = _service.SetLicAgreementStatus(agr, version, status, changeVer);
+
+            if (result)
+                UpdateDatAction?.Invoke();
+
+            return result;
         }
 
         private IList<BigRightSpectacleView> CtrlPayslips_OnSpectacleViewNeed(int custId)
         {
-            return OnGetSpectacleNeed?.Invoke(custId);
+            return _service.GetBigRightViewByName(typeof(BigRightSpectacleView), "vTSK_1_BRObjects", custId).Select(item => item as BigRightSpectacleView).ToList();
         }
 
         private void CtrlFilesViewCurrentFile(int custId, int typeDocument, string fileName)
         {
-            OnViewDocumentNeed?.Invoke(custId, typeDocument, fileName);
+            try
+            {
+                string fullpath = @"DocumentFiles\" + fileName;
+                if (!Directory.Exists("DocumentFiles"))
+                    Directory.CreateDirectory("DocumentFiles");
+
+                using (var fileStream = File.Create(fullpath))
+                {
+                    using (var stream = _service.DownloadDocument(custId, typeDocument, fileName))
+                    {
+                        stream.CopyTo(fileStream);
+                        stream.Close();
+                    }
+                }
+
+                if (File.Exists(fullpath))
+                {
+                    System.Diagnostics.Process.Start(fullpath);
+                }
+            }
+            catch (Exception excpt)
+            {
+                MessageShow.ShowError(excpt.Message);
+            }
         }
 
         private void CtrlFilesAddNewFile(int custId, int typeDocument, string fileName, string comment)
         {
-            OnAddNewDocument?.Invoke(custId, typeDocument, fileName, comment);
+            _service.uploadDocument(custId, typeDocument, comment, fileName);
         }
-        private bool CtrlFiles_DeleteCurrentFile(int e)
+
+        private bool CtrlFiles_DeleteCurrentFile(int fileId)
         {
-            return OnFileDelete?.Invoke(e) ?? false;
+            return _service.DeleteFileById(fileId);
         }
 
         //оновлення даних на вкладкі при переході на іншу
@@ -388,9 +389,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         {
             string tabName = ((RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
             _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
-
-            // ** Disable update when tab change
-            //UpdateCurentTab(_currenCabinetTab);
         }
     }
 }

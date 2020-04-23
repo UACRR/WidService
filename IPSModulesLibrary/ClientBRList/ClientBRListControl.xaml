@@ -103,6 +103,12 @@
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
                                        Name="CountLic2NoActive"
                                        Header="Не підтверджені" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="CountLic2OnAccept"
+                                           Header="На погодженні"/>
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="CountLic2Rejected"
+                                           Header="Відхилені" />
                     </t:RadTreeViewItem>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
@@ -117,6 +123,12 @@
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
                                        Name="CountLic3NoActive"
                                        Header="Не підтверджені" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="CountLic3OnAccept"
+                                           Header="На погодженні"/>
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="CountLic3Rejected"
+                                           Header="Відхилені"/>
                     </t:RadTreeViewItem>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
@@ -170,13 +182,13 @@
                                               TextTrimming="CharacterEllipsis"
                                               DataMemberBinding="{Binding StatusName}"/>
                         <t:GridViewDataColumn Width="50" 
-                                              Header="К-сть ліцензій" 
+                                              Header="К-сть активних ліцензій" 
                                               DataMemberBinding="{Binding CountLic1Active}"/>
                         <t:GridViewDataColumn Width="50" 
-                                              Header="К-сть заявок"
+                                              Header="К-сть активних заявок"
                                               DataMemberBinding="{Binding CountLic2Active}"/>
                         <t:GridViewDataColumn Width="50" 
-                                              Header="К-сть довідок"
+                                              Header="К-сть активних довідок"
                                               DataMemberBinding="{Binding CountLic3Active}"/>
                         <t:GridViewDataColumn Width="120" 
                                               TextAlignment="Right"

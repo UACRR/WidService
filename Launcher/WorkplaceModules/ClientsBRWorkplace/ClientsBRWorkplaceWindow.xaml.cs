@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ipsFormsDesign.Dictionary;
 
 namespace Launcher.WorkplaceModules.ClientsBRWorkplace
 {
@@ -22,6 +23,7 @@ namespace Launcher.WorkplaceModules.ClientsBRWorkplace
         public ClientsBRWorkplaceWindow()
         {
             InitializeComponent();
+            ImportDbfControl.TypeRights = TypeRights.BigRights;
         }
     }
 }
