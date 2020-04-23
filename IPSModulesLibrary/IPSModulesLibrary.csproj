@@ -202,9 +202,12 @@
       <DependentUpon>ObjectsRightListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ObjectsRightList\ObjectsRightListViewModel.cs" />
+    <Compile Include="PartnerList\LM_PartnerList.cs" />
     <Compile Include="PartnerList\PartnerListControl.xaml.cs">
       <DependentUpon>PartnerListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PartnerList\PartnerListModel.cs" />
+    <Compile Include="PartnerList\PartnerListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

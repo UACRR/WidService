@@ -106,19 +106,19 @@ namespace IPSModulesLibrary.PartnerList
 
                 var item = new PartnerListModel
                 {
-                    RegId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.RegId))),
-                    CustId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CustId))),
-                    CustName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.CustName))),
-                    PeriodId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.PeriodId))),
-                    PeriodName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.PeriodName))),
-                    LicId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.LicId))),
-                    FileName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.FileName))),
-                    CreateDate = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(PartnerListModel.CreateDate))),
-                    UserWho = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.UserWho))),
-                    RgStatus = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.RgStatus))),
+                    //RegId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.RegId))),
+                    //CustId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CustId))),
+                    //CustName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.CustName))),
+                    //PeriodId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.PeriodId))),
+                    //PeriodName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.PeriodName))),
+                    //LicId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.LicId))),
+                    //FileName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.FileName))),
+                    //CreateDate = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(PartnerListModel.CreateDate))),
+                    //UserWho = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.UserWho))),
+                    //RgStatus = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.RgStatus))),
 
-                    CountItem = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CountItem))),
-                    CountNoFound = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CountNoFound))),
+                    //CountItem = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CountItem))),
+                    //CountNoFound = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CountNoFound))),
 
                 };
 
@@ -159,7 +159,7 @@ namespace IPSModulesLibrary.PartnerList
         {
             ControlLoad(() =>
             {
-                var searchControl = ((PartnerListControl)o).searchControl;
+                var searchControl = ((PartnerListControl) o);//.searchControl;
                 var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 6).FrameParam;
                 ((SearchControlViewModel)searchControl.DataContext).Config = config;
                 ((SearchControlViewModel)searchControl.DataContext).RunSearchQuery = async (search) => await LoadData(search);

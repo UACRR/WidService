@@ -38,7 +38,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="Button">
+        <Style TargetType="t:RadButton">
             <Style.Setters>
                 <Setter Property="Background" Value="#470fa9"/>
                 <Setter Property="MinHeight" Value="33.5"/>
@@ -63,6 +63,24 @@
         <StackPanel>
             <t:RadDropDownButton Width="200" Height="75" Content="Button"/>
             <Button Width="200" Height="75" Content="Button2"/>
+            <t:RadDropDownButton Width="200"
+                                 Content="dropdownbtn"
+                                 CloseOnPopupMouseLeftButtonUp="True"
+                                 Margin="3" Template="{DynamicResource RadDropDownButtonControlTemplate1}">
+                <t:RadDropDownButton.DropDownContent>
+                    <StackPanel>
+                        <t:RadButton Margin="0"
+                                     MinWidth="120"
+                                     HorizontalContentAlignment="Left"
+                                     Content="dropdownbtn"/>
+                        <t:RadButton Margin="0"
+                                     MinWidth="120"
+                                     HorizontalContentAlignment="Left"
+                                     Content="dropdownbtn"/>
+                    </StackPanel>
+                </t:RadDropDownButton.DropDownContent>
+            </t:RadDropDownButton>
+
         </StackPanel>
 
     </Grid>
