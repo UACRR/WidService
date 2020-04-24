@@ -213,6 +213,7 @@
                     <t:RadDropDownButton HorizontalAlignment="Left"
                                          Content="Новий користувач"
                                          MinWidth="175"
+                                         Template="{StaticResource RadDropDownButtonTemplate}"
                                          CloseOnPopupMouseLeftButtonUp="True"
                                          Margin="3">
                         <t:RadDropDownButton.DropDownContent>

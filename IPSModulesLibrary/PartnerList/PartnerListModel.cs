@@ -8,5 +8,6 @@ namespace IPSModulesLibrary.PartnerList
 {
     public class PartnerListModel
     {
+        public int? AgrStatus { get; set; }
     }
 }

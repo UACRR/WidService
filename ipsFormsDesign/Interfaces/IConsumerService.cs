@@ -62,6 +62,7 @@ namespace ipsFormsDesign.Interfaces
         /// Тип Ген. угоди
         /// </summary>
         public int AgrType { get; set; }
+
         /// <summary>
         /// Назва Типу
         /// </summary>
@@ -92,29 +93,13 @@ namespace ipsFormsDesign.Interfaces
         /// </summary>
         public string JaAddress { get; set; }
 
-        ///// <summary>
-        ///// Сума
-        ///// </summary>
-        //public decimal? UndistribAmount { get; set; }
-        ///// <summary>
-        ///// Сума
-        ///// </summary>
-        //public decimal? Borg { get; set; }
-        ///// <summary>
-        ///// Сума
-        ///// </summary>
-        //public decimal? UnattachAmount { get; set; }
-        ///// <summary>
-        ///// Сума
-        ///// </summary>
-        //public decimal? PrePayRest { get; set; }
-
         public float? UndistribAmount { get; set; }
         public float? Borg { get; set; }
         public float? UnattachAmount { get; set; }
         public float? PrePayRest { get; set; }
 
         private int? _agrStatus;
+
         /// <summary>
         ///  Статус Ген. Угоди
         /// </summary>
@@ -126,7 +111,8 @@ namespace ipsFormsDesign.Interfaces
                 _agrStatus = value;
                 if (value.HasValue)
                 {
-                    StatusName = IpsGlobal.AnketaDictionaties.agreementStatus.First(rec => rec.CodeI == value.Value).Name;
+                    StatusName = IpsGlobal.AnketaDictionaties.agreementStatus.First(rec => rec.CodeI == value.Value)
+                        .Name;
                 }
             }
         }
@@ -137,6 +123,7 @@ namespace ipsFormsDesign.Interfaces
         public string StatusName { get; set; }
 
         private int? _addStatus;
+
         /// <summary>
         /// Статус Доп угоди
         /// </summary>
@@ -148,7 +135,8 @@ namespace ipsFormsDesign.Interfaces
                 _addStatus = value;
                 if (value.HasValue)
                 {
-                    AddStatusName = IpsGlobal.AnketaDictionaties.agreementStatus.First(rec => rec.CodeI == value.Value).Name;
+                    AddStatusName = IpsGlobal.AnketaDictionaties.agreementStatus.First(rec => rec.CodeI == value.Value)
+                        .Name;
                 }
             }
         }
@@ -158,15 +146,18 @@ namespace ipsFormsDesign.Interfaces
         /// </summary>
         public string AddStatusName { get; set; }
 
-
         public int CountLic1Active { get; set; }
         public int CountLic1NoActive { get; set; }
         public int CountLic1ToProlong { get; set; }
+        public int CountLic1Close { get; set; }
         public int CountLic2Active { get; set; }
         public int CountLic2NoActive { get; set; }
+        public int CountLic2ForAccept { get; set; }
+        public int CountLic2Rejected { get; set; }
         public int CountLic3Active { get; set; }
         public int CountLic3NoActive { get; set; }
-
+        public int CountLic3ForAccept { get; set; }
+        public int CountLic3Rejected { get; set; }
     }
 
     public interface IConsumerService : IModel

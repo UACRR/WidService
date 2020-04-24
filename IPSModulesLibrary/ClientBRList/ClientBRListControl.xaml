@@ -52,11 +52,11 @@
                 <t:RadTreeView Grid.Row="1" MinWidth="200" Margin="5" SelectedItem="{Binding SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
                                    IsSelected="True"
-                                   Header="Всі"/>
+                                   Header="* Всі"/>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
                                    IsSelectable="False"
-                                   Header="Генеральні договори:">
+                                   Header="* Генеральні договори">
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
                                        Name="StatusMasterActive"
                                        Header="Активвні" />
@@ -75,71 +75,71 @@
                     </t:RadTreeViewItem>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
-                                   IsSelectable="False"
-                                   Header="Ліцензії:">
+                                       IsSelectable="False"
+                                       Header="* Ліцензії">
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="licenseAll"
-                                       Header="Всі" />
+                                           Name="licenseAll"
+                                           Header="Всі" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="StatusLic1Active"
-                                       Header="Активні" />
+                                           Name="Lic1Active"
+                                           Header="Активні" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="StatusLic1NoActive"
-                                       Header="Не активні" />
+                                           Name="Lic1ToProlong"
+                                           Header="Для пролонгації" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="StatusLic1ToProlong"
-                                       Header="Для пролонгації" />
+                                           Name="Lic1Close"
+                                           Header="Закриті" />
                     </t:RadTreeViewItem>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
-                                   IsSelectable="False"
-                                   Header="Заявки:">
+                                       IsSelectable="False"
+                                       Header="* Заявки">
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="requestAll"
-                                       Header="Всі" />
+                                           Name="requestAll"
+                                           Header="Всі" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="CountLic2Active"
-                                       Header="Активні" />
+                                           Name="Lic2Active"
+                                           Header="Активні" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="CountLic2NoActive"
-                                       Header="Не підтверджені" />
+                                           Name="Lic2NoActive"
+                                           Header="Не підтверджені" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="CountLic2OnAccept"
+                                           Name="Lic2ForAccept"
                                            Header="На погодженні"/>
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="CountLic2Rejected"
+                                           Name="Lic2Rejected"
                                            Header="Відхилені" />
                     </t:RadTreeViewItem>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
-                                   IsSelectable="False"
-                                   Header="Довідки:">
+                                       IsSelectable="False"
+                                       Header="* Довідки">
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="referenceALl"
-                                       Header="Всі" />
+                                           Name="referenceALl"
+                                           Header="Всі" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="CountLic3Active"
-                                       Header="Активні" />
+                                           Name="Lic3Active"
+                                           Header="Активні" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                       Name="CountLic3NoActive"
-                                       Header="Не підтверджені" />
+                                           Name="Lic3NoActive"
+                                           Header="Не підтверджені" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="CountLic3OnAccept"
+                                           Name="Lic3ForAccept"
                                            Header="На погодженні"/>
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
-                                           Name="CountLic3Rejected"
+                                           Name="Lic3Rejected"
                                            Header="Відхилені"/>
                     </t:RadTreeViewItem>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
-                                   Name="StatusUndistribute"
-                                   Header="Неросподілені"/>
+                                       Name="StatusUndistribute"
+                                       Header="* Нерозподілені"/>
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
-                                   Name="Debt"
-                                   Header="Борг"/>
+                                       Name="Debt"
+                                       Header="* Борг"/>
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
-                                   Name="unattachAmount"
-                                   Header="Відсутні Роз.Листи" />
+                                       Name="unattachAmount"
+                                       Header="* Відсутні Роз.Листи" />
                 </t:RadTreeView>
             </Grid>
 

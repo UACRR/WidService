@@ -9,6 +9,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.Common.Editors;
 using IpsViewComponentLibrary.Common.Form;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Extensions;
@@ -138,6 +139,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
             bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
             bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
+            
 
             _objectRight = _licenseAgreement?.LicenseBigR?.Obj;
             var rightholderList = _objectRightService.GetDataBr(_objectRight.ObjId).rhList;
@@ -153,6 +155,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             if (GetReadOnly()) // TODO: read only must be a enum
                 ReadOnly = true;
             SetControlsVisibility();
+
+            //txtTicketPriceUah.Validating += NumericValidating;
 
             isInit = true;
         }
@@ -611,6 +615,15 @@ namespace IpsViewComponentLibrary.Shared.Forms
         {
             ForBigRightAdmin,
             ForSmallRightAdmin,
+        }
+
+        private void NumericValidating(object sender, CancelEventArgs e)
+        {
+            string error = "Очікується числове значення";
+
+            var control = (IpsTextBox) sender;
+            //if (control.Text)
+            //errorProvider.SetError(control, error);
         }
     }
 }

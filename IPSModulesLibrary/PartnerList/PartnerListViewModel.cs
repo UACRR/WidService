@@ -138,8 +138,14 @@ namespace IPSModulesLibrary.PartnerList
                 IEnumerable<PartnerListModel> list = null;
                 filterName = filterName.ToUpper();
 
-                if (filterName == nameof(PartnerListModel).ToUpper())
-                    list = PartnersItemSourceTemp.Where(rec => rec != null);
+                if (filterName == "Active".ToUpper())
+                    list = PartnersItemSourceTemp.Where(rec => rec.AgrStatus == 2);
+
+                if (filterName == "OnAccept".ToUpper())
+                    list = PartnersItemSourceTemp.Where(rec => rec.AgrStatus == 1);
+
+                if (filterName == "NotAccept".ToUpper())
+                    list = PartnersItemSourceTemp.Where(rec => rec.AgrStatus == 0);
 
                 PartnersItemSource = list?.ToList();
             }
@@ -149,6 +155,10 @@ namespace IPSModulesLibrary.PartnerList
             }
         }
 
+        private void CreatePartner(int type)
+        {
+
+        }
 
         #endregion
 
@@ -159,8 +169,8 @@ namespace IPSModulesLibrary.PartnerList
         {
             ControlLoad(() =>
             {
-                var searchControl = ((PartnerListControl) o);//.searchControl;
-                var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 6).FrameParam;
+                var searchControl = ((PartnerListControl) o).searchControl;
+                var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 9).FrameParam;
                 ((SearchControlViewModel)searchControl.DataContext).Config = config;
                 ((SearchControlViewModel)searchControl.DataContext).RunSearchQuery = async (search) => await LoadData(search);
                 ((SearchControlViewModel)searchControl.DataContext).Clear = async () =>
@@ -182,13 +192,25 @@ namespace IPSModulesLibrary.PartnerList
             });
         }
 
-        public ICommand OpenReportCommand => new IPSDelegateCommand(OpenReportCommandExecute);
-        private void OpenReportCommandExecute(object o)
+        public ICommand OpenPartnerCommand => new IPSDelegateCommand(OpenPartnerCommandExecute);
+        private void OpenPartnerCommandExecute(object o)
         {
             if (o == null)
                 return;
 
 
+        }
+
+        public ICommand Create_J_PartnerCommand => new IPSDelegateCommand(Create_J_PartnerCommandExecute);
+        private void Create_J_PartnerCommandExecute(object o)
+        {
+            CreatePartner(3);
+        }
+
+        public ICommand Create_P_PartnerCommand => new IPSDelegateCommand(Create_P_PartnerCommandExecute);
+        private void Create_P_PartnerCommandExecute(object o)
+        {
+            CreatePartner(1);
         }
 
         #endregion

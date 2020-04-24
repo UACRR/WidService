@@ -47,7 +47,7 @@ namespace IPSModulesLibrary.ClientBRList
                 if (_cabinetBigRightForm == null)
                 {
                     _cabinetBigRightForm = new CabinetBigRightForm();
-                    _cabinetBigRightForm.cabinet.UpdateDatAction = async () =>
+                    _cabinetBigRightForm.cabinet.UpdateDataAction = async () =>
                     {
                         IsReloadData = true;
                         await LoadData();
@@ -142,26 +142,26 @@ namespace IPSModulesLibrary.ClientBRList
                     AgrId = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.AgrId))),
                     AgrStatus = DTC.CastIntNull(DTH.GetObject(obj, nameof(ClientBRListModel.AgrStatus))),
                     AddStatus = DTC.CastIntNull(DTH.GetObject(obj, nameof(ClientBRListModel.AddStatus))),
+
                     CountLic1Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic1Active))),
                     CountLic1NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic1NoActive))),
                     CountLic1ToProlong = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic1ToProlong))),
+                    CountLic1Close = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic1Close))),
                     CountLic2Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic2Active))),
                     CountLic2NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic2NoActive))),
+                    CountLic2ForAccept = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic2ForAccept))),
+                    CountLic2Rejected = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic2Rejected))),
                     CountLic3Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic3Active))),
                     CountLic3NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic3NoActive))),
+                    CountLic3ForAccept = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic3ForAccept))),
+                    CountLic3Rejected = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.CountLic3Rejected))),
+
                     ClcustId = DTC.CastIntNull(DTH.GetObject(obj, nameof(ClientBRListModel.ClcustId))),
+
                     StatusMasterActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusMasterActive))),
                     StatusMasterNoactive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusMasterNoactive))),
                     StatusMasterProlong = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusMasterProlong))),
                     StatusUndistribute = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusUndistribute))),
-                    StatusLic1Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic1Active))),
-                    StatusLic1NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic1NoActive))),
-                    StatusLic1ToProlong = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic1ToProlong))),
-                    StatusLic2Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic2Active))),
-                    StatusLic2NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic2NoActive))),
-                    
-                    StatusLic3Active = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic3Active))),
-                    StatusLic3NoActive = DTC.CastInt(DTH.GetObject(obj, nameof(ClientBRListModel.StatusLic3NoActive))),
 
                     UndistribAmount = DTC.CastFloat(DTH.GetObject(obj, nameof(ClientBRListModel.UndistribAmount))),
                     Borg = DTC.CastFloat(DTH.GetObject(obj, nameof(ClientBRListModel.Borg))),
@@ -204,7 +204,7 @@ namespace IPSModulesLibrary.ClientBRList
                     list = ClientsBRItemSourceTemp.Where(rec => rec.AgrStatus == 0);
 
                 // ForProlongation
-                if (filterName == nameof(ClientBRListModel.StatusMasterProlong).ToUpper())
+                if (filterName == "MasterProlong".ToUpper())
                     list = ClientsBRItemSourceTemp.Where(rec => rec.StatusMasterProlong == 1);
 
                 // Closed
@@ -214,38 +214,50 @@ namespace IPSModulesLibrary.ClientBRList
                 // ліцензії
                 // All
                 if (filterName == "licenseAll".ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic1NoActive + rec.CountLic1Active > 0);
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic1Active + rec.CountLic1NoActive + rec.CountLic1ToProlong + rec.CountLic1Close > 0);
                 // Working
-                if (filterName == nameof(ClientBRListModel.StatusLic1Active).ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusLic1Active == 1);
-                // NotActive
-                if (filterName == nameof(ClientBRListModel.StatusLic1NoActive).ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusLic1NoActive == 1);
+                if (filterName == "Lic1Active".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic1Active > 0);
                 // ForProlongation
-                if (filterName == nameof(ClientBRListModel.StatusLic1ToProlong).ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.StatusLic1ToProlong == 1);
+                if (filterName == "Lic1ToProlong".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic1ToProlong > 0);
+                // closed
+                if (filterName == "Lic1Close".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic1Close > 0);
 
                 // заявки
                 // All
                 if (filterName == "requestAll".ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2Active + rec.CountLic2NoActive > 0);
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2Active + rec.CountLic2NoActive + rec.CountLic2ForAccept + rec.CountLic2Rejected> 0);
                 // Working
-                if (filterName == nameof(ClientBRListModel.CountLic2Active).ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2Active == 1);
+                if (filterName == "Lic2Active".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2Active > 0);
                 // NotActive
-                if (filterName == nameof(ClientBRListModel.CountLic2NoActive).ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2NoActive == 1);
+                if (filterName == "Lic2NoActive".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2NoActive > 0);
+                // onaccept
+                if (filterName == "Lic2ForAccept".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2ForAccept > 0);
+                // rejected
+                if (filterName == "Lic2Rejected".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic2Rejected > 0);
 
                 // довідки
                 // All
                 if (filterName == "referenceALl".ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3Active + rec.CountLic3NoActive > 0);
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3Active + rec.CountLic3NoActive + rec.CountLic3ForAccept + rec.CountLic3Rejected > 0);
                 // Working
-                if (filterName == nameof(ClientBRListModel.CountLic3Active).ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3Active == 1);
-                // NotActive
-                if (filterName == nameof(ClientBRListModel.CountLic3NoActive).ToUpper())
-                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3NoActive == 1);
+                if (filterName == "Lic3Active".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3Active > 0);
+                // NotActive      
+                if (filterName == "Lic3NoActive".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3NoActive > 0);
+                // onaccept       
+                if (filterName == "Lic3ForAccept".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3ForAccept > 0);
+                // rejected       
+                if (filterName == "Lic3Rejected".ToUpper())
+                    list = ClientsBRItemSourceTemp.Where(rec => rec.CountLic3Rejected > 0);
 
                 // Debt
                 if (filterName == "Debt".ToUpper())

@@ -38,7 +38,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         private Customer _customer;
 
-        public Action UpdateDatAction { get; set; }
+        public Action UpdateDataAction { get; set; }
 
         public CabinetBigRight()
         {
@@ -213,7 +213,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private void CtrlTabNavigation_SaveClick(object sender, EventArgs e)
         {
             var result = _service.Save(_customer);
-            UpdateDatAction?.Invoke();
+            UpdateDataAction?.Invoke();
 
             if (result)
                 UpdateData();
@@ -225,7 +225,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             var result = _service.DeleteRatedList(rmId);
 
             if (result)
-                UpdateDatAction?.Invoke();
+                UpdateDataAction?.Invoke();
 
             return result;
         }
@@ -308,7 +308,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
             
             if (result)
-                UpdateDatAction?.Invoke();
+                UpdateDataAction?.Invoke();
 
             return result;
         }
@@ -317,7 +317,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private bool Ctrls_OnSaveCustomer(Customer customer)
         {
             var result = _service.Save(customer);
-            UpdateDatAction?.Invoke();
+            UpdateDataAction?.Invoke();
             return result;
         }
 
@@ -326,7 +326,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             var result = _service.SetLicenseType(agreement, licType);
 
             if (result)
-                UpdateDatAction?.Invoke();
+                UpdateDataAction?.Invoke();
 
             return result;
         }
@@ -336,7 +336,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             var result = _service.SetLicAgreementStatus(agr, version, status, changeVer);
 
             if (result)
-                UpdateDatAction?.Invoke();
+                UpdateDataAction?.Invoke();
 
             return result;
         }

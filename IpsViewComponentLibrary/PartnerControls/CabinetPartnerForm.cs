@@ -6,6 +6,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -20,18 +21,22 @@ namespace IpsViewComponentLibrary.PartnerControls
         private const string SuccessAnketaMsg = "Зміни в анкеті збережено!";
         private const string ErrorAnketaMsg = "Неможливо зберегти зміни в анкеті!";
 
+        private readonly PartnerService _service;
+        
+        public Action UpdateDataAction { get; set; }
+
         private Customer _customer;
         private readonly PartnerCabinetAnketaPhisControl _phisControl = null;
         private readonly PartnerCabinetAnketaJurControl _jurControl = null;
-        public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
-        public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
-        public event SetPartnerEventHandler OnAddClientToPartner;
-        public event SetPartnerEventHandler OnDetachClientInPartner;
-        public event AgreementStatusChangeEventHandler ChangeStatusAgr;
-        public event SaveCustomerEventHandler OnSaveCustomer;
+        //public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
+        //public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
+        //public event SetPartnerEventHandler OnAddClientToPartner;
+        //public event SetPartnerEventHandler OnDetachClientInPartner;
+        //public event AgreementStatusChangeEventHandler ChangeStatusAgr;
+
         //public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
-        public event Func<AgreementAddPartner, Partner, bool> OnSaveAgreement;
-        public event GetCustomerByIdEventHandler UpdateCustomer;
+        //public event Func<AgreementAddPartner, Partner, bool> OnSaveAgreement;
+        //public event GetCustomerByIdEventHandler UpdateCustomer;
         private readonly IAnketaControls _control;
 
         public CabinetPartnerForm(Customer customer)
@@ -40,6 +45,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             WindowState = FormWindowState.Maximized;
             Load += CabinetPartnerForm_Load;
             DialogResult = DialogResult.None;
+            _service = PartnerService.GetInstance();
             _customer = customer;
 
             switch (_customer.CustType)
@@ -100,39 +106,39 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void SaveClick(object sender, bool e)
         {
-            var result = OnSaveCustomer?.Invoke(_customer) ?? false;
+            var result = _service.SavePartner(_customer);
             MessageShow.ShowInfoByResult(SuccessAnketaMsg, ErrorAnketaMsg, result);
+            UpdateDataAction?.Invoke();
         }
 
         private bool CtrlPartnerClients_OnDetachClientInPartner(int clientId, int partnerId)
         {
-            return OnDetachClientInPartner?.Invoke(clientId, partnerId) ?? false;
+            return _service.RemovePartnerForCustomer(clientId, partnerId);
         }
 
         private bool CtrlPartnerClients_OnAddClientToPartner(int clientId, int partnerId)
         {
-            return OnAddClientToPartner?.Invoke(clientId, partnerId) ?? false;
+            return _service.SetPartnerForCustomer(clientId, partnerId);
         }
 
         private List<PartnerAllFreeClientsView> CtrlPartnerClients_GetFreeClientList(int custId)
         {
-            return GetFreeClientList?.Invoke(custId);
+            return _service.GetView(typeof(PartnerAllFreeClientsView), "vTsk_6_ListFreeCln", null).ToListOfType<PartnerAllFreeClientsView>();
         }
 
         private void CabinetPartnerForm_Load(object sender, EventArgs e)
         {
-            var list = GetPartnerClientList?.Invoke(_customer.CustId);
+            var list = _service.GetView(typeof(PartnerClientListView), "vTsk_6_ListPClient", _customer.CustId).ToListOfType<PartnerClientListView>();
             ctrlPartnerClients.SetData(list);
         }
 
         // підтвердити договір
         private void btnAcceptAgr_Click(object sender, EventArgs e)
         {
-            var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Activate);
-            if (result ?? false)
+            var result = _service.AgreementPartnerStatusChange(_customer.CustId, CPartnerObjectStatus.Activate);
+            if (result)
             {
-                _customer = UpdateCustomer?.Invoke(_customer.CustId);
-                BeginBinding();
+                UpdateCustomer();
             }
         }
 
@@ -142,10 +148,9 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             if (MessageShow.ConfirmAction(CloseAgreementConfirmMsg) == DialogResult.Yes)
             {
-                var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Close);
+                var result = _service.AgreementPartnerStatusChange(_customer.CustId, CPartnerObjectStatus.Close);
                 // use result
-                _customer = UpdateCustomer?.Invoke(_customer.CustId);
-                BeginBinding();
+                UpdateCustomer();
             }
         }
 
@@ -153,7 +158,10 @@ namespace IpsViewComponentLibrary.PartnerControls
         private void Save_Click(object sender, EventArgs e)
         {
             var agr = _customer.Partner.AgreementAddPartner.SingleOrDefault();
-            var result = OnSaveAgreement?.Invoke(agr, _customer.Partner) ?? false;
+
+            var result = _service.UpdateAgreement(agr, _customer.Partner);
+            UpdateDataAction?.Invoke();
+
             //var result = OnSaveAgreement?.Invoke(agr) ?? false;
             MessageShow.ShowInfoByResult(SuccessAgrMsg, ErrorAgrMsg, result);
         }
@@ -161,15 +169,22 @@ namespace IpsViewComponentLibrary.PartnerControls
         // скасувати зміни договору
         private void Cancel_Click(object sender, EventArgs e)
         {
-            _customer = UpdateCustomer?.Invoke(_customer.CustId);
-            BeginBinding();
+            UpdateCustomer();
         }
 
         // скасувати зміни анкети
         private void Anketa_CancelChangesClick(object sender, EventArgs e)
         {
-            _customer = UpdateCustomer?.Invoke(_customer.CustId);
+            UpdateCustomer();
             _control.BeginBindings(_customer);
+        }
+
+        private void UpdateCustomer()
+        {
+            UpdateDataAction?.Invoke();
+            var result = _service.GetPartner(_customer.CustId);
+            _customer = result;
+            BeginBinding();
         }
     }
 }

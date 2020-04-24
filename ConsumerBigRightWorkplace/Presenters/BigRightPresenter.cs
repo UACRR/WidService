@@ -95,7 +95,7 @@ namespace ConsumerBigRightWorkplace.Presenters
             ViewsSingleton.SetConsumerBigRightView(item);
             if (!_cabinetBigRightForm.IsInit)
             {
-                _cabinetBigRightForm.cabinet.UpdateDatAction = UpdateDataGrid;
+                _cabinetBigRightForm.cabinet.UpdateDataAction = UpdateDataGrid;
                 _cabinetBigRightForm.IsInit = true;
             }
 

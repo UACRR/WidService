@@ -12,8 +12,11 @@
              Background="WhiteSmoke"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Control.Resources>
+    <Control.DataContext>
+        <local:PartnerListViewModel/>
+    </Control.DataContext>
 
+    <Control.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/GridViewResourceDictionary.xaml"/>
@@ -22,26 +25,7 @@
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/TreeViewItemResourceDictionary.xaml"/>
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/ButtonsResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="t:RadDropDownButton">
-                <Setter Property="Background" Value="#470fa9"/>
-                <Setter Property="MinHeight" Value="33.5"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Padding" Value="8 3 5 8"/>
-                <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-
-                        <Setter Property="Background" Value="#32077d"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                    </Trigger>
-
-                </Style.Triggers>
-            </Style>
         </ResourceDictionary>
-
     </Control.Resources>
 
     <i:Interaction.Triggers>
@@ -65,6 +49,7 @@
                 </Grid.RowDefinitions>
 
                 <t:RadTreeView Grid.Row="1" 
+                               SelectedItem="{Binding SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                MinWidth="200" 
                                Margin="5">
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
@@ -73,15 +58,18 @@
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}"
                                        IsSelectable="False"
-                                       Header="Активні" />
+                                       Header="Активні"
+                                       Name="Active"/>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
                                        IsSelectable="False"
-                                       Header="На акцепті"/>
+                                       Header="На акцепті"
+                                       Name="OnAccept"/>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
                                        IsSelectable="False"
-                                       Header="Не підтверджені"/>
+                                       Header="Не підтверджені"
+                                       Name="NotAccept"/>
 
                 </t:RadTreeView>
             </Grid>
@@ -156,7 +144,7 @@
                             <t:GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <t:RadButton Margin="0" Width="25" Height="20" 
-                                                 Command="{Binding DataContext.OpenClientCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                 Command="{Binding DataContext.OpenPartnerCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
                                                  CommandParameter="{Binding}">
                                         <Image Source="../Resources/Icons/edit-icon.png"/>
                                     </t:RadButton>
@@ -203,14 +191,27 @@
                                          Content="Створити нового представника"
                                          MinWidth="175"
                                          CloseOnPopupMouseLeftButtonUp="True"
-                                         Template="{DynamicResource RadDropDownButtonControlTemplate1}"
+                                         Template="{StaticResource RadDropDownButtonTemplate}"
                                          Margin="3">
-
+                        <t:RadDropDownButton.DropDownContent>
+                            <StackPanel>
+                                <t:RadButton Margin="0"
+                                             MinWidth="140"
+                                             Style="{StaticResource ddButton}"
+                                             HorizontalContentAlignment="Left"
+                                             Content="Фізична особа"
+                                             Command="{Binding Create_P_PartnerCommand}"/>
+                                <t:RadButton Margin="0"
+                                             MinWidth="140"
+                                             Style="{StaticResource ddButton}"
+                                             HorizontalContentAlignment="Left"
+                                             Content="Юридична особа"
+                                             Command="{Binding Create_J_PartnerCommand}"/>
+                            </StackPanel>
+                        </t:RadDropDownButton.DropDownContent>
                     </t:RadDropDownButton>
                 </Grid>
             </Grid>
-
-
         </Grid>
     </t:RadBusyIndicator>
 </UserControl>
