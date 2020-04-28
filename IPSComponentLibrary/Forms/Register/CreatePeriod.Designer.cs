@@ -65,15 +65,16 @@
             // ddlPeriod
             // 
             this.ddlPeriod.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ddlPeriod.Location = new System.Drawing.Point(138, 54);
+            this.ddlPeriod.Location = new System.Drawing.Point(74, 54);
             this.ddlPeriod.Name = "ddlPeriod";
-            this.ddlPeriod.Size = new System.Drawing.Size(232, 25);
+            this.ddlPeriod.Size = new System.Drawing.Size(318, 25);
             this.ddlPeriod.TabIndex = 1;
             this.ddlPeriod.ThemeName = "Office2013Light";
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(12, 106);
+            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreate.Location = new System.Drawing.Point(161, 95);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(111, 24);
             this.btnCreate.TabIndex = 3;
@@ -83,8 +84,9 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(256, 106);
+            this.btnCancel.Location = new System.Drawing.Point(278, 95);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(114, 24);
             this.btnCancel.TabIndex = 4;
@@ -97,18 +99,18 @@
             this.dtStartDate.Location = new System.Drawing.Point(138, 18);
             this.dtStartDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtStartDate.Name = "dtStartDate";
-            this.dtStartDate.Size = new System.Drawing.Size(155, 25);
+            this.dtStartDate.Size = new System.Drawing.Size(254, 25);
             this.dtStartDate.TabIndex = 0;
             this.dtStartDate.TabStop = false;
             this.dtStartDate.Text = "21 липня 2018 р.";
             this.dtStartDate.ThemeName = "Office2013Light";
             this.dtStartDate.Value = new System.DateTime(2018, 7, 21, 7, 51, 24, 863);
-            this.dtStartDate.ValueChanged += new System.EventHandler(this.radDateTimePicker1_ValueChanged);
+            this.dtStartDate.ValueChanged += new System.EventHandler(this.dtBeginDate_ValueChanged);
             // 
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel1.Location = new System.Drawing.Point(69, 54);
+            this.radLabel1.Location = new System.Drawing.Point(12, 53);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(57, 24);
             this.radLabel1.TabIndex = 5;
@@ -118,7 +120,7 @@
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.radLabel2.Location = new System.Drawing.Point(11, 16);
+            this.radLabel2.Location = new System.Drawing.Point(12, 19);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(115, 23);
             this.radLabel2.TabIndex = 6;
@@ -130,7 +132,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(380, 142);
+            this.ClientSize = new System.Drawing.Size(404, 131);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.dtStartDate);
