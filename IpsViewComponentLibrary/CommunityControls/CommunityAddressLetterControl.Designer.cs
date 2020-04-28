@@ -52,7 +52,7 @@
             this.txtCity.Margin = new System.Windows.Forms.Padding(0);
             this.txtCity.Name = "txtCity";
             this.txtCity.NullText = "Місто";
-            this.txtCity.Size = new System.Drawing.Size(397, 21);
+            this.txtCity.Size = new System.Drawing.Size(397, 20);
             this.txtCity.TabIndex = 2;
             this.txtCity.ThemeName = "Office2013Light";
             // 
@@ -82,7 +82,7 @@
             this.ddlCountry.Location = new System.Drawing.Point(0, 0);
             this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
             this.ddlCountry.Name = "ddlCountry";
-            this.ddlCountry.Size = new System.Drawing.Size(213, 21);
+            this.ddlCountry.Size = new System.Drawing.Size(213, 20);
             this.ddlCountry.TabIndex = 0;
             this.ddlCountry.ThemeName = "Office2013Light";
             // 
@@ -136,8 +136,8 @@
             // 
             // CommunityAddressLetterControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel);
             this.Name = "CommunityAddressLetterControl";

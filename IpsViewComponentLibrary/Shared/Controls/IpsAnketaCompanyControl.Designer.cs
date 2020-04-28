@@ -54,7 +54,7 @@
             // 
             // 
             this.txtShortName.RootElement.MaxSize = new System.Drawing.Size(0, 0);
-            this.txtShortName.Size = new System.Drawing.Size(422, 20);
+            this.txtShortName.Size = new System.Drawing.Size(422, 21);
             this.txtShortName.TabIndex = 1;
             this.txtShortName.ThemeName = "Office2013Light";
             // 
@@ -98,8 +98,8 @@
             // 
             // IpsAnketaCompanyControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.txtShortName);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblShortName);

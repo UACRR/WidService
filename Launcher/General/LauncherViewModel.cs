@@ -22,6 +22,7 @@ using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
 using System.IO;
 using Launcher.WorkplaceModules.ClientsBRWorkplace;
 using Launcher.WorkplaceModules.ClientsSRWorkplace;
+using Launcher.WorkplaceModules.PartnerWorkplace;
 using Launcher.WorkplaceModules.ReportWorkplace;
 using SmRoPermitClientLib;
 
@@ -325,8 +326,11 @@ namespace Launcher.General
         {
             try
             {
-                var partner = new PartnersWorkplace.PartnersWorkplace();
-                UserPermissions.ImposeRestrictions(partner);
+                //var partner = new PartnersWorkplace.PartnersWorkplace();
+                //UserPermissions.ImposeRestrictions(partner);
+                //partner.Show();
+
+                var partner = new PartnerWorkplaceWindow();
                 partner.Show();
             }
             catch (Exception e)

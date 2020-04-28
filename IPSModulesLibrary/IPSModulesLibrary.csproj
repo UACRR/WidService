@@ -196,6 +196,9 @@
     <Compile Include="CommunitiesList\CommunitiesListModel.cs" />
     <Compile Include="CommunitiesList\CommunitiesListViewModel.cs" />
     <Compile Include="CommunitiesList\LM_CommunitiesList.cs" />
+    <Compile Include="FinishingWorks\FinishingWorksControl.xaml.cs">
+      <DependentUpon>FinishingWorksControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObjectsRightList\LM_ObjectsRightList.cs" />
     <Compile Include="ObjectsRightList\ObjectsRightListModel.cs" />
     <Compile Include="ObjectsRightList\ObjectsRightListControl.xaml.cs">
@@ -268,6 +271,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CommunitiesList\CommunitiesListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FinishingWorks\FinishingWorksControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.ddlSexType = new Telerik.WinControls.UI.RadDropDownList();
             this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
+            this.bsSexType = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.lblSex = new Telerik.WinControls.UI.RadLabel();
             this.lblMidleName = new Telerik.WinControls.UI.RadLabel();
@@ -43,9 +44,9 @@
             this.txtLastName = new Telerik.WinControls.UI.RadTextBox();
             this.rtxtBoxIPN = new Telerik.WinControls.UI.RadTextBox();
             this.lblipn = new Telerik.WinControls.UI.RadLabel();
-            this.bsSexType = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ddlSexType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSexType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMidleName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName)).BeginInit();
@@ -57,7 +58,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSexType)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlSexType
@@ -76,6 +76,10 @@
             // bsAnketaPerson
             // 
             this.bsAnketaPerson.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
+            // 
+            // bsSexType
+            // 
+            this.bsSexType.DataSource = typeof(ipsFormsDesign.Model.SexType);
             // 
             // lblSex
             // 
@@ -192,14 +196,10 @@
             this.lblipn.Text = "ІПН (якщо немає «0000000000»):";
             this.lblipn.ThemeName = "Office2013Light";
             // 
-            // bsSexType
+            // IpsAnketaPersonControl
             // 
-            this.bsSexType.DataSource = typeof(ipsFormsDesign.Model.SexType);
-            // 
-            // PartnerNameControl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.rtxtBoxIPN);
             this.Controls.Add(this.lblipn);
             this.Controls.Add(this.ddlSexType);
@@ -212,10 +212,11 @@
             this.Controls.Add(this.txtSurName);
             this.Controls.Add(this.dtBirthDay);
             this.Controls.Add(this.txtLastName);
-            this.Name = "PartnerNameControl";
+            this.Name = "IpsAnketaPersonControl";
             this.Size = new System.Drawing.Size(443, 131);
             ((System.ComponentModel.ISupportInitialize)(this.ddlSexType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSexType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMidleName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName)).EndInit();
@@ -227,7 +228,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSexType)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

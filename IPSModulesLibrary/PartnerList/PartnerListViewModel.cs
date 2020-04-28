@@ -8,6 +8,7 @@ using System.Windows.Input;
 using IpsCommonTypes.ClassesForSearchQuery;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.PartnerControls;
 using IpsViewComponentLibrary.RegisterControls;
 using IPSViewComponentLibraryWPF.Controls.SearchControl;
 using IPSViewComponentLibraryWPF.Extensions;
@@ -106,20 +107,17 @@ namespace IPSModulesLibrary.PartnerList
 
                 var item = new PartnerListModel
                 {
-                    //RegId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.RegId))),
-                    //CustId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CustId))),
-                    //CustName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.CustName))),
-                    //PeriodId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.PeriodId))),
-                    //PeriodName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.PeriodName))),
-                    //LicId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.LicId))),
-                    //FileName = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.FileName))),
-                    //CreateDate = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(PartnerListModel.CreateDate))),
-                    //UserWho = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.UserWho))),
-                    //RgStatus = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.RgStatus))),
-
-                    //CountItem = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CountItem))),
-                    //CountNoFound = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.CountNoFound))),
-
+                    CustId = DTC.CastIntNull(DTH.GetObject(obj, nameof(PartnerListModel.CustId))),
+                    Name = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.Name))),
+                    AgrDate = DTC.Cast<DateTime?>(DTH.GetObject(obj, nameof(PartnerListModel.AgrDate))),
+                    AgrId = DTC.CastInt(DTH.GetObject(obj, nameof(PartnerListModel.AgrId))),
+                    AgrStatus = DTC.CastIntNull(DTH.GetObject(obj, nameof(PartnerListModel.AgrStatus))),
+                    ClnCount = DTC.CastIntNull(DTH.GetObject(obj, nameof(PartnerListModel.ClnCount))),
+                    INNOKPO = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.INNOKPO))),
+                    AgrNumber = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.AgrNumber))),
+                    JaCity = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.JaCity))),
+                    AgrCount = DTC.Cast<string>(DTH.GetObject(obj, nameof(PartnerListModel.AgrCount))),
+                    IsMy = DTC.Cast<bool>(DTH.GetObject(obj, nameof(PartnerListModel.IsMy))),
                 };
 
                 itemSource.Add(item);
@@ -155,9 +153,26 @@ namespace IPSModulesLibrary.PartnerList
             }
         }
 
-        private void CreatePartner(int type)
+        private async void CreatePartner(int type)
         {
+            var service = PartnerService.GetInstance();
+            
+            var customer = service.GetPartnerTemplate(type);
 
+            var newPartner = new CreatePartnerForm(customer);
+
+            if (newPartner.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var result = service.SavePartner(customer);
+                
+                ShowMessage.ShowInfoByResult("Нового представника додано!", "Неможливо додати представника!", result);
+
+                if (result)
+                {
+                    IsReloadData = true;
+                    await LoadData();
+                }
+            }
         }
 
         #endregion
@@ -198,7 +213,22 @@ namespace IPSModulesLibrary.PartnerList
             if (o == null)
                 return;
 
+            var item = (PartnerListModel) o;
 
+            var service = PartnerService.GetInstance();
+
+            var customer = service.GetPartner(item.CustId.Value);
+
+            var cabinetPartner = new CabinetPartnerForm(customer)
+            {
+                UpdateDataAction = async () =>
+                {
+                    IsReloadData = true;
+                    await LoadData();
+                }
+            };
+
+            cabinetPartner.Show();
         }
 
         public ICommand Create_J_PartnerCommand => new IPSDelegateCommand(Create_J_PartnerCommandExecute);

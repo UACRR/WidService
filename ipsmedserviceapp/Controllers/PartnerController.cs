@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +41,21 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = dbContext;
             _config = config;
         }
+
+        /// <summary>
+        /// Отримати список представників
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        [HttpPost("list")]
+        public async Task<IActionResult> GetList([FromBody] SearchModuleResource resource)
+        {
+            string query = "select t0.* from vTsk_6_ListPartner_wpf t0";
+            List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 9).ToListAsync();
+            var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
+            return Ok(result);
+        }
+
 
         /// <summary>
         /// Отримати VIEW по назві

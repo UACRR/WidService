@@ -57,17 +57,14 @@
                                        Header="Всі"/>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}"
-                                       IsSelectable="False"
                                        Header="Активні"
                                        Name="Active"/>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
-                                       IsSelectable="False"
                                        Header="На акцепті"
                                        Name="OnAccept"/>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
-                                       IsSelectable="False"
                                        Header="Не підтверджені"
                                        Name="NotAccept"/>
 
@@ -90,53 +87,65 @@
                 <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
 
                 <t:RadGridView Grid.Row="1"
-                                   x:Name="gridView"
-                                   ColumnWidth="*"
-                                   Margin="3">
+                               x:Name="gridView"
+                               ColumnWidth="*"
+                               ItemsSource="{Binding PartnersItemSource}"
+                               Margin="3">
                     <t:RadGridView.Columns>
                         <t:GridViewDataColumn Width="75" 
+                                              Header="ID" 
+                                              DataMemberBinding="{Binding CustId}"/>
+
+                        <t:GridViewDataColumn Header="Представник"
+                                              DataMemberBinding="{Binding Name}"/>
+                        
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="ОКПО/ІД"
+                                              DataMemberBinding="{Binding INNOKPO}"/>
+                        <t:GridViewCheckBoxColumn Width="50" 
+                                                  Header="Співробітник компанії"
+                                                  ShowToolTipOnTrimmedText="True"
+                                                  HeaderTextWrapping="WrapWithOverflow"
+                                                  HeaderTextAlignment="Center"
+                                                  HeaderTextTrimming="CharacterEllipsis"
+                                                  IsReadOnly="True"
+                                                  IsFilterable="False"
+                                                  DataMemberBinding="{Binding IsMy}">
+                            <t:GridViewCheckBoxColumn.CellStyle>
+                                <Style TargetType="t:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+                            </t:GridViewCheckBoxColumn.CellStyle>
+                        </t:GridViewCheckBoxColumn>
+
+                        <t:GridViewDataColumn Width="75" 
                                               Header="ID договору" 
-                                              TextAlignment="Center"
-                                              
-                                              />
-                        <t:GridViewDataColumn Width="75" 
-                                              Header="ОКПОЛД"
-                                              TextAlignment="Center"
-                                              
-                                              />
-                        <t:GridViewDataColumn Width="75" 
-                                              Header="Співробітник компанії"
-                                              TextAlignment="Center"
-                                              
-                                              />
-                        <t:GridViewDataColumn 
-                                              Header="Представник"
-                                              TextAlignment="Center"
-                                              />
-                        <t:GridViewDataColumn Width="75" 
+                                              DataMemberBinding="{Binding AgrId}"/>
+
+                        <t:GridViewDataColumn Width="90" 
                                               Header="№ договору"
-                                              TextAlignment="Center"
-                                              />
-                        <t:GridViewDataColumn Width="75" 
+                                              DataMemberBinding="{Binding AgrNumber}"/>
+                        <t:GridViewDataColumn Width="90" 
                                               Header="Дата договору" 
                                               TextAlignment="Center" 
-                                              />
-                        <t:GridViewDataColumn 
-                                              Header="Місто реєстрації" 
-                                              TextAlignment="Center" 
-                                              />
-                        <t:GridViewDataColumn Width="100" 
+                                              DataMemberBinding="{Binding AgrDate, StringFormat='{}{0:d}'}"/>
+                        
+                        <t:GridViewDataColumn Header="Місто реєстрації" 
+                                              Width="200"
+                                              DataMemberBinding="{Binding JaCity}"/>
+                        <t:GridViewDataColumn Width="115"
+                                              IsFilterable="True"
+                                              HeaderTextWrapping="WrapWithOverflow"
                                               Header="Статус договору" 
-                                              TextAlignment="Center"
-                                              />
-                        <t:GridViewDataColumn Width="75" 
+                                              DataMemberBinding="{Binding StatusName}"/>
+                        <t:GridViewDataColumn Width="90" 
                                               Header="К-сть договорів (всі/активні)" 
-                                              TextAlignment="Center"
-                                              />
+                                              HeaderTextWrapping="WrapWithOverflow"
+                                              DataMemberBinding="{Binding AgrCount}"/>
                         <t:GridViewDataColumn Width="75" 
+                                              HeaderTextWrapping="WrapWithOverflow"
                                               Header="К-сть користувачів" 
-                                              TextAlignment="Center"
-                                              />
+                                              DataMemberBinding="{Binding ClnCount}"/>
                         <t:GridViewColumn Width="25">
                             <t:GridViewColumn.Header>
                                 <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>

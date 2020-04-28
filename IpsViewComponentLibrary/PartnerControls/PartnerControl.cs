@@ -114,11 +114,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         private void LoadForm(int customerType)
         {
             var customer = _service.GetPartnerTemplate(customerType);
-            var newPartner = new CreatePartnerForm(customer)
-            {
-                StartPosition = FormStartPosition.CenterScreen,
-            };
-
+            var newPartner = new CreatePartnerForm(customer);
             if (newPartner.ShowDialog() == DialogResult.OK)
             {
                 var result = _service.SavePartner(customer);
