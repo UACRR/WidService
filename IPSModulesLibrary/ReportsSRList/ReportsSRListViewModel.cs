@@ -231,21 +231,10 @@ namespace IPSModulesLibrary.ReportsSRList
             var service = new RegisterService();
             var id = ((ReportsSRListModel) o).RegId;
 
-            if (false)
+            using (var view = new RegisterView())
             {
-                using (var view = new RegisterCCIDView())
-                {
-                    var presenter = new RegisterCCIDPresenter(view, service);
-                    presenter.Show(id);
-                }
-            }
-            else
-            {
-                using (var view = new RegisterView())
-                {
-                    var presenter = new RegisterPresenter(view, service);
-                    presenter.Show(id);
-                }
+                var presenter = new RegisterPresenter(view, service);
+                presenter.Show(id);
             }
         }
 

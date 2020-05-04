@@ -30,7 +30,7 @@ namespace ipsmedserviceapp.Controllers
         //private const string WID_ObjectRight = @"select * from [WID_IPI].[dbo].[vtsk_3_OR_01_short]";
         private const string WID_ObjectRight = @"select * from vtsk_3_OR_01_WID_short";
         private const string WID_ISWC = @"SELECT WIC, ISWC FROM [WID_IPI].[dbo].[tblISWC]";
-        private const string WID_ObjectAuthors = @"select WIC, SeqNr, IPINr, IP_BASE_NR, IntrPtyRol, NAME + FST_NAME as authName, ratePER, rateMEC from [WID_IPI].[dbo].[v_objects_authors_5_shares]";
+        private const string WID_ObjectAuthors = @"select WIC, SeqNr, IPINr, IP_BASE_NR, IntrPtyRol, CONCAT(RTRIM(NAME), ' ', FST_NAME) as authName, ratePER, rateMEC from [WID_IPI].[dbo].[v_objects_authors_5_shares]";
         private const string WID_ObjectAuthorsCommunities = @"select IP_BASE_NR, SOC_CDE, t2.name as OKU_NAME, ROL_CDE,RGT_CDE, AGR_VALID_FROM_DT, cast(MBR_SHARE/100 as decimal(5,2)) as MBR_SHARE, TISAN from [WID_IPI].[dbo].[TBLMBRAGREETERR] t1 left join vCustomerRholder t2 on t1.SOC_CDE = t2.interCode and t2.rHolderType = 2";
         private const string WID_ObjectAlternativeNames = @"select WIC, SeqNr, AltTtl from [WID_IPI].[dbo].[TblAltTtl]";
         private const string WID_ObjectPerformers = @"select WIC, SeqNr, LstNa + FstNa as PerformerName from [WID_IPI].[dbo].[TblArtist]";

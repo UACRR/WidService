@@ -5,6 +5,7 @@ using ipsFormsDesign.Services;
 using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Views;
 using IpsCommonTypes.Wrappers;
+using ipsFormsDesign.Dictionary;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
@@ -26,7 +27,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public object RegisterItemViewModel
         {
             get => bsRegisterItemViewModel.DataSource;
-            set => bsRegisterItemViewModel.DataSource = value;
+            set
+            {
+                bsRegisterItemViewModel.DataSource = value;
+                var item = (RegisterItemViewModel) value;
+                txtObjectName.Text = item.ItemName;
+                txtPerformer.Text = item.Performer;
+            }
         }
 
         public ObjectRightSelectionExtendedView()
@@ -34,7 +41,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             gvObjectsRightsList.SubscribeToolTipTextNeeded();
-            Load += Form_Load;
+            //Load += Form_Load;
             navigatorPanel.CurrentPageChanged += NavigatorPanel_CurrentPageChanged;
             navigatorPanel.PageSizeChanged += NavigatorPanel_PageSizeChanged;
             _service = RegisterWIDService.GetInstance();
@@ -45,7 +52,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             UpdateList();
         }
 
-        public async void UpdateList()
+        private async void UpdateList()
         {
             waitingBar.StartWaiting();
             SearchObjectRightQuery query = null;

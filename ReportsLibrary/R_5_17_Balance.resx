@@ -150,6 +150,10 @@
   <data name="textBox39.Value" xml:space="preserve">
     <value>= Sum(Fields.turn_K)</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="textBox11.Value" xml:space="preserve">
     <value>= Fields.rest_begin_D</value>
   </data>
@@ -174,11 +178,21 @@
   <data name="textBox6.Value" xml:space="preserve">
     <value>= Sum(Fields.rest_begin_D)</value>
   </data>
+  <data name="$this.SnapToSnapLines" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="textBox2.Value" xml:space="preserve">
     <value>Назва рахунку</value>
   </data>
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
+    <value>0.1cm</value>
+  </data>
   <data name="textBox12.Value" xml:space="preserve">
     <value>= Fields.rest_begin_K</value>
+  </data>
+  <data name="$this.ShowSnapGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="textBox38.Value" xml:space="preserve">
     <value>= Sum(Fields.turn_D)</value>
@@ -210,22 +224,10 @@
   <data name="textBox15.Value" xml:space="preserve">
     <value>= Fields.rest_end_D</value>
   </data>
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
+    <value>en-US</value>
+  </data>
   <data name="textBox20.Value" xml:space="preserve">
     <value>Д</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en-US</value>
-  </metadata>
-  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-    <value>0.1cm</value>
-  </metadata>
-  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.SnapToSnapLines" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
 </root>

@@ -117,19 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
+    <value>0.1cm</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.SnapToSnapLines" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="sqlDataSource3.ParameterValues" xml:space="preserve">
+    <value>{"@custId":"146","@cmCustId":"138"}</value>
+  </data>
+  <data name="$this.ShowSnapGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="textBox87.Value" xml:space="preserve">
     <value>='21. Великі права. Звіт про авторську винагороду по Автору    '+ Parameters.rhName.Value+'  за період з '+ Substr(CStr(Parameters.dateBegin.Value),0,10)+' по '+Substr(CStr(Parameters.dateEnd.Value),0,10)</value>
   </data>
-  <metadata name="sqlDataSource3.ParameterValues" xml:space="preserve">
-    <value>{"@custId":"146","@cmCustId":"138"}</value>
-  </metadata>
-  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.SnapToSnapLines" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-    <value>0.1cm</value>
-  </metadata>
 </root>

@@ -84,13 +84,9 @@ namespace IpsViewComponentLibrary.PartnerControls
             // статус договору
             var agrStatus = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
             lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == agrStatus)?.Name;
-            // можливість змінювати договір
-            btnAcceptAgr.Enabled = agrStatus != 2;
-            ctrlSaveCancelButtons.Enabled = agrStatus != 2;
-            ctrlAgreement.IsReadOnly = agrStatus == 2;
+
             // умови договору
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
-            ctrlConditions.IsReadOnly = agrStatus == 2;
 
             bsPartner.DataSource = _customer?.Partner;
             bsPartner.ResetBindings(false);
@@ -135,23 +131,73 @@ namespace IpsViewComponentLibrary.PartnerControls
         // підтвердити договір
         private void btnAcceptAgr_Click(object sender, EventArgs e)
         {
-            var result = _service.AgreementPartnerStatusChange(_customer.CustId, CPartnerObjectStatus.Activate);
-            if (result)
-            {
-                UpdateCustomer();
-            }
+            //var result = _service.AgreementPartnerStatusChange(_customer.CustId, CPartnerObjectStatus.Activate);
+            //if (result)
+            //{
+            //    UpdateCustomer();
+            //}
+            ChangeAgreementStatus(2);
         }
 
         private const string CloseAgreementConfirmMsg = "Ви дійсно хочете закрити договір з представником?";
         // закрити договір
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {
-            if (MessageShow.ConfirmAction(CloseAgreementConfirmMsg) == DialogResult.Yes)
+            //if (MessageShow.ConfirmAction(CloseAgreementConfirmMsg) == DialogResult.Yes)
+            //{
+            //    var result = _service.AgreementPartnerStatusChange(_customer.CustId, CPartnerObjectStatus.Close);
+            //    // use result
+            //    UpdateCustomer();
+            //}
+            ChangeAgreementStatus(4);
+        }
+
+        private void ChangeAgreementStatus(int status)
+        {
+            // Activate = 2
+            // Close = 4
+
+            int custStatus = default(int); // customer
+            int ankStatus = default(int);  // anketa
+            int agrStatus = default(int);  // agreement
+            switch (status)
             {
-                var result = _service.AgreementPartnerStatusChange(_customer.CustId, CPartnerObjectStatus.Close);
-                // use result
-                UpdateCustomer();
+                case 2: // ACTIVE
+                    custStatus = 2;
+                    ankStatus = 2;
+                    agrStatus = 2;
+                    break;
+                case 4: //CLOSE
+                    custStatus = 9;
+                    ankStatus = 9;
+                    agrStatus = 4;
+                    break;
+
+                default: throw new ArgumentOutOfRangeException("Неможливо змінити на обраний статус!");
             }
+
+            _customer.Status = custStatus;
+
+            var license = _customer.Partner.AgreementAddPartner.SingleOrDefault();
+            license.AgrStatus = status;
+
+
+            _customer.AgreementMaster.SingleOrDefault().AgrStatus = agrStatus;
+            
+            _customer.AgreementMaster.SingleOrDefault().AgreementAddPartner.SingleOrDefault().AgrStatus = agrStatus;
+            
+
+            switch (_customer.CustType)
+            {
+                // фіз особа
+                case 1: _customer.Person.AnketaPerson.SingleOrDefault().Status = ankStatus;
+                    break;
+                // юр особа
+                case 3: _customer.Company.AnketaCompany.SingleOrDefault().Status = ankStatus; //найменування клієнта
+                    break;
+            }
+
+            lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == agrStatus)?.Name;
         }
 
         // зберегти зміни договору
