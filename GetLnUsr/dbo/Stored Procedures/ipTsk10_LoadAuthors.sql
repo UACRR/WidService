@@ -1,0 +1,1 @@
+﻿create procedure ipTsk10_LoadAuthors   as  begin  return   END  

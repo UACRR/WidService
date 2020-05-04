@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [robot]
+    WITH PASSWORD = N'mA>wjil{onr#py:nswWcv<t1msFT7_&#$!~<piinnuiagy?l', SID = 0xC007AC1EF8F1464B99A4724E6330BF14, DEFAULT_DATABASE = [MediaService], DEFAULT_LANGUAGE = [русский], CHECK_POLICY = OFF;
+

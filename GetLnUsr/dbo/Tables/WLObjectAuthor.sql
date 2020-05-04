@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[WLObjectAuthor] (
+    [id]         INT             IDENTITY (1, 1) NOT NULL,
+    [dateCreate] DATETIME        NULL,
+    [WIC]        INT             NOT NULL,
+    [seqNr]      SMALLINT        NOT NULL,
+    [IP_BASE_NR] VARCHAR (13)    NULL,
+    [lstName]    VARCHAR (254)   NULL,
+    [fstName]    VARCHAR (254)   NULL,
+    [authorName] VARCHAR (254)   NULL,
+    [IPInr]      VARCHAR (11)    NULL,
+    [authorRole] VARCHAR (100)   NULL,
+    [roleCode]   INT             NULL,
+    [ratePER]    NUMERIC (10, 5) NULL,
+    [rateMEC]    NUMERIC (10, 5) NULL,
+    [rhCustId]   INT             NULL,
+    [custIdNew]  INT             NULL,
+    [perId]      INT             NULL,
+    [cRightId]   INT             NULL,
+    [objid]      INT             NULL,
+    [idLoad]     INT             NULL,
+    [custIdSub]  INT             NULL,
+    [dateEndSub] DATE            NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC)
+);
+

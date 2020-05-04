@@ -1,0 +1,2 @@
+CREATE USER [testuser] WITHOUT LOGIN WITH DEFAULT_SCHEMA=[dbo]; --FOR LOGIN [testuser];
+GO

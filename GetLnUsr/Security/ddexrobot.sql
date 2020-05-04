@@ -1,0 +1,2 @@
+CREATE USER [ddexrobot] WITHOUT LOGIN WITH DEFAULT_SCHEMA=[dbo]; --FOR LOGIN [ddexrobot];
+GO

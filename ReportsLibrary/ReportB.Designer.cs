@@ -19,6 +19,7 @@ namespace ReportsLibrary
             this.textBox1 = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
+            this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // detail
@@ -78,9 +79,16 @@ namespace ReportsLibrary
             this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.5D);
             this.pageFooterSection1.Name = "pageFooterSection1";
             // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            this.sqlDataSource1.SelectCommand = "dbo.p_Culture";
+            this.sqlDataSource1.SelectCommandType = Telerik.Reporting.SqlDataSourceCommandType.StoredProcedure;
+            // 
             // ReportB
             // 
-            this.Culture = new System.Globalization.CultureInfo("en-US");
+            this.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.detail,
             this.pageFooterSection1});
@@ -106,5 +114,6 @@ namespace ReportsLibrary
         private Telerik.Reporting.PageFooterSection pageFooterSection1;
         private Telerik.Reporting.TextBox textBox1;
         private Telerik.Reporting.TextBox textBox2;
+        private Telerik.Reporting.SqlDataSource sqlDataSource1;
     }
 }

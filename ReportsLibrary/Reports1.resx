@@ -129,6 +129,9 @@
   <data name="textBox20.Value" xml:space="preserve">
     <value>22. Реєстр переданого до розподілу роялті від користувачів з "великих прав"</value>
   </data>
+  <data name="textBox15.Value" xml:space="preserve">
+    <value>17. Відомість 'Розподіл авторської винагороди на правовласників' за період</value>
+  </data>
   <data name="textBox32.Value" xml:space="preserve">
     <value>36.      Реєстр об'єктів права</value>
   </data>
@@ -137,9 +140,6 @@
   </data>
   <data name="textBox2.Value" xml:space="preserve">
     <value>4. Дохідність . Звіт по видам</value>
-  </data>
-  <data name="textBox6.Value" xml:space="preserve">
-    <value>8. Користувачі</value>
   </data>
   <data name="textBox31.Value" xml:space="preserve">
     <value>33.  Журнал системних робіт</value>
@@ -166,17 +166,14 @@
     <value>21. Роялті до розподілу від користувачів з "великих прав"
 </value>
   </data>
-  <data name="textBox15.Value" xml:space="preserve">
-    <value>17. Відомість 'Розподіл авторської винагороди на правовласників' за період</value>
+  <data name="textBox6.Value" xml:space="preserve">
+    <value>8. Користувачі</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
     <value>0.1cm</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en-US</value>
   </metadata>
   <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
