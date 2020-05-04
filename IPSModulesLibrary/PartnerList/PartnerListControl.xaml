@@ -99,8 +99,8 @@
                         <t:GridViewDataColumn Header="Представник"
                                               DataMemberBinding="{Binding Name}"/>
                         
-                        <t:GridViewDataColumn Width="75" 
-                                              Header="ОКПО/ІД"
+                        <t:GridViewDataColumn Width="100" 
+                                              Header="ЄДРПОУ/ІПН"
                                               DataMemberBinding="{Binding INNOKPO}"/>
                         <t:GridViewCheckBoxColumn Width="50" 
                                                   Header="Співробітник компанії"

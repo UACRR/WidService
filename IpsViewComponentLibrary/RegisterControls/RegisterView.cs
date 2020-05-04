@@ -96,14 +96,14 @@ namespace IpsViewComponentLibrary.RegisterControls
             ShowDialog();
         }
 
-        public void SetStatus(RegisterStatusType status)
-        {
-            ddlStatus.SelectedValue = (int)status;
+        //public void SetStatus(RegisterStatusType status)
+        //{
+        //    ddlStatus.SelectedValue = (int)status;
 
-            SetAllowedStatus(status);
-            SetAllowedCommand(status);
-            SetControlEnabled(status);
-        }
+        //    SetAllowedStatus(status);
+        //    SetAllowedCommand(status);
+        //    SetControlEnabled(status);
+        //}
 
         private void SetUpViewForFormType()
         {

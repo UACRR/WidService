@@ -61,25 +61,25 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.txtObjectName = new Telerik.WinControls.UI.RadTextBox();
             this.mainPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.topPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.txtHeaderAuthorText = new Telerik.WinControls.UI.RadTextBox();
+            this.bsRegisterItemViewModel = new System.Windows.Forms.BindingSource(this.components);
+            this.txtHeaderAuthorMusic = new Telerik.WinControls.UI.RadTextBox();
+            this.txtHeaderPerformer = new Telerik.WinControls.UI.RadTextBox();
             this.txtHeaderObjectName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.bsRegisterItemViewModel = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
             this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.bsObjectRightsView = new System.Windows.Forms.BindingSource(this.components);
             this.navigationPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
-            this.txtHeaderPerformer = new Telerik.WinControls.UI.RadTextBox();
-            this.txtHeaderAuthorMusic = new Telerik.WinControls.UI.RadTextBox();
-            this.txtHeaderAuthorText = new Telerik.WinControls.UI.RadTextBox();
-            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
-            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.commandPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
@@ -100,13 +100,17 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).BeginInit();
             this.gvObjectsRightsList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
             this.backgroundPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topPanel)).BeginInit();
             this.topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderAuthorText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderAuthorMusic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderPerformer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderObjectName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
@@ -116,10 +120,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPanel)).BeginInit();
             this.navigationPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderPerformer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderAuthorMusic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderAuthorText)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,6 +158,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // leftPanel
             // 
+            this.leftPanel.BackColor = System.Drawing.Color.GhostWhite;
             this.leftPanel.BorderVisible = false;
             this.leftPanel.Controls.Add(this.btnSearchWID);
             this.leftPanel.Controls.Add(this.lblPerformer);
@@ -387,6 +388,22 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.gvObjectsRightsList.ThemeName = "Office2013Light";
             this.gvObjectsRightsList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectsRightsList_CommandCellClick);
             // 
+            // waitingBar
+            // 
+            this.waitingBar.AssociatedControl = this.backgroundPanel;
+            this.waitingBar.Location = new System.Drawing.Point(445, 140);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 1;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
+            // 
             // backgroundPanel
             // 
             this.backgroundPanel.BorderVisible = false;
@@ -402,6 +419,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // topPanel
             // 
+            this.topPanel.BackColor = System.Drawing.Color.White;
             this.topPanel.BorderVisible = false;
             this.topPanel.Controls.Add(this.txtHeaderAuthorText);
             this.topPanel.Controls.Add(this.txtHeaderAuthorMusic);
@@ -421,6 +439,40 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.topPanel.TabIndex = 0;
             this.topPanel.ThemeName = "Office2013Light";
             // 
+            // txtHeaderAuthorText
+            // 
+            this.txtHeaderAuthorText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "AuthorText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtHeaderAuthorText.Location = new System.Drawing.Point(96, 94);
+            this.txtHeaderAuthorText.Name = "txtHeaderAuthorText";
+            this.txtHeaderAuthorText.ReadOnly = true;
+            this.txtHeaderAuthorText.Size = new System.Drawing.Size(422, 21);
+            this.txtHeaderAuthorText.TabIndex = 4;
+            this.txtHeaderAuthorText.ThemeName = "Office2013Light";
+            // 
+            // bsRegisterItemViewModel
+            // 
+            this.bsRegisterItemViewModel.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            // 
+            // txtHeaderAuthorMusic
+            // 
+            this.txtHeaderAuthorMusic.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "AuthorMusic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtHeaderAuthorMusic.Location = new System.Drawing.Point(96, 69);
+            this.txtHeaderAuthorMusic.Name = "txtHeaderAuthorMusic";
+            this.txtHeaderAuthorMusic.ReadOnly = true;
+            this.txtHeaderAuthorMusic.Size = new System.Drawing.Size(422, 21);
+            this.txtHeaderAuthorMusic.TabIndex = 3;
+            this.txtHeaderAuthorMusic.ThemeName = "Office2013Light";
+            // 
+            // txtHeaderPerformer
+            // 
+            this.txtHeaderPerformer.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "Performer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtHeaderPerformer.Location = new System.Drawing.Point(96, 44);
+            this.txtHeaderPerformer.Name = "txtHeaderPerformer";
+            this.txtHeaderPerformer.ReadOnly = true;
+            this.txtHeaderPerformer.Size = new System.Drawing.Size(422, 21);
+            this.txtHeaderPerformer.TabIndex = 2;
+            this.txtHeaderPerformer.ThemeName = "Office2013Light";
+            // 
             // txtHeaderObjectName
             // 
             this.txtHeaderObjectName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "ItemName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -439,10 +491,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.radLabel9.TabIndex = 0;
             this.radLabel9.Text = "Автор тексту:";
             this.radLabel9.ThemeName = "Office2013Light";
-            // 
-            // bsRegisterItemViewModel
-            // 
-            this.bsRegisterItemViewModel.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
             // 
             // radLabel7
             // 
@@ -501,6 +549,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.radSeparator2.TabIndex = 1;
             this.radSeparator2.ThemeName = "Office2013Light";
             // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
             // bsObjectRightsView
             // 
             this.bsObjectRightsView.DataSource = typeof(IpsCommonTypes.Views.ObjectRightWithWID);
@@ -527,63 +582,10 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.navigatorPanel.TabIndex = 0;
             this.navigatorPanel.TotalPages = 0;
             // 
-            // txtHeaderPerformer
-            // 
-            this.txtHeaderPerformer.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "Performer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtHeaderPerformer.Location = new System.Drawing.Point(96, 44);
-            this.txtHeaderPerformer.Name = "txtHeaderPerformer";
-            this.txtHeaderPerformer.ReadOnly = true;
-            this.txtHeaderPerformer.Size = new System.Drawing.Size(422, 21);
-            this.txtHeaderPerformer.TabIndex = 2;
-            this.txtHeaderPerformer.ThemeName = "Office2013Light";
-            // 
-            // txtHeaderAuthorMusic
-            // 
-            this.txtHeaderAuthorMusic.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "AuthorMusic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtHeaderAuthorMusic.Location = new System.Drawing.Point(96, 69);
-            this.txtHeaderAuthorMusic.Name = "txtHeaderAuthorMusic";
-            this.txtHeaderAuthorMusic.ReadOnly = true;
-            this.txtHeaderAuthorMusic.Size = new System.Drawing.Size(422, 21);
-            this.txtHeaderAuthorMusic.TabIndex = 3;
-            this.txtHeaderAuthorMusic.ThemeName = "Office2013Light";
-            // 
-            // txtHeaderAuthorText
-            // 
-            this.txtHeaderAuthorText.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItemViewModel, "AuthorText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtHeaderAuthorText.Location = new System.Drawing.Point(96, 94);
-            this.txtHeaderAuthorText.Name = "txtHeaderAuthorText";
-            this.txtHeaderAuthorText.ReadOnly = true;
-            this.txtHeaderAuthorText.Size = new System.Drawing.Size(422, 21);
-            this.txtHeaderAuthorText.TabIndex = 4;
-            this.txtHeaderAuthorText.ThemeName = "Office2013Light";
-            // 
-            // waitingBar
-            // 
-            this.waitingBar.AssociatedControl = this.backgroundPanel;
-            this.waitingBar.Location = new System.Drawing.Point(445, 140);
-            this.waitingBar.Name = "waitingBar";
-            this.waitingBar.Size = new System.Drawing.Size(70, 70);
-            this.waitingBar.TabIndex = 1;
-            this.waitingBar.Text = "radWaitingBar1";
-            this.waitingBar.ThemeName = "Office2013Light";
-            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
-            this.waitingBar.WaitingSpeed = 50;
-            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
-            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
-            // 
-            // lineRingWaitingBarIndicatorElement1
-            // 
-            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
-            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
-            // 
             // ObjectRightSelectionExtendedView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1283, 539);
             this.Controls.Add(this.backgroundPanel);
@@ -616,14 +618,18 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).EndInit();
             this.gvObjectsRightsList.ResumeLayout(false);
             this.gvObjectsRightsList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
             this.backgroundPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.topPanel)).EndInit();
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderAuthorText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderAuthorMusic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderPerformer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderObjectName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
@@ -633,10 +639,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightsView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPanel)).EndInit();
             this.navigationPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderPerformer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderAuthorMusic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderAuthorText)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
