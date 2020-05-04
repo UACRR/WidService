@@ -24,5 +24,10 @@ namespace IPSModulesLibrary.FinishingWorks
         {
             InitializeComponent();
         }
+
+        private void RadDateTimePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
