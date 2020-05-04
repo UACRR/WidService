@@ -8,6 +8,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.CommunityControls.InternalModel;
 using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
@@ -23,7 +24,6 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event Func<AgreementAddCommunity, bool> SaveAgreementChanges;
         public event GetCustomerByIdEventHandler UpdateCustomer;
-        public event ReturnFullViewEventHandler<CommunityAuthorsView> UpdateAutorsList;
         public event GetCommunityRightList GetCommunityRightList;
         public event Func<int, List<TermsOfService>> GetTermsOfService;
         public event Func<int, int, List<CustCmRight>, bool> SaveCustCmRightLimitedRights;
@@ -338,9 +338,13 @@ namespace IpsViewComponentLibrary.CommunityControls
             MessageShow.ShowInfoAfterChanges(saveResult);
             if (saveResult)
             {
-                _customer = UpdateCustomer?.Invoke(_customer.CustId);
-                bsCommunityAuthorsView.DataSource = UpdateAutorsList?.Invoke();
+                int id = _customer.CustId;
+                _customer = UpdateCustomer?.Invoke(id);
+
+                var service = CommunityService.GetInstance();
+                bsCommunityAuthorsView.DataSource = service.GetView<CommunityAuthorsView>(typeof(CommunityAuthorsView), "vTsk_1_ListRHCommunity", id, "cmCustId");
                 bsCommunityAuthorsView.ResetBindings(false);
+                
                 BeginBindings();
             }
         }

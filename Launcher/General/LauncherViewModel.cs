@@ -20,6 +20,11 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
 using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
 using System.IO;
+using Launcher.WorkplaceModules.ClientsBRWorkplace;
+using Launcher.WorkplaceModules.ClientsSRWorkplace;
+using Launcher.WorkplaceModules.PartnerWorkplace;
+using Launcher.WorkplaceModules.ReportWorkplace;
+using SmRoPermitClientLib;
 
 namespace Launcher.General
 {
@@ -102,29 +107,6 @@ namespace Launcher.General
         public LM_Launcher LM_Launcher { get; } = new LM_Launcher();
 
         private ObservableCollection<LanguageInfo> _languagesItemSource;
-        //    = new ObservableCollection<LanguageInfo>
-        //{
-        //    new LanguageInfo
-        //    {
-        //        SpecificationCode = "uk-UA",
-        //        LanguageName = "Ukrainian",
-        //    },
-        //    new LanguageInfo
-        //    {
-        //        SpecificationCode = "en-US",
-        //        LanguageName = "English",
-        //    },
-        //    new LanguageInfo
-        //    {
-        //        SpecificationCode = "ru-RU",
-        //        LanguageName = "Russian",
-        //    },
-        //    new LanguageInfo
-        //    {
-        //        SpecificationCode = "es-ES",
-        //        LanguageName = "Spanish",
-        //    },
-        //};
         /// <summary>
         /// Список наявних мов
         /// </summary>
@@ -159,11 +141,11 @@ namespace Launcher.General
 
         #region * * * METHODS * * *
 
-        private async void LoadLanguage()
+        private void LoadLanguage()
         {
             try
             {
-                await AppLanguageLibrary.SyncOnClient();
+                new Task(async () => await AppLanguageLibrary.SyncOnClient()).RunSynchronously();
                 AppLanguageLibrary.ChangeCurrentCulture(new CultureInfo(CurrentLanguage.SpecificationCode));
                 AppLanguageLibrary.UpdateLanguageLocalization(LM_Launcher, nameof(AppLanguageLibrary.CurrentLanguage.LauncherLD));
                 
@@ -219,7 +201,8 @@ namespace Launcher.General
             try
             {
                 ContentVisibility = Visibility.Hidden;
-                LanguagesItemSource = new ObservableCollection<LanguageInfo>(AppLanguageLibrary.GetLanguagesList());
+                var langList = AppLanguageLibrary.GetLanguagesList();
+                LanguagesItemSource = new ObservableCollection<LanguageInfo>(langList);
                 LoginCommand.Execute(null);
                 ContentVisibility = Visibility.Visible;
             }
@@ -246,24 +229,23 @@ namespace Launcher.General
 
                     _authString = user.AuthString;
                     string baseUri = GetPermitUri();
-                    SmRoPermitClientLib.UserPermissions.Load(baseUri, user.CodeI);
+                    UserPermissions.Load(baseUri, user.CodeI);
                     //SmRoPermitClientLib.UserPermissions.Load(ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"], user.CodeI);
 
-                    LauncherPermits.RightsAdmin = SmRoPermitClientLib.UserPermissions.CanRead("RightsAdmin");
-                    LauncherPermits.RoyaltyAdmin = SmRoPermitClientLib.UserPermissions.CanRead("RoyaltyAdmin");
-                    LauncherPermits.SRightsWp = SmRoPermitClientLib.UserPermissions.CanRead("SRightsWp");
-                    LauncherPermits.BRightsWp = SmRoPermitClientLib.UserPermissions.CanRead("BRightsWp");
-                    LauncherPermits.PRAdmin = SmRoPermitClientLib.UserPermissions.CanRead("PRAdmin");
-                    LauncherPermits.Violation = SmRoPermitClientLib.UserPermissions.CanRead("Violation");
-                    LauncherPermits.Directory = SmRoPermitClientLib.UserPermissions.CanRead("Directory");
-                    LauncherPermits.Permit = SmRoPermitClientLib.UserPermissions.CanRead("Permit");
+                    LauncherPermits.RightsAdmin = UserPermissions.CanRead("RHObjects");
+                    LauncherPermits.RoyaltyAdmin = UserPermissions.CanRead("ReportIdent");
+                    LauncherPermits.SRightsWp = UserPermissions.CanRead("Consum(SR)");
+                    LauncherPermits.BRightsWp = UserPermissions.CanRead("Consum(BR)");
+                    LauncherPermits.Represent = UserPermissions.CanRead("Represent");
+                    LauncherPermits.Violation = UserPermissions.CanRead("Violation");
+                    LauncherPermits.Directory = UserPermissions.CanRead("Directory");
+                    LauncherPermits.Permit = UserPermissions.CanRead("Permit");
+                    LauncherPermits.Processes = UserPermissions.CanRead("Processes");
+                    LauncherPermits.Analytics = UserPermissions.CanRead("Analytics");
+                    LauncherPermits.OurProfile = UserPermissions.CanRead("OurProfile");
 
                     await Initialize();
                 }
-                else
-                    ShowMessage.ShowWarning("Login attempt cancelled by user");
-                
-                //throw new Exception("Login attempt cancelled by user");
             }
             catch (Exception ex)
             {
@@ -282,7 +264,167 @@ namespace Launcher.General
         private void LoadCopyrightAdminWorkplaceCommandExecute(object o)
         {
             var adminWorkplace = new CopyrightAdminWorkplaceWindow();
+            //var adminWorkplace = new RightholderWorkplace.RightholderWorkplace(null);
+            //UserPermissions.ImposeRestrictions(adminWorkplace);
             adminWorkplace.Show();
+        }
+
+        public ICommand LoadRoyaltyAdminCommand => new IPSDelegateCommand(LoadRoyaltyAdminCommandExecute);
+        private void LoadRoyaltyAdminCommandExecute(object o)
+        {
+            try
+            {
+                var royaltyAdmin = new ReportWorkplaceWindow();
+                //var royaltyAdmin = new workReport.WorkReportForm(null);
+                //UserPermissions.ImposeRestrictions(royaltyAdmin);
+                royaltyAdmin.Show();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand LoadClientsSmallRightCommand => new IPSDelegateCommand(LoadConsumerSmallRightCommandExecute);
+        private void LoadConsumerSmallRightCommandExecute(object o)
+        {
+            try
+            {
+                //var consumerSmallRight = new ConsumerSmallRightWorkplace.ConsumerSmallRightWorkplace();
+                //UserPermissions.ImposeRestrictions(consumerSmallRight);
+                //consumerSmallRight.Show();
+
+                var clientsSR = new ClientsSRWorkplaceWindow();
+                clientsSR.Show();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand LoadConsumerBigRightCommand => new IPSDelegateCommand(LoadConsumerBigRightCommandExecute);
+        private void LoadConsumerBigRightCommandExecute(object o)
+        {
+            try
+            {
+                //var consumerBigRight = new ConsumerBigRightWorkplace.ConsumerBigRightWorkplace();
+                //UserPermissions.ImposeRestrictions(consumerBigRight);
+                //consumerBigRight.Show();
+
+                var clientsBR = new ClientsBRWorkplaceWindow();
+                clientsBR.Show();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand LoadRepresentCommand => new IPSDelegateCommand(LoadRepresentCommandExecute);
+        private void LoadRepresentCommandExecute(object o)
+        {
+            try
+            {
+                //var partner = new PartnersWorkplace.PartnersWorkplace();
+                //UserPermissions.ImposeRestrictions(partner);
+                //partner.Show();
+
+                var partner = new PartnerWorkplaceWindow();
+                partner.Show();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand LoadViolationCommand => new IPSDelegateCommand(LoadViolationCommandExecute);
+        private void LoadViolationCommandExecute(object o)
+        {
+            try
+            {
+                var fixation = new Fixation.FixationForm();
+                UserPermissions.ImposeRestrictions(fixation);
+                fixation.Show();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand LoadSystemDictionaryCommand => new IPSDelegateCommand(LoadSystemDictionaryCommandExecute);
+        private void LoadSystemDictionaryCommandExecute(object o)
+        {
+            try
+            {
+                var dictionary = new sysAdminwp.DictionaryForm();
+                UserPermissions.ImposeRestrictions(dictionary);
+                dictionary.Show();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand LoadProcessesCommand => new IPSDelegateCommand(LoadProcessesCommandExecute);
+        private void LoadProcessesCommandExecute(object o)
+        {
+            try
+            {
+                // some code
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand LoadAnalyticsCommand => new IPSDelegateCommand(LoadAnalyticsCommandExecute);
+        private void LoadAnalyticsCommandExecute(object o)
+        {
+            try
+            {
+                var reports = new RepNew.Аналітика();
+                reports.Show();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand LoadOurProfileCommand => new IPSDelegateCommand(LoadOurProfileCommandExecute);
+        private void LoadOurProfileCommandExecute(object o)
+        {
+            try
+            {
+                // some code
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        public ICommand SAAuthCommand => new IPSDelegateCommand(SAAuthCommandExecute);
+        private async void SAAuthCommandExecute(object o)
+        {
+            LauncherPermits.RightsAdmin = true;
+            LauncherPermits.RoyaltyAdmin = true;
+            LauncherPermits.SRightsWp = true;
+            LauncherPermits.BRightsWp = true;
+            LauncherPermits.Represent = true;
+            LauncherPermits.Violation = true;
+            LauncherPermits.Directory = true;
+            LauncherPermits.Permit = true;
+            LauncherPermits.Processes = true;
+            LauncherPermits.Analytics = true;
+            LauncherPermits.OurProfile = true;
+
+            await Initialize();
         }
 
         #endregion

@@ -774,7 +774,7 @@ namespace WebAPIConnector
         /// <returns></returns>
         public bool ChangePartnerForCustomer(string url, int clientId, int partnerId, int? oldClientId = null)
         {
-            string fullUrl = "partner/" + $"{clientId}/{url}/{partnerId}";
+            string fullUrl = $"partner/{clientId}/{url}/{partnerId}";
             HttpResponseMessage result = null;
             switch (url)
             {

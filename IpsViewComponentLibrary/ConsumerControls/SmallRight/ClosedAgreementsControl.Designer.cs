@@ -72,7 +72,7 @@
             gridViewTextBoxColumn2.HeaderText = "Ліцензія";
             gridViewTextBoxColumn2.MinWidth = 120;
             gridViewTextBoxColumn2.Name = "License";
-            gridViewTextBoxColumn2.Width = 158;
+            gridViewTextBoxColumn2.Width = 142;
             gridViewTextBoxColumn3.FieldName = "Series";
             gridViewTextBoxColumn3.HeaderText = "Серія";
             gridViewTextBoxColumn3.MinWidth = 50;
@@ -183,8 +183,8 @@
             // 
             // ClosedAgreementsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.gvClosedLicenses);
             this.Name = "ClosedAgreementsControl";
             this.Size = new System.Drawing.Size(993, 523);

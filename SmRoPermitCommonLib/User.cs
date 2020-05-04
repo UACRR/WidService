@@ -21,11 +21,13 @@ namespace SmRoPermitCommonLib
         public DateTime ModifyDate { get; set; }
         public bool IsLock { get; set; }
         public string Comment { get; set; }
+        public bool IsTempPassword { get; set; }
+        public bool IsWindowsAuth { get; set; }
 
         //public event PropertyChangedEventHandler PropertyChanged;
         //protected virtual void OnPropertyChanged(string propertyName)
         //{
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         //}
     }
 }

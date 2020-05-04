@@ -8,6 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModel="clr-namespace:LanguageService.ViewModel"
         WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
         Icon="Images/language-icon.png"
         mc:Ignorable="d"
         Title="Language Service" Height="600" Width="1000">
@@ -498,12 +499,21 @@
         -->
             <Grid Grid.Row="1" Visibility="{Binding EditPanelVisibility}">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Padding="0, 20">
+
+            <CheckBox Grid.Row="0" Margin="15" x:Name="CheckBox"
+                      Content="Показати тільки не заповнені" 
+                      IsChecked="{Binding IsShowOnlyEmptyCommand}"
+                      Command="{Binding ShowOnlyEmptyCommand}"
+                      CommandParameter="{Binding ElementName=CheckBox, Path=IsChecked}"/>
+
+            <!--<ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Padding="0, 20">-->
                 <!--SelectedItem="{Binding CurrentLanguageDataModel}"-->
                 <t:RadGridView x:Name="gridView"
+                               Grid.Row="1"
                                ItemsSource="{Binding LanguageDataModelItemSource}"
                                SelectedItem="{Binding CurrentLanguageDataModel}"
                                IsFilteringAllowed="False"
@@ -520,6 +530,7 @@
                                ShowGroupPanel="False">
                     <t:RadGridView.Columns>
                         <t:GridViewDataColumn DataMemberBinding="{Binding ComponentCategory}" Header="UI_category" Width="105"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding ContainerName}" HeaderTextAlignment="Center" Header="C/M NAME" Width="105"/>
                         <t:GridViewDataColumn DataMemberBinding="{Binding PropertyName}" Header="UI_item_name" Width="105"/>
                         <t:GridViewDataColumn DataMemberBinding="{Binding DefaultContent}" Header="Стандартна назва" Width="1*"/>
                         <t:GridViewDataColumn DataMemberBinding="{Binding Content}" Header="Назва мовою перекладу" Width="1*"/>
@@ -527,9 +538,9 @@
                     </t:RadGridView.Columns>
 
                 </t:RadGridView>
-                </ScrollViewer>
+                <!--</ScrollViewer>-->
 
-                <Border Grid.Row="1" Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200" MaxWidth="800">
+                <Border Grid.Row="2" Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200" MaxWidth="800">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
                     </Border.Effect>

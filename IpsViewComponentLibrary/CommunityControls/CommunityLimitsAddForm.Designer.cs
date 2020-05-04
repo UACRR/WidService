@@ -251,6 +251,7 @@
             // 
             // ctrlSaveCancel
             // 
+            this.ctrlSaveCancel.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
             this.ctrlSaveCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrlSaveCancel.Location = new System.Drawing.Point(0, 528);
             this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
@@ -316,8 +317,8 @@
             // 
             // CommunityLimitsAddForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(953, 559);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.ctrlSaveCancel);

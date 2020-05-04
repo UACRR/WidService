@@ -228,16 +228,17 @@
                     <StackPanel Style="{StaticResource groupPanel}">
                         <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_RIGHTS}" Background="#FFF3D7D4" BorderBrush="#FFF47B60"/>
                         <Button Style="{StaticResource launchButton}" 
-                                IsEnabled="True"
+                                IsEnabled="{Binding LauncherPermits.RightsAdmin}"
                                 Content="{Binding LM_Launcher.RH_OR}"
                                 Command="{Binding LoadCopyrightAdminWorkplaceCommand}"/>
-                        <!--IsEnabled="{Binding LauncherPermits.RightsAdmin}"-->
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.RoyaltyAdmin}"
-                                Content="{Binding LM_Launcher.ReportsAndRoyalty}" />
+                                Content="{Binding LM_Launcher.ReportsAndRoyalty}" 
+                                Command="{Binding LoadRoyaltyAdminCommand}"/>
                         <Button Style="{StaticResource launchButton}" 
-                                IsEnabled="False"
-                                Content="Управління технологічними процесами" />
+                                IsEnabled="{Binding LauncherPermits.Processes}"
+                                Content="{Binding LM_Launcher.Processes}"
+                                Command="{Binding LoadProcessesCommand}"/>
                     </StackPanel>
                 </Border>
 
@@ -246,10 +247,12 @@
                         <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_CONSUMERS}" Background="#FFDCF5F3" BorderBrush="#FF6082F4"/>
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.SRightsWp}"
-                                Content="{Binding LM_Launcher.Clients_WP}" />
+                                Content="{Binding LM_Launcher.Clients_WP}"
+                                Command="{Binding LoadClientsSmallRightCommand}"/>
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.BRightsWp}"
-                                Content="{Binding LM_Launcher.Theatres_WP}" />
+                                Content="{Binding LM_Launcher.Theatres_WP}"
+                                Command="{Binding LoadConsumerBigRightCommand}"/>
                     </StackPanel>
                 </Border>
 
@@ -259,12 +262,16 @@
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.Represent}"
                                 Content="{Binding LM_Launcher.Partner_WP}" 
-                                Command="{Binding}"/>
+                                Command="{Binding LoadRepresentCommand}"/>
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.Violation}"
                                 Content="{Binding LM_Launcher.FixationOfViolations}" 
+                                Command="{Binding LoadViolationCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="False"
+                                Content="Звіти онлайн-ресурсів" 
                                 Command="{Binding}"/>
-                    </StackPanel>
+                        </StackPanel>
                 </Border>
 
                 <Border Style="{StaticResource groupBorder}" BorderBrush="SandyBrown" Background="Beige">
@@ -274,15 +281,15 @@
                         <Button Style="{StaticResource launchButton}"
                                 IsEnabled="{Binding LauncherPermits.Analytics}"
                                 Content="{Binding LM_Launcher.AnalyticsAndReports}" 
-                                Command="{Binding}"/>
+                                Command="{Binding LoadAnalyticsCommand}"/>
                         <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.Directory}"
                                 Content="{Binding LM_Launcher.SystemDictionaries}" 
-                                Command="{Binding}"/>
+                                Command="{Binding LoadSystemDictionaryCommand}"/>
                         <Button Style="{StaticResource launchButton}" 
                                 Content="{Binding LM_Launcher.AnketaOfTheCompany}"
                                 IsEnabled="{Binding LauncherPermits.OurProfile}"
-                                Command="{Binding}"/>
+                                Command="{Binding LoadOurProfileCommand}"/>
                         <Button Style="{StaticResource launchButton}" 
                                 Content="{Binding LM_Launcher.SysAdmin}" 
                                 IsEnabled="{Binding LauncherPermits.Permit}"
@@ -294,7 +301,19 @@
         </ScrollViewer>
 
         <Grid Grid.Row="2" Background="DodgerBlue">
-            <t:Label HorizontalAlignment="Center" HorizontalContentAlignment="Center" Background="DeepSkyBlue" FontWeight="DemiBold" Content="IPS" Margin="3" Width="55"/>
+            <t:Label HorizontalAlignment="Center" 
+                     HorizontalContentAlignment="Center" 
+                     Background="DeepSkyBlue" 
+                     FontWeight="DemiBold" 
+                     Content="IPS" 
+                     Margin="3"
+                     Width="55">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SAAuthCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </t:Label>
         </Grid>
 
     </Grid>

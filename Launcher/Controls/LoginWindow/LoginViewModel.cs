@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using IpsViewComponentLibrary.Utilities;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using SmRoPermitClientLib;
 using SmRoPermitCommonLib;
@@ -47,6 +48,17 @@ namespace Launcher.Controls.LoginWindow
             }
         }
 
+        private bool _userNameEnabled = true;
+        public bool UserNameEnabled
+        {
+            get => _userNameEnabled;
+            set
+            {
+                _userNameEnabled = value;
+                OnPropertyChanged(() => UserNameEnabled);
+            }
+        }
+
         private bool _passwordEnabled = true;
         public bool PasswordEnabled
         {
@@ -79,6 +91,20 @@ namespace Launcher.Controls.LoginWindow
                 OnPropertyChanged(() => NewPasswordVisible);
             }
         }
+
+        private bool _changePwd;
+        public bool ChangePwd
+        {
+            get => _changePwd;
+            set
+            {
+                _changePwd = value;
+                NewPasswordVisible = value ? Visibility.Visible : Visibility.Collapsed;
+                OnPropertyChanged(() => ChangePwd);
+            }
+        }
+
+
 
         #endregion
 
@@ -148,9 +174,11 @@ namespace Launcher.Controls.LoginWindow
             //PermitApiProxy.BaseUri = ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"];
             PermitApiProxy.BaseUri = GetPermitUri();
 
-            if (PasswordVisible ==  Visibility.Visible)
+            if (NewPasswordVisible !=  Visibility.Visible)
             {
-                RspLogin rsp = PermitApiProxy.Login(User.UserName, User.PlainPassword);
+                PermitApiProxy.UserLogin = User.UserName;
+                PermitApiProxy.UserPassword = User.PlainPassword;
+                RspLogin rsp = PermitApiProxy.Login();
                 IsBusy = false;
                 if (rsp.Result == RspLogin.LoginResult.Success)
                 {
@@ -186,6 +214,12 @@ namespace Launcher.Controls.LoginWindow
                     return;
                 }
                 RspLogin res = PermitApiProxy.ChangePasswordAndLogin(User.UserName, User.PlainPassword, User.PlainNewPassword);
+                if (res.Result == RspLogin.LoginResult.Failed)
+                {
+                    IsBusy = false;
+                    MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 IsBusy = false;
                 User.CodeI = res.UserCodeI;
                 User.Password = User.NewPassword;
@@ -220,28 +254,31 @@ namespace Launcher.Controls.LoginWindow
                 User.ConfirmPassword = window.confirmPwBox.SecurePassword;
                 AuthorizationThroughServerAccount(window);
             }
-            catch(Exception Ex)
+            catch(Exception e)
             {
-
+                //MessageBox.Show("Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                var dialogService = new DialogService();
+                string message = "Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration";
+                dialogService.ShowError(message, e.ToString());
             }
-            
-            
-            // old:
-            //if (Remember)
-            //{
-            //    AuthorizationThroughWindows(window);
-            //}
-            //else
-            //{
-            //    var pb = window.pwBox;
-            //    User.Password = pb.SecurePassword;
-            //    AuthorizationThroughServerAccount(window);
-            //}
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public ICommand CancelCommand => new IPSDelegateCommand(CancelCommandExecute);
+        private void CancelCommandExecute(object o)
+        {
+            var window = (LoginWindow)o;
+            window.Close();
         }
 
         private bool CanExecuteLoginCommand(object o)
         {
-            var pbValid = (o as LoginWindow)?.pwBox?.Password.Length >= 6;
+            if (PasswordVisible != Visibility.Visible)
+                return true;
+            var pbValid = (o as LoginWindow)?.pwBox?.Password.Length >= 8;
             
             var result = (!string.IsNullOrEmpty(User.UserName) && ((o as bool? ?? false) || pbValid)) || Remember;
             CanLogin = result;

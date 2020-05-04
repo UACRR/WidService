@@ -4,21 +4,18 @@ namespace LanguageLibrary.Model
 {
     public sealed class LanguageObjectModel
     {
-        public LanguageObjectModel()
-        {
-            CopyrightRequestLD = new CopyrightRequestLD();
-            RegisterCurrencyChangeLD = new RegisterCurrencyChangeLD();
-            RegisterItemCcidTypeLD = new RegisterItemCCIDTypeLD();
-            LauncherLD = new LauncherLD();
-            SmRoPermitLD = new SmRoPermitLD();
-            SearchControlLD = new SearchControlLD();
-        }
-
-        public CopyrightRequestLD CopyrightRequestLD { get; set; }
-        public RegisterCurrencyChangeLD RegisterCurrencyChangeLD { get; set; }
-        public RegisterItemCCIDTypeLD  RegisterItemCcidTypeLD { get; set; }
-        public LauncherLD LauncherLD { get; set; }
-        public SmRoPermitLD SmRoPermitLD { get; set; }
-        public SearchControlLD SearchControlLD { get; set; }
+        public CopyrightRequestLD CopyrightRequestLD { get; set; } = new CopyrightRequestLD();
+        public RegisterCurrencyChangeLD RegisterCurrencyChangeLD { get; set; } = new RegisterCurrencyChangeLD();
+        public RegisterItemCCIDTypeLD  RegisterItemCcidTypeLD { get; set; } = new RegisterItemCCIDTypeLD();
+        public LauncherLD LauncherLD { get; set; } = new LauncherLD();
+        public SmRoPermitLD SmRoPermitLD { get; set; } = new SmRoPermitLD();
+        public SearchControlLD SearchControlLD { get; set; } = new SearchControlLD();
+        public CopyrightAdminWorkplaceLD CopyrightAdminWorkplaceLD { get; set; } = new CopyrightAdminWorkplaceLD();
+        public ReportWorkplaceLD ReportWorkplaceLD { get; set; } = new ReportWorkplaceLD();
+        public RightholdersListLD RightholdersListLD { get; set; } = new RightholdersListLD();
+        public ObjectsRightListLD ObjectsRightListLD { get; set; } = new ObjectsRightListLD();
+        public CommunitiesListLD CommunitiesListLD { get; set; } = new CommunitiesListLD();
+        public ReportsSRListLD ReportsSRListLD { get; set; } = new ReportsSRListLD();
+        public LicenseBRListLD LicenseBRListLD { get; set; } = new LicenseBRListLD();
     }
 }

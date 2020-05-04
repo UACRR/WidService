@@ -34,60 +34,60 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.bsAgreementAddPartner = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.txtCourtCompRate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.txtNoCourtRate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.txtCourtRate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtPfMounthRate = new Telerik.WinControls.UI.RadTextBox();
             this.txtPfFirstRate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtSrMounthRate = new Telerik.WinControls.UI.RadTextBox();
             this.txtSrFirstRate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddPartner)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCourtCompRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoCourtRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCourtRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPfMounthRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPfFirstRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSrMounthRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSrFirstRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             this.SuspendLayout();
             // 
             // bsAgreementAddPartner
@@ -96,16 +96,26 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.radLabel15);
             this.groupBox5.Controls.Add(this.txtCourtCompRate);
             this.groupBox5.Controls.Add(this.radLabel11);
             this.groupBox5.Location = new System.Drawing.Point(3, 301);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(694, 51);
+            this.groupBox5.Size = new System.Drawing.Size(726, 51);
             this.groupBox5.TabIndex = 50;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Винагорода за стягнення компенсації за порушення майнових авторських прав Користу" +
     "вачем в судовому порядку";
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(324, 24);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(15, 18);
+            this.radLabel15.TabIndex = 6;
+            this.radLabel15.Text = "%";
             // 
             // txtCourtCompRate
             // 
@@ -128,15 +138,25 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.radLabel14);
             this.groupBox4.Controls.Add(this.txtNoCourtRate);
             this.groupBox4.Controls.Add(this.radLabel10);
             this.groupBox4.Location = new System.Drawing.Point(3, 227);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(694, 68);
+            this.groupBox4.Size = new System.Drawing.Size(726, 68);
             this.groupBox4.TabIndex = 49;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Винагорода за послуги із погашення заборгованості у позасудовому порядку";
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Location = new System.Drawing.Point(324, 25);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(15, 18);
+            this.radLabel14.TabIndex = 5;
+            this.radLabel14.Text = "%";
             // 
             // txtNoCourtRate
             // 
@@ -160,15 +180,25 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.radLabel13);
             this.groupBox3.Controls.Add(this.txtCourtRate);
             this.groupBox3.Controls.Add(this.radLabel12);
             this.groupBox3.Location = new System.Drawing.Point(3, 157);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(694, 64);
+            this.groupBox3.Size = new System.Drawing.Size(726, 64);
             this.groupBox3.TabIndex = 48;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Винагорода за послуги із погашення заборгованості у судовому порядку";
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Location = new System.Drawing.Point(324, 24);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(15, 18);
+            this.radLabel13.TabIndex = 5;
+            this.radLabel13.Text = "%";
             // 
             // txtCourtRate
             // 
@@ -192,6 +222,8 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.radLabel9);
             this.groupBox2.Controls.Add(this.radLabel3);
             this.groupBox2.Controls.Add(this.txtPfMounthRate);
@@ -200,11 +232,27 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.groupBox2.Controls.Add(this.radLabel7);
             this.groupBox2.Location = new System.Drawing.Point(3, 98);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(694, 53);
+            this.groupBox2.Size = new System.Drawing.Size(726, 53);
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "З організаторами концертно-видовищних заходів, гастрольних заходів, театральних т" +
     "а видовищних постановок, антеприз";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(641, 24);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(15, 18);
+            this.radLabel9.TabIndex = 6;
+            this.radLabel9.Text = "%";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(324, 24);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(15, 18);
+            this.radLabel3.TabIndex = 5;
+            this.radLabel3.Text = "%";
             // 
             // txtPfMounthRate
             // 
@@ -246,6 +294,8 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.radLabel2);
             this.groupBox1.Controls.Add(this.radLabel1);
             this.groupBox1.Controls.Add(this.txtSrMounthRate);
@@ -254,10 +304,26 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.groupBox1.Controls.Add(this.radLabel5);
             this.groupBox1.Location = new System.Drawing.Point(3, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(694, 53);
+            this.groupBox1.Size = new System.Drawing.Size(726, 53);
             this.groupBox1.TabIndex = 46;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "З користувачами малих прав";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(641, 23);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(15, 18);
+            this.radLabel2.TabIndex = 5;
+            this.radLabel2.Text = "%";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(324, 23);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(15, 18);
+            this.radLabel1.TabIndex = 4;
+            this.radLabel1.Text = "%";
             // 
             // txtSrMounthRate
             // 
@@ -308,62 +374,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.radLabel4.Text = "Умови за укладення договорів";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(324, 23);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(15, 18);
-            this.radLabel1.TabIndex = 4;
-            this.radLabel1.Text = "%";
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Location = new System.Drawing.Point(641, 23);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(15, 18);
-            this.radLabel2.TabIndex = 5;
-            this.radLabel2.Text = "%";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(324, 24);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(15, 18);
-            this.radLabel3.TabIndex = 5;
-            this.radLabel3.Text = "%";
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.Location = new System.Drawing.Point(641, 24);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(15, 18);
-            this.radLabel9.TabIndex = 6;
-            this.radLabel9.Text = "%";
-            // 
-            // radLabel13
-            // 
-            this.radLabel13.Location = new System.Drawing.Point(324, 24);
-            this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(15, 18);
-            this.radLabel13.TabIndex = 5;
-            this.radLabel13.Text = "%";
-            // 
-            // radLabel14
-            // 
-            this.radLabel14.Location = new System.Drawing.Point(324, 25);
-            this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(15, 18);
-            this.radLabel14.TabIndex = 5;
-            this.radLabel14.Text = "%";
-            // 
-            // radLabel15
-            // 
-            this.radLabel15.Location = new System.Drawing.Point(324, 24);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(15, 18);
-            this.radLabel15.TabIndex = 6;
-            this.radLabel15.Text = "%";
-            // 
             // ConditionsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,40 +385,40 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.radLabel4);
             this.Name = "ConditionsControl";
-            this.Size = new System.Drawing.Size(702, 357);
+            this.Size = new System.Drawing.Size(734, 357);
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddPartner)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCourtCompRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoCourtRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCourtRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPfMounthRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPfFirstRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSrMounthRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSrFirstRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

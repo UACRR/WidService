@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -23,7 +24,12 @@ namespace IPSComponentLibrary.Forms.Register
             dtStartDate.SetUserCalendarSettingsm();
             MaximumSize = Size;
             MinimumSize = Size;
-            InitControls();
+            Load += (o,e) => InitControls();
+            ddlPeriod.TextChanged += (o, e) =>
+            {
+                if (ddlPeriod.SelectedItems.Any())
+                    ddlPeriod.SelectedItems.First().Text = ddlPeriod.Text;
+            };
         }
 
         public sealed override Size MinimumSize
@@ -38,17 +44,108 @@ namespace IPSComponentLibrary.Forms.Register
             set => base.MaximumSize = value;
         }
 
+        private int PeriodCode
+        {
+            get
+            {
+                int? periodCode = 0;
+                if (_licenseAgreement.LicClass == 1)
+                {
+                    var agree = _licenseAgreement.Agr.AgreementAddBr.Single(rec => rec.Version == _licenseAgreement.Agr.Version);
+                    periodCode = agree.PeriodCode;
+                }
+                else
+                {
+                    var agree = _licenseAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == _licenseAgreement.LicVersion);
+                    periodCode = agree.PeriodCode;
+                }
+
+                return periodCode.Value;
+            }
+        }
+
         private void InitControls()
         {
             var lastPeriod = _licenseAgreement.PaidPeriod.Any() ? _licenseAgreement.PaidPeriod.OrderBy(rec => rec.BeginDate).LastOrDefault() : null;
             var beginDate = lastPeriod?.EndDate.AddDays(1) ?? DateTime.Today;
+            
             // заборонити редагування через введення
             dtStartDate.DateTimePickerElement.TextBoxElement.ValueChanging += (o, e) =>
             {
                 if (!dtStartDate.DateTimePickerElement.Calendar.Visible)
                     e.Cancel = true;
             };
-            computeFirstDate(beginDate);
+
+            if (PeriodCode == 5)
+            {
+                CreateOncePeriod();
+            }
+            else
+            {
+                computeFirstDate(beginDate);
+            }
+        }
+
+        private void CreateOncePeriod()
+        {
+            dtStartDate.ValueChanged -= dtBeginDate_ValueChanged;
+
+            var license = _licenseAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == _licenseAgreement.LicVersion);
+
+            if (_licenseAgreement.PaidPeriod.Any())
+            {
+                MessageShow.ShowWarning("Для даної ліцензії період вже створено!");
+                DialogResult = DialogResult.Cancel;
+                return;
+            }
+
+            List<string> invalidItems = new List<string>();
+
+            if (!license.DateBegin.HasValue)
+                invalidItems.Add("дата початку ліцензії");
+
+            if (!license.DateEnd.HasValue)
+                invalidItems.Add("дата завершення ліцензії");
+
+            if (!license.MinAmount.HasValue)
+                invalidItems.Add("мінімальна сума");
+
+            if (invalidItems.Any())
+            {
+                MessageShow.ShowWarning($"Для створення періоду в даній ліцензії відсутні необхідні дані!\n({string.Join(", ", invalidItems)})");
+                DialogResult = DialogResult.Cancel;
+                return;
+            }
+
+            dtStartDate.Value = license.DateBegin.Value;
+
+            var newPeriod = new PaidPeriod
+            {
+                Lic = _licenseAgreement,
+                LicId = _licenseAgreement.LicId,
+                BeginDate = license.DateBegin.Value,
+                EndDate = license.DateEnd.Value,
+                PeriodName = $"одноразовий ({license.DateBegin.Value:d} - {license.DateEnd.Value:d})",
+                PeriodType = PeriodCode,
+                Amount = license.MinAmount.Value,
+                Distribamount = 0,
+                Undistribamount = 0,
+                Status = 1,
+                CustId = _licenseAgreement.CustId.Value,
+                StatusNavigation = dicStatus
+            };
+
+            var dataItem = new RadListDataItem
+            {
+                Text = newPeriod.PeriodName,
+                Tag = newPeriod
+            };
+
+            ddlPeriod.Items.Add(dataItem);
+            ddlPeriod.Items[0].Selected = true;
+
+            dtStartDate.Enabled = false;
+            ddlPeriod.ReadOnly = true;
         }
 
         /// <summary>
@@ -91,23 +188,19 @@ namespace IPSComponentLibrary.Forms.Register
                 (d)=> ti.ToTitleCase(string.Format( "{0:yyyy} рік", d )), // Рік
             };
             Func<DateTime, string> namePariod = namePeriods[0];
-            int PeriodCode = 0;
+            
             decimal? MinAmount = 0;
+            
             int[] schemaTypesWhereAmountIsZero = { 2, 3 };
 
             if ( _licenseAgreement.LicClass == 1 )
             {
-                var agree = _licenseAgreement.Agr.AgreementAddBr.Single(rec => rec.Version == _licenseAgreement.Agr.Version);
-                PeriodCode = agree.PeriodCode ?? 1;
                 MinAmount = 0;
             }
             else
             {
                 var agree = _licenseAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == _licenseAgreement.LicVersion);
-                PeriodCode = agree.PeriodCode ?? 1;
-
                 var licType = _licenseAgreement.LicCodeNavigation;
-                //MinAmount = licType?.SchemaId == 2 ? 0 : agree.MinAmount;
                 MinAmount = licType.SchemaId.HasValue && schemaTypesWhereAmountIsZero.Contains(licType.SchemaId.Value) ? 0 : agree.MinAmount;
             }
 
@@ -160,15 +253,18 @@ namespace IPSComponentLibrary.Forms.Register
         }
 
         bool entry = false;
-        private void radDateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void dtBeginDate_ValueChanged(object sender, EventArgs e)
         {
-            if (entry) return;
+            if (entry) 
+                return;
+            
             entry = true;
 
             var begDate = getBeginDate(dtStartDate.Value);
             var firstPeriod = ddlPeriod.Items.Count > 0 ? ddlPeriod.Items[0].Tag as PaidPeriod : null;
             if (begDate != firstPeriod?.BeginDate)
                 FormDorpDown(begDate);
+
             entry = false;
         }
 
@@ -180,8 +276,9 @@ namespace IPSComponentLibrary.Forms.Register
                 MessageShow.ShowWarning("Такий період вже існує!");
                 return;
             }
-            
+
             var addPeriod = (PaidPeriod)ddlPeriod.SelectedItem.Tag;
+            addPeriod.PeriodName = ddlPeriod.Text;
             if (_licenseAgreement.PaidPeriod.Count == 0) // firstPeriod
                 addPeriod.FagFirst = true;
             _licenseAgreement.PaidPeriod.Add(addPeriod);

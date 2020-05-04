@@ -50,7 +50,7 @@ namespace ConsumerSmallRightWorkplace
                 treeViewSmallRight.Nodes.Add(item);
             }
 
-            ConsumerSmallRightService.GetInstance();
+            ClientSmallRightService.GetInstance();
             var smallRightPresenter = new SmallRightPresenter(treeViewSmallRight, ctrlConsumersViewSmallRight);
             IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), smallRightPresenter);
 

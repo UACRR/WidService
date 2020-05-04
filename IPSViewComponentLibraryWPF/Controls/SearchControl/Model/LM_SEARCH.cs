@@ -1,9 +1,12 @@
-﻿using Telerik.Windows.Controls;
+﻿using System.Runtime.InteropServices.ComTypes;
+using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
 {
     public class LM_SEARCH : ViewModelBase
     {
+        private string _extSearchExp = "Розширений пошук";
+        private string _btnUpdate = "Оновити";
         private string _tabSimple = "Пошук з одним параметром";
         private string _tabMulti = "Пошук з окремими параметрами";
         private string _btnSearch = "Пошук";
@@ -13,6 +16,30 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
         private string _containsVal = "Містить слово";
         private string _txtSearchEnum = "Введіть дані в поля, в яких буде здійснюватись пошук:";
         private string _allCheckItem = "Всі поля";
+        private string _warnEmptySword = "Не введено пошукове слово!";
+        private string _warnNoSelectField = "Не обрано жодного поля для пошуку!";
+        private string _warnSearchDataEmpty = "Відсутні дані для пошуку!";
+        private string _clearSearch = "Очистити";
+        
+        public string EXT_SEARCH_EXP
+        {
+            get => _extSearchExp;
+            set
+            {
+                _extSearchExp = value;
+                OnPropertyChanged(() => EXT_SEARCH_EXP);
+            }
+        }
+
+        public string BTN_UPDATE
+        {
+            get => _btnUpdate;
+            set
+            {
+                _btnUpdate = value;
+                OnPropertyChanged(() => BTN_UPDATE);
+            }
+        }
 
         public string TAB_SIMPLE
         {
@@ -101,6 +128,46 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl.Model
             {
                 _allCheckItem = value;
                 OnPropertyChanged(() => ALL_CHECK_ITEM);
+            }
+        }
+
+        public string WARN_EMPTY_SWORD
+        {
+            get => _warnEmptySword;
+            set
+            {
+                _warnEmptySword = value;
+                OnPropertyChanged(() => WARN_EMPTY_SWORD);
+            }
+        }
+
+        public string WARN_NO_SELECT_FIELD
+        {
+            get => _warnNoSelectField;
+            set
+            {
+                _warnNoSelectField = value; 
+                OnPropertyChanged(() => WARN_NO_SELECT_FIELD);
+            }
+        }
+
+        public string WARN_SEARCH_DATA_EMPTY
+        {
+            get => _warnSearchDataEmpty;
+            set
+            {
+                _warnSearchDataEmpty = value;
+                OnPropertyChanged(() => WARN_SEARCH_DATA_EMPTY);
+            }
+        }
+
+        public string CLEAR_SEARCH
+        {
+            get => _clearSearch;
+            set
+            {
+                _clearSearch = value;
+                OnPropertyChanged(() => CLEAR_SEARCH);
             }
         }
     }

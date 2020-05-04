@@ -1,0 +1,257 @@
+﻿<UserControl x:Class="IPSModulesLibrary.RightholdersList.RightholdersListControl"
+             x:Name="thisControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:search="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl;assembly=IPSViewComponentLibraryWPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:local="clr-namespace:IPSModulesLibrary.RightholdersList"
+             mc:Ignorable="d" 
+             Background="WhiteSmoke"
+             d:DesignHeight="500" d:DesignWidth="850">
+
+    <Control.DataContext>
+        <local:RightholdersListViewModel/>
+    </Control.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" CommandParameter="{Binding ElementName=thisControl}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Control.Resources>
+        <Style TargetType="t:RadTreeViewItem">
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        <Style TargetType="t:RadGridView">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="ShowGroupPanel" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="ShowSearchPanel" Value="True"/>
+            <Setter Property="ShowToolTipOnTrimmedText" Value="True"/>
+            <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
+        </Style>
+        <Style TargetType="t:RadButton">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+        <Style TargetType="t:RadExpander">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+        <Style TargetType="t:RadTreeView">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+        <Style TargetType="t:GridViewDataColumn">
+            <Setter Property="HeaderTextAlignment" Value="Center"/>
+            <Setter Property="IsFilterable" Value="False"/>
+            <Setter Property="ShowToolTipOnTrimmedText" Value="True"/>
+            <Setter Property="HeaderTextTrimming" Value="CharacterEllipsis"/>
+        </Style>
+        <Style TargetType="{x:Type RadioButton}" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="White" Cursor="Hand">
+                            <BulletDecorator.Bullet>
+                                <Grid Height="16" Width="16">
+                                    <!--Define size of the Bullet-->
+                                    <!--The two borders-->
+                                    <Border Name="RadioOuter" Background="Transparent" BorderBrush="Gainsboro" BorderThickness="2" CornerRadius="2" />
+                                    <Border CornerRadius="0" Margin="4" Name="RadioMark" Background="#FFADADAD" Visibility="Hidden" />
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <!--Text element-->
+                            <TextBlock Margin="3,1,0,0" Foreground="#FF3E3E3E" FontFamily="Calibri" FontSize="12">
+                        <ContentPresenter />
+                            </TextBlock>
+                        </BulletDecorator>
+                        <!--If item is checked, trigger the visibility of the mark-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <!--If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting-->
+                                <Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="RadioOuter" Property="BorderBrush" Value="#FFADADAD" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SidebarToggle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Margin"  Value="20,3,3,3"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="Transparent">
+                            <ContentPresenter/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <!--If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting-->
+                                <Setter Property="Background" Value="BlueViolet"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </Control.Resources>
+
+    <t:RadBusyIndicator t:StyleManager.Theme="VisualStudio2013" 
+                        IsBusy="{Binding IsBusy}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <t:RadTreeView Margin="3"
+                               MinWidth="200"
+                               Background="MintCream"
+                               HorizontalAlignment="Stretch"
+                               HorizontalContentAlignment="Stretch"
+                               ItemsSource="{Binding TreeViewItemSource}"
+                               SelectionMode="Single"
+                               SelectedItem="{Binding Path=SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <GridSplitter Grid.Column="1" 
+                              Margin="0,3,0,3"
+                              HorizontalAlignment="Stretch"
+                              Width="3" Background="Silver" ShowsPreview="False"/>
+
+                <Grid Grid.Column="2" Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
+
+                    <t:RadGridView Grid.Row="1"
+                                   x:Name="gridView"
+                                   ColumnWidth="*"
+                                   ItemsSource="{Binding ObjectsRightsItemSource}"
+                                   Margin="3">
+                        <t:RadGridView.Columns>
+                            <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding CustId}"/>
+                            <t:GridViewDataColumn Width="100" Header="{Binding LOC.GV_RH_CODE}" DataMemberBinding="{Binding InnerCode}"/>
+                            <t:GridViewDataColumn Width="100" Header="IPI" DataMemberBinding="{Binding InterCode}"/>
+                            <t:GridViewDataColumn Header="{Binding LOC.GV_RH_NAME}" DataMemberBinding="{Binding Name}"/>
+                            <t:GridViewDataColumn Width="75" Header="{Binding LOC.GV_AGR_DATE}" DataMemberBinding="{Binding AgreementDate}" DataFormatString="{}{0:d}"/>
+                            <t:GridViewDataColumn Width="75" Header="{Binding LOC.GV_COUNT_OBJ}" TextAlignment="Right" DataMemberBinding="{Binding CntObj}"/>
+                            <t:GridViewDataColumn Width="75" Header="{Binding LOC.GV_RH_PROFIT}" TextAlignment="Right" DataMemberBinding="{Binding YearProfit}" DataFormatString="{}{0:N2}"/>
+                            <t:GridViewDataColumn Width="100" Header="{Binding LOC.GV_RH_TYPE}" IsFilterable="True" DataMemberBinding="{Binding RHolderTypeName}"/>
+
+                            <t:GridViewColumn Width="25">
+                                <t:GridViewColumn.Header>
+                                    <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                                </t:GridViewColumn.Header>
+                                <t:GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <t:RadButton Margin="0" Width="25" Height="20" 
+                                                     Command="{Binding DataContext.OpenRightholderCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                     CommandParameter="{Binding}">
+                                            <Image Source="../Resources/Icons/edit-icon.png"/>
+                                        </t:RadButton>
+                                    </DataTemplate>
+                                </t:GridViewColumn.CellTemplate>
+                            </t:GridViewColumn>
+                        </t:RadGridView.Columns>
+                    </t:RadGridView>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <t:RadDataPager Grid.Column="0"
+                                        Margin="3 0"
+                                        BorderThickness="0"
+                                        x:Name="DataPager"
+                                        t:StyleManager.Theme="VisualStudio2013"
+                                        PageSize="250"
+                                        Source="{Binding Items, ElementName=gridView}"
+                                        IsTotalItemCountFixed="False"
+                                        DisplayMode="All, All"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Margin="5 0 0 0" Content="К-сть на сторінку:"/>
+
+                            <TextBox Text="{Binding ElementName=DataPager, Path=PageSize, Mode=TwoWay, StringFormat='{}{0:N0}'}"
+                                     VerticalContentAlignment="Center"
+                                     MaxLength="5"
+                                     HorizontalContentAlignment="Right"
+                                     MinWidth="50"
+                                     Margin="3"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Margin="10 0" Content="К-сть записів:"/>
+                            <Label Margin="0 0 10 0" Content="{Binding ElementName=DataPager, Path=ItemCount}"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+
+            </Grid>
+
+            <StackPanel Grid.Row="1" Background="Silver" Orientation="Horizontal">
+                <t:RadDropDownButton HorizontalAlignment="Right"
+                                     Content="{Binding LOC.DDBTN_ADD_RH}"
+                                     t:StyleManager.Theme="VisualStudio2013"
+                                     CloseOnPopupMouseLeftButtonUp="True"
+                                     Margin="3">
+                    <t:RadDropDownButton.DropDownContent>
+                        <StackPanel>
+                            <t:RadButton Margin="0"
+                                     MinWidth="120"
+                                     HorizontalContentAlignment="Left"
+                                     Content="{Binding LOC.BTN_RH_PHIS}"
+                                     Command="{Binding CreateRHPhisCommand}"/>
+                            <t:RadButton Margin="0" 
+                                     MinWidth="120"
+                                     HorizontalContentAlignment="Left"
+                                     Content="{Binding LOC.BTN_RH_JUR}"
+                                     Command="{Binding CreateRHJurCommand}"/>
+                        </StackPanel>
+                    </t:RadDropDownButton.DropDownContent>
+                </t:RadDropDownButton>
+
+                <t:RadDropDownButton HorizontalAlignment="Right"
+                                 Content="{Binding LOC.DDBTN_ADD_EXTERNAL_RH}"
+                                 t:StyleManager.Theme="VisualStudio2013"
+                                 CloseOnPopupMouseLeftButtonUp="True"
+                                 Margin="3">
+                    <t:RadDropDownButton.DropDownContent>
+                        <StackPanel>
+                            <t:RadButton Margin="0" 
+                                         MinWidth="120"
+                                         HorizontalContentAlignment="Left"
+                                         Content="{Binding LOC.BTN_EXT_RH}"
+                                         Command="{Binding CreateRHExternalPhisCommand}"/>
+                            <t:RadButton Margin="0" 
+                                         MinWidth="120"
+                                         HorizontalContentAlignment="Left" 
+                                         Content="{Binding LOC.BTN_EXT_PUBL}"
+                                         Command="{Binding CreateRHExternalPubCommand}"/>
+                        </StackPanel>
+                    </t:RadDropDownButton.DropDownContent>
+                </t:RadDropDownButton>
+            </StackPanel>
+        </Grid>
+    </t:RadBusyIndicator>
+
+</UserControl>

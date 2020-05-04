@@ -227,7 +227,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                     
                     break;
                 case "deleteBtn":
-                    if(_typeControl == ControlRequestOrReferenceType.Request && item.LicStatus == 0)
+                    if(_typeControl == ControlRequestOrReferenceType.Request && new int?[] {0, 5}.Contains(item.LicStatus))
                         DeleteLicense();
                     break;
             }

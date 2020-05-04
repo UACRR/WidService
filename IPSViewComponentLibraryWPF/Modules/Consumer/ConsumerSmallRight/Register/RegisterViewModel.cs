@@ -374,8 +374,10 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
                 // PeriodStatus
                 // 1	Прийом звітів
-                CanExecuteCreateRegisterFromFileCommand = value != null && value.PeriodStatus == 1 && CurrentLicenseAgreement.SchemaTypeId == 1;
-                CanExecuteCreateRegisterManuallyCommand = value != null && value.PeriodStatus == 1;
+                // 3	Борг
+                var validPeriodStatuses = new int[] {1, 3};
+                CanExecuteCreateRegisterFromFileCommand = value != null && validPeriodStatuses.Contains(value.PeriodStatus) && CurrentLicenseAgreement.SchemaTypeId == 1;
+                CanExecuteCreateRegisterManuallyCommand = value != null && validPeriodStatuses.Contains(value.PeriodStatus);
                 CanExecuteFixingRegisterListCommand = value != null && CheckCanFixingRegisterList(value);
 
                 OnPropertyChanged(() => CurrentPeriodOfLicense);
@@ -474,7 +476,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         private async void UpdateData()
         {
             var saveCurrentLicense = CurrentLicenseAgreement.LicId;
-            var saveCurrentPeriodOfLicense = CurrentPeriodOfLicense.PeriodId;
+            var saveCurrentPeriodOfLicense = CurrentPeriodOfLicense?.PeriodId;
             var saveCurrentRegister = CurrentRegister?.RegId;
 
             var customer = ApplicationCustomerData.GetInstance().CurrentCustomer;

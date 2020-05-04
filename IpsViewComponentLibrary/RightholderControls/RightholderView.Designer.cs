@@ -1355,6 +1355,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightholdersObjectsRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlRightholdersObjectsRight.IsInheritance = false;
             this.ctrlRightholdersObjectsRight.Location = new System.Drawing.Point(0, 0);
             this.ctrlRightholdersObjectsRight.Name = "ctrlRightholdersObjectsRight";
             this.ctrlRightholdersObjectsRight.SelectedObject = null;
@@ -1427,8 +1428,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // RightholderView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1019, 516);
             this.Controls.Add(this.pageCatalog);
             this.Name = "RightholderView";

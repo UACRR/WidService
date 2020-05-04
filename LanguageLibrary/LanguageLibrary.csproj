@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,7 +47,14 @@
     <Compile Include="Kernel\LanguageLibraryHelper.cs" />
     <Compile Include="Model\ComponentCategory.cs" />
     <Compile Include="Model\LanguageDataModel.cs" />
+    <Compile Include="Model\LanguageDataNested\CommunitiesListLD.cs" />
+    <Compile Include="Model\LanguageDataNested\CopyrightAdminWorkplaceLD.cs" />
     <Compile Include="Model\LanguageDataNested\LauncherLD.cs" />
+    <Compile Include="Model\LanguageDataNested\LicenseBRListLD.cs" />
+    <Compile Include="Model\LanguageDataNested\ObjectsRightListLD.cs" />
+    <Compile Include="Model\LanguageDataNested\ReportsSRListLD.cs" />
+    <Compile Include="Model\LanguageDataNested\ReportWorkplaceLD.cs" />
+    <Compile Include="Model\LanguageDataNested\RightholdersListLD.cs" />
     <Compile Include="Model\LanguageDataNested\SearchControlLD.cs" />
     <Compile Include="Model\LanguageDataNested\SmRoPermitLD.cs" />
     <Compile Include="Model\LanguageItem.cs" />

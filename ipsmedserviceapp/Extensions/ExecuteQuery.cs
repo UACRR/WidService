@@ -35,14 +35,18 @@ namespace ipsmedserviceapp.Extensions
             return list;
         }
 
-        public static DataTable GetDataFromSqlServer(SqlConnection sqlConnection, string query)
+        public static DataTable GetDataFromSqlServer(SqlConnection sqlConnection, string query, ICollection<SqlParameter> parameters = null)
         {
             if (sqlConnection.State != ConnectionState.Open) 
                 sqlConnection.Open();
             
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
 
+            if (parameters != null && parameters.Any())
+                sqlDataAdapter.SelectCommand.Parameters.AddRange(parameters.ToArray());
+
             DataSet dataSet = new DataSet();
+            
             sqlDataAdapter.Fill(dataSet);
 
             var table = dataSet.Tables[0];

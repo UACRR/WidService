@@ -18,12 +18,10 @@ using Telerik.Windows.Controls;
 
 namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 {
-    public class CopyrightRequestViewModel : ViewModelBase
+    public class CopyrightRequestViewModel : ViewModelBase, ILazyLoadData
     {
         private readonly string _recordCount = "К-сть записів";
         private CopyrightRequestService _service;
-
-        public CopyrightRequestViewModel() {}
 
         #region * * * PROPERTIES * * *
 
@@ -75,8 +73,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         }
 
         private IList<ObjectRightNotAccepted> ListObjects { get; set; }
-
-
+        
         private bool _isCheckedAllRunable;
         private bool _isCheckedAll;
         public bool IsCheckedAll
@@ -227,8 +224,10 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 OnPropertyChanged(() => WorkTypeDictionary);
             }
         }
-        
+
         #endregion
+
+        #region * * * METHOD * * *
 
         private void UpdatePropertyPanelData()
         {
@@ -269,7 +268,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                 MultiplyChangeInfoVisibility = Visibility.Collapsed;
             }
 
-            IsEnabledPropertyPanel = CurrentObjectItem != null && ObjectsItemSource.Any(rec => rec.IsSelected);
+            //IsEnabledPropertyPanel = CurrentObjectItem != null && ObjectsItemSource.Any(rec => rec.IsSelected);
+            IsEnabledPropertyPanel = ObjectsItemSource.Any(rec => rec.IsSelected);
             OnPropertyChanged(() => CurrentObjectItemProperty);
         }
 
@@ -339,16 +339,14 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
                     WorkCommentRH = item.WorkCommentRH,
                     WorkDateRH = item.WorkDateRH,
                     WorkTypeRH = item.WorkTypeRH,
+                    SelectedChanged = UpdatePropertyPanelData,
                 });
             }
 
             ObjectsItemSource = modelList;
         }
 
-        #region * * * COMMANDS * * *
-
-        public ICommand LoadDataCommand => new IPSDelegateCommand(LoadDataCommandExecute);
-        private async void LoadDataCommandExecute(object o)
+        public async void LazyLoadData()
         {
             WorkTypeDictionary = new ObservableCollection<WorkType>(IpsGlobal.AnketaDictionaties.workType);
             _service = CopyrightRequestService.GetInstance();
@@ -358,6 +356,10 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             await Task.Factory.StartNew(() => ConvertToModel(rightholderList));
             IsBusy = false;
         }
+
+        #endregion
+
+        #region * * * COMMANDS * * *
 
         public ICommand SaveCommand => new IPSDelegateCommand(SaveCommandExecute);
         private void SaveCommandExecute(object o)
@@ -408,16 +410,17 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         public ICommand PrintCopyrightRequestCommand => new IPSDelegateCommand(PrintCopyrightRequestCommandExecute);
         private void PrintCopyrightRequestCommandExecute(object o)
         {
-            var model = (CopyrightRequestRightholdersModel) o;
+            CurrentRightholderItem = (CopyrightRequestRightholdersModel)o;
+
             RightolderWithNotAcceptedCopyrightViewModel rightolder = new RightolderWithNotAcceptedCopyrightViewModel
             {
-                CustId = model.CustId,
-                Name = model.Name,
-                InnerCode = model.InnerCode,
-                InterCode = model.InterCode,
-                WorkDateRH = model.WorkDateRH,
-                RegistrDate = model.RegistrDate,
-                CntObj = model.CntObj
+                CustId = CurrentRightholderItem.CustId,
+                Name = CurrentRightholderItem.Name,
+                InnerCode = CurrentRightholderItem.InnerCode,
+                InterCode = CurrentRightholderItem.InterCode,
+                WorkDateRH = CurrentRightholderItem.WorkDateRH,
+                RegistrDate = CurrentRightholderItem.RegistrDate,
+                CntObj = CurrentRightholderItem.CntObj
             };
 
             var printView = new DocumentViewerForm();

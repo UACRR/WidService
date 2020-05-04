@@ -23,7 +23,6 @@
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
             <Setter Property="ShowGroupPanel" Value="False"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
-            <!--<Setter Property="IsFilteringAllowed" Value="False"/>-->
             <Setter Property="ShowSearchPanel" Value="True"/>
             <Setter Property="SearchPanelCloseButtonVisibility" Value="Collapsed"/>
         </Style>
@@ -31,6 +30,9 @@
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
         </Style>
         <Style TargetType="t:RadExpander">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+        </Style>
+        <Style TargetType="t:RadTreeView">
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
         </Style>
         <Style TargetType="t:GridViewDataColumn">
@@ -57,14 +59,13 @@
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <t:RadTreeView t:StyleManager.Theme="VisualStudio2013"
-                               MinWidth="100"
+                <t:RadTreeView MinWidth="100"
                                Margin="3"
-                               Background="OldLace"
+                               Background="MintCream"
                                HorizontalAlignment="Stretch"
                                HorizontalContentAlignment="Stretch"
                                ItemsSource="{Binding TreeViewItemSource}"
@@ -73,6 +74,7 @@
 
                 <GridSplitter Grid.Column="1"
                               Margin="0,3,0,3"
+                              HorizontalAlignment="Stretch"
                               Width="3" Background="Silver" ShowsPreview="False"/>
 
                 <Grid Grid.Column="2" Margin="3">
@@ -82,46 +84,43 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
+                    <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
 
-                    <t:RadExpander Header="Extended search" IsExpanded="True">
-                        <search:SearchControl x:Name="searchControl"/>
-                    </t:RadExpander>
-                        
                     <t:RadGridView Grid.Row="1"
                                    x:Name="gridView"
                                    ItemsSource="{Binding ObjectsRightsItemSource}"
                                    Margin="3">
                         <t:RadGridView.Columns>
                             <t:GridViewDataColumn Width="75" Header="ID" DataMemberBinding="{Binding ObjId}"/>
-                            <t:GridViewDataColumn Width="1*" Header="Шифр твору" DataMemberBinding="{Binding InnerCode}"/>
+                            <t:GridViewDataColumn Width="1*" Header="{Binding LOC.GV_IN_CODE}" DataMemberBinding="{Binding InnerCode}"/>
                             <t:GridViewDataColumn Width="85" Header="ISWC" DataMemberBinding="{Binding ISWC}"/>
-                            <t:GridViewDataColumn Width="1*" Header="Назва твору" DataMemberBinding="{Binding Name}"/>
-                            <t:GridViewDataColumn Width="25" Header="В/М" 
+                            <t:GridViewDataColumn Width="1*" Header="{Binding LOC.GV_OBJ_NAME}" DataMemberBinding="{Binding Name}"/>
+                            <t:GridViewDataColumn Width="25" Header="{Binding LOC.GV_BS_CAT_NAME}" 
                                                   IsFilterable="True"
-                                                  ToolTip="Об'єкт великих/малих прав" 
+                                                  ToolTip="{Binding LOC.GVTT_BS_CAT_NAME}" 
                                                   DataMemberBinding="{Binding CategoryName}" 
                                                   TextAlignment="Center"/>
                             <t:GridViewDataColumn Width="1*" 
-                                                  Header="Жанр" 
+                                                  Header="{Binding LOC.GV_GENRE}" 
                                                   IsFilterable="True"
                                                   DataMemberBinding="{Binding GenreName}"/>
 
                             <t:GridViewDataColumn Width="1*" 
-                                                  Header="Автори" 
+                                                  Header="{Binding LOC.GV_AUTHOR}" 
                                                   ShowToolTipOnTrimmedText="True"
                                                   DataMemberBinding="{Binding Author}"/>
                             <t:GridViewDataColumn Width="1*" 
-                                                  Header="Виконавець" 
+                                                  Header="{Binding LOC.GV_PERFORMER}" 
                                                   ShowToolTipOnTrimmedText="True"
                                                   DataMemberBinding="{Binding Performer}"/>
                             <t:GridViewDataColumn Width="75" 
                                                   ShowToolTipOnTrimmedText="True" 
-                                                  Header="Спільний % володіння" 
+                                                  Header="{Binding LOC.GV_RATE}" 
                                                   DataMemberBinding="{Binding RateTotal}"
                                                   DataFormatString="{}{0:N2}"
                                                   TextAlignment="Right"/>
                             <t:GridViewDataColumn Width="120" 
-                                                  Header="Нерозподілена сума" 
+                                                  Header="{Binding LOC.GV_UNDISTRIB_MONEY}" 
                                                   TextAlignment="Right" 
                                                   DataFormatString="{}{0:N2}"
                                                   DataMemberBinding="{Binding Profit}"/>
@@ -142,12 +141,38 @@
                             </t:GridViewColumn>
                         </t:RadGridView.Columns>
                     </t:RadGridView>
-                    <t:RadDataPager Grid.Row="2"
-                                    t:StyleManager.Theme="VisualStudio2013"
-                                    PageSize="250"
-                                    Source="{Binding Items, ElementName=gridView}"
-                                    IsTotalItemCountFixed="False"
-                                    DisplayMode="All, All"/>
+
+                    <Grid Grid.Row="2"> 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                            <t:RadDataPager Grid.Column="0"
+                                            Margin="3 0"
+                                            BorderThickness="0"
+                                            x:Name="DataPager"
+                                            t:StyleManager.Theme="VisualStudio2013"
+                                            PageSize="250"
+                                            Source="{Binding Items, ElementName=gridView}"
+                                            IsTotalItemCountFixed="False"
+                                            DisplayMode="All, All"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Margin="5 0 0 0" Content="К-сть на сторінку:"/>
+
+                                <TextBox Text="{Binding ElementName=DataPager, Path=PageSize, Mode=TwoWay, StringFormat='{}{0:N0}'}"
+                                         VerticalContentAlignment="Center"
+                                         MaxLength="5"
+                                         HorizontalContentAlignment="Right"
+                                         MinWidth="50"
+                                         Margin="3"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Margin="10 0" Content="К-сть записів:"/>
+                                <Label Margin="0 0 10 0" Content="{Binding ElementName=DataPager, Path=ItemCount}"/>
+                            </StackPanel>
+                    </Grid>
                 </Grid>
 
 
@@ -156,8 +181,9 @@
             <StackPanel Grid.Row="1" Background="Silver">
                 <t:RadButton MinWidth="100"
                              HorizontalAlignment="Left"
-                             Content="Додати" 
-                             Margin="3"/>
+                             Content="{Binding LOC.BTN_CREATE_OBJ}"
+                             Margin="3"
+                             Command="{Binding CreateObjectRightCommand}"/>
             </StackPanel>
 
         </Grid>

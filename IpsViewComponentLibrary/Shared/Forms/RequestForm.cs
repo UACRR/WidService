@@ -9,6 +9,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.Common.Editors;
 using IpsViewComponentLibrary.Common.Form;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Extensions;
@@ -122,13 +123,13 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
             if (licId == null)
             {
-                _licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
-                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault()?.License;
+                _licenseAgreement = _customer.Client.LicenseAgreement.Last();
+                bsLicense.DataSource = _licenseAgreement.LicenseAgrParam.SingleOrDefault()?.License;
             }
             else
             {
-                _licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
-                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == _licenseAgreement.LicVersion)?.License;
+                _licenseAgreement = _customer.Client.LicenseAgreement.Single(rec => rec.LicId == licId);
+                bsLicense.DataSource = _licenseAgreement.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == _licenseAgreement.LicVersion)?.License;
 
                 SetMusicalDesignData(_licenseAgreement);
                 if (_licenseAgreement.LicStatus != 3)
@@ -136,10 +137,17 @@ namespace IpsViewComponentLibrary.Shared.Forms
             }
             ctrlMusicalDesignList.DataSource = _musicalDesignList;
 
-            bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
-            bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
+            bsLicAgrParam.DataSource = _licenseAgreement.LicenseAgrParam;
 
-            _objectRight = _licenseAgreement?.LicenseBigR?.Obj;
+            if (_licenseAgreement.LicenseBigR != null)
+            {
+                if (_licenseAgreement.LicenseBigR.IsTour == null)
+                    _licenseAgreement.LicenseBigR.IsTour = false;
+            }
+            bsLicenseBigR.DataSource = _licenseAgreement.LicenseBigR;
+            
+
+            _objectRight = _licenseAgreement.LicenseBigR?.Obj;
             var rightholderList = _objectRightService.GetDataBr(_objectRight.ObjId).rhList;
             bsObjectRight.DataSource = _objectRight;
             SetObjectRightData(_objectRight, rightholderList);
@@ -153,6 +161,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             if (GetReadOnly()) // TODO: read only must be a enum
                 ReadOnly = true;
             SetControlsVisibility();
+
+            //txtTicketPriceUah.Validating += NumericValidating;
 
             isInit = true;
         }
@@ -611,6 +621,15 @@ namespace IpsViewComponentLibrary.Shared.Forms
         {
             ForBigRightAdmin,
             ForSmallRightAdmin,
+        }
+
+        private void NumericValidating(object sender, CancelEventArgs e)
+        {
+            string error = "Очікується числове значення";
+
+            var control = (IpsTextBox) sender;
+            //if (control.Text)
+            //errorProvider.SetError(control, error);
         }
     }
 }

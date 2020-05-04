@@ -9,8 +9,11 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Enums;
 using IpsCommonTypes.Types;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IPSViewComponentLibraryWPF.Controls.SearchControl.Model;
 using IPSViewComponentLibraryWPF.IPSExtensions;
@@ -26,6 +29,16 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
         private const string PartValue = "Part";
 
         #region * * * PROPERTIES * * *
+
+        private bool IsLoaded { get; set; }
+
+        public ICollection<FrameParam> Config { get; set; }
+
+        public Action<SearchModuleResource> RunSearchQuery { get; set; }
+
+        public Action Clear { get; set; }
+
+        public Action UpdateData { get; set; }
 
         private ObservableCollection<CheckBox> _listBoxItemsSource = new ObservableCollection<CheckBox>();
         /// <summary>
@@ -66,9 +79,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             }
         }
 
-        public Action<object> RunSearchQuery { get; set; }
-
-        public LM_SEARCH LM_SEARCH { get; set; } = new LM_SEARCH();
+        public LM_SEARCH LOC { get; set; } = new LM_SEARCH();
 
         #endregion
 
@@ -132,8 +143,7 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                             {
                                 Name = FullValue,
                                 //Content = "Точне значення",
-                                Content = LM_SEARCH.EQ_VAL,
-                                IsChecked = true,
+                                Content = LOC.EQ_VAL,
                                 VerticalContentAlignment = VerticalAlignment.Center,
                                 Margin = new Thickness(5,3,3,3),
                                 IsTabStop = false,
@@ -142,7 +152,8 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
                             {
                                 Name = PartValue,
                                 //Content = "Містить текст",
-                                Content = LM_SEARCH.LIKE_VAL,
+                                Content = LOC.LIKE_VAL,
+                                IsChecked = true,
                                 VerticalContentAlignment = VerticalAlignment.Center,
                                 Margin = new Thickness(5,3,3,3),
                                 IsTabStop = false,
@@ -155,18 +166,40 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             return item;
         }
 
-        #endregion
-
-        #region * * * _PUBLIC_ METHOD * * *
-
-        public void LoadConfiguration(ICollection<FrameParam> config)
+        private void ClearSimpleSearch()
         {
+            foreach (var checkBox in ListBoxItemsSource)
+                checkBox.IsChecked = false;
+            
+            SimpleSearchParameters.SearchText = string.Empty;
+        }
+
+        private void ClearExtendedSearch()
+        {
+            foreach (var stackPanel in ListBoxExtendedItemsSource)
+            {
+                var txt = (TextBox)stackPanel.Children[0];
+                txt.Text = string.Empty;
+                
+                var fullValue = ((RadioButton)((StackPanel)stackPanel.Children[2]).Children[0]);
+                fullValue.IsChecked = true;
+
+                //var partValue = ((RadioButton)((StackPanel)stackPanel.Children[2]).Children[1]);
+                //partValue.IsChecked = true;
+            }
+        }
+
+        private void LoadConfiguration()
+        {
+            if (Config == null)
+                return;
+            
             var list = new List<SearchItem>
             {
-                new SearchItem("ALL", LM_SEARCH.ALL_CHECK_ITEM),
+                new SearchItem("ALL", LOC.ALL_CHECK_ITEM),
             };
 
-            foreach (var frameParam in config)
+            foreach (var frameParam in Config)
             {
                 list.Add(new SearchItem(frameParam.SeekCodeName, frameParam.SeekName));
             }
@@ -191,19 +224,19 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             var propertyList = new List<string>();
             foreach (var checkBox in ListBoxItemsSource)
             {
-                if (checkBox.IsChecked ?? false)
+                if ((checkBox.IsChecked ?? false) && checkBox.Name != "ALL")
                     propertyList.Add(checkBox.Name);
             }
 
             if(string.IsNullOrEmpty(SimpleSearchParameters.SearchText))
             {
-                ShowMessage.ShowWarning("Не введено пошукове слово!");
+                ShowMessage.ShowWarning(LOC.WARN_EMPTY_SWORD);
                 return;
             }
 
             if (!propertyList.Any())
             {
-                ShowMessage.ShowWarning("Не обрано жодного поля для пошуку!");
+                ShowMessage.ShowWarning(LOC.WARN_NO_SELECT_FIELD);
                 return;
             }
 
@@ -215,7 +248,11 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
             };
 
             // exec search
-            RunSearchQuery?.Invoke(searchData);
+            var searchResource = new SearchModuleResource
+            {
+                SimpleSearch = searchData
+            };
+            RunSearchQuery?.Invoke(searchResource);
         }
 
         /// <summary>
@@ -256,18 +293,48 @@ namespace IPSViewComponentLibraryWPF.Controls.SearchControl
 
             if (!propertyList.Any())
             {
-                ShowMessage.ShowWarning("Відсутні дані для пошуку!");
+                ShowMessage.ShowWarning(LOC.WARN_SEARCH_DATA_EMPTY);
                 return;
             }
 
             // exec search
-            RunSearchQuery?.Invoke(propertyList);
+            var searchResource = new SearchModuleResource
+            {
+                MultiplySearch = propertyList
+            };
+            RunSearchQuery?.Invoke(searchResource);
         }
 
         public ICommand LoadedCommand => new IPSDelegateCommand(LoadedCommandExecute);
         private void LoadedCommandExecute(object o)
         {
-            AppLanguageLibrary.UpdateLanguageLocalization(LM_SEARCH, nameof(AppLanguageLibrary.CurrentLanguage.SearchControlLD));
+            if (IsLoaded)
+                return;
+
+            AppLanguageLibrary.UpdateLanguageLocalization(LOC, nameof(AppLanguageLibrary.CurrentLanguage.SearchControlLD));
+            LoadConfiguration();
+            
+            IsLoaded = true;
+        }
+
+        /// <summary>
+        /// Очистити пошукові параметри
+        /// </summary>
+        public ICommand ClearCommand => new IPSDelegateCommand(ClearCommandExecute);
+        private void ClearCommandExecute(object o)
+        {
+            ClearSimpleSearch();
+            ClearExtendedSearch();
+            Clear?.Invoke();
+        }
+
+        /// <summary>
+        /// Оновити дані
+        /// </summary>
+        public ICommand UpdateDataCommand => new IPSDelegateCommand(UpdateDataCommandExecute);
+        private void UpdateDataCommandExecute(object o)
+        {
+            UpdateData?.Invoke();
         }
 
         #endregion

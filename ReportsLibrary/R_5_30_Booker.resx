@@ -117,18 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
+    <value>0.1cm</value>
+  </data>
+  <data name="sqlDataSource1.ParameterValues" xml:space="preserve">
     <value>{"@cmCustId":"0","@rateCommiss":"-1"}</value>
-  </metadata>
+  </data>
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
     <value>select  id,rownum,rhName, innerInterCode, cmName, amount, sborESVMoney, sborMiliMoney, 
 amountCommiss, amountToPay,rateCommiss  from dbo.ft_Tsk_5_30_Booker (@dateBegin, @dateEnd, @cmCustId, @rateCommiss  )
 order by rateCommiss,rownum</value>
   </data>
-  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ShowSnapGrid" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-    <value>0.1cm</value>
-  </metadata>
+  </data>
 </root>

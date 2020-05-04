@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.Types;
 using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
@@ -215,6 +217,50 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             catch (Exception e)
             {
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// Отримати список правовласників
+        /// </summary>
+        /// <param name="searchResource"></param>
+        /// <returns></returns>
+        [HttpPost("list")]
+        public async Task<IActionResult> GetRightholdersList([FromBody] ObjectRightSearchResource searchResource)
+        {
+            ResponseOfRequest<DataTable> response;
+            try
+            {
+                DataTable data = null;
+                var frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 2).ToListAsync();
+
+                string query = $"select t0.* from vTsk_1_ListRightHolder_wpf t0";
+
+                using (var sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
+                {
+                    List<SqlParameter> parameters = new List<SqlParameter>();
+                    if (searchResource.SimpleSearch != null)
+                    {
+                        query = SearchQueryHelper.CreateSearchQuery(query, frameParam, searchResource.SimpleSearch, out SqlParameter sqlParameter);
+                        parameters.Add(sqlParameter);
+                    }
+                    if (searchResource.MultiplySearch != null)
+                    {
+                        query = SearchQueryHelper.CreateSearchQuery(query, frameParam, searchResource.MultiplySearch, out List<SqlParameter> sqlParameters);
+                        parameters = sqlParameters;
+                    }
+
+                    await Task.Factory.StartNew(() => data = ExecuteQuery.GetDataFromSqlServer(sqlConnection, query, parameters));
+
+                    response = new ResponseOfRequest<DataTable>(data);
+
+                    return Ok(response);
+                }
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest<DataTable>(e);
+                return Ok(response);
             }
         }
 

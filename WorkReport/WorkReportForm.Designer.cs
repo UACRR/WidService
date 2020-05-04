@@ -31,15 +31,15 @@
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRegisterList = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlLicenseAgreementList = new IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl();
             this.pvExternalReport = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlExternalRegisterList = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlLicenseAgreementList = new IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
-            this.radPageViewPage2.SuspendLayout();
             this.pvExternalReport.SuspendLayout();
+            this.radPageViewPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,11 +71,31 @@
             // ctrlRegisterList
             // 
             this.ctrlRegisterList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRegisterList.IsExternalRegister = false;
             this.ctrlRegisterList.Location = new System.Drawing.Point(0, 0);
             this.ctrlRegisterList.Name = "ctrlRegisterList";
             this.ctrlRegisterList.SelectedRegister = null;
             this.ctrlRegisterList.Size = new System.Drawing.Size(1099, 552);
             this.ctrlRegisterList.TabIndex = 0;
+            // 
+            // pvExternalReport
+            // 
+            this.pvExternalReport.Controls.Add(this.ctrlExternalRegisterList);
+            this.pvExternalReport.ItemSize = new System.Drawing.SizeF(138F, 27F);
+            this.pvExternalReport.Location = new System.Drawing.Point(5, 31);
+            this.pvExternalReport.Name = "pvExternalReport";
+            this.pvExternalReport.Size = new System.Drawing.Size(1099, 552);
+            this.pvExternalReport.Text = "Звіти онлайн-ресурси";
+            // 
+            // ctrlExternalRegisterList
+            // 
+            this.ctrlExternalRegisterList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlExternalRegisterList.IsExternalRegister = false;
+            this.ctrlExternalRegisterList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlExternalRegisterList.Name = "ctrlExternalRegisterList";
+            this.ctrlExternalRegisterList.SelectedRegister = null;
+            this.ctrlExternalRegisterList.Size = new System.Drawing.Size(1099, 552);
+            this.ctrlExternalRegisterList.TabIndex = 1;
             // 
             // radPageViewPage2
             // 
@@ -95,26 +115,9 @@
             this.ctrlLicenseAgreementList.Size = new System.Drawing.Size(1099, 552);
             this.ctrlLicenseAgreementList.TabIndex = 0;
             // 
-            // pvExternalReport
-            // 
-            this.pvExternalReport.Controls.Add(this.ctrlExternalRegisterList);
-            this.pvExternalReport.ItemSize = new System.Drawing.SizeF(138F, 27F);
-            this.pvExternalReport.Location = new System.Drawing.Point(5, 31);
-            this.pvExternalReport.Name = "pvExternalReport";
-            this.pvExternalReport.Size = new System.Drawing.Size(1099, 552);
-            this.pvExternalReport.Text = "Звіти онлайн-ресурси";
-            // 
-            // ctrlExternalRegisterList
-            // 
-            this.ctrlExternalRegisterList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlExternalRegisterList.Location = new System.Drawing.Point(0, 0);
-            this.ctrlExternalRegisterList.Name = "ctrlExternalRegisterList";
-            this.ctrlExternalRegisterList.SelectedRegister = null;
-            this.ctrlExternalRegisterList.Size = new System.Drawing.Size(1099, 552);
-            this.ctrlExternalRegisterList.TabIndex = 1;
-            // 
             // WorkReportForm
             // 
+            this.AccessibleDescription = "ReportIdent";
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1109, 593);
@@ -129,8 +132,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
             this.radPageView1.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
-            this.radPageViewPage2.ResumeLayout(false);
             this.pvExternalReport.ResumeLayout(false);
+            this.radPageViewPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

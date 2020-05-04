@@ -7,6 +7,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
 {
     public class CopyrightRequestObjectsModel : ViewModelBase
     {
+        public Action SelectedChanged { get; set; }
         private bool _isSelected;
         public bool IsSelected
         {
@@ -14,6 +15,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
             set
             {
                 _isSelected = value;
+                SelectedChanged?.Invoke();
                 OnPropertyChanged(() => IsSelected);
             }
         }

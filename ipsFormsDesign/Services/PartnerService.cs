@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
@@ -16,7 +19,7 @@ namespace ipsFormsDesign.Services
     public class PartnerService
     {
         private readonly ApiConnector _webApi;
-        private const string Prefix = "partner/";
+        private const string Prefix = "partner";
 
         private static PartnerService _service;
 
@@ -47,6 +50,18 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Отримати список представників
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest<DataTable>> GetPartnersList(SearchModuleResource resource)
+        {
+            string url = $"{Prefix}/list";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, resource);
+            return result;
+        }
+
+        /// <summary>
         /// Отримати VIEW
         /// </summary>
         /// <param name="typeResult"></param>
@@ -55,7 +70,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public IList<object> GetView(Type typeResult, string viewName, int? custId)
         {
-            string url = $"{Prefix}viewlist";
+            string url = $"{Prefix}/viewlist";
             List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("viewName", viewName) };
             if (custId != null)
                 param.Add(new KeyValuePair<string, string>("custId", custId.ToString()));
@@ -70,7 +85,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public Customer GetPartnerTemplate(int custType)
         {
-            var customer = _webApi.GetItemById<Customer>(Prefix + "newpartner", custType.ToString());
+            var customer = _webApi.GetItemById<Customer>($"{Prefix}/newpartner", custType.ToString());
             return customer;
         }
 
@@ -80,7 +95,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public List<Customer> GetPartnerList()
         {
-            string url = Prefix + "list";
+            string url = $"{Prefix}/list";
             return _webApi.GetList<Customer>(url);
         }
 
@@ -89,7 +104,7 @@ namespace ipsFormsDesign.Services
         /// </summary>
         public Customer GetPartnerAnketa(int clientId)
         {
-            var anketaPerson = _webApi.GetItemById<Customer>(Prefix + "listcl", clientId.ToString());
+            var anketaPerson = _webApi.GetItemById<Customer>($"{Prefix}/listcl", clientId.ToString());
             return anketaPerson;
         }
 
@@ -108,19 +123,19 @@ namespace ipsFormsDesign.Services
         {
             // new
             if (cust.CustId == 0)
-                return _webApi.NewItem(Prefix + "addnewpartner", cust);
+                return _webApi.NewItem($"{Prefix}/addnewpartner", cust);
             // update
             switch (cust.CustType)
             {
-                case 1: return _webApi.UpdateItem(Prefix + "partnerphis", cust.CustId.ToString(), cust); // фіз. особа
-                case 3: return _webApi.UpdateItem(Prefix + "partnerjur", cust.CustId.ToString(), cust);  // юр. особа
+                case 1: return _webApi.UpdateItem($"{Prefix}/partnerphis", cust.CustId.ToString(), cust); // фіз. особа
+                case 3: return _webApi.UpdateItem($"{Prefix}/partnerjur", cust.CustId.ToString(), cust);  // юр. особа
             }
             return false;
         }
 
         public bool UpdateAgreement(AgreementAddPartner agreement, Partner partner)
         {
-            var url = string.Concat(Prefix, "agreement");
+            var url = $"{Prefix}/agreement";
             return _webApi.UpdateItem(url, null, new List<object> {agreement, partner});
         }
 
@@ -170,7 +185,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public bool AgreementPartnerStatusChange(int partnerId, CPartnerObjectStatus status)
         {
-            string url = Prefix + $"{partnerId}/statuschange";
+            string url = $"{Prefix}/{partnerId}/statuschange";
             return _webApi.UpdateItem<object>(url, status.ToString("D"), null);
         }
     }

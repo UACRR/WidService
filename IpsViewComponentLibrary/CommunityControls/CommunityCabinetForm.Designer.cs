@@ -158,7 +158,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewMain.Location = new System.Drawing.Point(0, 0);
             this.pageViewMain.Name = "pageViewMain";
-            this.pageViewMain.SelectedPage = this.pvAutorsData;
+            this.pageViewMain.SelectedPage = this.pvAgrData;
             this.pageViewMain.Size = new System.Drawing.Size(976, 536);
             this.pageViewMain.TabIndex = 0;
             this.pageViewMain.ThemeName = "Office2013Light";
@@ -471,7 +471,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
             this.ctrlBankAccount.Location = new System.Drawing.Point(22, 6);
             this.ctrlBankAccount.Name = "ctrlBankAccount";
-            this.ctrlBankAccount.Size = new System.Drawing.Size(409, 127);
+            this.ctrlBankAccount.Size = new System.Drawing.Size(437, 127);
             this.ctrlBankAccount.TabIndex = 0;
             // 
             // ctrlTabNavigation
@@ -809,9 +809,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             this.pvReportsData.Enabled = false;
             this.pvReportsData.ItemSize = new System.Drawing.SizeF(43F, 27F);
-            this.pvReportsData.Location = new System.Drawing.Point(5, 29);
+            this.pvReportsData.Location = new System.Drawing.Point(5, 31);
             this.pvReportsData.Name = "pvReportsData";
-            this.pvReportsData.Size = new System.Drawing.Size(966, 502);
+            this.pvReportsData.Size = new System.Drawing.Size(966, 500);
             this.pvReportsData.Text = "Звіти";
             // 
             // pvFilesData
@@ -825,8 +825,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // CommunityCabinetForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(976, 536);
             this.Controls.Add(this.pageViewMain);
             this.Name = "CommunityCabinetForm";

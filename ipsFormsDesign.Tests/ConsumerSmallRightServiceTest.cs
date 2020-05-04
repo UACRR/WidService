@@ -7,12 +7,12 @@ namespace ipsFormsDesign.Tests
     [TestClass]
     public class ConsumerSmallRightServiceTest
     {
-        private ConsumerSmallRightService _smallRightService;
+        private ClientSmallRightService _smallRightService;
 
         [TestInitialize]
         public void TestInit()
         {
-            _smallRightService = ConsumerSmallRightService.GetInstance();
+            _smallRightService = ClientSmallRightService.GetInstance();
         }
 
         [TestMethod]

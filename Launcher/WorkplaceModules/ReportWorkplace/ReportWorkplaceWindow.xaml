@@ -1,0 +1,44 @@
+﻿<Window x:Class="Launcher.WorkplaceModules.ReportWorkplace.ReportWorkplaceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher.WorkplaceModules.ReportWorkplace"
+        xmlns:reportsSR="clr-namespace:IPSModulesLibrary.ReportsSRList;assembly=IPSModulesLibrary"
+        xmlns:reportsOnline="clr-namespace:IPSModulesLibrary.ReportsOnlineList;assembly=IPSModulesLibrary"
+        xmlns:reportsBR="clr-namespace:IPSModulesLibrary.ReportsBRList;assembly=IPSModulesLibrary"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="Управління розподілу АВ" Height="450" Width="800">
+
+    <Window.DataContext>
+        <local:ReportWorkplaceViewModel/>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ResourceDictionaries/TabControlResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <TabControl SelectedItem="{Binding MainTabItem}">
+        <TabItem Header="Звіти МП" IsSelected="True" Style="{StaticResource TabItemStyle}">
+            <reportsSR:ReportsSRListControl/>
+        </TabItem>
+        <TabItem Header="Звіти онлайн-ресурси" Style="{StaticResource TabItemStyle}">
+            <reportsOnline:ReportsOnlineListControl/>
+        </TabItem>
+        <TabItem Header="Заявки/Довідки ВП" Style="{StaticResource TabItemStyle}">
+            <reportsBR:LicenseBRListControl/>
+        </TabItem>
+    </TabControl>
+</Window>

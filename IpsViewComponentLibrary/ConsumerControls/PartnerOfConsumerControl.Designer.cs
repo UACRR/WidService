@@ -336,17 +336,17 @@
             this.btnRemovePartner.ThemeName = "Office2013Light";
             this.btnRemovePartner.Click += new System.EventHandler(this.btnRemovePartner_Click);
             // 
-            // MiddleControlCabinetPartner
+            // PartnerOfConsumerControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.btnRemovePartner);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.btnChangePartner);
             this.Controls.Add(this.lblFullName);
-            this.Name = "MiddleControlCabinetPartner";
+            this.Name = "PartnerOfConsumerControl";
             this.Size = new System.Drawing.Size(655, 135);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);

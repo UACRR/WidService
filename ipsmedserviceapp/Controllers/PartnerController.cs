@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +41,21 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = dbContext;
             _config = config;
         }
+
+        /// <summary>
+        /// Отримати список представників
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        [HttpPost("list")]
+        public async Task<IActionResult> GetList([FromBody] SearchModuleResource resource)
+        {
+            string query = "select t0.* from vTsk_6_ListPartner_wpf t0";
+            List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 9).ToListAsync();
+            var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
+            return Ok(result);
+        }
+
 
         /// <summary>
         /// Отримати VIEW по назві
@@ -174,8 +191,47 @@ namespace ipsmedserviceapp.Controllers
                 var destinatopn = await _dbContext.AgreementAddPartner.SingleOrDefaultAsync(rec => rec.AgrId == source.AgrId);
                 destinatopn.SetFields(source, new []{ "CustId", "AgrId", "AgrStatus", });
 
-                var partner = await _dbContext.Partner.SingleOrDefaultAsync(rec => rec.CustId == source.CustId);
-                partner.IsMy  = partnerSource.IsMy;
+                // основна інформація
+                var partner = await _dbContext.Customer.Where(item => item.CustId == partnerSource.CustId)
+                    .Include(item => item.AgreementMaster).ThenInclude(agr => agr.AgreementAddPartner)
+                    .Include(item => item.Partner).ThenInclude(pcl => pcl.PartnerClient)
+                    .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                    .SingleOrDefaultAsync();
+
+                partner.Partner.IsMy  = partnerSource.IsMy;
+
+                int custStatus = default(int); // customer
+                int ankStatus = default(int);  // anketa
+                int agrStatus = default(int);  // agreement
+                switch (source.AgrStatus)
+                {
+                    case 2: // ACTIVE
+                        custStatus = 2;
+                        ankStatus = 2;
+                        agrStatus = 2;
+                        break;
+                    case 4: //CLOSE
+                        custStatus = 9;
+                        ankStatus = 9;
+                        agrStatus = 4;
+                        break;
+
+                    default: throw new ArgumentOutOfRangeException("Неможливо змінити на обраний статус!");
+                }
+
+                if (partner != null)
+                {
+                    partner.Status = custStatus;
+
+                    if (partner.AgreementMaster?.SingleOrDefault() != null)
+                        partner.AgreementMaster.SingleOrDefault().AgrStatus = agrStatus;
+
+                    if (partner.AgreementMaster.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault() != null)
+                        partner.AgreementMaster.SingleOrDefault().AgreementAddPartner.SingleOrDefault().AgrStatus = agrStatus;
+
+                    if (partner.Person?.AnketaPerson?.SingleOrDefault() != null)
+                        partner.Person.AnketaPerson.SingleOrDefault().Status = ankStatus;
+                }
 
                 transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();

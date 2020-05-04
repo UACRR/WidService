@@ -35,22 +35,22 @@
   </uiContainer>
   <uiContainer name="LauncherLD">
     <uiItem name="RH_OR">
-      <content>Робоче місце адміністратора по роботі з Авторами/Правовласниками та Об'єктами прав</content>
+      <content>Правовласники та Об`єкти прав</content>
       <description>
       </description>
-      <defaultContent>Робоче місце адміністратора по роботі з Авторами/Правовласниками та Об'єктами прав</defaultContent>
+      <defaultContent>Правовласники та Об`єкти прав</defaultContent>
     </uiItem>
     <uiItem name="ReportsAndRoyalty">
-      <content>Робоче місце адмінастратора по розподілу авторської виногороди (обробка звітів від Користувачів)</content>
+      <content>Обробка звіті Користувачів (ідентифікація)</content>
       <description>
       </description>
-      <defaultContent>Робоче місце адмінастратора по розподілу авторської виногороди (обробка звітів від Користувачів)</defaultContent>
+      <defaultContent>Обробка звіті Користувачів (ідентифікація)</defaultContent>
     </uiItem>
     <uiItem name="AnalyticsAndReports">
-      <content>Аналітична звітність</content>
+      <content>Звітність (аналітика)</content>
       <description>
       </description>
-      <defaultContent>Аналітична звітність</defaultContent>
+      <defaultContent>Звітність (аналітика)</defaultContent>
     </uiItem>
     <uiItem name="OperativeReporting">
       <content>Оперативна звітність</content>
@@ -59,34 +59,34 @@
       <defaultContent>Оперативна звітність</defaultContent>
     </uiItem>
     <uiItem name="Clients_WP">
-      <content>Робоче місце адміністратора по роботі з Користувачами «малими правами»</content>
+      <content>Користувачі (Малі права)</content>
       <description>
       </description>
-      <defaultContent>Робоче місце адміністратора по роботі з Користувачами «малими правами»</defaultContent>
+      <defaultContent>Користувачі (Малі права)</defaultContent>
     </uiItem>
     <uiItem name="Theatres_WP">
-      <content>Робоче місце адміністратора  по роботі з Користувачами «великими правами»</content>
+      <content>Користувачі (Великі права)</content>
       <description>
       </description>
-      <defaultContent>Робоче місце адміністратора  по роботі з Користувачами «великими правами»</defaultContent>
+      <defaultContent>Користувачі (Великі права)</defaultContent>
     </uiItem>
     <uiItem name="Partner_WP">
-      <content>Робоче місце адміністратора по роботі з Представниками компанії</content>
+      <content>Представники компанії</content>
       <description>
       </description>
-      <defaultContent>Робоче місце адміністратора по роботі з Представниками компанії</defaultContent>
+      <defaultContent>Представники компанії</defaultContent>
     </uiItem>
     <uiItem name="FixationOfViolations">
-      <content>Фіксація порушень прав</content>
+      <content>Фіксація порушень авторських прав</content>
       <description>
       </description>
-      <defaultContent>Фіксація порушень прав</defaultContent>
+      <defaultContent>Фіксація порушень авторських прав</defaultContent>
     </uiItem>
     <uiItem name="SystemDictionaries">
-      <content>Довідники системи</content>
+      <content>Системні довідники</content>
       <description>
       </description>
-      <defaultContent>Довідники системи</defaultContent>
+      <defaultContent>Системні довідники</defaultContent>
     </uiItem>
     <uiItem name="AnketaOfTheCompany">
       <content>Анкета компанії</content>
@@ -95,10 +95,10 @@
       <defaultContent>Анкета компанії</defaultContent>
     </uiItem>
     <uiItem name="SysAdmin">
-      <content>Управління правами доступу</content>
+      <content>Права доступу</content>
       <description>
       </description>
-      <defaultContent>Управління правами доступу</defaultContent>
+      <defaultContent>Права доступу</defaultContent>
     </uiItem>
   </uiContainer>
   <uiContainer name="SmRoPermitLD">
@@ -413,6 +413,62 @@
       <description>
       </description>
       <defaultContent>Логін вже використовується,  будь ласка, введіть інший логін</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="SearchControlLD">
+    <uiItem name="TAB_SIMPLE">
+      <content>Пошук з одним параметром</content>
+      <description>
+      </description>
+      <defaultContent>Пошук з одним параметром</defaultContent>
+    </uiItem>
+    <uiItem name="TAB_MULTI">
+      <content>Пошук з окремими параметрами</content>
+      <description>
+      </description>
+      <defaultContent>Пошук з окремими параметрами</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_SEARCH">
+      <content>Пошук</content>
+      <description>
+      </description>
+      <defaultContent>Пошук</defaultContent>
+    </uiItem>
+    <uiItem name="CHECK_SEARCH_ENUM">
+      <content>Шукати в таких полях:</content>
+      <description>
+      </description>
+      <defaultContent>Шукати в таких полях:</defaultContent>
+    </uiItem>
+    <uiItem name="EQ_VAL">
+      <content>Точне значення</content>
+      <description>
+      </description>
+      <defaultContent>Точне значення</defaultContent>
+    </uiItem>
+    <uiItem name="LIKE_VAL">
+      <content>Містить текст</content>
+      <description>
+      </description>
+      <defaultContent>Містить текст</defaultContent>
+    </uiItem>
+    <uiItem name="CONTAINS_VAL">
+      <content>Містить слово</content>
+      <description>
+      </description>
+      <defaultContent>Містить слово</defaultContent>
+    </uiItem>
+    <uiItem name="TXT_SEARCH_ENUM">
+      <content>Введіть дані в поля, в яких буде здійснюватись пошук:</content>
+      <description>
+      </description>
+      <defaultContent>Введіть дані в поля, в яких буде здійснюватись пошук:</defaultContent>
+    </uiItem>
+    <uiItem name="ALL_CHECK_ITEM">
+      <content>Всі поля</content>
+      <description>
+      </description>
+      <defaultContent>Всі поля</defaultContent>
     </uiItem>
   </uiContainer>
 </LanguageObjectModel>
