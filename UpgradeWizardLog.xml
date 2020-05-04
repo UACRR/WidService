@@ -621,4 +621,75 @@
   <event action="Analyze" type="Success" name="Resources.resx" path="D:\Projects\MediaService\Reports\Properties\Resources.resx" />
   <event action="Analyze" type="Success" name="Reports" path="D:\Projects\MediaService\Reports\Reports.csproj" />
   <event action="Analyze" type="Success" name="ipsSysAdmin" path="D:\Projects\MediaService\ipsSysAdmin.sln" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\Projects\MediaService\WebAPIConnector\WebAPIConnector.csproj" />
+  <event action="Upgrade" type="Success" name="WebAPIConnector" path="D:\Projects\MediaService\WebAPIConnector\WebAPIConnector.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\Projects\MediaService\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="IpsViewComponentLibrary" path="D:\Projects\MediaService\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\Projects\MediaService\ipsFormsDesign\ipsFormsDesign.csproj" />
+  <event action="Upgrade" type="Success" name="ipsFormsDesign" path="D:\Projects\MediaService\ipsFormsDesign\ipsFormsDesign.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\Projects\MediaService\ReportsLibrary\ReportsLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="Config Sections" path="D:\Projects\MediaService\ReportsLibrary\app.config" />
+  <event action="Upgrade" type="Success" name="app.config" path="D:\Projects\MediaService\ReportsLibrary\app.config" />
+  <event action="Upgrade" type="Success" name="LIcAgr.resx" path="D:\Projects\MediaService\ReportsLibrary\LIcAgr.resx" />
+  <event action="Upgrade" type="Success" name="R_5_14_RegisterSR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_14_RegisterSR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_15_RegisterBR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_15_RegisterBR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_15_RegisterBRSum.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_15_RegisterBRSum.resx" />
+  <event action="Upgrade" type="Success" name="R_5_16_AuthorSR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_16_AuthorSR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_16_AuthorSRFact.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_16_AuthorSRFact.resx" />
+  <event action="Upgrade" type="Success" name="R_5_17_Balance.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_17_Balance.resx" />
+  <event action="Upgrade" type="Success" name="R_5_17_BalanceAccount.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_17_BalanceAccount.resx" />
+  <event action="Upgrade" type="Success" name="R_5_18_1_ObjUnattached.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_18_1_ObjUnattached.resx" />
+  <event action="Upgrade" type="Success" name="R_5_18_TurnAccounN.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_18_TurnAccounN.resx" />
+  <event action="Upgrade" type="Success" name="R_5_19_0_BR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_19_0_BR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_19_1_BR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_19_1_BR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_19_2_0SR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_19_2_0SR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_19_2_SR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_19_2_SR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_1921_SRSH.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_1921_SRSH.resx" />
+  <event action="Upgrade" type="Success" name="R_5_2_CrKind.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_2_CrKind.resx" />
+  <event action="Upgrade" type="Success" name="R_5_20_1_BR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_20_1_BR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_20_2_BR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_20_2_BR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_21_BRcomm.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_21_BRcomm.resx" />
+  <event action="Upgrade" type="Success" name="R_5_22_1_BRcm.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_22_1_BRcm.resx" />
+  <event action="Upgrade" type="Success" name="R_5_22_2_BRcm.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_22_2_BRcm.resx" />
+  <event action="Upgrade" type="Success" name="R_5_22_2_SRcm.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_22_2_SRcm.resx" />
+  <event action="Upgrade" type="Success" name="R_5_22_BRcm.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_22_BRcm.resx" />
+  <event action="Upgrade" type="Success" name="R_5_22_SRcm.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_22_SRcm.resx" />
+  <event action="Upgrade" type="Success" name="R_5_23_BR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_23_BR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_24_BR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_24_BR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_24_DBF.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_24_DBF.resx" />
+  <event action="Upgrade" type="Success" name="R_5_24_SR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_24_SR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_25_SRLic.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_25_SRLic.resx" />
+  <event action="Upgrade" type="Success" name="R_5_25_SRLic_1.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_25_SRLic_1.resx" />
+  <event action="Upgrade" type="Success" name="R_5_25_SRLic_2.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_25_SRLic_2.resx" />
+  <event action="Upgrade" type="Success" name="R_5_3_Community.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_3_Community.resx" />
+  <event action="Upgrade" type="Success" name="R_5_30_Booker.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_30_Booker.resx" />
+  <event action="Upgrade" type="Success" name="R_5_31_GetGive.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_31_GetGive.resx" />
+  <event action="Upgrade" type="Success" name="R_5_31_GetGiveDetail.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_31_GetGiveDetail.resx" />
+  <event action="Upgrade" type="Success" name="R_5_32_RegRH.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_32_RegRH.resx" />
+  <event action="Upgrade" type="Success" name="R_5_33_RegRH_N.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_33_RegRH_N.resx" />
+  <event action="Upgrade" type="Success" name="R_5_35_Start.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_35_Start.resx" />
+  <event action="Upgrade" type="Success" name="R_5_36.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_36.resx" />
+  <event action="Upgrade" type="Success" name="R_5_4_RatingRh.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_4_RatingRh.resx" />
+  <event action="Upgrade" type="Success" name="R_5_5_RatingObj.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_5_RatingObj.resx" />
+  <event action="Upgrade" type="Success" name="R_5_6_Customers.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_6_Customers.resx" />
+  <event action="Upgrade" type="Success" name="R_5_8_Consolidated.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_8_Consolidated.resx" />
+  <event action="Upgrade" type="Success" name="R_5_8_ConsolidDetail.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_8_ConsolidDetail.resx" />
+  <event action="Upgrade" type="Success" name="R_5_8_DistribMain.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_8_DistribMain.resx" />
+  <event action="Upgrade" type="Success" name="R_5_8_DistribMain_N.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_8_DistribMain_N.resx" />
+  <event action="Upgrade" type="Success" name="R_5_8_DistribMain_other.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_8_DistribMain_other.resx" />
+  <event action="Upgrade" type="Success" name="R_5_8_DistribMain_SR.resx" path="D:\Projects\MediaService\ReportsLibrary\R_5_8_DistribMain_SR.resx" />
+  <event action="Upgrade" type="Success" name="Report1.resx" path="D:\Projects\MediaService\ReportsLibrary\Report1.resx" />
+  <event action="Upgrade" type="Success" name="Report2.resx" path="D:\Projects\MediaService\ReportsLibrary\Report2.resx" />
+  <event action="Upgrade" type="Success" name="Report3.resx" path="D:\Projects\MediaService\ReportsLibrary\Report3.resx" />
+  <event action="Upgrade" type="Success" name="ReportB.resx" path="D:\Projects\MediaService\ReportsLibrary\ReportB.resx" />
+  <event action="Upgrade" type="Success" name="ReportS.resx" path="D:\Projects\MediaService\ReportsLibrary\ReportS.resx" />
+  <event action="Upgrade" type="Success" name="Reports1.resx" path="D:\Projects\MediaService\ReportsLibrary\Reports1.resx" />
+  <event action="Upgrade" type="Success" name="ReportsLibrary" path="D:\Projects\MediaService\ReportsLibrary\ReportsLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\Projects\MediaService\RepNew\RepNew.csproj" />
+  <event action="Upgrade" type="Success" name="RepNew" path="D:\Projects\MediaService\RepNew\RepNew.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\Projects\MediaService\Launcher\Launcher.csproj" />
+  <event action="Upgrade" type="Success" name="Launcher" path="D:\Projects\MediaService\Launcher\Launcher.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\Projects\MediaService\Reports\Reports.csproj" />
+  <event action="Upgrade" type="Success" name="Reports" path="D:\Projects\MediaService\Reports\Reports.csproj" />
+  <event action="Upgrade" type="Success" name="ipsSysAdmin" path="D:\Projects\MediaService\ipsSysAdmin.sln" />
 </log>

@@ -120,6 +120,10 @@
   <data name="textBox10.Value" xml:space="preserve">
     <value>12. Відомість 'Розподіл авторської  винагороди на Авторів  з 'великих прав''</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
+    <value>uk-UA</value>
+  </data>
   <data name="textBox26.Value" xml:space="preserve">
     <value>28. Відомість "Розподіл авторської  винагороди  з "великих прав" Інші товариства (Іноземні автори)
 </value>
@@ -141,6 +145,12 @@
   </data>
   <data name="textBox30.Value" xml:space="preserve">
     <value>32.  Відомість Надійшло-Розподілено</value>
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.ShowSnapGrid" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="textBox3.Value" xml:space="preserve">
     <value>2. Розширений баланс</value>
@@ -164,22 +174,14 @@
   <data name="textBox27.Value" xml:space="preserve">
     <value>29. Роялті до розподілу від  користувачів з "малих прав" за  видами договорів</value>
   </data>
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
+    <value>0.1cm</value>
+  </data>
   <data name="textBox13.Value" xml:space="preserve">
     <value>15. Реєстр 'Розподіл авторської  винагороди на правовласників з 'великих прав у зозрізі р/л'</value>
   </data>
   <data name="textBox7.Value" xml:space="preserve">
     <value>9. Розподіл авторскої винагороди</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-    <value>0.1cm</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>uk-UA</value>
-  </metadata>
-  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>
