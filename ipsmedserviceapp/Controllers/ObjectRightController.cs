@@ -654,5 +654,43 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPost("CheckUniqueObject")]
+        public async Task<IActionResult> CheckUniqueObject([FromBody] string itemName)
+        {
+            var objects = await _dbContext.ObjectRight
+                .Where(rec => rec.Name == itemName)
+                .ToListAsync();
+
+            bool isUnique = objects.Count == 0;
+
+            var responseOfRequest = new ResponseOfRequest<bool>(isUnique);
+
+            return Ok(responseOfRequest);
+        }
+
+        /// <summary>
+        /// Перевірка наявності об'єктів права по назвам
+        /// </summary>
+        /// <param name="itemNames"></param>
+        /// <returns>список об'єків права які були знайдені за назвами</returns>
+        [HttpPost("CheckUniqueObjectList")]
+        public async Task<IActionResult> CheckUniqueObjectList([FromBody] List<string> itemNames)
+        {
+            var list = new List<string>();
+
+            foreach (var itemName in itemNames)
+            {
+                var objects = await _dbContext.ObjectRight
+                    .Where(rec => rec.Name == itemName)
+                    .ToListAsync();
+
+                if (objects.Any())
+                    list.Add(itemName);
+            }
+
+            var responseOfRequest = new ResponseOfRequest<List<string>>(list);
+
+            return Ok(responseOfRequest);
+        }
     }
 }

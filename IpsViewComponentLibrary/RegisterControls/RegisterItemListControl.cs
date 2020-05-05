@@ -16,6 +16,7 @@ using ipsFormsDesign.Events;
 using ipsFormsDesign.Data;
 using System.ComponentModel;
 using ipsFormsDesign.ViewModels.Fixations;
+using IPSViewComponentLibraryWPF.IPSExtensions;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -673,7 +674,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        private void OnCreateObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
+        private async void OnCreateObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowCreateObjectCommand)
                 return;
@@ -684,9 +685,18 @@ namespace IpsViewComponentLibrary.RegisterControls
                 return;
             }
 
+            var service = ipsFormsDesign.Services.ObjectRightService.GetInstance();
+            
+            var isUnique = await service.CheckUniqueObject(selectedRegisterItem);
+            if (!isUnique)
+            {
+                string message = $"Можливий дубль об'єкта права! Об'єкт права з назвою «{selectedRegisterItem.ItemName}» наявний в системі!\nРекомендовано створити об'єкт права вручну та прив'язати або прив'язати існуючий.";
+                ShowMessage.ShowWarning(message);
+                return;
+            }
+
             CreateObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
 
-            var service = new ipsFormsDesign.Services.ObjectRightService(); // TODO: move to presenter or application controller
             var newObject = service.New(5);
             newObject.SetDataFromRegisterItem(selectedRegisterItem);
 

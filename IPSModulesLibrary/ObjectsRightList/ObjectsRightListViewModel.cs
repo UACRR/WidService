@@ -104,7 +104,7 @@ namespace IPSModulesLibrary.ObjectsRightList
 
         private async Task LoadData(SearchModuleResource searchModuleResource)
         {
-            var service = new ObjectRightService();
+            var service = ObjectRightService.GetInstance();
             IsBusy = true;
             var data = await service.GetObjectRightListAsync(searchModuleResource);
 
@@ -183,6 +183,7 @@ namespace IPSModulesLibrary.ObjectsRightList
                     GenreType = DTC.CastIntNull(getObject(obj, nameof(ObjectsRightListModel.GenreType))),
                     Name = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Name))),
                     RateTotal = DTC.CastFloat(getObject(obj, nameof(ObjectsRightListModel.RateTotal))),
+                    Rest = DTC.CastFloat(getObject(obj, nameof(ObjectsRightListModel.Rest))),
 
                     Author = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Author))),
                     Performer = DTC.Cast<string>(getObject(obj, nameof(ObjectsRightListModel.Performer))),

@@ -164,7 +164,7 @@ namespace Launcher.General
             {
                 var _rightholderService = new RightholderService();
 
-                var objectrightService = new ObjectRightService();
+                var objectrightService = ObjectRightService.GetInstance();
                 IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
                 var rightholderService = new RightholderService();

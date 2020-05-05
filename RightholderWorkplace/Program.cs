@@ -21,7 +21,7 @@ namespace RightholderWorkplace
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var objectrightService = new ObjectRightService();
+            var objectrightService = ObjectRightService.GetInstance();
             IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
             var rightholderService = new RightholderService();
