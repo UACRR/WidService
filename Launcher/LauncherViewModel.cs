@@ -1,32 +1,29 @@
-﻿using LanguageLibrary.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using LanguageLibrary;
-using Telerik.Windows.Controls;
-using IPSViewComponentLibraryWPF.IPSExtensions;
-using Launcher.Controls.LoginWindow;
-using Launcher.General.Model;
-using SmRoPermitAdmin;
-using System.Runtime.InteropServices;
-using System.Configuration;
+using DdexInvoicing;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Services;
-using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
-using System.IO;
+using IPSViewComponentLibraryWPF.IPSExtensions;
+using LanguageLibrary;
+using LanguageLibrary.Model;
+using Launcher.Controls.LoginWindow;
 using Launcher.WorkplaceModules.ClientsBRWorkplace;
 using Launcher.WorkplaceModules.ClientsSRWorkplace;
+using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
 using Launcher.WorkplaceModules.PartnerWorkplace;
 using Launcher.WorkplaceModules.ReportWorkplace;
+using SmRoPermitAdmin;
 using SmRoPermitClientLib;
+using Telerik.Windows.Controls;
 
-namespace Launcher.General
+namespace Launcher
 {
     public class LauncherViewModel : ViewModelBase
     {
@@ -37,6 +34,20 @@ namespace Launcher.General
         }
 
         #region * * * BEHAVIOR PROPERTIES * * *
+
+        private bool _isBusy;
+        /// <summary>
+        /// Індщикатор зайнятості
+        /// </summary>
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged(() => IsBusy);
+            }
+        }
 
         private bool _isSignIn;
         public bool IsSignIn
@@ -162,8 +173,6 @@ namespace Launcher.General
         {
             try
             {
-                var _rightholderService = new RightholderService();
-
                 var objectrightService = ObjectRightService.GetInstance();
                 IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
@@ -173,7 +182,7 @@ namespace Launcher.General
                 var dictionary = await DictionaryService.GetInstance().GetFrameTaskDictionary(CurrentLanguage.SpecificationCode);
                 IpsGlobal.SetFrameTaskDictionary(dictionary);
 
-                IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name);
+                IpsGlobal.Properties.Add("OwnerName", rightholderService.GetOwnerName()?.Name);
             }
             catch(Exception ex)
             {
@@ -243,8 +252,11 @@ namespace Launcher.General
                     LauncherPermits.Processes = UserPermissions.CanRead("Processes");
                     LauncherPermits.Analytics = UserPermissions.CanRead("Analytics");
                     LauncherPermits.OurProfile = UserPermissions.CanRead("OurProfile");
+                    LauncherPermits.Ddex = UserPermissions.CanRead("Ddex");
 
+                    IsBusy = true;
                     await Initialize();
+                    IsBusy = false;
                 }
             }
             catch (Exception ex)
@@ -354,6 +366,20 @@ namespace Launcher.General
             }
         }
 
+        public ICommand LoadDDEXCommand => new IPSDelegateCommand(LoadDDEXCommandExecute);
+        private void LoadDDEXCommandExecute(object o)
+        {
+            try
+            {
+                var ddexInvoicingForm = new DdexInvoicingForm();
+                ddexInvoicingForm.Show();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
         public ICommand LoadSystemDictionaryCommand => new IPSDelegateCommand(LoadSystemDictionaryCommandExecute);
         private void LoadSystemDictionaryCommandExecute(object o)
         {
@@ -412,8 +438,11 @@ namespace Launcher.General
         public ICommand SAAuthCommand => new IPSDelegateCommand(SAAuthCommandExecute);
         private async void SAAuthCommandExecute(object o)
         {
+            IsBusy = true;
+            await Initialize();
+
             LauncherPermits.RightsAdmin = true;
-            LauncherPermits.RoyaltyAdmin = true;
+            //LauncherPermits.RoyaltyAdmin = true;
             LauncherPermits.SRightsWp = true;
             LauncherPermits.BRightsWp = true;
             LauncherPermits.Represent = true;
@@ -423,8 +452,8 @@ namespace Launcher.General
             LauncherPermits.Processes = true;
             LauncherPermits.Analytics = true;
             LauncherPermits.OurProfile = true;
-
-            await Initialize();
+            LauncherPermits.Ddex = true;
+            IsBusy = false;
         }
 
         #endregion

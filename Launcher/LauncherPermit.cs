@@ -1,6 +1,6 @@
 ﻿using Telerik.Windows.Controls;
 
-namespace Launcher.General.Model
+namespace Launcher
 {
     public class LauncherPermits : ViewModelBase
     {
@@ -15,6 +15,7 @@ namespace Launcher.General.Model
         private bool _analytics;
         private bool _ourProfile;
         private bool _represent;
+        private bool _ddex;
 
         public bool RightsAdmin
         {
@@ -123,6 +124,16 @@ namespace Launcher.General.Model
             {
                 _represent = value;
                 OnPropertyChanged(() =>  Represent);
+            }
+        }
+
+        public bool Ddex
+        {
+            get => _ddex;
+            set
+            {
+                _ddex = value;
+                OnPropertyChanged(() => Ddex);
             }
         }
     }

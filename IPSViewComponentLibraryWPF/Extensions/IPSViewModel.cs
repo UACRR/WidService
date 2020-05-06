@@ -24,7 +24,7 @@ namespace IPSViewComponentLibraryWPF.Extensions
 
         private bool _isBusy;
         /// <summary>
-        /// Індщикатор зайнятості
+        /// Індикатор зайнятості
         /// </summary>
         public bool IsBusy
         {

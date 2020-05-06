@@ -1,6 +1,6 @@
 ﻿using Telerik.Windows.Controls;
 
-namespace Launcher.General.Model
+namespace Launcher
 {
     public class LM_Launcher : ViewModelBase
     {
@@ -15,6 +15,7 @@ namespace Launcher.General.Model
         private string _theatres_WP = "Робоче місце по роботі з «великими правами»";
         private string _analyticsAndReports = "Аналітична звітність";
         private string _reportsAndRoyalty = "Робоче місце по управлінню розподілу авторської виногороди (обробка звітів користувачів)";
+        private string _ddex = "Звіти онлайн-ресурсів";
 
         private string _catSys = "Система";
         private string _catOther = "Інше";
@@ -131,6 +132,16 @@ namespace Launcher.General.Model
             {
                 _processes = value;
                 OnPropertyChanged(() => Processes);
+            }
+        }
+
+        public string DDEX
+        {
+            get => _ddex;
+            set
+            {
+                _ddex = value;
+                OnPropertyChanged(() => DDEX);
             }
         }
 

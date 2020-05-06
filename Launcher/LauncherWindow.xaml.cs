@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Launcher
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LauncherWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LauncherWindow : Window
     {
-        public MainWindow()
+        public LauncherWindow()
         {
             InitializeComponent();
         }
