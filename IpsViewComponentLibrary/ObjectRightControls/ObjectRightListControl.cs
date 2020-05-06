@@ -52,7 +52,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             {
                 gvObjectsRightsList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
 
-                _objectRightService = new ObjectRightService();
+                _objectRightService = ObjectRightService.GetInstance();
 
                 var stateNode = new RadTreeNode { Text = "Стан" };
 

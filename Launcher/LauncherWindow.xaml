@@ -1,0 +1,320 @@
+﻿<Window x:Class="Launcher.LauncherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher"
+        xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="Media Service" Height="440" Width="900" Icon="Images/main-icon.png">
+
+    <Window.DataContext>
+        <local:LauncherViewModel/>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger x:Name="loadEvent" EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.Resources>
+        <Style TargetType="t:RadButton">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="Margin" Value="25"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="textBlock" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="languageList" TargetType="{x:Type ComboBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="8*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="5" Background="DeepSkyBlue" />
+                                            <Border Grid.Column="0"  Margin="1"  Background="Transparent"   />
+                                            <Path x:Name="Arrow" Grid.Column="1"  Fill="White" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#0e1666" />
+                                            </Trigger>
+                                            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#0e1666" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3"  />
+                            <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder" Background="#1a229a"/>
+                                    <ScrollViewer SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="launchButton" TargetType="Button">
+            <Setter Property="Width" Value="210"/>
+            <Setter Property="Height" Value="130"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="#FFFBF6F6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="LightSteelBlue" BorderThickness="5,5,5,5" >
+                            <ContentPresenter x:Name="contentPresenter" 
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                              Content="{TemplateBinding Content}" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{TemplateBinding Content}" TextWrapping="Wrap" TextAlignment="Center" Margin="10"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightSteelBlue"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="SteelBlue"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Gray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="groupBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="30"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="20"/>
+        </Style>
+        <Style x:Key="groupPanel" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="groupTitle" TargetType="Label">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Margin" Value="0, -30, 0, 0"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+        </Style>
+    </Window.Resources>
+
+    <t:RadBusyIndicator t:StyleManager.Theme="VisualStudio2013"
+                        IsBusy="{Binding IsBusy}">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="DodgerBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="languageList"
+                      Grid.Column="1"
+                      MinWidth="120"
+                      Height="25"
+                      Margin="3,3,30,3"
+                      ToolTip="Обрати мову"
+                      Padding="0,0" HorizontalAlignment="Left" 
+                      Background="#1a237e" Cursor="Hand"
+                      Style="{StaticResource languageList}"
+                      ItemsSource="{Binding LanguagesItemSource}"
+                      SelectedItem="{Binding CurrentLanguage}"
+                      SelectedValuePath="SpecificationCode"
+                      BorderBrush="Transparent">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding LanguageName}" 
+                                   HorizontalAlignment="Stretch"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   Height="30"
+                                   Padding="20,0"
+                                   Cursor="Hand"
+                                   VerticalAlignment="Center"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Grid Grid.Column="2" Margin="0,0,35,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Background="GhostWhite"
+                        Visibility="{Binding LoginButtonVisibility}"
+                        Height="30"
+                        Margin="5"
+                        Command="{Binding LoginCommand}">
+                    <Image Source="Images/login-icon.png"/>
+                </Button>
+
+                <Border Grid.Column="1"
+                        Visibility="{Binding UserInfoVisibility}"
+                        Width="auto"
+                        BorderThickness="1" CornerRadius="5"
+                        BorderBrush="Blue"
+                        Background="Azure" 
+                        Height="30">
+                    <TextBlock Margin="10,0,10,0" 
+                               VerticalAlignment="Center" 
+                               Text="{Binding UserName, StringFormat='{}User Name: {0}'}"/>
+                </Border>
+            </Grid>
+
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" 
+                      HorizontalScrollBarVisibility="Disabled" 
+                      VerticalScrollBarVisibility="Visible" 
+                      Visibility="{Binding ContentVisibility}">
+
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <Border Style="{StaticResource groupBorder}" BorderBrush="#FFF47B60" Background="#FFF3D7D4" >
+                    <StackPanel Style="{StaticResource groupPanel}">
+                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_RIGHTS}" Background="#FFF3D7D4" BorderBrush="#FFF47B60"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.RightsAdmin}"
+                                Content="{Binding LM_Launcher.RH_OR}"
+                                Command="{Binding LoadCopyrightAdminWorkplaceCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.RoyaltyAdmin}"
+                                Content="{Binding LM_Launcher.ReportsAndRoyalty}" 
+                                Command="{Binding LoadRoyaltyAdminCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.Processes}"
+                                Content="{Binding LM_Launcher.Processes}"
+                                Command="{Binding LoadProcessesCommand}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource groupBorder}" BorderBrush="#FF6082F4" Background="#FFDCF5F3">
+                    <StackPanel Style="{StaticResource groupPanel}">
+                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_CONSUMERS}" Background="#FFDCF5F3" BorderBrush="#FF6082F4"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.SRightsWp}"
+                                Content="{Binding LM_Launcher.Clients_WP}"
+                                Command="{Binding LoadClientsSmallRightCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.BRightsWp}"
+                                Content="{Binding LM_Launcher.Theatres_WP}"
+                                Command="{Binding LoadConsumerBigRightCommand}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource groupBorder}" BorderBrush="#FF29DE29" Background="#FFE3F5DC">
+                    <StackPanel  Style="{StaticResource groupPanel}">
+                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_OTHER}" Background="#FFE3F5DC" BorderBrush="#FF29DE29"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.Represent}"
+                                Content="{Binding LM_Launcher.Partner_WP}" 
+                                Command="{Binding LoadRepresentCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.Violation}"
+                                Content="{Binding LM_Launcher.FixationOfViolations}" 
+                                Command="{Binding LoadViolationCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.Ddex}"
+                                Content="{Binding LM_Launcher.DDEX}" 
+                                Command="{Binding LoadDDEXCommand}"/>
+                        </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource groupBorder}" BorderBrush="SandyBrown" Background="Beige">
+                    <StackPanel  Style="{StaticResource groupPanel}">
+                        <Label Style="{StaticResource groupTitle}" 
+                               Content="{Binding LM_Launcher.CAT_SYS}" Background="Beige" BorderBrush="SandyBrown"/>
+                        <Button Style="{StaticResource launchButton}"
+                                IsEnabled="{Binding LauncherPermits.Analytics}"
+                                Content="{Binding LM_Launcher.AnalyticsAndReports}" 
+                                Command="{Binding LoadAnalyticsCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                IsEnabled="{Binding LauncherPermits.Directory}"
+                                Content="{Binding LM_Launcher.SystemDictionaries}" 
+                                Command="{Binding LoadSystemDictionaryCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                Content="{Binding LM_Launcher.AnketaOfTheCompany}"
+                                IsEnabled="{Binding LauncherPermits.OurProfile}"
+                                Command="{Binding LoadOurProfileCommand}"/>
+                        <Button Style="{StaticResource launchButton}" 
+                                Content="{Binding LM_Launcher.SysAdmin}" 
+                                IsEnabled="{Binding LauncherPermits.Permit}"
+                                Command="{Binding LoadPermitWindowCommand}"/>
+                    </StackPanel>
+                </Border>
+
+            </WrapPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" Background="DodgerBlue">
+            <t:Label HorizontalAlignment="Center" 
+                     HorizontalContentAlignment="Center" 
+                     Background="DeepSkyBlue" 
+                     FontWeight="DemiBold" 
+                     Content="IPS" 
+                     Margin="3"
+                     Width="55">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SAAuthCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </t:Label>
+        </Grid>
+
+    </Grid>
+    </t:RadBusyIndicator>
+</Window>

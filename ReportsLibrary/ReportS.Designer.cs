@@ -405,7 +405,7 @@ namespace ReportsLibrary
             // 
             // ReportS
             // 
-            this.Culture = new System.Globalization.CultureInfo("uk-UA");
+            this.Culture = new System.Globalization.CultureInfo("");
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.detailSection1});
             this.Name = "ReportS";

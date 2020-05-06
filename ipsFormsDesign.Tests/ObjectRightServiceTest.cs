@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Tests
         [TestInitialize]
         public void TestInit()
         {
-            _objectRightService = new ObjectRightService();
+            _objectRightService = ObjectRightService.GetInstance();
             //check on null state
             Assert.IsNotNull(_objectRightService, "ObjectRightService is not initialized, state -null");
         }

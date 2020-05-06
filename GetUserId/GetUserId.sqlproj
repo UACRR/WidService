@@ -81,20 +81,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Reporting">
-      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting R1 2019\Bin\Telerik.Reporting.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ft_Get_user.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ReportsLibrary\ReportsLibrary.csproj">
-      <Name>ReportsLibrary</Name>
-      <Project>{16a23fdd-f783-4f80-9141-43b5c03cb3d1}</Project>
-      <Private>True</Private>
-      <IsModelAware>True</IsModelAware>
-      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
-    </ProjectReference>
   </ItemGroup>
 </Project>

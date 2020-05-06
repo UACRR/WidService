@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        h3 {
+            font-family: "Microsoft Sans Serif";
+        }
+
+        h4 {
+            font-family: "Microsoft Sans Serif";
+        }
+
+        table {
+            border: 1px solid black;
+            border-color: rgb(233,240,249);
+            background-color: rgb(233,240,249);
+            text-align: center;
+            font-family: "Microsoft Sans Serif";
+            font-size: 8.25pt;
+        }
+
+        tr {
+            border: 1px solid black;
+            background-color: rgb(212,230,252);
+            text-align: center;
+            padding: 2px 8px 2px 8px;
+            font-weight: normal;
+        }
+
+        th {
+            background-color: rgb(212,230,252);
+            text-align: center;
+            padding: 2px 8px 2px 8px;
+            font-weight: normal;
+        }
+
+        td {
+            background-color: rgb(255,242,217);
+            text-align: right;
+            padding: 2px 8px 2px 8px;
+        }
+
+        .td-1 {
+            background-color: whitesmoke;
+            text-align: center;
+            padding: 2px 8px 2px 8px;
+            font-weight: normal;
+        }
+
+        button {
+            font-family: "Microsoft Sans Serif";
+            font-size: 8.25pt;
+        }
+    </style>
+</head>
+<body>
+    <h4>В розрізі продажів (суми в доларах)</h4>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th colspan="2">Загалом</th>
+            <th colspan="2">Більше нуля</th>
+            <th colspan="2">Нуль у звіті</th>
+            <th colspan="2">Відсутні права</th>
+            <th colspan="2">Не заявлено</th>
+        </tr>
+        <tr>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+        </tr>
+        <tr>
+            <td class="td-1">Заявлено</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="td-1">Отримано</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="4" style="text-align: center"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="td-1">До&nbsp;розподілу</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="11" style="background-color: white"><button id="calcPerSales">Розрахувати</button></td>
+        </tr>
+    </table>
+
+    <h4>В розрізі музичних творів (суми в доларах)</h4>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th colspan="2">Загалом</th>
+            <th colspan="2">Більше нуля</th>
+            <th colspan="2">Нуль у звіті</th>
+            <th colspan="2">Відсутні права</th>
+            <th colspan="2">Не заявлено</th>
+        </tr>
+        <tr>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+            <th>Кількість</th>
+            <th>Сума</th>
+        </tr>
+        <tr>
+            <td class="td-1">Заявлено</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="td-1">Отримано</td>
+            <td colspan="10" style="text-align: center"></td>
+        </tr>
+        <tr>
+            <td class="td-1">До&nbsp;розподілу</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="11" style="background-color: white"><button id="calcPerMusicWorks">Розрахувати</button></td>
+        </tr>
+    </table>
+
+    <h4>До&nbsp;розподілу (суми в доларах і гривнях)</h4>
+    <table>
+        <tr>
+            <th rowspan="2"></th>
+            <th colspan="4">Долари</th>
+            <th colspan="4">Гривні</th>
+        </tr>
+        <tr>
+            <th>Кількість</th>
+            <th>Мех.</th>
+            <th>Публ.</th>
+            <th>Загалом</th>
+            <th>Кількість</th>
+            <th>Мех.</th>
+            <th>Публ.</th>
+            <th>Загалом</th>
+        </tr>
+        <tr>
+            <td class="td-1">> 1.00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="td-1">> 0.10</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="td-1">> 0.01</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="td-1">All</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background-color: white">Курс обміну (гривні за долар)</td>
+            <td colspan="2" style="background-color: white"><input id="exchRate" /></td>
+            <td colspan="4" style="background-color: white"><button id="calcPerRevenue">Розрахувати</button></td>
+        </tr>
+    </table>
+</body>
+</html>

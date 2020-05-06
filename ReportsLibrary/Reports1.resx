@@ -120,25 +120,11 @@
   <data name="textBox28.Value" xml:space="preserve">
     <value>30. Роялті до розподілу від  користувачів з "малих прав" за видами договорів(загальний)</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
-    <value>en-US</value>
-  </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
-  <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
-    <value>0.1cm</value>
-  </data>
-  <data name="$this.ShowSnapGrid" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="textBox33.Value" xml:space="preserve">
     <value>37.    Реєстр переданого до розподілу  роялті</value>
   </data>
   <data name="textBox5.Value" xml:space="preserve">
     <value>7.  Дохідність по об'єктам</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="textBox20.Value" xml:space="preserve">
     <value>22. Реєстр переданого до розподілу роялті від користувачів з "великих прав"</value>
@@ -183,4 +169,13 @@
   <data name="textBox6.Value" xml:space="preserve">
     <value>8. Користувачі</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+    <value>0.1cm</value>
+  </metadata>
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

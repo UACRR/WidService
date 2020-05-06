@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A0E04DB3-1548-4B95-9961-FDC026A6A6B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DdexInvoicing</RootNamespace>
+    <AssemblyName>DdexInvoicing</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DdexDownloadActions.cs" />
+    <Compile Include="DdexReportArchiver.cs" />
+    <Compile Include="FormAgreementParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgreementParams.Designer.cs">
+      <DependentUpon>FormAgreementParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormArchiver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArchiver.Designer.cs">
+      <DependentUpon>FormArchiver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCreateInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateInvoice.Designer.cs">
+      <DependentUpon>FormCreateInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDataLoadSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataLoadSettings.Designer.cs">
+      <DependentUpon>FormDataLoadSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDdexInvoicing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDdexInvoicing.Designer.cs">
+      <DependentUpon>FormDdexInvoicing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormExceptionSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExceptionSet.Designer.cs">
+      <DependentUpon>FormExceptionSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormExceptionSets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExceptionSets.Designer.cs">
+      <DependentUpon>FormExceptionSets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInvoiceDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInvoiceDetails.Designer.cs">
+      <DependentUpon>FormInvoiceDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLongOperation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLongOperation.Designer.cs">
+      <DependentUpon>FormLongOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DdexInvoicingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DdexInvoicingForm.Designer.cs">
+      <DependentUpon>DdexInvoicingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormObjectChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormObjectChooser.Designer.cs">
+      <DependentUpon>FormObjectChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRightHolderGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRightHolderGroup.Designer.cs">
+      <DependentUpon>FormRightHolderGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStatistics.Designer.cs">
+      <DependentUpon>FormStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UcCcidInvoices.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCcidInvoices.Designer.cs">
+      <DependentUpon>UcCcidInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcDdexLoad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcDdexLoad.Designer.cs">
+      <DependentUpon>UcDdexLoad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcDdexReports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcDdexReports.Designer.cs">
+      <DependentUpon>UcDdexReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcExceptionSets.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcExceptionSets.Designer.cs">
+      <DependentUpon>UcExceptionSets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcInvoiceStatistics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcInvoiceStatistics.Designer.cs">
+      <DependentUpon>UcInvoiceStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMwIdent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMwIdent.Designer.cs">
+      <DependentUpon>UcMwIdent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMwIdentHelpers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcReportInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcReportInfo.Designer.cs">
+      <DependentUpon>UcReportInfo.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormAgreementParams.resx">
+      <DependentUpon>FormAgreementParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormArchiver.resx">
+      <DependentUpon>FormArchiver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCreateInvoice.resx">
+      <DependentUpon>FormCreateInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDataLoadSettings.resx">
+      <DependentUpon>FormDataLoadSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDdexInvoicing.resx">
+      <DependentUpon>FormDdexInvoicing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExceptionSet.resx">
+      <DependentUpon>FormExceptionSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExceptionSets.resx">
+      <DependentUpon>FormExceptionSets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInvoiceDetails.resx">
+      <DependentUpon>FormInvoiceDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLongOperation.resx">
+      <DependentUpon>FormLongOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DdexInvoicingForm.resx">
+      <DependentUpon>DdexInvoicingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormObjectChooser.resx">
+      <DependentUpon>FormObjectChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRightHolderGroup.resx">
+      <DependentUpon>FormRightHolderGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStatistics.resx">
+      <DependentUpon>FormStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UcCcidInvoices.resx">
+      <DependentUpon>UcCcidInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcDdexLoad.resx">
+      <DependentUpon>UcDdexLoad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcDdexReports.resx">
+      <DependentUpon>UcDdexReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcExceptionSets.resx">
+      <DependentUpon>UcExceptionSets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcInvoiceStatistics.resx">
+      <DependentUpon>UcInvoiceStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMwIdent.resx">
+      <DependentUpon>UcMwIdent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcReportInfo.resx">
+      <DependentUpon>UcReportInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DdexInvoicingLib\DdexInvoicingLib.csproj">
+      <Project>{464e8e6f-aef0-4de4-8c72-b7eacc9f0a31}</Project>
+      <Name>DdexInvoicingLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CcidStat.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FullDatabase.sql" />
+    <Content Include="FullDdexDatabase.sql" />
+    <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
+    <Content Include="Migrations\01_SaveAggrParamsWithReport\Upgrade.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

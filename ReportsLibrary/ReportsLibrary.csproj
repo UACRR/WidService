@@ -199,6 +199,18 @@
     <Compile Include="R_5_19_2_SR.Designer.cs">
       <DependentUpon>R_5_19_2_SR.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_19_3_BRSH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_3_BRSH.Designer.cs">
+      <DependentUpon>R_5_19_3_BRSH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_19_3_SRSH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_3_SRSH.Designer.cs">
+      <DependentUpon>R_5_19_3_SRSH.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_20_1_BR.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -499,6 +511,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_19_2_SR.resx">
       <DependentUpon>R_5_19_2_SR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_3_BRSH.resx">
+      <DependentUpon>R_5_19_3_BRSH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_3_SRSH.resx">
+      <DependentUpon>R_5_19_3_SRSH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_20_1_BR.resx">
       <DependentUpon>R_5_20_1_BR.cs</DependentUpon>
