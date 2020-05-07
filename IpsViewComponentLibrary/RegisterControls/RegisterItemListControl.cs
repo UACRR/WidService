@@ -690,7 +690,8 @@ namespace IpsViewComponentLibrary.RegisterControls
             var isUnique = await service.CheckUniqueObject(selectedRegisterItem);
             if (!isUnique)
             {
-                string message = $"Можливий дубль об'єкта права! Об'єкт права з назвою «{selectedRegisterItem.ItemName}» наявний в системі!\nРекомендовано створити об'єкт права вручну та прив'язати або прив'язати існуючий.";
+                string message = $"Можливий дубль об'єкта права! Об'єкт права з назвою «{selectedRegisterItem.ItemName}» наявний в системі!" +
+                                 $"\nРекомендовано через пошук прив'язати наявний. Якщо це інший об'єкт з аналогічною назвою - зареєструйте його вручну в \"Реєстрі ОП\", а потім прив'яжіть в режимі ідентифікації.";
                 ShowMessage.ShowWarning(message);
                 return;
             }

@@ -442,13 +442,13 @@ namespace Launcher
             await Initialize();
 
             LauncherPermits.RightsAdmin = true;
-            //LauncherPermits.RoyaltyAdmin = true;
+            LauncherPermits.RoyaltyAdmin = true;
             LauncherPermits.SRightsWp = true;
             LauncherPermits.BRightsWp = true;
             LauncherPermits.Represent = true;
             LauncherPermits.Violation = true;
             LauncherPermits.Directory = true;
-            LauncherPermits.Permit = true;
+            //LauncherPermits.Permit = true;
             LauncherPermits.Processes = true;
             LauncherPermits.Analytics = true;
             LauncherPermits.OurProfile = true;

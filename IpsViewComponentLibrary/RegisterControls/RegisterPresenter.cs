@@ -166,7 +166,8 @@ namespace IpsViewComponentLibrary.RegisterControls
                 foreach (var item in notUniqueObjs)
                     list.Add($"«{item}»");
                 
-                message = $"Можливий дубль об'єкта(ів) права! Об'єкт(и) права з назвою:\n{string.Join(",\n", list)} наявний(і) в системі! \nРекомендовано створити об'єкт(и) права вручну та прив'язати або прив'язати існуючий(і).";
+                message = $"Можливий дубль об'єкта(ів) права! Об'єкт(и) права з назвою:\n{string.Join(",\n", list)} наявний(і) в системі! " +
+                          $"\nРекомендовано через пошук прив'язати наявний(і). Якщо це інший(і) об'єкт(и) з аналогічною назвою - зареєструйте його(їх) вручну в \"Реєстрі ОП\", а потім прив'яжіть в режимі ідентифікації.";
             }
 
             var removeObjList = registerItemList.Where(rec => notUniqueObjs.Contains(rec.ItemName)).ToList();
