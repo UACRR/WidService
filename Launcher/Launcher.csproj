@@ -235,6 +235,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LauncherWindow2.xaml.cs">
+      <DependentUpon>LauncherWindow2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkplaceModules\ClientsBRWorkplace\ClientsBRWorkplaceViewModel.cs" />
     <Compile Include="WorkplaceModules\ClientsBRWorkplace\ClientsBRWorkplaceWindow.xaml.cs">
       <DependentUpon>ClientsBRWorkplaceWindow.xaml</DependentUpon>
@@ -250,6 +253,9 @@
       <DependentUpon>CopyrightAdminWorkplaceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkplaceModules\CopyrightAdminWorkplace\LM_CopyrightAdminWorkplace.cs" />
+    <Compile Include="WorkplaceModules\FinishingWorksWorkplace\FinishingWorksWorkplaceWindow.xaml.cs">
+      <DependentUpon>FinishingWorksWorkplaceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkplaceModules\PartnerWorkplace\LM_PartnerWorkplace.cs" />
     <Compile Include="WorkplaceModules\PartnerWorkplace\PartnerWorkplaceViewModel.cs" />
     <Compile Include="WorkplaceModules\PartnerWorkplace\PartnerWorkplaceWindow.xaml.cs">
@@ -285,6 +291,10 @@
       <DependentUpon>LauncherWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="LauncherWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceDictionaries\TabControlResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -298,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WorkplaceModules\CopyrightAdminWorkplace\CopyrightAdminWorkplaceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkplaceModules\FinishingWorksWorkplace\FinishingWorksWorkplaceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
