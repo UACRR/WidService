@@ -218,7 +218,7 @@
                             </Border.InputBindings>
                             <Grid>
                                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="Разбор принятых '.dbf' по оплате роялти правообладателями"
+                                    <TextBlock Text="Разбор принятых '.dbf' по оплате роялти правообладателями (по этой кнопке  открыть грид hidden)"
                                        Style="{StaticResource textBlockButtons}"/>
                                 </StackPanel>
                             </Grid>
@@ -239,6 +239,82 @@
                             </Grid>
                         </Border>
                     </WrapPanel>
+                    <!--Разбор принятых '.dbf' по оплате роялти правообладателями-->
+                    <Grid Margin="20 0" Visibility="Hidden">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0 20 0 0">
+                            <TextBlock FontWeight="Bold" Text="Завантаження та обробка файлу .dbf "></TextBlock>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="0 10">
+                            <WrapPanel>
+                                <t:RadButton Margin="0 0 20 0"
+                                             Content="Виберіть файл" 
+                                             MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
+                                <TextBlock Text="файл не выбран" VerticalAlignment="Center"></TextBlock>
+                            </WrapPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Margin="0 10 0 10">
+                            <TextBlock FontWeight="Bold" Text="Розбір не прив'язаних платежів "></TextBlock>
+                        </Grid>
+
+
+                        <t:RadGridView Grid.Row="3"
+                               ColumnWidth="*"
+                               Margin="3">
+                            <t:RadGridView.Columns>
+                                <t:GridViewDataColumn Width="110" 
+                                              Header="Номер рахунку" 
+                                              />
+
+                                <t:GridViewDataColumn Width="100" 
+                                                        Header="МФО"/>
+
+                                <t:GridViewDataColumn Width="100" 
+                                              Header="ЄДРПОУ"
+                                              />
+                                <t:GridViewDataColumn  
+                                              Header="Назва користувача"
+                                              />
+
+
+                                <t:GridViewDataColumn Width="125" 
+                                              Header="Номер платежу" />
+
+                                <t:GridViewDataColumn Width="125" 
+                                              Header="Сума"
+                                              />
+                                <t:GridViewDataColumn 
+                                              Header="Призначення платежу" 
+                                              />
+
+                                <t:GridViewDataColumn Header="Дата платежу" 
+                                              Width="75"
+                                              />
+                                <t:GridViewColumn Width="25">
+                                    <t:GridViewColumn.Header>
+                                        <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                                    </t:GridViewColumn.Header>
+                                    <t:GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <t:RadButton Margin="0" Width="25" Height="20" 
+                                                 Command="{Binding DataContext.OpenPartnerCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                 CommandParameter="{Binding}">
+                                                <Image Source="../Resources/Icons/edit-icon.png"/>
+                                            </t:RadButton>
+                                        </DataTemplate>
+                                    </t:GridViewColumn.CellTemplate>
+                                </t:GridViewColumn>
+                            </t:RadGridView.Columns>
+                        </t:RadGridView>
+                    </Grid>
 
                     <!--Ручной ввод снятия роялти правообладателями-->
                     <Grid MaxWidth="500" Visibility="Hidden">
