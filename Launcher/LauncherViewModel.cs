@@ -17,6 +17,7 @@ using Launcher.Controls.LoginWindow;
 using Launcher.WorkplaceModules.ClientsBRWorkplace;
 using Launcher.WorkplaceModules.ClientsSRWorkplace;
 using Launcher.WorkplaceModules.CopyrightAdminWorkplace;
+using Launcher.WorkplaceModules.FinishingWorksWorkplace;
 using Launcher.WorkplaceModules.PartnerWorkplace;
 using Launcher.WorkplaceModules.ReportWorkplace;
 using SmRoPermitAdmin;
@@ -400,6 +401,8 @@ namespace Launcher
         {
             try
             {
+                var fw = new FinishingWorksWorkplaceWindow();
+                fw.Show();
                 // some code
             }
             catch (Exception e)
