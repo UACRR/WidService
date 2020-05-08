@@ -18,7 +18,22 @@ namespace ipsFormsDesign.Services
 {
     public class ObjectRightService
     {
-        private readonly ApiConnector _webApi = new ApiConnector();
+        private const string prefix = "objectright";
+        private readonly ApiConnector _webApi;
+        private static ObjectRightService _service;
+
+        private ObjectRightService()
+        {
+            _webApi = new ApiConnector();
+        }
+
+        public static ObjectRightService GetInstance()
+        {
+            if (_service == null)
+                _service = new ObjectRightService();
+
+            return _service;
+        }
 
         public ObjectRightDictionaries GetDictionary()
         {
@@ -174,6 +189,21 @@ namespace ipsFormsDesign.Services
             }
 
             return _webApi.UpdateItem("objectright/br/detail", objectRight.ObjId.ToString(), objectRight);
+        }
+
+        public async Task<bool> CheckUniqueObject(RegisterItemViewModel obj)
+        {
+            string url = $"{prefix}/CheckUniqueObject";
+            var result =  await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<bool>, string>(url, obj.ItemName);
+            return result.Data;
+        }
+
+        public async Task<List<string>> CheckUniqueObjectList(ICollection<RegisterItemViewModel> objects)
+        {
+            string url = $"{prefix}/CheckUniqueObjectList";
+            var items = objects.Select(rec => rec.ItemName).ToList();
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<List<string>>, List<string>>(url, items);
+            return result.Data;
         }
     }
 }

@@ -8,10 +8,13 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
+using System.DirectoryServices.Protocols;
 using System.Linq;
+using System.Windows;
 using ipsFormsDesign.Data;
 using IpsCommonTypes.Views;
 using IpsViewComponentLibrary.Extensions;
+using IPSViewComponentLibraryWPF.IPSExtensions;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -144,23 +147,53 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        public void CreateObjectsForSelected()
+        public async void CreateObjectsForSelected()
         {
-            var objectRightService = new ObjectRightService();
+            var service = ObjectRightService.GetInstance();
 
             var registerItemList = new List<RegisterItemViewModel>();
 
             registerItemList.AddRange(_view.SelectedRegisterItemsStage);
             registerItemList.AddRange(_view.SelectedRegisterItems);
 
+            string message = string.Empty;
+
+            var notUniqueObjs = await service.CheckUniqueObjectList(registerItemList);
+            if (notUniqueObjs.Any())
+            {
+                var list = new List<string>();
+                
+                foreach (var item in notUniqueObjs)
+                    list.Add($"«{item}»");
+                
+                message = $"Можливий дубль об'єкта(ів) права! Об'єкт(и) права з назвою:\n{string.Join(",\n", list)} наявний(і) в системі! " +
+                          $"\nРекомендовано через пошук прив'язати наявний(і). Якщо це інший(і) об'єкт(и) з аналогічною назвою - зареєструйте його(їх) вручну в \"Реєстрі ОП\", а потім прив'яжіть в режимі ідентифікації.";
+            }
+
+            var removeObjList = registerItemList.Where(rec => notUniqueObjs.Contains(rec.ItemName)).ToList();
+            
+            foreach (var item in removeObjList) 
+                registerItemList.Remove(item);
+
+            if (!registerItemList.Any())
+            {
+                ShowMessage.ShowWarning(message);
+                return;
+            }
+
+            message += "\n\nСтворити решту об'єктів права?";
+            var confirm = ShowMessage.ConfirmWarningAction(message);
+            if (confirm != MessageBoxResult.Yes)
+                return;
+
             var createdObjectCount = 0;
 
             foreach (var registerItem in registerItemList)
             {
-                var newObject = objectRightService.New(5);
+                var newObject = service.New(5);
                 newObject.SetDataFromRegisterItem(registerItem);
 
-                var result = objectRightService.Save(newObject);
+                var result = service.Save(newObject);
 
                 if (result)
                 {

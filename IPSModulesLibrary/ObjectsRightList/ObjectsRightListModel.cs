@@ -28,7 +28,7 @@ namespace IPSModulesLibrary.ObjectsRightList
         public float RateTotal { get; set; }
         public string Author { get; set; }
         public string Performer { get; set; }
-        public float Profit { get; set; }
+        public float Rest { get; set; }
 
         private int _categoryCode;
         public int CategoryCode

@@ -10,6 +10,8 @@
              Background="WhiteSmoke"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+
     <Control.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -207,42 +209,22 @@
             </TabItem>
 
             <TabItem Header="Получение средств праввообладателями">
-                <WrapPanel  ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
-                        </Border.InputBindings>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="Разбор принятых '.dbf' по оплате роялти правообладателями"
-                                       Style="{StaticResource textBlockButtons}"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
-                        </Border.InputBindings>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="Ручной ввод снятия роялти правообладателями"
-                                       Style="{StaticResource textBlockButtons}"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </WrapPanel>
-            </TabItem>
-
-            <TabItem Header="Исправления">
                 <Grid>
-                    <WrapPanel ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20" Visibility="Hidden">
+                    <WrapPanel  ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20" >
+                        <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                            </Border.Effect>
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
+                            </Border.InputBindings>
+                            <Grid>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="Разбор принятых '.dbf' по оплате роялти правообладателями (по этой кнопке  открыть грид hidden)"
+                                       Style="{StaticResource textBlockButtons}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
 
                         <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
                             <Border.Effect>
@@ -253,13 +235,166 @@
                             </Border.InputBindings>
                             <Grid>
                                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="Исправление ошибочно начисленных роялти "
+                                    <TextBlock Text="Ручной ввод снятия роялти правообладателями (по этой кнопке  открыть грид hidden)"
+                                       Style="{StaticResource textBlockButtons}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </WrapPanel>
+                    <!--Разбор принятых '.dbf' по оплате роялти правообладателями-->
+                    <Grid Margin="20 0" Visibility="Hidden">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0 20 0 0">
+                            <TextBlock FontWeight="Bold" Text="Завантаження та обробка файлу .dbf "></TextBlock>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="0 10">
+                            <WrapPanel>
+                                <t:RadButton Margin="0 0 20 0"
+                                             Content="Виберіть файл" 
+                                             MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
+                                <TextBlock Text="файл не выбран" VerticalAlignment="Center"></TextBlock>
+                            </WrapPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Margin="0 10 0 10">
+                            <TextBlock FontWeight="Bold" Text="Розбір не прив'язаних платежів "></TextBlock>
+                        </Grid>
+
+
+                        <t:RadGridView Grid.Row="3"
+                               ColumnWidth="*"
+                               Margin="3">
+                            <t:RadGridView.Columns>
+                                <t:GridViewDataColumn Width="110" 
+                                              Header="Номер рахунку" 
+                                              />
+
+                                <t:GridViewDataColumn Width="100" 
+                                                        Header="МФО"/>
+
+                                <t:GridViewDataColumn Width="100" 
+                                              Header="ЄДРПОУ"
+                                              />
+                                <t:GridViewDataColumn  
+                                              Header="Назва користувача"
+                                              />
+
+
+                                <t:GridViewDataColumn Width="125" 
+                                              Header="Номер платежу" />
+
+                                <t:GridViewDataColumn Width="125" 
+                                              Header="Сума"
+                                              />
+                                <t:GridViewDataColumn 
+                                              Header="Призначення платежу" 
+                                              />
+
+                                <t:GridViewDataColumn Header="Дата платежу" 
+                                              Width="75"
+                                              />
+                                <t:GridViewColumn Width="25">
+                                    <t:GridViewColumn.Header>
+                                        <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                                    </t:GridViewColumn.Header>
+                                    <t:GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <t:RadButton Margin="0" Width="25" Height="20" 
+                                                 Command="{Binding DataContext.OpenPartnerCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                 CommandParameter="{Binding}">
+                                                <Image Source="../Resources/Icons/edit-icon.png"/>
+                                            </t:RadButton>
+                                        </DataTemplate>
+                                    </t:GridViewColumn.CellTemplate>
+                                </t:GridViewColumn>
+                            </t:RadGridView.Columns>
+                        </t:RadGridView>
+                    </Grid>
+
+                    <!--Ручной ввод снятия роялти правообладателями-->
+                    <Grid MaxWidth="500" Visibility="Hidden">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0 20 0 10">
+                            <TextBlock TextAlignment="Center" FontWeight="Bold" Text="Ручной ввод снятия роялти правообладателями "></TextBlock>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="0 10">
+                            <WrapPanel>
+                                <TextBox Height="33.5" Margin="0 0 10 0" Width="380"></TextBox>
+                                <t:RadButton Margin="8 0 0 0"
+                                             Content="Пошук" 
+                                             MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
+                            </WrapPanel>
+                        </Grid>
+
+
+                        <t:RadGridView Grid.Row="2"
+                               ColumnWidth="*"
+                               Margin="0 5 0 10">
+                            <t:RadGridView.Columns>
+                                <t:GridViewDataColumn Width="75"
+                                                      Header="Код" />
+
+                                <t:GridViewDataColumn 
+                                                      Header="ФИО/название правообладателя"/>
+
+                                <t:GridViewDataColumn Width="120" 
+                                                      Header="Остаток на счете правообладателя"/>
+                                <t:GridViewDataColumn Width="120" 
+                                                      Header="Введите суму снятия">
+                                </t:GridViewDataColumn>
+                            </t:RadGridView.Columns>
+                        </t:RadGridView>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3" Margin="0 50 0 0">
+                            <t:RadButton HorizontalAlignment="Right"
+                                         Content="Выполнить" 
+                                         MinWidth="100" Padding="5,5,5,9" Margin="0 0 20 0" UseLayoutRounding="True"/>
+
+                            <t:RadButton HorizontalAlignment="Right"
+                                         Content="Отменить" 
+                                         MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Исправления">
+                <Grid>
+                    <WrapPanel ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20" >
+
+                        <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                            </Border.Effect>
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
+                            </Border.InputBindings>
+                            <Grid>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="Исправление ошибочно начисленных роялти (по этой кнопке  открыть грид hidden) "
                                            Style="{StaticResource textBlockButtons}"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
                     </WrapPanel>
-                    <Grid MaxWidth="500">
+
+                    <!--Исправление ошибочно начисленных роялти-->
+                    <Grid MaxWidth="500" Visibility="Hidden">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
@@ -300,16 +435,65 @@
                                     <TextBlock Margin="0 0 10 0" TextWrapping="Wrap" 
                                                MaxWidth="120" Text="Название Объекта"
                                                VerticalAlignment="Center"></TextBlock>
-                                    <TextBox Height="20" Margin="10 0 10 0" Width="100" IsReadOnly="True">Название</TextBox>
+                                    <TextBox Height="auto" Margin="10 0 10 0" TextWrapping="Wrap" VerticalAlignment="Center" Width="115" IsReadOnly="True">Название</TextBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="10 0 10 0" TextWrapping="Wrap" 
                                                MaxWidth="120" Text="Правообладатель"
                                                VerticalAlignment="Center"></TextBlock>
-                                    <TextBox Height="20" Margin="10 0 10 0" Width="100" IsReadOnly="True">Название</TextBox>
+                                    <TextBox Height="auto" Margin="10 0 10 0" Width="115" VerticalAlignment="Center" TextWrapping="Wrap" IsReadOnly="True">Длинное Название  12345</TextBox>
                                 </StackPanel>
                             </WrapPanel>
                         </Grid>
+
+                        <Grid Grid.Row="3" Margin="0 0 10 0">
+                            <TextBlock  TextWrapping="Wrap" 
+                                               Text="Укажите, по каким типам прав необходимо сделать исправления"
+                                               VerticalAlignment="Center"></TextBlock>
+                        </Grid>
+
+                        <t:RadGridView Grid.Row="4"
+                               x:Name="gridView"
+                               ColumnWidth="*"
+                               Margin="0 5 0 10">
+                            <t:RadGridView.Columns>
+                                <t:GridViewDataColumn  
+                                                      Header="Тип права" />
+
+                                <t:GridViewDataColumn Width="75"
+                                                      Header="%"/>
+
+                                <t:GridViewDataColumn Width="100" 
+                                                      Header="Определенная сумма"/>
+                                <t:GridViewDataColumn Width="100" 
+                                                      Header="Отменить">
+                                </t:GridViewDataColumn>
+                            </t:RadGridView.Columns>
+                        </t:RadGridView>
+
+                        <Grid Grid.Row="5" Margin="0 10">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="0 0 10 0"
+                                               Text="Введите код правильного правообладателя"
+                                               VerticalAlignment="Center"></TextBlock>
+                                    <TextBox Height="33.5" Margin="10 0 10 0" Width="100"></TextBox>
+                                </StackPanel>
+                                <t:RadButton Margin="8 0 0 0"
+                                             Content="Знайти" 
+                                             MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
+                            </WrapPanel>
+                        </Grid>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="6" Margin="0 50 0 0">
+                            <t:RadButton HorizontalAlignment="Right"
+                                         Content="Выполнить" 
+                                         MinWidth="100" Padding="5,5,5,9" Margin="0 0 20 0" UseLayoutRounding="True"/>
+
+                            <t:RadButton HorizontalAlignment="Right"
+                                         Content="Отменить" 
+                                         MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </TabItem>

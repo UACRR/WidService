@@ -123,7 +123,7 @@
                                                   Header="{Binding LOC.GV_UNDISTRIB_MONEY}" 
                                                   TextAlignment="Right" 
                                                   DataFormatString="{}{0:N2}"
-                                                  DataMemberBinding="{Binding Profit}"/>
+                                                  DataMemberBinding="{Binding Rest}"/>
 
                             <t:GridViewColumn Width="25">
                                 <t:GridViewColumn.Header>

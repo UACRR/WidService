@@ -1046,7 +1046,7 @@ namespace ipsFormsDesign.Services
             Table tableObjects = tables[1];
             int index = 1;
             ObjectRightService _objectRightService;
-            _objectRightService = new ObjectRightService();
+            _objectRightService = ObjectRightService.GetInstance();
             foreach (var item in objectRightList)
             {
                 var newRow = tableObjects.Rows.Add();

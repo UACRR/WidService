@@ -88,5 +88,15 @@ namespace IPSViewComponentLibraryWPF.IPSExtensions
         {
             return MessageBox.Show(message, ConfirmTitle, MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
         }
+
+        /// <summary>
+        /// Show Confirmation MessageBox and return choosed result as MessageBoxResult.Yes or MessageBoxResult.No
+        /// </summary>
+        /// <param name="message">Confirmation question"</param>
+        /// <returns>MessageBoxResult.Yes | MessageBoxResult.No</returns>
+        public static MessageBoxResult ConfirmWarningAction(string message)
+        {
+            return MessageBox.Show(message, ConfirmTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes);
+        }
     }
 }

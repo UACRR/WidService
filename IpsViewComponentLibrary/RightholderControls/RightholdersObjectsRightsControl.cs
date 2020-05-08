@@ -210,7 +210,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         /// </summary>
         private async void UpdateList()
         {
-            var service = new ObjectRightService();
+            var service = ObjectRightService.GetInstance();
 
             var custId = ctrlRightholderSelector.Rightholder?.CustId;
             var custIdSecondary = ctrlRightholderSelectorSecondary.Rightholder?.CustId;

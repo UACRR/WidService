@@ -199,6 +199,12 @@
     <Compile Include="FinishingWorks\FinishingWorksControl.xaml.cs">
       <DependentUpon>FinishingWorksControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportDBF\ImportDBFControl.xaml.cs">
+      <DependentUpon>ImportDBFControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDBF\PaymentsAttachWindow.xaml.cs">
+      <DependentUpon>PaymentsAttachWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObjectsRightList\LM_ObjectsRightList.cs" />
     <Compile Include="ObjectsRightList\ObjectsRightListModel.cs" />
     <Compile Include="ObjectsRightList\ObjectsRightListControl.xaml.cs">
@@ -275,6 +281,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FinishingWorks\FinishingWorksControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportDBF\ImportDBFControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportDBF\PaymentsAttachWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _view = view;
             _view.Presenter = this;
 
-            _objectRightService = new ObjectRightService();
+            _objectRightService = ObjectRightService.GetInstance();
             _dialogService = new DialogService();
         }
 

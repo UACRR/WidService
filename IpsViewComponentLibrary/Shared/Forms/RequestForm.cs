@@ -31,7 +31,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private const string CloseButtonText = "Закрити";
 
-        private readonly ObjectRightService _objectRightService = new ObjectRightService();
+        private readonly ObjectRightService _objectRightService = ObjectRightService.GetInstance();
         private readonly DialogService _dialogService = new DialogService();
         private readonly BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
         private readonly AnketaDictionaties _dictionaties;
