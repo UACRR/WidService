@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn27 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelFilter = new System.Windows.Forms.TableLayoutPanel();
             this.radComboFilterSpecial = new Telerik.WinControls.UI.RadDropDownList();
@@ -485,88 +485,88 @@
             this.radGridSales.MasterTemplate.AllowAddNewRow = false;
             this.radGridSales.MasterTemplate.AllowColumnReorder = false;
             this.radGridSales.MasterTemplate.AllowSearchRow = true;
-            gridViewTextBoxColumn15.AllowResize = false;
-            gridViewTextBoxColumn15.FieldName = "Id";
-            gridViewTextBoxColumn15.HeaderText = "Id";
-            gridViewTextBoxColumn15.Name = "Id";
-            gridViewTextBoxColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            gridViewTextBoxColumn15.Width = 100;
-            gridViewTextBoxColumn16.EnableExpressionEditor = false;
-            gridViewTextBoxColumn16.FieldName = "ResourceTitle";
-            gridViewTextBoxColumn16.HeaderText = "Назва запису";
-            gridViewTextBoxColumn16.Multiline = true;
-            gridViewTextBoxColumn16.Name = "ResourceTitle";
-            gridViewTextBoxColumn16.Width = 250;
-            gridViewTextBoxColumn16.WrapText = true;
-            gridViewTextBoxColumn17.EnableExpressionEditor = false;
-            gridViewTextBoxColumn17.FieldName = "Title";
-            gridViewTextBoxColumn17.HeaderText = "Назва твору";
-            gridViewTextBoxColumn17.Multiline = true;
-            gridViewTextBoxColumn17.Name = "Title";
-            gridViewTextBoxColumn17.Width = 250;
-            gridViewTextBoxColumn17.WrapText = true;
-            gridViewTextBoxColumn18.EnableExpressionEditor = false;
-            gridViewTextBoxColumn18.FieldName = "ComposerAuthor";
-            gridViewTextBoxColumn18.HeaderText = "Автор(и)";
-            gridViewTextBoxColumn18.Multiline = true;
-            gridViewTextBoxColumn18.Name = "ComposerAuthor";
-            gridViewTextBoxColumn18.Width = 250;
-            gridViewTextBoxColumn18.WrapText = true;
-            gridViewTextBoxColumn19.EnableExpressionEditor = false;
-            gridViewTextBoxColumn19.FieldName = "DisplayArtistName";
-            gridViewTextBoxColumn19.HeaderText = "Виконавець";
-            gridViewTextBoxColumn19.Multiline = true;
-            gridViewTextBoxColumn19.Name = "DisplayArtistName";
-            gridViewTextBoxColumn19.Width = 200;
-            gridViewTextBoxColumn19.WrapText = true;
-            gridViewTextBoxColumn20.FieldName = "ISWC";
-            gridViewTextBoxColumn20.HeaderText = "ISWC";
-            gridViewTextBoxColumn20.Name = "ISWC";
-            gridViewTextBoxColumn20.Width = 80;
-            gridViewTextBoxColumn21.AllowResize = false;
-            gridViewTextBoxColumn21.EnableExpressionEditor = false;
-            gridViewTextBoxColumn21.FieldName = "netrevenue";
-            gridViewTextBoxColumn21.FormatString = "{0:### ### ### ##0.00}";
-            gridViewTextBoxColumn21.HeaderText = "Прибуток";
-            gridViewTextBoxColumn21.Name = "netrevenue";
-            gridViewTextBoxColumn21.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn21.Width = 100;
-            gridViewTextBoxColumn21.WrapText = true;
-            gridViewTextBoxColumn22.AllowResize = false;
-            gridViewTextBoxColumn22.EnableExpressionEditor = false;
-            gridViewTextBoxColumn22.FieldName = "Status";
-            gridViewTextBoxColumn22.HeaderText = "Статус";
-            gridViewTextBoxColumn22.Name = "Status";
-            gridViewTextBoxColumn22.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn22.Width = 45;
-            gridViewTextBoxColumn22.WrapText = true;
-            gridViewTextBoxColumn23.AllowResize = false;
-            gridViewTextBoxColumn23.EnableExpressionEditor = false;
-            gridViewTextBoxColumn23.FieldName = "Wic";
-            gridViewTextBoxColumn23.HeaderText = "Wic";
-            gridViewTextBoxColumn23.Name = "Wic";
-            gridViewTextBoxColumn23.Width = 70;
-            gridViewTextBoxColumn23.WrapText = true;
-            gridViewComboBoxColumn2.AllowResize = false;
-            gridViewComboBoxColumn2.EnableExpressionEditor = false;
-            gridViewComboBoxColumn2.FieldName = "ObjId";
-            gridViewComboBoxColumn2.HeaderText = "ObjId";
-            gridViewComboBoxColumn2.Name = "ObjId";
-            gridViewComboBoxColumn2.WrapText = true;
+            gridViewTextBoxColumn1.AllowResize = false;
+            gridViewTextBoxColumn1.FieldName = "Id";
+            gridViewTextBoxColumn1.HeaderText = "Id";
+            gridViewTextBoxColumn1.Name = "Id";
+            gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            gridViewTextBoxColumn1.Width = 100;
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
+            gridViewTextBoxColumn2.FieldName = "ResourceTitle";
+            gridViewTextBoxColumn2.HeaderText = "Назва запису";
+            gridViewTextBoxColumn2.Multiline = true;
+            gridViewTextBoxColumn2.Name = "ResourceTitle";
+            gridViewTextBoxColumn2.Width = 250;
+            gridViewTextBoxColumn2.WrapText = true;
+            gridViewTextBoxColumn3.EnableExpressionEditor = false;
+            gridViewTextBoxColumn3.FieldName = "Title";
+            gridViewTextBoxColumn3.HeaderText = "Назва твору";
+            gridViewTextBoxColumn3.Multiline = true;
+            gridViewTextBoxColumn3.Name = "Title";
+            gridViewTextBoxColumn3.Width = 250;
+            gridViewTextBoxColumn3.WrapText = true;
+            gridViewTextBoxColumn4.EnableExpressionEditor = false;
+            gridViewTextBoxColumn4.FieldName = "ComposerAuthor";
+            gridViewTextBoxColumn4.HeaderText = "Автор(и)";
+            gridViewTextBoxColumn4.Multiline = true;
+            gridViewTextBoxColumn4.Name = "ComposerAuthor";
+            gridViewTextBoxColumn4.Width = 250;
+            gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.EnableExpressionEditor = false;
+            gridViewTextBoxColumn5.FieldName = "DisplayArtistName";
+            gridViewTextBoxColumn5.HeaderText = "Виконавець";
+            gridViewTextBoxColumn5.Multiline = true;
+            gridViewTextBoxColumn5.Name = "DisplayArtistName";
+            gridViewTextBoxColumn5.Width = 200;
+            gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.FieldName = "ISWC";
+            gridViewTextBoxColumn6.HeaderText = "ISWC";
+            gridViewTextBoxColumn6.Name = "ISWC";
+            gridViewTextBoxColumn6.Width = 80;
+            gridViewTextBoxColumn7.AllowResize = false;
+            gridViewTextBoxColumn7.EnableExpressionEditor = false;
+            gridViewTextBoxColumn7.FieldName = "netrevenue";
+            gridViewTextBoxColumn7.FormatString = "{0:### ### ### ##0.00}";
+            gridViewTextBoxColumn7.HeaderText = "Прибуток";
+            gridViewTextBoxColumn7.Name = "netrevenue";
+            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn7.Width = 100;
+            gridViewTextBoxColumn7.WrapText = true;
+            gridViewTextBoxColumn8.AllowResize = false;
+            gridViewTextBoxColumn8.EnableExpressionEditor = false;
+            gridViewTextBoxColumn8.FieldName = "Status";
+            gridViewTextBoxColumn8.HeaderText = "Статус";
+            gridViewTextBoxColumn8.Name = "Status";
+            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn8.Width = 45;
+            gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.AllowResize = false;
+            gridViewTextBoxColumn9.EnableExpressionEditor = false;
+            gridViewTextBoxColumn9.FieldName = "Wic";
+            gridViewTextBoxColumn9.HeaderText = "Wic";
+            gridViewTextBoxColumn9.Name = "Wic";
+            gridViewTextBoxColumn9.Width = 70;
+            gridViewTextBoxColumn9.WrapText = true;
+            gridViewComboBoxColumn1.AllowResize = false;
+            gridViewComboBoxColumn1.EnableExpressionEditor = false;
+            gridViewComboBoxColumn1.FieldName = "ObjId";
+            gridViewComboBoxColumn1.HeaderText = "ObjId";
+            gridViewComboBoxColumn1.Name = "ObjId";
+            gridViewComboBoxColumn1.WrapText = true;
             this.radGridSales.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18,
-            gridViewTextBoxColumn19,
-            gridViewTextBoxColumn20,
-            gridViewTextBoxColumn21,
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewComboBoxColumn2});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewComboBoxColumn1});
             this.radGridSales.MasterTemplate.MultiSelect = true;
-            this.radGridSales.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridSales.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridSales.Name = "radGridSales";
             this.radGridSales.ReadOnly = true;
             this.radGridSales.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -622,44 +622,44 @@
             this.radGridWid.MasterTemplate.AllowDeleteRow = false;
             this.radGridWid.MasterTemplate.AllowEditRow = false;
             this.radGridWid.MasterTemplate.AllowSearchRow = true;
-            gridViewTextBoxColumn24.FieldName = "Wic";
-            gridViewTextBoxColumn24.HeaderText = "Wic";
-            gridViewTextBoxColumn24.Name = "Wic";
-            gridViewTextBoxColumn24.Width = 100;
-            gridViewTextBoxColumn25.FieldName = "ObjId";
-            gridViewTextBoxColumn25.HeaderText = "ObjId";
-            gridViewTextBoxColumn25.Name = "ObjId";
-            gridViewTextBoxColumn25.Width = 100;
-            gridViewTextBoxColumn26.FieldName = "name";
-            gridViewTextBoxColumn26.HeaderText = "Назва твору";
-            gridViewTextBoxColumn26.Name = "mwTitle";
-            gridViewTextBoxColumn26.Width = 250;
-            gridViewTextBoxColumn27.AutoEllipsis = false;
-            gridViewTextBoxColumn27.FieldName = "authors";
-            gridViewTextBoxColumn27.HeaderText = "Автор(и)";
-            gridViewTextBoxColumn27.Multiline = true;
-            gridViewTextBoxColumn27.Name = "ComposerAuthor";
-            gridViewTextBoxColumn27.Width = 250;
-            gridViewTextBoxColumn27.WrapText = true;
-            gridViewTextBoxColumn28.FieldName = "performers";
-            gridViewTextBoxColumn28.HeaderText = "Виконавець";
-            gridViewTextBoxColumn28.Multiline = true;
-            gridViewTextBoxColumn28.Name = "DisplayArtistName";
-            gridViewTextBoxColumn28.Width = 250;
-            gridViewTextBoxColumn28.WrapText = true;
-            gridViewCommandColumn2.DefaultText = "12345";
-            gridViewCommandColumn2.FieldName = "action";
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Name = "action";
-            gridViewCommandColumn2.Width = 80;
+            gridViewTextBoxColumn10.FieldName = "Wic";
+            gridViewTextBoxColumn10.HeaderText = "Wic";
+            gridViewTextBoxColumn10.Name = "Wic";
+            gridViewTextBoxColumn10.Width = 100;
+            gridViewTextBoxColumn11.FieldName = "ObjId";
+            gridViewTextBoxColumn11.HeaderText = "ObjId";
+            gridViewTextBoxColumn11.Name = "ObjId";
+            gridViewTextBoxColumn11.Width = 100;
+            gridViewTextBoxColumn12.FieldName = "name";
+            gridViewTextBoxColumn12.HeaderText = "Назва твору";
+            gridViewTextBoxColumn12.Name = "mwTitle";
+            gridViewTextBoxColumn12.Width = 250;
+            gridViewTextBoxColumn13.AutoEllipsis = false;
+            gridViewTextBoxColumn13.FieldName = "authors";
+            gridViewTextBoxColumn13.HeaderText = "Автор(и)";
+            gridViewTextBoxColumn13.Multiline = true;
+            gridViewTextBoxColumn13.Name = "ComposerAuthor";
+            gridViewTextBoxColumn13.Width = 250;
+            gridViewTextBoxColumn13.WrapText = true;
+            gridViewTextBoxColumn14.FieldName = "performers";
+            gridViewTextBoxColumn14.HeaderText = "Виконавець";
+            gridViewTextBoxColumn14.Multiline = true;
+            gridViewTextBoxColumn14.Name = "DisplayArtistName";
+            gridViewTextBoxColumn14.Width = 250;
+            gridViewTextBoxColumn14.WrapText = true;
+            gridViewCommandColumn1.DefaultText = "12345";
+            gridViewCommandColumn1.FieldName = "action";
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Name = "action";
+            gridViewCommandColumn1.Width = 80;
             this.radGridWid.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn24,
-            gridViewTextBoxColumn25,
-            gridViewTextBoxColumn26,
-            gridViewTextBoxColumn27,
-            gridViewTextBoxColumn28,
-            gridViewCommandColumn2});
-            this.radGridWid.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewCommandColumn1});
+            this.radGridWid.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridWid.Name = "radGridWid";
             this.radGridWid.ReadOnly = true;
             this.radGridWid.ShowGroupPanel = false;
@@ -739,8 +739,8 @@
             // 
             // UcMwIdent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.panelMain);
             this.Name = "UcMwIdent";
             this.Size = new System.Drawing.Size(1431, 648);

@@ -172,7 +172,7 @@
             this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(218, 18);
+            this.radLabel1.Size = new System.Drawing.Size(948, 23);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Перелік наяних конфігурацій виключень";
             // 
@@ -188,8 +188,8 @@
             // 
             // UcExceptionSets
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.panelMain);
             this.Name = "UcExceptionSets";
             this.Size = new System.Drawing.Size(1160, 566);

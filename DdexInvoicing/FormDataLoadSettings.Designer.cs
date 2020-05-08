@@ -34,6 +34,7 @@
             this.radBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radComboRange = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radComboStatus = new Telerik.WinControls.UI.RadDropDownList();
@@ -41,13 +42,13 @@
             this.radComboSortCol = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radComboSortOrder = new Telerik.WinControls.UI.RadDropDownList();
-            this.radComboRange = new Telerik.WinControls.UI.RadDropDownList();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radComboRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboStatus)).BeginInit();
@@ -55,7 +56,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radComboSortCol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboSortOrder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radComboRange)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -132,6 +132,14 @@
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Завантажити твори з діапазону";
             // 
+            // radComboRange
+            // 
+            this.radComboRange.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.radComboRange.Location = new System.Drawing.Point(178, 3);
+            this.radComboRange.Name = "radComboRange";
+            this.radComboRange.Size = new System.Drawing.Size(244, 20);
+            this.radComboRange.TabIndex = 8;
+            // 
             // radLabel2
             // 
             this.flowLayoutPanel1.SetFlowBreak(this.radLabel2, true);
@@ -190,18 +198,10 @@
             this.radComboSortOrder.Size = new System.Drawing.Size(118, 20);
             this.radComboSortOrder.TabIndex = 6;
             // 
-            // radComboRange
-            // 
-            this.radComboRange.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.radComboRange.Location = new System.Drawing.Point(178, 3);
-            this.radComboRange.Name = "radComboRange";
-            this.radComboRange.Size = new System.Drawing.Size(244, 20);
-            this.radComboRange.TabIndex = 8;
-            // 
             // FormDataLoadSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(456, 136);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
@@ -218,6 +218,7 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radComboRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboStatus)).EndInit();
@@ -225,7 +226,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radComboSortCol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radComboSortOrder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radComboRange)).EndInit();
             this.ResumeLayout(false);
 
         }

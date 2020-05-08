@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn11 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn12 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn13 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn14 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn15 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.panelTop = new System.Windows.Forms.TableLayoutPanel();
@@ -230,82 +230,82 @@
             this.radGridInvoices.MasterTemplate.AllowEditRow = false;
             this.radGridInvoices.MasterTemplate.AllowRowHeaderContextMenu = false;
             this.radGridInvoices.MasterTemplate.AllowRowResize = false;
-            gridViewTextBoxColumn13.FieldName = "createdDate";
-            gridViewTextBoxColumn13.HeaderText = "Рахунок";
-            gridViewTextBoxColumn13.Name = "createdDate";
-            gridViewTextBoxColumn13.Width = 30;
-            gridViewTextBoxColumn14.FieldName = "fileId";
-            gridViewTextBoxColumn14.HeaderText = "Код файлу";
-            gridViewTextBoxColumn14.Multiline = true;
-            gridViewTextBoxColumn14.Name = "fileId";
-            gridViewTextBoxColumn14.Width = 40;
-            gridViewTextBoxColumn14.WrapText = true;
-            gridViewTextBoxColumn15.FieldName = "fileType";
-            gridViewTextBoxColumn15.HeaderText = "Тип файлу";
-            gridViewTextBoxColumn15.Name = "fileType";
-            gridViewTextBoxColumn15.Width = 70;
-            gridViewTextBoxColumn15.WrapText = true;
-            gridViewTextBoxColumn16.FieldName = "fileStatus";
-            gridViewTextBoxColumn16.HeaderText = "Статус";
-            gridViewTextBoxColumn16.Name = "fileStatus";
-            gridViewTextBoxColumn16.Width = 140;
-            gridViewTextBoxColumn16.WrapText = true;
-            gridViewTextBoxColumn17.FieldName = "name";
-            gridViewTextBoxColumn17.HeaderText = "Ім\'я файлу";
-            gridViewTextBoxColumn17.Name = "name";
-            gridViewTextBoxColumn17.Width = 500;
-            gridViewTextBoxColumn17.WrapText = true;
-            gridViewTextBoxColumn18.FieldName = "folder";
-            gridViewTextBoxColumn18.HeaderText = "Розташування файлу";
-            gridViewTextBoxColumn18.Name = "folder";
-            gridViewTextBoxColumn18.Width = 130;
-            gridViewTextBoxColumn18.WrapText = true;
-            gridViewCommandColumn11.FieldName = "ShowDetails";
-            gridViewCommandColumn11.HeaderText = "";
-            gridViewCommandColumn11.Name = "ShowDetails";
-            gridViewCommandColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn11.Width = 70;
-            gridViewCommandColumn11.WrapText = true;
-            gridViewCommandColumn12.FieldName = "Update";
-            gridViewCommandColumn12.HeaderText = "";
-            gridViewCommandColumn12.Name = "Update";
-            gridViewCommandColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn12.Width = 70;
-            gridViewCommandColumn12.WrapText = true;
-            gridViewCommandColumn13.FieldName = "Save";
-            gridViewCommandColumn13.HeaderText = "";
-            gridViewCommandColumn13.Name = "Save";
-            gridViewCommandColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn13.Width = 80;
-            gridViewCommandColumn13.WrapText = true;
-            gridViewCommandColumn14.FieldName = "Send";
-            gridViewCommandColumn14.HeaderText = "";
-            gridViewCommandColumn14.Name = "Send";
-            gridViewCommandColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn14.Width = 70;
-            gridViewCommandColumn14.WrapText = true;
-            gridViewCommandColumn15.FieldName = "GetReply";
-            gridViewCommandColumn15.HeaderText = "";
-            gridViewCommandColumn15.Name = "GetReply";
-            gridViewCommandColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn15.Width = 130;
-            gridViewCommandColumn15.WrapText = true;
+            gridViewTextBoxColumn1.FieldName = "createdDate";
+            gridViewTextBoxColumn1.HeaderText = "Рахунок";
+            gridViewTextBoxColumn1.Name = "createdDate";
+            gridViewTextBoxColumn1.Width = 30;
+            gridViewTextBoxColumn2.FieldName = "fileId";
+            gridViewTextBoxColumn2.HeaderText = "Код файлу";
+            gridViewTextBoxColumn2.Multiline = true;
+            gridViewTextBoxColumn2.Name = "fileId";
+            gridViewTextBoxColumn2.Width = 40;
+            gridViewTextBoxColumn2.WrapText = true;
+            gridViewTextBoxColumn3.FieldName = "fileType";
+            gridViewTextBoxColumn3.HeaderText = "Тип файлу";
+            gridViewTextBoxColumn3.Name = "fileType";
+            gridViewTextBoxColumn3.Width = 70;
+            gridViewTextBoxColumn3.WrapText = true;
+            gridViewTextBoxColumn4.FieldName = "fileStatus";
+            gridViewTextBoxColumn4.HeaderText = "Статус";
+            gridViewTextBoxColumn4.Name = "fileStatus";
+            gridViewTextBoxColumn4.Width = 140;
+            gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.FieldName = "name";
+            gridViewTextBoxColumn5.HeaderText = "Ім\'я файлу";
+            gridViewTextBoxColumn5.Name = "name";
+            gridViewTextBoxColumn5.Width = 500;
+            gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.FieldName = "folder";
+            gridViewTextBoxColumn6.HeaderText = "Розташування файлу";
+            gridViewTextBoxColumn6.Name = "folder";
+            gridViewTextBoxColumn6.Width = 130;
+            gridViewTextBoxColumn6.WrapText = true;
+            gridViewCommandColumn1.FieldName = "ShowDetails";
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Name = "ShowDetails";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.Width = 70;
+            gridViewCommandColumn1.WrapText = true;
+            gridViewCommandColumn2.FieldName = "Update";
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Name = "Update";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.Width = 70;
+            gridViewCommandColumn2.WrapText = true;
+            gridViewCommandColumn3.FieldName = "Save";
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Name = "Save";
+            gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn3.Width = 80;
+            gridViewCommandColumn3.WrapText = true;
+            gridViewCommandColumn4.FieldName = "Send";
+            gridViewCommandColumn4.HeaderText = "";
+            gridViewCommandColumn4.Name = "Send";
+            gridViewCommandColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn4.Width = 70;
+            gridViewCommandColumn4.WrapText = true;
+            gridViewCommandColumn5.FieldName = "GetReply";
+            gridViewCommandColumn5.HeaderText = "";
+            gridViewCommandColumn5.Name = "GetReply";
+            gridViewCommandColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn5.Width = 130;
+            gridViewCommandColumn5.WrapText = true;
             this.radGridInvoices.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18,
-            gridViewCommandColumn11,
-            gridViewCommandColumn12,
-            gridViewCommandColumn13,
-            gridViewCommandColumn14,
-            gridViewCommandColumn15});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewCommandColumn1,
+            gridViewCommandColumn2,
+            gridViewCommandColumn3,
+            gridViewCommandColumn4,
+            gridViewCommandColumn5});
             this.radGridInvoices.MasterTemplate.EnableSorting = false;
             this.radGridInvoices.MasterTemplate.ShowFilteringRow = false;
             this.radGridInvoices.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridInvoices.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridInvoices.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridInvoices.Name = "radGridInvoices";
             this.radGridInvoices.ShowCellErrors = false;
             this.radGridInvoices.ShowGroupPanel = false;
@@ -842,8 +842,8 @@
             // 
             // UcCcidInvoices
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.panelMain);
             this.Name = "UcCcidInvoices";
             this.Size = new System.Drawing.Size(1066, 377);

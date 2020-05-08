@@ -156,7 +156,7 @@
             this.radPageViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageViewMain.Location = new System.Drawing.Point(3, 37);
             this.radPageViewMain.Name = "radPageViewMain";
-            this.radPageViewMain.SelectedPage = this.radPvPageExc2;
+            this.radPageViewMain.SelectedPage = this.radPvPageExc1;
             this.radPageViewMain.Size = new System.Drawing.Size(1305, 557);
             this.radPageViewMain.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageViewMain.GetChildAt(0))).ShowItemPinButton = false;
@@ -432,7 +432,6 @@
             // radPvRh1
             // 
             this.radPvRh1.Controls.Add(this.tlpExc3_1);
-            this.radPvRh1.ItemSize = new System.Drawing.SizeF(137F, 28F);
             this.radPvRh1.Location = new System.Drawing.Point(10, 37);
             this.radPvRh1.Name = "radPvRh1";
             this.radPvRh1.Size = new System.Drawing.Size(731, 413);
@@ -538,7 +537,6 @@
             // radPvRh2
             // 
             this.radPvRh2.Controls.Add(this.tableLayoutPanel11);
-            this.radPvRh2.ItemSize = new System.Drawing.SizeF(104F, 28F);
             this.radPvRh2.Location = new System.Drawing.Point(10, 37);
             this.radPvRh2.Name = "radPvRh2";
             this.radPvRh2.Size = new System.Drawing.Size(731, 413);
@@ -741,8 +739,8 @@
             // 
             // FormExceptionSet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1311, 633);
             this.Controls.Add(this.panelMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

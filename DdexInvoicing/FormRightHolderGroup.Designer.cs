@@ -132,8 +132,8 @@
             // FormRightHolderGroup
             // 
             this.AcceptButton = this.radBtnAdd;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.radBtnCancel;
             this.ClientSize = new System.Drawing.Size(377, 80);
             this.ControlBox = false;

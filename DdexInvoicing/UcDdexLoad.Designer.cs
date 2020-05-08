@@ -40,11 +40,11 @@
             this.radBtnLoadReport = new Telerik.WinControls.UI.RadButton();
             this.radLvActions = new Telerik.WinControls.UI.RadListView();
             this.ilMain = new System.Windows.Forms.ImageList(this.components);
-            this.bw = new System.ComponentModel.BackgroundWorker();
             this.panelThreshold = new System.Windows.Forms.FlowLayoutPanel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radTbThreshold = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.bw = new System.ComponentModel.BackgroundWorker();
             this.panelLoadReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.panelActions.SuspendLayout();
@@ -160,14 +160,6 @@
             this.ilMain.Images.SetKeyName(2, "iconfinder_Error_132716.png");
             this.ilMain.Images.SetKeyName(3, "iconfinder_History_132755.png");
             // 
-            // bw
-            // 
-            this.bw.WorkerReportsProgress = true;
-            this.bw.WorkerSupportsCancellation = true;
-            this.bw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bw_DoWork);
-            this.bw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bw_ProgressChanged);
-            this.bw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bw_RunWorkerCompleted);
-            // 
             // panelThreshold
             // 
             this.panelThreshold.Controls.Add(this.radLabel3);
@@ -203,10 +195,18 @@
             this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = " USD";
             // 
+            // bw
+            // 
+            this.bw.WorkerReportsProgress = true;
+            this.bw.WorkerSupportsCancellation = true;
+            this.bw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bw_DoWork);
+            this.bw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bw_ProgressChanged);
+            this.bw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bw_RunWorkerCompleted);
+            // 
             // UcDdexLoad
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.panelLoadReport);
             this.Name = "UcDdexLoad";
             this.Size = new System.Drawing.Size(1309, 630);
