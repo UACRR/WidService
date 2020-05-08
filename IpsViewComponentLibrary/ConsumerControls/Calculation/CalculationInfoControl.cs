@@ -129,7 +129,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
         private bool ValidPeriodForPay( PaidPeriod period )
         {
             // Прийом звітів
-            if (period.Status == 1) return false;
+            if (period.Status == 1) 
+                return false;
             // Беремо тільки Погоджені РЛ
             var rrl = period.RegisterRatedList.Where(rec => rec.Status == 1).ToList();
             // Сумуємо кількість звітів, які можно оплачувати
@@ -530,5 +531,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
         public decimal Arrears { get; set; }
         public bool AutoSet { get; set; }
         public decimal? MaxSum { get; set; }
+        public int SchemaType { get; set; }
     }
 }

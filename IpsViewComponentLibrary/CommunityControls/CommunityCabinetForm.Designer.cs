@@ -158,7 +158,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewMain.Location = new System.Drawing.Point(0, 0);
             this.pageViewMain.Name = "pageViewMain";
-            this.pageViewMain.SelectedPage = this.pvAgrData;
+            this.pageViewMain.SelectedPage = this.pvAutorsData;
             this.pageViewMain.Size = new System.Drawing.Size(976, 536);
             this.pageViewMain.TabIndex = 0;
             this.pageViewMain.ThemeName = "Office2013Light";

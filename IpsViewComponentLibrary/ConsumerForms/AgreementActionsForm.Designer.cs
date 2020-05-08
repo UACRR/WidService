@@ -31,9 +31,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlAgreementWithPlaces = new AgreementWithPlacesControl();
+            this.ctrlAgreementWithPlaces = new IpsViewComponentLibrary.ConsumerControls.AgreementWithPlacesControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlSaveCancelButtons = new SaveCancelButtonsControl();
+            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,22 +51,24 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // ctrlSaveCancelButtons
             // 
+            this.ctrlSaveCancelButtons.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
             this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 484);
             this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
             this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
+            this.ctrlSaveCancelButtons.SaveButtonEnabled = true;
             this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(871, 31);
             this.ctrlSaveCancelButtons.TabIndex = 1;
             // 
-            // ProlongationAgreementForm
+            // AgreementActionsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(871, 515);
             this.Controls.Add(this.ctrlAgreementWithPlaces);
             this.Controls.Add(this.ctrlSaveCancelButtons);
-            this.Name = "ProlongationAgreementForm";
+            this.Name = "AgreementActionsForm";
             // 
             // 
             // 

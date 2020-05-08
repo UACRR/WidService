@@ -40,10 +40,10 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.bsDictPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.checkForever = new Telerik.WinControls.UI.RadCheckBox();
             this.lblContrDo = new Telerik.WinControls.UI.RadLabel();
-            this.dtDateEnd = new Common.Editors.IpsDateTimePicker();
+            this.dtDateEnd = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
-            this.dtDateBegin = new Common.Editors.IpsDateTimePicker();
-            this.dtAgrDate = new Common.Editors.IpsDateTimePicker();
+            this.dtDateBegin = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
+            this.dtAgrDate = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
             this.groupBox = new System.Windows.Forms.GroupBox();
@@ -110,7 +110,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // txtAgrNumber
             // 
-            this.txtAgrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "AgrNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null));
+            this.txtAgrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "AgrNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtAgrNumber.Location = new System.Drawing.Point(86, 2);
             this.txtAgrNumber.Name = "txtAgrNumber";
             this.txtAgrNumber.NullText = "Номер договору";
@@ -133,7 +133,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // txtDayForPay
             // 
-            this.txtDayForPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "DayForPay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null));
+            this.txtDayForPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "DayForPay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtDayForPay.Location = new System.Drawing.Point(167, 19);
             this.txtDayForPay.Name = "txtDayForPay";
             this.txtDayForPay.Size = new System.Drawing.Size(48, 21);
@@ -189,7 +189,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // dtDateEnd
             // 
-            this.dtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null));
+            this.dtDateEnd.BorderVisible = true;
+            this.dtDateEnd.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateEnd.Location = new System.Drawing.Point(273, 27);
             this.dtDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -213,7 +215,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // dtDateBegin
             // 
-            this.dtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null));
+            this.dtDateBegin.BorderVisible = true;
+            this.dtDateBegin.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateBegin.Location = new System.Drawing.Point(118, 27);
             this.dtDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -226,11 +230,14 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.dtDateBegin.ThemeName = "Office2013Light";
             this.dtDateBegin.Value = new System.DateTime(((long)(0)));
             this.dtDateBegin.Leave += new System.EventHandler(this.dtDateBegin_Leave);
+            ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.dtDateBegin.GetChildAt(0))).CalendarSize = new System.Drawing.Size(220, 180);
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.dtDateBegin.GetChildAt(0))).Text = "";
             // 
             // dtAgrDate
             // 
-            this.dtAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "AgrDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null));
+            this.dtAgrDate.BorderVisible = true;
+            this.dtAgrDate.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "AgrDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtAgrDate.Location = new System.Drawing.Point(273, 2);
             this.dtAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -287,13 +294,13 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtRateCourt);
             this.groupBox3.Controls.Add(this.radLabel3);
             this.groupBox3.Controls.Add(this.radLabel5);
             this.groupBox3.Controls.Add(this.txtRateCommis);
             this.groupBox3.Controls.Add(this.radLabel6);
             this.groupBox3.Controls.Add(this.radLabel7);
             this.groupBox3.Controls.Add(this.radLabel13);
-            this.groupBox3.Controls.Add(this.txtRateCourt);
             this.groupBox3.Controls.Add(this.radLabel12);
             this.groupBox3.Location = new System.Drawing.Point(3, 145);
             this.groupBox3.Name = "groupBox3";
@@ -325,7 +332,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             this.txtRateCommis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtRateCommis.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCommiss", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
-            this.txtRateCommis.Location = new System.Drawing.Point(285, 73);
+            this.txtRateCommis.Location = new System.Drawing.Point(284, 35);
             this.txtRateCommis.Name = "txtRateCommis";
             this.txtRateCommis.Size = new System.Drawing.Size(54, 21);
             this.txtRateCommis.TabIndex = 2;
@@ -367,7 +374,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             this.txtRateCourt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCourt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
-            this.txtRateCourt.Location = new System.Drawing.Point(284, 32);
+            this.txtRateCourt.Location = new System.Drawing.Point(284, 76);
             this.txtRateCourt.Name = "txtRateCourt";
             this.txtRateCourt.Size = new System.Drawing.Size(54, 21);
             this.txtRateCourt.TabIndex = 1;
