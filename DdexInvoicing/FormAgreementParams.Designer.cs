@@ -100,7 +100,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.46854F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.53146F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
@@ -115,7 +115,7 @@
             this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(436, 19);
+            this.radLabel1.Size = new System.Drawing.Size(435, 19);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Дані для розрахунку суми до виплати";
             // 
@@ -124,7 +124,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.54546F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.45455F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.radBtnAddYear, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,7 +147,7 @@
             // radBtnAddYear
             // 
             this.radBtnAddYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnAddYear.Location = new System.Drawing.Point(787, 3);
+            this.radBtnAddYear.Location = new System.Drawing.Point(785, 3);
             this.radBtnAddYear.Name = "radBtnAddYear";
             this.radBtnAddYear.Size = new System.Drawing.Size(85, 23);
             this.radBtnAddYear.TabIndex = 1;
@@ -331,8 +331,8 @@
             // 
             // FormAgreementParams
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(908, 559);
             this.ControlBox = false;
             this.Controls.Add(this.panelMain);

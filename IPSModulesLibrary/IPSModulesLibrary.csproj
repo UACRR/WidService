@@ -199,6 +199,8 @@
     <Compile Include="FinishingWorks\FinishingWorksControl.xaml.cs">
       <DependentUpon>FinishingWorksControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FinishingWorks\FinishingWorksViewModel.cs" />
+    <Compile Include="FinishingWorks\LM_FinishingWorks.cs" />
     <Compile Include="ImportDBF\ImportDBFControl.xaml.cs">
       <DependentUpon>ImportDBFControl.xaml</DependentUpon>
     </Compile>

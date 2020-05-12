@@ -28,40 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radBtnClose = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.radBtnRefresh = new Telerik.WinControls.UI.RadButton();
-            this.radBtnShow = new Telerik.WinControls.UI.RadButton();
-            this.radComboDate = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radGridProcessingProgress = new Telerik.WinControls.UI.RadGridView();
             this.radGridProcessingProgressByBlocks = new Telerik.WinControls.UI.RadGridView();
+            this.radGridProcessingProgress = new Telerik.WinControls.UI.RadGridView();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radComboDate = new Telerik.WinControls.UI.RadDropDownList();
+            this.radBtnShow = new Telerik.WinControls.UI.RadButton();
+            this.radBtnRefresh = new Telerik.WinControls.UI.RadButton();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnClose)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnRefresh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnShow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radComboDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgress.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgressByBlocks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgressByBlocks.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgress.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radComboDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnShow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnRefresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,75 +98,60 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1251, 554);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // radLabel5
+            // radGridProcessingProgressByBlocks
             // 
-            this.radLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel5.Location = new System.Drawing.Point(3, 38);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(101, 18);
-            this.radLabel5.TabIndex = 12;
-            this.radLabel5.Text = "Для звіту загалом";
+            this.radGridProcessingProgressByBlocks.AllowDrop = true;
+            this.radGridProcessingProgressByBlocks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridProcessingProgressByBlocks.EnableTheming = false;
+            this.radGridProcessingProgressByBlocks.Location = new System.Drawing.Point(3, 316);
             // 
-            // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.radLabel4);
-            this.flowLayoutPanel2.Controls.Add(this.radComboDate);
-            this.flowLayoutPanel2.Controls.Add(this.radBtnShow);
-            this.flowLayoutPanel2.Controls.Add(this.radBtnRefresh);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1245, 29);
-            this.flowLayoutPanel2.TabIndex = 10;
             // 
-            // radBtnRefresh
-            // 
-            this.radBtnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radBtnRefresh.Location = new System.Drawing.Point(380, 3);
-            this.radBtnRefresh.Name = "radBtnRefresh";
-            this.radBtnRefresh.Size = new System.Drawing.Size(214, 24);
-            this.radBtnRefresh.TabIndex = 1;
-            this.radBtnRefresh.Text = "Додати/оновити стан на сьогодні";
-            this.radBtnRefresh.Click += new System.EventHandler(this.radBtnRefresh_Click);
-            // 
-            // radBtnShow
-            // 
-            this.radBtnShow.Location = new System.Drawing.Point(264, 3);
-            this.radBtnShow.Name = "radBtnShow";
-            this.radBtnShow.Size = new System.Drawing.Size(110, 24);
-            this.radBtnShow.TabIndex = 2;
-            this.radBtnShow.Text = "Показати";
-            this.radBtnShow.Click += new System.EventHandler(this.radBtnShow_Click);
-            // 
-            // radComboDate
-            // 
-            this.radComboDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.radComboDate.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.radComboDate.Location = new System.Drawing.Point(110, 5);
-            this.radComboDate.Name = "radComboDate";
-            this.radComboDate.Size = new System.Drawing.Size(148, 20);
-            this.radComboDate.TabIndex = 1;
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel4.Location = new System.Drawing.Point(3, 3);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(101, 18);
-            this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "За станом на дату";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(3, 291);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(114, 18);
-            this.radLabel3.TabIndex = 7;
-            this.radLabel3.Text = "Для окремих блоків";
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowAddNewRow = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowCellContextMenu = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowColumnChooser = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowColumnHeaderContextMenu = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowColumnReorder = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowColumnResize = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowDeleteRow = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowEditRow = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowRowHeaderContextMenu = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowRowResize = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.AutoGenerateColumns = false;
+            gridViewTextBoxColumn1.FieldName = "block";
+            gridViewTextBoxColumn1.HeaderText = "Блок";
+            gridViewTextBoxColumn1.Name = "block";
+            gridViewTextBoxColumn1.Width = 120;
+            gridViewTextBoxColumn2.FieldName = "Name";
+            gridViewTextBoxColumn2.HeaderText = "Показник";
+            gridViewTextBoxColumn2.Name = "Name";
+            gridViewTextBoxColumn2.Width = 350;
+            gridViewTextBoxColumn3.FieldName = "Count";
+            gridViewTextBoxColumn3.HeaderText = "Кількість";
+            gridViewTextBoxColumn3.Name = "Count";
+            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn3.Width = 80;
+            gridViewTextBoxColumn4.FieldName = "NetRevenue";
+            gridViewTextBoxColumn4.HeaderText = "Прибуток";
+            gridViewTextBoxColumn4.Name = "NetRevenue";
+            gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn4.Width = 150;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
+            this.radGridProcessingProgressByBlocks.MasterTemplate.EnableSorting = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.ShowFilteringRow = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.ShowRowHeaderColumn = false;
+            this.radGridProcessingProgressByBlocks.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridProcessingProgressByBlocks.Name = "radGridProcessingProgressByBlocks";
+            this.radGridProcessingProgressByBlocks.ShowCellErrors = false;
+            this.radGridProcessingProgressByBlocks.ShowGroupPanel = false;
+            this.radGridProcessingProgressByBlocks.ShowGroupPanelScrollbars = false;
+            this.radGridProcessingProgressByBlocks.ShowRowErrors = false;
+            this.radGridProcessingProgressByBlocks.Size = new System.Drawing.Size(1245, 226);
+            this.radGridProcessingProgressByBlocks.TabIndex = 11;
             // 
             // radGridProcessingProgress
             // 
@@ -189,28 +174,28 @@
             this.radGridProcessingProgress.MasterTemplate.AllowRowHeaderContextMenu = false;
             this.radGridProcessingProgress.MasterTemplate.AllowRowResize = false;
             this.radGridProcessingProgress.MasterTemplate.AutoGenerateColumns = false;
-            gridViewTextBoxColumn12.FieldName = "Name";
-            gridViewTextBoxColumn12.HeaderText = "Показник";
-            gridViewTextBoxColumn12.Name = "Name";
-            gridViewTextBoxColumn12.Width = 350;
-            gridViewTextBoxColumn13.FieldName = "Count";
-            gridViewTextBoxColumn13.HeaderText = "Кількість";
-            gridViewTextBoxColumn13.Name = "Count";
-            gridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn13.Width = 80;
-            gridViewTextBoxColumn14.FieldName = "NetRevenue";
-            gridViewTextBoxColumn14.HeaderText = "Прибуток";
-            gridViewTextBoxColumn14.Name = "NetRevenue";
-            gridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn14.Width = 150;
+            gridViewTextBoxColumn5.FieldName = "Name";
+            gridViewTextBoxColumn5.HeaderText = "Показник";
+            gridViewTextBoxColumn5.Name = "Name";
+            gridViewTextBoxColumn5.Width = 350;
+            gridViewTextBoxColumn6.FieldName = "Count";
+            gridViewTextBoxColumn6.HeaderText = "Кількість";
+            gridViewTextBoxColumn6.Name = "Count";
+            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn6.Width = 80;
+            gridViewTextBoxColumn7.FieldName = "NetRevenue";
+            gridViewTextBoxColumn7.HeaderText = "Прибуток";
+            gridViewTextBoxColumn7.Name = "NetRevenue";
+            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn7.Width = 150;
             this.radGridProcessingProgress.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7});
             this.radGridProcessingProgress.MasterTemplate.EnableSorting = false;
             this.radGridProcessingProgress.MasterTemplate.ShowFilteringRow = false;
             this.radGridProcessingProgress.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridProcessingProgress.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.radGridProcessingProgress.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridProcessingProgress.Name = "radGridProcessingProgress";
             this.radGridProcessingProgress.ShowCellErrors = false;
             this.radGridProcessingProgress.ShowGroupPanel = false;
@@ -219,60 +204,75 @@
             this.radGridProcessingProgress.Size = new System.Drawing.Size(1245, 224);
             this.radGridProcessingProgress.TabIndex = 5;
             // 
-            // radGridProcessingProgressByBlocks
+            // radLabel3
             // 
-            this.radGridProcessingProgressByBlocks.AllowDrop = true;
-            this.radGridProcessingProgressByBlocks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridProcessingProgressByBlocks.EnableTheming = false;
-            this.radGridProcessingProgressByBlocks.Location = new System.Drawing.Point(3, 316);
+            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel3.Location = new System.Drawing.Point(3, 291);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(1245, 19);
+            this.radLabel3.TabIndex = 7;
+            this.radLabel3.Text = "Для окремих блоків";
             // 
+            // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.Controls.Add(this.radLabel4);
+            this.flowLayoutPanel2.Controls.Add(this.radComboDate);
+            this.flowLayoutPanel2.Controls.Add(this.radBtnShow);
+            this.flowLayoutPanel2.Controls.Add(this.radBtnRefresh);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1245, 29);
+            this.flowLayoutPanel2.TabIndex = 10;
             // 
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowAddNewRow = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowCellContextMenu = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowColumnChooser = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowColumnHeaderContextMenu = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowColumnReorder = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowColumnResize = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowDeleteRow = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowEditRow = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowRowHeaderContextMenu = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AllowRowResize = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.AutoGenerateColumns = false;
-            gridViewTextBoxColumn8.FieldName = "block";
-            gridViewTextBoxColumn8.HeaderText = "Блок";
-            gridViewTextBoxColumn8.Name = "block";
-            gridViewTextBoxColumn8.Width = 120;
-            gridViewTextBoxColumn9.FieldName = "Name";
-            gridViewTextBoxColumn9.HeaderText = "Показник";
-            gridViewTextBoxColumn9.Name = "Name";
-            gridViewTextBoxColumn9.Width = 350;
-            gridViewTextBoxColumn10.FieldName = "Count";
-            gridViewTextBoxColumn10.HeaderText = "Кількість";
-            gridViewTextBoxColumn10.Name = "Count";
-            gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn10.Width = 80;
-            gridViewTextBoxColumn11.FieldName = "NetRevenue";
-            gridViewTextBoxColumn11.HeaderText = "Прибуток";
-            gridViewTextBoxColumn11.Name = "NetRevenue";
-            gridViewTextBoxColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn11.Width = 150;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11});
-            this.radGridProcessingProgressByBlocks.MasterTemplate.EnableSorting = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.ShowFilteringRow = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridProcessingProgressByBlocks.MasterTemplate.ViewDefinition = tableViewDefinition3;
-            this.radGridProcessingProgressByBlocks.Name = "radGridProcessingProgressByBlocks";
-            this.radGridProcessingProgressByBlocks.ShowCellErrors = false;
-            this.radGridProcessingProgressByBlocks.ShowGroupPanel = false;
-            this.radGridProcessingProgressByBlocks.ShowGroupPanelScrollbars = false;
-            this.radGridProcessingProgressByBlocks.ShowRowErrors = false;
-            this.radGridProcessingProgressByBlocks.Size = new System.Drawing.Size(1245, 226);
-            this.radGridProcessingProgressByBlocks.TabIndex = 11;
+            // radLabel4
+            // 
+            this.radLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel4.Location = new System.Drawing.Point(3, 3);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(101, 24);
+            this.radLabel4.TabIndex = 0;
+            this.radLabel4.Text = "За станом на дату";
+            // 
+            // radComboDate
+            // 
+            this.radComboDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.radComboDate.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.radComboDate.Location = new System.Drawing.Point(110, 5);
+            this.radComboDate.Name = "radComboDate";
+            this.radComboDate.Size = new System.Drawing.Size(148, 20);
+            this.radComboDate.TabIndex = 1;
+            // 
+            // radBtnShow
+            // 
+            this.radBtnShow.Location = new System.Drawing.Point(264, 3);
+            this.radBtnShow.Name = "radBtnShow";
+            this.radBtnShow.Size = new System.Drawing.Size(110, 24);
+            this.radBtnShow.TabIndex = 2;
+            this.radBtnShow.Text = "Показати";
+            this.radBtnShow.Click += new System.EventHandler(this.radBtnShow_Click);
+            // 
+            // radBtnRefresh
+            // 
+            this.radBtnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radBtnRefresh.Location = new System.Drawing.Point(380, 3);
+            this.radBtnRefresh.Name = "radBtnRefresh";
+            this.radBtnRefresh.Size = new System.Drawing.Size(214, 24);
+            this.radBtnRefresh.TabIndex = 1;
+            this.radBtnRefresh.Text = "Додати/оновити стан на сьогодні";
+            this.radBtnRefresh.Click += new System.EventHandler(this.radBtnRefresh_Click);
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel5.Location = new System.Drawing.Point(3, 38);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(1245, 17);
+            this.radLabel5.TabIndex = 12;
+            this.radLabel5.Text = "Для звіту загалом";
             // 
             // tableLayoutPanel2
             // 
@@ -291,8 +291,8 @@
             // 
             // FormStatistics
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1257, 596);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel2);
@@ -302,18 +302,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.radBtnClose)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnRefresh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnShow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radComboDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgress.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgressByBlocks.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgressByBlocks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgress.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridProcessingProgress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radComboDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnShow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnRefresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 

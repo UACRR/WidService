@@ -53,8 +53,8 @@
             this.radBtnLoad = new Telerik.WinControls.UI.RadButton();
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucInvoiceStatistics = new DdexInvoicing.UcInvoiceStatistics();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddleLeft)).BeginInit();
             this.panelMiddleLeft.Panel1.SuspendLayout();
@@ -354,6 +354,14 @@
             this.radPageViewPage1.Size = new System.Drawing.Size(737, 378);
             this.radPageViewPage1.Text = "Статистика";
             // 
+            // ucInvoiceStatistics
+            // 
+            this.ucInvoiceStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInvoiceStatistics.Location = new System.Drawing.Point(0, 0);
+            this.ucInvoiceStatistics.Name = "ucInvoiceStatistics";
+            this.ucInvoiceStatistics.Size = new System.Drawing.Size(737, 378);
+            this.ucInvoiceStatistics.TabIndex = 0;
+            // 
             // radPageViewPage2
             // 
             this.radPageViewPage2.Controls.Add(this.panelMain);
@@ -363,18 +371,10 @@
             this.radPageViewPage2.Size = new System.Drawing.Size(737, 378);
             this.radPageViewPage2.Text = "Подробиці";
             // 
-            // ucInvoiceStatistics
-            // 
-            this.ucInvoiceStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInvoiceStatistics.Location = new System.Drawing.Point(0, 0);
-            this.ucInvoiceStatistics.Name = "ucInvoiceStatistics";
-            this.ucInvoiceStatistics.Size = new System.Drawing.Size(737, 378);
-            this.ucInvoiceStatistics.TabIndex = 0;
-            // 
             // FormInvoiceDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(758, 426);
             this.Controls.Add(this.radPageView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

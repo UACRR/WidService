@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Операція");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn5 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Параметри");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn6 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "Стан виконання");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Операція");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Параметри");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "Стан виконання");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormArchiver));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -117,16 +117,16 @@
             this.radLvOperations.AllowColumnReorder = false;
             this.radLvOperations.AllowEdit = false;
             this.radLvOperations.AllowRemove = false;
-            listViewDetailColumn4.HeaderText = "Операція";
-            listViewDetailColumn4.Width = 230F;
-            listViewDetailColumn5.HeaderText = "Параметри";
-            listViewDetailColumn5.Width = 400F;
-            listViewDetailColumn6.HeaderText = "Стан виконання";
-            listViewDetailColumn6.Width = 100F;
+            listViewDetailColumn1.HeaderText = "Операція";
+            listViewDetailColumn1.Width = 230F;
+            listViewDetailColumn2.HeaderText = "Параметри";
+            listViewDetailColumn2.Width = 400F;
+            listViewDetailColumn3.HeaderText = "Стан виконання";
+            listViewDetailColumn3.Width = 100F;
             this.radLvOperations.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn4,
-            listViewDetailColumn5,
-            listViewDetailColumn6});
+            listViewDetailColumn1,
+            listViewDetailColumn2,
+            listViewDetailColumn3});
             this.radLvOperations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLvOperations.ImageList = this.ilMain;
             this.radLvOperations.ItemSpacing = -1;
@@ -158,8 +158,8 @@
             // 
             // FormArchiver
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(919, 507);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

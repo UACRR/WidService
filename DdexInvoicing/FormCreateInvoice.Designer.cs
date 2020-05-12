@@ -33,18 +33,18 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreateInvoice));
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabelPrompt = new Telerik.WinControls.UI.RadLabel();
-            this.radGridParams = new Telerik.WinControls.UI.RadGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.radBtnOk = new Telerik.WinControls.UI.RadButton();
             this.radBtnCancel = new Telerik.WinControls.UI.RadButton();
+            this.radGridParams = new Telerik.WinControls.UI.RadGridView();
+            this.radLabelPrompt = new Telerik.WinControls.UI.RadLabel();
             this.panelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelPrompt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridParams)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridParams.MasterTemplate)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridParams)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridParams.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelPrompt)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -65,15 +65,41 @@
             this.panelMain.Size = new System.Drawing.Size(827, 425);
             this.panelMain.TabIndex = 0;
             // 
-            // radLabelPrompt
+            // tableLayoutPanel3
             // 
-            this.radLabelPrompt.AutoSize = false;
-            this.radLabelPrompt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabelPrompt.Location = new System.Drawing.Point(3, 3);
-            this.radLabelPrompt.Name = "radLabelPrompt";
-            this.radLabelPrompt.Size = new System.Drawing.Size(821, 48);
-            this.radLabelPrompt.TabIndex = 0;
-            this.radLabelPrompt.Text = "radLabel1";
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
+            this.tableLayoutPanel3.Controls.Add(this.radBtnOk, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.radBtnCancel, 2, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 375);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(821, 38);
+            this.tableLayoutPanel3.TabIndex = 5;
+            // 
+            // radBtnOk
+            // 
+            this.radBtnOk.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radBtnOk.Location = new System.Drawing.Point(616, 3);
+            this.radBtnOk.Name = "radBtnOk";
+            this.radBtnOk.Size = new System.Drawing.Size(113, 32);
+            this.radBtnOk.TabIndex = 0;
+            this.radBtnOk.Text = "Створити рахунок";
+            this.radBtnOk.Click += new System.EventHandler(this.radBtnOk_Click);
+            // 
+            // radBtnCancel
+            // 
+            this.radBtnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radBtnCancel.Location = new System.Drawing.Point(735, 3);
+            this.radBtnCancel.Name = "radBtnCancel";
+            this.radBtnCancel.Size = new System.Drawing.Size(83, 32);
+            this.radBtnCancel.TabIndex = 0;
+            this.radBtnCancel.Text = "Відмінити";
+            this.radBtnCancel.Click += new System.EventHandler(this.radBtnCancel_Click);
             // 
             // radGridParams
             // 
@@ -118,46 +144,20 @@
             this.radGridParams.Size = new System.Drawing.Size(821, 312);
             this.radGridParams.TabIndex = 4;
             // 
-            // tableLayoutPanel3
+            // radLabelPrompt
             // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
-            this.tableLayoutPanel3.Controls.Add(this.radBtnOk, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.radBtnCancel, 2, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 375);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(821, 38);
-            this.tableLayoutPanel3.TabIndex = 5;
-            // 
-            // radBtnOk
-            // 
-            this.radBtnOk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnOk.Location = new System.Drawing.Point(616, 3);
-            this.radBtnOk.Name = "radBtnOk";
-            this.radBtnOk.Size = new System.Drawing.Size(113, 32);
-            this.radBtnOk.TabIndex = 0;
-            this.radBtnOk.Text = "Створити рахунок";
-            this.radBtnOk.Click += new System.EventHandler(this.radBtnOk_Click);
-            // 
-            // radBtnCancel
-            // 
-            this.radBtnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnCancel.Location = new System.Drawing.Point(735, 3);
-            this.radBtnCancel.Name = "radBtnCancel";
-            this.radBtnCancel.Size = new System.Drawing.Size(83, 32);
-            this.radBtnCancel.TabIndex = 0;
-            this.radBtnCancel.Text = "Відмінити";
-            this.radBtnCancel.Click += new System.EventHandler(this.radBtnCancel_Click);
+            this.radLabelPrompt.AutoSize = false;
+            this.radLabelPrompt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabelPrompt.Location = new System.Drawing.Point(3, 3);
+            this.radLabelPrompt.Name = "radLabelPrompt";
+            this.radLabelPrompt.Size = new System.Drawing.Size(821, 48);
+            this.radLabelPrompt.TabIndex = 0;
+            this.radLabelPrompt.Text = "radLabel1";
             // 
             // FormCreateInvoice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(827, 425);
             this.Controls.Add(this.panelMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -165,12 +165,12 @@
             this.Text = "Параметри розрахунку суми до виплати";
             this.Load += new System.EventHandler(this.FormCreateInvoice_Load);
             this.panelMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelPrompt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridParams.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridParams)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radBtnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridParams.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridParams)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelPrompt)).EndInit();
             this.ResumeLayout(false);
 
         }
