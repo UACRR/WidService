@@ -117,6 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
+    <value>select  clCustid, 
+ROW_NUMBER() OVER(partition by clname ORDER BY clName,Itemname,cRName )
+rownum,clName, ItemName, cRName, commRate, cmCustIdName, amount
+ from ft_Tsk_5_23_BR (@dateBegin, @dateEnd )
+ order by clName,Itemname,cRName</value>
+  </data>
   <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
