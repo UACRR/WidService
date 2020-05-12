@@ -59,7 +59,7 @@
                                    Header="* Генеральні договори">
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
                                        Name="StatusMasterActive"
-                                       Header="Активвні" />
+                                       Header="Активні" />
                         <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
                                        Name="NotAccepted"
                                        Header="На акцепті" />

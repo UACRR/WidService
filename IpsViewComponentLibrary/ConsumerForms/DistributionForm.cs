@@ -50,7 +50,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                     DistAmount = 0,
                     Status = rec.Status,
                     AutoSet = period != null && period.PeriodId == rec.PeriodId,
-                    SchemaType = agrLicenseType.SchemaId.Value,
+                    SchemaType = agrLicenseType.SchemaId,
                     MaxSum = GetMaxSumForPeriod(rec)
                 }).ToList();
 
@@ -127,13 +127,14 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 MessageBox.Show($"Сума періоду повина бути не більша за {period.MaxSum}", "ПОМИЛКА ВИЗНАЧЕННЯ СУМИ ПЕРІОДУ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 period.DistAmount = period.MaxSum ?? 0;
             }
-            
-            if (new int[] {2, 3}.Contains(period.SchemaType))
+
+            // SchemaType для договірів з театрами(великі права) null 
+            if (new int?[] {null, 2, 3}.Contains(period.SchemaType))
             {
                 bool isValid = period.DistAmount + period.AmountBound <= period.Amount;
                 if (!isValid)
                 {
-                    MessageBox.Show($"Сума «вказаної суми» та «раніше прив'язаної суми» перевищують вимогу періода {period.Amount:N2}", "ПОМИЛКА ВИЗНАЧЕННЯ СУМИ ПЕРІОДУ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Сума значень «сума прив'язки» та «привязано» перевищують вимогу періода {period.Amount:N2}", "ПОМИЛКА ВИЗНАЧЕННЯ СУМИ ПЕРІОДУ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     period.DistAmount = period.Amount - period.AmountBound;
                 }
             }

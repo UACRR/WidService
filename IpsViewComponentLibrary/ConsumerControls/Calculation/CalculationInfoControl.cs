@@ -531,6 +531,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
         public decimal Arrears { get; set; }
         public bool AutoSet { get; set; }
         public decimal? MaxSum { get; set; }
-        public int SchemaType { get; set; }
+        public int? SchemaType { get; set; }
     }
 }
