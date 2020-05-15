@@ -64,7 +64,7 @@
     <Compile Include="ReportB.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportB.Designer.cs">
+    <Compile Include="ReportB.designer.cs">
       <DependentUpon>ReportB.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports1.cs">
@@ -114,6 +114,12 @@
     </Compile>
     <Compile Include="ReportS.Designer.cs">
       <DependentUpon>ReportS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportіС.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportіС.Designer.cs">
+      <DependentUpon>ReportіС.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_14_RegisterSR.cs">
       <SubType>Component</SubType>
@@ -463,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports1.ru-RU.resx">
       <DependentUpon>Reports1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportіС.resx">
+      <DependentUpon>ReportіС.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_14_RegisterSR.resx">
       <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
