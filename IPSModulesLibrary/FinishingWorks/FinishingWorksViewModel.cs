@@ -14,6 +14,7 @@ namespace IPSModulesLibrary.FinishingWorks
     public class FinishingWorksViewModel : IPSViewModel<LM_FinishingWorks>
     {
         private DispatcherTimer _timer;
+        private DispatcherTimer _rollbackTimer;
 
         #region * * * BEHAVIORS PROPERTIES * * *
 
@@ -66,6 +67,62 @@ namespace IPSModulesLibrary.FinishingWorks
             }
         }
 
+        private bool _isEnabledStopDistributionPanel;
+        public bool IsEnabledStopDistributionPanel
+        {
+            get => _isEnabledStopDistributionPanel;
+            set
+            {
+                _isEnabledStopDistributionPanel = value;
+                OnPropertyChanged(() => IsEnabledStopDistributionPanel);
+            }
+        }
+
+        private bool _isEnabledRunDistributionPanel;
+        public bool IsEnabledRunDistributionPanel
+        {
+            get => _isEnabledRunDistributionPanel;
+            set
+            {
+                _isEnabledRunDistributionPanel = value;
+                OnPropertyChanged(() => IsEnabledRunDistributionPanel);
+            }
+        }
+
+        private bool _isEnabledFinalEnrollment;
+        public bool IsEnabledFinalEnrollment
+        {
+            get => _isEnabledFinalEnrollment;
+            set
+            {
+                _isEnabledFinalEnrollment = value;
+                OnPropertyChanged(() => IsEnabledFinalEnrollment);
+            }
+        }
+
+        private Visibility _rollbackButtonVisibility = Visibility.Visible;
+        public Visibility RollbackButtonVisibility
+        {
+            get => _rollbackButtonVisibility;
+            set
+            {
+                _rollbackButtonVisibility = value;
+                OnPropertyChanged(() => RollbackButtonVisibility);
+            }
+        }
+
+        private string _defaultRrollbackContent = "Откат: осталось";
+        private string _rollbackContent = "Откат: осталось";
+        public string RollbackContent
+        {
+            get => _rollbackContent;
+            set
+            {
+                _rollbackContent = value;
+                OnPropertyChanged(() => RollbackContent);
+            }
+        }
+
         #endregion
 
 
@@ -101,6 +158,7 @@ namespace IPSModulesLibrary.FinishingWorks
             }
         }
 
+        public TimeSpan TimeRemaining { get; set; } = new TimeSpan(0,5, 17);
 
         #endregion
 
@@ -112,6 +170,25 @@ namespace IPSModulesLibrary.FinishingWorks
             return new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0);
         }
 
+        private void CreateRollbackTimer()
+        {
+            _rollbackTimer = new DispatcherTimer(new TimeSpan(0,0,1), DispatcherPriority.Normal,
+                delegate
+                {
+                    RollbackContent = $"{_defaultRrollbackContent} {TimeRemaining.Hours:00}:{TimeRemaining.Minutes:00}:{TimeRemaining.Seconds:00}";
+                    TimeRemaining = TimeRemaining.Subtract(TimeSpan.FromSeconds(1));
+
+                    if (RollbackButtonVisibility == Visibility.Hidden)
+                        RollbackButtonVisibility = Visibility.Visible;
+
+                    if (TimeRemaining <= TimeSpan.Zero)
+                    {
+                        RollbackButtonVisibility = Visibility.Hidden;
+                        _rollbackTimer.Stop();
+                    }
+                },Dispatcher.CurrentDispatcher);
+        }
+
         #endregion
 
         #region * * * COMMANDS * * *
@@ -119,6 +196,13 @@ namespace IPSModulesLibrary.FinishingWorks
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
         private void LoadCommandExecute(object o)
         {
+            CreateRollbackTimer();
+
+            IsEnabledStopDistributionPanel = true;
+            IsEnabledRunDistributionPanel = false;
+
+            RollbackButtonVisibility = Visibility.Hidden;
+
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 0, 10), DispatcherPriority.Normal,
                 async delegate
                 {
@@ -131,12 +215,21 @@ namespace IPSModulesLibrary.FinishingWorks
                         
                         IsBusy = false;
                     }
+
+                    if (DistributionProcessStatus == DistributionProcessStatus.Stopped)
+                    {
+                        IsEnabledFinalEnrollment = true;
+                    }
+
                 }, Dispatcher.CurrentDispatcher);
         }
 
         public ICommand StopDistributionCommand => new IPSDelegateCommand(StopDistributionCommandExecute);
         private void StopDistributionCommandExecute(object o)
         {
+            if (!SelectedStopDate.HasValue)
+                return;
+
             string message = $"Автоматичний розподіл буде зупинено {SelectedStopDate:d} {SelectedStopDate:t}. Підтвердити дію?";
             var result = ShowMessage.ConfirmAction(message);
 
@@ -146,13 +239,14 @@ namespace IPSModulesLibrary.FinishingWorks
             if (result == MessageBoxResult.Yes)
             {
                 StopDate = ProcessDate(SelectedStopDate);
+                IsEnabledStopDistributionPanel = false;
+                IsEnabledRunDistributionPanel = true;
             }
         }
 
         public ICommand RunDistributionProcessCommand => new IPSDelegateCommand(RunDistributionProcessCommandExecute);
         private void RunDistributionProcessCommandExecute(object o)
         {
-
             string message = $"Запустити автоматичний розподіл?";
             var result = ShowMessage.ConfirmAction(message);
 
@@ -160,20 +254,57 @@ namespace IPSModulesLibrary.FinishingWorks
             {
                 StopDate = null;
                 DistributionProcessStatus = DistributionProcessStatus.InProcess;
+                IsEnabledStopDistributionPanel = true;
+                IsEnabledRunDistributionPanel = false;
             }
-
         }
 
         public ICommand FinalEnrollmentCommand => new IPSDelegateCommand(FinalEnrollmentCommandExecute);
-        private void FinalEnrollmentCommandExecute(object o)
+        private async void FinalEnrollmentCommandExecute(object o)
         {
+            string message = $"Запустити процес остаточного зарахування?";
+            var result = ShowMessage.ConfirmAction(message);
 
+            if (result == MessageBoxResult.Yes)
+            {
+                IsBusy = true;
+                await Task.Delay(1737);
+                IsBusy = false;
+
+                StopDate = null;
+                DistributionProcessStatus = DistributionProcessStatus.InProcess;
+                IsEnabledStopDistributionPanel = false;
+                IsEnabledRunDistributionPanel = false;
+                
+                TimeRemaining = new TimeSpan(0, 30,00);
+                if (!_rollbackTimer.IsEnabled)
+                    _rollbackTimer.Start();
+
+                IsEnabledFinalEnrollment = false;
+            }
         }
 
         public ICommand RollbackCommand => new IPSDelegateCommand(RollbackCommandExecute);
-        private void RollbackCommandExecute(object o)
+        private async void RollbackCommandExecute(object o)
         {
+            string message = $"Виконати відкат процесу оплати?";
+            _rollbackTimer.Stop();
 
+            var result = ShowMessage.ConfirmAction(message);
+            if (result == MessageBoxResult.Yes)
+            {
+
+                IsBusy = true;
+                await Task.Delay(4250);
+                IsBusy = false;
+                TimeRemaining = TimeSpan.Zero;
+                RollbackButtonVisibility = Visibility.Hidden;
+                IsEnabledFinalEnrollment = true;
+            }
+            else
+            {
+                _rollbackTimer.Start();
+            }
         }
 
         #endregion

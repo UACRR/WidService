@@ -370,6 +370,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes">
+      <Version>3.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.19</Version>
     </PackageReference>
