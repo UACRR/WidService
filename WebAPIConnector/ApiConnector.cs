@@ -78,8 +78,11 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public async Task<T> SendGetRequestAsync<T>(string url)
+        public async Task<T> SendGetRequestAsync<T>(string url, AuthenticationHeaderValue authenticationHeaderValue = null)
         {
+            if (authenticationHeaderValue != null)
+                client.DefaultRequestHeaders.Authorization = authenticationHeaderValue;
+
             var result = await client.GetAsync(url);
 
             if (result != null && !result.IsSuccessStatusCode)

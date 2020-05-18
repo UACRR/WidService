@@ -143,42 +143,45 @@
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="250" Text="Статус работы комплекса:"/>
 
                         <Grid HorizontalAlignment="Right">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                            <Grid Grid.Column="0" Visibility="{Binding DistributionInProcessVisibility}">
-                                <Rectangle RadiusX="5" RadiusY="5" 
+                            <Grid Grid.Row="0" Visibility="{Binding DistributionInProcessVisibility}">
+                                <Rectangle RadiusX="1" RadiusY="1" 
                                            MinWidth="{Binding Width, ElementName=textBlock}" 
                                            Height="33.5" 
-                                           Stroke="RoyalBlue" Fill="RoyalBlue" StrokeThickness="3" 
+                                           Cursor="Arrow"
+                                           Stroke="DodgerBlue" Fill="RoyalBlue" StrokeThickness="3" 
                                            VerticalAlignment="Top"/>
 
                                 <TextBlock Name="textBlock" Margin="10, 0, 10, 2"
                                            Text="Происходит автоматическое распределение"
+                                           Cursor="Arrow"
                                            Foreground="WhiteSmoke"
                                            FontWeight="SemiBold" FontSize="14"
                                            Width="Auto" VerticalAlignment="Center"/>
 
                             </Grid>
 
-                            <Grid Grid.Column="1" Visibility="{Binding DistributionStoppedVisibility}"> 
-                                <Rectangle RadiusX="5" RadiusY="5" 
+                            <Grid Grid.Row="1" Visibility="{Binding DistributionStoppedVisibility}"> 
+                                <Rectangle RadiusX="1" RadiusY="1" 
                                            MinWidth="{Binding Width, ElementName=textBlock2}" 
+                                           Cursor="Arrow"
                                            Height="33.5" 
-                                           Stroke="DarkOrange" Fill="DarkOrange" StrokeThickness="3" 
+                                           Stroke="Orange" Fill="DarkOrange" StrokeThickness="3" 
                                            VerticalAlignment="Top"/>
 
                                 <TextBlock Name="textBlock2" Margin="10, 0, 10, 2"
                                            Text="Автоматическое распределение остановлено"
+                                           Cursor="Arrow"
                                            Foreground="White"
                                            FontWeight="SemiBold" FontSize="14"
                                            Width="Auto" VerticalAlignment="Center"/>
-
                             </Grid>
                         </Grid>
-
+ 
                     </Grid>
                     <Grid Margin="0 10 0 10"
                           IsEnabled="{Binding IsEnabledStopDistributionPanel}">
@@ -186,37 +189,52 @@
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
-                                   Text="Введите дату и время остановки автоматического распределения и подтвердите установку:"/>
+                                   Text="Введите дату и время, до которого будет остановлено автоматическое распределение:"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <t:RadDateTimePicker t:StyleManager.Theme="VisualStudio2013"
                                                  Height="33.5"
                                                  Margin="10 0 10 0"
                                                  MinWidth="120"
                                                  SelectedValue="{Binding SelectedStopDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <t:RadButton HorizontalAlignment="Right"
-                                         Margin="10 0 0 0"
-                                         Height="33.5"
-                                         MinWidth="100" 
-                                         Padding="5,5,5,9" 
-                                         UseLayoutRounding="True"
-                                         Content="Подтвердить" 
-                                         Command="{Binding StopDistributionCommand}"/>
                         </StackPanel>
                     </Grid>
 
+                    <Grid Margin="0 10 0 10"
+                          IsEnabled="{Binding IsEnabledStopDistributionPanel}">
+                        <t:RadButton HorizontalAlignment="Left"
+                                     Style="{StaticResource orangeRedButton}"
+                                     Margin="10 0 0 0"
+                                     Height="33.5"
+                                     MinWidth="150" 
+                                     Padding="5,5,5,9" 
+                                     UseLayoutRounding="True"
+                                     Content="STOP" 
+                                     Command="{Binding StopDistributionCommand}"/>
+
+                    </Grid>
+
                     <Grid Margin="0 10 0 10" IsEnabled="{Binding IsEnabledRunDistributionPanel}">
-                        <TextBlock MaxWidth="230" VerticalAlignment="Center" HorizontalAlignment="Left">Внимание! Установлена дата остановки:</TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Внимание! Установлена дата и время остановки:"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock VerticalAlignment="Center" 
                                        Margin="10 0 10 0"
                                        TextDecorations="Underline"
+                                       Text="{Binding StartDate, StringFormat='{}{0:d} {0:t}',ConverterCulture='uk-UA'}"/>
+                            <TextBlock VerticalAlignment="Center" 
+                                       Margin="10 0 10 0"
+                                       TextDecorations="Underline"
                                        Text="{Binding StopDate, StringFormat='{}{0:d} {0:t}',ConverterCulture='uk-UA'}"/>
-                            <t:RadButton HorizontalAlignment="Left"
-                                         MinWidth="100" Padding="5,5,5,9" Margin="10 0 0 0" UseLayoutRounding="True"
-                                         Content="Отменить" 
-                                         Command="{Binding RunDistributionProcessCommand}"/>
                         </StackPanel>
                     </Grid>
+
+                    <Grid Margin="0 10 0 10" IsEnabled="{Binding IsEnabledRunDistributionPanel}">
+                        <t:RadButton HorizontalAlignment="Left"
+                                     Style="{StaticResource greenButton}"
+                                     MinWidth="150" Padding="5,5,5,9" Margin="10 0 0 0" UseLayoutRounding="True"
+                                     Content="START" 
+                                     Command="{Binding RunDistributionProcessCommand}"/>
+                    </Grid>
+
                     <Grid Margin="0 50 0 0">
                         <t:RadButton HorizontalAlignment="Left"
                                      IsEnabled="{Binding IsEnabledFinalEnrollment}"
