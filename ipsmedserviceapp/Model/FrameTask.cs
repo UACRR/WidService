@@ -14,6 +14,8 @@ namespace ipsmedserviceapp.Model
         public int FrameCode { get; set; }
         public string FrameName { get; set; }
         public string Comment { get; set; }
+        public string FrameShort { get; set; }
+        public string FrameExtra { get; set; }
 
         public virtual PermitTask TaskCodeNavigation { get; set; }
         public virtual ICollection<FrameParam> FrameParam { get; set; }

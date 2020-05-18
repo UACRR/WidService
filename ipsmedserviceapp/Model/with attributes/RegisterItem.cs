@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -31,12 +32,16 @@ namespace ipsmedserviceapp.Model
         public int? GenreType { get; set; }
         public int? Wic { get; set; }
 
+        [JsonIgnore]
         public virtual RegisterItemType CodeItemNavigation { get; set; }
+        [JsonIgnore]
         public virtual GenreType GenreTypeNavigation { get; set; }
         public virtual ObjectRight Obj { get; set; }
+        [JsonIgnore]
         public virtual Register Reg { get; set; }
         public virtual RegisterItemFix RegisterItemFix { get; set; }
         public virtual ICollection<RegisterCount> RegisterCount { get; set; }
         public virtual ICollection<RegisterExtra> RegisterExtra { get; set; }
     }
 }
+

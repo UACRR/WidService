@@ -365,6 +365,7 @@
     <Compile Include="Model\PositionTypeTr.cs" />
     <Compile Include="Model\PrePayType.cs" />
     <Compile Include="Model\PrePayTypeTr.cs" />
+    <Compile Include="Model\ProcessManagement.cs" />
     <Compile Include="Model\PubCatalogItem.cs" />
     <Compile Include="Model\Region.cs" />
     <Compile Include="Model\RegionTr.cs" />

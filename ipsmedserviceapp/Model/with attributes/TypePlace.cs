@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -16,8 +17,12 @@ namespace ipsmedserviceapp.Model
         public bool? IsHoll { get; set; }
         public int? ParamType { get; set; }
 
+        [JsonIgnore]
         public virtual TypePlaceParam ParamTypeNavigation { get; set; }
+        [JsonIgnore]
         public virtual ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        [JsonIgnore]
         public virtual ICollection<TypePlaceTr> TypePlaceTr { get; set; }
     }
 }
+

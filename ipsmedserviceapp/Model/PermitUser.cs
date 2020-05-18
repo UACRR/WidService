@@ -23,6 +23,7 @@ namespace ipsmedserviceapp.Model
         public short? IsLock { get; set; }
         public string Comment { get; set; }
         public bool? IsTempPassword { get; set; }
+        public bool? IsWindowsAuth { get; set; }
 
         public virtual ICollection<PermitUserRole> PermitUserRole { get; set; }
     }

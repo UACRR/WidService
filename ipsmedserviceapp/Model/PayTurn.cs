@@ -26,6 +26,7 @@ namespace ipsmedserviceapp.Model
         public int? PayTurnType { get; set; }
         public short? DocType { get; set; }
         public int? HandId { get; set; }
+        public decimal? Rate { get; set; }
 
         public virtual Account AccIdDebetNavigation { get; set; }
         public virtual PaymentStatus PayStatusNavigation { get; set; }

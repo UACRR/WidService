@@ -1,4 +1,5 @@
 using ipsFormsDesign.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -35,20 +36,30 @@ namespace ipsFormsDesign.Model
         public DateTime? DatePassed { get; set; }
 
         public virtual Customer Cust { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
         public virtual ObservableListSource<AnketaAddNick> AnketaAddNick { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<Authors> Authors { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<CatalogFile> CatalogFile { get; set; }
         public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<RelSubPublish> RelSubPublishCustIdPubNavigation { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<RelSubPublish> RelSubPublishCustIdSubNavigation { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        [JsonIgnore]
         public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
         public virtual ObservableListSource<TermsOfService> TermsOfService { get; set; }
         public virtual ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
         public virtual ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
+
 

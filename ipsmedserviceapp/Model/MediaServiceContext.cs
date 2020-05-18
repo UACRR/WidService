@@ -231,6 +231,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<PositionTypeTr> PositionTypeTr { get; set; }
         public virtual DbSet<PrePayType> PrePayType { get; set; }
         public virtual DbSet<PrePayTypeTr> PrePayTypeTr { get; set; }
+        public virtual DbSet<ProcessManagement> ProcessManagement { get; set; }
         public virtual DbSet<PubCatalogItem> PubCatalogItem { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<RegionTr> RegionTr { get; set; }
@@ -346,13 +347,14 @@ namespace ipsmedserviceapp.Model
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=RoyaltyServiceTest;Integrated Security=True");
+//                optionsBuilder.UseSqlServer("Data Source=93.126.99.28\\IPSDATA,60675;Initial Catalog=RoyaltyServiceTest;User ID=robot;Password=robot11235813");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "3.0.0-preview.19074.3");
+            modelBuilder.HasAnnotation("ProductVersion", "3.0.0-preview.19074.3")
+                .HasAnnotation("Relational:DefaultSchema", "db_owner");
 
             modelBuilder.Entity<Account>(entity =>
             {
@@ -2969,8 +2971,15 @@ namespace ipsmedserviceapp.Model
                 entity.HasIndex(e => e.CustId)
                     .HasName("iCopyRightCustid");
 
+                entity.HasIndex(e => e.ParentId)
+                    .HasName("Idx_copyrightParentId");
+
                 entity.HasIndex(e => new { e.ObjId, e.CustId })
                     .HasName("iCopyRightObjid");
+
+                entity.HasIndex(e => new { e.CRightId, e.BeginDate, e.EndDate })
+                    .HasName("idx_CopyRight_Dates")
+                    .IsUnique();
 
                 entity.Property(e => e.CRightId).HasColumnName("cRightId");
 
@@ -2981,7 +2990,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CreateDate)
                     .HasColumnName("createDate")
-                    .HasColumnType("datetime");
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -4104,6 +4114,10 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.Rate)
+                    .HasColumnName("rate")
+                    .HasColumnType("decimal(5, 2)");
+
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
                 entity.HasOne(d => d.PayStatusNavigation)
@@ -4900,9 +4914,19 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
+                entity.Property(e => e.FrameExtra)
+                    .HasColumnName("frameExtra")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.FrameName)
                     .HasColumnName("frameName")
                     .HasMaxLength(64)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FrameShort)
+                    .HasColumnName("frameShort")
+                    .HasMaxLength(256)
                     .IsUnicode(false);
 
                 entity.Property(e => e.TaskCode).HasColumnName("taskCode");
@@ -6167,7 +6191,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Composers)
                     .HasColumnName("composers")
-                    .HasMaxLength(256)
+                    .HasMaxLength(1024)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Duration).HasColumnName("duration");
@@ -6189,7 +6213,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lyrics)
                     .HasColumnName("lyrics")
-                    .HasMaxLength(254)
+                    .HasMaxLength(1024)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ModifyDate)
@@ -6857,6 +6881,9 @@ namespace ipsmedserviceapp.Model
                 entity.HasIndex(e => e.ReqId)
                     .HasName("Relationship_13_FK");
 
+                entity.HasIndex(e => new { e.SourceName, e.Loadid })
+                    .HasName("iObjectRight_Source");
+
                 entity.HasIndex(e => new { e.Name, e.Author, e.Performer })
                     .HasName("idx_name");
 
@@ -6866,14 +6893,15 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Author)
                     .HasColumnName("author")
-                    .HasMaxLength(254)
+                    .HasMaxLength(1024)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
 
                 entity.Property(e => e.CreateDate)
                     .HasColumnName("createDate")
-                    .HasColumnType("datetime");
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.GenreType).HasColumnName("genreType");
 
@@ -7212,6 +7240,9 @@ namespace ipsmedserviceapp.Model
 
                 entity.ToTable("PayTurn", "dbo");
 
+                entity.HasIndex(e => e.CustIdRh)
+                    .HasName("iPayTurn_custIdRh");
+
                 entity.HasIndex(e => new { e.AccIdCredit, e.RegId, e.RegIitemId })
                     .HasName("idx_PayTurn_Reg");
 
@@ -7275,6 +7306,10 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.Rate)
+                    .HasColumnName("rate")
+                    .HasColumnType("decimal(5, 2)");
+
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
                 entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
@@ -7292,18 +7327,14 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<PayTurnCm>(entity =>
             {
-                entity.HasKey(e => new { e.AccId, e.DateWork, e.KindCode })
-                    .HasName("PK_PAYTURNCM");
-
                 entity.ToTable("PayTurnCm", "dbo");
 
+                entity.HasIndex(e => new { e.DateBegin, e.DateWork, e.CategoryCode })
+                    .HasName("PayTurnCm_begin_work_categore_idx");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
                 entity.Property(e => e.AccId).HasColumnName("accId");
-
-                entity.Property(e => e.DateWork)
-                    .HasColumnName("dateWork")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.KindCode).HasColumnName("kindCode");
 
                 entity.Property(e => e.AccNls)
                     .HasColumnName("accNls")
@@ -7330,11 +7361,21 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("amount_sum")
                     .HasColumnType("money");
 
+                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
+
                 entity.Property(e => e.CustIdCm).HasColumnName("custIdCm");
 
                 entity.Property(e => e.CustIdRh).HasColumnName("custIdRh");
 
-                entity.Property(e => e.Custid).HasColumnName("custid");
+                entity.Property(e => e.DateBegin)
+                    .HasColumnName("dateBegin")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateWork)
+                    .HasColumnName("dateWork")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.KindCode).HasColumnName("kindCode");
 
                 entity.Property(e => e.RateCommiss)
                     .HasColumnName("rateCommiss")
@@ -7352,13 +7393,32 @@ namespace ipsmedserviceapp.Model
 
                 entity.ToTable("PayTurnExtra", "dbo");
 
+                entity.HasIndex(e => e.CmCustId)
+                    .HasName("iPayTurnExtra_cmCustId");
+
                 entity.Property(e => e.Datework)
                     .HasColumnName("datework")
                     .HasColumnType("date");
 
                 entity.Property(e => e.Turnid).HasColumnName("turnid");
 
+                entity.Property(e => e.BalsCredit)
+                    .HasColumnName("balsCredit")
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BalsDebet)
+                    .HasColumnName("balsDebet")
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
+
+                entity.Property(e => e.CmCustId).HasColumnName("cmCustId");
+
                 entity.Property(e => e.Custid).HasColumnName("custid");
+
+                entity.Property(e => e.Objid).HasColumnName("objid");
 
                 entity.Property(e => e.Payturntype).HasColumnName("payturntype");
             });
@@ -7369,6 +7429,12 @@ namespace ipsmedserviceapp.Model
                     .HasName("PK__PayTurnR__1905756753C4789C");
 
                 entity.ToTable("PayTurnRed", "dbo");
+
+                entity.HasIndex(e => new { e.TurnId, e.DateWork })
+                    .HasName("iPayTurnRed_TurnIdDateWork");
+
+                entity.HasIndex(e => new { e.TurnIdRed, e.DateWorkRed })
+                    .HasName("iPayTurnRed_TurnIdRedDateWorkRed");
 
                 entity.Property(e => e.RedId).HasColumnName("redId");
 
@@ -7866,6 +7932,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.IsTempPassword).HasColumnName("isTempPassword");
 
+                entity.Property(e => e.IsWindowsAuth).HasColumnName("isWindowsAuth");
+
                 entity.Property(e => e.LastName)
                     .HasColumnName("lastName")
                     .HasMaxLength(256)
@@ -8135,6 +8203,55 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PREPAYTY_REFERENCE_PREPAYTY");
+            });
+
+            modelBuilder.Entity<ProcessManagement>(entity =>
+            {
+                entity.HasKey(e => e.ProcessId)
+                    .HasName("PK_PROCESSMANAGEMENT");
+
+                entity.ToTable("ProcessManagement", "dbo");
+
+                entity.Property(e => e.ProcessId)
+                    .HasColumnName("processId")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DateModify)
+                    .HasColumnName("dateModify")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.DateStop)
+                    .HasColumnName("dateStop")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.DateStopAvto)
+                    .HasColumnName("dateStop_avto")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.DateStopBegin)
+                    .HasColumnName("dateStopBegin")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.ProcessCode).HasColumnName("processCode");
+
+                entity.Property(e => e.ProcessName)
+                    .HasColumnName("processName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.Property(e => e.StatusAvto).HasColumnName("status_avto");
+
+                entity.Property(e => e.UserLogin)
+                    .HasColumnName("userLogin")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<PubCatalogItem>(entity =>
@@ -8426,6 +8543,10 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.AmountCur)
                     .HasColumnName("amountCur")
+                    .HasColumnType("numeric(30, 10)");
+
+                entity.Property(e => e.AmountCurR)
+                    .HasColumnName("amountCurR")
                     .HasColumnType("numeric(30, 10)");
 
                 entity.Property(e => e.ExchangeRate).HasColumnType("numeric(30, 10)");
