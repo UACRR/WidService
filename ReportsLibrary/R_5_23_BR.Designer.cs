@@ -199,7 +199,6 @@ namespace ReportsLibrary
             // 
             // textBox17
             // 
-            this.textBox17.Action = null;
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.595D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
             this.textBox17.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
@@ -209,7 +208,6 @@ namespace ReportsLibrary
             // 
             // textBox18
             // 
-            this.textBox18.Action = null;
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.766D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
             this.textBox18.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -218,7 +216,6 @@ namespace ReportsLibrary
             // 
             // textBox20
             // 
-            this.textBox20.Action = null;
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.616D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -227,7 +224,6 @@ namespace ReportsLibrary
             // 
             // textBox24
             // 
-            this.textBox24.Action = null;
             this.textBox24.Name = "textBox24";
             this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.413D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
             this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -236,7 +232,6 @@ namespace ReportsLibrary
             // 
             // textBox25
             // 
-            this.textBox25.Action = null;
             this.textBox25.Format = "{0:N2}";
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.468D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
@@ -247,7 +242,6 @@ namespace ReportsLibrary
             // 
             // textBox26
             // 
-            this.textBox26.Action = null;
             this.textBox26.Name = "textBox26";
             this.textBox26.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.839D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
             this.textBox26.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -256,7 +250,6 @@ namespace ReportsLibrary
             // 
             // textBox27
             // 
-            this.textBox27.Action = null;
             this.textBox27.Format = "{0:N2}";
             this.textBox27.Name = "textBox27";
             this.textBox27.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.851D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));

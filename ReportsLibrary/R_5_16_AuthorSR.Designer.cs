@@ -33,7 +33,6 @@ namespace ReportsLibrary
             Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter2 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter3 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule2 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule3 = new Telerik.Reporting.Drawing.StyleRule();
@@ -66,7 +65,6 @@ namespace ReportsLibrary
             this.textBox6 = new Telerik.Reporting.TextBox();
             this.textBox23 = new Telerik.Reporting.TextBox();
             this.textBox17 = new Telerik.Reporting.TextBox();
-            this.sqlDataSource2 = new Telerik.Reporting.SqlDataSource();
             this.textBox25 = new Telerik.Reporting.TextBox();
             this.detailSection1 = new Telerik.Reporting.DetailSection();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
@@ -360,7 +358,7 @@ namespace ReportsLibrary
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
             new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.DateTime, "= Parameters.dateBegin.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@categoreCode", System.Data.DbType.String, "= 0")});
+            new Telerik.Reporting.SqlDataSourceParameter("@categoreCode", System.Data.DbType.String, "= Parameters.categoryCode.Value")});
             this.sqlDataSource1.SelectCommand = "select * from dbo.ft_Tsk_5_16_AuthorSR   ( @dateBegin , @categoreCode)";
             // 
             // textBox2
@@ -509,14 +507,6 @@ namespace ReportsLibrary
             this.textBox17.StyleName = "Normal.TableHeader";
             this.textBox17.Value = resources.GetString("textBox17.Value");
             // 
-            // sqlDataSource2
-            // 
-            this.sqlDataSource2.CommandTimeout = 1200;
-            this.sqlDataSource2.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
-            this.sqlDataSource2.Name = "sqlDataSource2";
-            this.sqlDataSource2.SelectCommand = "select pId,convert(int,valuePar) valuePar,valueName\r\nfrom ParametersListBox\r\nwher" +
-    "e repId=54\r\norder by pId\r\n";
-            // 
             // textBox25
             // 
             typeReportSource1.TypeName = "ReportsLibrary.ReportB, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
@@ -591,22 +581,14 @@ namespace ReportsLibrary
             reportParameter1.Value = "= Today()";
             reportParameter1.Visible = true;
             reportParameter2.AllowBlank = false;
-            reportParameter2.AvailableValues.DataSource = this.sqlDataSource2;
             reportParameter2.AvailableValues.DisplayMember = "= Fields.valueName";
             reportParameter2.AvailableValues.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.pId", Telerik.Reporting.SortDirection.Asc));
             reportParameter2.AvailableValues.ValueMember = "= Fields.valuePar";
             reportParameter2.Name = "categoryCode";
-            reportParameter2.Text = "В розрізі прав";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter2.Value = "= Fields.valuePar";
-            reportParameter3.AutoRefresh = true;
-            reportParameter3.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter3.AvailableValues.ValueMember = "= Fields.valueName";
-            reportParameter3.Name = "who";
-            reportParameter3.Value = "= Fields.valueName";
+            reportParameter2.Value = "= 0";
             this.ReportParameters.Add(reportParameter1);
             this.ReportParameters.Add(reportParameter2);
-            this.ReportParameters.Add(reportParameter3);
             this.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
@@ -658,8 +640,6 @@ namespace ReportsLibrary
 
         }
         #endregion
-
-        private Telerik.Reporting.SqlDataSource sqlDataSource2;
         private Telerik.Reporting.SqlDataSource sqlDataSource1;
         private Telerik.Reporting.DetailSection detailSection1;
         private Telerik.Reporting.Table table1;

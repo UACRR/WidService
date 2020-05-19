@@ -418,10 +418,6 @@
       <Project>{89315cb9-919f-494a-91eb-1047f92c0eeb}</Project>
       <Name>RepNew</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReportsLibrary\ReportsLibrary.csproj">
-      <Project>{16a23fdd-f783-4f80-9141-43b5c03cb3d1}</Project>
-      <Name>ReportsLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RightholderWorkplace\RightholderWorkplace.csproj">
       <Project>{be2b9387-9119-454b-b94f-297dce752d8d}</Project>
       <Name>RightholderWorkplace</Name>
