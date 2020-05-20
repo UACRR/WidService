@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
 using ipsmedserviceapp.Extensions;
@@ -11,6 +12,7 @@ using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -32,102 +34,229 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("SystemState")]
         public async Task<IActionResult> GetCurrentSystemState()
         {
-            ResponseOfRequest<object> responseOfRequest;
+            ResponseOfRequest<ProcessManagement> responseOfRequest;
+            IDbContextTransaction transaction = null;
             try
             {
-                string query = $"select * from ProcessManagement where processId = 1";
-
-                DataTable data = null;
-                using (var sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
+                var data = await _dbContext.ProcessManagement.SingleAsync(rec => rec.ProcessId == 1);
+                if (data.DateStop < DateTime.Now && (!data.DateStopAvto.HasValue || data.DateStopAvto < DateTime.Now))
                 {
-                    await Task.Factory.StartNew(() => data = ExecuteQuery.GetDataFromSqlServer(sqlConnection, query));
+                    data.Status = 0;
+                    data.DateStopBegin = null;
+                    data.DateStop = null;
                 }
 
-                var a = new
-                {
-                    Status = data.Rows[0].ItemArray[0],
-                    DateStop = data.Rows[0].ItemArray[0],
-                    DateStopAuto = data.Rows[0].ItemArray[0],
-                };
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
 
-                responseOfRequest = new ResponseOfRequest<object>(new object());
-
+                responseOfRequest = new ResponseOfRequest<ProcessManagement>(data);
                 return Ok(responseOfRequest);
             }
             catch (Exception e)
             {
+                transaction?.Rollback();
+
                 _logger.LogError(e.ToString());
 
-                responseOfRequest = new ResponseOfRequest<object>(e);
+                responseOfRequest = new ResponseOfRequest<ProcessManagement>(e);
                 return Ok(responseOfRequest);
             }
         }
 
-        [HttpGet("RunPayment")]
+        [HttpPut("RunPayment")]
         public async Task<IActionResult> RunPayment()
         {
-            ResponseOfRequest<object> responseOfRequest;
+            ResponseOfRequest<ProcessManagement> responseOfRequest;
+            IDbContextTransaction transaction = null;
+
             try
             {
                 var posibleResponse = CheckAuthToken();
                 if (posibleResponse != null)
                     return Ok(posibleResponse);
 
+                // add check 
 
-                responseOfRequest = new ResponseOfRequest<object>(new object());
+                var data = await _dbContext.ProcessManagement.SingleAsync(rec => rec.ProcessId == 1);
+
+                if (data.DateStopAvto > DateTime.Now)
+                {
+                    responseOfRequest = new ResponseOfRequest<ProcessManagement>
+                    {
+                        IsSuccess = false,
+                        Message = $"current date less than date when you can run process"
+                    };
+
+                    return Ok(responseOfRequest);
+                }
+
+                data.DateModify = DateTime.Now;
+                data.DateStopBegin = null;
+                data.DateStop = null;
+                data.Status = 0;
+
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                responseOfRequest = new ResponseOfRequest<ProcessManagement>(new ProcessManagement());
+                return Ok(responseOfRequest);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+
+                _logger.LogError(e.ToString());
+
+                responseOfRequest = new ResponseOfRequest<ProcessManagement>(e);
+                return Ok(responseOfRequest);
+            }
+        }
+
+        [HttpPut("StopPayment")]
+        public async Task<IActionResult> StopPayment([FromBody] DateTime dateTime)
+        {
+            ResponseOfRequest<ProcessManagement> responseOfRequest;
+            IDbContextTransaction transaction = null;
+
+            try
+            {
+                var posibleResponse = CheckAuthToken();
+                if (posibleResponse != null)
+                    return Ok(posibleResponse);
+
+                var data = await _dbContext.ProcessManagement.SingleAsync(rec => rec.ProcessId == 1);
+                data.DateModify = DateTime.Now;
+                data.DateStopBegin = DateTime.Now;
+                data.DateStop = dateTime;
+                data.Status = 1;
+
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                responseOfRequest = new ResponseOfRequest<ProcessManagement>(new ProcessManagement());
+                return Ok(responseOfRequest);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+
+                _logger.LogError(e.ToString());
+
+                responseOfRequest = new ResponseOfRequest<ProcessManagement>(e);
+                return Ok(responseOfRequest);
+            }
+        }
+
+        [HttpPut("ChangeDateStop")]
+        public async Task<IActionResult> ChangeDateStop([FromBody] DateTime dateTime)
+        {
+            ResponseOfRequest<ProcessManagement> responseOfRequest;
+            IDbContextTransaction transaction = null;
+            
+            try
+            {
+                var posibleResponse = CheckAuthToken();
+                if (posibleResponse != null)
+                    return Ok(posibleResponse);
+
+                var data = await _dbContext.ProcessManagement.SingleAsync(rec => rec.ProcessId == 1);
+                data.DateModify = DateTime.Now;
+                data.DateStop = dateTime;
+
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                responseOfRequest = new ResponseOfRequest<ProcessManagement>(new ProcessManagement());
+                return Ok(responseOfRequest);
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+
+                _logger.LogError(e.ToString());
+
+                responseOfRequest = new ResponseOfRequest<ProcessManagement>(e);
+                return Ok(responseOfRequest);
+            }
+        }
+
+        [HttpGet("RunFinalEnrollment")]
+        public async Task<IActionResult> RunFinalEnrollment()
+        {
+            ResponseOfRequest responseOfRequest;
+            
+            try
+            {
+                var posibleResponse = CheckAuthToken();
+                if (posibleResponse != null)
+                    return Ok(posibleResponse);
+
+                string query = $"exec @returnCode = [dbo].[MPay6_D20_K21]";
+                var returnedCode = new SqlParameter
+                {
+                    ParameterName = "@returnCode",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
                 
+                responseOfRequest = new ResponseOfRequest();
+
+                _dbContext.Database.SetCommandTimeout(600);
+
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, returnedCode);
+                
+                responseOfRequest.IsSuccess = (int) returnedCode.Value == 0;
+
                 return Ok(responseOfRequest);
             }
             catch (Exception e)
             {
                 _logger.LogError(e.ToString());
 
-                responseOfRequest = new ResponseOfRequest<object>(e);
+                responseOfRequest = new ResponseOfRequest(e);
                 return Ok(responseOfRequest);
             }
         }
 
-        [HttpGet("StopPayment")]
-        public async Task<IActionResult> StopPayment()
+        [HttpGet("RollbackLastFinalEnrollment")]
+        public async Task<IActionResult> RollbackLastFinalEnrollment()
         {
-            ResponseOfRequest<object> responseOfRequest;
+            ResponseOfRequest responseOfRequest;
+            IDbContextTransaction transaction = null;
             try
             {
                 var posibleResponse = CheckAuthToken();
                 if (posibleResponse != null)
                     return Ok(posibleResponse);
 
+                // some process
+                await Task.Delay(4838);
 
-                responseOfRequest = new ResponseOfRequest<object>(new object());
+                var data = await _dbContext.ProcessManagement.SingleAsync(rec => rec.ProcessId == 1);
+                if (data.DateStopAvto.HasValue && data.DateStopAvto > DateTime.Now)
+                {
+                    data.StatusAvto = 0;
+                    data.DateStopAvto = null;
 
+                    transaction = await _dbContext.Database.BeginTransactionAsync();
+                    await _dbContext.SaveChangesAsync();
+                    transaction.Commit();
+                }
+
+                responseOfRequest = new ResponseOfRequest
+                {
+                    IsSuccess = true,
+                };
                 return Ok(responseOfRequest);
             }
             catch (Exception e)
             {
-                _logger.LogError(e.ToString());
+                transaction?.Rollback();
 
-                responseOfRequest = new ResponseOfRequest<object>(e);
-                return Ok(responseOfRequest);
-            }
-        }
-
-
-        [HttpGet("RunFinalPayment")]
-        public async Task<IActionResult> RunFinalPayment()
-        {
-            ResponseOfRequest<object> responseOfRequest;
-            try
-            {
-                var posibleResponse = CheckAuthToken();
-                if (posibleResponse != null)
-                    return Ok(posibleResponse);
-                
-                responseOfRequest = new ResponseOfRequest<object>(new object());
-
-                return Ok(responseOfRequest);
-            }
-            catch (Exception e)
-            {
                 _logger.LogError(e.ToString());
 
                 responseOfRequest = new ResponseOfRequest<object>(e);
@@ -138,9 +267,10 @@ namespace ipsmedserviceapp.Controllers
         private ResponseOfRequest<object> CheckAuthToken()
         {
             ResponseOfRequest<object> responseOfRequest = null;
-            bool isAuth = Request.Headers.ContainsKey("Authorization");
 
-            if (!isAuth || Request.Headers["Authorization"] != "ff_zxcvbnm951")
+            bool isAuth = Request.Headers.ContainsKey("FinishingWorksToken");
+            
+            if (!isAuth || Request.Headers["FinishingWorksToken"] != "ff_zxcvbnm951")
             {
                 responseOfRequest = new ResponseOfRequest<object>
                 {

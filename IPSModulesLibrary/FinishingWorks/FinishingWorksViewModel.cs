@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using ipsFormsDesign.Services;
 using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 
@@ -51,12 +52,22 @@ namespace IPSModulesLibrary.FinishingWorks
                 {
                     DistributionInProcessVisibility = Visibility.Visible;
                     DistributionStoppedVisibility = Visibility.Collapsed;
+                    IsEnabledStopDistributionButton = true;
+                    IsEnabledRunDistributionButton = false;
+                    ChangeStopDateButtonVisibility = Visibility.Collapsed;
+                    IsEnabledFinalEnrollment = false;
+                    StopDistributionDateInfoPanelVisibility = Visibility.Collapsed;
+
                 }
                 else if (value == DistributionProcessStatus.Stopped)
                 {
-
                     DistributionInProcessVisibility = Visibility.Collapsed;
                     DistributionStoppedVisibility = Visibility.Visible;
+                    IsEnabledStopDistributionButton = false;
+                    IsEnabledRunDistributionButton = true;
+                    ChangeStopDateButtonVisibility = Visibility.Visible;
+                    IsEnabledFinalEnrollment = true;
+                    StopDistributionDateInfoPanelVisibility = Visibility.Visible;
                 }
                 else
                 {
@@ -66,25 +77,69 @@ namespace IPSModulesLibrary.FinishingWorks
             }
         }
 
-        private bool _isEnabledStopDistributionPanel;
-        public bool IsEnabledStopDistributionPanel
+        private bool _isEnabledStopDistributionButton = true;
+        public bool IsEnabledStopDistributionButton
         {
-            get => _isEnabledStopDistributionPanel;
+            get => _isEnabledStopDistributionButton;
             set
             {
-                _isEnabledStopDistributionPanel = value;
-                OnPropertyChanged(() => IsEnabledStopDistributionPanel);
+                _isEnabledStopDistributionButton = value;
+                OnPropertyChanged(() => IsEnabledStopDistributionButton);
             }
         }
 
-        private bool _isEnabledRunDistributionPanel;
-        public bool IsEnabledRunDistributionPanel
+        private bool _isEnabledStopDate = true;
+        public bool IsEnabledStopDate
         {
-            get => _isEnabledRunDistributionPanel;
+            get => _isEnabledStopDate;
             set
             {
-                _isEnabledRunDistributionPanel = value;
-                OnPropertyChanged(() => IsEnabledRunDistributionPanel);
+                _isEnabledStopDate = value;
+                OnPropertyChanged(() => IsEnabledStopDate);
+            }
+        }
+
+        private Visibility _changeStopDateButtonVisibility = Visibility.Visible;
+        public Visibility ChangeStopDateButtonVisibility
+        {
+            get => _changeStopDateButtonVisibility;
+            set
+            {
+                _changeStopDateButtonVisibility = value;
+                OnPropertyChanged(() => ChangeStopDateButtonVisibility);
+            }
+        }
+
+        private Visibility _stopDistributionDateInfoPanelVisibility = Visibility.Visible;
+        public Visibility StopDistributionDateInfoPanelVisibility
+        {
+            get => _stopDistributionDateInfoPanelVisibility;
+            set
+            {
+                _stopDistributionDateInfoPanelVisibility = value;
+                OnPropertyChanged(() => StopDistributionDateInfoPanelVisibility);
+            }
+        }
+
+        private Visibility _stopAutoInfoPanelVisibility = Visibility.Visible;
+        public Visibility StopAutoInfoPanelVisibility
+        {
+            get => _stopAutoInfoPanelVisibility;
+            set
+            {
+                _stopAutoInfoPanelVisibility = value;
+                OnPropertyChanged(() => StopAutoInfoPanelVisibility);
+            }
+        }
+
+        private bool _isEnabledRunDistributionButton = true;
+        public bool IsEnabledRunDistributionButton
+        {
+            get => _isEnabledRunDistributionButton;
+            set
+            {
+                _isEnabledRunDistributionButton = value;
+                OnPropertyChanged(() => IsEnabledRunDistributionButton);
             }
         }
 
@@ -110,8 +165,8 @@ namespace IPSModulesLibrary.FinishingWorks
             }
         }
 
-        private string _defaultRrollbackContent = "Откат: осталось";
-        private string _rollbackContent = "Откат: осталось";
+        private string _defaultRrollbackContent = "ROLLBACK: залишилось";
+        private string _rollbackContent = "ROLLBACK: залишилось";
         public string RollbackContent
         {
             get => _rollbackContent;
@@ -125,6 +180,19 @@ namespace IPSModulesLibrary.FinishingWorks
         #endregion
 
         #region * * * DATA PROPERTIES * * *
+
+        public bool IsStopAuto { get; set; }
+
+        private DateTime? _stopDateAuto;
+        public DateTime? StopDateAuto
+        {
+            get => _stopDateAuto;
+            set
+            {
+                _stopDateAuto = value;
+                OnPropertyChanged(() => StopDateAuto);
+            }
+        }
 
         private DateTime? _stopDate;
         public DateTime? StopDate
@@ -148,7 +216,7 @@ namespace IPSModulesLibrary.FinishingWorks
             }
         }
 
-        private DateTime? _selectedStopDate;
+        private DateTime? _selectedStopDate = DateTime.Today.AddDays(1);
         public DateTime? SelectedStopDate
         {
             get => _selectedStopDate;
@@ -205,13 +273,65 @@ namespace IPSModulesLibrary.FinishingWorks
                     if (!RollbackTimeRemaining.HasValue)
                         return;
 
-                    RollbackContent = $"{_defaultRrollbackContent} {RollbackTimeRemaining.Value.Hours:00}:{RollbackTimeRemaining.Value.Minutes:00}:{RollbackTimeRemaining.Value.Seconds:00}";
+                    var time = RollbackTimeRemaining.Value;
+                    RollbackContent = $"{_defaultRrollbackContent} {time.Days * 24 + time.Hours}:{time.Minutes:00}:{time.Seconds:00}";
                     RollbackTimeRemaining = RollbackTimeRemaining.Value.Subtract(TimeSpan.FromSeconds(1));
 
                     if (RollbackTimeRemaining <= TimeSpan.Zero)
+                    {
                         RollbackTimeRemaining = null;
-
+                        UpdateSystemState();
+                    }
                 }, Dispatcher.CurrentDispatcher);
+        }
+
+        private async void UpdateSystemState()
+        {
+            var service = FinishingWorksService.GetInstance();
+
+            IsBusy = true;
+            
+            await Task.Delay(1000);
+
+            var data = await service.GetSystemState();
+            
+            // автозупинка
+            IsStopAuto = (data.Data.StatusAvto ?? 0) == 1;
+
+            bool inProcess = (data.Data.Status ?? 0) == 0;
+
+            DistributionProcessStatus = inProcess && !IsStopAuto ? DistributionProcessStatus.InProcess : DistributionProcessStatus.Stopped;
+
+            if (IsStopAuto)
+            {
+                var date = data.Data.DateStop > data.Data.DateStopAvto ? data.Data.DateStop : data.Data.DateStopAvto;
+                RollbackTimeRemaining = date - DateTime.Now;
+                
+                StartDate = data.Data.DateStopBegin; 
+                StopDate = data.Data.DateStop; 
+                
+                StopDateAuto = data.Data.DateStopAvto;
+                
+                StopAutoInfoPanelVisibility = Visibility.Visible;
+                IsEnabledRunDistributionButton = false;
+
+                IsEnabledFinalEnrollment = false;
+            }
+            else
+            {
+                RollbackTimeRemaining = null;
+                
+                if (!inProcess)
+                {
+                    StartDate = data.Data.DateStopBegin;
+                    StopDate = data.Data.DateStop;
+                    StopDistributionDateInfoPanelVisibility = Visibility.Visible;
+                }
+
+                StopAutoInfoPanelVisibility = Visibility.Collapsed;
+            }
+
+            IsBusy = false;
         }
 
         #endregion
@@ -222,13 +342,13 @@ namespace IPSModulesLibrary.FinishingWorks
         private void LoadCommandExecute(object o)
         {
             CreateRollbackTimer();
-            // get data
-            // init 
-            //RollbackTimeRemaining = new TimeSpan(0, 5, 17);
-            RollbackTimeRemaining = null;
+            UpdateSystemState();
+        }
 
-            IsEnabledStopDistributionPanel = true;
-            IsEnabledRunDistributionPanel = false;
+        public ICommand UpdateCommand => new IPSDelegateCommand(UpdateCommandExecute);
+        private void UpdateCommandExecute(object o)
+        {
+            UpdateSystemState();
         }
 
         public ICommand StopDistributionCommand => new IPSDelegateCommand(StopDistributionCommandExecute);
@@ -237,24 +357,62 @@ namespace IPSModulesLibrary.FinishingWorks
             if (!SelectedStopDate.HasValue)
                 return;
 
-            string message = $"Автоматичний розподіл буде зупинено {SelectedStopDate:d} {SelectedStopDate:t}. Підтвердити дію?";
-            var result = ShowMessage.ConfirmAction(message);
-
             if (SelectedStopDate < DateTime.Now)
                 SelectedStopDate = DateTime.Now;
 
-            if (result == MessageBoxResult.Yes)
-            {
-                StopDate = ProcessDate(SelectedStopDate);
-                IsEnabledStopDistributionPanel = false;
-                IsEnabledRunDistributionPanel = true;
+            string message = $"Автоматичний розподіл буде зупинено до {SelectedStopDate:d} {SelectedStopDate:t}. Підтвердити дію?";
+            
+            var confirmAction = ShowMessage.ConfirmAction(message);
 
+            if (confirmAction == MessageBoxResult.Yes)
+            {
+                if (SelectedStopDate < DateTime.Now)
+                    SelectedStopDate = DateTime.Now;
+
+                StartDate = DateTime.Now;
+                StopDate = ProcessDate(SelectedStopDate);
+
+                var service = FinishingWorksService.GetInstance();
+                
                 IsBusy = true;
-                await Task.Delay(1400);
+                var result = await service.StopPayment(StopDate.Value);
                 IsBusy = false;
 
-                DistributionProcessStatus = DistributionProcessStatus.Stopped;
-                IsEnabledFinalEnrollment = true;
+                if (!result.IsSuccess)
+                    ShowMessage.ShowError(result.Exception);
+
+                UpdateSystemState();
+            }
+        }
+
+        public ICommand ChangeStopDateCommand => new IPSDelegateCommand(ChangeStopDateCommandExecute);
+        private async void ChangeStopDateCommandExecute(object o)
+        {
+            string message = $"Змінити дату та час до якого буде діяти зупинка розподілу? Автоматичний розподіл буде зупинено до {SelectedStopDate:d} {SelectedStopDate:t}.";
+
+            var confirmAction = ShowMessage.ConfirmAction(message);
+
+            if (confirmAction == MessageBoxResult.Yes)
+            {
+                var service = FinishingWorksService.GetInstance();
+                
+                if (SelectedStopDate < DateTime.Now)
+                    SelectedStopDate = DateTime.Now;
+
+                IsBusy = true;
+                
+                StopDate = ProcessDate(SelectedStopDate);
+                
+                await Task.Delay(1500);
+                
+                var result = await service.ChangeDateStop(StopDate.Value);
+                
+                IsBusy = false;
+
+                if (!result.IsSuccess)
+                    ShowMessage.ShowError(result.Exception);
+
+                UpdateSystemState();
             }
         }
 
@@ -266,21 +424,20 @@ namespace IPSModulesLibrary.FinishingWorks
             if (RollbackButtonVisibility == Visibility.Visible)
                 message += $"\n\nУвага! Після запуску розподілу «процес відкату» буде недоступний!\nПідтвердити дію?";
             
-            var result = ShowMessage.ConfirmAction(message);
+            var confirmAction = ShowMessage.ConfirmAction(message);
 
-            if (result == MessageBoxResult.Yes)
+            if (confirmAction == MessageBoxResult.Yes)
             {
+                var service = FinishingWorksService.GetInstance();
+
                 IsBusy = true;
-                await Task.Delay(1147);
+                var result = await service.RunPayment();
                 IsBusy = false;
 
-                StopDate = null;
-                DistributionProcessStatus = DistributionProcessStatus.InProcess;
-                IsEnabledStopDistributionPanel = true;
-                IsEnabledRunDistributionPanel = false;
-             
-                RollbackTimeRemaining = null;
-                IsEnabledFinalEnrollment = false;
+                if (!result.IsSuccess)
+                    ShowMessage.ShowError(result.Exception);
+
+                UpdateSystemState();
             }
         }
 
@@ -288,19 +445,20 @@ namespace IPSModulesLibrary.FinishingWorks
         private async void FinalEnrollmentCommandExecute(object o)
         {
             string message = $"Запустити процес остаточного зарахування?";
-            var result = ShowMessage.ConfirmAction(message);
 
-            if (result == MessageBoxResult.Yes)
+            var confirmAction = ShowMessage.ConfirmAction(message);
+            if (confirmAction == MessageBoxResult.Yes)
             {
+                var service = FinishingWorksService.GetInstance();
+                
                 IsBusy = true;
-                await Task.Delay(1737);
+                var result = await service.RunFinalEnrollment();
                 IsBusy = false;
 
-                StopDate = null;
-                IsEnabledStopDistributionPanel = false;
-                
-                RollbackTimeRemaining = new TimeSpan(0, 3,30);
-                IsEnabledFinalEnrollment = false;
+                if (!result.IsSuccess)
+                    ShowMessage.ShowError(result.Exception);
+
+                UpdateSystemState();
             }
         }
 
@@ -310,17 +468,19 @@ namespace IPSModulesLibrary.FinishingWorks
             string message = $"Виконати відкат процесу оплати?";
             _rollbackTimer.Stop();
 
-            var result = ShowMessage.ConfirmAction(message);
-            if (result == MessageBoxResult.Yes)
+            var confirmAction = ShowMessage.ConfirmAction(message);
+            if (confirmAction == MessageBoxResult.Yes)
             {
+                var service = FinishingWorksService.GetInstance();
+                
                 IsBusy = true;
-                await Task.Delay(4250);
+                var result = await service.RollbackLastFinalEnrollment();
                 IsBusy = false;
 
-                RollbackTimeRemaining = null;
-                RollbackButtonVisibility = Visibility.Hidden;
-                IsEnabledFinalEnrollment = true;
-                IsEnabledRunDistributionPanel = true;
+                if (!result.IsSuccess)
+                    ShowMessage.ShowError(result.Exception);
+                
+                UpdateSystemState();
             }
             else
             {

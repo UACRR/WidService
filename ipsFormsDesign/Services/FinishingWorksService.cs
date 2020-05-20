@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
+using ipsFormsDesign.Model;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -12,11 +13,11 @@ namespace ipsFormsDesign.Services
     public class FinishingWorksService
     {
         private const string prefix = "FinishingWorks";
+        private readonly KeyValuePair<string, string> header = new KeyValuePair<string, string>("FinishingWorksToken", "ff_zxcvbnm951");
 
         private static FinishingWorksService _service;
         private readonly ApiConnector _apiConnector;
 
-        private readonly AuthenticationHeaderValue _authenticationHeaderValue = new AuthenticationHeaderValue("Bearer", "ff_zxcvbnm951");
 
         private FinishingWorksService()
         {
@@ -31,24 +32,45 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
-        public async Task<ResponseOfRequest<object>> RunPayment()
+        public async Task<ResponseOfRequest<ProcessManagement>> GetSystemState()
+        {
+            string url = $"{prefix}/SystemState";
+            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<ProcessManagement>>(url);
+            return result;
+        }
+
+        public async Task<ResponseOfRequest<ProcessManagement>> RunPayment()
         {
             string url = $"{prefix}/RunPayment";
-            var result = await _apiConnector.SendGetRequestAsync<ResponseOfRequest<object>>(url, _authenticationHeaderValue);
+            var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest<ProcessManagement>>(url, header);
             return result;
         }
 
-        public async Task<ResponseOfRequest<object>> StopPayment()
+        public async Task<ResponseOfRequest<ProcessManagement>> StopPayment(DateTime dateTime)
         {
             string url = $"{prefix}/StopPayment";
-            var result = await _apiConnector.SendGetRequestAsync<ResponseOfRequest<object>>(url, _authenticationHeaderValue);
+            var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest<ProcessManagement>, DateTime>(url, dateTime, header);
             return result;
         }
 
-        public async Task<ResponseOfRequest<object>> RunFinalPayment()
+        public async Task<ResponseOfRequest<ProcessManagement>> ChangeDateStop(DateTime dateTime)
         {
-            string url = $"{prefix}/RunFinalPayment";
-            var result = await _apiConnector.SendGetRequestAsync<ResponseOfRequest<object>>(url, _authenticationHeaderValue);
+            string url = $"{prefix}/ChangeDateStop";
+            var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest<ProcessManagement>, DateTime>(url, dateTime, header);
+            return result;
+        }
+
+        public async Task<ResponseOfRequest<ProcessManagement>> RunFinalEnrollment()
+        {
+            string url = $"{prefix}/RunFinalEnrollment";
+            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<ProcessManagement>>(url, header);
+            return result;
+        }
+
+        public async Task<ResponseOfRequest<ProcessManagement>> RollbackLastFinalEnrollment()
+        {
+            string url = $"{prefix}/RollbackLastFinalEnrollment";
+            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<ProcessManagement>>(url, header);
             return result;
         }
     }

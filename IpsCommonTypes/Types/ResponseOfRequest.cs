@@ -32,6 +32,14 @@ namespace IpsCommonTypes.Types
             Exception = e;
         }
 
+        public ResponseOfRequest(Exception e)
+        {
+            Message = e.Message;
+            InnerMessage = e.ToString();
+            StatusCode = e.HResult;
+            Exception = e;
+        }
+
         public string Message { get; set; }
         public string InnerMessage { get; set; }
         public int StatusCode { get; set; }

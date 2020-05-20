@@ -70,18 +70,35 @@ namespace WebAPIConnector
             return builder.ToString();
         }
 
-        #region * * * MAIN REQUEST METHODS * * *
+        #region * * * REQUEST METHODS * * *
 
         /// <summary>
-        /// Надіслати GET запит на сервер 
+        /// GET запит
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public async Task<T> SendGetRequestAsync<T>(string url, AuthenticationHeaderValue authenticationHeaderValue = null)
+        public async Task<T> GetRequestAsync<T>(string url)
         {
-            if (authenticationHeaderValue != null)
-                client.DefaultRequestHeaders.Authorization = authenticationHeaderValue;
+            var result = await client.GetAsync(url);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content != null ? result.Content.ReadAs<T>() : default(T);
+        }
+
+        /// <summary>
+        /// GET запит з хедером
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="header"></param>
+        /// <returns></returns>
+        public async Task<T> GetRequestAsync<T>(string url, KeyValuePair<string, string> header)
+        {
+            if (!client.DefaultRequestHeaders.Contains(header.Key))
+                client.DefaultRequestHeaders.Add(header.Key, header.Value);
 
             var result = await client.GetAsync(url);
 
@@ -100,7 +117,6 @@ namespace WebAPIConnector
 
             return result?.Content?.ReadAsList<T>();
         }
-
 
         /// <summary>
         /// Надіслати POST запит на сервер з отриманням результату
@@ -138,13 +154,29 @@ namespace WebAPIConnector
         }
 
         /// <summary>
-        /// Надіслати PUT запит на сервер з отриманням результату
+        /// PUT запит на сервер з поверненням результату
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public async Task<TResult> SendPutRequestWithResultAsync<TResult>(string url) where TResult : class
+        {
+            var result = await client.PutDataAsync<TResult>(url, null).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
+        }
+
+        /// <summary>
+        /// PUT запит на сервер з поверненням результату
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public async Task<T> SendPutRequestWithResultAsync<T>(string url, T data = null) where T : class
+        public async Task<T> SendPutRequestWithResultAsync<T>(string url, T data)
         {
             var result = await client.PutDataAsync(url, data).ConfigureAwait(false);
 
@@ -155,7 +187,7 @@ namespace WebAPIConnector
         }
 
         /// <summary>
-        /// Надіслати PUT запит на сервер з отриманням результату
+        /// PUT запит на сервер з отриманням результату
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <typeparam name="TData"></typeparam>
@@ -164,6 +196,48 @@ namespace WebAPIConnector
         /// <returns></returns>
         public async Task<TResult> SendPutRequestWithResultAsync<TResult, TData>(string url, TData data)
         {
+            var result = await client.PutDataAsync(url, data).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
+        }
+
+        /// <summary>
+        /// Надіслати PUT запит на сервер з токеном авторизації та поверненням результату
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="header"></param>
+        /// <returns></returns>
+        public async Task<TResult> SendPutRequestWithResultAsync<TResult>(string url, KeyValuePair<string, string> header) where TResult : class
+        {
+            if (!client.DefaultRequestHeaders.Contains(header.Key)) 
+                client.DefaultRequestHeaders.Add(header.Key, header.Value);
+
+            var result = await client.PutDataAsync<TResult>(url, null).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content?.ReadAs<TResult>();
+        }
+
+        /// <summary>
+        /// Надіслати PUT запит на сервер з токеном авторизації та отриманням результату
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TData"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <param name="header"></param>
+        /// <returns></returns>
+        public async Task<TResult> SendPutRequestWithResultAsync<TResult, TData>(string url, TData data, KeyValuePair<string, string> header)
+        {
+            if (!client.DefaultRequestHeaders.Contains(header.Key))
+                client.DefaultRequestHeaders.Add(header.Key, header.Value);
+
             var result = await client.PutDataAsync(url, data).ConfigureAwait(false);
 
             if (result != null && !result.IsSuccessStatusCode)

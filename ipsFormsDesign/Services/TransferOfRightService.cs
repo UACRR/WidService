@@ -69,7 +69,7 @@ namespace ipsFormsDesign.Services
         public async Task<ObjectsForTransferInfo> GetObjectsForTransfer(int custId)
         {
             string url = $"{Prefix}/list/objects/{custId}";
-            var data = await _apiConnector.SendGetRequestAsync<ObjectsForTransferInfo>(url);
+            var data = await _apiConnector.GetRequestAsync<ObjectsForTransferInfo>(url);
             return data;
         }
 
