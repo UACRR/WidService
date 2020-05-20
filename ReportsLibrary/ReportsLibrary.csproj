@@ -118,7 +118,7 @@
     <Compile Include="ReportіС.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportіС.Designer.cs">
+    <Compile Include="ReportіС.designer.cs">
       <DependentUpon>ReportіС.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_14_RegisterSR.cs">
@@ -210,6 +210,12 @@
     </Compile>
     <Compile Include="R_5_19_3_BRSH.Designer.cs">
       <DependentUpon>R_5_19_3_BRSH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_19_3_BRSH_detail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_3_BRSH_detail.designer.cs">
+      <DependentUpon>R_5_19_3_BRSH_detail.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_19_3_SRSH.cs">
       <SubType>Component</SubType>
@@ -524,6 +530,9 @@
     <EmbeddedResource Include="R_5_19_3_BRSH.resx">
       <DependentUpon>R_5_19_3_BRSH.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_3_BRSH_detail.resx">
+      <DependentUpon>R_5_19_3_BRSH_detail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_19_3_SRSH.resx">
       <DependentUpon>R_5_19_3_SRSH.cs</DependentUpon>
     </EmbeddedResource>
@@ -635,12 +644,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
-      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
-      <Name>ipsFormsDesign</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

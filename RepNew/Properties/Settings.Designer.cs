@@ -12,7 +12,7 @@ namespace RepNew.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.5.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,8 +26,8 @@ namespace RepNew.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPS,60675;Initial Catalog=MediaService;User ID=ReportUser;Pas" +
-            "sword=ReportUser")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPS,60675;Initial Catalog=RoyaltyServiceTest;User ID=ReportUs" +
+            "er;Password=ReportUser")]
         public string MediaService {
             get {
                 return ((string)(this["MediaService"]));

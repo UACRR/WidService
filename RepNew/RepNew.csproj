@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{89315CB9-919F-494A-91EB-1047F92C0EEB}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>RepNew</RootNamespace>
     <AssemblyName>RepNew</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -130,12 +130,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReportsLibrary\ReportsLibrary.csproj">
-      <Project>{16a23fdd-f783-4f80-9141-43b5c03cb3d1}</Project>
-      <Name>ReportsLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
@@ -144,6 +138,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Jonas-Rask-Pry-System-Torrents.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReportsLibrary\ReportsLibrary.csproj">
+      <Project>{16a23fdd-f783-4f80-9141-43b5c03cb3d1}</Project>
+      <Name>ReportsLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
