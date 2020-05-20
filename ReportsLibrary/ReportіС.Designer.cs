@@ -17,7 +17,6 @@
             this.detail = new Telerik.Reporting.DetailSection();
             this.textBox2 = new Telerik.Reporting.TextBox();
             this.textBox1 = new Telerik.Reporting.TextBox();
-            this.textBox3 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // detail
@@ -25,18 +24,17 @@
             this.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(12D);
             this.detail.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox2,
-            this.textBox1,
-            this.textBox3});
+            this.textBox1});
             this.detail.Name = "detail";
             this.detail.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
             // 
             // textBox2
             // 
-            typeReportSource1.TypeName = "ReportsLibrary.R_5_2_CrKind, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Pu" +
-    "blicKeyToken=null";
+            typeReportSource1.TypeName = "ReportsLibrary.R_5_19_3_BRSH, ReportsLibrary, Version=1.0.0.0, Culture=neutral, P" +
+    "ublicKeyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox2.Action = navigateToReportAction1;
-            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.5D), Telerik.Reporting.Drawing.Unit.Cm(0.9D));
+            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.9D), Telerik.Reporting.Drawing.Unit.Cm(0.9D));
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox2.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -49,11 +47,11 @@
             // 
             // textBox1
             // 
-            typeReportSource2.TypeName = "ReportsLibrary.R_5_2_CrKind, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Pu" +
-    "blicKeyToken=null";
+            typeReportSource2.TypeName = "ReportsLibrary.R_5_19_3_SRSH, ReportsLibrary, Version=1.0.0.0, Culture=neutral, P" +
+    "ublicKeyToken=null";
             navigateToReportAction2.ReportSource = typeReportSource2;
             this.textBox1.Action = navigateToReportAction2;
-            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(8.4D), Telerik.Reporting.Drawing.Unit.Cm(0.9D));
+            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.9D), Telerik.Reporting.Drawing.Unit.Cm(0.9D));
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.4D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.textBox1.Style.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -63,13 +61,6 @@
             this.textBox1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox1.Value = "Звіт по розподіленому роялті на авторів  з \'малих прав\' ";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.4D), Telerik.Reporting.Drawing.Unit.Cm(5.7D));
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(12.5D), Telerik.Reporting.Drawing.Unit.Cm(2.3D));
-            this.textBox3.Value = "textBox3";
             // 
             // ReportіС
             // 
@@ -95,6 +86,5 @@
         private Telerik.Reporting.DetailSection detail;
         private Telerik.Reporting.TextBox textBox2;
         private Telerik.Reporting.TextBox textBox1;
-        private Telerik.Reporting.TextBox textBox3;
     }
 }
