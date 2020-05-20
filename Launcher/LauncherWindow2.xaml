@@ -10,8 +10,10 @@
         Title="LauncherWindow2" Height="762.865" Width="1523.258"
         Background="#f8f8f8">
     <Control.Resources>
+        
+        <!--RED BTN-->
+        
         <Style TargetType="t:RadButton" x:Key="redBtnLauncher">
-            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -35,28 +37,312 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            
+            <!--HOVER-->
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="8" Background="#2e6edb" BorderBrush="#2e6edb" BorderThickness="0,1,1,0" >
-                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FFF5D0C8" Offset="0.153" />
+                                            <GradientStop Color="#FFF8D6E5" Offset="0.949" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="14"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                    <Setter Property="Background" Value="#2e6edb"/>
                     <Setter Property="Cursor" Value="Hand"/>
                 </Trigger>
+                
+                <!--CLICK-->
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#2760c2"/>
-
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="8" Background="#2760c2" BorderBrush="#2760c2" BorderThickness="0,1,1,0" >
-                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FFF4B6A9" Offset="0.153" />
+                                            <GradientStop Color="#FFF699C2" Offset="0.949" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="14"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--BLUE BTN-->
+
+        <Style TargetType="t:RadButton" x:Key="blueBtnLauncher">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.52,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFE6F0F9"/>
+                                    <GradientStop Color="#FFF5EEFF" Offset="0.954"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                        <Setter Property="FontSize" Value="14"></Setter>
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            <!--HOVER-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FFCAE5FF"/>
+                                            <GradientStop Color="#FFE1CBFF" Offset="0.954"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="14"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                
+                <!--CLICK-->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FFA9D6FF"/>
+                                            <GradientStop Color="#FFC49AFF" Offset="0.954"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="14"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--GREEN BTN-->
+
+        <Style TargetType="t:RadButton" x:Key="greenBtnLauncher">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FFDEFEFE" />
+                                    <GradientStop Color="#FFDCFBF7" Offset="0.949" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                        <Setter Property="FontSize" Value="14"></Setter>
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!--HOVER-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FFA8ECEC" />
+                                            <GradientStop Color="#FFABF2E9" Offset="0.949" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="14"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+
+                <!--CLICK-->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FF6DE0E0" />
+                                            <GradientStop Color="#FF63F2DF" Offset="0.949" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="14"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--YELLOW BTN-->
+
+        <Style TargetType="t:RadButton" x:Key="yellowBtnLauncher">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FFFFF4EC" />
+                                    <GradientStop Color="#FFFFFAEA" Offset="0.949" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                        <Setter Property="FontSize" Value="14"></Setter>
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!--HOVER-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FFFEE4D1" />
+                                            <GradientStop Color="#FFFFEEB9" Offset="0.949" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="14"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+
+                <!--CLICK-->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FFFFBE8E" />
+                                            <GradientStop Color="#FFFFDC6D" Offset="0.949" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="14"></Setter>
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
@@ -89,12 +375,38 @@
                             <Image Source="Images/Rights.png" Width="80" Height="80" Margin="0 0 24 0"/>
                             <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#D3417F">ПРАВА</TextBlock>
                         </StackPanel>
-                        <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Правовласники та об'єкти прав"/>
+                        <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Правовласники та об'єкти прав" Background="#FFE89595"/>
 
                         <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Обробка звітів користувачів (індентифікація)"/>
 
                         <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Управління технологічнимим процесами"/>
+
+                        <!--HOVER TEST-->
+                        
+                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FFF5D0C8" Offset="0.153" />
+                                    <GradientStop Color="#FFF8D6E5" Offset="0.949" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">HOVER</TextBlock>
+                        </Border>
+
+                        <!--CLICK TEST-->
+
+                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FFF4B6A9" Offset="0.153" />
+                                    <GradientStop Color="#FFF699C2" Offset="0.949" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
+                        </Border>
                     </StackPanel>
+                    
+                    
 
                     <StackPanel Width="296" Margin="16 50">
                         <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
@@ -102,24 +414,32 @@
                             <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#842EF6">КОРИСТУВАЧІ</TextBlock>
 
                         </StackPanel>
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="0.52,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFE6F0F9"/>
-                                    <GradientStop Color="#FFF5EEFF" Offset="0.954"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Користувачі (Малі права)</TextBlock>
-                        </Border>
+                        <t:RadButton Style="{DynamicResource blueBtnLauncher}" Content="Користувачі (Малі права)"/>
+
+                        <t:RadButton Style="{DynamicResource blueBtnLauncher}" Content="Користувачі (Великі права)"/>
+
+                        <!--HOVER TEST-->
 
                         <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0.52,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFE6F0F9"/>
-                                    <GradientStop Color="#FFF5EEFF" Offset="0.954"/>
+                                    <GradientStop Color="#FFCAE5FF"/>
+                                    <GradientStop Color="#FFE1CBFF" Offset="0.954"/>
                                 </LinearGradientBrush>
                             </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Користувачі (Великі права)</TextBlock>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">HOVER</TextBlock>
+                        </Border>
+
+                        <!--CLICK TEST-->
+
+                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.52,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFA9D6FF"/>
+                                    <GradientStop Color="#FFC49AFF" Offset="0.954"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
                         </Border>
                     </StackPanel>
 
@@ -129,44 +449,37 @@
                             <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#0ACDB6">СИСТЕМА</TextBlock>
 
                         </StackPanel>
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFDEFEFE" />
-                                    <GradientStop Color="#FFDCFBF7" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Звітність (Аналітика)</TextBlock>
-                        </Border>
+
+                        <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Звітність (Аналітика)"/>
+
+                        <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Системні довідники"/>
+
+                        <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Анкета компанії"/>
+
+                        <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Права доступу"/>
+
+                        <!--HOVER TEST-->
 
                         <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFDEFEFE" />
-                                    <GradientStop Color="#FFDCFBF7" Offset="0.949" />
+                                    <GradientStop Color="#FFA8ECEC" />
+                                    <GradientStop Color="#FFABF2E9" Offset="0.949" />
                                 </LinearGradientBrush>
                             </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Системні довідники</TextBlock>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">HOVER</TextBlock>
                         </Border>
+
+                        <!--CLICK TEST-->
 
                         <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFDEFEFE" />
-                                    <GradientStop Color="#FFDCFBF7" Offset="0.949" />
+                                    <GradientStop Color="#FF6DE0E0" />
+                                    <GradientStop Color="#FF63F2DF" Offset="0.949" />
                                 </LinearGradientBrush>
                             </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Анкета компанії</TextBlock>
-                        </Border>
-
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFDEFEFE" />
-                                    <GradientStop Color="#FFDCFBF7" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Права доступу</TextBlock>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
                         </Border>
                     </StackPanel>
 
@@ -176,35 +489,38 @@
                             <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#FEA04A">ІНШЕ</TextBlock>
 
                         </StackPanel>
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFFFF4EC" />
-                                    <GradientStop Color="#FFFFFAEA" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Представники компанії</TextBlock>
-                        </Border>
+
+                        <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Представники компанії"/>
+
+                        <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Фіксація порушення авторських прав"/>
+
+                        <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Звіти онлайн-ресурсів"/>
+
+                        <!--HOVER TEST-->
 
                         <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFFFF4EC" />
-                                    <GradientStop Color="#FFFFFAEA" Offset="0.949" />
+                                    <GradientStop Color="#FFFEE4D1" />
+                                    <GradientStop Color="#FFFFEEB9" Offset="0.949" />
                                 </LinearGradientBrush>
                             </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Фіксація порушення авторських прав</TextBlock>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">HOVER</TextBlock>
                         </Border>
+
+                        <!--CLICK TEST-->
 
                         <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFFFF4EC" />
-                                    <GradientStop Color="#FFFFFAEA" Offset="0.949" />
+                                    <GradientStop Color="#FFFFBE8E" />
+                                    <GradientStop Color="#FFFFDC6D" Offset="0.949" />
                                 </LinearGradientBrush>
                             </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Звіти онлайн-ресурсів</TextBlock>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
                         </Border>
+
+                        
                     </StackPanel>
                 </WrapPanel>
             </ScrollViewer>
