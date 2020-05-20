@@ -9,6 +9,62 @@
         mc:Ignorable="d"
         Title="LauncherWindow2" Height="762.865" Width="1523.258"
         Background="#f8f8f8">
+    <Control.Resources>
+        <Style TargetType="t:RadButton" x:Key="redBtnLauncher">
+            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FFFDEEEB" Offset="0.153" />
+                                    <GradientStop Color="#fbf0f5" Offset="0.949" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                        <Setter Property="FontSize" Value="14"></Setter>
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="8" Background="#2e6edb" BorderBrush="#2e6edb" BorderThickness="0,1,1,0" >
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="#2e6edb"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#2760c2"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="8" Background="#2760c2" BorderBrush="#2760c2" BorderThickness="0,1,1,0" >
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Control.Resources>
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -33,35 +89,11 @@
                             <Image Source="Images/Rights.png" Width="80" Height="80" Margin="0 0 24 0"/>
                             <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#D3417F">ПРАВА</TextBlock>
                         </StackPanel>
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFFDEEEB" Offset="0.153" />
-                                    <GradientStop Color="#fbf0f5" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Правовласники та об’єкти прав</TextBlock>
-                        </Border>
+                        <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Правовласники та об'єкти прав"/>
 
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFFDEEEB" Offset="0.153" />
-                                    <GradientStop Color="#fbf0f5" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Обробка звітів користувачів (індентифікація)</TextBlock>
-                        </Border>
+                        <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Обробка звітів користувачів (індентифікація)"/>
 
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFFDEEEB" Offset="0.153" />
-                                    <GradientStop Color="#fbf0f5" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">Управління технологічнимим процесами</TextBlock>
-                        </Border>
+                        <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Управління технологічнимим процесами"/>
                     </StackPanel>
 
                     <StackPanel Width="296" Margin="16 50">
