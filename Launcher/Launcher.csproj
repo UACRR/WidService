@@ -465,6 +465,15 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Diff.png" />
+    <Resource Include="Images\Rights.png" />
+    <Resource Include="Images\Syst.png" />
+    <Resource Include="Images\Users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\logo1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
