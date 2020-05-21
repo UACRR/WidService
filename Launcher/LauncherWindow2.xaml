@@ -11,7 +11,7 @@
         Background="#f8f8f8">
     <Control.Resources>
         
-        <!--RED BTN-->
+        <!--RED BTN________________________________________________________________________-->
         
         <Style TargetType="t:RadButton" x:Key="redBtnLauncher">
             <Setter Property="Template">
@@ -96,7 +96,7 @@
             </Style.Triggers>
         </Style>
         
-        <!--BLUE BTN-->
+        <!--BLUE BTN______________________________________________________________________-->
 
         <Style TargetType="t:RadButton" x:Key="blueBtnLauncher">
             <Setter Property="Template">
@@ -181,7 +181,7 @@
             </Style.Triggers>
         </Style>
 
-        <!--GREEN BTN-->
+        <!--GREEN BTN________________________________________________________________________________-->
 
         <Style TargetType="t:RadButton" x:Key="greenBtnLauncher">
             <Setter Property="Template">
