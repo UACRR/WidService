@@ -304,8 +304,8 @@ namespace IPSModulesLibrary.FinishingWorks
 
             if (IsStopAuto)
             {
-                var date = data.Data.DateStop > data.Data.DateStopAvto ? data.Data.DateStop : data.Data.DateStopAvto;
-                RollbackTimeRemaining = date - DateTime.Now;
+                //var date = data.Data.DateStop > data.Data.DateStopAvto ? data.Data.DateStop : data.Data.DateStopAvto;
+                RollbackTimeRemaining = data.Data.DateStopAvto - DateTime.Now;
                 
                 StartDate = data.Data.DateStopBegin; 
                 StopDate = data.Data.DateStop; 

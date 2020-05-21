@@ -226,7 +226,6 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> RollbackLastFinalEnrollment()
         {
             ResponseOfRequest responseOfRequest;
-            IDbContextTransaction transaction = null;
             try
             {
                 var posibleResponse = CheckAuthToken();
@@ -234,29 +233,49 @@ namespace ipsmedserviceapp.Controllers
                     return Ok(posibleResponse);
 
                 // some process
-                await Task.Delay(4838);
+                //await Task.Delay(4838);
 
-                var data = await _dbContext.ProcessManagement.SingleAsync(rec => rec.ProcessId == 1);
-                if (data.DateStopAvto.HasValue && data.DateStopAvto > DateTime.Now)
+                //var data = await _dbContext.ProcessManagement.SingleAsync(rec => rec.ProcessId == 1);
+                //if (data.DateStopAvto.HasValue && data.DateStopAvto > DateTime.Now)
+                //{
+                //    data.StatusAvto = 0;
+                //    data.DateStopAvto = null;
+
+                //    transaction = await _dbContext.Database.BeginTransactionAsync();
+                //    await _dbContext.SaveChangesAsync();
+                //    transaction.Commit();
+                //}
+
+                //responseOfRequest = new ResponseOfRequest
+                //{
+                //    IsSuccess = true,
+                //};
+                //return Ok(responseOfRequest);
+
+                string query = $"exec @returnCode = [dbo].[MPay6_D20_K21_rollback] @dateWork";
+
+                var returnedCode = new SqlParameter
                 {
-                    data.StatusAvto = 0;
-                    data.DateStopAvto = null;
-
-                    transaction = await _dbContext.Database.BeginTransactionAsync();
-                    await _dbContext.SaveChangesAsync();
-                    transaction.Commit();
-                }
-
-                responseOfRequest = new ResponseOfRequest
-                {
-                    IsSuccess = true,
+                    ParameterName = "@returnCode",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
                 };
+
+                var sqlParameter = new SqlParameter("@dateWork", DateTime.Today);
+
+
+                responseOfRequest = new ResponseOfRequest();
+
+                _dbContext.Database.SetCommandTimeout(600);
+
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, returnedCode, sqlParameter);
+
+                responseOfRequest.IsSuccess = (int)returnedCode.Value == 0;
+
                 return Ok(responseOfRequest);
             }
             catch (Exception e)
             {
-                transaction?.Rollback();
-
                 _logger.LogError(e.ToString());
 
                 responseOfRequest = new ResponseOfRequest<object>(e);

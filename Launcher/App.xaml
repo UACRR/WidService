@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:local="clr-namespace:Launcher"
-             StartupUri="LauncherWindow2.xaml">
+             StartupUri="LauncherWindow.xaml">
     <Application.Resources>
          <Style TargetType="t:RadBusyIndicator">
              <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
