@@ -344,6 +344,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Montserrat-Regular.ttf" />
+    <Resource Include="Fonts\Montserrat-Bold.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -474,6 +476,12 @@
   <ItemGroup>
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ua.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\us.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

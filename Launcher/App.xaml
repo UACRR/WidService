@@ -8,5 +8,6 @@
          <Style TargetType="t:RadBusyIndicator">
              <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
          </Style>
+        <FontFamily x:Key="Montserrat">pack://application:,,,/Fonts/#Montserrat</FontFamily>
     </Application.Resources>
 </Application>
