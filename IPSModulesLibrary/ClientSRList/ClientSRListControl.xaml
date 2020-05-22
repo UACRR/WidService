@@ -166,11 +166,11 @@
                             </t:GridViewColumn.Header>
                             <t:GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <t:RadButton Margin="0" Width="25" Height="20" 
-                                                 Command="{Binding DataContext.OpenClientCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
-                                                 CommandParameter="{Binding}">
-                                        <Image Source="../Resources/Icons/edit-icon.png"/>
-                                    </t:RadButton>
+                                    <Button Style="{StaticResource editGridViewButton}"
+                                            Command="{Binding DataContext.OpenClientCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                            CommandParameter="{Binding}">
+                                        <Image Source="../Resources/Icons/edit-icon.png" Width="20"/>
+                                    </Button>
                                 </DataTemplate>
                             </t:GridViewColumn.CellTemplate>
                         </t:GridViewColumn>

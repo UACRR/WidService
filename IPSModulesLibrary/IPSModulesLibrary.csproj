@@ -259,6 +259,12 @@
     </Compile>
     <Compile Include="RightholdersList\RightholdersListModel.cs" />
     <Compile Include="RightholdersList\RightholdersListViewModel.cs" />
+    <Compile Include="RoyaltyCorrection\LM_RoyaltyCorrection.cs" />
+    <Compile Include="RoyaltyCorrection\RoyaltyCorrectionControl.xaml.cs">
+      <DependentUpon>RoyaltyCorrectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RoyaltyCorrection\RoyaltyCorrectionModel.cs" />
+    <Compile Include="RoyaltyCorrection\RoyaltyCorrectionViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -334,11 +340,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\ResourceDictionaries\TabControlResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\ResourceDictionaries\TreeViewItemResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RightholdersList\RightholdersListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RoyaltyCorrection\RoyaltyCorrectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
