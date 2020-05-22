@@ -22,8 +22,9 @@ namespace ipsmedserviceapp.Controllers
     [ApiController]
     public class FinishingWorksController : ControllerBase
     {
+        private const string TOKEN_FF_VALUE = "ff_zxcvbnm951";
         private readonly MediaServiceContext _dbContext;
-        private ILogger<FinishingWorksController> _logger;
+        private readonly ILogger<FinishingWorksController> _logger;
 
         public FinishingWorksController(MediaServiceContext dbContext, ILogger<FinishingWorksController> logger)
         {
@@ -31,6 +32,10 @@ namespace ipsmedserviceapp.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Отримати дані по стану блокування оплати/розподілу системи 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("SystemState")]
         public async Task<IActionResult> GetCurrentSystemState()
         {
@@ -64,6 +69,10 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Запустити процес розподілу/оплати в системі
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("RunPayment")]
         public async Task<IActionResult> RunPayment()
         {
@@ -114,6 +123,11 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Зупинити процес розподілу/оплати в системі
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
         [HttpPut("StopPayment")]
         public async Task<IActionResult> StopPayment([FromBody] DateTime dateTime)
         {
@@ -150,6 +164,11 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Змінити дату, до якої буде зупинено процес розподілу/оплати в системі
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
         [HttpPut("ChangeDateStop")]
         public async Task<IActionResult> ChangeDateStop([FromBody] DateTime dateTime)
         {
@@ -184,6 +203,10 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Запустити процедуру зарахування коштів на рахунки правовласників [dbo].[MPay6_D20_K21]
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("RunFinalEnrollment")]
         public async Task<IActionResult> RunFinalEnrollment()
         {
@@ -202,14 +225,16 @@ namespace ipsmedserviceapp.Controllers
                     SqlDbType = SqlDbType.Int,
                     Direction = ParameterDirection.Output
                 };
-                
-                responseOfRequest = new ResponseOfRequest();
 
                 _dbContext.Database.SetCommandTimeout(600);
 
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, returnedCode);
-                
-                responseOfRequest.IsSuccess = (int) returnedCode.Value == 0;
+
+                responseOfRequest = new ResponseOfRequest
+                {
+                    IsSuccess = (int) returnedCode.Value == 0,
+                    StatusCode = (int)returnedCode.Value,
+                };
 
                 return Ok(responseOfRequest);
             }
@@ -222,6 +247,10 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Запустити процедуру відкату [dbo].[MPay6_D20_K21_rollback]
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("RollbackLastFinalEnrollment")]
         public async Task<IActionResult> RollbackLastFinalEnrollment()
         {
@@ -231,26 +260,6 @@ namespace ipsmedserviceapp.Controllers
                 var posibleResponse = CheckAuthToken();
                 if (posibleResponse != null)
                     return Ok(posibleResponse);
-
-                // some process
-                //await Task.Delay(4838);
-
-                //var data = await _dbContext.ProcessManagement.SingleAsync(rec => rec.ProcessId == 1);
-                //if (data.DateStopAvto.HasValue && data.DateStopAvto > DateTime.Now)
-                //{
-                //    data.StatusAvto = 0;
-                //    data.DateStopAvto = null;
-
-                //    transaction = await _dbContext.Database.BeginTransactionAsync();
-                //    await _dbContext.SaveChangesAsync();
-                //    transaction.Commit();
-                //}
-
-                //responseOfRequest = new ResponseOfRequest
-                //{
-                //    IsSuccess = true,
-                //};
-                //return Ok(responseOfRequest);
 
                 string query = $"exec @returnCode = [dbo].[MPay6_D20_K21_rollback] @dateWork";
 
@@ -263,14 +272,15 @@ namespace ipsmedserviceapp.Controllers
 
                 var sqlParameter = new SqlParameter("@dateWork", DateTime.Today);
 
-
-                responseOfRequest = new ResponseOfRequest();
-
                 _dbContext.Database.SetCommandTimeout(600);
 
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, returnedCode, sqlParameter);
 
-                responseOfRequest.IsSuccess = (int)returnedCode.Value == 0;
+                responseOfRequest = new ResponseOfRequest
+                {
+                    IsSuccess = (int) returnedCode.Value == 0,
+                    StatusCode = (int)returnedCode.Value,
+                };
 
                 return Ok(responseOfRequest);
             }
@@ -283,13 +293,17 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Перевірити хедери запиту на наявність необхідного, що дозволяє виконувати запит
+        /// </summary>
+        /// <returns></returns>
         private ResponseOfRequest<object> CheckAuthToken()
         {
             ResponseOfRequest<object> responseOfRequest = null;
 
             bool isAuth = Request.Headers.ContainsKey("FinishingWorksToken");
             
-            if (!isAuth || Request.Headers["FinishingWorksToken"] != "ff_zxcvbnm951")
+            if (!isAuth || Request.Headers["FinishingWorksToken"] != TOKEN_FF_VALUE)
             {
                 responseOfRequest = new ResponseOfRequest<object>
                 {

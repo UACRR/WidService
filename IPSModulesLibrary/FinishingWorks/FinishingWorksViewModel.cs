@@ -455,8 +455,17 @@ namespace IPSModulesLibrary.FinishingWorks
                 var result = await service.RunFinalEnrollment();
                 IsBusy = false;
 
-                if (!result.IsSuccess)
-                    ShowMessage.ShowError(result.Exception);
+                if (result.IsSuccess)
+                {
+                    ShowMessage.ShowInfo("Зарахування коштів на рахунки правовласників виконано!");
+                }
+                else
+                {
+                    if (result.Exception != null)
+                        ShowMessage.ShowError(result.Exception);
+
+                    ShowMessage.ShowError($"Неможливо виконати зарахування коштів на рахунки правовласників!\nStatus Code: {result.StatusCode}");
+                }
 
                 UpdateSystemState();
             }
@@ -465,7 +474,7 @@ namespace IPSModulesLibrary.FinishingWorks
         public ICommand RollbackCommand => new IPSDelegateCommand(RollbackCommandExecute);
         private async void RollbackCommandExecute(object o)
         {
-            string message = $"Виконати відкат процесу оплати?";
+            string message = $"Виконати зарахування коштів на рахунки правовласників?";
             _rollbackTimer.Stop();
 
             var confirmAction = ShowMessage.ConfirmAction(message);
@@ -477,10 +486,17 @@ namespace IPSModulesLibrary.FinishingWorks
                 var result = await service.RollbackLastFinalEnrollment();
                 IsBusy = false;
 
-                if (!result.IsSuccess)
-                    ShowMessage.ShowError(result.Exception);
-                
-                UpdateSystemState();
+                if (result.IsSuccess)
+                {
+                    ShowMessage.ShowInfo("Відкат останнього зарахування коштів на рахунки правовласників виконано!");
+                }
+                else
+                {
+                    if (result.Exception != null)
+                        ShowMessage.ShowError(result.Exception);
+
+                    ShowMessage.ShowError($"Неможливо виконати відкат останнього зарахування коштів на рахунки правовласників!\nStatus Code: {result.StatusCode}");
+                }
             }
             else
             {
