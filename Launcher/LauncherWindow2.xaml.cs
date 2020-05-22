@@ -22,6 +22,7 @@ namespace Launcher
         public LauncherWindow2()
         {
             InitializeComponent();
+            Style = (Style)FindResource(typeof(Window));
         }
     }
 }
