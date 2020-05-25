@@ -236,6 +236,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\LoginWindow\LoginWindow2.xaml.cs">
+      <DependentUpon>LoginWindow2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LauncherWindow2.xaml.cs">
       <DependentUpon>LauncherWindow2.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
       <DependentUpon>ReportWorkplaceWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\LoginWindow\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LoginWindow\LoginWindow2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
