@@ -8,6 +8,7 @@ namespace ipsmedserviceapp.Model
     {
         public LicenseBigR()
         {
+            LicAuthorBr = new HashSet<LicAuthorBr>();
             MusicalDesign = new HashSet<MusicalDesign>();
         }
 
@@ -26,16 +27,20 @@ namespace ipsmedserviceapp.Model
         public int? PerformType { get; set; }
         public short? LicTerm { get; set; }
         public decimal? RateMusic { get; set; }
+        public int LicVersion { get; set; }
 
         [JsonIgnore]
         public virtual Language LangCodeNavigation { get; set; }
         [JsonIgnore]
-        public virtual LicenseAgreement Lic { get; set; }
+        public virtual LicenseAgrParam Lic { get; set; }
         public virtual ObjectRight Obj { get; set; }
         [JsonIgnore]
         public virtual PerformType PerformTypeNavigation { get; set; }
+        public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
         public virtual ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }
+
+
 
 

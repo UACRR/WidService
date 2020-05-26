@@ -41,7 +41,6 @@ namespace ipsFormsDesign.Model
         public virtual AgreementStatus LicStatusNavigation { get; set; }
         [JsonIgnore]
         public virtual LicenseType LicTypeNavigation { get; set; }
-        public virtual LicenseBigR LicenseBigR { get; set; }
         [JsonIgnore]
         public virtual ObservableListSource<BrRegItem> BrRegItem { get; set; }
         [JsonIgnore]
@@ -56,5 +55,7 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
     }
 }
+
+
 
 

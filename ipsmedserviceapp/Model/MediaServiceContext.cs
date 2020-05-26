@@ -705,7 +705,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
@@ -794,7 +794,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
@@ -881,7 +881,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NoCourtRate)
@@ -980,7 +980,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
@@ -1048,7 +1048,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Version).HasColumnName("version");
@@ -1399,7 +1399,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(100)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
@@ -1672,7 +1672,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(100)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NikName)
@@ -2255,7 +2255,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.MusicAmount)
@@ -2993,6 +2993,11 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
+                entity.Property(e => e.CreateLogin)
+                    .HasColumnName("createLogin")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
                 entity.Property(e => e.EndDate)
@@ -3017,7 +3022,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ObjId).HasColumnName("objId");
@@ -3581,6 +3586,16 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("dateEnd")
                     .HasColumnType("date");
 
+                entity.Property(e => e.ModifyDate)
+                    .HasColumnName("modifyDate")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ModifyLogin)
+                    .HasColumnName("modifyLogin")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.CmCust)
                     .WithMany(p => p.CustCmRight)
                     .HasForeignKey(d => d.CmCustId)
@@ -3614,6 +3629,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
 
+                entity.Property(e => e.CreateLogin)
+                    .HasColumnName("createLogin")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CustType).HasColumnName("custType");
 
                 entity.Property(e => e.DateCreate)
@@ -3622,6 +3642,16 @@ namespace ipsmedserviceapp.Model
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.LoadId).HasColumnName("loadId");
+
+                entity.Property(e => e.ModifyDate)
+                    .HasColumnName("modifyDate")
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ModifyLogin)
+                    .HasColumnName("modifyLogin")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
@@ -4570,7 +4600,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Cust)
@@ -5678,14 +5708,18 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<LicAuthorBr>(entity =>
             {
-                entity.HasKey(e => e.CRightId)
+                entity.HasKey(e => new { e.LicId, e.LicVersion, e.CustIdRh })
                     .HasName("PK_LICAUTHORBR");
 
                 entity.ToTable("LicAuthorBR", "dbo");
 
-                entity.Property(e => e.CRightId)
-                    .HasColumnName("cRightId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
+                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
+
+                entity.Property(e => e.CustIdRh).HasColumnName("custIdRH");
+
+                entity.Property(e => e.CRightId).HasColumnName("cRightId");
 
                 entity.Property(e => e.DateAccept)
                     .HasColumnName("dateAccept")
@@ -5702,6 +5736,11 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.DateModify)
                     .HasColumnName("dateModify")
                     .HasColumnType("date");
+
+                entity.Property(e => e.ModifyLogin)
+                    .HasColumnName("modifyLogin")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PrepayDateDo)
                     .HasColumnName("prepayDateDo")
@@ -5736,14 +5775,26 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("numeric(10, 5)");
 
                 entity.HasOne(d => d.CRight)
-                    .WithOne(p => p.LicAuthorBr)
-                    .HasForeignKey<LicAuthorBr>(d => d.CRightId)
+                    .WithMany(p => p.LicAuthorBr)
+                    .HasForeignKey(d => d.CRightId)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_COPYRIGH");
+
+                entity.HasOne(d => d.CustIdRhNavigation)
+                    .WithMany(p => p.LicAuthorBr)
+                    .HasForeignKey(d => d.CustIdRh)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LICAUTHO_REFERENCE_RIGHTHOL");
 
                 entity.HasOne(d => d.PrepayTypeNavigation)
                     .WithMany(p => p.LicAuthorBr)
                     .HasForeignKey(d => d.PrepayType)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_PREPAYTY");
+
+                entity.HasOne(d => d.Lic)
+                    .WithMany(p => p.LicAuthorBr)
+                    .HasForeignKey(d => new { d.LicId, d.LicVersion })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LICAUTHO_REFERENCE_LICENSEB");
             });
 
             modelBuilder.Entity<LicPlace>(entity =>
@@ -5867,7 +5918,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
@@ -5962,14 +6013,14 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<LicenseBigR>(entity =>
             {
-                entity.HasKey(e => e.LicId)
+                entity.HasKey(e => new { e.LicId, e.LicVersion })
                     .HasName("PK_LICENSEBIGR");
 
                 entity.ToTable("LicenseBigR", "dbo");
 
-                entity.Property(e => e.LicId)
-                    .HasColumnName("licId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
+                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
 
                 entity.Property(e => e.DatePremiere)
                     .HasColumnName("datePremiere")
@@ -6025,12 +6076,6 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.LangCode)
                     .HasConstraintName("FK_LICENSEB_REFERENCE_LANGUAGE");
 
-                entity.HasOne(d => d.Lic)
-                    .WithOne(p => p.LicenseBigR)
-                    .HasForeignKey<LicenseBigR>(d => d.LicId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_LICENSEB_REFERENCE_LICENSEA");
-
                 entity.HasOne(d => d.Obj)
                     .WithMany(p => p.LicenseBigR)
                     .HasForeignKey(d => d.ObjId)
@@ -6040,6 +6085,12 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.LicenseBigR)
                     .HasForeignKey(d => d.PerformType)
                     .HasConstraintName("FK_LICENSEB_REFERENCE_PERFORMT");
+
+                entity.HasOne(d => d.Lic)
+                    .WithOne(p => p.LicenseBigR)
+                    .HasForeignKey<LicenseBigR>(d => new { d.LicId, d.LicVersion })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LICENSEB_REFERENCE_LICENSEA");
             });
 
             modelBuilder.Entity<LicenseClass>(entity =>
@@ -6222,7 +6273,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
@@ -6702,6 +6753,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
+                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
+
                 entity.Property(e => e.NameMusician)
                     .HasColumnName("nameMusician")
                     .HasMaxLength(256)
@@ -6721,16 +6774,16 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Objid).HasColumnName("objid");
 
-                entity.HasOne(d => d.Lic)
-                    .WithMany(p => p.MusicalDesign)
-                    .HasForeignKey(d => d.LicId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MUSICALD_REFERENCE_LICENSEB");
-
                 entity.HasOne(d => d.Obj)
                     .WithMany(p => p.MusicalDesign)
                     .HasForeignKey(d => d.Objid)
                     .HasConstraintName("FK_MUSICALD_REFERENCE_OBJECTRI");
+
+                entity.HasOne(d => d.Lic)
+                    .WithMany(p => p.MusicalDesign)
+                    .HasForeignKey(d => new { d.LicId, d.LicVersion })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MUSICALD_REFERENCE_LICENSEB");
             });
 
             modelBuilder.Entity<MyAnketa>(entity =>
@@ -6761,6 +6814,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.AccInCommission)
                     .HasColumnName("accInCommission")
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AccPrepayCompany)
+                    .HasColumnName("accPrepayCompany")
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
@@ -6903,6 +6961,11 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
+                entity.Property(e => e.CreateLogin)
+                    .HasColumnName("createLogin")
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.GenreType).HasColumnName("genreType");
 
                 entity.Property(e => e.InnerCode)
@@ -6918,7 +6981,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
@@ -8440,6 +8503,14 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
+                entity.Property(e => e.ModifyDate)
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifyLogin)
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.MusicAmount)
                     .HasColumnName("musicAmount")
                     .HasColumnType("money");
@@ -8727,7 +8798,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ObjId).HasColumnName("objId");
@@ -9819,7 +9890,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ObjId).HasColumnName("objId");
@@ -10553,10 +10624,14 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<SaldoDay>(entity =>
             {
-                entity.HasKey(e => new { e.AccId, e.DateBegin, e.DateEnd })
+                entity.HasKey(e => new { e.AccId, e.DateBegin })
                     .HasName("PK_saldoday");
 
                 entity.ToTable("SaldoDay", "dbo");
+
+                entity.HasIndex(e => new { e.AccId, e.DateBegin, e.DateEnd })
+                    .HasName("UI_saldoday")
+                    .IsUnique();
 
                 entity.Property(e => e.AccId).HasColumnName("accId");
 
@@ -11753,7 +11828,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ModifyLogin)
                     .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.Property(e => e.WorkCommentRh)

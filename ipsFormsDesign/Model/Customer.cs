@@ -34,6 +34,9 @@ namespace ipsFormsDesign.Model
         public string UserId { get; set; }
         public int? LoadId { get; set; }
         public DateTime? DateCreate { get; set; }
+        public string CreateLogin { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
 
         [JsonIgnore]
         public virtual CustomerType CustTypeNavigation { get; set; }
@@ -74,5 +77,7 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<UserRole> UserRole { get; set; }
     }
 }
+
+
 
 

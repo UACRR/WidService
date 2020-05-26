@@ -11,6 +11,7 @@ namespace ipsmedserviceapp.Model
             CopyRightHistoryChild = new HashSet<CopyRightHistory>();
             CopyRightHistoryParent = new HashSet<CopyRightHistory>();
             Distribution = new HashSet<Distribution>();
+            LicAuthorBr = new HashSet<LicAuthorBr>();
             RhcatalogItem = new HashSet<RhcatalogItem>();
         }
 
@@ -34,6 +35,7 @@ namespace ipsmedserviceapp.Model
         public int? LoadId { get; set; }
         public string SourceName { get; set; }
         public int? LoadSeqNr { get; set; }
+        public string CreateLogin { get; set; }
 
         [JsonIgnore]
         public virtual RightHolder Cust { get; set; }
@@ -42,7 +44,6 @@ namespace ipsmedserviceapp.Model
         public virtual CreativeRoleType RoleCodeNavigation { get; set; }
         [JsonIgnore]
         public virtual CrightStatus StatusNavigation { get; set; }
-        public virtual LicAuthorBr LicAuthorBr { get; set; }
         public virtual WorkRh WorkRh { get; set; }
         [JsonIgnore]
         public virtual ICollection<CopyRightHistory> CopyRightHistoryChild { get; set; }
@@ -50,9 +51,12 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<CopyRightHistory> CopyRightHistoryParent { get; set; }
         [JsonIgnore]
         public virtual ICollection<Distribution> Distribution { get; set; }
+        public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
         [JsonIgnore]
         public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }
+
+
 
 

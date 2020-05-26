@@ -13,6 +13,7 @@ namespace ipsmedserviceapp.Model
             Authors = new HashSet<Authors>();
             CatalogFile = new HashSet<CatalogFile>();
             CopyRight = new HashSet<CopyRight>();
+            LicAuthorBr = new HashSet<LicAuthorBr>();
             PubCatalogItem = new HashSet<PubCatalogItem>();
             RegisterCount = new HashSet<RegisterCount>();
             RelSubPublishCustIdPubNavigation = new HashSet<RelSubPublish>();
@@ -44,6 +45,8 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<CatalogFile> CatalogFile { get; set; }
         public virtual ICollection<CopyRight> CopyRight { get; set; }
         [JsonIgnore]
+        public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        [JsonIgnore]
         public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
         [JsonIgnore]
         public virtual ICollection<RegisterCount> RegisterCount { get; set; }
@@ -60,5 +63,7 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
+
+
 
 
