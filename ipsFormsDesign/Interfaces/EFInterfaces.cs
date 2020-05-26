@@ -64,7 +64,6 @@ public interface IAgreementAddBr
 }
 
 
-
 public interface IAgreementAddCommunity
     {
          int AgrId { get; set; }
@@ -134,7 +133,6 @@ public interface IAgreementAddRh
 }
 
 
-
 public interface IAgreementMaster
     {    int AgrId { get; set; }
          int CustId { get; set; }
@@ -144,7 +142,6 @@ public interface IAgreementMaster
          int? AgrType { get; set; }
          int? Version { get; set; }
 }
-
 
 
 public interface IAgreementStatus
@@ -183,7 +180,6 @@ public interface IAgrLicenseType
          short? IsPortalSale { get; set; }
          int? LicClass { get; set; }
 }
-
 
 
 public interface IAgrLicenseTypeTr
@@ -461,14 +457,12 @@ public interface ICatalogStatus
 }
 
 
-
 public interface ICatalogStatusTr
     {
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
 }
-
 
 
 public interface ICategory
@@ -516,7 +510,6 @@ public interface IClient
 }
 
 
-
 public interface IClientBrand
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -551,7 +544,6 @@ public interface IClnBusinessPlace
 }
 
 
-
 public interface IClnPlaceHoll
     {
          int HollId { get; set; }
@@ -575,7 +567,6 @@ public interface ICompany
     {    int CustId { get; set; }
          int Version { get; set; }
 }
-
 
 
 public interface IContinent
@@ -611,7 +602,6 @@ public interface ICopyRight
          int? LoadSeqNr { get; set; }
          string CreateLogin { get; set; }
 }
-
 
 
 public interface ICopyRightHistory
@@ -677,14 +667,12 @@ public interface ICreativeRoleType
 }
 
 
-
 public interface ICreativeRoleTypeTr
     {
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
 }
-
 
 
 public interface ICrightStatus
@@ -753,7 +741,6 @@ public interface ICustomer
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
 }
-
 
 
 public interface ICustomerStatus
@@ -835,7 +822,6 @@ public interface IDistribution
          int? CustId { get; set; }
          int? CRightId { get; set; }
 }
-
 
 
 public interface IDistributionItem
@@ -1232,8 +1218,7 @@ public interface ILegalBasisTr
          string Name { get; set; }
 }
 public interface ILicAuthorBr
-    {
-         int CRightId { get; set; }
+    {    int CRightId { get; set; }
          int? PrepayType { get; set; }
          DateTime? DateCreate { get; set; }
          DateTime? DateClose { get; set; }
@@ -1253,7 +1238,6 @@ public interface ILicAuthorBr
 }
 
 
-
 public interface ILicense
     {
          int LId { get; set; }
@@ -1264,7 +1248,6 @@ public interface ILicense
          DateTime? LDate { get; set; }
          int? Status { get; set; }
 }
-
 
 
 public interface ILicenseAgreement
@@ -1280,7 +1263,6 @@ public interface ILicenseAgreement
          int? ProlongVersion { get; set; }
          int? LicMethod { get; set; }
 }
-
 
 
 public interface ILicenseAgrParam
@@ -1322,7 +1304,6 @@ public interface ILicenseBigR
          decimal? RateMusic { get; set; }
          int LicVersion { get; set; }
 }
-
 
 
 public interface ILicenseClass
@@ -1438,12 +1419,15 @@ public interface IMoneyPeriodLink
 }
 
 
-
 public interface IMoneyPrepayLink
     {
+         int LinkId { get; set; }
          int PaidId { get; set; }
-         int CRightId { get; set; }
-         decimal? Amount { get; set; }
+         int LicId { get; set; }
+         int LicVersion { get; set; }
+         int CustIdRh { get; set; }
+         decimal Amount { get; set; }
+         int? TurnId { get; set; }
 }
 public interface IMoneyReceived
     {    int PaidId { get; set; }
@@ -1456,7 +1440,6 @@ public interface IMoneyReceived
          decimal DestribAmount { get; set; }
          decimal? DestribPrepay { get; set; }
 }
-
 
 
 public interface IMoneyType
@@ -1493,7 +1476,6 @@ public interface IMusicalDesign
          int? NumbPerfom { get; set; }
          int LicVersion { get; set; }
 }
-
 
 
 public interface IMyAnketa
@@ -1570,7 +1552,6 @@ public interface IPaidPeriod
          bool? FagFirst { get; set; }
          DateTime? DateActPrint { get; set; }
 }
-
 
 
 public interface IParametersListBox
@@ -1818,7 +1799,6 @@ public interface IPerson
 }
 
 
-
 public interface IPopGenre
     {    int CategoryCode { get; set; }
          string Name { get; set; }
@@ -1900,7 +1880,6 @@ public interface IPubCatalogItem
 }
 
 
-
 public interface IRegion
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1936,8 +1915,8 @@ public interface IRegister
          int? AlgorithmId { get; set; }
          string ModifyDate { get; set; }
          string ModifyLogin { get; set; }
+         decimal? PrepayAmount { get; set; }
 }
-
 
 
 public interface IRegisterAuthors
@@ -2007,7 +1986,6 @@ public interface IRegisterItem
 }
 
 
-
 public interface IRegisterItemFix
     {
          int RegId { get; set; }
@@ -2074,7 +2052,6 @@ public interface IRelEmployee
          int PositionCode { get; set; }
          string RelDocument { get; set; }
 }
-
 
 
 public interface IRelEtGenre
@@ -2405,7 +2382,6 @@ public interface IRightHolder
 }
 
 
-
 public interface ISaldoDay
     {
          int AccId { get; set; }
@@ -2583,7 +2559,6 @@ public interface ITypePlace
 }
 
 
-
 public interface ITypePlaceParam
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -2661,7 +2636,6 @@ public interface IUsesKind
 }
 
 
-
 public interface IUsesKindTr
     {
          int CodeI { get; set; }
@@ -2690,7 +2664,6 @@ public interface IWorkRh
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
 }
-
 
 
 public interface IWorkType

@@ -38,6 +38,7 @@ namespace ipsFormsDesign.Model
         public int? AlgorithmId { get; set; }
         public string ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
+        public decimal? PrepayAmount { get; set; }
 
         [JsonIgnore]
         public virtual AlgorithmType Algorithm { get; set; }
@@ -55,7 +56,6 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<RegisterItem> RegisterItem { get; set; }
     }
 }
-
 
 
 

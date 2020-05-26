@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace ipsmedserviceapp.Model.SQLViewsData
 {
     [NotMapped]
+    //[Table("vCustomer", Schema = "dbo")]
     public class vCustomer
     {
         public int CustId { get; set; }

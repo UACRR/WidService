@@ -37,6 +37,7 @@ namespace ipsmedserviceapp.Model
         public int? AlgorithmId { get; set; }
         public string ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
+        public decimal? PrepayAmount { get; set; }
 
         [JsonIgnore]
         public virtual AlgorithmType Algorithm { get; set; }
@@ -54,7 +55,6 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<RegisterItem> RegisterItem { get; set; }
     }
 }
-
 
 
 

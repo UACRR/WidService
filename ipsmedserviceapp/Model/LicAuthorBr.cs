@@ -6,6 +6,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class LicAuthorBr
     {
+        public LicAuthorBr()
+        {
+            MoneyPrepayLink = new HashSet<MoneyPrepayLink>();
+        }
+
         public int CRightId { get; set; }
         public int? PrepayType { get; set; }
         public DateTime? DateCreate { get; set; }
@@ -32,9 +37,10 @@ namespace ipsmedserviceapp.Model
         public virtual LicenseBigR Lic { get; set; }
         [JsonIgnore]
         public virtual PrePayType PrepayTypeNavigation { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
-
 
 
 
