@@ -139,15 +139,16 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
             bsLicAgrParam.DataSource = _licenseAgreement.LicenseAgrParam;
 
-            if (_licenseAgreement.LicenseBigR != null)
+            var licenseAgrParam = _licenseAgreement.LicenseAgrParam.Single(rec =>rec.LicVersion == _licenseAgreement.LicVersion);
+            if (licenseAgrParam.LicenseBigR != null)
             {
-                if (_licenseAgreement.LicenseBigR.IsTour == null)
-                    _licenseAgreement.LicenseBigR.IsTour = false;
+                if (licenseAgrParam.LicenseBigR.IsTour == null)
+                    licenseAgrParam.LicenseBigR.IsTour = false;
             }
-            bsLicenseBigR.DataSource = _licenseAgreement.LicenseBigR;
+            bsLicenseBigR.DataSource = licenseAgrParam.LicenseBigR;
             
 
-            _objectRight = _licenseAgreement.LicenseBigR?.Obj;
+            _objectRight = licenseAgrParam.LicenseBigR?.Obj;
             var rightholderList = _objectRightService.GetDataBr(_objectRight.ObjId).rhList;
             bsObjectRight.DataSource = _objectRight;
             SetObjectRightData(_objectRight, rightholderList);
@@ -169,14 +170,16 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private void Form_Load(object sender, EventArgs e)
         {
-            if (_licenseAgreement?.LicenseBigR == null || _licenseAgreement.LicenseBigR.Rate != 0)
+            var licenseAgrParam = _licenseAgreement.LicenseAgrParam.Single(rec =>rec.LicVersion == _licenseAgreement.LicVersion);
+            
+            if (licenseAgrParam.LicenseBigR == null || licenseAgrParam.LicenseBigR.Rate != 0)
                 return;
 
             var rate = _dictionaties.relGenrePercent
                 .Where(rec => rec.ActCode == _objectRight.ActCode)
                 .SingleOrDefault(rec => rec.GenreType == _objectRight.GenreType)?.Rate;
 
-            _licenseAgreement.LicenseBigR.Rate = rate;
+            licenseAgrParam.LicenseBigR.Rate = rate;
             bsLicenseBigR.ResetBindings(false);
         }
 
@@ -255,7 +258,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private void SetMusicalDesignData(LicenseAgreement licenseAgreement)
         {
-            foreach (var m in licenseAgreement.LicenseBigR.MusicalDesign)
+            var licenseAgrParam = licenseAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == _licenseAgreement.LicVersion);
+            foreach (var m in licenseAgrParam.LicenseBigR.MusicalDesign)
             {
                 _musicalDesignList.Add(new RegisterItemViewModel(m));
             }
@@ -291,7 +295,9 @@ namespace IpsViewComponentLibrary.Shared.Forms
                     return;
             }
 
-            licenseAgreement.LicenseBigR.MusicalDesign.Clear();
+            var licenseAgrParam = _licenseAgreement.LicenseAgrParam.Single(rec =>rec.LicVersion == _licenseAgreement.LicVersion);
+
+            licenseAgrParam.LicenseBigR.MusicalDesign.Clear();
             //if(_musicalDesignList.Any())
             foreach (var item in _musicalDesignList)
             {
@@ -318,7 +324,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
                     //musicalDesign.LicVersion = licenseAgreement.LicVersion;
                 }
 
-                licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
+                licenseAgrParam.LicenseBigR.MusicalDesign.Add(musicalDesign);
             }
         }
 
@@ -374,25 +380,24 @@ namespace IpsViewComponentLibrary.Shared.Forms
                                 PlaceId = _customer.Client.ClnBusinessPlace.FirstOrDefault()?.PlaceId,
                                 LicVersion = 1,
                             }
+                        },
+                        LicenseBigR = new LicenseBigR
+                        {
+                            Obj = new ObjectRight
+                            {
+                                Status = 0,
+                                CategoryCode = 6,
+                                ActCode = 1,
+                                SpecType = 1,
+                                GenreType = 60001,
+                            },
+                            MusicalDesign = new ObservableListSource<MusicalDesign>(),
+                            Rate = default(decimal),
+                            LangCode = "uk",
+                            PerformType = 1,
                         }
                     }
                 },
-                LicenseBigR =
-                    new LicenseBigR
-                    {
-                        Obj = new ObjectRight
-                        {
-                            Status = 0,
-                            CategoryCode = 6,
-                            ActCode = 1,
-                            SpecType = 1,
-                            GenreType = 60001,
-                        },
-                        MusicalDesign = new ObservableListSource<MusicalDesign>(),
-                        Rate = default(decimal),
-                        LangCode = "uk",
-                        PerformType = 1,
-                    }
             };
             _customer.Client.LicenseAgreement.Add(_licenseAgreement);
         }
@@ -488,16 +493,18 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
                 var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
 
-                if (genreType == _licenseAgreement.LicenseBigR.Obj.GenreType && !isTxtActCodeChanged)
+                var licenseAgrParam = _licenseAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == _licenseAgreement.LicVersion);
+
+                if (genreType == licenseAgrParam.LicenseBigR.Obj.GenreType && !isTxtActCodeChanged)
                     return;
 
 
                 var rate = _dictionaties.relGenrePercent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
-                if (_licenseAgreement?.LicenseBigR?.Rate == rate)
+                if (licenseAgrParam.LicenseBigR?.Rate == rate)
                     return;
 
-                if(_licenseAgreement?.LicenseBigR != null)
-                    _licenseAgreement.LicenseBigR.Rate = rate;
+                if (licenseAgrParam?.LicenseBigR != null)
+                    licenseAgrParam.LicenseBigR.Rate = rate;
 
                 bsLicenseBigR.ResetBindings(false);
             }
@@ -581,9 +588,12 @@ namespace IpsViewComponentLibrary.Shared.Forms
         {
             if (!int.TryParse(txtMusicRate.Text, out int val))
                 return;
+            
             if (val > 100)
             {
-                _licenseAgreement.LicenseBigR.RateMusic = 100m;
+                var licenseAgrParam = _licenseAgreement.LicenseAgrParam.Single(rec =>rec.LicVersion == _licenseAgreement.LicVersion);
+                licenseAgrParam.LicenseBigR.RateMusic = 100m;
+                
                 bsLicenseBigR.ResetBindings(false);
             }
         }

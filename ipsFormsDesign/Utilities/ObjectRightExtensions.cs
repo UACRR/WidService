@@ -3,6 +3,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services.ObjectUploading;
 using System.Collections.Generic;
 using System.Linq;
+using ipsFormsDesign.Interfaces;
 
 namespace ipsFormsDesign.Utilities
 {
@@ -99,7 +100,7 @@ namespace ipsFormsDesign.Utilities
                 copyRight.CustId = (int)objectAuthorRightholder.Author.CustId;
                 copyRight.RoleCode = objectAuthorRightholder.Author.RoleCode;
 
-                copyRight.LicAuthorBr = objectAuthorRightholder.LicAuthorBr;
+                copyRight.LicAuthorBr = new ObservableListSource<LicAuthorBr>(objectAuthorRightholder.LicAuthorBr);
                 copyRight.WorkRh = objectAuthorRightholder.WorkRh;
 
                 objectRight.CopyRight.Add(copyRight);
@@ -120,7 +121,7 @@ namespace ipsFormsDesign.Utilities
                     Country = foundedRightholder?.Country,
                     InnerCode = foundedRightholder?.InnerCode,
                     CopyRight = foundedCopyright ?? new CopyRight(),
-                    LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new LicAuthorBr(),
+                    LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new ObservableListSource<LicAuthorBr>(),
                     WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
                 };
             })

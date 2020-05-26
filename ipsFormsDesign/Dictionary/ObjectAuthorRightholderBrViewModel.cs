@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.Windows.Diagrams.Core;
 
 namespace ipsFormsDesign.Dictionary
 {
@@ -12,17 +13,25 @@ namespace ipsFormsDesign.Dictionary
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public ObjectAuthorRightholderBrViewModel()
+        {
+            Author = new Authors();
+            CopyRight = new CopyRight();
+            LicAuthorBr = new List<LicAuthorBr>();
+            WorkRh = new WorkRh();
+        }
+
         public string InnerCode { get; set; }
         public string Country { get; set; }
         public Authors Author { get; set; }
         public CopyRight CopyRight { get; set; }
         public WorkRh WorkRh { get; set; }
-        public LicAuthorBr LicAuthorBr { get; set; }
+        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
 
         private bool _isRightholder;
         public bool IsRightholder
         {
-            get { return _isRightholder; }
+            get => _isRightholder;
             set
             {
                 _isRightholder = value;
@@ -42,19 +51,15 @@ namespace ipsFormsDesign.Dictionary
             CopyRight.RoleRate = null;
             WorkRh.WorkTypeRh = null;
             WorkRh.WorkTypeCl = null;
-            LicAuthorBr.R030 = null;
-            LicAuthorBr.PrepayType = null;
-            LicAuthorBr.PrepaySum = null;
             Country = null;
             InnerCode = null;
-        }
 
-        public ObjectAuthorRightholderBrViewModel()
-        {
-            Author = new Authors();
-            CopyRight = new CopyRight();
-            LicAuthorBr = new LicAuthorBr();
-            WorkRh = new WorkRh();
+            LicAuthorBr?.ForEach((item) =>
+            {
+                item.R030 = null;
+                item.PrepayType = null;
+                item.PrepaySum = null;
+            });
         }
 
         private void OnPropertyChanged(string propertyName)
