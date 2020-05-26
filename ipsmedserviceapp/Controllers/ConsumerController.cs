@@ -23,7 +23,6 @@ namespace ipsmedserviceapp.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    //[Route("api/Consumer")]
     [ApiController]
     public class ConsumerController : Controller
     {

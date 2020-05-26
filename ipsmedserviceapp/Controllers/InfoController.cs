@@ -9,11 +9,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ipsmedserviceapp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class InfoController : ControllerBase
     {
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
         public InfoController(MediaServiceContext dbContext)
         {
             _dbContext = dbContext;

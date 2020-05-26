@@ -329,5 +329,3 @@
 );
 
 Scaffold-DbContext -Context MediaServiceContext  -Provider Microsoft.EntityFrameworkCore.SqlServer -Connection "Data Source=93.126.99.28\IPSDATA,60675;Initial Catalog=RoyaltyServiceTest;User ID=robot;Password=robot11235813" -OutputDir Model -Tables $tables -Force -ErrorAction Ignore
-
-Scaffold-DbContext -Context MediaServiceContext  -Provider Microsoft.EntityFrameworkCore.SqlServer -Connection "Data Source=93.126.99.28\IPSDATA,60675;Initial Catalog=RoyaltyServiceTest;Integrated Security=True" -OutputDir Model -Tables $tables -Force -ErrorAction Ignore
