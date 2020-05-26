@@ -7,16 +7,17 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
         mc:Ignorable="d"
-        Title="LauncherWindow2" Height="762.865" Width="1523.258"
+        xmlns:Launcher="clr-namespace:Launcher" 
+        Title="LauncherWindow2" Height="900" Width="1400"
         Background="#f8f8f8">
 
     <Window.Resources>
 
-        <!--RED BTN________________________________________________________________________-->
-
         <Style TargetType="{x:Type Window}">
             <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
         </Style>
+
+        <!--RED BTN________________________________________________________________________-->
 
         <Style TargetType="{x:Type t:RadButton}" x:Key="redBtnLauncher">
             <Setter Property="Template">
@@ -355,9 +356,9 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <!--LOGBTN-->
-        
+
         <Style TargetType="t:RadButton" x:Key="logBtn">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Template">
@@ -512,7 +513,186 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+
+
+
+
+
+
+
+
+        <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource" 
+                                 Background="Transparent" 
+                                 Panel.ZIndex="2"
+                                 Padding="16 0"
+                                 VerticalContentAlignment="Center"/>
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1" VerticalContentAlignment="Center" Padding="16 0">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="#272A33"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--PASSWORD PLACEHOLDER
+
+        <Style x:Key="{x:Type PasswordBox}" 
+        TargetType="{x:Type PasswordBox}">
+            <Setter Property="Launcher:PasswordBoxMonitor.IsMonitoring" 
+              Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border Name="Bd" 
+                    Background="{TemplateBinding Background}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    SnapsToDevicePixels="true">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost" 
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <TextBlock Text="Please enter your password"  
+                           Margin="4, 2, 0, 0" 
+                           Foreground="Gray"  
+                           Visibility="Collapsed" 
+                           Name="txtPrompt" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" 
+                                                                         Value="false">
+                                <Setter TargetName="Bd" 
+                                                                                Property="Background" 
+                                                                                Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" 
+                                                                                Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="Launcher:PasswordBoxMonitor.PasswordLength" Value="0">
+                                <Setter Property="Visibility" TargetName="txtPrompt" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style> -->
+
+
+        <!--LOGIN BTN-->
+
+        <Style TargetType="{x:Type t:RadButton}" x:Key="loginBtn">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border HorizontalAlignment="Stretch" Height="40" CornerRadius="20" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                                    <GradientStop Color="#00E0FF" Offset="0.949" />
+                                    <GradientStop Color="#8F00FF" Offset="0.153" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                        <Setter Property="FontSize" Value="12"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextAlignment" Value="Center"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!--HOVER-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border HorizontalAlignment="Stretch" Height="40" CornerRadius="20" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                                            <GradientStop Color="#FF009FB6" Offset="0.949" />
+                                            <GradientStop Color="#FF5E04A5" Offset="0.153" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="12"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="TextAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+
+                <!--CLICK-->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border HorizontalAlignment="Stretch" Height="40" CornerRadius="20" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                                            <GradientStop Color="#FF04606D" Offset="0.949" />
+                                            <GradientStop Color="#FF39095F" Offset="0.153" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="12"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="TextAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
+
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -561,7 +741,7 @@
 
                 <t:RadButton Height="25" Grid.Column="2" Margin="0 0 48 0" Style="{DynamicResource logBtn}"
                     HorizontalAlignment="Center" 
-                    VerticalAlignment="Center"> 
+                    VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
                         <Image Margin="0 0 8 0" Height="16" Source="Images/log.png"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13">Увійти</TextBlock>
@@ -586,19 +766,23 @@
             </Grid>
 
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >
-                <WrapPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <StackPanel Width="296" Margin="16 50">
-                        <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
-                            <Image Source="Images/Rights.png" Width="80" Height="80" Margin="0 0 24 0"/>
-                            <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#D3417F"><Run Text="ПРАВА"/></TextBlock>
-                        </StackPanel>
-                        <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Правовласники та об'єкти прав" Background="#FFE89595"/>
+                <Grid>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="Images/Path.png" Stretch="Uniform" AlignmentY="Bottom"/>
+                    </Grid.Background>
+                    <WrapPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Width="296" Margin="16 50">
+                            <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
+                                <Image Source="Images/Rights.png" Width="80" Height="80" Margin="0 0 24 0"/>
+                                <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#D3417F"><Run Text="ПРАВА"/></TextBlock>
+                            </StackPanel>
+                            <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Правовласники та об'єкти прав" Background="#FFE89595"/>
 
-                        <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Обробка звітів користувачів (індентифікація)"/>
+                            <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Обробка звітів користувачів (індентифікація)"/>
 
-                        <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Управління технологічнимим процесами"/>
+                            <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Управління технологічнимим процесами"/>
 
-                        <!--HOVER TEST
+                            <!--HOVER TEST
                         
                         <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
@@ -622,21 +806,21 @@
                             <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
                         </Border>
                         -->
-                    </StackPanel>
-
-
-
-                    <StackPanel Width="296" Margin="16 50">
-                        <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
-                            <Image Source="Images/Users.png" Width="80" Height="80" Margin="0 0 24 0"/>
-                            <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#842EF6"><Run Text="КОРИСТУВАЧІ"/></TextBlock>
-
                         </StackPanel>
-                        <t:RadButton Style="{DynamicResource blueBtnLauncher}" Content="Користувачі (Малі права)"/>
 
-                        <t:RadButton Style="{DynamicResource blueBtnLauncher}" Content="Користувачі (Великі права)"/>
 
-                        <!--HOVER TEST
+
+                        <StackPanel Width="296" Margin="16 50">
+                            <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
+                                <Image Source="Images/Users.png" Width="80" Height="80" Margin="0 0 24 0"/>
+                                <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#842EF6"><Run Text="КОРИСТУВАЧІ"/></TextBlock>
+
+                            </StackPanel>
+                            <t:RadButton Style="{DynamicResource blueBtnLauncher}" Content="Користувачі (Малі права)"/>
+
+                            <t:RadButton Style="{DynamicResource blueBtnLauncher}" Content="Користувачі (Великі права)"/>
+
+                            <!--HOVER TEST
 
                         <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
@@ -660,24 +844,24 @@
                             <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
                         </Border>
                         -->
-                    </StackPanel>
-
-                    <StackPanel Width="296" Margin="16 50">
-                        <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
-                            <Image Source="Images/Syst.png" Width="80" Height="80" Margin="0 0 24 0"/>
-                            <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#0ACDB6"><Run Text="СИСТЕМА"/></TextBlock>
-
                         </StackPanel>
 
-                        <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Звітність (Аналітика)"/>
+                        <StackPanel Width="296" Margin="16 50">
+                            <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
+                                <Image Source="Images/Syst.png" Width="80" Height="80" Margin="0 0 24 0"/>
+                                <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#0ACDB6"><Run Text="СИСТЕМА"/></TextBlock>
 
-                        <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Системні довідники"/>
+                            </StackPanel>
 
-                        <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Анкета компанії"/>
+                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Звітність (Аналітика)"/>
 
-                        <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Права доступу"/>
+                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Системні довідники"/>
 
-                        <!--HOVER TEST
+                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Анкета компанії"/>
+
+                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Права доступу"/>
+
+                            <!--HOVER TEST
 
                         <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
@@ -701,22 +885,22 @@
                             <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
                         </Border>
                         -->
-                    </StackPanel>
-
-                    <StackPanel Width="296" Margin="16 50">
-                        <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
-                            <Image Source="Images/Diff.png" Width="80" Height="80" Margin="0 0 24 0"/>
-                            <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#FEA04A"><Run Text="ІНШЕ"/></TextBlock>
-
                         </StackPanel>
 
-                        <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Представники компанії"/>
+                        <StackPanel Width="296" Margin="16 50">
+                            <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
+                                <Image Source="Images/Diff.png" Width="80" Height="80" Margin="0 0 24 0"/>
+                                <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#FEA04A"><Run Text="ІНШЕ"/></TextBlock>
 
-                        <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Фіксація порушення авторських прав"/>
+                            </StackPanel>
 
-                        <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Звіти онлайн-ресурсів"/>
+                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Представники компанії"/>
 
-                        <!--HOVER TEST
+                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Фіксація порушення авторських прав"/>
+
+                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Звіти онлайн-ресурсів"/>
+
+                            <!--HOVER TEST
 
                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
                             <Border.Background>
@@ -741,9 +925,58 @@
                         </Border>
                         -->
 
-                    </StackPanel>
-                </WrapPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                </Grid>
             </ScrollViewer>
+        </Grid>
+
+        <Grid>
+            <Border>
+                <Border.Background>
+                    <SolidColorBrush Color="#272A33" Opacity="0.4" />
+                </Border.Background>
+                <Border  Width="390" Height="460" CornerRadius="15" Background="White" Padding="40">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="30" Margin="0 0 0 32">SIGN IN</TextBlock>
+                            <Image Source="Images/close.png" Grid.Column="1" Cursor="Hand" Width="16" Height="16" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <ComboBox Background="Red" FontSize="14" Height="40" Margin="0 0 0 16" VerticalContentAlignment="Center"
+                                  >
+                            <ComboBoxItem IsSelected="True" >
+                                <WrapPanel>
+                                    <TextBlock FontSize="14" Padding="13 8" Text="Use  application Indetification" VerticalAlignment="Center" />
+                                </WrapPanel>
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                        <TextBox Style="{StaticResource placeHolder}"
+                                 Background="#e7e7e7"
+                                 TextWrapping="NoWrap"
+                                 FontSize="14" 
+                                 Height="40"
+                                 Margin="0 0 0 16"
+                                 VerticalContentAlignment="Center" 
+                                 VerticalAlignment="Center"
+                                 Tag="Username"/>
+
+                        <PasswordBox  Background="#e7e7e7" Padding="16 0" VerticalContentAlignment="Center" Height="40" Margin="0 0 0 16" FontSize="14" />
+
+                        <CheckBox x:Name="checkBox1" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Change Password" Margin="0 0 0 16"/>
+                        
+                        <CheckBox x:Name="checkBox2" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Remember" Margin="0 0 0 32"/>
+                        <StackPanel Orientation="Horizontal">
+                            
+                        </StackPanel>
+                        <t:RadButton Style="{DynamicResource loginBtn}" Content="SIGN IN"/>
+                    </StackPanel>
+                </Border>
+            </Border>
         </Grid>
     </Grid>
 </Window>
