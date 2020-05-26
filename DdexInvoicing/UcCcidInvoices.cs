@@ -613,38 +613,49 @@ namespace DdexInvoicing
             }, true);
         }
 
+        /// <summary>
+        /// отримати назву файлу відповіді
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <param name="reportType"></param>
+        /// <returns></returns>
         private string GetReplyFileName(int fileId, string reportType)
         {
             string fileName = "";
-            if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                fileName = GetYouTubeAddSupportReplyFileName(fileId);
-            }
-            else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                fileName = GetYouTubeSubscriptionReplyFileName(fileId);
-            }
-            else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-            {
-                fileName = GetYouTubeSubscriptionReplyFileName(fileId);
-            }
+
+            fileName = GetYouTubeSubscriptionReplyFileName(fileId);
+
+            //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    fileName = GetYouTubeAddSupportReplyFileName(fileId);
+            //}
+            //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    fileName = GetYouTubeSubscriptionReplyFileName(fileId);
+            //}
+            //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    fileName = GetYouTubeSubscriptionReplyFileName(fileId);
+            //}
             return fileName;
         }
 
         private void ProcessReply(int fileId, string reportType, string fileName)
         {
-            if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeAddSupportReply(fileId, fileName);
-            }
-            else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeSubscriptionReply(fileId, fileName);
-            }
-            else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeSubscriptionReply(fileId, fileName);
-            }
+            ReadYouTubeSubscriptionReply(fileId, fileName);
+
+            //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    ReadYouTubeAddSupportReply(fileId, fileName);
+            //}
+            //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    ReadYouTubeSubscriptionReply(fileId, fileName);
+            //}
+            //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    ReadYouTubeSubscriptionReply(fileId, fileName);
+            //}
 
             Helpers.RunSqlOperationDdex(cmd =>
             {
@@ -667,18 +678,21 @@ namespace DdexInvoicing
                 cmd.Parameters.AddWithValue("@TargetFolder", Path.GetDirectoryName(fileName));
                 int ccidClFileId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromAdjustmentReport]";
-                }
-                else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
-                }
-                else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
-                }
+                cmd.CommandText = "[dbo].[spCreateClFromCrf]";
+
+                //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    cmd.CommandText = "[dbo].[spCreateClFromAdjustmentReport]";
+                //}
+                //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
+                //}
+                //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
+                //}
+
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@inFileId", fileId);
@@ -725,7 +739,6 @@ namespace DdexInvoicing
             form.Hide();
 
             ShowInvoices();
-
         }
 
         private void CreateCorrectedInvoice(int fileId)
