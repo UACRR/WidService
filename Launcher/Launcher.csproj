@@ -267,6 +267,11 @@
     <Compile Include="WorkplaceModules\PartnerWorkplace\PartnerWorkplaceWindow.xaml.cs">
       <DependentUpon>PartnerWorkplaceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkplaceModules\ProcessManagementWorkplace\LM_ProcessManagementWorkplace.cs" />
+    <Compile Include="WorkplaceModules\ProcessManagementWorkplace\ProcessManagementWorkplaceViewModel.cs" />
+    <Compile Include="WorkplaceModules\ProcessManagementWorkplace\ProcessManagementWorkplaceWindow.xaml.cs">
+      <DependentUpon>ProcessManagementWorkplaceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkplaceModules\ReportWorkplace\LM_ReportWorkplace.cs" />
     <Compile Include="WorkplaceModules\ReportWorkplace\ReportWorkplaceViewModel.cs" />
     <Compile Include="WorkplaceModules\ReportWorkplace\ReportWorkplaceWindow.xaml.cs">
@@ -326,6 +331,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WorkplaceModules\PartnerWorkplace\PartnerWorkplaceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkplaceModules\ProcessManagementWorkplace\ProcessManagementWorkplaceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -500,5 +509,6 @@
   <ItemGroup>
     <Resource Include="Images\close.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

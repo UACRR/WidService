@@ -29,7 +29,6 @@
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/TabControlResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-
             <Style TargetType="TextBlock">
                 <Style.Triggers>
                     <Trigger Property="IsEnabled" Value="False">
@@ -66,89 +65,117 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition />
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Margin="0 0 10 0" TextWrapping="Wrap" 
-                                               MaxWidth="120" Text="Введите код объекта"
-                                               VerticalAlignment="Center"/>
-                            <TextBox Grid.Column="1" Height="33.5" 
-                                             Margin="10 0 10 0" 
-                                             MinWidth="100"
-                                             VerticalContentAlignment="Center"
-                                             Text="{Binding}"/>
+                                       MaxWidth="120" Text="Введите код объекта"
+                                       VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1"
+                                     Margin="10 0 10 0" 
+                                     Height="25"
+                                     VerticalContentAlignment="Center"
+                                     Text="{Binding ObjectRightID, TargetNullValue=''}"/>
 
                             <TextBlock Grid.Column="2" Margin="10 0 10 0" TextWrapping="Wrap" 
-                                               MaxWidth="120" Text="Введите код ошибочн.правообл."
-                                               VerticalAlignment="Center"/>
-                            <TextBox Grid.Column="3" Height="33.5" 
-                                             Margin="10 0 10 0" 
-                                             MinWidth="100"
-                                             VerticalContentAlignment="Center"
-                                             Text="{Binding}"/>
+                                       MaxWidth="120" Text="Введите код ошибочн.правообл."
+                                       VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="3"
+                                     Margin="10 0 10 0" 
+                                     Height="25"
+                                     VerticalContentAlignment="Center"
+                                     Text="{Binding RightholderID}"/>
 
                             <t:RadButton Grid.Column="4"
-                                                     Margin="8 0 0 0"
-                                             Content="Знайти" 
-                                             MinWidth="100" 
-                                             Padding="5,5,5,9" 
-                                             UseLayoutRounding="True"
-                                             Command="{Binding}"/>
+                                         Margin="8 0 0 0"
+                                         Content="Знайти" 
+                                         MinWidth="100" 
+                                         Padding="5,5,5,9" 
+                                         UseLayoutRounding="True"
+                                         Command="{Binding SearchObjectCommand}"/>
                         </Grid>
                     </Grid>
 
                     <Grid Grid.Row="2" Margin="0 10">
-                        <WrapPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="0 0 10 0" TextWrapping="Wrap" 
-                                               MaxWidth="120" Text="Название Объекта"
-                                               VerticalAlignment="Center"></TextBlock>
-                                <TextBox Height="auto" 
-                                             Margin="10 0 10 0" 
-                                             TextWrapping="Wrap" 
-                                             VerticalAlignment="Center" 
-                                             Width="175" 
-                                             VerticalContentAlignment="Center"
-                                             IsReadOnly="True">Название Объекта Объекта Объекта</TextBox>
-                            </StackPanel>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="10 0 10 0" TextWrapping="Wrap" 
-                                               MaxWidth="120" Text="Правообладатель"
-                                               VerticalAlignment="Center"></TextBlock>
-                                <TextBox Height="auto" 
-                                             Margin="10 0 10 0" 
-                                             Width="200" 
-                                             VerticalAlignment="Center" 
-                                             VerticalContentAlignment="Center"
-                                             TextWrapping="Wrap" 
-                                             IsReadOnly="True">Правообладатель Правообладатель Правообладатель</TextBox>
-                            </StackPanel>
-                        </WrapPanel>
+                        <TextBlock Grid.Column="0" 
+                                   Margin="0 0 10 0" 
+                                   MaxWidth="120" Text="Название Объекта"
+                                   VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1"
+                                 MinHeight="25"
+                                 Height="auto"
+                                 Margin="10 0 10 0" 
+                                 TextWrapping="Wrap" 
+                                 VerticalAlignment="Center" 
+                                 VerticalContentAlignment="Center"
+                                 IsReadOnly="True"
+                                 Text="{Binding ObjectRightName}"/>
+
+                        <TextBlock Grid.Column="2" Margin="10 0 10 0" 
+                                   MaxWidth="120" Text="Правообладатель"
+                                   VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="3" MinHeight="25"
+                                 Height="auto"
+                                 Margin="10 0 10 0" 
+                                 VerticalAlignment="Center" 
+                                 VerticalContentAlignment="Center"
+                                 TextWrapping="Wrap" 
+                                 IsReadOnly="True"
+                                 Text="{Binding RightholderName}"/>
                     </Grid>
 
                     <Grid Grid.Row="3" Margin="0 0 10 0">
                         <TextBlock  TextWrapping="Wrap" 
-                                               Text="Укажите, по каким типам прав необходимо сделать исправления"
-                                               VerticalAlignment="Center"></TextBlock>
+                                    Text="Укажите, по каким типам прав необходимо сделать исправления"
+                                    VerticalAlignment="Center"/>
                     </Grid>
 
                     <t:RadGridView Grid.Row="4" ShowSearchPanel="False"
-                                       x:Name="gridView"
-                                       ColumnWidth="*"
-                                       Margin="0 5 10 10">
+                                   x:Name="gridView"
+                                   ColumnWidth="*"
+                                   Margin="0 5 10 10"
+                                   ItemsSource="{Binding CopyrightTypesItemSource}">
                         <t:RadGridView.Columns>
-                            <t:GridViewDataColumn Header="Тип права" />
+
+                            <t:GridViewDataColumn Header="Тип права" 
+                                                  IsReadOnly="True"
+                                                  DataMemberBinding="{Binding TypeName}"/>
 
                             <t:GridViewDataColumn Width="75"
-                                                      Header="%"/>
+                                                  IsReadOnly="True"
+                                                  Header="%"
+                                                  TextAlignment="Right"
+                                                  DataMemberBinding="{Binding Rate, StringFormat='{}{0:N2}'}"/>
 
                             <t:GridViewDataColumn Width="100" 
-                                                      Header="Определенная сумма"/>
-                            <t:GridViewDataColumn Width="100" 
-                                                      Header="Отметить">
-                            </t:GridViewDataColumn>
+                                                  IsReadOnly="True"
+                                                  Header="Определенная сумма"
+                                                  TextAlignment="Right"
+                                                  DataMemberBinding="{Binding Amount, StringFormat='{}{0:N2}'}"/>
+
+                            <t:GridViewCheckBoxColumn Width="40"
+                                                      IsSortable="False"
+                                                      EditTriggers="CellClick"
+                                                      IsFilterable="False"
+                                                      AutoSelectOnEdit="True"
+                                                      Header=""
+                                                      TextAlignment="Center"
+                                                      IsThreeState="False"
+                                                      DataMemberBinding="{Binding IsSelected, Mode=TwoWay}">
+                                <t:GridViewCheckBoxColumn.CellStyle>
+                                    <Style TargetType="t:GridViewCell">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    </Style>
+                                </t:GridViewCheckBoxColumn.CellStyle>
+                            </t:GridViewCheckBoxColumn>
                         </t:RadGridView.Columns>
                     </t:RadGridView>
 
@@ -156,31 +183,47 @@
                         <WrapPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="0 0 10 0"
-                                               Text="Введите код правильного правообладателя"
-                                               VerticalAlignment="Center"></TextBlock>
-                                <TextBox Height="33.5" Margin="10 0 10 0" Width="100"></TextBox>
+                                           Text="Введите код правильного правообладателя"
+                                           VerticalAlignment="Center"/>
+                                <TextBox Height="25" 
+                                         VerticalContentAlignment="Center" 
+                                         Margin="10 0 10 0" 
+                                         Width="100" Text="{Binding NewRightholderID}"/> 
                             </StackPanel>
                             <t:RadButton Margin="8 0 0 0"
-                                             Content="Знайти" 
-                                             MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
+                                         Content="Знайти" 
+                                         MinWidth="100" 
+                                         Padding="5,5,5,9" 
+                                         UseLayoutRounding="True"
+                                         Command="{Binding SearchRightholderCommand}"/>
                         </WrapPanel>
                     </Grid>
 
                     <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock TextWrapping="Wrap" 
-                                       MaxWidth="120" Text="Правообладатель"
-                                       VerticalAlignment="Center"></TextBlock>
-                        <TextBox Height="auto" Margin="10 0" Width="200" VerticalAlignment="Center" TextWrapping="Wrap" IsReadOnly="True">Длинное Название  12345</TextBox>
+                                   MaxWidth="120" Text="Правообладатель"
+                                   VerticalAlignment="Center"/>
+                        <TextBox Height="auto" 
+                                 MinHeight="25" 
+                                 Margin="10 0" 
+                                 Width="200" 
+                                 VerticalAlignment="Center" 
+                                 VerticalContentAlignment="Center"
+                                 TextWrapping="Wrap" 
+                                 IsReadOnly="True" 
+                                 Text="{Binding NewRightholderName}"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="7" Margin="0 50 0 0">
                         <t:RadButton HorizontalAlignment="Right"
-                                         Content="Выполнить" 
-                                         MinWidth="100" Padding="5,5,5,9" Margin="0 0 20 0" UseLayoutRounding="True"/>
+                                     Content="Виконати" 
+                                     MinWidth="100" Padding="5,5,5,9" Margin="0 0 20 0" UseLayoutRounding="True"
+                                     Command="{Binding RunCorrectionProcessCommand}"/>
 
                         <t:RadButton HorizontalAlignment="Right"
-                                         Content="Отменить" 
-                                         MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
+                                     Content="Очистити" 
+                                     MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"
+                                     Command="{Binding ClearCommand}"/>
                     </StackPanel>
                 </Grid>
 

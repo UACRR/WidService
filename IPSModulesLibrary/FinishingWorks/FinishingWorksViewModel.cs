@@ -18,6 +18,8 @@ namespace IPSModulesLibrary.FinishingWorks
 
         #region * * * BEHAVIORS PROPERTIES * * *
 
+        public bool IsLoaded { get; set; }
+
         private Visibility _distributionInProcessVisibility = Visibility.Visible;
         public Visibility DistributionInProcessVisibility
         {
@@ -341,8 +343,15 @@ namespace IPSModulesLibrary.FinishingWorks
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
         private void LoadCommandExecute(object o)
         {
+            if (IsLoaded)
+                return;
+
             CreateRollbackTimer();
             UpdateSystemState();
+
+            // AppLanguageLibrary.UpdateLanguageLocalization(LOC, nameof(AppLanguageLibrary.CurrentLanguage.RightholdersListLD));
+
+            IsLoaded = true;
         }
 
         public ICommand UpdateCommand => new IPSDelegateCommand(UpdateCommandExecute);
@@ -505,7 +514,6 @@ namespace IPSModulesLibrary.FinishingWorks
         }
 
         #endregion
-
     }
     public enum DistributionProcessStatus
     {

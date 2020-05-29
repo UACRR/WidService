@@ -30,6 +30,7 @@
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/TreeViewItemResourceDictionary.xaml"/>
                 <ResourceDictionary Source="../Resources/ResourceDictionaries/ButtonsResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
             <Style TargetType="TabItem">
                 <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
 
@@ -58,7 +59,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
 
             <Style x:Key="redButton" TargetType="Button">
                 <Setter Property="Background" Value="Red"/>
@@ -145,6 +145,7 @@
             <Style TargetType="TextBlock" x:Key="StatusText">
                 <Setter Property="Background" Value="#b8b8b8"/>
             </Style>
+
             <Style x:Key="categoryStyle" TargetType="Border">
                 <Setter Property="Background" Value="White"/>
                 <Style.Triggers>
@@ -153,6 +154,7 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+
             <Style x:Key="textBlockButtons" TargetType="TextBlock">
                 <Setter Property="TextWrapping" Value="Wrap"/>
                 <Setter Property="TextAlignment" Value="Center"/>
@@ -173,73 +175,71 @@
     </Control.Resources>
 
     <t:RadBusyIndicator IsBusy="{Binding IsBusy}" t:StyleManager.Theme="VisualStudio2013">
-        <TabControl>
-            <TabItem Header="Главное">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" Margin="100, 0, 0, 75" MinWidth="480" MaxWidth="580">
-                            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
-                                <Button Style="{StaticResource updateButton}" 
+                <StackPanel Grid.Column="0" Margin="100, 0, 0, 75" MinWidth="480" MaxWidth="580">
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Button Style="{StaticResource updateButton}" 
                                     Command="{Binding UpdateCommand}"
                                     Margin="10"/>
 
-                                <!--<TextBlock Margin="5" Text="System Date:"/>
+                        <!--<TextBlock Margin="5" Text="System Date:"/>
                             <TextBlock  Margin="5" Text="2015-11-25"/>-->
-                            </StackPanel>
+                    </StackPanel>
 
-                            <Grid Margin="0 20 0 10">
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="250" Text="Статус работи комплексу:"/>
+                    <Grid Margin="0 20 0 10">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="250" Text="Статус работи комплексу:"/>
 
-                                <Grid HorizontalAlignment="Right">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                        <Grid HorizontalAlignment="Right">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                                    <Grid Grid.Row="0" Visibility="{Binding DistributionInProcessVisibility}">
-                                        <Rectangle RadiusX="1" RadiusY="1" 
+                            <Grid Grid.Row="0" Visibility="{Binding DistributionInProcessVisibility}">
+                                <Rectangle RadiusX="1" RadiusY="1" 
                                            MinWidth="{Binding Width, ElementName=textBlock}" 
                                            Height="33.5" 
                                            Cursor="Arrow"
                                            Stroke="DodgerBlue" Fill="RoyalBlue" StrokeThickness="3" 
                                            VerticalAlignment="Top"/>
 
-                                        <TextBlock Name="textBlock" Margin="10, 0, 10, 2"
+                                <TextBlock Name="textBlock" Margin="10, 0, 10, 2"
                                            Text="Відбувається автоматичний розподіл"
                                            Cursor="Arrow"
                                            Foreground="WhiteSmoke"
                                            FontWeight="SemiBold" FontSize="14"
                                            Width="Auto" VerticalAlignment="Center"/>
 
-                                    </Grid>
+                            </Grid>
 
-                                    <Grid Grid.Row="1" Visibility="{Binding DistributionStoppedVisibility}">
-                                        <Rectangle RadiusX="1" RadiusY="1" 
+                            <Grid Grid.Row="1" Visibility="{Binding DistributionStoppedVisibility}">
+                                <Rectangle RadiusX="1" RadiusY="1" 
                                            MinWidth="{Binding Width, ElementName=textBlock2}" 
                                            Cursor="Arrow"
                                            Height="33.5" 
                                            Stroke="Orange" Fill="DarkOrange" StrokeThickness="3" 
                                            VerticalAlignment="Top"/>
 
-                                        <TextBlock Name="textBlock2" Margin="10, 0, 10, 2"
+                                <TextBlock Name="textBlock2" Margin="10, 0, 10, 2"
                                            Text="Автоматичний розподіл зупинено"
                                            Cursor="Arrow"
                                            Foreground="White"
                                            FontWeight="SemiBold" FontSize="14"
                                            Width="Auto" VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Grid>
-
                             </Grid>
+                        </Grid>
 
-                            <Grid Margin="0 10 0 10"
+                    </Grid>
+
+                    <Grid Margin="0 10 0 10"
                           IsEnabled="{Binding IsEnabledStopDistributionButton}">
-                                <t:RadButton HorizontalAlignment="Left"
+                        <t:RadButton HorizontalAlignment="Left"
                                      Style="{StaticResource orangeRedButton}"
                                      Margin="10 0 0 0"
                                      Height="33.5"
@@ -249,69 +249,69 @@
                                      Content="STOP" 
                                      Command="{Binding StopDistributionCommand}"/>
 
-                            </Grid>
+                    </Grid>
 
 
-                            <Grid Margin="0 10 0 10">
-                                <TextBlock MaxWidth="230" 
+                    <Grid Margin="0 10 0 10">
+                        <TextBlock MaxWidth="230" 
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
                                    Text="Дата та час, до якого будет зупиено автоматичний розподіл:"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <t:RadDateTimePicker t:StyleManager.Theme="VisualStudio2013"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <t:RadDateTimePicker t:StyleManager.Theme="VisualStudio2013"
                                                      IsEnabled="{Binding IsEnabledStopDate}"
                                                      Height="33.5"
                                                      Margin="10 0 10 0"
                                                      MinWidth="120"
                                                      SelectedValue="{Binding SelectedStopDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <t:RadButton Content="змінити" 
+                            <t:RadButton Content="змінити" 
                                              Margin="5 10"
                                              Visibility="{Binding ChangeStopDateButtonVisibility}"
                                              Command="{Binding ChangeStopDateCommand}"/>
-                                </StackPanel>
-                            </Grid>
+                        </StackPanel>
+                    </Grid>
 
-                            <Grid Margin="0 10 0 10" Visibility="{Binding StopDistributionDateInfoPanelVisibility}">
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Увага! Розподіл зупинено:"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <TextBlock Text="з"/>
-                                    <TextBlock VerticalAlignment="Center" 
+                    <Grid Margin="0 10 0 10" Visibility="{Binding StopDistributionDateInfoPanelVisibility}">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Увага! Розподіл зупинено:"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="з"/>
+                            <TextBlock VerticalAlignment="Center" 
                                        Margin="10 0 10 0"
                                        FontWeight="SemiBold"
                                        TextDecorations="Underline"
                                        Text="{Binding StartDate, StringFormat='{}{0:d} {0:t}',ConverterCulture='uk-UA'}"/>
-                                    <TextBlock Text="по"/>
-                                    <TextBlock VerticalAlignment="Center" 
+                            <TextBlock Text="по"/>
+                            <TextBlock VerticalAlignment="Center" 
                                        Margin="10 0 10 0"
                                        FontWeight="SemiBold"
                                        TextDecorations="Underline"
                                        Text="{Binding StopDate, StringFormat='{}{0:d} {0:t}',ConverterCulture='uk-UA'}"/>
-                                </StackPanel>
-                            </Grid>
+                        </StackPanel>
+                    </Grid>
 
-                            <Grid Margin="0 10 0 10" Visibility="{Binding StopAutoInfoPanelVisibility}">
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Увага! Автоматичне блокування запуску розподілу:"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <TextBlock Text="до"/>
-                                    <TextBlock VerticalAlignment="Center" 
+                    <Grid Margin="0 10 0 10" Visibility="{Binding StopAutoInfoPanelVisibility}">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Увага! Автоматичне блокування запуску розподілу:"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="до"/>
+                            <TextBlock VerticalAlignment="Center" 
                                            Margin="10 0 10 0"
                                            FontWeight="SemiBold"
                                            TextDecorations="Underline"
                                            Text="{Binding StopDateAuto, StringFormat='{}{0:d} {0:t}',ConverterCulture='uk-UA'}"/>
-                                </StackPanel>
-                            </Grid>
+                        </StackPanel>
+                    </Grid>
 
-                            <Grid Margin="0 10 0 10" IsEnabled="{Binding IsEnabledRunDistributionButton}">
-                                <t:RadButton HorizontalAlignment="Left"
+                    <Grid Margin="0 10 0 10" IsEnabled="{Binding IsEnabledRunDistributionButton}">
+                        <t:RadButton HorizontalAlignment="Left"
                                      Style="{StaticResource greenButton}"
                                      MinWidth="150" Padding="5,5,5,9" Margin="10 0 0 0" UseLayoutRounding="True"
                                      Content="START" 
                                      Command="{Binding RunDistributionProcessCommand}"/>
-                            </Grid>
+                    </Grid>
 
-                            <Grid Margin="0 50 0 0">
-                                <t:RadButton HorizontalAlignment="Left"
+                    <Grid Margin="0 50 0 0">
+                        <t:RadButton HorizontalAlignment="Left"
                                      IsEnabled="{Binding IsEnabledFinalEnrollment}"
                                      VerticalContentAlignment="Center"
                                      MinWidth="100" Padding="10,5,10,5" UseLayoutRounding="True"
@@ -319,7 +319,7 @@
                                      Content="Виконати зарахування коштів" 
                                      Command="{Binding FinalEnrollmentCommand}"/>
 
-                                <Button HorizontalAlignment="Right"
+                        <Button HorizontalAlignment="Right"
                                     Style="{StaticResource redButton}"
                                     ToolTip="Скасування останнього зарахування коштів"
                                     VerticalContentAlignment="Center"
@@ -331,419 +331,48 @@
                                     MinWidth="220" Height="40" Padding="10,0,10,0" UseLayoutRounding="True"
                                     Content="{Binding RollbackContent}" 
                                     Command="{Binding RollbackCommand}"/>
-                            </Grid>
-                        </StackPanel>
-
-                        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="25 75 100 75" MaxWidth="540">
-                            <TextBlock TextWrapping="Wrap" TextAlignment="Justify">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Typography.Capitals" Value="Normal"/>
-                                        <Setter Property="FontSize" Value="15"/>
-                                    </Style>
-                                </TextBlock.Style>
-                                <TextBlock.Inlines>
-                                    <Run Text="{Binding LOC.DescriptionProcess_p1, Mode=OneTime}"/>
-                                    <LineBreak/>
-                                    <LineBreak/>
-                                    <Run Text="{Binding LOC.DescriptionProcess_p2, Mode=OneTime}"/>
-                                    <LineBreak/>
-                                    <LineBreak/>
-                                    <Run FontWeight="SemiBold" Text="{Binding LOC.DescriptionProcess_p3, Mode=OneTime}"/>
-                                    <LineBreak/>
-                                    <Run Text="    "/>
-                                    <Run Text="{Binding LOC.DescriptionProcess_p4, Mode=OneTime}"/>
-                                    <LineBreak/>
-                                    <Run Text="    "/>
-                                    <Run Text="{Binding LOC.DescriptionProcess_p5, Mode=OneTime}"/>
-                                    <LineBreak/>
-                                    <LineBreak/>
-                                    <Run FontWeight="SemiBold" Text="{Binding LOC.DescriptionProcess_p6, Mode=OneTime}"/>
-                                    <LineBreak/>
-                                    <LineBreak/>
-                                    <Run FontWeight="SemiBold" Text="{Binding LOC.DescriptionProcess_p7, Mode=OneTime}"/>
-                                    <LineBreak/>
-                                    <Run Text="    "/>
-                                    <Run Text="{Binding LOC.DescriptionProcess_p8, Mode=OneTime}"/>
-                                    <LineBreak/>
-                                    <Run Text="    "/>
-                                    <Run Text="{Binding LOC.DescriptionProcess_p9, Mode=OneTime}"/>
-                                </TextBlock.Inlines>
-                            </TextBlock>
-                            
-                        </StackPanel>
                     </Grid>
-                </ScrollViewer>
-            </TabItem>
+                </StackPanel>
 
-            <TabItem Header="Документы">
-                <WrapPanel ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
-                        </Border.InputBindings>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="ВІДОМІСТЬ 'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА ПРАВОВЛАСНИКІВ З 'МАЛИХ ПРАВ'"
-                                       Style="{StaticResource textBlockButtons}"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="25 75 100 75" MaxWidth="540">
+                    <TextBlock TextWrapping="Wrap" TextAlignment="Justify">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Typography.Capitals" Value="Normal"/>
+                                <Setter Property="FontSize" Value="15"/>
+                            </Style>
+                        </TextBlock.Style>
+                        <TextBlock.Inlines>
+                            <Run Text="{Binding LOC.DescriptionProcess_p1, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="{Binding LOC.DescriptionProcess_p2, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run FontWeight="SemiBold" Text="{Binding LOC.DescriptionProcess_p3, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <Run Text="    "/>
+                            <Run Text="{Binding LOC.DescriptionProcess_p4, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <Run Text="    "/>
+                            <Run Text="{Binding LOC.DescriptionProcess_p5, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run FontWeight="SemiBold" Text="{Binding LOC.DescriptionProcess_p6, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run FontWeight="SemiBold" Text="{Binding LOC.DescriptionProcess_p7, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <Run Text="    "/>
+                            <Run Text="{Binding LOC.DescriptionProcess_p8, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <Run Text="    "/>
+                            <Run Text="{Binding LOC.DescriptionProcess_p9, Mode=OneTime}"/>
+                        </TextBlock.Inlines>
+                    </TextBlock>
 
-                    <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                        </Border.Effect>
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
-                        </Border.InputBindings>
-                        <Grid>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="ВІДОМІСТЬ 'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА ПРАВОВЛАСНИКІВ З 'ВЕЛИКИХ ПРАВ'"
-                                       Style="{StaticResource textBlockButtons}"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </WrapPanel>
-            </TabItem>
-
-            <TabItem Header="Получение средств праввообладателями">
-                <Grid>
-                    <WrapPanel  ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20" >
-                        <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                            </Border.Effect>
-                            <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
-                            </Border.InputBindings>
-                            <Grid>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="Разбор принятых '.dbf' по оплате роялти правообладателями (по этой кнопке  открыть грид hidden)"
-                                       Style="{StaticResource textBlockButtons}"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-
-                        <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                            </Border.Effect>
-                            <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
-                            </Border.InputBindings>
-                            <Grid>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="Ручной ввод снятия роялти правообладателями (по этой кнопке  открыть грид hidden)"
-                                       Style="{StaticResource textBlockButtons}"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </WrapPanel>
-                    <!--Разбор принятых '.dbf' по оплате роялти правообладателями-->
-                    <Grid Margin="20 0" Visibility="Hidden">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0" Margin="0 20 0 0">
-                            <TextBlock FontWeight="Bold" Text="Завантаження та обробка файлу .dbf "></TextBlock>
-                        </Grid>
-
-                        <Grid Grid.Row="1" Margin="0 10">
-                            <WrapPanel>
-                                <t:RadButton Margin="0 0 20 0"
-                                             Content="Виберіть файл" 
-                                             MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
-                                <TextBlock Text="файл не выбран" VerticalAlignment="Center"></TextBlock>
-                            </WrapPanel>
-                        </Grid>
-
-                        <Grid Grid.Row="2" Margin="0 10 0 10">
-                            <TextBlock FontWeight="Bold" Text="Розбір не прив'язаних платежів "></TextBlock>
-                        </Grid>
-
-
-                        <t:RadGridView Grid.Row="3"
-                               ColumnWidth="*"
-                               Margin="3">
-                            <t:RadGridView.Columns>
-                                <t:GridViewDataColumn Width="110" 
-                                              Header="Номер рахунку" 
-                                              />
-
-                                <t:GridViewDataColumn Width="100" 
-                                                        Header="МФО"/>
-
-                                <t:GridViewDataColumn Width="100" 
-                                              Header="ЄДРПОУ"
-                                              />
-                                <t:GridViewDataColumn  
-                                              Header="Назва користувача"
-                                              />
-
-
-                                <t:GridViewDataColumn Width="125" 
-                                              Header="Номер платежу" />
-
-                                <t:GridViewDataColumn Width="125" 
-                                              Header="Сума"
-                                              />
-                                <t:GridViewDataColumn 
-                                              Header="Призначення платежу" 
-                                              />
-
-                                <t:GridViewDataColumn Header="Дата платежу" 
-                                              Width="75"
-                                              />
-                                <t:GridViewColumn Width="25">
-                                    <t:GridViewColumn.Header>
-                                        <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
-                                    </t:GridViewColumn.Header>
-                                    <t:GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <t:RadButton Margin="0" Width="25" Height="20" 
-                                                 Command="{Binding DataContext.OpenPartnerCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
-                                                 CommandParameter="{Binding}">
-                                                <Image Source="../Resources/Icons/edit-icon.png"/>
-                                            </t:RadButton>
-                                        </DataTemplate>
-                                    </t:GridViewColumn.CellTemplate>
-                                </t:GridViewColumn>
-                            </t:RadGridView.Columns>
-                        </t:RadGridView>
-                    </Grid>
-
-                    <!--Ручной ввод снятия роялти правообладателями-->
-                    <Grid MaxWidth="500" Visibility="Hidden">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0" Margin="0 20 0 10">
-                            <TextBlock TextAlignment="Center" FontWeight="Bold" Text="Ручной ввод снятия роялти правообладателями "></TextBlock>
-                        </Grid>
-
-                        <Grid Grid.Row="1" Margin="0 10">
-                            <WrapPanel>
-                                <TextBox Height="33.5" Margin="0 0 10 0" Width="380"></TextBox>
-                                <t:RadButton Margin="8 0 0 0"
-                                             Content="Пошук" 
-                                             MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
-                            </WrapPanel>
-                        </Grid>
-
-
-                        <t:RadGridView Grid.Row="2"
-                               ColumnWidth="*"
-                               Margin="0 5 0 10">
-                            <t:RadGridView.Columns>
-                                <t:GridViewDataColumn Width="75"
-                                                      Header="Код" />
-
-                                <t:GridViewDataColumn 
-                                                      Header="ФИО/название правообладателя"/>
-
-                                <t:GridViewDataColumn Width="120" 
-                                                      Header="Остаток на счете правообладателя"/>
-                                <t:GridViewDataColumn Width="120" 
-                                                      Header="Введите суму снятия">
-                                </t:GridViewDataColumn>
-                            </t:RadGridView.Columns>
-                        </t:RadGridView>
-
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3" Margin="0 50 0 0">
-                            <t:RadButton HorizontalAlignment="Right"
-                                         Content="Выполнить" 
-                                         MinWidth="100" Padding="5,5,5,9" Margin="0 0 20 0" UseLayoutRounding="True"/>
-
-                            <t:RadButton HorizontalAlignment="Right"
-                                         Content="Отменить" 
-                                         MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-
-            </TabItem>
-
-            <TabItem Header="Исправления">
-                <TabControl>
-                    <TabItem Header="Исправление ошибочно начисленных роялти">
-
-                <Grid>
-                    <WrapPanel Visibility="Collapsed" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20" >
-
-                        <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
-                            </Border.Effect>
-                            <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
-                            </Border.InputBindings>
-                            <Grid>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="Исправление ошибочно начисленных роялти (по этой кнопке  открыть грид hidden) "
-                                           Style="{StaticResource textBlockButtons}"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </WrapPanel>
-
-                    <!--Исправление ошибочно начисленных роялти-->
-                    <Grid MaxWidth="720" Visibility="Visible">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        
-                        <Grid Grid.Row="0" Margin="0 20 0 10">
-                            <TextBlock TextAlignment="Center" FontWeight="Bold" Text="Исправление ошибочно начисленных роялти "></TextBlock>
-                        </Grid>
-
-                        <Grid Grid.Row="1" Margin="0 10">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <TextBlock Margin="0 0 10 0" TextWrapping="Wrap" 
-                                               MaxWidth="120" Text="Введите код объекта"
-                                               VerticalAlignment="Center"></TextBlock>
-                                    <TextBox Grid.Column="1" Height="33.5" 
-                                             Margin="10 0 10 0" 
-                                             MinWidth="100"
-                                             VerticalContentAlignment="Center"
-                                             Text="{Binding}"/>
-
-                                        <TextBlock Grid.Column="2" Margin="10 0 10 0" TextWrapping="Wrap" 
-                                               MaxWidth="120" Text="Введите код ошибочн.правообл."
-                                               VerticalAlignment="Center"></TextBlock>
-                                        <TextBox Grid.Column="3" Height="33.5" 
-                                             Margin="10 0 10 0" 
-                                             MinWidth="100"
-                                             VerticalContentAlignment="Center"
-                                             Text="{Binding}"/>
-
-                                        <t:RadButton Grid.Column="4"
-                                                     Margin="8 0 0 0"
-                                             Content="Знайти" 
-                                             MinWidth="100" 
-                                             Padding="5,5,5,9" 
-                                             UseLayoutRounding="True"
-                                             Command="{Binding}"/>
-                            </Grid>
-                        </Grid>
-
-                        <Grid Grid.Row="2" Margin="0 10">
-                            <WrapPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="0 0 10 0" TextWrapping="Wrap" 
-                                               MaxWidth="120" Text="Название Объекта"
-                                               VerticalAlignment="Center"></TextBlock>
-                                    <TextBox Height="auto" 
-                                             Margin="10 0 10 0" 
-                                             TextWrapping="Wrap" 
-                                             VerticalAlignment="Center" 
-                                             Width="175" 
-                                             VerticalContentAlignment="Center"
-                                             IsReadOnly="True">Название Объекта Объекта Объекта</TextBox>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="10 0 10 0" TextWrapping="Wrap" 
-                                               MaxWidth="120" Text="Правообладатель"
-                                               VerticalAlignment="Center"></TextBlock>
-                                    <TextBox Height="auto" 
-                                             Margin="10 0 10 0" 
-                                             Width="200" 
-                                             VerticalAlignment="Center" 
-                                             VerticalContentAlignment="Center"
-                                             TextWrapping="Wrap" 
-                                             IsReadOnly="True">Правообладатель Правообладатель Правообладатель</TextBox>
-                                </StackPanel>
-                            </WrapPanel>
-                        </Grid>
-
-                        <Grid Grid.Row="3" Margin="0 0 10 0">
-                            <TextBlock  TextWrapping="Wrap" 
-                                               Text="Укажите, по каким типам прав необходимо сделать исправления"
-                                               VerticalAlignment="Center"></TextBlock>
-                        </Grid>
-
-                        <t:RadGridView Grid.Row="4" ShowSearchPanel="False"
-                                       x:Name="gridView"
-                                       ColumnWidth="*"
-                                       Margin="0 5 0 10">
-                            <t:RadGridView.Columns>
-                                <t:GridViewDataColumn Header="Тип права" />
-
-                                <t:GridViewDataColumn Width="75"
-                                                      Header="%"/>
-
-                                <t:GridViewDataColumn Width="100" 
-                                                      Header="Определенная сумма"/>
-                                <t:GridViewDataColumn Width="100" 
-                                                      Header="Отметить">
-                                </t:GridViewDataColumn>
-                            </t:RadGridView.Columns>
-                        </t:RadGridView>
-
-                        <Grid Grid.Row="5" Margin="0 10" HorizontalAlignment="Right">
-                            <WrapPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="0 0 10 0"
-                                               Text="Введите код правильного правообладателя"
-                                               VerticalAlignment="Center"></TextBlock>
-                                    <TextBox Height="33.5" Margin="10 0 10 0" Width="100"></TextBox>
-                                </StackPanel>
-                                <t:RadButton Margin="8 0 0 0"
-                                             Content="Знайти" 
-                                             MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
-                            </WrapPanel>
-                        </Grid>
-
-                        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock TextWrapping="Wrap" 
-                                       MaxWidth="120" Text="Правообладатель"
-                                       VerticalAlignment="Center"></TextBlock>
-                            <TextBox Height="auto" Margin="10 0 10 0" Width="200" VerticalAlignment="Center" TextWrapping="Wrap" IsReadOnly="True">Длинное Название  12345</TextBox>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="7" Margin="0 50 0 0">
-                            <t:RadButton HorizontalAlignment="Right"
-                                         Content="Выполнить" 
-                                         MinWidth="100" Padding="5,5,5,9" Margin="0 0 20 0" UseLayoutRounding="True"/>
-
-                            <t:RadButton HorizontalAlignment="Right"
-                                         Content="Отменить" 
-                                         MinWidth="100" Padding="5,5,5,9" UseLayoutRounding="True"/>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-                    </TabItem>
-                </TabControl>
-
-            </TabItem>
-        </TabControl>
-
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </t:RadBusyIndicator>
 </UserControl>
