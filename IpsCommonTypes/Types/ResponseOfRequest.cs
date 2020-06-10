@@ -45,6 +45,7 @@ namespace IpsCommonTypes.Types
         public int StatusCode { get; set; }
         public bool IsSuccess { get; set; }
         public Exception Exception { get; set; }
+        public bool HasException => Exception != null;
     }
 
     public class ResponseOfRequest<T> : ResponseOfRequest

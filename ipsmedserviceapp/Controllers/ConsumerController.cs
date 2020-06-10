@@ -103,12 +103,17 @@ namespace ipsmedserviceapp.Controllers
                     .Query()
                     .Where(item => item.Version >= licAgreement.Agr.Version)
                     .LoadAsync();
+
                 // LicenseBigR
-                await _dbContext.Entry(licAgreement.LicenseAgrParam.Single(p => p.LicVersion == licAgreement.LicVersion)).Reference(rec => rec.LicenseBigR)
-                    .Query()
-                    .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.WorkRh)
-                    .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.LicAuthorBr)
-                    .LoadAsync();
+                if (licAgreement.LicenseAgrParam.Any(p => p.LicVersion == licAgreement.LicVersion))
+                {
+                    await _dbContext.Entry(licAgreement.LicenseAgrParam.Single(p => p.LicVersion == licAgreement.LicVersion)).Reference(rec => rec.LicenseBigR)
+                        .Query()
+                        .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.WorkRh)
+                        .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.LicAuthorBr)
+                        .LoadAsync();
+                }
+
                 // Лцензії для майданчиків
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
                     .Query()

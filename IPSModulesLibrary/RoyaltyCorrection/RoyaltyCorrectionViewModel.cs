@@ -3,7 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using IpsCommonTypes.DataModels;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IPSViewComponentLibraryWPF.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 
@@ -90,10 +93,7 @@ namespace IPSModulesLibrary.RoyaltyCorrection
             set
             {
                 if (_newRightholderId != value)
-                {
-                    IsNewRightholderSelected = false;
-                    NewRightholderName = null;
-                }
+                    NewRightholderName = string.Empty;
 
                 _newRightholderId = value;
                 OnPropertyChanged(() => NewRightholderID);
@@ -114,6 +114,8 @@ namespace IPSModulesLibrary.RoyaltyCorrection
 
         private bool IsNewRightholderSelected { get; set; }
 
+        private Account NewRightholderAccount { get; set; }
+
         #endregion
 
         #region * * * METHODS * * *
@@ -132,16 +134,29 @@ namespace IPSModulesLibrary.RoyaltyCorrection
         public ICommand SearchObjectCommand => new IPSDelegateCommand(SearchObjectCommandExecute);
         private async void SearchObjectCommandExecute(object o)
         {
-
             if(!ObjectRightID.HasValue || !RightholderID.HasValue)
             {
                 ShowMessage.ShowWarning("Необхідно ввести код об'єкта права та код його правовласника!");
                 return;
             }
 
+            var service = RoyaltyCorrectionService.GetInstance();
+
+
             IsBusy = true;
-            await Task.Delay(2340);
+            var result = await service.SearchObjectRightAsync(RightholderID.Value, ObjectRightID.Value);
             IsBusy = false;
+
+            if (result.HasException) 
+                ShowMessage.ShowError(result.Exception);
+
+            if (result.Data == null)
+            {
+                ShowMessage.ShowWarning($"Нарахованого роялті з об'єкта права з ID: {ObjectRightID.Value} для правовласника з ID: {RightholderID.Value} не знайдено!");
+                return;
+            }
+
+            // parse result
 
             ObjectRightName = "Заспіпаю я пісню тихую...побудила ой мати нас рано...";
             RightholderName = "Фальсифікований Олександр Олександрович";
@@ -173,14 +188,31 @@ namespace IPSModulesLibrary.RoyaltyCorrection
         {
             if (!NewRightholderID.HasValue)
                 return;
+            
+            var service = RoyaltyCorrectionService.GetInstance();
 
-            // some process
             IsBusy = true;
-            await Task.Delay(2340);
+            var result = await service.SearchRightholderAsync(NewRightholderID.Value);
             IsBusy = false;
 
-            IsNewRightholderSelected = true;
-            NewRightholderName = "Зажурений Тарас Григорович";
+            if (result.HasException)
+            {
+                ShowMessage.ShowError(result.Exception);
+                return;
+            }
+
+            if (result.Data != null)
+            {
+                IsNewRightholderSelected = true;
+                NewRightholderName = result.Data.AccName;
+                NewRightholderAccount = result.Data;
+            }
+            else
+            {
+                ShowMessage.ShowWarning($"Правовласника з ID: «{NewRightholderID.Value}» не знайдено!");
+                NewRightholderName = string.Empty;
+                NewRightholderAccount = null;
+            }
         }
 
         public ICommand RunCorrectionProcessCommand => new IPSDelegateCommand(RunCorrectionProcessCommandExecute, CanExecuteRunCorrectionProcessCommand);
@@ -203,11 +235,34 @@ namespace IPSModulesLibrary.RoyaltyCorrection
 
             if (confirmAction == MessageBoxResult.Yes)
             {
+                var service = RoyaltyCorrectionService.GetInstance();
+
+                // param
+                var data = new RoyaltyCorrectionParams
+                {
+                    AccountD = "12345",
+                    AccountK = "321654",
+                    Amount = 2015.54m,
+                    Objid = 305,
+                    KindCode = 5,
+                };
+
                 IsBusy = true;
-                await Task.Delay(2340);
+                var result = await service.RunCorrectionProcessAsync(data);
                 IsBusy = false;
 
-                ShowMessage.ShowInfo("Ok!");
+                
+                if (result.IsSuccess)
+                {
+                    ShowMessage.ShowInfo("Ok!");
+                }
+                else
+                {
+                    if (result.HasException)
+                        ShowMessage.ShowError(result.Exception);
+                    else
+                        ShowMessage.ShowError($"Неможливо виконати виправлення! Status Code: {result.StatusCode}");
+                }
             }
         }
 

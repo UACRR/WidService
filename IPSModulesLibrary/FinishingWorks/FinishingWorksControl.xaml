@@ -257,7 +257,7 @@
                                    TextWrapping="Wrap"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
-                                   Text="Дата та час, до якого будет зупиено автоматичний розподіл:"/>
+                                   Text="Оберіть дату та час, до якого необхідно зупинити автоматичний розподіл:"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <t:RadDateTimePicker t:StyleManager.Theme="VisualStudio2013"
                                                      IsEnabled="{Binding IsEnabledStopDate}"

@@ -12,6 +12,7 @@ namespace ipsmedserviceapp.Model.SQLViewsData
     {
         public int CustId { get; set; }
         public string name { get; set; }
+        public string FullName { get; set; }
         public string INNOKPO { get; set; }
         public string IPI { get; set; }
         public int ankMy { get; set; }
