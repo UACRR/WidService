@@ -286,6 +286,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AAAAAAAAAAAAAAAAAAAAAAA\ParcingPaymentFromRightholders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AAAAAAAAAAAAAAAAAAAAAAA\ParcingPaymentFromUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="AccountantDocuments\AccountantDocumentsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

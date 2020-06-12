@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="IPSModulesLibrary.ResourceControl.ResourceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IPSModulesLibrary.ResourceControl"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+             Background="WhiteSmoke"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/GridViewResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/StyleManagerResoureDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/DropDownButtonResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/TreeViewItemResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/ButtonsResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/TabControlResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="t:RadComboBox">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="MinHeight" Value="33.5"/>
+                <Setter Property="MinWidth" Value="50"/>
+                <Setter Property="Padding" Value="8 3 8 8"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Typography.Capitals" Value="Normal"/>
+            </Style>
+
+            <Style TargetType="TextBlock" x:Key="BoldText" >
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="0 10"/>
+                <Setter Property="Typography.Capitals" Value="Normal"/>
+            </Style>
+        </ResourceDictionary>
+    </Control.Resources>
+
+    <TabControl>
+        <TabItem Header="Реєстр dbf файлів">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <t:RadButton Grid.Row="0" Margin="10 15" Content="Завантажити файл" MaxWidth="200" HorizontalAlignment="Left"/>
+
+                <t:RadGridView Grid.Row="1"
+                               x:Name="gridView"
+                               ColumnWidth="*"
+                               ItemsSource="{Binding PartnersItemSource}"
+                               Margin="10 0">
+                    <t:RadGridView.Columns>
+                        <t:GridViewDataColumn Width="50" 
+                                              Header="ID" 
+                                              DataMemberBinding="{Binding CustId}"/>
+
+                        <t:GridViewDataColumn Header="Назва файлу"
+                                              DataMemberBinding="{Binding Name}"/>
+
+                        <t:GridViewDataColumn Width="100" 
+                                              Header="Дата завантаження"
+                                              DataMemberBinding="{Binding INNOKPO}"/>
+
+                        <t:GridViewDataColumn Width="100" 
+                                              Header="Хто завантажив" 
+                                              DataMemberBinding="{Binding AgrId}"/>
+
+                        <t:GridViewDataColumn Width="100" 
+                                              Header="Кількість платежів всього"
+                                              DataMemberBinding="{Binding AgrNumber}"/>
+                        <t:GridViewDataColumn Width="100" 
+                                              Header="Кількість прив'язаних платежів" 
+                                              TextAlignment="Center" 
+                                              DataMemberBinding="{Binding AgrDate, StringFormat='{}{0:d}'}"/>
+
+                        <t:GridViewDataColumn Header="Кількість не прив'язаних платежів" 
+                                              Width="100"
+                                              DataMemberBinding="{Binding JaCity}"/>
+                    </t:RadGridView.Columns>
+                </t:RadGridView>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Платежі" Margin="-0.571,0,1.429,0.286">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid Margin="10 15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="AUTO"></RowDefinition>
+                        <RowDefinition Height="AUTO"></RowDefinition>
+                        <RowDefinition Height="AUTO"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" >
+
+                        <TextBlock VerticalAlignment="Center" Margin="0 0 10 0">Показувати по статусу прив'язки</TextBlock>
+                        <t:RadComboBox HorizontalAlignment="Left" 
+                                   VerticalAlignment="Center"
+                                   Width="100">
+                            <t:RadComboBoxItem Content="Всі"/>
+                            <t:RadComboBoxItem Content="Прив'язані"/>
+                            <t:RadComboBoxItem Content="Неприв'язані"/>
+                        </t:RadComboBox>
+                        <TextBlock VerticalAlignment="Center" Margin="20 0 10 0">Показувати по номеру файла</TextBlock>
+                        <t:RadComboBox HorizontalAlignment="Left" 
+                                   VerticalAlignment="Center"
+                                   Width="100">
+                            <t:RadComboBoxItem Content="2"/>
+                            <t:RadComboBoxItem Content="4"/>
+                        </t:RadComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+                        <TextBlock Style="{DynamicResource BoldText}">Дані по платежу:</TextBlock>
+                        
+                        <t:RadGridView 
+                                   ColumnWidth="*"
+                                   ItemsSource="{Binding PartnersItemSource}">
+                            <t:RadGridView.Columns>
+                                <t:GridViewDataColumn Width="100" 
+                                                  Header="ID файлу" 
+                                                  DataMemberBinding="{Binding CustId}"/>
+
+                                <t:GridViewDataColumn Header="Номер рахунку"
+                                                  Width="100" 
+                                                  DataMemberBinding="{Binding Name}"/>
+
+                                <t:GridViewDataColumn Width="100" 
+                                                  Header="МФО"
+                                                  DataMemberBinding="{Binding INNOKPO}"/>
+
+                                <t:GridViewDataColumn Width="100" 
+                                                  Header="ЄДРПОУ" 
+                                                  DataMemberBinding="{Binding AgrId}"/>
+
+                                <t:GridViewDataColumn 
+                                                  Header="Назва користувача"
+                                                  DataMemberBinding="{Binding AgrNumber}"/>
+
+                                <t:GridViewDataColumn Header="Номер платежу" 
+                                                  Width="75"
+                                                  DataMemberBinding="{Binding JaCity}"/>
+
+                                <t:GridViewDataColumn Header="Сума" 
+                                                  Width="100"
+                                                  DataMemberBinding="{Binding JaCity}"/>
+
+                                <t:GridViewDataColumn Header="Призначення платежу" 
+                                                  
+                                                  DataMemberBinding="{Binding JaCity}"/>
+
+                                <t:GridViewDataColumn Header="Дата платежу" 
+                                                  Width="100"
+                                                  DataMemberBinding="{Binding JaCity}"/>
+
+                            </t:RadGridView.Columns>
+                        </t:RadGridView>
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="2" HorizontalAlignment="Left">
+                        <TextBlock Style="{DynamicResource BoldText}">Дані щодо прив'язки:</TextBlock>
+                        <t:RadGridView 
+                                   ColumnWidth="500"
+                                   ItemsSource="{Binding PartnersItemSource}">
+                            <t:RadGridView.Columns>
+                                <t:GridViewDataColumn Width="100" 
+                                                  Header="ID Користувача" 
+                                                  DataMemberBinding="{Binding CustId}"/>
+
+                                <t:GridViewDataColumn Header="Назва користувача"
+                                                  Width="100" 
+                                                  DataMemberBinding="{Binding Name}"/>
+
+                                <t:GridViewDataColumn Width="100" 
+                                                  Header="Хто прив'язав"
+                                                  DataMemberBinding="{Binding INNOKPO}"/>
+
+                                <t:GridViewColumn Width="25">
+                                    <t:GridViewColumn.Header>
+                                        <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                                    </t:GridViewColumn.Header>
+                                    <t:GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <t:RadButton Margin="0" Width="25" Height="20" 
+                                                     Command="{Binding DataContext.OpenPartnerCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                     CommandParameter="{Binding}">
+                                                <Image Source="../Resources/Icons/edit-icon.png"/>
+                                            </t:RadButton>
+                                        </DataTemplate>
+                                    </t:GridViewColumn.CellTemplate>
+                                </t:GridViewColumn>
+                            </t:RadGridView.Columns>
+                        </t:RadGridView>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
+</UserControl>
