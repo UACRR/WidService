@@ -52,7 +52,8 @@
                 <t:RadTreeView Grid.Row="1" MinWidth="200" Margin="5" SelectedItem="{Binding SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
                                    IsSelected="True"
-                                   Header="* Всі"/>
+                                   HeaderStringFormat="* {0}"
+                                   Header="{Binding LOC.TV_ALL}"/>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
                                    IsSelectable="False"

@@ -10,10 +10,9 @@ using Newtonsoft.Json;
 using System.Configuration;
 using System.IO;
 using System.Net;
-using IpsCommonTypes.Types;
-using System.Collections;
-using IpsCommonTypes.Enums;
-using IpsCommonTypes.Wrappers;
+//using IpsCommonTypes.Types;
+//using IpsCommonTypes.Enums;
+//using IpsCommonTypes.Wrappers;
 using System.Windows;
 using System.Threading;
 
@@ -774,25 +773,25 @@ namespace WebAPIConnector
         /// </summary>
         /// <param name="urlData"></param>
         /// <returns></returns>
-        public ExecSqlResponce DeleteItemWithResponce(string urlData)
-        {
-            var result = client.DeleteAsync(urlData).GetAwaiter().GetResult();
+        //public ExecSqlResponce DeleteItemWithResponce(string urlData)
+        //{
+        //    var result = client.DeleteAsync(urlData).GetAwaiter().GetResult();
 
-            try
-            {
-                var jobject = JObject.Parse(result.Content.ReadAsStringAsync().GetAwaiter().GetResult());
-                var obj = jobject.ToObject<ExecSqlResponce>();
-                return obj;
-            }
-            catch (Exception e)
-            {
-                return new ExecSqlResponce
-                {
-                    Message = e.Message,
-                    StatusCode = ExecSqlResponceStatus.Failed,
-                };
-            }
-        }
+        //    try
+        //    {
+        //        var jobject = JObject.Parse(result.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+        //        var obj = jobject.ToObject<ExecSqlResponce>();
+        //        return obj;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new ExecSqlResponce
+        //        {
+        //            Message = e.Message,
+        //            StatusCode = ExecSqlResponceStatus.Failed,
+        //        };
+        //    }
+        //}
 
         /// <summary>
         /// Збереження файлу в папці споживача
@@ -877,20 +876,21 @@ namespace WebAPIConnector
 
         private void LogError(HttpResponseMessage result)
         {
-            string url = $"errorhandler/error/apiconnector";
-            var item = new ResponseError
-            {
-                StatusCode = (int) result.StatusCode,
-                ReasonPhrase = result.ReasonPhrase,
-                MethodType = result.RequestMessage.Method.Method,
+            //string url = $"errorhandler/error/apiconnector";
+            //var item = new ResponseError
+            //{
+            //    StatusCode = (int) result.StatusCode,
+            //    ReasonPhrase = result.ReasonPhrase,
+            //    MethodType = result.RequestMessage.Method.Method,
                 
-            };
-            _responseErrors.Clear();
-            _responseErrors.Add(item);
-            //client.PostAsJson(url, item);
+            //};
+            //_responseErrors.Clear();
+            //_responseErrors.Add(item);
+            ////client.PostAsJson(url, item);
         }
 
-        private readonly List<ResponseError> _responseErrors = new List<ResponseError>();
-        public List<ResponseError> ResponseErrors => _responseErrors;
+        //private readonly List<ResponseError> _responseErrors = new List<ResponseError>();
+        //public List<ResponseError> ResponseErrors => _responseErrors;
+    
     }
 }

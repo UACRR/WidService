@@ -50,13 +50,19 @@ namespace ipsFormsDesign.Services
 
         ~WordEngine()
         {
+
+
             ClearFiles();
-            if (app != null)
+
+            lock (new object())
             {
-                app.Quit();
-                Marshal.ReleaseComObject(app);
-                app = null;
-                appVersion = 0;
+                if (app != null)
+                {
+                    app.Quit();
+                    Marshal.ReleaseComObject(app);
+                    app = null;
+                    appVersion = 0;
+                }
             }
         }
 
