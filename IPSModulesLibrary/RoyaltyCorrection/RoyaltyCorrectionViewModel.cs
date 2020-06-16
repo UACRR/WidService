@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using IpsCommonTypes.DataModels;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -114,8 +116,6 @@ namespace IPSModulesLibrary.RoyaltyCorrection
 
         private bool IsNewRightholderSelected { get; set; }
 
-        private Account NewRightholderAccount { get; set; }
-
         #endregion
 
         #region * * * METHODS * * *
@@ -158,29 +158,23 @@ namespace IPSModulesLibrary.RoyaltyCorrection
 
             // parse result
 
-            ObjectRightName = "Заспіпаю я пісню тихую...побудила ой мати нас рано...";
-            RightholderName = "Фальсифікований Олександр Олександрович";
+            ObjectRightName = result.Data.ObjectRightName;
+            RightholderName = result.Data.RightholderName;
             ObjectLoaded = true;
 
-            CopyrightTypesItemSource = new ObservableListSource<CopyrightTypeModel>
+            var list = new ObservableListSource<CopyrightTypeModel>();
+            foreach (var item in result.Data.TransferList)
             {
-                new CopyrightTypeModel
+                list.Add(new CopyrightTypeModel
                 {
-                    TypeName = "Публічне сповіщення",
-                    Amount = 73876.54f,
-                    Rate = 42.5f,
-                },
-                new CopyrightTypeModel
-                {
-                    TypeName = "Механічне відтворення",
-                    Amount = 5948.11f,
-                    Rate = 33.7f,
-                },
-                new CopyrightTypeModel
-                {
-                    TypeName = "Суміжні права",
-                },
-            };
+                    Amount = item.Amount,
+                    Rate = item.Rate,
+                    Kindcode = item.Kindcode,
+                    DateWork = item.Datework,
+                });
+            }
+
+            CopyrightTypesItemSource = list;
         }
 
         public ICommand SearchRightholderCommand => new IPSDelegateCommand(SearchRightholderCommandExecute);
@@ -204,14 +198,12 @@ namespace IPSModulesLibrary.RoyaltyCorrection
             if (result.Data != null)
             {
                 IsNewRightholderSelected = true;
-                NewRightholderName = result.Data.AccName;
-                NewRightholderAccount = result.Data;
+                NewRightholderName = result.Data.FullName;
             }
             else
             {
                 ShowMessage.ShowWarning($"Правовласника з ID: «{NewRightholderID.Value}» не знайдено!");
                 NewRightholderName = string.Empty;
-                NewRightholderAccount = null;
             }
         }
 
@@ -237,31 +229,49 @@ namespace IPSModulesLibrary.RoyaltyCorrection
             {
                 var service = RoyaltyCorrectionService.GetInstance();
 
-                // param
-                var data = new RoyaltyCorrectionParams
+                var paramsList = new List<RoyaltyCorrectionParams>();
+                foreach (var copyrightTypeModel in selectedList)
                 {
-                    AccountD = "12345",
-                    AccountK = "321654",
-                    Amount = 2015.54m,
-                    Objid = 305,
-                    KindCode = 5,
-                };
+                    paramsList.Add(new RoyaltyCorrectionParams
+                    {
+                        CustIdD = NewRightholderID.Value,
+                        CustIdK = RightholderID.Value,
+                        Amount = copyrightTypeModel.Amount,
+                        Objid = ObjectRightID.Value,
+                        KindCode = copyrightTypeModel.Kindcode,
+                    });
+                }
 
                 IsBusy = true;
-                var result = await service.RunCorrectionProcessAsync(data);
+                var result = await service.RunCorrectionProcessAsync(paramsList);
                 IsBusy = false;
 
-                
                 if (result.IsSuccess)
                 {
-                    ShowMessage.ShowInfo("Ok!");
+                    ShowMessage.ShowInfo("Виправлення успішно виконано!");
+
+
+                    var objectRightId = ObjectRightID.Value;
+                    var rightholderId = RightholderID.Value;
+
+                    ClearCommand.Execute(null);
+
+                    ObjectRightID = objectRightId;
+                    RightholderID = rightholderId;
+
+                    SearchObjectCommand.Execute(null);
                 }
                 else
                 {
                     if (result.HasException)
+                    {
                         ShowMessage.ShowError(result.Exception);
+                    }
                     else
-                        ShowMessage.ShowError($"Неможливо виконати виправлення! Status Code: {result.StatusCode}");
+                    {
+                        var records = string.Join(";\n", result.Data.Select(rec => $"сума: {rec.Amount:N2}").ToList()) ;
+                        ShowMessage.ShowError($"Неможливо виконати виправлення для записів: \n{records}");
+                    }
                 }
             }
         }

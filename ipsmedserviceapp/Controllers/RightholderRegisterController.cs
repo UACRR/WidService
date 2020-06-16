@@ -293,7 +293,7 @@ namespace ipsmedserviceapp.Controllers
                     CreateDate = DateTime.Now,
                     CountZap = source.RhcatalogItem.Count,
                     FileName = source.FileName,
-                    CustName = vcustomer?.name,
+                    CustName = vcustomer?.Name,
                 };
 
                 var items = source.RhcatalogItem.ToArray();

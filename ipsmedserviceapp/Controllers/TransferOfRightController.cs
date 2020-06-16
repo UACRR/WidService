@@ -195,7 +195,7 @@ namespace ipsmedserviceapp.Controllers
                             {
                                 CustId = rightholder.CustId,
                                 ObjId = obj.ObjId,
-                                AuthorName = customer.name,
+                                AuthorName = customer.Name,
                                 FolkType = 1,
                                 RoleCode = 8,
                             });
@@ -385,7 +385,7 @@ namespace ipsmedserviceapp.Controllers
                             {
                                 CustId = rightholder.CustId,
                                 ObjId = obj.ObjId,
-                                AuthorName = customer.name,
+                                AuthorName = customer.Name,
                                 FolkType = 1,
                                 RoleCode = 8,
                             });

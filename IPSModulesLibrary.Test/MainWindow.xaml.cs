@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Services;
 
 namespace IPSModulesLibrary.Test
 {
@@ -23,6 +25,12 @@ namespace IPSModulesLibrary.Test
         public MainWindow()
         {
             InitializeComponent();
+
+            var objectrightService = ObjectRightService.GetInstance();
+            IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
+
+            var rightholderService = new RightholderService();
+            IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
         }
     }
 }

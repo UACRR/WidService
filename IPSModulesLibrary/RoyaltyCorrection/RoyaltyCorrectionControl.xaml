@@ -42,7 +42,7 @@
 
     <t:RadBusyIndicator IsBusy="{Binding IsBusy}" t:StyleManager.Theme="VisualStudio2013">
         <TabControl>
-            <TabItem Header="Исправление ошибочно начисленных роялти">
+            <TabItem Header="Виправлення помилково нарахованих роялті">
                 <Grid MaxWidth="720" Visibility="Visible">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -56,7 +56,7 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0" Margin="0 20 0 10">
-                        <TextBlock TextAlignment="Center" FontWeight="Bold" Text="Исправление ошибочно начисленных роялти "></TextBlock>
+                        <TextBlock TextAlignment="Center" FontWeight="Bold" Text="Виправлення помилково нарахованих роялті"/>
                     </Grid>
 
                     <Grid Grid.Row="1" Margin="0 10">
@@ -70,7 +70,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Margin="0 0 10 0" TextWrapping="Wrap" 
-                                       MaxWidth="120" Text="Введите код объекта"
+                                       MaxWidth="120" Text="Введіть код об'екта"
                                        VerticalAlignment="Center"/>
                             <TextBox Grid.Column="1"
                                      Margin="10 0 10 0" 
@@ -79,7 +79,7 @@
                                      Text="{Binding ObjectRightID, TargetNullValue=''}"/>
 
                             <TextBlock Grid.Column="2" Margin="10 0 10 0" TextWrapping="Wrap" 
-                                       MaxWidth="120" Text="Введите код ошибочн.правообл."
+                                       MaxWidth="120" Text="Введіть код помилк.правовл."
                                        VerticalAlignment="Center"/>
                             <TextBox Grid.Column="3"
                                      Margin="10 0 10 0" 
@@ -107,7 +107,7 @@
 
                         <TextBlock Grid.Column="0" 
                                    Margin="0 0 10 0" 
-                                   MaxWidth="120" Text="Название Объекта"
+                                   MaxWidth="120" Text="Назва Об'екта права"
                                    VerticalAlignment="Center"/>
                         <TextBox Grid.Column="1"
                                  MinHeight="25"
@@ -120,7 +120,7 @@
                                  Text="{Binding ObjectRightName}"/>
 
                         <TextBlock Grid.Column="2" Margin="10 0 10 0" 
-                                   MaxWidth="120" Text="Правообладатель"
+                                   MaxWidth="120" Text="Правовласник"
                                    VerticalAlignment="Center"/>
                         <TextBox Grid.Column="3" MinHeight="25"
                                  Height="auto"
@@ -134,7 +134,7 @@
 
                     <Grid Grid.Row="3" Margin="0 0 10 0">
                         <TextBlock  TextWrapping="Wrap" 
-                                    Text="Укажите, по каким типам прав необходимо сделать исправления"
+                                    Text="Вкажіть, по яким типам прав необхідно виконати виправлення"
                                     VerticalAlignment="Center"/>
                     </Grid>
 
@@ -157,7 +157,7 @@
 
                             <t:GridViewDataColumn Width="100" 
                                                   IsReadOnly="True"
-                                                  Header="Определенная сумма"
+                                                  Header="Сума"
                                                   TextAlignment="Right"
                                                   DataMemberBinding="{Binding Amount, StringFormat='{}{0:N2}'}"/>
 
@@ -183,7 +183,7 @@
                         <WrapPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Margin="0 0 10 0"
-                                           Text="Введите код правильного правообладателя"
+                                           Text="Введіть код правильного правовласника"
                                            VerticalAlignment="Center"/>
                                 <TextBox Height="25" 
                                          VerticalContentAlignment="Center" 
@@ -201,7 +201,7 @@
 
                     <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock TextWrapping="Wrap" 
-                                   MaxWidth="120" Text="Правообладатель"
+                                   MaxWidth="120" Text="Правовласник"
                                    VerticalAlignment="Center"/>
                         <TextBox Height="auto" 
                                  MinHeight="25" 
@@ -226,7 +226,6 @@
                                      Command="{Binding ClearCommand}"/>
                     </StackPanel>
                 </Grid>
-
             </TabItem>
         </TabControl>
     </t:RadBusyIndicator>

@@ -24,6 +24,10 @@
                             <Setter Property="TextElement.Foreground" TargetName="ContentSite" Value="Black"/>
                             <Setter TargetName="Border" Property="Background" Value="White" />
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="TextElement.Foreground" TargetName="ContentSite" Value="#929292"/>
+                            <Setter TargetName="Border" Property="Background" Value="White" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

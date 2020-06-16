@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IpsCommonTypes.DataModels;
 using IpsCommonTypes.Types;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Model.SQLViewsData;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -29,24 +30,24 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
-        public async Task<ResponseOfRequest<object>> SearchObjectRightAsync(int custId, int objId)
+        public async Task<ResponseOfRequest<RoyaltyCorrectionTransfer>> SearchObjectRightAsync(int custId, int objId)
         {
             string url = $"{prefix}/search/object/{custId}/{objId}";
-            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<object>>(url);
+            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<RoyaltyCorrectionTransfer>>(url);
             return result;
         }
 
-        public async Task<ResponseOfRequest<Account>> SearchRightholderAsync(int custId)
+        public async Task<ResponseOfRequest<vCustomer>> SearchRightholderAsync(int custId)
         {
             string url = $"{prefix}/search/rh/{custId}";
-            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<Account>>(url);
+            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<vCustomer>>(url);
             return result;
         }
 
-        public async Task<ResponseOfRequest> RunCorrectionProcessAsync(RoyaltyCorrectionParams o)
+        public async Task<ResponseOfRequest<List<RoyaltyCorrectionParams>>> RunCorrectionProcessAsync(List<RoyaltyCorrectionParams> royaltyCorrectionParamsList)
         {
             string url = $"{prefix}/CorrectionProcess";
-            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, RoyaltyCorrectionParams>(url, o);
+            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest<List<RoyaltyCorrectionParams>>, List<RoyaltyCorrectionParams>>(url, royaltyCorrectionParamsList);
             return result;
         }
     }

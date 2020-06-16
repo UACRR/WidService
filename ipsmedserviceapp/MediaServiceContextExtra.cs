@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.SQLViews;
 using ipsmedserviceapp.Controllers;
 using ipsmedserviceapp.Model.SQLViewsData;
 using IpsCommonTypes.Types.ObjectRightInfoWID;
@@ -24,6 +25,8 @@ namespace ipsmedserviceapp.Model
         public DbQuery<WIDObjectAuthorsCommunities> WIDObjectAuthorsCommunities { get; set; }
         public DbQuery<WIDObjectAlternativeNames> WIDObjectAlternativeNames { get; set; }
         public DbQuery<WIDObjectPerformers> WIDObjectPerformers { get; set; }
+
+        public DbQuery<MPay41_D21K21_TransferList> MPay41D21K21TransferLists { get; set; }
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {

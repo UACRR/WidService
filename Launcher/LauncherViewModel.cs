@@ -201,6 +201,7 @@ namespace Launcher
             string uri = config.AppSettings.Settings["SmRoPermitApiBaseUri"].Value;
             return uri;
         }
+
         #endregion
 
         #region * * * COMMANDS * * *
@@ -401,9 +402,12 @@ namespace Launcher
         {
             try
             {
-                var fw = new FinishingWorksWorkplaceWindow();
-                fw.Show();
-                // some code
+                var processManagment = new WorkplaceModules.ProcessManagementWorkplace.ProcessManagementWorkplaceWindow();
+                processManagment.Show();
+
+                //var fw = new FinishingWorksWorkplaceWindow();
+                //fw.Show();
+                //// some code
             }
             catch (Exception e)
             {

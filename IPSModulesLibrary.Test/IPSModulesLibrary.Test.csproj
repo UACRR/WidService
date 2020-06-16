@@ -132,6 +132,10 @@
       <Project>{5882f17a-4e15-4e89-aec6-9cb163b43316}</Project>
       <Name>IPSComponentLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{21DA4297-A0F3-4E44-BD98-CAF3605B243A}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IPSModulesLibrary\IPSModulesLibrary.csproj">
       <Project>{5dfd499a-25be-48f1-940a-2c28bb5ac6e3}</Project>
       <Name>IPSModulesLibrary</Name>

@@ -141,7 +141,7 @@ namespace ipsmedserviceapp.Controllers
                     PubCatalogItem = new List<PubCatalogItem>()
                 };
                 target.SetFields(source.ObjectData, excludedFields);
-                target.CustName = vcustomer?.name;
+                target.CustName = vcustomer?.Name;
                 target.CreateDate = DateTime.Now;
 
                 if (rightholder.RHolderType == 3)

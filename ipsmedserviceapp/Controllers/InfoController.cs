@@ -23,7 +23,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("Owner")]
         public async Task<IActionResult> GetOwner()
         {
-            var owner = await _dbContext.vCustomer.Where(rec => rec.ankMy == 1).FirstOrDefaultAsync();
+            var owner = await _dbContext.vCustomer.Where(rec => rec.AnkMy == 1).FirstOrDefaultAsync();
             return Ok(owner);
         }
     }

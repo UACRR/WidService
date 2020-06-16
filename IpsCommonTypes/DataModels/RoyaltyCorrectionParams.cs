@@ -6,9 +6,9 @@
     public class RoyaltyCorrectionParams
     {
         // счет, на который надо перебросить
-        public string AccountD { get; set; }
+        public int CustIdD { get; set; }
         // счет, с которщго надо списать
-        public string AccountK { get; set; }
+        public int CustIdK { get; set; }
         // код вида права 
         public int KindCode { get; set; }
         // код объекта

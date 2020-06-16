@@ -10,6 +10,7 @@
         xmlns:pr="clr-namespace:IPSModulesLibrary.PaymentToRightholder;assembly=IPSModulesLibrary"
         xmlns:rc="clr-namespace:IPSModulesLibrary.RoyaltyCorrection;assembly=IPSModulesLibrary"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="Управління технологічними процесами" Height="450" Width="800">
 
     <Window.DataContext>
@@ -35,11 +36,11 @@
             <fw:FinishingWorksControl/>
         </TabItem>
 
-        <TabItem Header="Документи">
+        <TabItem Header="Документи" Visibility="Collapsed">
             <ad:AccountantDocumentsControl/>
         </TabItem>
 
-        <TabItem Header="Отримання коштів">
+        <TabItem Header="Отримання коштів" IsEnabled="False">
             <pr:PaymentToRightholderControl/>
         </TabItem>
 
