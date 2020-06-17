@@ -265,7 +265,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
                 if (CatalogFileType == CatalogFileType.PublisherCatalog)
                     await PubCatalogItemExport.ExcelExportAsync(dialog, _objectsList, _pubCatalogItemList, (i) => InvokeOnUIThread(() => ChangeBusyContent(i, count)));
                 else if (CatalogFileType == CatalogFileType.RightholderRegister)
-                    ;//TODO: implement
+                    throw new NotImplementedException();
+                //TODO: implement
 
                 IsBusy = false;
 

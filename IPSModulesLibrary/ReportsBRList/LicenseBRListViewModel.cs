@@ -196,7 +196,7 @@ namespace IPSModulesLibrary.ReportsBRList
                 int[] types = { 1, 2, 3 };
                 LicenseType = IpsGlobal.AnketaDictionaties.licenseType.Where(rec => types.Contains(rec.CodeI)).ToList();
 
-                var searchControl = ((LicenseBRListControl)o).searchControl;
+                var searchControl = ((LicenseBRListControl)o).SearchControl;
                 var config = IpsGlobal.FrameTaskDictionary.Single(rec => rec.FrameCode == 7).FrameParam;
                 ((SearchControlViewModel)searchControl.DataContext).Config = config;
                 ((SearchControlViewModel)searchControl.DataContext).RunSearchQuery = async (search) => await LoadData(search);

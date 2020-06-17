@@ -50,6 +50,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
@@ -74,11 +82,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
     <Reference Include="Telerik.ReportViewer.WinForms, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.ReportViewer.Wpf, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.ReportViewer.Wpf.Themes, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.PdfViewer, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
@@ -102,12 +108,15 @@
     <Reference Include="Telerik.Windows.Controls.SpreadsheetUI, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Data, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Documents, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents.Flow, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Documents.FormatProviders.Pdf, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.PersistenceFramework, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Zip, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -250,54 +259,150 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Templates\F_1_БВ-НК-бари-дискотеки_.docx" />
-    <None Include="Templates\F_3_МБВ.docx" />
-    <None Include="Templates\F_4_ТЦ магазини.docx" />
-    <None Include="Templates\F_6_МТЦ.docx" />
-    <None Include="Templates\F_7_Г готелі.docx" />
-    <None Include="Templates\F_Copyright-Request.docx" />
-    <None Include="Templates\F_dogovir-go-uaasp-radio-efirne.docx" />
-    <None Include="Templates\F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx" />
-    <None Include="Templates\F_АКТ Ідентифікація.docx" />
-    <None Include="Templates\F_Акт фіксації_друк.docx" />
-    <None Include="Templates\F_Акт_публічне виконання.docx" />
-    <None Include="Templates\F_Акт_публічне сповіщення TV+радио.docx" />
-    <None Include="Templates\F_Акт_публічне сповіщення кTV.docx" />
-    <None Include="Templates\F_Акт_публічне сповіщення+використання Інтернет %28TV+радио%29.docx" />
-    <None Include="Templates\F_ГО УААСП Автор.docx" />
-    <None Include="Templates\F_ГО УААСП Автор_v12.2019.docx" />
-    <None Include="Templates\F_ГО УААСП Правовласник-Видавництво.docx" />
-    <None Include="Templates\F_Лицензионный договор на спектакль %28БП%29.docx" />
-    <None Include="Templates\F_Наказ на фіксацію.docx" />
-    <None Include="Templates\F_Службова до юридичного деп.docx" />
-    <None Include="Templates\F_Тестовий шаблон лицензионного договора.docx" />
-    <None Include="Templates\F_Тестовий шаблон.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР КАБЕЛЬНА РЕТРАНСЛЯЦІЯ.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МУЗИЧНІ АВТОМАТИ  ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР НІЧНІ КЛУБИ ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГ ПЛАТНИЙ ВХІД ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГ ТУР ПЛАТНИЙ ВХІД ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГб безопл вхід ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОНЛАЙН ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ПУБЛІЧНЕ СПОВІЩЕННЯ ПО КАБЕЛЮ.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР Р ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР Рі ІНТЕРНЕТ-РАДІО ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР СИСТЕМИ КАРАОКЕ ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЕ ЕФІРНЕ ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЕі ІНТЕРНЕТ-ТЕЛЕБАЧЕННЯ ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЦ  ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ФІЛАРМОНІЇ ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ЦИРК ГО УААСП.docx" />
-    <None Include="Templates\F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП %281%29.docx" />
-    <None Include="Templates\Result.pdf" />
-    <None Include="Templates\ПРЕДСТАВНИК ГО УААСП.docx" />
+    <None Include="Templates\F_1_БВ-НК-бари-дискотеки_.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_3_МБВ.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_4_ТЦ магазини.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_6_МТЦ.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_7_Г готелі.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Copyright-Request.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_dogovir-go-uaasp-radio-efirne.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_АКТ Ідентифікація.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт фіксації_друк.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт_публічне виконання.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт_публічне сповіщення TV+радио.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт_публічне сповіщення кTV.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт_публічне сповіщення+використання Інтернет %28TV+радио%29.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ГО УААСП Автор.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ГО УААСП Автор_v12.2019.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ГО УААСП Правовласник-Видавництво.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Лицензионный договор на спектакль %28БП%29.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Наказ на фіксацію.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Службова до юридичного деп.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Тестовий шаблон лицензионного договора.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Тестовий шаблон.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР КАБЕЛЬНА РЕТРАНСЛЯЦІЯ.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР МУЗИЧНІ АВТОМАТИ  ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР НІЧНІ КЛУБИ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГ ПЛАТНИЙ ВХІД ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГ ТУР ПЛАТНИЙ ВХІД ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОГб безопл вхід ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ОНЛАЙН ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ПУБЛІЧНЕ СПОВІЩЕННЯ ПО КАБЕЛЮ.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР Р ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР Рі ІНТЕРНЕТ-РАДІО ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР СИСТЕМИ КАРАОКЕ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЕ ЕФІРНЕ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЕі ІНТЕРНЕТ-ТЕЛЕБАЧЕННЯ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ТЦ  ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ФІЛАРМОНІЇ ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ДОГОВІР ЦИРК ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП %281%29.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\Result.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\ПРЕДСТАВНИК ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

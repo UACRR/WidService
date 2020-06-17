@@ -19,8 +19,6 @@ namespace DdexInvoicing
     {
         private string CONNECTION_STRING = ConfigurationManager.AppSettings["ConnectionStringDdex"];
 
-        private DdexReportInfo ddexReportInfo;
-
         public int ddexReportingPeriodId;
         public int ddexReportId;
 

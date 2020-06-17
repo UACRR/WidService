@@ -411,7 +411,10 @@ namespace IPSViewComponentLibraryWPF.Modules.CopyrightRequest
         private void PrintCopyrightRequestCommandExecute(object o)
         {
             CurrentRightholderItem = (CopyrightRequestRightholdersModel)o;
-
+            
+            if (ObjectsItemSource == null)
+                return;
+            
             RightolderWithNotAcceptedCopyrightViewModel rightolder = new RightolderWithNotAcceptedCopyrightViewModel
             {
                 CustId = CurrentRightholderItem.CustId,

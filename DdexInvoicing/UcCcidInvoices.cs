@@ -709,7 +709,7 @@ namespace DdexInvoicing
             });
         }
 
-        private async Task GetReply(int fileId)
+        private void GetReply(int fileId)
         {
             // Determine service type of sent file
             string reportType = "";

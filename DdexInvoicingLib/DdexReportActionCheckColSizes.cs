@@ -52,11 +52,11 @@ namespace InvoicingLib
                     curFieldLengths[i] = record.fields[i].Length;
                     curFieldValues[i] = record.fields[i];
                 }
-             }
+            }
         }
+
         private bool ValidateColSizes()
         {
-            return false;
             bool haveSmallColumns = false;
             using (SqlConnection conn = new SqlConnection(report.ConnectString))
             {
@@ -120,8 +120,10 @@ namespace InvoicingLib
         public override void ProcessFoot(FOOTRecord record)
         {
             UpdateFieldLengths(record);
-            if (ValidateColSizes())
-                throw new Exception("Необхідно збільшити розмір колонок таблиць.");
+
+            // refactor: method was returner false
+            //if (ValidateColSizes())
+            //    throw new Exception("Необхідно збільшити розмір колонок таблиць.");
         }
         public override void ProcessSY_02_02(SYRecord_02_02 record)
         {

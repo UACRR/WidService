@@ -6,6 +6,7 @@ using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.ViewModels.Consumer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ipsFormsDesign.Tests

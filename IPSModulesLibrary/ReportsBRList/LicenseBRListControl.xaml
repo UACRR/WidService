@@ -39,7 +39,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
+            <search:SearchControl Grid.Row="0" x:Name="SearchControl"/>
 
             <StackPanel Grid.Row="1" Margin="3 1" Orientation="Horizontal">
                 <CheckBox Margin="3" Content="Показувати деталі обраного рядка" IsChecked="{Binding IsShowRowDetails}"/>
