@@ -135,6 +135,10 @@
     </Compile>
     <Compile Include="PartnerList\PartnerListModel.cs" />
     <Compile Include="PartnerList\PartnerListViewModel.cs" />
+    <Compile Include="PaymentsParsing\PaymentsParsingControl.xaml.cs">
+      <DependentUpon>PaymentsParsingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentsParsing\PaymentsParsingViewModel.cs" />
     <Compile Include="PaymentToRightholder\PaymentToRightholderControl.xaml.cs">
       <DependentUpon>PaymentToRightholderControl.xaml</DependentUpon>
     </Compile>
@@ -195,14 +199,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AAAAAAAAAAAAAAAAAAAAAAA\ParcingPaymentFromRightholders.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="AAAAAAAAAAAAAAAAAAAAAAA\ParcingPaymentFromUsers.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="AccountantDocuments\AccountantDocumentsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PartnerList\PartnerListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentsParsing\PaymentsParsingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -293,6 +293,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AAAAAAAAAAAAAAAAAAAAAAA\" />
     <Folder Include="CopyrightRequest\" />
     <Folder Include="TransferOfRights\" />
   </ItemGroup>

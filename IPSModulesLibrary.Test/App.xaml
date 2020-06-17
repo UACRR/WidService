@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:IPSModulesLibrary.Test"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+             xmlns:telerikControls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls" 
              xmlns:System="clr-namespace:System;assembly=mscorlib" 
              xmlns:Chromes="clr-namespace:Telerik.Windows.Controls.Chromes;assembly=Telerik.Windows.Controls" 
              x:Class="IPSModulesLibrary.Test.App"
@@ -188,7 +189,7 @@
                         <Image.Visibility>
                             <Binding Path="Source" RelativeSource="{RelativeSource Self}">
                                 <Binding.Converter>
-                                    <telerik:NullToVisibilityConverter/>
+                                    <telerikControls:NullToVisibilityConverter/>
                                 </Binding.Converter>
                             </Binding>
                         </Image.Visibility>
@@ -552,7 +553,7 @@
                         <Image.Visibility>
                             <Binding Path="Source" RelativeSource="{RelativeSource Self}">
                                 <Binding.Converter>
-                                    <telerik:NullToVisibilityConverter/>
+                                    <telerikControls:NullToVisibilityConverter/>
                                 </Binding.Converter>
                             </Binding>
                         </Image.Visibility>
