@@ -374,7 +374,7 @@ namespace ipsFormsDesign.Interfaces
     /// </summary>
     public class RatedListMusicDesignBigRightView
     {
-        public TimeSpan? Duration { get; set; }
+        public long? Duration { get; set; }
         public int RmId { get; set; }
         public int RegId { get; set; }
         public int? ObjId { get; set; }

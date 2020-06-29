@@ -52,7 +52,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.txtPayGoalInvoice = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrNum = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceAgreement = new System.Windows.Forms.BindingSource(this.components);
+            this.bsAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtLicDate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
@@ -75,7 +75,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
@@ -277,7 +277,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // txtAgrNum
             // 
-            this.txtAgrNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAgreement, "AgrNumber", true));
+            this.txtAgrNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreement, "AgrNumber", true));
             this.txtAgrNum.Location = new System.Drawing.Point(112, 77);
             this.txtAgrNum.Name = "txtAgrNum";
             this.txtAgrNum.ReadOnly = true;
@@ -285,9 +285,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.txtAgrNum.TabIndex = 25;
             this.txtAgrNum.ThemeName = "Office2013Light";
             // 
-            // bindingSourceAgreement
+            // bsAgreement
             // 
-            this.bindingSourceAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
+            this.bsAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
             // 
             // radLabel6
             // 
@@ -300,7 +300,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // txtLicDate
             // 
-            this.txtLicDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAgreement, "AgrDate", true));
+            this.txtLicDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreement, "AgrDate", true));
             this.txtLicDate.Location = new System.Drawing.Point(434, 77);
             this.txtLicDate.Name = "txtLicDate";
             this.txtLicDate.ReadOnly = true;
@@ -347,7 +347,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.radLabel8.Size = new System.Drawing.Size(158, 19);
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "Періоди та суми прив\'язки";
-            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.radLabel8.ThemeName = "Office2013Light";
             // 
             // ctrlSaveCancelButtons
@@ -408,7 +408,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
@@ -441,7 +441,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private RadSeparator radSeparator2;
         private RadLabel radLabel8;
         private System.Windows.Forms.BindingSource bindingSource;
-        private System.Windows.Forms.BindingSource bindingSourceAgreement;
+        private System.Windows.Forms.BindingSource bsAgreement;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
     }

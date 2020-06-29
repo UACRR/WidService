@@ -7,6 +7,7 @@ using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -47,7 +48,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             _service = ConsumerBigRightService.GetInstance();
             _partnerService = PartnerService.GetInstance();
 
-            new Calculation.CalculationInfoControlPresenter(ctrlCalculation, _service);
+            //new Calculation.CalculationInfoControlPresenter(ctrlCalculation, _service);
 
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
@@ -129,7 +130,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlReference.UpdateData += UpdateData;
             ctrlPayslips.UpdateData += UpdateData;
             ctrlPartner.UpdateData += UpdateData;
-            ctrlCalculation.UpdateData += UpdateData;
+            ctrlCalculationBR.UpdateData += UpdateData;
             ctrlPaysInfo.UpdateData += UpdateData;
             ctrlFiles.UpdateData += UpdateData;
         }
@@ -177,7 +178,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                     ctrlPayslips.SetAndUpdateData(_customer);
                     var custRl = _service.GetRatedListForCust(custId);
                     SetupRl(_customer, custRl);
-                    ctrlCalculation.Customer = _customer;
+                    ctrlCalculationBR.SetDataByCustId(_customer.CustId);
                     break;
 
                 case CabinetTabType.PaysInfo:
@@ -242,7 +243,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlPayslips.SetAndUpdateData(_customer);
             var custRl = _service.GetRatedListForCust(custId);
             SetupRl(_customer, custRl);
-            ctrlCalculation.Customer = _customer;
+            ctrlCalculationBR.SetDataByCustId(_customer.CustId);
             ctrlPaysInfo.Customer = _customer;
             ctrlRequest.SetAndUpdateData(_customer);
             ctrlReference.SetAndUpdateData(_customer);
@@ -301,7 +302,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 }
             }
         }
-
 
         private bool CtrlPayslips_OnSavePayslip(RegisterRatedList list)
         {

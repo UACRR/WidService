@@ -282,11 +282,18 @@ namespace IPSComponentLibrary.Forms.Register
 
             var addPeriod = (PaidPeriod)ddlPeriod.SelectedItem.Tag;
             addPeriod.PeriodName = ddlPeriod.Text;
+            addPeriod.LicId = _licenseAgreement.LicId;
+            addPeriod.CustId = _licenseAgreement.CustId.Value;
+
             if (_licenseAgreement.PaidPeriod.Count == 0) // firstPeriod
                 addPeriod.FagFirst = true;
+            
             _licenseAgreement.PaidPeriod.Add(addPeriod);
 
+            CretaedPaidPeriod = addPeriod;
             DialogResult = DialogResult.OK;
         }
+
+        public PaidPeriod CretaedPaidPeriod { get; private set; }
     }
 }

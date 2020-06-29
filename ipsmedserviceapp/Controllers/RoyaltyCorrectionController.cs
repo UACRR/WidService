@@ -144,7 +144,7 @@ namespace ipsmedserviceapp.Controllers
                             Direction = ParameterDirection.Output
                         },
                         new SqlParameter("@custidD", correctionParams.CustIdD),
-                        new SqlParameter("@custidK" , correctionParams.CustIdK),
+                        new SqlParameter("@custidK", correctionParams.CustIdK),
                         new SqlParameter("@kindCode", correctionParams.KindCode),
                         new SqlParameter("@objid", correctionParams.Objid),
                         new SqlParameter("@amount", correctionParams.Amount),

@@ -31,7 +31,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _pay = undistrinbMoney;
 
             bindingSource.DataSource = undistrinbMoney;
-            bindingSourceAgreement.DataSource = licenseAgr;
+            bsAgreement.DataSource = licenseAgr;
 
             var agrLicenseType = IpsGlobal.AnketaDictionaties.agrLicenseType.First(rec => rec.CodeI == licenseAgr.Lic.LicCode);
 

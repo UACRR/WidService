@@ -31,6 +31,11 @@ namespace ipsmedserviceapp.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Отримати список каталогів
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         [HttpGet("catalogfilelist/{custId}")]
         public async Task<IActionResult> GetCatalogFilesList(int custId)
         {

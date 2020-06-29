@@ -11,7 +11,6 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.Common.Editors;
 using IpsViewComponentLibrary.Common.Form;
-using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
@@ -53,12 +52,13 @@ namespace IpsViewComponentLibrary.Shared.Forms
             set => base.Text = value;
         }
 
-        public RequestForm( Customer customer,
-                            ConsumerBigRightView bigRightView,
-                            ScopeOfUseForm scopeOfUseForm = ScopeOfUseForm.Create,
-                            int? licId = null,
-                            FormMode formMode = FormMode.ForBigRightAdmin,
-                            ControlRequestOrReferenceType windowType = ControlRequestOrReferenceType.None)
+        public RequestForm(
+            Customer customer, 
+            ConsumerBigRightView bigRightView, 
+            ScopeOfUseForm scopeOfUseForm = ScopeOfUseForm.Create, 
+            int? licId = null, 
+            FormMode formMode = FormMode.ForBigRightAdmin, 
+            ControlRequestOrReferenceType windowType = ControlRequestOrReferenceType.None)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -147,11 +147,11 @@ namespace IpsViewComponentLibrary.Shared.Forms
             }
             bsLicenseBigR.DataSource = licenseAgrParam.LicenseBigR;
             
-
             _objectRight = licenseAgrParam.LicenseBigR?.Obj;
             var rightholderList = _objectRightService.GetDataBr(_objectRight.ObjId).rhList;
             bsObjectRight.DataSource = _objectRight;
-            SetObjectRightData(_objectRight, rightholderList);
+
+            SetObjectRightData(licenseAgrParam.LicenseBigR, rightholderList);
 
             bsLicenseAgreement.DataSource = _licenseAgreement;
             ctrlMusicalDesignList.ShowDurationUse = false;
@@ -265,17 +265,46 @@ namespace IpsViewComponentLibrary.Shared.Forms
             }
         }
 
-        public void ParseAuthors()
+        private void ParseAuthors()
         {
             // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
             _objectRight.Authors.Clear();
             _objectRight.CopyRight.Clear();
 
+            var licenseBigR = (LicenseBigR) bsLicenseBigR.DataSource;
+
             foreach (var authorRightholder in _authorRightholderList)
             {
                 if(string.IsNullOrEmpty(authorRightholder.Author.AuthorName))
                     continue;
+
                 _objectRight.AddObjectBrAuthorRightholder(authorRightholder);
+
+                var licAuthorBr = licenseBigR.LicAuthorBr.FirstOrDefault(rec => rec.CRightId == authorRightholder.CopyRight.CRightId);
+                if (licAuthorBr == null)
+                {
+                    licenseBigR.LicAuthorBr.Add(new LicAuthorBr
+                    {
+                        CRightId = authorRightholder.CopyRight.CRightId,
+                        CustIdRh = authorRightholder.CopyRight.CustId,
+                        LicId = _licId.Value,
+                        LicVersion = 1,
+                        PrepayType = authorRightholder.LicAuthorBr.PrepayType,
+                        PrepaySum = authorRightholder.LicAuthorBr.PrepaySum,
+                        R030 = authorRightholder.LicAuthorBr.R030,
+                    });
+                }
+                else
+                {
+                    // redundant 
+                    // binding work
+                    //licAuthorBr.PrepayType = authorRightholder.LicAuthorBr.PrepayType;
+                    //licAuthorBr.PrepaySum = authorRightholder.LicAuthorBr.PrepaySum;
+                    //licAuthorBr.R030 = authorRightholder.LicAuthorBr.R030;
+                }
+
+                //authorRightholder.LicAuthorBr;
+                //licAuthorBr.Add();
             }
         }
 
@@ -344,10 +373,10 @@ namespace IpsViewComponentLibrary.Shared.Forms
                   && item.DurationItem == null);
         }
 
-        private void SetObjectRightData(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
+        private void SetObjectRightData(LicenseBigR licenseBigR, IList<ViewCustomer> rightholderList = null)
         {
             // map Authors, Copyright, LicAuthorBr and WorkRh tables into single table
-            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(objectRight.GetObjectBrAuthorRightholderList(rightholderList));
+            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(licenseBigR.GetObjectBrAuthorRightholderList(rightholderList));
 
             ctrlAuthorRightholderList.DataSource = _authorRightholderList;
         }
@@ -434,7 +463,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
                     _dialogService.ShowMessage(this, error);
                     // return; // return; MED-742 Патлякевич
                 }
-
             }
 
             _deleteLicense = false;

@@ -34,11 +34,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             txtIsProlong.Text = licenseAgreementBigRightView.ToProlong;
             
             //блок 1
-            txtValuta.Text = licenseAgreementBigRightView.R030;
-            txtAmount.Text = licenseAgreementBigRightView.PrepayPaush?.ToString("F");
+            var currency = IpsGlobal.AnketaDictionaties.klR030.SingleOrDefault(rec => rec.R030 == licenseAgreementBigRightView.R030);
+            txtValuta.Text = currency?.A3;
+            txtAmount.Text = licenseAgreementBigRightView.PrepayPaush?.ToString("N2");
             //блок 2
-            txtAvanceAgr.Text = licenseAgreementBigRightView.PrepayAvans?.ToString("F");
-            txtAvanceRemnant.Text = licenseAgreementBigRightView.PrepayRest?.ToString("F");
+            txtAvanceAgr.Text = licenseAgreementBigRightView.PrepayAvans?.ToString("N2");
+            txtAvanceRemnant.Text = licenseAgreementBigRightView.PrepayRest?.ToString("N2");
             //блок 3
             txtDatePremiere.Text = licenseAgreementBigRightView.DatePremiere?.ToShortDateString();
             txtCount.Text = licenseAgreementBigRightView.PerformNumb?.ToString();

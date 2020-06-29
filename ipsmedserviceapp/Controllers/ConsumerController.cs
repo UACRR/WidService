@@ -137,10 +137,10 @@ namespace ipsmedserviceapp.Controllers
 
             // Отримати співробітників (юридична осба)
             if (cust.CustType == 3)
+            {
                 foreach (var relEmp in cust.Company.RelEmployee)
-                {
                     await _dbContext.Entry(relEmp).Reference(item => item.Empl).LoadAsync();
-                }
+            }
 
             return cust;
 
@@ -183,25 +183,17 @@ namespace ipsmedserviceapp.Controllers
                 // Customer
                 InternalUpdateConsumer(sorsCustomer, destConsumer);
 
-                tran = _dbContext.Database.BeginTransaction();
-                _dbContext.SaveChanges();
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
                 tran.Commit();
                 tran = null;
 
                 return Json(destConsumer);
             }
-            catch (DbUpdateException)
-            {
-                tran?.Rollback();
-                //if()
-                string msg = "Спроба видалити майданчик, який включений до діючої ліцензії!";
-                //return BadRequest(ex.Message);
-                return BadRequest(msg);
-            }
             catch (Exception ex)
             {
-                if (tran != null)
-                    tran.Rollback();
+                tran?.Rollback();
+
                 return BadRequest(ex.Message);
             }
         }
@@ -232,7 +224,7 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        private void PrepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
+        private static void PrepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
         {
         }
 
@@ -483,7 +475,6 @@ namespace ipsmedserviceapp.Controllers
 
             if (source.LicenseBigR.Obj != null)
             {
-
                 if (source.LicenseBigR.Obj.ObjId == 0)
                 {
                     ObjectRight newObj = new ObjectRight();
@@ -497,7 +488,9 @@ namespace ipsmedserviceapp.Controllers
 
                 target.LicenseBigR.Obj.SetFields(source.LicenseBigR.Obj);
 
-                _dbContext.UpdateListExtra(source.LicenseBigR.Obj.CopyRight, target.LicenseBigR.Obj.CopyRight,
+                _dbContext.UpdateListExtra(
+                    source.LicenseBigR.Obj.CopyRight, 
+                    target.LicenseBigR.Obj.CopyRight,
                     (isnew, sorsCp, destCp) =>
                     {
                         if (sorsCp.WorkRh != null)
@@ -511,19 +504,52 @@ namespace ipsmedserviceapp.Controllers
                             destCp.WorkRh.SetFields(sorsCp.WorkRh);
                         }
 
-                        if (sorsCp.LicAuthorBr != null)
+                        //if (sorsCp.LicAuthorBr != null)
+                        //{
+                        //    if (destCp.LicAuthorBr == null)
+                        //    {
+                        //        destCp.LicAuthorBr = new List<LicAuthorBr>();
+                        //        _dbContext.LicAuthorBr.AddRange(destCp.LicAuthorBr);
+                        //    }
+
+                        //    //destCp.LicAuthorBr.SetFields(sorsCp.LicAuthorBr);
+                        //    _dbContext.UpdateList(sorsCp.LicAuthorBr, destCp.LicAuthorBr, id => {}, (s, t) => s.CustIdRh == t.CustIdRh);
+                        //}
+
+                    },
+                    (l, r) => l.CRightId == r.CRightId);
+
+                if (source.LicenseBigR.LicAuthorBr != null && source.LicenseBigR.LicAuthorBr.Any())
+                {
+                    // невідомо сікльки LicAuthorBr, можливо один
+                    if (target.LicenseBigR.LicAuthorBr == null || target.LicenseBigR.LicAuthorBr.Count == 0)
+                    {
+                        target.LicenseBigR.LicAuthorBr = new List<LicAuthorBr>();
+
+                        foreach (var licAuthorBr in source.LicenseBigR.LicAuthorBr)
+                            addLicAuthorBr(licAuthorBr);
+                    }
+                    else
+                    {
+                        foreach (var licAuthorBr in source.LicenseBigR.LicAuthorBr)
                         {
-                            if (destCp.LicAuthorBr == null)
-                            {
-                                destCp.LicAuthorBr = new List<LicAuthorBr>();
-                                _dbContext.LicAuthorBr.AddRange(destCp.LicAuthorBr);
-                            }
+                            var targetLicAuthorBr = target.LicenseBigR.LicAuthorBr
+                                .FirstOrDefault(rec => rec.CustIdRh == licAuthorBr.CustIdRh && rec.CRightId == licAuthorBr.CRightId && rec.LicId == licAuthorBr.LicId && rec.LicVersion == licAuthorBr.LicVersion);
 
-                            //destCp.LicAuthorBr.SetFields(sorsCp.LicAuthorBr);
-                            _dbContext.UpdateList(sorsCp.LicAuthorBr, destCp.LicAuthorBr, id => {}, (s, t) => s.CustIdRh == t.CustIdRh);
+                            if (targetLicAuthorBr == null) 
+                                addLicAuthorBr(licAuthorBr);
+                            else
+                                targetLicAuthorBr.SetFields(licAuthorBr);
                         }
+                    }
 
-                    }, (l, r) => l.CRightId == r.CRightId);
+                    void addLicAuthorBr(LicAuthorBr licAuthorBr)
+                    {
+                        var newLicAuthorBr = new LicAuthorBr();
+                        newLicAuthorBr.SetFields(licAuthorBr, new[] { "CRightId" });
+                        target.LicenseBigR.LicAuthorBr.Add(newLicAuthorBr);
+                    }
+                }
 
                 // calculate Rate by RoleRate
                 // перерахувати %

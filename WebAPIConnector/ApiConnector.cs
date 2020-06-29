@@ -15,6 +15,7 @@ using System.Net;
 //using IpsCommonTypes.Wrappers;
 using System.Windows;
 using System.Threading;
+using System.Windows.Documents;
 
 namespace WebAPIConnector
 {

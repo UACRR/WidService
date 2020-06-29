@@ -27,6 +27,7 @@ namespace ipsmedserviceapp.Model
         public DbQuery<WIDObjectPerformers> WIDObjectPerformers { get; set; }
 
         public DbQuery<MPay41_D21K21_TransferList> MPay41D21K21TransferLists { get; set; }
+        public DbQuery<FT_TSK_1_BRMoneyPrepay> FT_TSK_1_BRMoneyPrepay { get; set; }
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {

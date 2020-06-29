@@ -237,6 +237,9 @@ namespace DdexInvoicing
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                var result = MessageBox.Show("Згенерувати повторно помилку? (програма може аварійно зупинитись)", "#DEBUG MODE",MessageBoxButtons.YesNo, MessageBoxIcon.Hand);
+                if (result == DialogResult.Yes)
+                    throw;
             }
         }
 

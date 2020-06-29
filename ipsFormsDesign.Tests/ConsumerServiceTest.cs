@@ -397,7 +397,7 @@ namespace ipsFormsDesign.Tests
         //        PeriodId = 1196
         //    };
         //    //set data
-        //    var result = _consumerService.SetPeriodState(state, period);
+        //    var result = _consumerService.ChangePeriodStatus(state, period);
         //    //check on success action
         //    Assert.IsTrue(result, "data is not set");
         //}

@@ -106,6 +106,7 @@
             gridViewTextBoxColumn5.MinWidth = 75;
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "LicDate";
+            gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn5.Width = 83;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.FieldName = "Rate";
@@ -122,6 +123,7 @@
             gridViewTextBoxColumn7.MinWidth = 75;
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "LicDateBegin";
+            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn7.Width = 83;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "LicDateEnd";
@@ -130,6 +132,7 @@
             gridViewTextBoxColumn8.MinWidth = 75;
             gridViewTextBoxColumn8.Multiline = true;
             gridViewTextBoxColumn8.Name = "LicDateEnd";
+            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn8.Width = 83;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "prepayAvans";

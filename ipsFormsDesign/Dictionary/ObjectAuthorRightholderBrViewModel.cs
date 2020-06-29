@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Dictionary
         {
             Author = new Authors();
             CopyRight = new CopyRight();
-            LicAuthorBr = new List<LicAuthorBr>();
+            LicAuthorBr = new LicAuthorBr();
             WorkRh = new WorkRh();
         }
 
@@ -26,7 +26,7 @@ namespace ipsFormsDesign.Dictionary
         public Authors Author { get; set; }
         public CopyRight CopyRight { get; set; }
         public WorkRh WorkRh { get; set; }
-        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        public LicAuthorBr LicAuthorBr { get; set; }
 
         private bool _isRightholder;
         public bool IsRightholder
@@ -54,12 +54,9 @@ namespace ipsFormsDesign.Dictionary
             Country = null;
             InnerCode = null;
 
-            LicAuthorBr?.ForEach((item) =>
-            {
-                item.R030 = null;
-                item.PrepayType = null;
-                item.PrepaySum = null;
-            });
+            LicAuthorBr.R030 = null;
+            LicAuthorBr.PrepayType = null;
+            LicAuthorBr.PrepaySum = null;
         }
 
         private void OnPropertyChanged(string propertyName)

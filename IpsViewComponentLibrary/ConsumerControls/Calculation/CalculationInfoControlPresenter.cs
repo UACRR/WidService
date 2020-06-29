@@ -23,7 +23,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
 
         private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)
         {
-            _service.SetPeriodState((PeriodState) e.Status, e);
+            _service.SetPeriodState(e);
         }
 
         private void SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)

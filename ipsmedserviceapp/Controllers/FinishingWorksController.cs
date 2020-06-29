@@ -241,9 +241,7 @@ namespace ipsmedserviceapp.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e.ToString());
-
-                responseOfRequest = new ResponseOfRequest(e);
-                return Ok(responseOfRequest);
+                return Ok(ResponseOfRequest.NotSuccess(e));
             }
         }
 

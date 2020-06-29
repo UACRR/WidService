@@ -50,7 +50,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPayslips = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.RegisterRatedListControl();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlCalculation = new CalculationInfoControl();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
@@ -61,6 +60,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartner = new IpsViewComponentLibrary.ConsumerControls.PartnerOfConsumerControl();
+            this.ctrlCalculationBR = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.CalculationControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -120,6 +120,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
             this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
+            this.ctrlAnketaConsumer.PanelAgreementSize = new System.Drawing.Size(590, 436);
             this.ctrlAnketaConsumer.Size = new System.Drawing.Size(906, 490);
             this.ctrlAnketaConsumer.TabIndex = 0;
             this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
@@ -224,23 +225,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             // pvCalculation
             // 
             this.pvCalculation.AutoScroll = true;
-            this.pvCalculation.Controls.Add(this.ctrlCalculation);
+            this.pvCalculation.Controls.Add(this.ctrlCalculationBR);
             this.pvCalculation.ItemSize = new System.Drawing.SizeF(80F, 27F);
             this.pvCalculation.Location = new System.Drawing.Point(5, 31);
             this.pvCalculation.Name = "pvCalculation";
             this.pvCalculation.Size = new System.Drawing.Size(906, 521);
             this.pvCalculation.Text = "Розрахунки";
-            // 
-            // ctrlCalculation
-            // 
-            this.ctrlCalculation.CurrentAgreementController = null;
-            this.ctrlCalculation.Customer = null;
-            this.ctrlCalculation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlCalculation.Location = new System.Drawing.Point(0, 0);
-            this.ctrlCalculation.Name = "ctrlCalculation";
-            this.ctrlCalculation.Size = new System.Drawing.Size(906, 521);
-            this.ctrlCalculation.TabIndex = 0;
-            this.ctrlCalculation.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             // 
             // pvPays
             // 
@@ -334,6 +324,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlPartner.Size = new System.Drawing.Size(659, 138);
             this.ctrlPartner.TabIndex = 0;
             // 
+            // ctrlCalculationBR
+            // 
+            this.ctrlCalculationBR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlCalculationBR.Location = new System.Drawing.Point(0, 0);
+            this.ctrlCalculationBR.Name = "ctrlCalculationBR";
+            this.ctrlCalculationBR.Size = new System.Drawing.Size(906, 521);
+            this.ctrlCalculationBR.TabIndex = 0;
+            // 
             // CabinetBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -384,11 +382,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private Telerik.WinControls.UI.RadPageViewPage pvContacts;
         private RegisterRatedListControl ctrlPayslips;
         private MiddleControlCabinetAvances middleControlCabinetAvances1;
-        public CalculationInfoControl ctrlCalculation;
         private Telerik.WinControls.UI.RadPageViewPage pvAnketa;
         private ConsumerControls.ConsumerHeaderInfo ctrlContactHeader;
         private AnketaConsumer ctrlAnketaConsumer;
         private ConsumerControls.PaysInfo ctrlPaysInfo;
         private TabNavigationControl ctrlTabNavigation;
+        private CalculationControl ctrlCalculationBR;
     }
 }
