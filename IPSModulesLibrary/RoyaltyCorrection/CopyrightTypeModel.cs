@@ -21,6 +21,6 @@ namespace IPSModulesLibrary.RoyaltyCorrection
         public decimal Rate { get; set; }
         public decimal Amount { get; set; }
         public bool IsSelected { get; set; }
-
+        public int TurnId { get; set; }
     }
 }

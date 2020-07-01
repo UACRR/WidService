@@ -15,5 +15,7 @@
         public int Objid { get; set; }
         // сумма
         public decimal Amount { get; set; }
+
+        public int TurnId { get; set; }
     }
 }

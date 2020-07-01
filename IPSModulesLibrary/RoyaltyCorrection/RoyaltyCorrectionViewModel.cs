@@ -142,7 +142,6 @@ namespace IPSModulesLibrary.RoyaltyCorrection
 
             var service = RoyaltyCorrectionService.GetInstance();
 
-
             IsBusy = true;
             var result = await service.SearchObjectRightAsync(RightholderID.Value, ObjectRightID.Value);
             IsBusy = false;
@@ -171,6 +170,7 @@ namespace IPSModulesLibrary.RoyaltyCorrection
                     Rate = item.Rate,
                     Kindcode = item.Kindcode,
                     DateWork = item.Datework,
+                    TurnId = item.Turnid,
                 });
             }
 
@@ -239,6 +239,7 @@ namespace IPSModulesLibrary.RoyaltyCorrection
                         Amount = copyrightTypeModel.Amount,
                         Objid = ObjectRightID.Value,
                         KindCode = copyrightTypeModel.Kindcode,
+                        TurnId = copyrightTypeModel.TurnId,
                     });
                 }
 

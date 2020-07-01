@@ -155,6 +155,12 @@
                                                   TextAlignment="Right"
                                                   DataMemberBinding="{Binding Rate, StringFormat='{}{0:N2}'}"/>
 
+                            <t:GridViewDataColumn Width="90"
+                                                  IsReadOnly="True"
+                                                  Header="Дата"
+                                                  TextAlignment="Center"
+                                                  DataMemberBinding="{Binding DateWork, StringFormat='{}{0:d}'}"/>
+
                             <t:GridViewDataColumn Width="100" 
                                                   IsReadOnly="True"
                                                   Header="Сума"

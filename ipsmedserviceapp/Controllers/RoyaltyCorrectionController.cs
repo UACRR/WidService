@@ -127,7 +127,7 @@ namespace ipsmedserviceapp.Controllers
                 }
 
                 // custidD - кому, custidK - від кого
-                string query = $"exec @returnCode = [MPay41_D21_K21_transfer] @custidD, @custidK, @kindCode, @objid, @amount";
+                string query = $"exec @returnCode = [MPay41_D21_K21_transfer] @custidD, @custidK, @kindCode, @objid, @amount, @turnid";
 
                 _dbContext.Database.SetCommandTimeout(600);
 
@@ -148,6 +148,7 @@ namespace ipsmedserviceapp.Controllers
                         new SqlParameter("@kindCode", correctionParams.KindCode),
                         new SqlParameter("@objid", correctionParams.Objid),
                         new SqlParameter("@amount", correctionParams.Amount),
+                        new SqlParameter("@turnid", correctionParams.TurnId), 
                     };
 
                     var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, sqlParameters);
