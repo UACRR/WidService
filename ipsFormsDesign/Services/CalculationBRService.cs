@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IpsCommonTypes.DataModels;
+using IpsCommonTypes.SQLViews;
 using IpsCommonTypes.Types;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -43,6 +45,20 @@ namespace ipsFormsDesign.Services
             return new ObservableListSource<MoneyReceived>(result.Data);
         }
 
+        public async Task<ObservableListSource<FT_TSK_1_BRMoneyPrepay>> GetMoneyPrepayList(int custId)
+        {
+            string url = $"{prefix}/MoneyPrepay/{custId}";
+            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<List<FT_TSK_1_BRMoneyPrepay>>>(url);
+            return new ObservableListSource<FT_TSK_1_BRMoneyPrepay>(result.Data);
+        }
+
+        public async Task<ResponseOfRequest<List<QUERY_RegisterPrepayAmountSum>>> GetPrepayAmount(int licId)
+        {
+            string url = $"{prefix}/RegisterPrepayAmountList/{licId}";
+            var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<List<QUERY_RegisterPrepayAmountSum>>>(url);
+            return result;
+        }
+
         /// <summary>
         /// Створити новий період
         /// </summary>
@@ -56,7 +72,7 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// Зберігання прив'язаних сум
+        /// Зберігання прив'язаних сум до періоду
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="listLinks">Прив'язані суми</param>
@@ -71,6 +87,25 @@ namespace ipsFormsDesign.Services
                 return list;
 
             return null;
+        }
+
+        public async Task<ResponseOfRequest> SavePrepayLink(MoneyPrepayLink moneyPrepayLink)
+        {
+            string url = $"{prefix}/SavePrepayLink";
+            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, MoneyPrepayLink>(url, moneyPrepayLink);
+            return result;
+        }
+
+        /// <summary>
+        /// Змінити суму в гривневому еквіваленті
+        /// </summary>
+        /// <param name="changePrepaySumParams"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> ChangePrepaySumAsync(ChangePrepaySumParams changePrepaySumParams)
+        {
+            string url = $"{prefix}/ChangePrepaySumAsync";
+            var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, ChangePrepaySumParams>(url, changePrepaySumParams);
+            return result;
         }
 
         /// <summary>

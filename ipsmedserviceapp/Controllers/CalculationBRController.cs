@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.DataModels;
 using IpsCommonTypes.SQLViews;
 using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
@@ -71,6 +72,31 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpGet("RegisterPrepayAmountList/{licId}")]
+        public async Task<IActionResult> GetPrepayAmount(int licId)
+        {
+            try
+            {
+                var sqlParam = new SqlParameter("@licId", licId);
+                string query = $@"select t3.custId, t3.licId, t3.periodId, sum(t1.prepayAmount) as prepayAmountSum
+                                  from register t1
+                                  join RegisterRatedList t2 on t1.rmId = t2.rmId
+                                  join PaidPeriod t3 on t3.periodId = t2.periodId
+                                  where t3.licId = @licId
+                                  group by t3.custId, t3.licId, t3.periodId";
+
+                var data = await _dbContext.QUERY_RegisterPrepayAmountSumList.FromSql(query, sqlParam).ToListAsync();
+                
+                var result = ResponseOfRequest<List<QUERY_RegisterPrepayAmountSum>>.Success(data);
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return Ok(ResponseOfRequest.NotSuccess(e));
+            }
+        }
+
         [HttpPost("CreatePeriod")]
         public async Task<IActionResult> CreatePeriod([FromBody] PaidPeriod paidPeriod)
         {
@@ -81,6 +107,55 @@ namespace ipsmedserviceapp.Controllers
                 target.SetFields(paidPeriod, new []{ "PeriodId" });
 
                 await _dbContext.PaidPeriod.AddAsync(target);
+
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                return Ok(ResponseOfRequest.Success());
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return Ok(ResponseOfRequest.NotSuccess(e));
+            }
+        }
+
+        [HttpPut("ChangePrepaySumAsync")]
+        public async Task<IActionResult> ChangePrepaySumAsync([FromBody] ChangePrepaySumParams source)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = await _dbContext.LicAuthorBr
+                    .SingleAsync(rec =>
+                        rec.LicId == source.LicId &&
+                        rec.LicVersion == source.LicVersion &&
+                        rec.CustIdRh == source.CustIdRH);
+
+                target.PrepaySum = source.NewAmount;
+
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+
+                return Ok(ResponseOfRequest.Success());
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return Ok(ResponseOfRequest.NotSuccess(e));
+            }
+        }
+
+        [HttpPost("SavePrepayLink")]
+        public async Task<IActionResult> SavePrepayLink([FromBody] MoneyPrepayLink source)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var target = new MoneyPrepayLink();
+                target.SetFields(source, new []{ "LinkId" });
 
                 transaction = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();

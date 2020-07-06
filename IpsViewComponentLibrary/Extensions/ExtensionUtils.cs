@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
@@ -45,6 +47,7 @@ namespace IpsViewComponentLibrary.Extensions
 
     public static class ExtensionUtils
     {
+
         /// <summary>
         /// Незмінний розмір, кнопка "Сьогодні" посередині, навігація по місяцях/роках зумом
         /// </summary>
@@ -199,33 +202,6 @@ namespace IpsViewComponentLibrary.Extensions
         /// Редагування існуючої анкети споживача
         /// </summary>
         EditAnketa
-    }
-
-    /// <summary>
-    /// Тип ініціалізації, для чого буде застосовуватись
-    /// </summary>
-    public enum ConsumerAgreementInitType
-    {
-        /// <summary>
-        /// Empty
-        /// </summary>
-        None,
-        /// <summary>
-        /// Створення нового договору
-        /// </summary>
-        AddNewAgreement,
-        /// <summary>
-        /// Редагування існуючого договору
-        /// </summary>
-        EditAgreement,
-        /// <summary>
-        /// Пролонгація договору
-        /// </summary>
-        Prolongation,
-        /// <summary>
-        /// Зміна договору
-        /// </summary>
-        ChangeAgreement
     }
 
     /// <summary>

@@ -28,6 +28,7 @@ namespace ipsmedserviceapp.Model
 
         public DbQuery<MPay41_D21K21_TransferList> MPay41D21K21TransferLists { get; set; }
         public DbQuery<FT_TSK_1_BRMoneyPrepay> FT_TSK_1_BRMoneyPrepay { get; set; }
+        public DbQuery<QUERY_RegisterPrepayAmountSum> QUERY_RegisterPrepayAmountSumList { get; set; }
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {

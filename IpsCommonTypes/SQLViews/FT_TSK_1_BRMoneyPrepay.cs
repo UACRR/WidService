@@ -20,6 +20,7 @@ namespace IpsCommonTypes.SQLViews
         public decimal? TurnAmount { get; set; }
         public decimal? RoleRate { get; set; }
         public string LicNum { get; set; }
+        public string ObjName { get; set; }
         public string NameRH { get; set; }
         public string RoleName { get; set; }
         public string PrepayName { get; set; }

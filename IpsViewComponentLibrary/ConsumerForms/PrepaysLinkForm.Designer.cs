@@ -32,8 +32,9 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.txtPayGoalInvoice = new Telerik.WinControls.UI.RadTextBox();
+            this.bsMoneyReceived = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.txtPayDistribution = new Telerik.WinControls.UI.RadTextBox();
+            this.txtBalance = new Telerik.WinControls.UI.RadTextBox();
             this.txtPayAmount = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtPayDate = new Telerik.WinControls.UI.RadTextBox();
@@ -47,18 +48,20 @@
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.btnChangeAmount = new Telerik.WinControls.UI.RadButton();
             this.radTextBox10 = new Telerik.WinControls.UI.RadTextBox();
+            this.bsMoneyPrepays = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBox9 = new Telerik.WinControls.UI.RadTextBox();
+            this.txtR030 = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.txtAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.txtPrepaySum = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBox7 = new Telerik.WinControls.UI.RadTextBox();
+            this.txtPrepaySumAuthor = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBox6 = new Telerik.WinControls.UI.RadTextBox();
+            this.txtPrepayDebt = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBox5 = new Telerik.WinControls.UI.RadTextBox();
-            this.radCheckBox1 = new Telerik.WinControls.UI.RadCheckBox();
+            this.txtLinkAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.bsPrepaysModel = new System.Windows.Forms.BindingSource(this.components);
+            this.checkAutocalculate = new Telerik.WinControls.UI.RadCheckBox();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radTextBox4 = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
@@ -68,13 +71,12 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bsAgreement = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
+            this.ctrlSaveCancel = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMoneyReceived)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPayDistribution)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBalance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayDate)).BeginInit();
@@ -90,18 +92,20 @@
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangeAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMoneyPrepays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtR030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrepaySum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrepaySumAuthor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrepayDebt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLinkAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPrepaysModel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkAutocalculate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
@@ -111,8 +115,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,7 +130,7 @@
             // 
             // txtPayGoalInvoice
             // 
-            this.txtPayGoalInvoice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "GoalInvoice", true));
+            this.txtPayGoalInvoice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyReceived, "GoalInvoice", true));
             this.txtPayGoalInvoice.Location = new System.Drawing.Point(145, 55);
             this.txtPayGoalInvoice.Multiline = true;
             this.txtPayGoalInvoice.Name = "txtPayGoalInvoice";
@@ -142,6 +144,10 @@
             this.txtPayGoalInvoice.TabIndex = 3;
             this.txtPayGoalInvoice.ThemeName = "Office2013Light";
             // 
+            // bsMoneyReceived
+            // 
+            this.bsMoneyReceived.DataSource = typeof(ipsFormsDesign.Model.MoneyReceived);
+            // 
             // radLabel5
             // 
             this.radLabel5.Location = new System.Drawing.Point(6, 56);
@@ -151,19 +157,19 @@
             this.radLabel5.Text = "Призначення платежу";
             this.radLabel5.ThemeName = "Office2013Light";
             // 
-            // txtPayDistribution
+            // txtBalance
             // 
-            this.txtPayDistribution.Location = new System.Drawing.Point(145, 162);
-            this.txtPayDistribution.Name = "txtPayDistribution";
-            this.txtPayDistribution.ReadOnly = true;
-            this.txtPayDistribution.Size = new System.Drawing.Size(120, 21);
-            this.txtPayDistribution.TabIndex = 40;
-            this.txtPayDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPayDistribution.ThemeName = "Office2013Light";
+            this.txtBalance.Location = new System.Drawing.Point(145, 162);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.ReadOnly = true;
+            this.txtBalance.Size = new System.Drawing.Size(120, 21);
+            this.txtBalance.TabIndex = 40;
+            this.txtBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBalance.ThemeName = "Office2013Light";
             // 
             // txtPayAmount
             // 
-            this.txtPayAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.txtPayAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyReceived, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
             this.txtPayAmount.Location = new System.Drawing.Point(145, 112);
             this.txtPayAmount.Name = "txtPayAmount";
             this.txtPayAmount.ReadOnly = true;
@@ -183,7 +189,7 @@
             // 
             // txtPayDate
             // 
-            this.txtPayDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "DateInvoice", true));
+            this.txtPayDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyReceived, "DateInvoice", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "d"));
             this.txtPayDate.Location = new System.Drawing.Point(424, 28);
             this.txtPayDate.Name = "txtPayDate";
             this.txtPayDate.ReadOnly = true;
@@ -203,7 +209,7 @@
             // 
             // txtPayNumber
             // 
-            this.txtPayNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "NumberInvoice", true));
+            this.txtPayNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyReceived, "NumberInvoice", true));
             this.txtPayNumber.Location = new System.Drawing.Point(145, 28);
             this.txtPayNumber.Name = "txtPayNumber";
             this.txtPayNumber.ReadOnly = true;
@@ -246,7 +252,7 @@
             this.radGroupBox1.Controls.Add(this.radLabel3);
             this.radGroupBox1.Controls.Add(this.txtPayGoalInvoice);
             this.radGroupBox1.Controls.Add(this.txtPayAmount);
-            this.radGroupBox1.Controls.Add(this.txtPayDistribution);
+            this.radGroupBox1.Controls.Add(this.txtBalance);
             this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radGroupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radGroupBox1.FooterText = "";
@@ -269,7 +275,7 @@
             // 
             // txtLinkedMoney
             // 
-            this.txtLinkedMoney.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "DestribPrepay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.txtLinkedMoney.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyReceived, "DestribPrepay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
             this.txtLinkedMoney.Location = new System.Drawing.Point(145, 137);
             this.txtLinkedMoney.Name = "txtLinkedMoney";
             this.txtLinkedMoney.ReadOnly = true;
@@ -285,17 +291,17 @@
             this.radGroupBox2.Controls.Add(this.btnChangeAmount);
             this.radGroupBox2.Controls.Add(this.radTextBox10);
             this.radGroupBox2.Controls.Add(this.radLabel16);
-            this.radGroupBox2.Controls.Add(this.radTextBox9);
+            this.radGroupBox2.Controls.Add(this.txtR030);
             this.radGroupBox2.Controls.Add(this.radLabel15);
-            this.radGroupBox2.Controls.Add(this.txtAmount);
+            this.radGroupBox2.Controls.Add(this.txtPrepaySum);
             this.radGroupBox2.Controls.Add(this.radLabel14);
-            this.radGroupBox2.Controls.Add(this.radTextBox7);
+            this.radGroupBox2.Controls.Add(this.txtPrepaySumAuthor);
             this.radGroupBox2.Controls.Add(this.radLabel13);
-            this.radGroupBox2.Controls.Add(this.radTextBox6);
+            this.radGroupBox2.Controls.Add(this.txtPrepayDebt);
             this.radGroupBox2.Controls.Add(this.radLabel12);
             this.radGroupBox2.Controls.Add(this.radLabel11);
-            this.radGroupBox2.Controls.Add(this.radTextBox5);
-            this.radGroupBox2.Controls.Add(this.radCheckBox1);
+            this.radGroupBox2.Controls.Add(this.txtLinkAmount);
+            this.radGroupBox2.Controls.Add(this.checkAutocalculate);
             this.radGroupBox2.Controls.Add(this.radLabel10);
             this.radGroupBox2.Controls.Add(this.radTextBox4);
             this.radGroupBox2.Controls.Add(this.radLabel9);
@@ -325,10 +331,11 @@
             this.btnChangeAmount.TabIndex = 60;
             this.btnChangeAmount.Text = "змінити";
             this.btnChangeAmount.ThemeName = "Office2013Light";
+            this.btnChangeAmount.Click += new System.EventHandler(this.btnChangeAmount_Click);
             // 
             // radTextBox10
             // 
-            this.radTextBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.radTextBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "LinkAmount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
             this.radTextBox10.Location = new System.Drawing.Point(145, 120);
             this.radTextBox10.Name = "radTextBox10";
             this.radTextBox10.ReadOnly = true;
@@ -336,6 +343,10 @@
             this.radTextBox10.TabIndex = 59;
             this.radTextBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.radTextBox10.ThemeName = "Office2013Light";
+            // 
+            // bsMoneyPrepays
+            // 
+            this.bsMoneyPrepays.DataSource = typeof(IpsCommonTypes.SQLViews.FT_TSK_1_BRMoneyPrepay);
             // 
             // radLabel16
             // 
@@ -346,19 +357,18 @@
             this.radLabel16.Text = "Прив\'язано";
             this.radLabel16.ThemeName = "Office2013Light";
             // 
-            // radTextBox9
+            // txtR030
             // 
-            this.radTextBox9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
-            this.radTextBox9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.radTextBox9.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.radTextBox9.Location = new System.Drawing.Point(325, 83);
-            this.radTextBox9.Name = "radTextBox9";
-            this.radTextBox9.ReadOnly = true;
-            this.radTextBox9.Size = new System.Drawing.Size(43, 21);
-            this.radTextBox9.TabIndex = 57;
-            this.radTextBox9.Text = "UAH";
-            this.radTextBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.radTextBox9.ThemeName = "Office2013Light";
+            this.txtR030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "R030_name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtR030.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.txtR030.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.txtR030.Location = new System.Drawing.Point(325, 83);
+            this.txtR030.Name = "txtR030";
+            this.txtR030.ReadOnly = true;
+            this.txtR030.Size = new System.Drawing.Size(43, 21);
+            this.txtR030.TabIndex = 57;
+            this.txtR030.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtR030.ThemeName = "Office2013Light";
             // 
             // radLabel15
             // 
@@ -369,19 +379,19 @@
             this.radLabel15.Text = "Валюта";
             this.radLabel15.ThemeName = "Office2013Light";
             // 
-            // txtAmount
+            // txtPrepaySum
             // 
-            this.txtAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
-            this.errorProvider.SetIconAlignment(this.txtAmount, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            this.errorProvider.SetIconPadding(this.txtAmount, -20);
-            this.txtAmount.Location = new System.Drawing.Point(495, 83);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.ReadOnly = true;
-            this.txtAmount.Size = new System.Drawing.Size(120, 21);
-            this.txtAmount.TabIndex = 55;
-            this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtAmount.ThemeName = "Office2013Light";
-            this.txtAmount.Click += new System.EventHandler(this.txtAmount_Click);
+            this.txtPrepaySum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "PrepaySum", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.errorProvider.SetIconAlignment(this.txtPrepaySum, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.errorProvider.SetIconPadding(this.txtPrepaySum, -20);
+            this.txtPrepaySum.Location = new System.Drawing.Point(495, 83);
+            this.txtPrepaySum.Name = "txtPrepaySum";
+            this.txtPrepaySum.ReadOnly = true;
+            this.txtPrepaySum.Size = new System.Drawing.Size(120, 21);
+            this.txtPrepaySum.TabIndex = 55;
+            this.txtPrepaySum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrepaySum.ThemeName = "Office2013Light";
+            this.txtPrepaySum.TextChanged += new System.EventHandler(this.txtPrepaySum_TextChanged);
             // 
             // radLabel14
             // 
@@ -393,16 +403,16 @@
             this.radLabel14.Text = "Сума авансу в грн";
             this.radLabel14.ThemeName = "Office2013Light";
             // 
-            // radTextBox7
+            // txtPrepaySumAuthor
             // 
-            this.radTextBox7.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
-            this.radTextBox7.Location = new System.Drawing.Point(145, 83);
-            this.radTextBox7.Name = "radTextBox7";
-            this.radTextBox7.ReadOnly = true;
-            this.radTextBox7.Size = new System.Drawing.Size(120, 21);
-            this.radTextBox7.TabIndex = 53;
-            this.radTextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.radTextBox7.ThemeName = "Office2013Light";
+            this.txtPrepaySumAuthor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "PrepaySumAuthor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.txtPrepaySumAuthor.Location = new System.Drawing.Point(145, 83);
+            this.txtPrepaySumAuthor.Name = "txtPrepaySumAuthor";
+            this.txtPrepaySumAuthor.ReadOnly = true;
+            this.txtPrepaySumAuthor.Size = new System.Drawing.Size(120, 21);
+            this.txtPrepaySumAuthor.TabIndex = 53;
+            this.txtPrepaySumAuthor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrepaySumAuthor.ThemeName = "Office2013Light";
             // 
             // radLabel13
             // 
@@ -413,16 +423,16 @@
             this.radLabel13.Text = "Сума авансу у валюті";
             this.radLabel13.ThemeName = "Office2013Light";
             // 
-            // radTextBox6
+            // txtPrepayDebt
             // 
-            this.radTextBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
-            this.radTextBox6.Location = new System.Drawing.Point(145, 147);
-            this.radTextBox6.Name = "radTextBox6";
-            this.radTextBox6.ReadOnly = true;
-            this.radTextBox6.Size = new System.Drawing.Size(120, 21);
-            this.radTextBox6.TabIndex = 51;
-            this.radTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.radTextBox6.ThemeName = "Office2013Light";
+            this.txtPrepayDebt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "PrePayBorgLink", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.txtPrepayDebt.Location = new System.Drawing.Point(145, 147);
+            this.txtPrepayDebt.Name = "txtPrepayDebt";
+            this.txtPrepayDebt.ReadOnly = true;
+            this.txtPrepayDebt.Size = new System.Drawing.Size(120, 21);
+            this.txtPrepayDebt.TabIndex = 51;
+            this.txtPrepayDebt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrepayDebt.ThemeName = "Office2013Light";
             // 
             // radLabel12
             // 
@@ -443,26 +453,31 @@
             this.radLabel11.Text = "Сума прив\'язки";
             this.radLabel11.ThemeName = "Office2013Light";
             // 
-            // radTextBox5
+            // txtLinkAmount
             // 
-            this.radTextBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
-            this.radTextBox5.Location = new System.Drawing.Point(145, 174);
-            this.radTextBox5.Name = "radTextBox5";
-            this.radTextBox5.ReadOnly = true;
-            this.radTextBox5.Size = new System.Drawing.Size(120, 21);
-            this.radTextBox5.TabIndex = 49;
-            this.radTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.radTextBox5.ThemeName = "Office2013Light";
+            this.txtLinkAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsPrepaysModel, "LinkAmount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.txtLinkAmount.Location = new System.Drawing.Point(145, 174);
+            this.txtLinkAmount.Name = "txtLinkAmount";
+            this.txtLinkAmount.ReadOnly = true;
+            this.txtLinkAmount.Size = new System.Drawing.Size(120, 21);
+            this.txtLinkAmount.TabIndex = 49;
+            this.txtLinkAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLinkAmount.ThemeName = "Office2013Light";
             // 
-            // radCheckBox1
+            // bsPrepaysModel
             // 
-            this.radCheckBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.radCheckBox1.Location = new System.Drawing.Point(271, 176);
-            this.radCheckBox1.Name = "radCheckBox1";
-            this.radCheckBox1.Size = new System.Drawing.Size(89, 18);
-            this.radCheckBox1.TabIndex = 47;
-            this.radCheckBox1.Text = "Автоматично";
-            this.radCheckBox1.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            this.bsPrepaysModel.DataSource = typeof(IpsViewComponentLibrary.DataBindingModel.PrepaysBindingModel);
+            // 
+            // checkAutocalculate
+            // 
+            this.checkAutocalculate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkAutocalculate.Location = new System.Drawing.Point(271, 176);
+            this.checkAutocalculate.Name = "checkAutocalculate";
+            this.checkAutocalculate.Size = new System.Drawing.Size(89, 18);
+            this.checkAutocalculate.TabIndex = 47;
+            this.checkAutocalculate.Text = "Автоматично";
+            this.checkAutocalculate.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            this.checkAutocalculate.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.checkAutocalculate_ToggleStateChanged);
             // 
             // radLabel10
             // 
@@ -475,7 +490,7 @@
             // 
             // radTextBox4
             // 
-            this.radTextBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.radTextBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "NameRH", true));
             this.radTextBox4.Location = new System.Drawing.Point(476, 21);
             this.radTextBox4.Name = "radTextBox4";
             this.radTextBox4.ReadOnly = true;
@@ -494,7 +509,7 @@
             // 
             // radTextBox3
             // 
-            this.radTextBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.radTextBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "RoleName", true));
             this.radTextBox3.Location = new System.Drawing.Point(476, 46);
             this.radTextBox3.Name = "radTextBox3";
             this.radTextBox3.ReadOnly = true;
@@ -513,7 +528,7 @@
             // 
             // radTextBox2
             // 
-            this.radTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.radTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "ObjName", true));
             this.radTextBox2.Location = new System.Drawing.Point(145, 21);
             this.radTextBox2.Name = "radTextBox2";
             this.radTextBox2.ReadOnly = true;
@@ -532,7 +547,7 @@
             // 
             // radTextBox1
             // 
-            this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMoneyPrepays, "ObjId", true));
             this.radTextBox1.Location = new System.Drawing.Point(145, 46);
             this.radTextBox1.Name = "radTextBox1";
             this.radTextBox1.ReadOnly = true;
@@ -546,25 +561,17 @@
             this.errorProvider.ContainerControl = this;
             this.errorProvider.DataMember = "";
             // 
-            // bindingSource
+            // ctrlSaveCancel
             // 
-            this.bindingSource.DataSource = typeof(ipsFormsDesign.Model.MoneyReceived);
-            // 
-            // bsAgreement
-            // 
-            this.bsAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
-            // 
-            // ctrlSaveCancelButtons
-            // 
-            this.ctrlSaveCancelButtons.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
-            this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 423);
-            this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
-            this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
-            this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
-            this.ctrlSaveCancelButtons.SaveButtonEnabled = true;
-            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(789, 31);
-            this.ctrlSaveCancelButtons.TabIndex = 49;
+            this.ctrlSaveCancel.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
+            this.ctrlSaveCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancel.Location = new System.Drawing.Point(0, 423);
+            this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancel.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancel.Name = "ctrlSaveCancel";
+            this.ctrlSaveCancel.SaveButtonEnabled = true;
+            this.ctrlSaveCancel.Size = new System.Drawing.Size(789, 31);
+            this.ctrlSaveCancel.TabIndex = 49;
             // 
             // PrepaysLinkForm
             // 
@@ -573,7 +580,7 @@
             this.ClientSize = new System.Drawing.Size(789, 454);
             this.Controls.Add(this.radGroupBox2);
             this.Controls.Add(this.radGroupBox1);
-            this.Controls.Add(this.ctrlSaveCancelButtons);
+            this.Controls.Add(this.ctrlSaveCancel);
             this.Name = "PrepaysLinkForm";
             // 
             // 
@@ -584,8 +591,9 @@
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMoneyReceived)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPayDistribution)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBalance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayDate)).EndInit();
@@ -603,18 +611,20 @@
             this.radGroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangeAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMoneyPrepays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtR030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrepaySum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrepaySumAuthor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrepayDebt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCheckBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLinkAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPrepaysModel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkAutocalculate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
@@ -624,8 +634,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -634,13 +642,12 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private System.Windows.Forms.BindingSource bsAgreement;
-        private System.Windows.Forms.BindingSource bindingSource;
-        private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
+        private System.Windows.Forms.BindingSource bsMoneyReceived;
+        private Common.SaveCancelButtonsControl ctrlSaveCancel;
         private Telerik.WinControls.UI.RadSeparator radSeparator1;
         private Telerik.WinControls.UI.RadTextBox txtPayGoalInvoice;
         private Telerik.WinControls.UI.RadLabel radLabel5;
-        private Telerik.WinControls.UI.RadTextBox txtPayDistribution;
+        private Telerik.WinControls.UI.RadTextBox txtBalance;
         private Telerik.WinControls.UI.RadTextBox txtPayAmount;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadTextBox txtPayDate;
@@ -656,17 +663,17 @@
         private Telerik.WinControls.UI.RadButton btnChangeAmount;
         private Telerik.WinControls.UI.RadTextBox radTextBox10;
         private Telerik.WinControls.UI.RadLabel radLabel16;
-        private Telerik.WinControls.UI.RadTextBox radTextBox9;
+        private Telerik.WinControls.UI.RadTextBox txtR030;
         private Telerik.WinControls.UI.RadLabel radLabel15;
-        private Telerik.WinControls.UI.RadTextBox txtAmount;
+        private Telerik.WinControls.UI.RadTextBox txtPrepaySum;
         private Telerik.WinControls.UI.RadLabel radLabel14;
-        private Telerik.WinControls.UI.RadTextBox radTextBox7;
+        private Telerik.WinControls.UI.RadTextBox txtPrepaySumAuthor;
         private Telerik.WinControls.UI.RadLabel radLabel13;
-        private Telerik.WinControls.UI.RadTextBox radTextBox6;
+        private Telerik.WinControls.UI.RadTextBox txtPrepayDebt;
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadLabel radLabel11;
-        private Telerik.WinControls.UI.RadTextBox radTextBox5;
-        private Telerik.WinControls.UI.RadCheckBox radCheckBox1;
+        private Telerik.WinControls.UI.RadTextBox txtLinkAmount;
+        private Telerik.WinControls.UI.RadCheckBox checkAutocalculate;
         private Telerik.WinControls.UI.RadLabel radLabel10;
         private Telerik.WinControls.UI.RadTextBox radTextBox4;
         private Telerik.WinControls.UI.RadLabel radLabel9;
@@ -675,5 +682,7 @@
         private Telerik.WinControls.UI.RadTextBox radTextBox2;
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.BindingSource bsMoneyPrepays;
+        private System.Windows.Forms.BindingSource bsPrepaysModel;
     }
 }
