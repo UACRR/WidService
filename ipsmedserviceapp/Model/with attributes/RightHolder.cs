@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -36,32 +35,20 @@ namespace ipsmedserviceapp.Model
         public DateTime? DatePassed { get; set; }
 
         public virtual Customer Cust { get; set; }
-        [JsonIgnore]
         public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         public virtual ICollection<AnketaAddNick> AnketaAddNick { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Authors> Authors { get; set; }
-        [JsonIgnore]
         public virtual ICollection<CatalogFile> CatalogFile { get; set; }
         public virtual ICollection<CopyRight> CopyRight { get; set; }
-        [JsonIgnore]
         public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
-        [JsonIgnore]
         public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
-        [JsonIgnore]
         public virtual ICollection<RegisterCount> RegisterCount { get; set; }
-        [JsonIgnore]
         public virtual ICollection<RelSubPublish> RelSubPublishCustIdPubNavigation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<RelSubPublish> RelSubPublishCustIdSubNavigation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
-        [JsonIgnore]
         public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
         public virtual ICollection<TermsOfService> TermsOfService { get; set; }
         public virtual ICollection<TerritoryExclude> TerritoryExclude { get; set; }
         public virtual ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
-
-

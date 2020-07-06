@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -17,14 +16,9 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        [JsonIgnore]
         public virtual ICollection<CatalogFile> CatalogFile { get; set; }
         public virtual ICollection<CatalogStatusTr> CatalogStatusTr { get; set; }
-        [JsonIgnore]
         public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
-        [JsonIgnore]
         public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }
-
-

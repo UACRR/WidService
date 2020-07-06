@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -18,10 +17,7 @@ namespace ipsmedserviceapp.Model
         public int? NumbPerfom { get; set; }
         public int LicVersion { get; set; }
 
-        [JsonIgnore]
         public virtual LicenseBigR Lic { get; set; }
         public virtual ObjectRight Obj { get; set; }
     }
 }
-
-

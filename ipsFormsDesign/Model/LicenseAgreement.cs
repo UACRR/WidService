@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -31,30 +30,18 @@ namespace ipsFormsDesign.Model
         public int? LicMethod { get; set; }
 
         public virtual AgreementMaster Agr { get; set; }
-        [JsonIgnore]
         public virtual Client Cust { get; set; }
-        [JsonIgnore]
         public virtual AgrLicenseType LicCodeNavigation { get; set; }
-        [JsonIgnore]
         public virtual LicenseMethodType LicMethodNavigation { get; set; }
-        [JsonIgnore]
         public virtual AgreementStatus LicStatusNavigation { get; set; }
-        [JsonIgnore]
         public virtual LicenseType LicTypeNavigation { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<BrRegItem> BrRegItem { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<Fixation> Fixation { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<Invoice> Invoice { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<LicPlace> LicPlace { get; set; }
         public virtual ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public virtual ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
     }
 }
-
-
 

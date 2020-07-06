@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -28,22 +27,13 @@ namespace ipsmedserviceapp.Model
         public short? IsPortalSale { get; set; }
         public int? LicClass { get; set; }
 
-        [JsonIgnore]
         public virtual AlgorithmType Algorithm { get; set; }
-        [JsonIgnore]
         public virtual CopyrightKind KindCodeNavigation { get; set; }
-        [JsonIgnore]
         public virtual LicenseClass LicClassNavigation { get; set; }
         public virtual UsesKind UsesKindNavigation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
-        [JsonIgnore]
         public virtual ICollection<LicenseAgreement> LicenseAgreement { get; set; }
-        [JsonIgnore]
         public virtual ICollection<RelCounterDoc> RelCounterDoc { get; set; }
-        [JsonIgnore]
         public virtual ICollection<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }
-
-

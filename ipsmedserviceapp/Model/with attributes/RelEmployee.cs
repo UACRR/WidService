@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -11,12 +10,8 @@ namespace ipsmedserviceapp.Model
         public int PositionCode { get; set; }
         public string RelDocument { get; set; }
 
-        [JsonIgnore]
         public virtual Company Cust { get; set; }
         public virtual Employee Empl { get; set; }
-        [JsonIgnore]
         public virtual PositionType PositionCodeNavigation { get; set; }
     }
 }
-
-

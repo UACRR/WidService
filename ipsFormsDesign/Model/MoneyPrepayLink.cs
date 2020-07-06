@@ -13,9 +13,11 @@ namespace ipsFormsDesign.Model
         public int CustIdRh { get; set; }
         public decimal Amount { get; set; }
         public int? TurnId { get; set; }
+        public int? PrepayType { get; set; }
 
         public virtual LicAuthorBr LicAuthorBr { get; set; }
         public virtual MoneyReceived Paid { get; set; }
+        public virtual PrePayType PrepayTypeNavigation { get; set; }
     }
 }
 

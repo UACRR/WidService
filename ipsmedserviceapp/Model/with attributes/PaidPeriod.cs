@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -27,18 +26,12 @@ namespace ipsmedserviceapp.Model
         public bool? FagFirst { get; set; }
         public DateTime? DateActPrint { get; set; }
 
-        [JsonIgnore]
         public virtual Client Cust { get; set; }
-        [JsonIgnore]
         public virtual LicenseAgreement Lic { get; set; }
-        [JsonIgnore]
         public virtual Period PeriodTypeNavigation { get; set; }
-        [JsonIgnore]
         public virtual PeriodStatus StatusNavigation { get; set; }
         public virtual ICollection<BrRegister> BrRegister { get; set; }
         public virtual ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public virtual ICollection<RegisterRatedList> RegisterRatedList { get; set; }
     }
 }
-
-

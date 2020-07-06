@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -30,29 +29,17 @@ namespace ipsmedserviceapp.Model
         public int? LicMethod { get; set; }
 
         public virtual AgreementMaster Agr { get; set; }
-        [JsonIgnore]
         public virtual Client Cust { get; set; }
-        [JsonIgnore]
         public virtual AgrLicenseType LicCodeNavigation { get; set; }
-        [JsonIgnore]
         public virtual LicenseMethodType LicMethodNavigation { get; set; }
-        [JsonIgnore]
         public virtual AgreementStatus LicStatusNavigation { get; set; }
-        [JsonIgnore]
         public virtual LicenseType LicTypeNavigation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<BrRegItem> BrRegItem { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Fixation> Fixation { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Invoice> Invoice { get; set; }
-        [JsonIgnore]
         public virtual ICollection<LicPlace> LicPlace { get; set; }
         public virtual ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
-        [JsonIgnore]
         public virtual ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public virtual ICollection<PaidPeriod> PaidPeriod { get; set; }
     }
 }
-
-

@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -29,23 +28,14 @@ namespace ipsFormsDesign.Model
         public short? IsPortalSale { get; set; }
         public int? LicClass { get; set; }
 
-        [JsonIgnore]
         public virtual AlgorithmType Algorithm { get; set; }
-        [JsonIgnore]
         public virtual CopyrightKind KindCodeNavigation { get; set; }
-        [JsonIgnore]
         public virtual LicenseClass LicClassNavigation { get; set; }
         public virtual UsesKind UsesKindNavigation { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }
-
-
 

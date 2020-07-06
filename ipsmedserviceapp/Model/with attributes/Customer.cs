@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -37,44 +36,29 @@ namespace ipsmedserviceapp.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
 
-        [JsonIgnore]
         public virtual CustomerType CustTypeNavigation { get; set; }
-        [JsonIgnore]
         public virtual CustomerStatus StatusNavigation { get; set; }
-        [JsonIgnore]
         public virtual AspNetUsers User { get; set; }
         public virtual AnketaExternal AnketaExternal { get; set; }
         public virtual Client Client { get; set; }
         public virtual Community Community { get; set; }
         public virtual Company Company { get; set; }
-        [JsonIgnore]
         public virtual MyAnketa MyAnketa { get; set; }
         public virtual Partner Partner { get; set; }
         public virtual Person Person { get; set; }
         public virtual RightHolder RightHolder { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Account> Account { get; set; }
         public virtual ICollection<AgreementMaster> AgreementMaster { get; set; }
         public virtual ICollection<AnketaAddName> AnketaAddName { get; set; }
-        [JsonIgnore]
         public virtual ICollection<AnketaAddParam> AnketaAddParam { get; set; }
-        [JsonIgnore]
         public virtual ICollection<AnketaCompany> AnketaCompany { get; set; }
-        [JsonIgnore]
         public virtual ICollection<AnketaPerson> AnketaPerson { get; set; }
         public virtual ICollection<BankAccount> BankAccount { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Employee> Employee { get; set; }
         public virtual ICollection<FileCustomer> FileCustomer { get; set; }
-        [JsonIgnore]
         public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
-        [JsonIgnore]
         public virtual ICollection<ReqCustomer> ReqCustomer { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Request> Request { get; set; }
-        [JsonIgnore]
         public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }
-
-

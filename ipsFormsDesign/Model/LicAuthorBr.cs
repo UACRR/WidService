@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -30,18 +29,11 @@ namespace ipsFormsDesign.Model
         public int LicId { get; set; }
         public int LicVersion { get; set; }
 
-        [JsonIgnore]
         public virtual CopyRight CRight { get; set; }
-        [JsonIgnore]
         public virtual RightHolder CustIdRhNavigation { get; set; }
-        [JsonIgnore]
         public virtual LicenseBigR Lic { get; set; }
-        [JsonIgnore]
         public virtual PrePayType PrepayTypeNavigation { get; set; }
-        [JsonIgnore]
         public virtual ObservableListSource<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
-
-
 

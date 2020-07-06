@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using IpsCommonTypes.SQLViews;
 using IPSComponentLibrary.Forms.Register;
 using ipsFormsDesign;
 using ipsFormsDesign.Data;
@@ -29,6 +30,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         {
             InitializeComponent();
 
+            gvPrepays.CellFormatting += (o, e) =>
+            {
+                if (e.Column.FieldName.Equals("action", StringComparison.OrdinalIgnoreCase))
+                {
+                    RadButtonElement btn = ((GridCommandCellElement)e.CellElement).CommandButton;
+                    btn.Text = "Зарахувати виплату";
+                }
+            };
+
             SetupDragDrop();
 
             buttonController = new ButtonController(btnNewPeriod, btnDistribute, btnClosePeriod);
@@ -43,6 +53,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         
         private LicenseAgreement LicenseAgreement { get; set; }
 
+        private List<QUERY_RegisterPrepayAmountSum> RegisterPrepayAmountSumList { get; set; }
+
         public async void SetDataByCustId(int custId)
         {
             CustId = custId;
@@ -51,6 +63,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             LicenseAgreement = await service.GetLicenseAgreement(custId);
             NormalizeData(LicenseAgreement);
+
+            var response  = await service.GetPrepayAmount(LicenseAgreement.LicId);
+            RegisterPrepayAmountSumList = response.Data;
+
+            var moneyPrepaysList = await service.GetMoneyPrepayList(custId);
+            bsCalculationPrepaysModel.DataSource = moneyPrepaysList;
 
             MoneyReceivedList = await service.GetMoneyReceivedList(custId);
 
@@ -253,6 +271,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 var licItem = (IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem;
                 var periodList = licItem.Lic?.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
                 bsPaidPeriod.DataSource = periodList;
+
+                foreach (var row in gvPeriodsPayment.Rows)
+                {
+                    var periodId = (int)row.Cells["PeriodId"].Value;
+                    var item = RegisterPrepayAmountSumList.FirstOrDefault(rec => rec.PeriodId == periodId);
+                    row.Cells["PrepaySum"].Value = item?.PrepayAmountSum;
+                }
             }
             else
             {
@@ -424,7 +449,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
         private void btnAttachPrepayOrLumpSum_Click(object sender, EventArgs e)
         {
-            var prepaysLinkForm = new PrepaysLinkForm();
+            if (!(gvPrepays.CurrentRow?.DataBoundItem is FT_TSK_1_BRMoneyPrepay moneyPrepay))
+                return;
+
+            if (!(gvUserMoneys.CurrentRow.DataBoundItem is MoneyReceived moneyReceived))
+                return;
+            
+            var prepaysLinkForm = new PrepaysLinkForm(moneyReceived, moneyPrepay);
             prepaysLinkForm.Show();
         }
     }

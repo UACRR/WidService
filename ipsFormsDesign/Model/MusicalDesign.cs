@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -19,11 +18,8 @@ namespace ipsFormsDesign.Model
         public int? NumbPerfom { get; set; }
         public int LicVersion { get; set; }
 
-        [JsonIgnore]
         public virtual LicenseBigR Lic { get; set; }
         public virtual ObjectRight Obj { get; set; }
     }
 }
-
-
 
