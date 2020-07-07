@@ -785,9 +785,15 @@
                                          Command="{Binding LoadCopyrightAdminWorkplaceCommand}"
                                          Background="#FFE89595"/>
 
-                            <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Обробка звітів користувачів (індентифікація)"/>
+                            <t:RadButton Style="{DynamicResource redBtnLauncher}"
+                                         Content="Обробка звітів користувачів (індентифікація)"
+                                          Command="{Binding LoadRoyaltyAdminCommand}"
+                                         />
 
-                            <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Управління технологічнимим процесами"/>
+                            <t:RadButton Style="{DynamicResource redBtnLauncher}" 
+                                         Content="Управління технологічнимим процесами"
+                                         Command="{Binding LoadProcessesCommand}"
+                                         />
 
                             <!--HOVER TEST
                         
@@ -823,9 +829,14 @@
                                 <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#842EF6"><Run Text="КОРИСТУВАЧІ"/></TextBlock>
 
                             </StackPanel>
-                            <t:RadButton Style="{DynamicResource blueBtnLauncher}" Content="Користувачі (Малі права)"/>
+                            <t:RadButton Style="{DynamicResource blueBtnLauncher}" 
+                                         Content="Користувачі (Малі права)"
+                                         Command="{Binding LoadClientsSmallRightCommand}"/>
 
-                            <t:RadButton Style="{DynamicResource blueBtnLauncher}" Content="Користувачі (Великі права)"/>
+                            <t:RadButton Style="{DynamicResource blueBtnLauncher}" 
+                                         Content="Користувачі (Великі права)"
+                                         Command="{Binding LoadConsumerBigRightCommand}"
+                                         />
 
                             <!--HOVER TEST
 
@@ -860,13 +871,25 @@
 
                             </StackPanel>
 
-                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Звітність (Аналітика)"/>
+                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
+                                         Content="Звітність (Аналітика)"
+                                         Command="{Binding LoadAnalyticsCommand}"/>
 
-                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Системні довідники"/>
 
-                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Анкета компанії"/>
+                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
+                                         Content="Системні довідники"
+                                         Command="{Binding LoadSystemDictionaryCommand}"/>
 
-                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" Content="Права доступу"/>
+
+                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
+                                         Content="Анкета компанії"
+                                         Command="{Binding LoadOurProfileCommand}"/>
+
+
+                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
+                                         Content="Права доступу"
+                                         Command="{Binding LoadPermitWindowCommand}"/>
+
 
                             <!--HOVER TEST
 
@@ -901,11 +924,20 @@
 
                             </StackPanel>
 
-                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Представники компанії"/>
+                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
+                                         Content="Представники компанії"
+                                         Command="{Binding LoadRepresentCommand}"/>
 
-                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Фіксація порушення авторських прав"/>
 
-                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" Content="Звіти онлайн-ресурсів"/>
+                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
+                                         Content="Фіксація порушення авторських прав"
+                                         Command="{Binding LoadViolationCommand}"/>
+
+
+                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
+                                         Content="Звіти онлайн-ресурсів"
+                                         Command="{Binding LoadDDEXCommand}"/>
+
 
                             <!--HOVER TEST
 
