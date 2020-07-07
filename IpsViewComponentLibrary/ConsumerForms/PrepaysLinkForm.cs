@@ -20,7 +20,6 @@ using IpsViewComponentLibrary.Extensions;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
-using MessageShow = IPSComponentLibrary.Extensions.MessageShow;
 
 namespace IpsViewComponentLibrary.ConsumerForms
 {
@@ -34,33 +33,48 @@ namespace IpsViewComponentLibrary.ConsumerForms
         {
             InitializeComponent();
             ctrlSaveCancel.SaveClck += CtrlSaveCancel_SaveClck;
-
+            
             _moneyReceived = moneyReceived;
             _moneyPrepay = moneyPrepay;
 
             bsMoneyReceived.DataSource = moneyReceived;
             bsMoneyPrepays.DataSource = moneyPrepay;
 
-            txtBalance.Text = $"{moneyReceived.Amount - (moneyReceived.DestribAmount + moneyReceived.DestribPrepay):N2}";
+            //txtBalance.Text = $"{moneyReceived.Amount - (moneyReceived.DestribAmount + moneyReceived.DestribPrepay):N2}";
+            txtBalance.Text = $"{Balance:N2}";
 
             _prepaysBindingModel = new PrepaysBindingModel
             {
-                LinkAmount = GetLinkAmount(),
+                LinkAmount = LinkAmount,
             };
             bsPrepaysModel.DataSource = _prepaysBindingModel;
-            //txtLinkAmount.Text = $"{GetLinkAmount():N2}";
+            
+            ChangeReadOnly();
         }
 
-        private static decimal GetLinkAmount()
+        /// <summary>
+        /// Доступний залишок платежу
+        /// </summary>
+        private static decimal Balance => _moneyReceived.Amount - (_moneyReceived.DestribAmount + (_moneyReceived.DestribPrepay ?? 0m));
+
+        /// <summary>
+        /// Заборгованість по авансу
+        /// </summary>
+        private static decimal Borg => _moneyPrepay.PrePayBorgLink ?? 0m;
+
+        /// <summary>
+        /// Сума прив'язки
+        /// </summary>
+        private static decimal LinkAmount => Balance < Borg ? Balance : Borg;
+
+        private void ChangeReadOnly()
         {
-            // доступний залишок платежу
-            decimal balance = _moneyReceived.Amount - (_moneyReceived.DestribAmount + (_moneyReceived.DestribPrepay ?? 0m));
-            // заборгованість по авансу
-            decimal borg = _moneyPrepay.PrePayBorgLink ?? 0m;
-
-            decimal amount = balance < borg ? balance : borg;
-
-            return amount;
+            if (Balance == 0m || Borg == 0m)
+            {
+                btnChangeAmount.Enabled = false;
+                ctrlSaveCancel.SaveButtonEnabled = false;
+                checkAutocalculate.Enabled = false;
+            }
         }
 
         private void checkAutocalculate_ToggleStateChanged(object sender, StateChangedEventArgs args)
@@ -68,7 +82,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             bool isChecked = args.ToggleState == ToggleState.On;
 
             if (isChecked)
-                _prepaysBindingModel.LinkAmount = GetLinkAmount();
+                _prepaysBindingModel.LinkAmount = LinkAmount;
             
             txtLinkAmount.ReadOnly = isChecked;
         }
@@ -81,6 +95,11 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 errorProvider.Clear();
         }
 
+        /// <summary>
+        /// Змінити суму авансу в грн
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnChangeAmount_Click(object sender, EventArgs e)
         {
             var changeAmountForm = new ChangeAmountForm(_moneyPrepay.PrepaySum ?? 0m);
@@ -123,11 +142,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 return;
             }
 
-            // доступний залишок платежу
-            decimal balance = _moneyReceived.Amount - (_moneyReceived.DestribAmount + (_moneyReceived.DestribPrepay ?? 0m));
-            // заборгованість по авансу
-
-            if (balance < _prepaysBindingModel.LinkAmount.Value)
+            if (Balance < _prepaysBindingModel.LinkAmount.Value)
             {
                 ShowMessage.ShowWarning("Сума прив'язки перевищує залишок по платежу!");
                 return;
@@ -142,16 +157,15 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 LicVersion = _moneyPrepay.LicVersion.Value,
                 CustIdRh = _moneyPrepay.CustIdRH.Value,
                 Amount = _prepaysBindingModel.LinkAmount.Value,
-                //PrepayType
+                PrepayType = _moneyPrepay.PrepayType,
             };
 
-            var result = await service.SavePrepayLink(moneyPrepayLink);
+            var result = await service.SavePrepayLinkAsync(moneyPrepayLink);
             if (result.IsSuccess)
             {
                 ShowMessage.ShowInfo("Платіж до авансу прив'язано!");
-                //DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
             }
         }
-
     }
 }

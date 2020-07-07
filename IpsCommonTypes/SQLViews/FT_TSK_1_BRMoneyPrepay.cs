@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IpsCommonTypes.SQLViews
 {
+    [NotMapped]
     public class FT_TSK_1_BRMoneyPrepay
     {
         public DateTime? DateBegin { get; set; }
