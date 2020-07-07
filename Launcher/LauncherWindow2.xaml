@@ -931,7 +931,9 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid>
+        
+        <!--MODAL-->
+        <!--<Grid>
             <Border>
                 <Border.Background>
                     <SolidColorBrush Color="#272A33" Opacity="0.4" />
@@ -977,6 +979,6 @@
                     </StackPanel>
                 </Border>
             </Border>
-        </Grid>
+        </Grid>-->
     </Grid>
 </Window>
