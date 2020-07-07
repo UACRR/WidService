@@ -11,6 +11,10 @@
         Title="LauncherWindow2" Height="900" Width="1400"
         Background="#f8f8f8">
 
+    <Window.DataContext>
+        <local:LauncherViewModel/>
+    </Window.DataContext>
+
     <Window.Resources>
 
         <Style TargetType="{x:Type Window}">
@@ -776,7 +780,10 @@
                                 <Image Source="Images/Rights.png" Width="80" Height="80" Margin="0 0 24 0"/>
                                 <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#D3417F"><Run Text="ПРАВА"/></TextBlock>
                             </StackPanel>
-                            <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Правовласники та об'єкти прав" Background="#FFE89595"/>
+                            <t:RadButton Style="{StaticResource redBtnLauncher}" 
+                                         Content="Правовласники та об'єкти права" 
+                                         Command="{Binding LoadCopyrightAdminWorkplaceCommand}"
+                                         Background="#FFE89595"/>
 
                             <t:RadButton Style="{DynamicResource redBtnLauncher}" Content="Обробка звітів користувачів (індентифікація)"/>
 
@@ -931,7 +938,7 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid>
+        <Grid Visibility="Collapsed">
             <Border>
                 <Border.Background>
                     <SolidColorBrush Color="#272A33" Opacity="0.4" />
@@ -940,8 +947,8 @@
                     <StackPanel>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="30" Margin="0 0 0 32">SIGN IN</TextBlock>
                             <Image Source="Images/close.png" Grid.Column="1" Cursor="Hand" Width="16" Height="16" VerticalAlignment="Top" HorizontalAlignment="Right"/>

@@ -4,17 +4,17 @@ namespace Launcher
 {
     public class LM_Launcher : ViewModelBase
     {
-        private string _rh_or = "Адміністратор авторів/правовласників та об'єктів права";
-        private string _sysAdmin = "Управління правами доступу";
+        private string _rh_or = "Правовласники та об'єкти права";
+        private string _sysAdmin = "Правам доступу";
         private string _anketaOfTheCompany = "Анкета компанії";
         private string _processes = "Управління технологічними процесами";
-        private string _partner_WP = "Робоче місце адміністратора по роботі з представниками компанії";
-        private string _fixationOfViolations = "Фіксація порушень прав";
-        private string _systemDictionaries = "Довідники системи";
-        private string _clients_WP = "Робоче місце по роботі з «малими правами»";
-        private string _theatres_WP = "Робоче місце по роботі з «великими правами»";
-        private string _analyticsAndReports = "Аналітична звітність";
-        private string _reportsAndRoyalty = "Робоче місце по управлінню розподілу авторської виногороди (обробка звітів користувачів)";
+        private string _partner_WP = "Представники компанії";
+        private string _fixationOfViolations = "Фіксація порушення авторських прав";
+        private string _systemDictionaries = "Системні довідники";
+        private string _clients_WP = "Користувачі (Малі права)";
+        private string _theatres_WP = "Користувачі (Великі права)";
+        private string _analyticsAndReports = "Звітність (Аналітика)";
+        private string _reportsAndRoyalty = "Обробка звітів користувачів (індентифікація)";
         private string _ddex = "Звіти онлайн-ресурсів";
 
         private string _catSys = "Система";
