@@ -115,7 +115,7 @@ namespace ipsFormsDesign.Utilities
             var licenseBigR = objectRight.LicenseBigR.FirstOrDefault();
             var authorRightholderList = objectRight.Authors.Select(a =>
                 {
-                    var foundedLicAuthorBr = licenseBigR.LicAuthorBr.FirstOrDefault(l => l.LicVersion == licenseBigR.LicVersion);
+                    var foundedLicAuthorBr = licenseBigR.LicAuthorBr.FirstOrDefault(l => l.LicVersion == licenseBigR.LicVersion && l.CustIdRh == a.CustId);
 
                     var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
 
@@ -142,10 +142,10 @@ namespace ipsFormsDesign.Utilities
             var objectRight = licenseBigR.Obj;
             var authorRightholderList = objectRight.Authors.Select(a =>
                 {
-                    var foundedLicAuthorBr = licenseBigR.LicAuthorBr.FirstOrDefault(l => l.LicVersion == licenseBigR.LicVersion);
-
                     var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
-                    
+
+                    var foundedLicAuthorBr = licenseBigR.LicAuthorBr.FirstOrDefault(l => l.CRightId == foundedCopyright?.CRightId);
+
                     var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
 
                     return new ObjectAuthorRightholderBrViewModel

@@ -275,7 +275,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 foreach (var row in gvPeriodsPayment.Rows)
                 {
                     var periodId = (int)row.Cells["PeriodId"].Value;
-                    var item = RegisterPrepayAmountSumList.FirstOrDefault(rec => rec.PeriodId == periodId);
+                    var item = RegisterPrepayAmountSumList?.FirstOrDefault(rec => rec.PeriodId == periodId);
                     row.Cells["PrepaySum"].Value = item?.PrepayAmountSum;
                 }
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -148,6 +149,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             if (_customer == null)
                 return;
 
+
             int custId = _customer.CustId;
 
             if (_currenCabinetTab == CabinetTabType.All)
@@ -236,6 +238,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             UpdateAllViews(custId);
             _customer = _service.GetData(custId);
 
+            IpsGlobal.CurrentClient.CustId = _customer.CustId;
+            var agrId = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2)?.AgrId ?? default(int);
+            IpsGlobal.CurrentClient.AgrId = agrId;
+            IpsGlobal.CurrentClient.ClnBusinessPlaceCollection = _customer.Client.ClnBusinessPlace;
+
             ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
             ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
             ctrlGeneralAgreement.SetAndUpdateData(_customer);
@@ -269,7 +276,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             var ratedListBigRightViews = _service.GetBigRightViewByName(typeof(RatedListBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListBigRightView>();
             ViewsSingleton.SetRatedListBigRightView(ratedListBigRightViews);
 
-            var spectacleBigRightViews = _service.GetBigRightViewByName(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
+            // old view vTsk_1_BRAuthorsDistributed
+            var spectacleBigRightViews = _service.GetBigRightViewByName(typeof(RatedListSpectacleBigRightView), "vTsk_2_BRRateListObject", null).ToListOfType<RatedListSpectacleBigRightView>();
             ViewsSingleton.SetRatedListSpectacleBigRightView(spectacleBigRightViews);
 
             var authorsForLicenseBigRightViews = _service.GetBigRightViewByName(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>();

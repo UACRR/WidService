@@ -52,7 +52,7 @@ namespace IpsViewComponentLibrary.Extensions
         /// Незмінний розмір, кнопка "Сьогодні" посередині, навігація по місяцях/роках зумом
         /// </summary>
         /// <param name="dtPicker"></param>
-        public static void SetUserCalendarSettingsm(this RadDateTimePicker dtPicker)
+        public static void SetUserCalendarSettings(this RadDateTimePicker dtPicker)
         {
             //_dtPicker = dtPicker;
             //if(dtPicker == null) return;

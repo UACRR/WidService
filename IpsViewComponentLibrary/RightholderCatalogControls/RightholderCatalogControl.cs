@@ -26,7 +26,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
 
         private readonly RightholderCatalogPresenter _catalogPresenter;
 
-        //public int CustomerId { get; set; }
+        //public int CustId { get; set; }
         public int CustId { get; set; }
 
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;

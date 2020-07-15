@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ipsmedserviceapp.Model.SQLViewsData
 {
-    //[NotMapped]
+    [NotMapped]
     public class vTsk1ListRightHolder01
     {
         public int CustId { get; set; }

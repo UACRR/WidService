@@ -16,9 +16,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public AgreementBigRight()
         {
             InitializeComponent();
-            dtAgrDate.SetUserCalendarSettingsm();
-            rdtPickerDateBegin.SetUserCalendarSettingsm();
-            rdtPickerDateEnd.SetUserCalendarSettingsm();
+            dtAgrDate.SetUserCalendarSettings();
+            rdtPickerDateBegin.SetUserCalendarSettings();
+            rdtPickerDateEnd.SetUserCalendarSettings();
             rdtPickerDateBegin.ValueChanged += rdtPickerDateBegin_ValueChanged;
             txtDayForPay.KeyPress += txtDayForPay_KeyPress;
             txtDayForPay.TextChanged += txtDayForPay_TextChanged;

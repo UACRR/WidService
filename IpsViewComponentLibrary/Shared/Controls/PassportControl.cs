@@ -17,7 +17,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         public PassportControl()
         {
             InitializeComponent();
-            dtPasportIssuedWhen.SetUserCalendarSettingsm();
+            dtPasportIssuedWhen.SetUserCalendarSettings();
             txtPasportNumber.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
         }
     }

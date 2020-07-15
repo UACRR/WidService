@@ -354,7 +354,7 @@ namespace ipsmedserviceapp.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "3.0.0-preview.19074.3")
-                .HasAnnotation("Relational:DefaultSchema", "db_owner");
+                .HasAnnotation("Relational:DefaultSchema", "dbo");
 
             modelBuilder.Entity<Account>(entity =>
             {

@@ -4,7 +4,7 @@
              xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:local="clr-namespace:Launcher"
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="Launcher.App"
-             StartupUri="LauncherWindow2.xaml">
+             StartupUri="LauncherWindow.xaml">
     <Application.Resources>
         <Style TargetType="{x:Type t:RadBusyIndicator}">
             <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>

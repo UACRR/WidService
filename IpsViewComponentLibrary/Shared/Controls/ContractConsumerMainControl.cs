@@ -41,9 +41,9 @@ namespace IpsViewComponentLibrary.Shared.Controls
         public ContractConsumerMainControl()
         {
             InitializeComponent();
-            dtAgreementDate.SetUserCalendarSettingsm();
-            dtDateBegin.SetUserCalendarSettingsm();
-            dtDateEnd.SetUserCalendarSettingsm();
+            dtAgreementDate.SetUserCalendarSettings();
+            dtDateBegin.SetUserCalendarSettings();
+            dtDateEnd.SetUserCalendarSettings();
         }
 
         [Category("Data")]
