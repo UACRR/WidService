@@ -247,6 +247,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                     item.RegId = 0;
             }
 
+            //_registerRatedList.PrepayAmount = _registerRatedList.Register.Sum(rec => rec.PrepayAmount);
             DialogResult = DialogResult.OK;
         }
 

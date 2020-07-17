@@ -314,12 +314,12 @@
             this.radGroupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radGroupBox2.FooterText = "";
             this.radGroupBox2.FooterVisibility = Telerik.WinControls.ElementVisibility.Visible;
-            this.radGroupBox2.HeaderText = "Аванс";
+            this.radGroupBox2.HeaderText = "Аванс/Паушальний платіж";
             this.radGroupBox2.Location = new System.Drawing.Point(0, 196);
             this.radGroupBox2.Name = "radGroupBox2";
             this.radGroupBox2.Size = new System.Drawing.Size(789, 227);
             this.radGroupBox2.TabIndex = 52;
-            this.radGroupBox2.Text = "Аванс";
+            this.radGroupBox2.Text = "Аванс/Паушальний платіж";
             this.radGroupBox2.ThemeName = "Office2013Light";
             // 
             // btnChangeAmount
@@ -396,11 +396,11 @@
             // radLabel14
             // 
             this.radLabel14.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel14.Location = new System.Drawing.Point(374, 84);
+            this.radLabel14.Location = new System.Drawing.Point(418, 84);
             this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(115, 19);
+            this.radLabel14.Size = new System.Drawing.Size(71, 19);
             this.radLabel14.TabIndex = 54;
-            this.radLabel14.Text = "Сума авансу в грн";
+            this.radLabel14.Text = "Сума в грн";
             this.radLabel14.ThemeName = "Office2013Light";
             // 
             // txtPrepaySumAuthor
@@ -416,11 +416,11 @@
             // 
             // radLabel13
             // 
-            this.radLabel13.Location = new System.Drawing.Point(12, 84);
+            this.radLabel13.Location = new System.Drawing.Point(54, 84);
             this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(127, 19);
+            this.radLabel13.Size = new System.Drawing.Size(85, 19);
             this.radLabel13.TabIndex = 52;
-            this.radLabel13.Text = "Сума авансу у валюті";
+            this.radLabel13.Text = "Сума у валюті";
             this.radLabel13.ThemeName = "Office2013Light";
             // 
             // txtPrepayDebt
@@ -436,11 +436,11 @@
             // 
             // radLabel12
             // 
-            this.radLabel12.Location = new System.Drawing.Point(47, 148);
+            this.radLabel12.Location = new System.Drawing.Point(106, 148);
             this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(92, 19);
+            this.radLabel12.Size = new System.Drawing.Size(33, 19);
             this.radLabel12.TabIndex = 50;
-            this.radLabel12.Text = "Борг по авансу";
+            this.radLabel12.Text = "Борг";
             this.radLabel12.ThemeName = "Office2013Light";
             // 
             // radLabel11
@@ -587,7 +587,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Прив\'язка суми платежу до авансу";
+            this.Text = "Прив\'язка суми платежу";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).EndInit();

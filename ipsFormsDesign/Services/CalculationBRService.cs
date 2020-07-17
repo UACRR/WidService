@@ -91,7 +91,7 @@ namespace ipsFormsDesign.Services
 
         public async Task<ResponseOfRequest> SavePrepayLinkAsync(MoneyPrepayLink moneyPrepayLink)
         {
-            string url = $"{prefix}/SavePrepayLinkAsync";
+            string url = $"{prefix}/SavePrepayLink";
             var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, MoneyPrepayLink>(url, moneyPrepayLink);
             return result;
         }

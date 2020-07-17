@@ -33,9 +33,16 @@ namespace IpsViewComponentLibrary.ConsumerForms
         {
             InitializeComponent();
             ctrlSaveCancel.SaveClck += CtrlSaveCancel_SaveClck;
-            
+            ctrlSaveCancel.ButtonSaveDialogResult = DialogResult.None;
+
             _moneyReceived = moneyReceived;
             _moneyPrepay = moneyPrepay;
+
+            if (_moneyPrepay.R030 == "980")
+            {
+                _moneyPrepay.PrepaySum = _moneyPrepay.PrepaySumAuthor;
+                btnChangeAmount.Enabled = false;
+            }
 
             bsMoneyReceived.DataSource = moneyReceived;
             bsMoneyPrepays.DataSource = moneyPrepay;
@@ -65,11 +72,29 @@ namespace IpsViewComponentLibrary.ConsumerForms
         /// <summary>
         /// Сума прив'язки
         /// </summary>
-        private static decimal LinkAmount => Balance < Borg ? Balance : Borg;
+        private static decimal LinkAmount
+        {
+            get
+            {
+                if (Borg != 0m)
+                {
+                    return Balance < Borg ? Balance : Borg;
+                }
+                else
+                {
+                    if ((_moneyPrepay.PrepaySum ?? 0m) == 0)
+                        return 0m;
+
+                    var amount = (_moneyPrepay.PrepaySum ?? 0m) - (_moneyPrepay.LinkAmount ?? 0m);
+
+                    return Balance < amount ? Balance : amount;
+                }
+            }
+        }
 
         private void ChangeReadOnly()
         {
-            if (Balance == 0m || Borg == 0m)
+            if (Balance == 0m || Borg == 0m && _moneyPrepay.LinkAmount == _moneyPrepay.PrepaySum)
             {
                 btnChangeAmount.Enabled = false;
                 ctrlSaveCancel.SaveButtonEnabled = false;
@@ -84,6 +109,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             if (isChecked)
                 _prepaysBindingModel.LinkAmount = LinkAmount;
             
+            bsPrepaysModel.ResetBindings(false);
             txtLinkAmount.ReadOnly = isChecked;
         }
 
@@ -122,14 +148,15 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
                 if (result.IsSuccess)
                 {
-                    ShowMessage.ShowInfo("Суму авансу в грн змінено");
+                    ShowMessage.ShowInfo("Суму в грн змінено");
+                    _moneyPrepay.PrepaySum = changeAmountForm.Amount;
                 }
                 else
                 {
                     if(result.HasException)
                         ShowMessage.ShowError(result.Exception);
                     else
-                        ShowMessage.ShowError("Неможливо змінити суму авансу в грн!");
+                        ShowMessage.ShowError("Неможливо змінити суму в грн!");
                 }
             }
         }
@@ -148,6 +175,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 return;
             }
 
+            if (_prepaysBindingModel.LinkAmount.Value > _moneyPrepay.PrepaySum.Value - (_moneyPrepay.LinkAmount?? 0m))
+            {
+                ShowMessage.ShowWarning("Сума прив'язки перевищує допустиму суму!");
+                return;
+            }
+
             var service = CalculationBRService.GetInstance();
             
             var moneyPrepayLink = new MoneyPrepayLink
@@ -163,7 +196,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             var result = await service.SavePrepayLinkAsync(moneyPrepayLink);
             if (result.IsSuccess)
             {
-                ShowMessage.ShowInfo("Платіж до авансу прив'язано!");
+                ShowMessage.ShowInfo("Платіж до авансу/паушального платежу прив'язано!");
                 DialogResult = DialogResult.OK;
             }
         }
