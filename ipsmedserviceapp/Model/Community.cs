@@ -9,7 +9,6 @@ namespace ipsmedserviceapp.Model
         {
             AgreementAddCommunity = new HashSet<AgreementAddCommunity>();
             CustCmRight = new HashSet<CustCmRight>();
-            RegisterCount = new HashSet<RegisterCount>();
         }
 
         public int CustId { get; set; }
@@ -19,6 +18,5 @@ namespace ipsmedserviceapp.Model
         public virtual Customer Cust { get; set; }
         public virtual ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
         public virtual ICollection<CustCmRight> CustCmRight { get; set; }
-        public virtual ICollection<RegisterCount> RegisterCount { get; set; }
     }
 }
