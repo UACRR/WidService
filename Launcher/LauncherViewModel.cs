@@ -107,6 +107,17 @@ namespace Launcher
             }
         }
 
+        private Visibility _modalWindowVisibility = Visibility.Collapsed;
+        public Visibility ModalWindowVisibility
+        {
+            get => _modalWindowVisibility;
+            set
+            {
+                _modalWindowVisibility = value;
+                OnPropertyChanged(() => ModalWindowVisibility);
+            }
+        }
+
         /// <summary>
         /// Доступи до запуску підпрогам
         /// </summary>
@@ -463,6 +474,18 @@ namespace Launcher
             IsBusy = false;
         }
 
+
+        public ICommand ShowLoginWindowCommand => new IPSDelegateCommand(ShowLoginWindowCommandExecute);
+        private void ShowLoginWindowCommandExecute(object o)
+        {
+            ModalWindowVisibility = Visibility.Visible;
+        }
+
+        public ICommand HideLoginWindowCommand => new IPSDelegateCommand(HideLoginWindowCommandExecute);
+        private void HideLoginWindowCommandExecute(object o)
+        {
+            ModalWindowVisibility = Visibility.Collapsed;
+        }
         #endregion
     }
 }

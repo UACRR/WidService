@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,20 @@ using System.Windows.Shapes;
 
 namespace Launcher
 {
+    /// <summary>
+    /// Interaction logic for LauncherWindow2.xaml
+    /// </summary>
+    public partial class LauncherWindow2 : Window
+    {
+
+        public LauncherWindow2()
+        {
+            InitializeComponent();
+            Style = (Style) FindResource(typeof(Window));
+        }
+    }
+
+    // додаткові класи після основного 
 
     public class BooleanToHiddenVisibility : IValueConverter
     {
@@ -36,31 +51,13 @@ namespace Launcher
             catch (Exception)
             {
             }
+
             return rv;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter,  CultureInfo culture)
         {
             return value;
-        }
-
-
-    }
-    /// <summary>
-    /// Interaction logic for LauncherWindow2.xaml
-    /// </summary>
-    public partial class LauncherWindow2 : Window
-    {
-        public LauncherWindow2()
-        {
-            InitializeComponent();
-            Style = (Style)FindResource(typeof(Window));
-        }
-
-        private void RadButton_Click(object sender, RoutedEventArgs e)
-        {
-            var loginModal = (Grid)this.FindName("loginModal");
-
         }
     }
 
@@ -68,7 +65,7 @@ namespace Launcher
     {
         public static bool GetIsMonitoring(DependencyObject obj)
         {
-            return (bool)obj.GetValue(IsMonitoringProperty);
+            return (bool) obj.GetValue(IsMonitoringProperty);
         }
 
         public static void SetIsMonitoring(DependencyObject obj, bool value)
@@ -77,13 +74,14 @@ namespace Launcher
         }
 
         public static readonly DependencyProperty IsMonitoringProperty =
-            DependencyProperty.RegisterAttached("IsMonitoring", typeof(bool), typeof(PasswordBoxMonitor), new UIPropertyMetadata(false, OnIsMonitoringChanged));
+            DependencyProperty.RegisterAttached("IsMonitoring", typeof(bool), typeof(PasswordBoxMonitor),
+                new UIPropertyMetadata(false, OnIsMonitoringChanged));
 
 
 
         public static int GetPasswordLength(DependencyObject obj)
         {
-            return (int)obj.GetValue(PasswordLengthProperty);
+            return (int) obj.GetValue(PasswordLengthProperty);
         }
 
         public static void SetPasswordLength(DependencyObject obj, int value)
@@ -92,7 +90,8 @@ namespace Launcher
         }
 
         public static readonly DependencyProperty PasswordLengthProperty =
-            DependencyProperty.RegisterAttached("PasswordLength", typeof(int), typeof(PasswordBoxMonitor), new UIPropertyMetadata(0));
+            DependencyProperty.RegisterAttached("PasswordLength", typeof(int), typeof(PasswordBoxMonitor),
+                new UIPropertyMetadata(0));
 
         private static void OnIsMonitoringChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -101,7 +100,8 @@ namespace Launcher
             {
                 return;
             }
-            if ((bool)e.NewValue)
+
+            if ((bool) e.NewValue)
             {
                 pb.PasswordChanged += PasswordChanged;
             }
@@ -118,6 +118,7 @@ namespace Launcher
             {
                 return;
             }
+
             SetPasswordLength(pb, pb.Password.Length);
         }
 
