@@ -14,6 +14,38 @@ using System.Windows.Shapes;
 
 namespace Launcher
 {
+
+    public class BooleanToHiddenVisibility : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Visibility rv = Visibility.Visible;
+            try
+            {
+                var x = bool.Parse(value.ToString());
+                if (x)
+                {
+                    rv = Visibility.Visible;
+                }
+                else
+                {
+
+                    rv = Visibility.Collapsed;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return rv;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value;
+        }
+
+
+    }
     /// <summary>
     /// Interaction logic for LauncherWindow2.xaml
     /// </summary>
@@ -23,6 +55,12 @@ namespace Launcher
         {
             InitializeComponent();
             Style = (Style)FindResource(typeof(Window));
+        }
+
+        private void RadButton_Click(object sender, RoutedEventArgs e)
+        {
+            var loginModal = (Grid)this.FindName("loginModal");
+
         }
     }
 
@@ -82,5 +120,7 @@ namespace Launcher
             }
             SetPasswordLength(pb, pb.Password.Length);
         }
+
+
     }
 }

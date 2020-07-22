@@ -8,6 +8,7 @@
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
         mc:Ignorable="d"
         xmlns:Launcher="clr-namespace:Launcher" 
+        
         Title="LauncherWindow2" Height="900" Width="1400"
         Background="#f8f8f8">
 
@@ -744,12 +745,21 @@
                 </ComboBox>
 
                 <t:RadButton Height="25" Grid.Column="2" Margin="0 0 48 0" Style="{DynamicResource logBtn}"
+                            Click="RadButton_Click"
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
+                        <!--РАБОТА ЧЕКБОКСА-->
+
+                        <StackPanel.Resources>
+                            <Launcher:BooleanToHiddenVisibility x:Key="boolToVis"/>
+                        </StackPanel.Resources>
+                        <CheckBox Content="" Name="checkViewTextBox"/>
+
                         <Image Margin="0 0 8 0" Height="16" Source="Images/log.png"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13">Увійти</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" >Увійти</TextBlock>
                     </StackPanel>
+                    
                 </t:RadButton>
 
                 <Grid Grid.Column="3" Height="40" Margin="0 0 48 0">
@@ -970,7 +980,11 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Visibility="Collapsed">
+        <!--       Visibility="{Binding Path=IsChecked, ElementName=checkViewTextBox, Converter={StaticResource boolToVis}}" -->
+
+        <!--
+        <Grid Visibility="Collapsed"
+              >
             <Border>
                 <Border.Background>
                     <SolidColorBrush Color="#272A33" Opacity="0.4" />
@@ -1016,6 +1030,64 @@
                     </StackPanel>
                 </Border>
             </Border>
+        </Grid> -->
+        
+        <!--МОДАЛКА-->
+        <Grid x:Name="loginModal">
+            <!--РАБОТА ЧЕКБОКСА-->
+            <Grid.Resources>
+                <Launcher:BooleanToHiddenVisibility x:Key="boolToVis"/>
+            </Grid.Resources>
+            <Grid Visibility="{Binding Path=IsChecked, ElementName=checkViewTextBox, Converter={StaticResource boolToVis}}"
+              >
+                <Border>
+                    <Border.Background>
+                        <SolidColorBrush Color="#272A33" Opacity="0.4" />
+                    </Border.Background>
+                    <Border  Width="390" Height="460" CornerRadius="15" Background="White" Padding="40">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="30" Margin="0 0 0 32">SIGN IN</TextBlock>
+                                <Image Source="Images/close.png" Grid.Column="1" Cursor="Hand" Width="16" Height="16" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                            </Grid>
+                            <ComboBox Background="Red" FontSize="14" Height="40" Margin="0 0 0 16" VerticalContentAlignment="Center"
+                                  >
+                                <ComboBoxItem IsSelected="True" >
+                                    <WrapPanel>
+                                        <TextBlock FontSize="14" Padding="13 8" Text="Use  application Indetification" VerticalAlignment="Center" />
+                                    </WrapPanel>
+                                </ComboBoxItem>
+                            </ComboBox>
+
+                            <TextBox Style="{StaticResource placeHolder}"
+                                 Background="#e7e7e7"
+                                 TextWrapping="NoWrap"
+                                 FontSize="14" 
+                                 Height="40"
+                                 Margin="0 0 0 16"
+                                 VerticalContentAlignment="Center" 
+                                 VerticalAlignment="Center"
+                                 Tag="Username"/>
+
+                            <PasswordBox  Background="#e7e7e7" Padding="16 0" VerticalContentAlignment="Center" Height="40" Margin="0 0 0 16" FontSize="14" />
+
+                            <CheckBox x:Name="checkBox1" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Change Password" Margin="0 0 0 16"/>
+
+                            <CheckBox x:Name="checkBox2" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Remember" Margin="0 0 0 32"/>
+                            <StackPanel Orientation="Horizontal">
+
+                            </StackPanel>
+                            <t:RadButton Style="{DynamicResource loginBtn}" Content="SIGN IN"/>
+                        </StackPanel>
+                    </Border>
+                </Border>
+            </Grid>
         </Grid>
+
     </Grid>
+        
 </Window>
