@@ -66,7 +66,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<ResponseOfRequest> CreatePeriodAsync(PaidPeriod paidPeriod)
         {
-            string url = $"{prefix}/CreatePeriodAsync";
+            string url = $"{prefix}/CreatePeriod";
             var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, PaidPeriod>(url, paidPeriod);
             return result;
         }
@@ -103,7 +103,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<ResponseOfRequest> ChangePrepaySumAsync(ChangePrepaySumParams changePrepaySumParams)
         {
-            string url = $"{prefix}/ChangePrepaySumAsync";
+            string url = $"{prefix}/ChangePrepaySum";
             var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, ChangePrepaySumParams>(url, changePrepaySumParams);
             return result;
         }
@@ -127,8 +127,8 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<ResponseOfRequest> PayPrepaymentAsync(int licId, int custId)
         {
-            string url = $"PayPrepaymentAsync/{licId}/{custId}";
-            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, object>(url, null);
+            string url = $"{prefix}/PayPrepayment/{licId}/{custId}";
+            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, object>(url, new object());
             return result;
         }
     }

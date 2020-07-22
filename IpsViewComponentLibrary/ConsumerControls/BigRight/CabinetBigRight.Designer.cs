@@ -50,6 +50,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPayslips = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.RegisterRatedListControl();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlCalculationBR = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.CalculationControl();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
@@ -60,7 +61,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartner = new IpsViewComponentLibrary.ConsumerControls.PartnerOfConsumerControl();
-            this.ctrlCalculationBR = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.CalculationControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -120,7 +120,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
             this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
-            this.ctrlAnketaConsumer.PanelAgreementSize = new System.Drawing.Size(590, 436);
+            this.ctrlAnketaConsumer.PanelAgreementSize = new System.Drawing.Size(590, 467);
             this.ctrlAnketaConsumer.Size = new System.Drawing.Size(906, 490);
             this.ctrlAnketaConsumer.TabIndex = 0;
             this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
@@ -232,6 +232,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvCalculation.Size = new System.Drawing.Size(906, 521);
             this.pvCalculation.Text = "Розрахунки";
             // 
+            // ctrlCalculationBR
+            // 
+            this.ctrlCalculationBR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlCalculationBR.Location = new System.Drawing.Point(0, 0);
+            this.ctrlCalculationBR.Name = "ctrlCalculationBR";
+            this.ctrlCalculationBR.Size = new System.Drawing.Size(906, 521);
+            this.ctrlCalculationBR.TabIndex = 0;
+            // 
             // pvPays
             // 
             this.pvPays.Controls.Add(this.ctrlPaysInfo);
@@ -323,14 +331,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlPartner.Name = "ctrlPartner";
             this.ctrlPartner.Size = new System.Drawing.Size(659, 138);
             this.ctrlPartner.TabIndex = 0;
-            // 
-            // ctrlCalculationBR
-            // 
-            this.ctrlCalculationBR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlCalculationBR.Location = new System.Drawing.Point(0, 0);
-            this.ctrlCalculationBR.Name = "ctrlCalculationBR";
-            this.ctrlCalculationBR.Size = new System.Drawing.Size(906, 521);
-            this.ctrlCalculationBR.TabIndex = 0;
             // 
             // CabinetBigRight
             // 

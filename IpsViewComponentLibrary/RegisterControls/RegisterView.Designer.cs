@@ -353,6 +353,7 @@
             this.ctrlRegisterItemListStage.AllowFindCommand = true;
             this.ctrlRegisterItemListStage.AllowLinkCommand = true;
             this.ctrlRegisterItemListStage.AllowShowDeleteCommand = true;
+            this.ctrlRegisterItemListStage.AllowShowDurationItem = false;
             this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
             this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
             this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
@@ -664,6 +665,7 @@
             this.ctrlRegisterItemList.AllowFindCommand = true;
             this.ctrlRegisterItemList.AllowLinkCommand = true;
             this.ctrlRegisterItemList.AllowShowDeleteCommand = true;
+            this.ctrlRegisterItemList.AllowShowDurationItem = false;
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
             this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
@@ -693,8 +695,8 @@
             // 
             // RegisterView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1267, 664);

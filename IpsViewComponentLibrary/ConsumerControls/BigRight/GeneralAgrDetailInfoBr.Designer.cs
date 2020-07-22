@@ -30,6 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.txtToProlongLicense = new Telerik.WinControls.UI.RadLabel();
+            this.bsVbrLicense = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
+            this.txtNoAcceptLicense = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.txtActiveLicense = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrNumber = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrDate = new Telerik.WinControls.UI.RadLabel();
@@ -37,28 +44,28 @@
             this.txtPartnerName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
-            this.txtActiveLicense = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.txtNoAcceptLicense = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.txtToProlongLicense = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.txtNoAcceptReference = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.txtNoAcceptRequest = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.txtActiveReqAndRef = new Telerik.WinControls.UI.RadLabel();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
+            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
             this.txtPrepayRest = new Telerik.WinControls.UI.RadLabel();
             this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.txtUnAttachAmount = new Telerik.WinControls.UI.RadLabel();
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.txtAttachAmount = new Telerik.WinControls.UI.RadLabel();
             this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
-            this.bsVbrLicense = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtToProlongLicense)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsVbrLicense)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNoAcceptLicense)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtActiveLicense)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrDate)).BeginInit();
@@ -67,27 +74,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
-            this.radPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtActiveLicense)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNoAcceptLicense)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtToProlongLicense)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoAcceptReference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoAcceptRequest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActiveReqAndRef)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
+            this.radPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrepayRest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnAttachAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAttachAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsVbrLicense)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanel1
@@ -103,6 +103,126 @@
             this.radPanel1.Size = new System.Drawing.Size(207, 78);
             this.radPanel1.TabIndex = 4;
             this.radPanel1.ThemeName = "Office2013Light";
+            // 
+            // txtToProlongLicense
+            // 
+            this.txtToProlongLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtToProlongLicense.AutoSize = false;
+            this.txtToProlongLicense.BorderVisible = true;
+            this.txtToProlongLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVbrLicense, "CountLic1ToProlong", true));
+            this.txtToProlongLicense.Location = new System.Drawing.Point(162, 53);
+            this.txtToProlongLicense.Name = "txtToProlongLicense";
+            // 
+            // 
+            // 
+            this.txtToProlongLicense.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.txtToProlongLicense.Size = new System.Drawing.Size(42, 18);
+            this.txtToProlongLicense.TabIndex = 48;
+            this.txtToProlongLicense.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.txtToProlongLicense.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtToProlongLicense.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtToProlongLicense.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtToProlongLicense.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // bsVbrLicense
+            // 
+            this.bsVbrLicense.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            // 
+            // radLabel11
+            // 
+            this.radLabel11.Location = new System.Drawing.Point(3, 53);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(142, 19);
+            this.radLabel11.TabIndex = 47;
+            this.radLabel11.Text = "Ліцензій до пролонгації";
+            this.radLabel11.ThemeName = "Office2013Light";
+            // 
+            // txtNoAcceptLicense
+            // 
+            this.txtNoAcceptLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNoAcceptLicense.AutoSize = false;
+            this.txtNoAcceptLicense.BorderVisible = true;
+            this.txtNoAcceptLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVbrLicense, "CountLic1NoActive", true));
+            this.txtNoAcceptLicense.Location = new System.Drawing.Point(162, 28);
+            this.txtNoAcceptLicense.Name = "txtNoAcceptLicense";
+            // 
+            // 
+            // 
+            this.txtNoAcceptLicense.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.txtNoAcceptLicense.Size = new System.Drawing.Size(42, 18);
+            this.txtNoAcceptLicense.TabIndex = 46;
+            this.txtNoAcceptLicense.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.txtNoAcceptLicense.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtNoAcceptLicense.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtNoAcceptLicense.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtNoAcceptLicense.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(3, 28);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(153, 19);
+            this.radLabel9.TabIndex = 45;
+            this.radLabel9.Text = "Ліцензій не акцептованих";
+            this.radLabel9.ThemeName = "Office2013Light";
+            // 
+            // txtActiveLicense
+            // 
+            this.txtActiveLicense.AutoSize = false;
+            this.txtActiveLicense.BorderVisible = true;
+            this.txtActiveLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVbrLicense, "CountLic1Active", true));
+            this.txtActiveLicense.Location = new System.Drawing.Point(162, 3);
+            this.txtActiveLicense.Name = "txtActiveLicense";
+            // 
+            // 
+            // 
+            this.txtActiveLicense.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.txtActiveLicense.Size = new System.Drawing.Size(42, 18);
+            this.txtActiveLicense.TabIndex = 44;
+            this.txtActiveLicense.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.txtActiveLicense.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtActiveLicense.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtActiveLicense.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtActiveLicense.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Location = new System.Drawing.Point(3, 3);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(109, 19);
+            this.radLabel6.TabIndex = 43;
+            this.radLabel6.Text = "Активних ліцензій";
+            this.radLabel6.ThemeName = "Office2013Light";
             // 
             // txtAgrNumber
             // 
@@ -232,136 +352,6 @@
             this.radPanel2.TabIndex = 47;
             this.radPanel2.ThemeName = "Office2013Light";
             // 
-            // radPanel3
-            // 
-            this.radPanel3.Controls.Add(this.txtPrepayRest);
-            this.radPanel3.Controls.Add(this.radLabel19);
-            this.radPanel3.Controls.Add(this.txtUnAttachAmount);
-            this.radPanel3.Controls.Add(this.radLabel21);
-            this.radPanel3.Controls.Add(this.txtAttachAmount);
-            this.radPanel3.Controls.Add(this.radLabel23);
-            this.radPanel3.Location = new System.Drawing.Point(429, 28);
-            this.radPanel3.Name = "radPanel3";
-            this.radPanel3.Size = new System.Drawing.Size(259, 78);
-            this.radPanel3.TabIndex = 48;
-            this.radPanel3.ThemeName = "Office2013Light";
-            // 
-            // txtActiveLicense
-            // 
-            this.txtActiveLicense.AutoSize = false;
-            this.txtActiveLicense.BorderVisible = true;
-            this.txtActiveLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVbrLicense, "CountLic1Active", true));
-            this.txtActiveLicense.Location = new System.Drawing.Point(162, 3);
-            this.txtActiveLicense.Name = "txtActiveLicense";
-            // 
-            // 
-            // 
-            this.txtActiveLicense.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.txtActiveLicense.Size = new System.Drawing.Size(42, 18);
-            this.txtActiveLicense.TabIndex = 44;
-            this.txtActiveLicense.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.txtActiveLicense.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtActiveLicense.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtActiveLicense.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtActiveLicense.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtActiveLicense.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.Location = new System.Drawing.Point(3, 3);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(109, 19);
-            this.radLabel6.TabIndex = 43;
-            this.radLabel6.Text = "Активних ліцензій";
-            this.radLabel6.ThemeName = "Office2013Light";
-            // 
-            // txtNoAcceptLicense
-            // 
-            this.txtNoAcceptLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNoAcceptLicense.AutoSize = false;
-            this.txtNoAcceptLicense.BorderVisible = true;
-            this.txtNoAcceptLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVbrLicense, "CountLic1NoActive", true));
-            this.txtNoAcceptLicense.Location = new System.Drawing.Point(162, 28);
-            this.txtNoAcceptLicense.Name = "txtNoAcceptLicense";
-            // 
-            // 
-            // 
-            this.txtNoAcceptLicense.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.txtNoAcceptLicense.Size = new System.Drawing.Size(42, 18);
-            this.txtNoAcceptLicense.TabIndex = 46;
-            this.txtNoAcceptLicense.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.txtNoAcceptLicense.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtNoAcceptLicense.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtNoAcceptLicense.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtNoAcceptLicense.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtNoAcceptLicense.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.Location = new System.Drawing.Point(3, 28);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(153, 19);
-            this.radLabel9.TabIndex = 45;
-            this.radLabel9.Text = "Ліцензій не акцептованих";
-            this.radLabel9.ThemeName = "Office2013Light";
-            // 
-            // txtToProlongLicense
-            // 
-            this.txtToProlongLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtToProlongLicense.AutoSize = false;
-            this.txtToProlongLicense.BorderVisible = true;
-            this.txtToProlongLicense.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVbrLicense, "CountLic1ToProlong", true));
-            this.txtToProlongLicense.Location = new System.Drawing.Point(162, 53);
-            this.txtToProlongLicense.Name = "txtToProlongLicense";
-            // 
-            // 
-            // 
-            this.txtToProlongLicense.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.txtToProlongLicense.Size = new System.Drawing.Size(42, 18);
-            this.txtToProlongLicense.TabIndex = 48;
-            this.txtToProlongLicense.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.txtToProlongLicense.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtToProlongLicense.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtToProlongLicense.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtToProlongLicense.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtToProlongLicense.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            // 
-            // radLabel11
-            // 
-            this.radLabel11.Location = new System.Drawing.Point(3, 53);
-            this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(142, 19);
-            this.radLabel11.TabIndex = 47;
-            this.radLabel11.Text = "Ліцензій до пролонгації";
-            this.radLabel11.ThemeName = "Office2013Light";
-            // 
             // txtNoAcceptReference
             // 
             this.txtNoAcceptReference.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -477,6 +467,20 @@
             this.radLabel17.TabIndex = 49;
             this.radLabel17.Text = "Активних заявок/довідок";
             this.radLabel17.ThemeName = "Office2013Light";
+            // 
+            // radPanel3
+            // 
+            this.radPanel3.Controls.Add(this.txtPrepayRest);
+            this.radPanel3.Controls.Add(this.radLabel19);
+            this.radPanel3.Controls.Add(this.txtUnAttachAmount);
+            this.radPanel3.Controls.Add(this.radLabel21);
+            this.radPanel3.Controls.Add(this.txtAttachAmount);
+            this.radPanel3.Controls.Add(this.radLabel23);
+            this.radPanel3.Location = new System.Drawing.Point(429, 28);
+            this.radPanel3.Name = "radPanel3";
+            this.radPanel3.Size = new System.Drawing.Size(259, 78);
+            this.radPanel3.TabIndex = 48;
+            this.radPanel3.ThemeName = "Office2013Light";
             // 
             // txtPrepayRest
             // 
@@ -598,14 +602,10 @@
             this.radLabel23.Text = "Заборгованість";
             this.radLabel23.ThemeName = "Office2013Light";
             // 
-            // bsVbrLicense
-            // 
-            this.bsVbrLicense.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            // 
             // GeneralAgrDetailInfoBr
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.radPanel3);
             this.Controls.Add(this.radPanel2);
             this.Controls.Add(this.txtPartnerName);
@@ -620,6 +620,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtToProlongLicense)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsVbrLicense)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNoAcceptLicense)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtActiveLicense)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrDate)).EndInit();
@@ -629,28 +636,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
-            this.radPanel3.ResumeLayout(false);
-            this.radPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtActiveLicense)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNoAcceptLicense)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtToProlongLicense)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoAcceptReference)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoAcceptRequest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActiveReqAndRef)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
+            this.radPanel3.ResumeLayout(false);
+            this.radPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPrepayRest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnAttachAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAttachAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsVbrLicense)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

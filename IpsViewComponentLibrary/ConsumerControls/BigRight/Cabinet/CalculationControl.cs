@@ -461,17 +461,19 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 return;
             
             var prepaysLinkForm = new PrepaysLinkForm(moneyReceived, moneyPrepay);
-            prepaysLinkForm.ShowDialog();
+            var result = prepaysLinkForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                _stateRecorder.RecordState();
+                UpdateData?.Invoke();
+                _stateRecorder.RestoreState();
+            }
         }
 
         private async void gvPrepays_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var isTurn = (bool)e.Row.Cells["IsTurnAmount"].Value;
             if (isTurn)
-                return;
-
-            var confirmAction = MessageShow.ConfirmAction("Виконати зарахування виплат?");
-            if(confirmAction != DialogResult.Yes)
                 return;
 
             var item = (FT_TSK_1_BRMoneyPrepay) e.Row.DataBoundItem;
@@ -489,6 +491,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             // запускати проводку можна якщо її ще не було
             if ((item.TurnAmount ?? 0m) != 0m)
+                return;
+
+            var confirmAction = MessageShow.ConfirmAction("Виконати зарахування виплат?");
+            if (confirmAction != DialogResult.Yes)
                 return;
 
             var service = CalculationBRService.GetInstance();

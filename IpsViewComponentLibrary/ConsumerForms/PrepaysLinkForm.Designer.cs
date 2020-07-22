@@ -42,10 +42,10 @@
             this.txtPayNumber = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.groupBoxTop = new Telerik.WinControls.UI.RadGroupBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtLinkedMoney = new Telerik.WinControls.UI.RadTextBox();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.groupBoxBottom = new Telerik.WinControls.UI.RadGroupBox();
             this.btnChangeAmount = new Telerik.WinControls.UI.RadButton();
             this.radTextBox10 = new Telerik.WinControls.UI.RadTextBox();
             this.bsMoneyPrepays = new System.Windows.Forms.BindingSource(this.components);
@@ -84,12 +84,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPayNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBoxTop)).BeginInit();
+            this.groupBoxTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLinkedMoney)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBoxBottom)).BeginInit();
+            this.groupBoxBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangeAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMoneyPrepays)).BeginInit();
@@ -236,33 +236,33 @@
             this.radLabel6.Text = "Залишок";
             this.radLabel6.ThemeName = "Office2013Light";
             // 
-            // radGroupBox1
+            // groupBoxTop
             // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.BackColor = System.Drawing.Color.MintCream;
-            this.radGroupBox1.Controls.Add(this.radLabel4);
-            this.radGroupBox1.Controls.Add(this.txtLinkedMoney);
-            this.radGroupBox1.Controls.Add(this.radLabel5);
-            this.radGroupBox1.Controls.Add(this.radLabel6);
-            this.radGroupBox1.Controls.Add(this.radLabel1);
-            this.radGroupBox1.Controls.Add(this.txtPayNumber);
-            this.radGroupBox1.Controls.Add(this.radLabel2);
-            this.radGroupBox1.Controls.Add(this.txtPayDate);
-            this.radGroupBox1.Controls.Add(this.radSeparator1);
-            this.radGroupBox1.Controls.Add(this.radLabel3);
-            this.radGroupBox1.Controls.Add(this.txtPayGoalInvoice);
-            this.radGroupBox1.Controls.Add(this.txtPayAmount);
-            this.radGroupBox1.Controls.Add(this.txtBalance);
-            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radGroupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radGroupBox1.FooterText = "";
-            this.radGroupBox1.HeaderText = "Інформація по платежу";
-            this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(789, 196);
-            this.radGroupBox1.TabIndex = 51;
-            this.radGroupBox1.Text = "Інформація по платежу";
-            this.radGroupBox1.ThemeName = "Office2013Light";
+            this.groupBoxTop.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.groupBoxTop.BackColor = System.Drawing.Color.MintCream;
+            this.groupBoxTop.Controls.Add(this.radLabel4);
+            this.groupBoxTop.Controls.Add(this.txtLinkedMoney);
+            this.groupBoxTop.Controls.Add(this.radLabel5);
+            this.groupBoxTop.Controls.Add(this.radLabel6);
+            this.groupBoxTop.Controls.Add(this.radLabel1);
+            this.groupBoxTop.Controls.Add(this.txtPayNumber);
+            this.groupBoxTop.Controls.Add(this.radLabel2);
+            this.groupBoxTop.Controls.Add(this.txtPayDate);
+            this.groupBoxTop.Controls.Add(this.radSeparator1);
+            this.groupBoxTop.Controls.Add(this.radLabel3);
+            this.groupBoxTop.Controls.Add(this.txtPayGoalInvoice);
+            this.groupBoxTop.Controls.Add(this.txtPayAmount);
+            this.groupBoxTop.Controls.Add(this.txtBalance);
+            this.groupBoxTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxTop.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBoxTop.FooterText = "";
+            this.groupBoxTop.HeaderText = "Інформація по платежу";
+            this.groupBoxTop.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxTop.Name = "groupBoxTop";
+            this.groupBoxTop.Size = new System.Drawing.Size(789, 196);
+            this.groupBoxTop.TabIndex = 51;
+            this.groupBoxTop.Text = "Інформація по платежу";
+            this.groupBoxTop.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
@@ -284,43 +284,43 @@
             this.txtLinkedMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtLinkedMoney.ThemeName = "Office2013Light";
             // 
-            // radGroupBox2
+            // groupBoxBottom
             // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox2.BackColor = System.Drawing.Color.MintCream;
-            this.radGroupBox2.Controls.Add(this.btnChangeAmount);
-            this.radGroupBox2.Controls.Add(this.radTextBox10);
-            this.radGroupBox2.Controls.Add(this.radLabel16);
-            this.radGroupBox2.Controls.Add(this.txtR030);
-            this.radGroupBox2.Controls.Add(this.radLabel15);
-            this.radGroupBox2.Controls.Add(this.txtPrepaySum);
-            this.radGroupBox2.Controls.Add(this.radLabel14);
-            this.radGroupBox2.Controls.Add(this.txtPrepaySumAuthor);
-            this.radGroupBox2.Controls.Add(this.radLabel13);
-            this.radGroupBox2.Controls.Add(this.txtPrepayDebt);
-            this.radGroupBox2.Controls.Add(this.radLabel12);
-            this.radGroupBox2.Controls.Add(this.radLabel11);
-            this.radGroupBox2.Controls.Add(this.txtLinkAmount);
-            this.radGroupBox2.Controls.Add(this.checkAutocalculate);
-            this.radGroupBox2.Controls.Add(this.radLabel10);
-            this.radGroupBox2.Controls.Add(this.radTextBox4);
-            this.radGroupBox2.Controls.Add(this.radLabel9);
-            this.radGroupBox2.Controls.Add(this.radTextBox3);
-            this.radGroupBox2.Controls.Add(this.radLabel8);
-            this.radGroupBox2.Controls.Add(this.radTextBox2);
-            this.radGroupBox2.Controls.Add(this.radLabel7);
-            this.radGroupBox2.Controls.Add(this.radTextBox1);
-            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radGroupBox2.FooterText = "";
-            this.radGroupBox2.FooterVisibility = Telerik.WinControls.ElementVisibility.Visible;
-            this.radGroupBox2.HeaderText = "Аванс/Паушальний платіж";
-            this.radGroupBox2.Location = new System.Drawing.Point(0, 196);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(789, 227);
-            this.radGroupBox2.TabIndex = 52;
-            this.radGroupBox2.Text = "Аванс/Паушальний платіж";
-            this.radGroupBox2.ThemeName = "Office2013Light";
+            this.groupBoxBottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.groupBoxBottom.BackColor = System.Drawing.Color.MintCream;
+            this.groupBoxBottom.Controls.Add(this.btnChangeAmount);
+            this.groupBoxBottom.Controls.Add(this.radTextBox10);
+            this.groupBoxBottom.Controls.Add(this.radLabel16);
+            this.groupBoxBottom.Controls.Add(this.txtR030);
+            this.groupBoxBottom.Controls.Add(this.radLabel15);
+            this.groupBoxBottom.Controls.Add(this.txtPrepaySum);
+            this.groupBoxBottom.Controls.Add(this.radLabel14);
+            this.groupBoxBottom.Controls.Add(this.txtPrepaySumAuthor);
+            this.groupBoxBottom.Controls.Add(this.radLabel13);
+            this.groupBoxBottom.Controls.Add(this.txtPrepayDebt);
+            this.groupBoxBottom.Controls.Add(this.radLabel12);
+            this.groupBoxBottom.Controls.Add(this.radLabel11);
+            this.groupBoxBottom.Controls.Add(this.txtLinkAmount);
+            this.groupBoxBottom.Controls.Add(this.checkAutocalculate);
+            this.groupBoxBottom.Controls.Add(this.radLabel10);
+            this.groupBoxBottom.Controls.Add(this.radTextBox4);
+            this.groupBoxBottom.Controls.Add(this.radLabel9);
+            this.groupBoxBottom.Controls.Add(this.radTextBox3);
+            this.groupBoxBottom.Controls.Add(this.radLabel8);
+            this.groupBoxBottom.Controls.Add(this.radTextBox2);
+            this.groupBoxBottom.Controls.Add(this.radLabel7);
+            this.groupBoxBottom.Controls.Add(this.radTextBox1);
+            this.groupBoxBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxBottom.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBoxBottom.FooterText = "";
+            this.groupBoxBottom.FooterVisibility = Telerik.WinControls.ElementVisibility.Visible;
+            this.groupBoxBottom.HeaderText = "Аванс/Паушальний платіж";
+            this.groupBoxBottom.Location = new System.Drawing.Point(0, 196);
+            this.groupBoxBottom.Name = "groupBoxBottom";
+            this.groupBoxBottom.Size = new System.Drawing.Size(789, 227);
+            this.groupBoxBottom.TabIndex = 52;
+            this.groupBoxBottom.Text = "Аванс/Паушальний платіж";
+            this.groupBoxBottom.ThemeName = "Office2013Light";
             // 
             // btnChangeAmount
             // 
@@ -578,8 +578,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(789, 454);
-            this.Controls.Add(this.radGroupBox2);
-            this.Controls.Add(this.radGroupBox1);
+            this.Controls.Add(this.groupBoxBottom);
+            this.Controls.Add(this.groupBoxTop);
             this.Controls.Add(this.ctrlSaveCancel);
             this.Name = "PrepaysLinkForm";
             // 
@@ -601,14 +601,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPayNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
-            this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBoxTop)).EndInit();
+            this.groupBoxTop.ResumeLayout(false);
+            this.groupBoxTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLinkedMoney)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
-            this.radGroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBoxBottom)).EndInit();
+            this.groupBoxBottom.ResumeLayout(false);
+            this.groupBoxBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangeAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMoneyPrepays)).EndInit();
@@ -655,11 +655,11 @@
         private Telerik.WinControls.UI.RadTextBox txtPayNumber;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel6;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+        private Telerik.WinControls.UI.RadGroupBox groupBoxTop;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadTextBox txtLinkedMoney;
         private Telerik.WinControls.UI.RadTextBox radTextBox1;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
+        private Telerik.WinControls.UI.RadGroupBox groupBoxBottom;
         private Telerik.WinControls.UI.RadButton btnChangeAmount;
         private Telerik.WinControls.UI.RadTextBox radTextBox10;
         private Telerik.WinControls.UI.RadLabel radLabel16;

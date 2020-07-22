@@ -29,9 +29,23 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private static FT_TSK_1_BRMoneyPrepay _moneyPrepay;
         private static PrepaysBindingModel _prepaysBindingModel;
 
+        private readonly bool isPrepaySumChangeNeed = false;
+
+        private bool IsComponentEnabled
+        {
+            set
+            {
+                groupBoxTop.Enabled = value;
+                groupBoxBottom.Enabled = value;
+                ctrlSaveCancel.Enabled = value;
+            }
+        }
+
         public PrepaysLinkForm(MoneyReceived moneyReceived, FT_TSK_1_BRMoneyPrepay moneyPrepay)
         {
             InitializeComponent();
+            IsComponentEnabled = false;
+            Load += PrepaysLinkForm_Load;
             ctrlSaveCancel.SaveClck += CtrlSaveCancel_SaveClck;
             ctrlSaveCancel.ButtonSaveDialogResult = DialogResult.None;
 
@@ -40,12 +54,17 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             if (_moneyPrepay.R030 == "980")
             {
-                _moneyPrepay.PrepaySum = _moneyPrepay.PrepaySumAuthor;
+                if (_moneyPrepay.PrepaySum != _moneyPrepay.PrepaySumAuthor)
+                {
+                    isPrepaySumChangeNeed = true;
+                    _moneyPrepay.PrepaySum = _moneyPrepay.PrepaySumAuthor;
+                }
+
                 btnChangeAmount.Enabled = false;
             }
 
-            bsMoneyReceived.DataSource = moneyReceived;
-            bsMoneyPrepays.DataSource = moneyPrepay;
+            bsMoneyReceived.DataSource = _moneyReceived;
+            bsMoneyPrepays.DataSource = _moneyPrepay;
 
             //txtBalance.Text = $"{moneyReceived.Amount - (moneyReceived.DestribAmount + moneyReceived.DestribPrepay):N2}";
             txtBalance.Text = $"{Balance:N2}";
@@ -57,6 +76,34 @@ namespace IpsViewComponentLibrary.ConsumerForms
             bsPrepaysModel.DataSource = _prepaysBindingModel;
             
             ChangeReadOnly();
+        }
+
+        private async void PrepaysLinkForm_Load(object sender, EventArgs e)
+        {
+            if (!isPrepaySumChangeNeed)
+            {
+                IsComponentEnabled = true;
+                return;
+            }
+
+            var service = CalculationBRService.GetInstance();
+
+            var data = new ChangePrepaySumParams
+            {
+                LicId = _moneyPrepay.LicId.Value,
+                LicVersion = _moneyPrepay.LicVersion.Value,
+                CustIdRH = _moneyPrepay.CustIdRH.Value,
+                NewAmount = _moneyPrepay.PrepaySum.Value,
+            };
+
+            var result = await service.ChangePrepaySumAsync(data);
+            if (result.HasException)
+            {
+                ShowMessage.ShowError(result.Exception);
+                btnChangeAmount.Enabled = true;
+            }
+
+            IsComponentEnabled = true;
         }
 
         /// <summary>

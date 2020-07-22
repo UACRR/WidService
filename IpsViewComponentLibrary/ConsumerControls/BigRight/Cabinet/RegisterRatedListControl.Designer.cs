@@ -298,8 +298,9 @@
             gridViewTextBoxColumn4.DataType = typeof(int);
             gridViewTextBoxColumn4.FieldName = "RmId";
             gridViewTextBoxColumn4.HeaderText = "ID";
+            gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Name = "RmId";
-            gridViewTextBoxColumn4.Width = 16;
+            gridViewTextBoxColumn4.Width = 80;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "PeriodName";
@@ -338,10 +339,14 @@
             gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn8.Width = 100;
             gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.DataType = typeof(System.Nullable<decimal>);
+            gridViewTextBoxColumn9.FieldName = "PayAmountCL";
             gridViewTextBoxColumn9.FormatString = "{0:N2}";
             gridViewTextBoxColumn9.HeaderText = "Сума авторської винагороди фактична";
-            gridViewTextBoxColumn9.Name = "column1";
-            gridViewTextBoxColumn9.Width = 79;
+            gridViewTextBoxColumn9.MinWidth = 100;
+            gridViewTextBoxColumn9.Name = "PayAmountCL";
+            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn9.Width = 100;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn10.FieldName = "PrepaySum";
@@ -733,8 +738,8 @@
             // 
             // RegisterRatedListControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.splitContainer);
             this.Name = "RegisterRatedListControl";
             this.Size = new System.Drawing.Size(1000, 539);

@@ -122,7 +122,7 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        [HttpPut("ChangePrepaySumAsync")]
+        [HttpPut("ChangePrepaySum")]
         public async Task<IActionResult> ChangePrepaySumAsync([FromBody] ChangePrepaySumParams source)
         {
             IDbContextTransaction transaction = null;
@@ -157,6 +157,8 @@ namespace ipsmedserviceapp.Controllers
             {
                 var target = new MoneyPrepayLink();
                 target.SetFields(source, new []{ "LinkId" });
+                
+                await _dbContext.MoneyPrepayLink.AddAsync(target);
 
                 transaction = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();

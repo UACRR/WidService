@@ -126,6 +126,7 @@
             this.ctrlRegisterItemList.AllowFindCommand = false;
             this.ctrlRegisterItemList.AllowLinkCommand = true;
             this.ctrlRegisterItemList.AllowShowDeleteCommand = true;
+            this.ctrlRegisterItemList.AllowShowDurationItem = false;
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
             this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
@@ -377,8 +378,8 @@
             // 
             // SearchObjectView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1201, 623);
             this.Controls.Add(this.backgroundPanel);
             this.Name = "SearchObjectView";

@@ -189,8 +189,7 @@ namespace ipsFormsDesign.Interfaces
         public int? ObjStatus { get; set; }
         public int? GenreType { get; set; }
         public int? PerformNumb { get; set; }
-        public decimal? PrepayPaush { get; set; }
-        public decimal? PrepayAvans { get; set; }
+
         public decimal? PrepayRest { get; set; }
         public decimal? TicketPriceNC { get; set; }
         public decimal? TicketPriceUSD { get; set; }
@@ -209,7 +208,11 @@ namespace ipsFormsDesign.Interfaces
         public string WhereTour { get; set; }
         public string ToProlong { get; set; }
         public string Comment { get; set; }
-        public string R030 { get; set; }
+
+        public string R030Paush { get; set; }
+        public string R030Avans { get; set; }
+        public decimal? PrepayPaush { get; set; }
+        public decimal? PrepayAvans { get; set; }
     }
 
     /// <summary>
@@ -339,6 +342,7 @@ namespace ipsFormsDesign.Interfaces
         public decimal Distribamount { get; set; }
         public decimal? Borg { get; set; }
         public decimal? PrepaySum { get; set; }
+        public decimal? PayAmountCL { get; set; }
         public string PeriodName { get; set; }
         public string StatusName { get; set; }
     }
