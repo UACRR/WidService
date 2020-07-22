@@ -33,6 +33,7 @@ namespace ipsmedserviceapp.Controllers
                 .Include(item => item.Agr)
                 .ThenInclude(item => item.AgreementAddBr)
                 .Include(item => item.PaidPeriod)
+                .ThenInclude(item => item.RegisterRatedList)
                 .SingleOrDefaultAsync(rec => rec.CustId == custId && rec.LicClass == 1 && rec.LicStatus == 2);
 
             var licenseAgrParam = await _dbContext.LicenseAgrParam
