@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Launcher"
+        xmlns:login="clr-namespace:Launcher.Controls.LoginWindow"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
         mc:Ignorable="d"
@@ -1035,6 +1036,9 @@
         
         <!--МОДАЛКА-->
         <Grid Visibility="{Binding ModalWindowVisibility}">
+            <Grid.DataContext>
+                <login:LoginViewModel/>
+            </Grid.DataContext>
             <!--РАБОТА ЧЕКБОКСА-->
             <Grid.Resources>
                 <!--<Launcher:BooleanToHiddenVisibility x:Key="boolToVis"/>-->
@@ -1076,6 +1080,7 @@
                             </ComboBox>
 
                             <TextBox Style="{StaticResource placeHolder}"
+                                     Text="{Binding User.UserName}"
                                  Background="#e7e7e7"
                                  TextWrapping="NoWrap"
                                  FontSize="14" 

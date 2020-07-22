@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:Launcher.Controls.LoginWindow"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="LoginWindow2" Height="450" Width="800">
+        Background="Transparent"
+        Title="LoginWindow2" Width="390" Height="460" >
     <Window.Resources>
         <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Template">
@@ -135,13 +136,12 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid>
         <Grid>
             <Border>
                 <Border.Background>
                     <SolidColorBrush Color="#272A33" Opacity="0.4" />
                 </Border.Background>
-                <Border  Width="390" Height="460" CornerRadius="15" Background="White" Padding="40">
+                <Border CornerRadius="15" Background="White" Padding="40">
                     <StackPanel>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -183,5 +183,4 @@
                 </Border>
             </Border>
         </Grid>
-    </Grid>
 </Window>
