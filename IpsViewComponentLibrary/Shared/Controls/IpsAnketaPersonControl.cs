@@ -19,7 +19,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
                 bsSexType.DataSource = IpsGlobal.AnketaDictionaties.sexType;
 
             dtBirthDay.ValueChanged += dtBirthDay_ValueChanged;
-            dtBirthDay.SetUserCalendarSettingsm();
+            dtBirthDay.SetUserCalendarSettings();
         }
 
         public object DataSourceAnketa

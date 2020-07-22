@@ -31,28 +31,28 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
-        public async Task<LicenseAgreement> GetLicenseAgreement(int custId)
+        public async Task<LicenseAgreement> GetLicenseAgreementAsync(int custId)
         {
             string url = $"{prefix}/LicenseAgreement/{custId}";
             var result = await _apiConnector.GetRequestAsync<LicenseAgreement>(url);
             return result;
         }
 
-        public async Task<ObservableListSource<MoneyReceived>> GetMoneyReceivedList(int custId)
+        public async Task<ObservableListSource<MoneyReceived>> GetMoneyReceivedListAsync(int custId)
         {
             string url = $"{prefix}/MoneyReceived/{custId}";
             var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<List<MoneyReceived>>>(url);
             return new ObservableListSource<MoneyReceived>(result.Data);
         }
 
-        public async Task<ObservableListSource<FT_TSK_1_BRMoneyPrepay>> GetMoneyPrepayList(int custId)
+        public async Task<ObservableListSource<FT_TSK_1_BRMoneyPrepay>> GetMoneyPrepayListAsync(int custId)
         {
             string url = $"{prefix}/MoneyPrepay/{custId}";
             var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<List<FT_TSK_1_BRMoneyPrepay>>>(url);
             return new ObservableListSource<FT_TSK_1_BRMoneyPrepay>(result.Data);
         }
 
-        public async Task<ResponseOfRequest<List<QUERY_RegisterPrepayAmountSum>>> GetPrepayAmount(int licId)
+        public async Task<ResponseOfRequest<List<QUERY_RegisterPrepayAmountSum>>> GetPrepayAmountAsync(int licId)
         {
             string url = $"{prefix}/RegisterPrepayAmountList/{licId}";
             var result = await _apiConnector.GetRequestAsync<ResponseOfRequest<List<QUERY_RegisterPrepayAmountSum>>>(url);
@@ -64,7 +64,7 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="paidPeriod"></param>
         /// <returns></returns>
-        public async Task<ResponseOfRequest> CreatePeriod(PaidPeriod paidPeriod)
+        public async Task<ResponseOfRequest> CreatePeriodAsync(PaidPeriod paidPeriod)
         {
             string url = $"{prefix}/CreatePeriod";
             var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, PaidPeriod>(url, paidPeriod);
@@ -89,7 +89,7 @@ namespace ipsFormsDesign.Services
             return null;
         }
 
-        public async Task<ResponseOfRequest> SavePrepayLink(MoneyPrepayLink moneyPrepayLink)
+        public async Task<ResponseOfRequest> SavePrepayLinkAsync(MoneyPrepayLink moneyPrepayLink)
         {
             string url = $"{prefix}/SavePrepayLink";
             var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, MoneyPrepayLink>(url, moneyPrepayLink);
@@ -103,7 +103,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<ResponseOfRequest> ChangePrepaySumAsync(ChangePrepaySumParams changePrepaySumParams)
         {
-            string url = $"{prefix}/ChangePrepaySumAsync";
+            string url = $"{prefix}/ChangePrepaySum";
             var result = await _apiConnector.SendPutRequestWithResultAsync<ResponseOfRequest, ChangePrepaySumParams>(url, changePrepaySumParams);
             return result;
         }
@@ -119,5 +119,17 @@ namespace ipsFormsDesign.Services
             return _apiConnector.UpdateItem(url, string.Empty, period);
         }
 
+        /// <summary>
+        /// Зарахувати виплату по авансу
+        /// </summary>
+        /// <param name="licId"></param>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> PayPrepaymentAsync(int licId, int custId)
+        {
+            string url = $"{prefix}/PayPrepayment/{licId}/{custId}";
+            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, object>(url, new object());
+            return result;
+        }
     }
 }

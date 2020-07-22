@@ -21,8 +21,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         public PassportInternationalControl()
         {
             InitializeComponent();
-            dtIssuedDate.SetUserCalendarSettingsm();
-            dtValidityDate.SetUserCalendarSettingsm();
+            dtIssuedDate.SetUserCalendarSettings();
+            dtValidityDate.SetUserCalendarSettings();
         }
     }
 }

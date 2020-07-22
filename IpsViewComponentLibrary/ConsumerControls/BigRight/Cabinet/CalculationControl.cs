@@ -61,16 +61,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             var service = CalculationBRService.GetInstance();
 
-            LicenseAgreement = await service.GetLicenseAgreement(custId);
+            LicenseAgreement = await service.GetLicenseAgreementAsync(custId);
             NormalizeData(LicenseAgreement);
 
-            var response  = await service.GetPrepayAmount(LicenseAgreement.LicId);
+            var response  = await service.GetPrepayAmountAsync(LicenseAgreement.LicId);
             RegisterPrepayAmountSumList = response.Data;
 
-            var moneyPrepaysList = await service.GetMoneyPrepayList(custId);
+            var moneyPrepaysList = await service.GetMoneyPrepayListAsync(custId);
             bsCalculationPrepaysModel.DataSource = moneyPrepaysList;
 
-            MoneyReceivedList = await service.GetMoneyReceivedList(custId);
+            MoneyReceivedList = await service.GetMoneyReceivedListAsync(custId);
 
             SetupAllBinding();
         }
@@ -275,7 +275,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 foreach (var row in gvPeriodsPayment.Rows)
                 {
                     var periodId = (int)row.Cells["PeriodId"].Value;
-                    var item = RegisterPrepayAmountSumList.FirstOrDefault(rec => rec.PeriodId == periodId);
+                    var item = RegisterPrepayAmountSumList?.FirstOrDefault(rec => rec.PeriodId == periodId);
                     row.Cells["PrepaySum"].Value = item?.PrepayAmountSum;
                 }
             }
@@ -299,7 +299,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             {
                 var service = CalculationBRService.GetInstance();
 
-                var result = await service.CreatePeriod(dialog.CretaedPaidPeriod);
+                var result = await service.CreatePeriodAsync(dialog.CretaedPaidPeriod);
 
                 if (result.IsSuccess)
                 {
@@ -447,6 +447,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             _stateRecorder.RestoreState();
         }
 
+        /// <summary>
+        /// Прив'язати суму до авансу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAttachPrepayOrLumpSum_Click(object sender, EventArgs e)
         {
             if (!(gvPrepays.CurrentRow?.DataBoundItem is FT_TSK_1_BRMoneyPrepay moneyPrepay))
@@ -456,7 +461,59 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 return;
             
             var prepaysLinkForm = new PrepaysLinkForm(moneyReceived, moneyPrepay);
-            prepaysLinkForm.Show();
+            var result = prepaysLinkForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                _stateRecorder.RecordState();
+                UpdateData?.Invoke();
+                _stateRecorder.RestoreState();
+            }
+        }
+
+        private async void gvPrepays_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var isTurn = (bool)e.Row.Cells["IsTurnAmount"].Value;
+            if (isTurn)
+                return;
+
+            var item = (FT_TSK_1_BRMoneyPrepay) e.Row.DataBoundItem;
+
+            // сума прив'язки повинна співпадати з сумою виплати
+            bool isInvalid = !item.LinkAmount.HasValue || item.LinkAmount.Value == 0m || 
+                             !item.PrepaySum.HasValue || item.PrepaySum.Value == 0m ||
+                             item.LinkAmount.Value != item.PrepaySum.Value;
+
+            if (isInvalid)
+            {
+                MessageShow.ShowWarning("Прив'язана сума повинна бути рівна сумі виплати в грн!");
+                return;
+            }
+
+            // запускати проводку можна якщо її ще не було
+            if ((item.TurnAmount ?? 0m) != 0m)
+                return;
+
+            var confirmAction = MessageShow.ConfirmAction("Виконати зарахування виплат?");
+            if (confirmAction != DialogResult.Yes)
+                return;
+
+            var service = CalculationBRService.GetInstance();
+            var result = await service.PayPrepaymentAsync(item.LicId.Value, item.CustIdRH.Value);
+            if (result.IsSuccess)
+            {
+                MessageShow.ShowInfo("Зарахування виплати виконано!");
+            }
+            else
+            {
+                if (result.HasException)
+                    ShowMessage.ShowError(result.Exception);
+                else
+                    ShowMessage.ShowError($"Неможливо виконати зарахування виплати! Status Code: {result.StatusCode}");
+            }
+
+            _stateRecorder.RecordState();
+            UpdateData?.Invoke();
+            _stateRecorder.RestoreState();
         }
     }
 

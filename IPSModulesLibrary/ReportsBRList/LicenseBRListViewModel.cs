@@ -10,6 +10,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Shared.Forms;
@@ -249,21 +250,32 @@ namespace IPSModulesLibrary.ReportsBRList
             if (bigRightView == null)
                 return;
 
-            var view = new RequestForm(consumer, bigRightView, ScopeOfUseForm.Edit, item.LicId, RequestForm.FormMode.ForSmallRightAdmin);
+            ViewsSingleton.SetConsumerBigRightView(bigRightView);
+            IpsGlobal.CurrentClient.CustId = custId;
+            IpsGlobal.CurrentClient.ClnBusinessPlaceCollection = consumer.Client.ClnBusinessPlace;
+
+            //var view = new RequestForm(consumer, bigRightView, ScopeOfUseForm.Edit, item.LicId, RequestForm.FormMode.ForSmallRightAdmin);
+
+            var licenseAgreement = consumer.Client.LicenseAgreement.Single(rec => rec.LicId == item.LicId);
+            var view = RequestForm.UpdateLicenseBRForm(licenseAgreement, RequestForm.FormMode.ForSmallRightAdmin);
 
             if (view.ShowDialog() == DialogResult.OK)
             {
-                var result = consumerService.Save(consumer);
+                IsReloadData = true;
+                await LoadData();
 
-                if (result)
-                {
-                    IsReloadData = true;
-                    await LoadData();
-                }
-                else
-                {
-                    ShowMessage.ShowError("Не вдалося зберегти зміни!");
-                }
+
+                //var result = consumerService.Save(consumer);
+
+                //if (result)
+                //{
+                //    IsReloadData = true;
+                //    await LoadData();
+                //}
+                //else
+                //{
+                //    ShowMessage.ShowError("Не вдалося зберегти зміни!");
+                //}
             }
         }
 

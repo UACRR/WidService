@@ -55,7 +55,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
             if (!IsDesignMode)
             {
-                dtBirthDate.SetUserCalendarSettingsm();
+                dtBirthDate.SetUserCalendarSettings();
                 ddlSexType.SetDataSource(IpsGlobal.AnketaDictionaties.sexType);
             }
         }

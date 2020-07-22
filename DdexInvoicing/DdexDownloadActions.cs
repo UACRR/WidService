@@ -16,7 +16,7 @@ namespace DdexInvoicing
         , INPROGRESS_ACTION = 3
     }
 
-    public class DdexDownloadActions
+    public static class DdexDownloadActions
     {
         public static Dictionary<string, ActionRunner> actionRunners;
 

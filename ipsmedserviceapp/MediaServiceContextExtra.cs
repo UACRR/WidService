@@ -30,6 +30,8 @@ namespace ipsmedserviceapp.Model
         public DbQuery<FT_TSK_1_BRMoneyPrepay> FT_TSK_1_BRMoneyPrepay { get; set; }
         public DbQuery<QUERY_RegisterPrepayAmountSum> QUERY_RegisterPrepayAmountSumList { get; set; }
 
+        public DbQuery<FT_TSK_2_BRRegisterAuthor> FT_TSK_2_BRRegisterAuthor { get; set; }
+
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {
             // Видалення

@@ -346,10 +346,6 @@ namespace ipsmedserviceapp.Controllers
                     //    // Nested update
                     //    UpdateLicenseBigR(item, license);
                     //}
-
-
-
-
                 });
                 // Add
                 tempList = sorsCustomer.Client.LicenseAgreement.Where(row => !destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
@@ -843,7 +839,7 @@ namespace ipsmedserviceapp.Controllers
         /// <summary>
         /// Список SQL VIEW для великих прав
         /// </summary>
-        private Dictionary<string, string> listBrView = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> listBrView = new Dictionary<string, string>
         {
             {"vTsk_vBRLicense", "vTsk_vBRLicense"},
             {"vTsk_1_ListConsumer01", "vTsk_1_ListConsumer01"},
@@ -860,7 +856,9 @@ namespace ipsmedserviceapp.Controllers
             {"vTsk_1_BRMusic", "vTsk_1_BRMusic"},
             {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
             {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
-            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"}
+            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"},
+            {"vTsk_2_BRRateListObject", "vTsk_2_BRRateListObject"},
+            {"vTsk_1_BRRatedList", "vTsk_1_BRRatedList"},
         };
 
         /// <summary>

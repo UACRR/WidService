@@ -177,7 +177,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
-            dtDatePassed.SetUserCalendarSettingsm();
+            dtDatePassed.SetUserCalendarSettings();
 
             sbtnSaveAnketa.DefaultItem = mibtnSaveAnketa;
             sbtnSaveAnketa.Text = mibtnSaveAnketa.Text;

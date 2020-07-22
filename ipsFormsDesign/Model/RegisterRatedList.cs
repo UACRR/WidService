@@ -21,6 +21,7 @@ namespace ipsFormsDesign.Model
         public int? Status { get; set; }
         public int? CntReport { get; set; }
         public decimal? PaidAmount { get; set; }
+        public decimal? PrepayAmount { get; set; }
 
         public virtual PaidPeriod Period { get; set; }
         public virtual RegisterListStatus StatusNavigation { get; set; }

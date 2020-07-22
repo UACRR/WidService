@@ -34,18 +34,19 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             txtIsProlong.Text = licenseAgreementBigRightView.ToProlong;
             
             //блок 1
-            var currency = IpsGlobal.AnketaDictionaties.klR030.SingleOrDefault(rec => rec.R030 == licenseAgreementBigRightView.R030);
-            txtValuta.Text = currency?.A3;
-            txtAmount.Text = licenseAgreementBigRightView.PrepayPaush?.ToString("N2");
+            var currencyPaush = IpsGlobal.AnketaDictionaties.klR030.SingleOrDefault(rec => rec.R030 == licenseAgreementBigRightView.R030Paush);
+            txtValutaPaush.Text = currencyPaush?.A3;
+            txtAmountPaush.Text = licenseAgreementBigRightView.PrepayPaush?.ToString("N2");
             //блок 2
-            txtAvanceAgr.Text = licenseAgreementBigRightView.PrepayAvans?.ToString("N2");
-            txtAvanceRemnant.Text = licenseAgreementBigRightView.PrepayRest?.ToString("N2");
+            var currencyPrepay = IpsGlobal.AnketaDictionaties.klR030.SingleOrDefault(rec => rec.R030 == licenseAgreementBigRightView.R030Avans);
+            txtValutaPrepay.Text = currencyPrepay?.A3;
+            txtAmountPrepay.Text = licenseAgreementBigRightView.PrepayAvans?.ToString("N2");
             //блок 3
             txtDatePremiere.Text = licenseAgreementBigRightView.DatePremiere?.ToShortDateString();
             txtCount.Text = licenseAgreementBigRightView.PerformNumb?.ToString();
             //блок 4
-            txtRatePlace.Text = licenseAgreementBigRightView.FillingRate?.ToString(); // %
-            txtTicketPrice.Text = licenseAgreementBigRightView.TicketPriceNC.ToString(); // UAH
+            txtRatePlace.Text = licenseAgreementBigRightView.FillingRate?.ToString("#0.00 '%'"); // %
+            txtTicketPrice.Text = licenseAgreementBigRightView.TicketPriceNC?.ToString("N2"); // UAH
         }
 
         /// <summary>
@@ -58,11 +59,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             txtIsProlong.Text = string.Empty;
 
             //блок 1
-            txtValuta.Text = string.Empty;
-            txtAmount.Text = string.Empty;
+            txtValutaPaush.Text = string.Empty;
+            txtAmountPaush.Text = string.Empty;
             //блок 2
-            txtAvanceAgr.Text = string.Empty;
-            txtAvanceRemnant.Text = string.Empty;
+            txtValutaPrepay.Text = string.Empty;
+            txtAmountPrepay.Text = string.Empty;
             //блок 3
             txtDatePremiere.Text = string.Empty;
             txtCount.Text = string.Empty;

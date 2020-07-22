@@ -54,8 +54,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             InitializeComponent();
 
-            dtCreateDateFrom.SetUserCalendarSettingsm();
-            dtCreateDateTill.SetUserCalendarSettingsm();
+            dtCreateDateFrom.SetUserCalendarSettings();
+            dtCreateDateTill.SetUserCalendarSettings();
 
             ctrlGridRowCount.RadGridViewDataSource = gvRegisterList;
             ctrlSearch.SetUsageGrid(gvRegisterList);

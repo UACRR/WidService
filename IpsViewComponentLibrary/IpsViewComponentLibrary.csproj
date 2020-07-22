@@ -109,6 +109,10 @@
     <Compile Include="ConsumerForms\PrepaysLinkForm.Designer.cs">
       <DependentUpon>PrepaysLinkForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlsHelpers\Base\LicenseBRHelper.cs" />
+    <Compile Include="ControlsHelpers\Derived\CreateLicenseBRHelper.cs" />
+    <Compile Include="ControlsHelpers\Derived\UpdateLicenseBRHelper.cs" />
+    <Compile Include="ControlsHelpers\Derived\ViewLicenseBRHelper.cs" />
     <Compile Include="DataBindingModel\ChangeAmountBindingModel.cs" />
     <Compile Include="DataBindingModel\PrepaysBindingModel.cs" />
     <Compile Include="RegisterControls\RegisterCCIDView.cs">

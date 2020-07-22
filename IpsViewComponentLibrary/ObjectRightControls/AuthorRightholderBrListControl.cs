@@ -147,7 +147,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gvAuthorRightholderList.SetColumnVisibility("RoleRate", visibility);
             gvAuthorRightholderList.SetColumnVisibility("PrepayType", visibility);
             gvAuthorRightholderList.SetColumnVisibility("Currency", visibility);
-            gvAuthorRightholderList.SetColumnVisibility("PrepaySum", visibility);
+            gvAuthorRightholderList.SetColumnVisibility("PrepaySumAuthor", visibility);
             gvAuthorRightholderList.SetColumnVisibility("WorkTypeRh", visibility);
             gvAuthorRightholderList.SetColumnVisibility("WorkTypeCl", visibility);
         }
@@ -240,7 +240,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void GvAuthorRightholderList_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
-            var readOnlyColumns = "RoleRate, PrepayType, Currency, PrepaySum, WorkTypeRh, WorkTypeCl";
+            var readOnlyColumns = "RoleRate, PrepayType, Currency, PrepaySumAuthor, WorkTypeRh, WorkTypeCl";
 
             if (!SelectedAuthorRightholder.IsRightholder && readOnlyColumns.Contains(e.Column.Name))
                 e.Cancel = true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -121,7 +122,7 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        [HttpPut("ChangePrepaySumAsync")]
+        [HttpPut("ChangePrepaySum")]
         public async Task<IActionResult> ChangePrepaySumAsync([FromBody] ChangePrepaySumParams source)
         {
             IDbContextTransaction transaction = null;
@@ -156,6 +157,8 @@ namespace ipsmedserviceapp.Controllers
             {
                 var target = new MoneyPrepayLink();
                 target.SetFields(source, new []{ "LinkId" });
+                
+                await _dbContext.MoneyPrepayLink.AddAsync(target);
 
                 transaction = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
@@ -166,6 +169,41 @@ namespace ipsmedserviceapp.Controllers
             catch (Exception e)
             {
                 transaction?.Rollback();
+                return Ok(ResponseOfRequest.NotSuccess(e));
+            }
+        }
+
+        [HttpPost("PayPrepayment/{licId}/{custId}")]
+        public async Task<IActionResult> PayPrepayment(int licId, int custId)
+        {
+            try
+            {
+                string query = "exec @returnCode = MPay8_prepaymentByRH @licId, @custIdRHolder";
+
+                var returnedCode = new SqlParameter
+                {
+                    ParameterName = "@returnCode",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+
+                var sqlParamLicId = new SqlParameter("@licId", licId);
+                var sqlParamCustId = new SqlParameter("@custIdRHolder", custId);
+
+                _dbContext.Database.SetCommandTimeout(600);
+
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, returnedCode, sqlParamLicId, sqlParamCustId);
+
+                var responseOfRequest = new ResponseOfRequest
+                {
+                    IsSuccess = (int)returnedCode.Value == 0,
+                    StatusCode = (int)returnedCode.Value,
+                };
+
+                return Ok(responseOfRequest);
+            }
+            catch (Exception e)
+            {
                 return Ok(ResponseOfRequest.NotSuccess(e));
             }
         }

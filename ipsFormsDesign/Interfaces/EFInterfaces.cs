@@ -1966,6 +1966,7 @@ public interface IRegisterRatedList
          int? Status { get; set; }
          int? CntReport { get; set; }
          decimal? PaidAmount { get; set; }
+         decimal? PrepayAmount { get; set; }
 }
 public interface IRegisterStatus
     {    int CodeI { get; set; }

@@ -9,7 +9,11 @@ namespace IpsCommonTypes.SQLViews
         public int Turnid { get; set; }
         public DateTime Datework { get; set; }
         public int Kindcode { get; set; }
+
+        [Column(TypeName = "Money")]
         public decimal Amount { get; set; }
+
+        [Column(TypeName = "decimal(5,2)")]
         public decimal Rate { get; set; }
     }
 }
