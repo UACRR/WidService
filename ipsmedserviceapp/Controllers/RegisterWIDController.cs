@@ -88,17 +88,17 @@ namespace ipsmedserviceapp.Controllers
 
                         if (!string.IsNullOrEmpty(searchObjectRightQuery.ObjectName))
                         {
-                            conditionsDictionary.Add(new []{ "t1.AltTtl"} , searchObjectRightQuery.ObjectName);
+                            conditionsDictionary.Add(new[] { "t1.AltTtl" }, searchObjectRightQuery.ObjectName.Replace("\"", "\"\""));
                         }
 
                         if (!string.IsNullOrEmpty(searchObjectRightQuery.Performer))
                         {
-                            conditionsDictionary.Add(new[] { "t2.LstNa", "t2.FstNa" }, searchObjectRightQuery.Performer);
+                            conditionsDictionary.Add(new[] { "t2.LstNa", "t2.FstNa" }, searchObjectRightQuery.Performer.Replace("\"", "\"\""));
                         }
 
                         if (!string.IsNullOrEmpty(searchObjectRightQuery.Author))
                         {
-                            conditionsDictionary.Add(new []{ "t3.lstName", "t3.fstName" }, searchObjectRightQuery.Author);
+                            conditionsDictionary.Add(new []{ "t3.lstName", "t3.fstName" }, searchObjectRightQuery.Author.Replace("\"", "\"\""));
                         }
 
                         queryWID = ApplySqlWhereContainsCondition(queryWID, conditionsDictionary);

@@ -207,7 +207,16 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("vCustomers")]
         public async Task<IActionResult> GetVCustomers()
         {
-            string query = @"select custId, name, INNOKPO, IPI, ankMy from vCustomer where isClient = 1 and custid in (select custid from LicenseAgreement where licstatus between 1 and 3)";
+            string query = @"select distinct 
+                                   t0.custId
+                             	 , t0.name
+                             	 , t0.fullName
+                             	 , t0.INNOKPO
+                             	 , t0.IPI
+                             	 , t0.ankMy 
+                             from vCustomer t0
+                             join LicenseAgreement t1 on t1.custId = t0.custId
+                             where t0.isClient = 1 and (t1.licstatus between 1 and 3)";
             try
             {
                 var list = await _dbContext.vCustomer.FromSql(query).AsNoTracking().ToListAsync();
