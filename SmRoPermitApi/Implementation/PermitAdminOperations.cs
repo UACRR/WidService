@@ -521,17 +521,14 @@ namespace SmartRoyaltyPermitApi
                 Result = RspLogin.LoginResult.Failed
             };
             RunSqlOperation(cmd => {
-                cmd.CommandText = @"
-                    select codeI, isTempPassword, isWindowsAuth
-                    from PermitUser
-                    where login = @login
-                        and isLock = 0
-               ";
-                cmd.Parameters.AddWithValue("@login", login);
+                cmd.CommandText = "select codeI, isTempPassword, isWindowsAuth from PermitUser where login = @login and isLock = 0 and passwordHash = hashbytes('SHA2_512', convert(varchar(64), @password))";
+                cmd.Parameters.Clear();
+
+                cmd.Parameters.Add(new SqlParameter("@login", login));
                 if (!string.IsNullOrEmpty(password))
                 {
-                    cmd.CommandText += "and passwordHash = hashbytes('SHA2_512', @password)";
-                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.Add(new SqlParameter("@password", password));
+                    cmd.CommandTimeout = 600;
                 }
                 using (var r = cmd.ExecuteReader())
                 {
