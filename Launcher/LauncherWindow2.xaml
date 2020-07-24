@@ -24,6 +24,22 @@
             <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
         </Style>
 
+
+        <Style x:Key="resetStyle" TargetType="Button">
+            <Setter  Property="Margin" Value="0 6 0 0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Image Width="17" 
+                                   Height="17"  Source="Images/close.png"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <!--RED BTN________________________________________________________________________-->
 
         <Style TargetType="{x:Type t:RadButton}" x:Key="redBtnLauncher">
@@ -1068,6 +1084,7 @@
                                         Width="24" 
                                         Height="24" 
                                         VerticalAlignment="Top" 
+                                        Style="{DynamicResource resetStyle}" 
                                         Command="{Binding HideLoginWindowCommand}"
                                         HorizontalAlignment="Right">
                                     <Image Source="Images/close.png"/>
