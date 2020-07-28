@@ -174,7 +174,7 @@ namespace ipsmedserviceapp.Controllers
                             Status = copyRight.Status,
                             LBasis = parameters.LegalBasis,
 
-                            CreateDate = DateTime.Today,
+                            CreateDate = DateTime.Now,
                             ModifyLogin = parameters.UserName,
                         };
 
@@ -195,7 +195,7 @@ namespace ipsmedserviceapp.Controllers
                             {
                                 CustId = rightholder.CustId,
                                 ObjId = obj.ObjId,
-                                AuthorName = customer.name,
+                                AuthorName = customer.Name,
                                 FolkType = 1,
                                 RoleCode = 8,
                             });
@@ -222,7 +222,7 @@ namespace ipsmedserviceapp.Controllers
                             Status = copyRight.Status,
                             LBasis = parameters.LegalBasis,
 
-                            CreateDate = DateTime.Today,
+                            CreateDate = DateTime.Now,
                             ModifyLogin = parameters.UserName,
                         };
 
@@ -256,7 +256,7 @@ namespace ipsmedserviceapp.Controllers
                             Status = copyRight.Status,
                             LBasis = parameters.LegalBasis,
 
-                            CreateDate = DateTime.Today,
+                            CreateDate = DateTime.Now,
                             ModifyLogin = parameters.UserName,
                             LBasisComment = "returning copyright",
                         };
@@ -275,7 +275,7 @@ namespace ipsmedserviceapp.Controllers
                     }
 
                     copyRight.EndDate = parameters.BeginDate.AddDays(-1);
-                    copyRight.ModifyDate = DateTime.Today;
+                    copyRight.ModifyDate = DateTime.Now;
                     copyRight.ModifyLogin = parameters.UserName;
                 }
 
@@ -364,7 +364,7 @@ namespace ipsmedserviceapp.Controllers
                             Status = copyRight.Status,
                             LBasis = parameters.LegalBasis,
 
-                            CreateDate = DateTime.Today,
+                            CreateDate = DateTime.Now,
                             ModifyLogin = parameters.UserName,
                         };
 
@@ -385,7 +385,7 @@ namespace ipsmedserviceapp.Controllers
                             {
                                 CustId = rightholder.CustId,
                                 ObjId = obj.ObjId,
-                                AuthorName = customer.name,
+                                AuthorName = customer.Name,
                                 FolkType = 1,
                                 RoleCode = 8,
                             });
@@ -393,7 +393,7 @@ namespace ipsmedserviceapp.Controllers
                     }
 
                     copyRight.EndDate = parameters.BeginDate.AddDays(-1);
-                    copyRight.ModifyDate = DateTime.Today;
+                    copyRight.ModifyDate = DateTime.Now;
                     copyRight.ModifyLogin = parameters.UserName;
                 }
 

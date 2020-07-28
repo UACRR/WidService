@@ -1,5 +1,6 @@
 ﻿using IpsViewComponentLibrary.Common.Editors;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -8,6 +9,8 @@ namespace IpsViewComponentLibrary.Common.Form
     public class IpsForm : RadForm
     {
         public event EventHandler ReadOnlyChanged;
+
+        public List<Control> NoChangeReadOnlyControls { get; } = new List<Control>();
 
         private bool _readOnly = false;
         public bool ReadOnly
@@ -32,6 +35,9 @@ namespace IpsViewComponentLibrary.Common.Form
         {
             foreach (Control c in controlCollection)
             {
+                if (NoChangeReadOnlyControls.Contains(c))
+                    continue;
+
                 if (c is IpsDropDownList ddl)
                 {
                     ddl.ReadOnly = _readOnly;

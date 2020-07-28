@@ -67,7 +67,7 @@ namespace InvoicingLib
             {
                 _properties.Add((string)row[1], row[0]);
                 _names.Add((int)row[0], (string)row[2]);
-                _values.Add((string)row[2], (int)row[0]);
+                _values.Add((string)row[1], (int)row[0]);
                 _properties.Add($"{(string)row[1]}_Name", row[2]);
                 if(row.ItemArray.Length > 3)
                     _properties.Add($"{(string)row[1]}_NameGroup", row[3]);
@@ -83,6 +83,8 @@ namespace InvoicingLib
 
         public int Value(string name)
         {
+            if (!_values.ContainsKey(name))
+                throw new KeyNotFoundException($"System.Collections.Generic.KeyNotFoundException:: The given key was not present in the dictionary. Key: {name}.");
             return _values[name];
         }
 

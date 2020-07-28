@@ -105,9 +105,8 @@ namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model
             }
 
             var summ = Rightholders.Sum(rec => rec.RightholderRate);
-            bool b =  summ == RateRh;
-            if (!b)
-                ;
+            if (summ != RateRh)
+                throw new ArithmeticException();
         }
     }
 }

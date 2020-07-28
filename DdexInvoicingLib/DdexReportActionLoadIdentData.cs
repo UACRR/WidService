@@ -349,13 +349,12 @@ namespace InvoicingLib
                 if (totalRevSharePayable > totalPSMPayable)
                 {
                     royalty = block.suRecords.Sum(x =>
-                        blendedRevshareRate * double.Parse(x.Usages) * constantGrossRevenueValue
-                );
+                        blendedRevshareRate * double.Parse(x.Usages, CultureInfo.InvariantCulture) * constantGrossRevenueValue);
                 }
                 else
                 {
                     royalty = block.suRecords.Sum(x =>
-                        constantPSMRoyaltyValue * double.Parse(x.Usages));
+                        constantPSMRoyaltyValue * double.Parse(x.Usages, CultureInfo.InvariantCulture));
                 }
             }
             return royalty;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IPSModulesLibrary.Test"
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
-        xmlns:control="clr-namespace:IPSModulesLibrary.FinishingWorks;assembly=IPSModulesLibrary"
+        xmlns:control="clr-namespace:IPSModulesLibrary.RoyaltyCorrection;assembly=IPSModulesLibrary"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
@@ -59,7 +59,8 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <control:FinishingWorksControl/>
+        <control:RoyaltyCorrectionControl/>
+
         <!--<StackPanel>
             <t:RadDropDownButton Width="200" Height="75" Content="Button"/>
             <Button Width="200" Height="75" Content="Button2"/>

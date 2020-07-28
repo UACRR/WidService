@@ -34,6 +34,9 @@ namespace ipsmedserviceapp.Model
         public int? LicId { get; set; }
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
+        public string ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
+        public decimal? PrepayAmount { get; set; }
 
         public virtual AlgorithmType Algorithm { get; set; }
         public virtual Client Cust { get; set; }

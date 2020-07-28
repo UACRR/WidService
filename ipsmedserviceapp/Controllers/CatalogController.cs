@@ -31,6 +31,11 @@ namespace ipsmedserviceapp.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Отримати список каталогів
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         [HttpGet("catalogfilelist/{custId}")]
         public async Task<IActionResult> GetCatalogFilesList(int custId)
         {
@@ -141,7 +146,7 @@ namespace ipsmedserviceapp.Controllers
                     PubCatalogItem = new List<PubCatalogItem>()
                 };
                 target.SetFields(source.ObjectData, excludedFields);
-                target.CustName = vcustomer?.name;
+                target.CustName = vcustomer?.Name;
                 target.CreateDate = DateTime.Now;
 
                 if (rightholder.RHolderType == 3)

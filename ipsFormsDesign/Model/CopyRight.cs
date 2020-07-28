@@ -11,6 +11,7 @@ namespace ipsFormsDesign.Model
             CopyRightHistoryChild = new ObservableListSource<CopyRightHistory>();
             CopyRightHistoryParent = new ObservableListSource<CopyRightHistory>();
             Distribution = new ObservableListSource<Distribution>();
+            LicAuthorBr = new ObservableListSource<LicAuthorBr>();
             RhcatalogItem = new ObservableListSource<RhcatalogItem>();
         }
 
@@ -34,16 +35,17 @@ namespace ipsFormsDesign.Model
         public int? LoadId { get; set; }
         public string SourceName { get; set; }
         public int? LoadSeqNr { get; set; }
+        public string CreateLogin { get; set; }
 
         public virtual RightHolder Cust { get; set; }
         public virtual ObjectRight Obj { get; set; }
         public virtual CreativeRoleType RoleCodeNavigation { get; set; }
         public virtual CrightStatus StatusNavigation { get; set; }
-        public virtual LicAuthorBr LicAuthorBr { get; set; }
         public virtual WorkRh WorkRh { get; set; }
         public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryChild { get; set; }
         public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryParent { get; set; }
         public virtual ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
         public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }

@@ -40,7 +40,6 @@ namespace ipsmedserviceapp.Model
         public virtual AgreementStatus LicStatusNavigation { get; set; }
         [JsonIgnore]
         public virtual LicenseType LicTypeNavigation { get; set; }
-        public virtual LicenseBigR LicenseBigR { get; set; }
         [JsonIgnore]
         public virtual ICollection<BrRegItem> BrRegItem { get; set; }
         [JsonIgnore]

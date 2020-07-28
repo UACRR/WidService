@@ -50,13 +50,19 @@ namespace ipsFormsDesign.Services
 
         ~WordEngine()
         {
+
+
             ClearFiles();
-            if (app != null)
+
+            lock (new object())
             {
-                app.Quit();
-                Marshal.ReleaseComObject(app);
-                app = null;
-                appVersion = 0;
+                if (app != null)
+                {
+                    app.Quit();
+                    Marshal.ReleaseComObject(app);
+                    app = null;
+                    appVersion = 0;
+                }
             }
         }
 
@@ -1624,12 +1630,17 @@ namespace ipsFormsDesign.Services
             numberVAT = anketaCompany?.NumberVat;
             typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
 
-            LicenseBigR licenseBigR = licA?.LicenseBigR;
+            LicenseBigR licenseBigR = licA?.LicenseAgrParam.Single(rec => rec.LicVersion == licA.LicVersion).LicenseBigR;
             var creativeRoleType = _dic.creativeRoleType;
             var authors = licenseBigR?.Obj.Authors?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
             var copyright = licenseBigR?.Obj.CopyRight?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
             //            var licauthorbr = licenseBigR?.Obj.CopyRight.Where(rec=>rec.LicAuthorBr != null ).Select(rec => rec.LicAuthorBr   ).ToList();
-            var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
+            //var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
+            
+            var licauthorbr = new List<LicAuthorBr>();
+            foreach (var copyRight in licenseBigR?.Obj.CopyRight) 
+                licauthorbr.AddRange(copyRight.LicAuthorBr);
+            
             string ObjName = licenseBigR?.Obj?.Name;
             LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
                          (rec.LicVersion == licA.LicVersion)).Single();

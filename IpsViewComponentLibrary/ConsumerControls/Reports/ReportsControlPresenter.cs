@@ -71,8 +71,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
         private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)
         {
-            if( e == null ) return;
-            _service.SetPeriodState((PeriodState) e.Status, e);
+            if (e == null)
+                return;
+
+            _service.SetPeriodState(e);
         }
 
         private void _control_SetRegisterStateExecuted(object sender, List<Register> e)

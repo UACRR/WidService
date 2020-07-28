@@ -14,7 +14,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class DistributionForm : RadForm
     {
-        private Calcularor _calculator;
         private IAgreementData _licenseAgr;
         private List<GridPeriods> _source;
         private MoneyReceived _pay;
@@ -31,7 +30,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _pay = undistrinbMoney;
 
             bindingSource.DataSource = undistrinbMoney;
-            bindingSourceAgreement.DataSource = licenseAgr;
+            bsAgreement.DataSource = licenseAgr;
 
             var agrLicenseType = IpsGlobal.AnketaDictionaties.agrLicenseType.First(rec => rec.CodeI == licenseAgr.Lic.LicCode);
 
@@ -56,8 +55,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             gvDistributionPayment.DataSource = _source;
             
-            _calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
-            _calculator.Calculate();
+            //_calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
+            Calcularor.SetData(undistrinbMoney.Amount - undistrinbMoney.DestribAmount, _source);
+            Calcularor.Calculate();
         }
 
         /// <summary>
@@ -140,18 +140,18 @@ namespace IpsViewComponentLibrary.ConsumerForms
             }
 
             period.AutoSet = false;
-            _calculator.Calculate();
+            Calcularor.Calculate();
 
             gvDistributionPayment.MasterTemplate.Refresh();
         }
     }
 
-    class Calcularor
+    static class Calcularor
     {
-        private List<GridPeriods> List = new List<GridPeriods>();
-        private readonly decimal Rest = 0;
+        private static readonly List<GridPeriods> List = new List<GridPeriods>();
+        private static decimal Rest;
 
-        public Calcularor(decimal rest, List<GridPeriods> periods)
+        public static void SetData(decimal rest, IEnumerable<GridPeriods> periods)
         {
             Rest = rest;
             List.Clear();
@@ -160,7 +160,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             Calculate();
         }
 
-        public void Calculate()
+        public static void Calculate()
         {
             decimal manualRest = List.Where(rec => rec.AutoSet == false).Sum(rec => rec.DistAmount);
             decimal freeRest = Rest - manualRest;

@@ -252,7 +252,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
             this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1080, 278);
             this.ctrlAuthorRightholderList.TabIndex = 0;
-            this.ctrlAuthorRightholderList.CurrentAuthorRightholderChanged += new System.EventHandler(this.CtrlAuthorRightholderList_CurrentAuthorRightholderChanged);
             // 
             // pvConditions
             // 
@@ -972,7 +971,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlGenreType.TabIndex = 4;
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
-            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.GenrePersent_UpdateNeed);
             // 
             // bsDictGenreType
             // 

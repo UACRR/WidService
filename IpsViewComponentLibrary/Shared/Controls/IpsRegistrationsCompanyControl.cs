@@ -19,7 +19,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         public IpsRegistrationsCompanyControl()
         {
             InitializeComponent();
-            dtRegisterDate.SetUserCalendarSettingsm();
+            dtRegisterDate.SetUserCalendarSettings();
             txtOkpo.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
             txtNumberVat.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
 

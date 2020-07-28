@@ -78,6 +78,7 @@ namespace SmartRoyaltyPermitApi.Controllers
                 var res = PermitAdminOperations.Login(login, password);
                 rsp.UserCodeI = res.UserCodeI;
                 rsp.Result = res.Result;
+                rsp.Name = res.Name;
             });
         }
 

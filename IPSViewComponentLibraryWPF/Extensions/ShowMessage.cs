@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Forms;
+using Telerik.WinControls;
+using MessageBox = System.Windows.MessageBox;
 
 namespace IPSViewComponentLibraryWPF.IPSExtensions
 {
@@ -36,6 +40,11 @@ namespace IPSViewComponentLibraryWPF.IPSExtensions
         public static void ShowError(string msg)
         {
             MessageBox.Show(msg, ErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public static void ShowError(Exception e)
+        {
+            RadMessageBox.Show(null, e.Message, "Server Exception", MessageBoxButtons.OK, RadMessageIcon.Error, MessageBoxDefaultButton.Button1, RightToLeft.Inherit, e.ToString());
         }
 
         /// <summary>

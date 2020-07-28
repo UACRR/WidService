@@ -40,6 +40,7 @@ namespace ipsFormsDesign.Model
         public int? ActCode { get; set; }
         public string InnerCode { get; set; }
         public string SourceName { get; set; }
+        public string CreateLogin { get; set; }
 
         public virtual ObjAct ActCodeNavigation { get; set; }
         public virtual Category CategoryCodeNavigation { get; set; }

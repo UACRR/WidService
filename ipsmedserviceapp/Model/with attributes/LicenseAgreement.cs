@@ -34,7 +34,6 @@ namespace ipsmedserviceapp.Model
         public virtual LicenseMethodType LicMethodNavigation { get; set; }
         public virtual AgreementStatus LicStatusNavigation { get; set; }
         public virtual LicenseType LicTypeNavigation { get; set; }
-        public virtual LicenseBigR LicenseBigR { get; set; }
         public virtual ICollection<BrRegItem> BrRegItem { get; set; }
         public virtual ICollection<Fixation> Fixation { get; set; }
         public virtual ICollection<Invoice> Invoice { get; set; }

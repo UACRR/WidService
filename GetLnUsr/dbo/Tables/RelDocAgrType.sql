@@ -1,8 +1,0 @@
-﻿CREATE TABLE [dbo].[RelDocAgrType] (
-    [agrType] INT NOT NULL,
-    [docType] INT NOT NULL,
-    CONSTRAINT [PK_RELDOCAGRTYPE] PRIMARY KEY CLUSTERED ([agrType] ASC, [docType] ASC),
-    CONSTRAINT [FK_RELDOCAG_REFERENCE_AGREEMEN] FOREIGN KEY ([agrType]) REFERENCES [dbo].[AgreementType] ([codeI]),
-    CONSTRAINT [FK_RELDOCAG_REFERENCE_DOCUMENT] FOREIGN KEY ([docType]) REFERENCES [dbo].[DocumentType] ([codeI])
-);
-

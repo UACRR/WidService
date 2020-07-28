@@ -13,6 +13,7 @@ namespace ipsFormsDesign.Model
             Authors = new ObservableListSource<Authors>();
             CatalogFile = new ObservableListSource<CatalogFile>();
             CopyRight = new ObservableListSource<CopyRight>();
+            LicAuthorBr = new ObservableListSource<LicAuthorBr>();
             PubCatalogItem = new ObservableListSource<PubCatalogItem>();
             RegisterCount = new ObservableListSource<RegisterCount>();
             RelSubPublishCustIdPubNavigation = new ObservableListSource<RelSubPublish>();
@@ -40,6 +41,7 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<Authors> Authors { get; set; }
         public virtual ObservableListSource<CatalogFile> CatalogFile { get; set; }
         public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
+        public virtual ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
         public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
         public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
         public virtual ObservableListSource<RelSubPublish> RelSubPublishCustIdPubNavigation { get; set; }

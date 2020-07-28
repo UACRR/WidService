@@ -189,8 +189,7 @@ namespace ipsFormsDesign.Interfaces
         public int? ObjStatus { get; set; }
         public int? GenreType { get; set; }
         public int? PerformNumb { get; set; }
-        public decimal? PrepayPaush { get; set; }
-        public decimal? PrepayAvans { get; set; }
+
         public decimal? PrepayRest { get; set; }
         public decimal? TicketPriceNC { get; set; }
         public decimal? TicketPriceUSD { get; set; }
@@ -209,7 +208,11 @@ namespace ipsFormsDesign.Interfaces
         public string WhereTour { get; set; }
         public string ToProlong { get; set; }
         public string Comment { get; set; }
-        public string R030 { get; set; }
+
+        public string R030Paush { get; set; }
+        public string R030Avans { get; set; }
+        public decimal? PrepayPaush { get; set; }
+        public decimal? PrepayAvans { get; set; }
     }
 
     /// <summary>
@@ -339,6 +342,7 @@ namespace ipsFormsDesign.Interfaces
         public decimal Distribamount { get; set; }
         public decimal? Borg { get; set; }
         public decimal? PrepaySum { get; set; }
+        public decimal? PayAmountCL { get; set; }
         public string PeriodName { get; set; }
         public string StatusName { get; set; }
     }
@@ -348,25 +352,27 @@ namespace ipsFormsDesign.Interfaces
     /// </summary>
     public class RatedListSpectacleBigRightView
     {
+        public int CustId { get; set; }
         public int RmId { get; set; }
         public int RegId { get; set; }
         public int? ObjId { get; set; }
+        public string ItemName { get; set; }
         public int? ActCode { get; set; }
-        public int? CountUse { get; set; }
-        public int CustId { get; set; }
+        //public int? CountUse { get; set; }
         public decimal? RegAmount { get; set; }
         public decimal? AuthAmount { get; set; }
-        public decimal PrepaySumAuthor { get; set; }
-        public decimal? AvanseRest { get; set; }
-        public decimal AvanseUsed { get; set; }
-        public decimal? AuthRate { get; set; }
-        public decimal? RoleRate { get; set; }
-        public decimal? AmountDistributed { get; set; }
-        public string ItemName { get; set; }
-        public string RoleName { get; set; }
-        public string NameRh { get; set; }
-        public decimal? MusicRate { get; set; }
-        public decimal? MusicAmount { get; set; }
+        public decimal? PrepayAmount { get; set; }
+        public decimal? PayAmountCL { get; set; }
+
+        //public decimal? AvanseRest { get; set; }
+        //public decimal AvanseUsed { get; set; }
+        //public decimal? AuthRate { get; set; }
+        //public decimal? RoleRate { get; set; }
+        //public decimal? AmountDistributed { get; set; }
+        //public string RoleName { get; set; }
+        //public string NameRh { get; set; }
+        //public decimal? MusicRate { get; set; }
+        //public decimal? MusicAmount { get; set; }
     }
 
     /// <summary>
@@ -374,13 +380,13 @@ namespace ipsFormsDesign.Interfaces
     /// </summary>
     public class RatedListMusicDesignBigRightView
     {
-        public TimeSpan? Duration { get; set; }
         public int RmId { get; set; }
         public int RegId { get; set; }
         public int? ObjId { get; set; }
         public string ObjName { get; set; }
         public string NameMusician { get; set; }
         public string NameSinger { get; set; }
+        public long? Duration { get; set; }
     }
 
     public class PartnerView

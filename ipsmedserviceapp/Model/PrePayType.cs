@@ -8,6 +8,7 @@ namespace ipsmedserviceapp.Model
         public PrePayType()
         {
             LicAuthorBr = new HashSet<LicAuthorBr>();
+            MoneyPrepayLink = new HashSet<MoneyPrepayLink>();
             PrePayTypeTr = new HashSet<PrePayTypeTr>();
         }
 
@@ -15,6 +16,7 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
 
         public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        public virtual ICollection<MoneyPrepayLink> MoneyPrepayLink { get; set; }
         public virtual ICollection<PrePayTypeTr> PrePayTypeTr { get; set; }
     }
 }

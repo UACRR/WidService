@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public LicenseBigR()
         {
+            LicAuthorBr = new ObservableListSource<LicAuthorBr>();
             MusicalDesign = new ObservableListSource<MusicalDesign>();
         }
 
@@ -26,11 +27,13 @@ namespace ipsFormsDesign.Model
         public int? PerformType { get; set; }
         public short? LicTerm { get; set; }
         public decimal? RateMusic { get; set; }
+        public int LicVersion { get; set; }
 
         public virtual Language LangCodeNavigation { get; set; }
-        public virtual LicenseAgreement Lic { get; set; }
+        public virtual LicenseAgrParam Lic { get; set; }
         public virtual ObjectRight Obj { get; set; }
         public virtual PerformType PerformTypeNavigation { get; set; }
+        public virtual ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
         public virtual ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
     }
 }

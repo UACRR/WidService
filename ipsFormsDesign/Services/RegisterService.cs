@@ -170,7 +170,7 @@ namespace ipsFormsDesign.Services
         public async Task<ResponseOfRequest> ExecuteSyncProcedure(int regId)
         {
             string url = $"register/ccid/sync/{regId}";
-            var result = await _webApi.SendGetRequestAsync<ResponseOfRequest>(url);
+            var result = await _webApi.GetRequestAsync<ResponseOfRequest>(url);
             return result;
         }
 
@@ -182,7 +182,7 @@ namespace ipsFormsDesign.Services
         public async Task<ResponseOfRequest> ExecuteDistributionProcedure(int regId)
         {
             string url = $"register/ccid/distribution/{regId}";
-            var result = await _webApi.SendGetRequestAsync<ResponseOfRequest>(url);
+            var result = await _webApi.GetRequestAsync<ResponseOfRequest>(url);
             return result;
         }
 
@@ -194,7 +194,7 @@ namespace ipsFormsDesign.Services
         public async Task<ResponseOfRequest> ExecutePaymentProcedure(int regId)
         {
             string url = $"register/ccid/payment/{regId}";
-            var result = await _webApi.SendGetRequestAsync<ResponseOfRequest>(url);
+            var result = await _webApi.GetRequestAsync<ResponseOfRequest>(url);
             return result;
         }
     }

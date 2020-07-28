@@ -58,6 +58,7 @@ namespace ipsFormsDesign.Interfaces
         public string Series { get => _licType.Series; }
         public LicenseAgreement Lic { get => _license; }
     }
+
     internal class AgrementDataSR : baseAgreement, IAgreementData
     {
         LicenseAgrParam _param;
@@ -106,7 +107,4 @@ namespace ipsFormsDesign.Interfaces
         public int PeriodPayment { get => _period.CodeI; }
         public string PeriodPaymentName { get => _period.Name; }
     }
-
-
-
 }

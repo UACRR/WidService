@@ -48,13 +48,13 @@ namespace InvoicingLib
 
         public override void ProcessBlock(DdexReportBlock block)
         {
-           try
+            try
             {
                 foreach (var suRecord in block.suRecords)
                 {
-                    foreach(var liRecord in suRecord.liRecords)
+                    foreach (var liRecord in suRecord.liRecords)
                     {
-                        if(liRecord.RightsController.Equals("UACRR_CS", StringComparison.OrdinalIgnoreCase))
+                        if (liRecord.RightsController.Equals("UACRR_CS", StringComparison.OrdinalIgnoreCase))
                         {
                             List<object> data = new List<object>();
                             data.Add(fileId);

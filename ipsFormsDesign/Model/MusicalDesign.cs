@@ -16,6 +16,7 @@ namespace ipsFormsDesign.Model
         public string AuthorText { get; set; }
         public TimeSpan? Duration { get; set; }
         public int? NumbPerfom { get; set; }
+        public int LicVersion { get; set; }
 
         public virtual LicenseBigR Lic { get; set; }
         public virtual ObjectRight Obj { get; set; }

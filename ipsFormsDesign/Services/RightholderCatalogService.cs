@@ -5,6 +5,7 @@ using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
 using System.Threading.Tasks;
 using ipsFormsDesign.Services.Interfaces;
+using System;
 
 namespace ipsFormsDesign.Services
 {
@@ -100,7 +101,8 @@ namespace ipsFormsDesign.Services
         public ExecSqlResponce DeleteCatalogFile(int custId, int fileId)
         {
             string url = $"{Prefix}/delete/{custId}/{fileId}";
-            var result = _apiConnector.DeleteItemWithResponce(url);
+            //var result = _apiConnector.DeleteItemWithResponce(url);
+            var result = _apiConnector.SendDeleteRequestWithResultAsync<ExecSqlResponce>(url).GetAwaiter().GetResult();
             return result;
         }
 
@@ -135,11 +137,12 @@ namespace ipsFormsDesign.Services
 
         public void ShowErrors()
         {
-            foreach (var error in _apiConnector.ResponseErrors)
-            {
-                string str = $"MethodType:{error.MethodType}, StatusCode: {error.StatusCode}, Message: {error.ReasonPhrase}";
-                MessageBox.Show(str, "request error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            throw new NotImplementedException();
+            //foreach (var error in _apiConnector.ResponseErrors)
+            //{
+            //    string str = $"MethodType:{error.MethodType}, StatusCode: {error.StatusCode}, Message: {error.ReasonPhrase}";
+            //    MessageBox.Show(str, "request error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }

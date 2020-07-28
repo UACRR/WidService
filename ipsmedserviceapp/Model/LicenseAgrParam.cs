@@ -33,6 +33,7 @@ namespace ipsmedserviceapp.Model
         public virtual LicenseAgreement Lic { get; set; }
         public virtual AgreementStatus LicStatusNavigation { get; set; }
         public virtual Period PeriodCodeNavigation { get; set; }
+        public virtual LicenseBigR LicenseBigR { get; set; }
         public virtual ICollection<License> License { get; set; }
     }
 }

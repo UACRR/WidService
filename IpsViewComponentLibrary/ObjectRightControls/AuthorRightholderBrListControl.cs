@@ -66,7 +66,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private string _roleRateErrorText = "";
         public string RoleRateErrorText
         {
-            get { return _roleRateErrorText; }
+            get => _roleRateErrorText;
             set
             {
                 _roleRateErrorText = value;
@@ -77,7 +77,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private ObjectAuthorRightholderBrViewModel _authorRightholder;
         public ObjectAuthorRightholderBrViewModel SelectedAuthorRightholder
         {
-            get { return objectAuthorRightholderBrViewModelBindingSource.Current as ObjectAuthorRightholderBrViewModel; }
+            get => objectAuthorRightholderBrViewModelBindingSource.Current as ObjectAuthorRightholderBrViewModel;
             set
             {
                 _authorRightholder = value;
@@ -147,7 +147,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gvAuthorRightholderList.SetColumnVisibility("RoleRate", visibility);
             gvAuthorRightholderList.SetColumnVisibility("PrepayType", visibility);
             gvAuthorRightholderList.SetColumnVisibility("Currency", visibility);
-            gvAuthorRightholderList.SetColumnVisibility("PrepaySum", visibility);
+            gvAuthorRightholderList.SetColumnVisibility("PrepaySumAuthor", visibility);
             gvAuthorRightholderList.SetColumnVisibility("WorkTypeRh", visibility);
             gvAuthorRightholderList.SetColumnVisibility("WorkTypeCl", visibility);
         }
@@ -156,13 +156,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             var columnName = gvAuthorRightholderList.CurrentColumn.Name;
 
-            var isRightholder = (gvAuthorRightholderList.CurrentRow.DataBoundItem as ObjectAuthorRightholderBrViewModel).IsRightholder;
+            var isRightholder = ((ObjectAuthorRightholderBrViewModel) gvAuthorRightholderList.CurrentRow.DataBoundItem).IsRightholder;
 
             if (isRightholder && columnName == "AuthorName")
             {
                 // set ExtendedRadBrowseEditorElement instead of RadTextBoxEditorElement
                 var browseEditor = new ExtendedBrowseEditor();
-                (browseEditor.EditorElement as ExtendedRadBrowseEditorElement).ValueSelection += AuthorName_ValueSelection;
+                ((ExtendedRadBrowseEditorElement) browseEditor.EditorElement).ValueSelection += AuthorName_ValueSelection;
                 e.Editor = browseEditor;
             }
         }
@@ -235,12 +235,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void GvAuthorRightholderList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
-            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         private void GvAuthorRightholderList_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
-            var readOnlyColumns = "RoleRate, PrepayType, Currency, PrepaySum, WorkTypeRh, WorkTypeCl";
+            var readOnlyColumns = "RoleRate, PrepayType, Currency, PrepaySumAuthor, WorkTypeRh, WorkTypeCl";
 
             if (!SelectedAuthorRightholder.IsRightholder && readOnlyColumns.Contains(e.Column.Name))
                 e.Cancel = true;
@@ -248,7 +248,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void GvAuthorRightholderList_CellFormatting(object sender, CellFormattingEventArgs e)
         {
-            IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
+            Utilities.GridViewHelper.DisplayErrors(sender, e);
         }
 
         private void GvAuthorRightholderList_CellValueChanged(object sender, GridViewCellEventArgs e)
@@ -287,7 +287,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public decimal GetAuthorRates()
         {
-            var list = (gvAuthorRightholderList.DataSource as BindingSource).List as IEnumerable<ObjectAuthorRightholderBrViewModel>;
+            var list = ((BindingSource) gvAuthorRightholderList.DataSource).List as IEnumerable<ObjectAuthorRightholderBrViewModel>;
             decimal retRate = list?.Sum(rec => rec.CopyRight?.RoleRate ?? 0) ?? 0;
             return retRate;
         }

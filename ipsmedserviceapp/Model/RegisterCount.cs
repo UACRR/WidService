@@ -22,7 +22,6 @@ namespace ipsmedserviceapp.Model
         public int? DistId { get; set; }
 
         public virtual CopyrightKind CRkindCodeNavigation { get; set; }
-        public virtual Community CmCust { get; set; }
         public virtual RightHolder Cust { get; set; }
         public virtual DistributionItem DistI { get; set; }
         public virtual RegisterItem RegI { get; set; }

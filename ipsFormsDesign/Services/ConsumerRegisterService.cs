@@ -188,7 +188,7 @@ namespace ipsFormsDesign.Services
         public async Task<RegisterCCIDCurrencyData> GetCCIDRegisterCurrencyData(Register register)
         {
             string url = $"{Prefix}/register/ccid/currency/data/{register.RegId}";
-            var result = await _apiConnector.SendGetRequestAsync<RegisterCCIDCurrencyData>(url);
+            var result = await _apiConnector.GetRequestAsync<RegisterCCIDCurrencyData>(url);
             return result;
         }
 

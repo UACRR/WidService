@@ -1,8 +1,0 @@
-﻿CREATE TABLE [dbo].[AgreementStatusTr] (
-    [codeI] INT           NOT NULL,
-    [lang]  CHAR (2)      NOT NULL,
-    [name]  VARCHAR (100) NOT NULL,
-    CONSTRAINT [PK_AGREEMENTSTATUSTR] PRIMARY KEY CLUSTERED ([codeI] ASC, [lang] ASC),
-    CONSTRAINT [FK_AGREEMENS_REF_AGREEMTR] FOREIGN KEY ([codeI]) REFERENCES [dbo].[AgreementStatus] ([codeI]) ON DELETE CASCADE ON UPDATE CASCADE
-);
-

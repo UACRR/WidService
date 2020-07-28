@@ -10,12 +10,12 @@ using Newtonsoft.Json;
 using System.Configuration;
 using System.IO;
 using System.Net;
-using IpsCommonTypes.Types;
-using System.Collections;
-using IpsCommonTypes.Enums;
-using IpsCommonTypes.Wrappers;
+//using IpsCommonTypes.Types;
+//using IpsCommonTypes.Enums;
+//using IpsCommonTypes.Wrappers;
 using System.Windows;
 using System.Threading;
+using System.Windows.Documents;
 
 namespace WebAPIConnector
 {
@@ -70,16 +70,36 @@ namespace WebAPIConnector
             return builder.ToString();
         }
 
-        #region * * * MAIN REQUEST METHODS * * *
+        #region * * * REQUEST METHODS * * *
 
         /// <summary>
-        /// Надіслати GET запит на сервер 
+        /// GET запит
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public async Task<T> SendGetRequestAsync<T>(string url)
+        public async Task<T> GetRequestAsync<T>(string url)
         {
+            var result = await client.GetAsync(url);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content != null ? result.Content.ReadAs<T>() : default(T);
+        }
+
+        /// <summary>
+        /// GET запит з хедером
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="header"></param>
+        /// <returns></returns>
+        public async Task<T> GetRequestAsync<T>(string url, KeyValuePair<string, string> header)
+        {
+            if (!client.DefaultRequestHeaders.Contains(header.Key))
+                client.DefaultRequestHeaders.Add(header.Key, header.Value);
+
             var result = await client.GetAsync(url);
 
             if (result != null && !result.IsSuccessStatusCode)
@@ -97,7 +117,6 @@ namespace WebAPIConnector
 
             return result?.Content?.ReadAsList<T>();
         }
-
 
         /// <summary>
         /// Надіслати POST запит на сервер з отриманням результату
@@ -135,13 +154,29 @@ namespace WebAPIConnector
         }
 
         /// <summary>
-        /// Надіслати PUT запит на сервер з отриманням результату
+        /// PUT запит на сервер з поверненням результату
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public async Task<TResult> SendPutRequestWithResultAsync<TResult>(string url) where TResult : class
+        {
+            var result = await client.PutDataAsync<TResult>(url, null).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
+        }
+
+        /// <summary>
+        /// PUT запит на сервер з поверненням результату
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public async Task<T> SendPutRequestWithResultAsync<T>(string url, T data = null) where T : class
+        public async Task<T> SendPutRequestWithResultAsync<T>(string url, T data)
         {
             var result = await client.PutDataAsync(url, data).ConfigureAwait(false);
 
@@ -152,7 +187,7 @@ namespace WebAPIConnector
         }
 
         /// <summary>
-        /// Надіслати PUT запит на сервер з отриманням результату
+        /// PUT запит на сервер з отриманням результату
         /// </summary>
         /// <typeparam name="TResult"></typeparam>
         /// <typeparam name="TData"></typeparam>
@@ -161,6 +196,48 @@ namespace WebAPIConnector
         /// <returns></returns>
         public async Task<TResult> SendPutRequestWithResultAsync<TResult, TData>(string url, TData data)
         {
+            var result = await client.PutDataAsync(url, data).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
+        }
+
+        /// <summary>
+        /// Надіслати PUT запит на сервер з токеном авторизації та поверненням результату
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="header"></param>
+        /// <returns></returns>
+        public async Task<TResult> SendPutRequestWithResultAsync<TResult>(string url, KeyValuePair<string, string> header) where TResult : class
+        {
+            if (!client.DefaultRequestHeaders.Contains(header.Key)) 
+                client.DefaultRequestHeaders.Add(header.Key, header.Value);
+
+            var result = await client.PutDataAsync<TResult>(url, null).ConfigureAwait(false);
+
+            if (result != null && !result.IsSuccessStatusCode)
+                LogError(result);
+
+            return result?.Content?.ReadAs<TResult>();
+        }
+
+        /// <summary>
+        /// Надіслати PUT запит на сервер з токеном авторизації та отриманням результату
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TData"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <param name="header"></param>
+        /// <returns></returns>
+        public async Task<TResult> SendPutRequestWithResultAsync<TResult, TData>(string url, TData data, KeyValuePair<string, string> header)
+        {
+            if (!client.DefaultRequestHeaders.Contains(header.Key))
+                client.DefaultRequestHeaders.Add(header.Key, header.Value);
+
             var result = await client.PutDataAsync(url, data).ConfigureAwait(false);
 
             if (result != null && !result.IsSuccessStatusCode)
@@ -697,25 +774,25 @@ namespace WebAPIConnector
         /// </summary>
         /// <param name="urlData"></param>
         /// <returns></returns>
-        public ExecSqlResponce DeleteItemWithResponce(string urlData)
-        {
-            var result = client.DeleteAsync(urlData).GetAwaiter().GetResult();
+        //public ExecSqlResponce DeleteItemWithResponce(string urlData)
+        //{
+        //    var result = client.DeleteAsync(urlData).GetAwaiter().GetResult();
 
-            try
-            {
-                var jobject = JObject.Parse(result.Content.ReadAsStringAsync().GetAwaiter().GetResult());
-                var obj = jobject.ToObject<ExecSqlResponce>();
-                return obj;
-            }
-            catch (Exception e)
-            {
-                return new ExecSqlResponce
-                {
-                    Message = e.Message,
-                    StatusCode = ExecSqlResponceStatus.Failed,
-                };
-            }
-        }
+        //    try
+        //    {
+        //        var jobject = JObject.Parse(result.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+        //        var obj = jobject.ToObject<ExecSqlResponce>();
+        //        return obj;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new ExecSqlResponce
+        //        {
+        //            Message = e.Message,
+        //            StatusCode = ExecSqlResponceStatus.Failed,
+        //        };
+        //    }
+        //}
 
         /// <summary>
         /// Збереження файлу в папці споживача
@@ -800,20 +877,21 @@ namespace WebAPIConnector
 
         private void LogError(HttpResponseMessage result)
         {
-            string url = $"errorhandler/error/apiconnector";
-            var item = new ResponseError
-            {
-                StatusCode = (int) result.StatusCode,
-                ReasonPhrase = result.ReasonPhrase,
-                MethodType = result.RequestMessage.Method.Method,
+            //string url = $"errorhandler/error/apiconnector";
+            //var item = new ResponseError
+            //{
+            //    StatusCode = (int) result.StatusCode,
+            //    ReasonPhrase = result.ReasonPhrase,
+            //    MethodType = result.RequestMessage.Method.Method,
                 
-            };
-            _responseErrors.Clear();
-            _responseErrors.Add(item);
-            //client.PostAsJson(url, item);
+            //};
+            //_responseErrors.Clear();
+            //_responseErrors.Add(item);
+            ////client.PostAsJson(url, item);
         }
 
-        private readonly List<ResponseError> _responseErrors = new List<ResponseError>();
-        public List<ResponseError> ResponseErrors => _responseErrors;
+        //private readonly List<ResponseError> _responseErrors = new List<ResponseError>();
+        //public List<ResponseError> ResponseErrors => _responseErrors;
+    
     }
 }

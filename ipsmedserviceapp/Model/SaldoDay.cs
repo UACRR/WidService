@@ -7,7 +7,7 @@ namespace ipsmedserviceapp.Model
     {
         public int AccId { get; set; }
         public DateTime DateBegin { get; set; }
-        public DateTime DateEnd { get; set; }
+        public DateTime? DateEnd { get; set; }
         public string R030 { get; set; }
         public decimal? Rest { get; set; }
         public decimal? RestCourt { get; set; }

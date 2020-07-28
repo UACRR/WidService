@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -47,7 +49,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             _service = ConsumerBigRightService.GetInstance();
             _partnerService = PartnerService.GetInstance();
 
-            new Calculation.CalculationInfoControlPresenter(ctrlCalculation, _service);
+            //new Calculation.CalculationInfoControlPresenter(ctrlCalculation, _service);
 
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
@@ -129,7 +131,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlReference.UpdateData += UpdateData;
             ctrlPayslips.UpdateData += UpdateData;
             ctrlPartner.UpdateData += UpdateData;
-            ctrlCalculation.UpdateData += UpdateData;
+            ctrlCalculationBR.UpdateData += UpdateData;
             ctrlPaysInfo.UpdateData += UpdateData;
             ctrlFiles.UpdateData += UpdateData;
         }
@@ -146,6 +148,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         {
             if (_customer == null)
                 return;
+
 
             int custId = _customer.CustId;
 
@@ -177,7 +180,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                     ctrlPayslips.SetAndUpdateData(_customer);
                     var custRl = _service.GetRatedListForCust(custId);
                     SetupRl(_customer, custRl);
-                    ctrlCalculation.Customer = _customer;
+                    ctrlCalculationBR.SetDataByCustId(_customer.CustId);
                     break;
 
                 case CabinetTabType.PaysInfo:
@@ -235,6 +238,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             UpdateAllViews(custId);
             _customer = _service.GetData(custId);
 
+            IpsGlobal.CurrentClient.CustId = _customer.CustId;
+            var agrId = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2)?.AgrId ?? default(int);
+            IpsGlobal.CurrentClient.AgrId = agrId;
+            IpsGlobal.CurrentClient.ClnBusinessPlaceCollection = _customer.Client.ClnBusinessPlace;
+
             ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
             ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
             ctrlGeneralAgreement.SetAndUpdateData(_customer);
@@ -242,7 +250,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlPayslips.SetAndUpdateData(_customer);
             var custRl = _service.GetRatedListForCust(custId);
             SetupRl(_customer, custRl);
-            ctrlCalculation.Customer = _customer;
+            ctrlCalculationBR.SetDataByCustId(_customer.CustId);
             ctrlPaysInfo.Customer = _customer;
             ctrlRequest.SetAndUpdateData(_customer);
             ctrlReference.SetAndUpdateData(_customer);
@@ -268,7 +276,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             var ratedListBigRightViews = _service.GetBigRightViewByName(typeof(RatedListBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListBigRightView>();
             ViewsSingleton.SetRatedListBigRightView(ratedListBigRightViews);
 
-            var spectacleBigRightViews = _service.GetBigRightViewByName(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
+            // old view vTsk_1_BRAuthorsDistributed
+            var spectacleBigRightViews = _service.GetBigRightViewByName(typeof(RatedListSpectacleBigRightView), "vTsk_2_BRRateListObject", null).ToListOfType<RatedListSpectacleBigRightView>();
             ViewsSingleton.SetRatedListSpectacleBigRightView(spectacleBigRightViews);
 
             var authorsForLicenseBigRightViews = _service.GetBigRightViewByName(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>();
@@ -301,7 +310,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 }
             }
         }
-
 
         private bool CtrlPayslips_OnSavePayslip(RegisterRatedList list)
         {

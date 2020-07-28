@@ -35,7 +35,6 @@ namespace ipsFormsDesign.Model
         public virtual LicenseMethodType LicMethodNavigation { get; set; }
         public virtual AgreementStatus LicStatusNavigation { get; set; }
         public virtual LicenseType LicTypeNavigation { get; set; }
-        public virtual LicenseBigR LicenseBigR { get; set; }
         public virtual ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public virtual ObservableListSource<Fixation> Fixation { get; set; }
         public virtual ObservableListSource<Invoice> Invoice { get; set; }

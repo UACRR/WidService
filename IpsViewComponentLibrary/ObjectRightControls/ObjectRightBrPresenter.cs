@@ -7,6 +7,7 @@ using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
@@ -21,7 +22,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private readonly DialogService _dialogService;
         private ObjectRight _objectRight;
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
-        private bool _canClose;
 
         public ObjectRightBrPresenter(ObjectRightBrView view)
         {
@@ -62,8 +62,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (_objectRight == null)
                 return;
 
-            _canClose = true;
-
             // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
             _objectRight.Authors.Clear();
             _objectRight.CopyRight.Clear();
@@ -79,12 +77,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
             MessageShow.ShowInfoByResult(SaveObjectSuccessMsg, SaveObjectErrorMsg, result);
-
-
-            //if (result)
-            //    _view.Close();
-            //else
-            //    _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
         }
 
         public void Close()

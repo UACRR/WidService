@@ -10,7 +10,7 @@
              xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
              mc:Ignorable="d" 
              Background="WhiteSmoke"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1200">
 
     <Control.DataContext>
         <local:ClientBRListViewModel/>
@@ -52,7 +52,8 @@
                 <t:RadTreeView Grid.Row="1" MinWidth="200" Margin="5" SelectedItem="{Binding SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
                                    IsSelected="True"
-                                   Header="* Всі"/>
+                                   HeaderStringFormat="* {0}"
+                                   Header="{Binding LOC.TV_ALL}"/>
 
                     <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
                                    IsSelectable="False"
@@ -211,11 +212,11 @@
                             </t:GridViewColumn.Header>
                             <t:GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <t:RadButton Margin="0" Width="25" Height="20" 
-                                                 Command="{Binding DataContext.OpenClientCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
-                                                 CommandParameter="{Binding}">
-                                        <Image Source="../Resources/Icons/edit-icon.png"/>
-                                    </t:RadButton>
+                                    <Button Margin="0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent"
+                                            Command="{Binding DataContext.OpenClientCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                            CommandParameter="{Binding}">
+                                        <Image Source="../Resources/Icons/edit-icon.png" Width="20"/>
+                                    </Button>
                                 </DataTemplate>
                             </t:GridViewColumn.CellTemplate>
                         </t:GridViewColumn>

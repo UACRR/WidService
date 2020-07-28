@@ -5,12 +5,21 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.Windows.Diagrams.Core;
 
 namespace ipsFormsDesign.Dictionary
 {
     public class ObjectAuthorRightholderBrViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObjectAuthorRightholderBrViewModel()
+        {
+            Author = new Authors();
+            CopyRight = new CopyRight();
+            LicAuthorBr = new LicAuthorBr();
+            WorkRh = new WorkRh();
+        }
 
         public string InnerCode { get; set; }
         public string Country { get; set; }
@@ -22,7 +31,7 @@ namespace ipsFormsDesign.Dictionary
         private bool _isRightholder;
         public bool IsRightholder
         {
-            get { return _isRightholder; }
+            get => _isRightholder;
             set
             {
                 _isRightholder = value;
@@ -42,19 +51,12 @@ namespace ipsFormsDesign.Dictionary
             CopyRight.RoleRate = null;
             WorkRh.WorkTypeRh = null;
             WorkRh.WorkTypeCl = null;
+            Country = null;
+            InnerCode = null;
+
             LicAuthorBr.R030 = null;
             LicAuthorBr.PrepayType = null;
             LicAuthorBr.PrepaySum = null;
-            Country = null;
-            InnerCode = null;
-        }
-
-        public ObjectAuthorRightholderBrViewModel()
-        {
-            Author = new Authors();
-            CopyRight = new CopyRight();
-            LicAuthorBr = new LicAuthorBr();
-            WorkRh = new WorkRh();
         }
 
         private void OnPropertyChanged(string propertyName)

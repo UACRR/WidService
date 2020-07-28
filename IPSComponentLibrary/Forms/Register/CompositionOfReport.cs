@@ -96,7 +96,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             foreach (var registerExtra in list)
             {
                 if (string.IsNullOrEmpty(registerExtra.Name) || registerExtra.RoleCode == 0)
-                removeList.Add(registerExtra);
+                    removeList.Add(registerExtra);
             }
 
             return removeList.Any() ? removeList : null;

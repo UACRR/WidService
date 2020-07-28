@@ -9,6 +9,7 @@ namespace ipsFormsDesign.Model
         public PrePayType()
         {
             LicAuthorBr = new ObservableListSource<LicAuthorBr>();
+            MoneyPrepayLink = new ObservableListSource<MoneyPrepayLink>();
             PrePayTypeTr = new ObservableListSource<PrePayTypeTr>();
         }
 
@@ -16,6 +17,7 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
 
         public virtual ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
+        public virtual ObservableListSource<MoneyPrepayLink> MoneyPrepayLink { get; set; }
         public virtual ObservableListSource<PrePayTypeTr> PrePayTypeTr { get; set; }
     }
 }

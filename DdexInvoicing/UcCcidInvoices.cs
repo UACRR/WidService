@@ -471,7 +471,12 @@ namespace DdexInvoicing
         }
         */
 
-        private string GetYouTubeAddSupportReplyFileName(int fileId)
+        /// <summary>
+        /// Отримати назву файлу з перевіркою на відповідність необхідній структурі для подальшої обробки
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        private string GetYouTubeAdjustmentReplyFileNameWithCheck(int fileId)
         {
             string fileName;
             OpenFileDialog dlg = new OpenFileDialog();
@@ -566,6 +571,7 @@ namespace DdexInvoicing
                         fileName = "";
                         return;
                     }
+
                     int respFileId = int.Parse(fields[4]);
                     if (respFileId != fileId)
                     {
@@ -613,38 +619,52 @@ namespace DdexInvoicing
             }, true);
         }
 
+        /// <summary>
+        /// отримати назву файлу відповіді
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <param name="reportType"></param>
+        /// <returns></returns>
         private string GetReplyFileName(int fileId, string reportType)
         {
             string fileName = "";
-            if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                fileName = GetYouTubeAddSupportReplyFileName(fileId);
-            }
-            else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                fileName = GetYouTubeSubscriptionReplyFileName(fileId);
-            }
-            else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-            {
-                fileName = GetYouTubeSubscriptionReplyFileName(fileId);
-            }
+
+            //fileName = GetYouTubeSubscriptionReplyFileName(fileId);
+            fileName = GetYouTubeAdjustmentReplyFileNameWithCheck(fileId);
+
+            //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    fileName = GetYouTubeAdjustmentReplyFileNameWithCheck(fileId);
+            //}
+            //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    fileName = GetYouTubeSubscriptionReplyFileName(fileId);
+            //}
+            //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    fileName = GetYouTubeSubscriptionReplyFileName(fileId);
+            //}
             return fileName;
         }
 
         private void ProcessReply(int fileId, string reportType, string fileName)
         {
-            if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeAddSupportReply(fileId, fileName);
-            }
-            else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeSubscriptionReply(fileId, fileName);
-            }
-            else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeSubscriptionReply(fileId, fileName);
-            }
+            //ReadYouTubeSubscriptionReply(fileId, fileName);
+            //
+            ReadYouTubeAddSupportReply(fileId, fileName);
+
+            //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    ReadYouTubeAddSupportReply(fileId, fileName);
+            //}
+            //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    ReadYouTubeSubscriptionReply(fileId, fileName);
+            //}
+            //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    ReadYouTubeSubscriptionReply(fileId, fileName);
+            //}
 
             Helpers.RunSqlOperationDdex(cmd =>
             {
@@ -667,18 +687,22 @@ namespace DdexInvoicing
                 cmd.Parameters.AddWithValue("@TargetFolder", Path.GetDirectoryName(fileName));
                 int ccidClFileId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromAdjustmentReport]";
-                }
-                else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
-                }
-                else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
-                }
+                // запуск процедури формування даних для розподілу
+                cmd.CommandText = "[dbo].[spCreateClFromAdjustmentReport]";
+
+                //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    cmd.CommandText = "[dbo].[spCreateClFromAdjustmentReport]";
+                //}
+                //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
+                //}
+                //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
+                //}
+
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@inFileId", fileId);
@@ -695,7 +719,7 @@ namespace DdexInvoicing
             });
         }
 
-        private async Task GetReply(int fileId)
+        private void GetReply(int fileId)
         {
             // Determine service type of sent file
             string reportType = "";
@@ -725,7 +749,6 @@ namespace DdexInvoicing
             form.Hide();
 
             ShowInvoices();
-
         }
 
         private void CreateCorrectedInvoice(int fileId)
@@ -1146,7 +1169,8 @@ namespace DdexInvoicing
                     cntTotal1.Text = r.GetInt32(i++).ToString();
                     cntClaimedNonZero1.Text = r.GetInt32(i++).ToString();
                     cntClaimedZero1.Text = r.GetInt32(i++).ToString();
-                    cntNonClaimed1.Text = r.GetInt32(i++).ToString();                    cntUnprocessed1.Text = r.GetInt32(i++).ToString();
+                    cntNonClaimed1.Text = r.GetInt32(i++).ToString();                    
+                    cntUnprocessed1.Text = r.GetInt32(i++).ToString();
 
                     amountTotal1.Text = r.GetDecimal(i++).ToString();
                     amountClaimedNonZero1.Text = r.GetDecimal(i++).ToString();

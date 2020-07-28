@@ -24,6 +24,7 @@ namespace ipsFormsDesign.Model
         public short? IsLock { get; set; }
         public string Comment { get; set; }
         public bool? IsTempPassword { get; set; }
+        public bool? IsWindowsAuth { get; set; }
 
         public virtual ObservableListSource<PermitUserRole> PermitUserRole { get; set; }
     }

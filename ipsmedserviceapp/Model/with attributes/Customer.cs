@@ -32,6 +32,9 @@ namespace ipsmedserviceapp.Model
         public string UserId { get; set; }
         public int? LoadId { get; set; }
         public DateTime? DateCreate { get; set; }
+        public string CreateLogin { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
 
         public virtual CustomerType CustTypeNavigation { get; set; }
         public virtual CustomerStatus StatusNavigation { get; set; }

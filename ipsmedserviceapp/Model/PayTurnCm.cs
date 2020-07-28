@@ -5,7 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class PayTurnCm
     {
+        public int Id { get; set; }
         public int AccId { get; set; }
+        public int? CategoryCode { get; set; }
+        public DateTime DateBegin { get; set; }
         public DateTime DateWork { get; set; }
         public int KindCode { get; set; }
         public decimal? AmountSum { get; set; }
@@ -15,7 +18,6 @@ namespace ipsmedserviceapp.Model
         public decimal? Amount { get; set; }
         public decimal? AmountCourt { get; set; }
         public decimal? AmountCommiss { get; set; }
-        public int? Custid { get; set; }
         public int? CustIdRh { get; set; }
         public int? CustIdCm { get; set; }
         public string AccNls { get; set; }

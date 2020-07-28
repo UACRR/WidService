@@ -423,7 +423,7 @@ namespace ipsmedserviceapp.Controllers
                 }
 
                 if (destCopyRight.LicAuthorBr == null)
-                    destCopyRight.LicAuthorBr = new LicAuthorBr();
+                    destCopyRight.LicAuthorBr = new List<LicAuthorBr>();
 
                 destCopyRight.LicAuthorBr.SetFields(sourceCopyRight.LicAuthorBr);
             }

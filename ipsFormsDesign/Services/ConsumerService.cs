@@ -162,9 +162,9 @@ namespace ipsFormsDesign.Services
         /// <param name="state"></param>
         /// <param name="period"></param>
         /// <returns></returns>
-        public bool SetPeriodState(PeriodState state, PaidPeriod period)
+        public bool SetPeriodState(PaidPeriod period)
         {
-            string url = _prefix + $"period/state/{period.PeriodId}/{(int)state}";
+            string url = _prefix + $"period/state/{period.PeriodId}/{period.Status}";
             return _webApi.UpdateItem(url, string.Empty, period);
         }
 

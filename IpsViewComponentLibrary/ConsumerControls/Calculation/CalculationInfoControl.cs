@@ -106,8 +106,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
             SubscribeForGridEvents(gvPeriodsPayment, gvUserMoneys);
         }
 
-
-
         private void SubscribeForGridEvents(RadGridView grid, RadGridView GridTarget)
         {
             RadDragDropService dragDropService = grid.GridViewElement.GetService<RadDragDropService>();
@@ -122,7 +120,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
             behavior.RegisterBehavior(typeof(GridViewDataRowInfo), new RowSelectionGridBehavior(GridTarget));
 
         }
-
 
         #region Drag & drop logic *****************************************************************************
 
@@ -256,7 +253,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
         private Customer _customer;
         public Customer Customer
         {
-            get { return _customer; }
+            get => _customer;
             set
             {
                 _customer = value;

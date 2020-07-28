@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="Media Service" Height="440" Width="900" Icon="Images/main-icon.png">
+        Title="Media Service" Height="1166.093" Width="1408.265" Icon="Images/main-icon.png">
 
     <Window.DataContext>
         <local:LauncherViewModel/>
@@ -144,23 +144,22 @@
         </Style>
     </Window.Resources>
 
-    <t:RadBusyIndicator t:StyleManager.Theme="VisualStudio2013"
-                        IsBusy="{Binding IsBusy}">
+    <t:RadBusyIndicator t:StyleManager.Theme="VisualStudio2013" IsBusy="{Binding IsBusy}">
         <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="55"/>
-            <RowDefinition/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="DodgerBlue">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Background="DodgerBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <ComboBox x:Name="languageList"
+                <ComboBox x:Name="languageList"
                       Grid.Column="1"
                       MinWidth="120"
                       Height="25"
@@ -173,9 +172,9 @@
                       SelectedItem="{Binding CurrentLanguage}"
                       SelectedValuePath="SpecificationCode"
                       BorderBrush="Transparent">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding LanguageName}" 
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LanguageName}" 
                                    HorizontalAlignment="Stretch"
                                    Foreground="White"
                                    FontSize="18"
@@ -183,138 +182,138 @@
                                    Padding="20,0"
                                    Cursor="Hand"
                                    VerticalAlignment="Center"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-            <Grid Grid.Column="2" Margin="0,0,35,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="2" Margin="0,0,35,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <Button Background="GhostWhite"
+                    <Button Background="GhostWhite"
                         Visibility="{Binding LoginButtonVisibility}"
                         Height="30"
                         Margin="5"
                         Command="{Binding LoginCommand}">
-                    <Image Source="Images/login-icon.png"/>
-                </Button>
+                        <Image Source="Images/login-icon.png"/>
+                    </Button>
 
-                <Border Grid.Column="1"
+                    <Border Grid.Column="1"
                         Visibility="{Binding UserInfoVisibility}"
                         Width="auto"
                         BorderThickness="1" CornerRadius="5"
                         BorderBrush="Blue"
                         Background="Azure" 
                         Height="30">
-                    <TextBlock Margin="10,0,10,0" 
+                        <TextBlock Margin="10,0,10,0" 
                                VerticalAlignment="Center" 
                                Text="{Binding UserName, StringFormat='{}User Name: {0}'}"/>
-                </Border>
+                    </Border>
+                </Grid>
+
             </Grid>
 
-        </Grid>
-
-        <ScrollViewer Grid.Row="1" 
+            <ScrollViewer Grid.Row="1" 
                       HorizontalScrollBarVisibility="Disabled" 
                       VerticalScrollBarVisibility="Visible" 
                       Visibility="{Binding ContentVisibility}">
 
-            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                <Border Style="{StaticResource groupBorder}" BorderBrush="#FFF47B60" Background="#FFF3D7D4" >
-                    <StackPanel Style="{StaticResource groupPanel}">
-                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_RIGHTS}" Background="#FFF3D7D4" BorderBrush="#FFF47B60"/>
-                        <Button Style="{StaticResource launchButton}" 
+                    <Border Style="{StaticResource groupBorder}" BorderBrush="#FFF47B60" Background="#FFF3D7D4" >
+                        <StackPanel Style="{StaticResource groupPanel}">
+                            <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_RIGHTS}" Background="#FFF3D7D4" BorderBrush="#FFF47B60"/>
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.RightsAdmin}"
                                 Content="{Binding LM_Launcher.RH_OR}"
                                 Command="{Binding LoadCopyrightAdminWorkplaceCommand}"/>
-                        <Button Style="{StaticResource launchButton}" 
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.RoyaltyAdmin}"
                                 Content="{Binding LM_Launcher.ReportsAndRoyalty}" 
                                 Command="{Binding LoadRoyaltyAdminCommand}"/>
-                        <Button Style="{StaticResource launchButton}" 
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.Processes}"
                                 Content="{Binding LM_Launcher.Processes}"
                                 Command="{Binding LoadProcessesCommand}"/>
-                    </StackPanel>
-                </Border>
+                        </StackPanel>
+                    </Border>
 
-                <Border Style="{StaticResource groupBorder}" BorderBrush="#FF6082F4" Background="#FFDCF5F3">
-                    <StackPanel Style="{StaticResource groupPanel}">
-                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_CONSUMERS}" Background="#FFDCF5F3" BorderBrush="#FF6082F4"/>
-                        <Button Style="{StaticResource launchButton}" 
+                    <Border Style="{StaticResource groupBorder}" BorderBrush="#FF6082F4" Background="#FFDCF5F3">
+                        <StackPanel Style="{StaticResource groupPanel}">
+                            <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_CONSUMERS}" Background="#FFDCF5F3" BorderBrush="#FF6082F4"/>
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.SRightsWp}"
                                 Content="{Binding LM_Launcher.Clients_WP}"
                                 Command="{Binding LoadClientsSmallRightCommand}"/>
-                        <Button Style="{StaticResource launchButton}" 
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.BRightsWp}"
                                 Content="{Binding LM_Launcher.Theatres_WP}"
                                 Command="{Binding LoadConsumerBigRightCommand}"/>
-                    </StackPanel>
-                </Border>
+                        </StackPanel>
+                    </Border>
 
-                <Border Style="{StaticResource groupBorder}" BorderBrush="#FF29DE29" Background="#FFE3F5DC">
-                    <StackPanel  Style="{StaticResource groupPanel}">
-                        <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_OTHER}" Background="#FFE3F5DC" BorderBrush="#FF29DE29"/>
-                        <Button Style="{StaticResource launchButton}" 
+                    <Border Style="{StaticResource groupBorder}" BorderBrush="#FF29DE29" Background="#FFE3F5DC">
+                        <StackPanel  Style="{StaticResource groupPanel}">
+                            <Label Style="{StaticResource groupTitle}" Content="{Binding LM_Launcher.CAT_OTHER}" Background="#FFE3F5DC" BorderBrush="#FF29DE29"/>
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.Represent}"
                                 Content="{Binding LM_Launcher.Partner_WP}" 
                                 Command="{Binding LoadRepresentCommand}"/>
-                        <Button Style="{StaticResource launchButton}" 
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.Violation}"
                                 Content="{Binding LM_Launcher.FixationOfViolations}" 
                                 Command="{Binding LoadViolationCommand}"/>
-                        <Button Style="{StaticResource launchButton}" 
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.Ddex}"
                                 Content="{Binding LM_Launcher.DDEX}" 
                                 Command="{Binding LoadDDEXCommand}"/>
                         </StackPanel>
-                </Border>
+                    </Border>
 
-                <Border Style="{StaticResource groupBorder}" BorderBrush="SandyBrown" Background="Beige">
-                    <StackPanel  Style="{StaticResource groupPanel}">
-                        <Label Style="{StaticResource groupTitle}" 
+                    <Border Style="{StaticResource groupBorder}" BorderBrush="SandyBrown" Background="Beige">
+                        <StackPanel  Style="{StaticResource groupPanel}">
+                            <Label Style="{StaticResource groupTitle}" 
                                Content="{Binding LM_Launcher.CAT_SYS}" Background="Beige" BorderBrush="SandyBrown"/>
-                        <Button Style="{StaticResource launchButton}"
+                            <Button Style="{StaticResource launchButton}"
                                 IsEnabled="{Binding LauncherPermits.Analytics}"
                                 Content="{Binding LM_Launcher.AnalyticsAndReports}" 
                                 Command="{Binding LoadAnalyticsCommand}"/>
-                        <Button Style="{StaticResource launchButton}" 
+                            <Button Style="{StaticResource launchButton}" 
                                 IsEnabled="{Binding LauncherPermits.Directory}"
                                 Content="{Binding LM_Launcher.SystemDictionaries}" 
                                 Command="{Binding LoadSystemDictionaryCommand}"/>
-                        <Button Style="{StaticResource launchButton}" 
+                            <Button Style="{StaticResource launchButton}" 
                                 Content="{Binding LM_Launcher.AnketaOfTheCompany}"
                                 IsEnabled="{Binding LauncherPermits.OurProfile}"
                                 Command="{Binding LoadOurProfileCommand}"/>
-                        <Button Style="{StaticResource launchButton}" 
+                            <Button Style="{StaticResource launchButton}" 
                                 Content="{Binding LM_Launcher.SysAdmin}" 
                                 IsEnabled="{Binding LauncherPermits.Permit}"
                                 Command="{Binding LoadPermitWindowCommand}"/>
-                    </StackPanel>
-                </Border>
+                        </StackPanel>
+                    </Border>
 
-            </WrapPanel>
-        </ScrollViewer>
+                </WrapPanel>
+            </ScrollViewer>
 
-        <Grid Grid.Row="2" Background="DodgerBlue">
-            <t:Label HorizontalAlignment="Center" 
+            <Grid Grid.Row="2" Background="DodgerBlue">
+                <t:Label HorizontalAlignment="Center" 
                      HorizontalContentAlignment="Center" 
                      Background="DeepSkyBlue" 
                      FontWeight="DemiBold" 
                      Content="IPS" 
                      Margin="3"
                      Width="55">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding SAAuthCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </t:Label>
-        </Grid>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding SAAuthCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </t:Label>
+            </Grid>
 
-    </Grid>
+        </Grid>
     </t:RadBusyIndicator>
 </Window>

@@ -40,7 +40,7 @@ namespace ipsFormsDesign.Services
         public async Task<Dictionary<string, byte[]>> SyncOnClient()
         {
             string url = $"{Prefix}/sync/client";
-            var result = await _apiConnector.SendGetRequestAsync<Dictionary<string, byte[]>>(url);
+            var result = await _apiConnector.GetRequestAsync<Dictionary<string, byte[]>>(url);
             return result;
         }
     }
