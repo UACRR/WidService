@@ -56,7 +56,8 @@ namespace ipsFormsDesign.Dictionary
         public int isClient { get; set; }
         public int isRHolder { get; set; }
         public int isPartner { get; set; }
-        public string Community_Name { get; set; }
+        public string CustIdSUbName { get; set; }
+        public DateTime? DateEndSUB { get; set; }
         public string InnerCode { get; set; }
         public string InterCode { get; set; }
         public string Country { get; set; }

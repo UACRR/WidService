@@ -165,79 +165,79 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void SetObjectRigth(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
         {
-            // TODO: Set all bindings for object right here
-
             _objectRight = objectRight;
             _view.UpdateObjectRightDataSources(objectRight, rightholderList);
 
             // map Authors and Copyright table into single table
             _view.ObjectAuthorRightholderList.Clear();
-            int[] RightHolderOnlyCode = { 8, 9 };
+            int[] RightHolderOnlyCode = {8, 9};
             var today = DateTime.Today;
+            
             // Права дійсні на поточну дату
             var listOfCopyRight = objectRight.CopyRight
-                            .Where(rec => rec.BeginDate <= today && rec.EndDate >= today )
-                            .ToList();
+                .Where(rec => rec.BeginDate <= today && rec.EndDate >= today)
+                .ToList();
 
             // створюємо пошук по списку прав по ключу custid & RoleCode
             var copyRightLookup = listOfCopyRight.ToLookup(rec => new { rec.CustId, RoleCode = (rec.RoleCode ?? 0) }, rec => rec.CRightId);
 
-            foreach (var a in objectRight.Authors)
+            foreach (var author in objectRight.Authors)
             {
                 // Список ід прав для автора
-                var findCRArray = copyRightLookup[new { CustId = (a.CustId ?? 0), a.RoleCode }].ToArray();
+                var findCRArray = copyRightLookup[new { CustId = (author.CustId ?? 0), author.RoleCode }].ToArray();
+                
                 // Тільки автор які на поточний момент немають правоволодіння
-                //if ( (a.CustId ?? 0) == 0 )
-                if (findCRArray.Count() == 0 ) // Прав немає
+                if (!findCRArray.Any()) // Прав немає
                 {
                     // Підрахунок існуючих записів авторів
                     var cntPresent = _view.ObjectAuthorRightholderList
-                                            .Count( rec => rec.RoleCode == a.RoleCode 
-                                                    && rec.FolkType == a.FolkType
-                                                    && string.Compare( rec.AuthorName, a.AuthorName.Trim(), StringComparison.InvariantCulture ) == 0 ) ;
+                                            .Count( rec => rec.RoleCode == author.RoleCode 
+                                                    && rec.FolkType == author.FolkType
+                                                    && string.Compare( rec.AuthorName, author.AuthorName.Trim(), StringComparison.InvariantCulture ) == 0 ) ;
                     
                     // Окрім правовласників і нові записи
-                    if (!RightHolderOnlyCode.Contains(a.RoleCode) && cntPresent == 0)
+                    if (!RightHolderOnlyCode.Contains(author.RoleCode) && cntPresent == 0)
+                    {
                         _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
                         {
                             IsRightholder = false,
-                            AuthId = a.AuthId,
-                            ObjId = a.ObjId,
-                            RoleCode = a.RoleCode,
-                            FolkType = a.FolkType,
-                            AuthorName = a.AuthorName.Trim()
+                            AuthId = author.AuthId,
+                            ObjId = author.ObjId,
+                            RoleCode = author.RoleCode,
+                            FolkType = author.FolkType,
+                            AuthorName = author.AuthorName.Trim()
                         });
+                    }
 
                     continue;
                 }
                 
                 // Автор-Правовласник
-                var foundedCopyrightList = listOfCopyRight.Where(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode).ToArray();
-                var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
+                var foundedCopyrightList = listOfCopyRight.Where(c => c.CustId == author.CustId && c.RoleCode == author.RoleCode).ToArray();
+                var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == author.CustId);
                 foreach (var foundedCopyright in foundedCopyrightList)
                 {
-                    // Патлякевич
-                    // Бородьба з подвійними записами в Авторах
+                    // боротьба з подвійними записами в Авторах
                     if (foundedCopyright != null)
                         listOfCopyRight.Remove(foundedCopyright);
 
-                    // Патлякевич
                     // Не виводимо правовласників, права яких на об'єкт права вже закінчилися
-                    if (RightHolderOnlyCode.Contains(a.RoleCode) && foundedCopyright == null)
+                    if (RightHolderOnlyCode.Contains(author.RoleCode) && foundedCopyright == null)
                         continue;
 
                     _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
                     {
-                        IsRightholder = a.CustId != null,
-                        AuthId = a.AuthId,
-                        ObjId = a.ObjId,
-                        RoleCode = a.RoleCode,
-                        FolkType = a.FolkType,
-                        AuthorName = a.AuthorName.Trim(),
-                        CustId = a.CustId,
+                        IsRightholder = author.CustId != null,
+                        AuthId = author.AuthId,
+                        ObjId = author.ObjId,
+                        RoleCode = author.RoleCode,
+                        FolkType = author.FolkType,
+                        AuthorName = author.AuthorName.Trim(),
+                        CustId = author.CustId,
                         CRightId = foundedCopyright?.CRightId,
                         CopyrightStatus = foundedCopyright?.Status,
-                        CommunityName = foundedRightholder?.Community_Name,
+                        CommunityName = foundedRightholder?.CustIdSUbName,
+                        ValidUntilCommunityDate = foundedRightholder?.DateEndSUB,
                         Rate = foundedCopyright?.Rate ?? 0m,
                         RateMech = foundedCopyright?.RateMech ?? 0m,
                         BeginDate = foundedCopyright?.BeginDate,

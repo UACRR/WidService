@@ -490,6 +490,7 @@ namespace ipsmedserviceapp.Controllers
         #endregion
 
         #region Views
+
         /// <summary>
         /// Получити  список об'єктів права для основного єкрану інтерфейсу користувача
         /// </summary>

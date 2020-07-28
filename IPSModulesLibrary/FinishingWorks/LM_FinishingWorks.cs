@@ -20,7 +20,7 @@ namespace IPSModulesLibrary.FinishingWorks
             }
         }
 
-        private string _descriptionProcessP2 = "Зупинка розподілу не зупиняє процес розрахунку роялті - по усім звітам, що будуть завантажені та опрацьовані після зупинки розподілу, необхідні обчислення виконаються автоматично.Після запуску розподілу усі обчисленні суми будуть зараховані на відповідні системні рахунки.";
+        private string _descriptionProcessP2 = "Зупинка розподілу зупиняє процес розрахунку та нарахування роялті - по усім звітам, що будуть завантажені та опрацьовані після зупинки розподілу, необхідні обчислення та зарахування сум на відповідні системні рахунки, виконаються автоматично після дати запуску.";
         public string DescriptionProcess_p2
         {
             get => _descriptionProcessP2;
@@ -53,7 +53,7 @@ namespace IPSModulesLibrary.FinishingWorks
             }
         }
 
-        private string _descriptionProcessP5 = "* Ви можете встановити період зупинки більшим ніж по замовчуванню, для цього змініть дату та час у полі \"ДО\" на натисніть \"Примінити\"";
+        private string _descriptionProcessP5 = "* Ви можете встановити період зупинки більшим ніж по замовчуванню, для цього змініть дату та час у полі \"ДО\" на натисніть \"Змінити\"";
         public string DescriptionProcess_p5
         {
             get => _descriptionProcessP5;
@@ -75,7 +75,7 @@ namespace IPSModulesLibrary.FinishingWorks
             }
         }
 
-        private string _descriptionProcessP7 = "3. Розподіл автоматично запуститься по максимальній даті блокування.";
+        private string _descriptionProcessP7 = "3. Розподіл автоматично запуститься по закінченню встановленого періоду зупинки (навіть якщо не було активовано перенесення коштів).";
         public string DescriptionProcess_p7
         {
             get => _descriptionProcessP7;
@@ -105,6 +105,17 @@ namespace IPSModulesLibrary.FinishingWorks
             {
                 _descriptionProcessP9 = value;
                 OnPropertyChanged(() => DescriptionProcess_p9);
+            }
+        }
+
+        private string _descriptionProcessP10 = "* Ви можете відмінити зарахування протягом визначеного часу на кнопці ROLLBACK. Після відміни зарахування ви можете вручну увімкнути розподіл.";
+        public string DescriptionProcess_p10
+        {
+            get => _descriptionProcessP10;
+            set
+            {
+                _descriptionProcessP10 = value;
+                OnPropertyChanged(() => DescriptionProcess_p10);
             }
         }
     }

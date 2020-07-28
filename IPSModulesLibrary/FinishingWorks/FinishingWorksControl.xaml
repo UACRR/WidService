@@ -368,6 +368,9 @@
                             <LineBreak/>
                             <Run Text="    "/>
                             <Run Text="{Binding LOC.DescriptionProcess_p9, Mode=OneTime}"/>
+                            <LineBreak/>
+                            <Run Text="    "/>
+                            <Run Text="{Binding LOC.DescriptionProcess_p10, Mode=OneTime}"/>
                         </TextBlock.Inlines>
                     </TextBlock>
 

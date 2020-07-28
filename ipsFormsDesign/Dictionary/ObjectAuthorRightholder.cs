@@ -19,6 +19,7 @@ namespace ipsFormsDesign.Dictionary
         public int? CopyrightStatus { get; set; }
         public int? StatusZayavky { get; set; }
         public string CommunityName { get; set; }
+        public DateTime? ValidUntilCommunityDate { get; set; }
 
         private decimal _rate;
         public decimal Rate

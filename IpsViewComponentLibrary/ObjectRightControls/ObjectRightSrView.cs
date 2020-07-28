@@ -36,8 +36,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public ObjectAuthorRightholder SelectedObjectAuthorRightholder => gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
 
-        private readonly BindingList<ObjectAuthorRightholder> _objectAuthorRightholderList = new BindingList<ObjectAuthorRightholder>();
-        public Collection<ObjectAuthorRightholder> ObjectAuthorRightholderList => _objectAuthorRightholderList;
+        public Collection<ObjectAuthorRightholder> ObjectAuthorRightholderList { get; } = new BindingList<ObjectAuthorRightholder>();
 
         public ObjectRightSrView()
         {
@@ -108,7 +107,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ObjectRight.SeekObject = ObjectRight.SeekObject;
             seekObjectBindingSource.DataSource = ObjectRight.SeekObject;
 
-            objectAuthorRightholderBindingSource.DataSource = _objectAuthorRightholderList;
+            bsObjectAuthorRightholder.DataSource =  ObjectAuthorRightholderList;
         }
 
         public void SetHeader(string header)

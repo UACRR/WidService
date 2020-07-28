@@ -80,6 +80,7 @@
                 <RadioButton Content="{Binding LM.TransferPubSub}" 
                              Name="rbTransferPubSub"
                              IsEnabled="False"
+                             Visibility="Collapsed"
                              Command="{Binding SelectPubSubTransferCommand}"
                              CommandParameter="{Binding ElementName=publisherSubpublisherTransferView}"/>
             </StackPanel>
