@@ -24,6 +24,8 @@ namespace Launcher.Controls.LoginWindow
     {
         public LoginViewModel() {}
 
+        #region LOGIN MODAL WINDOW
+
         #region * * * BEHAVIOR PROPERTIES * * *
 
         private bool _isBusy;
@@ -167,15 +169,15 @@ namespace Launcher.Controls.LoginWindow
         private void AuthorizationThroughWindows(Window window)
         {
             var identity = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity;
-            UserInfo.UserLogin = identity.Name;
             UserInfo.UserName = identity.Name;
+            UserInfo.Name = identity.Name;
             UserInfo.UserRole = "Default User";
             
             window.DialogResult = true;
             window.Close();
         }
 
-        private void AuthorizationThroughServerAccount(LoginWindow window)
+        private void AuthorizationThroughServerAccount()
         {
             IsBusy = true;
             PermitApiProxy.UserLogin = User.UserName;
@@ -192,8 +194,9 @@ namespace Launcher.Controls.LoginWindow
                 if (rsp.Result == RspLogin.LoginResult.Success)
                 {
                     User.CodeI = rsp.UserCodeI;
-                    window.DialogResult = true;
-                    window.Close();
+                    ModalWindowVisibility = Visibility.Collapsed;
+                    //window.DialogResult = true;
+                    //window.Close();
                 }
                 else if (rsp.Result == RspLogin.LoginResult.Failed)
                 {
@@ -232,8 +235,9 @@ namespace Launcher.Controls.LoginWindow
                 IsBusy = false;
                 User.CodeI = res.UserCodeI;
                 User.Password = User.NewPassword;
-                window.DialogResult = true;
-                window.Close();
+                ModalWindowVisibility = Visibility.Collapsed;
+                //window.DialogResult = true;
+                //window.Close();
             }
         }
 
@@ -257,15 +261,15 @@ namespace Launcher.Controls.LoginWindow
         {
             try
             {
-                var window = (LoginWindow) o;
-                User.Password = window.pwBox.SecurePassword;
-                User.NewPassword = window.newPwBox.SecurePassword;
-                User.ConfirmPassword = window.confirmPwBox.SecurePassword;
-                AuthorizationThroughServerAccount(window);
+                var passwordBox = (PasswordBox) o;
+                User.Password = passwordBox.SecurePassword;
+                //User.NewPassword = window.newPwBox.SecurePassword;
+                //User.ConfirmPassword = window.confirmPwBox.SecurePassword;
+                
+                AuthorizationThroughServerAccount();
             }
             catch(Exception e)
             {
-                //MessageBox.Show("Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 var dialogService = new DialogService();
                 string message = "Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration";
                 dialogService.ShowError(message, e.ToString());
@@ -331,6 +335,8 @@ namespace Launcher.Controls.LoginWindow
         {
             ModalWindowVisibility = Visibility.Collapsed;
         }
+
+        #endregion
 
         #endregion
     }

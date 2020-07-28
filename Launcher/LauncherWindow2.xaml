@@ -8,15 +8,28 @@
         xmlns:login="clr-namespace:Launcher.Controls.LoginWindow"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         xmlns:Launcher="clr-namespace:Launcher" 
         WindowState="Maximized"
-        Title="LauncherWindow2" Height="900" Width="1400"
+        Title="Smart Royalty Service" 
+        Icon="Images/logo1.png"
+        Height="900" 
+        Width="1400"
         Background="#f8f8f8">
 
     <Window.DataContext>
         <local:LauncherViewModel/>
     </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger x:Name="loadEvent" EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
+        </i:EventTrigger>
+        <i:EventTrigger x:Name="keyUpEvent" EventName="KeyUp">
+            <i:InvokeCommandAction Command="{Binding WindowUpEventCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Window.Resources>
 
@@ -122,6 +135,10 @@
                         </Setter.Value>
                     </Setter>
                 </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Silver"/>
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -206,6 +223,10 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Silver"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -292,6 +313,10 @@
                         </Setter.Value>
                     </Setter>
                 </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Silver"/>
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -376,6 +401,10 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Silver"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -536,14 +565,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-
-
-
-
-
-
-
 
         <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Template">
@@ -711,360 +732,246 @@
                         </Setter.Value>
                     </Setter>
                 </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border HorizontalAlignment="Stretch" Height="40" CornerRadius="20" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                                            <GradientStop Color="#26E3FE" Offset="0.949" />
+                                            <GradientStop Color="#A025FF" Offset="0.153" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="12"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="TextAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="Silver"/>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="CheckBox">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="DarkGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ComboBoxItem">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="DarkGray"/>
+                    <Setter Property="Background" Value="#F6F6F6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
 
-
-    <Grid>
+    <t:RadBusyIndicator t:StyleManager.Theme="VisualStudio2013" IsBusy="{Binding IsBusy}">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0"  Background="#ffffff">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-
-                </Grid.ColumnDefinitions>
-                <Grid HorizontalAlignment="Left"  Width="auto" Grid.Row="0">
-                    <Image Source="Images/logo1.png" Margin="80,20"/>
-                </Grid>
-
-                <ComboBox Grid.Column="1" MinWidth="110"  FontSize="13" Height="35" Margin="0 0 48 0" Style="{DynamicResource ComboBoxStyleLauncher}" >
-                    <ComboBoxItem IsSelected="True" >
-                        <WrapPanel>
-                            <Button Width="30" Height="30" >
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Image Height="16" Width="16" Margin="0 0 8 0" Source="Images/ua.png"/>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                            <TextBlock FontSize="13" Text="Українська" VerticalAlignment="Center" />
-                        </WrapPanel>
-                    </ComboBoxItem>
-                    <ComboBoxItem >
-                        <WrapPanel>
-                            <!--<Button Width="30" Height="30" >
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Image Height="16" Width="16" Margin="0 0 8 0" Source="Images/us.png"/>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>-->
-                            <Grid Width="30" Height="30">
-                                <Image Height="16" Width="16" Margin="0 0 8 0" Source="Images/us.png"/>
-                            </Grid>
-                            <TextBlock FontSize="13" Text="English" VerticalAlignment="Center" />
-                        </WrapPanel>
-                    </ComboBoxItem>
-                </ComboBox>
-
-                <t:RadButton Height="25" Grid.Column="2" Margin="0 0 48 0" Style="{DynamicResource logBtn}"
-                            Command="{Binding ShowLoginWindowCommand}"
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <!--РАБОТА ЧЕКБОКСА-->
-
-                        <StackPanel.Resources>
-                            <!--<Launcher:BooleanToHiddenVisibility x:Key="boolToVis"/>-->
-                        </StackPanel.Resources>
-                        <CheckBox Content="" Name="checkViewTextBox"/>
-
-                        <Image Margin="0 0 8 0" Height="16" Source="Images/log.png"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" >Увійти</TextBlock>
-                    </StackPanel>
-                    
-                </t:RadButton>
-
-                <Grid Grid.Column="3" Height="40" Margin="0 0 48 0">
+                <Grid Grid.Row="0"  Background="#ffffff">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+
                     </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Left" Width="auto" Grid.Row="0">
+                        <Image Source="Images/logo1.png" Margin="80,20"/>
+                    </Grid>
 
-                    <t:RadButton Grid.Column="0" Content="O" Style="{DynamicResource ProfileIcon}"/>
+                    <!--зміна мови-->
+                    <ComboBox Grid.Column="1" MinWidth="110"  FontSize="13" Height="35" Margin="0 0 20 0" Style="{DynamicResource ComboBoxStyleLauncher}" >
+                        <ComboBoxItem IsSelected="True" x:Name="uk">
+                            <WrapPanel>
+                                <Grid Width="30" Height="30">
+                                    <Image Height="16" Width="16" Margin="0 0 8 0" Source="Images/ua.png"/>
+                                </Grid>
+                                <TextBlock FontSize="13" Text="Українська" VerticalAlignment="Center" />
+                            </WrapPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem IsEnabled="False">
+                            <WrapPanel>
+                                <Grid Width="30" Height="30">
+                                    <Image Height="16" Width="16" Margin="0 0 8 0" Source="Images/us.png"/>
+                                </Grid>
+                                <TextBlock FontSize="13" Text="English" VerticalAlignment="Center" />
+                            </WrapPanel>
+                        </ComboBoxItem>
+                    </ComboBox>
 
-                    <Menu Grid.Column="1" MinWidth="110" VerticalAlignment="Center" Margin="4 0 0 0" FontSize="13" >
-                        <MenuItem MinWidth="110" Padding="4 7" Header="Ovorona" FontSize="13" FontFamily="{StaticResource Montserrat}" Template="{DynamicResource MenuItemControlTemplateLauncher}">
-                            <MenuItem  Padding="4" Header="Вийти" ></MenuItem>
-                        </MenuItem>
-                    </Menu>
+                    <!--авторизація-->
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <t:RadButton Grid.Column="0" Height="25" Margin="0 0 48 0" Style="{DynamicResource logBtn}"
+                                     Visibility="{Binding LoginButtonVisibility}"
+                                     Command="{Binding ShowLoginWindowCommand}"
+                                     HorizontalAlignment="Center" 
+                                     VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Margin="0 0 8 0" Height="16" Source="Images/log.png"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13">Увійти</TextBlock>
+                            </StackPanel>
+                        </t:RadButton>
+
+                        <Grid Grid.Column="1" Height="40" Margin="0 0 48 0" Visibility="{Binding UserInfoVisibility}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <t:RadButton Grid.Column="0" 
+                                         Content="{Binding UserInfo.IconChar}" 
+                                         Style="{DynamicResource ProfileIcon}"
+                                         ToolTip="{Binding UserInfo.Name}" 
+                                         Command="{Binding}"/>
+
+                            <Menu Grid.Column="1" MinWidth="110" VerticalAlignment="Center" Margin="4 0 0 0" FontSize="13" >
+                                <MenuItem MinWidth="110" Padding="4 7" Header="{Binding UserInfo.UserName}" FontSize="13" FontFamily="{StaticResource Montserrat}" Template="{DynamicResource MenuItemControlTemplateLauncher}">
+                                    <MenuItem Padding="4" 
+                                          Header="Вийти"
+                                          Command="{Binding LogOutCommand}"/>
+                                </MenuItem>
+                            </Menu>
+                        </Grid>
+                    </Grid>
+
                 </Grid>
 
-            </Grid>
+                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="Images/Path.png" Stretch="Uniform" AlignmentY="Bottom"/>
+                        </Grid.Background>
+                        <WrapPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <StackPanel Width="296" Margin="16 50">
+                                <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
+                                    <Image Source="Images/Rights.png" Width="80" Height="80" Margin="0 0 24 0"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#D3417F"><Run Text="ПРАВА"/></TextBlock>
+                                </StackPanel>
+                                <t:RadButton Style="{StaticResource redBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.RightsAdmin}"
+                                         Content="{Binding LM_Launcher.RH_OR}"
+                                         Command="{Binding LoadCopyrightAdminWorkplaceCommand}"/>
 
-            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >
-                <Grid>
-                    <Grid.Background>
-                        <ImageBrush ImageSource="Images/Path.png" Stretch="Uniform" AlignmentY="Bottom"/>
-                    </Grid.Background>
-                    <WrapPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <StackPanel Width="296" Margin="16 50">
-                            <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
-                                <Image Source="Images/Rights.png" Width="80" Height="80" Margin="0 0 24 0"/>
-                                <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#D3417F"><Run Text="ПРАВА"/></TextBlock>
+                                <t:RadButton Style="{DynamicResource redBtnLauncher}"
+                                         IsEnabled="{Binding LauncherPermits.RoyaltyAdmin}"
+                                         Content="{Binding LM_Launcher.ReportsAndRoyalty}"
+                                         Command="{Binding LoadRoyaltyAdminCommand}"/>
+
+                                <t:RadButton Style="{DynamicResource redBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.Processes}"
+                                         Content="{Binding LM_Launcher.Processes}"
+                                         Command="{Binding LoadProcessesCommand}"/>
                             </StackPanel>
-                            <t:RadButton Style="{StaticResource redBtnLauncher}" 
-                                         Content="Правовласники та об'єкти права" 
-                                         Command="{Binding LoadCopyrightAdminWorkplaceCommand}"
-                                         Background="#FFE89595"/>
-
-                            <t:RadButton Style="{DynamicResource redBtnLauncher}"
-                                         Content="Обробка звітів користувачів (індентифікація)"
-                                          Command="{Binding LoadRoyaltyAdminCommand}"
-                                         />
-
-                            <t:RadButton Style="{DynamicResource redBtnLauncher}" 
-                                         Content="Управління технологічнимим процесами"
-                                         Command="{Binding LoadProcessesCommand}"
-                                         />
-
-                            <!--HOVER TEST
-                        
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFF5D0C8" Offset="0.153" />
-                                    <GradientStop Color="#FFF8D6E5" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">HOVER</TextBlock>
-                        </Border>
-
-                        CLICK TEST
-
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFF4B6A9" Offset="0.153" />
-                                    <GradientStop Color="#FFF699C2" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
-                        </Border>
-                        -->
-                        </StackPanel>
 
 
 
-                        <StackPanel Width="296" Margin="16 50">
-                            <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
-                                <Image Source="Images/Users.png" Width="80" Height="80" Margin="0 0 24 0"/>
-                                <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#842EF6"><Run Text="КОРИСТУВАЧІ"/></TextBlock>
+                            <StackPanel Width="296" Margin="16 50">
+                                <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
+                                    <Image Source="Images/Users.png" Width="80" Height="80" Margin="0 0 24 0"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#842EF6"><Run Text="КОРИСТУВАЧІ"/></TextBlock>
 
-                            </StackPanel>
-                            <t:RadButton Style="{DynamicResource blueBtnLauncher}" 
-                                         Content="Користувачі (Малі права)"
+                                </StackPanel>
+                                <t:RadButton Style="{DynamicResource blueBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.SRightsWp}"
+                                         Content="{Binding LM_Launcher.Clients_WP}"
                                          Command="{Binding LoadClientsSmallRightCommand}"/>
 
-                            <t:RadButton Style="{DynamicResource blueBtnLauncher}" 
-                                         Content="Користувачі (Великі права)"
-                                         Command="{Binding LoadConsumerBigRightCommand}"
-                                         />
-
-                            <!--HOVER TEST
-
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="0.52,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFCAE5FF"/>
-                                    <GradientStop Color="#FFE1CBFF" Offset="0.954"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">HOVER</TextBlock>
-                        </Border>
-
-                        CLICK TEST
-
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="0.52,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFA9D6FF"/>
-                                    <GradientStop Color="#FFC49AFF" Offset="0.954"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
-                        </Border>
-                        -->
-                        </StackPanel>
-
-                        <StackPanel Width="296" Margin="16 50">
-                            <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
-                                <Image Source="Images/Syst.png" Width="80" Height="80" Margin="0 0 24 0"/>
-                                <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#0ACDB6"><Run Text="СИСТЕМА"/></TextBlock>
-
+                                <t:RadButton Style="{DynamicResource blueBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.BRightsWp}"
+                                         Content="{Binding LM_Launcher.Theatres_WP}"
+                                         Command="{Binding LoadConsumerBigRightCommand}"/>
                             </StackPanel>
 
-                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
-                                         Content="Звітність (Аналітика)"
+                            <StackPanel Width="296" Margin="16 50">
+                                <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
+                                    <Image Source="Images/Syst.png" Width="80" Height="80" Margin="0 0 24 0"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold"  Foreground="#0ACDB6"><Run Text="СИСТЕМА"/></TextBlock>
+
+                                </StackPanel>
+
+                                <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.Analytics}"
+                                         Content="{Binding LM_Launcher.AnalyticsAndReports}" 
                                          Command="{Binding LoadAnalyticsCommand}"/>
 
 
-                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
-                                         Content="Системні довідники"
+                                <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.Directory}"
+                                         Content="{Binding LM_Launcher.SystemDictionaries}" 
                                          Command="{Binding LoadSystemDictionaryCommand}"/>
 
 
-                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
-                                         Content="Анкета компанії"
+                                <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
+                                         Content="{Binding LM_Launcher.AnketaOfTheCompany}"
+                                         IsEnabled="{Binding LauncherPermits.OurProfile}"
                                          Command="{Binding LoadOurProfileCommand}"/>
 
 
-                            <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
-                                         Content="Права доступу"
+                                <t:RadButton Style="{DynamicResource greenBtnLauncher}" 
+                                         Content="{Binding LM_Launcher.SysAdmin}" 
+                                         IsEnabled="{Binding LauncherPermits.Permit}"
                                          Command="{Binding LoadPermitWindowCommand}"/>
-
-
-                            <!--HOVER TEST
-
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFA8ECEC" />
-                                    <GradientStop Color="#FFABF2E9" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">HOVER</TextBlock>
-                        </Border>
-
-                        CLICK TEST
-
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FF6DE0E0" />
-                                    <GradientStop Color="#FF63F2DF" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
-                        </Border>
-                        -->
-                        </StackPanel>
-
-                        <StackPanel Width="296" Margin="16 50">
-                            <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
-                                <Image Source="Images/Diff.png" Width="80" Height="80" Margin="0 0 24 0"/>
-                                <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#FEA04A"><Run Text="ІНШЕ"/></TextBlock>
-
                             </StackPanel>
 
-                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
-                                         Content="Представники компанії"
+                            <StackPanel Width="296" Margin="16 50">
+                                <StackPanel  Orientation="Horizontal" Margin="0 0 0 16">
+                                    <Image Source="Images/Diff.png" Width="80" Height="80" Margin="0 0 24 0"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="14px" FontWeight="Bold" Foreground="#FEA04A"><Run Text="ІНШЕ"/></TextBlock>
+                                </StackPanel>
+
+                                <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.Represent}"
+                                         Content="{Binding LM_Launcher.Partner_WP}" 
                                          Command="{Binding LoadRepresentCommand}"/>
 
 
-                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
-                                         Content="Фіксація порушення авторських прав"
+                                <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.Violation}"
+                                         Content="{Binding LM_Launcher.FixationOfViolations}" 
                                          Command="{Binding LoadViolationCommand}"/>
 
 
-                            <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
-                                         Content="Звіти онлайн-ресурсів"
+                                <t:RadButton Style="{DynamicResource yellowBtnLauncher}" 
+                                         IsEnabled="{Binding LauncherPermits.Ddex}"
+                                         Content="{Binding LM_Launcher.DDEX}" 
                                          Command="{Binding LoadDDEXCommand}"/>
+                            </StackPanel>
+                        </WrapPanel>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
 
-
-                            <!--HOVER TEST
-
-                       <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFFEE4D1" />
-                                    <GradientStop Color="#FFFFEEB9" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">HOVER</TextBlock>
-                        </Border>
-
-                        CLICK TEST
-
-                        <Border HorizontalAlignment="Stretch" Padding="24" CornerRadius="10" Margin="0 0 0 16">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#FFFFBE8E" />
-                                    <GradientStop Color="#FFFFDC6D" Offset="0.949" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <TextBlock VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap">CLICK</TextBlock>
-                        </Border>
-                        -->
-
-                        </StackPanel>
-                    </WrapPanel>
-                </Grid>
-            </ScrollViewer>
-        </Grid>
-
-        <!--       Visibility="{Binding Path=IsChecked, ElementName=checkViewTextBox, Converter={StaticResource boolToVis}}" -->
-
-        <!--
-        <Grid Visibility="Collapsed"
-              >
-            <Border>
-                <Border.Background>
-                    <SolidColorBrush Color="#272A33" Opacity="0.4" />
-                </Border.Background>
-                <Border  Width="390" Height="460" CornerRadius="15" Background="White" Padding="40">
-                    <StackPanel>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="30" Margin="0 0 0 32">SIGN IN</TextBlock>
-                            <Image Source="Images/close.png" Grid.Column="1" Cursor="Hand" Width="16" Height="16" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                        </Grid>
-                        <ComboBox Background="Red" FontSize="14" Height="40" Margin="0 0 0 16" VerticalContentAlignment="Center"
-                                  >
-                            <ComboBoxItem IsSelected="True" >
-                                <WrapPanel>
-                                    <TextBlock FontSize="14" Padding="13 8" Text="Use  application Indetification" VerticalAlignment="Center" />
-                                </WrapPanel>
-                            </ComboBoxItem>
-                        </ComboBox>
-
-                        <TextBox Style="{StaticResource placeHolder}"
-                                 Background="#e7e7e7"
-                                 TextWrapping="NoWrap"
-                                 FontSize="14" 
-                                 Height="40"
-                                 Margin="0 0 0 16"
-                                 VerticalContentAlignment="Center" 
-                                 VerticalAlignment="Center"
-                                 Tag="Username"/>
-
-                        <PasswordBox  Background="#e7e7e7" Padding="16 0" VerticalContentAlignment="Center" Height="40" Margin="0 0 0 16" FontSize="14" />
-
-                        <CheckBox x:Name="checkBox1" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Change Password" Margin="0 0 0 16"/>
-                        
-                        <CheckBox x:Name="checkBox2" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Remember" Margin="0 0 0 32"/>
-                        <StackPanel Orientation="Horizontal">
-                            
-                        </StackPanel>
-                        <t:RadButton Style="{DynamicResource loginBtn}" Content="SIGN IN"/>
-                    </StackPanel>
-                </Border>
-            </Border>
-        </Grid> -->
-        
-        <!--МОДАЛКА-->
-        <Grid Visibility="{Binding ModalWindowVisibility}">
-            <Grid.DataContext>
-                <login:LoginViewModel/>
-            </Grid.DataContext>
-            <!--РАБОТА ЧЕКБОКСА-->
-            <Grid.Resources>
-                <!--<Launcher:BooleanToHiddenVisibility x:Key="boolToVis"/>-->
-            </Grid.Resources>
-
-            <!--Visibility="{Binding Path=IsChecked, ElementName=checkViewTextBox, Converter={StaticResource boolToVis}}"-->
-            <Grid>
+            <!--МОДАЛКА-->
+            <Grid Visibility="{Binding ModalWindowVisibility, Mode=TwoWay}">
                 <Border>
                     <Border.Background>
                         <SolidColorBrush Color="#272A33" Opacity="0.4" />
@@ -1090,17 +997,17 @@
                                     <Image Source="Images/close.png"/>
                                 </Button>
                             </Grid>
-                            <ComboBox Background="Red" FontSize="14" Height="40" Margin="0 0 0 16" VerticalContentAlignment="Center"
-                                  >
+                            <ComboBox Background="Red" FontSize="14" Height="40" Margin="0 0 0 16" VerticalContentAlignment="Center">
                                 <ComboBoxItem IsSelected="True" >
-                                    <WrapPanel>
-                                        <TextBlock FontSize="14" Padding="13 8" Text="Use  application Indetification" VerticalAlignment="Center" />
-                                    </WrapPanel>
+                                    <TextBlock FontSize="14" Padding="13 8" Text="Use  application Indetification" VerticalAlignment="Center" />
+                                </ComboBoxItem>
+                                <ComboBoxItem IsEnabled="False">
+                                    <TextBlock FontSize="14" Padding="13 8" Text="Use Windows Identification" VerticalAlignment="Center" />
                                 </ComboBoxItem>
                             </ComboBox>
 
                             <TextBox Style="{StaticResource placeHolder}"
-                                     Text="{Binding User.UserName}"
+                                 Text="{Binding User.UserName}"
                                  Background="#e7e7e7"
                                  TextWrapping="NoWrap"
                                  FontSize="14" 
@@ -1108,23 +1015,57 @@
                                  Margin="0 0 0 16"
                                  VerticalContentAlignment="Center" 
                                  VerticalAlignment="Center"
-                                 Tag="Username"/>
+                                 Tag="Username"
+                                 material:HintAssist.Hint="username"
+                                 material:HintAssist.IsFloating="True"/>
 
-                            <PasswordBox  Background="#e7e7e7" Padding="16 0" VerticalContentAlignment="Center" Height="40" Margin="0 0 0 16" FontSize="14" />
+                            <PasswordBox x:Name="pwBox"
+                                     Background="#e7e7e7" 
+                                     Padding="16 0" 
+                                     material:HintAssist.Hint="password"
+                                     material:HintAssist.IsFloating="True"
+                                     VerticalContentAlignment="Center" 
+                                     Height="40" 
+                                     Margin="0 0 0 5"
+                                     FontSize="14">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="KeyUp">
+                                        <i:InvokeCommandAction Command="{Binding KeyUpCommand}" PassEventArgsToCommand="True"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
 
-                            <CheckBox x:Name="checkBox1" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Change Password" Margin="0 0 0 16"/>
+                            <t:Label Content="Caps Lock on!" 
+                                     HorizontalAlignment="Center" 
+                                     Foreground="DimGray" 
+                                     FontWeight="SemiBold" 
+                                     FontSize="18"
+                                     Visibility="{Binding CapsLockOnVisibility}"/>
 
-                            <CheckBox x:Name="checkBox2" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Remember" Margin="0 0 0 32"/>
-                            <StackPanel Orientation="Horizontal">
+                            <!--<CheckBox x:Name="checkBox1" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Change Password" Margin="0 0 0 16"/>-->
 
-                            </StackPanel>
-                            <t:RadButton Style="{DynamicResource loginBtn}" Content="SIGN IN"/>
+                            <CheckBox IsEnabled="False" Margin="0 16 0 32"
+                                      FontSize="14" 
+                                      VerticalAlignment="Center" 
+                                      IsChecked="{Binding Remember}" 
+                                      Height="20"
+                                      Content="Remember"/>
+                            <t:RadButton Style="{DynamicResource loginBtn}" 
+                                     Content="SIGN IN"
+                                     Command="{Binding LoginCommand}"
+                                     CommandParameter="{Binding ElementName=pwBox}"/>
                         </StackPanel>
                     </Border>
                 </Border>
             </Grid>
-        </Grid>
 
-    </Grid>
-        
+            <Label Width="35" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="Transparent">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding SAAuthCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Label>
+        </Grid>
+    </t:RadBusyIndicator>
 </Window>

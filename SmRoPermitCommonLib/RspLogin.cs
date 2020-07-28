@@ -13,6 +13,7 @@ namespace SmRoPermitCommonLib
         }
 
         public int UserCodeI { get; set; }
+        public string Name { get; set; }
         public LoginResult Result { get; set; }
     }
 }

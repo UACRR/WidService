@@ -144,8 +144,7 @@
         </Style>
     </Window.Resources>
 
-    <t:RadBusyIndicator t:StyleManager.Theme="VisualStudio2013"
-                        IsBusy="{Binding IsBusy}">
+    <t:RadBusyIndicator t:StyleManager.Theme="VisualStudio2013" IsBusy="{Binding IsBusy}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>

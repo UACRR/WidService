@@ -521,7 +521,10 @@ namespace SmartRoyaltyPermitApi
                 Result = RspLogin.LoginResult.Failed
             };
             RunSqlOperation(cmd => {
-                cmd.CommandText = "select codeI, isTempPassword, isWindowsAuth from PermitUser where login = @login and isLock = 0 and passwordHash = hashbytes('SHA2_512', convert(varchar(64), @password))";
+                cmd.CommandText = "select codeI, isTempPassword, isWindowsAuth, CONCAT(lastName, ' ', firstName, ' ', surName) as name from PermitUser " +
+                                  "where login = @login " +
+                                  "and isLock = 0 " +
+                                  "and passwordHash = hashbytes('SHA2_512', @password)";
                 cmd.Parameters.Clear();
 
                 cmd.Parameters.Add(new SqlParameter("@login", login));
@@ -541,6 +544,7 @@ namespace SmartRoyaltyPermitApi
                         r.Read();
                         retVal.UserCodeI = r.GetInt32(0);
                         retVal.Result = r.GetBoolean(1) && !r.GetBoolean(2) ? RspLogin.LoginResult.ChangePassword : RspLogin.LoginResult.Success;
+                        retVal.Name = r.GetString(3);
                     }
                 }
             });
