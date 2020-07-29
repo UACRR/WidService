@@ -15,15 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
-		sql\CREATE_PROPERTY_LIST.sql = sql\CREATE_PROPERTY_LIST.sql
-		sql\CREATE_SA_PERMITUSER.sql = sql\CREATE_SA_PERMITUSER.sql
-		sql\createBeginStruct.sql = sql\createBeginStruct.sql
-		sql\createBeginStruct.txt = sql\createBeginStruct.txt
-		sql\FormClassFromView.sql = sql\FormClassFromView.sql
-		sql\getTableNamesForEF.sql = sql\getTableNamesForEF.sql
 		Утіліти\JsonIgnore.xml = Утіліти\JsonIgnore.xml
 		publishModel.ps1 = publishModel.ps1
-		sql\Розподіл.sql = sql\Розподіл.sql
+		!docs\Разворачивание комплекса Smart Royalty Service.docx = !docs\Разворачивание комплекса Smart Royalty Service.docx
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsFormsDesign", "ipsFormsDesign\ipsFormsDesign.csproj", "{21DA4297-A0F3-4E44-BD98-CAF3605B243A}"

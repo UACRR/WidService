@@ -4,10 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Launcher.WorkplaceModules.CopyrightAdminWorkplace"
-        xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
         xmlns:requestControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.CopyrightRequest;assembly=IPSViewComponentLibraryWPF"
         xmlns:transferControl="clr-namespace:IPSViewComponentLibraryWPF.Modules.TransferOfRights;assembly=IPSViewComponentLibraryWPF"
-        xmlns:communityList="clr-namespace:IpsViewComponentLibrary.CommunityControls;assembly=IpsViewComponentLibrary"
         xmlns:pubsubList="clr-namespace:IpsViewComponentLibrary.PublisherAndSubpublisher;assembly=IpsViewComponentLibrary"
         xmlns:objectsRightList="clr-namespace:IPSModulesLibrary.ObjectsRightList;assembly=IPSModulesLibrary"
         xmlns:rightholdersList="clr-namespace:IPSModulesLibrary.RightholdersList;assembly=IPSModulesLibrary"
@@ -28,32 +26,34 @@
     </i:Interaction.Triggers>
 
     <Window.Resources>
-        <Style TargetType="t:RadTabControl">
-            <Setter Property="t:StyleManager.Theme" Value="Windows7"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../ResourceDictionaries/TabControlResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
 
     <TabControl SelectedItem="{Binding MainTabItem}">
-        <TabItem Header="{Binding LOC.RH_1}" IsSelected="True">
+        <TabItem Header="{Binding LOC.RH_1}" IsSelected="True" Style="{StaticResource TabItemStyle}">
             <TabControl Margin="1 0 0 0" SelectedItem="{Binding RightholderNestedTabItem}">
-                <TabItem Header="{Binding LOC.RH_2}" IsSelected="True">
+                <TabItem Header="{Binding LOC.RH_2}" IsSelected="True" Style="{StaticResource TabItemStyle}">
                     <rightholdersList:RightholdersListControl/>
                 </TabItem>
-                <TabItem Header="{Binding LOC.RH_CHANGE}">
+                <TabItem Header="{Binding LOC.RH_CHANGE}" Style="{StaticResource TabItemStyle}">
                     <transferControl:TransferOfRightsControl/>
                 </TabItem>
-                <TabItem Header="{Binding LOC.RH_REQUEST}">
+                <TabItem Header="{Binding LOC.RH_REQUEST}" Style="{StaticResource TabItemStyle}">
                     <requestControl:CopyrightRequestControl/>
                 </TabItem>
             </TabControl>
         </TabItem>
-        <TabItem Header="{Binding LOC.OR}">
+        <TabItem Header="{Binding LOC.OR}" Style="{StaticResource TabItemStyle}">
             <objectsRightList:ObjectsRightListControl/>
         </TabItem>
-        <TabItem Header="{Binding LOC.COMMUNITIES}">
+        <TabItem Header="{Binding LOC.COMMUNITIES}" Style="{StaticResource TabItemStyle}">
             <communitiesList:CommunitiesListControl/>
         </TabItem>
-        <TabItem Header="{Binding LOC.PUB_SUB}">
+        <TabItem Header="{Binding LOC.PUB_SUB}" Style="{StaticResource TabItemStyle}">
             <WindowsFormsHost>
                 <pubsubList:PublisherAndSubpublisherControl/>
             </WindowsFormsHost>
