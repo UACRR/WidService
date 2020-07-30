@@ -29,7 +29,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalo
             "Повідомлення про помилку",
         };
 
-        public static async Task ExcelExportAsync(SaveFileDialog dialog, List<object[]> _objectsList, ICollection<PubCatalogItemModel> pubCatalogItemList, Action<int> changeBusyContent)
+        public static async Task ExcelExportAsync(SaveFileDialog dialog, List<object[]> _objectsList, ICollection<PubCatalogItemModel> pubCatalogItemCollection, Action<int> changeBusyContent)
         {
             await Task.Factory.StartNew(() =>
             {
@@ -49,11 +49,13 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalo
 
                             ExportHeaderRows(worksheetExporter);
 
+                            var pubCatalogItemList = pubCatalogItemCollection.ToList();
+
                             for (int rowIndex = 0; rowIndex < _objectsList.Count; rowIndex++)
                             {
                                 using (IRowExporter rowExporter = worksheetExporter.CreateRowExporter())
                                 {
-                                    var item = pubCatalogItemList.ToList()[rowIndex];
+                                    var item = pubCatalogItemList[rowIndex];
 
                                     var normalFormat = new SpreadCellFormat();
                                     normalFormat.FontSize = 10;

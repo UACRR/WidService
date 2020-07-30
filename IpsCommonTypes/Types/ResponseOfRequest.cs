@@ -140,5 +140,10 @@ namespace IpsCommonTypes.Types
                 Message = message,
             };
         }
+
+        public new static ResponseOfRequest<T> NotSuccess(Exception exception)
+        {
+            return new ResponseOfRequest<T>(exception);
+        }
     }
 }

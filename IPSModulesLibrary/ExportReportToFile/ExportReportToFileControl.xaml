@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="IPSModulesLibrary.ExportReportToFile.ExportReportToFileControl"
+             x:Name="Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IPSModulesLibrary.ExportReportToFile"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d"
+             Background="WhiteSmoke"
+             Loaded="ExportReportToFileControl_OnLoaded"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0 5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="MinWidth" Value="130"/>
+            <Setter Property="MinHeight" Value="27"/>
+            <Setter Property="Padding" Value="4"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <t:RadBusyIndicator IsBusy="{Binding ElementName=Control, Path=IsBusy}" t:StyleManager.Theme="VisualStudio2013">
+        <StackPanel Margin="25">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Ідентифікатор звіту: "/>
+                <TextBox Text="{Binding ElementName=Control, Path=RegisterId, Mode=TwoWay}" Margin="0 2" VerticalContentAlignment="Center" MinWidth="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 5">
+                <Button Click="ExportDDEXRegisterById_OnClick" Content="Вивантажити оброблений звіт (тільки DDEX)"/>
+                <Button Click="ExportDefaultRegisterById_OnClick" Margin="15 5" Content="Вивантажити оброблений звіт (будь-який)"/>
+            </StackPanel>
+            
+            <Separator Height="3"/>
+
+            <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                <Label Content="Період з: "/>
+                <t:RadDatePicker DateSelectionMode="Day" 
+                                 SelectedValue="{Binding ElementName=Control, Path=DateTimeFrom, Mode=TwoWay}"
+                                 Margin="0 5"
+                                 MinWidth="115"/>
+                <Label Content=" по: "/>
+                <t:RadDatePicker DateSelectionMode="Day" 
+                                 SelectedValue="{Binding ElementName=Control, Path=DateTimeTo, Mode=TwoWay}"
+                                 Margin="0 5" 
+                                 MinWidth="115"/>
+            </StackPanel>
+            <Button Content="Вивантажити дані операцій за період" Click="ExportOperationDataByPeriodDates_OnClick"/>
+
+            <Separator Height="3" />
+
+            <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                <Label Content="Оберіть тип реєстру: "/>
+
+                <t:RadComboBox MinWidth="250" 
+                               HorizontalAlignment="Left" 
+                               t:StyleManager.Theme="VisualStudio2013"
+                               SelectedItem="{Binding ElementName=Control, Path=SelectedCustomRegister}"
+                               ItemsSource="{Binding ElementName=Control, Path=CustomRegisterItemSource}"
+                               SelectedValue="Id"
+                               DisplayMemberPath="Name"/>
+                
+            </StackPanel>
+            
+            <Button Click="ExportCustomRegister_OnClick" Content="Вивантажити обраний реєстр"/>
+
+        </StackPanel>
+    </t:RadBusyIndicator>
+</UserControl>

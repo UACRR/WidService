@@ -25,6 +25,7 @@ namespace WebAPIConnector
     public class ApiConnector
     {
         private readonly HttpClient client;
+        private readonly HttpClient clientForStream;
 
         public ApiConnector()
         {
@@ -38,6 +39,12 @@ namespace WebAPIConnector
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.Timeout = TimeSpan.FromMinutes(20);
+
+            clientForStream = new HttpClient(handler);
+            clientForStream.BaseAddress = new Uri(Uri);
+            clientForStream.DefaultRequestHeaders.Accept.Clear();
+            clientForStream.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/octet-stream"));
+            clientForStream.Timeout = TimeSpan.FromMinutes(20);
         }
 
         private string configUrl()
@@ -86,6 +93,18 @@ namespace WebAPIConnector
                 LogError(result);
 
             return result?.Content != null ? result.Content.ReadAs<T>() : default(T);
+        }
+
+        /// <summary>
+        /// GET запит
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> GetRequestAsync(string url)
+        {
+            var result = await clientForStream.GetAsync(url);
+            return result;
         }
 
         /// <summary>
@@ -151,6 +170,19 @@ namespace WebAPIConnector
                 LogError(result);
 
             return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
+        }
+
+        /// <summary>
+        /// Надіслати POST запит на сервер
+        /// </summary>
+        /// <typeparam name="TData"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> PostRequestAsync<TData>(string url, TData data)
+        {
+            var result = await client.PostDataAsync(url, data).ConfigureAwait(false);
+            return result;
         }
 
         /// <summary>

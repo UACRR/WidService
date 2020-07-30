@@ -9,6 +9,7 @@
         xmlns:ad="clr-namespace:IPSModulesLibrary.AccountantDocuments;assembly=IPSModulesLibrary"
         xmlns:pr="clr-namespace:IPSModulesLibrary.PaymentToRightholder;assembly=IPSModulesLibrary"
         xmlns:rc="clr-namespace:IPSModulesLibrary.RoyaltyCorrection;assembly=IPSModulesLibrary"
+        xmlns:export="clr-namespace:IPSModulesLibrary.ExportReportToFile;assembly=IPSModulesLibrary"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Управління технологічними процесами" Height="450" Width="800">
@@ -32,7 +33,10 @@
     </i:Interaction.Triggers>
 
     <TabControl SelectedItem="{Binding MainTabItem}">
-        <TabItem Header="Головне" IsSelected="True">
+        <TabItem Header="Вивантаження звітів в файл" IsSelected="True">
+            <export:ExportReportToFileControl/>
+        </TabItem>
+        <TabItem Header="Головне">
             <fw:FinishingWorksControl/>
         </TabItem>
 

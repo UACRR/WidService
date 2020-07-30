@@ -112,6 +112,9 @@
     <Compile Include="CommunitiesList\CommunitiesListModel.cs" />
     <Compile Include="CommunitiesList\CommunitiesListViewModel.cs" />
     <Compile Include="CommunitiesList\LM_CommunitiesList.cs" />
+    <Compile Include="ExportReportToFile\ExportReportToFileControl.xaml.cs">
+      <DependentUpon>ExportReportToFileControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FinishingWorks\FinishingWorksControl.xaml.cs">
       <DependentUpon>FinishingWorksControl.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,7 @@
     <Compile Include="PaymentToRightholder\PaymentToRightholderControl.xaml.cs">
       <DependentUpon>PaymentToRightholderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -212,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CommunitiesList\CommunitiesListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExportReportToFile\ExportReportToFileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

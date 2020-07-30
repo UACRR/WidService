@@ -482,6 +482,7 @@
     <Compile Include="Services\CalculationBRService.cs" />
     <Compile Include="Services\ConsumerRegisterService.cs" />
     <Compile Include="Services\CopyrightRequestService.cs" />
+    <Compile Include="Services\ExportReportToFileService.cs" />
     <Compile Include="Services\FinishingWorksService.cs" />
     <Compile Include="Services\HelperService.cs" />
     <Compile Include="Services\Interfaces\ICatalogFileItemsService.cs" />
