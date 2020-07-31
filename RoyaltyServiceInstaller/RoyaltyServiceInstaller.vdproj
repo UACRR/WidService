@@ -274,6 +274,12 @@
         "Entry"
         {
         "MsmKey" = "8:_19415958C42519A49836BC5B1BFD3A7C"
+        "OwnerKey" = "8:_F5BA4ACF0BCA4C150F6FBC5E36987B88"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_19415958C42519A49836BC5B1BFD3A7C"
         "OwnerKey" = "8:_5745C945A0975CF6CB7D051734779F89"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -916,7 +922,19 @@
         "Entry"
         {
         "MsmKey" = "8:_58E9216926A1FF9D3F59F621F3012860"
+        "OwnerKey" = "8:_F5BA4ACF0BCA4C150F6FBC5E36987B88"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_58E9216926A1FF9D3F59F621F3012860"
         "OwnerKey" = "8:_4BCE85AC9A1278232E5A2D482FA99AB6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_58E9216926A1FF9D3F59F621F3012860"
+        "OwnerKey" = "8:_9E711949D40D8CD3CD9026B24B01C983"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -10993,15 +11011,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Royalty Service"
-        "ProductCode" = "8:{67213CD8-26B5-408D-B00D-6207EE1AA2DD}"
-        "PackageCode" = "8:{41320546-1498-4FCC-8AD1-DC75D4E108F7}"
+        "ProductCode" = "8:{E4B3ED19-65DC-4EBC-BC14-E60BA3AEA081}"
+        "PackageCode" = "8:{A6D43899-EBB2-41F0-92BE-FCC6111878A7}"
         "UpgradeCode" = "8:{1ACC9485-7BEF-434E-9E45-D146E0C37AB6}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.1.037"
+        "ProductVersion" = "8:2.1.704"
         "Manufacturer" = "8:IPS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://dev.smartroyalty.online/faq/#contact"
