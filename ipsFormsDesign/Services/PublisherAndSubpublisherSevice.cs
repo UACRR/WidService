@@ -63,6 +63,17 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Отримати список субвидавництв
+        /// </summary>
+        /// <returns></returns>
+        public List<PublishersView> GetSubPublishersList()
+        {
+            string url = $"{Prefix}/list/subpublishers";
+            var result = _apiConnector.GetList<PublishersView>(url);
+            return result;
+        }
+
+        /// <summary>
         /// Створити зв'язок видавництва/субвидавництва
         /// </summary>
         /// <param name="relSubPublish"></param>

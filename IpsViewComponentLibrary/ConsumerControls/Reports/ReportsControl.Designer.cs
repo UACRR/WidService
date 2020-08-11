@@ -199,7 +199,7 @@
             gridViewTextBoxColumn6.Name = "State";
             gridViewTextBoxColumn6.Width = 103;
             gridViewTextBoxColumn7.FieldName = "PeriodPaymentName";
-            gridViewTextBoxColumn7.HeaderText = "Періодичність оплати";
+            gridViewTextBoxColumn7.HeaderText = "Періодичність звітності";
             gridViewTextBoxColumn7.MinWidth = 150;
             gridViewTextBoxColumn7.Name = "PeriodPayment";
             gridViewTextBoxColumn7.Width = 155;
@@ -247,7 +247,7 @@
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(292, 20);
             this.radLabel3.TabIndex = 15;
-            this.radLabel3.Text = "Періоди платежів";
+            this.radLabel3.Text = "Звітні періоди";
             // 
             // gvPeriods
             // 

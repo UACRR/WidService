@@ -371,7 +371,7 @@
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(325, 21);
             this.radLabel3.TabIndex = 12;
-            this.radLabel3.Text = "Періоди платежів";
+            this.radLabel3.Text = "Звітні періоди";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
             // btnNewPeriod

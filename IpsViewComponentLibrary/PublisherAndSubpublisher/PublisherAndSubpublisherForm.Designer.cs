@@ -39,10 +39,10 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             this.bsSubPublishers = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.dtDateBegin = new IpsDateTimePicker();
+            this.dtDateBegin = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.dtDateEnd = new IpsDateTimePicker();
+            this.dtDateEnd = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             this.lblInfo = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
@@ -66,9 +66,9 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             // 
             this.radLabel1.Location = new System.Drawing.Point(12, 12);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(84, 19);
+            this.radLabel1.Size = new System.Drawing.Size(197, 19);
             this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Видавництво:";
+            this.radLabel1.Text = "Автор/Оригінальне Видавництво:";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // ddlPublisher
@@ -79,9 +79,9 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             this.ddlPublisher.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRelSubPublish, "CustIdPub", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ddlPublisher.DataSource = this.bsPublishers;
             this.ddlPublisher.DisplayMember = "PublisherName";
-            this.ddlPublisher.Location = new System.Drawing.Point(122, 12);
+            this.ddlPublisher.Location = new System.Drawing.Point(272, 12);
             this.ddlPublisher.Name = "ddlPublisher";
-            this.ddlPublisher.Size = new System.Drawing.Size(333, 21);
+            this.ddlPublisher.Size = new System.Drawing.Size(274, 21);
             this.ddlPublisher.TabIndex = 1;
             this.ddlPublisher.ThemeName = "Office2013Light";
             this.ddlPublisher.ValueMember = "CustId";
@@ -102,9 +102,9 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             this.ddlSubPublisher.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRelSubPublish, "CustIdSub", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ddlSubPublisher.DataSource = this.bsSubPublishers;
             this.ddlSubPublisher.DisplayMember = "PublisherName";
-            this.ddlSubPublisher.Location = new System.Drawing.Point(122, 39);
+            this.ddlSubPublisher.Location = new System.Drawing.Point(272, 39);
             this.ddlSubPublisher.Name = "ddlSubPublisher";
-            this.ddlSubPublisher.Size = new System.Drawing.Size(333, 21);
+            this.ddlSubPublisher.Size = new System.Drawing.Size(274, 21);
             this.ddlSubPublisher.TabIndex = 3;
             this.ddlSubPublisher.ThemeName = "Office2013Light";
             this.ddlSubPublisher.ValueMember = "CustId";
@@ -117,9 +117,9 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             // 
             this.radLabel2.Location = new System.Drawing.Point(12, 39);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(104, 19);
+            this.radLabel2.Size = new System.Drawing.Size(254, 19);
             this.radLabel2.TabIndex = 2;
-            this.radLabel2.Text = "Субвидавництво:";
+            this.radLabel2.Text = "Уповноваж. Видавництво/Субвидавництво:";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel3
@@ -133,6 +133,9 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             // 
             // dtDateBegin
             // 
+            this.dtDateBegin.BorderVisible = true;
+            this.dtDateBegin.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtDateBegin.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsRelSubPublish, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateBegin.Location = new System.Drawing.Point(144, 66);
@@ -164,6 +167,9 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             // 
             // dtDateEnd
             // 
+            this.dtDateEnd.BorderVisible = true;
+            this.dtDateEnd.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtDateEnd.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsRelSubPublish, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateEnd.Location = new System.Drawing.Point(295, 66);
@@ -179,12 +185,12 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             // 
             this.ctrlSaveCancelButtons.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
             this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 172);
+            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 184);
             this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
             this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
             this.ctrlSaveCancelButtons.SaveButtonEnabled = true;
-            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(489, 31);
+            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(558, 31);
             this.ctrlSaveCancelButtons.TabIndex = 9;
             // 
             // lblInfo
@@ -204,7 +210,7 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(489, 203);
+            this.ClientSize = new System.Drawing.Size(558, 215);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.ctrlSaveCancelButtons);
             this.Controls.Add(this.radLabel5);
@@ -224,7 +230,7 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Параметри угоди для Субвидавництва";
+            this.Text = "Параметри повноважень";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPublisher)).EndInit();

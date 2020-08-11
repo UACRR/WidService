@@ -70,7 +70,20 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("list/publishers")]
         public async Task<IActionResult> GetPublisherList()
         {
-            string query = @"select * from vPublishers";
+            string query = @"select * from vPublishersRH";
+            var list = await _dbContext.getViewData(query, null);
+
+            return Ok(list);
+        }
+
+        /// <summary>
+        /// Отримати список субвидавництв
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("list/subpublishers")]
+        public async Task<IActionResult> GetSubPublisherList()
+        {
+            string query = @"select * from vPublishersAgr";
             var list = await _dbContext.getViewData(query, null);
 
             return Ok(list);

@@ -45,17 +45,18 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
         {
             _view = view;
 
-            dtDateBegin.MinDate = DateTime.Now;
+            //dtDateBegin.MinDate = DateTime.Now;
             dtDateEnd.MinDate = DateTime.Now.AddDays(1);
 
             var publisherList = PublisherAndSubpublisherSevice.GetInstance().GetPublishersList();
+            var subpublisherList = PublisherAndSubpublisherSevice.GetInstance().GetSubPublishersList();
 
             _publisherList.Clear();
             _publisherList.AddRange(publisherList);
             bsPublishers.DataSource = _publisherList;
 
             _subPublisherList.Clear();
-            _subPublisherList.AddRange(publisherList);
+            _subPublisherList.AddRange(subpublisherList);
             bsSubPublishers.DataSource = _subPublisherList;
 
             relSubPublish.DateBegin = DateTime.Today;
@@ -171,10 +172,14 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
                 }
             }
 
+            //var isInvalid = existLinks.Any(rec => rec.DateBegin <= item.DateBegin && rec.DateEnd >= item.DateBegin
+            //                           && rec.DateBegin <= item.DateBegin && rec.DateEnd >= item.DateEnd);
+            //isValid = isInvalid;
+
             if (!isValid)
             {
                 MessageShow.ShowWarning($"Дата «Дії повноважень по» пересікається з періодом іншого існуючого повноваження субвидавницта! " +
-                    $"Максимальна можлива дата «Дії повноважень по» - {maxValidDate.Value.ToString("dd.MM.yyyy")}!");
+                    $"Максимальна можлива дата «Дії повноважень по» - {maxValidDate.Value:dd.MM.yyyy}!");
             }
 
             return isValid;
@@ -196,19 +201,22 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
 
             var validDatePairs = GetValidDatePairs(existLinks);
 
-            bool isValid = false;
+            //bool isValid = false;
 
-            foreach (var datePair in validDatePairs)
-            {
-                bool currentPairValid = item.DateBegin >= datePair.Key && item.DateEnd <= datePair.Value;
-                if (currentPairValid)
-                {
-                    isValid = true;
-                    break;
-                }
-            }
+            //foreach (var datePair in validDatePairs)
+            //{
+            //    bool currentPairValid = item.DateBegin >= datePair.Key && item.DateEnd <= datePair.Value;
+            //    if (currentPairValid)
+            //    {
+            //        isValid = true;
+            //        break;
+            //    }
+            //}
 
-            if (!isValid)
+            var isInvalid = existLinks.Any(rec => rec.DateBegin <= item.DateBegin && rec.DateEnd >= item.DateBegin
+                           || rec.DateBegin <= item.DateEnd && rec.DateEnd >= item.DateEnd);
+
+            if (isInvalid)
             {
                 string msg = "Обраний період пересікається з періодом іншого існуючого повноваження субвидавницта!";
 
@@ -225,7 +233,7 @@ namespace IpsViewComponentLibrary.PublisherAndSubpublisher
                 MessageShow.ShowWarning(msg);
             }
 
-            return isValid;
+            return !isInvalid;
         }
 
         /// <summary>

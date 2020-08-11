@@ -166,7 +166,7 @@
                             </telerik:RadToggleButton>
 
                             <telerik:Label Grid.Column="1" 
-                                               Content="Періоди платежів по ліцензії"
+                                               Content="Звітні періоди"
                                                FontSize="13"
                                                FontWeight="DemiBold"
                                                Background="LightBlue"/>

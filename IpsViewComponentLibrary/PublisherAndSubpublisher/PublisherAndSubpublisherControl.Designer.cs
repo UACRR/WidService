@@ -82,14 +82,14 @@
             gridViewTextBoxColumn2.Name = "CustIdSub";
             gridViewTextBoxColumn2.Width = 47;
             gridViewTextBoxColumn3.FieldName = "PubName";
-            gridViewTextBoxColumn3.HeaderText = "Назва Оригінального видавництва";
+            gridViewTextBoxColumn3.HeaderText = "Назва Автора/Оригінального видавництва";
             gridViewTextBoxColumn3.MinWidth = 150;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "PubName";
             gridViewTextBoxColumn3.Width = 323;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "SubName";
-            gridViewTextBoxColumn4.HeaderText = "Назва Субвидавництва";
+            gridViewTextBoxColumn4.HeaderText = "Назва Уповноваж. Видавництва/Субвидавництва";
             gridViewTextBoxColumn4.MinWidth = 150;
             gridViewTextBoxColumn4.Name = "SubName";
             gridViewTextBoxColumn4.Width = 336;
