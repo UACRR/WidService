@@ -29,6 +29,7 @@ namespace ipsmedserviceapp.Controllers
         {
             _dbContext = dbContext;
             _logger = logger;
+
         }
 
         /// <summary>
