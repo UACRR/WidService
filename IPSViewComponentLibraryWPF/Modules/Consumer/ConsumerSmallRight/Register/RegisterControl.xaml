@@ -134,7 +134,7 @@
                                     <telerik:GridViewDataColumn Header="Номер договору" DataMemberBinding="{Binding AgrNumber}"/>
                                     <telerik:GridViewDataColumn Header="Дата початку" DataMemberBinding="{Binding DateBegin, StringFormat='{}{0:d}'}" Width="90" />
                                     <telerik:GridViewDataColumn Header="Дата завершення" DataMemberBinding="{Binding DateEnd, StringFormat='{}{0:d}'}" Width="90" />
-                                    <telerik:GridViewDataColumn Header="Періодичність оплати" DataMemberBinding="{Binding PeriodPaymentName}"/>
+                                    <telerik:GridViewDataColumn Header="Періодичність звітності" DataMemberBinding="{Binding PeriodPaymentName}"/>
                                     <telerik:GridViewDataColumn Header="Сума вимоги" DataMemberBinding="{Binding MinAmount, StringFormat='{}{0:N2}'}"/>
                                     <telerik:GridViewDataColumn Header="Наявний борг" DataMemberBinding="{Binding Debt, StringFormat='{}{0:N2}'}"/>
                                 </telerik:RadGridView.Columns>
