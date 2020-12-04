@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <Content Remove="appsettings.Development.json" />
+    <Content Remove="appsettings.Production.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="appsettings.Production.json" />
     <None Include="appsettings.Development.json" />
   </ItemGroup>
 

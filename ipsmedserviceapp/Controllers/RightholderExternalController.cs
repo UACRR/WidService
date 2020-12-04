@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -16,10 +17,12 @@ namespace ipsmedserviceapp.Controllers
     public class RightholderExternalController : ControllerBase
     {
         private readonly MediaServiceContext _dbContext;
+        private readonly ILogger<RightholderExternalController> _logger;
 
-        public RightholderExternalController(MediaServiceContext dbContext)
+        public RightholderExternalController(MediaServiceContext dbContext, ILogger<RightholderExternalController> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         /// <summary>
@@ -134,10 +137,11 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 transaction?.Rollback();
-                return BadRequest(e.ToString());
+                _logger.LogError(ex, ex.Message);
+                return BadRequest(ex.ToString());
             }
         }
     }

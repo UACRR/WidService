@@ -1,0 +1,6 @@
+{
+  "Environment": "dev",
+  "WebApiServer": "http://localhost:54867/api/",
+  "WebApiPermitServer": "http://localhost:54867/api/",
+  "WebApiReportServer": "http://localhost:54867/api/"
+}

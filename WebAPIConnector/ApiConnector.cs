@@ -49,7 +49,15 @@ namespace WebAPIConnector
 
         private string configUrl()
         {
-            string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
+            var fileMap = new ExeConfigurationFileMap
+            {
+                ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "environment.config")
+            };
+            Configuration cfg = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+            string configName = cfg.AppSettings.Settings["environment"].Value;
+
+            //string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
+
             ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
             configFile.ExeConfigFilename = configName;
             Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);

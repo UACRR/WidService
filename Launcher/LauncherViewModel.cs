@@ -171,6 +171,8 @@ namespace Launcher
                     var dictionary = await DictionaryService.GetInstance().GetFrameTaskDictionary(CurrentLanguage.SpecificationCode);
                     IpsGlobal.SetFrameTaskDictionary(dictionary);
 
+                    IpsGlobal.SetMyAnketa(DictionaryService.GetInstance().GetMyAnketa());
+
                     IpsGlobal.Properties.Add("OwnerName", rightholderService.GetOwnerName()?.Name);
 
                     IsInit = true;

@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -25,11 +26,13 @@ namespace ipsmedserviceapp.Controllers
     {
         private readonly MediaServiceContext _dbContext;
         private readonly RightholderRepository _rightholderRepository;
+        private readonly ILogger<RHController> _logger;
 
-        public RHController(MediaServiceContext dbContext, RightholderRepository rightholderRepository)
+        public RHController(MediaServiceContext dbContext, RightholderRepository rightholderRepository, ILogger<RHController> logger)
         {
             _dbContext = dbContext;
             _rightholderRepository = rightholderRepository;
+            _logger = logger;
         }
 
         /// <summary>
@@ -216,6 +219,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             }
             catch (Exception e)
             {
+                _logger.LogError(e, e.Message);
                 throw;
             }
         }
@@ -260,6 +264,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             catch (Exception e)
             {
                 response = new ResponseOfRequest<DataTable>(e);
+                _logger.LogError(e, e.Message);
                 return Ok(response);
             }
         }
@@ -320,7 +325,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService
             {
                 CrkindCode = rec.CodeI,
-                OurService = true,
+                OurService = false,
                 CrkindCodeNavigation = rec
             }));
 
@@ -438,6 +443,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             catch (Exception e)
             {
                 transaction?.Rollback();
+                _logger.LogError(e, e.Message);
                 return BadRequest(e.ToString());
             }
         }
@@ -672,10 +678,11 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
 
                 return await getRh(target.CustId);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
                 tran?.Rollback();
-                return BadRequest(ex.Message);
+                _logger.LogError(e, e.Message);
+                return BadRequest(e.Message);
             }
         }
 
@@ -696,6 +703,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             }
             catch (Exception e)
             {
+                _logger.LogError(e, e.Message);
                 return BadRequest(e.ToString());
             }
         }
@@ -723,14 +731,12 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 dest = await GetRightHolderAllData(rhId);
                 return Json(dest);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                if (tran != null)
-                    tran.Rollback();
-
-                return BadRequest(ex.Message);
+                tran?.Rollback();
+                _logger.LogError(e, e.Message);
+                return BadRequest(e.Message);
             }
-
         }
 
         #region Методи отримання допоміжної інформації по правовласникам
@@ -751,12 +757,13 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 var listAuthors = await _dbContext.getViewData("select distinct authorName from Authors where authorName like @filter", new[] { new SqlParameter("@filter", filterStr) });
                 return Json(listAuthors);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return BadRequest(ex.InnerException.Message);
+                _logger.LogError(e, e.Message);
+                return BadRequest(e.Message);
             }
-
         }
+
         #endregion
 
         [HttpPut("setstatus/{rhId}")]

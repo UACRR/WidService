@@ -235,7 +235,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                         AuthorName = author.AuthorName.Trim(),
                         CustId = author.CustId,
                         CRightId = foundedCopyright?.CRightId,
-                        CopyrightStatus = foundedCopyright?.Status,
+                        CopyrightStatus = foundedCopyright?.Status ?? 0,
                         CommunityName = foundedRightholder?.CustIdSUbName,
                         ValidUntilCommunityDate = foundedRightholder?.DateEndSUB,
                         Rate = foundedCopyright?.Rate ?? 0m,

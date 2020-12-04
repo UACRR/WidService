@@ -45,6 +45,12 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
+        public MyAnketa GetMyAnketa()
+        {
+            var anketaDic = _webApi.GetItemById<MyAnketa>("dictionary", "myanketa");
+            return anketaDic;
+        }
+
         public ObjectRightDictionaries GetObjectRightDictionaries()
         {
             var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");

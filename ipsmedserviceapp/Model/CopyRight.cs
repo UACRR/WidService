@@ -13,6 +13,7 @@ namespace ipsmedserviceapp.Model
             Distribution = new HashSet<Distribution>();
             LicAuthorBr = new HashSet<LicAuthorBr>();
             RhcatalogItem = new HashSet<RhcatalogItem>();
+            Status = 0;
         }
 
         public int CRightId { get; set; }

@@ -2143,6 +2143,17 @@ namespace ipsmedserviceapp.Controllers
             return Ok(data);
         }
 
+        /// <summary>
+        /// Отримати дані по анкеті компанії
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("myanketa")]
+        public async Task<IActionResult> GetMyAnketa()
+        {
+            var data = await _dbContext.MyAnketa.SingleAsync();
+            return Ok(data);
+        }
+
         private static List<T> TranslateDictionary<T>(List<T> dictionaries, Action<T> setValue)
         {
             foreach (var item in dictionaries)

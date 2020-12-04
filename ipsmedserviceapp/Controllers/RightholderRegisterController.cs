@@ -176,7 +176,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
             finally
@@ -248,7 +248,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
             finally
@@ -315,14 +315,15 @@ namespace ipsmedserviceapp.Controllers
 
                 return Ok(dest);
             }
-            catch
+            catch (Exception ex)
             {
                 transaction?.Rollback();
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
             finally
             {
-                if(currentTimeOut.HasValue)
+                if (currentTimeOut.HasValue)
                     _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
@@ -354,7 +355,7 @@ namespace ipsmedserviceapp.Controllers
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
             finally

@@ -15,6 +15,8 @@ namespace ipsFormsDesign.Data
         public static ObjectRightDictionaries ObjectRightDictionaries { get; private set; }
         public static List<FrameTask> FrameTaskDictionary { get; private set; }
 
+        public static MyAnketa MyAnketa { get; private set; }
+
         public static CurrentClient CurrentClient { get; } = new CurrentClient();
 
         public static Dictionary<Type, object> Instances { get; private set; } = new Dictionary<Type, object>();
@@ -69,6 +71,11 @@ namespace ipsFormsDesign.Data
         public static void SetFrameTaskDictionary(List<FrameTask> frameTaskDictionary)
         {
             FrameTaskDictionary = frameTaskDictionary;
+        }
+
+        public static void SetMyAnketa(MyAnketa myAnketa)
+        {
+            MyAnketa = myAnketa;
         }
     }
 }

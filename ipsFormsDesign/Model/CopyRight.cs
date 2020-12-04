@@ -13,6 +13,7 @@ namespace ipsFormsDesign.Model
             Distribution = new ObservableListSource<Distribution>();
             LicAuthorBr = new ObservableListSource<LicAuthorBr>();
             RhcatalogItem = new ObservableListSource<RhcatalogItem>();
+            Status = 0;
         }
 
         public int CRightId { get; set; }
