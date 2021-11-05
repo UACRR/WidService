@@ -312,6 +312,13 @@
     <Content Include="FullDdexDatabase.sql" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\Upgrade.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\All.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexAdjConsolidatedDetail.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexAdjConsolidatedSummary.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexEnumContentCategory.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexEnumRightsType.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\spDdexAdjConsolidatedCalcRoyalty.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\spDdexAdjConsolidatedDistRoyalty.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

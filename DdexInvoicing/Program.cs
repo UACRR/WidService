@@ -23,10 +23,16 @@ namespace DdexInvoicing
             form.ddexReportingPeriodId = 21;
             Application.Run(form);*/
 
-            
-            //Meta.Load();
-            //DdexDownloadActions.Init();
-            Application.Run(new DdexInvoicingForm());
+            try
+            {
+                Meta.Load();
+                DdexDownloadActions.Init();
+                Application.Run(new DdexInvoicingForm());
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             //Application.Run(new FormExceptionSets());
 

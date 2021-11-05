@@ -17,8 +17,8 @@ namespace InvoicingLib
         public static dynamic CcidInFileStatus;
         public static dynamic CcidClFileStatus;
         public static dynamic IdentMWStatus;
-        public static dynamic CrfDetailStatus;
-        public static dynamic DdexAdjustmentType;
+        public static dynamic DdexEnumRightsType;
+        public static dynamic DdexEnumContentCategory;
 
         public static void Load()
         {
@@ -30,8 +30,8 @@ namespace InvoicingLib
                 CcidInFileStatus = StatusInfo.GetStatusInfo(conn, "CcidInFileStatus");
                 CcidClFileStatus = StatusInfo.GetStatusInfo(conn, "CcidClFileStatus");
                 IdentMWStatus = StatusInfo.GetStatusInfo(conn, "IdentMWStatus");
-                CrfDetailStatus = StatusInfo.GetStatusInfo(conn, "CrfDetailStatus");
-                DdexAdjustmentType = StatusInfo.GetStatusInfo(conn, "DdexAdjustmentType");
+                DdexEnumRightsType = StatusInfo.GetStatusInfo(conn, "DdexEnumRightsType");
+                DdexEnumContentCategory = StatusInfo.GetStatusInfo(conn, "DdexEnumContentCategory");
             }
         }
     }
@@ -83,8 +83,6 @@ namespace InvoicingLib
 
         public int Value(string name)
         {
-            if (!_values.ContainsKey(name))
-                throw new KeyNotFoundException($"System.Collections.Generic.KeyNotFoundException:: The given key was not present in the dictionary. Key: {name}.");
             return _values[name];
         }
 

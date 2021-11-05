@@ -12,6 +12,7 @@ using Telerik.WinControls.Data;
 using System.Configuration;
 using InvoicingLib;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace DdexInvoicing
 {
@@ -237,10 +238,121 @@ namespace DdexInvoicing
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                var result = MessageBox.Show("Згенерувати повторно помилку? (програма може аварійно зупинитись)", "#DEBUG MODE",MessageBoxButtons.YesNo, MessageBoxIcon.Hand);
-                if (result == DialogResult.Yes)
-                    throw;
             }
+        }
+
+        private string DoLoadDdexAdjConsolidated(int ddexReportId, string fileFullName, string fileType)
+        {
+            try
+            {
+                string retVal = "";
+                DdexReport ddexReport = new DdexReport(ConfigurationManager.AppSettings["ConnectionStringDdex"], ddexReportId);
+                if (fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+                {
+                    ddexReport.ProcessAdjustment(new DdexReportActionLoadAdjAvod(), fileFullName);
+                }
+                else
+                {
+                    ddexReport.ProcessAdjustment(new DdexReportActionLoadAdjSvod(), fileFullName);
+                }
+
+                Helpers.RunSqlOperationDdexT(cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                    cmd.CommandText = $@"spDdexAdjConsolidatedCalcRoyalty";
+                    cmd.ExecuteNonQuery();
+                }, true);
+
+                Helpers.RunSqlOperationDdex(cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+
+                    cmd.Parameters.Add("@result", SqlDbType.VarChar);
+                    cmd.Parameters["@result"].Direction = ParameterDirection.Output;
+                    cmd.Parameters["@result"].Size = 100;
+
+                    cmd.Parameters.Add("@RetCode", SqlDbType.Int);
+                    cmd.Parameters["@RetCode"].Direction = ParameterDirection.Output;
+
+                    cmd.CommandText = $@"spDdexAdjConsolidatedDistRoyalty";
+                    cmd.ExecuteNonQuery();
+
+                    if((int)cmd.Parameters["@RetCode"].Value == 1)
+                    {
+                        retVal = (string)cmd.Parameters["@result"].Value;
+                    }
+                }, true);
+
+                return retVal;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        private bool LoadDdexAdjConsolidated(int ddexReportId, int ddexReportingPeriodId)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Файли консолідованих звітів від клієнта (*.tsv)|*.tsv";
+            if (DialogResult.OK != dlg.ShowDialog())
+                return false;
+            string fileFullName = dlg.FileName;
+            string fileName = Path.GetFileNameWithoutExtension(dlg.FileName);
+
+            // Get data for file name validation from db
+            string fileType = "";
+            int year = 0;
+            int quarter = 0;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
+
+                cmd.CommandText = "select FileType from DdexReport where id = @ddexReportId";
+                fileType = (string)cmd.ExecuteScalar();
+
+                cmd.CommandText = "select year from DdexReportingPeriod where id = @ddexReportingPeriodId";
+                year = (int)cmd.ExecuteScalar();
+
+                cmd.CommandText = "select quarter from DdexReportingPeriod where id = @ddexReportingPeriodId";
+                quarter = (int)cmd.ExecuteScalar();
+            });
+
+            // Validate file from its name
+            // Example: DSR_UACRR-CS_YouTube_AdjConsolidated-AdSupport-Music-All_2019-Q2_UA_1of1_20201207T204552
+            string expectedAdjFileType = 
+                fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) ?    "AdSupport" :
+                fileType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase) ? "SubscriptionMusic" :
+                                                                                            "SubscriptionPremium";
+            string expectedFileStart = $"DSR_UACRR-CS_YouTube_AdjConsolidated-{expectedAdjFileType}-Music-All_{year}-Q{quarter}_UA_1of1_";
+
+            if (!fileName.StartsWith(expectedFileStart, StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Файл не відповідає типу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            FormLongOperation form = new FormLongOperation("Виконується побудова даних для розподілу. Зачекайте, будь ласка.");
+            Form parent = FindForm();
+            form.Show(parent);
+            var task = new Task<string>(() => { return DoLoadDdexAdjConsolidated(ddexReportId, fileFullName, fileType); });
+            task.Start();
+            task.Wait();
+            form.Hide();
+
+            if(!string.IsNullOrEmpty(task.Result))
+            {
+                MessageBox.Show(task.Result, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            MessageBox.Show("Дані для розподілу роялті побудовані і передані в БД MediaService", "Операція завершена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
 
         private void radGridViewReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
@@ -265,7 +377,8 @@ namespace DdexInvoicing
             {
                 int status = (int)e.Row.Cells["status"].Value;
                 if (status == Meta.DdexReportStatus.INVOICING)
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Обробку завершено";
+                    //(e.CellElement as GridCommandCellElement).CommandButton.Text = "Обробку завершено";
+                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Розподілити";
                 else if (status == Meta.DdexReportStatus.INVOICING_COMPLETED)
                     (e.CellElement as GridCommandCellElement).CommandButton.Text = "До архіву";
                 else if (status == Meta.DdexReportStatus.ARCHIVING)
@@ -303,6 +416,7 @@ namespace DdexInvoicing
                 DdexReportArchiver.OperationMode mode;
                 if (status == Meta.DdexReportStatus.INVOICING)
                 {
+                    /*
                     Helpers.RunSqlOperationDdex(cmd =>
                     {
                         cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
@@ -311,6 +425,19 @@ namespace DdexInvoicing
                         cmd.ExecuteNonQuery();
                         FillReports();
                     });
+                    */
+                    if (LoadDdexAdjConsolidated(ddexReportId, ddexReportingPeriodId))
+                    {
+                        Helpers.RunSqlOperationDdex(cmd =>
+                        {
+                            cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                            cmd.Parameters.AddWithValue("@status", Meta.DdexReportStatus.INVOICING_COMPLETED);
+                            cmd.CommandText = "update DdexReport set status = @status where id = @ddexReportId";
+                            cmd.ExecuteNonQuery();
+                        });
+                        FillReports();
+                    }
+
                     return;
                 }
                 else if (status == Meta.DdexReportStatus.INVOICING_COMPLETED || status == Meta.DdexReportStatus.ARCHIVING)

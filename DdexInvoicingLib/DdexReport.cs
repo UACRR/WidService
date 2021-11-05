@@ -125,6 +125,20 @@ namespace InvoicingLib
             }
         }
 
+        public void ProcessLoadAdjSvod(DdexReportActionBase action, string fileFullName)
+        {
+            try
+            {
+                action.Init(this);
+                ProcessFile(fileFullName, action);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine(ex.Message);
+                throw;
+            }
+        }
+
         public void ProcessFile(string fileName, DdexReportActionBase action)
         {
             Logger.WriteLine($"Обробка файлу {fileName}");

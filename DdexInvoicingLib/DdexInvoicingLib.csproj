@@ -70,7 +70,8 @@
     <Compile Include="DdexReportActionCheckColSizes.cs" />
     <Compile Include="DdexReportActionFillSubscriptionData.cs" />
     <Compile Include="DdexReportActionFillRawData.cs" />
-    <Compile Include="DdexReportActionLoadAdjustmentData.cs" />
+    <Compile Include="DdexReportActionLoadAdjAvod.cs" />
+    <Compile Include="DdexReportActionLoadAdjSvod.cs" />
     <Compile Include="DdexReportActionLoadIdentData.cs" />
     <Compile Include="DdexReportActionRegisterErrors.cs" />
     <Compile Include="DdexReportBlock.cs" />
