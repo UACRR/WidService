@@ -251,8 +251,7 @@ namespace DdexInvoicing
                     where t1.fileId = @fileId";
                 string fileType = (string)cmd.ExecuteScalar();
 
-                cmd.CommandText = fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) ?
-                    "spCreateInitialInvoice" : "spCreateInitialInvoiceSubscr";
+                cmd.CommandText = fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) ? "spCreateInitialInvoice" : "spCreateInitialInvoiceSubscr";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.RemoveAt(0);
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
@@ -781,7 +780,7 @@ namespace DdexInvoicing
 
                 cmd.Parameters.Add("@result", SqlDbType.VarChar);
                 cmd.Parameters["@result"].Direction = ParameterDirection.Output;
-                cmd.Parameters["@result"].Size = 100;
+                cmd.Parameters["@result"].Size = 2000;
 
                 cmd.Parameters.Add("@RetCode", SqlDbType.Int);
                 cmd.Parameters["@RetCode"].Direction = ParameterDirection.Output;
