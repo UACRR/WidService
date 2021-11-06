@@ -8,6 +8,7 @@ namespace InvoicingLib
 {
     public class DdexReportActionBase
     {
+        protected const string UACRR_CS = "UACRR_CS";
         public DdexReport report;
 
         public virtual string GetDescription() { return ""; }
