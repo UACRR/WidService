@@ -1,0 +1,13 @@
+{
+  "ApplicationWebApiSettings": {
+    "ConnectionString": "http://localhost:54867/api/"
+  },
+
+  "PermitWebApiSettings": {
+    "ConnectionString": "http://93.126.99.28:8012/"
+  },
+
+  "ReportsConnectionSettings": {
+    "ConnectionString": "http://localhost:54867/api/"
+  }
+}
