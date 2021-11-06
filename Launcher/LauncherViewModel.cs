@@ -454,6 +454,17 @@ namespace Launcher
             }
         }
 
+        private Visibility _newPasswordVisibility = Visibility.Collapsed;
+        public Visibility NewPasswordVisibility
+        {
+            get => _newPasswordVisibility;
+            set
+            {
+                _newPasswordVisibility = value;
+                OnPropertyChanged(() => NewPasswordVisibility);
+            }
+        }
+
         #endregion
 
         #region * * * DATA PROPERTIES * * *

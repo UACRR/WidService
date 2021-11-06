@@ -598,47 +598,16 @@
             </Setter>
         </Style>
         
-        <!--PASSWORD PLACEHOLDER
+        <!--PASSWORD PLACEHOLDER-->
 
-        <Style x:Key="{x:Type PasswordBox}" 
-        TargetType="{x:Type PasswordBox}">
-            <Setter Property="Launcher:PasswordBoxMonitor.IsMonitoring" 
-              Value="True"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type PasswordBox}">
-                        <Border Name="Bd" 
-                    Background="{TemplateBinding Background}" 
-                    BorderThickness="{TemplateBinding BorderThickness}" 
-                    BorderBrush="{TemplateBinding BorderBrush}" 
-                    SnapsToDevicePixels="true">
-                            <Grid>
-                                <ScrollViewer x:Name="PART_ContentHost" 
-                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                                <TextBlock Text="Please enter your password"  
-                           Margin="4, 2, 0, 0" 
-                           Foreground="Gray"  
-                           Visibility="Collapsed" 
-                           Name="txtPrompt" />
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" 
-                                                                         Value="false">
-                                <Setter TargetName="Bd" 
-                                                                                Property="Background" 
-                                                                                Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-                                <Setter Property="Foreground" 
-                                                                                Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="Launcher:PasswordBoxMonitor.PasswordLength" Value="0">
-                                <Setter Property="Visibility" TargetName="txtPrompt" Value="Visible"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style> -->
+        <Style TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="#e7e7e7"/>
+            <Setter Property="Padding" Value="16 0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0 0 0 16"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style> 
 
 
         <!--LOGIN BTN-->
@@ -971,19 +940,19 @@
             </Grid>
 
             <!--МОДАЛКА-->
-            <Grid Visibility="{Binding ModalWindowVisibility, Mode=TwoWay}">
+            <Grid Visibility="{Binding ModalWindowVisibility, Mode=TwoWay}" >
                 <Border>
                     <Border.Background>
                         <SolidColorBrush Color="#272A33" Opacity="0.4" />
                     </Border.Background>
-                    <Border  Width="390" Height="460" CornerRadius="15" Background="White" Padding="40">
-                        <StackPanel>
+                    <Border Width="390" CornerRadius="15" VerticalAlignment="Center" Background="White" Padding="40">
+                        <StackPanel VerticalAlignment="Center" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="30" Margin="0 0 0 32">SIGN IN</TextBlock>
+                                <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="30" Margin="0 0 0 24">SIGN IN</TextBlock>
                                 <Button Grid.Column="1"
                                         Background="Transparent"
                                         BorderThickness="0"
@@ -1015,19 +984,9 @@
                                  Margin="0 0 0 16"
                                  VerticalContentAlignment="Center" 
                                  VerticalAlignment="Center"
-                                 Tag="Username"
-                                 material:HintAssist.Hint="username"
-                                 material:HintAssist.IsFloating="True"/>
+                                 Tag="Username"/>
 
-                            <PasswordBox x:Name="pwBox"
-                                     Background="#e7e7e7" 
-                                     Padding="16 0" 
-                                     material:HintAssist.Hint="password"
-                                     material:HintAssist.IsFloating="True"
-                                     VerticalContentAlignment="Center" 
-                                     Height="40" 
-                                     Margin="0 0 0 5"
-                                     FontSize="14">
+                            <PasswordBox x:Name="pwBox">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="KeyUp">
                                         <i:InvokeCommandAction Command="{Binding KeyUpCommand}" PassEventArgsToCommand="True"/>
@@ -1035,10 +994,22 @@
                                 </i:Interaction.Triggers>
                             </PasswordBox>
 
+                            <StackPanel Visibility="{Binding NewPasswordVisibility}">
+                                <t:Label Content="New password" Margin="15 0"/>
+                                <PasswordBox x:Name="pwBoxNewPW" Margin="0">
+
+                                </PasswordBox>
+
+                                <t:Label Content="Confirm password" Margin="15 0"/>
+                                <PasswordBox x:Name="pwBoxConfirmNewPW">
+
+                                </PasswordBox>
+                            </StackPanel>
                             <t:Label Content="Caps Lock on!" 
                                      HorizontalAlignment="Center" 
                                      Foreground="DimGray" 
                                      FontWeight="SemiBold" 
+                                     Margin="0 -10 0 5"
                                      FontSize="18"
                                      Visibility="{Binding CapsLockOnVisibility}"/>
 
@@ -1046,6 +1017,7 @@
 
                             <CheckBox IsEnabled="False" Margin="0 16 0 32"
                                       FontSize="14" 
+                                      Visibility="Collapsed"
                                       VerticalAlignment="Center" 
                                       IsChecked="{Binding Remember}" 
                                       Height="20"
