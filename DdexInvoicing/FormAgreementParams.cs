@@ -190,7 +190,7 @@ namespace DdexInvoicing
                 foreach (DataRow row in dt.Rows)
                 {
                     cmd.Parameters["@paramId"].Value = (int)row[0];
-                    cmd.Parameters["@paramValue"].Value = (string)row[2];
+                    cmd.Parameters["@paramValue"].Value = row[2] == null ? DBNull.Value :row[2];
                     cmd.ExecuteNonQuery();
                 }
             });
@@ -266,6 +266,9 @@ namespace DdexInvoicing
             if (e.Column.FieldName.Equals("paramValue", StringComparison.OrdinalIgnoreCase))
             {
                 ParamInfo paramInfo = paramInfos[(string)e.Row.Cells["paramName"].Value];
+
+                if (e.Value == null)
+                    return;
 
                 if (paramInfo.paramValueType == ParamValueType.CurrencyCode)
                 {

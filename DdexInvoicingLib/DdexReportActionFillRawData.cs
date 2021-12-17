@@ -273,8 +273,9 @@ namespace InvoicingLib
                 InsertRecord(record, "DdexRecordSy_02_02", -1, -1);
         }
 
-        public override void ProcessBlock(DdexReportBlock block)
+        public override void ProcessBlock(DdexReportBlock blockBase)
         {
+            var block = blockBase as DdexReportBlockYouTube;
             try
             {
                 //int ruRecordIndex = 0;
@@ -291,8 +292,8 @@ namespace InvoicingLib
                     InsertRecord(ruRecord, "DdexRecordRu", ruRecordIndex++, -1);
                 }
                 */
-                Dictionary<string, SURecord> masterSuRecords = new Dictionary<string, SURecord>();
-                Dictionary<string, List<SURecord>> duplicateSuRecords = new Dictionary<string, List<SURecord>>();
+                Dictionary<string, SURecord_03_02> masterSuRecords = new Dictionary<string, SURecord_03_02>();
+                Dictionary<string, List<SURecord_03_02>> duplicateSuRecords = new Dictionary<string, List<SURecord_03_02>>();
 
                 foreach (var suRecord in block.suRecords)
                 {
@@ -303,7 +304,7 @@ namespace InvoicingLib
                     {
                         if (!duplicateSuRecords.ContainsKey(stId))
                         {
-                            List<SURecord> lst = new List<SURecord>();
+                            List<SURecord_03_02> lst = new List<SURecord_03_02>();
                             lst.Add(suRecord);
                             duplicateSuRecords.Add(stId, lst);
                         }
@@ -330,10 +331,10 @@ namespace InvoicingLib
                 {
                     foreach (var pair in masterSuRecords)
                     {
-                        SURecord masterSuRecord = pair.Value;
+                        SURecord_03_02 masterSuRecord = pair.Value;
                         if (!duplicateSuRecords.ContainsKey(masterSuRecord.SalesTransactionId))
                             continue;
-                        foreach (SURecord suRecord in duplicateSuRecords[masterSuRecord.SalesTransactionId])
+                        foreach (SURecord_03_02 suRecord in duplicateSuRecords[masterSuRecord.SalesTransactionId])
                         {
                             decimal masterNetRevenue = (Formatter.ToDecimal(masterSuRecord.NetRevenue));
                             decimal duplicateNetRevenue = (Formatter.ToDecimal(suRecord.NetRevenue));
@@ -349,7 +350,7 @@ namespace InvoicingLib
 
                     foreach (var pair in masterSuRecords)
                     {
-                        SURecord masterSuRecord = pair.Value;
+                        SURecord_03_02 masterSuRecord = pair.Value;
                         InsertRecord(masterSuRecord, "DdexRecordSu", suRecordIndex, -1);
                         foreach (var liRecord in pair.Value.liRecords)
                         {
@@ -362,7 +363,7 @@ namespace InvoicingLib
                             suRecordIndex++;
                             continue;
                         }
-                            
+
                         foreach (var suRecord in duplicateSuRecords[masterSuRecord.SalesTransactionId])
                         {
                             foreach (var liRecord in suRecord.liRecords)

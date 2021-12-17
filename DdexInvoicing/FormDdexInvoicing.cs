@@ -41,7 +41,8 @@ namespace DdexInvoicing
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConnectionStringDdex"]))
             {
                 conn.Open();
-                Text = $"Звіт від {ddexReportInfo.SenderName}, рік {ddexReportInfo.Year}, квартал {ddexReportInfo.Quarter}, {ddexReportInfo.FileType}";
+                var timeUnitName = ddexReportInfo.IsMonthly ? "місяць" : "квартал";
+                Text = $"Звіт від {ddexReportInfo.SenderName}, рік {ddexReportInfo.Year}, {timeUnitName} {ddexReportInfo.TimeUnitValue}, {ddexReportInfo.FileType}";
             }
 
             UpdateTabs();

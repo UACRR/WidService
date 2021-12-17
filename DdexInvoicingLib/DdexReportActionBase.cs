@@ -15,8 +15,9 @@ namespace InvoicingLib
         public virtual void Init(DdexReport report) { this.report = report; }
         public virtual int GetLastProcessedBlockId() { return 0; }
         public virtual void ProcessBlock(DdexReportBlock block) { }
-        public virtual void ProcessHead(HEADRecordGoogle readRecord) { }
+        public virtual void ProcessHead(HEADRecordGoogle headRecord) { }
         public virtual void ProcessFoot(FOOTRecord footRecord) { }
+        public virtual void ProcessSY_01_01(SYRecord_01_01 syRecord) { }
         public virtual void ProcessSY_02_02(SYRecord_02_02 syRecord) { }
         public virtual void ProcessSY_04_01(SYRecord_04_01 syRecord) { }
         public virtual void ProcessSY_05_02(SYRecord_05_02 syRecord) { }

@@ -135,6 +135,17 @@ namespace DdexInvoicing
                     order by {order} {orderDir}, Id
                     option(recompile)
                  ";
+
+                /*
+                cmd.CommandText = $@"
+                    select Id, ResourceTitle, displayartistname, title, composerauthor, ISWC, status, wic, objId, t2.netrevenue 
+                    from IdentMW t1 join IdentReportMwRecords t2 on t2.mwId = t1.id
+                    where t2.ddexReportId = @ddexReportId and t1.DisplayArtistName = 'druha rika'
+                    order by {order} {orderDir}, Id
+                    option(recompile)
+                 ";
+                 */
+
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                 cmd.Parameters.AddWithValue("@status", (int)loadSettings.filterType);
                 cmd.Parameters.AddWithValue("@firstRowIndex", loadSettings.firstRowIndex);

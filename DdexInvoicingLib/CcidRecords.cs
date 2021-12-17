@@ -42,6 +42,7 @@ namespace InvoicingLib
         public string EndDateFormatted { get { return end_date == null ? null : end_date.ToString("yyyyMMdd"); } }
 
         public string Quarter { get { return start_date == null ? null : $"{start_date.Year}-Q{(start_date.Month + 2)/3}"; } }
+        public string Month { get { return start_date == null ? null : start_date.ToString("yyyy-MM"); } }
 
         public void InitFromDataReader(SqlDataReader reader)
         {
@@ -91,7 +92,14 @@ namespace InvoicingLib
         public string BuildFileName()
         {
             //return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{StartDateString}--{EndDateString}_{service_description}_IN.dat";
-            return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Quarter}_{service_description}_IN.dat";
+            if(sender.Equals("Google", StringComparison.OrdinalIgnoreCase))
+            {
+               return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Quarter}_{service_description}_IN.dat";
+            }
+            else
+            {
+                return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Month}_{service_description}_IN.dat";
+            }
         }
 
         public void WriteToFile(System.IO.StreamWriter file)

@@ -168,7 +168,7 @@ namespace DdexInvoicing
                 cmd.CommandTimeout = 0;
 
                 cmd.CommandText = $@"
-                    select t2.year, t2.quarter, t1.*
+                    select t2.year, t2.quarter, t2.month, t1.*
                     from ddexReport t1 join ddexReportingPeriod t2 on t1.ddexReportingPeriodId = t2.Id
                     where t1.Id = @ddexReportId
                     ";
@@ -179,11 +179,12 @@ namespace DdexInvoicing
                 {
                     r.Read();
                     ddexReportInfo.Year = r.GetInt32(0);
-                    ddexReportInfo.Quarter = r.GetInt32(1);
-                    ddexReportInfo.DdexReportId = r.GetInt32(2);
-                    ddexReportInfo.Status = r.GetInt32(4);
-                    ddexReportInfo.SubStatus = r.GetInt32(5);
-                    ddexReportInfo.FileType = r.GetString(8);
+                    ddexReportInfo.IsMonthly = r.IsDBNull(1);
+                    ddexReportInfo.TimeUnitValue = ddexReportInfo.IsMonthly ? r.GetInt32(2) : r.GetInt32(1);
+                    ddexReportInfo.DdexReportId = r.GetInt32(3);
+                    ddexReportInfo.Status = r.GetInt32(5);
+                    ddexReportInfo.SubStatus = r.GetInt32(6);
+                    ddexReportInfo.FileType = r.GetString(9);
                 }
 
                 cmd.CommandText = $@"

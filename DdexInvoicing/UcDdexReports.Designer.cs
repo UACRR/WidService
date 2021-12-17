@@ -44,6 +44,8 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridAgreements = new Telerik.WinControls.UI.RadGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -199,6 +201,14 @@
             gridViewCommandColumn4.Name = "Archive";
             gridViewCommandColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn4.Width = 140;
+            gridViewTextBoxColumn12.FieldName = "licenseeName";
+            gridViewTextBoxColumn12.HeaderText = "licenseeName";
+            gridViewTextBoxColumn12.IsVisible = false;
+            gridViewTextBoxColumn12.Name = "licenseeName";
+            gridViewTextBoxColumn13.FieldName = "licenseDescription";
+            gridViewTextBoxColumn13.HeaderText = "licenseDescription";
+            gridViewTextBoxColumn13.IsVisible = false;
+            gridViewTextBoxColumn13.Name = "licenseDescription";
             this.radGridViewReports.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
@@ -208,7 +218,9 @@
             gridViewTextBoxColumn10,
             gridViewTextBoxColumn11,
             gridViewCommandColumn3,
-            gridViewCommandColumn4});
+            gridViewCommandColumn4,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13});
             this.radGridViewReports.MasterTemplate.EnableAlternatingRowColor = true;
             this.radGridViewReports.MasterTemplate.ShowFilteringRow = false;
             this.radGridViewReports.MasterTemplate.ShowRowHeaderColumn = false;

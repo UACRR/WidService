@@ -75,8 +75,9 @@ namespace InvoicingLib
                 bulkUploader.Flush();
         }
 
-        public override void ProcessBlock(DdexReportBlock block)
+        public override void ProcessBlock(DdexReportBlock blockBase)
         {
+            var block = blockBase as DdexReportBlockYouTube;
             BulkUploadToSql bulkUploader = bulkUploaders["DdexAdjConsolidatedDetail"];
             try
             {

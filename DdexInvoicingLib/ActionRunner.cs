@@ -31,16 +31,34 @@ namespace InvoicingLib
     {
         public override void Run()
         {
-            new DdexReport(ConnectionString, DdexReportId)
-                .ProcessFiles(new DdexReportActionRegisterErrors());
+            switch(DdexReport.GetDigitalServiceProvider(DdexReportId))
+            {
+                case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
+                    new DdexReport(ConnectionString, DdexReportId)
+                        .ProcessFiles(new DdexReportActionRegisterErrorsYouTube());
+                    break;
+                case DdexReport.DigitalServiceProviderEnum.SPOTIFY:
+                    new DdexReport(ConnectionString, DdexReportId)
+                        .ProcessFiles(new DdexReportActionRegisterErrorsSpotify());
+                    break;
+            }
         }
     }
     public class LoadIntoDbRunner : ActionRunner
     {
         public override void Run()
         {
-            new DdexReport(ConnectionString, DdexReportId)
-                .ProcessFiles(new DdexReportActionLoadIdentData());
+            switch (DdexReport.GetDigitalServiceProvider(DdexReportId))
+            {
+                case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
+                    new DdexReport(ConnectionString, DdexReportId)
+                        .ProcessFiles(new DdexReportActionLoadIdentDataYouTube());
+                    break;
+                case DdexReport.DigitalServiceProviderEnum.SPOTIFY:
+                    new DdexReport(ConnectionString, DdexReportId)
+                        .ProcessFiles(new DdexReportActionLoadIdentDataSpotify());
+                    break;
+            }
         }
     }
     public class MergeMusicWorksRunner : ActionRunner
@@ -176,7 +194,7 @@ namespace InvoicingLib
         public override void Run()
         {
             new DdexReport(ConnectionString, DdexReportId)
-                .ProcessFiles(new DdexReportActionRegisterErrors());
+                .ProcessFiles(new DdexReportActionRegisterErrorsYouTube());
         }
     }
 
@@ -212,7 +230,7 @@ namespace InvoicingLib
         public override void Run()
         {
             new DdexReport(ConnectionString, DdexReportId)
-                .ProcessFiles(new DdexReportActionLoadIdentData());
+                .ProcessFiles(new DdexReportActionLoadIdentDataYouTube());
         }
     }
 

@@ -243,17 +243,25 @@ namespace DdexInvoicing
                         return;
                 }
 
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = @"select FileType 
-                    from CcidInFile t1
-                        join CcidInvoice t2 on t2.Id = t1.CcidInvoiceId
-                        join DdexReport t3 on t3.id = t2.ddexReportId
-                    where t1.fileId = @fileId";
-                string fileType = (string)cmd.ExecuteScalar();
+                switch (DdexReport.GetAgreementReportType(cmd, ddexReportId))
+                {
+                    case DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC:
+                        cmd.CommandText = "spCreateInitialInvoice";
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
+                        cmd.CommandText = "spCreateInitialInvoiceSubscr";
+                        break;
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE_PREMIUM:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FAMILYPLAN6:
+                        cmd.CommandText = "spCreateInitialInvoiceSpotify";
+                        break;
+                }
 
-                cmd.CommandText = fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) ? "spCreateInitialInvoice" : "spCreateInitialInvoiceSubscr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.RemoveAt(0);
+                cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                 cmd.Parameters.AddWithValue("@fileId", fileId);
                 cmd.ExecuteNonQuery();
@@ -635,105 +643,6 @@ namespace DdexInvoicing
             return fileName;
         }
 
-        /*
-        private void ProcessReply(int fileId, string reportType, string fileName)
-        {
-            if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeAddSupportReply(fileId, fileName);
-            }
-            else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeSubscriptionReply(fileId, fileName);
-            }
-            else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-            {
-                ReadYouTubeSubscriptionReply(fileId, fileName);
-            }
-
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                cmd.CommandText = @"select InstanceIndex from CcidInFile where fileId = @fileId";
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                int instanceIndex = Convert.ToInt32(cmd.ExecuteScalar());
-
-                cmd.CommandText = @"
-                        declare @invoiceId int = (select ccidInvoiceId from CcidInFile where fileId = @fileId);
-                        declare @clFileId int = (select fileId from CcidClFile where ccidInvoiceId = @invoiceId and InstanceIndex = @InstanceIndex);
-                        if @clFileId is null
-                        begin
-                            insert into CcidClFile(ccidInvoiceId, InstanceIndex, [status], [Name], TargetFolder)
-                            values(@invoiceId, @InstanceIndex, 0, @name, @TargetFolder);
-                            set @clFileId = scope_identity();
-                        end
-                        select @clFileId";
-                cmd.Parameters.AddWithValue("@instanceIndex", instanceIndex);
-                cmd.Parameters.AddWithValue("@name", Path.GetFileName(fileName));
-                cmd.Parameters.AddWithValue("@TargetFolder", Path.GetDirectoryName(fileName));
-                int ccidClFileId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromAdjustmentReport]";
-                }
-                else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
-                }
-                else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
-                }
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@inFileId", fileId);
-                cmd.Parameters.AddWithValue("@clFileId", ccidClFileId);
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = $@"
-                    update CcidInFile set Status = 3 where fileId = @fileId
-                ";
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                cmd.ExecuteNonQuery();
-            });
-        }
-
-        private async Task GetReply(int fileId)
-        {
-            // Determine service type of sent file
-            string reportType = "";
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                cmd.CommandText = @"select t4.paramValue
-                    from CcidInFile t1
-                        inner join  CcidInvoice t2 on t2.Id = t1.ccidInvoiceId
-                        inner join DdexReport t3 on t3.id = t2.ddexReportId
-                        inner join AgreementParam t4 on t4.custId = t3.custId and t4.licId = t3.licId
-                    where t1.fileId = @fileId and t4.paramId = @paramId";
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                cmd.Parameters.AddWithValue("@paramId", 8);
-                reportType = Convert.ToString(cmd.ExecuteScalar());
-            });
-
-            string fileName = GetReplyFileName(fileId, reportType);
-            if (string.IsNullOrEmpty(fileName))
-                return;
-
-            FormLongOperation form = new FormLongOperation("Завантажується файл відповіді. Це може зайняти значний час. Зачекайте, будь ласка.");
-            Form parent = FindForm();
-            form.Show(parent);
-            Task task = new Task(() => ProcessReply(fileId, reportType, fileName));
-            task.Start();
-            task.Wait();
-            form.Hide();
-
-            ShowInvoices();
-
-        }
-        */
-
         private void CreateCorrectedInvoice(int fileId)
         {
             MessageBox.Show("Не реалізовано", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -851,18 +760,33 @@ namespace DdexInvoicing
             /*if (DialogResult.Yes == MessageBox.Show(
                     "Перерахувати проценти перед виставленням рахунку? Це значно збільшить час очікування і можна не робити, якщо перерахунок вже було виконано під час оновлення статистики,"
                     , "Виставлення рахунку", MessageBoxButtons.YesNo, MessageBoxIcon.Question))*/
+
+
             CalcMarketShare();
 
             Helpers.RunSqlOperationDdexT(cmd =>
             {
-                cmd.CommandText = "select FileType from DdexReport where Id = @ddexReportId";
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                string fileType = (string)cmd.ExecuteScalar();
+                switch(DdexReport.GetAgreementReportType(cmd, ddexReportId))
+                {
+                    case DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC:
+                        cmd.CommandText = "spCreateInitialInvoice";
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
+                        cmd.CommandText = "spCreateInitialInvoiceSubscr";
+                        break;
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE_PREMIUM:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FAMILYPLAN6:
+                        cmd.CommandText = "spCreateInitialInvoiceSpotify";
+                        break;
+                }
 
-                cmd.CommandText = fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) ?
-                    "spCreateInitialInvoice" : "spCreateInitialInvoiceSubscr";
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@fileId", DBNull.Value);
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                 cmd.ExecuteNonQuery();
             });
             ShowInvoices();

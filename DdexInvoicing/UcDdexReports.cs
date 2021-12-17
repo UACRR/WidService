@@ -61,6 +61,26 @@ namespace DdexInvoicing
                         , Name licenseeName
                         , licCodeName licenseDescription
                     from vMSCustomerUses
+                    union
+                    select 1001 licId
+                        , 10000 custId
+                        , 'Spotify' licenseeName
+                        , 'Free' licenseDescription
+                    union
+                    select 1002 licId
+                        , 10000 custId
+                        , 'Spotify' licenseeName
+                        , 'Free-Premium' licenseDescription
+                    union
+                    select 1003 licId
+                        , 10000 custId
+                        , 'Spotify' licenseeName
+                        , 'Premium' licenseDescription
+                    union
+                    select 1004 licId
+                        , 10000 custId
+                        , 'Spotify' licenseeName
+                        , 'familyplan6' licenseDescription
                     -- order by t4.[year] desc,  t4.[quarter] desc
                 ";
                 cmd.ExecuteNonQuery();
@@ -88,23 +108,54 @@ namespace DdexInvoicing
                 int licId = (int)radGridAgreements.CurrentRow.Cells[0].Value;
                 int custId = (int)radGridAgreements.CurrentRow.Cells[1].Value;
 
-                cmd.CommandText = $@"
-                    select t2.ddexReportingPeriodId
-                        , t2.Id ddexReportId
-                        , t4.year
-                        , t4.quarter
-                        , t1.Name licenseeName
-                        , t1.licCodeName licenseDescription
-                        , t3.serviceDescription
-                        , t2.status
-                        , case when t5.groupName is null then t5.name else t5.groupName end as statusName
-                    from vMSCustomerUses t1
-                        join ddexReport t2 on t1.licId = t2.licId	and t1.custId = t2.custId
-                        join ddexrecordhead t3 on t3.DdexReportId = t2.id
-                        join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
-                        join DdexReportStatus t5 on t5.codeI = t2.Status
-                    where t1.licId = @licId and t1.custId = @custId
-                ";
+                var isMonthlyReport = DdexReport.IsMonthlyReport(cmd, licId, custId);
+
+                var col = radGridViewReports.MasterTemplate.Columns["quarter"];
+                if(isMonthlyReport)
+                {
+                    col.FieldName = "month";
+                    col.HeaderText = "Місяць";
+                    cmd.CommandText = $@"
+                        select t2.ddexReportingPeriodId
+                            , t2.Id ddexReportId
+                            , t4.year
+                            , t4.month
+                            , 'Spotify' licenseeName
+                            , 'Free' licenseDescription
+                            , t3.serviceDescription
+                            , t2.status
+                            , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                        from ddexReport t2
+                            join ddexrecordhead t3 on t3.DdexReportId = t2.id
+                            join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                            join DdexReportStatus t5 on t5.codeI = t2.Status
+                        where t2.licId = @licId and t2.custId = @custId
+                    ";
+                }
+                else
+                {
+                    col.FieldName = "quarter";
+                    col.HeaderText = "Квартал";
+                    cmd.CommandText = $@"
+                        select t2.ddexReportingPeriodId
+                            , t2.Id ddexReportId
+                            , t4.year
+                            , t4.quarter
+                            , t1.Name licenseeName
+                            , t1.licCodeName licenseDescription
+                            , t3.serviceDescription
+                            , t2.status
+                            , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                        from vMSCustomerUses t1
+                            join ddexReport t2 on t1.licId = t2.licId	and t1.custId = t2.custId
+                            join ddexrecordhead t3 on t3.DdexReportId = t2.id
+                            join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                            join DdexReportStatus t5 on t5.codeI = t2.Status
+                        where t1.licId = @licId and t1.custId = @custId
+                    ";
+                }
+
+                cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@licId", licId);
                 //cmd.Parameters.AddWithValue("@licVersion", licVersion);
                 cmd.Parameters.AddWithValue("@custId", custId);
@@ -122,28 +173,27 @@ namespace DdexInvoicing
 
         private void RegisterReport(string clientName, int licId, int custId)
         {
-            object reportType = null;
-            Helpers.RunSqlOperationDdex(cmd =>
+            var agreementReportType = DdexReport.GetAgreementReportType(licId, custId);
+            if (agreementReportType == null)
             {
-                cmd.CommandText = $@"
-                    select paramValue paramValue
-                    from AgreementParam
-                    where paramId = 8 and licId = @licId and custId = @custId
-                ";
-                cmd.Parameters.AddWithValue("@licId", licId);
-                //cmd.Parameters.AddWithValue("@licVersion", licVersion);
-                cmd.Parameters.AddWithValue("@custId", custId);
-
-                reportType = cmd.ExecuteScalar();
-            });
-
-            if (reportType == null)
-            {
-                MessageBox.Show("Не прописаний тип звіту, що надходить згідно договору. "
+                MessageBox.Show("Не прописаний або невірний тип звіту, що надходить згідно договору. "
                     + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка конфігурації договору", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
+            switch(DdexReport.GetDigitalServiceProvider(agreementReportType))
+            {
+                case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
+                    RegisterYouTubeReport(clientName, licId, custId, agreementReportType);
+                    break;
+                case DdexReport.DigitalServiceProviderEnum.SPOTIFY:
+                    RegisterSpotifyReport(clientName, licId, custId, agreementReportType);
+                    break;
+            }
+        }
+
+        private void RegisterYouTubeReport(string clientName, int licId, int custId, string agreementReportType)
+        {
             // Get agreement parameters
             decimal? 
                 musicRate = null, geRate = null,
@@ -197,7 +247,7 @@ namespace DdexInvoicing
                 }
             });
             if(musicRate == null || geRate == null || mechSplit == null || perfSplit == null ||
-                !((string)reportType).Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) &&
+                !DdexReport.IsYouTubeAdSupportType(agreementReportType) &&
                 (musicPSM == null || gePSM == null)
             )
             {
@@ -214,13 +264,13 @@ namespace DdexInvoicing
 
             try
             {
-                decimal exchRate = DdexReport.PreRegisterReport(licId, custId, clientName, (string)reportType, fullFileName);
+                decimal exchRate = DdexReport.PreRegisterYouTubeReport(licId, custId, clientName, agreementReportType, fullFileName);
 
                 string paramValues = $"Процент за музичний контент: {musicRate}\r\n";
                 paramValues += $"Процент за розважальний контент: {geRate}\r\n";
                 paramValues += $"Процент правовласності за механічне виконання: {mechSplit}\r\n";
                 paramValues += $"Процент правовласності за публічне виконання: {perfSplit}\r\n";
-                if (!((string)reportType).Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+                if (!DdexReport.IsYouTubeAdSupportType(agreementReportType))
                 {
                     paramValues += $"Тариф на музичний контент: {musicPSM} грн.\r\n";
                     paramValues += $"Тариф на розважальний контент: {gePSM} грн.\r\n";
@@ -232,7 +282,42 @@ namespace DdexInvoicing
                     + paramValues + "Зарейеструвати?", "Конфігурація договору", 
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
-                DdexReport.RegisterReport(licId, custId, clientName, (string)reportType, fullFileName, exchRate);
+                DdexReport.RegisterYouTubeReport(licId, custId, clientName, agreementReportType, fullFileName, exchRate);
+                FillReports();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void RegisterSpotifyReport(string clientName, int licId, int custId, string agreementReportType)
+        {
+            var checkResult = DdexReport.CheckAgreementParameters(licId, custId);
+            if (checkResult != null)
+            {
+                MessageBox.Show(checkResult
+                   + ". Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка конфігурації договору", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Файли звітів від клієнта (*.tsv)|*.tsv";
+            if (DialogResult.OK != dlg.ShowDialog())
+                return;
+            string fullFileName = dlg.FileName;
+
+            try
+            {
+                DdexReport.PreRegisterSpotifyReport(licId, custId, clientName, agreementReportType, fullFileName);
+
+                var paramsText = DdexReport.GetAgreementParametersText(licId, custId);
+
+                if (MessageBox.Show("Договір буде зарейєстровано з наступною інформацією для виконаня обчислень.\r\n"
+                    + paramsText + "\r\nЗарейеструвати?", "Конфігурація договору",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                DdexReport.RegisterSpotifyReport(licId, custId, clientName, agreementReportType, fullFileName);
                 FillReports();
             }
             catch (Exception ex)
@@ -465,34 +550,6 @@ namespace DdexInvoicing
                 FormArchiver form = new FormArchiver(ddexReportId, archFolder, mode);
                 form.ShowDialog();
                 FillReports();
-            }
-        }
-
-        private void radBtnRegisterReports_Click(object sender, EventArgs e)
-        {
-            string filesPath;
-            using (var fbd = new FolderBrowserDialog())
-            {
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    filesPath = fbd.SelectedPath + "\\";
-                }
-                else
-                {
-                    return;
-                }
-            }
-
-            try
-            {
-                DdexReport.RegisterReports(ConfigurationManager.AppSettings["ConnectionStringDdex"], filesPath);
-                FillReports();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

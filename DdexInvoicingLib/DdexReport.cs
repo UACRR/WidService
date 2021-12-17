@@ -1,5 +1,4 @@
-﻿using InvoicingLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -125,22 +124,9 @@ namespace InvoicingLib
             }
         }
 
-        public void ProcessLoadAdjSvod(DdexReportActionBase action, string fileFullName)
-        {
-            try
-            {
-                action.Init(this);
-                ProcessFile(fileFullName, action);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLine(ex.Message);
-                throw;
-            }
-        }
-
         public void ProcessFile(string fileName, DdexReportActionBase action)
         {
+            var dsp = GetDigitalServiceProvider(ddexReportId);
             Logger.WriteLine($"Обробка файлу {fileName}");
             using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
@@ -156,34 +142,41 @@ namespace InvoicingLib
                         if (recordType.Equals("HEAD"))
                         {
                             Logger.WriteLine($"Обробка запису {fields[0]}");
-                            //HEADRecordGoogle record = new HEADRecordGoogle();
-                            //record.fields = fields;
-                            //action.ProcessHead(record);
+                            HEADRecordGoogle record = new HEADRecordGoogle();
+                            record.fields = fields;
+                            action.ProcessHead(record);
+                        }
+                        else if (recordType.Equals("SY01.01"))
+                        {
+                            Logger.WriteLine($"Обробка запису {fields[0]}");
+                            var record = new SYRecord_01_01();
+                            record.fields = fields;
+                            action.ProcessSY_01_01(record);
                         }
                         else if (recordType.Equals("SY02.02"))
                         {
                             Logger.WriteLine($"Обробка запису {fields[0]}");
-                            SYRecord_02_02 record = new SYRecord_02_02();
+                            var record = new SYRecord_02_02();
                             record.fields = fields;
                             action.ProcessSY_02_02(record);
                         }
                         else if (recordType.Equals("SY04.01"))
                         {
                             Logger.WriteLine($"Обробка запису {fields[0]}");
-                            SYRecord_04_01 record = new SYRecord_04_01();
+                            var record = new SYRecord_04_01();
                             record.fields = fields;
                             action.ProcessSY_04_01(record);
                         }
                         else if (recordType.Equals("SY05.02"))
                         {
                             Logger.WriteLine($"Обробка запису {fields[0]}");
-                            SYRecord_05_02 record = new SYRecord_05_02();
+                            var record = new SYRecord_05_02();
                             record.fields = fields;
                             action.ProcessSY_05_02(record);
                         }
                         else if (recordType.Equals("AP02"))
                         {
-                            APRecord record = new APRecord();
+                            var record = new APRecord();
                             record.fields = fields;
                             action.ProcessAP(record);
                         }
@@ -198,10 +191,21 @@ namespace InvoicingLib
                             {
                                 try
                                 {
-                                    var block = new DdexReportBlock(this, action.DoFiltering());
+                                    DdexReportBlock block = null;
+                                    switch(dsp)
+                                    {
+                                        case DigitalServiceProviderEnum.YOUTUBE:
+                                            block = new DdexReportBlockYouTube(this, action.DoFiltering());
+                                            break;
+                                        case DigitalServiceProviderEnum.SPOTIFY:
+                                            block = new DdexReportBlockSpotify(this, action.DoFiltering());
+                                            break;
+                                        default:
+                                            throw new Exception("InvoicingLib.DdexReport.ProcessFile - Cannot identify dsp");
+                                    }
                                     if (!block.Init(streamReader, ref line))
                                         break;
-                                    if (int.Parse(block.asRecord.BlockId) < lastProcessedBlockId)
+                                    if (block.IsProcessed(lastProcessedBlockId))
                                         continue;
                                     block.Process(action, streamReader, ref line);
                                 }
@@ -213,7 +217,7 @@ namespace InvoicingLib
                             }
                             // Process foot
                             Logger.WriteLine($"Обробка запису FOOT");
-                            FOOTRecord record = new FOOTRecord();
+                            var record = new FOOTRecord();
                             record.fields = line.Split('\t');
                             if (record.fields != null)
                             {
