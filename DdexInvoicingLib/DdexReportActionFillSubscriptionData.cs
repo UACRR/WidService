@@ -12,15 +12,13 @@ namespace InvoicingLib
     public class DdexReportActionFillSubscriptionData : DdexReportActionBase
     {
         private SqlConnection conn;
-        private int lastProcessedBlockId;
         private bool overwrite;
 
         private int recordIndexSy_04_01 = 1;
         private int recordIndexSy_05_02 = 1;
 
         Dictionary<string, BulkUploadToSql> bulkUploaders = new Dictionary<string, BulkUploadToSql>();
-        HashSet<string> recordsToCorrect;
-        
+
         public DdexReportActionFillSubscriptionData(bool overwrite)
         {
             this.overwrite = overwrite;
@@ -64,11 +62,6 @@ namespace InvoicingLib
             RegisterBulkUploader("DdexRecordSy_04_01");
             RegisterBulkUploader("DdexRecordSy_05_02");
          }
-
-        public override int GetLastProcessedBlockId()
-        {
-            return lastProcessedBlockId;
-        }
 
         private void InsertRecord(DdexRecordBase record, string tableName, int recordIndex)
         {

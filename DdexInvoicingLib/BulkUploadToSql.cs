@@ -52,7 +52,7 @@ namespace InvoicingLib
                         dtColInfo = new DataTable();
                         da.Fill(dtColInfo);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         throw;
                     }
@@ -106,7 +106,7 @@ namespace InvoicingLib
 
                 dt.Rows.Add(row);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 throw;
             }
@@ -141,7 +141,7 @@ namespace InvoicingLib
                 bulkCopy.DestinationTableName = TableName;
                 bulkCopy.WriteToServer(dt);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 DataRow row = dt.Rows[0];
                 int i = 0;

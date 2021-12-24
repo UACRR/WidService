@@ -20,7 +20,6 @@ namespace InvoicingLib
         private int recordIndexSy_05_02 = 1;
         private int pseudoBlockId = 1;
         private double royaltyThreshold;
-        private Dictionary<string, decimal> licParams;
 
         // variables for SVOD calculations
         private bool isFirstBlock = true;
@@ -176,7 +175,7 @@ namespace InvoicingLib
 
                 bulkUploader.AddData(data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Logger.WriteLine($"Помилки формату в блоці {asRecord.BlockId}");
                 throw;
@@ -328,7 +327,7 @@ namespace InvoicingLib
 
                 bulkUploader.AddData(data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Logger.WriteLine($"Помилки формату в рядку {record.TrackISRC}");
                 throw;

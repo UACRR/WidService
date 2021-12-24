@@ -172,15 +172,6 @@ namespace DdexInvoicing
                 case FilterType.altNameFoundManyAuthors: filterText = "твори, ДЕ АЛЬТЕРНАТИВНА НАЗВА ЗНАЙДЕНА, ДЕКІЛЬКА АВТОРІВ ЗНАЙДЕНО,"; break;
                 case FilterType.all: filterText = "ВСІ твори"; break;
             }
-            string orderText = "";
-            switch (loadSettings.orderType)
-            {
-                case OrderType.byRevenue: orderText = "ПРИБУТКУ"; break;
-                case OrderType.byResourceTitle: orderText = "НАЗВИ ЗАПИСУ"; break;
-                case OrderType.byTitle: orderText = "НАЗВИ ТВОРУ"; break;
-                case OrderType.byAuthors: orderText = "ІМЕНІ АВТОРА"; break;
-                case OrderType.byPerformers: orderText = "ВИКОНАВЦЯ"; break;
-            }
             string dirText = loadSettings.orderDir == OrderDir.asc ? "ЗРОСТАННЯМ" : "СПАДАННЯМ";
             radSsInfo.Items[0].Text = $"Завантажено {filterText} в діапазоні {loadSettings.firstRowIndex} - {loadSettings.lastRowIndex}.";
             //radLabLoadSettings.Text = $"Завантажено {filterText} в діапазоні {loadSettings.firstRowIndex} - {loadSettings.lastRowIndex}.";

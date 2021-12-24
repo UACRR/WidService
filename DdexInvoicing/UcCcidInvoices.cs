@@ -647,17 +647,6 @@ namespace DdexInvoicing
         {
             MessageBox.Show("Не реалізовано", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
-            Helpers.RunSqlOperationDdexT(cmd =>
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spCreateCorrectedInFile";
-                cmd.Parameters.AddWithValue("@ccidClFileId", fileId);
-                cmd.ExecuteNonQuery();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "update CcidClFile set status = 1 where fileId = @ccidClFileId";
-                cmd.ExecuteNonQuery();
-            });
-            ShowInvoices();
         }
 
         private void ToDistribution(int fileId)

@@ -72,10 +72,12 @@
     <Compile Include="DdexReportActionFillRawData.cs" />
     <Compile Include="DdexReportActionLoadAdjAvod.cs" />
     <Compile Include="DdexReportActionLoadAdjSvod.cs" />
+    <Compile Include="DdexReportActionLoadIdentDataSrmf.cs" />
     <Compile Include="DdexReportActionLoadIdentDataSpotify.cs" />
     <Compile Include="DdexReportActionLoadIdentDataYouTube.cs" />
-    <Compile Include="DdexReportActionRegisterErrorsSpotify.cs" />
+    <Compile Include="DdexReportActionRegisterErrorsSkip.cs" />
     <Compile Include="DdexReportActionRegisterErrorsYouTube.cs" />
+    <Compile Include="DdexReportBlockSrmf.cs" />
     <Compile Include="DdexReportBlockSpotify.cs" />
     <Compile Include="DdexReportBlockYouTube.cs" />
     <Compile Include="DdexReportBlock.cs" />

@@ -124,7 +124,7 @@ namespace InvoicingLib
             }
         }
 
-        public void ProcessFile(string fileName, DdexReportActionBase action)
+        public void ProcessDsrFile(string fileName, DdexReportActionBase action)
         {
             var dsp = GetDigitalServiceProvider(ddexReportId);
             Logger.WriteLine($"Обробка файлу {fileName}");
@@ -229,5 +229,46 @@ namespace InvoicingLib
             }
         }
 
+        public void ProcessSrmfFile(string fileName, DdexReportActionBase action)
+        {
+            Logger.WriteLine($"Обробка файлу {fileName}");
+            using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+            {
+                var line = streamReader.ReadLine(); // Skip first line
+                var pseudoBlockId = 1;
+                while (!streamReader.EndOfStream)
+                {
+                    line = streamReader.ReadLine();
+                    line = $"srmf\t{pseudoBlockId++}\t"; // Make line look like the one from DSR report
+                    try
+                    {
+                        DdexReportBlock block = new DdexReportBlockSrmf(this, false);
+                        block.Init(streamReader, ref line);
+                        if (block.IsProcessed(lastProcessedBlockId))
+                            continue;
+                        block.Process(action, streamReader, ref line);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.WriteLine(ex.Message);
+                        throw;
+                    }
+                }
+                action.ProcessFoot(null); // Pseudo operation for flushing bulk copy buffer
+            }
+        }
+
+        public void ProcessFile(string fileName, DdexReportActionBase action)
+        {
+            if(action.GetType() == typeof(DdexReportActionLoadIdentDataSrmf))
+            {
+                ProcessSrmfFile(fileName, action);
+            }
+            else
+            {
+                ProcessDsrFile(fileName, action);
+            }
+        }
     }
 }

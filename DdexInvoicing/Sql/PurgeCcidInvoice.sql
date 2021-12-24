@@ -1,4 +1,4 @@
-declare @ccidInvoiceId int = 53;
+declare @ccidInvoiceId int = 59;
 
 delete t1
 from CcidInHeader t1

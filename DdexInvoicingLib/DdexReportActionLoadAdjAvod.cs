@@ -100,7 +100,7 @@ namespace InvoicingLib
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

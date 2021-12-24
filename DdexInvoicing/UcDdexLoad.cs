@@ -204,14 +204,14 @@ namespace DdexInvoicing
                 {
                     r.Read();
                     int i = 0;
-                    ddexReportInfo.RoyaltyThreshold = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i++);
-                    ddexReportInfo.MusicRate = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i++);
-                    ddexReportInfo.GeRate = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i++);
-                    ddexReportInfo.MechSplit = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i++);
-                    ddexReportInfo.PerfSplit = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i++);
-                    ddexReportInfo.MusicPSM = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i++);
-                    ddexReportInfo.GePSM = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i++);
-                    ddexReportInfo.ExchRate = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i++);
+                    ddexReportInfo.RoyaltyThreshold = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i); i++;
+                    ddexReportInfo.MusicRate = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i); i++;
+                    ddexReportInfo.GeRate = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i); i++;
+                    ddexReportInfo.MechSplit = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i); i++;
+                    ddexReportInfo.PerfSplit = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i); i++;
+                    ddexReportInfo.MusicPSM = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i); i++;
+                    ddexReportInfo.GePSM = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i); i++;
+                    ddexReportInfo.ExchRate = r.IsDBNull(i) ? (decimal?)null : r.GetDecimal(i); i++;
                 }
 
                 cmd.CommandText = $@"

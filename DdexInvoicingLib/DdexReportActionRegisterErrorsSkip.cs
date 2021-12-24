@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace InvoicingLib
 {
-    public class DdexReportActionRegisterErrorsSpotify : DdexReportActionBase
+    public class DdexReportActionRegisterErrorsSkip : DdexReportActionBase
     {
-        public DdexReportActionRegisterErrorsSpotify() { }
+        public DdexReportActionRegisterErrorsSkip() { }
 
         public override string GetDescription() { return "Реєстрація помилок у вхіному файлі для подальшого виправлення - пропущено"; }
     }

@@ -62,6 +62,11 @@ namespace DdexInvoicing
                         , licCodeName licenseDescription
                     from vMSCustomerUses
                     union
+                    select 1340 licId
+                        , 39556 custId
+                        , 'ТОВ ""Гугл ЛТД""' licenseeName
+                        , 'Ліцензійний договір онлайн-сервіси (pre-claim)' licenseDescription
+                    union
                     select 1001 licId
                         , 10000 custId
                         , 'Spotify' licenseeName
@@ -171,8 +176,9 @@ namespace DdexInvoicing
             });
         }
 
-        private void RegisterReport(string clientName, int licId, int custId)
+        private void RegisterReport(int licId, int custId)
         {
+            // GET REPORT TYPE FROM AGREEMENT PARAMETERS
             var agreementReportType = DdexReport.GetAgreementReportType(licId, custId);
             if (agreementReportType == null)
             {
@@ -181,118 +187,7 @@ namespace DdexInvoicing
                 return;
             }
 
-            switch(DdexReport.GetDigitalServiceProvider(agreementReportType))
-            {
-                case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
-                    RegisterYouTubeReport(clientName, licId, custId, agreementReportType);
-                    break;
-                case DdexReport.DigitalServiceProviderEnum.SPOTIFY:
-                    RegisterSpotifyReport(clientName, licId, custId, agreementReportType);
-                    break;
-            }
-        }
-
-        private void RegisterYouTubeReport(string clientName, int licId, int custId, string agreementReportType)
-        {
-            // Get agreement parameters
-            decimal? 
-                musicRate = null, geRate = null,
-                mechSplit = null, perfSplit = null, 
-                musicPSM = null, gePSM = null,
-                royaltyThreshold = 0;
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                cmd.CommandText = $@"
-                    select 
-                          paramId
-                        , paramValue
-                    from AgreementParam
-                    where licId = @licId and custId = @custId
-                ";
-                cmd.Parameters.AddWithValue("@licId", licId);
-                cmd.Parameters.AddWithValue("@custId", custId);
-
-                using (SqlDataReader r = cmd.ExecuteReader())
-                {
-                    while(r.Read())
-                    {
-                        if (r.IsDBNull(1))
-                            continue;
-                        string val = r.GetString(1);
-                        switch (r.GetInt32(0))
-                        {
-                            case 1:
-                                musicRate = Formatter.ToDecimal(val);
-                                break;
-                            case 2:
-                                geRate = Formatter.ToDecimal(val);
-                                break;
-                            case 3:
-                                mechSplit = Formatter.ToDecimal(val);
-                                break;
-                            case 4:
-                                perfSplit = Formatter.ToDecimal(val);
-                                break;
-                            case 5:
-                                musicPSM = Formatter.ToDecimal(val);
-                                break;
-                            case 6:
-                                gePSM = Formatter.ToDecimal(val);
-                                break;
-                            case 9:
-                                royaltyThreshold = Formatter.ToDecimal(val);
-                                break;
-                        }
-                    }
-                }
-            });
-            if(musicRate == null || geRate == null || mechSplit == null || perfSplit == null ||
-                !DdexReport.IsYouTubeAdSupportType(agreementReportType) &&
-                (musicPSM == null || gePSM == null)
-            )
-            {
-                MessageBox.Show("Не визначені параметри договору, необхідні для обробки звіту. "
-                   + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка конфігурації договору", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Файли звітів від клієнта (*.tsv)|*.tsv";
-            if (DialogResult.OK != dlg.ShowDialog())
-                return;
-            string fullFileName = dlg.FileName;
-
-            try
-            {
-                decimal exchRate = DdexReport.PreRegisterYouTubeReport(licId, custId, clientName, agreementReportType, fullFileName);
-
-                string paramValues = $"Процент за музичний контент: {musicRate}\r\n";
-                paramValues += $"Процент за розважальний контент: {geRate}\r\n";
-                paramValues += $"Процент правовласності за механічне виконання: {mechSplit}\r\n";
-                paramValues += $"Процент правовласності за публічне виконання: {perfSplit}\r\n";
-                if (!DdexReport.IsYouTubeAdSupportType(agreementReportType))
-                {
-                    paramValues += $"Тариф на музичний контент: {musicPSM} грн.\r\n";
-                    paramValues += $"Тариф на розважальний контент: {gePSM} грн.\r\n";
-                    paramValues += $"Курс обміну (доларів за гривню): {exchRate}\r\n";
-                }
-                paramValues += $"Мінімум роялті що приймається до розгляду: {royaltyThreshold} USD\r\n";
-
-                if (MessageBox.Show("Договір буде зарейєстровано з наступною інформацією для виконаня обчислень.\r\n"
-                    + paramValues + "Зарейеструвати?", "Конфігурація договору", 
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                    return;
-                DdexReport.RegisterYouTubeReport(licId, custId, clientName, agreementReportType, fullFileName, exchRate);
-                FillReports();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
-        private void RegisterSpotifyReport(string clientName, int licId, int custId, string agreementReportType)
-        {
+            // CHECK THAT ALL REQUIRED AGREEMENT PARAMETERS ARE PROVIDED
             var checkResult = DdexReport.CheckAgreementParameters(licId, custId);
             if (checkResult != null)
             {
@@ -301,23 +196,53 @@ namespace DdexInvoicing
                 return;
             }
 
+            // SELECT VALID REPORT FILE
+            var filter = DdexReport.GetFileNameWildcard(agreementReportType);
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Файли звітів від клієнта (*.tsv)|*.tsv";
+            dlg.Filter = $"Файли звітів від клієнта|{filter}";
             if (DialogResult.OK != dlg.ShowDialog())
                 return;
             string fullFileName = dlg.FileName;
 
+            // Because user may change filter, check that finally selected file matches wildcard
+            var dir = Path.GetDirectoryName(fullFileName);
+            if(!Directory.EnumerateFiles(dir, filter).Any(x => x.Equals(fullFileName, StringComparison.OrdinalIgnoreCase)))
+            {
+                MessageBox.Show("Файл не відповідає типу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // MAKE SURE REPORTING PERIOD FOR THE REPORT EXISTS BASED ON REPORT FILE
+            var ddexReportingPeriodId = DdexReport.CreateReportingPeriod(agreementReportType, fullFileName);
+
+            // CHECK THAT THE REPORT IS NOT REGISTERED YET
+            if(DdexReport.CheckReportExists(agreementReportType, ddexReportingPeriodId))
+            {
+                MessageBox.Show("Вибраний файл вже зарейєстрований в системі", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CHECK THAT EXHANGE RATE IS SET FOR THE REPORT FILE'S PERIOD
+            if (DdexReport.CheckExchangeRateExists(licId, custId, agreementReportType, fullFileName))
+            {
+                MessageBox.Show("Не визначений курс обміну, необхідний для обробки звіту. "
+                            + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CONFIRM PARAMETERS FOR REPORT REGISTRATION
+            var paramsText = DdexReport.GetAgreementParametersText(licId, custId, fullFileName);
+            if (MessageBox.Show("Договір буде зарейєстровано з наступною інформацією для виконаня обчислень.\r\n"
+                + paramsText + "\r\nЗарейеструвати?", "Конфігурація договору",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+
+            // CREATE REGISTRATION RECORDS IN THE DATABASE
             try
             {
-                DdexReport.PreRegisterSpotifyReport(licId, custId, clientName, agreementReportType, fullFileName);
-
-                var paramsText = DdexReport.GetAgreementParametersText(licId, custId);
-
-                if (MessageBox.Show("Договір буде зарейєстровано з наступною інформацією для виконаня обчислень.\r\n"
-                    + paramsText + "\r\nЗарейеструвати?", "Конфігурація договору",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                    return;
-                DdexReport.RegisterSpotifyReport(licId, custId, clientName, agreementReportType, fullFileName);
+                DdexReport.RegisterReport(licId, custId, agreementReportType, fullFileName);
                 FillReports();
             }
             catch (Exception ex)
@@ -561,7 +486,7 @@ namespace DdexInvoicing
 
             if (e.Column.FieldName.Equals("RegisterReport", StringComparison.OrdinalIgnoreCase))
             {
-                RegisterReport(clientName, licId, custId);
+                RegisterReport(licId, custId);
             }
             else if (e.Column.FieldName.Equals("EditParameters", StringComparison.OrdinalIgnoreCase))
             {

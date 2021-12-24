@@ -31,16 +31,15 @@ namespace InvoicingLib
     {
         public override void Run()
         {
-            switch(DdexReport.GetDigitalServiceProvider(DdexReportId))
+            if(DdexReport.FileMayHaveErrors(DdexReportId))
             {
-                case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
-                    new DdexReport(ConnectionString, DdexReportId)
-                        .ProcessFiles(new DdexReportActionRegisterErrorsYouTube());
-                    break;
-                case DdexReport.DigitalServiceProviderEnum.SPOTIFY:
-                    new DdexReport(ConnectionString, DdexReportId)
-                        .ProcessFiles(new DdexReportActionRegisterErrorsSpotify());
-                    break;
+                new DdexReport(ConnectionString, DdexReportId)
+                    .ProcessFiles(new DdexReportActionRegisterErrorsYouTube());
+            }
+            else
+            {
+                new DdexReport(ConnectionString, DdexReportId)
+                    .ProcessFiles(new DdexReportActionRegisterErrorsSkip());
             }
         }
     }
@@ -48,16 +47,24 @@ namespace InvoicingLib
     {
         public override void Run()
         {
-            switch (DdexReport.GetDigitalServiceProvider(DdexReportId))
+            if(DdexReport.IsSrmf(DdexReportId))
             {
-                case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
-                    new DdexReport(ConnectionString, DdexReportId)
-                        .ProcessFiles(new DdexReportActionLoadIdentDataYouTube());
-                    break;
-                case DdexReport.DigitalServiceProviderEnum.SPOTIFY:
-                    new DdexReport(ConnectionString, DdexReportId)
-                        .ProcessFiles(new DdexReportActionLoadIdentDataSpotify());
-                    break;
+                new DdexReport(ConnectionString, DdexReportId)
+                    .ProcessFiles(new DdexReportActionLoadIdentDataSrmf());
+            }
+            else
+            {
+                switch (DdexReport.GetDigitalServiceProvider(DdexReportId))
+                {
+                    case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
+                        new DdexReport(ConnectionString, DdexReportId)
+                            .ProcessFiles(new DdexReportActionLoadIdentDataYouTube());
+                        break;
+                    case DdexReport.DigitalServiceProviderEnum.SPOTIFY:
+                        new DdexReport(ConnectionString, DdexReportId)
+                            .ProcessFiles(new DdexReportActionLoadIdentDataSpotify());
+                        break;
+                }
             }
         }
     }
