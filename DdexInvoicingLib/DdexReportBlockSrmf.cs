@@ -1,4 +1,5 @@
-﻿using InvoicingLib;
+﻿using Microsoft.VisualBasic.FileIO;
+using InvoicingLib;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -32,7 +33,14 @@ namespace InvoicingLib
 
         public override bool Init(StreamReader streamReader, ref string line)
         {
-            fields = line.Split('\t');
+            var parser = new TextFieldParser(new StringReader(line))
+            {
+                HasFieldsEnclosedInQuotes = true
+            };
+            parser.SetDelimiters(",");
+            fields = parser.ReadFields();
+            parser.Close();
+
             if(int.Parse(blockId) % 10000 == 0)
                 Logger.WriteLine($"Обробка блоків - останнім оброблено блок {blockId}");
             return true;

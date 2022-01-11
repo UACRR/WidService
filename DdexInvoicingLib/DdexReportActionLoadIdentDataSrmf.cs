@@ -54,10 +54,10 @@ namespace InvoicingLib
                             select @lastBlockId";
                     lastProcessedBlockId = (int)cmd.ExecuteScalar();
 
-                    cmd.CommandText = @"select UsageEndDate from DdexReport where DdexReportId = @DdexReportId";
+                    cmd.CommandText = @"select UsageEndDate from DdexRecordHead where DdexReportId = @DdexReportId";
                     usageStartDate = (DateTime)cmd.ExecuteScalar();
 
-                    cmd.CommandText = @"select UsageStartDate from DdexReport where DdexReportId = @DdexReportId";
+                    cmd.CommandText = @"select UsageStartDate from DdexRecordHead where DdexReportId = @DdexReportId";
                     usageEndDate = (DateTime)cmd.ExecuteScalar();
                 }
                 catch (Exception ex)

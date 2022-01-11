@@ -252,6 +252,9 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
                         cmd.CommandText = "spCreateInitialInvoiceSubscr";
                         break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
+                        cmd.CommandText = "spCreateInitialInvoiceSrmf";
+                        break;
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE_PREMIUM:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
@@ -763,6 +766,9 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
                         cmd.CommandText = "spCreateInitialInvoiceSubscr";
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
+                        cmd.CommandText = "spCreateInitialInvoiceSrmf";
                         break;
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE_PREMIUM:

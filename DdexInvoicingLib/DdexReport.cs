@@ -235,12 +235,11 @@ namespace InvoicingLib
             using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
             {
-                var line = streamReader.ReadLine(); // Skip first line
+                streamReader.ReadLine(); // Skip first line
                 var pseudoBlockId = 1;
                 while (!streamReader.EndOfStream)
                 {
-                    line = streamReader.ReadLine();
-                    line = $"srmf\t{pseudoBlockId++}\t"; // Make line look like the one from DSR report
+                    var line = $"srmf,{pseudoBlockId++},{streamReader.ReadLine()}"; // Make line look like the one from DSR report
                     try
                     {
                         DdexReportBlock block = new DdexReportBlockSrmf(this, false);
@@ -261,7 +260,11 @@ namespace InvoicingLib
 
         public void ProcessFile(string fileName, DdexReportActionBase action)
         {
-            if(action.GetType() == typeof(DdexReportActionLoadIdentDataSrmf))
+            if (action.GetType() == typeof(DdexReportActionRegisterErrorsSkip))
+            {
+                Logger.WriteLine(action.GetDescription());
+            }
+            else if (action.GetType() == typeof(DdexReportActionLoadIdentDataSrmf))
             {
                 ProcessSrmfFile(fileName, action);
             }
