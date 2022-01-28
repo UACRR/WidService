@@ -72,20 +72,10 @@ namespace DdexInvoicing
                         , 'Spotify' licenseeName
                         , 'Free' licenseDescription
                     union
-                    select 1002 licId
-                        , 10000 custId
-                        , 'Spotify' licenseeName
-                        , 'Free-Premium' licenseDescription
-                    union
                     select 1003 licId
                         , 10000 custId
                         , 'Spotify' licenseeName
                         , 'Premium' licenseDescription
-                    union
-                    select 1004 licId
-                        , 10000 custId
-                        , 'Spotify' licenseeName
-                        , 'familyplan6' licenseDescription
                     -- order by t4.[year] desc,  t4.[quarter] desc
                 ";
                 cmd.ExecuteNonQuery();

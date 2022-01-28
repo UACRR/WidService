@@ -1,4 +1,4 @@
-declare @ccidInvoiceId int = 59;
+declare @ccidInvoiceId int = (select max(Id) from CcidInvoice);
 
 delete t1
 from CcidInHeader t1

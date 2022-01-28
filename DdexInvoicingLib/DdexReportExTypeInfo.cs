@@ -20,9 +20,7 @@ namespace InvoicingLib
             YOUTUBE_SUBSCRIPTION_PREMIUM,
             YOUTUBE_SRMF,
             SPOTIFY_FREE,
-            SPOTIFY_FREE_PREMIUM,
             SPOTIFY_PREMIUM,
-            SPOTIFY_FAMILYPLAN6,
         }
 
         public enum AgreementParamEnum
@@ -279,56 +277,10 @@ namespace InvoicingLib
             },
             new ReportTypeInfo
             {
-                ReportType = ReportTypeEnum.SPOTIFY_FREE_PREMIUM,
-                Name = "spotify-free-premium",
-                IsMonthly = true,
-                FileNameWildcard = "DSR_uacrr_Spotify_free-premium_*_UA_1of1_*.tsv",
-                DigitalServiceProvider = DigitalServiceProviderEnum.SPOTIFY,
-                NeedsExchRate = false,
-                FileMayHaveErrors = false,
-                RequiredParams = new HashSet<AgreementParamEnum>
-                {
-                    AgreementParamEnum.MUSICRATE,
-                    AgreementParamEnum.GERATE,
-                    AgreementParamEnum.MECHSPLIT,
-                    AgreementParamEnum.PERFSPLIT,
-                    AgreementParamEnum.MUSICPSM,
-                    AgreementParamEnum.GEPSM,
-                    AgreementParamEnum.REPORTTYPE,
-                    AgreementParamEnum.ROYALTYTHRESHOLD,
-                },
-                GetReportingPeriodInfo = GetSpotifyDsrReportingPeriodInfo,
-                InsertHead = InsertDsrHead,
-            },
-            new ReportTypeInfo
-            {
                 ReportType = ReportTypeEnum.SPOTIFY_PREMIUM,
                 Name = "spotify-premium",
                 IsMonthly = true,
                 FileNameWildcard = "DSR_uacrr_Spotify_premium_*_UA_1of1_*.tsv",
-                DigitalServiceProvider = DigitalServiceProviderEnum.SPOTIFY,
-                NeedsExchRate = false,
-                FileMayHaveErrors = false,
-                RequiredParams = new HashSet<AgreementParamEnum>
-                {
-                    AgreementParamEnum.MUSICRATE,
-                    AgreementParamEnum.GERATE,
-                    AgreementParamEnum.MECHSPLIT,
-                    AgreementParamEnum.PERFSPLIT,
-                    AgreementParamEnum.MUSICPSM,
-                    AgreementParamEnum.GEPSM,
-                    AgreementParamEnum.REPORTTYPE,
-                    AgreementParamEnum.ROYALTYTHRESHOLD,
-                },
-                GetReportingPeriodInfo = GetSpotifyDsrReportingPeriodInfo,
-                InsertHead = InsertDsrHead,
-            },
-            new ReportTypeInfo
-            {
-                ReportType = ReportTypeEnum.SPOTIFY_FAMILYPLAN6,
-                Name = "spotify-familyplan6",
-                IsMonthly = true,
-                FileNameWildcard = "DSR_uacrr_Spotify_familyplan6_*_UA_1of1_*.tsv",
                 DigitalServiceProvider = DigitalServiceProviderEnum.SPOTIFY,
                 NeedsExchRate = false,
                 FileMayHaveErrors = false,
@@ -355,9 +307,7 @@ namespace InvoicingLib
             { "subscription-premium",   ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM},
             { "srmf",                   ReportTypeEnum.YOUTUBE_SRMF},
             { "spotify-free",           ReportTypeEnum.SPOTIFY_FREE},
-            { "spotify-free-premium",   ReportTypeEnum.SPOTIFY_FREE_PREMIUM},
             { "spotify-premium",        ReportTypeEnum.SPOTIFY_PREMIUM},
-            { "spotify-familyplan6",    ReportTypeEnum.SPOTIFY_FAMILYPLAN6},
         };
 
         public static Dictionary<DigitalServiceProviderEnum, Dictionary<string, ReportTypeEnum>> DspFileReportTypes =
@@ -378,9 +328,7 @@ namespace InvoicingLib
                     new Dictionary<string, ReportTypeEnum>()
                     {
                         { "free",           ReportTypeEnum.SPOTIFY_FREE},
-                        { "free-premium",   ReportTypeEnum.SPOTIFY_FREE_PREMIUM},
                         { "premium",        ReportTypeEnum.SPOTIFY_PREMIUM},
-                        { "familyplan6",    ReportTypeEnum.SPOTIFY_FAMILYPLAN6},
                     }
                 },
             };

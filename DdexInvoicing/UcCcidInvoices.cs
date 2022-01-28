@@ -256,9 +256,7 @@ namespace DdexInvoicing
                         cmd.CommandText = "spCreateInitialInvoiceSrmf";
                         break;
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
-                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE_PREMIUM:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
-                    case DdexReport.ReportTypeEnum.SPOTIFY_FAMILYPLAN6:
                         cmd.CommandText = "spCreateInitialInvoiceSpotify";
                         break;
                 }
@@ -771,9 +769,7 @@ namespace DdexInvoicing
                         cmd.CommandText = "spCreateInitialInvoiceSrmf";
                         break;
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
-                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE_PREMIUM:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
-                    case DdexReport.ReportTypeEnum.SPOTIFY_FAMILYPLAN6:
                         cmd.CommandText = "spCreateInitialInvoiceSpotify";
                         break;
                 }
