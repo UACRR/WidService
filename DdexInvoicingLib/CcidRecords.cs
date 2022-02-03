@@ -47,26 +47,26 @@ namespace InvoicingLib
         public void InitFromDataReader(SqlDataReader reader)
         {
             int i = 1;
-            record_type = (string)FromReader(reader, i++, typeof(string));
-            version = (string)FromReader(reader, i++, typeof(string));
-            date = (DateTime)FromReader(reader, i++, typeof(DateTime));
-            sender = (string)FromReader(reader, i++, typeof(string));
-            receiver = (string)FromReader(reader, i++, typeof(string));
-            ccid_id = (string)FromReader(reader, i++, typeof(string));
-            territory = (string)FromReader(reader, i++, typeof(string));
-            start_date = (DateTime)FromReader(reader, i++, typeof(DateTime));
-            end_date = (DateTime)FromReader(reader, i++, typeof(DateTime));
-            royalty_currency = (string)FromReader(reader, i++, typeof(string));
-            original_revenue_basis_currency = (string)FromReader(reader, i++, typeof(string));
-            conversion_rate = (decimal?)FromReader(reader, i++, typeof(decimal?));
-            work_code_type = (string)FromReader(reader, i++, typeof(string));
-            ccid_id_correction_reference = (string)FromReader(reader, i++, typeof(string));
-            type_of_claim = (string)FromReader(reader, i++, typeof(string));
-            commercial_model = (string)FromReader(reader, i++, typeof(string));
-            service_description = (string)FromReader(reader, i++, typeof(string));
-            use_type = (string)FromReader(reader, i++, typeof(string));
-            mech_perc_split = (decimal?)FromReader(reader, i++, typeof(decimal?));
-            perf_perc_split = (decimal?)FromReader(reader, i++, typeof(decimal?));
+            record_type                      = (string)   FromReader(reader, i++, typeof(string)   );
+            version                          = (string)   FromReader(reader, i++, typeof(string)   );
+            date                             = (DateTime) FromReader(reader, i++, typeof(DateTime) );
+            sender                           = (string)   FromReader(reader, i++, typeof(string)   );
+            receiver                         = (string)   FromReader(reader, i++, typeof(string)   );
+            ccid_id                          = (string)   FromReader(reader, i++, typeof(string)   );
+            territory                        = (string)   FromReader(reader, i++, typeof(string)   );
+            start_date                       = (DateTime) FromReader(reader, i++, typeof(DateTime) );
+            end_date                         = (DateTime) FromReader(reader, i++, typeof(DateTime) );
+            royalty_currency                 = (string)   FromReader(reader, i++, typeof(string)   );
+            original_revenue_basis_currency  = (string)   FromReader(reader, i++, typeof(string)   );
+            conversion_rate                  = (decimal?) FromReader(reader, i++, typeof(decimal?) );
+            work_code_type                   = (string)   FromReader(reader, i++, typeof(string)   );
+            ccid_id_correction_reference     = (string)   FromReader(reader, i++, typeof(string)   );
+            type_of_claim                    = (string)   FromReader(reader, i++, typeof(string)   );
+            commercial_model                 = (string)   FromReader(reader, i++, typeof(string)   );
+            service_description              = (string)   FromReader(reader, i++, typeof(string)   );
+            use_type                         = (string)   FromReader(reader, i++, typeof(string)   );
+            mech_perc_split                  = (decimal?) FromReader(reader, i++, typeof(decimal?) );
+            perf_perc_split                  = (decimal?) FromReader(reader, i++, typeof(decimal?) );
             aux = (string)FromReader(reader, i++, typeof(string));
         }
 
@@ -74,11 +74,17 @@ namespace InvoicingLib
         {
             using (SqlCommand cmd = conn.CreateCommand())
             {
-                cmd.CommandText = @"select t1.* 
-                                        from CcidInHeader t1 join 
-                                             ccidInFile t2 on t2.fileId = t1.fileId 
-                                        where t2.ddexReportingPeriodId = @ddexReportingPeriodId 
-                                        order by t2.fileId desc";
+                cmd.CommandText = 
+                    @"
+                        select
+                            t1.*
+                        from
+                            CcidInHeader t1 join ccidInFile t2 on t2.fileId = t1.fileId 
+                        where
+                            t2.ddexReportingPeriodId = @ddexReportingPeriodId 
+                        order by
+                            t2.fileId desc
+                    ";
                 cmd.Parameters.Add(new SqlParameter("@DdexReportingPeriodId", ddexReportingPeriodId));
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -91,15 +97,18 @@ namespace InvoicingLib
 
         public string BuildFileName()
         {
-            //return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{StartDateString}--{EndDateString}_{service_description}_IN.dat";
-            if(sender.Equals("Google", StringComparison.OrdinalIgnoreCase))
+            if(receiver.Equals("Google", StringComparison.OrdinalIgnoreCase))
             {
-               return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Quarter}_{service_description}_IN.dat";
+                if(service_description.Equals("Usage-AdSupport-Music", StringComparison.OrdinalIgnoreCase)) // Pre-Claim
+                    return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Month}_{service_description}_PRE-CLAIM.dat";
+                else // Post-Claim
+                    return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Quarter}_{service_description}_IN.dat";
             }
-            else
+            else if(receiver.Equals("Spotify", StringComparison.OrdinalIgnoreCase))
             {
                 return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Month}_{service_description}_IN.dat";
             }
+            throw new Exception($"Невідомий приймач інвойсу '{receiver}' в полі Receiver запису CcidInHeader");
         }
 
         public void WriteToFile(System.IO.StreamWriter file)

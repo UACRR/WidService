@@ -349,18 +349,21 @@ namespace DdexInvoicing
                 return;
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                cmd.CommandText = "dbo.pTsk10_DdexIdentMWAuthor";
-                cmd.ExecuteNonQuery();
+                if(DdexReport.GetAgreementReportType(cmd, ddexReportId) != DdexReport.ReportTypeEnum.YOUTUBE_SRMF)
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                    cmd.CommandText = "dbo.pTsk10_DdexIdentMWAuthor";
+                    cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "dbo.pTsk10_DdexExceptionStatus";
-                cmd.Parameters.AddWithValue("@setId", setCode);
-                cmd.ExecuteNonQuery();
+                    cmd.CommandText = "dbo.pTsk10_DdexExceptionStatus";
+                    cmd.Parameters.AddWithValue("@setId", setCode);
+                    cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "dbo.pTsk10_DDEXFormRate";
-                cmd.Parameters.RemoveAt(1);
-                cmd.ExecuteNonQuery();
+                    cmd.CommandText = "dbo.pTsk10_DDEXFormRate";
+                    cmd.Parameters.RemoveAt(1);
+                    cmd.ExecuteNonQuery();
+                }
             });
         }
 

@@ -86,6 +86,12 @@
   <ItemGroup>
     <Compile Include="DdexDownloadActions.cs" />
     <Compile Include="DdexReportArchiver.cs" />
+    <Compile Include="FormAgreementParams _Old.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgreementParams _Old.Designer.cs">
+      <DependentUpon>FormAgreementParams _Old.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAgreementParams.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     <Compile Include="UcReportInfo.Designer.cs">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormAgreementParams _Old.resx">
+      <DependentUpon>FormAgreementParams _Old.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAgreementParams.resx">
       <DependentUpon>FormAgreementParams.cs</DependentUpon>
     </EmbeddedResource>

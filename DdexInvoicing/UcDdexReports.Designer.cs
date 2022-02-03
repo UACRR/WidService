@@ -78,12 +78,14 @@
             this.radGridAgreements.MasterTemplate.AllowDeleteRow = false;
             this.radGridAgreements.MasterTemplate.AllowEditRow = false;
             this.radGridAgreements.MasterTemplate.AllowRowResize = false;
+            gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.Expression = "";
             gridViewTextBoxColumn1.FieldName = "licId";
             gridViewTextBoxColumn1.HeaderText = "licId";
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.Name = "licId";
             gridViewTextBoxColumn1.Width = 100;
+            gridViewTextBoxColumn2.DataType = typeof(int);
             gridViewTextBoxColumn2.FieldName = "custId";
             gridViewTextBoxColumn2.HeaderText = "custId";
             gridViewTextBoxColumn2.IsVisible = false;

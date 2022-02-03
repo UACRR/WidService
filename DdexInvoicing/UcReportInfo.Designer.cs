@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn40 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn41 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn42 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition13 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn43 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn44 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn45 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn46 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn47 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn48 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition14 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn49 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn50 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition15 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn51 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn52 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition16 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridReportStatistics = new Telerik.WinControls.UI.RadGridView();
             this.radGridNetRevenueDistr = new Telerik.WinControls.UI.RadGridView();
             this.radGridGeneralInfo = new Telerik.WinControls.UI.RadGridView();
@@ -92,28 +92,28 @@
             this.radGridReportStatistics.MasterTemplate.AllowRowHeaderContextMenu = false;
             this.radGridReportStatistics.MasterTemplate.AllowRowResize = false;
             this.radGridReportStatistics.MasterTemplate.AutoGenerateColumns = false;
-            gridViewTextBoxColumn1.FieldName = "Name";
-            gridViewTextBoxColumn1.HeaderText = "Показник";
-            gridViewTextBoxColumn1.Name = "Name";
-            gridViewTextBoxColumn1.Width = 350;
-            gridViewTextBoxColumn2.FieldName = "Count";
-            gridViewTextBoxColumn2.HeaderText = "Кількість";
-            gridViewTextBoxColumn2.Name = "Count";
-            gridViewTextBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn2.Width = 80;
-            gridViewTextBoxColumn3.FieldName = "NetRevenue";
-            gridViewTextBoxColumn3.HeaderText = "Прибуток";
-            gridViewTextBoxColumn3.Name = "NetRevenue";
-            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn3.Width = 150;
+            gridViewTextBoxColumn40.FieldName = "Name";
+            gridViewTextBoxColumn40.HeaderText = "Показник";
+            gridViewTextBoxColumn40.Name = "Name";
+            gridViewTextBoxColumn40.Width = 350;
+            gridViewTextBoxColumn41.FieldName = "Count";
+            gridViewTextBoxColumn41.HeaderText = "Кількість";
+            gridViewTextBoxColumn41.Name = "Count";
+            gridViewTextBoxColumn41.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn41.Width = 80;
+            gridViewTextBoxColumn42.FieldName = "NetRevenue";
+            gridViewTextBoxColumn42.HeaderText = "Прибуток";
+            gridViewTextBoxColumn42.Name = "NetRevenue";
+            gridViewTextBoxColumn42.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn42.Width = 150;
             this.radGridReportStatistics.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3});
+            gridViewTextBoxColumn40,
+            gridViewTextBoxColumn41,
+            gridViewTextBoxColumn42});
             this.radGridReportStatistics.MasterTemplate.EnableSorting = false;
             this.radGridReportStatistics.MasterTemplate.ShowFilteringRow = false;
             this.radGridReportStatistics.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridReportStatistics.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridReportStatistics.MasterTemplate.ViewDefinition = tableViewDefinition13;
             this.radGridReportStatistics.Name = "radGridReportStatistics";
             this.radGridReportStatistics.ShowCellErrors = false;
             this.radGridReportStatistics.ShowGroupPanel = false;
@@ -143,49 +143,49 @@
             this.radGridNetRevenueDistr.MasterTemplate.AllowRowHeaderContextMenu = false;
             this.radGridNetRevenueDistr.MasterTemplate.AllowRowResize = false;
             this.radGridNetRevenueDistr.MasterTemplate.AutoGenerateColumns = false;
-            gridViewTextBoxColumn4.FieldName = "FirstRec";
-            gridViewTextBoxColumn4.HeaderText = "Перший твір блоку";
-            gridViewTextBoxColumn4.Name = "FirstRec";
-            gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn4.Width = 70;
-            gridViewTextBoxColumn5.FieldName = "LastRec";
-            gridViewTextBoxColumn5.HeaderText = "Останній твір блоку";
-            gridViewTextBoxColumn5.Name = "LastRec";
-            gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn5.Width = 70;
-            gridViewTextBoxColumn6.FieldName = "NetRevenue";
-            gridViewTextBoxColumn6.FormatString = "{0:### ### ### ##0.00}";
-            gridViewTextBoxColumn6.HeaderText = "Прибуток";
-            gridViewTextBoxColumn6.Name = "NetRevenue";
-            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn6.Width = 100;
-            gridViewTextBoxColumn7.FieldName = "NetRevenueAccr";
-            gridViewTextBoxColumn7.FormatString = "{0:### ### ### ##0.00}";
-            gridViewTextBoxColumn7.HeaderText = "Накопичений прибуток";
-            gridViewTextBoxColumn7.Name = "NetRevenueAccr";
-            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn7.Width = 100;
-            gridViewTextBoxColumn8.FieldName = "Share";
-            gridViewTextBoxColumn8.HeaderText = "Процент прибутку";
-            gridViewTextBoxColumn8.Name = "Share";
-            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn8.Width = 100;
-            gridViewTextBoxColumn9.FieldName = "ShareAccr";
-            gridViewTextBoxColumn9.HeaderText = "Накопичений процент прибутку";
-            gridViewTextBoxColumn9.Name = "S";
-            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn9.Width = 100;
+            gridViewTextBoxColumn43.FieldName = "FirstRec";
+            gridViewTextBoxColumn43.HeaderText = "Перший твір блоку";
+            gridViewTextBoxColumn43.Name = "FirstRec";
+            gridViewTextBoxColumn43.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn43.Width = 70;
+            gridViewTextBoxColumn44.FieldName = "LastRec";
+            gridViewTextBoxColumn44.HeaderText = "Останній твір блоку";
+            gridViewTextBoxColumn44.Name = "LastRec";
+            gridViewTextBoxColumn44.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn44.Width = 70;
+            gridViewTextBoxColumn45.FieldName = "NetRevenue";
+            gridViewTextBoxColumn45.FormatString = "{0:### ### ### ##0.00}";
+            gridViewTextBoxColumn45.HeaderText = "Прибуток";
+            gridViewTextBoxColumn45.Name = "NetRevenue";
+            gridViewTextBoxColumn45.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn45.Width = 100;
+            gridViewTextBoxColumn46.FieldName = "NetRevenueAccr";
+            gridViewTextBoxColumn46.FormatString = "{0:### ### ### ##0.00}";
+            gridViewTextBoxColumn46.HeaderText = "Накопичений прибуток";
+            gridViewTextBoxColumn46.Name = "NetRevenueAccr";
+            gridViewTextBoxColumn46.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn46.Width = 100;
+            gridViewTextBoxColumn47.FieldName = "Share";
+            gridViewTextBoxColumn47.HeaderText = "Процент прибутку";
+            gridViewTextBoxColumn47.Name = "Share";
+            gridViewTextBoxColumn47.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn47.Width = 100;
+            gridViewTextBoxColumn48.FieldName = "ShareAccr";
+            gridViewTextBoxColumn48.HeaderText = "Накопичений процент прибутку";
+            gridViewTextBoxColumn48.Name = "S";
+            gridViewTextBoxColumn48.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn48.Width = 100;
             this.radGridNetRevenueDistr.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9});
+            gridViewTextBoxColumn43,
+            gridViewTextBoxColumn44,
+            gridViewTextBoxColumn45,
+            gridViewTextBoxColumn46,
+            gridViewTextBoxColumn47,
+            gridViewTextBoxColumn48});
             this.radGridNetRevenueDistr.MasterTemplate.EnableSorting = false;
             this.radGridNetRevenueDistr.MasterTemplate.ShowFilteringRow = false;
             this.radGridNetRevenueDistr.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridNetRevenueDistr.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridNetRevenueDistr.MasterTemplate.ViewDefinition = tableViewDefinition14;
             this.radGridNetRevenueDistr.Name = "radGridNetRevenueDistr";
             this.radGridNetRevenueDistr.ShowCellErrors = false;
             this.radGridNetRevenueDistr.ShowGroupPanel = false;
@@ -215,21 +215,21 @@
             this.radGridGeneralInfo.MasterTemplate.AllowRowHeaderContextMenu = false;
             this.radGridGeneralInfo.MasterTemplate.AllowRowResize = false;
             this.radGridGeneralInfo.MasterTemplate.AutoGenerateColumns = false;
-            gridViewTextBoxColumn10.FieldName = "Name";
-            gridViewTextBoxColumn10.HeaderText = "Показник";
-            gridViewTextBoxColumn10.Name = "Name";
-            gridViewTextBoxColumn10.Width = 200;
-            gridViewTextBoxColumn11.FieldName = "Value";
-            gridViewTextBoxColumn11.HeaderText = "Значення";
-            gridViewTextBoxColumn11.Name = "Value";
-            gridViewTextBoxColumn11.Width = 800;
+            gridViewTextBoxColumn49.FieldName = "Name";
+            gridViewTextBoxColumn49.HeaderText = "Показник";
+            gridViewTextBoxColumn49.Name = "Name";
+            gridViewTextBoxColumn49.Width = 200;
+            gridViewTextBoxColumn50.FieldName = "Value";
+            gridViewTextBoxColumn50.HeaderText = "Значення";
+            gridViewTextBoxColumn50.Name = "Value";
+            gridViewTextBoxColumn50.Width = 800;
             this.radGridGeneralInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11});
+            gridViewTextBoxColumn49,
+            gridViewTextBoxColumn50});
             this.radGridGeneralInfo.MasterTemplate.EnableSorting = false;
             this.radGridGeneralInfo.MasterTemplate.ShowFilteringRow = false;
             this.radGridGeneralInfo.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridGeneralInfo.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridGeneralInfo.MasterTemplate.ViewDefinition = tableViewDefinition15;
             this.radGridGeneralInfo.Name = "radGridGeneralInfo";
             this.radGridGeneralInfo.ShowCellErrors = false;
             this.radGridGeneralInfo.ShowGroupPanel = false;
@@ -323,21 +323,21 @@
             this.radGridCalcParams.MasterTemplate.AllowRowHeaderContextMenu = false;
             this.radGridCalcParams.MasterTemplate.AllowRowResize = false;
             this.radGridCalcParams.MasterTemplate.AutoGenerateColumns = false;
-            gridViewTextBoxColumn12.FieldName = "Name";
-            gridViewTextBoxColumn12.HeaderText = "Показник";
-            gridViewTextBoxColumn12.Name = "Name";
-            gridViewTextBoxColumn12.Width = 350;
-            gridViewTextBoxColumn13.FieldName = "Value";
-            gridViewTextBoxColumn13.HeaderText = "Значення";
-            gridViewTextBoxColumn13.Name = "Value";
-            gridViewTextBoxColumn13.Width = 650;
+            gridViewTextBoxColumn51.FieldName = "Name";
+            gridViewTextBoxColumn51.HeaderText = "Показник";
+            gridViewTextBoxColumn51.Name = "Name";
+            gridViewTextBoxColumn51.Width = 350;
+            gridViewTextBoxColumn52.FieldName = "Value";
+            gridViewTextBoxColumn52.HeaderText = "Значення";
+            gridViewTextBoxColumn52.Name = "Value";
+            gridViewTextBoxColumn52.Width = 650;
             this.radGridCalcParams.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13});
+            gridViewTextBoxColumn51,
+            gridViewTextBoxColumn52});
             this.radGridCalcParams.MasterTemplate.EnableSorting = false;
             this.radGridCalcParams.MasterTemplate.ShowFilteringRow = false;
             this.radGridCalcParams.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridCalcParams.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.radGridCalcParams.MasterTemplate.ViewDefinition = tableViewDefinition16;
             this.radGridCalcParams.Name = "radGridCalcParams";
             this.radGridCalcParams.ShowCellErrors = false;
             this.radGridCalcParams.ShowGroupPanel = false;

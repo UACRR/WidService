@@ -46,22 +46,17 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAgreementParams));
-            this.panelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radBtnAddYear = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.radBtnOk = new Telerik.WinControls.UI.RadButton();
             this.radBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.radGridParams = new Telerik.WinControls.UI.RadGridView();
             this.radGridExchRates = new Telerik.WinControls.UI.RadGridView();
-            this.panelMain.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            this.radPageViewMain = new Telerik.WinControls.UI.RadPageView();
+            this.radPageViewPageMainExchRate = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.tableLayoutPanelЬфшт = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelExchRate = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAddYear)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnOk)).BeginInit();
@@ -70,84 +65,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridParams.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridExchRates)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridExchRates.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
+            this.radPageViewMain.SuspendLayout();
+            this.radPageViewPageMainExchRate.SuspendLayout();
+            this.radPageViewPage2.SuspendLayout();
+            this.tableLayoutPanelЬфшт.SuspendLayout();
+            this.tableLayoutPanelExchRate.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelMain
-            // 
-            this.panelMain.ColumnCount = 1;
-            this.panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelMain.Controls.Add(this.tableLayoutPanel1, 0, 0);
-            this.panelMain.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.panelMain.Controls.Add(this.tableLayoutPanel3, 0, 4);
-            this.panelMain.Controls.Add(this.radGridParams, 0, 1);
-            this.panelMain.Controls.Add(this.radGridExchRates, 0, 3);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 0);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.RowCount = 7;
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelMain.Size = new System.Drawing.Size(908, 559);
-            this.panelMain.TabIndex = 0;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.46854F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.53146F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(902, 25);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel1.Location = new System.Drawing.Point(3, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(435, 19);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Дані для розрахунку суми до виплати";
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.54546F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.45455F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.radBtnAddYear, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 287);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(902, 29);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel2.Location = new System.Drawing.Point(3, 3);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(117, 18);
-            this.radLabel2.TabIndex = 0;
-            this.radLabel2.Text = "Курси обміну валюти";
             // 
             // radBtnAddYear
             // 
-            this.radBtnAddYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnAddYear.Location = new System.Drawing.Point(785, 3);
+            this.radBtnAddYear.Location = new System.Drawing.Point(3, 3);
             this.radBtnAddYear.Name = "radBtnAddYear";
             this.radBtnAddYear.Size = new System.Drawing.Size(85, 23);
             this.radBtnAddYear.TabIndex = 1;
@@ -163,19 +91,19 @@
             this.tableLayoutPanel3.Controls.Add(this.radBtnOk, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.radBtnCancel, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 504);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 599);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(902, 36);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1167, 34);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // radBtnOk
             // 
             this.radBtnOk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnOk.Location = new System.Drawing.Point(723, 3);
+            this.radBtnOk.Location = new System.Drawing.Point(988, 3);
             this.radBtnOk.Name = "radBtnOk";
-            this.radBtnOk.Size = new System.Drawing.Size(87, 30);
+            this.radBtnOk.Size = new System.Drawing.Size(87, 28);
             this.radBtnOk.TabIndex = 0;
             this.radBtnOk.Text = "Змінити";
             this.radBtnOk.Click += new System.EventHandler(this.radBtnOk_Click);
@@ -183,9 +111,9 @@
             // radBtnCancel
             // 
             this.radBtnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnCancel.Location = new System.Drawing.Point(816, 3);
+            this.radBtnCancel.Location = new System.Drawing.Point(1081, 3);
             this.radBtnCancel.Name = "radBtnCancel";
-            this.radBtnCancel.Size = new System.Drawing.Size(83, 30);
+            this.radBtnCancel.Size = new System.Drawing.Size(83, 28);
             this.radBtnCancel.TabIndex = 0;
             this.radBtnCancel.Text = "Відмінити";
             this.radBtnCancel.Click += new System.EventHandler(this.radBtnCancel_Click);
@@ -194,7 +122,7 @@
             // 
             this.radGridParams.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridParams.EnableHotTracking = false;
-            this.radGridParams.Location = new System.Drawing.Point(3, 34);
+            this.radGridParams.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
@@ -225,7 +153,7 @@
             this.radGridParams.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridParams.Name = "radGridParams";
             this.radGridParams.ShowGroupPanel = false;
-            this.radGridParams.Size = new System.Drawing.Size(902, 247);
+            this.radGridParams.Size = new System.Drawing.Size(1146, 542);
             this.radGridParams.TabIndex = 3;
             this.radGridParams.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridParams_CellFormatting);
             this.radGridParams.CellValidating += new Telerik.WinControls.UI.CellValidatingEventHandler(this.radGridParams_CellValidating);
@@ -234,7 +162,7 @@
             // 
             this.radGridExchRates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridExchRates.EnableHotTracking = false;
-            this.radGridExchRates.Location = new System.Drawing.Point(3, 322);
+            this.radGridExchRates.Location = new System.Drawing.Point(3, 32);
             // 
             // 
             // 
@@ -323,32 +251,87 @@
             this.radGridExchRates.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridExchRates.Name = "radGridExchRates";
             this.radGridExchRates.ShowGroupPanel = false;
-            this.radGridExchRates.Size = new System.Drawing.Size(902, 176);
+            this.radGridExchRates.Size = new System.Drawing.Size(1140, 507);
             this.radGridExchRates.TabIndex = 3;
             this.radGridExchRates.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridExchRates_CellFormatting);
             this.radGridExchRates.CellValidating += new Telerik.WinControls.UI.CellValidatingEventHandler(this.radGridExchRates_CellValidating);
             this.radGridExchRates.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridExchRates_CellValueChanged);
             // 
+            // radPageViewMain
+            // 
+            this.radPageViewMain.Controls.Add(this.radPageViewPageMainExchRate);
+            this.radPageViewMain.Controls.Add(this.radPageViewPage2);
+            this.radPageViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPageViewMain.Location = new System.Drawing.Point(3, 3);
+            this.radPageViewMain.Name = "radPageViewMain";
+            this.radPageViewMain.SelectedPage = this.radPageViewPageMainExchRate;
+            this.radPageViewMain.Size = new System.Drawing.Size(1167, 590);
+            this.radPageViewMain.TabIndex = 1;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageViewMain.GetChildAt(0))).ShowItemPinButton = false;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageViewMain.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageViewMain.GetChildAt(0))).ShowItemCloseButton = false;
+            // 
+            // radPageViewPageMainExchRate
+            // 
+            this.radPageViewPageMainExchRate.Controls.Add(this.radGridParams);
+            this.radPageViewPageMainExchRate.ItemSize = new System.Drawing.SizeF(126F, 28F);
+            this.radPageViewPageMainExchRate.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPageMainExchRate.Name = "radPageViewPageMainExchRate";
+            this.radPageViewPageMainExchRate.Size = new System.Drawing.Size(1146, 542);
+            this.radPageViewPageMainExchRate.Text = "Договірні параметри";
+            // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.Controls.Add(this.tableLayoutPanelExchRate);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(120F, 28F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(1146, 542);
+            this.radPageViewPage2.Text = "Курс обміну валюти";
+            // 
+            // tableLayoutPanelЬфшт
+            // 
+            this.tableLayoutPanelЬфшт.ColumnCount = 1;
+            this.tableLayoutPanelЬфшт.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelЬфшт.Controls.Add(this.radPageViewMain, 0, 0);
+            this.tableLayoutPanelЬфшт.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanelЬфшт.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelЬфшт.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelЬфшт.Name = "tableLayoutPanelЬфшт";
+            this.tableLayoutPanelЬфшт.RowCount = 3;
+            this.tableLayoutPanelЬфшт.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelЬфшт.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanelЬфшт.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanelЬфшт.Size = new System.Drawing.Size(1173, 644);
+            this.tableLayoutPanelЬфшт.TabIndex = 2;
+            // 
+            // tableLayoutPanelExchRate
+            // 
+            this.tableLayoutPanelExchRate.ColumnCount = 1;
+            this.tableLayoutPanelExchRate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelExchRate.Controls.Add(this.radGridExchRates, 0, 1);
+            this.tableLayoutPanelExchRate.Controls.Add(this.radBtnAddYear, 0, 0);
+            this.tableLayoutPanelExchRate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelExchRate.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelExchRate.Name = "tableLayoutPanelExchRate";
+            this.tableLayoutPanelExchRate.RowCount = 2;
+            this.tableLayoutPanelExchRate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanelExchRate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelExchRate.Size = new System.Drawing.Size(1146, 542);
+            this.tableLayoutPanelExchRate.TabIndex = 0;
+            // 
             // FormAgreementParams
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(908, 559);
+            this.ClientSize = new System.Drawing.Size(1173, 644);
             this.ControlBox = false;
-            this.Controls.Add(this.panelMain);
+            this.Controls.Add(this.tableLayoutPanelЬфшт);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAgreementParams";
             this.ShowIcon = false;
-            this.Text = "Параметри договору";
+            this.Text = "Дані для обрбки звітів і розрахунку роялті";
             this.Load += new System.EventHandler(this.FormAgreementParams_Load);
-            this.panelMain.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAddYear)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radBtnOk)).EndInit();
@@ -357,22 +340,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridParams)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridExchRates.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridExchRates)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).EndInit();
+            this.radPageViewMain.ResumeLayout(false);
+            this.radPageViewPageMainExchRate.ResumeLayout(false);
+            this.radPageViewPage2.ResumeLayout(false);
+            this.tableLayoutPanelЬфшт.ResumeLayout(false);
+            this.tableLayoutPanelExchRate.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel panelMain;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Telerik.WinControls.UI.RadButton radBtnOk;
         private Telerik.WinControls.UI.RadButton radBtnCancel;
         private Telerik.WinControls.UI.RadGridView radGridParams;
         private Telerik.WinControls.UI.RadGridView radGridExchRates;
         private Telerik.WinControls.UI.RadButton radBtnAddYear;
+        private Telerik.WinControls.UI.RadPageView radPageViewMain;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPageMainExchRate;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelExchRate;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelЬфшт;
     }
 }

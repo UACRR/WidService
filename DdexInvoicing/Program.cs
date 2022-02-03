@@ -27,6 +27,7 @@ namespace DdexInvoicing
             {
                 Meta.Load();
                 DdexDownloadActions.Init();
+                DdexAgreements.Load();
                 Application.Run(new DdexInvoicingForm());
             }
             catch(Exception ex)

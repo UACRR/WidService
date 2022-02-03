@@ -104,7 +104,7 @@
             this.radPageReportLoad.ItemSize = new System.Drawing.SizeF(90F, 28F);
             this.radPageReportLoad.Location = new System.Drawing.Point(10, 37);
             this.radPageReportLoad.Name = "radPageReportLoad";
-            this.radPageReportLoad.Size = new System.Drawing.Size(1428, 562);
+            this.radPageReportLoad.Size = new System.Drawing.Size(1343, 562);
             this.radPageReportLoad.Text = "Завантаження";
             // 
             // panelLoadReport
@@ -119,7 +119,7 @@
             this.panelLoadReport.RowCount = 1;
             this.panelLoadReport.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelLoadReport.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 562F));
-            this.panelLoadReport.Size = new System.Drawing.Size(1428, 562);
+            this.panelLoadReport.Size = new System.Drawing.Size(1343, 562);
             this.panelLoadReport.TabIndex = 0;
             // 
             // ucDdexLoad
@@ -127,7 +127,7 @@
             this.ucDdexLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucDdexLoad.Location = new System.Drawing.Point(3, 3);
             this.ucDdexLoad.Name = "ucDdexLoad";
-            this.ucDdexLoad.Size = new System.Drawing.Size(1413, 556);
+            this.ucDdexLoad.Size = new System.Drawing.Size(1328, 556);
             this.ucDdexLoad.TabIndex = 3;
             // 
             // radPageMwIdent

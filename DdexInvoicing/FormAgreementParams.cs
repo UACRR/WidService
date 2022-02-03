@@ -15,33 +15,7 @@ namespace DdexInvoicing
 {
     public partial class FormAgreementParams : Form
     {
-        public enum ParamValueType
-        {
-            Percent, Price, CurrencyCode, Text, Money
-        }
-
-        public class ParamInfo
-        {
-            public string name;
-            public ParamValueType paramValueType;
-        }
-
-        public static Dictionary<string, ParamInfo> paramInfos = new Dictionary<string, ParamInfo>()
-        {
-            { "MusicRate", new ParamInfo { name = "MusicRate", paramValueType = ParamValueType.Percent} },
-            { "GeRate", new ParamInfo { name = "GeRate", paramValueType = ParamValueType.Percent} },
-            { "MechSplit", new ParamInfo { name = "MechSplit", paramValueType = ParamValueType.Percent} },
-            { "PerfSplit", new ParamInfo { name = "PerfSplit", paramValueType = ParamValueType.Percent} },
-            { "MusicPSM", new ParamInfo { name = "MusicPSM", paramValueType = ParamValueType.Price} },
-            { "GePSM", new ParamInfo { name = "GePSM", paramValueType = ParamValueType.Price} },
-            { "ReportCurrency", new ParamInfo { name = "ReportCurrency", paramValueType = ParamValueType.CurrencyCode} },
-            { "ReportType", new ParamInfo { name = "ReportType", paramValueType = ParamValueType.Text} },
-            { "RoyaltyThreshold", new ParamInfo { name = "RoyaltyThreshold", paramValueType = ParamValueType.Money} }
-        };
-
-        //public int ddexReportId;
         public int licId;
-        //public int licVersion;
         public int custId;
         Dictionary<string, string> exchRateChanges;
 
@@ -80,7 +54,6 @@ namespace DdexInvoicing
                     where licId = @licId and custId = @custId
                 ";
                 cmd.Parameters.AddWithValue("@licId", licId);
-                //cmd.Parameters.AddWithValue("@licVersion", licVersion);
                 cmd.Parameters.AddWithValue("@custId", custId);
 
                 using (SqlDataReader r = cmd.ExecuteReader())
@@ -112,7 +85,6 @@ namespace DdexInvoicing
                     end
                 ";
                 cmd.Parameters.AddWithValue("@licId", licId);
-                //cmd.Parameters.AddWithValue("@licVersion", licVersion);
                 cmd.Parameters.AddWithValue("@custId", custId);
                 cmd.ExecuteNonQuery();
 
@@ -265,12 +237,13 @@ namespace DdexInvoicing
         {
             if (e.Column.FieldName.Equals("paramValue", StringComparison.OrdinalIgnoreCase))
             {
-                ParamInfo paramInfo = paramInfos[(string)e.Row.Cells["paramName"].Value];
+                var paramName = (string)e.Row.Cells["paramName"].Value;
+                var paramValueType = DdexReport.GetParamValueType(paramName);
 
                 if (e.Value == null)
                     return;
 
-                if (paramInfo.paramValueType == ParamValueType.CurrencyCode)
+                if (paramValueType == DdexReport.AgreementParamValueTypeEnum.CURRENCY_CODE)
                 {
                     string value = (string)e.Value;
                     if (!(value.Equals("USD", StringComparison.OrdinalIgnoreCase) || value.Equals("EUR", StringComparison.OrdinalIgnoreCase)))
@@ -279,7 +252,7 @@ namespace DdexInvoicing
                         e.Cancel = true;
                     }
                 }
-                else if (paramInfo.paramValueType == ParamValueType.Percent)
+                else if (paramValueType == DdexReport.AgreementParamValueTypeEnum.PERCENT)
                 {
                     if (!Formatter.IsValidDecimal((string)e.Value))
                     {
@@ -294,7 +267,7 @@ namespace DdexInvoicing
                         e.Cancel = true;
                     }
                 }
-                else if (paramInfo.paramValueType == ParamValueType.Price)
+                else if (paramValueType == DdexReport.AgreementParamValueTypeEnum.PRICE)
                 {
                     if (!Formatter.IsValidDecimal((string)e.Value))
                     {
@@ -302,7 +275,7 @@ namespace DdexInvoicing
                         e.Cancel = true;
                     }
                 }
-                else if (paramInfo.paramValueType == ParamValueType.Money)
+                else if (paramValueType == DdexReport.AgreementParamValueTypeEnum.MONEY)
                 {
                     if (!Formatter.IsValidDecimal((string)e.Value))
                     {

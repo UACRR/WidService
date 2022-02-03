@@ -10,8 +10,8 @@ namespace InvoicingLib
 {
     public partial class DdexReport
     {
-        public delegate ReportingPeriodInfo GetReportingPeriodInfo(string fullFileName);
-        public delegate void InsertHead(SqlCommand cmd, int ddexReportId, string fullFileName);
+        public delegate ReportingPeriodInfo GetReportingPeriodInfo( string fullFileName);
+        public delegate void                InsertHead              (SqlCommand cmd, int ddexReportId, string fullFileName);
 
         public enum ReportTypeEnum
         {
@@ -25,15 +25,25 @@ namespace InvoicingLib
 
         public enum AgreementParamEnum
         {
-            MUSICRATE = 1,
-            GERATE = 2,
-            MECHSPLIT = 3,
-            PERFSPLIT = 4,
-            MUSICPSM = 5,
-            GEPSM = 6,
-            REPORTCURRENCY = 7,
-            REPORTTYPE = 8,
-            ROYALTYTHRESHOLD = 9,
+            MUSICRATE           = 1,
+            GERATE              = 2,
+            MECHSPLIT           = 3,
+            PERFSPLIT           = 4,
+            MUSICPSM            = 5,
+            GEPSM               = 6,
+            REPORTCURRENCY      = 7,
+            REPORTTYPE          = 8,
+            ROYALTYTHRESHOLD    = 9,
+        }
+
+        public enum AgreementParamValueTypeEnum
+        {
+            PERCENT,
+            PRICE,
+            CURRENCY_CODE,
+            TEXT,
+            MONEY,
+            REPORT_TYPE,
         }
 
         public enum DigitalServiceProviderEnum
@@ -44,9 +54,9 @@ namespace InvoicingLib
 
         public enum FileTypeEnum
         {
-            UNKNOWN = 0,
-            DSR = 1,
-            SRMF = 2,
+            UNKNOWN     = 0,
+            DSR         = 1,
+            SRMF        = 2,
         }
 
         public class FileNameParts
@@ -134,22 +144,23 @@ namespace InvoicingLib
 
         public class AgreementParam
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public string Definition { get; set; }
-            public string DdexReportColumn { get; set; }
+            public string                       Name                { get; set; }
+            public string                       Description         { get; set; }
+            public string                       Definition          { get; set; }
+            public string                       DdexReportColumn    { get; set; }
+            public AgreementParamValueTypeEnum  ValueType           { get; set; }
         }
 
         public class ReportTypeInfo
         {
-            public ReportTypeEnum ReportType { get; set; }
-            public string Name { get; set; } // Like used in agreement params
-            public bool IsMonthly { get; set; }
-            public string FileNameWildcard { get; set; }
-            public DigitalServiceProviderEnum DigitalServiceProvider { get; set; }
-            public bool NeedsExchRate { get; set; }
-            public bool FileMayHaveErrors { get; set; }
-            public HashSet<AgreementParamEnum> RequiredParams { get; set; }
+            public ReportTypeEnum               ReportType              { get; set; }
+            public string                       Name                    { get; set; } // Like used in agreement params
+            public bool                         IsMonthly               { get; set; }
+            public string                       FileNameWildcard        { get; set; }
+            public DigitalServiceProviderEnum   DigitalServiceProvider  { get; set; }
+            public bool                         NeedsExchRate           { get; set; }
+            public bool                         FileMayHaveErrors       { get; set; }
+            public HashSet<AgreementParamEnum>  RequiredParams          { get; set; }
 
             public GetReportingPeriodInfo GetReportingPeriodInfo;
             public InsertHead InsertHead;
@@ -157,23 +168,23 @@ namespace InvoicingLib
 
         public class ReportingPeriodInfo
         {
-            public int Year { get; set; }
+            public int Year     { get; set; }
             public int? Quarter { get; set; }
-            public int? Month { get; set; }
+            public int? Month   { get; set; }
         }
 
         public static List<ReportTypeInfo> ReportTypes = new List<ReportTypeInfo>()
         {
             new ReportTypeInfo
             {
-                ReportType = ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC,
-                Name = "adsupport-music",
-                IsMonthly = false,
-                FileNameWildcard = "DSR_UACRR-CS_YouTube_Usage-AdSupport-Music-All_*_UA_1of1_*.tsv",
-                DigitalServiceProvider = DigitalServiceProviderEnum.YOUTUBE,
-                NeedsExchRate = false,
-                FileMayHaveErrors = true,
-                RequiredParams = new HashSet<AgreementParamEnum>
+                ReportType                  = ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC,
+                Name                        = "adsupport-music",
+                IsMonthly                   = false,
+                FileNameWildcard            = "DSR_UACRR-CS_YouTube_Usage-AdSupport-Music-All_*_UA_1of1_*.tsv",
+                DigitalServiceProvider      = DigitalServiceProviderEnum.YOUTUBE,
+                NeedsExchRate               = false,
+                FileMayHaveErrors           = true,
+                RequiredParams              = new HashSet<AgreementParamEnum>
                 {
                     AgreementParamEnum.MUSICRATE,
                     AgreementParamEnum.GERATE,
@@ -184,19 +195,19 @@ namespace InvoicingLib
                     AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
-                GetReportingPeriodInfo = GetYouTubeDsrReportingPeriodInfo,
-                InsertHead = InsertDsrHead,
+                GetReportingPeriodInfo       = GetYouTubeDsrReportingPeriodInfo,
+                InsertHead                  = InsertDsrHead,
             },
             new ReportTypeInfo
             {
-                ReportType = ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC,
-                Name = "subscription-music",
-                IsMonthly = false,
-                FileNameWildcard = "DSR_UACRR-CS_YouTube_Usage-SubscriptionMusic-Music-All_*_UA_1of1_*.tsv",
-                DigitalServiceProvider = DigitalServiceProviderEnum.YOUTUBE,
-                NeedsExchRate = true,
-                FileMayHaveErrors = true,
-                RequiredParams = new HashSet<AgreementParamEnum>
+                ReportType              = ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC,
+                Name                    = "subscription-music",
+                IsMonthly               = false,
+                FileNameWildcard        = "DSR_UACRR-CS_YouTube_Usage-SubscriptionMusic-Music-All_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.YOUTUBE,
+                NeedsExchRate           = true,
+                FileMayHaveErrors       = true,
+                RequiredParams          = new HashSet<AgreementParamEnum>
                 {
                     AgreementParamEnum.MUSICRATE,
                     AgreementParamEnum.GERATE,
@@ -207,19 +218,19 @@ namespace InvoicingLib
                     AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
-                GetReportingPeriodInfo = GetYouTubeDsrReportingPeriodInfo,
-                InsertHead = InsertDsrHead,
+                GetReportingPeriodInfo  = GetYouTubeDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
             },
             new ReportTypeInfo
             {
-                ReportType = ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM,
-                Name = "subscription-premium",
-                IsMonthly = false,
-                FileNameWildcard = "DSR_UACRR-CS_YouTube_Usage-SubscriptionPremium-Music-All_*_UA_1of1_*.tsv",
-                DigitalServiceProvider = DigitalServiceProviderEnum.YOUTUBE,
-                NeedsExchRate = true,
-                FileMayHaveErrors = true,
-                RequiredParams = new HashSet<AgreementParamEnum>
+                ReportType              = ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM,
+                Name                    = "subscription-premium",
+                IsMonthly               = false,
+                FileNameWildcard        = "DSR_UACRR-CS_YouTube_Usage-SubscriptionPremium-Music-All_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.YOUTUBE,
+                NeedsExchRate           = true,
+                FileMayHaveErrors       = true,
+                RequiredParams          = new HashSet<AgreementParamEnum>
                 {
                     AgreementParamEnum.MUSICRATE,
                     AgreementParamEnum.GERATE,
@@ -230,61 +241,38 @@ namespace InvoicingLib
                     AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
-                GetReportingPeriodInfo = GetYouTubeDsrReportingPeriodInfo,
-                InsertHead = InsertDsrHead,
+                GetReportingPeriodInfo  = GetYouTubeDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
             },
             new ReportTypeInfo
             {
-                ReportType = ReportTypeEnum.YOUTUBE_SRMF,
-                Name = "srmf",
-                IsMonthly = true,
-                FileNameWildcard = "Report_YouTube_uacrr_cs_UA_*_*_srmf.csv",
-                DigitalServiceProvider = DigitalServiceProviderEnum.YOUTUBE,
-                NeedsExchRate = false,
-                FileMayHaveErrors = false,
-                RequiredParams = new HashSet<AgreementParamEnum>
+                ReportType              = ReportTypeEnum.YOUTUBE_SRMF,
+                Name                    = "srmf",
+                IsMonthly               = true,
+                FileNameWildcard        = "Report_YouTube_uacrr_cs_UA_*_*_srmf.csv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.YOUTUBE,
+                NeedsExchRate           = false,
+                FileMayHaveErrors       = false,
+                RequiredParams          = new HashSet<AgreementParamEnum>
                 {
                     AgreementParamEnum.MECHSPLIT,
                     AgreementParamEnum.PERFSPLIT,
                     AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
-                GetReportingPeriodInfo = GetYouTubeSrmfReportingPeriodInfo,
-                InsertHead = InsertSrmfHead,
+                GetReportingPeriodInfo  = GetYouTubeSrmfReportingPeriodInfo,
+                InsertHead              = InsertSrmfHead,
             },
             new ReportTypeInfo
             {
-                ReportType = ReportTypeEnum.SPOTIFY_FREE,
-                Name = "spotify-free",
-                IsMonthly = true,
-                FileNameWildcard = "DSR_uacrr_Spotify_free_*_UA_1of1_*.tsv",
-                DigitalServiceProvider = DigitalServiceProviderEnum.SPOTIFY,
-                NeedsExchRate = false,
-                FileMayHaveErrors = false,
-                RequiredParams = new HashSet<AgreementParamEnum>
-                {
-                    AgreementParamEnum.MUSICRATE,
-                    AgreementParamEnum.GERATE,
-                    AgreementParamEnum.MECHSPLIT,
-                    AgreementParamEnum.PERFSPLIT,
-                    AgreementParamEnum.MUSICPSM,
-                    AgreementParamEnum.GEPSM,
-                    AgreementParamEnum.REPORTTYPE,
-                    AgreementParamEnum.ROYALTYTHRESHOLD,
-                },
-                GetReportingPeriodInfo = GetSpotifyDsrReportingPeriodInfo,
-                InsertHead = InsertDsrHead,
-            },
-            new ReportTypeInfo
-            {
-                ReportType = ReportTypeEnum.SPOTIFY_PREMIUM,
-                Name = "spotify-premium",
-                IsMonthly = true,
-                FileNameWildcard = "DSR_uacrr_Spotify_premium_*_UA_1of1_*.tsv",
-                DigitalServiceProvider = DigitalServiceProviderEnum.SPOTIFY,
-                NeedsExchRate = false,
-                FileMayHaveErrors = false,
-                RequiredParams = new HashSet<AgreementParamEnum>
+                ReportType              = ReportTypeEnum.SPOTIFY_FREE,
+                Name                    = "spotify-free",
+                IsMonthly               = true,
+                FileNameWildcard        = "DSR_uacrr_Spotify_free_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.SPOTIFY,
+                NeedsExchRate           = false,
+                FileMayHaveErrors       = false,
+                RequiredParams          = new HashSet<AgreementParamEnum>
                 {
                     AgreementParamEnum.MUSICRATE,
                     AgreementParamEnum.GERATE,
@@ -295,8 +283,31 @@ namespace InvoicingLib
                     AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
-                GetReportingPeriodInfo = GetSpotifyDsrReportingPeriodInfo,
-                InsertHead = InsertDsrHead,
+                GetReportingPeriodInfo  = GetSpotifyDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
+            },
+            new ReportTypeInfo
+            {
+                ReportType              = ReportTypeEnum.SPOTIFY_PREMIUM,
+                Name                    = "spotify-premium",
+                IsMonthly               = true,
+                FileNameWildcard        = "DSR_uacrr_Spotify_premium_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.SPOTIFY,
+                NeedsExchRate           = false,
+                FileMayHaveErrors       = false,
+                RequiredParams          = new HashSet<AgreementParamEnum>
+                {
+                    AgreementParamEnum.MUSICRATE,
+                    AgreementParamEnum.GERATE,
+                    AgreementParamEnum.MECHSPLIT,
+                    AgreementParamEnum.PERFSPLIT,
+                    AgreementParamEnum.MUSICPSM,
+                    AgreementParamEnum.GEPSM,
+                    AgreementParamEnum.REPORTTYPE,
+                    AgreementParamEnum.ROYALTYTHRESHOLD,
+                },
+                GetReportingPeriodInfo  = GetSpotifyDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
             },
         };
 
@@ -346,90 +357,99 @@ namespace InvoicingLib
                     AgreementParamEnum.MUSICRATE,
                     new AgreementParam
                     {
-                        Name = "MusicRate",
-                        Description = "Процент за музичний контент",
-                        Definition = "decimal(5,2)",
-                        DdexReportColumn = "musicRate",
+                        Name                = "MusicRate",
+                        Description         = "Процент за музичний контент",
+                        Definition          = "decimal(5,2)",
+                        DdexReportColumn    = "musicRate",
+                        ValueType           = AgreementParamValueTypeEnum.PERCENT,
                     }
                 },
                {
                     AgreementParamEnum.GERATE,
                     new AgreementParam
                     {
-                        Name = "GeRate",
-                        Description = "Процент за розважальний контент",
-                        Definition = "decimal(5,2)",
-                        DdexReportColumn = "geRate",
+                        Name                = "GeRate",
+                        Description         = "Процент за розважальний контент",
+                        Definition          = "decimal(5,2)",
+                        DdexReportColumn    = "geRate",
+                        ValueType           = AgreementParamValueTypeEnum.PERCENT,
                     }
                 },
                 {
                     AgreementParamEnum.MECHSPLIT,
                     new AgreementParam
                     {
-                        Name = "MechSplit",
-                        Description = "Процент правовласності за механічне виконання",
-                        Definition = "decimal(5,2)",
-                        DdexReportColumn = "mechSplit",
+                        Name                = "MechSplit",
+                        Description         = "Процент правовласності за механічне виконання",
+                        Definition          = "decimal(5,2)",
+                        DdexReportColumn    = "mechSplit",
+                        ValueType           = AgreementParamValueTypeEnum.PERCENT,
                     }
                 },
                 {
                     AgreementParamEnum.PERFSPLIT,
                     new AgreementParam
                     {
-                        Name = "PerfSplit",
-                        Description = "Процент правовласності за публічне виконання",
-                        Definition = "decimal(5,2)",
-                        DdexReportColumn = "perfSplit",
+                        Name                = "PerfSplit",
+                        Description         = "Процент правовласності за публічне виконання",
+                        Definition          = "decimal(5,2)",
+                        DdexReportColumn    = "perfSplit",
+                        ValueType           = AgreementParamValueTypeEnum.PERCENT,
                     }
                 },
                 {
                     AgreementParamEnum.MUSICPSM,
                     new AgreementParam
                     {
-                        Name = "MusicPSM",
-                        Description = "Тариф на музичний контент",
-                        Definition = "decimal(5,2)",
-                        DdexReportColumn = "musicPSM",
+                        Name                = "MusicPSM",
+                        Description         = "Тариф на музичний контент",
+                        Definition          = "decimal(5,2)",
+                        DdexReportColumn    = "musicPSM",
+                        ValueType           = AgreementParamValueTypeEnum.PRICE,
                     }
                 },
                 {
                     AgreementParamEnum.GEPSM,
                     new AgreementParam
                     {
-                        Name = "GePSM",
-                        Description = "Тариф на розважальний контент",
-                        Definition = "decimal(5,2)",
-                        DdexReportColumn = "gePSM",
+                        Name                = "GePSM",
+                        Description         = "Тариф на розважальний контент",
+                        Definition          = "decimal(5,2)",
+                        DdexReportColumn    = "gePSM",
+                        ValueType           = AgreementParamValueTypeEnum.PRICE,
                     }
                 },
                 {
                     AgreementParamEnum.REPORTCURRENCY,
                     new AgreementParam
                     {
-                        Name = "ReportCurrency",
-                        Description = "Валюта",
-                        Definition = "varchar(3)",
-                        DdexReportColumn = null,
+                        Name                = "ReportCurrency",
+                        Description         = "Валюта",
+                        Definition          = "varchar(3)",
+                        DdexReportColumn    = null,
+                        ValueType           = AgreementParamValueTypeEnum.CURRENCY_CODE,
                     }
                 },
                 {
                     AgreementParamEnum.REPORTTYPE,
                     new AgreementParam
                     {
-                        Name = "ReportType",
-                        Description = "Означення звіту для ідентифікації із назви файлу",
-                        Definition = "varchar(100)",
-                        DdexReportColumn = null,
+                        Name                = "ReportType",
+                        Description         = "Означення звіту згідно правил обробки",
+                        Definition          = "varchar(100)",
+                        DdexReportColumn    = null,
+                        ValueType           = AgreementParamValueTypeEnum.REPORT_TYPE,
                     }
                 },
                 {
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                     new AgreementParam
                     {
-                        Name = "RoyaltyThreshold",
-                        Description = "Мінімум роялті що приймається до розгляду",
-                        Definition = "decimal(20,6)",
-                        DdexReportColumn = "royaltyThreshold",
+                        Name                = "RoyaltyThreshold",
+                        Description         = "Мінімум роялті що приймається до розгляду",
+                        Definition          = "decimal(20,6)",
+                        DdexReportColumn    = "royaltyThreshold",
+                        ValueType           = AgreementParamValueTypeEnum.MONEY,
                     }
                 },
             };
@@ -456,6 +476,26 @@ namespace InvoicingLib
 
                 reportType = cmd.ExecuteScalar();
             });
+
+            if (reportType == null)
+                return null;
+            if (!AgreementReportTypes.ContainsKey((string)reportType))
+                return null;
+            return (string)reportType;
+        }
+
+        public static string GetAgreementReportType(SqlCommand cmd, int licId, int custId)
+        {
+            object reportType = null;
+            cmd.CommandText = $@"
+                    select paramValue paramValue
+                    from AgreementParam
+                    where paramId = 8 and licId = @licId and custId = @custId
+                ";
+            cmd.Parameters.AddWithValue("@licId", licId);
+            cmd.Parameters.AddWithValue("@custId", custId);
+
+            reportType = cmd.ExecuteScalar();
 
             if (reportType == null)
                 return null;
@@ -777,6 +817,11 @@ namespace InvoicingLib
                 agreementReportType = (string)cmd.ExecuteScalar();
             });
             return GetReportTypeInfo(agreementReportType).Name == "srmf";
+        }
+
+        public static AgreementParamValueTypeEnum GetParamValueType(string paramName)
+        {
+            return AgreementParams.Single(x => x.Value.Name.Equals(paramName, StringComparison.OrdinalIgnoreCase)).Value.ValueType;
         }
 
         #endregion

@@ -18,6 +18,7 @@ namespace DdexInvoicing
 {
     public partial class UcDdexReports : UserControl
     {
+        private bool skipFillReports;
         public UcDdexReports()
         {
             InitializeComponent();
@@ -46,8 +47,10 @@ namespace DdexInvoicing
             //descriptor = new GroupDescriptor();
             //descriptor.GroupNames.Add("licenseDescription", ListSortDirection.Descending);
             //radGridViewReports.GroupDescriptors.Add(descriptor);
+            skipFillReports = true;
             FillAgreements();
             radGridAgreements.CurrentRow = null;
+            skipFillReports = false;
             FillReports();
         }
 
@@ -55,41 +58,39 @@ namespace DdexInvoicing
         {
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandText = $@"
-                    select licId
-                        , custId
-                        , Name licenseeName
-                        , licCodeName licenseDescription
-                    from vMSCustomerUses
-                    union
-                    select 1340 licId
-                        , 39556 custId
-                        , 'ТОВ ""Гугл ЛТД""' licenseeName
-                        , 'Ліцензійний договір онлайн-сервіси (pre-claim)' licenseDescription
-                    union
-                    select 1001 licId
-                        , 10000 custId
-                        , 'Spotify' licenseeName
-                        , 'Free' licenseDescription
-                    union
-                    select 1003 licId
-                        , 10000 custId
-                        , 'Spotify' licenseeName
-                        , 'Premium' licenseDescription
-                    -- order by t4.[year] desc,  t4.[quarter] desc
-                ";
-                cmd.ExecuteNonQuery();
-                DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                radGridAgreements.DataSource = dt;
-
                 Text = $"Обробка електронних звітів від клієнтів ({cmd.Connection.DataSource})";
             });
+
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("licId");
+            dt.Columns.Add("custId");
+            dt.Columns.Add("licenseeName");
+            dt.Columns.Add("licenseDescription");
+
+            DdexAgreements.Agreements.ForEach(x =>
+            {
+                var row = dt.NewRow();
+                row["licId"] = x.LicId;
+                row["custId"] = x.CustId;
+                row["licenseeName"] = x.LicenseeName;
+                row["licenseDescription"] = x.LicenseDescription;
+                dt.Rows.Add(row);
+            });
+
+            radGridAgreements.DataSource = dt;
         }
 
         private void FillReports()
         {
+            if (skipFillReports)
+            {
+                return;
+            }
+
+            radLabelReports.BackColor = Color.Transparent;
+            radLabelReports.ForeColor = Color.Black;
+
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 if (radGridAgreements.CurrentRow == null
@@ -100,8 +101,19 @@ namespace DdexInvoicing
                     radLabelReports.Text = "Звіти (договір не вібрано)";
                     return;
                 }
-                int licId = (int)radGridAgreements.CurrentRow.Cells[0].Value;
-                int custId = (int)radGridAgreements.CurrentRow.Cells[1].Value;
+
+                int licId = int.Parse((string)radGridAgreements.CurrentRow.Cells[0].Value);
+                int custId = int.Parse((string)radGridAgreements.CurrentRow.Cells[1].Value);
+
+                var agreementReportType = DdexReport.GetAgreementReportType(cmd, licId, custId);
+                if (agreementReportType == null)
+                {
+                    radGridViewReports.DataSource = null;
+                    radLabelReports.Text = "ПОМИЛКА: в параметрах договору відсутня чи невірна інформація про тип файлу звіту";
+                    radLabelReports.BackColor = Color.Red;
+                    radLabelReports.ForeColor = Color.White;
+                    return;
+                }
 
                 var isMonthlyReport = DdexReport.IsMonthlyReport(cmd, licId, custId);
 
@@ -152,7 +164,6 @@ namespace DdexInvoicing
 
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@licId", licId);
-                //cmd.Parameters.AddWithValue("@licVersion", licVersion);
                 cmd.Parameters.AddWithValue("@custId", custId);
                 DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -470,8 +481,8 @@ namespace DdexInvoicing
 
         private void radGridAgreements_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            int licId = (int)e.Row.Cells["licId"].Value;
-            int custId = (int)e.Row.Cells["custId"].Value;
+            int licId = int.Parse((string)e.Row.Cells["licId"].Value);
+            int custId = int.Parse((string)e.Row.Cells["custId"].Value);
             string clientName = (string)e.Row.Cells["licenseeName"].Value;
 
             if (e.Column.FieldName.Equals("RegisterReport", StringComparison.OrdinalIgnoreCase))
