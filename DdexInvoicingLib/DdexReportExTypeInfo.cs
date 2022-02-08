@@ -190,9 +190,6 @@ namespace InvoicingLib
                     AgreementParamEnum.GERATE,
                     AgreementParamEnum.MECHSPLIT,
                     AgreementParamEnum.PERFSPLIT,
-                    AgreementParamEnum.MUSICPSM,
-                    AgreementParamEnum.GEPSM,
-                    AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
                 GetReportingPeriodInfo       = GetYouTubeDsrReportingPeriodInfo,
@@ -215,7 +212,6 @@ namespace InvoicingLib
                     AgreementParamEnum.PERFSPLIT,
                     AgreementParamEnum.MUSICPSM,
                     AgreementParamEnum.GEPSM,
-                    AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
                 GetReportingPeriodInfo  = GetYouTubeDsrReportingPeriodInfo,
@@ -238,7 +234,6 @@ namespace InvoicingLib
                     AgreementParamEnum.PERFSPLIT,
                     AgreementParamEnum.MUSICPSM,
                     AgreementParamEnum.GEPSM,
-                    AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
                 GetReportingPeriodInfo  = GetYouTubeDsrReportingPeriodInfo,
@@ -257,8 +252,6 @@ namespace InvoicingLib
                 {
                     AgreementParamEnum.MECHSPLIT,
                     AgreementParamEnum.PERFSPLIT,
-                    AgreementParamEnum.REPORTTYPE,
-                    AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
                 GetReportingPeriodInfo  = GetYouTubeSrmfReportingPeriodInfo,
                 InsertHead              = InsertSrmfHead,
@@ -278,9 +271,6 @@ namespace InvoicingLib
                     AgreementParamEnum.GERATE,
                     AgreementParamEnum.MECHSPLIT,
                     AgreementParamEnum.PERFSPLIT,
-                    AgreementParamEnum.MUSICPSM,
-                    AgreementParamEnum.GEPSM,
-                    AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
                 GetReportingPeriodInfo  = GetSpotifyDsrReportingPeriodInfo,
@@ -301,9 +291,6 @@ namespace InvoicingLib
                     AgreementParamEnum.GERATE,
                     AgreementParamEnum.MECHSPLIT,
                     AgreementParamEnum.PERFSPLIT,
-                    AgreementParamEnum.MUSICPSM,
-                    AgreementParamEnum.GEPSM,
-                    AgreementParamEnum.REPORTTYPE,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
                 },
                 GetReportingPeriodInfo  = GetSpotifyDsrReportingPeriodInfo,
@@ -492,6 +479,7 @@ namespace InvoicingLib
                     from AgreementParam
                     where paramId = 8 and licId = @licId and custId = @custId
                 ";
+            cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@licId", licId);
             cmd.Parameters.AddWithValue("@custId", custId);
 
@@ -511,6 +499,7 @@ namespace InvoicingLib
                     from DdexReport
                     where id = @ddexReportId
                 ";
+            cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
             var reportType = (string)cmd.ExecuteScalar();
 
@@ -529,6 +518,7 @@ namespace InvoicingLib
                     from AgreementParam
                     where paramId = 8 and licId = @licId and custId = @custId
                 ";
+            cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@licId", licId);
             cmd.Parameters.AddWithValue("@custId", custId);
             var agreementReportType = (string)cmd.ExecuteScalar();
@@ -762,7 +752,7 @@ namespace InvoicingLib
                 return null;
             }
             var rpi = GetReportTypeInfo(agreementReportType).GetReportingPeriodInfo(fullFileName);
-            float res = 0;
+            decimal res = 0;
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandText = $@"
@@ -771,7 +761,7 @@ namespace InvoicingLib
                             from CcidExchangeRate
                             where licId = @licId and custId = @custId and year = @year and month = @month
                         )
-                            select 0
+                            select 0.0
                         else
                             select exchRate
                             from CcidExchangeRate
@@ -780,7 +770,7 @@ namespace InvoicingLib
                 cmd.Parameters.AddWithValue("@custId", custId);
                 cmd.Parameters.AddWithValue("@year", rpi.Year);
                 cmd.Parameters.AddWithValue($"@month", rpi.Quarter == null ? rpi.Month : rpi.Quarter * 3 - 2);
-                res = (float)cmd.ExecuteScalar();
+                res = (decimal)cmd.ExecuteScalar();
             }, true);
             return res == 0 ? null : (float?)res;
         }
@@ -822,6 +812,11 @@ namespace InvoicingLib
         public static AgreementParamValueTypeEnum GetParamValueType(string paramName)
         {
             return AgreementParams.Single(x => x.Value.Name.Equals(paramName, StringComparison.OrdinalIgnoreCase)).Value.ValueType;
+        }
+
+        public static AgreementParamValueTypeEnum GetParamValueTypeFromDescription(string paramDescription)
+        {
+            return AgreementParams.Single(x => x.Value.Description.Equals(paramDescription, StringComparison.OrdinalIgnoreCase)).Value.ValueType;
         }
 
         #endregion

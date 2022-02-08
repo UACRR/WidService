@@ -72,7 +72,15 @@ namespace InvoicingLib
                     {
                         var agreement = Agreements.Single(x => x.LicId == r.GetInt32(0) && x.CustId == r.GetInt32(1));
                         var paramId = r.GetInt32(2);
+                        if(r.IsDBNull(3))
+                        {
+                            continue;
+                        }
                         var paramValue = r.GetString(3);
+                        if(string.IsNullOrEmpty(paramValue))
+                        {
+                            continue;
+                        }
                         switch (paramId)
                         {
                             case (int)DdexReport.AgreementParamEnum.MUSICRATE:

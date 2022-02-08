@@ -19,6 +19,8 @@ namespace DdexInvoicing
         public int custId;
         Dictionary<string, string> exchRateChanges;
 
+        private DdexAgreement agreement;
+
         public FormAgreementParams()
         {
             InitializeComponent();
@@ -26,46 +28,100 @@ namespace DdexInvoicing
 
         private void FormAgreementParams_Load(object sender, EventArgs e)
         {
-            FillParams();
-            FillExchRates();
-
+            agreement = DdexAgreements.Agreements.Single(x => x.LicId == licId && x.CustId == custId);
             exchRateChanges = new Dictionary<string, string>();
+
+            Text = $"Параметри договору з {agreement.LicenseeName} - {agreement.LicenseDescription}";
+
+            var items = radDropDownListReportFileTypes.Items;
+            items.Clear();
+            DdexReport
+                .AgreementReportTypes
+                .Keys
+                .ToList()
+                .ForEach(x => {
+                    items.Add(x);
+                });
+            if(!string.IsNullOrWhiteSpace(agreement.ReportType))
+            {
+                radDropDownListReportFileTypes.SelectedIndex = (int)DdexReport.AgreementReportTypes[agreement.ReportType];
+            }
+
+            RefreshControls();
         }
 
-        private void FillParams()
+        private void RefreshControls()
         {
-            Helpers.RunSqlOperationDdex(cmd =>
+            radPageViewMain.SelectedPage = radPageViewMainParams;
+            if (string.IsNullOrEmpty(radDropDownListReportFileTypes.Text))
             {
-                cmd.CommandText = $@"
-                        select Id paramId 
-                            , name paramName
-                            , '' paramValue
-                        from AgrParamType
-                        order by id
-                    ";
-                DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
+                radGridParams.DataSource = null;
+                radGridExchRates.DataSource = null;
+                radPageViewMainParams.Enabled = false;
+                radPageViewMainExchRate.Enabled = false;
+                return;
+            }
 
-                cmd.CommandText = $@"
-                    select paramId paramId 
-                        , paramValue paramValue
-                    from AgreementParam
-                    where licId = @licId and custId = @custId
-                ";
-                cmd.Parameters.AddWithValue("@licId", licId);
-                cmd.Parameters.AddWithValue("@custId", custId);
+            var agreementReportType = DdexReport.AgreementReportTypes[radDropDownListReportFileTypes.Text];
+            var reportType = DdexReport.ReportTypes.Single(x => x.ReportType == agreementReportType);
 
-                using (SqlDataReader r = cmd.ExecuteReader())
+            radPageViewMainParams.Enabled = true;
+            radPageViewMainExchRate.Enabled = reportType.NeedsExchRate;
+
+            FillParams(reportType);
+            if(reportType.NeedsExchRate)
+            {
+                FillExchRates();
+            }
+        }
+
+        private void FillParams(DdexReport.ReportTypeInfo reportType)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("paramId");
+            dt.Columns.Add("paramName");
+            dt.Columns.Add("paramValue");
+            reportType.RequiredParams.ToList().ForEach(x =>
+            {
+                var row = dt.NewRow();
+                row["paramId"] = (int)x;
+                row["paramName"] = DdexReport.AgreementParams.Single(y => y.Key == x).Value.Description;
+                switch (x)
                 {
-                    while(r.Read())
-                    {
-                        dt.Rows[r.GetInt32(0) - 1][2] = r.GetValue(1) == DBNull.Value ? "" : r.GetString(1);
-                    }
+                    case DdexReport.AgreementParamEnum.MUSICRATE:
+                        row["paramValue"] = Formatter.ToString(agreement.MusicRate);
+                        break;
+                    case DdexReport.AgreementParamEnum.GERATE:
+                        row["paramValue"] = Formatter.ToString(agreement.GeRate);
+                        break;
+                    case DdexReport.AgreementParamEnum.MECHSPLIT:
+                        row["paramValue"] = Formatter.ToString(agreement.MechSplit);
+                        break;
+                    case DdexReport.AgreementParamEnum.PERFSPLIT:
+                        row["paramValue"] = Formatter.ToString(agreement.PerfSplit);
+                        break;
+                    case DdexReport.AgreementParamEnum.MUSICPSM:
+                        row["paramValue"] = Formatter.ToString(agreement.MusicPSM);
+                        break;
+                    case DdexReport.AgreementParamEnum.GEPSM:
+                        row["paramValue"] = Formatter.ToString(agreement.GePSM);
+                        break;
+                    case DdexReport.AgreementParamEnum.REPORTCURRENCY:
+                        row["paramValue"] = agreement.ReportCurrency;
+                        break;
+                    case DdexReport.AgreementParamEnum.REPORTTYPE:
+                        row["paramValue"] = agreement.ReportType;
+                        break;
+                    case DdexReport.AgreementParamEnum.ROYALTYTHRESHOLD:
+                        row["paramValue"] = Formatter.ToString(agreement.RoyaltyThreshold);
+                        break;
+                    default:
+                        throw new Exception($"Невідомий параметр договору з кодом {x}");
                 }
-
-                radGridParams.DataSource = dt;
+                dt.Rows.Add(row);
             });
+            radGridParams.DataSource = dt;
+
         }
 
         private void FillExchRates()
@@ -135,8 +191,15 @@ namespace DdexInvoicing
 
         private void radBtnOk_Click(object sender, EventArgs e)
         {
+            var agreementReportType = DdexReport.AgreementReportTypes[radDropDownListReportFileTypes.Text];
+            var reportType = DdexReport.ReportTypes.Single(x => x.ReportType == agreementReportType);
             SaveParams();
-            SaveExchRates();
+            if (reportType.NeedsExchRate)
+            {
+                SaveExchRates();
+            }
+
+            DdexAgreements.Load();
             Close();
         }
 
@@ -149,7 +212,6 @@ namespace DdexInvoicing
                     where licId = @licId and custId = @custId
                 ";
                 cmd.Parameters.AddWithValue("@licId", licId);
-                //cmd.Parameters.AddWithValue("@licVersion", licVersion);
                 cmd.Parameters.AddWithValue("@custId", custId);
                 cmd.ExecuteNonQuery();
 
@@ -161,10 +223,15 @@ namespace DdexInvoicing
                 cmd.Parameters.AddWithValue("@paramValue", "");
                 foreach (DataRow row in dt.Rows)
                 {
-                    cmd.Parameters["@paramId"].Value = (int)row[0];
+                    cmd.Parameters["@paramId"].Value = int.Parse((string)row[0]);
                     cmd.Parameters["@paramValue"].Value = row[2] == null ? DBNull.Value :row[2];
                     cmd.ExecuteNonQuery();
                 }
+
+                cmd.Parameters["@paramId"].Value = (int)DdexReport.AgreementParamEnum.REPORTTYPE;
+                cmd.Parameters["@paramValue"].Value = radDropDownListReportFileTypes.Text;
+                cmd.ExecuteNonQuery();
+
             });
         }
 
@@ -185,7 +252,6 @@ namespace DdexInvoicing
                         values(@licId, @custId, @year, @month, @exchRate)
                 ";
                 cmd.Parameters.AddWithValue("@licId", licId);
-                //cmd.Parameters.AddWithValue("@licVersion", licVersion);
                 cmd.Parameters.AddWithValue("@custId", custId);
                 cmd.Parameters.AddWithValue("@year", 0);
                 cmd.Parameters.AddWithValue("@month", 0);
@@ -225,6 +291,11 @@ namespace DdexInvoicing
             Close();
         }
 
+        private void radDropDownListReportFileTypes_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            RefreshControls();
+        }
+
         private void radGridParams_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (e.Column.FieldName.Equals("paramName", StringComparison.OrdinalIgnoreCase))
@@ -238,7 +309,7 @@ namespace DdexInvoicing
             if (e.Column.FieldName.Equals("paramValue", StringComparison.OrdinalIgnoreCase))
             {
                 var paramName = (string)e.Row.Cells["paramName"].Value;
-                var paramValueType = DdexReport.GetParamValueType(paramName);
+                var paramValueType = DdexReport.GetParamValueTypeFromDescription(paramName);
 
                 if (e.Value == null)
                     return;
@@ -323,6 +394,7 @@ namespace DdexInvoicing
             else
                 exchRateChanges.Add(key, value);
         }
+
     }
 
 }

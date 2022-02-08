@@ -351,6 +351,7 @@ namespace DdexInvoicing
             {
                 if(DdexReport.GetAgreementReportType(cmd, ddexReportId) != DdexReport.ReportTypeEnum.YOUTUBE_SRMF)
                 {
+                    cmd.Parameters.Clear();
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                     cmd.CommandText = "dbo.pTsk10_DdexIdentMWAuthor";

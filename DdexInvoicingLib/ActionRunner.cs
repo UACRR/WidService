@@ -155,6 +155,7 @@ namespace InvoicingLib
     {
         public override void Run()
         {
+           /*
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -163,6 +164,7 @@ namespace InvoicingLib
                 cmd.Parameters.AddWithValue("@setId", 1);
                 cmd.ExecuteNonQuery();
             }, true);
+            */
         }
     }
     public class CalcMarketShareRunner : ActionRunner
