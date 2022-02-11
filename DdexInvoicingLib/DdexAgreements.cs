@@ -70,6 +70,8 @@ namespace InvoicingLib
                 {
                     while (r.Read())
                     {
+                        var licId = r.GetInt32(0);
+                        var CustId = r.GetInt32(1);
                         var agreement = Agreements.Single(x => x.LicId == r.GetInt32(0) && x.CustId == r.GetInt32(1));
                         var paramId = r.GetInt32(2);
                         if(r.IsDBNull(3))

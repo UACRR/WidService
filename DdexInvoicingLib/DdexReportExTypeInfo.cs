@@ -487,7 +487,8 @@ namespace InvoicingLib
 
             if (reportType == null)
                 return null;
-            if (!AgreementReportTypes.ContainsKey((string)reportType))
+            var strReportType = (string)reportType;
+            if (!AgreementReportTypes.ContainsKey(strReportType.ToLower()))
                 return null;
             return (string)reportType;
         }
@@ -704,7 +705,7 @@ namespace InvoicingLib
             {
                 Year = int.Parse(dateParts[0]),
                 Quarter = null,
-                Month = int.Parse(dateParts[2]),
+                Month = int.Parse(dateParts[1]),
             };
         }
 
@@ -745,14 +746,19 @@ namespace InvoicingLib
             return retVal == 1;
         }
 
-        public static float? GetExchangeRate(int licId, int custId, string agreementReportType, string fullFileName)
+        public static bool NeedsExhcnageRate(string agreementReportType)
+        {
+            return GetReportTypeInfo(agreementReportType).NeedsExchRate;
+        }
+
+        public static double? GetExchangeRate(int licId, int custId, string agreementReportType, string fullFileName)
         {
             if (!GetReportTypeInfo(agreementReportType).NeedsExchRate)
             {
                 return null;
             }
             var rpi = GetReportTypeInfo(agreementReportType).GetReportingPeriodInfo(fullFileName);
-            decimal res = 0;
+            double res = 0;
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandText = $@"
@@ -761,7 +767,7 @@ namespace InvoicingLib
                             from CcidExchangeRate
                             where licId = @licId and custId = @custId and year = @year and month = @month
                         )
-                            select 0.0
+                            select cast(0 as float)
                         else
                             select exchRate
                             from CcidExchangeRate
@@ -770,9 +776,9 @@ namespace InvoicingLib
                 cmd.Parameters.AddWithValue("@custId", custId);
                 cmd.Parameters.AddWithValue("@year", rpi.Year);
                 cmd.Parameters.AddWithValue($"@month", rpi.Quarter == null ? rpi.Month : rpi.Quarter * 3 - 2);
-                res = (decimal)cmd.ExecuteScalar();
+                res = (double)cmd.ExecuteScalar();
             }, true);
-            return res == 0 ? null : (float?)res;
+            return res == 0 ? null : (double?)res;
         }
 
         public static bool CheckExchangeRateExists(int licId, int custId, string agreementReportType, string fullFileName)
@@ -817,6 +823,51 @@ namespace InvoicingLib
         public static AgreementParamValueTypeEnum GetParamValueTypeFromDescription(string paramDescription)
         {
             return AgreementParams.Single(x => x.Value.Description.Equals(paramDescription, StringComparison.OrdinalIgnoreCase)).Value.ValueType;
+        }
+
+        public static string GetStidPrefix(SqlCommand cmd, int fileId)
+        {
+            cmd.CommandText = @"
+                select t2.ddexReportId
+                from CcidInFile t1
+                    join CcidInvoice t2 on t1.ccidInvoiceId = t2.id
+                where t1.fileId = @fileId";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@fileId", fileId);
+            var ddexReportId = (int)cmd.ExecuteScalar();
+
+            cmd.CommandText = @"
+                select UsageStartDate
+                from DdexRecordHead
+                where ddexReportId = @ddexReportId";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+            var usageStartDate = (DateTime)cmd.ExecuteScalar();
+
+            var areementReportType = GetAgreementReportType(cmd, ddexReportId);
+            switch(areementReportType)
+            {
+                case ReportTypeEnum.SPOTIFY_FREE:
+                    return $"Spotify_free_{usageStartDate.ToString("yyyy-MM-dd")}@";
+                case ReportTypeEnum.SPOTIFY_PREMIUM:
+                    return $"Spotify_premium_{usageStartDate.ToString("yyyy-MM-dd")}@";
+            }
+            return "";
+        }
+
+        public static bool IsYouTubeSrmfType(SqlCommand cmd, int fileId)
+        {
+            cmd.CommandText = @"
+                select t2.ddexReportId
+                from CcidInFile t1
+                    join CcidInvoice t2 on t1.ccidInvoiceId = t2.id
+                where t1.fileId = @fileId";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@fileId", fileId);
+            var ddexReportId = (int)cmd.ExecuteScalar();
+
+            var areementReportType = GetAgreementReportType(cmd, ddexReportId);
+            return areementReportType == ReportTypeEnum.YOUTUBE_SRMF;
         }
 
         #endregion

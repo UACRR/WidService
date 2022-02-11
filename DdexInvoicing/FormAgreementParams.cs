@@ -44,7 +44,7 @@ namespace DdexInvoicing
                 });
             if(!string.IsNullOrWhiteSpace(agreement.ReportType))
             {
-                radDropDownListReportFileTypes.SelectedIndex = (int)DdexReport.AgreementReportTypes[agreement.ReportType];
+                radDropDownListReportFileTypes.SelectedIndex = (int)DdexReport.AgreementReportTypes[agreement.ReportType.ToLower()];
             }
 
             RefreshControls();

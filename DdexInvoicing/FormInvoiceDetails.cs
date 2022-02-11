@@ -75,7 +75,7 @@ namespace DdexInvoicing
             public string resource_id { get; set; }
             [Category("2 - From Ddex")]
             [ReadOnly(true)]
-            public decimal use_quantity { get; set; }
+            public decimal? use_quantity { get; set; }
             [Category("3 - Found/Identified")]
             [ReadOnly(true)]
             public string workcode { get; set; }
@@ -87,31 +87,31 @@ namespace DdexInvoicing
             public string applied_tariff { get; set; }
             [Category("4 - Basis for Calculations")]
             [ReadOnly(true)]
-            public decimal original_release_revenue_basis { get; set; }
+            public decimal? original_release_revenue_basis { get; set; }
             [Category("4 - Basis for Calculations")]
             [ReadOnly(true)]
-            public decimal original_resource_revenue_basis { get; set; }
+            public decimal? original_resource_revenue_basis { get; set; }
             [Category("5 - Calculated")]
             [ReadOnly(true)]
-            public decimal claim_licensor_combined { get; set; }
+            public decimal? claim_licensor_combined { get; set; }
             [Category("5 - Calculated")]
             [ReadOnly(true)]
-            public decimal claim_unmatched_combined { get; set; }
+            public decimal? claim_unmatched_combined { get; set; }
             [Category("5 - Calculated")]
             [ReadOnly(true)]
-            public decimal amount_invoiced_total { get; set; }
+            public decimal? amount_invoiced_total { get; set; }
             [Category("5 - Calculated")]
             [ReadOnly(true)]
-            public decimal claim_licensor_mech { get; set; }
+            public decimal? claim_licensor_mech { get; set; }
             [Category("5 - Calculated")]
             [ReadOnly(true)]
-            public decimal claim_licensor_perf { get; set; }
+            public decimal? claim_licensor_perf { get; set; }
             [Category("5 - Calculated")]
             [ReadOnly(true)]
-            public decimal amount_licensor_mech { get; set; }
+            public decimal? amount_licensor_mech { get; set; }
             [Category("5 - Calculated")]
             [ReadOnly(true)]
-            public decimal amount_licensor_perf { get; set; }
+            public decimal? amount_licensor_perf { get; set; }
         }
 
         public int fileId;
@@ -125,15 +125,18 @@ namespace DdexInvoicing
         private void FormInvoiceDetails_Load(object sender, EventArgs e)
         {
             this.Text = Text + (fileType == 0 ? " (заявка на отримання коштів)" : " (відповідь від клієнта)");
-            ucInvoiceStatistics.Init(fileId, fileType);
         }
 
         private void radBtnLoad_Click(object sender, EventArgs e)
         {
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                string fileTable = fileType == 0 ? "CcidInFile" : "CcidClFile";
-                string detailTable = fileType == 0 ? "CcidInDetail" : "CcidClDetail";
+                var stidPrefix = DdexReport.GetStidPrefix(cmd, fileId);
+                var fileTable = fileType == 0 ? "CcidInFile" : "CcidClFile";
+                var detailTable = fileType == 0 ? "CcidInDetail" : "CcidClDetail";
+                var joinText = DdexReport.IsYouTubeSrmfType(cmd, fileId) ?
+                    "t1.release_id = t4.DspReleaseId" :
+                    $"'{stidPrefix}' + t1.sales_transaction_id = t4.SalesTransactionId";
                 cmd.CommandText = $@"
                     select top 1000
                             t4.*
@@ -165,11 +168,12 @@ namespace DdexInvoicing
                     from {detailTable} t1
                         join {fileTable} t2 on t2.fileId = t1.fileId
                         join CcidInvoice t3 on t3.Id = t2.ccidInvoiceId
-	                    join IdentBacklog t4 on t1.sales_transaction_id = t4.SalesTransactionId
+	                    join IdentBacklog t4 on {joinText}
 	                    join IdentMw t5 on t4.mwId = t5.id
                     where t1.fileId = @fileId and t3.ddexReportId = t4.ddexReportId
                     order by t4.NetRevenue desc
                  ";
+                cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@fileId", fileId);
 
                 DataTable dt = new DataTable();
@@ -211,17 +215,17 @@ namespace DdexInvoicing
                 resource_id = row.Field<string>("resource_id"),
                 workcode = row.Field<string>("workcode"),
                 work_title = row.Field<string>("work_title"),
-                use_quantity = row.Field<decimal>("use_quantity"),
+                use_quantity = row.Field<decimal?>("use_quantity"),
                 applied_tariff = row.Field<string>("applied_tariff"),
-                original_release_revenue_basis = row.Field<decimal>("original_release_revenue_basis"),
-                original_resource_revenue_basis = row.Field<decimal>("original_resource_revenue_basis"),
-                claim_licensor_combined = row.Field<decimal>("claim_licensor_combined"),
-                claim_unmatched_combined = row.Field<decimal>("claim_unmatched_combined"),
-                amount_invoiced_total = row.Field<decimal>("amount_invoiced_total"),
-                claim_licensor_mech = row.Field<decimal>("claim_licensor_mech"),
-                claim_licensor_perf = row.Field<decimal>("claim_licensor_perf"),
-                amount_licensor_mech = row.Field<decimal>("amount_licensor_mech"),
-                amount_licensor_perf = row.Field<decimal>("amount_licensor_perf")
+                original_release_revenue_basis = row.Field<decimal?>("original_release_revenue_basis"),
+                original_resource_revenue_basis = row.Field<decimal?>("original_resource_revenue_basis"),
+                claim_licensor_combined = row.Field<decimal?>("claim_licensor_combined"),
+                claim_unmatched_combined = row.Field<decimal?>("claim_unmatched_combined"),
+                amount_invoiced_total = row.Field<decimal?>("amount_invoiced_total"),
+                claim_licensor_mech = row.Field<decimal?>("claim_licensor_mech"),
+                claim_licensor_perf = row.Field<decimal?>("claim_licensor_perf"),
+                amount_licensor_mech = row.Field<decimal?>("amount_licensor_mech"),
+                amount_licensor_perf = row.Field<decimal?>("amount_licensor_perf")
 
             };
             pgCcid.SelectedObject = ccidDetail;

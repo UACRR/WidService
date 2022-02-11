@@ -224,7 +224,7 @@ namespace DdexInvoicing
             }
 
             // CHECK THAT EXHANGE RATE IS SET FOR THE REPORT FILE'S PERIOD
-            if (!DdexReport.CheckExchangeRateExists(licId, custId, agreementReportType, fullFileName))
+            if (DdexReport.NeedsExhcnageRate(agreementReportType) && !DdexReport.CheckExchangeRateExists(licId, custId, agreementReportType, fullFileName))
             {
                 MessageBox.Show("Не визначений курс обміну, необхідний для обробки звіту. "
                             + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
