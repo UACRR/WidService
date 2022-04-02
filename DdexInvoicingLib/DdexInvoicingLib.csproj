@@ -90,6 +90,12 @@
     <Compile Include="DdexReportExTypeInfo.cs" />
     <Compile Include="DdexReportInfo.cs" />
     <Compile Include="DdexReportingPeriod.cs" />
+    <Compile Include="ExportImport\Attributes.cs" />
+    <Compile Include="ExportImport\EntityList.cs" />
+    <Compile Include="ExportImport\EntityManager.cs" />
+    <Compile Include="ExportImport\ExceptionAdd.cs" />
+    <Compile Include="ExportImport\ExceptionMember.cs" />
+    <Compile Include="ExportImport\ExceptionSet.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Meta.cs" />

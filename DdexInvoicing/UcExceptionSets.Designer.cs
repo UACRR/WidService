@@ -37,18 +37,21 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGrid = new Telerik.WinControls.UI.RadGridView();
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radBtnNewExc = new Telerik.WinControls.UI.RadButton();
+            this.radBtnImportExc = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGrid.MasterTemplate)).BeginInit();
             this.panelMain.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnNewExc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnImportExc)).BeginInit();
             this.SuspendLayout();
             // 
             // radGrid
@@ -112,6 +115,11 @@
             gridViewCommandColumn3.Name = "Clone";
             gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn3.Width = 100;
+            gridViewCommandColumn4.FieldName = "Export";
+            gridViewCommandColumn4.HeaderText = "";
+            gridViewCommandColumn4.Name = "Export";
+            gridViewCommandColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn4.Width = 86;
             this.radGrid.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -121,7 +129,8 @@
             gridViewTextBoxColumn6,
             gridViewCommandColumn1,
             gridViewCommandColumn2,
-            gridViewCommandColumn3});
+            gridViewCommandColumn3,
+            gridViewCommandColumn4});
             this.radGrid.MasterTemplate.EnableAlternatingRowColor = true;
             this.radGrid.MasterTemplate.EnableSorting = false;
             this.radGrid.MasterTemplate.ShowFilteringRow = false;
@@ -154,11 +163,12 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel2.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.radBtnNewExc, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.radBtnImportExc, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -172,19 +182,28 @@
             this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(948, 23);
+            this.radLabel1.Size = new System.Drawing.Size(218, 18);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Перелік наяних конфігурацій виключень";
             // 
             // radBtnNewExc
             // 
             this.radBtnNewExc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnNewExc.Location = new System.Drawing.Point(957, 3);
+            this.radBtnNewExc.Location = new System.Drawing.Point(812, 3);
             this.radBtnNewExc.Name = "radBtnNewExc";
-            this.radBtnNewExc.Size = new System.Drawing.Size(175, 23);
+            this.radBtnNewExc.Size = new System.Drawing.Size(165, 23);
             this.radBtnNewExc.TabIndex = 1;
             this.radBtnNewExc.Text = "Створити нову конфігурацію";
             this.radBtnNewExc.Click += new System.EventHandler(this.radBtnNewExc_Click);
+            // 
+            // radBtnImportExc
+            // 
+            this.radBtnImportExc.Location = new System.Drawing.Point(983, 3);
+            this.radBtnImportExc.Name = "radBtnImportExc";
+            this.radBtnImportExc.Size = new System.Drawing.Size(153, 23);
+            this.radBtnImportExc.TabIndex = 2;
+            this.radBtnImportExc.Text = "Імпортувати конфігурацію";
+            this.radBtnImportExc.Click += new System.EventHandler(this.radBtnImportExc_Click);
             // 
             // UcExceptionSets
             // 
@@ -200,6 +219,7 @@
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnNewExc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnImportExc)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -211,5 +231,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadButton radBtnNewExc;
+        private Telerik.WinControls.UI.RadButton radBtnImportExc;
     }
 }

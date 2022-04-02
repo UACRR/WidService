@@ -158,6 +158,12 @@
     <Compile Include="FormObjectChooser.Designer.cs">
       <DependentUpon>FormObjectChooser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormProgressLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProgressLog.designer.cs">
+      <DependentUpon>FormProgressLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRightHolderGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormObjectChooser.resx">
       <DependentUpon>FormObjectChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProgressLog.resx">
+      <DependentUpon>FormProgressLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRightHolderGroup.resx">
       <DependentUpon>FormRightHolderGroup.cs</DependentUpon>
