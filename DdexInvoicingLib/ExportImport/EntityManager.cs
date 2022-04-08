@@ -98,7 +98,7 @@ namespace ExportImport
             }
         }
 
-        static public void ImportFromCsvFile(string connectionString, string fileFullName, ProcessingPropress processingPropress)
+        static public void ImportFromCsvFileOld(string connectionString, string fileFullName, ProcessingPropress processingPropress)
         {
             processingPropress("ІМПОРТ РОЗПОЧАТО");
             var lineCount = 0;
@@ -268,5 +268,186 @@ namespace ExportImport
                 processingPropress($"ІМПОРТ ЗАВЕРШЕНО", true);
             });
         }
+
+        static public void ImportFromCsvFile(string connectionString, string fileFullName, ProcessingPropress processingPropress)
+        {
+            processingPropress("ІМПОРТ РОЗПОЧАТО");
+            processingPropress("Розрахунок розміру даних");
+
+            BulkUploadToSql bcp = null;
+            var lineCount = 0;
+            using (var sr = new StreamReader(fileFullName))
+            {
+                while (sr.ReadLine() != null)
+                {
+                    lineCount++;
+                }
+            }
+
+            string line = null;
+            string tableName = null;
+            string pkName = null;
+            string fkTableName = null;
+            string fkName = null;
+            List<PropertyInfo> propertyList = null;
+
+            int newPkValue = 0;
+            int oldPkValue = 0;
+            Dictionary<string, Dictionary<int, int>> pkMap = new Dictionary<string, Dictionary<int, int>>();
+
+            int lineIndex = 1;
+
+            RunSqlOperationT(connectionString, processingPropress, async cmd =>
+            {
+                using (var sr = new StreamReader(fileFullName))
+                {
+
+                    sr.ReadLine(); // Skip line with ID
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        var parser = new TextFieldParser(new StringReader(line))
+                        {
+                            HasFieldsEnclosedInQuotes = true
+                        };
+                        parser.SetDelimiters(",");
+                        var fields = parser.ReadFields();
+                        parser.Close();
+                        if (fields[0].Equals("#"))
+                        {
+                            tableName = fields[1];
+                            var entityType = Type.GetType($"ExportImport.{ tableName}");
+                            propertyList = entityType.GetProperties().ToList();
+
+                            pkName = propertyList
+                                .Single(x => Attribute.IsDefined(x, typeof(PkAttribute)))
+                                .Name;
+
+                            var fkPd = propertyList
+                                .SingleOrDefault(x => Attribute.IsDefined(x, typeof(FkAttribute)));
+                            if (fkPd == null)
+                            {
+                                fkTableName = "";
+                                fkName = "";
+                            }
+                            else
+                            {
+                                fkTableName = fkPd.GetCustomAttribute<FkAttribute>().TableName;
+                                fkName = fkPd.Name;
+                            }
+
+                            if (bcp != null)
+                            {
+                                await bcp.FlushAsync();
+                                cmd.CommandText = $"set identity_insert {tableName} off";
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            bcp = new BulkUploadToSql();
+                            bcp.TableName = tableName;
+                            bcp.conn = cmd.Connection;
+                            bcp.Init(cmd);
+
+                            pkMap.Add(tableName, new Dictionary<int, int>());
+
+                            cmd.CommandText = $"select ident_current('{tableName}') + 1; set identity_insert {tableName} on";
+                            newPkValue = Convert.ToInt32(cmd.ExecuteScalar());
+                            continue;
+                        }
+
+                        var fieldIndex = 0;
+                        var dataRecord = new List<object>();
+                        propertyList.ForEach(x =>
+                        {
+                            var valueString = fields[fieldIndex];
+
+                            // Change for static value if appropriate
+                            if (Attribute.IsDefined(x, typeof(ImportCurrentAttribute)))
+                            {
+                                valueString = Formatter.ToExportString(DateTime.Now);
+                            }
+                            else if (Attribute.IsDefined(x, typeof(ImportValueAttribute)))
+                            {
+                                valueString = Formatter.ToExportString(x.GetCustomAttribute<ImportValueAttribute>().Value);
+                            }
+
+                            // Add value
+                            if (x.Name.Equals(fkName))
+                            {
+                                if (string.IsNullOrEmpty(valueString))
+                                {
+                                    dataRecord.Add(DBNull.Value);
+                                }
+                                else
+                                {
+                                    dataRecord.Add(pkMap[fkTableName][int.Parse(valueString)]);
+                                }
+                            }
+                            else
+                            {
+                                if (x.Name.Equals(pkName))
+                                {
+                                    oldPkValue = int.Parse(valueString);
+                                    dataRecord.Add(newPkValue);
+                                }
+                                else if (x.PropertyType.Equals(typeof(int)) || x.PropertyType.Equals(typeof(int?)))
+                                {
+                                    if (string.IsNullOrEmpty(valueString))
+                                    {
+                                        dataRecord.Add(DBNull.Value);
+                                    }
+                                    else
+                                    {
+                                        dataRecord.Add(int.Parse(valueString));
+                                    }
+                                }
+                                else if (x.PropertyType.Equals(typeof(decimal)) || x.PropertyType.Equals(typeof(decimal?)))
+                                {
+                                    if (string.IsNullOrEmpty(valueString))
+                                    {
+                                        dataRecord.Add(DBNull.Value);
+                                    }
+                                    else
+                                    {
+                                        dataRecord.Add(Formatter.ToDecimal(valueString));
+                                    }
+                                }
+                                else if (x.PropertyType.Equals(typeof(string)))
+                                {
+                                    dataRecord.Add(valueString);
+                                }
+                                else if (x.PropertyType.Equals(typeof(DateTime)) || x.PropertyType.Equals(typeof(DateTime?)))
+                                {
+                                    if (string.IsNullOrEmpty(valueString))
+                                    {
+                                        dataRecord.Add(DBNull.Value);
+                                    }
+                                    else
+                                    {
+                                        dataRecord.Add(Formatter.ToDateTime(valueString));
+                                    }
+                                }
+                            }
+
+                            fieldIndex++;
+                        });
+
+                        bcp.AddData(dataRecord);
+                        pkMap[tableName].Add(oldPkValue, newPkValue);
+                        newPkValue++;
+                        if (lineIndex % 100 == 0)
+                        {
+                            processingPropress($"Оброблено {lineIndex} з {lineCount} записів");
+                        }
+                        lineIndex++;
+                    }
+                };
+                await bcp.FlushAsync();
+                cmd.CommandText = $"set identity_insert {tableName} off";
+                cmd.ExecuteNonQuery();
+                processingPropress($"ІМПОРТ ЗАВЕРШЕНО", true);
+            });
+        }
+
     }
 }
