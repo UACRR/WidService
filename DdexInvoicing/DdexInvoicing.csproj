@@ -337,6 +337,12 @@
     <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexEnumRightsType.sql" />
     <Content Include="Migrations\02 AdjConsolidatedSql\spDdexAdjConsolidatedCalcRoyalty.sql" />
     <Content Include="Migrations\02 AdjConsolidatedSql\spDdexAdjConsolidatedDistRoyalty.sql" />
+    <Content Include="Migrations\03 Spotify\AlterDdexReportingPeriod.sql" />
+    <Content Include="Migrations\03 Spotify\AlterDspReleaseAndResourseIdLength.sql" />
+    <Content Include="Migrations\03 Spotify\CreatePreClaimMappings.sql" />
+    <Content Include="Migrations\03 Spotify\pTsk10_DDEXIdentMWAuthor.sql" />
+    <Content Include="Migrations\03 Spotify\SpCreateInitialInvoiceSpotify.sql" />
+    <Content Include="Migrations\03 Spotify\spCreateInitialInvoiceSrmf.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
