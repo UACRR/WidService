@@ -191,6 +191,11 @@ namespace DdexInvoicing
 
         private void radBtnOk_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(radDropDownListReportFileTypes.Text))
+            {
+                MessageBox.Show("Не вибраний тип файлу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var agreementReportType = DdexReport.AgreementReportTypes[radDropDownListReportFileTypes.Text];
             var reportType = DdexReport.ReportTypes.Single(x => x.ReportType == agreementReportType);
             SaveParams();

@@ -343,6 +343,7 @@
     <Content Include="Migrations\03 Spotify\pTsk10_DDEXIdentMWAuthor.sql" />
     <Content Include="Migrations\03 Spotify\SpCreateInitialInvoiceSpotify.sql" />
     <Content Include="Migrations\03 Spotify\spCreateInitialInvoiceSrmf.sql" />
+    <Content Include="Migrations\03 Spotify\spIdentByNameAndPerformer.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

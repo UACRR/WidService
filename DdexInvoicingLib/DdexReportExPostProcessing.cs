@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -283,7 +284,7 @@ namespace InvoicingLib
 
         public void AutoIdentByIswc()
         {
-            Logger.WriteLine("Ідентифікація музичних творів за кодом ISWC розпочато");
+            Logger.WriteLine("Ідентифікація музичних творів за кодом ISWC та Автором/Виконевцем розпочата");
 
             try
             {
@@ -303,17 +304,21 @@ namespace InvoicingLib
                                 join wid_ipi.DBO.tblIswc t2 on t1.ISWC = t2.ISWC
                             where T1.status <> 2 and t3.ddexReportId = @ddexReportId";
                         cmd.ExecuteNonQuery();
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "spIdentByNameAndPerformer";
+                        cmd.ExecuteNonQuery();
                     }
                 }
             }
             catch (Exception ex)
             {
                 Logger.WriteLine(ex.Message);
-                Logger.WriteLine("Ідентифікація музичних творів за кодом ISWC завершилось з помилками");
+                Logger.WriteLine("Ідентифікація музичних творів за кодом ISWC та Автором/Виконевцем завершилась з помилками");
                 throw;
             }
 
-            Logger.WriteLine("Ідентифікація музичних творів за кодом ISWC завершено");
+            Logger.WriteLine("Ідентифікація музичних творів за кодом ISWC та Автором/Виконевцем завершена");
         }
 
         public void CalcMwPriorities()

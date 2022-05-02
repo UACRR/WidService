@@ -268,7 +268,6 @@ namespace InvoicingLib
                 RequiredParams          = new HashSet<AgreementParamEnum>
                 {
                     AgreementParamEnum.MUSICRATE,
-                    AgreementParamEnum.GERATE,
                     AgreementParamEnum.MECHSPLIT,
                     AgreementParamEnum.PERFSPLIT,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
@@ -288,7 +287,6 @@ namespace InvoicingLib
                 RequiredParams          = new HashSet<AgreementParamEnum>
                 {
                     AgreementParamEnum.MUSICRATE,
-                    AgreementParamEnum.GERATE,
                     AgreementParamEnum.MECHSPLIT,
                     AgreementParamEnum.PERFSPLIT,
                     AgreementParamEnum.ROYALTYTHRESHOLD,
