@@ -447,7 +447,7 @@
       <Name>IpsCommonTypes</Name>
     </ProjectReference>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
-      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
+      <Project>{21DA4297-A0F3-4E44-BD98-CAF3605B243A}</Project>
       <Name>ipsFormsDesign</Name>
     </ProjectReference>
     <ProjectReference Include="..\IPSModulesLibrary\IPSModulesLibrary.csproj">
