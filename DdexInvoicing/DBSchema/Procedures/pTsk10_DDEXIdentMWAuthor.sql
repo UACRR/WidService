@@ -81,11 +81,33 @@ RAISERROR ('Отбор!', 0, 1) WITH NOWAIT
 
 --Определяю даты периода, чтобы права брать только за этот период (хоть одна дата периода пересекается с правами)
 --declare @ddexReportId integer = 12
-declare @ddexReportingPeriodId integer, @periodDateBegin date, @periodDateEnd date, @quarter integer, @year integer
+declare @ddexReportingPeriodId integer
+	, @periodDateBegin date
+	, @periodDateEnd date
+	, @month integer
+	, @quarter integer
+	, @year integer
 select @ddexReportingPeriodId = ddexReportingPeriodId from vFileCcidDdex where ddexReportId = @ddexReportId
  
-select @quarter = quarter, @year = year from DdexReportingPeriod where id = @ddexReportingPeriodId
-select @periodDateBegin  = dateBegin, @periodDateEnd = dateEnd from ft_DateQuarter (@quarter, @year)
+select 
+	  @month = month
+	, @quarter = quarter
+	, @year = year 
+from DdexReportingPeriod 
+where id = @ddexReportingPeriodId
+
+if @quarter is not null
+begin
+	select 
+		  @periodDateBegin  = dateBegin
+		, @periodDateEnd = dateEnd 
+	from ft_DateQuarter (@quarter, @year)
+end
+else
+begin
+	select @periodDateBegin = datefromparts(@year, @month, 1)
+	select @periodDateEnd = eomonth(@periodDateBegin)
+end
 
 --select @periodDateBegin, @periodDateEnd
 
@@ -238,17 +260,26 @@ insert into  #TmpAuthorMS
 	join #TmpCRightId t7 on t2.cRightId = t7.cRightId
 	join MEDIASERVICE..RightHolder t3 on t2.custId = t3.custId 
 
-RAISERROR ('Авторы из MS - CmCodePER!', 0, 1) WITH NOWAIT 
+RAISERROR ('Авторы из MS - CmCodePER!', 0, 1) WITH NOWAIT
+
+drop table if exists #CustCmGroup
+
+select *
+into #CustCmGroup
+from vCustCmGroup
+
 update #TmpAuthorMS set CmCodePER = t2.interCode
   from #TmpAuthorMS t1 
-       join vCustCmGroup t2 on t1.custId = t2.custId and crGroupCode = 1 
+       join #CustCmGroup t2 on t1.custId = t2.custId and crGroupCode = 1 
   where t1.objId is not NULL
 
 RAISERROR ('Авторы из MS - cmCodeMEC!', 0, 1) WITH NOWAIT 
 update #TmpAuthorMS set cmCodeMEC = t2.interCOde
   from #TmpAuthorMS t1 
-       join vCustCmGroup t2 on t1.custId = t2.custId and crGroupCode = 2
+       join #CustCmGroup t2 on t1.custId = t2.custId and crGroupCode = 2
   where t1.objId is not NULL
+
+drop table #CustCmGroup
 
 RAISERROR ('IdentMWAuthor 1!', 0, 1) WITH NOWAIT 
 insert into IdentMWAuthor 
