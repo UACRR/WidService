@@ -326,6 +326,7 @@
     <Content Include="CcidStat.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DBSchema\Procedures\pTsk10_DDEXIdentMWAuthor.sql" />
     <Content Include="FullDatabase.sql" />
     <Content Include="FullDdexDatabase.sql" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
