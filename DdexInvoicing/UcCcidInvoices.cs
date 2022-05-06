@@ -942,7 +942,9 @@ namespace DdexInvoicing
                     where id = @ddexReportId;
 
                     declare @musicRate float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 1 and licId = @licId and custId = @custId);
-                    declare @geRate float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 2 and licId = @licId and custId = @custId);
+                    declare @geRate float = 0.0;
+                    if exists (select null from AgreementParam where paramId = 2 and licId = @licId and custId = @custId)
+                        select @geRate = cast(paramValue as float) * 0.01 from AgreementParam where paramId = 2 and licId = @licId and custId = @custId;
                     declare @mechSplit float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 3 and licId = @licId and custId = @custId);
                     declare @perfSplit float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 4 and licId = @licId and custId = @custId);
 

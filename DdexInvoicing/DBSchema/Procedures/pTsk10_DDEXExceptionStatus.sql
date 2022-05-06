@@ -107,11 +107,32 @@ update #TmpAuthor
 --Исключения по договорам Community
 --Если даты по мех/перф попадают в период - беру, если нет - не беру, includPER = 1/0 или inclusMec = 1/0
 --Определяю даты периода, чтобы права брать только за этот период (хоть одна дата периода пересекается с правами)
-declare @ddexReportingPeriodId integer, @periodDateBegin date, @periodDateEnd date, @quarter integer, @year integer
+declare @ddexReportingPeriodId integer
+	, @periodDateBegin date
+	, @periodDateEnd date
+	, @month integer
+	, @quarter integer
+	, @year integer
 select @ddexReportingPeriodId = ddexReportingPeriodId from vFileCcidDdex where ddexReportId = @ddexReportId
  
-select @quarter = quarter, @year = year from DdexReportingPeriod where id = @ddexReportingPeriodId
-select @periodDateBegin  = dateBegin, @periodDateEnd = dateEnd from ft_DateQuarter (@quarter, @year)
+select @month = month
+	, @quarter = quarter
+	, @year = year 
+from DdexReportingPeriod 
+where id = @ddexReportingPeriodId
+
+if @quarter is not null
+begin
+	select 
+		  @periodDateBegin  = dateBegin
+		, @periodDateEnd = dateEnd 
+	from ft_DateQuarter (@quarter, @year)
+end
+else
+begin
+	select @periodDateBegin = datefromparts(@year, @month, 1)
+	select @periodDateEnd = eomonth(@periodDateBegin)
+end
 
 --Только для проверенніх (excStatusMEC = 1 - проверен)
 update #TmpAuthor 
