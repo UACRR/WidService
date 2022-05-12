@@ -1,4 +1,4 @@
-﻿namespace ReportsLibrary
+namespace ReportsLibrary
 {
     partial class ReportіС
     {

@@ -286,7 +286,7 @@ namespace ReportsLibrary
             this.textBox9.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox9.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox9.StyleName = "BlueOpal.TableHeader";
-            this.textBox9.Value = "№п/п";
+            this.textBox9.Value = "в„–Рї/Рї";
             // 
             // textBox10
             // 
@@ -300,7 +300,7 @@ namespace ReportsLibrary
             this.textBox10.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox10.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox10.StyleName = "BlueOpal.TableHeader";
-            this.textBox10.Value = "Дата";
+            this.textBox10.Value = "Р”Р°С‚Р°";
             // 
             // textBox11
             // 
@@ -314,7 +314,7 @@ namespace ReportsLibrary
             this.textBox11.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox11.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox11.StyleName = "BlueOpal.TableHeader";
-            this.textBox11.Value = "№ документу";
+            this.textBox11.Value = "в„– РґРѕРєСѓРјРµРЅС‚Сѓ";
             // 
             // textBox12
             // 
@@ -328,7 +328,7 @@ namespace ReportsLibrary
             this.textBox12.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox12.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox12.StyleName = "BlueOpal.TableHeader";
-            this.textBox12.Value = "Дата документу";
+            this.textBox12.Value = "Р”Р°С‚Р° РґРѕРєСѓРјРµРЅС‚Сѓ";
             // 
             // textBox13
             // 
@@ -342,7 +342,7 @@ namespace ReportsLibrary
             this.textBox13.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox13.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox13.StyleName = "BlueOpal.TableHeader";
-            this.textBox13.Value = "Дебет";
+            this.textBox13.Value = "Р”РµР±РµС‚";
             // 
             // textBox14
             // 
@@ -356,7 +356,7 @@ namespace ReportsLibrary
             this.textBox14.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox14.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox14.StyleName = "BlueOpal.TableHeader";
-            this.textBox14.Value = "Кредит";
+            this.textBox14.Value = "РљСЂРµРґРёС‚";
             // 
             // textBox15
             // 
@@ -370,7 +370,7 @@ namespace ReportsLibrary
             this.textBox15.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox15.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox15.StyleName = "BlueOpal.TableHeader";
-            this.textBox15.Value = "Сума";
+            this.textBox15.Value = "РЎСѓРјР°";
             // 
             // textBox16
             // 
@@ -380,7 +380,7 @@ namespace ReportsLibrary
             this.textBox16.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox16.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox16.StyleName = "BlueOpal.TableHeader";
-            this.textBox16.Value = "Коментар";
+            this.textBox16.Value = "РљРѕРјРµРЅС‚Р°СЂ";
             // 
             // textBox17
             // 
@@ -394,7 +394,7 @@ namespace ReportsLibrary
             this.textBox17.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox17.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox17.StyleName = "BlueOpal.TableHeader";
-            this.textBox17.Value = "Ід звіту";
+            this.textBox17.Value = "Р†Рґ Р·РІС–С‚Сѓ";
             // 
             // textBox18
             // 
@@ -404,7 +404,7 @@ namespace ReportsLibrary
             this.textBox18.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox18.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox18.StyleName = "BlueOpal.TableHeader";
-            this.textBox18.Value = "Файл звіту";
+            this.textBox18.Value = "Р¤Р°Р№Р» Р·РІС–С‚Сѓ";
             // 
             // textBox2
             // 
@@ -426,7 +426,7 @@ namespace ReportsLibrary
             this.textBox2.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.textBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox2.StyleName = "BlueOpal.TableHeader";
-            this.textBox2.Value = "=\'   Деталізація по користувачу: \'+Parameters.clName.Value";
+            this.textBox2.Value = "=\'   Р”РµС‚Р°Р»С–Р·Р°С†С–СЏ РїРѕ РєРѕСЂРёСЃС‚СѓРІР°С‡Сѓ: \'+Parameters.clName.Value";
             // 
             // textBox40
             // 
@@ -448,8 +448,8 @@ namespace ReportsLibrary
             this.textBox40.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(0D);
             this.textBox40.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox40.StyleName = "BlueOpal.TableHeader";
-            this.textBox40.Value = "=\'32. Відомість коштів Користувачів, що отримані та розподілені на правовласників" +
-    " за період\r\n з \'+Substr(CStr(Parameters.dateBegin.Value),0,10)+\' по \'+Substr(CSt" +
+            this.textBox40.Value = "=\'32. Р’С–РґРѕРјС–СЃС‚СЊ РєРѕС€С‚С–РІ РљРѕСЂРёСЃС‚СѓРІР°С‡С–РІ, С‰Рѕ РѕС‚СЂРёРјР°РЅС– С‚Р° СЂРѕР·РїРѕРґС–Р»РµРЅС– РЅР° РїСЂР°РІРѕРІР»Р°СЃРЅРёРєС–РІ" +
+    " Р·Р° РїРµСЂС–РѕРґ\r\n Р· \'+Substr(CStr(Parameters.dateBegin.Value),0,10)+\' РїРѕ \'+Substr(CSt" +
     "r(Parameters.dateEnd.Value),0,10)";
             // 
             // sqlDataSource1
@@ -484,7 +484,7 @@ namespace ReportsLibrary
             this.textBox20.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox20.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox20.Value = "Звіти. Головна.";
+            this.textBox20.Value = "Р—РІС–С‚Рё. Р“РѕР»РѕРІРЅР°.";
             // 
             // detailSection1
             // 
@@ -531,12 +531,12 @@ namespace ReportsLibrary
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             reportParameter1.Name = "dateBegin";
-            reportParameter1.Text = "За період з ";
+            reportParameter1.Text = "Р—Р° РїРµСЂС–РѕРґ Р· ";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.Name = "dateEnd";
-            reportParameter2.Text = "по ";
+            reportParameter2.Text = "РїРѕ ";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "=Today()";
             reportParameter2.Visible = true;

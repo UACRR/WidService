@@ -122,7 +122,7 @@ namespace ReportsLibrary
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox4.StyleName = "BlueOpal.TableHeader";
-            this.textBox4.Value = "№п/п";
+            this.textBox4.Value = "в„–Рї/Рї";
             // 
             // textBox2
             // 
@@ -164,7 +164,7 @@ namespace ReportsLibrary
             this.textBox6.Style.Font.Bold = true;
             this.textBox6.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox6.StyleName = "BlueOpal.TableHeader";
-            this.textBox6.Value = "Тип договору";
+            this.textBox6.Value = "РўРёРї РґРѕРіРѕРІРѕСЂСѓ";
             // 
             // textBox11
             // 
@@ -176,7 +176,7 @@ namespace ReportsLibrary
             this.textBox11.Style.Font.Bold = true;
             this.textBox11.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox11.StyleName = "BlueOpal.TableHeader";
-            this.textBox11.Value = "=\'Всьго:\'";
+            this.textBox11.Value = "=\'Р’СЃСЊРіРѕ:\'";
             // 
             // textBox5
             // 
@@ -188,7 +188,7 @@ namespace ReportsLibrary
             this.textBox5.Style.Font.Bold = true;
             this.textBox5.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox5.StyleName = "BlueOpal.TableHeader";
-            this.textBox5.Value = "=\'Товариство:\'";
+            this.textBox5.Value = "=\'РўРѕРІР°СЂРёСЃС‚РІРѕ:\'";
             // 
             // textBox30
             // 
@@ -200,7 +200,7 @@ namespace ReportsLibrary
             this.textBox30.Style.Font.Bold = true;
             this.textBox30.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox30.StyleName = "BlueOpal.TableHeader";
-            this.textBox30.Value = "=\'Регістр обліку (%):\'";
+            this.textBox30.Value = "=\'Р РµРіС–СЃС‚СЂ РѕР±Р»С–РєСѓ (%):\'";
             // 
             // textBox7
             // 
@@ -209,7 +209,7 @@ namespace ReportsLibrary
             this.textBox7.Style.Font.Bold = true;
             this.textBox7.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox7.StyleName = "BlueOpal.TableHeader";
-            this.textBox7.Value = "ПІБ автора";
+            this.textBox7.Value = "РџР†Р‘ Р°РІС‚РѕСЂР°";
             // 
             // textBox19
             // 
@@ -246,7 +246,7 @@ namespace ReportsLibrary
             this.textBox32.Style.Font.Bold = false;
             this.textBox32.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox32.StyleName = "BlueOpal.TableHeader";
-            this.textBox32.Value = "= IIf(Parameters.rateComm.Value=-1,\'Всі\', Parameters.rateComm.Label)";
+            this.textBox32.Value = "= IIf(Parameters.rateComm.Value=-1,\'Р’СЃС–\', Parameters.rateComm.Label)";
             // 
             // textBox8
             // 
@@ -256,7 +256,7 @@ namespace ReportsLibrary
             this.textBox8.Style.Font.Bold = true;
             this.textBox8.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox8.StyleName = "BlueOpal.TableHeader";
-            this.textBox8.Value = "Регістр обліку (%)";
+            this.textBox8.Value = "Р РµРіС–СЃС‚СЂ РѕР±Р»С–РєСѓ (%)";
             // 
             // textBox21
             // 
@@ -298,7 +298,7 @@ namespace ReportsLibrary
             this.textBox9.Style.Font.Bold = true;
             this.textBox9.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox9.StyleName = "BlueOpal.TableHeader";
-            this.textBox9.Value = "Товариство";
+            this.textBox9.Value = "РўРѕРІР°СЂРёСЃС‚РІРѕ";
             // 
             // textBox22
             // 
@@ -340,7 +340,7 @@ namespace ReportsLibrary
             this.textBox10.Style.Font.Bold = true;
             this.textBox10.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox10.StyleName = "BlueOpal.TableHeader";
-            this.textBox10.Value = "Сума";
+            this.textBox10.Value = "РЎСѓРјР°";
             // 
             // textBox23
             // 
@@ -386,7 +386,7 @@ namespace ReportsLibrary
             this.textBox37.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox37.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Top;
             this.textBox37.StyleName = "BlueOpal.TableHeader";
-            this.textBox37.Value = "=\'за період з \'+ Substr(CStr(Parameters.dateBegin.Value),0,10)+\' по \'+Substr(CStr" +
+            this.textBox37.Value = "=\'Р·Р° РїРµСЂС–РѕРґ Р· \'+ Substr(CStr(Parameters.dateBegin.Value),0,10)+\' РїРѕ \'+Substr(CStr" +
     "(Parameters.dateEnd.Value),0,10)";
             // 
             // textBox47
@@ -399,7 +399,7 @@ namespace ReportsLibrary
             this.textBox47.Style.Font.Bold = true;
             this.textBox47.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox47.StyleName = "BlueOpal.TableHeader";
-            this.textBox47.Value = "=\'30. Роялті до розподілу від користувачів з \"малих прав\" за видами договорів\'";
+            this.textBox47.Value = "=\'30. Р РѕСЏР»С‚С– РґРѕ СЂРѕР·РїРѕРґС–Р»Сѓ РІС–Рґ РєРѕСЂРёСЃС‚СѓРІР°С‡С–РІ Р· \"РјР°Р»РёС… РїСЂР°РІ\" Р·Р° РІРёРґР°РјРё РґРѕРіРѕРІРѕСЂС–РІ\'";
             // 
             // sqlDataSource1
             // 
@@ -426,7 +426,7 @@ namespace ReportsLibrary
             this.sqlDataSource4.CommandTimeout = 1200;
             this.sqlDataSource4.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource4.Name = "sqlDataSource4";
-            this.sqlDataSource4.SelectCommand = "select -1 as id,\'Всі\'  prcnt\r\nunion\r\nselect \r\nrateCommiss, convert(varchar(5),  c" +
+            this.sqlDataSource4.SelectCommand = "select -1 as id,\'Р’СЃС–\'  prcnt\r\nunion\r\nselect \r\nrateCommiss, convert(varchar(5),  c" +
     "onvert(numeric(5,2), rateCommiss))\r\nfrom vRateCommiss\r\n";
             // 
             // textBox55
@@ -449,7 +449,7 @@ namespace ReportsLibrary
             this.textBox55.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox55.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox55.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox55.Value = "Звіти. Головна.";
+            this.textBox55.Value = "Р—РІС–С‚Рё. Р“РѕР»РѕРІРЅР°.";
             // 
             // detailSection1
             // 
@@ -751,7 +751,7 @@ namespace ReportsLibrary
             this.textBox53.Style.Font.Bold = true;
             this.textBox53.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox53.StyleName = "BlueOpal.TableBody";
-            this.textBox53.Value = "=\'Всьго пр регістру \'+ Substr( CStr(Fields.rateCommiss),0, Len(CStr(Fields.rateCo" +
+            this.textBox53.Value = "=\'Р’СЃСЊРіРѕ РїСЂ СЂРµРіС–СЃС‚СЂСѓ \'+ Substr( CStr(Fields.rateCommiss),0, Len(CStr(Fields.rateCo" +
     "mmiss))-1)";
             // 
             // textBox41
@@ -761,7 +761,7 @@ namespace ReportsLibrary
             this.textBox41.Style.Font.Bold = true;
             this.textBox41.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox41.StyleName = "BlueOpal.TableBody";
-            this.textBox41.Value = "=\'Всього по \'+ Fields.licCodeName";
+            this.textBox41.Value = "=\'Р’СЃСЊРѕРіРѕ РїРѕ \'+ Fields.licCodeName";
             // 
             // textBox31
             // 
@@ -771,7 +771,7 @@ namespace ReportsLibrary
             this.textBox31.Style.Font.Bold = true;
             this.textBox31.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox31.StyleName = "BlueOpal.TableBody";
-            this.textBox31.Value = "=\'Всого по \'+ Fields.cmName";
+            this.textBox31.Value = "=\'Р’СЃРѕРіРѕ РїРѕ \'+ Fields.cmName";
             // 
             // pageFooterSection1
             // 
@@ -810,12 +810,12 @@ namespace ReportsLibrary
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             reportParameter1.Name = "dateBegin";
-            reportParameter1.Text = "За період з ";
+            reportParameter1.Text = "Р—Р° РїРµСЂС–РѕРґ Р· ";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.Name = "dateEnd";
-            reportParameter2.Text = "по ";
+            reportParameter2.Text = "РїРѕ ";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "=Today()";
             reportParameter2.Visible = true;
@@ -831,7 +831,7 @@ namespace ReportsLibrary
             reportParameter4.AvailableValues.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.id", Telerik.Reporting.SortDirection.Asc));
             reportParameter4.AvailableValues.ValueMember = "= Fields.cmCustId";
             reportParameter4.Name = "Community";
-            reportParameter4.Text = "Товариства";
+            reportParameter4.Text = "РўРѕРІР°СЂРёСЃС‚РІР°";
             reportParameter4.Type = Telerik.Reporting.ReportParameterType.Integer;
             reportParameter4.Value = "= Fields.cmCustId";
             reportParameter4.Visible = true;
@@ -840,7 +840,7 @@ namespace ReportsLibrary
             reportParameter5.AvailableValues.DisplayMember = "= Fields.prcnt";
             reportParameter5.AvailableValues.ValueMember = "= Fields.id";
             reportParameter5.Name = "rateComm";
-            reportParameter5.Text = "Регістр обліку (%)";
+            reportParameter5.Text = "Р РµРіС–СЃС‚СЂ РѕР±Р»С–РєСѓ (%)";
             reportParameter5.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter5.Value = "= Fields.id";
             reportParameter5.Visible = true;
