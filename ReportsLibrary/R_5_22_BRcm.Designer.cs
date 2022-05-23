@@ -60,7 +60,7 @@ namespace ReportsLibrary
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox4.StyleName = "BlueOpal.TableHeader";
-            this.textBox4.Value = "№";
+            this.textBox4.Value = "в„–";
             // 
             // textBox3
             // 
@@ -74,7 +74,7 @@ namespace ReportsLibrary
             this.textBox3.Style.Font.Bold = true;
             this.textBox3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox3.StyleName = "BlueOpal.TableHeader";
-            this.textBox3.Value = "Всьго:";
+            this.textBox3.Value = "Р’СЃСЊРіРѕ:";
             // 
             // textBox6
             // 
@@ -83,7 +83,7 @@ namespace ReportsLibrary
             this.textBox6.Style.Font.Bold = true;
             this.textBox6.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox6.StyleName = "BlueOpal.TableHeader";
-            this.textBox6.Value = "Правовласник";
+            this.textBox6.Value = "РџСЂР°РІРѕРІР»Р°СЃРЅРёРє";
             // 
             // textBox7
             // 
@@ -92,7 +92,7 @@ namespace ReportsLibrary
             this.textBox7.Style.Font.Bold = true;
             this.textBox7.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox7.StyleName = "BlueOpal.TableHeader";
-            this.textBox7.Value = "Сума  АВ";
+            this.textBox7.Value = "РЎСѓРјР°  РђР’";
             // 
             // textBox11
             // 
@@ -121,8 +121,8 @@ namespace ReportsLibrary
             this.textBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox2.StyleName = "BlueOpal.TableHeader";
-            this.textBox2.Value = "=\'26. Відомість \"Розподіл авторської винагороди на правовласників з \"великих прав" +
-    "\" \r\nза період з \'+ Substr(CStr(Parameters.dateBegin.Value),0,10)+\' по \'+Substr(C" +
+            this.textBox2.Value = "=\'26. Р’С–РґРѕРјС–СЃС‚СЊ \"Р РѕР·РїРѕРґС–Р» Р°РІС‚РѕСЂСЃСЊРєРѕС— РІРёРЅР°РіРѕСЂРѕРґРё РЅР° РїСЂР°РІРѕРІР»Р°СЃРЅРёРєС–РІ Р· \"РІРµР»РёРєРёС… РїСЂР°РІ" +
+    "\" \r\nР·Р° РїРµСЂС–РѕРґ Р· \'+ Substr(CStr(Parameters.dateBegin.Value),0,10)+\' РїРѕ \'+Substr(C" +
     "Str(Parameters.dateEnd.Value),0,10)";
             // 
             // sqlDataSource1
@@ -155,7 +155,7 @@ namespace ReportsLibrary
             this.textBox20.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox20.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox20.Value = "Звіти. Головна.";
+            this.textBox20.Value = "Р—РІС–С‚Рё. Р“РѕР»РѕРІРЅР°.";
             // 
             // detailSection1
             // 
@@ -287,12 +287,12 @@ namespace ReportsLibrary
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             reportParameter1.Name = "dateBegin";
-            reportParameter1.Text = "За період з ";
+            reportParameter1.Text = "Р—Р° РїРµСЂС–РѕРґ Р· ";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.Name = "dateEnd";
-            reportParameter2.Text = "по ";
+            reportParameter2.Text = "РїРѕ ";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "=Today()";
             reportParameter2.Visible = true;

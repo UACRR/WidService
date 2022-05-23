@@ -237,7 +237,8 @@ namespace Launcher
         {
             try
             {
-
+                var adminWorkplace = new CopyrightAdminWorkplaceWindow();
+                adminWorkplace.Show();
             }
             catch (Exception ex)
             {
