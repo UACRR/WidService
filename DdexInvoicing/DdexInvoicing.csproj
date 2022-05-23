@@ -326,6 +326,7 @@
     <Content Include="CcidStat.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DBSchema\Procedures\spDeleteDdexReport.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_DDEXExceptionStatus.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_DDEXIdentMWAuthor.sql" />
     <Content Include="FullDatabase.sql" />
@@ -347,6 +348,18 @@
     <Content Include="Migrations\03 Spotify\SpCreateInitialInvoiceSpotify.sql" />
     <Content Include="Migrations\03 Spotify\spCreateInitialInvoiceSrmf.sql" />
     <Content Include="Migrations\03 Spotify\spIdentByNameAndPerformer.sql" />
+    <Content Include="Migrations\04 Deezer\CcidInHeader.sql" />
+    <Content Include="Migrations\04 Deezer\DdexRecordSY_Base.sql" />
+    <Content Include="Migrations\04 Deezer\CcidInFile.sql" />
+    <Content Include="Migrations\04 Deezer\ft_InvoiceInFileIds.sql" />
+    <Content Include="Migrations\04 Deezer\spCreateInitialInvoiceDeezer.sql" />
+    <Content Include="Migrations\04 Deezer\pTsk10_DDEXIdentMWAuthor.sql" />
+    <Content Include="Migrations\04 Deezer\pTsk10_DDEXExceptionStatus.sql" />
+    <Content Include="Migrations\04 Deezer\pTsk10_DDEXFormRate.sql" />
+    <Content Include="Migrations\04 Deezer\spUpdateIdentProgress.sql" />
+    <Content Include="Migrations\04 Deezer\ft_AgreementReportIds.sql" />
+    <Content Include="Migrations\04 Deezer\DdexEnumContentCategory.sql" />
+    <Content Include="Migrations\04 Deezer\spIdentByNameAndPerformer.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

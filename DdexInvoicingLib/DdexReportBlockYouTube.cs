@@ -113,6 +113,6 @@ namespace InvoicingLib
             action.ProcessBlock(this);
         }
 
-        public override bool IsProcessed(int lastProcessedBlockId) => int.Parse(asRecord.BlockId) < lastProcessedBlockId;
+        public override bool IsProcessed(int lastProcessedBlockId) => int.Parse(asRecord.BlockId) <= lastProcessedBlockId;
     }
 }

@@ -21,6 +21,7 @@ namespace InvoicingLib
             YOUTUBE_SRMF,
             SPOTIFY_FREE,
             SPOTIFY_PREMIUM,
+            DEEZER_ALL,
         }
 
         public enum AgreementParamEnum
@@ -50,6 +51,7 @@ namespace InvoicingLib
         {
             YOUTUBE,
             SPOTIFY,
+            DEEZER,
         }
 
         public enum FileTypeEnum
@@ -161,6 +163,7 @@ namespace InvoicingLib
             public bool                         NeedsExchRate           { get; set; }
             public bool                         FileMayHaveErrors       { get; set; }
             public HashSet<AgreementParamEnum>  RequiredParams          { get; set; }
+            public List<string>                 ServiceNames            { get; set; }
 
             public GetReportingPeriodInfo GetReportingPeriodInfo;
             public InsertHead InsertHead;
@@ -294,6 +297,54 @@ namespace InvoicingLib
                 GetReportingPeriodInfo  = GetSpotifyDsrReportingPeriodInfo,
                 InsertHead              = InsertDsrHead,
             },
+            new ReportTypeInfo
+            {
+                ReportType              = ReportTypeEnum.DEEZER_ALL,
+                Name                    = "deezer-all",
+                IsMonthly               = false,
+                FileNameWildcard        = "DSR_PADPIDA2011021513H_{{SERVICE_NAME}}_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.DEEZER,
+                NeedsExchRate           = false,
+                FileMayHaveErrors       = false,
+                RequiredParams          = new HashSet<AgreementParamEnum>
+                {
+                    AgreementParamEnum.MUSICRATE,
+                    AgreementParamEnum.MECHSPLIT,
+                    AgreementParamEnum.PERFSPLIT,
+                    AgreementParamEnum.ROYALTYTHRESHOLD,
+                },
+                ServiceNames            = new List<string>
+                {
+                    "0XMOD",
+                    "10572XSony360HifiTB3M",
+                    "10672XGarminTB3M",
+                    "10992XEditorialMODplaylist",
+                    "11002XAlgorithmicMODplaylist",
+                    "11012XArtistdiscography",
+                    "11562XPremiumPlus12monthsrenewablecommitment",
+                    "11842XDeezerHifi12monthsrenewablecommitment",
+                    "12072XDeezerFamilyHifi",
+                    "12082XWinbackofferPremiumPlus3M",
+                    "12852XTrioOffer",
+                    "13102XVidaaPremiumPlusPromo4months",
+                    "1XSMR",
+                    "227XMFS",
+                    "261XDeezerHifi",
+                    "314Xsonos",
+                    "315Xsonos",
+                    "3XDeezerWorldwidePremiumPlusStandalone",
+                    "5XDeezerWorldwidePremiumStandalone",
+                    "7871XDeezerWorldwidePremiumPlusStandaloneIOSnewprice",
+                    "7991XDeezerFamilyPremiumPlus",
+                    "8791XDeezerFamilyPremiumPlusIOS",
+                    "8841XVeon3monthstrial",
+                    "8901XDeezerWorldwidePremiumPlusStandaloneAndroid",
+                    "8911XDeezerFamilyPremiumPlusAndroid",
+                    "9091XFitbitTryandbuy3M",
+                },
+                GetReportingPeriodInfo  = GetDeezerDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
+            },
         };
 
         public static Dictionary<string, ReportTypeEnum> AgreementReportTypes = new Dictionary<string, ReportTypeEnum>()
@@ -304,6 +355,7 @@ namespace InvoicingLib
             { "srmf",                   ReportTypeEnum.YOUTUBE_SRMF},
             { "spotify-free",           ReportTypeEnum.SPOTIFY_FREE},
             { "spotify-premium",        ReportTypeEnum.SPOTIFY_PREMIUM},
+            { "deezer-all",             ReportTypeEnum.DEEZER_ALL},
         };
 
         public static Dictionary<DigitalServiceProviderEnum, Dictionary<string, ReportTypeEnum>> DspFileReportTypes =
@@ -333,6 +385,7 @@ namespace InvoicingLib
         {
             { "youtube", DigitalServiceProviderEnum.YOUTUBE},
             { "spotify", DigitalServiceProviderEnum.SPOTIFY},
+            { "deezer", DigitalServiceProviderEnum.DEEZER},
         };
 
         public static Dictionary<AgreementParamEnum, AgreementParam> AgreementParams =
@@ -446,6 +499,11 @@ namespace InvoicingLib
             return ReportTypes.Single(x => x.Name == agreementReportType.ToLower());
         }
 
+        private static ReportTypeInfo GetReportTypeInfo(ReportTypeEnum agreementReportTypeEnum)
+        {
+            return ReportTypes.Single(x => x.ReportType == agreementReportTypeEnum);
+        }
+
         public static string GetAgreementReportType(int licId, int custId)
         {
             object reportType = null;
@@ -483,6 +541,8 @@ namespace InvoicingLib
 
             reportType = cmd.ExecuteScalar();
 
+            cmd.Parameters.Clear();
+
             if (reportType == null)
                 return null;
             var strReportType = (string)reportType;
@@ -501,6 +561,7 @@ namespace InvoicingLib
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
             var reportType = (string)cmd.ExecuteScalar();
+            cmd.Parameters.Clear();
 
             return AgreementReportTypes[reportType];
         }
@@ -521,6 +582,7 @@ namespace InvoicingLib
             cmd.Parameters.AddWithValue("@licId", licId);
             cmd.Parameters.AddWithValue("@custId", custId);
             var agreementReportType = (string)cmd.ExecuteScalar();
+            cmd.Parameters.Clear();
 
             return GetReportTypeInfo(agreementReportType).IsMonthly;
         }
@@ -707,6 +769,19 @@ namespace InvoicingLib
             };
         }
 
+        public static ReportingPeriodInfo GetDeezerDsrReportingPeriodInfo(string fullFileName)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(fullFileName);
+            var periodPart = fileName.Split('_')[3];
+            var dateParts = periodPart.Split('-');
+            return new ReportingPeriodInfo
+            {
+                Year = int.Parse(dateParts[0]),
+                Quarter = int.Parse(dateParts[1].Substring(1)),
+                Month = null,
+            };
+        }
+
         public static int CreateReportingPeriod(string agreementReportType, string fullFileName)
         {
             var rpi = GetReportTypeInfo(agreementReportType).GetReportingPeriodInfo(fullFileName);
@@ -728,7 +803,7 @@ namespace InvoicingLib
             return ddexReportingPeriodId;
         }
 
-        public static bool CheckReportExists(string agreementReportType, int ddexReportingPeriodId)
+        public static bool CheckSingleFileReportExists(string agreementReportType, int ddexReportingPeriodId)
         {
             var retVal = 0;
             Helpers.RunSqlOperationDdex(cmd =>
@@ -841,6 +916,7 @@ namespace InvoicingLib
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
             var usageStartDate = (DateTime)cmd.ExecuteScalar();
+            cmd.Parameters.Clear();
 
             var areementReportType = GetAgreementReportType(cmd, ddexReportId);
             switch(areementReportType)
@@ -849,8 +925,43 @@ namespace InvoicingLib
                     return $"Spotify_free_{usageStartDate.ToString("yyyy-MM-dd")}@";
                 case ReportTypeEnum.SPOTIFY_PREMIUM:
                     return $"Spotify_premium_{usageStartDate.ToString("yyyy-MM-dd")}@";
+                case ReportTypeEnum.DEEZER_ALL:
+                    return $"Deezer_0XMOD_{usageStartDate.ToString("yyyy-MM-dd")}@";
             }
             return "";
+        }
+
+        public static string GetStidPrefixForDdexReport(SqlCommand cmd, int ddexReportId)
+        {
+            var areementReportType = GetAgreementReportType(cmd, ddexReportId);
+            switch (areementReportType)
+            {
+                case ReportTypeEnum.SPOTIFY_FREE:
+                case ReportTypeEnum.SPOTIFY_PREMIUM:
+                case ReportTypeEnum.DEEZER_ALL:
+                {
+                    var retVal ="";
+                    cmd.CommandText = $@"
+                            select 
+                                  SenderName
+                                , ServiceDescription
+                                , UsageStartDate
+                            from DdexRecordHead
+                            where ddexReportId = @ddexReportId";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                    var r = cmd.ExecuteReader();
+                    if(r.HasRows)
+                    {
+                        r.Read();
+                        retVal = $"{r.GetString(0)}_{r.GetString(1)}_{r.GetDateTime(2).ToString("yyyy-MM-dd")}@";
+                    }
+                    r.Close();
+                    return retVal;
+                }
+                default:
+                    return "";
+            }
         }
 
         public static bool IsYouTubeSrmfType(SqlCommand cmd, int fileId)
@@ -863,9 +974,123 @@ namespace InvoicingLib
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@fileId", fileId);
             var ddexReportId = (int)cmd.ExecuteScalar();
+            cmd.Parameters.Clear();
 
             var areementReportType = GetAgreementReportType(cmd, ddexReportId);
             return areementReportType == ReportTypeEnum.YOUTUBE_SRMF;
+        }
+
+        public static bool IsMultiFile(string agreementReportType)
+        {
+            return GetReportTypeInfo(agreementReportType).ServiceNames != null;
+        }
+
+        public static bool IsMultiFile(SqlCommand cmd, int ddexReportId)
+        {
+            var agreementReportTypeEnum = GetAgreementReportType(cmd, ddexReportId);
+            return GetReportTypeInfo(agreementReportTypeEnum).ServiceNames != null;
+        }
+
+        public static List<string> GetServiceNames(string agreementReportType)
+        {
+            return GetReportTypeInfo(agreementReportType).ServiceNames;
+        }
+
+        public static string GetFileNameWildcardForService(string agreementReportType, string serviceName)
+        {
+            return GetReportTypeInfo(agreementReportType).FileNameWildcard.Replace("{{SERVICE_NAME}}", serviceName);
+        }
+
+        public static List<int> GetAgreementNotLoadedReportIds(int firstAgreementReportId)
+        {
+            var retVal = new List<int>();
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandText = $@"select t2.Id
+                    from DdexReport t1
+                        join DdexReport t2 on t1.ddexReportingPeriodId = t2.ddexReportingPeriodId
+                            and t1.licId = t2.licId
+                            and t1.custId = t2.custId
+                    where t1.id = @ddexReportId
+                        and t2.Status < {Meta.DdexReportStatus.MERGE_MUSIC_WORKS}";
+                cmd.Parameters.AddWithValue("@ddexReportId", firstAgreementReportId);
+                var r = cmd.ExecuteReader();
+                while(r.Read())
+                {
+                    retVal.Add(r.GetInt32(0));
+                }
+            });
+            return retVal;
+        }
+
+        public static List<int> GetAgreementReportIds(int firstAgreementReportId)
+        {
+            var retVal = new List<int>();
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                retVal = GetAgreementReportIds(cmd, firstAgreementReportId);
+            });
+            return retVal;
+        }
+
+        public static List<int> GetAgreementReportIds(SqlCommand cmd, int firstAgreementReportId)
+        {
+            var retVal = new List<int>();
+            cmd.CommandText = $@"select t2.Id
+                    from DdexReport t1
+                        join DdexReport t2 on t1.ddexReportingPeriodId = t2.ddexReportingPeriodId
+                            and t1.licId = t2.licId
+                            and t1.custId = t2.custId
+                    where t1.id = @ddexReportId";
+            cmd.Parameters.AddWithValue("@ddexReportId", firstAgreementReportId);
+            var r = cmd.ExecuteReader();
+            cmd.Parameters.Clear();
+            while (r.Read())
+            {
+                retVal.Add(r.GetInt32(0));
+            }
+            r.Close();
+            return retVal;
+        }
+
+        public static string ConvertToCsvString(List<int> list)
+        {
+            var retVal = "";
+            list.ForEach(x =>
+            {
+                if(!string.IsNullOrEmpty(retVal))
+                {
+                    retVal += ',';
+                }
+                retVal += x.ToString();
+            });
+            return retVal;
+        }
+
+        public static string GetFilterString(SqlCommand cmd, int ddexReportId)
+        {
+            if(IsMultiFile(cmd, ddexReportId))
+            {
+                var ddexReportIdsString = ConvertToCsvString(GetAgreementReportIds(cmd, ddexReportId));
+                return $"ddexReportId in ({ddexReportIdsString})";
+            }
+            else
+            {
+                return $"ddexReportId = {ddexReportId}";
+            }
+        }
+
+        public static string GetFilterStringShort(SqlCommand cmd, int ddexReportId)
+        {
+            if (IsMultiFile(cmd, ddexReportId))
+            {
+                var ddexReportIdsString = ConvertToCsvString(GetAgreementReportIds(cmd, ddexReportId));
+                return $" in ({ddexReportIdsString})";
+            }
+            else
+            {
+                return $" = {ddexReportId}";
+            }
         }
 
         #endregion

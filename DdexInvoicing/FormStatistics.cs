@@ -67,13 +67,15 @@ namespace DdexInvoicing
                 dt.Columns.Add("Count");
                 dt.Columns.Add("NetRevenue");
 
+                var filter = DdexReport.GetFilterString(cmd, ddexReportId);
+
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
 
                 int id = 0;
                 cmd.CommandText = $@"
                     select id 
                     from IdentProgress 
-                    where ddexReportId = @ddexReportId
+                    where {filter}
                         and UpdatedOn = @UpdatedOn";
                 SqlParameter dateParam = new SqlParameter("@UpdatedOn", SqlDbType.Date);
                 dateParam.Value = date;
@@ -158,9 +160,11 @@ namespace DdexInvoicing
         {
             Helpers.RunSqlOperationDdex(cmd =>
             {
+                var filter = DdexReport.GetFilterString(cmd, ddexReportId);
+
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
 
-                cmd.CommandText = $@"select id, UpdatedOn from IdentProgress where ddexReportId = @ddexReportId order by UpdatedOn desc";
+                cmd.CommandText = $@"select id, UpdatedOn from IdentProgress where {filter} order by UpdatedOn desc";
                 using (SqlDataReader r = cmd.ExecuteReader())
                 {
                     radComboDate.Items.Clear();

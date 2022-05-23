@@ -23,6 +23,11 @@ namespace InvoicingLib
                         , Name licenseeName
                         , licCodeName licenseDescription
                     from vMSCustomerUses
+                    union
+                    select 1001 licId
+                        , 10000 custId
+                        , 'Deezer' licenseeName
+                        , 'Ліцензійний договір (всі сервіси)' licenseDescription
 /*
                     union
                     select 1340 licId

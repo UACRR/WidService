@@ -12,7 +12,7 @@ namespace InvoicingLib
     {
         public void MergeMusicWorks()
         {
-            const int incr = 100000;
+            const int incr = 10000;
             Logger.WriteLine("Додавання нових музичних творів для ідентифікації");
 
             try
@@ -22,28 +22,41 @@ namespace InvoicingLib
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         conn.Open();
+
+                        var filter = GetFilterString(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
-                        cmd.CommandText = @"select isnull(max(blockId), 0) from [DdexIdentificationBacklog] where ddexReportId = @ddexReportId";
+                        cmd.CommandText = $@"select isnull(max(blockId), 0) from [DdexIdentificationBacklog] where {filter}";
                         int maxBlock = (int)cmd.ExecuteScalar();
-                        cmd.CommandText = @"select isnull(max(blockId), 0) + 1 from [DdexIdentificationBacklog] where ddexReportId = @ddexReportId and ExcStatus = 1";
+                        cmd.CommandText = $@"select isnull(max(blockId), 0) + 1 from [DdexIdentificationBacklog] where {filter} and ExcStatus = 1";
                         int firstBlock = (int)cmd.ExecuteScalar();
                         int lastBlock = firstBlock + incr;
                         cmd.Parameters.AddWithValue("@firstBlock", firstBlock);
                         cmd.Parameters.AddWithValue("@lastBlock", lastBlock);
-                        cmd.CommandText = @"
-                            insert IdentMw (ResourceTitle, Title, ComposerAuthor, DisplayArtistName, ISWC, [status])
-                            select distinct asTitle, mwTitle, t1.composerauthor, t1.DisplayArtistName, t1.ISWC, 0
-                            from DdexIdentificationBacklog t1 left join
-                                IdentMw t2 on 
-                                    t2.ResourceTitle = t1.AsTitle 
-                                    and t2.Title = t1.mwTitle 
-                                    and t2.ComposerAuthor = t1.ComposerAuthor
-                                    and t2.DisplayArtistName = t1.DisplayArtistname
-                                    and t2.ISWC = t1.ISWC
-                            where ddexReportId = @ddexReportId and blockid >= @firstBlock and blockId < @lastBlock and t2.Title is null
-                            update [DdexIdentificationBacklog] set ExcStatus = 1 where ddexReportId = @ddexReportId and blockid >= @firstBlock and blockId < @lastBlock
+                        cmd.CommandText = $@"
+                            insert IdentMw  (ResourceTitle, Title,      ComposerAuthor,    DisplayArtistName,    ISWC,    [status])
+                            select distinct  t1.asTitle,    t1.mwTitle, t1.composerauthor, t1.DisplayArtistName, t1.ISWC, 0
+                            from DdexIdentificationBacklog t1
+                                left join IdentMw t2 on 
+                                            t2.ResourceTitle = t1.AsTitle 
+                                        and t2.Title = t1.mwTitle 
+                                        and t2.ComposerAuthor = t1.ComposerAuthor
+                                        and t2.DisplayArtistName = t1.DisplayArtistname
+                                        and t2.ISWC = t1.ISWC
+                            where 
+                                    {filter} 
+                                and blockid >= @firstBlock 
+                                and blockId < @lastBlock 
+                                and t2.Title is null
+                            
+                            update [DdexIdentificationBacklog] 
+                            set ExcStatus = 1 
+                            where 
+                                    {filter} 
+                                and blockid >= @firstBlock 
+                                and blockId < @lastBlock
                         ";
                         while (firstBlock <= maxBlock)
                         {
@@ -80,22 +93,24 @@ namespace InvoicingLib
                     {
                         conn.Open();
 
+                        var filter = GetFilterString(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
-                        cmd.CommandText = @"select count(*) from DdexIdentificationBacklog where ddexReportId = @ddexReportId";
+                        cmd.CommandText = $@"select count(*) from DdexIdentificationBacklog where {filter}";
                         int totalRowCount = (int)cmd.ExecuteScalar();
-                        cmd.CommandText = @"select count(*) from IdentBacklog where ddexReportId = @ddexReportId";
+                        cmd.CommandText = $@"select count(*) from IdentBacklog where {filter}";
                         int insertedRowCount = (int)cmd.ExecuteScalar();
-                        cmd.CommandText = @"select isnull(max(blockId), 0) from [DdexIdentificationBacklog] where ddexReportId = @ddexReportId";
+                        cmd.CommandText = $@"select isnull(max(blockId), 0) from [DdexIdentificationBacklog] where {filter}";
                         int maxBlock = (int)cmd.ExecuteScalar();
-                        cmd.CommandText = @"select isnull(max(blockId), 0) + 1 from IdentBacklog where ddexReportId = @ddexReportId";
+                        cmd.CommandText = $@"select isnull(max(blockId), 0) + 1 from IdentBacklog where {filter}";
                         int firstBlock = (int)cmd.ExecuteScalar();
                         int lastBlock = firstBlock + 10000;
                         cmd.Parameters.AddWithValue("@firstBlock", firstBlock);
                         cmd.Parameters.AddWithValue("@lastBlock", lastBlock);
 
-                        cmd.CommandText = @"
+                        cmd.CommandText = $@"
                             insert IdentBacklog (DdexReportId, BlockId, SalesTransactionId, DspResourceId, DspReleaseId, ContentCategory
                                                                 , NetRevenue, Usages, ValidityPeriodStart, ValidityPeriodEnd, rateTotalPER, rateTotalMEC, mwId)
                             select DdexReportId, BlockId, SalesTransactionId, DspResourceId, DspReleaseId, ContentCategory
@@ -107,7 +122,7 @@ namespace InvoicingLib
                                     and t2.ComposerAuthor = t1.ComposerAuthor
                                     and t2.DisplayArtistName = t1.DisplayArtistname
                                     and t2.ISWC = t1.ISWC
-                            where ddexReportId = @ddexReportId and blockid >= @firstBlock and blockId < @lastBlock
+                            where {filter} and blockid >= @firstBlock and blockId < @lastBlock
                             select @@ROWCOUNT
                         ";
                         while (firstBlock <= maxBlock)
@@ -148,14 +163,16 @@ namespace InvoicingLib
                     {
                         conn.Open();
 
+                        var filter = GetFilterString(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
-                        cmd.CommandText = @"delete from IdentReportMwRecords where DdexReportId = @ddexReportId
+                        cmd.CommandText = $@"delete from IdentReportMwRecords where {filter}
                             insert IdentReportMwRecords(DdexReportId, mwId)
                             select distinct DdexReportId, mwId
                             from IdentBacklog
-                            where DdexReportId = @ddexReportId";
+                            where {filter}";
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -232,6 +249,8 @@ namespace InvoicingLib
                     {
                         conn.Open();
 
+                        var filter = GetFilterStringShort(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
@@ -249,22 +268,31 @@ namespace InvoicingLib
                             inner join IdentReportMwRecords t2 on t2.mwId = t1.mwId
                         where t2.ddexReportId = @ddexReportId";
                         */
-                        cmd.CommandText = @"
+                        cmd.CommandText = $@"
                             drop table if exists #sum
 
-                            select t2.mwId, sum(t1.NetRevenue) NetRevenue, count(*) IdentBacklogRecCnt 
+                            select
+                                  t2.ddexReportId
+                                , t2.mwId
+                                , sum(t1.NetRevenue) NetRevenue
+                                , count(*) IdentBacklogRecCnt 
                             into #sum
                             from IdentBacklog t1 
-                                inner join IdentReportMwRecords t2 on t2.mwId = t1.mwId
-                            where t1.ddexReportId = @ddexReportId
-                            group by t2.mwId
-
+                                inner join IdentReportMwRecords t2 on 
+                                            t2.ddexReportId = t1.ddexReportId 
+                                        and t2.mwId = t1.mwId
+                            where t1.ddexReportId {filter}
+                            group by t2.ddexReportId, t2.mwId
 
                             update t2
-                            set t2.NetRevenue =  t1.NetRevenue, t2.IdentBacklogRecCnt = t1.IdentBacklogRecCnt
+                            set 
+                                  t2.NetRevenue =  t1.NetRevenue
+                                , t2.IdentBacklogRecCnt = t1.IdentBacklogRecCnt
                             from #sum t1 
-                                inner join IdentReportMwRecords t2 on t2.mwId = t1.mwId
-                            where t2.ddexReportId = @ddexReportId
+                                inner join IdentReportMwRecords t2 on 
+                                            t2.ddexReportId = t1.ddexReportId 
+                                        and t2.mwId = t1.mwId
+                            where t2.ddexReportId {filter}
 
                             drop table if exists #sum
                         ";
@@ -294,15 +322,17 @@ namespace InvoicingLib
                     {
                         conn.Open();
 
+                        var filter = GetFilterStringShort(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
-                        cmd.CommandText = @"update t1
+                        cmd.CommandText = $@"update t1
                             set t1.Wic = t2.Wic, t1.status = 2
                             from IdentReportMwRecords t3
                                 join IdentMW t1 on t3.mwId = t1.Id
                                 join wid_ipi.DBO.tblIswc t2 on t1.ISWC = t2.ISWC
-                            where T1.status <> 2 and t3.ddexReportId = @ddexReportId";
+                            where T1.status <> 2 and t3.ddexReportId {filter}";
                         cmd.ExecuteNonQuery();
 
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -333,12 +363,14 @@ namespace InvoicingLib
                     {
                         conn.Open();
 
+                        var filter = GetFilterStringShort(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
-                        cmd.CommandText = @"update IdentReportMwRecords
+                        cmd.CommandText =$@"update IdentReportMwRecords
                             set PriorityIndex = null
-                            where ddexReportId = @ddexReportId
+                            where ddexReportId {filter}
 
                             drop table if exists #tmp;
                             select t1.ddexReportId
@@ -347,12 +379,17 @@ namespace InvoicingLib
                             into #tmp
                             from IdentReportMwRecords t1
                                 join IdentMW t2 on t1.mwId = t2.Id
-                            where isnull(t2.Wic, 0) = 0 and isnull(t2.ObjId, 0) = 0 and t1.ddexReportId = @ddexReportId
+                            where 
+                                    isnull(t2.Wic, 0) = 0 
+                                and isnull(t2.ObjId, 0) = 0 
+                                and t1.ddexReportId {filter}
  
                             update t2
                             set t2.PriorityIndex = t1.rn 
                             from #tmp t1
-                                join IdentReportMwRecords t2 on t1.DdexReportId = t2.ddexReportId and t1.mwId = t2.mwId
+                                join IdentReportMwRecords t2 on 
+                                        t1.DdexReportId = t2.ddexReportId 
+                                    and t1.mwId = t2.mwId
 
                             drop table if exists #tmp;";
                         cmd.ExecuteNonQuery();
@@ -381,14 +418,21 @@ namespace InvoicingLib
                     {
                         conn.Open();
 
+                        var filter = GetFilterStringShort(cmd, ddexReportId);
+                        var isMultiFile = IsMultiFile(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
-                        cmd.CommandText = @";with sums as (
-                                    select ddexReportId, sum(NetRevenue) NetRevenue, Count(*) count
+                        if(isMultiFile)
+                        {
+                            cmd.CommandText = $@";with sums as (
+                                    select 
+                                          @ddexReportId DdexReportId
+                                        , sum(NetRevenue) NetRevenue
+                                        , count(*) count
                                     from IdentBacklog
-                                    where ddexReportId = @ddexReportId
-                                    group by ddexReportId
+                                    where ddexReportId {filter}
                                 )
                                 update t1 
                                 set t1.NetRevenue = t2.NetRevenue,
@@ -396,6 +440,22 @@ namespace InvoicingLib
                                 from DdexReport t1
                                     join sums t2 on t1.Id = t2.DdexReportId
                                 where t1.Id = @ddexReportId";
+                        }
+                        else
+                        {
+                                cmd.CommandText = $@";with sums as (
+                                    select ddexReportId, sum(NetRevenue) NetRevenue, Count(*) count
+                                    from IdentBacklog
+                                    where ddexReportId {filter}
+                                    group by ddexReportId
+                                )
+                                update t1 
+                                set t1.NetRevenue = t2.NetRevenue,
+                                    t1.SalesTransCnt = t2.count
+                                from DdexReport t1
+                                    join sums t2 on t1.Id = t2.DdexReportId
+                                where t1.Id {filter}";
+                        }
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -422,10 +482,15 @@ namespace InvoicingLib
                     {
                         conn.Open();
 
+                        var filter = GetFilterStringShort(cmd, ddexReportId);
+                        var isMultiFile = IsMultiFile(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
-                        cmd.CommandText = @";with stat as (
+                        if(isMultiFile)
+                        {
+                            cmd.CommandText = $@";with stat as (
                                 select 
                                       @ddexReportId ddexReportId
                                     , count(*) MwCnt
@@ -438,7 +503,36 @@ namespace InvoicingLib
                                     , sum(case when ISWC <> '' and status = 2  then t2.NetRevenue else 0 end) MwNetRevenueIswcMatched
                                 from IdentMw t1 
                                     join IdentReportMwRecords t2 on t1.Id = t2.mwId
-                                where t2.ddexReportId = @ddexReportId
+                                where t2.ddexReportId {filter}
+                                )
+                                update t1
+                                set t1.MwCnt = t2.MwCnt
+                                    , t1.MwCntUnmatched = t2.MwCntUnmatched
+                                    , t1.NetRevenue = t2.NetRevenue
+                                    , t1.NetRevenueUnmatched = t2.NetRevenueUnmatched
+                                    , t1.MwCntIswcTotal = t2.MwCntIswcTotal
+                                    , t1.MwNetRevenueIswcTotal = t2.MwNetRevenueIswcTotal
+                                    , t1.MwCntIswcMatched = t2.MwCntIswcMatched
+                                    , t1.MwNetRevenueIswcMatched = t2.MwNetRevenueIswcMatched
+                                from stat t2 
+                                    join ddexReport t1 on t1.id = t2.ddexReportId";
+                        }
+                        else
+                        {
+                                cmd.CommandText = $@";with stat as (
+                                select 
+                                      @ddexReportId ddexReportId
+                                    , count(*) MwCnt
+                                    , sum(case when status = 2 then 0 else 1 end) MwCntUnmatched
+                                    , sum(t2.NetRevenue) NetRevenue
+                                    , sum(case when status = 2 then 0 else t2.NetRevenue end) NetRevenueUnmatched
+                                    , sum(case when ISWC <> '' then 1 else 0 end) MwCntIswcTotal
+                                    , sum(case when ISWC <> '' then t2.NetRevenue else 0 end) MwNetRevenueIswcTotal
+                                    , sum(case when ISWC <> '' and status = 2 then 1 else 0 end) MwCntIswcMatched
+                                    , sum(case when ISWC <> '' and status = 2  then t2.NetRevenue else 0 end) MwNetRevenueIswcMatched
+                                from IdentMw t1 
+                                    join IdentReportMwRecords t2 on t1.Id = t2.mwId
+                                where t2.ddexReportId {filter}
                                 )
                                 update t1
                                 set t1.MwCnt = t2.MwCnt
@@ -451,6 +545,8 @@ namespace InvoicingLib
                                     , t1.MwNetRevenueIswcMatched = t2.MwNetRevenueIswcMatched
                                 from ddexReport t1 
                                     join stat t2 on t1.id = t2.ddexReportId";
+                        }
+                        
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -477,10 +573,12 @@ namespace InvoicingLib
                     {
                         conn.Open();
 
+                        var filter = GetFilterStringShort(cmd, ddexReportId);
+
                         cmd.Parameters.AddWithValue("@DdexReportId", ddexReportId);
                         cmd.CommandTimeout = 0;
 
-                        cmd.CommandText = @"delete from DdexNetRevenueDistr where DdexReportId = @ddexReportId
+                        cmd.CommandText = $@"delete from DdexNetRevenueDistr where DdexReportId {filter}
 
                                 declare @netRevenue decimal(20,6);
                                 declare @blockNetRevenue decimal(20,6) = 0;
@@ -492,10 +590,10 @@ namespace InvoicingLib
                                 declare @blockRecCount int = 0;
                                 declare @blockStartRec int;
 
-                                select @netRevenueTotal = NetRevenueUnmatched 
-                                    , @recCntTotal = MwCntUnmatched
+                                select @netRevenueTotal = sum(NetRevenueUnmatched)
+                                    , @recCntTotal = sum(MwCntUnmatched)
                                 from ddexReport 
-                                where id = @ddexreportid
+                                where id {filter}
 
                                 set @margin = @netRevenueTotal * 0.95 
 
@@ -504,7 +602,7 @@ namespace InvoicingLib
                                 FOR     
                                 select NetRevenue
                                 from IdentReportMwRecords
-                                where ddexReportId = @ddexReportId and PriorityIndex is not null
+                                where ddexReportId {filter} and PriorityIndex is not null
                                 order by PriorityIndex
  
                                 OPEN cMwRecors    
@@ -546,13 +644,13 @@ namespace InvoicingLib
                                         set share = cast(netRevenue / @netRevenueTotal * 100 as decimal(10, 2))
                                         , shareAccr = cast(netRevenueAccr / @netRevenueTotal * 100 as decimal(10, 2)) 
                                     from DdexNetRevenueDistr
-                                    where ddexReportId = @ddexReportId
+                                    where ddexReportId {filter}
                                 else
                                     update DdexNetRevenueDistr
                                         set share = cast(0 as decimal(10, 2))
                                         , shareAccr = cast(0 as decimal(10, 2)) 
                                     from DdexNetRevenueDistr
-                                    where ddexReportId = @ddexReportId";
+                                    where ddexReportId {filter}";
                         cmd.ExecuteNonQuery();
                     }
                 }

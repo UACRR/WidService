@@ -134,26 +134,29 @@ namespace InvoicingLib
             cmd.ExecuteNonQuery();
         }
 
-        public static void RegisterReport(int licId, int custId, string agreementReportType, string fullFileName)
+        private static void InsertDdexReportRecord(SqlCommand cmd,
+            string agreementReportType,
+            string fullFileName,
+            int licId,
+            int custId,
+            decimal exchRate,
+            int ddexReportingPeriodId
+            )
         {
-            int ddexReportingPeriodId = CreateReportingPeriod(agreementReportType, fullFileName);
-            var fExchRate = GetExchangeRate(licId, custId, agreementReportType, fullFileName);
-            decimal exchRate = fExchRate == null ? 0M : (decimal)fExchRate;
-            Helpers.RunSqlOperationDdexT(cmd =>
-            {
-                cmd.Parameters.AddWithValue("@status", 0);
-                cmd.Parameters.AddWithValue("@substatus", 0);
-                cmd.Parameters.AddWithValue("@filetype", agreementReportType);
-                cmd.Parameters.AddWithValue("@DdexSourceFolder", "DdexSourceFolder");
-                cmd.Parameters.AddWithValue("@DdexSourceFolderValue", Path.GetDirectoryName(fullFileName) + "\\");
-                cmd.Parameters.AddWithValue("@licId", licId);
-                cmd.Parameters.AddWithValue("@custId", custId);
-                cmd.Parameters.AddWithValue("@exchRate", exchRate);
-                cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
-                cmd.Parameters.AddWithValue($"@OptionName1", $"DdexFile1");
-                cmd.Parameters.AddWithValue($"@FileName1", Path.GetFileName(fullFileName));
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@status", 0);
+            cmd.Parameters.AddWithValue("@substatus", 0);
+            cmd.Parameters.AddWithValue("@filetype", agreementReportType);
+            cmd.Parameters.AddWithValue("@DdexSourceFolder", "DdexSourceFolder");
+            cmd.Parameters.AddWithValue("@DdexSourceFolderValue", Path.GetDirectoryName(fullFileName) + "\\");
+            cmd.Parameters.AddWithValue("@licId", licId);
+            cmd.Parameters.AddWithValue("@custId", custId);
+            cmd.Parameters.AddWithValue("@exchRate", exchRate);
+            cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
+            cmd.Parameters.AddWithValue($"@OptionName1", $"DdexFile1");
+            cmd.Parameters.AddWithValue($"@FileName1", Path.GetFileName(fullFileName));
 
-                cmd.CommandText = $@"
+            cmd.CommandText = $@"
                         declare @DdexReportId int;
                         insert into DdexReport (
                               ddexReportingPeriodId
@@ -190,10 +193,40 @@ namespace InvoicingLib
                             values(@DdexReportId, 0, @OptionName1, @FileName1);
                         select @DdexReportId;
                     ";
-                int ddexReportId = (int)cmd.ExecuteScalar();
+            int ddexReportId = (int)cmd.ExecuteScalar();
 
-                DoInsertHead(cmd, agreementReportType, ddexReportId, fullFileName);
+            DoInsertHead(cmd, agreementReportType, ddexReportId, fullFileName);
+        }
+
+        public static void RegisterSingleFileReport(int licId, int custId, string agreementReportType, string fullFileName)
+        {
+            int ddexReportingPeriodId = CreateReportingPeriod(agreementReportType, fullFileName);
+            var fExchRate = GetExchangeRate(licId, custId, agreementReportType, fullFileName);
+            decimal exchRate = fExchRate == null ? 0M : (decimal)fExchRate;
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId);
             }, true);
         }
+
+        public static void RegisterMultiFileReport(int licId, int custId, string agreementReportType, string firstFileFullName)
+        {
+            int ddexReportingPeriodId = CreateReportingPeriod(agreementReportType, firstFileFullName);
+            var fExchRate = GetExchangeRate(licId, custId, agreementReportType, firstFileFullName);
+            decimal exchRate = fExchRate == null ? 0M : (decimal)fExchRate;
+            var serviceNames = GetServiceNames(agreementReportType);
+            var fullFolderName = Path.GetDirectoryName(firstFileFullName);
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                foreach (var serviceName in serviceNames)
+                {
+                    var filter = GetFileNameWildcardForService(agreementReportType, serviceName);
+                    var files = Directory.GetFiles(fullFolderName, filter);
+                    var fullFileName = files[0];
+                    InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId);
+                }
+            }, true);
+        }
+
     }
 }

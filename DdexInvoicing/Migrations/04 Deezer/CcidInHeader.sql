@@ -1,0 +1,6 @@
+alter table CcidInHeader alter column territory varchar(100)
+alter table CcidInHeader alter column royalty_currency varchar(100)
+alter table CcidInHeader alter column original_revenue_basis_currency varchar(100)
+alter table CcidInHeader alter column commercial_model varchar(100)
+alter table CcidInHeader alter column service_description varchar(100)
+alter table CcidInHeader alter column use_type varchar(100)
