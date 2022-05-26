@@ -23,7 +23,7 @@ select
 into #TmpSpotifyMw
 from IdentBacklog t1
 	join IdentMw t2 on t1.mwId = t2.Id
-where ddexReportId = @ddexReportId
+where ddexReportId in (select id from ft_AgreementReportIds(@ddexReportId))
 	  and t2.status <> 2
 
 ; with ObjectRightUnique as (

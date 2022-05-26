@@ -153,6 +153,20 @@ namespace InvoicingLib
                             record.fields = fields;
                             action.ProcessSY_01_01(record);
                         }
+                        else if (recordType.Equals("SY01"))
+                        {
+                            Logger.WriteLine($"Обробка запису {fields[0]}");
+                            var record = new SYRecord_01();
+                            record.fields = fields;
+                            action.ProcessSY_01(record);
+                        }
+                        else if (recordType.Equals("SY02"))
+                        {
+                            Logger.WriteLine($"Обробка запису {fields[0]}");
+                            var record = new SYRecord_02();
+                            record.fields = fields;
+                            action.ProcessSY_02(record);
+                        }
                         else if (recordType.Equals("SY02.02"))
                         {
                             Logger.WriteLine($"Обробка запису {fields[0]}");
@@ -199,6 +213,9 @@ namespace InvoicingLib
                                             break;
                                         case DigitalServiceProviderEnum.SPOTIFY:
                                             block = new DdexReportBlockSpotify(this, action.DoFiltering());
+                                            break;
+                                        case DigitalServiceProviderEnum.DEEZER:
+                                            block = new DdexReportBlockDeezer(this, action.DoFiltering());
                                             break;
                                         default:
                                             throw new Exception("InvoicingLib.DdexReport.ProcessFile - Cannot identify dsp");

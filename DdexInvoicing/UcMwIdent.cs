@@ -115,7 +115,8 @@ namespace DdexInvoicing
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 var dt = new DataTable();
-                string filter = loadSettings.filterType == FilterType.all ? "" : " and status = @status";
+                var filter = DdexReport.GetFilterStringShort(cmd, ddexReportId);
+                string statusFilter = loadSettings.filterType == FilterType.all ? "" : " and status = @status";
                 string order = "Title";
                 switch (loadSettings.orderType)
                 {
@@ -128,10 +129,24 @@ namespace DdexInvoicing
                 string orderDir = loadSettings.orderDir == 0 ? "asc" : "desc";
 
                 cmd.CommandText = $@"
-                    select Id, ResourceTitle, displayartistname, title, composerauthor, ISWC, status, wic, objId, t2.netrevenue 
-                    from IdentMW t1 join IdentReportMwRecords t2 on t2.mwId = t1.id
-                    where t2.ddexReportId = @ddexReportId and t2.PriorityIndex >= @firstRowIndex and t2.PriorityIndex <= @lastRowIndex
-                    {filter}
+                    select 
+                          Id
+                        , ResourceTitle
+                        , displayartistname
+                        , title
+                        , composerauthor
+                        , ISWC
+                        , status
+                        , wic
+                        , objId
+                        , t2.netrevenue 
+                    from IdentMW t1 
+                        join IdentReportMwRecords t2 on t2.mwId = t1.id
+                    where 
+                        t2.ddexReportId {filter}
+                        and t2.PriorityIndex >= @firstRowIndex 
+                        and t2.PriorityIndex <= @lastRowIndex
+                    {statusFilter}
                     order by {order} {orderDir}, Id
                     option(recompile)
                  ";

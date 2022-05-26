@@ -116,9 +116,15 @@ namespace DdexInvoicing
                 }
 
                 var isMonthlyReport = DdexReport.IsMonthlyReport(cmd, licId, custId);
+                var isMultiFile = DdexReport.IsMultiFile(agreementReportType);
 
                 var col = radGridViewReports.MasterTemplate.Columns["quarter"];
-                if(isMonthlyReport)
+
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@licId", licId);
+                cmd.Parameters.AddWithValue("@custId", custId);
+
+                if (isMonthlyReport)
                 {
                     col.FieldName = "month";
                     col.HeaderText = "Місяць";
@@ -141,30 +147,56 @@ namespace DdexInvoicing
                 }
                 else
                 {
-                    col.FieldName = "quarter";
-                    col.HeaderText = "Квартал";
-                    cmd.CommandText = $@"
-                        select t2.ddexReportingPeriodId
-                            , t2.Id ddexReportId
-                            , t4.year
-                            , t4.quarter
-                            , t1.Name licenseeName
-                            , t1.licCodeName licenseDescription
-                            , t3.serviceDescription
-                            , t2.status
-                            , case when t5.groupName is null then t5.name else t5.groupName end as statusName
-                        from vMSCustomerUses t1
-                            join ddexReport t2 on t1.licId = t2.licId	and t1.custId = t2.custId
-                            join ddexrecordhead t3 on t3.DdexReportId = t2.id
-                            join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
-                            join DdexReportStatus t5 on t5.codeI = t2.Status
-                        where t1.licId = @licId and t1.custId = @custId
-                    ";
+                    if(isMultiFile)
+                    {
+                        col.FieldName = "quarter";
+                        col.HeaderText = "Квартал";
+                        cmd.CommandText = $@"
+                            select t2.ddexReportingPeriodId
+                                , t2.Id ddexReportId
+                                , t4.year
+                                , t4.quarter
+                                , t1.Name licenseeName
+                                , t1.licCodeName licenseDescription
+                                , 'Квартальний звіт для всіх сервісів' serviceDescription
+                                , t2.status
+                                , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                            from vMSCustomerUses t1
+                                join ddexReport t2 on t1.licId = t2.licId	and t1.custId = t2.custId
+                                join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                                join DdexReportStatus t5 on t5.codeI = t2.Status
+                                join DdexRecordHead t6 on t2.id = t6.ddexReportId
+                            where
+                                     t1.licId = @licId 
+                                 and t1.custId = @custId
+                                 and t6.ServiceDescription = @ServiceDescription
+                        ";
+                        cmd.Parameters.AddWithValue("@ServiceDescription", DdexReport.GetServiceNames(agreementReportType)[0]);
+                    }
+                    else
+                    {
+                        col.FieldName = "quarter";
+                        col.HeaderText = "Квартал";
+                        cmd.CommandText = $@"
+                            select t2.ddexReportingPeriodId
+                                , t2.Id ddexReportId
+                                , t4.year
+                                , t4.quarter
+                                , t1.Name licenseeName
+                                , t1.licCodeName licenseDescription
+                                , t3.serviceDescription
+                                , t2.status
+                                , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                            from vMSCustomerUses t1
+                                join ddexReport t2 on t1.licId = t2.licId	and t1.custId = t2.custId
+                                join ddexrecordhead t3 on t3.DdexReportId = t2.id
+                                join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                                join DdexReportStatus t5 on t5.codeI = t2.Status
+                            where t1.licId = @licId and t1.custId = @custId
+                        ";
+                    }
                 }
 
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@licId", licId);
-                cmd.Parameters.AddWithValue("@custId", custId);
                 DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -197,6 +229,18 @@ namespace DdexInvoicing
                 return;
             }
 
+            if (DdexReport.IsMultiFile(agreementReportType))
+            {
+                RegisterMultiFileReport(licId, custId, agreementReportType);
+            }
+            else
+            {
+                RegisterSingleFileReport(licId, custId, agreementReportType);
+            }
+        }
+
+        private void RegisterSingleFileReport(int licId, int custId, string agreementReportType)
+        {
             // SELECT VALID REPORT FILE
             var filter = DdexReport.GetFileNameWildcard(agreementReportType);
             OpenFileDialog dlg = new OpenFileDialog();
@@ -207,7 +251,7 @@ namespace DdexInvoicing
 
             // Because user may change filter, check that finally selected file matches wildcard
             var dir = Path.GetDirectoryName(fullFileName);
-            if(!Directory.EnumerateFiles(dir, filter).Any(x => x.Equals(fullFileName, StringComparison.OrdinalIgnoreCase)))
+            if (!Directory.EnumerateFiles(dir, filter).Any(x => x.Equals(fullFileName, StringComparison.OrdinalIgnoreCase)))
             {
                 MessageBox.Show("Файл не відповідає типу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -217,14 +261,14 @@ namespace DdexInvoicing
             var ddexReportingPeriodId = DdexReport.CreateReportingPeriod(agreementReportType, fullFileName);
 
             // CHECK THAT THE REPORT IS NOT REGISTERED YET
-            if(DdexReport.CheckReportExists(agreementReportType, ddexReportingPeriodId))
+            if (DdexReport.CheckSingleFileReportExists(agreementReportType, ddexReportingPeriodId))
             {
                 MessageBox.Show("Вибраний файл вже зарейєстрований в системі", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // CHECK THAT EXHANGE RATE IS SET FOR THE REPORT FILE'S PERIOD
-            if (DdexReport.NeedsExhcnageRate(agreementReportType) && !DdexReport.CheckExchangeRateExists(licId, custId, agreementReportType, fullFileName))
+            if (!CheckExchangeRates(licId, custId, agreementReportType, fullFileName))
             {
                 MessageBox.Show("Не визначений курс обміну, необхідний для обробки звіту. "
                             + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -232,10 +276,7 @@ namespace DdexInvoicing
             }
 
             // CONFIRM PARAMETERS FOR REPORT REGISTRATION
-            var paramsText = DdexReport.GetAgreementParametersText(licId, custId, fullFileName);
-            if (MessageBox.Show("Договір буде зарейєстровано з наступною інформацією для виконаня обчислень.\r\n"
-                + paramsText + "\r\nЗарейеструвати?", "Конфігурація договору",
-               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (!ConfirmParametersForReportRegistration(licId, custId, fullFileName))
             {
                 return;
             }
@@ -243,12 +284,108 @@ namespace DdexInvoicing
             // CREATE REGISTRATION RECORDS IN THE DATABASE
             try
             {
-                DdexReport.RegisterReport(licId, custId, agreementReportType, fullFileName);
+                DdexReport.RegisterSingleFileReport(licId, custId, agreementReportType, fullFileName);
                 FillReports();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void RegisterMultiFileReport(int licId, int custId, string agreementReportType)
+        {
+            var serviceNames = DdexReport.GetServiceNames(agreementReportType);
+
+            // SELECT VALID REPORT FOLDER
+            var dlg = new FolderBrowserDialog();
+            dlg.Description = $"Фолдер файлів звіту від клієнта";
+            if (DialogResult.OK != dlg.ShowDialog())
+                return;
+            string fullFolderName = dlg.SelectedPath;
+
+            // Check that folder contains files for all services
+            var errorText = "";
+            foreach(var serviceName in serviceNames)
+            {
+                var filter = DdexReport.GetFileNameWildcardForService(agreementReportType, serviceName);
+                var files = Directory.GetFiles(fullFolderName, filter);
+                if(files.Length == 0)
+                {
+                    errorText = $"Не знайдено файл для сервісу {serviceName}";
+                    break;
+                }
+                else if (files.Length > 1)
+                {
+                    errorText = $"Знайдено декілька файлів для сервісу {serviceName}";
+                    break;
+                }
+            }
+
+            if(!string.IsNullOrEmpty(errorText))
+            {
+                MessageBox.Show(errorText, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // MAKE SURE REPORTING PERIOD FOR THE REPORT EXISTS BASED ON REPORT FILE
+            var firstFileWildcard = DdexReport.GetFileNameWildcardForService(agreementReportType, serviceNames[0]);
+            var firstFileFullName = Directory.GetFiles(fullFolderName, firstFileWildcard)[0];
+            var ddexReportingPeriodId = DdexReport.CreateReportingPeriod(agreementReportType, firstFileFullName);
+
+            // CHECK THAT THE REPORT IS NOT REGISTERED YET 
+            // CHECK AGAINST THE FIRST FILE IS SUFFICIENT BECAUSE REGISTRATION RECORDS ARE WRITTEN In SINGLE DB TRANSACTIONS
+            if (DdexReport.CheckSingleFileReportExists(agreementReportType, ddexReportingPeriodId))
+            {
+                MessageBox.Show("Вибраний звіт вже зарейєстрований в системі", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CHECK THAT EXHANGE RATE IS SET FOR THE REPORT FILE'S PERIOD
+            if (!CheckExchangeRates(licId, custId, agreementReportType, firstFileFullName))
+            {
+                MessageBox.Show("Не визначений курс обміну, необхідний для обробки звіту. "
+                            + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CONFIRM PARAMETERS FOR REPORT REGISTRATION
+            if(!ConfirmParametersForReportRegistration(licId, custId, firstFileFullName))
+            {
+                return;
+            }
+
+            // CREATE REGISTRATION RECORDS IN THE DATABASE
+            try
+            {
+                DdexReport.RegisterMultiFileReport(licId, custId, agreementReportType, firstFileFullName);
+                FillReports();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private bool ConfirmParametersForReportRegistration(int licId, int custId, string fullFileName)
+        {
+            var paramsText = DdexReport.GetAgreementParametersText(licId, custId, fullFileName);
+            return MessageBox.Show("Договір буде зарейєстровано з наступною інформацією для виконаня обчислень.\r\n"
+                + paramsText + "\r\nЗарейеструвати?", "Конфігурація договору",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        private bool CheckExchangeRates(int licId, int custId, string agreementReportType, string fullFileName)
+        {
+            if (DdexReport.NeedsExhcnageRate(agreementReportType) && !DdexReport.CheckExchangeRateExists(licId, custId, agreementReportType, fullFileName))
+            {
+                MessageBox.Show("Не визначений курс обміну, необхідний для обробки звіту. "
+                            + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 

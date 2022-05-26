@@ -82,16 +82,14 @@ namespace InvoicingLib
                     cmd.Parameters.Add(new SqlParameter("@DdexReportId", report.ddexReportId));
                     Logger.WriteLine("Знаходження останнього обробленого блоку");
                     cmd.CommandText = @"declare @lastBlockId int;
-                            --delete from DdexRecordHead where DdexReportId = @DdexReportId;
                             select @lastBlockId = isnull(max(cast(blockid as int)), 0) from DdexIdentificationBacklog where DdexReportId = @DdexReportId;
                             select @lastBlockId";
                     lastProcessedBlockId = (int)cmd.ExecuteScalar();
 
                     Logger.WriteLine("Видалення раніше створенной інформації");
-                    //SqlHelpers.DeleteRecords(conn, "delete from DdexRecordHead where DdexReportId = @p0", report.ddexReportId);
                     SqlHelpers.DeleteRecords(conn, "delete from DdexRecordSY_04_01 where DdexReportId = @p0", report.ddexReportId);
                     SqlHelpers.DeleteRecords(conn, "delete from DdexRecordSY_05_02 where DdexReportId = @p0", report.ddexReportId);
-                    Logger.WriteLine($"Записи видалено за таблиць DdexRecordHead, DdexRecordSY_04_01, DdexRecordSY_05_02");
+                    Logger.WriteLine($"Записи видалено за таблиць DdexRecordSY_04_01, DdexRecordSY_05_02");
 
                     recordsToCorrect = new HashSet<string>();
                     cmd.CommandText = @"select BlockId, RecordType, RecordIndex from DdexFileErrors where DdexReportId = @DdexReportId";
@@ -129,7 +127,6 @@ namespace InvoicingLib
             }
 
             RegisterBulkUploader("DdexIdentificationBacklog");
-            RegisterBulkUploader("DdexRecordHead");
             RegisterBulkUploader("DdexRecordSY_04_01");
             RegisterBulkUploader("DdexRecordSY_05_02");
 
