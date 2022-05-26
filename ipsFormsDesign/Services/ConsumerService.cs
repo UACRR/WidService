@@ -368,6 +368,14 @@ namespace ipsFormsDesign.Services
         public List<MoneyPeriodLink> SaveLink(int custId, List<MoneyPeriodLink> listLinks)
         {
             List<MoneyPeriodLink> list;
+            // trims redundant objects
+            listLinks.ForEach(item =>
+            {
+                item.Lic = null;
+                item.Period = null;
+                item.Paid.MoneyPeriodLink = null;
+                item.Paid.MoneyPrepayLink = null;
+            });
             var retCode = _webApi.UpdateListItemWithReturn("consumer/Period/Payments/linkperiods", custId.ToString(), listLinks, out list );
             if (retCode)
                 return list;
