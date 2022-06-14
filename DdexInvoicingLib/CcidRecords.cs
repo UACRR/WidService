@@ -43,6 +43,7 @@ namespace InvoicingLib
 
         public string Quarter { get { return start_date == null ? null : $"{start_date.Year}-Q{(start_date.Month + 2)/3}"; } }
         public string Month { get { return start_date == null ? null : start_date.ToString("yyyy-MM"); } }
+        public string Timestamp { get { return start_date == null ? null : start_date.ToString("yyyyMMddhhmmss"); } }
 
         public void InitFromDataReader(SqlDataReader reader)
         {
@@ -97,12 +98,13 @@ namespace InvoicingLib
 
         public string BuildFileName()
         {
-            if(receiver.Equals("Google", StringComparison.OrdinalIgnoreCase))
+            if(receiver.Equals("Google", StringComparison.OrdinalIgnoreCase)) // PostClaim
             {
-                if(service_description.Equals("Usage-AdSupport-Music", StringComparison.OrdinalIgnoreCase)) // Pre-Claim
-                    return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Month}_{service_description}_PRE-CLAIM.dat";
-                else // Post-Claim
-                    return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Quarter}_{service_description}_IN.dat";
+                return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Quarter}_{service_description}_IN.dat";
+            }
+            else if (receiver.Equals("YouTube", StringComparison.OrdinalIgnoreCase)) // PreClaim
+            {
+                return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Month}_{service_description}_PRECLAIM_{Timestamp}.dat";
             }
             else if(receiver.Equals("Spotify", StringComparison.OrdinalIgnoreCase))
             {

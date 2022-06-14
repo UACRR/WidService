@@ -78,7 +78,7 @@ namespace DdexInvoicing
                             , Name, TargetFolder 
                          from CcidInFile
                         union
-                        select 2 tp, fileId, ccidInvoiceId, InstanceIndex, null
+                        select 2 tp, fileId, ccidInvoiceId, InstanceIndex, null ddexReportId
                             , Status fileStatus
                             , Name, TargetFolder 
                        from CcidClFile
@@ -485,8 +485,8 @@ namespace DdexInvoicing
                 MessageBox.Show("Не визначені обмеження на виставлення рахунку", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-            //CalcMarketShare();
+       
+            CalcMarketShare();
 
             Helpers.RunSqlOperationDdexT(cmd =>
             {

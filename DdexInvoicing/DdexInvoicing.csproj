@@ -356,6 +356,7 @@
     <Content Include="Migrations\04 Deezer\pTsk10_DDEXIdentMWAuthor.sql" />
     <Content Include="Migrations\04 Deezer\pTsk10_DDEXExceptionStatus.sql" />
     <Content Include="Migrations\04 Deezer\pTsk10_DDEXFormRate.sql" />
+    <Content Include="Migrations\04 Deezer\spCreateInitialInvoiceSrmf.sql" />
     <Content Include="Migrations\04 Deezer\spUpdateIdentProgress.sql" />
     <Content Include="Migrations\04 Deezer\ft_AgreementReportIds.sql" />
     <Content Include="Migrations\04 Deezer\DdexEnumContentCategory.sql" />
