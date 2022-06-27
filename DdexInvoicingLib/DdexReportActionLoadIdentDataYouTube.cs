@@ -137,7 +137,7 @@ namespace InvoicingLib
             return lastProcessedBlockId;
         }
 
-        private void InsertRecord(ASRecord_01_01 asRecord, MWRecord mwRecord, SURecord_03_02 suRecord)
+        private void InsertRecord(ASRecord_01_01 asRecord, MWRecord_01_01 mwRecord, SURecord_03_02 suRecord)
         {
             if (!isSWOD && royaltyThreshold > 0 && Formatter.ToDouble(suRecord.NetRevenue) == 0)
                 return;

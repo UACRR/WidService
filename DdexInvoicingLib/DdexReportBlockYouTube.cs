@@ -12,9 +12,9 @@ namespace InvoicingLib
 {
     public class DdexReportBlockYouTube: DdexReportBlock
     {
-        public ASRecord_01_01 asRecord = new ASRecord_01_01();
-        public MWRecord canonicalMwRecord = new MWRecord();
-        public List<RURecord> ruRecords = new List<RURecord>();
+        public ASRecord_01_01 asRecord = null;
+        public MWRecord_01_01 canonicalMwRecord = null;
+        public List<RURecord_01_01> ruRecords = new List<RURecord_01_01>();
         public List<SURecord_03_02> suRecords = new List<SURecord_03_02>();
 
         public DdexReportBlockYouTube(DdexReport report, bool doFiltering) : base(report, doFiltering) { }
@@ -35,18 +35,24 @@ namespace InvoicingLib
             var nextLine = firstLine;
 
             SURecord_03_02 curSuRecord = null;
-            LIRecord curLiRecord = null;
+            LIRecord_01_02 curLiRecord = null;
             bool isFirstMwRecord = true;
             while ((!streamReader.EndOfStream && !fields[0].Equals("FOOT") && fields[1].Equals(blockId)))
             {
                 string recordType = fields[0];
                 if (recordType.Equals("AS01.01"))
                 {
+                    asRecord = new ASRecord_01_01();
+                    asRecord.fields = fields;
+                }
+                else if (recordType.Equals("AS01.02"))
+                {
+                    asRecord = new ASRecord_01_02();
                     asRecord.fields = fields;
                 }
                 else if (recordType.Equals("MW01.01"))
                 {
-                    MWRecord mwRecord = new MWRecord();
+                    MWRecord_01_01 mwRecord = new MWRecord_01_01();
                     mwRecord.fields = fields;
                     if (isFirstMwRecord)
                     {
@@ -56,9 +62,27 @@ namespace InvoicingLib
                     else if(curLiRecord != null)
                         curLiRecord.mwRecord = mwRecord;
                 }
+                else if (recordType.Equals("MW01.02"))
+                {
+                    MWRecord_01_02 mwRecord = new MWRecord_01_02();
+                    mwRecord.fields = fields;
+                    if (isFirstMwRecord)
+                    {
+                        canonicalMwRecord = mwRecord;
+                        isFirstMwRecord = false;
+                    }
+                    else if (curLiRecord != null)
+                        curLiRecord.mwRecord = mwRecord;
+                }
                 else if (recordType.Equals("RU01.01"))
                 {
-                    RURecord record = new RURecord();
+                    RURecord_01_01 record = new RURecord_01_01();
+                    record.fields = fields;
+                    ruRecords.Add(record);
+                }
+                else if (recordType.Equals("RU01.02"))
+                {
+                    RURecord_01_01 record = new RURecord_01_02();
                     record.fields = fields;
                     ruRecords.Add(record);
                 }
@@ -75,13 +99,28 @@ namespace InvoicingLib
                 {
                     if (curSuRecord != null)
                     {
-                        curLiRecord = new LIRecord();
+                        curLiRecord = new LIRecord_01_02();
                         curLiRecord.fields = fields;
                         if (doFiltering && !curLiRecord.RightsController.Equals("Residual", StringComparison.OrdinalIgnoreCase))
                             curLiRecord = null;
                         else
                             curSuRecord.liRecords.Add(curLiRecord);
                     }
+                }
+                else if (recordType.Equals("LI01.03"))
+                {
+                    if (curSuRecord != null)
+                    {
+                        curLiRecord = new LIRecord_01_03();
+                        curLiRecord.fields = fields;
+                        if (doFiltering && !curLiRecord.RightsController.Equals("Residual", StringComparison.OrdinalIgnoreCase))
+                            curLiRecord = null;
+                        else
+                            curSuRecord.liRecords.Add(curLiRecord);
+                    }
+                }
+                else if (recordType.Equals("LC01") || recordType.Equals("ST01"))
+                {
                 }
 
                 nextLine = streamReader.ReadLine();

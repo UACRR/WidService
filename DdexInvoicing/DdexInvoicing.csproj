@@ -361,6 +361,8 @@
     <Content Include="Migrations\04 Deezer\ft_AgreementReportIds.sql" />
     <Content Include="Migrations\04 Deezer\DdexEnumContentCategory.sql" />
     <Content Include="Migrations\04 Deezer\spIdentByNameAndPerformer.sql" />
+    <Content Include="Migrations\05 GoogleNewSpecs\DdexRecordSY_05_02.sql" />
+    <Content Include="Migrations\05 GoogleNewSpecs\DdexRecordHead.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

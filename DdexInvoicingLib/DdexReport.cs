@@ -167,14 +167,14 @@ namespace InvoicingLib
                             record.fields = fields;
                             action.ProcessSY_02(record);
                         }
-                        else if (recordType.Equals("SY02.02"))
+                        else if (recordType.Equals("SY02.02") || recordType.Equals("SY02.03"))
                         {
                             Logger.WriteLine($"Обробка запису {fields[0]}");
                             var record = new SYRecord_02_02();
                             record.fields = fields;
                             action.ProcessSY_02_02(record);
                         }
-                        else if (recordType.Equals("SY04.01"))
+                        else if (recordType.Equals("SY04.01") || recordType.Equals("SY04.02"))
                         {
                             Logger.WriteLine($"Обробка запису {fields[0]}");
                             var record = new SYRecord_04_01();
@@ -188,13 +188,20 @@ namespace InvoicingLib
                             record.fields = fields;
                             action.ProcessSY_05_02(record);
                         }
+                        else if (recordType.Equals("SY05.03"))
+                        {
+                            Logger.WriteLine($"Обробка запису {fields[0]}");
+                            var record = new SYRecord_05_03();
+                            record.fields = fields;
+                            action.ProcessSY_05_02(record);
+                        }
                         else if (recordType.Equals("AP02"))
                         {
                             var record = new APRecord();
                             record.fields = fields;
                             action.ProcessAP(record);
                         }
-                        else if (recordType.Equals("SY09"))
+                        else if (recordType.Equals("SY09") || recordType.Equals("SY09.01"))
                         {
                             // do nothing
                         }

@@ -1,0 +1,1 @@
+alter table DdexRecordSY_05_02 add ParentSummaryRecordId nvarchar(100) null

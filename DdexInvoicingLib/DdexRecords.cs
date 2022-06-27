@@ -377,6 +377,10 @@ namespace InvoicingLib
         public override int GetFieldCount() { return 22; }
     }
 
+    public class SYRecord_02_03 : SYRecord_02_02
+    {
+    }
+
     public class SYRecord_04_01 : DdexRecordBase
     {
         public enum FieldIds
@@ -452,6 +456,11 @@ namespace InvoicingLib
             }
         }
 
+        public override int GetFieldCount() { return 19; }
+    }
+
+    public class SYRecord_04_02 : SYRecord_04_01
+    {
         public override int GetFieldCount() { return 19; }
     }
 
@@ -542,6 +551,11 @@ namespace InvoicingLib
         public override int GetFieldCount() { return 24; }
     }
 
+    public class SYRecord_05_03 : SYRecord_05_02
+    {
+        public override int GetFieldCount() { return 25; }
+    }
+
     public class RERecord_01 : DdexRecordBase
     {
         public enum FieldIds
@@ -611,6 +625,11 @@ namespace InvoicingLib
 
         public override int GetFieldCount() { return 12; }
         public override bool IsBlockRecord() { return true; }
+    }
+
+    public class ASRecord_01_02 : ASRecord_01_01
+    {
+        public override int GetFieldCount() { return 14; }
     }
 
     public class ASRecord_02 : DdexRecordBase
@@ -715,7 +734,7 @@ namespace InvoicingLib
         public override bool IsBlockRecord() { return true; }
     }
 
-    public class RURecord : DdexRecordBase
+    public class RURecord_01_01 : DdexRecordBase
     {
         public enum FieldIds
         {
@@ -734,6 +753,11 @@ namespace InvoicingLib
 
         public override int GetFieldCount() { return 6; }
         public override bool IsBlockRecord() { return true; }
+    }
+
+    public class RURecord_01_02 : RURecord_01_01
+    {
+        public override int GetFieldCount() { return 7; }
     }
 
     public class SURecord_02 : DdexRecordBase
@@ -812,7 +836,7 @@ namespace InvoicingLib
         public string IsRoyaltyBearing { get { return fields[(int)FieldIds.IsRoyaltyBearing]; } set { fields[(int)FieldIds.IsRoyaltyBearing] = value; } }
 
         // owned records
-        public List<LIRecord> liRecords = new List<LIRecord>();
+        public List<LIRecord_01_02> liRecords = new List<LIRecord_01_02>();
 
         public decimal GetNetRevenue() => (decimal)ConvertField((int)FieldIds.NetRevenue);
 
@@ -842,7 +866,7 @@ namespace InvoicingLib
         public override bool IsBlockRecord() { return true; }
     }
 
-    public class LIRecord : DdexRecordBase
+    public class LIRecord_01_02 : DdexRecordBase
     {
         public enum FieldIds
         {
@@ -870,12 +894,18 @@ namespace InvoicingLib
         public string AllocatedUsages { get { return fields[(int)FieldIds.AllocatedUsages]; } set { fields[(int)FieldIds.AllocatedUsages] = value; } }
 
         // owned record
-        public MWRecord mwRecord;
+        public MWRecord_01_01 mwRecord;
 
         public override int GetFieldCount() { return 11; }
         public override bool IsBlockRecord() { return true; }
     }
-    public class MWRecord : DdexRecordBase
+
+    public class LIRecord_01_03 : LIRecord_01_02
+    {
+        public override int GetFieldCount() { return 13; }
+    }
+
+    public class MWRecord_01_01 : DdexRecordBase
     {
         public enum FieldIds
         {
@@ -894,15 +924,6 @@ namespace InvoicingLib
             , WorkContributorPartyId
             , DataProvider
             , ProprietaryWorkId
-            , SummaryRecordId
-            , RightsController
-            , RightsControllerPartyId
-            , RightsControllerWorkID
-            , RightSharePercent
-            , RightType
-            , AllocatedNetRevenue
-            , AllocatedAmount
-            , AllocatedUsages
         }
 
         public string BlockId { get { return fields[(int)FieldIds.BlockId]; } set { fields[(int)FieldIds.BlockId] = value; } }
@@ -920,35 +941,13 @@ namespace InvoicingLib
         public string WorkContributorPartyId { get { return fields[(int)FieldIds.WorkContributorPartyId]; } set { fields[(int)FieldIds.WorkContributorPartyId] = value; } }
         public string DataProvider { get { return fields[(int)FieldIds.DataProvider]; } set { fields[(int)FieldIds.DataProvider] = value; } }
         public string ProprietaryWorkId { get { return fields[(int)FieldIds.ProprietaryWorkId]; } set { fields[(int)FieldIds.ProprietaryWorkId] = value; } }
-        public string SummaryRecordId { get { return fields[(int)FieldIds.SummaryRecordId]; } set { fields[(int)FieldIds.SummaryRecordId] = value; } }
-        public string RightsController { get { return fields[(int)FieldIds.RightsController]; } set { fields[(int)FieldIds.RightsController] = value; } }
-        public string RightsControllerPartyId { get { return fields[(int)FieldIds.RightsControllerPartyId]; } set { fields[(int)FieldIds.RightsControllerPartyId] = value; } }
-        public string RightsControllerWorkID { get { return fields[(int)FieldIds.RightsControllerWorkID]; } set { fields[(int)FieldIds.RightsControllerWorkID] = value; } }
-        public string RightSharePercent { get { return fields[(int)FieldIds.RightSharePercent]; } set { fields[(int)FieldIds.RightSharePercent] = value; } }
-        public string RightType { get { return fields[(int)FieldIds.RightType]; } set { fields[(int)FieldIds.RightType] = value; } }
-
-        public override object ConvertField(int fieldIndex)
-        {
-            try
-            {
-                switch (fieldIndex)
-                {
-                    case (int)FieldIds.RightSharePercent:
-                    case (int)FieldIds.AllocatedNetRevenue:
-                    case (int)FieldIds.AllocatedAmount:
-                    case (int)FieldIds.AllocatedUsages:
-                        return string.IsNullOrEmpty(fields[fieldIndex].Trim()) ? 0 : Formatter.ToDecimal(fields[fieldIndex]);
-                    default:
-                        return fields[fieldIndex];
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         public override int GetFieldCount() { return 16; }
         public override bool IsBlockRecord() { return true; }
+    }
+
+    public class MWRecord_01_02 : MWRecord_01_01
+    {
+        public override int GetFieldCount() { return 19; }
     }
 
     public class APRecord : DdexRecordBase
