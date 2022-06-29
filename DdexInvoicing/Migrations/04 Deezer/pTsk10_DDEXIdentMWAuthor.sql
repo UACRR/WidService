@@ -1,9 +1,9 @@
 ALTER PROCEDURE [dbo].[pTsk10_DDEXIdentMWAuthor] @DdexReportId integer, @isNetRevenue integer = NULL
 as
---Процедура формирования IdentMWAuthor - табл.правообладателей и их процентов владения 
+--С•СЂРѕС†РµРґСѓСЂР° С„РѕСЂРјРёСЂРѕРІР°РЅРёВ¤ IdentMWAuthor - С‚Р°Р±Р».РїСЂР°РІРѕРѕР±Р»Р°РґР°С‚РµР»РµР№ Рё РёС… РїСЂРѕС†РµРЅС‚РѕРІ РІР»Р°РґРµРЅРёВ¤ 
 --@DdexReportId = ddexreportid
---@isNetRevenue = NULL, 0  - нули не беру, 1 - беру все
---2020-07-15 - CopyRight отбираю только действующие в периоде отчета
+--@isNetRevenue = NULL, 0  - РЅСѓР»Рё РЅРµ Р±РµСЂСѓ, 1 - Р±РµСЂСѓ РІСЃРµ
+--2020-07-15 - CopyRight РѕС‚Р±РёСЂР°СЋ С‚РѕР»СЊРєРѕ РґРµР№СЃС‚РІСѓСЋС‰РёРµ РІ РїРµСЂРёРѕРґРµ РѕС‚С‡РµС‚Р°
 
 begin
 SET NOCOUNT ON;
@@ -73,13 +73,13 @@ create table #TmpAuthorMS
    primary key (id) 
    )
 
---Отбираю проидентифицированные записи 
+--СњС‚Р±РёСЂР°СЋ РїСЂРѕРёРґРµРЅС‚РёС„РёС†РёСЂРѕРІР°РЅРЅС‹Рµ Р·Р°РїРёСЃРё 
 delete #TmpObj  
 --delete IdentMWAuthor
 
-RAISERROR ('Отбор!', 0, 1) WITH NOWAIT 
+RAISERROR ('СњС‚Р±РѕСЂ!', 0, 1) WITH NOWAIT 
 
---Определяю даты периода, чтобы права брать только за этот период (хоть одна дата периода пересекается с правами)
+--СњРїСЂРµРґРµР»В¤СЋ РґР°С‚С‹ РїРµСЂРёРѕРґР°, С‡С‚РѕР±С‹ РїСЂР°РІР° Р±СЂР°С‚СЊ С‚РѕР»СЊРєРѕ Р·Р° СЌС‚РѕС‚ РїРµСЂРёРѕРґ (С…РѕС‚СЊ РѕРґРЅР° РґР°С‚Р° РїРµСЂРёРѕРґР° РїРµСЂРµСЃРµРєР°РµС‚СЃВ¤ СЃ РїСЂР°РІР°РјРё)
 --declare @ddexReportId integer = 12
 declare @ddexReportingPeriodId integer
 	, @periodDateBegin date
@@ -138,9 +138,9 @@ insert into #TmpObj
 END 
 
 
-RAISERROR ('Авторы WID вносим!', 0, 1) WITH NOWAIT 
+RAISERROR ('СРІС‚РѕСЂС‹ WID РІРЅРѕСЃРёРј!', 0, 1) WITH NOWAIT 
 delete #TmpAuthor
---Авторы с процентами по WID
+--СРІС‚РѕСЂС‹ СЃ РїСЂРѕС†РµРЅС‚Р°РјРё РїРѕ WID
 insert into  #TmpAuthor 
    (DdexReportId,  BlockId, SalesTransactionId, 
     tmpObjId, mwId, WIC, objId, 
@@ -160,24 +160,24 @@ insert into  #TmpAuthor
 		 and isnull(ratePER,0)+isnull(rateMEC,0) <> 0
 
 
---Международный код ОКУ-ТОВАРИСТВА
+--С›РµР¶РґСѓРЅР°СЂРѕРґРЅС‹Р№ РєРѕРґ СњВ вЂќ-вЂњСњВ¬СвЂ“В»вЂ”вЂњВ¬С
 --/*
-RAISERROR ('CmCodePER проставляем!', 0, 1) WITH NOWAIT 
+RAISERROR ('CmCodePER РїСЂРѕСЃС‚Р°РІР»В¤РµРј!', 0, 1) WITH NOWAIT 
 update #TmpAuthor set CmCodePER = t2.SOC_CDE, rateCmPER = convert(decimal(5,2),t2.MBR_SHARE/100)
   from #TmpAuthor t1 
        join WID_IPI..wCmAuthor t2 on t1.IP_BASE_NR = t2.IP_BASE_NR and t2.RGT_CDE = 'PR'
   where t1.WIC is not NULL
 
 
-RAISERROR ('CmCodeMEC проставляем!', 0, 1) WITH NOWAIT 
+RAISERROR ('CmCodeMEC РїСЂРѕСЃС‚Р°РІР»В¤РµРј!', 0, 1) WITH NOWAIT 
 update #TmpAuthor set CmCodeMEC = t3.SOC_CDE, rateCmMEC = convert(decimal(5,2),t3.MBR_SHARE/100)   
   from #TmpAuthor t1 
 	   join WID_IPI..wCmAuthor t3 on t1.IP_BASE_NR = t3.IP_BASE_NR and t3.RGT_CDE = 'MR'
    where t1.WIC is not NULL
 --5.26
 --*/
-/* --закомментировала, т.к. выше скрипт работает быстрее
-RAISERROR ('Авторы из MS - CmCode!', 0, 1) WITH NOWAIT 
+/* --Р·Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°Р»Р°, С‚.Рє. РІС‹С€Рµ СЃРєСЂРёРїС‚ СЂР°Р±РѕС‚Р°РµС‚ Р±С‹СЃС‚СЂРµРµ
+RAISERROR ('СРІС‚РѕСЂС‹ РёР· MS - CmCode!', 0, 1) WITH NOWAIT 
 update #TmpAuthor set CmCodePER = t2.SOC_CDE_PER
                      ,cmCodeMEC = t2.SOC_CDE_MEC
                      ,rateCmPER = convert(decimal(5,2),t2.MBR_SHARE_PER/100)
@@ -188,9 +188,9 @@ update #TmpAuthor set CmCodePER = t2.SOC_CDE_PER
 --7.40
 */
 
-RAISERROR ('Авторы из MS!', 0, 1) WITH NOWAIT 
---Авторы с процентами по MS
---2020-07-15 -- проверка прав в периоде
+RAISERROR ('СРІС‚РѕСЂС‹ РёР· MS!', 0, 1) WITH NOWAIT 
+--СРІС‚РѕСЂС‹ СЃ РїСЂРѕС†РµРЅС‚Р°РјРё РїРѕ MS
+--2020-07-15 -- РїСЂРѕРІРµСЂРєР° РїСЂР°РІ РІ РїРµСЂРёРѕРґРµ
 create table  #TmpCRightId
 (cRightId integer not null primary key, 
  objid integer, 
@@ -201,7 +201,7 @@ delete #TmpCRightId
 
  
 
-/*--2020-07-15 до
+/*--2020-07-15 РґРѕ
 insert into  #TmpAuthorMS
    (DdexReportId,  BlockId, SalesTransactionId, 
     tmpObjId, mwId, WIC, objId, 
@@ -218,24 +218,24 @@ insert into  #TmpAuthorMS
     MEDIASERVICE..copyright t2 
 	join MEDIASERVICE..RightHolder t3 on t2.custId = t3.custId 
      where t1.objId = t2.objID 
-	     --and t2.endDate >= t1.ValidityPeriodEnd  --так было до 2020-07-15
+	     --and t2.endDate >= t1.ValidityPeriodEnd  --С‚Р°Рє Р±С‹Р»Рѕ РґРѕ 2020-07-15
          and isnull(t1.objId, 0) > 0 
 		 and isnull(t2.rate,0)+isnull(t2.rateMECH,0) <> 0
-		 and --2020-07-15 -- проверка прав в периоде
+		 and --2020-07-15 -- РїСЂРѕРІРµСЂРєР° РїСЂР°РІ РІ РїРµСЂРёРѕРґРµ
 		 ( @periodDateBegin between t2.beginDate and t2.endDate
 		    or  @periodDateEnd between t2.beginDate and t2.endDate )
 */
 
---Из-за того, что может попасть закрытие и открытие прав в один период делаю через промежуточную таблицу
---Отбираю все, которые попадают по дате. В pTsk10_DDEXExceptionStatus отсеку, если комьюнити или договор не попадают
+--В»Р·-Р·Р° С‚РѕРіРѕ, С‡С‚Рѕ РјРѕР¶РµС‚ РїРѕРїР°СЃС‚СЊ Р·Р°РєСЂС‹С‚РёРµ Рё РѕС‚РєСЂС‹С‚РёРµ РїСЂР°РІ РІ РѕРґРёРЅ РїРµСЂРёРѕРґ РґРµР»Р°СЋ С‡РµСЂРµР· РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅСѓСЋ С‚Р°Р±Р»РёС†Сѓ
+--СњС‚Р±РёСЂР°СЋ РІСЃРµ, РєРѕС‚РѕСЂС‹Рµ РїРѕРїР°РґР°СЋС‚ РїРѕ РґР°С‚Рµ. В¬ pTsk10_DDEXExceptionStatus РѕС‚СЃРµРєСѓ, РµСЃР»Рё РєРѕРјСЊСЋРЅРёС‚Рё РёР»Рё РґРѕРіРѕРІРѕСЂ РЅРµ РїРѕРїР°РґР°СЋС‚
 insert into #TmpCRightId (crightId, objid, custId, roleCode) 
 select max(t2.cRightId), t2.objId, t2.custId, t2.roleCode
     from #TmpObj t1  
       join MEDIASERVICE..copyright t2 on t1.objid = t2.objId 
-    where --and t2.endDate >= t1.ValidityPeriodEnd  --так было до 2020-07-15
+    where --and t2.endDate >= t1.ValidityPeriodEnd  --С‚Р°Рє Р±С‹Р»Рѕ РґРѕ 2020-07-15
           isnull(t1.objId, 0) > 0 
 		  and isnull(t2.rate,0)+isnull(t2.rateMECH,0) <> 0 
-		  and --2020-07-15 -- проверка прав в периоде
+		  and --2020-07-15 -- РїСЂРѕРІРµСЂРєР° РїСЂР°РІ РІ РїРµСЂРёРѕРґРµ
          ( @periodDateBegin between t2.beginDate and t2.endDate
 		    or  @periodDateEnd between t2.beginDate and t2.endDate
 			or  t2.beginDate between @periodDateBegin and @periodDateEnd
@@ -260,7 +260,7 @@ insert into  #TmpAuthorMS
 	join #TmpCRightId t7 on t2.cRightId = t7.cRightId
 	join MEDIASERVICE..RightHolder t3 on t2.custId = t3.custId 
 
-RAISERROR ('Авторы из MS - CmCodePER!', 0, 1) WITH NOWAIT
+RAISERROR ('СРІС‚РѕСЂС‹ РёР· MS - CmCodePER!', 0, 1) WITH NOWAIT
 
 drop table if exists #CustCmGroup
 
@@ -273,7 +273,7 @@ update #TmpAuthorMS set CmCodePER = t2.interCode
        join #CustCmGroup t2 on t1.custId = t2.custId and crGroupCode = 1 
   where t1.objId is not NULL
 
-RAISERROR ('Авторы из MS - cmCodeMEC!', 0, 1) WITH NOWAIT 
+RAISERROR ('СРІС‚РѕСЂС‹ РёР· MS - cmCodeMEC!', 0, 1) WITH NOWAIT 
 update #TmpAuthorMS set cmCodeMEC = t2.interCOde
   from #TmpAuthorMS t1 
        join #CustCmGroup t2 on t1.custId = t2.custId and crGroupCode = 2
@@ -313,7 +313,7 @@ insert into IdentMWAuthor
 
  set @cntMS = @@ROWCOUNT
 
- PRINT 'Зовнішня база - '+convert(char(10),@cntWID)+'   Своя база - '+convert(char(10),@cntMS)
+ PRINT 'В«РѕРІРЅв‰ҐС€РЅВ¤ Р±Р°Р·Р° - '+convert(char(10),@cntWID)+'   вЂ”РІРѕВ¤ Р±Р°Р·Р° - '+convert(char(10),@cntMS)
 
   return @Retcode
 END

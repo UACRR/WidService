@@ -9,7 +9,7 @@ declare @perfSplit float = (select cast(perfSplit as float) * 0.01 from DdexRepo
 
 if @musicRate is null or @mechSplit is null or @perfSplit is null
 begin
-	raiserror('Відсутня інформація із договору, необхідна для розрахунків', 0, 0);
+	raiserror('Р’С–РґСЃСѓС‚РЅСЏ С–РЅС„РѕСЂРјР°С†С–СЏ С–Р· РґРѕРіРѕРІРѕСЂСѓ, РЅРµРѕР±С…С–РґРЅР° РґР»СЏ СЂРѕР·СЂР°С…СѓРЅРєС–РІ', 0, 0);
 	return;
 end
 
@@ -288,7 +288,7 @@ where t5.ccidInvoiceId = @invoiceId
 	and (t1.IncludedInCcid is null or t1.IncludedInCcid = @invoiceId)
 	and (t2.[Status] = 1 or t2.[Status] = 2)
 
--- вставляем trailer
+-- РІСЃС‚Р°РІР»СЏРµРј trailer
 
 insert into CcidInTrailer(
 		  fileId
