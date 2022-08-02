@@ -1,7 +1,7 @@
 ALTER PROCEDURE [dbo].[pTsk10_DDEXExceptionStatus] @DdexReportId integer, @setId integer 
 as
---Процедура установки статуса исключения. 1-Ок, 2-исключен
---@fileId = ddexreportid, @setId - ид. набора исключений
+--РџСЂРѕС†РµРґСѓСЂР° СѓСЃС‚Р°РЅРѕРІРєРё СЃС‚Р°С‚СѓСЃР° РёСЃРєР»СЋС‡РµРЅРёСЏ. 1-РћРє, 2-РёСЃРєР»СЋС‡РµРЅ
+--@fileId = ddexreportid, @setId - РёРґ. РЅР°Р±РѕСЂР° РёСЃРєР»СЋС‡РµРЅРёР№
 
 begin
 SET NOCOUNT ON;
@@ -28,7 +28,7 @@ declare @RetCode integer = 0
 create index i_1 on #TmpAuthor(IP_Base_NR)
 create index i_2 on #TmpAuthor(IPInr)
 
---Отбираю идентификаторы для работы
+--РћС‚Р±РёСЂР°СЋ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂС‹ РґР»СЏ СЂР°Р±РѕС‚С‹
  insert into #TmpAuthor  (id, mwId, IP_Base_Nr, IPInr, cmCodePer, cmCodeMec, roleCode, excStatusPER, excStatusMEC, ratePer, rateMec, custId) 
  select id, mwId, IP_Base_Nr, IPInr, cmCodePer, cmCodeMec, roleCode, 
          (CASE WHEN cmCodePER is NULL then 2 else 1 end), 
@@ -37,10 +37,10 @@ create index i_2 on #TmpAuthor(IPInr)
    where DdexReportId  in (select id from ft_AgreementReportIds(@DdexReportId))
      and isnull(excStatusPER,0) = 0
  
- --Исключаются сложно
+ --РСЃРєР»СЋС‡Р°СЋС‚СЃСЏ СЃР»РѕР¶РЅРѕ
   --update #TmpAuthor set excId = NULL
---3-если есть E с алг3-> др авторы обслуживаются в ОКУ из ADD или ОКУ не визначено -> Е исключается
---Исключаю ПУБЛИЧКА и МЕХАНИКА отдельно
+--3-РµСЃР»Рё РµСЃС‚СЊ E СЃ Р°Р»Рі3-> РґСЂ Р°РІС‚РѕСЂС‹ РѕР±СЃР»СѓР¶РёРІР°СЋС‚СЃСЏ РІ РћРљРЈ РёР· ADD РёР»Рё РћРљРЈ РЅРµ РІРёР·РЅР°С‡РµРЅРѕ -> Р• РёСЃРєР»СЋС‡Р°РµС‚СЃСЏ
+--РСЃРєР»СЋС‡Р°СЋ РџРЈР‘Р›РР§РљРђ Рё РњР•РҐРђРќРРљРђ РѕС‚РґРµР»СЊРЅРѕ
 --  Update #TmpAuthor set  excId = NULL
  Update #TmpAuthor set  excIdPER = t2.id, excStatusPER = 2
     from #TmpAuthor t1 
@@ -63,7 +63,7 @@ Update #TmpAuthor set  excIdMEC = t2.id, excStatusMEC = 2
 			   join ExceptionAdd t3 on  t3.excId = t2.id and t3.interCode = isnull(t1.cmCodeMEC, t3.interCode)
 			  where t1.mwId = t5.mwId and t5.IP_BASE_NR <> t1.IP_BASE_NR and isnull(t5.rateMec,0)<>0 ) 
 
---Исключаются Общества ПУБЛИЧКА и МЕХАНИКА
+--РСЃРєР»СЋС‡Р°СЋС‚СЃСЏ РћР±С‰РµСЃС‚РІР° РџРЈР‘Р›РР§РљРђ Рё РњР•РҐРђРќРРљРђ
   Update #TmpAuthor set  excIdPER = t2.id, excStatusPER = 2
     from #TmpAuthor t1 
       join  ExceptionMember t2 on t2.interCode = t1.CmCodePER  and t2.excType = 1 
@@ -76,21 +76,21 @@ Update #TmpAuthor set  excIdMEC = t2.id, excStatusMEC = 2
   where isnull(t1.excIdMEC,0) = 0
         and t2.setCode = @setId
 
---Исключаются Правообладатели ПУБЛИЧКА и МЕХАНИКА
+--РСЃРєР»СЋС‡Р°СЋС‚СЃСЏ РџСЂР°РІРѕРѕР±Р»Р°РґР°С‚РµР»Рё РџРЈР‘Р›РР§РљРђ Рё РњР•РҐРђРќРРљРђ
   Update #TmpAuthor set  excIdPER = t2.id, excStatusPER = 2, excIdMEC = t2.id, excStatusMEC = 2
     from #TmpAuthor t1 
       join  ExceptionMember t2 on t1.IPInr = t2.IPInr  and excType = 2 
     where isnull(t1.excIdPER,0) = 0
           and t2.setCode = @setId
 
---Исключаются Правообладатели с custId <> 0, если нет активного договора
+--РСЃРєР»СЋС‡Р°СЋС‚СЃСЏ РџСЂР°РІРѕРѕР±Р»Р°РґР°С‚РµР»Рё СЃ custId <> 0, РµСЃР»Рё РЅРµС‚ Р°РєС‚РёРІРЅРѕРіРѕ РґРѕРіРѕРІРѕСЂР°
   Update #TmpAuthor set  includPER = 0, includMEC = 0
     from #TmpAuthor t1 
       join vMSCustomerRHolder t2 on t1.custId = t2.custId  and t2.agrStatus <> 2 
     where t1.custId is not NULL 
 
----Исключения по договорам 
---Если не отмечено право Механика или Публичка - исключаю через коеффициент includPER
+---РСЃРєР»СЋС‡РµРЅРёСЏ РїРѕ РґРѕРіРѕРІРѕСЂР°Рј 
+--Р•СЃР»Рё РЅРµ РѕС‚РјРµС‡РµРЅРѕ РїСЂР°РІРѕ РњРµС…Р°РЅРёРєР° РёР»Рё РџСѓР±Р»РёС‡РєР° - РёСЃРєР»СЋС‡Р°СЋ С‡РµСЂРµР· РєРѕРµС„С„РёС†РёРµРЅС‚ includPER
 /* 2020-07-16
 update #TmpAuthor 
      set includPER = (CASE When t1.excStatusPER = 1 and isnull(t2.isPER,0) = 1 THEN 1 ELSE 0 END), 
@@ -100,9 +100,9 @@ update #TmpAuthor
    left join vMSCommunity t3 on t1.cmCodeMEC = t3.interCode 
 */
 --2020-07-16
---Исключения по договорам Community
---Если даты по мех/перф попадают в период - беру, если нет - не беру, includPER = 1/0 или inclusMec = 1/0
---Определяю даты периода, чтобы права брать только за этот период (хоть одна дата периода пересекается с правами)
+--РСЃРєР»СЋС‡РµРЅРёСЏ РїРѕ РґРѕРіРѕРІРѕСЂР°Рј Community
+--Р•СЃР»Рё РґР°С‚С‹ РїРѕ РјРµС…/РїРµСЂС„ РїРѕРїР°РґР°СЋС‚ РІ РїРµСЂРёРѕРґ - Р±РµСЂСѓ, РµСЃР»Рё РЅРµС‚ - РЅРµ Р±РµСЂСѓ, includPER = 1/0 РёР»Рё inclusMec = 1/0
+--РћРїСЂРµРґРµР»СЏСЋ РґР°С‚С‹ РїРµСЂРёРѕРґР°, С‡С‚РѕР±С‹ РїСЂР°РІР° Р±СЂР°С‚СЊ С‚РѕР»СЊРєРѕ Р·Р° СЌС‚РѕС‚ РїРµСЂРёРѕРґ (С…РѕС‚СЊ РѕРґРЅР° РґР°С‚Р° РїРµСЂРёРѕРґР° РїРµСЂРµСЃРµРєР°РµС‚СЃСЏ СЃ РїСЂР°РІР°РјРё)
 declare @ddexReportingPeriodId integer
 	, @periodDateBegin date
 	, @periodDateEnd date
@@ -130,7 +130,7 @@ begin
 	select @periodDateEnd = eomonth(@periodDateBegin)
 end
 
---Только для проверенніх (excStatusMEC = 1 - проверен)
+--РўРѕР»СЊРєРѕ РґР»СЏ РїСЂРѕРІРµСЂРµРЅРЅС–С… (excStatusMEC = 1 - РїСЂРѕРІРµСЂРµРЅ)
 update #TmpAuthor 
      set includPER = (CASE When t1.excStatusPER = 1 and isnull(t2.isPER,0) = 1 THEN 1 ELSE 0 END), 
 	     includMEC = (CASE When t1.excStatusMEC = 1 and isnull(t3.isMEC,0) = 1 THEN 1 ELSE 0 END)
@@ -141,8 +141,8 @@ update #TmpAuthor
        and (@periodDateBegin between t2.dateBeginMEC and t2.dateEndMEC or @periodDateEnd between t2.dateBeginMEC and t2.dateEndMEC )
 -->
 
----Поправочки по Оле
---временно, пока не откажится  --18-10-2019
+---РџРѕРїСЂР°РІРѕС‡РєРё РїРѕ РћР»Рµ
+--РІСЂРµРјРµРЅРЅРѕ, РїРѕРєР° РЅРµ РѕС‚РєР°Р¶РёС‚СЃСЏ  --18-10-2019
 update #TmpAuthor set cmCodeMEC = 140, cmCodePER = 140, IncludMEC = 1, IncludPER = 1
   where IP_BASE_NR = 'i-003577688-4'
 
@@ -152,14 +152,14 @@ update #TmpAuthor set cmCodeMEC = 140, cmCodePER = 140, IncludMEC = 1, IncludPER
 
 update #TmpAuthor set cmCodeMEC = '094', IncludMEC = IncludPER
   where cmCodePER = '094' and cmCodeMEC is NULL 
---Поправочки
+--РџРѕРїСЂР°РІРѕС‡РєРё
 
 
 -- select * from #TmpAuthor where excId is null
 declare @cnt_all integer, @cnt_ExPER integer, @cnt_ExMEC integer
-set @cnt_all = (select count(*) from #TmpAuthor)   --всего
-set @cnt_ExPER = (select count(*) from #TmpAuthor where excStatusPER = 2) --исключено
-set @cnt_ExMEC = (select count(*) from #TmpAuthor where excStatusMEC = 2) --исключено
+set @cnt_all = (select count(*) from #TmpAuthor)   --РІСЃРµРіРѕ
+set @cnt_ExPER = (select count(*) from #TmpAuthor where excStatusPER = 2) --РёСЃРєР»СЋС‡РµРЅРѕ
+set @cnt_ExMEC = (select count(*) from #TmpAuthor where excStatusMEC = 2) --РёСЃРєР»СЋС‡РµРЅРѕ
 
  update IdentMWAuthor set excStatusPER = t2.excStatusPER, excIdPER = t2.excIdPER,  
                           excStatusMEC = t2.excStatusMEC, excIdMEC = t2.excIdMEC, 
@@ -169,7 +169,7 @@ set @cnt_ExMEC = (select count(*) from #TmpAuthor where excStatusMEC = 2) --искл
       join #TmpAuthor t2 on t1.id = t2.id 
  
 
- PRINT 'Оброблено: '+convert(varchar(10), @cnt_All)+'. Виключено PER: '+ convert(varchar(10), @cnt_ExPER)+'. Виключено MEC: '+ convert(varchar(10), @cnt_ExMEC)
+ PRINT 'РћР±СЂРѕР±Р»РµРЅРѕ: '+convert(varchar(10), @cnt_All)+'. Р’РёРєР»СЋС‡РµРЅРѕ PER: '+ convert(varchar(10), @cnt_ExPER)+'. Р’РёРєР»СЋС‡РµРЅРѕ MEC: '+ convert(varchar(10), @cnt_ExMEC)
 
   return @Retcode
 END
@@ -177,7 +177,7 @@ END
 --update IdentMWAuthor set excIdPER = NULL, excStatusPER = NULL, excIdMEC = NULL, excStatusMEC = NULL 
 --exec pTsk10_DDEXExceptionStatus 1,1 
 --select count(*) from IdentMWAuthor where ddexReportId = 1 and excStatus <> 2  --3 433 405/10 879 189
---Оброблено: 14312594. Виключено PER: 3 433 405. Виключено MEC: 1 087 294
+--РћР±СЂРѕР±Р»РµРЅРѕ: 14312594. Р’РёРєР»СЋС‡РµРЅРѕ PER: 3 433 405. Р’РёРєР»СЋС‡РµРЅРѕ MEC: 1 087 294
 --select top 100 * from IdentMWAuthor
 
 GO
