@@ -29,6 +29,7 @@ namespace DdexInvoicing
         private void FormMain_Load(object sender, EventArgs e)
         {
             ucDdexLoad.Init(ddexReportingPeriodId, ddexReportId);
+            uсReconcile.SetReport(ddexReportId);
             ucMwIdent.SetReport(ddexReportId);
             ucCcidInvoices.SetReport(ddexReportId);
 

@@ -99,6 +99,7 @@
     <Compile Include="ExportImport\ExceptionMember.cs" />
     <Compile Include="ExportImport\ExceptionSet.cs" />
     <Compile Include="Helpers.cs" />
+    <Compile Include="IdentReconciler.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
