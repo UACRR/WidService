@@ -376,6 +376,7 @@
     <Content Include="Migrations\05 GoogleNewSpecs\DdexRecordHead.sql" />
     <Content Include="Migrations\06 Fixes\CcidInFile.sql" />
     <Content Include="Migrations\06 Fixes\spCreateInitialInvoiceDeezer.sql" />
+    <Content Include="Migrations\07 PreClaim Reconcile\PreClaimIdentReconcile.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
