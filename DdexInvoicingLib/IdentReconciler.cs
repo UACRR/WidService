@@ -20,10 +20,29 @@ namespace InvoicingLib
             public bool IsConfirmed { get; set; }
             public bool IsRejected { get; set; }
             public bool NeedsReIdent { get; set; }
-            public bool IsAutoConfirmed { get; set; }
+            public char IsAutoConfirmed { get; set; }
+            public bool IsApplied { get; set; }
+        }
+
+        public class Statistics
+        {
+            public int Total { get; set; }
+            public int Unprocessed { get; set; }
+            public int Confirmed { get; set; }
+            public int AutoConfirmed { get; set; }
+            public int Rejected { get; set; }
+            public int NeedsReident { get; set; }
+
+            public int TotalInBlock { get; set; }
+            public int UnprocessedInBlock { get; set; }
+            public int ConfirmedInBlock { get; set; }
+            public int AutoConfirmedInBlock { get; set; }
+            public int RejectedInBlock { get; set; }
+            public int NeedsReidentInBlock { get; set; }
         }
 
         private delegate void CmdBlock(SqlCommand cmd);
+        const char IsAutoConfirmedChar = '+';
 
         private int _ddexReportId;
         private string _connectionString;
@@ -52,6 +71,60 @@ namespace InvoicingLib
             });
         }
 
+        public Statistics GetStatistics(int pageIndex)
+        {
+            var retVal = new Statistics
+            {
+                Total = 0,
+                Unprocessed = 0,
+                Confirmed = 0,
+                AutoConfirmed = 0,
+                Rejected = 0,
+                NeedsReident = 0,
+
+                TotalInBlock = 0,
+                UnprocessedInBlock = 0,
+                ConfirmedInBlock = 0,
+                AutoConfirmedInBlock = 0,
+                RejectedInBlock = 0,
+                NeedsReidentInBlock = 0,
+            };
+
+            var idxFrom = 1000 * pageIndex + 1;
+            var idxTo = idxFrom + 1000;
+            _entries.ForEach(x =>
+            {
+                if(x.SeqNr >= idxFrom && x.SeqNr < idxTo)
+                {
+                   retVal.TotalInBlock++;
+                   if(!x.IsConfirmed && !x.IsRejected && !x.NeedsReIdent)
+                        retVal.UnprocessedInBlock++;
+                    if (x.IsConfirmed)
+                        retVal.ConfirmedInBlock++;
+                    if (x.IsConfirmed && x.IsAutoConfirmed == IsAutoConfirmedChar)
+                        retVal.AutoConfirmedInBlock++;
+                    if (x.IsRejected)
+                        retVal.RejectedInBlock++;
+                    if (x.NeedsReIdent)
+                        retVal.NeedsReidentInBlock++;
+                }
+
+                retVal.Total++;
+                if (!x.IsConfirmed && !x.IsRejected && !x.NeedsReIdent)
+                    retVal.Unprocessed++;
+                if (x.IsConfirmed)
+                    retVal.Confirmed++;
+                if (x.IsConfirmed && x.IsAutoConfirmed == IsAutoConfirmedChar)
+                    retVal.AutoConfirmed++;
+                if (x.IsRejected)
+                    retVal.Rejected++;
+                if (x.NeedsReIdent)
+                    retVal.NeedsReident++;
+            });
+
+            return retVal;
+        }
+
         public int GetEntriesCount()
         {
             return _entries.Count;
@@ -64,7 +137,11 @@ namespace InvoicingLib
 
         public List<ReconcileEntry> GetAllEntries(int pageIndex)
         {
-            var retVal = _entries.Skip(1000 * pageIndex).Take(1000).ToList();
+            var retVal = _entries
+                .Skip(1000 * pageIndex)
+                .Take(1000)
+                .Where(x => !x.IsApplied)
+                .ToList();
             return retVal;
         }
 
@@ -73,7 +150,7 @@ namespace InvoicingLib
             var retVal = _entries
                 .Skip(1000 * pageIndex)
                 .Take(1000)
-                .Where(x => !x.IsConfirmed && !x.IsRejected && !x.NeedsReIdent)
+                .Where(x => !x.IsConfirmed && !x.IsRejected && !x.NeedsReIdent && !x.IsApplied)
                 .ToList();
             return retVal;
         }
@@ -83,7 +160,7 @@ namespace InvoicingLib
             var retVal = _entries
                 .Skip(1000 * pageIndex)
                 .Take(1000)
-                .Where(x => x.IsConfirmed)
+                .Where(x => x.IsConfirmed && !x.IsApplied)
                 .ToList();
             return retVal;
         }
@@ -93,7 +170,7 @@ namespace InvoicingLib
             var retVal = _entries
                 .Skip(1000 * pageIndex)
                 .Take(1000)
-                .Where(x => x.IsAutoConfirmed)
+                .Where(x => x.IsAutoConfirmed == IsAutoConfirmedChar && !x.IsApplied)
                 .ToList();
             return retVal;
         }
@@ -103,7 +180,7 @@ namespace InvoicingLib
             var retVal = _entries
                 .Skip(1000 * pageIndex)
                 .Take(1000)
-                .Where(x => x.IsRejected)
+                .Where(x => x.IsRejected && !x.IsApplied)
                 .ToList();
             return retVal;
         }
@@ -113,14 +190,8 @@ namespace InvoicingLib
             var retVal = _entries
                 .Skip(1000 * pageIndex)
                 .Take(1000)
-                .Where(x => x.NeedsReIdent)
+                .Where(x => x.NeedsReIdent && !x.IsApplied)
                 .ToList();
-            return retVal;
-        }
-
-        public List<ReconcileEntry> GetEntriesPage(int pageIndex)
-        {
-            var retVal = _entries.Skip(1000 * pageIndex).Take(1000).OrderBy(x => x.Title).ToList();
             return retVal;
         }
 
@@ -137,6 +208,29 @@ namespace InvoicingLib
         public void SetNeedsReIdent(int mwId, bool value)
         {
             SetFlag(mwId, "needsReIdent", value);
+        }
+
+        public void SaveFlagsIntoDb(List<ReconcileEntry> changedEntries)
+        {
+            UsingCmdT(cmd =>
+            {
+                InitTmpPreClaimIdentReconcile(cmd, changedEntries);
+                cmd.CommandText = @"
+                    update t1
+                    set 
+                          t1.isConfirmed = t2.isConfirmed
+                        , t1.isRejected = t2.isRejected
+                        , t1.needsReIdent = t2.needsReIdent
+                    from PreClaimIdentReconcile t1
+                        join #PreClaimIdentReconcile t2 on t1.ddexReportId = t2.ddexReportId and t1.mwId = t2.mwId
+                    where t1.ddexReportId = @ddexReportId
+
+                    drop table #PreClaimIdentReconcile
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
+                cmd.ExecuteNonQuery();
+            });
         }
 
         public bool HasUnprocessed()
@@ -226,6 +320,7 @@ namespace InvoicingLib
                     , isRejected
                     , needsReIdent
                     , isAutoConfirmed
+                    , IsApplied
                 from PreClaimIdentReconcile
                 where ddexReportId = @ddexReportId
                 order by TITLE";
@@ -246,7 +341,8 @@ namespace InvoicingLib
                         IsConfirmed = r.GetBoolean(4),
                         IsRejected = r.GetBoolean(5),
                         NeedsReIdent = r.GetBoolean(6),
-                        IsAutoConfirmed = r.GetBoolean(7),
+                        IsAutoConfirmed = r.GetBoolean(7) ? IsAutoConfirmedChar : ' ',
+                        IsApplied = r.GetBoolean(8)
                     });
                 }
             }
@@ -266,6 +362,7 @@ namespace InvoicingLib
                      , isRejected
                      , needsReIdent
                      , isAutoConfirmed
+                     , isApplied
                 )
                 select distinct
                       t1.DdexReportId
@@ -277,6 +374,7 @@ namespace InvoicingLib
                     , 0 isRejected
                     , 0 needsReIdent
                     , 0 isAutoConfirmed
+                    , 0 isApplied
                 from IdentBacklog t1
                     join IdentMw t2 on t1.mwId = t2.Id
                     join wid_ipi..TblTitle t3 on t2.wic = t3.wic
@@ -287,7 +385,7 @@ namespace InvoicingLib
             cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
             cmd.ExecuteNonQuery();
         }
-        private void InitTmpPreClaimIdentReconcile(SqlCommand cmd)
+        private void InitTmpPreClaimIdentReconcile(SqlCommand cmd, List<ReconcileEntry> entries)
         {
             cmd.CommandText = @"
                 drop table if exists #PreClaimIdentReconcile
@@ -298,6 +396,7 @@ namespace InvoicingLib
                     , isRejected bit
                     , needsReIdent bit
                     , isAutoConfirmed bit
+                    , IsApplied bit
                 )
             ";
             cmd.Parameters.Clear();
@@ -310,8 +409,9 @@ namespace InvoicingLib
             dt.Columns.Add(new DataColumn("isRejected", typeof(bool)));
             dt.Columns.Add(new DataColumn("needsReIdent", typeof(bool)));
             dt.Columns.Add(new DataColumn("isAutoConfirmed", typeof(bool)));
+            dt.Columns.Add(new DataColumn("isApplied", typeof(bool)));
 
-            _entries.ForEach(x =>
+            entries.ForEach(x =>
             {
                 var dr = dt.NewRow();
                 dr[0] = _ddexReportId;
@@ -319,7 +419,8 @@ namespace InvoicingLib
                 dr[2] = x.IsConfirmed;
                 dr[3] = x.IsRejected;
                 dr[4] = x.NeedsReIdent;
-                dr[5] = x.IsAutoConfirmed;
+                dr[5] = x.IsAutoConfirmed == IsAutoConfirmedChar;
+                dr[6] = x.IsApplied;
                 dt.Rows.Add(dr);
             });
             var uploader = new SqlBulkCopy(
@@ -356,6 +457,16 @@ namespace InvoicingLib
                 from PreClaimIdentReconcile t1
                     join IdentMw t2 on  t1.mwId = t2.Id
                 where t1.ddexReportId = @ddexReportId
+                    and t1.IsApplied <> 1
+                    and (t1.isConfirmed = 1 or t1.isRejected = 1 or t1.needsReIdent = 1)
+
+                update t1
+                set t1.IsApplied = 1
+                from PreClaimIdentReconcile t1
+                    join IdentMw t2 on  t1.mwId = t2.Id
+                where t1.ddexReportId = @ddexReportId
+                    and t1.IsApplied <> 1
+                    and (t1.isConfirmed = 1 or t1.isRejected = 1 or t1.needsReIdent = 1)
             ";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
@@ -395,7 +506,7 @@ namespace InvoicingLib
         {
             _entries.ForEach(x => AutoConfirmEntry(x));
 
-            InitTmpPreClaimIdentReconcile(cmd);
+            InitTmpPreClaimIdentReconcile(cmd, _entries);
 
             cmd.CommandText = @"
                 update t1
@@ -404,6 +515,7 @@ namespace InvoicingLib
                     , t1.isRejected = t2.isRejected
                     , t1.needsReIdent = t2.needsReIdent
                     , t1.isAutoConfirmed = t2.isAutoConfirmed
+                    , t1.isApplied = t2.isApplied
                 from PreClaimIdentReconcile t1
                     join #PreClaimIdentReconcile t2 on t1.ddexReportId = t2.ddexReportId and t1.mwId = t2.mwId
                 where t1.ddexReportId = @ddexReportId
@@ -427,7 +539,7 @@ namespace InvoicingLib
             if (titleInReport.Contains(titleInWid) || titleInWid.Contains(titleInReport))
             {
                 entry.IsConfirmed = true;
-                entry.IsAutoConfirmed = true;
+                entry.IsAutoConfirmed = IsAutoConfirmedChar;
             }
         }
         private string NormalizeString(string input)

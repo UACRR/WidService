@@ -58,10 +58,12 @@
             this.panelFilter = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.cbFilter = new Telerik.WinControls.UI.RadDropDownList();
-            this.gridStatistics = new Telerik.WinControls.UI.RadGridView();
             this.btnApply = new Telerik.WinControls.UI.RadButton();
             this.timerLoad = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panelStatistics = new System.Windows.Forms.TableLayoutPanel();
+            this.gridStatistics = new Telerik.WinControls.UI.RadGridView();
+            this.btnRefreshStatistics = new Telerik.WinControls.UI.RadButton();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelPages)).BeginInit();
             this.panelPages.SuspendLayout();
@@ -70,9 +72,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridRecords.MasterTemplate)).BeginInit();
             this.panelFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnApply)).BeginInit();
+            this.panelStatistics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatistics)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatistics.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnApply)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRefreshStatistics)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -82,8 +86,8 @@
             this.panelMain.Controls.Add(this.panelPages, 0, 3);
             this.panelMain.Controls.Add(this.labPrompt, 0, 0);
             this.panelMain.Controls.Add(this.panelFilter, 0, 1);
-            this.panelMain.Controls.Add(this.gridStatistics, 0, 2);
             this.panelMain.Controls.Add(this.btnApply, 0, 4);
+            this.panelMain.Controls.Add(this.panelStatistics, 0, 2);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
@@ -92,7 +96,7 @@
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelMain.Size = new System.Drawing.Size(991, 491);
@@ -110,10 +114,10 @@
             this.panelPages.EnableAnalytics = false;
             this.panelPages.EnableGestures = false;
             this.panelPages.EnableTheming = false;
-            this.panelPages.Location = new System.Drawing.Point(3, 234);
+            this.panelPages.Location = new System.Drawing.Point(3, 230);
             this.panelPages.Name = "panelPages";
             this.panelPages.SelectedPage = this.radPageViewPage1;
-            this.panelPages.Size = new System.Drawing.Size(985, 219);
+            this.panelPages.Size = new System.Drawing.Size(985, 217);
             this.panelPages.TabIndex = 4;
             this.panelPages.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
             this.panelPages.SelectedPageChanged += new System.EventHandler(this.panelPages_SelectedPageChanged);
@@ -126,7 +130,7 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(73F, 45F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 60);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(976, 155);
+            this.radPageViewPage1.Size = new System.Drawing.Size(976, 153);
             this.radPageViewPage1.Text = "Всі записи";
             this.radPageViewPage1.Title = "Всі записи";
             // 
@@ -173,9 +177,11 @@
             this.gridRecords.MasterTemplate.MultiSelect = true;
             this.gridRecords.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gridRecords.Name = "gridRecords";
-            this.gridRecords.ReadOnly = true;
-            this.gridRecords.Size = new System.Drawing.Size(976, 155);
+            this.gridRecords.Size = new System.Drawing.Size(976, 153);
             this.gridRecords.TabIndex = 0;
+            this.gridRecords.CellEndEdit += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gridRecords_CellEndEdit);
+            this.gridRecords.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gridRecords_CellClick);
+            this.gridRecords.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gridRecords_CellValueChanged);
             // 
             // radPageViewPage2
             // 
@@ -224,11 +230,10 @@
             this.labPrompt.AutoSize = true;
             this.labPrompt.BackColor = System.Drawing.SystemColors.Info;
             this.labPrompt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labPrompt.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labPrompt.Location = new System.Drawing.Point(3, 0);
             this.labPrompt.Name = "labPrompt";
             this.labPrompt.Padding = new System.Windows.Forms.Padding(5);
-            this.labPrompt.Size = new System.Drawing.Size(985, 66);
+            this.labPrompt.Size = new System.Drawing.Size(985, 62);
             this.labPrompt.TabIndex = 0;
             this.labPrompt.Text = resources.GetString("labPrompt.Text");
             // 
@@ -238,7 +243,7 @@
             this.panelFilter.Controls.Add(this.label1);
             this.panelFilter.Controls.Add(this.cbFilter);
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFilter.Location = new System.Drawing.Point(3, 69);
+            this.panelFilter.Location = new System.Drawing.Point(3, 65);
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.panelFilter.Size = new System.Drawing.Size(985, 48);
@@ -265,12 +270,43 @@
             this.cbFilter.Text = "1";
             this.cbFilter.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.cbFilter_SelectedIndexChanged);
             // 
+            // btnApply
+            // 
+            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApply.Location = new System.Drawing.Point(871, 453);
+            this.btnApply.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(110, 21);
+            this.btnApply.TabIndex = 5;
+            this.btnApply.Text = "Застосувати";
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // timerLoad
+            // 
+            this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
+            // 
+            // panelStatistics
+            // 
+            this.panelStatistics.ColumnCount = 2;
+            this.panelStatistics.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 752F));
+            this.panelStatistics.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelStatistics.Controls.Add(this.gridStatistics, 0, 0);
+            this.panelStatistics.Controls.Add(this.btnRefreshStatistics, 1, 0);
+            this.panelStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelStatistics.Location = new System.Drawing.Point(3, 119);
+            this.panelStatistics.Name = "panelStatistics";
+            this.panelStatistics.RowCount = 1;
+            this.panelStatistics.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelStatistics.Size = new System.Drawing.Size(985, 105);
+            this.panelStatistics.TabIndex = 7;
+            // 
             // gridStatistics
             // 
+            this.gridStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridStatistics.EnableAnalytics = false;
             this.gridStatistics.EnableGestures = false;
             this.gridStatistics.HideSelection = true;
-            this.gridStatistics.Location = new System.Drawing.Point(3, 123);
+            this.gridStatistics.Location = new System.Drawing.Point(3, 3);
             // 
             // 
             // 
@@ -301,7 +337,7 @@
             gridViewTextBoxColumn4.Name = "column1";
             gridViewTextBoxColumn4.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
             gridViewTextBoxColumn4.ReadOnly = true;
-            gridViewTextBoxColumn4.Width = 154;
+            gridViewTextBoxColumn4.Width = 150;
             gridViewTextBoxColumn5.AllowFiltering = false;
             gridViewTextBoxColumn5.AllowGroup = false;
             gridViewTextBoxColumn5.AllowHide = false;
@@ -404,24 +440,18 @@
             this.gridStatistics.ShowCellErrors = false;
             this.gridStatistics.ShowGroupPanel = false;
             this.gridStatistics.ShowGroupPanelScrollbars = false;
-            this.gridStatistics.Size = new System.Drawing.Size(750, 105);
-            this.gridStatistics.TabIndex = 3;
+            this.gridStatistics.Size = new System.Drawing.Size(746, 99);
+            this.gridStatistics.TabIndex = 7;
             this.gridStatistics.TitleText = "Статистика обробки (кількість записів)";
-            this.gridStatistics.Click += new System.EventHandler(this.gridStatistics_Click);
             // 
-            // btnApply
+            // btnRefreshStatistics
             // 
-            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApply.Location = new System.Drawing.Point(871, 459);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(110, 21);
-            this.btnApply.TabIndex = 5;
-            this.btnApply.Text = "Застосувати";
-            // 
-            // timerLoad
-            // 
-            this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
+            this.btnRefreshStatistics.Location = new System.Drawing.Point(755, 3);
+            this.btnRefreshStatistics.Name = "btnRefreshStatistics";
+            this.btnRefreshStatistics.Size = new System.Drawing.Size(110, 24);
+            this.btnRefreshStatistics.TabIndex = 8;
+            this.btnRefreshStatistics.Text = "Оновити";
+            this.btnRefreshStatistics.Click += new System.EventHandler(this.btnRefreshStatistics_Click);
             // 
             // UсReconcile
             // 
@@ -441,9 +471,11 @@
             this.panelFilter.ResumeLayout(false);
             this.panelFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnApply)).EndInit();
+            this.panelStatistics.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridStatistics.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatistics)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnApply)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRefreshStatistics)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -455,7 +487,6 @@
         private System.Windows.Forms.FlowLayoutPanel panelFilter;
         private System.Windows.Forms.Label label1;
         private Telerik.WinControls.UI.RadDropDownList cbFilter;
-        private Telerik.WinControls.UI.RadGridView gridStatistics;
         private Telerik.WinControls.UI.RadPageView panelPages;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
@@ -467,5 +498,8 @@
         private Telerik.WinControls.UI.RadButton btnApply;
         private System.Windows.Forms.Timer timerLoad;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TableLayoutPanel panelStatistics;
+        private Telerik.WinControls.UI.RadGridView gridStatistics;
+        private Telerik.WinControls.UI.RadButton btnRefreshStatistics;
     }
 }

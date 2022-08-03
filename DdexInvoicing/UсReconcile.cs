@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using InvoicingLib;
 using System.Configuration;
 using Telerik.WinControls.UI;
+using static InvoicingLib.IdentReconciler;
 
 namespace DdexInvoicing
 {
@@ -32,13 +33,13 @@ namespace DdexInvoicing
         {
             labPrompt.Text = "В процесі автоматичної ідентифікації за кодом ISWC можливе невірне пов'язання рядків звітів з музичними творами в базі даних WID.\r\n" +
                 "З метою перевірки поставте відповідні відмітки навпроти творів, що наводяться нижче. " +
-                "Відмітки заносяться одразу в робочій таблиці і не потребують спеціальних дій, щоб іх запам'ятати.\r\n" +
+                "Відмітки заносяться одразу в робочу таблицю і не потребують спеціальних дій, щоб іх запам'ятати.\r\n" +
                 "Для того, щоб результати перевірки були застосовані до ідентифікаційної інформації, натисніть на Застосувати. " +
-                "Це варто робити після того, як не залишиться неопрацьованих рядків.";
+                "Це варто робити після того, як не залишиться неопрацьованих рядків.\r\n" +
+                "Оброблені твори після застосування не показуються.";
 
             ConfigureGridRecords();
-
-            FillStatistics();
+            ConfigureStatistics();
 
             int i = 0;
             panelPages.Pages[i++].Name = "All";
@@ -54,8 +55,22 @@ namespace DdexInvoicing
             timerLoad.Enabled = true; ;
         }
 
+        private void ConfigureStatistics()
+        {
+            int i = 0;
+            gridStatistics.Columns[i++].FieldName = "scope";
+            gridStatistics.Columns[i++].FieldName = "total";
+            gridStatistics.Columns[i++].FieldName = "unprocessed";
+            gridStatistics.Columns[i++].FieldName = "confirmed";
+            gridStatistics.Columns[i++].FieldName = "autoconfirmed";
+            gridStatistics.Columns[i++].FieldName = "rejected";
+            gridStatistics.Columns[i++].FieldName = "needsident";
+        }
+
         private void FillStatistics()
         {
+            var stt = _ir.GetStatistics(cbFilter.SelectedIndex);
+
             var dt = new DataTable();
             dt.Columns.Add("scope");
             dt.Columns.Add("total");
@@ -67,32 +82,24 @@ namespace DdexInvoicing
 
             var dr = dt.NewRow();
             dr["scope"] = "Для звіту в цілому";
-            dr["total"] = "356";
-            dr["unprocessed"] = "356";
-            dr["confirmed"] = "356";
-            dr["autoconfirmed"] = "11";
-            dr["rejected"] = "23";
-            dr["needsident"] = "40";
+            dr["total"] = stt.Total.ToString();
+            dr["unprocessed"] = stt.Unprocessed.ToString();
+            dr["confirmed"] = stt.Confirmed.ToString();
+            dr["autoconfirmed"]=  stt.AutoConfirmed.ToString();
+            dr["rejected"] = stt.Rejected.ToString();
+            dr["needsident"] = stt.NeedsReident.ToString();
             dt.Rows.Add(dr);
 
             dr = dt.NewRow();
             dr["scope"] = "Для обраних записів";
-            dr["total"] = "356";
-            dr["unprocessed"] = "34";
-            dr["confirmed"] = "34";
-            dr["autoconfirmed"] = "2231";
-            dr["rejected"] = "11";
-            dr["needsident"] = "24";
+            dr["total"] = stt.TotalInBlock.ToString();
+            dr["unprocessed"] = stt.UnprocessedInBlock.ToString();
+            dr["confirmed"] = stt.ConfirmedInBlock.ToString();
+            dr["autoconfirmed"] = stt.AutoConfirmedInBlock.ToString();
+            dr["rejected"] = stt.RejectedInBlock.ToString();
+            dr["needsident"] = stt.NeedsReidentInBlock.ToString();
             dt.Rows.Add(dr);
 
-            int i = 0;
-            gridStatistics.Columns[i++].FieldName = "scope";
-            gridStatistics.Columns[i++].FieldName = "total";
-            gridStatistics.Columns[i++].FieldName = "confirmed";
-            gridStatistics.Columns[i++].FieldName = "unprocessed";
-            gridStatistics.Columns[i++].FieldName = "autoconfirmed";
-            gridStatistics.Columns[i++].FieldName = "rejected";
-            gridStatistics.Columns[i++].FieldName = "needsident";
             gridStatistics.DataSource = dt;
         }
 
@@ -106,6 +113,7 @@ namespace DdexInvoicing
                     HeaderText = "№",
                     FieldName = "SeqNr",
                     WrapText = true,
+                    ReadOnly = true,
                     AutoSizeMode = BestFitColumnMode.AllCells,
                 },
                 new GridViewTextBoxColumn {
@@ -113,6 +121,7 @@ namespace DdexInvoicing
                     HeaderText = "MwId",
                     FieldName = "MwId",
                     WrapText = true,
+                    ReadOnly = true,
                     IsVisible = false,
                     AutoSizeMode = BestFitColumnMode.AllCells,
                 },
@@ -121,6 +130,7 @@ namespace DdexInvoicing
                     HeaderText = "Назва у звіті",
                     FieldName = "Title",
                     WrapText = true,
+                    ReadOnly = true,
                     AutoSizeMode = BestFitColumnMode.AllCells,
                     AllowResize = true,
                 },
@@ -129,6 +139,7 @@ namespace DdexInvoicing
                     HeaderText = "Назва у WID",
                     FieldName = "TitleFromIswcInWid",
                     WrapText = true,
+                    ReadOnly = true,
                     AutoSizeMode = BestFitColumnMode.AllCells,
                     AllowResize = true,
                 },
@@ -137,13 +148,15 @@ namespace DdexInvoicing
                     HeaderText = "Виконавець",
                     FieldName = "Artist",
                     WrapText = true,
+                    ReadOnly = true,
                     AutoSizeMode = BestFitColumnMode.AllCells,
                     AllowResize = true,
                 },
-                new GridViewCheckBoxColumn {
+                new GridViewTextBoxColumn {
                     Name = "IsAutoConfirmed",
                     HeaderText = "Пцдтверджено автоматично",
                     FieldName = "IsAutoConfirmed",
+                    TextAlignment = ContentAlignment.MiddleCenter,
                     WrapText = true,
                     ReadOnly = true,
                     AllowResize = false,
@@ -154,6 +167,7 @@ namespace DdexInvoicing
                     HeaderText = "Підтвердити",
                     FieldName = "IsConfirmed",
                     WrapText = true,
+                    ReadOnly = true,
                     AllowResize = false,
                     Width = 100,
                 },
@@ -162,6 +176,7 @@ namespace DdexInvoicing
                     HeaderText = "Відхилити",
                     FieldName = "IsRejected",
                     WrapText = true,
+                    ReadOnly = true,
                     AllowResize = false,
                     Width = 100,
                 },
@@ -170,6 +185,7 @@ namespace DdexInvoicing
                     HeaderText = "Ідентифікувати в ручну",
                     FieldName = "NeedsReIdent",
                     WrapText = true,
+                    ReadOnly = true,
                     AllowResize = false,
                     Width = 100,
                 },
@@ -178,12 +194,7 @@ namespace DdexInvoicing
             gridRecords.Visible = false;
         }
 
-        private void gridStatistics_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelPages_SelectedPageChanged(object sender, EventArgs e)
+       private void panelPages_SelectedPageChanged(object sender, EventArgs e)
         {
             panelPages.SelectedPage.Controls.Add(gridRecords);
             switch (panelPages.SelectedPage.Name)
@@ -221,15 +232,19 @@ namespace DdexInvoicing
             {
                 cbFilter.Items.Add((pgIndex * 1000 + 1).ToString());
             }
+            cbFilter.SelectedIndex = 0;
 
-            RefreshGridRecords(_ir.GetEntriesPage(0));
+            FillStatistics();
+            RefreshGridRecords(_ir.GetAllEntries(0));
             gridRecords.Visible = true;
             Cursor.Current = Cursors.Default;
         }
 
         private void cbFilter_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            RefreshGridRecords(_ir.GetEntriesPage(e.Position));
+            panelPages.SelectedPage = panelPages.Pages[0];
+            FillStatistics();
+            RefreshGridRecords(_ir.GetAllEntries(e.Position));
         }
 
         private void RefreshGridRecords(List<IdentReconciler.ReconcileEntry> dataSource)
@@ -244,6 +259,105 @@ namespace DdexInvoicing
                 }
             }
             Cursor.Current = Cursors.Default;
+        }
+
+        private void ToggleCheckBox(string columnName)
+        {
+            IdentReconciler.ReconcileEntry curEntry = (IdentReconciler.ReconcileEntry)gridRecords.CurrentRow.DataBoundItem;
+            bool newValue;
+            switch (columnName)
+            {
+                case "IsConfirmed":
+                    newValue = !curEntry.IsConfirmed;
+                    break;
+                case "IsRejected":
+                    newValue = !curEntry.IsRejected;
+                    break;
+                case "NeedsReIdent":
+                    newValue = !curEntry.NeedsReIdent;
+                    break;
+                default:
+                    return;
+            }
+
+            List<ReconcileEntry> changedEntries = new List<ReconcileEntry>();
+            gridRecords.SelectedRows.ToList().ForEach(x =>
+            {
+                IdentReconciler.ReconcileEntry entry = (IdentReconciler.ReconcileEntry)x.DataBoundItem;
+                switch (columnName)
+                {
+                    case "IsConfirmed":
+                        entry.IsConfirmed = newValue;
+                        if (newValue)
+                        {
+                            entry.IsRejected = false;
+                            entry.NeedsReIdent = false;
+                        }
+                        break;
+                    case "IsRejected":
+                        entry.IsRejected = newValue;
+                        if (newValue)
+                        {
+                            entry.IsConfirmed = false;
+                            entry.NeedsReIdent = false;
+                        }
+                        break;
+                    case "NeedsReIdent":
+                        entry.NeedsReIdent = newValue;
+                        if (newValue)
+                        {
+                            entry.IsConfirmed = false;
+                            entry.IsRejected = false;
+                        }
+                        break;
+                    default:
+                        return;
+                }
+                changedEntries.Add(entry);
+                x.InvalidateRow();
+            });
+            _ir.SaveFlagsIntoDb(changedEntries);
+        }
+
+        private void gridRecords_CellClick(object sender, GridViewCellEventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            ToggleCheckBox(e.Column.Name);
+            gridRecords.Refresh();
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void gridRecords_CellEndEdit(object sender, GridViewCellEventArgs e)
+        {
+            return;
+        }
+
+        private void gridRecords_CellValueChanged(object sender, GridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+
+            var stt = _ir.GetStatistics(0);
+            var prompt = stt.Unprocessed > 0 ? "Залишились необроблені записи. Все одно застосувати?" : "Застосувати?";
+            if (MessageBox.Show(prompt,
+                    "Перевірка автоматичної ідентифікації"
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            Cursor.Current = Cursors.WaitCursor;
+            _ir.ApplyToReport();
+            _ir.Load();
+            panelPages.SelectedPage = panelPages.Pages[0];
+            RefreshGridRecords(_ir.GetAllEntries(cbFilter.SelectedIndex));
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void btnRefreshStatistics_Click(object sender, EventArgs e)
+        {
+            FillStatistics();
         }
     }
 }
