@@ -214,22 +214,45 @@ namespace InvoicingLib
         {
             UsingCmdT(cmd =>
             {
-                InitTmpPreClaimIdentReconcile(cmd, changedEntries);
-                cmd.CommandText = @"
-                    update t1
-                    set 
-                          t1.isConfirmed = t2.isConfirmed
-                        , t1.isRejected = t2.isRejected
-                        , t1.needsReIdent = t2.needsReIdent
-                    from PreClaimIdentReconcile t1
-                        join #PreClaimIdentReconcile t2 on t1.ddexReportId = t2.ddexReportId and t1.mwId = t2.mwId
-                    where t1.ddexReportId = @ddexReportId
+                if (changedEntries.Count() > 0)
+                {
+                    InitTmpPreClaimIdentReconcile(cmd, changedEntries);
+                    cmd.CommandText = @"
+                        update t1
+                        set 
+                              t1.isConfirmed = t2.isConfirmed
+                            , t1.isRejected = t2.isRejected
+                            , t1.needsReIdent = t2.needsReIdent
+                        from PreClaimIdentReconcile t1
+                            join #PreClaimIdentReconcile t2 on t1.ddexReportId = t2.ddexReportId and t1.mwId = t2.mwId
+                        where t1.ddexReportId = @ddexReportId
 
-                    drop table #PreClaimIdentReconcile
-                ";
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
-                cmd.ExecuteNonQuery();
+                        drop table #PreClaimIdentReconcile
+                    ";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    var entry = changedEntries.First();
+                    cmd.CommandText = @"
+                        update PreClaimIdentReconcile
+                        set 
+                              isConfirmed = @isConfirmed
+                            , isRejected = @isRejected
+                            , needsReIdent = @needsReIdent
+                        where ddexReportId = @ddexReportId
+                            and mwId = @mwId
+                    ";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
+                    cmd.Parameters.AddWithValue("@mwId", entry.MwId);
+                    cmd.Parameters.AddWithValue("@isConfirmed", entry.IsConfirmed);
+                    cmd.Parameters.AddWithValue("@isRejected", entry.IsRejected);
+                    cmd.Parameters.AddWithValue("@needsReIdent", entry.NeedsReIdent);
+                    cmd.ExecuteNonQuery();
+                }
             });
         }
 

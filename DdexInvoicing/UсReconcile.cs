@@ -280,6 +280,7 @@ namespace DdexInvoicing
                     return;
             }
 
+            Cursor.Current = Cursors.WaitCursor;
             List<ReconcileEntry> changedEntries = new List<ReconcileEntry>();
             gridRecords.SelectedRows.ToList().ForEach(x =>
             {
@@ -321,7 +322,6 @@ namespace DdexInvoicing
 
         private void gridRecords_CellClick(object sender, GridViewCellEventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
             ToggleCheckBox(e.Column.Name);
             gridRecords.Refresh();
             Cursor.Current = Cursors.Default;
@@ -358,6 +358,43 @@ namespace DdexInvoicing
         private void btnRefreshStatistics_Click(object sender, EventArgs e)
         {
             FillStatistics();
+        }
+
+        private void gridRecords_KeyDown(object sender, KeyEventArgs e)
+        {
+            ReconcileEntry entry = (ReconcileEntry)gridRecords.CurrentRow.DataBoundItem;
+            switch (e.KeyCode)
+            {
+                case Keys.D1:
+                case Keys.NumPad1:
+                    entry.IsConfirmed = true;
+                    entry.IsRejected = false;
+                    entry.NeedsReIdent = false;
+                    break;
+                case Keys.D2:
+                case Keys.NumPad2:
+                    entry.IsConfirmed = false;
+                    entry.IsRejected = true;
+                    entry.NeedsReIdent = false;
+                    break;
+                case Keys.D3:
+                case Keys.NumPad3:
+                    entry.IsConfirmed = false;
+                    entry.IsRejected = false;
+                    entry.NeedsReIdent = true;
+                    break;
+                case Keys.D4:
+                case Keys.NumPad4:
+                    entry.IsConfirmed = false;
+                    entry.IsRejected = false;
+                    entry.NeedsReIdent = false;
+                    break;
+                default:
+                    return;
+            }
+            _ir.SaveFlagsIntoDb(new List<ReconcileEntry> { entry });
+            gridRecords.CurrentRow.InvalidateRow();
+            gridRecords.Refresh();
         }
     }
 }

@@ -59,11 +59,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbFilter = new Telerik.WinControls.UI.RadDropDownList();
             this.btnApply = new Telerik.WinControls.UI.RadButton();
-            this.timerLoad = new System.Windows.Forms.Timer(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelStatistics = new System.Windows.Forms.TableLayoutPanel();
             this.gridStatistics = new Telerik.WinControls.UI.RadGridView();
             this.btnRefreshStatistics = new Telerik.WinControls.UI.RadButton();
+            this.timerLoad = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelPages)).BeginInit();
             this.panelPages.SuspendLayout();
@@ -182,6 +182,7 @@
             this.gridRecords.CellEndEdit += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gridRecords_CellEndEdit);
             this.gridRecords.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gridRecords_CellClick);
             this.gridRecords.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gridRecords_CellValueChanged);
+            this.gridRecords.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridRecords_KeyDown);
             // 
             // radPageViewPage2
             // 
@@ -280,10 +281,6 @@
             this.btnApply.TabIndex = 5;
             this.btnApply.Text = "Застосувати";
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
-            // 
-            // timerLoad
-            // 
-            this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
             // 
             // panelStatistics
             // 
@@ -452,6 +449,10 @@
             this.btnRefreshStatistics.TabIndex = 8;
             this.btnRefreshStatistics.Text = "Оновити";
             this.btnRefreshStatistics.Click += new System.EventHandler(this.btnRefreshStatistics_Click);
+            // 
+            // timerLoad
+            // 
+            this.timerLoad.Tick += new System.EventHandler(this.timerLoad_Tick);
             // 
             // UсReconcile
             // 
