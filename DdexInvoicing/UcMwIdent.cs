@@ -115,7 +115,8 @@ namespace DdexInvoicing
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 var dt = new DataTable();
-                string filter = loadSettings.filterType == FilterType.all ? "" : " and status = @status";
+                var filter = DdexReport.GetFilterStringShort(cmd, ddexReportId);
+                string statusFilter = loadSettings.filterType == FilterType.all ? "" : " and status = @status";
                 string order = "Title";
                 switch (loadSettings.orderType)
                 {
@@ -128,13 +129,38 @@ namespace DdexInvoicing
                 string orderDir = loadSettings.orderDir == 0 ? "asc" : "desc";
 
                 cmd.CommandText = $@"
-                    select Id, ResourceTitle, displayartistname, title, composerauthor, ISWC, status, wic, objId, t2.netrevenue 
-                    from IdentMW t1 join IdentReportMwRecords t2 on t2.mwId = t1.id
-                    where t2.ddexReportId = @ddexReportId and t2.PriorityIndex >= @firstRowIndex and t2.PriorityIndex <= @lastRowIndex
-                    {filter}
+                    select 
+                          Id
+                        , ResourceTitle
+                        , displayartistname
+                        , title
+                        , composerauthor
+                        , ISWC
+                        , status
+                        , wic
+                        , objId
+                        , t2.netrevenue 
+                    from IdentMW t1 
+                        join IdentReportMwRecords t2 on t2.mwId = t1.id
+                    where 
+                        t2.ddexReportId {filter}
+                        and t2.PriorityIndex >= @firstRowIndex 
+                        and t2.PriorityIndex <= @lastRowIndex
+                    {statusFilter}
                     order by {order} {orderDir}, Id
                     option(recompile)
                  ";
+
+                /*
+                cmd.CommandText = $@"
+                    select Id, ResourceTitle, displayartistname, title, composerauthor, ISWC, status, wic, objId, t2.netrevenue 
+                    from IdentMW t1 join IdentReportMwRecords t2 on t2.mwId = t1.id
+                    where t2.ddexReportId = @ddexReportId and t1.DisplayArtistName = 'druha rika'
+                    order by {order} {orderDir}, Id
+                    option(recompile)
+                 ";
+                 */
+
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                 cmd.Parameters.AddWithValue("@status", (int)loadSettings.filterType);
                 cmd.Parameters.AddWithValue("@firstRowIndex", loadSettings.firstRowIndex);
@@ -160,15 +186,6 @@ namespace DdexInvoicing
                 case FilterType.altNameFoundOneAuthor: filterText = "твори, ДЕ АЛЬТЕРНАТИВНА НАЗВА ЗНАЙДЕНА, ЄДИНИЙ АВТОР ЗНАЙДЕНИЙ,"; break;
                 case FilterType.altNameFoundManyAuthors: filterText = "твори, ДЕ АЛЬТЕРНАТИВНА НАЗВА ЗНАЙДЕНА, ДЕКІЛЬКА АВТОРІВ ЗНАЙДЕНО,"; break;
                 case FilterType.all: filterText = "ВСІ твори"; break;
-            }
-            string orderText = "";
-            switch (loadSettings.orderType)
-            {
-                case OrderType.byRevenue: orderText = "ПРИБУТКУ"; break;
-                case OrderType.byResourceTitle: orderText = "НАЗВИ ЗАПИСУ"; break;
-                case OrderType.byTitle: orderText = "НАЗВИ ТВОРУ"; break;
-                case OrderType.byAuthors: orderText = "ІМЕНІ АВТОРА"; break;
-                case OrderType.byPerformers: orderText = "ВИКОНАВЦЯ"; break;
             }
             string dirText = loadSettings.orderDir == OrderDir.asc ? "ЗРОСТАННЯМ" : "СПАДАННЯМ";
             radSsInfo.Items[0].Text = $"Завантажено {filterText} в діапазоні {loadSettings.firstRowIndex} - {loadSettings.lastRowIndex}.";

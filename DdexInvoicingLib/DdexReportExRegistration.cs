@@ -14,388 +14,20 @@ namespace InvoicingLib
 
     public partial class DdexReport
     {
-
-        public static DataTable GetReportingPeriods(string connectionString)
+        private static void InsertDsrHead(SqlCommand cmd, int ddexReportId, string fullFileName)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            cmd.Parameters.Clear();
+            using (FileStream fileStream = new FileStream(fullFileName, FileMode.Open, FileAccess.Read))
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
             {
-                conn.Open();
-                var dt = new DataTable();
-                SqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "select * from DdexReportingPeriod order by Year desc, Quarter desc";
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                return dt;
-            }
-        }
-
-        public static DataTable GetRegisteredReports(string connectionString, int ddexReportingPeriodId)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                var dt = new DataTable();
-                SqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "select * from DdexReport where ddexReportingPeriodID = @ddexReportingPeriodId";
-                cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                return dt;
-            }
-        }
-
-        struct FileIdentification
-        {
-            public string Type;
-            public string Period;
-        }
-
-        public static void RegisterReports(string connectionString, string reportsFolder)
-        {
-            Dictionary<FileIdentification, List<string>> fileTypes = new Dictionary<FileIdentification, List<string>>();
-            //foreach (var fullFileName in Directory.EnumerateFiles(reportsFolder, "DSR_UACRR-CS_YouTube_Usage-AdSupport-Music-*.tsv", SearchOption.TopDirectoryOnly))
-            
-            // REPORTS FROM GOOGLE
-            foreach (var fullFileName in Directory.EnumerateFiles(reportsFolder, "DSR_*.tsv", SearchOption.TopDirectoryOnly))
-            {
-                string fileName = Path.GetFileName(fullFileName);
-                string[] fileParts = fileName.Split('_');
-                FileIdentification fi = new FileIdentification
+                while (!streamReader.EndOfStream)
                 {
-                    Type = fileParts[3], //.Split('-')[3],
-                    Period = fileParts[4]
-                };
-                if (fileTypes.ContainsKey(fi))
-                {
-                    List<string> files = fileTypes[fi];
-                    files.Add(fileName);
-                }
-                else
-                {
-                    List<string> files = new List<string>();
-                    files.Add(fileName);
-                    fileTypes.Add(fi, files);
-                }
-            }
-
-            // REPORTS FROM APPLE
-            foreach (var fullFileName in Directory.EnumerateFiles(reportsFolder, "AppleMusic_ContentReport_*_UKR*.tsv", SearchOption.TopDirectoryOnly))
-            {
-                string fileName = Path.GetFileName(fullFileName);
-                string[] fileParts = fileName.Split('_');
-                FileIdentification fi = new FileIdentification
-                {
-                    Type = fileParts[0], //.Split('-')[3],
-                    Period = fileParts[2].Substring(0, 4) + '-' + fileParts[2].Substring(4, 2)
-                };
-                if (fileTypes.ContainsKey(fi))
-                {
-                    List<string> files = fileTypes[fi];
-                    files.Add(fileName);
-                }
-                else
-                {
-                    List<string> files = new List<string>();
-                    files.Add(fileName);
-                    fileTypes.Add(fi, files);
-                }
-            }
-
-            Helpers.RunSqlOperationDdexT(cmd =>
-            {
-                foreach (var pair in fileTypes)
-                {
-                    FileIdentification fi = pair.Key;
-                    bool isAppleFile = fi.Type.Equals("AppleMusic", StringComparison.OrdinalIgnoreCase);
-                    string[] yq = fi.Period.Split('-');
-                    int year = int.Parse(yq[0]);
-                    int quarter = int.Parse(yq[1][1].ToString());
-                    string fileType = fi.Type;
-
-                    cmd.CommandText = $@"
-                                declare @DdexReportId int;
-                                declare @DdexReportingPeriodId int;
-                                if not exists (select null from DdexReportingPeriod where year = @year and quarter = @quarter)
-                                begin
-	                                insert into DdexReportingPeriod (status, substatus, [year], [quarter]) values (@status, @substatus, @year, @quarter)
-                                end
-                                select @DdexReportingPeriodId = Id from DdexReportingPeriod where year = @year and quarter = @quarter
-
-                                if not exists (select null from DdexReport where DdexReportingPeriodId = @DdexReportingPeriodId and filetype = @filetype)
-                                begin
-                                    insert into DdexReport (ddexReportingPeriodId, status, substatus, SourceUri, TargetFolder, filetype) 
-                                                    values (@ddexReportingPeriodId, @status, @substatus, '', '', @filetype)
-                                    set @DdexReportId = SCOPE_IDENTITY();
-                                    insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) 
-                                                                  values(@DdexReportId, 0, @DdexSourceFolder, @DdexSourceFolderValue);
-                                ";
-                    cmd.Parameters.AddWithValue("@status", 0);
-                    cmd.Parameters.AddWithValue("@substatus", 0);
-                    cmd.Parameters.AddWithValue("@year", year);
-                    cmd.Parameters.AddWithValue("@quarter", quarter);
-                    cmd.Parameters.AddWithValue("@filetype", fileType);
-                    cmd.Parameters.AddWithValue("@DdexSourceFolder", "DdexSourceFolder");
-                    cmd.Parameters.AddWithValue("@DdexSourceFolderValue", reportsFolder);
-
-                    foreach (var fileName in pair.Value)
+                    var line = streamReader.ReadLine();
+                    var fields = line.Split('\t');
+                    var recordType = fields[0];
+                    if (recordType.Equals("HEAD"))
                     {
-                        int fileIndex;
-                        if (isAppleFile)
-                            fileIndex = 1;
-                        else
-                        {
-                            string[] fileNameParts = fileName.Split('_');
-                            string fileIndexOfTotal = fileNameParts[6];
-                            fileIndex = int.Parse(fileIndexOfTotal.Split('o')[0]);
-                        }
-
-                        cmd.CommandText += $@"
-                                insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) values(@DdexReportId, 0, @OptionName{fileIndex}, @FileName{fileIndex})";
-                        cmd.Parameters.AddWithValue($"@OptionName{fileIndex}", $"DdexFile{fileIndex}");
-                        cmd.Parameters.AddWithValue($"@FileName{fileIndex}", fileName);
-
-                        if (fileIndex == 1)
-                        {
-                            using (FileStream fileStream = new FileStream(reportsFolder + fileName, FileMode.Open, FileAccess.Read))
-                            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
-                            {
-                                while (!streamReader.EndOfStream)
-                                {
-                                    var line = streamReader.ReadLine();
-                                    var fields = line.Split('\t');
-                                    var recordType = fields[0];
-                                    if (recordType.Equals("HEAD"))
-                                    {
-                                        cmd.CommandText += $@"
-                                                insert into DdexRecordHead
-                                                    values (@DdexReportId
-                                                      , @MessageVersion
-                                                      , @Profile
-                                                      , @ProfileVersion
-                                                      , @MessageId
-                                                      , @MessageCreatedDateTime
-                                                      , @FileNumber
-                                                      , @NumberofFiles
-                                                      , @UsageStartDate
-                                                      , @UsageEndDate
-                                                      , @SenderPartyId
-                                                      , @SenderName
-                                                      , @ServiceDescription
-                                                      , @RecipientPartyId
-                                                      , @RecipientName
-                                                      , @RepresentedRepertoire)";
-
-                                        DdexRecordBase record;
-                                        if (isAppleFile)
-                                            record = new HEADRecordApple();
-                                        else
-                                            record = new HEADRecordGoogle();
-                                        record.fields = fields;
-
-                                        int i = 1;
-                                        cmd.Parameters.AddWithValue("@MessageVersion", record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@Profile", isAppleFile ? "" : record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@ProfileVersion", record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@MessageId", record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@MessageCreatedDateTime", record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@FileNumber", isAppleFile ? 0 : record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@NumberofFiles", record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@UsageStartDate", record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@UsageEndDate", record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@SenderPartyId", record.ConvertField(i++));
-                                        cmd.Parameters.AddWithValue("@SenderName", record.ConvertField(i++));
-                                        if (!isAppleFile)
-                                        {
-                                            cmd.Parameters.AddWithValue("@ServiceDescription", record.ConvertField(i++));
-                                            cmd.Parameters.AddWithValue("@RecipientPartyId", record.ConvertField(i++));
-                                            cmd.Parameters.AddWithValue("@RecipientName", record.ConvertField(i++));
-                                            cmd.Parameters.AddWithValue("@RepresentedRepertoire", record.ConvertField(i++));
-                                        }
-                                        else
-                                        {
-                                            cmd.Parameters.AddWithValue("@ServiceDescription", "AppleMusic");
-                                            cmd.Parameters.AddWithValue("@RecipientPartyId", "");
-                                            cmd.Parameters.AddWithValue("@RecipientName", "");
-                                            cmd.Parameters.AddWithValue("@RepresentedRepertoire", "");
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    cmd.CommandText += @"
-                            end";
-
-                    cmd.ExecuteNonQuery();
-                }
-            });
-        }
-
-        public static decimal PreRegisterReport(int licId, int custId, string clientName, string targetReportType, string fullFileName)
-        {
-            object exchRate = null; // Return Value
-            string fileName = Path.GetFileName(fullFileName);
-            string[] fileParts = fileName.Split('_');
-            string actualReportType;
-            int year;
-            int quarter;
-            
-            string[] fileTypeParts = fileParts[3].Split('-');
-            actualReportType = $"{fileTypeParts[1]}-{fileTypeParts[2]}";
-            year = int.Parse(fileParts[4].Substring(0, 4));
-            quarter = int.Parse(fileParts[4].Substring(6, 1));
-
-            if (!targetReportType.Equals(actualReportType))
-                throw new Exception("Тип вибраного файлу не відповідає параметрам договору");
-
-            Helpers.RunSqlOperationDdexT(cmd =>
-            {
-                cmd.Parameters.AddWithValue("@status", 0);
-                cmd.Parameters.AddWithValue("@substatus", 0);
-                cmd.Parameters.AddWithValue("@year", year);
-                cmd.Parameters.AddWithValue("@quarter", quarter);
-                cmd.Parameters.AddWithValue("@month", 3 * quarter - 2);
-                cmd.Parameters.AddWithValue("@filetype", targetReportType);
-                cmd.Parameters.AddWithValue("@DdexSourceFolder", "DdexSourceFolder");
-                cmd.Parameters.AddWithValue("@DdexSourceFolderValue", Path.GetDirectoryName(fullFileName) + "\\");
-                cmd.Parameters.AddWithValue("@licId", licId);
-                cmd.Parameters.AddWithValue("@custId", custId);
-
-                if(!actualReportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-                {
-                    cmd.CommandText = $@"
-                        select exchRate
-                        from CcidExchangeRate
-                        where licId = @licId and custId = @custId and year = @year and month = @month
-                    ";
-
-                    exchRate = cmd.ExecuteScalar();
-                    if (exchRate == null || exchRate == DBNull.Value)
-                        throw new Exception("Не визначений курс обміну, необхідний для обробки звіту. "
-                            + "Зайдіть на форму конфігурації договору і внесіть потрібне значення");
-                }
-
-                cmd.CommandText = $@"
-                    declare @DdexReportId int;
-                    declare @DdexReportingPeriodId int;
-                    if not exists (select null from DdexReportingPeriod where year = @year and quarter = @quarter)
-                    begin
-	                    insert into DdexReportingPeriod (status, substatus, [year], [quarter]) values (@status, @substatus, @year, @quarter)
-                    end
-                    select Id from DdexReportingPeriod where year = @year and quarter = @quarter
-                    ";
-                int ddexReportingPeriodId = (int)cmd.ExecuteScalar();
-                cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
-
-                cmd.CommandText = $@"if not exists (select null from DdexReport where DdexReportingPeriodId = @DdexReportingPeriodId and filetype = @filetype)
-                            select 0
-                            else
-                            select 1";
-                int reportExists = (int)cmd.ExecuteScalar();
-                if (reportExists == 1)
-                    throw new Exception("Вибраний файл вже зарейєстрований в системі");
-            }, true);
-            return Convert.ToDecimal(exchRate);
-        }
-
-        public static void RegisterReport(int licId, int custId, string clientName, string targetReportType, string fullFileName, decimal exchRate)
-        {
-            string fileName = Path.GetFileName(fullFileName);
-            string[] fileParts = fileName.Split('_');
-            int year;
-            int quarter;
-            year = int.Parse(fileParts[4].Substring(0, 4));
-            quarter = int.Parse(fileParts[4].Substring(6, 1));
-
-            Helpers.RunSqlOperationDdexT(cmd =>
-            {
-                cmd.Parameters.AddWithValue("@status", 0);
-                cmd.Parameters.AddWithValue("@substatus", 0);
-                cmd.Parameters.AddWithValue("@year", year);
-                cmd.Parameters.AddWithValue("@quarter", quarter);
-                cmd.Parameters.AddWithValue("@month", 3 * quarter - 2);
-                cmd.Parameters.AddWithValue("@filetype", targetReportType);
-                cmd.Parameters.AddWithValue("@DdexSourceFolder", "DdexSourceFolder");
-                cmd.Parameters.AddWithValue("@DdexSourceFolderValue", Path.GetDirectoryName(fullFileName) + "\\");
-                cmd.Parameters.AddWithValue("@licId", licId);
-                cmd.Parameters.AddWithValue("@custId", custId);
-                cmd.Parameters.AddWithValue("@exchRate", exchRate);
-
-                cmd.CommandText = $@"
-                    declare @DdexReportId int;
-                    declare @DdexReportingPeriodId int;
-                    if not exists (select null from DdexReportingPeriod where year = @year and quarter = @quarter)
-                    begin
-	                    insert into DdexReportingPeriod (status, substatus, [year], [quarter]) values (@status, @substatus, @year, @quarter)
-                    end
-                    select Id from DdexReportingPeriod where year = @year and quarter = @quarter
-                    ";
-                int ddexReportingPeriodId = (int)cmd.ExecuteScalar();
-                cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
-
-                int fileIndex = 1;
-                cmd.CommandText = $@"
-                        declare @DdexReportId int;
-                        insert into DdexReport (
-                              ddexReportingPeriodId
-                            , status
-                            , substatus
-                            , SourceUri
-                            , TargetFolder
-                            , filetype
-                            , licId
-                            , custId
-
-                            , musicRate
-                            , geRate
-                            , mechSplit
-                            , perfSplit
-                            , musicPSM
-                            , gePSM
-                            , exchRate
-                            , royaltyThreshold
-                        ) 
-                        values (
-                              @ddexReportingPeriodId
-                            , @status
-                            , @substatus
-                            , ''
-                            , ''
-                            , @filetype
-                            , @licId
-                            , @custId
-
-                            , (select cast(paramValue as decimal(5,2)) from AgreementParam where paramId = 1 and licId = @licId and custId = @custId)
-                            , (select cast(paramValue as decimal(5,2)) from AgreementParam where paramId = 2 and licId = @licId and custId = @custId)
-                            , (select cast(paramValue as decimal(5,2)) from AgreementParam where paramId = 3 and licId = @licId and custId = @custId)
-                            , (select cast(paramValue as decimal(5,2)) from AgreementParam where paramId = 4 and licId = @licId and custId = @custId)
-                            , (select cast(paramValue as decimal(5,2)) from AgreementParam where paramId = 5 and licId = @licId and custId = @custId)
-                            , (select cast(paramValue as decimal(5,2)) from AgreementParam where paramId = 6 and licId = @licId and custId = @custId)
-                            , @exchRate
-                            , (select cast(isnull(paramValue, 0) as decimal(20, 6)) from AgreementParam where paramId = 9 and licId = @licId and custId = @custId)
-                        )
-                        set @DdexReportId = SCOPE_IDENTITY();
-                        insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) 
-                                                        values(@DdexReportId, 0, @DdexSourceFolder, @DdexSourceFolderValue);
-                    ";
-                cmd.CommandText += $@"
-                        insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) values(@DdexReportId, 0, @OptionName{fileIndex}, @FileName{fileIndex})";
-                cmd.Parameters.AddWithValue($"@OptionName{fileIndex}", $"DdexFile{fileIndex}");
-                cmd.Parameters.AddWithValue($"@FileName{fileIndex}", fileName);
-
-                using (FileStream fileStream = new FileStream(fullFileName, FileMode.Open, FileAccess.Read))
-                using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
-                {
-                    while (!streamReader.EndOfStream)
-                    {
-                        var line = streamReader.ReadLine();
-                        var fields = line.Split('\t');
-                        var recordType = fields[0];
-                        if (recordType.Equals("HEAD"))
-                        {
-                            cmd.CommandText += $@"
+                        cmd.CommandText = $@"
                                     insert into DdexRecordHead
                                         values (@DdexReportId
                                             , @MessageVersion
@@ -414,34 +46,186 @@ namespace InvoicingLib
                                             , @RecipientName
                                             , @RepresentedRepertoire)";
 
-                            DdexRecordBase record;
-                            record = new HEADRecordGoogle();
-                            record.fields = fields;
+                        cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
 
-                            int i = 1;
-                            cmd.Parameters.AddWithValue("@MessageVersion", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@Profile", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@ProfileVersion", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@MessageId", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@MessageCreatedDateTime", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@FileNumber", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@NumberofFiles", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@UsageStartDate", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@UsageEndDate", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@SenderPartyId", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@SenderName", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@ServiceDescription", record.ConvertField(i++));
-                            cmd.Parameters.AddWithValue("@RecipientPartyId", "");
-                            cmd.Parameters.AddWithValue("@RecipientName", "");
-                            cmd.Parameters.AddWithValue("@RepresentedRepertoire", "");
-                            break;
-                        }
+                        DdexRecordBase record;
+                        record = new HEADRecordGoogle();
+                        record.fields = fields;
+
+                        int i = 1;
+                        cmd.Parameters.AddWithValue("@MessageVersion", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@Profile", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@ProfileVersion", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@MessageId", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@MessageCreatedDateTime", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@FileNumber", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@NumberofFiles", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@UsageStartDate", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@UsageEndDate", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@SenderPartyId", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@SenderName", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@ServiceDescription", record.ConvertField(i++));
+                        cmd.Parameters.AddWithValue("@RecipientPartyId", "");
+                        cmd.Parameters.AddWithValue("@RecipientName", "");
+                        cmd.Parameters.AddWithValue("@RepresentedRepertoire", "");
+                        break;
                     }
                 }
+            }
 
-                cmd.ExecuteNonQuery();
-            });
+            cmd.ExecuteNonQuery();
+        }
 
+        private static void InsertSrmfHead(SqlCommand cmd, int ddexReportId, string fullFileName)
+        {
+            var fileParts = Path.GetFileNameWithoutExtension(fullFileName).Split('_');
+            var tsStr = fileParts[6];
+            var startTimeStr = fileParts[5];
+            var ts = new DateTime(
+                int.Parse(tsStr.Substring(0, 4)),
+                int.Parse(tsStr.Substring(4, 2)),
+                int.Parse(tsStr.Substring(6, 2)),
+                int.Parse(tsStr.Substring(8, 2)),
+                int.Parse(tsStr.Substring(10, 2)),
+                int.Parse(tsStr.Substring(12, 2))
+            );
+
+            int year = int.Parse(startTimeStr.Substring(0, 4));
+            int month = int.Parse(startTimeStr.Substring(4, 2));
+            var startTime = new DateTime(year, month, 1);
+            var endTime = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+
+            cmd.CommandText = $@"
+                insert into DdexRecordHead
+                    values (@DdexReportId
+                        , @MessageVersion
+                        , @Profile
+                        , @ProfileVersion
+                        , @MessageId
+                        , @MessageCreatedDateTime
+                        , @FileNumber
+                        , @NumberofFiles
+                        , @UsageStartDate
+                        , @UsageEndDate
+                        , @SenderPartyId
+                        , @SenderName
+                        , @ServiceDescription
+                        , @RecipientPartyId
+                        , @RecipientName
+                        , @RepresentedRepertoire)";
+
+            cmd.Parameters.AddWithValue("@ddexReportId",            ddexReportId            );
+            cmd.Parameters.AddWithValue("@MessageVersion",          "srmf"                  );
+            cmd.Parameters.AddWithValue("@Profile",                 ""                      );
+            cmd.Parameters.AddWithValue("@ProfileVersion",          ""                      );
+            cmd.Parameters.AddWithValue("@MessageId",               ""                      );
+            cmd.Parameters.AddWithValue("@MessageCreatedDateTime",  ts                      );
+            cmd.Parameters.AddWithValue("@FileNumber",              1                       );
+            cmd.Parameters.AddWithValue("@NumberofFiles",           1                       );
+            cmd.Parameters.AddWithValue("@UsageStartDate",          startTime               );
+            cmd.Parameters.AddWithValue("@UsageEndDate",            endTime                 );
+            cmd.Parameters.AddWithValue("@SenderPartyId",           "PADPIDA2013020802I"    );
+            cmd.Parameters.AddWithValue("@SenderName",              "YouTube"               );
+            cmd.Parameters.AddWithValue("@ServiceDescription",      "PreClaim"              );
+            cmd.Parameters.AddWithValue("@RecipientPartyId",        ""                      );
+            cmd.Parameters.AddWithValue("@RecipientName",           "UACRR-CS"              );
+            cmd.Parameters.AddWithValue("@RepresentedRepertoire",   ""                      );
+
+            cmd.ExecuteNonQuery();
+        }
+
+        private static void InsertDdexReportRecord(SqlCommand cmd,
+            string agreementReportType,
+            string fullFileName,
+            int licId,
+            int custId,
+            decimal exchRate,
+            int ddexReportingPeriodId
+            )
+        {
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@status", 0);
+            cmd.Parameters.AddWithValue("@substatus", 0);
+            cmd.Parameters.AddWithValue("@filetype", agreementReportType);
+            cmd.Parameters.AddWithValue("@DdexSourceFolder", "DdexSourceFolder");
+            cmd.Parameters.AddWithValue("@DdexSourceFolderValue", Path.GetDirectoryName(fullFileName) + "\\");
+            cmd.Parameters.AddWithValue("@licId", licId);
+            cmd.Parameters.AddWithValue("@custId", custId);
+            cmd.Parameters.AddWithValue("@exchRate", exchRate);
+            cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
+            cmd.Parameters.AddWithValue($"@OptionName1", $"DdexFile1");
+            cmd.Parameters.AddWithValue($"@FileName1", Path.GetFileName(fullFileName));
+
+            cmd.CommandText = $@"
+                        declare @DdexReportId int;
+                        insert into DdexReport (
+                              ddexReportingPeriodId
+                            , status
+                            , substatus
+                            , SourceUri
+                            , TargetFolder
+                            , filetype
+                            , licId
+                            , custId
+
+                            {GetAgreementParametersSqlInsertCols(agreementReportType)}
+
+                            , exchRate
+                        ) 
+                        values (
+                              @ddexReportingPeriodId
+                            , @status
+                            , @substatus
+                            , ''
+                            , ''
+                            , @filetype
+                            , @licId
+                            , @custId
+
+                            {GetAgreementParametersSqlInsertValues(agreementReportType)}
+
+                            , @exchRate
+                        )
+                        set @DdexReportId = SCOPE_IDENTITY();
+                        insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) 
+                            values(@DdexReportId, 0, @DdexSourceFolder, @DdexSourceFolderValue);
+                        insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) 
+                            values(@DdexReportId, 0, @OptionName1, @FileName1);
+                        select @DdexReportId;
+                    ";
+            int ddexReportId = (int)cmd.ExecuteScalar();
+
+            DoInsertHead(cmd, agreementReportType, ddexReportId, fullFileName);
+        }
+
+        public static void RegisterSingleFileReport(int licId, int custId, string agreementReportType, string fullFileName)
+        {
+            int ddexReportingPeriodId = CreateReportingPeriod(agreementReportType, fullFileName);
+            var fExchRate = GetExchangeRate(licId, custId, agreementReportType, fullFileName);
+            decimal exchRate = fExchRate == null ? 0M : (decimal)fExchRate;
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId);
+            }, true);
+        }
+
+        public static void RegisterMultiFileReport(int licId, int custId, string agreementReportType, string firstFileFullName)
+        {
+            int ddexReportingPeriodId = CreateReportingPeriod(agreementReportType, firstFileFullName);
+            var fExchRate = GetExchangeRate(licId, custId, agreementReportType, firstFileFullName);
+            decimal exchRate = fExchRate == null ? 0M : (decimal)fExchRate;
+            var serviceNames = GetServiceNames(agreementReportType);
+            var fullFolderName = Path.GetDirectoryName(firstFileFullName);
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                foreach (var serviceName in serviceNames)
+                {
+                    var filter = GetFileNameWildcardForService(agreementReportType, serviceName);
+                    var files = Directory.GetFiles(fullFolderName, filter);
+                    var fullFileName = files[0];
+                    InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId);
+                }
+            }, true);
         }
 
     }

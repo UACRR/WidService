@@ -123,6 +123,184 @@ namespace InvoicingLib
 
         public override int GetFieldCount() { return 6; }
     }
+
+    public class SYRecord_01 : DdexRecordBase
+    {
+        public enum FieldIds
+        {
+             SummaryRecordId = 1
+            , DistributionChannel
+            , DistributionChannelDPID
+            , CommercialModel
+            , UseType
+            , Territory
+            , ServiceDescription
+            , Usages
+            , Subscribers
+            , Currency
+            , NetRevenue
+            , IndirectNetRevenue
+        }
+
+        public string SummaryRecordId { get { return fields[(int)FieldIds.SummaryRecordId]; } set { fields[(int)FieldIds.SummaryRecordId] = value; } }
+        public string DistributionChannel { get { return fields[(int)FieldIds.DistributionChannel]; } set { fields[(int)FieldIds.DistributionChannel] = value; } }
+        public string DistributionChannelDPID { get { return fields[(int)FieldIds.DistributionChannelDPID]; } set { fields[(int)FieldIds.DistributionChannelDPID] = value; } }
+        public string CommercialModel { get { return fields[(int)FieldIds.CommercialModel]; } set { fields[(int)FieldIds.CommercialModel] = value; } }
+        public string UseType { get { return fields[(int)FieldIds.UseType]; } set { fields[(int)FieldIds.UseType] = value; } }
+        public string Territory { get { return fields[(int)FieldIds.Territory]; } set { fields[(int)FieldIds.Territory] = value; } }
+        public string ServiceDescription { get { return fields[(int)FieldIds.ServiceDescription]; } set { fields[(int)FieldIds.ServiceDescription] = value; } }
+        public string Usages { get { return fields[(int)FieldIds.Usages]; } set { fields[(int)FieldIds.Usages] = value; } }
+        public string Subscribers { get { return fields[(int)FieldIds.Subscribers]; } set { fields[(int)FieldIds.Subscribers] = value; } }
+        public string Currency{ get { return fields[(int)FieldIds.Currency]; } set { fields[(int)FieldIds.Currency] = value; } }
+        public string NetRevenue { get { return fields[(int)FieldIds.NetRevenue]; } set { fields[(int)FieldIds.NetRevenue] = value; } }
+        public string IndirectNetRevenue { get { return fields[(int)FieldIds.IndirectNetRevenue]; } set { fields[(int)FieldIds.IndirectNetRevenue] = value; } }
+
+        public override object ConvertField(int fieldIndex)
+        {
+            try
+            {
+                switch (fieldIndex)
+                {
+                    case (int)FieldIds.Usages:
+                    case (int)FieldIds.Subscribers:
+                    case (int)FieldIds.NetRevenue:
+                    case (int)FieldIds.IndirectNetRevenue:
+                    default:
+                        return fields[fieldIndex];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public override int GetFieldCount() { return 12; }
+    }
+
+    public class SYRecord_01_01 : DdexRecordBase
+    {
+        public enum FieldIds
+        {
+            SummaryRecordId = 1
+            , DistributionChannel
+            , DistributionChannelDPID
+            , CommercialModel
+            , UseType
+            , Territory
+            , ServiceDescription
+            , Usages
+            , Subscribers
+            , CurrencyOfReporting
+            , NetRevenue
+            , IndirectNetRevenue
+            , CurrencyOfTransaction
+            , ExchangeRate
+        }
+
+        public string SummaryRecordId { get { return fields[(int)FieldIds.SummaryRecordId]; } set { fields[(int)FieldIds.SummaryRecordId] = value; } }
+        public string DistributionChannel { get { return fields[(int)FieldIds.DistributionChannel]; } set { fields[(int)FieldIds.DistributionChannel] = value; } }
+        public string DistributionChannelDPID { get { return fields[(int)FieldIds.DistributionChannelDPID]; } set { fields[(int)FieldIds.DistributionChannelDPID] = value; } }
+        public string CommercialModel { get { return fields[(int)FieldIds.CommercialModel]; } set { fields[(int)FieldIds.CommercialModel] = value; } }
+        public string UseType { get { return fields[(int)FieldIds.UseType]; } set { fields[(int)FieldIds.UseType] = value; } }
+        public string Territory { get { return fields[(int)FieldIds.Territory]; } set { fields[(int)FieldIds.Territory] = value; } }
+        public string ServiceDescription { get { return fields[(int)FieldIds.ServiceDescription]; } set { fields[(int)FieldIds.ServiceDescription] = value; } }
+        public string Usages { get { return fields[(int)FieldIds.Usages]; } set { fields[(int)FieldIds.Usages] = value; } }
+        public string Subscribers { get { return fields[(int)FieldIds.Subscribers]; } set { fields[(int)FieldIds.Subscribers] = value; } }
+        public string CurrencyOfReporting { get { return fields[(int)FieldIds.CurrencyOfReporting]; } set { fields[(int)FieldIds.CurrencyOfReporting] = value; } }
+        public string NetRevenue { get { return fields[(int)FieldIds.NetRevenue]; } set { fields[(int)FieldIds.NetRevenue] = value; } }
+        public string IndirectNetRevenue { get { return fields[(int)FieldIds.IndirectNetRevenue]; } set { fields[(int)FieldIds.IndirectNetRevenue] = value; } }
+        public string CurrencyOfTransaction { get { return fields[(int)FieldIds.CurrencyOfTransaction]; } set { fields[(int)FieldIds.CurrencyOfTransaction] = value; } }
+        public string ExchangeRate { get { return fields[(int)FieldIds.ExchangeRate]; } set { fields[(int)FieldIds.ExchangeRate] = value; } }
+
+        public override object ConvertField(int fieldIndex)
+        {
+            try
+            {
+                switch (fieldIndex)
+                {
+                    case (int)FieldIds.Usages:
+                    case (int)FieldIds.Subscribers:
+                    case (int)FieldIds.NetRevenue:
+                    case (int)FieldIds.IndirectNetRevenue:
+                    case (int)FieldIds.ExchangeRate:
+                        return string.IsNullOrEmpty(fields[fieldIndex].Trim()) ? 0 : Formatter.ToDecimal(fields[fieldIndex]);
+                    default:
+                        return fields[fieldIndex];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public override int GetFieldCount() { return 14; }
+    }
+
+    public class SYRecord_02 : DdexRecordBase
+    {
+        public enum FieldIds
+        {
+            SummaryRecordId = 1
+            , DistributionChannel
+            , DistributionChannelDPID
+            , CommercialModel
+            , UseType
+            , Territory
+            , ServiceDescription
+            , Usages
+            , Users
+            , Currency
+            , NetRevenue
+            , RightsController
+            , RightsControllerPartyId
+            , AllocatedUsages
+            , AmountPayable
+            , AllocatedNetRevenue
+        }
+
+        public string SummaryRecordId { get { return fields[(int)FieldIds.SummaryRecordId]; } set { fields[(int)FieldIds.SummaryRecordId] = value; } }
+        public string DistributionChannel { get { return fields[(int)FieldIds.DistributionChannel]; } set { fields[(int)FieldIds.DistributionChannel] = value; } }
+        public string DistributionChannelDPID { get { return fields[(int)FieldIds.DistributionChannelDPID]; } set { fields[(int)FieldIds.DistributionChannelDPID] = value; } }
+        public string CommercialModel { get { return fields[(int)FieldIds.CommercialModel]; } set { fields[(int)FieldIds.CommercialModel] = value; } }
+        public string UseType { get { return fields[(int)FieldIds.UseType]; } set { fields[(int)FieldIds.UseType] = value; } }
+        public string Territory { get { return fields[(int)FieldIds.Territory]; } set { fields[(int)FieldIds.Territory] = value; } }
+        public string ServiceDescription { get { return fields[(int)FieldIds.ServiceDescription]; } set { fields[(int)FieldIds.ServiceDescription] = value; } }
+        public string Usages { get { return fields[(int)FieldIds.Usages]; } set { fields[(int)FieldIds.Usages] = value; } }
+        public string Users { get { return fields[(int)FieldIds.Users]; } set { fields[(int)FieldIds.Users] = value; } }
+        public string Currency { get { return fields[(int)FieldIds.Currency]; } set { fields[(int)FieldIds.Currency] = value; } }
+        public string NetRevenue { get { return fields[(int)FieldIds.NetRevenue]; } set { fields[(int)FieldIds.NetRevenue] = value; } }
+        public string RightsController { get { return fields[(int)FieldIds.RightsController]; } set { fields[(int)FieldIds.RightsController] = value; } }
+        public string RightsControllerPartyId { get { return fields[(int)FieldIds.RightsControllerPartyId]; } set { fields[(int)FieldIds.RightsControllerPartyId] = value; } }
+        public string AllocatedUsages { get { return fields[(int)FieldIds.AllocatedUsages]; } set { fields[(int)FieldIds.AllocatedUsages] = value; } }
+        public string AllocatedRevenue { get { return fields[(int)FieldIds.AmountPayable]; } set { fields[(int)FieldIds.AmountPayable] = value; } }
+        public string AllocatedNetRevenue { get { return fields[(int)FieldIds.AllocatedNetRevenue]; } set { fields[(int)FieldIds.AllocatedNetRevenue] = value; } }
+
+        public override object ConvertField(int fieldIndex)
+        {
+            try
+            {
+                switch (fieldIndex)
+                {
+                    case (int)FieldIds.Usages:
+                    case (int)FieldIds.NetRevenue:
+                    case (int)FieldIds.AllocatedUsages:
+                    case (int)FieldIds.AmountPayable:
+                    case (int)FieldIds.AllocatedNetRevenue:
+                    default:
+                        return fields[fieldIndex];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public override int GetFieldCount() { return 17; }
+    }
+
     public class SYRecord_02_02 : DdexRecordBase
     {
         public enum FieldIds
@@ -197,6 +375,10 @@ namespace InvoicingLib
         }
 
         public override int GetFieldCount() { return 22; }
+    }
+
+    public class SYRecord_02_03 : SYRecord_02_02
+    {
     }
 
     public class SYRecord_04_01 : DdexRecordBase
@@ -274,6 +456,11 @@ namespace InvoicingLib
             }
         }
 
+        public override int GetFieldCount() { return 19; }
+    }
+
+    public class SYRecord_04_02 : SYRecord_04_01
+    {
         public override int GetFieldCount() { return 19; }
     }
 
@@ -364,7 +551,50 @@ namespace InvoicingLib
         public override int GetFieldCount() { return 24; }
     }
 
-    public class ASRecord : DdexRecordBase
+    public class SYRecord_05_03 : SYRecord_05_02
+    {
+        public override int GetFieldCount() { return 25; }
+    }
+
+    public class RERecord_01 : DdexRecordBase
+    {
+        public enum FieldIds
+        {
+            BlockId = 1
+            , ReleaseReference
+            , DspReleaseId
+            , ProprietaryReleaseId
+            , CatalogNumber
+            , ICPN
+            , DisplayArtistName
+            , DisplayArtistPartyId
+            , Title
+            , SubTitle
+            , ReleaseType
+            , Label
+            , PLine
+            , DataProvider
+        }
+
+        public string BlockId { get { return fields[(int)FieldIds.BlockId]; } set { fields[(int)FieldIds.BlockId] = value; } }
+        public string ReleaseReference { get { return fields[(int)FieldIds.ReleaseReference]; } set { fields[(int)FieldIds.ReleaseReference] = value; } }
+        public string DspReleaseId { get { return fields[(int)FieldIds.DspReleaseId]; } set { fields[(int)FieldIds.DspReleaseId] = value; } }
+        public string ProprietaryReleaseId { get { return fields[(int)FieldIds.ProprietaryReleaseId]; } set { fields[(int)FieldIds.ProprietaryReleaseId] = value; } }
+        public string CatalogNumber { get { return fields[(int)FieldIds.CatalogNumber]; } set { fields[(int)FieldIds.CatalogNumber] = value; } }
+        public string ICPN { get { return fields[(int)FieldIds.ICPN]; } set { fields[(int)FieldIds.ICPN] = value; } }
+        public string DisplayArtistName { get { return fields[(int)FieldIds.DisplayArtistName]; } set { fields[(int)FieldIds.DisplayArtistName] = value; } }
+        public string DisplayArtistPartyId { get { return fields[(int)FieldIds.DisplayArtistPartyId]; } set { fields[(int)FieldIds.DisplayArtistPartyId] = value; } }
+        public string Title { get { return fields[(int)FieldIds.Title]; } set { fields[(int)FieldIds.Title] = value; } }
+        public string SubTitle { get { return fields[(int)FieldIds.SubTitle]; } set { fields[(int)FieldIds.SubTitle] = value; } }
+        public string Label { get { return fields[(int)FieldIds.Label]; } set { fields[(int)FieldIds.Label] = value; } }
+        public string PLine { get { return fields[(int)FieldIds.PLine]; } set { fields[(int)FieldIds.PLine] = value; } }
+        public string DataProvider { get { return fields[(int)FieldIds.DataProvider]; } set { fields[(int)FieldIds.DataProvider] = value; } }
+
+        public override int GetFieldCount() { return 15; }
+        public override bool IsBlockRecord() { return true; }
+    }
+
+    public class ASRecord_01_01 : DdexRecordBase
     {
         public enum FieldIds
         {
@@ -396,7 +626,115 @@ namespace InvoicingLib
         public override int GetFieldCount() { return 12; }
         public override bool IsBlockRecord() { return true; }
     }
-    public class RURecord : DdexRecordBase
+
+    public class ASRecord_01_02 : ASRecord_01_01
+    {
+        public override int GetFieldCount() { return 14; }
+    }
+
+    public class ASRecord_02 : DdexRecordBase
+    {
+        public enum FieldIds
+        {
+            BlockId = 1
+            , ResourceReference
+            , DspResourceId
+            , ISRC
+            , Title
+            , SubTitle
+            , DisplayArtistName
+            , DisplayArtistPartyId
+            , Duration
+            , ResourceType
+            , ISWC
+            , ComposerAuthor
+            , ComposerAuthorPartyId
+            , Arranger
+            , ArrangerPartyId
+            , MusicPublisher
+            , MusicPublisherPartyId
+            , WorkContributor
+            , WorkContributorPartyId
+        }
+
+        public string BlockId { get { return fields[(int)FieldIds.BlockId]; } set { fields[(int)FieldIds.BlockId] = value; } }
+        public string ResourceReference { get { return fields[(int)FieldIds.ResourceReference]; } set { fields[(int)FieldIds.ResourceReference] = value; } }
+        public string DspResourceId { get { return fields[(int)FieldIds.DspResourceId]; } set { fields[(int)FieldIds.DspResourceId] = value; } }
+        public string ISRC { get { return fields[(int)FieldIds.ISRC]; } set { fields[(int)FieldIds.ISRC] = value; } }
+        public string Title { get { return fields[(int)FieldIds.Title]; } set { fields[(int)FieldIds.Title] = value; } }
+        public string SubTitle { get { return fields[(int)FieldIds.SubTitle]; } set { fields[(int)FieldIds.SubTitle] = value; } }
+        public string DisplayArtistName { get { return fields[(int)FieldIds.DisplayArtistName]; } set { fields[(int)FieldIds.DisplayArtistName] = value; } }
+        public string DisplayArtistPartyId { get { return fields[(int)FieldIds.DisplayArtistPartyId]; } set { fields[(int)FieldIds.DisplayArtistPartyId] = value; } }
+        public string Duration { get { return fields[(int)FieldIds.Duration]; } set { fields[(int)FieldIds.Duration] = value; } }
+        public string ResourceType { get { return fields[(int)FieldIds.ResourceType]; } set { fields[(int)FieldIds.ResourceType] = value; } }
+        public string ISWC { get { return fields[(int)FieldIds.ISWC]; } set { fields[(int)FieldIds.ISWC] = value; } }
+        public string ComposerAuthor { get { return fields[(int)FieldIds.ComposerAuthor]; } set { fields[(int)FieldIds.ComposerAuthor] = value; } }
+        public string ComposerAuthorPartyId { get { return fields[(int)FieldIds.ComposerAuthorPartyId]; } set { fields[(int)FieldIds.ComposerAuthorPartyId] = value; } }
+        public string Arranger { get { return fields[(int)FieldIds.Arranger]; } set { fields[(int)FieldIds.Arranger] = value; } }
+        public string ArrangerPartyId { get { return fields[(int)FieldIds.ArrangerPartyId]; } set { fields[(int)FieldIds.ArrangerPartyId] = value; } }
+        public string MusicPublisher { get { return fields[(int)FieldIds.MusicPublisher]; } set { fields[(int)FieldIds.MusicPublisher] = value; } }
+        public string MusicPublisherPartyId { get { return fields[(int)FieldIds.MusicPublisherPartyId]; } set { fields[(int)FieldIds.MusicPublisherPartyId] = value; } }
+        public string WorkContributor { get { return fields[(int)FieldIds.WorkContributor]; } set { fields[(int)FieldIds.WorkContributor] = value; } }
+        public string WorkContributorPartyId { get { return fields[(int)FieldIds.WorkContributorPartyId]; } set { fields[(int)FieldIds.WorkContributorPartyId] = value; } }
+
+        public override int GetFieldCount() { return 20; }
+        public override bool IsBlockRecord() { return true; }
+    }
+
+    public class ASRecord_02_02 : DdexRecordBase
+    {
+        public enum FieldIds
+        {
+            BlockId = 1
+            , ResourceReference
+            , DspResourceId
+            , ISRC
+            , Title
+            , SubTitle
+            , DisplayArtistName
+            , DisplayArtistPartyId
+            , Duration
+            , ResourceType
+            , ISWC
+            , ComposerAuthor
+            , ComposerAuthorPartyId
+            , Arranger
+            , ArrangerPartyId
+            , MusicPublisher
+            , MusicPublisherPartyId
+            , WorkContributor
+            , WorkContributorPartyId
+            , ProprietaryWorkId
+            , IsMasterRecording
+        }
+
+        public string BlockId { get { return fields[(int)FieldIds.BlockId]; } set { fields[(int)FieldIds.BlockId] = value; } }
+        public string ResourceReference { get { return fields[(int)FieldIds.ResourceReference]; } set { fields[(int)FieldIds.ResourceReference] = value; } }
+        public string DspResourceId { get { return fields[(int)FieldIds.DspResourceId]; } set { fields[(int)FieldIds.DspResourceId] = value; } }
+        public string ISRC { get { return fields[(int)FieldIds.ISRC]; } set { fields[(int)FieldIds.ISRC] = value; } }
+        public string Title { get { return fields[(int)FieldIds.Title]; } set { fields[(int)FieldIds.Title] = value; } }
+        public string SubTitle { get { return fields[(int)FieldIds.SubTitle]; } set { fields[(int)FieldIds.SubTitle] = value; } }
+        public string DisplayArtistName { get { return fields[(int)FieldIds.DisplayArtistName]; } set { fields[(int)FieldIds.DisplayArtistName] = value; } }
+        public string DisplayArtistPartyId { get { return fields[(int)FieldIds.DisplayArtistPartyId]; } set { fields[(int)FieldIds.DisplayArtistPartyId] = value; } }
+        public string Duration { get { return fields[(int)FieldIds.Duration]; } set { fields[(int)FieldIds.Duration] = value; } }
+        public string ResourceType { get { return fields[(int)FieldIds.ResourceType]; } set { fields[(int)FieldIds.ResourceType] = value; } }
+        public string ISWC { get { return fields[(int)FieldIds.ISWC]; } set { fields[(int)FieldIds.ISWC] = value; } }
+        public string ComposerAuthor { get { return fields[(int)FieldIds.ComposerAuthor]; } set { fields[(int)FieldIds.ComposerAuthor] = value; } }
+        public string ComposerAuthorPartyId { get { return fields[(int)FieldIds.ComposerAuthorPartyId]; } set { fields[(int)FieldIds.ComposerAuthorPartyId] = value; } }
+        public string Arranger { get { return fields[(int)FieldIds.Arranger]; } set { fields[(int)FieldIds.Arranger] = value; } }
+        public string ArrangerPartyId { get { return fields[(int)FieldIds.ArrangerPartyId]; } set { fields[(int)FieldIds.ArrangerPartyId] = value; } }
+        public string MusicPublisher { get { return fields[(int)FieldIds.MusicPublisher]; } set { fields[(int)FieldIds.MusicPublisher] = value; } }
+        public string MusicPublisherPartyId { get { return fields[(int)FieldIds.MusicPublisherPartyId]; } set { fields[(int)FieldIds.MusicPublisherPartyId] = value; } }
+        public string WorkContributor { get { return fields[(int)FieldIds.WorkContributor]; } set { fields[(int)FieldIds.WorkContributor] = value; } }
+        public string WorkContributorPartyId { get { return fields[(int)FieldIds.WorkContributorPartyId]; } set { fields[(int)FieldIds.WorkContributorPartyId] = value; } }
+        public string ProprietaryWorkId { get { return fields[(int)FieldIds.ProprietaryWorkId]; } set { fields[(int)FieldIds.ProprietaryWorkId] = value; } }
+        public string IsMasterRecording { get { return fields[(int)FieldIds.IsMasterRecording]; } set { fields[(int)FieldIds.IsMasterRecording] = value; } }
+
+        public override int GetFieldCount() { return 22; }
+        public override bool IsBlockRecord() { return true; }
+    }
+
+    public class RURecord_01_01 : DdexRecordBase
     {
         public enum FieldIds
         {
@@ -416,7 +754,61 @@ namespace InvoicingLib
         public override int GetFieldCount() { return 6; }
         public override bool IsBlockRecord() { return true; }
     }
-    public class SURecord : DdexRecordBase
+
+    public class RURecord_01_02 : RURecord_01_01
+    {
+        public override int GetFieldCount() { return 7; }
+    }
+
+    public class SURecord_02 : DdexRecordBase
+    {
+        public enum FieldIds
+        {
+            BlockId = 1
+            , SummaryRecordId
+            , SalesTransactionId
+            , TransactedRelease
+            , TransactedResource
+            , IsRoyaltyBearing
+            , NumberOfStreams
+            , PriceConsumerPaidExcSalesTax
+            , PromotionalActivity
+        }
+
+        public string BlockId { get { return fields[(int)FieldIds.BlockId]; } set { fields[(int)FieldIds.BlockId] = value; } }
+        public string SummaryRecordId { get { return fields[(int)FieldIds.SummaryRecordId]; } set { fields[(int)FieldIds.SummaryRecordId] = value; } }
+        public string SalesTransactionId { get { return fields[(int)FieldIds.SalesTransactionId]; } set { fields[(int)FieldIds.SalesTransactionId] = value; } }
+        public string TransactedRelease { get { return fields[(int)FieldIds.TransactedRelease]; } set { fields[(int)FieldIds.TransactedRelease] = value; } }
+        public string TransactedResource { get { return fields[(int)FieldIds.TransactedResource]; } set { fields[(int)FieldIds.TransactedResource] = value; } }
+        public string IsRoyaltyBearing { get { return fields[(int)FieldIds.IsRoyaltyBearing]; } set { fields[(int)FieldIds.IsRoyaltyBearing] = value; } }
+        public string NumberOfStreams { get { return fields[(int)FieldIds.NumberOfStreams]; } set { fields[(int)FieldIds.NumberOfStreams] = value; } }
+        public string PriceConsumerPaidExcSalesTax { get { return fields[(int)FieldIds.PriceConsumerPaidExcSalesTax]; } set { fields[(int)FieldIds.PriceConsumerPaidExcSalesTax] = value; } }
+        public string PromotionalActivity { get { return fields[(int)FieldIds.PromotionalActivity]; } set { fields[(int)FieldIds.PromotionalActivity] = value; } }
+
+        public override object ConvertField(int fieldIndex)
+        {
+            try
+            {
+                switch (fieldIndex)
+                {
+                    case (int)FieldIds.NumberOfStreams:
+                        return string.IsNullOrEmpty(fields[fieldIndex].Trim()) ? 0 : int.Parse(fields[fieldIndex]);
+                    case (int)FieldIds.PriceConsumerPaidExcSalesTax:
+                        return string.IsNullOrEmpty(fields[fieldIndex].Trim()) ? 0 : Formatter.ToDecimal(fields[fieldIndex]);
+                    default:
+                        return fields[fieldIndex];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public override int GetFieldCount() { return 10; }
+        public override bool IsBlockRecord() { return true; }
+    }
+
+    public class SURecord_03_02 : DdexRecordBase
     {
         public enum FieldIds
         {
@@ -444,7 +836,7 @@ namespace InvoicingLib
         public string IsRoyaltyBearing { get { return fields[(int)FieldIds.IsRoyaltyBearing]; } set { fields[(int)FieldIds.IsRoyaltyBearing] = value; } }
 
         // owned records
-        public List<LIRecord> liRecords = new List<LIRecord>();
+        public List<LIRecord_01_02> liRecords = new List<LIRecord_01_02>();
 
         public decimal GetNetRevenue() => (decimal)ConvertField((int)FieldIds.NetRevenue);
 
@@ -473,7 +865,8 @@ namespace InvoicingLib
         public override int GetFieldCount() { return 11; }
         public override bool IsBlockRecord() { return true; }
     }
-    public class LIRecord : DdexRecordBase
+
+    public class LIRecord_01_02 : DdexRecordBase
     {
         public enum FieldIds
         {
@@ -501,12 +894,18 @@ namespace InvoicingLib
         public string AllocatedUsages { get { return fields[(int)FieldIds.AllocatedUsages]; } set { fields[(int)FieldIds.AllocatedUsages] = value; } }
 
         // owned record
-        public MWRecord mwRecord;
+        public MWRecord_01_01 mwRecord;
 
         public override int GetFieldCount() { return 11; }
         public override bool IsBlockRecord() { return true; }
     }
-    public class MWRecord : DdexRecordBase
+
+    public class LIRecord_01_03 : LIRecord_01_02
+    {
+        public override int GetFieldCount() { return 13; }
+    }
+
+    public class MWRecord_01_01 : DdexRecordBase
     {
         public enum FieldIds
         {
@@ -525,15 +924,6 @@ namespace InvoicingLib
             , WorkContributorPartyId
             , DataProvider
             , ProprietaryWorkId
-            , SummaryRecordId
-            , RightsController
-            , RightsControllerPartyId
-            , RightsControllerWorkID
-            , RightSharePercent
-            , RightType
-            , AllocatedNetRevenue
-            , AllocatedAmount
-            , AllocatedUsages
         }
 
         public string BlockId { get { return fields[(int)FieldIds.BlockId]; } set { fields[(int)FieldIds.BlockId] = value; } }
@@ -551,35 +941,13 @@ namespace InvoicingLib
         public string WorkContributorPartyId { get { return fields[(int)FieldIds.WorkContributorPartyId]; } set { fields[(int)FieldIds.WorkContributorPartyId] = value; } }
         public string DataProvider { get { return fields[(int)FieldIds.DataProvider]; } set { fields[(int)FieldIds.DataProvider] = value; } }
         public string ProprietaryWorkId { get { return fields[(int)FieldIds.ProprietaryWorkId]; } set { fields[(int)FieldIds.ProprietaryWorkId] = value; } }
-        public string SummaryRecordId { get { return fields[(int)FieldIds.SummaryRecordId]; } set { fields[(int)FieldIds.SummaryRecordId] = value; } }
-        public string RightsController { get { return fields[(int)FieldIds.RightsController]; } set { fields[(int)FieldIds.RightsController] = value; } }
-        public string RightsControllerPartyId { get { return fields[(int)FieldIds.RightsControllerPartyId]; } set { fields[(int)FieldIds.RightsControllerPartyId] = value; } }
-        public string RightsControllerWorkID { get { return fields[(int)FieldIds.RightsControllerWorkID]; } set { fields[(int)FieldIds.RightsControllerWorkID] = value; } }
-        public string RightSharePercent { get { return fields[(int)FieldIds.RightSharePercent]; } set { fields[(int)FieldIds.RightSharePercent] = value; } }
-        public string RightType { get { return fields[(int)FieldIds.RightType]; } set { fields[(int)FieldIds.RightType] = value; } }
-
-        public override object ConvertField(int fieldIndex)
-        {
-            try
-            {
-                switch (fieldIndex)
-                {
-                    case (int)FieldIds.RightSharePercent:
-                    case (int)FieldIds.AllocatedNetRevenue:
-                    case (int)FieldIds.AllocatedAmount:
-                    case (int)FieldIds.AllocatedUsages:
-                        return string.IsNullOrEmpty(fields[fieldIndex].Trim()) ? 0 : Formatter.ToDecimal(fields[fieldIndex]);
-                    default:
-                        return fields[fieldIndex];
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         public override int GetFieldCount() { return 16; }
         public override bool IsBlockRecord() { return true; }
+    }
+
+    public class MWRecord_01_02 : MWRecord_01_01
+    {
+        public override int GetFieldCount() { return 19; }
     }
 
     public class APRecord : DdexRecordBase

@@ -79,13 +79,21 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.ChartView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DdexDownloadActions.cs" />
     <Compile Include="DdexReportArchiver.cs" />
+    <Compile Include="FormAgreementParams _Old.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgreementParams _Old.Designer.cs">
+      <DependentUpon>FormAgreementParams _Old.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAgreementParams.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +160,12 @@
     <Compile Include="FormObjectChooser.Designer.cs">
       <DependentUpon>FormObjectChooser.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormProgressLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProgressLog.designer.cs">
+      <DependentUpon>FormProgressLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRightHolderGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +225,15 @@
     <Compile Include="UcReportInfo.Designer.cs">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="UсReconcile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UсReconcile.Designer.cs">
+      <DependentUpon>UсReconcile.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormAgreementParams _Old.resx">
+      <DependentUpon>FormAgreementParams _Old.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAgreementParams.resx">
       <DependentUpon>FormAgreementParams.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormObjectChooser.resx">
       <DependentUpon>FormObjectChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProgressLog.resx">
+      <DependentUpon>FormProgressLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRightHolderGroup.resx">
       <DependentUpon>FormRightHolderGroup.cs</DependentUpon>
@@ -282,6 +308,9 @@
     <EmbeddedResource Include="UcReportInfo.resx">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UсReconcile.resx">
+      <DependentUpon>UсReconcile.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -308,10 +337,46 @@
     <Content Include="CcidStat.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DBSchema\Procedures\spDeleteDdexReport.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_DDEXExceptionStatus.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_DDEXIdentMWAuthor.sql" />
     <Content Include="FullDatabase.sql" />
     <Content Include="FullDdexDatabase.sql" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\Upgrade.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\All.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexAdjConsolidatedDetail.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexAdjConsolidatedSummary.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexEnumContentCategory.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\CreateDdexEnumRightsType.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\spDdexAdjConsolidatedCalcRoyalty.sql" />
+    <Content Include="Migrations\02 AdjConsolidatedSql\spDdexAdjConsolidatedDistRoyalty.sql" />
+    <Content Include="Migrations\03 Spotify\AlterDdexReportingPeriod.sql" />
+    <Content Include="Migrations\03 Spotify\AlterDspReleaseAndResourseIdLength.sql" />
+    <Content Include="Migrations\03 Spotify\CreatePreClaimMappings.sql" />
+    <Content Include="Migrations\03 Spotify\pTsk10_DDEXExceptionStatus.sql" />
+    <Content Include="Migrations\03 Spotify\pTsk10_DDEXIdentMWAuthor.sql" />
+    <Content Include="Migrations\03 Spotify\SpCreateInitialInvoiceSpotify.sql" />
+    <Content Include="Migrations\03 Spotify\spCreateInitialInvoiceSrmf.sql" />
+    <Content Include="Migrations\03 Spotify\spIdentByNameAndPerformer.sql" />
+    <Content Include="Migrations\04 Deezer\CcidInHeader.sql" />
+    <Content Include="Migrations\04 Deezer\DdexRecordSY_Base.sql" />
+    <Content Include="Migrations\04 Deezer\CcidInFile.sql" />
+    <Content Include="Migrations\04 Deezer\ft_InvoiceInFileIds.sql" />
+    <Content Include="Migrations\04 Deezer\spCreateInitialInvoiceDeezer.sql" />
+    <Content Include="Migrations\04 Deezer\pTsk10_DDEXIdentMWAuthor.sql" />
+    <Content Include="Migrations\04 Deezer\pTsk10_DDEXExceptionStatus.sql" />
+    <Content Include="Migrations\04 Deezer\pTsk10_DDEXFormRate.sql" />
+    <Content Include="Migrations\04 Deezer\spCreateInitialInvoiceSrmf.sql" />
+    <Content Include="Migrations\04 Deezer\spUpdateIdentProgress.sql" />
+    <Content Include="Migrations\04 Deezer\ft_AgreementReportIds.sql" />
+    <Content Include="Migrations\04 Deezer\DdexEnumContentCategory.sql" />
+    <Content Include="Migrations\04 Deezer\spIdentByNameAndPerformer.sql" />
+    <Content Include="Migrations\05 GoogleNewSpecs\DdexRecordSY_05_02.sql" />
+    <Content Include="Migrations\05 GoogleNewSpecs\DdexRecordHead.sql" />
+    <Content Include="Migrations\06 Fixes\CcidInFile.sql" />
+    <Content Include="Migrations\06 Fixes\spCreateInitialInvoiceDeezer.sql" />
+    <Content Include="Migrations\07 PreClaim Reconcile\PreClaimIdentReconcile.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

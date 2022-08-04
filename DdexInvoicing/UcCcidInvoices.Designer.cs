@@ -316,7 +316,6 @@
             this.radGridInvoices.Size = new System.Drawing.Size(968, 124);
             this.radGridInvoices.TabIndex = 1;
             this.radGridInvoices.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridInvoices_CellFormatting);
-            this.radGridInvoices.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridInvoices_CellClick);
             this.radGridInvoices.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.radGridInvoices_CommandCellClick);
             // 
             // tableLayoutPanel3

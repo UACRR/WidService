@@ -51,9 +51,8 @@
             this.panelLoad = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radBtnLoad = new Telerik.WinControls.UI.RadButton();
+            this.radCbServices = new Telerik.WinControls.UI.RadDropDownList();
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
-            this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ucInvoiceStatistics = new DdexInvoicing.UcInvoiceStatistics();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddleLeft)).BeginInit();
@@ -75,9 +74,9 @@
             this.panelLoad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnLoad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCbServices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
-            this.radPageViewPage1.SuspendLayout();
             this.radPageViewPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -298,13 +297,16 @@
             // 
             // panelLoad
             // 
-            this.panelLoad.ColumnCount = 4;
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 188F));
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1280F));
+            this.panelLoad.ColumnCount = 6;
+            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 339F));
+            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 14F));
+            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 910F));
             this.panelLoad.Controls.Add(this.radLabel4, 0, 0);
-            this.panelLoad.Controls.Add(this.radBtnLoad, 2, 0);
+            this.panelLoad.Controls.Add(this.radBtnLoad, 4, 0);
+            this.panelLoad.Controls.Add(this.radCbServices, 2, 0);
             this.panelLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLoad.Location = new System.Drawing.Point(3, 3);
             this.panelLoad.Name = "panelLoad";
@@ -318,49 +320,42 @@
             this.radLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel4.Location = new System.Drawing.Point(3, 3);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(182, 21);
+            this.radLabel4.Size = new System.Drawing.Size(244, 21);
             this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Завантажити 1000 перших записів";
+            this.radLabel4.Text = "Завантажити 1000 перших записів для сервісу";
             // 
             // radBtnLoad
             // 
             this.radBtnLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnLoad.Location = new System.Drawing.Point(199, 3);
+            this.radBtnLoad.Location = new System.Drawing.Point(624, 3);
             this.radBtnLoad.Name = "radBtnLoad";
-            this.radBtnLoad.Size = new System.Drawing.Size(99, 21);
+            this.radBtnLoad.Size = new System.Drawing.Size(84, 21);
             this.radBtnLoad.TabIndex = 2;
             this.radBtnLoad.Text = "Виконати";
             this.radBtnLoad.Click += new System.EventHandler(this.radBtnLoad_Click);
             // 
+            // radCbServices
+            // 
+            this.radCbServices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radCbServices.DropDownAnimationEnabled = false;
+            this.radCbServices.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.radCbServices.Location = new System.Drawing.Point(271, 3);
+            this.radCbServices.Name = "radCbServices";
+            this.radCbServices.Size = new System.Drawing.Size(333, 21);
+            this.radCbServices.TabIndex = 3;
+            this.radCbServices.Text = "radCbServices";
+            this.radCbServices.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.radCbServices_SelectedIndexChanged);
+            // 
             // radPageView1
             // 
-            this.radPageView1.Controls.Add(this.radPageViewPage1);
             this.radPageView1.Controls.Add(this.radPageViewPage2);
-            this.radPageView1.DefaultPage = this.radPageViewPage1;
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(0, 0);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage1;
+            this.radPageView1.SelectedPage = this.radPageViewPage2;
             this.radPageView1.Size = new System.Drawing.Size(758, 426);
             this.radPageView1.TabIndex = 1;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            // 
-            // radPageViewPage1
-            // 
-            this.radPageViewPage1.Controls.Add(this.ucInvoiceStatistics);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(73F, 28F);
-            this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
-            this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(737, 378);
-            this.radPageViewPage1.Text = "Статистика";
-            // 
-            // ucInvoiceStatistics
-            // 
-            this.ucInvoiceStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInvoiceStatistics.Location = new System.Drawing.Point(0, 0);
-            this.ucInvoiceStatistics.Name = "ucInvoiceStatistics";
-            this.ucInvoiceStatistics.Size = new System.Drawing.Size(737, 378);
-            this.ucInvoiceStatistics.TabIndex = 0;
             // 
             // radPageViewPage2
             // 
@@ -405,9 +400,9 @@
             this.panelLoad.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnLoad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCbServices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
             this.radPageView1.ResumeLayout(false);
-            this.radPageViewPage1.ResumeLayout(false);
             this.radPageViewPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -431,8 +426,7 @@
         private Telerik.WinControls.UI.RadButton radBtnLoad;
         private System.Windows.Forms.SplitContainer splitPanleProperties;
         private Telerik.WinControls.UI.RadPageView radPageView1;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
-        private UcInvoiceStatistics ucInvoiceStatistics;
+        private Telerik.WinControls.UI.RadDropDownList radCbServices;
     }
 }

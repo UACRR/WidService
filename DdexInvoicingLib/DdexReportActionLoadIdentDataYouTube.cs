@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace InvoicingLib
 {
-    public class DdexReportActionLoadIdentData : DdexReportActionBase
+    public class DdexReportActionLoadIdentDataYouTube : DdexReportActionBase
     {
         // work data
         private SqlConnection conn;
@@ -20,7 +20,6 @@ namespace InvoicingLib
         private int recordIndexSy_05_02 = 1;
         private int pseudoBlockId = 1;
         private double royaltyThreshold;
-        private Dictionary<string, decimal> licParams;
 
         // variables for SVOD calculations
         private bool isFirstBlock = true;
@@ -45,7 +44,7 @@ namespace InvoicingLib
         Dictionary<string, BulkUploadToSql> bulkUploaders = new Dictionary<string, BulkUploadToSql>();
         HashSet<string> recordsToCorrect;
 
-        public DdexReportActionLoadIdentData()
+        public DdexReportActionLoadIdentDataYouTube()
         {
 
         }
@@ -83,16 +82,14 @@ namespace InvoicingLib
                     cmd.Parameters.Add(new SqlParameter("@DdexReportId", report.ddexReportId));
                     Logger.WriteLine("Знаходження останнього обробленого блоку");
                     cmd.CommandText = @"declare @lastBlockId int;
-                            --delete from DdexRecordHead where DdexReportId = @DdexReportId;
                             select @lastBlockId = isnull(max(cast(blockid as int)), 0) from DdexIdentificationBacklog where DdexReportId = @DdexReportId;
                             select @lastBlockId";
                     lastProcessedBlockId = (int)cmd.ExecuteScalar();
 
                     Logger.WriteLine("Видалення раніше створенной інформації");
-                    //SqlHelpers.DeleteRecords(conn, "delete from DdexRecordHead where DdexReportId = @p0", report.ddexReportId);
                     SqlHelpers.DeleteRecords(conn, "delete from DdexRecordSY_04_01 where DdexReportId = @p0", report.ddexReportId);
                     SqlHelpers.DeleteRecords(conn, "delete from DdexRecordSY_05_02 where DdexReportId = @p0", report.ddexReportId);
-                    Logger.WriteLine($"Записи видалено за таблиць DdexRecordHead, DdexRecordSY_04_01, DdexRecordSY_05_02");
+                    Logger.WriteLine($"Записи видалено за таблиць DdexRecordSY_04_01, DdexRecordSY_05_02");
 
                     recordsToCorrect = new HashSet<string>();
                     cmd.CommandText = @"select BlockId, RecordType, RecordIndex from DdexFileErrors where DdexReportId = @DdexReportId";
@@ -130,7 +127,6 @@ namespace InvoicingLib
             }
 
             RegisterBulkUploader("DdexIdentificationBacklog");
-            RegisterBulkUploader("DdexRecordHead");
             RegisterBulkUploader("DdexRecordSY_04_01");
             RegisterBulkUploader("DdexRecordSY_05_02");
 
@@ -141,7 +137,7 @@ namespace InvoicingLib
             return lastProcessedBlockId;
         }
 
-        private void InsertRecord(ASRecord asRecord, MWRecord mwRecord, SURecord suRecord)
+        private void InsertRecord(ASRecord_01_01 asRecord, MWRecord_01_01 mwRecord, SURecord_03_02 suRecord)
         {
             if (!isSWOD && royaltyThreshold > 0 && Formatter.ToDouble(suRecord.NetRevenue) == 0)
                 return;
@@ -176,7 +172,7 @@ namespace InvoicingLib
 
                 bulkUploader.AddData(data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Logger.WriteLine($"Помилки формату в блоці {asRecord.BlockId}");
                 throw;
@@ -328,15 +324,16 @@ namespace InvoicingLib
 
                 bulkUploader.AddData(data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Logger.WriteLine($"Помилки формату в рядку {record.TrackISRC}");
                 throw;
             }
         }
 
-        private double CalcRoyalty(DdexReportBlock block)
+        private double CalcRoyalty(DdexReportBlock blockBase)
         {
+            var block = blockBase as DdexReportBlockYouTube;
             double royalty = 0;
             if (!isSWOD)
             {
@@ -360,8 +357,9 @@ namespace InvoicingLib
             return royalty;
         }
 
-        public override void ProcessBlock(DdexReportBlock block)
+        public override void ProcessBlock(DdexReportBlock blockBase)
         {
+            var block = blockBase as DdexReportBlockYouTube;
             cntSalesInFile += block.suRecords.Count;
             cntMwInFile++;
             if (isFirstBlock)
@@ -415,8 +413,8 @@ namespace InvoicingLib
             cntMwLoaded++;
             try
             {
-                Dictionary<string, SURecord> masterSuRecords = new Dictionary<string, SURecord>();
-                Dictionary<string, List<SURecord>> duplicateSuRecords = new Dictionary<string, List<SURecord>>();
+                Dictionary<string, SURecord_03_02> masterSuRecords = new Dictionary<string, SURecord_03_02>();
+                Dictionary<string, List<SURecord_03_02>> duplicateSuRecords = new Dictionary<string, List<SURecord_03_02>>();
 
                 foreach (var suRecord in block.suRecords)
                 {
@@ -427,7 +425,7 @@ namespace InvoicingLib
                     {
                         if (!duplicateSuRecords.ContainsKey(stId))
                         {
-                            List<SURecord> lst = new List<SURecord>();
+                            List<SURecord_03_02> lst = new List<SURecord_03_02>();
                             lst.Add(suRecord);
                             duplicateSuRecords.Add(stId, lst);
                         }
@@ -447,10 +445,10 @@ namespace InvoicingLib
                 {
                     foreach (var pair in masterSuRecords)
                     {
-                        SURecord masterSuRecord = pair.Value;
+                        SURecord_03_02 masterSuRecord = pair.Value;
                         if (!duplicateSuRecords.ContainsKey(masterSuRecord.SalesTransactionId))
                             continue;
-                        foreach (SURecord suRecord in duplicateSuRecords[masterSuRecord.SalesTransactionId])
+                        foreach (SURecord_03_02 suRecord in duplicateSuRecords[masterSuRecord.SalesTransactionId])
                         {
                             decimal masterNetRevenue = Formatter.ToDecimal(masterSuRecord.NetRevenue);
                             decimal duplicateNetRevenue = Formatter.ToDecimal(suRecord.NetRevenue);
@@ -466,7 +464,7 @@ namespace InvoicingLib
 
                     foreach (var pair in masterSuRecords)
                     {
-                        SURecord masterSuRecord = pair.Value;
+                        SURecord_03_02 masterSuRecord = pair.Value;
                         InsertRecord(block.asRecord, block.canonicalMwRecord, masterSuRecord);
                     }
                 }

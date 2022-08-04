@@ -52,7 +52,7 @@ namespace InvoicingLib
                         dtColInfo = new DataTable();
                         da.Fill(dtColInfo);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         throw;
                     }
@@ -74,6 +74,60 @@ namespace InvoicingLib
                 }
             }
         }
+
+        public void Init(SqlCommand cmd)
+        {
+            if (bulkCopy == null)
+            {
+                bulkCopy = new SqlBulkCopy(
+                        conn,
+                        SqlBulkCopyOptions.TableLock
+                            | SqlBulkCopyOptions.FireTriggers
+                            | SqlBulkCopyOptions.KeepIdentity
+                            | SqlBulkCopyOptions.CheckConstraints,
+                        cmd.Transaction
+                    );
+            }
+
+            if (dtColInfo == null)
+            {
+                cmd.CommandText = @"select COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH
+                        from INFORMATION_SCHEMA.COLUMNS
+                        where TABLE_NAME = @TableName
+                        order by ORDINAL_POSITION";
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add(new SqlParameter("@TableName", TableName));
+                cmd.Connection = conn;
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    try
+                    {
+                        dtColInfo = new DataTable();
+                        da.Fill(dtColInfo);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            if (dt == null)
+            {
+
+                dt = new DataTable();
+                for (int i = 0; i < dtColInfo.Rows.Count; i++)
+                {
+                    DataRow colInfo = dtColInfo.Rows[i];
+                    string colType = colInfo[1].ToString();
+                    dt.Columns.Add((string)colInfo[0], colType.Equals("int") ? typeof(int)
+                        : colType.Equals("date") ? typeof(DateTime)
+                        : colType.Equals("decimal") ? typeof(decimal)
+                        : typeof(string));
+                }
+            }
+        }
+
 
         private static string Left(string source, int length)
         {
@@ -106,7 +160,7 @@ namespace InvoicingLib
 
                 dt.Rows.Add(row);
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -114,6 +168,44 @@ namespace InvoicingLib
             if (dt.Rows.Count == CommitBatchSize)
             {
                 Flush();
+            }
+
+        }
+
+        public async void AddDataAsync(List<object> data)
+        {
+            Init();
+
+            try
+            {
+                DataRow row = dt.NewRow();
+                bool hasErrors = false;
+                int colIndex = 0;
+                foreach (var propValue in data)
+                {
+                    DataRow colInfo = dtColInfo.Rows[colIndex];
+                    string colType = colInfo[1].ToString();
+                    int colSize = colInfo[2] == DBNull.Value ? 0 : (int)colInfo[2];
+                    if (colType.Equals("varchar", StringComparison.OrdinalIgnoreCase) || colType.Equals("nvarchar", StringComparison.OrdinalIgnoreCase))
+                        row[colIndex] = Left(propValue.ToString(), colSize);
+                    else
+                        row[colIndex] = propValue;
+                    colIndex++;
+                }
+
+                if (hasErrors)
+                    return;
+
+                dt.Rows.Add(row);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            if (dt.Rows.Count == CommitBatchSize)
+            {
+                await FlushAsync();
             }
 
         }
@@ -127,21 +219,58 @@ namespace InvoicingLib
             dt.Rows.Clear();
         }
 
+        public async Task FlushAsync()
+        {
+            if (dt == null) // no rows inserted
+                return;
+            await BulkInsertAsync(dt);
+
+            dt.Rows.Clear();
+        }
+
         private void BulkInsert(DataTable dt)
         {
             try
             {
                 //SqlBulkCopy bulkCopy = new SqlBulkCopy(
-                    //conn,
-                    //SqlBulkCopyOptions.TableLock | SqlBulkCopyOptions.FireTriggers | SqlBulkCopyOptions.UseInternalTransaction,
-                    //null
+                //conn,
+                //SqlBulkCopyOptions.TableLock | SqlBulkCopyOptions.FireTriggers | SqlBulkCopyOptions.UseInternalTransaction,
+                //null
                 //);
                 bulkCopy.BulkCopyTimeout = 0;
 
                 bulkCopy.DestinationTableName = TableName;
                 bulkCopy.WriteToServer(dt);
             }
-            catch(Exception ex)
+            catch (Exception)
+            {
+                DataRow row = dt.Rows[0];
+                int i = 0;
+                foreach (var item in row.ItemArray)
+                {
+                    DataRow rowColInfo = dtColInfo.Rows[i];
+                    Console.WriteLine($"{rowColInfo.ItemArray[0]}({rowColInfo.ItemArray[1]}) = {item}");
+                    i++;
+                }
+                throw;
+            }
+        }
+
+        private async Task BulkInsertAsync(DataTable dt)
+        {
+            try
+            {
+                //SqlBulkCopy bulkCopy = new SqlBulkCopy(
+                //conn,
+                //SqlBulkCopyOptions.TableLock | SqlBulkCopyOptions.FireTriggers | SqlBulkCopyOptions.UseInternalTransaction,
+                //null
+                //);
+                bulkCopy.BulkCopyTimeout = 0;
+
+                bulkCopy.DestinationTableName = TableName;
+                await bulkCopy.WriteToServerAsync(dt);
+            }
+            catch (Exception)
             {
                 DataRow row = dt.Rows[0];
                 int i = 0;

@@ -12,11 +12,13 @@ using Telerik.WinControls.Data;
 using System.Configuration;
 using InvoicingLib;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace DdexInvoicing
 {
     public partial class UcDdexReports : UserControl
     {
+        private bool skipFillReports;
         public UcDdexReports()
         {
             InitializeComponent();
@@ -45,8 +47,10 @@ namespace DdexInvoicing
             //descriptor = new GroupDescriptor();
             //descriptor.GroupNames.Add("licenseDescription", ListSortDirection.Descending);
             //radGridViewReports.GroupDescriptors.Add(descriptor);
+            skipFillReports = true;
             FillAgreements();
             radGridAgreements.CurrentRow = null;
+            skipFillReports = false;
             FillReports();
         }
 
@@ -54,26 +58,39 @@ namespace DdexInvoicing
         {
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandText = $@"
-                    select licId
-                        , custId
-                        , Name licenseeName
-                        , licCodeName licenseDescription
-                    from vMSCustomerUses
-                    -- order by t4.[year] desc,  t4.[quarter] desc
-                ";
-                cmd.ExecuteNonQuery();
-                DataTable dt = new DataTable();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                radGridAgreements.DataSource = dt;
-
                 Text = $"Обробка електронних звітів від клієнтів ({cmd.Connection.DataSource})";
             });
+
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("licId");
+            dt.Columns.Add("custId");
+            dt.Columns.Add("licenseeName");
+            dt.Columns.Add("licenseDescription");
+
+            DdexAgreements.Agreements.ForEach(x =>
+            {
+                var row = dt.NewRow();
+                row["licId"] = x.LicId;
+                row["custId"] = x.CustId;
+                row["licenseeName"] = x.LicenseeName;
+                row["licenseDescription"] = x.LicenseDescription;
+                dt.Rows.Add(row);
+            });
+
+            radGridAgreements.DataSource = dt;
         }
 
         private void FillReports()
         {
+            if (skipFillReports)
+            {
+                return;
+            }
+
+            radLabelReports.BackColor = Color.Transparent;
+            radLabelReports.ForeColor = Color.Black;
+
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 if (radGridAgreements.CurrentRow == null
@@ -84,29 +101,102 @@ namespace DdexInvoicing
                     radLabelReports.Text = "Звіти (договір не вібрано)";
                     return;
                 }
-                int licId = (int)radGridAgreements.CurrentRow.Cells[0].Value;
-                int custId = (int)radGridAgreements.CurrentRow.Cells[1].Value;
 
-                cmd.CommandText = $@"
-                    select t2.ddexReportingPeriodId
-                        , t2.Id ddexReportId
-                        , t4.year
-                        , t4.quarter
-                        , t1.Name licenseeName
-                        , t1.licCodeName licenseDescription
-                        , t3.serviceDescription
-                        , t2.status
-                        , case when t5.groupName is null then t5.name else t5.groupName end as statusName
-                    from vMSCustomerUses t1
-                        join ddexReport t2 on t1.licId = t2.licId	and t1.custId = t2.custId
-                        join ddexrecordhead t3 on t3.DdexReportId = t2.id
-                        join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
-                        join DdexReportStatus t5 on t5.codeI = t2.Status
-                    where t1.licId = @licId and t1.custId = @custId
-                ";
+                int licId = int.Parse((string)radGridAgreements.CurrentRow.Cells[0].Value);
+                int custId = int.Parse((string)radGridAgreements.CurrentRow.Cells[1].Value);
+
+                var agreementReportType = DdexReport.GetAgreementReportType(cmd, licId, custId);
+                if (agreementReportType == null)
+                {
+                    radGridViewReports.DataSource = null;
+                    radLabelReports.Text = "ПОМИЛКА: в параметрах договору відсутня чи невірна інформація про тип файлу звіту";
+                    radLabelReports.BackColor = Color.Red;
+                    radLabelReports.ForeColor = Color.White;
+                    return;
+                }
+
+                var isMonthlyReport = DdexReport.IsMonthlyReport(cmd, licId, custId);
+                var isMultiFile = DdexReport.IsMultiFile(agreementReportType);
+
+                var col = radGridViewReports.MasterTemplate.Columns["quarter"];
+
+                cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@licId", licId);
-                //cmd.Parameters.AddWithValue("@licVersion", licVersion);
                 cmd.Parameters.AddWithValue("@custId", custId);
+
+                if (isMonthlyReport)
+                {
+                    col.FieldName = "month";
+                    col.HeaderText = "Місяць";
+                    cmd.CommandText = $@"
+                        select t2.ddexReportingPeriodId
+                            , t2.Id ddexReportId
+                            , t4.year
+                            , t4.month
+                            , 'Spotify' licenseeName
+                            , 'Free' licenseDescription
+                            , t3.serviceDescription
+                            , t2.status
+                            , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                        from ddexReport t2
+                            join ddexrecordhead t3 on t3.DdexReportId = t2.id
+                            join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                            join DdexReportStatus t5 on t5.codeI = t2.Status
+                        where t2.licId = @licId and t2.custId = @custId
+                    ";
+                }
+                else
+                {
+                    if(isMultiFile)
+                    {
+                        col.FieldName = "quarter";
+                        col.HeaderText = "Квартал";
+                        cmd.CommandText = $@"
+                            select t2.ddexReportingPeriodId
+                                , t2.Id ddexReportId
+                                , t4.year
+                                , t4.quarter
+                                , t1.Name licenseeName
+                                , t1.licCodeName licenseDescription
+                                , 'Квартальний звіт для всіх сервісів' serviceDescription
+                                , t2.status
+                                , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                            from vMSCustomerUses t1
+                                join ddexReport t2 on t1.licId = t2.licId	and t1.custId = t2.custId
+                                join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                                join DdexReportStatus t5 on t5.codeI = t2.Status
+                                join DdexRecordHead t6 on t2.id = t6.ddexReportId
+                            where
+                                     t1.licId = @licId 
+                                 and t1.custId = @custId
+                                 and t6.ServiceDescription = @ServiceDescription
+                        ";
+                        cmd.Parameters.AddWithValue("@ServiceDescription", DdexReport.GetServiceNames(agreementReportType)[0]);
+                    }
+                    else
+                    {
+                        col.FieldName = "quarter";
+                        col.HeaderText = "Квартал";
+                        cmd.CommandText = $@"
+                            select t2.ddexReportingPeriodId
+                                , t2.Id ddexReportId
+                                , t4.year
+                                , t4.quarter
+                                , t1.Name licenseeName
+                                , t1.licCodeName licenseDescription
+                                , t3.serviceDescription
+                                , t2.status
+                                , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                            from vMSCustomerUses t1
+                                join ddexReport t2 on t1.licId = t2.licId	and t1.custId = t2.custId
+                                join ddexrecordhead t3 on t3.DdexReportId = t2.id
+                                join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                                join DdexReportStatus t5 on t5.codeI = t2.Status
+                            where t1.licId = @licId and t1.custId = @custId
+                        ";
+                    }
+                }
+
                 DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -119,128 +209,298 @@ namespace DdexInvoicing
             });
         }
 
-        private void RegisterReport(string clientName, int licId, int custId)
+        private void RegisterReport(int licId, int custId)
         {
-            object reportType = null;
-            Helpers.RunSqlOperationDdex(cmd =>
+            // GET REPORT TYPE FROM AGREEMENT PARAMETERS
+            var agreementReportType = DdexReport.GetAgreementReportType(licId, custId);
+            if (agreementReportType == null)
             {
-                cmd.CommandText = $@"
-                    select paramValue paramValue
-                    from AgreementParam
-                    where paramId = 8 and licId = @licId and custId = @custId
-                ";
-                cmd.Parameters.AddWithValue("@licId", licId);
-                //cmd.Parameters.AddWithValue("@licVersion", licVersion);
-                cmd.Parameters.AddWithValue("@custId", custId);
-
-                reportType = cmd.ExecuteScalar();
-            });
-
-            if (reportType == null)
-            {
-                MessageBox.Show("Не прописаний тип звіту, що надходить згідно договору. "
+                MessageBox.Show("Не прописаний або невірний тип звіту, що надходить згідно договору. "
                     + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка конфігурації договору", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            // Get agreement parameters
-            decimal? 
-                musicRate = null, geRate = null,
-                mechSplit = null, perfSplit = null, 
-                musicPSM = null, gePSM = null,
-                royaltyThreshold = 0;
-            Helpers.RunSqlOperationDdex(cmd =>
+            // CHECK THAT ALL REQUIRED AGREEMENT PARAMETERS ARE PROVIDED
+            var checkResult = DdexReport.CheckAgreementParameters(licId, custId);
+            if (checkResult != null)
             {
-                cmd.CommandText = $@"
-                    select 
-                          paramId
-                        , paramValue
-                    from AgreementParam
-                    where licId = @licId and custId = @custId
-                ";
-                cmd.Parameters.AddWithValue("@licId", licId);
-                cmd.Parameters.AddWithValue("@custId", custId);
-
-                using (SqlDataReader r = cmd.ExecuteReader())
-                {
-                    while(r.Read())
-                    {
-                        if (r.IsDBNull(1))
-                            continue;
-                        string val = r.GetString(1);
-                        switch (r.GetInt32(0))
-                        {
-                            case 1:
-                                musicRate = Formatter.ToDecimal(val);
-                                break;
-                            case 2:
-                                geRate = Formatter.ToDecimal(val);
-                                break;
-                            case 3:
-                                mechSplit = Formatter.ToDecimal(val);
-                                break;
-                            case 4:
-                                perfSplit = Formatter.ToDecimal(val);
-                                break;
-                            case 5:
-                                musicPSM = Formatter.ToDecimal(val);
-                                break;
-                            case 6:
-                                gePSM = Formatter.ToDecimal(val);
-                                break;
-                            case 9:
-                                royaltyThreshold = Formatter.ToDecimal(val);
-                                break;
-                        }
-                    }
-                }
-            });
-            if(musicRate == null || geRate == null || mechSplit == null || perfSplit == null ||
-                !((string)reportType).Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) &&
-                (musicPSM == null || gePSM == null)
-            )
-            {
-                MessageBox.Show("Не визначені параметри договору, необхідні для обробки звіту. "
-                   + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка конфігурації договору", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(checkResult
+                   + ". Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка конфігурації договору", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
+            if (DdexReport.IsMultiFile(agreementReportType))
+            {
+                RegisterMultiFileReport(licId, custId, agreementReportType);
+            }
+            else
+            {
+                RegisterSingleFileReport(licId, custId, agreementReportType);
+            }
+        }
+
+        private void RegisterSingleFileReport(int licId, int custId, string agreementReportType)
+        {
+            // SELECT VALID REPORT FILE
+            var filter = DdexReport.GetFileNameWildcard(agreementReportType);
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Файли звітів від клієнта (*.tsv)|*.tsv";
+            dlg.Filter = $"Файли звітів від клієнта|{filter}";
             if (DialogResult.OK != dlg.ShowDialog())
                 return;
             string fullFileName = dlg.FileName;
 
+            // Because user may change filter, check that finally selected file matches wildcard
+            var dir = Path.GetDirectoryName(fullFileName);
+            if (!Directory.EnumerateFiles(dir, filter).Any(x => x.Equals(fullFileName, StringComparison.OrdinalIgnoreCase)))
+            {
+                MessageBox.Show("Файл не відповідає типу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // MAKE SURE REPORTING PERIOD FOR THE REPORT EXISTS BASED ON REPORT FILE
+            var ddexReportingPeriodId = DdexReport.CreateReportingPeriod(agreementReportType, fullFileName);
+
+            // CHECK THAT THE REPORT IS NOT REGISTERED YET
+            if (DdexReport.CheckSingleFileReportExists(agreementReportType, ddexReportingPeriodId))
+            {
+                MessageBox.Show("Вибраний файл вже зарейєстрований в системі", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CHECK THAT EXHANGE RATE IS SET FOR THE REPORT FILE'S PERIOD
+            if (!CheckExchangeRates(licId, custId, agreementReportType, fullFileName))
+            {
+                MessageBox.Show("Не визначений курс обміну, необхідний для обробки звіту. "
+                            + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CONFIRM PARAMETERS FOR REPORT REGISTRATION
+            if (!ConfirmParametersForReportRegistration(licId, custId, fullFileName))
+            {
+                return;
+            }
+
+            // CREATE REGISTRATION RECORDS IN THE DATABASE
             try
             {
-                decimal exchRate = DdexReport.PreRegisterReport(licId, custId, clientName, (string)reportType, fullFileName);
-
-                string paramValues = $"Процент за музичний контент: {musicRate}\r\n";
-                paramValues += $"Процент за розважальний контент: {geRate}\r\n";
-                paramValues += $"Процент правовласності за механічне виконання: {mechSplit}\r\n";
-                paramValues += $"Процент правовласності за публічне виконання: {perfSplit}\r\n";
-                if (!((string)reportType).Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-                {
-                    paramValues += $"Тариф на музичний контент: {musicPSM} грн.\r\n";
-                    paramValues += $"Тариф на розважальний контент: {gePSM} грн.\r\n";
-                    paramValues += $"Курс обміну (доларів за гривню): {exchRate}\r\n";
-                }
-                paramValues += $"Мінімум роялті що приймається до розгляду: {royaltyThreshold} USD\r\n";
-
-                if (MessageBox.Show("Договір буде зарейєстровано з наступною інформацією для виконаня обчислень.\r\n"
-                    + paramValues + "Зарейеструвати?", "Конфігурація договору", 
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                    return;
-                DdexReport.RegisterReport(licId, custId, clientName, (string)reportType, fullFileName, exchRate);
+                DdexReport.RegisterSingleFileReport(licId, custId, agreementReportType, fullFileName);
                 FillReports();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                var result = MessageBox.Show("Згенерувати повторно помилку? (програма може аварійно зупинитись)", "#DEBUG MODE",MessageBoxButtons.YesNo, MessageBoxIcon.Hand);
-                if (result == DialogResult.Yes)
-                    throw;
             }
+        }
+
+        private void RegisterMultiFileReport(int licId, int custId, string agreementReportType)
+        {
+            var serviceNames = DdexReport.GetServiceNames(agreementReportType);
+
+            // SELECT VALID REPORT FOLDER
+            var dlg = new FolderBrowserDialog();
+            dlg.Description = $"Фолдер файлів звіту від клієнта";
+            if (DialogResult.OK != dlg.ShowDialog())
+                return;
+            string fullFolderName = dlg.SelectedPath;
+
+            // Check that folder contains files for all services
+            var errorText = "";
+            foreach(var serviceName in serviceNames)
+            {
+                var filter = DdexReport.GetFileNameWildcardForService(agreementReportType, serviceName);
+                var files = Directory.GetFiles(fullFolderName, filter);
+                if(files.Length == 0)
+                {
+                    errorText = $"Не знайдено файл для сервісу {serviceName}";
+                    break;
+                }
+                else if (files.Length > 1)
+                {
+                    errorText = $"Знайдено декілька файлів для сервісу {serviceName}";
+                    break;
+                }
+            }
+
+            if(!string.IsNullOrEmpty(errorText))
+            {
+                MessageBox.Show(errorText, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // MAKE SURE REPORTING PERIOD FOR THE REPORT EXISTS BASED ON REPORT FILE
+            var firstFileWildcard = DdexReport.GetFileNameWildcardForService(agreementReportType, serviceNames[0]);
+            var firstFileFullName = Directory.GetFiles(fullFolderName, firstFileWildcard)[0];
+            var ddexReportingPeriodId = DdexReport.CreateReportingPeriod(agreementReportType, firstFileFullName);
+
+            // CHECK THAT THE REPORT IS NOT REGISTERED YET 
+            // CHECK AGAINST THE FIRST FILE IS SUFFICIENT BECAUSE REGISTRATION RECORDS ARE WRITTEN In SINGLE DB TRANSACTIONS
+            if (DdexReport.CheckSingleFileReportExists(agreementReportType, ddexReportingPeriodId))
+            {
+                MessageBox.Show("Вибраний звіт вже зарейєстрований в системі", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CHECK THAT EXHANGE RATE IS SET FOR THE REPORT FILE'S PERIOD
+            if (!CheckExchangeRates(licId, custId, agreementReportType, firstFileFullName))
+            {
+                MessageBox.Show("Не визначений курс обміну, необхідний для обробки звіту. "
+                            + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CONFIRM PARAMETERS FOR REPORT REGISTRATION
+            if(!ConfirmParametersForReportRegistration(licId, custId, firstFileFullName))
+            {
+                return;
+            }
+
+            // CREATE REGISTRATION RECORDS IN THE DATABASE
+            try
+            {
+                DdexReport.RegisterMultiFileReport(licId, custId, agreementReportType, firstFileFullName);
+                FillReports();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private bool ConfirmParametersForReportRegistration(int licId, int custId, string fullFileName)
+        {
+            var paramsText = DdexReport.GetAgreementParametersText(licId, custId, fullFileName);
+            return MessageBox.Show("Договір буде зарейєстровано з наступною інформацією для виконаня обчислень.\r\n"
+                + paramsText + "\r\nЗарейеструвати?", "Конфігурація договору",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        private bool CheckExchangeRates(int licId, int custId, string agreementReportType, string fullFileName)
+        {
+            if (DdexReport.NeedsExhcnageRate(agreementReportType) && !DdexReport.CheckExchangeRateExists(licId, custId, agreementReportType, fullFileName))
+            {
+                MessageBox.Show("Не визначений курс обміну, необхідний для обробки звіту. "
+                            + "Зайдіть на форму конфігурації договору і внесіть потрібне значення", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private string DoLoadDdexAdjConsolidated(int ddexReportId, string fileFullName, string fileType)
+        {
+            try
+            {
+                string retVal = "";
+                DdexReport ddexReport = new DdexReport(ConfigurationManager.AppSettings["ConnectionStringDdex"], ddexReportId);
+                if (fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+                {
+                    ddexReport.ProcessAdjustment(new DdexReportActionLoadAdjAvod(), fileFullName);
+                }
+                else
+                {
+                    ddexReport.ProcessAdjustment(new DdexReportActionLoadAdjSvod(), fileFullName);
+                }
+
+                Helpers.RunSqlOperationDdexT(cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                    cmd.CommandText = $@"spDdexAdjConsolidatedCalcRoyalty";
+                    cmd.ExecuteNonQuery();
+                }, true);
+
+                Helpers.RunSqlOperationDdex(cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+
+                    cmd.Parameters.Add("@result", SqlDbType.VarChar);
+                    cmd.Parameters["@result"].Direction = ParameterDirection.Output;
+                    cmd.Parameters["@result"].Size = 100;
+
+                    cmd.Parameters.Add("@RetCode", SqlDbType.Int);
+                    cmd.Parameters["@RetCode"].Direction = ParameterDirection.Output;
+
+                    cmd.CommandText = $@"spDdexAdjConsolidatedDistRoyalty";
+                    cmd.ExecuteNonQuery();
+
+                    if((int)cmd.Parameters["@RetCode"].Value == 1)
+                    {
+                        retVal = (string)cmd.Parameters["@result"].Value;
+                    }
+                }, true);
+
+                return retVal;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        private bool LoadDdexAdjConsolidated(int ddexReportId, int ddexReportingPeriodId)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Файли консолідованих звітів від клієнта (*.tsv)|*.tsv";
+            if (DialogResult.OK != dlg.ShowDialog())
+                return false;
+            string fileFullName = dlg.FileName;
+            string fileName = Path.GetFileNameWithoutExtension(dlg.FileName);
+
+            // Get data for file name validation from db
+            string fileType = "";
+            int year = 0;
+            int quarter = 0;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
+
+                cmd.CommandText = "select FileType from DdexReport where id = @ddexReportId";
+                fileType = (string)cmd.ExecuteScalar();
+
+                cmd.CommandText = "select year from DdexReportingPeriod where id = @ddexReportingPeriodId";
+                year = (int)cmd.ExecuteScalar();
+
+                cmd.CommandText = "select quarter from DdexReportingPeriod where id = @ddexReportingPeriodId";
+                quarter = (int)cmd.ExecuteScalar();
+            });
+
+            // Validate file from its name
+            // Example: DSR_UACRR-CS_YouTube_AdjConsolidated-AdSupport-Music-All_2019-Q2_UA_1of1_20201207T204552
+            string expectedAdjFileType = 
+                fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) ?    "AdSupport" :
+                fileType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase) ? "SubscriptionMusic" :
+                                                                                            "SubscriptionPremium";
+            string expectedFileStart = $"DSR_UACRR-CS_YouTube_AdjConsolidated-{expectedAdjFileType}-Music-All_{year}-Q{quarter}_UA_1of1_";
+
+            if (!fileName.StartsWith(expectedFileStart, StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Файл не відповідає типу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            FormLongOperation form = new FormLongOperation("Виконується побудова даних для розподілу. Зачекайте, будь ласка.");
+            Form parent = FindForm();
+            form.Show(parent);
+            var task = new Task<string>(() => { return DoLoadDdexAdjConsolidated(ddexReportId, fileFullName, fileType); });
+            task.Start();
+            task.Wait();
+            form.Hide();
+
+            if(!string.IsNullOrEmpty(task.Result))
+            {
+                MessageBox.Show(task.Result, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            MessageBox.Show("Дані для розподілу роялті побудовані і передані в БД MediaService", "Операція завершена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
 
         private void radGridViewReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
@@ -265,7 +525,8 @@ namespace DdexInvoicing
             {
                 int status = (int)e.Row.Cells["status"].Value;
                 if (status == Meta.DdexReportStatus.INVOICING)
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Обробку завершено";
+                    //(e.CellElement as GridCommandCellElement).CommandButton.Text = "Обробку завершено";
+                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Розподілити";
                 else if (status == Meta.DdexReportStatus.INVOICING_COMPLETED)
                     (e.CellElement as GridCommandCellElement).CommandButton.Text = "До архіву";
                 else if (status == Meta.DdexReportStatus.ARCHIVING)
@@ -303,6 +564,7 @@ namespace DdexInvoicing
                 DdexReportArchiver.OperationMode mode;
                 if (status == Meta.DdexReportStatus.INVOICING)
                 {
+                    /*
                     Helpers.RunSqlOperationDdex(cmd =>
                     {
                         cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
@@ -311,6 +573,19 @@ namespace DdexInvoicing
                         cmd.ExecuteNonQuery();
                         FillReports();
                     });
+                    */
+                    if (LoadDdexAdjConsolidated(ddexReportId, ddexReportingPeriodId))
+                    {
+                        Helpers.RunSqlOperationDdex(cmd =>
+                        {
+                            cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                            cmd.Parameters.AddWithValue("@status", Meta.DdexReportStatus.INVOICING_COMPLETED);
+                            cmd.CommandText = "update DdexReport set status = @status where id = @ddexReportId";
+                            cmd.ExecuteNonQuery();
+                        });
+                        FillReports();
+                    }
+
                     return;
                 }
                 else if (status == Meta.DdexReportStatus.INVOICING_COMPLETED || status == Meta.DdexReportStatus.ARCHIVING)
@@ -341,43 +616,15 @@ namespace DdexInvoicing
             }
         }
 
-        private void radBtnRegisterReports_Click(object sender, EventArgs e)
-        {
-            string filesPath;
-            using (var fbd = new FolderBrowserDialog())
-            {
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    filesPath = fbd.SelectedPath + "\\";
-                }
-                else
-                {
-                    return;
-                }
-            }
-
-            try
-            {
-                DdexReport.RegisterReports(ConfigurationManager.AppSettings["ConnectionStringDdex"], filesPath);
-                FillReports();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
         private void radGridAgreements_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            int licId = (int)e.Row.Cells["licId"].Value;
-            int custId = (int)e.Row.Cells["custId"].Value;
+            int licId = int.Parse((string)e.Row.Cells["licId"].Value);
+            int custId = int.Parse((string)e.Row.Cells["custId"].Value);
             string clientName = (string)e.Row.Cells["licenseeName"].Value;
 
             if (e.Column.FieldName.Equals("RegisterReport", StringComparison.OrdinalIgnoreCase))
             {
-                RegisterReport(clientName, licId, custId);
+                RegisterReport(licId, custId);
             }
             else if (e.Column.FieldName.Equals("EditParameters", StringComparison.OrdinalIgnoreCase))
             {

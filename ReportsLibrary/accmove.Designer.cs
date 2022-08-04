@@ -184,7 +184,7 @@ namespace ReportsLibrary
             this.ReportNameTextBox.Style.Font.Bold = true;
             this.ReportNameTextBox.Style.Font.Name = "Segoe UI";
             this.ReportNameTextBox.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(14D);
-            this.ReportNameTextBox.Value = "Движение по счету";
+            this.ReportNameTextBox.Value = "Ж’РІРёР¶РµРЅРёРµ РїРѕ СЃС‡РµС‚Сѓ";
             // 
             // detailSection1
             // 

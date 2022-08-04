@@ -65,7 +65,7 @@ namespace ReportsLibrary
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox4.StyleName = "BlueOpal.TableHeader";
-            this.textBox4.Value = "π";
+            this.textBox4.Value = "‚Ññ";
             // 
             // textBox3
             // 
@@ -77,7 +77,7 @@ namespace ReportsLibrary
             this.textBox3.Style.Font.Bold = true;
             this.textBox3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox3.StyleName = "BlueOpal.TableHeader";
-            this.textBox3.Value = "¬Ò¸„Ó:";
+            this.textBox3.Value = "–í—Å—å–≥–æ:";
             // 
             // textBox6
             // 
@@ -86,7 +86,7 @@ namespace ReportsLibrary
             this.textBox6.Style.Font.Bold = true;
             this.textBox6.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox6.StyleName = "BlueOpal.TableHeader";
-            this.textBox6.Value = " ÓÏ≥Ò≥ˇ";
+            this.textBox6.Value = "–ö–æ–º—ñ—Å—ñ—è";
             // 
             // textBox7
             // 
@@ -95,7 +95,7 @@ namespace ReportsLibrary
             this.textBox7.Style.Font.Bold = true;
             this.textBox7.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox7.StyleName = "BlueOpal.TableHeader";
-            this.textBox7.Value = "—ÛÏ‡ ¿¬";
+            this.textBox7.Value = "–°—É–º–∞ –ê–í";
             // 
             // textBox5
             // 
@@ -168,7 +168,7 @@ namespace ReportsLibrary
             this.textBox20.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox20.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox20.Value = "«‚≥ÚË. √ÓÎÓ‚Ì‡.";
+            this.textBox20.Value = "–ó–≤—ñ—Ç–∏. –ì–æ–ª–æ–≤–Ω–∞.";
             // 
             // detailSection1
             // 
@@ -306,13 +306,13 @@ namespace ReportsLibrary
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
-            reportParameter1.Text = "«‡ ÔÂ≥Ó‰ Á ";
+            reportParameter1.Text = "–ó–∞ –ø–µ—Ä—ñ–æ–¥ –∑ ";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
-            reportParameter2.Text = "ÔÓ ";
+            reportParameter2.Text = "–ø–æ ";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "=Today()";
             reportParameter2.Visible = true;

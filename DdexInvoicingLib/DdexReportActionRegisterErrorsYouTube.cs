@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace InvoicingLib
 {
-    public class DdexReportActionRegisterErrors : DdexReportActionBase
+    public class DdexReportActionRegisterErrorsYouTube : DdexReportActionBase
     {
         private SqlConnection conn;
         BulkUploadToSql bulkUploader;
 
-        public DdexReportActionRegisterErrors()
+        public DdexReportActionRegisterErrorsYouTube()
         {
         }
 
-        public override string GetDescription() { return "Рейстрація помилок у вхіному файлі для подальшого виправлення"; }
+        public override string GetDescription() { return "Реєстрація помилок у вхіному файлі для подальшого виправлення"; }
 
         public override bool DoFiltering() { return false; }
 
@@ -118,8 +118,9 @@ namespace InvoicingLib
             ValidateRecord(record, "DdexRecordSy", 0);
         }
 
-        public override void ProcessBlock(DdexReportBlock block)
+        public override void ProcessBlock(DdexReportBlock blockBase)
         {
+            var block = blockBase as DdexReportBlockYouTube;
             try
             {
                 int ruRecordIndex = 0;

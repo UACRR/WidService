@@ -21,6 +21,7 @@ namespace DdexInvoicing
         {
             Meta.Load();
             DdexDownloadActions.Init();
+            DdexAgreements.Load();
 
             InitializeComponent();
         }

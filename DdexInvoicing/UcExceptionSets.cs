@@ -1,7 +1,9 @@
-﻿using InvoicingLib;
+﻿using ExportImport;
+using InvoicingLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -34,6 +36,7 @@ namespace DdexInvoicing
             radGrid.Columns["Show"].IsVisible =
             radGrid.Columns["Delete"].IsVisible =
             radGrid.Columns["Clone"].IsVisible =
+            radGrid.Columns["Export"].IsVisible =
                 mode == Mode.Edit;
            FillExceptionSets();
         }
@@ -61,6 +64,7 @@ namespace DdexInvoicing
                     , 'Видалити' [Delete]
                     , 'Створити копію' Clone
                     , 'Застосувати' Apply
+                    , 'Експортувати' Export
                     from ExceptionSet t1
                         join ExceptionSetStatus t2 on t2.codeI = t1.setStatus
                     order by setCode
@@ -154,9 +158,52 @@ namespace DdexInvoicing
 
         }
 
+        private void ExportExceptionSet(int setCode)
+        {
+            var dlg = new SaveFileDialog();
+            if(dlg.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            var form = new FormProgressLog(ProcessingPropress =>
+            {
+                EntityManager.ExportExceptionSetToCsvFile(
+                    ConfigurationManager.AppSettings["ConnectionStringDdex"],
+                    setCode,
+                    dlg.FileName,
+                    ProcessingPropress);
+            });
+            form.ShowDialog();
+        }
+
         private void radBtnNewExc_Click(object sender, EventArgs e)
         {
             AddExceptionSet();
+        }
+
+        private void radBtnImportExc_Click(object sender, EventArgs e)
+        {
+            var dlg = new OpenFileDialog();
+            if (dlg.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            if(!EntityManager.IsValidCsvFile(dlg.FileName))
+            {
+                MessageBox.Show("Невірний формат файлу", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            var form = new FormProgressLog(ProcessingPropress =>
+            {
+                EntityManager.ImportFromCsvFile(
+                    ConfigurationManager.AppSettings["ConnectionStringDdex"],
+                    dlg.FileName,
+                   ProcessingPropress);
+            });
+            form.ShowDialog();
+
+            FillExceptionSets();
+            radGrid.Rows[radGrid.Rows.Count - 1].IsCurrent = true;
         }
 
         private void radGrid_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -178,6 +225,10 @@ namespace DdexInvoicing
             else if (e.Column.FieldName.Equals("Apply", StringComparison.OrdinalIgnoreCase))
             {
                 ApplyExceptionSet(setCode);
+            }
+            else if (e.Column.FieldName.Equals("Export", StringComparison.OrdinalIgnoreCase))
+            {
+                ExportExceptionSet(setCode);
             }
         }
     }

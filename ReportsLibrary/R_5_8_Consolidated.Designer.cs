@@ -76,7 +76,7 @@ namespace ReportsLibrary
             this.textBox3.Style.Font.Bold = true;
             this.textBox3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox3.StyleName = "Normal.TableHeader";
-            this.textBox3.Value = "Права";
+            this.textBox3.Value = "РџСЂР°РІР°";
             // 
             // textBox4
             // 
@@ -88,7 +88,7 @@ namespace ReportsLibrary
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox4.StyleName = "Normal.TableHeader";
-            this.textBox4.Value = "Співтовариство";
+            this.textBox4.Value = "РЎРїС–РІС‚РѕРІР°СЂРёСЃС‚РІРѕ";
             // 
             // textBox5
             // 
@@ -101,7 +101,7 @@ namespace ReportsLibrary
             this.textBox5.Style.Font.Bold = true;
             this.textBox5.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox5.StyleName = "Normal.TableHeader";
-            this.textBox5.Value = "Сума збору";
+            this.textBox5.Value = "РЎСѓРјР° Р·Р±РѕСЂСѓ";
             // 
             // textBox6
             // 
@@ -113,7 +113,7 @@ namespace ReportsLibrary
             this.textBox6.Style.Font.Bold = true;
             this.textBox6.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox6.StyleName = "Normal.TableHeader";
-            this.textBox6.Value = "Комісія УААСП";
+            this.textBox6.Value = "РљРѕРјС–СЃС–СЏ РЈРђРђРЎРџ";
             // 
             // textBox7
             // 
@@ -125,7 +125,7 @@ namespace ReportsLibrary
             this.textBox7.Style.Font.Bold = true;
             this.textBox7.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox7.StyleName = "Normal.TableHeader";
-            this.textBox7.Value = "До перер.";
+            this.textBox7.Value = "Р”Рѕ РїРµСЂРµСЂ.";
             // 
             // textBox8
             // 
@@ -140,8 +140,8 @@ namespace ReportsLibrary
             this.textBox8.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox8.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox8.StyleName = "Normal.TableHeader";
-            this.textBox8.Value = "=\'9. Розподіл  авторскої  винагороди за період з \'+ Substr(CStr(Parameters.beginD" +
-    "ate.Value),0,10)+\' по \'+Substr(CStr(Parameters.endDate.Value),0,10)";
+            this.textBox8.Value = "=\'9. Р РѕР·РїРѕРґС–Р»  Р°РІС‚РѕСЂСЃРєРѕС—  РІРёРЅР°РіРѕСЂРѕРґРё Р·Р° РїРµСЂС–РѕРґ Р· \'+ Substr(CStr(Parameters.beginD" +
+    "ate.Value),0,10)+\' РїРѕ \'+Substr(CStr(Parameters.endDate.Value),0,10)";
             // 
             // groupFooterSection
             // 
@@ -445,7 +445,7 @@ namespace ReportsLibrary
             this.textBox24.Style.Font.Bold = true;
             this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox24.StyleName = "Normal.TableBody";
-            this.textBox24.Value = "Всього:";
+            this.textBox24.Value = "Р’СЃСЊРѕРіРѕ:";
             // 
             // sqlDataSource1
             // 
@@ -478,7 +478,7 @@ namespace ReportsLibrary
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox1.Value = "Звіти. Головна.";
+            this.textBox1.Value = "Р—РІС–С‚Рё. Р“РѕР»РѕРІРЅР°.";
             // 
             // reportHeaderSection1
             // 
@@ -504,13 +504,13 @@ namespace ReportsLibrary
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             reportParameter1.Name = "beginDate";
-            reportParameter1.Text = "            з";
+            reportParameter1.Text = "            Р·";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AllowBlank = false;
             reportParameter2.Name = "endDate";
-            reportParameter2.Text = "по";
+            reportParameter2.Text = "РїРѕ";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "=Today()";
             reportParameter2.Visible = true;

@@ -40,6 +40,7 @@
     <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -63,6 +64,8 @@
     <Compile Include="ActionRunner.cs" />
     <Compile Include="BulkUploadToSql.cs" />
     <Compile Include="CcidRecords.cs" />
+    <Compile Include="DdexAgreement.cs" />
+    <Compile Include="DdexAgreements.cs" />
     <Compile Include="DdexRecords.cs" />
     <Compile Include="DdexReport.cs" />
     <Compile Include="DdexReportActionBase.cs" />
@@ -70,16 +73,33 @@
     <Compile Include="DdexReportActionCheckColSizes.cs" />
     <Compile Include="DdexReportActionFillSubscriptionData.cs" />
     <Compile Include="DdexReportActionFillRawData.cs" />
-    <Compile Include="DdexReportActionLoadAdjustmentData.cs" />
-    <Compile Include="DdexReportActionLoadIdentData.cs" />
-    <Compile Include="DdexReportActionRegisterErrors.cs" />
+    <Compile Include="DdexReportActionLoadAdjAvod.cs" />
+    <Compile Include="DdexReportActionLoadAdjSvod.cs" />
+    <Compile Include="DdexReportActionLoadIdentDataDeezer.cs" />
+    <Compile Include="DdexReportActionLoadIdentDataSrmf.cs" />
+    <Compile Include="DdexReportActionLoadIdentDataSpotify.cs" />
+    <Compile Include="DdexReportActionLoadIdentDataYouTube.cs" />
+    <Compile Include="DdexReportActionRegisterErrorsSkip.cs" />
+    <Compile Include="DdexReportActionRegisterErrorsYouTube.cs" />
+    <Compile Include="DdexReportBlockDeezer.cs" />
+    <Compile Include="DdexReportBlockSrmf.cs" />
+    <Compile Include="DdexReportBlockSpotify.cs" />
+    <Compile Include="DdexReportBlockYouTube.cs" />
     <Compile Include="DdexReportBlock.cs" />
     <Compile Include="DdexReportExPostProcessing.cs" />
     <Compile Include="DdexReportExRegistration.cs" />
     <Compile Include="DdexReportExSplitAuthors.cs" />
+    <Compile Include="DdexReportExTypeInfo.cs" />
     <Compile Include="DdexReportInfo.cs" />
     <Compile Include="DdexReportingPeriod.cs" />
+    <Compile Include="ExportImport\Attributes.cs" />
+    <Compile Include="ExportImport\EntityList.cs" />
+    <Compile Include="ExportImport\EntityManager.cs" />
+    <Compile Include="ExportImport\ExceptionAdd.cs" />
+    <Compile Include="ExportImport\ExceptionMember.cs" />
+    <Compile Include="ExportImport\ExceptionSet.cs" />
     <Compile Include="Helpers.cs" />
+    <Compile Include="IdentReconciler.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

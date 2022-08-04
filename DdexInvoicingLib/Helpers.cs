@@ -137,6 +137,49 @@ namespace InvoicingLib
         }
         public static string ToString(double value) => value.ToString(numberFormat);
         public static double ToDouble(string value) => double.Parse(value, numberFormat);
+        public static DateTime ToDateTime(string value)
+        {
+            var dateTimeParts = value.Split(' ');
+            var dateParts = dateTimeParts[0].Split('-');
+            var timeParts = dateTimeParts[1].Split(':');
+            return new DateTime(
+                    int.Parse(dateParts[0]),
+                    int.Parse(dateParts[1]),
+                    int.Parse(dateParts[2]),
+                    int.Parse(timeParts[0]),
+                    int.Parse(timeParts[1]),
+                    int.Parse(timeParts[2])
+                );
+        }
+        public static string ToExportString(object value)
+        {
+            if (value == null)
+            {
+                return "";
+            }
+            var valueType = value.GetType();
+            if (valueType.Equals(typeof(int)) || valueType.Equals(typeof(int?)))
+            {
+                return ((int)value).ToString();
+            }
+            else if (valueType.Equals(typeof(decimal)) || valueType.Equals(typeof(decimal?)))
+            {
+                return ((decimal)value).ToString(numberFormat);
+            }
+            else if (valueType.Equals(typeof(string)))
+            {
+                return (string)value;
+            }
+            else if (valueType.Equals(typeof(DateTime)) || valueType.Equals(typeof(DateTime?)))
+            {
+                return ((DateTime)value).ToString("yyyy-MM-dd hh:mm:ss");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
 
         public static bool IsValidDecimal(string value)
         {

@@ -16,7 +16,10 @@ namespace InvoicingLib
         public int Year { get; set; }
 
         [ReadOnly(true)]
-        public int Quarter { get; set; }
+        public bool IsMonthly { get; set; }
+
+        [ReadOnly(true)]
+        public int TimeUnitValue { get; set; }
 
         [ReadOnly(true)]
         public int Status { get; set; }

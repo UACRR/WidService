@@ -31,16 +31,65 @@ namespace InvoicingLib
     {
         public override void Run()
         {
-            new DdexReport(ConnectionString, DdexReportId)
-                .ProcessFiles(new DdexReportActionRegisterErrors());
+            if(DdexReport.FileMayHaveErrors(DdexReportId))
+            {
+                new DdexReport(ConnectionString, DdexReportId)
+                    .ProcessFiles(new DdexReportActionRegisterErrorsYouTube());
+            }
+            else
+            {
+                new DdexReport(ConnectionString, DdexReportId)
+                    .ProcessFiles(new DdexReportActionRegisterErrorsSkip());
+            }
         }
     }
     public class LoadIntoDbRunner : ActionRunner
     {
         public override void Run()
         {
-            new DdexReport(ConnectionString, DdexReportId)
-                .ProcessFiles(new DdexReportActionLoadIdentData());
+            if(DdexReport.IsSrmf(DdexReportId))
+            {
+                new DdexReport(ConnectionString, DdexReportId)
+                    .ProcessFiles(new DdexReportActionLoadIdentDataSrmf());
+            }
+            else
+            {
+                switch (DdexReport.GetDigitalServiceProvider(DdexReportId))
+                {
+                    case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
+                        new DdexReport(ConnectionString, DdexReportId)
+                            .ProcessFiles(new DdexReportActionLoadIdentDataYouTube());
+                        break;
+                    case DdexReport.DigitalServiceProviderEnum.SPOTIFY:
+                        new DdexReport(ConnectionString, DdexReportId)
+                            .ProcessFiles(new DdexReportActionLoadIdentDataSpotify());
+                        break;
+                    case DdexReport.DigitalServiceProviderEnum.DEEZER:
+                        // For multifile reports DdexReportId corresppnds to the first file of group
+                        // Need to iterate over all reports starting from the report that is not loaded completely
+                        // Process the base file last as its status is used as the status of all group
+                        var ddexReportIds = DdexReport.GetAgreementNotLoadedReportIds(DdexReportId);
+                        ddexReportIds.Where(x => x != DdexReportId).ToList().ForEach(x =>
+                        {
+                            new DdexReport(ConnectionString, x)
+                                .ProcessFiles(new DdexReportActionLoadIdentDataDeezer());
+                            Helpers.RunSqlOperationDdex(cmd =>
+                            {
+                                cmd.CommandText = $@"
+                                    update DdexReport
+                                    set Status = @status 
+                                    where id = @ddexReportId";
+                                cmd.Parameters.Clear();
+                                cmd.Parameters.AddWithValue("@ddexReportId", x);
+                                cmd.Parameters.AddWithValue("@status", Meta.DdexReportStatus.MERGE_MUSIC_WORKS);
+                                cmd.ExecuteNonQuery();
+                            });
+                        });
+                        new DdexReport(ConnectionString, DdexReportId)
+                                .ProcessFiles(new DdexReportActionLoadIdentDataDeezer());
+                        break;
+                }
+            }
         }
     }
     public class MergeMusicWorksRunner : ActionRunner
@@ -130,6 +179,7 @@ namespace InvoicingLib
     {
         public override void Run()
         {
+           /*
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -138,6 +188,7 @@ namespace InvoicingLib
                 cmd.Parameters.AddWithValue("@setId", 1);
                 cmd.ExecuteNonQuery();
             }, true);
+            */
         }
     }
     public class CalcMarketShareRunner : ActionRunner
@@ -176,7 +227,7 @@ namespace InvoicingLib
         public override void Run()
         {
             new DdexReport(ConnectionString, DdexReportId)
-                .ProcessFiles(new DdexReportActionRegisterErrors());
+                .ProcessFiles(new DdexReportActionRegisterErrorsYouTube());
         }
     }
 
@@ -212,7 +263,7 @@ namespace InvoicingLib
         public override void Run()
         {
             new DdexReport(ConnectionString, DdexReportId)
-                .ProcessFiles(new DdexReportActionLoadIdentData());
+                .ProcessFiles(new DdexReportActionLoadIdentDataYouTube());
         }
     }
 

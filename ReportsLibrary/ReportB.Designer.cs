@@ -54,7 +54,7 @@ namespace ReportsLibrary
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
             this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox1.Value = "ŒÔÂ‡ÚË‚Ì≥ Á‚≥ÚË";
+            this.textBox1.Value = "–û–ø–µ—Ä–∞—Ç–∏–≤–Ω—ñ –∑–≤—ñ—Ç–∏";
             // 
             // textBox2
             // 
@@ -75,11 +75,11 @@ namespace ReportsLibrary
             this.textBox2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
             this.textBox2.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox2.Value = "≤Ì¯≥ Á‚≥ÚË";
+            this.textBox2.Value = "–Ü–Ω—à—ñ –∑–≤—ñ—Ç–∏";
             // 
             // textBox3
             // 
-            typeReportSource3.TypeName = "ReportsLibrary.Report≥—, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Public" +
+            typeReportSource3.TypeName = "ReportsLibrary.Report—ñ–°, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Public" +
     "KeyToken=null";
             navigateToReportAction3.ReportSource = typeReportSource3;
             this.textBox3.Action = navigateToReportAction3;
@@ -95,7 +95,7 @@ namespace ReportsLibrary
             this.textBox3.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
             this.textBox3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox3.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox3.Value = "«‚≥ÚË ÔÓ ÔÂÂ‡ıÛ‚‡ÌÌ˛ ÍÓ¯Ú≥‚";
+            this.textBox3.Value = "–ó–≤—ñ—Ç–∏ –ø–æ –ø–µ—Ä–µ—Ä–∞—Ö—É–≤–∞–Ω–Ω—é –∫–æ—à—Ç—ñ–≤";
             // 
             // pageFooterSection1
             // 

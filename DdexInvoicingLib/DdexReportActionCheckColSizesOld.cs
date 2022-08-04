@@ -127,8 +127,9 @@ namespace InvoicingLib
         {
             UpdateFieldLengths(record);
         }
-        public override void ProcessBlock(DdexReportBlock block)
+        public override void ProcessBlock(DdexReportBlock blockBase)
         {
+            var block = blockBase as DdexReportBlockYouTube;
             UpdateFieldLengths(block.asRecord);
             UpdateFieldLengths(block.canonicalMwRecord);
             foreach(var ruRecord in block.ruRecords)

@@ -40,7 +40,6 @@ namespace DdexInvoicing
         {
             this.ddexReportId = ddexReportId;
             ShowExc();
-            //ShowStatistics();
             ShowInvoices();
         }
 
@@ -74,12 +73,12 @@ namespace DdexInvoicing
                                 when InstanceIndex = 1 then 0 
                                 else 1 
                               end tp
-                            , fileId, ccidInvoiceId, InstanceIndex
+                            , fileId, ccidInvoiceId, InstanceIndex, ddexReportId
                             , IsNull(Status, 0) fileStatus
                             , Name, TargetFolder 
                          from CcidInFile
                         union
-                        select 2 tp, fileId, ccidInvoiceId, InstanceIndex
+                        select 2 tp, fileId, ccidInvoiceId, InstanceIndex, null ddexReportId
                             , Status fileStatus
                             , Name, TargetFolder 
                        from CcidClFile
@@ -97,6 +96,7 @@ namespace DdexInvoicing
                    from CcidInvoice t1
                        join files t2 on t2.ccidInvoiceId = t1.id
                     where t1.ddexReportId = @ddexReportId
+                        and (t2.ddexReportId is null or t2.ddexReportId = @ddexReportId)
                     order by t1.createdDate desc, t2.InstanceIndex, t2.tp
                  ";
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
@@ -109,114 +109,14 @@ namespace DdexInvoicing
             });
         }
 
-        private void ShowStatistics()
-        {
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                var dt = new DataTable();
-                dt.Columns.Add("CcidNetRevenueExcluded");
-                dt.Columns.Add("CcidNetRevenueClaimed");
-                dt.Columns.Add("CcidNetRevenueClaimPending");
-                dt.Columns.Add("CcidNetRevenueReadyToClaim");
-                dt.Columns.Add("CcidNetRevenuePaid");
-                dt.Columns.Add("CcidNetRevenueRejected");
-
-                cmd.CommandText = $@"
-                    select isnull(CcidNetRevenueExcluded, 0), isnull(CcidNetRevenueClaimed, 0), isnull(CcidNetRevenueClaimPending, 0)
-                            , isnull(CcidNetRevenueReadyToClaim, 0), isnull(CcidNetRevenuePaid, 0), isnull(CcidNetRevenueRejected, 0)
-                    from DdexReport
-                    where Id = @ddexReportId
-                 ";
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-
-                using (SqlDataReader r = cmd.ExecuteReader())
-                {
-                    r.Read();
-
-                    int i = 0;
-                    dt.Rows.Add(r.GetDecimal(i++), r.GetDecimal(i++), r.GetDecimal(i++)
-                        , r.GetDecimal(i++), r.GetDecimal(i++), r.GetDecimal(i++));
-                }
-
-            });
-        }
-
-        private void RefreshStatistics(bool calcMarketShare)
-        {
-            if(calcMarketShare)
-                CalcMarketShare();
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                cmd.CommandText = $@"
-                    -- agreement parameters
-                    declare @licId int, @custId int;
-                    select @licId = licId, @custId = custId
-                    from DdexReport 
-                    where id = @ddexReportId;
-
-                    declare @musicRate float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 1 and licId = @licId and custId = @custId);
-                    declare @geRate float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 2 and licId = @licId and custId = @custId);
-                    declare @mechSplit float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 3 and licId = @licId and custId = @custId);
-                    declare @perfSplit float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 4 and licId = @licId and custId = @custId);
-
-                    --select @musicRate, @geRate, @mechSplit, @perfSplit
-
-                    if @musicRate is null or @geRate is null or @mechSplit is null or @perfSplit is null
-                    begin
-                        raiserror('Відсутня інформація із догоіору, необхідна для розрахунків', 0, 0);
-                        return;
-                    end
-
-                    update DdexReport
-                    set CcidNetRevenueReadyToClaim = (
-                        select sum(
-                                (cast(t1.rateTotalPER as float) * @perfSplit  + cast(t1.rateTotalMEC as float) * @mechSplit)
-                                * 0.01 
-                                * t1.netrevenue
-                                * (case when t1.ContentCategory = 'Music' then @musicRate else @geRate end)
-                            ) 
-                        from IdentBacklog t1 
-                            join IdentMw t2 on t1.mwId = t2.Id
-                        where t1.DdexReportId = @ddexReportId 
-                            and t2.Status = 2
-                            and t1.IncludedInCcid is null
-                        )
-                    where Id = @ddexReportId
-
-                    declare @CcidNetRevenueExcluded decimal(20, 6)
-                        , @CcidNetRevenueClaimed decimal(20, 6)
-                        , @CcidNetRevenueClaimPending decimal(20, 6)
-
-                    select
-                          @CcidNetRevenueExcluded = sum(case when t4.claim_unmatched_combined = 100 then t4.amount_invoiced_total else 0 end)
-                        , @CcidNetRevenueClaimed = sum(case when t3.status >=2 and t4.claim_unmatched_combined = 0 then t4.amount_invoiced_total else 0 end)
-                        , @CcidNetRevenueClaimPending = sum(case when t3.status < 2 then t4.amount_invoiced_total else 0 end)
-                    from ddexReport t1
-                        join CcidInvoice t2 on t2.ddexReportId = t1.id
-                        join CcidInFile t3 on t3.ccidInvoiceId = t2.id
-                        join CcidInDetail t4 on t4.fileId = t3.fileId
-                    where t1.id = @ddexReportId and t3.InstanceIndex = 1
-
-                    update DdexReport
-                    set CcidNetRevenueExcluded = @CcidNetRevenueExcluded
-                        , CcidNetRevenueClaimed = @CcidNetRevenueClaimed
-                        , CcidNetRevenueClaimPending = @CcidNetRevenueClaimPending
-                    where id = @ddexReportId
-                 ";
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                cmd.ExecuteNonQuery();
-            });
-        }
-
         void UpdateInvoice(int fileId)
         {
-            /*if (DialogResult.Yes == MessageBox.Show(
-                    "Перерахувати проценти перед виставленням рахунку? Це значно збільшить час очікування і можна не робити, якщо перерахунок вже було виконано під час оновлення статистики,"
-                    , "Виставлення рахунку", MessageBoxButtons.YesNo, MessageBoxIcon.Question))*/
             CalcMarketShare();
 
-            Helpers.RunSqlOperationDdex(cmd =>
+            Helpers.RunSqlOperationDdexT(cmd =>
             {
+                var agreementReportTypeEnum = DdexReport.GetAgreementReportType(cmd, ddexReportId);
+
                 int status = -1;
 
                 cmd.CommandText = $@"
@@ -243,20 +143,45 @@ namespace DdexInvoicing
                         return;
                 }
 
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = @"select FileType 
-                    from CcidInFile t1
-                        join CcidInvoice t2 on t2.Id = t1.CcidInvoiceId
-                        join DdexReport t3 on t3.id = t2.ddexReportId
-                    where t1.fileId = @fileId";
-                string fileType = (string)cmd.ExecuteScalar();
-
-                cmd.CommandText = fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) ?
-                    "spCreateInitialInvoice" : "spCreateInitialInvoiceSubscr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.RemoveAt(0);
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                cmd.Parameters.AddWithValue("@fileId", fileId);
+
+                switch (agreementReportTypeEnum)
+                {
+                    case DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC:
+                        cmd.CommandText = "spCreateInitialInvoice";
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
+                        cmd.CommandText = "spCreateInitialInvoiceSubscr";
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
+                        cmd.CommandText = "spCreateInitialInvoiceSrmf";
+                        break;
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                        cmd.CommandText = "spCreateInitialInvoiceSpotify";
+                        break;
+                    case DdexReport.ReportTypeEnum.DEEZER_ALL:
+                        cmd.CommandText = "spCreateInitialInvoiceDeezer";
+                        break;
+                }
+
+                cmd.Parameters.Clear();
+                switch (agreementReportTypeEnum)
+                {
+                    case DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                        cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                        cmd.Parameters.AddWithValue("@fileId", fileId);
+                        break;
+                    case DdexReport.ReportTypeEnum.DEEZER_ALL:
+                        cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
+                        cmd.Parameters.AddWithValue("@leadingFileId", fileId); break;
+                }
                 cmd.ExecuteNonQuery();
             });
         }
@@ -277,7 +202,29 @@ namespace DdexInvoicing
                     return;
                 }
             }
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandText = $@"
+                    select id
+                    from ft_InvoiceInFileIds(@fileId)
+                ";
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                var r = cmd.ExecuteReader();
+                var ids = new List<int>();
+                while(r.Read())
+                {
+                    ids.Add(r.GetInt32(0));
+                }
+                r.Close();
 
+                ids.ForEach(x => {
+                    SaveInvoiceFile(filesPath, x);
+                });
+            });
+        }
+
+        private void SaveInvoiceFile(string filesPath, int fileId)
+        {
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandText = $@"select *
@@ -341,18 +288,22 @@ namespace DdexInvoicing
                 return;
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                cmd.CommandText = "dbo.pTsk10_DdexIdentMWAuthor";
-                cmd.ExecuteNonQuery();
+                if(DdexReport.GetAgreementReportType(cmd, ddexReportId) != DdexReport.ReportTypeEnum.YOUTUBE_SRMF)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                    cmd.CommandText = "dbo.pTsk10_DdexIdentMWAuthor";
+                    cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "dbo.pTsk10_DdexExceptionStatus";
-                cmd.Parameters.AddWithValue("@setId", setCode);
-                cmd.ExecuteNonQuery();
+                    cmd.CommandText = "dbo.pTsk10_DdexExceptionStatus";
+                    cmd.Parameters.AddWithValue("@setId", setCode);
+                    cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "dbo.pTsk10_DDEXFormRate";
-                cmd.Parameters.RemoveAt(1);
-                cmd.ExecuteNonQuery();
+                    cmd.CommandText = "dbo.pTsk10_DDEXFormRate";
+                    cmd.Parameters.RemoveAt(1);
+                    cmd.ExecuteNonQuery();
+                }
             });
         }
 
@@ -370,113 +321,7 @@ namespace DdexInvoicing
             ShowInvoices();
         }
 
-        /*
-        private void GetReply(int fileId)
-        {
-            string fileName;
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Файли відповіді клієнта (*.dat)|*.dat";
-            if (DialogResult.OK != dlg.ShowDialog())
-                return;
-            fileName = dlg.FileName;
-
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                string ccidIdCorrectionReference;
-                FileStream fs = new FileStream(dlg.FileName, FileMode.Open, FileAccess.Read);
-                using (var sr = new StreamReader(fs, Encoding.UTF8))
-                {
-                    if (sr.EndOfStream)
-                    {
-                        MessageBox.Show($"Невірний формат файлу", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return;
-                    }
-                    string line = sr.ReadLine();
-                    string[] fields = line.Split('\t');
-                    if (fields.Length != 21)
-                    {
-                        MessageBox.Show($"Невірний формат файлу", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return;
-                    }
-                    ccidIdCorrectionReference = fields[13];
-                    if (!ccidIdCorrectionReference.Equals(fileId.ToString()))
-                    {
-                        MessageBox.Show($"Вибраний файл не відповідає надісланому файлу. Виберіть інший файл."
-                            , "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return;
-                    }
-                }
-
-                cmd.CommandText = @"select ccid_id_correction_reference 
-                        from CcidClHeader 
-                        where ccid_id_correction_reference = @ccidIdCorrectionReference";
-                cmd.Parameters.AddWithValue("@ccidIdCorrectionReference", ccidIdCorrectionReference);
-                if(cmd.ExecuteScalar() == DBNull.Value)
-                {
-                    MessageBox.Show($"Вибраний файл відповіді вже завантажено в базу даних"
-                            , "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                cmd.CommandText = @"select InstanceIndex from CcidInFile where fileId = @fileId";
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                int instanceIndex = Convert.ToInt32(cmd.ExecuteScalar());
-
-                cmd.CommandText = @"
-                        declare @invoiceId int = (select ccidInvoiceId from CcidInFile where fileId = @fileId);
-                        insert into CcidClFile(ccidInvoiceId, InstanceIndex, [status], [Name], TargetFolder)
-                        values(@invoiceId, @InstanceIndex, 0, @name, @TargetFolder);
-                        select scope_identity();";
-                cmd.Parameters.AddWithValue("@instanceIndex", instanceIndex);
-                cmd.Parameters.AddWithValue("@name", Path.GetFileName(dlg.FileName));
-                cmd.Parameters.AddWithValue("@TargetFolder", Path.GetDirectoryName(dlg.FileName));
-                int ccidClFileId = Convert.ToInt32(cmd.ExecuteScalar());
-                using (System.IO.StreamReader file = new System.IO.StreamReader(dlg.FileName))
-                {
-                    string line;
-                    BulkUploadToSql bulkUploader = new BulkUploadToSql();
-                    bulkUploader.TableName = "CcidClDetail";
-                    bulkUploader.conn = cmd.Connection;
-
-                    int lineCount = 0;
-                    while ((line = file.ReadLine()) != null)
-                    {
-                        lineCount++;
-                        string[] fields = line.Split('\t');
-                        if (fields[0].Equals("HD", StringComparison.OrdinalIgnoreCase))
-                        {
-                            CcidHeaderRecord record = new CcidHeaderRecord();
-                            record.UploadLine(cmd.Connection, ccidClFileId, fields);
-                        }
-                        else if (fields[0].Equals("ID", StringComparison.OrdinalIgnoreCase))
-                        {
-                            CcidDetailRecord record = new CcidDetailRecord();
-                            record.UploadLine(bulkUploader, ccidClFileId, fields);
-                        }
-                        else if (fields[0].Equals("TR", StringComparison.OrdinalIgnoreCase))
-                        {
-                            CcidTrailerRecord record = new CcidTrailerRecord();
-                            record.UploadLine(cmd.Connection, ccidClFileId, fields);
-                        }
-                    }
-                    bulkUploader.Flush();
-                }
-
-                cmd.CommandText = $@"
-                    update CcidInFile set Status = 3 where fileId = @fileId
-                ";
-                cmd.ExecuteNonQuery();
-            });
-            ShowInvoices();
-        }
-        */
-
-        /// <summary>
-        /// Отримати назву файлу з перевіркою на відповідність необхідній структурі для подальшої обробки
-        /// </summary>
-        /// <param name="fileId"></param>
-        /// <returns></returns>
-        private string GetYouTubeAdjustmentReplyFileNameWithCheck(int fileId)
+        private string GetYouTubeAddSupportReplyFileName(int fileId)
         {
             string fileName;
             OpenFileDialog dlg = new OpenFileDialog();
@@ -484,7 +329,6 @@ namespace DdexInvoicing
             if (DialogResult.OK != dlg.ShowDialog())
                 return "";
             fileName = dlg.FileName;
-            //return fileName;
 
             Helpers.RunSqlOperationDdex(cmd =>
             {
@@ -534,15 +378,6 @@ namespace DdexInvoicing
             return fileName;
         }
 
-        private string ReadYouTubeAddSupportReply(int fileId, string fileName)
-        {
-            DdexReport ddexReport = new DdexReport(ConfigurationManager.AppSettings["ConnectionStringDdex"], ddexReportId);
-            var action = new DdexReportActionLoadAdjustmentData(fileId);
-            ddexReport.ProcessAdjustment(action, fileName);
-
-            return fileName;
-        }
-
         private string GetYouTubeSubscriptionReplyFileName(int fileId)
         {
             string fileName;
@@ -571,7 +406,6 @@ namespace DdexInvoicing
                         fileName = "";
                         return;
                     }
-
                     int respFileId = int.Parse(fields[4]);
                     if (respFileId != fileId)
                     {
@@ -584,188 +418,28 @@ namespace DdexInvoicing
             return fileName;
         }
 
-        private void ReadYouTubeSubscriptionReply(int fileId, string fileName)
-        {
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                cmd.CommandText = "delete from CrfDetail where fileId = @fileId";
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                cmd.ExecuteNonQuery();
-
-                using (System.IO.StreamReader file = new System.IO.StreamReader(fileName))
-                {
-                    string line;
-                    BulkUploadToSql bulkUploader = new BulkUploadToSql();
-                    bulkUploader.TableName = "CrfDetail";
-                    bulkUploader.conn = cmd.Connection;
-
-                    file.ReadLine(); // skip head
-                    while ((line = file.ReadLine()) != null)
-                    {
-                        string[] fields = line.Split('\t');
-                        if (fields[0].Equals("FOOT", StringComparison.OrdinalIgnoreCase))
-                        {
-                            break;
-                        }
-                        List<object> data = new List<object>();
-                        data.Add(fileId);
-                        data.Add(fields[2]);
-                        data.Add(Meta.CrfDetailStatus.Value(fields[4])); // Mech
-                        data.Add(Meta.CrfDetailStatus.Value(fields[3])); // Perf (different order in Db and Crf)
-                        bulkUploader.AddData(data);
-                    }
-                    bulkUploader.Flush();
-                }
-            }, true);
-        }
-
-        /// <summary>
-        /// отримати назву файлу відповіді
-        /// </summary>
-        /// <param name="fileId"></param>
-        /// <param name="reportType"></param>
-        /// <returns></returns>
         private string GetReplyFileName(int fileId, string reportType)
         {
             string fileName = "";
-
-            //fileName = GetYouTubeSubscriptionReplyFileName(fileId);
-            fileName = GetYouTubeAdjustmentReplyFileNameWithCheck(fileId);
-
-            //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    fileName = GetYouTubeAdjustmentReplyFileNameWithCheck(fileId);
-            //}
-            //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    fileName = GetYouTubeSubscriptionReplyFileName(fileId);
-            //}
-            //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    fileName = GetYouTubeSubscriptionReplyFileName(fileId);
-            //}
+            if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
+            {
+                fileName = GetYouTubeAddSupportReplyFileName(fileId);
+            }
+            else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
+            {
+                fileName = GetYouTubeSubscriptionReplyFileName(fileId);
+            }
+            else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
+            {
+                fileName = GetYouTubeSubscriptionReplyFileName(fileId);
+            }
             return fileName;
-        }
-
-        private void ProcessReply(int fileId, string reportType, string fileName)
-        {
-            //ReadYouTubeSubscriptionReply(fileId, fileName);
-            //
-            ReadYouTubeAddSupportReply(fileId, fileName);
-
-            //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    ReadYouTubeAddSupportReply(fileId, fileName);
-            //}
-            //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    ReadYouTubeSubscriptionReply(fileId, fileName);
-            //}
-            //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    ReadYouTubeSubscriptionReply(fileId, fileName);
-            //}
-
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                cmd.CommandText = @"select InstanceIndex from CcidInFile where fileId = @fileId";
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                int instanceIndex = Convert.ToInt32(cmd.ExecuteScalar());
-
-                cmd.CommandText = @"
-                        declare @invoiceId int = (select ccidInvoiceId from CcidInFile where fileId = @fileId);
-                        declare @clFileId int = (select fileId from CcidClFile where ccidInvoiceId = @invoiceId and InstanceIndex = @InstanceIndex);
-                        if @clFileId is null
-                        begin
-                            insert into CcidClFile(ccidInvoiceId, InstanceIndex, [status], [Name], TargetFolder)
-                            values(@invoiceId, @InstanceIndex, 0, @name, @TargetFolder);
-                            set @clFileId = scope_identity();
-                        end
-                        select @clFileId";
-                cmd.Parameters.AddWithValue("@instanceIndex", instanceIndex);
-                cmd.Parameters.AddWithValue("@name", Path.GetFileName(fileName));
-                cmd.Parameters.AddWithValue("@TargetFolder", Path.GetDirectoryName(fileName));
-                int ccidClFileId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                // запуск процедури формування даних для розподілу
-                cmd.CommandText = "[dbo].[spCreateClFromAdjustmentReport]";
-
-                //if (reportType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase))
-                //{
-                //    cmd.CommandText = "[dbo].[spCreateClFromAdjustmentReport]";
-                //}
-                //else if (reportType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase))
-                //{
-                //    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
-                //}
-                //else if (reportType.Equals("Subscription-Premium", StringComparison.OrdinalIgnoreCase))
-                //{
-                //    cmd.CommandText = "[dbo].[spCreateClFromCrf]";
-                //}
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@inFileId", fileId);
-                cmd.Parameters.AddWithValue("@clFileId", ccidClFileId);
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = $@"
-                    update CcidInFile set Status = 3 where fileId = @fileId
-                ";
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                cmd.ExecuteNonQuery();
-            });
-        }
-
-        private void GetReply(int fileId)
-        {
-            // Determine service type of sent file
-            string reportType = "";
-            Helpers.RunSqlOperationDdex(cmd =>
-            {
-                cmd.CommandText = @"select t4.paramValue
-                    from CcidInFile t1
-                        inner join  CcidInvoice t2 on t2.Id = t1.ccidInvoiceId
-                        inner join DdexReport t3 on t3.id = t2.ddexReportId
-                        inner join AgreementParam t4 on t4.custId = t3.custId and t4.licId = t3.licId
-                    where t1.fileId = @fileId and t4.paramId = @paramId";
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                cmd.Parameters.AddWithValue("@paramId", 8);
-                reportType = Convert.ToString(cmd.ExecuteScalar());
-            });
-
-            string fileName = GetReplyFileName(fileId, reportType);
-            if (string.IsNullOrEmpty(fileName))
-                return;
-
-            FormLongOperation form = new FormLongOperation("Завантажується файл відповіді. Це може зайняти значний час. Зачекайте, будь ласка.");
-            Form parent = FindForm();
-            form.Show(parent);
-            Task task = new Task(() => ProcessReply(fileId, reportType, fileName));
-            task.Start();
-            task.Wait();
-            form.Hide();
-
-            ShowInvoices();
         }
 
         private void CreateCorrectedInvoice(int fileId)
         {
             MessageBox.Show("Не реалізовано", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
-            Helpers.RunSqlOperationDdexT(cmd =>
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spCreateCorrectedInFile";
-                cmd.Parameters.AddWithValue("@ccidClFileId", fileId);
-                cmd.ExecuteNonQuery();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "update CcidClFile set status = 1 where fileId = @ccidClFileId";
-                cmd.ExecuteNonQuery();
-            });
-            ShowInvoices();
         }
 
         private void ToDistribution(int fileId)
@@ -781,7 +455,7 @@ namespace DdexInvoicing
 
                 cmd.Parameters.Add("@result", SqlDbType.VarChar);
                 cmd.Parameters["@result"].Direction = ParameterDirection.Output;
-                cmd.Parameters["@result"].Size = 100;
+                cmd.Parameters["@result"].Size = 2000;
 
                 cmd.Parameters.Add("@RetCode", SqlDbType.Int);
                 cmd.Parameters["@RetCode"].Direction = ParameterDirection.Output;
@@ -804,52 +478,6 @@ namespace DdexInvoicing
             ShowInvoices();
         }
 
-        private void radBtnRefreshStatistics_Click(object sender, EventArgs e)
-        {
-            if(DialogResult.Yes == MessageBox.Show(
-                    "Оновити попередньо проценти для отримання більш точної інформації? Ще значно збільшить час очікування відповіді."
-                    , "Оновлення статистики", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                RefreshStatistics(true);
-            else
-                RefreshStatistics(false);
-
-            ShowStatistics();
-        }
-
-        private void radGridInvoices_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            /*
-            if (e.RowIndex == -1)
-                return;
-            DataTable dt = radGridInvoices.DataSource as DataTable;
-            int fileId = (int)dt.Rows[e.RowIndex].ItemArray[1];
-            if (e.ColumnIndex == 5)
-            {
-                FormInvoiceDetails form = new FormInvoiceDetails();
-                form.fileId = fileId;
-                form.Show();
-                return;
-            }
-            else if (e.ColumnIndex == 6)
-            {
-                UpdateInvoice(fileId);
-                return;
-            }
-            else if (e.ColumnIndex == 7)
-            {
-                SaveInvoice();
-            }
-            else if (e.ColumnIndex == 8)
-            {
-                ConfirmFileSent(fileId);
-            }
-            else if (e.ColumnIndex == 9)
-            {
-                GetReply(fileId);
-            }
-            */
-        }
-
         private void radBtnNewInvoice_Click(object sender, EventArgs e)
         {
             if(setCode == 0)
@@ -857,29 +485,52 @@ namespace DdexInvoicing
                 MessageBox.Show("Не визначені обмеження на виставлення рахунку", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-            /*
-            FormCreateInvoice form = new FormCreateInvoice();
-            form.ddexReportId = ddexReportId;
-            if (form.ShowDialog() != DialogResult.OK)
-                return;
-                */
-
-            /*if (DialogResult.Yes == MessageBox.Show(
-                    "Перерахувати проценти перед виставленням рахунку? Це значно збільшить час очікування і можна не робити, якщо перерахунок вже було виконано під час оновлення статистики,"
-                    , "Виставлення рахунку", MessageBoxButtons.YesNo, MessageBoxIcon.Question))*/
+       
             CalcMarketShare();
 
             Helpers.RunSqlOperationDdexT(cmd =>
             {
-                cmd.CommandText = "select FileType from DdexReport where Id = @ddexReportId";
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                string fileType = (string)cmd.ExecuteScalar();
+                var agreementReportTypeEnum = DdexReport.GetAgreementReportType(cmd, ddexReportId);
 
-                cmd.CommandText = fileType.Equals("AdSupport-Music", StringComparison.OrdinalIgnoreCase) ?
-                    "spCreateInitialInvoice" : "spCreateInitialInvoiceSubscr";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@fileId", DBNull.Value);
+
+                switch (agreementReportTypeEnum)
+                {
+                    case DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC:
+                        cmd.CommandText = "spCreateInitialInvoice";
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
+                        cmd.CommandText = "spCreateInitialInvoiceSubscr";
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
+                        cmd.CommandText = "spCreateInitialInvoiceSrmf";
+                        break;
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                        cmd.CommandText = "spCreateInitialInvoiceSpotify";
+                        break;
+                    case DdexReport.ReportTypeEnum.DEEZER_ALL:
+                        cmd.CommandText = "spCreateInitialInvoiceDeezer";
+                        break;
+                }
+
+                cmd.Parameters.Clear();
+                switch (agreementReportTypeEnum)
+                {
+                    case DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                        cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                        cmd.Parameters.AddWithValue("@fileId", DBNull.Value);
+                        break;
+                    case DdexReport.ReportTypeEnum.DEEZER_ALL:
+                        cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
+                        cmd.Parameters.AddWithValue("@leadingFileId", DBNull.Value); break;
+                }
                 cmd.ExecuteNonQuery();
             });
             ShowInvoices();
@@ -895,7 +546,7 @@ namespace DdexInvoicing
                 {
                     FormInvoiceDetails form = new FormInvoiceDetails();
                     form.Text = FindForm().Text;
-                    form.fileId = fileId;
+                    form.leadingFileId = fileId;
                     form.fileType = 0;
                     form.Show();
                 }
@@ -913,7 +564,6 @@ namespace DdexInvoicing
                 }
                 else if (e.Column.FieldName.Equals("GetReply", StringComparison.OrdinalIgnoreCase))
                 {
-                    GetReply(fileId);
                 }
             }
             else
@@ -921,7 +571,7 @@ namespace DdexInvoicing
                 if (e.Column.FieldName.Equals("ShowDetails", StringComparison.OrdinalIgnoreCase))
                 {
                     FormInvoiceDetails form = new FormInvoiceDetails();
-                    form.fileId = fileId;
+                    form.leadingFileId = fileId;
                     form.fileType = 1;
                     form.Show();
                 }
@@ -1008,8 +658,6 @@ namespace DdexInvoicing
                     e.CellElement.Visibility = ElementVisibility.Hidden;
                 }
             }
-            //e.CellElement.Text = "qqqq";
-            //e.CellElement.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
         }
 
         private void radBtnExc_Click(object sender, EventArgs e)
@@ -1033,18 +681,20 @@ namespace DdexInvoicing
         {
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandText = @"
+                var filter = DdexReport.GetFilterStringShort(cmd, ddexReportId);
+
+                cmd.CommandText = $@"
                     declare @licId int, @custId int;
                     select @licId = licId, @custId = custId
                     from DdexReport 
                     where id = @ddexReportId;
 
                     declare @musicRate float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 1 and licId = @licId and custId = @custId);
-                    declare @geRate float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 2 and licId = @licId and custId = @custId);
+                    declare @geRate float = 0.0;
+                    if exists (select null from AgreementParam where paramId = 2 and licId = @licId and custId = @custId)
+                        select @geRate = cast(paramValue as float) * 0.01 from AgreementParam where paramId = 2 and licId = @licId and custId = @custId;
                     declare @mechSplit float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 3 and licId = @licId and custId = @custId);
                     declare @perfSplit float = (select cast(paramValue as float) * 0.01 from AgreementParam where paramId = 4 and licId = @licId and custId = @custId);
-
-                    --select @musicRate, @geRate, @mechSplit, @perfSplit
 
                     if @musicRate is null or @geRate is null or @mechSplit is null or @perfSplit is null
                     begin
@@ -1061,7 +711,7 @@ namespace DdexInvoicing
                     into #AdjustedNetRevenue
                     from IdentBacklog t1 
                         join IdentMw t2 on t1.mwId = t2.Id
-                    where t1.DdexReportId = @ddexReportId 
+                    where t1.DdexReportId {filter}
                         and isnull(t1.IncludedInCcid, 0) = 0
 
                     declare 
@@ -1108,7 +758,7 @@ namespace DdexInvoicing
                     into #AdjustedNetRevenueMw
                     from IdentBacklog t1 
                         join IdentMw t2 on t1.mwId = t2.Id
-                    where t1.DdexReportId = @ddexReportId 
+                    where t1.DdexReportId {filter} 
                         and isnull(t1.IncludedInCcid, 0) = 0
                     group by t2.Id, t2.Status
                     select 
@@ -1169,7 +819,7 @@ namespace DdexInvoicing
                     cntTotal1.Text = r.GetInt32(i++).ToString();
                     cntClaimedNonZero1.Text = r.GetInt32(i++).ToString();
                     cntClaimedZero1.Text = r.GetInt32(i++).ToString();
-                    cntNonClaimed1.Text = r.GetInt32(i++).ToString();                    
+                    cntNonClaimed1.Text = r.GetInt32(i++).ToString();
                     cntUnprocessed1.Text = r.GetInt32(i++).ToString();
 
                     amountTotal1.Text = r.GetDecimal(i++).ToString();
