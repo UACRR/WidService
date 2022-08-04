@@ -29,6 +29,15 @@ namespace DdexInvoicing
         private void FormMain_Load(object sender, EventArgs e)
         {
             ucDdexLoad.Init(ddexReportingPeriodId, ddexReportId);
+            if(DdexReport.IsSrmf(ddexReportId))
+            {
+                uсReconcile.SetReport(ddexReportId);
+            }
+            else
+            {
+                radPageViewMain.Pages.RemoveAt(2);
+            }
+
             ucMwIdent.SetReport(ddexReportId);
             ucCcidInvoices.SetReport(ddexReportId);
 

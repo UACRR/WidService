@@ -1,4 +1,4 @@
-alter procedure [dbo].[spCreateInitialInvoiceDeezer] @leadingDdexReportId int, @leadingFileId int
+create procedure [dbo].[spCreateInitialInvoiceDeezer] @leadingDdexReportId int, @leadingFileId int
 as
 begin
 --declare @leadingDdexReportId int = 37;
