@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Security;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ using IpsViewComponentLibrary.Utilities;
 using IPSViewComponentLibraryWPF.IPSExtensions;
 using LanguageLibrary;
 using LanguageLibrary.Model;
+using Launcher.Controls;
 using Launcher.Controls.LoginWindow;
 using Launcher.WorkplaceModules.ClientsBRWorkplace;
 using Launcher.WorkplaceModules.ClientsSRWorkplace;
@@ -511,14 +513,6 @@ namespace Launcher
 
         #region * * * METHODS * * *
 
-        private static bool IsPasswordStrong(string password)
-        {
-            return password.Length >= 8
-                && Regex.IsMatch(password, @"[0-9]+(\.[0-9][0-9]?)?", RegexOptions.ECMAScript)
-                && Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z]).+$", RegexOptions.ECMAScript)
-                && Regex.IsMatch(password, @"[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]", RegexOptions.ECMAScript);
-        }
-
         private void AuthorizationThroughWindows(Window window)
         {
             var identity = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity;
@@ -537,61 +531,40 @@ namespace Launcher
             PermitApiProxy.UserPassword = User.PlainPassword;
             PermitApiProxy.BaseUri = GetPermitUri();
 
-            //if (NewPasswordVisible != Visibility.Visible)
+
+            RspLogin response = PermitApiProxy.Login();
+            IsBusy = false;
+            if (response.Result == RspLogin.LoginResult.Success)
             {
-                RspLogin response = PermitApiProxy.Login();
-                IsBusy = false;
-                if (response.Result == RspLogin.LoginResult.Success)
-                {
-                    User.CodeI = response.UserCodeI;
-
-                    UserInfo.UserName = User.UserName;
-                    UserInfo.Name = response.Name;
-
-                    ModalWindowVisibility = Visibility.Collapsed;
-                    Authorize();
-
-                }
-                else if (response.Result == RspLogin.LoginResult.Failed)
-                {
-                    MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (response.Result == RspLogin.LoginResult.ChangePassword)
-                {
-                    MessageBox.Show("Please, change password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //PasswordVisible = Visibility.Collapsed;
-                    //NewPasswordVisible = Visibility.Visible;
-                    return;
-                }
+                SuccessLogin(response);
             }
-            //else
-            //{
-            //    if (!User.PlainNewPassword.Equals(User.PlainConfirmPassword))
-            //    {
-            //        IsBusy = false;
-            //        MessageBox.Show("Input passwords are not the same. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //        return;
-            //    }
-            //    if (!IsPasswordStrong(User.PlainNewPassword))
-            //    {
-            //        IsBusy = false;
-            //        MessageBox.Show("Password is not strong enough. Please. make sure that it is not less than 8 characters in length and contains digits, letters in lower and upper cases, and at least one special character.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //        return;
-            //    }
-            //    RspLogin res = PermitApiProxy.ChangePasswordAndLogin(User.UserName, User.PlainPassword, User.PlainNewPassword);
-            //    if (res.Result == RspLogin.LoginResult.Failed)
-            //    {
-            //        IsBusy = false;
-            //        MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //        return;
-            //    }
-            //    IsBusy = false;
-            //    User.CodeI = res.UserCodeI;
-            //    User.Password = User.NewPassword;
-            //    ModalWindowVisibility = Visibility.Collapsed;
-            //    Authorize();
-            //}
+            else if (response.Result == RspLogin.LoginResult.Failed)
+            {
+                MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (response.Result == RspLogin.LoginResult.ChangePassword)
+            {
+                MessageBox.Show("Please, change password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                ChangePassword changePassword = new ChangePassword(User, true);
+                var result = changePassword.ShowDialog();
+                if (result ?? false)
+                {
+                    SuccessLogin(changePassword.Response);
+                }
+                return;
+            }
+
+        }
+
+        private void SuccessLogin(RspLogin response)
+        {
+            User.CodeI = response.UserCodeI;
+            UserInfo.Name = response.Name;
+            UserInfo.UserName = User.UserName;
+
+            ModalWindowVisibility = Visibility.Collapsed;
+            Authorize();
         }
 
         private void Authorize()
@@ -634,10 +607,8 @@ namespace Launcher
         {
             try
             {
-                var passwordBox = (PasswordBox) o;
+                var passwordBox = (PasswordBox)o;
                 User.Password = passwordBox.SecurePassword;
-                //User.NewPassword = window.newPwBox.SecurePassword;
-                //User.ConfirmPassword = window.confirmPwBox.SecurePassword;
                 passwordBox.Clear();
                 AuthorizationThroughServerAccount();
             }
@@ -713,6 +684,12 @@ namespace Launcher
             IsSignIn = false;
         }
 
+        public ICommand ChangePasswordCommand => new IPSDelegateCommand(ChangePasswordCommandExecute);
+        private void ChangePasswordCommandExecute(object o)
+        {
+            ChangePassword changePassword = new ChangePassword(User, false);
+            changePassword.ShowDialog();
+        }
         #endregion
 
         #endregion

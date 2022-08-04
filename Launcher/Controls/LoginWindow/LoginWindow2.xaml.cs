@@ -23,5 +23,11 @@ namespace Launcher.Controls.LoginWindow
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
     }
 }

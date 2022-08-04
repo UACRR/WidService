@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LanguageLibrary;
+using System.Text.RegularExpressions;
 
 namespace SmRoPermitClientLib
 {
@@ -20,6 +21,14 @@ namespace SmRoPermitClientLib
         public static string UserPassword { get; set; }
 
         public static string BaseUri { get; set; }
+
+        public static bool IsPasswordStrong(string password)
+        {
+            return password.Length >= 8
+                && Regex.IsMatch(password, @"[0-9]+(\.[0-9][0-9]?)?", RegexOptions.ECMAScript)
+                && Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z]).+$", RegexOptions.ECMAScript)
+                && Regex.IsMatch(password, @"[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]", RegexOptions.ECMAScript);
+        }
 
         private static ResponseT MakeRequest<ResponseT>(string uri, string json, string requestType) where ResponseT : Response
         {

@@ -129,6 +129,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LoginWindow\LoginWindow2.xaml.cs">
       <DependentUpon>LoginWindow2.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
     <Compile Include="WorkplaceModules\ReportWorkplace\ReportWorkplaceWindow.xaml.cs">
       <DependentUpon>ReportWorkplaceWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\LoginWindow\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -824,6 +824,10 @@
 
                             <Menu Grid.Column="1" MinWidth="110" VerticalAlignment="Center" Margin="4 0 0 0" FontSize="13" >
                                 <MenuItem MinWidth="110" Padding="4 7" Header="{Binding UserInfo.UserName}" FontSize="13" FontFamily="{StaticResource Montserrat}" Template="{DynamicResource MenuItemControlTemplateLauncher}">
+                                    <MenuItem Padding="4"
+                                              Header="Змінити пароль"
+                                              Command="{Binding ChangePasswordCommand}"/>
+                                    <Separator Margin="5"/>
                                     <MenuItem Padding="4" 
                                           Header="Вийти"
                                           Command="{Binding LogOutCommand}"/>
@@ -994,17 +998,6 @@
                                 </i:Interaction.Triggers>
                             </PasswordBox>
 
-                            <StackPanel Visibility="{Binding NewPasswordVisibility}">
-                                <t:Label Content="New password" Margin="15 0"/>
-                                <PasswordBox x:Name="pwBoxNewPW" Margin="0">
-
-                                </PasswordBox>
-
-                                <t:Label Content="Confirm password" Margin="15 0"/>
-                                <PasswordBox x:Name="pwBoxConfirmNewPW">
-
-                                </PasswordBox>
-                            </StackPanel>
                             <t:Label Content="Caps Lock on!" 
                                      HorizontalAlignment="Center" 
                                      Foreground="DimGray" 

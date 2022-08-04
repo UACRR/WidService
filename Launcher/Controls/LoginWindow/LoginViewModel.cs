@@ -24,8 +24,6 @@ namespace Launcher.Controls.LoginWindow
     {
         public LoginViewModel() {}
 
-        #region LOGIN MODAL WINDOW
-
         #region * * * BEHAVIOR PROPERTIES * * *
 
         private bool _isBusy;
@@ -39,81 +37,14 @@ namespace Launcher.Controls.LoginWindow
             }
         }
 
-        private bool _loginEnabled = true;
-        public bool LoginEnabled
+        private Visibility _capsLockOnVisibility = Visibility.Visible;
+        public Visibility CapsLockOnVisibility
         {
-            get => _loginEnabled;
+            get => _capsLockOnVisibility;
             set
             {
-                _loginEnabled = value;
-                OnPropertyChanged(() => LoginEnabled);
-            }
-        }
-
-        private bool _userNameEnabled = true;
-        public bool UserNameEnabled
-        {
-            get => _userNameEnabled;
-            set
-            {
-                _userNameEnabled = value;
-                OnPropertyChanged(() => UserNameEnabled);
-            }
-        }
-
-        private bool _passwordEnabled = true;
-        public bool PasswordEnabled
-        {
-            get => _passwordEnabled;
-            set
-            {
-                _passwordEnabled = value;
-                OnPropertyChanged(() => PasswordEnabled);
-            }
-        }
-
-        private Visibility _passwordVisible = Visibility.Visible;
-        public Visibility PasswordVisible
-        {
-            get => _passwordVisible;
-            set
-            {
-                _passwordVisible = value;
-                OnPropertyChanged(() => PasswordVisible);
-            }
-        }
-
-        private Visibility _newPasswordVisible = Visibility.Collapsed;
-        public Visibility NewPasswordVisible
-        {
-            get => _newPasswordVisible;
-            set
-            {
-                _newPasswordVisible = value;
-                OnPropertyChanged(() => NewPasswordVisible);
-            }
-        }
-
-        private bool _changePwd;
-        public bool ChangePwd
-        {
-            get => _changePwd;
-            set
-            {
-                _changePwd = value;
-                NewPasswordVisible = value ? Visibility.Visible : Visibility.Collapsed;
-                OnPropertyChanged(() => ChangePwd);
-            }
-        }
-
-        private Visibility _modalWindowVisibility = Visibility.Collapsed;
-        public Visibility ModalWindowVisibility
-        {
-            get => _modalWindowVisibility;
-            set
-            {
-                _modalWindowVisibility = value;
-                OnPropertyChanged(() => ModalWindowVisibility);
+                _capsLockOnVisibility = value;
+                OnPropertyChanged(() => CapsLockOnVisibility);
             }
         }
 
@@ -143,28 +74,9 @@ namespace Launcher.Controls.LoginWindow
             }
         }
 
-        private bool _remember;
-        public bool Remember
-        {
-            get => _remember;
-            set
-            {
-                _remember = value;
-                OnPropertyChanged(() =>  Remember);
-            }
-        }
-
         #endregion
 
         #region * * * METHODS * * *
-
-        private static bool IsPasswordStrong(string password)
-        {
-            return password.Length >= 8
-                && Regex.IsMatch(password, @"[0-9]+(\.[0-9][0-9]?)?", RegexOptions.ECMAScript)
-                && Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z]).+$", RegexOptions.ECMAScript)
-                && Regex.IsMatch(password, @"[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]", RegexOptions.ECMAScript);
-        }
 
         private void AuthorizationThroughWindows(Window window)
         {
@@ -182,66 +94,48 @@ namespace Launcher.Controls.LoginWindow
             IsBusy = true;
             PermitApiProxy.UserLogin = User.UserName;
             PermitApiProxy.UserPassword = User.PlainPassword;
-            //PermitApiProxy.BaseUri = ConfigurationManager.AppSettings["SmRoPermitApiBaseUri"];
             PermitApiProxy.BaseUri = GetPermitUri();
 
-            if (NewPasswordVisible !=  Visibility.Visible)
+            RspLogin response = PermitApiProxy.Login();
+            IsBusy = false;
+            if (response.Result == RspLogin.LoginResult.Success)
             {
-                PermitApiProxy.UserLogin = User.UserName;
-                PermitApiProxy.UserPassword = User.PlainPassword;
-                RspLogin rsp = PermitApiProxy.Login();
-                IsBusy = false;
-                if (rsp.Result == RspLogin.LoginResult.Success)
-                {
-                    User.CodeI = rsp.UserCodeI;
-                    ModalWindowVisibility = Visibility.Collapsed;
-                    //window.DialogResult = true;
-                    //window.Close();
-                }
-                else if (rsp.Result == RspLogin.LoginResult.Failed)
-                {
-                    MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (rsp.Result == RspLogin.LoginResult.ChangePassword)
-                {
-                    MessageBox.Show("Please, change password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                    PasswordVisible = Visibility.Collapsed;
-                    NewPasswordVisible = Visibility.Visible;
-                    return;
-                }
+                SuccessLogin(response);
             }
-            else
+            else if (response.Result == RspLogin.LoginResult.Failed)
             {
-                if (!User.PlainNewPassword.Equals(User.PlainConfirmPassword))
+                MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (response.Result == RspLogin.LoginResult.ChangePassword)
+            {
+                MessageBox.Show("Please, change password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                ChangePassword changePassword = new ChangePassword(User, true);
+                var result = changePassword.ShowDialog();
+                if (result ?? false)
                 {
-                    IsBusy = false;
-                    MessageBox.Show("Input passwords are not the same. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    SuccessLogin(changePassword.Response);
                 }
-                if (!IsPasswordStrong(User.PlainNewPassword))
-                {
-                    IsBusy = false;
-                    MessageBox.Show("Password is not strong enough. Please. make sure that it is not less than 8 characters in length and contains digits, letters in lower and upper cases, and at least one special character.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                RspLogin res = PermitApiProxy.ChangePasswordAndLogin(User.UserName, User.PlainPassword, User.PlainNewPassword);
-                if (res.Result == RspLogin.LoginResult.Failed)
-                {
-                    IsBusy = false;
-                    MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                IsBusy = false;
-                User.CodeI = res.UserCodeI;
-                User.Password = User.NewPassword;
-                ModalWindowVisibility = Visibility.Collapsed;
-                //window.DialogResult = true;
-                //window.Close();
+                return;
             }
         }
 
-        private string GetPermitUri()
+        private void SuccessLogin(RspLogin response)
+        {
+            User.CodeI = response.UserCodeI;
+            UserInfo.Name = response.Name;
+            UserInfo.UserName = User.UserName;
+
+            Authorize.Invoke(null, null);
+            window.DialogResult = true;
+            window.Close();
+        }
+
+        public event EventHandler Authorize;
+
+        Window window;
+
+        private static string GetPermitUri()
         {
             string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
             ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
@@ -263,9 +157,6 @@ namespace Launcher.Controls.LoginWindow
             {
                 var passwordBox = (PasswordBox) o;
                 User.Password = passwordBox.SecurePassword;
-                //User.NewPassword = window.newPwBox.SecurePassword;
-                //User.ConfirmPassword = window.confirmPwBox.SecurePassword;
-                
                 AuthorizationThroughServerAccount();
             }
             catch(Exception e)
@@ -280,20 +171,10 @@ namespace Launcher.Controls.LoginWindow
             }
         }
 
-        public ICommand CancelCommand => new IPSDelegateCommand(CancelCommandExecute);
-        private void CancelCommandExecute(object o)
-        {
-            var window = (LoginWindow)o;
-            window.Close();
-        }
-
         private bool CanExecuteLoginCommand(object o)
         {
-            if (PasswordVisible != Visibility.Visible)
-                return true;
             var pbValid = (o as LoginWindow)?.pwBox?.Password.Length >= 8;
-            
-            var result = (!string.IsNullOrEmpty(User.UserName) && ((o as bool? ?? false) || pbValid)) || Remember;
+            var result = !string.IsNullOrEmpty(User.UserName) && ((o as bool? ?? false) || pbValid);
             CanLogin = result;
             return result;
         }
@@ -324,19 +205,11 @@ namespace Launcher.Controls.LoginWindow
             }
         }
 
-        public ICommand ShowLoginWindowCommand => new IPSDelegateCommand(ShowLoginWindowCommandExecute);
-        private void ShowLoginWindowCommandExecute(object o)
+        public ICommand WindowUpEventCommand => new IPSDelegateCommand(WindowUpEventCommandExecute);
+        private void WindowUpEventCommandExecute(object o)
         {
-            ModalWindowVisibility = Visibility.Visible;
+            CapsLockOnVisibility = Keyboard.IsKeyToggled(Key.CapsLock) ? Visibility.Visible : Visibility.Hidden;
         }
-
-        public ICommand HideLoginWindowCommand => new IPSDelegateCommand(HideLoginWindowCommandExecute);
-        private void HideLoginWindowCommandExecute(object o)
-        {
-            ModalWindowVisibility = Visibility.Collapsed;
-        }
-
-        #endregion
 
         #endregion
     }
