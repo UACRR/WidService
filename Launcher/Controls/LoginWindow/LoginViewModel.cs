@@ -85,13 +85,14 @@ namespace Launcher.Controls.LoginWindow
 
         private void AuthorizationThroughServerAccount()
         {
-            IsBusy = true;
             PermitApiProxy.UserLogin = User.UserName;
             PermitApiProxy.UserPassword = User.PlainPassword;
             PermitApiProxy.BaseUri = GetPermitUri();
-
+            
+            IsBusy = true;
             RspLogin response = PermitApiProxy.Login();
             IsBusy = false;
+            
             if (response.Result == RspLogin.LoginResult.Success)
             {
                 SuccessLogin(response);
