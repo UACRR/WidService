@@ -205,25 +205,17 @@ namespace Launcher
         public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
         private void LoadCommandExecute(object o)
         {
-            WindowUpEventCommand.Execute(null);
-            
             try
             {
                 var langList = AppLanguageLibrary.GetLanguagesList();
                 LanguagesItemSource = new ObservableCollection<LanguageInfo>(langList);
 
-                ShowLoginWindowCommand.Execute(null);
+                SignInCommand.Execute(null);
             }
             catch (Exception ex)
             {
                 ShowMessage.ShowError(ex);
             }
-        }
-
-        public ICommand WindowUpEventCommand => new IPSDelegateCommand(WindowUpEventCommandExecute);
-        private void WindowUpEventCommandExecute(object o)
-        {
-            CapsLockOnVisibility = Keyboard.IsKeyToggled(Key.CapsLock) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         #region * * * відкрити модуль ... * * *
@@ -427,8 +419,8 @@ namespace Launcher
             LauncherPermits.OurProfile = true;
             LauncherPermits.Ddex = true;
 
-            UserInfo.UserName = "sys.admin";
-            UserInfo.Name = "sys.admin";
+            User.UserName = "sys.admin";
+            User.Name = "sys.admin";
             IsSignIn = true;
         }
 
@@ -439,36 +431,14 @@ namespace Launcher
 
         #region * * * BEHAVIOR PROPERTIES * * *
 
-        private Visibility _capsLockOnVisibility = Visibility.Visible;
-        public Visibility CapsLockOnVisibility
+        private Visibility _loginWindowVisibility = Visibility.Collapsed;
+        public Visibility LoginWindowVisibility
         {
-            get => _capsLockOnVisibility;
+            get => _loginWindowVisibility;
             set
             {
-                _capsLockOnVisibility = value;
-                OnPropertyChanged(() => CapsLockOnVisibility);
-            }
-        }
-
-        private Visibility _modalWindowVisibility = Visibility.Collapsed;
-        public Visibility ModalWindowVisibility
-        {
-            get => _modalWindowVisibility;
-            set
-            {
-                _modalWindowVisibility = value;
-                OnPropertyChanged(() => ModalWindowVisibility);
-            }
-        }
-
-        private Visibility _newPasswordVisibility = Visibility.Collapsed;
-        public Visibility NewPasswordVisibility
-        {
-            get => _newPasswordVisibility;
-            set
-            {
-                _newPasswordVisibility = value;
-                OnPropertyChanged(() => NewPasswordVisibility);
+                _loginWindowVisibility = value;
+                OnPropertyChanged(() => LoginWindowVisibility);
             }
         }
 
@@ -476,8 +446,8 @@ namespace Launcher
 
         #region * * * DATA PROPERTIES * * *
 
-        private LoginModel _user = new LoginModel();
-        public LoginModel User
+        private UserModel _user = new UserModel();
+        public UserModel User
         {
             get => _user;
             set
@@ -487,85 +457,9 @@ namespace Launcher
             }
         }
 
-        private UserInfoModel _userInfo = new UserInfoModel();
-        public UserInfoModel UserInfo
-        {
-            get => _userInfo;
-            set
-            {
-                _userInfo = value;
-                OnPropertyChanged(() => UserInfo);
-            }
-        }
-
-        private bool _remember;
-        public bool Remember
-        {
-            get => _remember;
-            set
-            {
-                _remember = value;
-                OnPropertyChanged(() => Remember);
-            }
-        }
-
         #endregion
 
         #region * * * METHODS * * *
-
-        private void AuthorizationThroughWindows(Window window)
-        {
-            var identity = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity;
-            UserInfo.Name = identity.Name;
-            UserInfo.UserName = identity.Name;
-            UserInfo.UserRole = "Default User";
-
-            window.DialogResult = true;
-            window.Close();
-        }
-
-        private void AuthorizationThroughServerAccount()
-        {
-            IsBusy = true;
-            PermitApiProxy.UserLogin = User.UserName;
-            PermitApiProxy.UserPassword = User.PlainPassword;
-            PermitApiProxy.BaseUri = GetPermitUri();
-
-
-            RspLogin response = PermitApiProxy.Login();
-            IsBusy = false;
-            if (response.Result == RspLogin.LoginResult.Success)
-            {
-                SuccessLogin(response);
-            }
-            else if (response.Result == RspLogin.LoginResult.Failed)
-            {
-                MessageBox.Show("Invalid login and/or password. Please, change and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (response.Result == RspLogin.LoginResult.ChangePassword)
-            {
-                MessageBox.Show("Please, change password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                ChangePassword changePassword = new ChangePassword(User, true);
-                var result = changePassword.ShowDialog();
-                if (result ?? false)
-                {
-                    SuccessLogin(changePassword.Response);
-                }
-                return;
-            }
-
-        }
-
-        private void SuccessLogin(RspLogin response)
-        {
-            User.CodeI = response.UserCodeI;
-            UserInfo.Name = response.Name;
-            UserInfo.UserName = User.UserName;
-
-            ModalWindowVisibility = Visibility.Collapsed;
-            Authorize();
-        }
 
         private void Authorize()
         {
@@ -602,66 +496,18 @@ namespace Launcher
 
         #region * * * COMMANDS * * *
 
-        public ICommand LoginCommand => new IPSDelegateCommand(LoginCommandExecute, CanExecuteLoginCommand);
-        private void LoginCommandExecute(object o)
+        public ICommand SignInCommand => new IPSDelegateCommand(SignInCommandExecute);
+        private void SignInCommandExecute(object o)
         {
-            try
+            LoginWindowVisibility = Visibility.Visible;
+            LoginWindow2 loginWindow = new LoginWindow2(User);
+            loginWindow.Owner = Application.Current.MainWindow;
+            var result = loginWindow.ShowDialog();
+            if (result ?? false)
             {
-                var passwordBox = (PasswordBox)o;
-                User.Password = passwordBox.SecurePassword;
-                passwordBox.Clear();
-                AuthorizationThroughServerAccount();
+                Authorize();
             }
-            catch (Exception e)
-            {
-                var dialogService = new DialogService();
-                string message = "Failed to connect to the permissions server. Please. make sure that it is running and application has correct URI in configuration";
-                dialogService.ShowError(message, e.ToString());
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private bool CanExecuteLoginCommand(object o)
-        {
-            var pbValid = (o as PasswordBox)?.Password.Length >= 8;
-
-            var result = (!string.IsNullOrEmpty(User.UserName) && ((o as bool? ?? false) || pbValid)) || Remember;
-            CanLogin = result;
-            return result;
-        }
-
-        private bool CanLogin { get; set; }
-
-        public ICommand KeyUpCommand => new IPSDelegateCommand(KeyUpCommandExecute);
-        private void KeyUpCommandExecute(object o)
-        {
-            if (!CanLogin)
-                return;
-
-            var key = (KeyEventArgs)o;
-            if (key.Key == Key.Enter)
-            {
-                if (!(((KeyEventArgs)o).Source is PasswordBox passwordBox))
-                    return;
-
-                if (LoginCommand.CanExecute(passwordBox))
-                    LoginCommand.Execute(passwordBox);
-            }
-        }
-
-        public ICommand ShowLoginWindowCommand => new IPSDelegateCommand(ShowLoginWindowCommandExecute);
-        private void ShowLoginWindowCommandExecute(object o)
-        {
-            ModalWindowVisibility = Visibility.Visible;
-        }
-
-        public ICommand HideLoginWindowCommand => new IPSDelegateCommand(HideLoginWindowCommandExecute);
-        private void HideLoginWindowCommandExecute(object o)
-        {
-            ModalWindowVisibility = Visibility.Collapsed;
+            LoginWindowVisibility = Visibility.Collapsed;
         }
 
         public ICommand LogOutCommand => new IPSDelegateCommand(LogOutCommandExecute);
@@ -680,7 +526,7 @@ namespace Launcher
             LauncherPermits.OurProfile = false;
             LauncherPermits.Ddex = false;
 
-            UserInfo = new UserInfoModel();
+            User = new UserModel();
             IsSignIn = false;
         }
 
@@ -690,6 +536,7 @@ namespace Launcher
             ChangePassword changePassword = new ChangePassword(User, false);
             changePassword.ShowDialog();
         }
+
         #endregion
 
         #endregion

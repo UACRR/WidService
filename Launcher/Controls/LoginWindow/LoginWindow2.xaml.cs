@@ -19,9 +19,15 @@ namespace Launcher.Controls.LoginWindow
     /// </summary>
     public partial class LoginWindow2 : Window
     {
-        public LoginWindow2()
+        public LoginWindow2(UserModel user)
         {
             InitializeComponent();
+            ((LoginViewModel)DataContext).User = user;
+            ((LoginViewModel)DataContext).Close += (result) =>
+            {
+                DialogResult = result;
+                Close();
+            };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

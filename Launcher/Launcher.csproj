@@ -177,10 +177,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\LoginWindow\LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\LoginWindow\LoginWindow2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,12 +189,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\LoginWindow\LoginModel.cs" />
+    <Compile Include="Controls\LoginWindow\UserModel.cs" />
     <Compile Include="Controls\LoginWindow\LoginViewModel.cs" />
-    <Compile Include="Controls\LoginWindow\LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\LoginWindow\UserInfoModel.cs" />
     <Compile Include="LauncherViewModel.cs" />
     <Compile Include="LauncherPermit.cs" />
     <Compile Include="LM_Launcher.cs" />

@@ -26,9 +26,6 @@
         <i:EventTrigger x:Name="loadEvent" EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadCommand}"/>
         </i:EventTrigger>
-        <i:EventTrigger x:Name="keyUpEvent" EventName="KeyUp">
-            <i:InvokeCommandAction Command="{Binding WindowUpEventCommand}"/>
-        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <Window.Resources>
@@ -801,7 +798,7 @@
 
                         <t:RadButton Grid.Column="0" Height="25" Margin="0 0 48 0" Style="{DynamicResource logBtn}"
                                      Visibility="{Binding LoginButtonVisibility}"
-                                     Command="{Binding ShowLoginWindowCommand}"
+                                     Command="{Binding SignInCommand}"
                                      HorizontalAlignment="Center" 
                                      VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal">
@@ -817,13 +814,13 @@
                             </Grid.ColumnDefinitions>
 
                             <t:RadButton Grid.Column="0" 
-                                         Content="{Binding UserInfo.IconChar}" 
+                                         Content="{Binding User.IconChar}" 
                                          Style="{DynamicResource ProfileIcon}"
-                                         ToolTip="{Binding UserInfo.Name}" 
+                                         ToolTip="{Binding User.Name}" 
                                          Command="{Binding}"/>
 
                             <Menu Grid.Column="1" MinWidth="110" VerticalAlignment="Center" Margin="4 0 0 0" FontSize="13" >
-                                <MenuItem MinWidth="110" Padding="4 7" Header="{Binding UserInfo.UserName}" FontSize="13" FontFamily="{StaticResource Montserrat}" Template="{DynamicResource MenuItemControlTemplateLauncher}">
+                                <MenuItem MinWidth="110" Padding="4 7" Header="{Binding User.UserName}" FontSize="13" FontFamily="{StaticResource Montserrat}" Template="{DynamicResource MenuItemControlTemplateLauncher}">
                                     <MenuItem Padding="4"
                                               Header="Змінити пароль"
                                               Command="{Binding ChangePasswordCommand}"/>
@@ -944,83 +941,11 @@
             </Grid>
 
             <!--МОДАЛКА-->
-            <Grid Visibility="{Binding ModalWindowVisibility, Mode=TwoWay}" >
+            <Grid Visibility="{Binding LoginWindowVisibility, Mode=TwoWay}" >
                 <Border>
                     <Border.Background>
                         <SolidColorBrush Color="#272A33" Opacity="0.4" />
                     </Border.Background>
-                    <Border Width="390" CornerRadius="15" VerticalAlignment="Center" Background="White" Padding="40">
-                        <StackPanel VerticalAlignment="Center" >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="30" Margin="0 0 0 24">SIGN IN</TextBlock>
-                                <Button Grid.Column="1"
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        Cursor="Hand" 
-                                        Width="24" 
-                                        Height="24" 
-                                        VerticalAlignment="Top" 
-                                        Style="{DynamicResource resetStyle}" 
-                                        Command="{Binding HideLoginWindowCommand}"
-                                        HorizontalAlignment="Right">
-                                    <Image Source="Images/close.png"/>
-                                </Button>
-                            </Grid>
-                            <ComboBox Background="Red" FontSize="14" Height="40" Margin="0 0 0 16" VerticalContentAlignment="Center">
-                                <ComboBoxItem IsSelected="True" >
-                                    <TextBlock FontSize="14" Padding="13 8" Text="Use  application Indetification" VerticalAlignment="Center" />
-                                </ComboBoxItem>
-                                <ComboBoxItem IsEnabled="False">
-                                    <TextBlock FontSize="14" Padding="13 8" Text="Use Windows Identification" VerticalAlignment="Center" />
-                                </ComboBoxItem>
-                            </ComboBox>
-
-                            <TextBox Style="{StaticResource placeHolder}"
-                                 Text="{Binding User.UserName}"
-                                 Background="#e7e7e7"
-                                 TextWrapping="NoWrap"
-                                 FontSize="14" 
-                                 Height="40"
-                                 Margin="0 0 0 16"
-                                 VerticalContentAlignment="Center" 
-                                 VerticalAlignment="Center"
-                                 Tag="Username"/>
-
-                            <PasswordBox x:Name="pwBox">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="KeyUp">
-                                        <i:InvokeCommandAction Command="{Binding KeyUpCommand}" PassEventArgsToCommand="True"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </PasswordBox>
-
-                            <t:Label Content="Caps Lock on!" 
-                                     HorizontalAlignment="Center" 
-                                     Foreground="DimGray" 
-                                     FontWeight="SemiBold" 
-                                     Margin="0 -10 0 5"
-                                     FontSize="18"
-                                     Visibility="{Binding CapsLockOnVisibility}"/>
-
-                            <!--<CheckBox x:Name="checkBox1" FontSize="14" VerticalAlignment="Center" IsChecked="False" Height="20" Content="Change Password" Margin="0 0 0 16"/>-->
-
-                            <CheckBox IsEnabled="False" Margin="0 16 0 32"
-                                      FontSize="14" 
-                                      Visibility="Collapsed"
-                                      VerticalAlignment="Center" 
-                                      IsChecked="{Binding Remember}" 
-                                      Height="20"
-                                      Content="Remember"/>
-                            <t:RadButton Style="{DynamicResource loginBtn}" 
-                                     Content="SIGN IN"
-                                     Command="{Binding LoginCommand}"
-                                     CommandParameter="{Binding ElementName=pwBox}"/>
-                        </StackPanel>
-                    </Border>
                 </Border>
             </Grid>
 

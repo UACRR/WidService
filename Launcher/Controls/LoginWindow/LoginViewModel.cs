@@ -22,7 +22,12 @@ namespace Launcher.Controls.LoginWindow
 {
     public class LoginViewModel : ViewModelBase
     {
-        public LoginViewModel() {}
+        public event Action<bool> Close;
+
+        public LoginViewModel()
+        {
+            WindowUpEventCommand.Execute(null);
+        }
 
         #region * * * BEHAVIOR PROPERTIES * * *
 
@@ -52,25 +57,14 @@ namespace Launcher.Controls.LoginWindow
 
         #region * * * DATA PROPERTIES * * *
 
-        private LoginModel _user = new LoginModel();
-        public LoginModel User
+        private UserModel _user;
+        public UserModel User
         {
             get => _user;
             set
             {
                 _user = value;
                 OnPropertyChanged(() => User);
-            }
-        }
-
-        private UserInfoModel _userInfo = new UserInfoModel();
-        public UserInfoModel UserInfo
-        {
-            get => _userInfo;
-            set
-            {
-                _userInfo = value;
-                OnPropertyChanged(() => UserInfo);
             }
         }
 
@@ -81,9 +75,9 @@ namespace Launcher.Controls.LoginWindow
         private void AuthorizationThroughWindows(Window window)
         {
             var identity = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity;
-            UserInfo.UserName = identity.Name;
-            UserInfo.Name = identity.Name;
-            UserInfo.UserRole = "Default User";
+            User.UserName = identity.Name;
+            User.Name = identity.Name;
+            User.UserRole = "Default User";
             
             window.DialogResult = true;
             window.Close();
@@ -123,27 +117,8 @@ namespace Launcher.Controls.LoginWindow
         private void SuccessLogin(RspLogin response)
         {
             User.CodeI = response.UserCodeI;
-            UserInfo.Name = response.Name;
-            UserInfo.UserName = User.UserName;
-
-            Authorize.Invoke(null, null);
-            window.DialogResult = true;
-            window.Close();
-        }
-
-        public event EventHandler Authorize;
-
-        Window window;
-
-        private static string GetPermitUri()
-        {
-            string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
-            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
-            configFile.ExeConfigFilename = configName;
-            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
-
-            string uri = config.AppSettings.Settings["SmRoPermitApiBaseUri"].Value;
-            return uri;
+            User.Name = response.Name;
+            Close.Invoke(true);
         }
 
         #endregion
@@ -173,8 +148,8 @@ namespace Launcher.Controls.LoginWindow
 
         private bool CanExecuteLoginCommand(object o)
         {
-            var pbValid = (o as LoginWindow)?.pwBox?.Password.Length >= 8;
-            var result = !string.IsNullOrEmpty(User.UserName) && ((o as bool? ?? false) || pbValid);
+            var pbValid = (o as PasswordBox)?.SecurePassword.Length >= 8;
+            var result = !string.IsNullOrEmpty(User?.UserName) && ((o as bool? ?? false) || pbValid);
             CanLogin = result;
             return result;
         }
@@ -190,18 +165,12 @@ namespace Launcher.Controls.LoginWindow
             var key = (KeyEventArgs) o;
             if (key.Key == Key.Enter)
             {
-                var window =
-                    ((FrameworkElement) ((FrameworkElement) (
-                            (FrameworkElement) ((FrameworkElement)
-                                ((FrameworkElement) ((FrameworkElement)
-                                    ((FrameworkElement) key.Source).Parent).Parent).Parent).Parent)
-                        .Parent)
-                        .Parent).Parent as LoginWindow;
-                if (window == null)
+                var passwordBox = ((RoutedEventArgs)o).Source as PasswordBox;
+                if (passwordBox == null)
                     return;
 
-                if (LoginCommand.CanExecute(window))
-                    LoginCommand.Execute(window);
+                if (LoginCommand.CanExecute(passwordBox))
+                    LoginCommand.Execute(passwordBox);
             }
         }
 
@@ -212,5 +181,16 @@ namespace Launcher.Controls.LoginWindow
         }
 
         #endregion
+
+        private static string GetPermitUri()
+        {
+            string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
+            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+            configFile.ExeConfigFilename = configName;
+            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+
+            string uri = config.AppSettings.Settings["SmRoPermitApiBaseUri"].Value;
+            return uri;
+        }
     }
 }

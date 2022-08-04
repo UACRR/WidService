@@ -5,7 +5,7 @@ using Telerik.Windows.Controls;
 
 namespace Launcher.Controls.LoginWindow
 {
-    public class LoginModel : ViewModelBase
+    public class UserModel : ViewModelBase
     {
         private string ConvertPassword(SecureString pw)
         {
@@ -23,24 +23,56 @@ namespace Launcher.Controls.LoginWindow
 
         public int CodeI { get; set; }
 
-        private string _userName = "";
+        private string _userName;
         public string UserName
         {
             get => _userName;
             set
             {
                 _userName = value;
-                OnPropertyChanged(() => _userName);
+                if (string.IsNullOrWhiteSpace(value))
+                    IconChar = string.Empty;
+
+                IconChar = $"{UserName[0]}".ToUpper();
+
+                OnPropertyChanged(() => UserName);
             }
         }
 
-        /*
-        private void OnPropertyChanged(Func<string> p)
+        private string _name;
+        public string Name
         {
-            throw new NotImplementedException();
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged(() => Name);
+            }
         }
-        */
 
+        private string _userRole;
+        public string UserRole
+        {
+            get => _userRole;
+            set
+            {
+                _userRole = value;
+                OnPropertyChanged(() => UserRole);
+            }
+        }
+
+        private string _iconChar;
+        public string IconChar
+        {
+            get => _iconChar;
+            set
+            {
+                _iconChar = value;
+                OnPropertyChanged(() => IconChar);
+            }
+        }
+
+        
         public SecureString Password { get; set; }
         public SecureString NewPassword { get; set; }
         public SecureString ConfirmPassword { get; set; }

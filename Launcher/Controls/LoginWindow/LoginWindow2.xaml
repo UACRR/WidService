@@ -9,6 +9,8 @@
         mc:Ignorable="d"
         x:Name="window"
         WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        
         Background="Transparent"
         AllowsTransparency="True"
         Width="390" Height="420" >
@@ -192,7 +194,7 @@
                                         <ContentPresenter.Resources>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Setter Property="TextWrapping" Value="Wrap"/>
-                                                <Setter Property="FontSize" Value="12"/>
+                                                <Setter Property="FontSize" Value="16"/>
                                                 <Setter Property="FontWeight" Value="Bold"/>
                                                 <Setter Property="VerticalAlignment" Value="Center"/>
                                                 <Setter Property="TextAlignment" Value="Center"/>

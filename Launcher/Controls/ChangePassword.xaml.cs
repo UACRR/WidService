@@ -24,7 +24,7 @@ namespace Launcher.Controls
     public partial class ChangePassword : Window
     {
 
-        private LoginModel User { get; set; }
+        private UserModel User { get; set; }
 
         public RspLogin Response { get; set; }
 
@@ -41,7 +41,7 @@ namespace Launcher.Controls
             }
         }
 
-        public ChangePassword(LoginModel user, bool tempChanging)
+        public ChangePassword(UserModel user, bool tempChanging)
         {
             InitializeComponent();
             User = user;
