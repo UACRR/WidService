@@ -96,18 +96,20 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             // 
             // ctrlSaveCancel
             // 
+            this.ctrlSaveCancel.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
             this.ctrlSaveCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrlSaveCancel.Location = new System.Drawing.Point(0, 74);
             this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
             this.ctrlSaveCancel.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlSaveCancel.Name = "ctrlSaveCancel";
+            this.ctrlSaveCancel.SaveButtonEnabled = true;
             this.ctrlSaveCancel.Size = new System.Drawing.Size(506, 31);
             this.ctrlSaveCancel.TabIndex = 3;
             // 
             // PremisesDetailForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(506, 105);
             this.Controls.Add(this.ctrlSaveCancel);
             this.Controls.Add(this.txtPlaceValue);

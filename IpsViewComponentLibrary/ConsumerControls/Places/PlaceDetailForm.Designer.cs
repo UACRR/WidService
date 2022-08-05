@@ -58,18 +58,20 @@
             // 
             // ctrlSaveCancel
             // 
+            this.ctrlSaveCancel.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
             this.ctrlSaveCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrlSaveCancel.Location = new System.Drawing.Point(0, 188);
             this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
             this.ctrlSaveCancel.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlSaveCancel.Name = "ctrlSaveCancel";
+            this.ctrlSaveCancel.SaveButtonEnabled = true;
             this.ctrlSaveCancel.Size = new System.Drawing.Size(592, 31);
             this.ctrlSaveCancel.TabIndex = 0;
             // 
             // PlaceDetailForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(592, 219);
             this.Controls.Add(this.internalPanel);
             this.Controls.Add(this.ctrlPlaceParameters);
