@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
@@ -14,23 +13,17 @@ using IpsViewComponentLibrary.Utilities;
 using System.Drawing;
 using IpsViewComponentLibrary.ObjectRightControls;
 using System.ComponentModel;
-using Telerik.WinControls.Primitives;
+using System.Threading.Tasks;
+using IpsCommonTypes.Wrappers;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholdersObjectsRightsControl : UserControl,
-        ISubscriber<ObjectRightUpdatedEvent>
+    public partial class RightholdersObjectsRightsControl : UserControl, ISubscriber<ObjectRightUpdatedEvent>
     {
         public ObjectRightForRightholder _objectRight;
         public ObjectRightForRightholder SelectedObject
         {
-            get
-            {
-                if (gvRightholdersObjectsRights.CurrentRow == null)
-                    return null;
-
-                return gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder;
-            }
+            get => gvRightholdersObjectsRights.CurrentRow?.DataBoundItem as ObjectRightForRightholder;
             set
             {
                 if (_objectRight != value)
@@ -49,46 +42,52 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public RightholderMainView SelectedRightholder
         {
-            get { return ctrlRightholderSelector.Rightholder; }
-            set { ctrlRightholderSelector.Rightholder = value; }
+            get => ctrlRightholderSelector.Rightholder;
+            set => ctrlRightholderSelector.Rightholder = value;
         }
 
-        public List<ObjectRightForRightholder> ObjectsRightsList
+        public RightholderMainView SelectedRightholderSecondary
         {
-            get
-            {
-                return objectRightForRightholderBindingSource.List.Cast<ObjectRightForRightholder>().ToList();
-            }
+            get => ctrlRightholderSelectorSecondary.Rightholder;
+            set => ctrlRightholderSelectorSecondary.Rightholder = value;
         }
 
-        private List<ObjectRightForRightholder> _markedObjects = new List<ObjectRightForRightholder>();
-        public List<ObjectRightForRightholder> MarkedObjectsRights
-        {
-            get
-            {
-                return _markedObjects;
-            }
-        }
+        public List<ObjectRightForRightholder> ObjectsRightsList => objectRightForRightholderBindingSource.List.Cast<ObjectRightForRightholder>().ToList();
+
+        private readonly List<ObjectRightForRightholder> _markedObjects = new List<ObjectRightForRightholder>();
+        public List<ObjectRightForRightholder> MarkedObjectsRights => _markedObjects;
 
         private bool _showRightholderSelector = true;
         public bool ShowRightholderSelector
         {
-            get { return _showRightholderSelector; }
+            get => _showRightholderSelector;
             set
             {
                 _showRightholderSelector = value;
                 ctrlRightholderSelector.Visible = _showRightholderSelector;
+                ctrlRightholderSelectorSecondary.Visible = _showRightholderSelector;
             }
         }
 
         private bool _allowMarkingRows = false;
         public bool AllowMarkingRows
         {
-            get { return _allowMarkingRows; }
+            get => _allowMarkingRows;
             set
             {
                 _allowMarkingRows = value;
                 gvRightholdersObjectsRights.SetColumnVisibility("IsSelected", _allowMarkingRows);
+            }
+        }
+
+        private bool _isInheritance = false;
+        public bool IsInheritance
+        {
+            get => _isInheritance;
+            set
+            {
+                _isInheritance = value;
+                ctrlRightholderSelectorSecondary.Visible = !_isInheritance;
             }
         }
 
@@ -99,10 +98,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             add => ctrlRightholderSelector.RightholderChanging += value;
             remove => ctrlRightholderSelector.RightholderChanging -= value;
         }
+        public event CancelEventHandler RightholderSecondaryChanging
+        {
+            add => ctrlRightholderSelectorSecondary.RightholderChanging += value;
+            remove => ctrlRightholderSelectorSecondary.RightholderChanging -= value;
+        }
         public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted;
         public event EventHandler MarkedObjectsRightsChanged;
-        //defined border element for settings
-        private BorderPrimitive border = null;
+
         public RightholdersObjectsRightsControl()
         {
             InitializeComponent();
@@ -112,36 +115,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
             ctrlRightholderSelector.Visible = false;
+            ctrlRightholderSelectorSecondary.Visible = false;
+            ctrlRightholderSelectorSecondary.Enabled = false;
             gvRightholdersObjectsRights.SetColumnVisibility("IsSelected", false);
-
-            //set settings for border panel
-            SettingsBorder();
-        }
-
-        public void UpdateList()
-        {
-            UpdateList(SelectedObject);
-        }
-
-        public void UpdateList(ObjectRightForRightholder currentObject)
-        {
-            var service = new ObjectRightService();
-
-            if (ctrlRightholderSelector.Rightholder != null)
-            {
-                var rightholdersObjectsRightsList = service.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
-
-                objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
-                //if 'rightholdersObjectsRightsList' have data then show count elements
-                lblCountObjectsRight.Text = rightholdersObjectsRightsList != null 
-                                                ? rightholdersObjectsRightsList.Count().ToString()
-                                                //else show count elements is '0'
-                                                : 0.ToString();
-            }
-            else
-            {
-                objectRightForRightholderBindingSource.DataSource = null;
-            }
         }
 
         #region gvRightholdersObjectsRights event handlers
@@ -176,7 +152,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (e.Column.Name == "IsSelected")
             {
-                if (e.Value != null && (bool)e.Value == true)
+                if (e.Value != null && (bool)e.Value)
                 {
                     _markedObjects.Add((ObjectRightForRightholder)e.Row.DataBoundItem);
                 }
@@ -196,9 +172,16 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         #endregion
 
+        /// <summary>
+        /// Після зміни правовласника оновити виконати оновлення контролів
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="selectedRightholder"></param>
         private void ctrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
             UpdateList();
+
+            ctrlRightholderSelectorSecondary.Enabled = selectedRightholder != null;
 
             OnRightholderChanged(selectedRightholder);
 
@@ -206,6 +189,51 @@ namespace IpsViewComponentLibrary.RightholderControls
             OnMarkedObjectsRightsChanged();
         }
 
+        /// <summary>
+        /// Після зміни додаткового правовласника оновити виконати оновлення контролів
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctrlRightholderSelectorSecondary_RightholderChanged(object sender, RightholderMainView e)
+        {
+            if (e == null)
+                return;
+
+            UpdateList();
+
+            _markedObjects.Clear();
+            OnMarkedObjectsRightsChanged();
+        }
+
+        /// <summary>
+        /// Оновити список об'єків права залежно від обраних правовласників
+        /// </summary>
+        private async void UpdateList()
+        {
+            var service = ObjectRightService.GetInstance();
+
+            var custId = ctrlRightholderSelector.Rightholder?.CustId;
+            var custIdSecondary = ctrlRightholderSelectorSecondary.Rightholder?.CustId;
+
+            ItemListResponse<ObjectRightForRightholder> result = null;
+
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
+            {
+                result = service.GetRightholdersObjectsRights(custId, custIdSecondary, navigatorPanel.Skip, navigatorPanel.Take);
+            });
+            waitingBar.StopWaiting();
+
+            objectRightForRightholderBindingSource.DataSource = result?.List;
+            navigatorPanel.TotalPages = (int)Math.Ceiling((result?.TotalItems ?? 0d) / navigatorPanel.PageSize);
+            ctrlGridRowCount.TotalItems = result?.TotalItems ?? 0;
+        }
+
+        /// <summary>
+        /// Показати анкету обраного правовласника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="selectedRighthoder"></param>
         private void ctrlRightholderSelector_ShowAnketaCommandExecuted(object sender, RightholderMainView selectedRighthoder)
         {
             OnShowAnketaCommandExetuted(selectedRighthoder);
@@ -260,15 +288,15 @@ namespace IpsViewComponentLibrary.RightholderControls
             UpdateList();
         }
 
-        //settings for border -> 'panelRightsControl'
-        private void SettingsBorder()
+
+        private void navigatorPanel_CurrentPageChanged(object sender, EventArgs e)
         {
-            //hide border panel -> 'panelRightsControl'
-            border = (BorderPrimitive)panelRightsControl.PanelElement.Children[1];
-            border.ForeColor = Color.Transparent;
-            border.ForeColor2 = Color.Transparent;
-            border.ForeColor3 = Color.Transparent;
-            border.ForeColor4 = Color.Transparent;
+            UpdateList();
+        }
+
+        private void navigatorPanel_PageSizeChanged(object sender, EventArgs e)
+        {
+            navigatorPanel.CurrentPage = 1;
         }
     }
 }

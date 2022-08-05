@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,8 +37,39 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// ведомость акц
+        /// Список звітів малих прав
         /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        [HttpPost("list/sr")]
+        public async Task<IActionResult> GetSRReportsList([FromBody] SearchModuleResource resource)
+        { 
+            string query = "select t0.* from vtsk_3_R_04_wpf t0";
+            List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 6).ToListAsync();
+            var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Список звітів онлайн ресурси
+        /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        [HttpPost("list/online")]
+        public async Task<IActionResult> GetOnlineReportsList([FromBody] SearchModuleResource resource)
+        {
+            string query = "select t0.* from vtsk_3_R_04_ccid_wpf t0";
+            List<FrameParam> frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 8).ToListAsync();
+            var result = await _dbContext.Database.GetItemsListAsync(query, frameParam, resource);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Список звітів
+        /// </summary>
+        /// <param name="beginDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="status"></param>
         /// <returns></returns>
         [HttpGet("filter")]
         public async Task<IActionResult> GetListByFilter([FromQuery] DateTime? beginDate, [FromQuery] DateTime? endDate, [FromQuery] int? status)
@@ -46,6 +81,223 @@ namespace ipsmedserviceapp.Controllers
             });
 
             return Json(list);
+        }
+
+        /// <summary>
+        /// Список звітів CCID
+        /// </summary>
+        /// <param name="beginDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        [HttpGet("ccid/filter")]
+        public async Task<IActionResult> GetExternalListByFilter([FromQuery] DateTime? beginDate, [FromQuery] DateTime? endDate, [FromQuery] int? status)
+        {
+            string query = $"select * from ft_tsk_3_R_04_ccid(@beginDate, @endDate, @status) ";
+
+            var list = await _dbContext.getViewData(query, new[] {
+                new SqlParameter("beginDate", beginDate),
+                new SqlParameter("endDate", endDate),
+                new SqlParameter("status", status),
+            });
+
+            return Json(list);
+        }
+
+        /// <summary>
+        /// Отримати дані звіту CCID
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpGet("ccid/{regId}")]
+        public async Task<IActionResult> GetRegisterCCID(int regId)
+        {
+            var register = await _dbContext.Register
+                .Include(r => r.Rm)
+                .ThenInclude(rl => rl.Period)
+                .ThenInclude(p => p.Lic)
+                .FirstOrDefaultAsync(r => r.RegId == regId);
+
+            // invert return (JSON ignore)
+            return Ok(register.Rm.Period.Lic);
+        }
+
+        /// <summary>
+        /// Отримати вміст звіту CCID по ID
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpGet("ccid/items/{regId}")]
+        public IActionResult GetRegisterItemsCCID(int regId)
+        {
+            try
+            {
+                string query = $"select * from ft_Tsk_3_Report_CCID ({regId})";
+                DataTable table;
+                using (SqlConnection sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
+                {
+                    sqlConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.CommandTimeout = 300;
+
+                        SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+
+                        DataSet dataSet = new DataSet();
+                        sqlDataAdapter.Fill(dataSet);
+
+                        table = dataSet.Tables[0];
+                    }
+                }
+
+                var list = new List<object[]>();
+                for (int i = 0; i < table.Rows.Count; i++)
+                {
+                    var row = table.Rows[i].ItemArray;
+                    list.Add(row);
+                }
+
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Запустити процедуру синхронізації
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpGet("ccid/sync/{regId}")]
+        public async Task<IActionResult> ExecuteSyncProcedure(int regId)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                string query = $"exec @retCode = pTsk10_LoadWICRegister @regId";
+                var param = new SqlParameter("regId", regId);
+                var returnedCode = new SqlParameter
+                {
+                    ParameterName = "@retCode", 
+                    SqlDbType = SqlDbType.Int, 
+                    Direction = ParameterDirection.Output
+                };
+
+                _dbContext.Database.SetCommandTimeout(600);
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
+                if ((int)returnedCode.Value == 1)
+                {
+                    response = new ResponseOfRequest
+                    {
+                        Message = "Процедура синхронізації повернула помилку! \nКод: 1",
+                        IsSuccess = false,
+                    };
+
+                    return BadRequest(response);
+                }
+
+                _dbContext.Database.SetCommandTimeout(30);
+                response = new ResponseOfRequest("Процедуру синхронізації виконано!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest("Неможливо виконати синхронізацію!", e);
+                return BadRequest(response);
+            }
+        }
+
+        /// <summary>
+        /// Запустити процедуру розподілу
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpGet("ccid/distribution/{regId}")]
+        public async Task<IActionResult> ExecuteDistributionProcedure(int regId)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                string query = $"exec @retCode = p_CreateDistribution_DDEX @regId";
+                var param = new SqlParameter("regId", regId);
+                var returnedCode = new SqlParameter
+                {
+                    ParameterName = "@retCode",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+
+                _dbContext.Database.SetCommandTimeout(600);
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
+                if ((int)returnedCode.Value == 1)
+                {
+                    response = new ResponseOfRequest
+                    {
+                        Message = "Процедура розподілу повернула помилку! \nКод: 1",
+                        IsSuccess = false,
+                    };
+
+                    return BadRequest(response);
+                }
+
+                _dbContext.Database.SetCommandTimeout(30);
+                response = new ResponseOfRequest("Процедуру розподілу виконано!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest("Неможливо виконати розподіл!", e);
+                return BadRequest(response);
+            }
+        }
+
+        /// <summary>
+        /// Запустити процедуру оплати
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpGet("ccid/payment/{regId}")]
+        public async Task<IActionResult> ExecutePaymentProcedure(int regId)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                string query = "exec @retCode = MPPay_#DDEX @regId";
+                var returnedCode = new SqlParameter
+                {
+                    ParameterName = "@retCode",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+
+                var param = new SqlParameter("regId", regId);
+
+                _dbContext.Database.SetCommandTimeout(600);
+                var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
+                if ((int)returnedCode.Value == 1)
+                {
+                    response = new ResponseOfRequest
+                    {
+                        Message = "Процедура оплати повернула помилку! \nКод: 1",
+                        IsSuccess = false,
+                    };
+
+                    return BadRequest(response);
+                }
+
+                _dbContext.Database.SetCommandTimeout(30);
+                response = new ResponseOfRequest("Процедуру оплати виконано!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest("Неможливо виконати оплату!", e);
+                return BadRequest(response);
+            }
         }
 
         [HttpGet("{regId}")]

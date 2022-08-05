@@ -15,7 +15,15 @@ namespace IpsViewComponentLibrary.CommunityControls
         public CommunityAgreementControl()
         {
             InitializeComponent();
+
+            if (IpsGlobal.AnketaDictionaties?.period != null)
+                bsDictPaidPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
+
             txtDayForPay.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
+            dtDateBeginPER.Enabled = false;
+            dtDateEndPER.Enabled = false;
+            dtDateBeginMEC.Enabled = false;
+            dtDateEndMEC.Enabled = false;
             SetupObjects();
         }
 
@@ -33,6 +41,12 @@ namespace IpsViewComponentLibrary.CommunityControls
                 dtDateBegin.ReadOnly = value;
                 dtDateEnd.ReadOnly = value;
                 ddlPeriodPayment.ReadOnly = value;
+                dtDateBeginMEC.ReadOnly = value;
+                dtDateEndMEC.ReadOnly = value;
+                dtDateBeginPER.ReadOnly = value;
+                dtDateEndPER.ReadOnly = value;
+                checkPER.ReadOnly = value;
+                checkMEC.ReadOnly = value;
             }
         }
 
@@ -47,9 +61,33 @@ namespace IpsViewComponentLibrary.CommunityControls
             get => bsAgreementAddCommunity.DataSource;
             set
             {
-                if (IpsGlobal.AnketaDictionaties?.period != null)
-                    bsDictPaidPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
                 bsAgreementAddCommunity.DataSource = value;
+
+                if (value is AgreementAddCommunity item)
+                {
+                    if (item.DateBeginPer == null)
+                        dtDateBeginPER.Text = null;
+
+                    if (item.DateEndPer == null)
+                        dtDateEndPER.Text = null;
+
+                    if (item.DateBeginMec == null)
+                        dtDateBeginMEC.Text = null;
+
+                    if (item.DateEndMec == null)
+                        dtDateEndMEC.Text = null;
+
+                    if (item.AgrDate == null)
+                        dtAgrDate.Text = null;
+
+                    if (item.DateBegin == null)
+                        dtDateBegin.Text = null;
+
+                    if (item.DateEnd == null)
+                        dtDateEnd.Text = null;
+                }
+
+                bsAgreementAddCommunity.ResetBindings(false);
             }
         }
 
@@ -84,6 +122,18 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             if (dtDateBegin.Value.AddDays(1) is DateTime newDate)
                 dtDateEnd.MinDate = new DateTime(newDate.Year, newDate.Month, newDate.Day);
+        }
+
+        private void checkPER_CheckStateChanged(object sender, EventArgs e)
+        {
+            dtDateBeginPER.Enabled = checkPER.Checked;
+            dtDateEndPER.Enabled = checkPER.Checked;
+        }
+
+        private void checkMEC_CheckStateChanged(object sender, EventArgs e)
+        {
+            dtDateBeginMEC.Enabled = checkMEC.Checked;
+            dtDateEndMEC.Enabled = checkMEC.Checked;
         }
     }
 }

@@ -13,8 +13,11 @@ namespace ipsmedserviceapp.Model
 
         public int CodeI { get; set; }
         public string Name { get; set; }
+        public bool? IsHoll { get; set; }
+        public int? ParamType { get; set; }
 
-        public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
-        public ICollection<TypePlaceTr> TypePlaceTr { get; set; }
+        public virtual TypePlaceParam ParamTypeNavigation { get; set; }
+        public virtual ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        public virtual ICollection<TypePlaceTr> TypePlaceTr { get; set; }
     }
 }

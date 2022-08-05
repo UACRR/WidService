@@ -1,0 +1,48 @@
+﻿<Window x:Class="LanguageService.Controls.CreateLanguage.CreateLanguageWindow"
+        x:Name="thisWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LanguageService.Controls.CreateLanguage"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="Створити нову мовну локалізацію" Height="280" Width="360" ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <local:CreateLanguageViewModel/>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger x:Name="loadEvent" EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListBox Grid.Row="0"
+                 Margin="3" 
+                 ItemsSource="{Binding LanguageModelItemSource}"
+                 SelectedItem="{Binding SelectedLanguage}"
+                 SelectedValuePath="SpecificationCode"
+                 DisplayMemberPath="LanguageName"/>
+
+        <StackPanel Grid.Row="1" FlowDirection="RightToLeft" Orientation="Horizontal">
+            <Button Margin="3" MinWidth="90" MinHeight="25" 
+                    Content="Скасувати"
+                    Command="{Binding CloseWindowCommand}"
+                    CommandParameter="{Binding ElementName=thisWindow}"/>
+
+            <Button Margin="3" MinWidth="90" MinHeight="25"
+                    Content="Створити"
+                    Command="{Binding CreateNewLanguageCommand}"
+                    CommandParameter="{Binding ElementName=thisWindow}"/>
+        </StackPanel>
+    </Grid>
+</Window>

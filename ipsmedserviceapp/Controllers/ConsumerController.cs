@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.DATA;
@@ -15,14 +16,16 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using IpsCommonTypes.Enums;
+using Microsoft.AspNetCore.Mvc.Internal;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace ipsmedserviceapp.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Consumer")]
+    [Route("api/[controller]")]
+    [ApiController]
     public class ConsumerController : Controller
     {
-        private readonly AmountDistributor _rateDistributor;
         private MediaServiceContext _dbContext;
         private IConfiguration _config;
         private ILogger<ConsumerController> _logger;
@@ -32,11 +35,6 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = dbContext;
             _config = config;
             _logger = logger;
-
-            _rateDistributor = new AmountDistributor
-            {
-                Amount = 100
-            };
         }
 
         /// <summary>
@@ -46,20 +44,25 @@ namespace ipsmedserviceapp.Controllers
         /// <returns></returns>
         private async Task GetConsumerBR(Customer bigRConsumer)
         {
-            foreach (var item in bigRConsumer.Client.LicenseAgreement.Where(rec => rec.LicenseBigR != null))
+            foreach (var item in bigRConsumer.Client.LicenseAgreement)
             {
-                await _dbContext.Entry(item).Reference(rec => rec.LicenseBigR).Query()
+                var licenseAgrParam = item.LicenseAgrParam.Single(rec => rec.LicVersion == item.LicVersion);
+                if (licenseAgrParam.LicenseBigR == null)
+                    continue;
+
+                await _dbContext.Entry(item.LicenseAgrParam.Single(l => l.LicVersion == item.LicVersion))
+                    .Reference(rec => rec.LicenseBigR)
+                    .Query()
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors)
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.CopyRight)
                     .LoadAsync();
 
                 await _dbContext.Entry(item).Collection(rec => rec.MoneyPeriodLink).Query().Include(rec => rec.Period).LoadAsync();
 
-                foreach (var royalty in item.LicenseBigR.Obj.CopyRight)
+                foreach (var royalty in item.LicenseAgrParam.Single(l => l.LicVersion == item.LicVersion).LicenseBigR.Obj.CopyRight)
                 {
-                    await _dbContext.Entry(royalty).Reference(r => r.LicAuthorBr).LoadAsync();
+                    await _dbContext.Entry(royalty).Collection(r => r.LicAuthorBr).LoadAsync();
                 }
-
             }
         }
 
@@ -85,7 +88,11 @@ namespace ipsmedserviceapp.Controllers
                 .Where(agree => (agree.LicType ?? 1) <= 3) // не закриті не технічні Ліцензійні договора
                 .Include(item => item.Agr)
                 .Include(item => item.LicCodeNavigation)
-                .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign).ThenInclude(md => md.Obj).ThenInclude(obj => obj.MediaTrack)
+                .Include(item => item.LicenseAgrParam)
+                    .ThenInclude(item => item.LicenseBigR)
+                    .ThenInclude(br => br.MusicalDesign)
+                    .ThenInclude(md => md.Obj)
+                    .ThenInclude(obj => obj.MediaTrack)
                 .Include(rec => rec.PaidPeriod)
                 .LoadAsync();
 
@@ -96,12 +103,17 @@ namespace ipsmedserviceapp.Controllers
                     .Query()
                     .Where(item => item.Version >= licAgreement.Agr.Version)
                     .LoadAsync();
+
                 // LicenseBigR
-                await _dbContext.Entry(licAgreement).Reference(rec => rec.LicenseBigR)
-                    .Query()
-                    .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.WorkRh)
-                    .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.LicAuthorBr)
-                    .LoadAsync();
+                if (licAgreement.LicenseAgrParam.Any(p => p.LicVersion == licAgreement.LicVersion))
+                {
+                    await _dbContext.Entry(licAgreement.LicenseAgrParam.Single(p => p.LicVersion == licAgreement.LicVersion)).Reference(rec => rec.LicenseBigR)
+                        .Query()
+                        .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.WorkRh)
+                        .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.LicAuthorBr)
+                        .LoadAsync();
+                }
+
                 // Лцензії для майданчиків
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
                     .Query()
@@ -125,10 +137,10 @@ namespace ipsmedserviceapp.Controllers
 
             // Отримати співробітників (юридична осба)
             if (cust.CustType == 3)
+            {
                 foreach (var relEmp in cust.Company.RelEmployee)
-                {
                     await _dbContext.Entry(relEmp).Reference(item => item.Empl).LoadAsync();
-                }
+            }
 
             return cust;
 
@@ -161,6 +173,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
         [HttpPut("detail/{id}")]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> SaveConsumerById(int id, [FromBody] Customer sorsCustomer)
         {
             IDbContextTransaction tran = null;
@@ -170,26 +183,17 @@ namespace ipsmedserviceapp.Controllers
                 // Customer
                 InternalUpdateConsumer(sorsCustomer, destConsumer);
 
-                tran = _dbContext.Database.BeginTransaction();
-                _dbContext.SaveChanges();
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
                 tran.Commit();
                 tran = null;
 
-
                 return Json(destConsumer);
-            }
-            catch (DbUpdateException)
-            {
-                tran?.Rollback();
-                //if()
-                string msg = "Спроба видалити майданчик, який включений до діючої ліцензії!";
-                //return BadRequest(ex.Message);
-                return BadRequest(msg);
             }
             catch (Exception ex)
             {
-                if (tran != null)
-                    tran.Rollback();
+                tran?.Rollback();
+
                 return BadRequest(ex.Message);
             }
         }
@@ -220,11 +224,12 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        private void PrepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
+        private static void PrepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
         {
         }
+
         /// <summary>
-        /// Внутрішній метод збереження змін по Споживачу
+        /// Синхронізація об'єктів Customer 
         /// </summary>
         /// <param name="sorsCustomer"></param>
         /// <param name="destCustomer"></param>
@@ -333,17 +338,14 @@ namespace ipsmedserviceapp.Controllers
                     }
 
 
+                    // ліцензія великих прав
+                    UpdateLicenseBigR(item, license);
 
-                    // Заявка
-                    if (item.LicenseBigR != null)
-                    {
-                        // Nested update
-                        UpdateLicenseBigR(item, license);
-                    }
-
-
-
-
+                    //if (item.LicenseBigR != null)
+                    //{
+                    //    // Nested update
+                    //    UpdateLicenseBigR(item, license);
+                    //}
                 });
                 // Add
                 tempList = sorsCustomer.Client.LicenseAgreement.Where(row => !destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
@@ -361,7 +363,7 @@ namespace ipsmedserviceapp.Controllers
                     }
 
                     var license = new LicenseAgreement { LicVersion = 1 };
-                    license.SetFields(item, new[] { "LicId" });
+                    license.SetFields(item, new[] { "LicId", "LicVersion" });
 
                     _dbContext.AppendList(item.LicenseAgrParam, license.LicenseAgrParam, (sors, dest) =>
                     {
@@ -369,18 +371,19 @@ namespace ipsmedserviceapp.Controllers
                     }, (l, r) => l.LicVersion == r.LicVersion);
 
 
-                    if (item.LicenseBigR != null)
-                    {
-                        UpdateLicenseBigR(item, license);
-                    }
+                    UpdateLicenseBigR(item, license);
+
+                    //if (item.LicenseBigR != null)
+                    //{
+                    //    UpdateLicenseBigR(item, license);
+                    //}
 
                     destCustomer.Client.LicenseAgreement.Add(license);
                     destAgreeItem.LicenseAgreement.Add(license);
 
                     if (agreeItem?.AgreementAddBr != null && destAgreeItem?.AgreementAddBr != null)
                         _dbContext.AppendList(agreeItem.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
-                }
-                );
+                });
             }
 
             if (destCustomer.CustType == 3) // Company
@@ -453,30 +456,37 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="license"></param>
         private void UpdateLicenseBigR(LicenseAgreement item, LicenseAgreement license)
         {
-            if (item.LicenseBigR == null)
+            var source = item.LicenseAgrParam.Single(rec => rec.LicVersion == item.LicVersion);
+            if (source.LicenseBigR == null)
                 return;
-            if (license.LicenseBigR == null)
-                license.LicenseBigR = new LicenseBigR();
+            
+            var target = license.LicenseAgrParam.Single(rec => rec.LicVersion == item.LicVersion);
 
-            license.LicenseBigR.SetFields(item.LicenseBigR);
+            if (target.LicenseBigR == null)
+                target.LicenseBigR = new LicenseBigR();
 
-            _dbContext.UpdateList(item.LicenseBigR.MusicalDesign, license.LicenseBigR.MusicalDesign, i => { }, (l, r) => l.MdId == r.MdId);
+            target.LicenseBigR.SetFields(source.LicenseBigR);
 
-            if (item.LicenseBigR.Obj != null)
+            _dbContext.UpdateList(source.LicenseBigR.MusicalDesign, target.LicenseBigR.MusicalDesign, i => { }, (l, r) => l.MdId == r.MdId);
+
+            if (source.LicenseBigR.Obj != null)
             {
-
-                if (item.LicenseBigR.Obj.ObjId == 0)
+                if (source.LicenseBigR.Obj.ObjId == 0)
                 {
                     ObjectRight newObj = new ObjectRight();
                     _dbContext.ObjectRight.Add(newObj);
-                    license.LicenseBigR.Obj = newObj;
+                    target.LicenseBigR.Obj = newObj;
                 }
                 else
-                    license.LicenseBigR.Obj.SetFields(item.LicenseBigR.Obj);
+                {
+                    target.LicenseBigR.Obj.SetFields(source.LicenseBigR.Obj);
+                }
 
-                license.LicenseBigR.Obj.SetFields(item.LicenseBigR.Obj);
+                target.LicenseBigR.Obj.SetFields(source.LicenseBigR.Obj);
 
-                _dbContext.UpdateListExtra(item.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Obj.CopyRight,
+                _dbContext.UpdateListExtra(
+                    source.LicenseBigR.Obj.CopyRight, 
+                    target.LicenseBigR.Obj.CopyRight,
                     (isnew, sorsCp, destCp) =>
                     {
                         if (sorsCp.WorkRh != null)
@@ -490,26 +500,90 @@ namespace ipsmedserviceapp.Controllers
                             destCp.WorkRh.SetFields(sorsCp.WorkRh);
                         }
 
-                        if (sorsCp.LicAuthorBr != null)
-                        {
-                            if (destCp.LicAuthorBr == null)
-                            {
-                                destCp.LicAuthorBr = new LicAuthorBr();
-                                _dbContext.LicAuthorBr.Add(destCp.LicAuthorBr);
-                            }
-                            destCp.LicAuthorBr.SetFields(sorsCp.LicAuthorBr);
-                        }
+                        //if (sorsCp.LicAuthorBr != null)
+                        //{
+                        //    if (destCp.LicAuthorBr == null)
+                        //    {
+                        //        destCp.LicAuthorBr = new List<LicAuthorBr>();
+                        //        _dbContext.LicAuthorBr.AddRange(destCp.LicAuthorBr);
+                        //    }
 
-                    }, (l, r) => l.CRightId == r.CRightId);
+                        //    //destCp.LicAuthorBr.SetFields(sorsCp.LicAuthorBr);
+                        //    _dbContext.UpdateList(sorsCp.LicAuthorBr, destCp.LicAuthorBr, id => {}, (s, t) => s.CustIdRh == t.CustIdRh);
+                        //}
+
+                    },
+                    (l, r) => l.CRightId == r.CRightId);
+
+                if (source.LicenseBigR.LicAuthorBr != null && source.LicenseBigR.LicAuthorBr.Any())
+                {
+                    // невідомо сікльки LicAuthorBr, можливо один
+                    if (target.LicenseBigR.LicAuthorBr == null || target.LicenseBigR.LicAuthorBr.Count == 0)
+                    {
+                        target.LicenseBigR.LicAuthorBr = new List<LicAuthorBr>();
+
+                        foreach (var licAuthorBr in source.LicenseBigR.LicAuthorBr)
+                            addLicAuthorBr(licAuthorBr);
+                    }
+                    else
+                    {
+                        foreach (var licAuthorBr in source.LicenseBigR.LicAuthorBr)
+                        {
+                            var targetLicAuthorBr = target.LicenseBigR.LicAuthorBr
+                                .FirstOrDefault(rec => rec.CustIdRh == licAuthorBr.CustIdRh && rec.CRightId == licAuthorBr.CRightId && rec.LicId == licAuthorBr.LicId && rec.LicVersion == licAuthorBr.LicVersion);
+
+                            if (targetLicAuthorBr == null) 
+                                addLicAuthorBr(licAuthorBr);
+                            else
+                                targetLicAuthorBr.SetFields(licAuthorBr);
+                        }
+                    }
+
+                    void addLicAuthorBr(LicAuthorBr licAuthorBr)
+                    {
+                        var newLicAuthorBr = new LicAuthorBr();
+                        newLicAuthorBr.SetFields(licAuthorBr, new[] { "CRightId" });
+                        target.LicenseBigR.LicAuthorBr.Add(newLicAuthorBr);
+                    }
+                }
 
                 // calculate Rate by RoleRate
-                _rateDistributor.DistributeByPropertyAndTotalBaseAmount(license.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Rate, cr => cr.RoleRate, cr => cr.Rate);
+                // перерахувати %
+                if (target.LicenseBigR.Rate.HasValue && target.LicenseBigR.Rate != 0 && target.LicenseBigR.Obj.CopyRight.Any())
+                {
+                    var sumRate = 0m;
+                    foreach (var copyRight in target.LicenseBigR.Obj.CopyRight)
+                    {
+                        copyRight.Rate = Math.Round(((copyRight.RoleRate ?? 0) * 100) / target.LicenseBigR.Rate.Value, 2);
+                        sumRate += copyRight.Rate;
+                    }
 
-                _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
+                    // згладжування
+                    var delta = Math.Round(100m - sumRate, 2);
+                    if (delta != 0 && sumRate != 0)
+                    {
+                        sumRate = 0m;
+                        var list = target.LicenseBigR.Obj.CopyRight.Where(rec => rec.RoleRate.HasValue && rec.RoleRate.Value != 0).ToList();
 
+                        var divDelta = Math.Round(delta / list.Count, 2);
+                        foreach (var copyRight in list)
+                        {
+                            copyRight.Rate = Math.Round(copyRight.Rate + divDelta, 2);
+                            sumRate += copyRight.Rate;
+                        }
+
+                        // вирівнювання до 100%
+                        delta = Math.Round(100m - sumRate, 2);
+                        if (delta != 0)
+                        {
+                            target.LicenseBigR.Obj.CopyRight.OrderByDescending(rec => rec.Rate).First().Rate += delta;
+                        }
+                    }
+                }
+
+                _dbContext.UpdateList(source.LicenseBigR.Obj.Authors, target.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
             }
         }
-
 
         /// <summary>
         /// Шаблон нового користувача
@@ -580,40 +654,47 @@ namespace ipsmedserviceapp.Controllers
         /// <summary>
         /// Збереження нового Споживача
         /// </summary>
-        /// <param name="sorsCustomer"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
         [HttpPost("newconsumer")]
-        public async Task<IActionResult> NewConsumer([FromBody] Customer sorsCustomer)
+        public async Task<IActionResult> NewConsumer([FromBody] Customer source)
         {
-            IDbContextTransaction tran = null;
+            IDbContextTransaction transaction = null;
             try
             {
-                if (sorsCustomer == null)
+                if (source == null)
                     throw new Exception("new consumer is empty");
-                if (!(sorsCustomer.CustType > 0 && sorsCustomer.CustType < 4))
+
+                if (!(source.CustType > 0 && source.CustType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
-                //fillLicenseAgreement(sorsCustomer); // -> визначається контролом GlobalControlConsumerAnketa >371
-                // Збереження Customer
-                Customer destConsumer = new Customer { CustId = 0 };
-                _dbContext.Customer.Add(destConsumer);
+                var target = new Customer { CustId = 0 };
+                _dbContext.Customer.Add(target);
 
-                InternalUpdateConsumer(sorsCustomer, destConsumer);
+                InternalUpdateConsumer(source, target);
 
-                tran = _dbContext.Database.BeginTransaction();
+                transaction = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
-                tran.Commit();
-                tran = null;
 
-                return await GetConsumerById(destConsumer.CustId);
+                if (target.Client.LicenseAgreement.FirstOrDefault()?.LicId is int licId)
+                {
+                    var licVersion = target.Client.LicenseAgreement.FirstOrDefault()?.LicVersion ?? 1;
+                    
+                    // викликати процедуру присвоєння номеру договору для користувача
+                    string setAgrNumber = "exec pTsk4_GetClnNdog @licId, @version";
+                    _dbContext.Database.ExecuteSqlCommand(setAgrNumber, new SqlParameter("@licId", licId), new SqlParameter("@version", licVersion));
+                }
+
+                transaction.Commit();
+                transaction = null;
+
+                return await GetConsumerById(target.CustId);
             }
             catch (Exception ex)
             {
-                if (tran != null)
-                    tran.Rollback();
-                return BadRequest(ex.Message);
+                transaction?.Rollback();
+                return BadRequest(ex.ToString());
             }
-
         }
 
         /// <summary>
@@ -626,7 +707,7 @@ namespace ipsmedserviceapp.Controllers
             ConsumersSmallRightFilter what = Enum.Parse<ConsumersSmallRightFilter>(whatId.ToString());
 
             string function = "select * from ft_tsk_1_LicenseAgreementList (@strSeek)";
-
+             
             switch (what)
             {
                 case ConsumersSmallRightFilter.All:
@@ -758,7 +839,7 @@ namespace ipsmedserviceapp.Controllers
         /// <summary>
         /// Список SQL VIEW для великих прав
         /// </summary>
-        private Dictionary<string, string> listBrView = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> listBrView = new Dictionary<string, string>
         {
             {"vTsk_vBRLicense", "vTsk_vBRLicense"},
             {"vTsk_1_ListConsumer01", "vTsk_1_ListConsumer01"},
@@ -775,7 +856,9 @@ namespace ipsmedserviceapp.Controllers
             {"vTsk_1_BRMusic", "vTsk_1_BRMusic"},
             {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
             {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
-            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"}
+            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"},
+            {"vTsk_2_BRRateListObject", "vTsk_2_BRRateListObject"},
+            {"vTsk_1_BRRatedList", "vTsk_1_BRRatedList"},
         };
 
         /// <summary>
@@ -880,12 +963,12 @@ namespace ipsmedserviceapp.Controllers
         {
             var lic = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licId).SingleAsync();
 
-            await _dbContext.Entry(lic).Reference(rec => rec.LicenseBigR)
+            await _dbContext.Entry(lic).Reference(rec => rec.LicenseAgrParam.Single(l => l.LicVersion == lic.LicVersion).LicenseBigR)
                     .Query()
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.CopyRight)
                     .LoadAsync();
 
-            var licBr = lic.LicenseBigR;
+            var licBr = lic.LicenseAgrParam.Single(l => l.LicVersion == lic.LicVersion).LicenseBigR;
 
             foreach (var item in licBr.Obj.CopyRight)
                 await _dbContext.Entry(item).Reference(rec => rec.WorkRh)
@@ -935,7 +1018,6 @@ namespace ipsmedserviceapp.Controllers
             return Json(retList);
         }
 
-
         #region Action FOR LICENSEAGREEMENT ******************************************************
 
         [HttpPut("license/type/{licId}/{typeId}")]
@@ -976,7 +1058,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="licid"></param>
         /// <param name="version"></param>
         /// <param name="status"></param>
-        private async Task<LicenseAgreement> SetLicAgrStatus(int licid, int version, /*int? oldStatus,*/ int status, bool toChangeVersion)
+        private async Task<LicenseAgreement> SetLicAgrStatus(int licid, int version, int status, bool toChangeVersion)
         {
             // *******  Отримати дані з бази по договорам
             var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)
@@ -1334,19 +1416,19 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                         // TICKS *********************************
                         // Виправлення даних для вирахування пропорціність використання твору
                         if (destRec.DurationItem == null)
-                            {
-                                destRec.DurationItem = TimeSpan.FromTicks( TimeSpan.TicksPerMillisecond ); 
-                                destRec.Ticks = 1;
-                            }
+                        {
+                            destRec.DurationItem = TimeSpan.FromTicks( TimeSpan.TicksPerMillisecond ); 
+                            destRec.Ticks = 1;
+                        }
 
-                            if (destRec.Ticks == 0)
-                            {
-                                if (destItem.AlgorithmId == 1)  // Duration
-                                destRec.Ticks = Math.Max(1,
-                                                             (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / TimeSpan.TicksPerMillisecond ));
+                        if (destRec.Ticks == 0)
+                        {
+                            // Duration
+                            if (destItem.AlgorithmId == 1)  
+                                destRec.Ticks = Math.Max(1, (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / TimeSpan.TicksPerMillisecond ));
                                 else
                                     destRec.Ticks = 1;          // Count
-                        }
+                            }
                         // TICKS *********************************
 
                         if (isNew)

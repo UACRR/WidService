@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -42,7 +44,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 _licenseAgreement = customer.Client.LicenseAgreement.SingleOrDefault();
                 var licAgr = _licenseAgreement?.LicenseAgrParam.SingleOrDefault();
                 ctrlAgreementPhis.Rights = TypeRights.SmallRights;
-                ctrlAgreementPhis.InitializeObjects(places, _licenseAgreement, licAgr, ConsumerAgreementInitType.AddNewAgreement);
+                ctrlAgreementPhis.InitializeObjects(places, _licenseAgreement, licAgr,AgreementModifyType.CreateNewAgreement);
             }
 
             bsClient.DataSource = customer.Client;
@@ -72,7 +74,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
-            var printForm = new ViewAndPrintAgreementForm(_customer, _licenseAgreement);
+            var printForm = new DocumentViewerForm(_customer, _licenseAgreement);
             if (printForm.ValidTemplate)
                 printForm.ShowDialog();
         }

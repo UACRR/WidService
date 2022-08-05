@@ -2,10 +2,11 @@
 using ipsFormsDesign.Interfaces;
 using System;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholderSelectionView : Telerik.WinControls.UI.RadForm
+    public partial class RightholderSelectionView : RadForm
     {
         public RightholderMainView SelectedRightholder
         {
@@ -25,8 +26,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderSelectionView()
         {
             InitializeComponent();
-
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         public void SetAllowedStatuses(AgreementStatuses[] statuses)

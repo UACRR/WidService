@@ -1,0 +1,683 @@
+﻿<Window x:Class="LanguageService.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LanguageService"
+        xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:viewModel="clr-namespace:LanguageService.ViewModel"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Icon="Images/language-icon.png"
+        mc:Ignorable="d"
+        Title="Language Service" Height="600" Width="1000">
+
+    <Window.DataContext>
+        <viewModel:LanguageServiceViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style x:Key="categoryStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f5f5f5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="listLangStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="buttonSubmit" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1a237e"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" Padding="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#000969"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="buttonCancel" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1a237e"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border Background="{TemplateBinding Background}" Padding="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#7696e8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="addLanguage" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1a237e"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border Background="{TemplateBinding Background}" Padding="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0e1666"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="textBlockButtons" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="languageList" TargetType="{x:Type ComboBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="8*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="5" Background="Transparent"   />
+                                            <Border Grid.Column="0"  Margin="1"  Background="Transparent"   />
+                                            <Path x:Name="Arrow" Grid.Column="1"  Fill="White" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#0e1666" />
+                                            </Trigger>
+                                            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#0e1666" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3"  />
+                            <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder" Background="#1a237e"/>
+                                    <ScrollViewer SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadLanguagesListCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+            
+        <Grid x:Name="languageHeader" Grid.Row="0" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Button x:Name="back" Margin="50, 0, 20, 0" Width="50" Padding="13" 
+                        ToolTip="Назад"
+                        Style="{StaticResource addLanguage}" Cursor="Hand" Visibility="{Binding EditPanelVisibility}" 
+                        Command="{Binding BackToCategoryCommand}">
+                    <Image Source="/Images/go-back-left-arrow.png" Stretch="Uniform" Margin="1"/>
+                </Button>
+                <Grid Margin="50, 0, 20, 0" Width="50" Visibility="{Binding CategoryPanelVisibility}" />
+            
+                <ComboBox x:Name="languageList" Height="50" 
+                          ToolTip="Обрати мову"
+                          Padding="0,0" HorizontalAlignment="Left" 
+                          Background="#1a237e" Cursor="Hand"
+                          Style="{StaticResource languageList}"
+                          ItemsSource="{Binding LanguagesItemSource}"
+                          SelectedValuePath="SpecificationCode"
+                          SelectedItem="{Binding CurrentLanguage}"
+                          BorderBrush="Transparent">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding LanguageName}" 
+                                           Foreground="White"
+                                           FontSize="28"
+                                           Height="40"
+                                           Padding="20,0"
+                                           Cursor="Hand"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <Button x:Name="sendToServer"
+                    ToolTip="Надіслати на сервер"
+                    Grid.Column="1"
+                    Margin="0, 0, 0, 0" 
+                    Width="50" 
+                    Cursor="Hand"
+                    Padding="13" 
+                    Style="{StaticResource addLanguage}"
+                    Command="{Binding SyncOnServerWhenClosingCommand}">
+                <Image Source="Images/empty-image.png"/>
+            </Button>
+            <Button x:Name="syncLanguage" 
+                    ToolTip="Синхронізувати дані"
+                    Grid.Column="2"
+                    Margin="0, 0, 0, 0" 
+                    Width="50" 
+                    Cursor="Hand"
+                    Padding="13" 
+                    Style="{StaticResource addLanguage}"
+                    Command="{Binding SyncLanguagesDataCommand}">
+                <Image Source="Images/sync-icon.png"/>
+            </Button>
+
+            <Button x:Name="addLanguage" 
+                    ToolTip="Створити нову мовну локалізацію"
+                    Grid.Column="3"
+                    Margin="0, 0, 50, 0" 
+                    Width="50" 
+                    Cursor="Hand"
+                    Padding="13" 
+                    Style="{StaticResource addLanguage}"
+                    Command="{Binding CreateNewLanguageCommand}">
+                <Path Data="M0.5,0 L0.5,1 M0,0.5 L1,0.5"
+                  StrokeThickness="4"
+                  Stretch="Fill"
+                  Stroke="White" />
+            </Button>
+        </Grid>
+
+        <!--
+        Visibility="{Binding CategoryPanelVisibility}"
+        -->
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Visibility="{Binding CategoryPanelVisibility}">
+            <WrapPanel x:Name="categories" ItemHeight="280" ItemWidth="280" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0, 20">
+
+                <!--Всі елементи-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="all"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Всі елементи"
+                                       Style="{StaticResource textBlockButtons}"/>
+
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.AllCategoryCountItems, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.AllCategoryIncompletenessCountItems, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Foreground="White" 
+                                       FontWeight="Bold" Margin="0,-3"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Назви кнопок-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="buttons"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Назви кнопок"
+                                       Style="{StaticResource textBlockButtons}"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ButtonsCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ButtonsCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--статичні надписи-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="staticText"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Статичні надписи"
+                                       Style="{StaticResource textBlockButtons}"/>
+
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.StaticTextCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.StaticTextCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Назви колонок таблиць-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="column"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Назви колонок таблиць"
+                                       Style="{StaticResource textBlockButtons}"/>
+
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ColumnCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ColumnCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Назви меню та вкладок-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="menuAndTab"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Назви меню та вкладок" 
+                                       Style="{StaticResource textBlockButtons}"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.MenuAndTabCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.MenuAndTabCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Системні повідомлення-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="systemMessages"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Системні повідомлення" 
+                                       Style="{StaticResource textBlockButtons}"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.SystemMessagesCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.SystemMessagesCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Спливаючі підказки-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="toolTipText"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Спливаючі підказки"
+                                       Style="{StaticResource textBlockButtons}"/>
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ToolTipTextCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.ToolTipTextCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--Інше (або без категорії)-->
+                <Border Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCategoryCommand}" CommandParameter="other"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Інше (або без категорії)"
+                                       Style="{StaticResource textBlockButtons}"/>
+
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.OtherCategoryCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock Text="{Binding CurrentLanguageCompleteness.OtherCategoryIncompletenessCount, StringFormat='{}({0})'}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White" 
+                                       FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Visibility="Collapsed" Style="{StaticResource categoryStyle}" Margin="25" CornerRadius="10"  Cursor="Hand">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding TestCommand}"/>
+                    </Border.InputBindings>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="ТЕСТ"
+                                       Style="{StaticResource textBlockButtons}"/>
+                            <TextBlock
+                                        Text="(2000)"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="28"/>
+                        </StackPanel>
+                        <Border  Width="auto" Height="30" Margin="-15 -15" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" CornerRadius="15" Padding="10" MinWidth="30">
+                            <TextBlock
+                                        Text="1999"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White" 
+                                        FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+            </WrapPanel>
+        </ScrollViewer>
+
+        <!--
+        Visibility="{Binding EditPanelVisibility}"
+        -->
+            <Grid Grid.Row="1" Visibility="{Binding EditPanelVisibility}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+            <CheckBox Grid.Row="0" Margin="15" x:Name="CheckBox"
+                      Content="Показати тільки не заповнені" 
+                      IsChecked="{Binding IsShowOnlyEmptyCommand}"
+                      Command="{Binding ShowOnlyEmptyCommand}"
+                      CommandParameter="{Binding ElementName=CheckBox, Path=IsChecked}"/>
+
+            <!--<ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Padding="0, 20">-->
+                <!--SelectedItem="{Binding CurrentLanguageDataModel}"-->
+                <t:RadGridView x:Name="gridView"
+                               Grid.Row="1"
+                               ItemsSource="{Binding LanguageDataModelItemSource}"
+                               SelectedItem="{Binding CurrentLanguageDataModel}"
+                               IsFilteringAllowed="False"
+                               ShowSearchPanel="True"
+                               AutoGenerateColumns="False"
+                               AllowDrop="False"
+                               ColumnWidth="*"
+                               t:StyleManager.Theme="VisualStudio2013"
+                               IsReadOnly="True"
+                               ShowToolTipOnTrimmedText="True"
+                               CanUserSortColumns="False"
+                               CurrentItem="{Binding O}"
+                               CopyingCellClipboardContent="GridView_OnCopyingCellClipboardContent"
+                               ShowGroupPanel="False">
+                    <t:RadGridView.Columns>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding ComponentCategory}" Header="UI_category" Width="105"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding ContainerName}" HeaderTextAlignment="Center" Header="C/M NAME" Width="105"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding PropertyName}" Header="UI_item_name" Width="105"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding DefaultContent}" Header="Стандартна назва" Width="1*"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding Content}" Header="Назва мовою перекладу" Width="1*"/>
+                        <t:GridViewDataColumn DataMemberBinding="{Binding Description}" Header="Опис" Width="2*"/>
+                    </t:RadGridView.Columns>
+
+                </t:RadGridView>
+                <!--</ScrollViewer>-->
+
+                <Border Grid.Row="2" Style="{StaticResource listLangStyle}" Margin="25, 10" CornerRadius="10" Height="200" MaxWidth="800">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="1" Opacity="0.3"></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border CornerRadius="10,0,0,10" BorderThickness="0, 1, 0, 0">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="Images/empty-image.png"/>
+                            </Border.Background>
+                        </Border>
+                        <StackPanel Grid.Column="1" Margin="30 10">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Стандартна назва: " 
+                                           FontStyle="Italic" 
+                                           Foreground="Gray"
+                                           FontSize="16"/>
+                                <TextBlock Text="{Binding EditedLanguageDataModel.DefaultContent}"
+                                           Foreground="Black" 
+                                           FontWeight="SemiBold"
+                                           FontSize="16"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="UI name: " 
+                                           Margin="0 5"
+                                           FontStyle="Italic" 
+                                           Foreground="Gray"
+                                           FontSize="14"/>
+                                <TextBlock Margin="0 5"
+                                           Text="{Binding EditedLanguageDataModel.PropertyName}"
+                                           Foreground="Black"
+                                           FontSize="14"/>
+                            </StackPanel>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Text="Опис: " 
+                                           Margin="0 2 0 5"
+                                           FontStyle="Italic" 
+                                           Foreground="Gray"
+                                           FontSize="16"/>
+                                <TextBox Margin="0 2 0 5"
+                                         Grid.Column="1"
+                                         Height="28"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalAlignment="Stretch"
+                                         Foreground="Black" 
+                                         FontSize="12"
+                                         Text="{Binding EditedLanguageDataModel.Description}"/>
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Переклад: " 
+                                           Margin="0 5"
+                                           FontStyle="Italic" 
+                                           Foreground="Gray"
+                                           FontSize="16"/>
+
+                                <TextBox Margin="0 5" 
+                                         Height="30" Grid.Column="1"
+                                         VerticalContentAlignment="Center"
+                                         Text="{Binding EditedLanguageDataModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger x:Name="keyDownEvent" EventName="KeyDown">
+                                            <i:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBox>
+                            </Grid>
+
+                            <WrapPanel Margin="0,10,0,0">
+                                <Button Style="{StaticResource buttonCancel}"
+                                        Command="{Binding MoveToPreviousItemCommand}"
+                                        Content="Previous"
+                                        FontFamily="Century Gothic"
+                                        Foreground="white"
+                                        BorderThickness="0"
+                                        Padding="10"
+                                        Margin="0,0,10,0"
+                                        Cursor="Hand"
+                                        MinWidth="80">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Style="{StaticResource buttonCancel}"
+                                        Command="{Binding MoveToNextItemCommand}"
+                                        Content="Next"
+                                        FontFamily="Century Gothic"
+                                        Foreground="white"
+                                        BorderThickness="0"
+                                        Padding="10"
+                                        Margin="0,0,10,0"
+                                        Cursor="Hand"
+                                        MinWidth="80">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Style="{StaticResource buttonSubmit}"
+                                        Command="{Binding SaveItemChangeCommand}"
+                                        Content="Submit"
+                                        FontFamily="Century Gothic"
+                                        Foreground="white"
+                                        BorderThickness="0"
+                                        Padding="10"
+                                        Margin="0,0,10,0"
+                                        Cursor="Hand"
+                                        MinWidth="80">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+    </Grid>
+</Window>
+
+    

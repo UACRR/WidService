@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Extensions;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerControls.Calculation;
@@ -12,36 +14,28 @@ namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class DistributionForm : RadForm
     {
-        private Calcularor _calculator;
         private IAgreementData _licenseAgr;
         private List<GridPeriods> _source;
         private MoneyReceived _pay;
-
-        /// <summary>
-        /// Отримати максимальну суму для періоду 
-        /// </summary>
-        /// <param name="period"></param>
-        /// <returns></returns>
-        private decimal? GetMaxSumForPeriod(PaidPeriod period)
-        {
-            // сума Р/Л не проставлена
-            if (period.RegisterRatedList.Any(item => item.Royalty == null))
-                return null;
-            // 0 якщо сума від'ємна
-            return Math.Max( decimal.Zero ,  period.RegisterRatedList.Sum(rec => (rec.Royalty ?? 0 ) - (rec.PaidAmount ?? 0)) );
-        }
 
         public DistributionForm(MoneyReceived undistrinbMoney, IAgreementData licenseAgr, PaidPeriod period)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
+
+            ctrlSaveCancelButtons.ButtonSaveDialogResult = DialogResult.OK;
+            ctrlSaveCancelButtons.SaveClck += btnSave_Click;
+
             _licenseAgr = licenseAgr;
             _pay = undistrinbMoney;
 
             bindingSource.DataSource = undistrinbMoney;
-            bindingSourceAgreement.DataSource = licenseAgr;
+            bsAgreement.DataSource = licenseAgr;
 
-            SetTxtPayDistribution(undistrinbMoney);
+            var agrLicenseType = IpsGlobal.AnketaDictionaties.agrLicenseType.First(rec => rec.CodeI == licenseAgr.Lic.LicCode);
+
+            txtPayDistribution.Text = $"{undistrinbMoney.Amount - undistrinbMoney.DestribAmount:N2}";
+
             _source = licenseAgr.Lic.PaidPeriod
                 .Where(rec => (rec.Status >= 2 && rec.Status < 7) && (period == null || period.PeriodId == rec.PeriodId))
                 .OrderBy(rec => rec.BeginDate)
@@ -55,26 +49,39 @@ namespace IpsViewComponentLibrary.ConsumerForms
                     DistAmount = 0,
                     Status = rec.Status,
                     AutoSet = period != null && period.PeriodId == rec.PeriodId,
+                    SchemaType = agrLicenseType.SchemaId,
                     MaxSum = GetMaxSumForPeriod(rec)
-                }).ToList(); //periodsList as List<GridPeriods>;
+                }).ToList();
+
             gvDistributionPayment.DataSource = _source;
-            _calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
-
-            SetDataSources();
+            
+            //_calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
+            Calcularor.SetData(undistrinbMoney.Amount - undistrinbMoney.DestribAmount, _source);
+            Calcularor.Calculate();
         }
 
-        private void SetTxtPayDistribution(MoneyReceived pay)
+        /// <summary>
+        /// Отримати максимальну суму для періоду 
+        /// </summary>
+        /// <param name="period"></param>
+        /// <returns></returns>
+        private decimal? GetMaxSumForPeriod(PaidPeriod period)
         {
-            txtPayDistribution.Text = string.Format("{0:# ### ### ##0.00}", pay.Amount - pay.DestribAmount);
+            if (period.RegisterRatedList.Count == 0)
+            {
+                MessageShow.ShowError("Для періода відсутній розрахунковий лист!");
+                return default(decimal);
+            }
+
+            // сума Р/Л не проставлена
+            if (period.RegisterRatedList.Any(item => item.Royalty == null))
+                return null;
+
+            // 0 якщо сума від'ємна
+            return Math.Max(decimal.Zero, period.RegisterRatedList.Sum(rec => (rec.Royalty ?? 0) - (rec.PaidAmount ?? 0)));
         }
 
-        //встановити джерело для грідів
-        private void SetDataSources()
-        {
-            _calculator.Calculate();
-        }
-
-        private void BtnSaveDistrib_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             var paidDic = _licenseAgr.Lic.PaidPeriod.ToDictionary(rec => rec.PeriodId);
             foreach( var item in _source.Where(rec => rec.DistAmount > 0) )
@@ -111,28 +118,40 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             var period = e.Row.DataBoundItem as GridPeriods;
 
+            if (period.DistAmount < 0)
+                period.DistAmount = 0;
+
             // Якщо встановлено Royalty та введено суму більшу за максимально допустиму для Р/Л
-            if( period.MaxSum != null && period.MaxSum < period.DistAmount )
+            if (period.MaxSum != null && period.MaxSum < period.DistAmount)
             {
                 MessageBox.Show($"Сума періоду повина бути не більша за {period.MaxSum}", "ПОМИЛКА ВИЗНАЧЕННЯ СУМИ ПЕРІОДУ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 period.DistAmount = period.MaxSum ?? 0;
             }
 
+            // SchemaType для договірів з театрами(великі права) null 
+            if (new int?[] {null, 2, 3}.Contains(period.SchemaType))
+            {
+                bool isValid = period.DistAmount + period.AmountBound <= period.Amount;
+                if (!isValid)
+                {
+                    MessageBox.Show($"Сума значень «сума прив'язки» та «привязано» перевищують вимогу періода {period.Amount:N2}", "ПОМИЛКА ВИЗНАЧЕННЯ СУМИ ПЕРІОДУ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    period.DistAmount = period.Amount - period.AmountBound;
+                }
+            }
+
             period.AutoSet = false;
-            _calculator.Calculate();
+            Calcularor.Calculate();
 
             gvDistributionPayment.MasterTemplate.Refresh();
         }
     }
 
-
-
-    class Calcularor
+    static class Calcularor
     {
-        private List<GridPeriods> List = new List<GridPeriods>();
-        private readonly decimal Rest = 0;
+        private static readonly List<GridPeriods> List = new List<GridPeriods>();
+        private static decimal Rest;
 
-        public Calcularor(decimal rest, List<GridPeriods> periods)
+        public static void SetData(decimal rest, IEnumerable<GridPeriods> periods)
         {
             Rest = rest;
             List.Clear();
@@ -141,7 +160,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             Calculate();
         }
 
-        public void Calculate()
+        public static void Calculate()
         {
             decimal manualRest = List.Where(rec => rec.AutoSet == false).Sum(rec => rec.DistAmount);
             decimal freeRest = Rest - manualRest;

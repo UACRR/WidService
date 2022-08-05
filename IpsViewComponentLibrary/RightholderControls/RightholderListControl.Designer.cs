@@ -72,7 +72,7 @@
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(960, 427);
+            this.radSplitContainer1.Size = new System.Drawing.Size(1037, 432);
             this.radSplitContainer1.SplitterWidth = 10;
             this.radSplitContainer1.TabIndex = 29;
             this.radSplitContainer1.TabStop = false;
@@ -88,9 +88,9 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(109, 427);
-            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3851351F, 0F);
-            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-240, 0);
+            this.splitPanel1.Size = new System.Drawing.Size(174, 432);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3305745F, 0F);
+            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-184, 0);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
@@ -102,7 +102,7 @@
             this.tvFilters.Location = new System.Drawing.Point(0, 0);
             this.tvFilters.Name = "tvFilters";
             this.tvFilters.ShowExpandCollapse = false;
-            this.tvFilters.Size = new System.Drawing.Size(109, 427);
+            this.tvFilters.Size = new System.Drawing.Size(174, 432);
             this.tvFilters.TabIndex = 0;
             this.tvFilters.ThemeName = "Office2013Light";
             this.tvFilters.ToggleMode = Telerik.WinControls.UI.ToggleMode.None;
@@ -116,15 +116,15 @@
             this.splitPanel2.Controls.Add(this.txtSearch);
             this.splitPanel2.Controls.Add(this.btnRefresh);
             this.splitPanel2.Controls.Add(this.gvRightholdersList);
-            this.splitPanel2.Location = new System.Drawing.Point(119, 0);
+            this.splitPanel2.Location = new System.Drawing.Point(184, 0);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(841, 427);
-            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.3851351F, 0F);
-            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(240, 0);
+            this.splitPanel2.Size = new System.Drawing.Size(853, 432);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.3305745F, 0F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(184, 0);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
@@ -279,12 +279,11 @@
             this.gvRightholdersList.ReadOnly = true;
             this.gvRightholdersList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvRightholdersList.ShowGroupPanel = false;
-            this.gvRightholdersList.Size = new System.Drawing.Size(835, 396);
+            this.gvRightholdersList.Size = new System.Drawing.Size(847, 401);
             this.gvRightholdersList.TabIndex = 3;
             this.gvRightholdersList.ThemeName = "Office2013Light";
             this.gvRightholdersList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersList_CellDoubleClick);
             this.gvRightholdersList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersList_CommandCellClick);
-            this.gvRightholdersList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvRightholdersList_CustomFiltering);
             this.gvRightholdersList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRightholdersList_ToolTipTextNeeded);
             // 
             // rightholderMainViewBindingSource
@@ -294,7 +293,7 @@
             // lblCountRows
             // 
             this.lblCountRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountRows.Location = new System.Drawing.Point(891, 8);
+            this.lblCountRows.Location = new System.Drawing.Point(968, 8);
             this.lblCountRows.Name = "lblCountRows";
             this.lblCountRows.Size = new System.Drawing.Size(55, 13);
             this.lblCountRows.TabIndex = 6;
@@ -304,7 +303,7 @@
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(816, 8);
+            this.label1.Location = new System.Drawing.Point(893, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 5;
@@ -337,16 +336,16 @@
             this.radPanel1.Controls.Add(this.label1);
             this.radPanel1.Controls.Add(this.lblCountRows);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanel1.Location = new System.Drawing.Point(0, 427);
+            this.radPanel1.Location = new System.Drawing.Point(0, 432);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(960, 30);
+            this.radPanel1.Size = new System.Drawing.Size(1037, 30);
             this.radPanel1.TabIndex = 30;
             // 
             // navigatorPanelControl1
             // 
             this.navigatorPanelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.navigatorPanelControl1.CurrentPage = 1;
-            this.navigatorPanelControl1.Location = new System.Drawing.Point(430, 0);
+            this.navigatorPanelControl1.Location = new System.Drawing.Point(507, 0);
             this.navigatorPanelControl1.Name = "navigatorPanelControl1";
             this.navigatorPanelControl1.PageSize = 40;
             this.navigatorPanelControl1.ReadOnlyPageSize = false;
@@ -358,12 +357,12 @@
             // 
             // RightholderListControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.radSplitContainer1);
             this.Controls.Add(this.radPanel1);
             this.Name = "RightholderListControl";
-            this.Size = new System.Drawing.Size(960, 457);
+            this.Size = new System.Drawing.Size(1037, 462);
             this.Load += new System.EventHandler(this.RightholderListControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);

@@ -1,6 +1,4 @@
-﻿using IpsViewComponentLibrary.CatalogControls;
-
-namespace IpsViewComponentLibrary.Shared.Forms
+﻿namespace IpsViewComponentLibrary.Shared.Forms
 {
     partial class ChangeCommentForm
     {

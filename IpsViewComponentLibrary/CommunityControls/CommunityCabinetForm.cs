@@ -8,6 +8,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.CommunityControls.InternalModel;
 using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
@@ -15,13 +16,14 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
-    public partial class CommunityCabinetForm : RadForm
+    public sealed partial class CommunityCabinetForm : RadForm
     {
+        private const string ConfirmAcceptAgreement = "Перед зміною статусу договору необхідно зберегти зміни. Незбережені зміни будуть втрачені. Змінити статус договору?";
+
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event Func<AgreementAddCommunity, bool> SaveAgreementChanges;
         public event GetCustomerByIdEventHandler UpdateCustomer;
-        public event ReturnFullViewEventHandler<CommunityAuthorsView> UpdateAutorsList;
         public event GetCommunityRightList GetCommunityRightList;
         public event Func<int, List<TermsOfService>> GetTermsOfService;
         public event Func<int, int, List<CustCmRight>, bool> SaveCustCmRightLimitedRights;
@@ -30,14 +32,16 @@ namespace IpsViewComponentLibrary.CommunityControls
         private Customer _customer;
         private readonly CommunityViewsPresenter _presenter;
 
-        protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        public bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public CommunityCabinetForm(Customer customer, List<CommunityAuthorsView> list)
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+
             if (!IsDesignMode)
                 _presenter = new CommunityViewsPresenter();
-            WindowState = FormWindowState.Maximized;
+
             parentGridPanel.PanelElement.PanelBorder.Width = 0f;
             _customer = customer;
             bsCommunityAuthorsView.DataSource = list;
@@ -66,10 +70,33 @@ namespace IpsViewComponentLibrary.CommunityControls
         // agreement save
         private void CtrlSaveCancelButtons_SaveClck(object sender, EventArgs e)
         {
-            var ageement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
-            var result = SaveAgreementChanges?.Invoke(ageement) ?? false;
-            //var result = SaveCustomer?.Invoke(_customer) ?? false;
-            MessageShow.ShowInfoAfterChanges(result);
+            var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
+
+            // ReSharper disable once PossibleNullReferenceException
+            if (agreement.IsPer == null|| agreement.IsPer == false)
+            {
+                agreement.DateBeginPer = null;
+                agreement.DateEndPer = null;
+            }
+            else
+            {
+                if (agreement.DateEndPer == null || agreement.DateEndPer == DateTime.MinValue)
+                    agreement.DateEndPer = new DateTime(3000, 01, 01);
+            }
+
+            if (agreement.IsMec == null || agreement.IsMec == false)
+            {
+                agreement.DateBeginMec = null;
+                agreement.DateEndMec = null;
+            }
+            else
+            {
+                if (agreement.DateEndMec == null || agreement.DateEndMec == DateTime.MinValue)
+                    agreement.DateEndMec = new DateTime(3000, 01, 01);
+            }
+
+            var result = SaveAgreementChanges?.Invoke(agreement) ?? false;
+            UpdateAfterSave(result);
         }
 
         // anketa save
@@ -88,6 +115,10 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             // спільнота
             ctrlClientName.DataSource = anketaCompany;
+
+            //
+            var communityName = !string.IsNullOrWhiteSpace(anketaCompany.ShortName) ? anketaCompany.ShortName : anketaCompany.Name;
+            Text = $"Кабінет товариства «{communityName}»";
 
             // контактна особа
             var relEmployeeContact = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
@@ -184,11 +215,14 @@ namespace IpsViewComponentLibrary.CommunityControls
         // підтвердження договору
         private void btnAcceptAgr_Click(object sender, EventArgs e)
         {
-            var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Activate);
-            if (result ?? false)
+            if (MessageShow.ConfirmAction(ConfirmAcceptAgreement) == DialogResult.Yes)
             {
-                _customer = UpdateCustomer?.Invoke(_customer.CustId);
-                BeginBindings();
+                var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Activate);
+                if (result ?? false)
+                {
+                    _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                    BeginBindings();
+                }
             }
         }
 
@@ -304,9 +338,13 @@ namespace IpsViewComponentLibrary.CommunityControls
             MessageShow.ShowInfoAfterChanges(saveResult);
             if (saveResult)
             {
-                _customer = UpdateCustomer?.Invoke(_customer.CustId);
-                bsCommunityAuthorsView.DataSource = UpdateAutorsList?.Invoke();
+                int id = _customer.CustId;
+                _customer = UpdateCustomer?.Invoke(id);
+
+                var service = CommunityService.GetInstance();
+                bsCommunityAuthorsView.DataSource = service.GetView<CommunityAuthorsView>(typeof(CommunityAuthorsView), "vTsk_1_ListRHCommunity", id, "cmCustId");
                 bsCommunityAuthorsView.ResetBindings(false);
+                
                 BeginBindings();
             }
         }

@@ -36,11 +36,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.ddlRoleCode = new Telerik.WinControls.UI.RadDropDownList();
-            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsObjectAuthorRightholder = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.pvParameters = new Telerik.WinControls.UI.RadPageView();
             this.pvpAuthorRightholder = new Telerik.WinControls.UI.RadPageViewPage();
             this.panelRightholderInfo = new System.Windows.Forms.Panel();
+            this.mtxtRateMech = new Telerik.WinControls.UI.RadMaskedEditBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.dtEndDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.dtBeginDate = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -59,16 +61,19 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.rdbFolk = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbNotProtected = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbAuthorRightholder = new Telerik.WinControls.UI.RadRadioButton();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.panelCommand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRoleCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectAuthorRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvParameters)).BeginInit();
             this.pvParameters.SuspendLayout();
             this.pvpAuthorRightholder.SuspendLayout();
             this.panelRightholderInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mtxtRateMech)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtBeginDate)).BeginInit();
@@ -127,7 +132,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // ddlRoleCode
             // 
             this.ddlRoleCode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ddlRoleCode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.objectAuthorRightholderBindingSource, "RoleCode", true));
+            this.ddlRoleCode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectAuthorRightholder, "RoleCode", true));
             this.ddlRoleCode.Location = new System.Drawing.Point(119, 19);
             this.ddlRoleCode.Name = "ddlRoleCode";
             this.ddlRoleCode.Size = new System.Drawing.Size(267, 21);
@@ -135,9 +140,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.ddlRoleCode.ThemeName = "Office2013Light";
             this.ddlRoleCode.Validating += new System.ComponentModel.CancelEventHandler(this.ddlRoleCode_Validating);
             // 
-            // objectAuthorRightholderBindingSource
+            // bsObjectAuthorRightholder
             // 
-            this.objectAuthorRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
+            this.bsObjectAuthorRightholder.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
             // 
             // radLabel21
             // 
@@ -176,6 +181,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // panelRightholderInfo
             // 
+            this.panelRightholderInfo.Controls.Add(this.mtxtRateMech);
+            this.panelRightholderInfo.Controls.Add(this.radLabel1);
             this.panelRightholderInfo.Controls.Add(this.radLabel5);
             this.panelRightholderInfo.Controls.Add(this.dtEndDate);
             this.panelRightholderInfo.Controls.Add(this.dtBeginDate);
@@ -188,6 +195,29 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.panelRightholderInfo.TabIndex = 65;
             this.panelRightholderInfo.Visible = false;
             // 
+            // mtxtRateMech
+            // 
+            this.mtxtRateMech.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectAuthorRightholder, "RateMech", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.mtxtRateMech.Location = new System.Drawing.Point(330, 15);
+            this.mtxtRateMech.Mask = "N2";
+            this.mtxtRateMech.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
+            this.mtxtRateMech.Name = "mtxtRateMech";
+            this.mtxtRateMech.PromptChar = '0';
+            this.mtxtRateMech.Size = new System.Drawing.Size(69, 21);
+            this.mtxtRateMech.TabIndex = 73;
+            this.mtxtRateMech.TabStop = false;
+            this.mtxtRateMech.Text = "0,00";
+            this.mtxtRateMech.ThemeName = "Office2013Light";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(202, 16);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(122, 19);
+            this.radLabel1.TabIndex = 72;
+            this.radLabel1.Text = "% володіння (Mech):";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
             // radLabel5
             // 
             this.radLabel5.Location = new System.Drawing.Point(248, 68);
@@ -199,7 +229,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // dtEndDate
             // 
-            this.dtEndDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.objectAuthorRightholderBindingSource, "EndDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
+            this.dtEndDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsObjectAuthorRightholder, "EndDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.dtEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtEndDate.Location = new System.Drawing.Point(265, 42);
             this.dtEndDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -215,7 +245,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // dtBeginDate
             // 
-            this.dtBeginDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.objectAuthorRightholderBindingSource, "BeginDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
+            this.dtBeginDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsObjectAuthorRightholder, "BeginDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.dtBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBeginDate.Location = new System.Drawing.Point(120, 42);
             this.dtBeginDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -240,8 +270,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // mtxtRate
             // 
-            this.mtxtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "Rate", true));
-            this.mtxtRate.Location = new System.Drawing.Point(120, 15);
+            this.mtxtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectAuthorRightholder, "Rate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.mtxtRate.Location = new System.Drawing.Point(127, 15);
             this.mtxtRate.Mask = "N2";
             this.mtxtRate.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRate.Name = "mtxtRate";
@@ -257,14 +287,14 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.radLabel3.Location = new System.Drawing.Point(9, 16);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(80, 19);
+            this.radLabel3.Size = new System.Drawing.Size(112, 19);
             this.radLabel3.TabIndex = 64;
-            this.radLabel3.Text = "% володіння:";
+            this.radLabel3.Text = "% володіння (Pub):";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
             // checkIsRightholder
             // 
-            this.checkIsRightholder.DataBindings.Add(new System.Windows.Forms.Binding("IsChecked", this.objectAuthorRightholderBindingSource, "IsRightholder", true));
+            this.checkIsRightholder.DataBindings.Add(new System.Windows.Forms.Binding("IsChecked", this.bsObjectAuthorRightholder, "IsRightholder", true));
             this.checkIsRightholder.Location = new System.Drawing.Point(114, 3);
             this.checkIsRightholder.Name = "checkIsRightholder";
             this.checkIsRightholder.Size = new System.Drawing.Size(130, 19);
@@ -285,7 +315,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // ddlRightholder
             // 
             this.ddlRightholder.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ddlRightholder.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "AuthorName", true));
+            this.ddlRightholder.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectAuthorRightholder, "AuthorName", true));
             this.ddlRightholder.Location = new System.Drawing.Point(114, 28);
             this.ddlRightholder.Name = "ddlRightholder";
             this.ddlRightholder.Size = new System.Drawing.Size(418, 21);
@@ -307,7 +337,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.txtAuthorName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtAuthorName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAuthorName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "AuthorName", true));
+            this.txtAuthorName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectAuthorRightholder, "AuthorName", true));
             this.txtAuthorName.Location = new System.Drawing.Point(114, 3);
             this.txtAuthorName.Name = "txtAuthorName";
             this.txtAuthorName.Size = new System.Drawing.Size(415, 21);
@@ -403,7 +433,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRoleCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectAuthorRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvParameters)).EndInit();
             this.pvParameters.ResumeLayout(false);
@@ -411,6 +441,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.pvpAuthorRightholder.PerformLayout();
             this.panelRightholderInfo.ResumeLayout(false);
             this.panelRightholderInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mtxtRateMech)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtBeginDate)).EndInit();
@@ -459,11 +491,14 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadMaskedEditBox mtxtRate;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private System.Windows.Forms.BindingSource objectAuthorRightholderBindingSource;
+        private System.Windows.Forms.BindingSource bsObjectAuthorRightholder;
         private RadioPanel rpanelFolkType;
         private Telerik.WinControls.UI.RadRadioButton rdbFolk;
         private Telerik.WinControls.UI.RadRadioButton rdbNotProtected;
         private Telerik.WinControls.UI.RadRadioButton rdbAuthorRightholder;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private Telerik.WinControls.UI.RadMaskedEditBox mtxtRateMech;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

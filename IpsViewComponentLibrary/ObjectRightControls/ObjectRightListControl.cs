@@ -14,10 +14,10 @@ using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class ObjectRightListControl : UserControl,
-        ISubscriber<ObjectRightUpdatedEvent>
+    public partial class ObjectRightListControl : UserControl, ISubscriber<ObjectRightUpdatedEvent>
     {
         private readonly ObjectRightService _objectRightService;
+        bool searchRunnable = false;
 
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
@@ -52,7 +52,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             {
                 gvObjectsRightsList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
 
-                _objectRightService = new ObjectRightService();
+                _objectRightService = ObjectRightService.GetInstance();
 
                 var stateNode = new RadTreeNode { Text = "Стан" };
 
@@ -98,9 +98,10 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             navigatorPanel.TotalPages = (int) Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
             //show count RightList into grid
-            lblCountRightList.Text = result.TotalItems.ToString();
+            ctrlGridRowCount.TotalItems = result.TotalItems;
 
             waitingBar.StopWaiting();
+            searchRunnable = false;
         }
 
         private void gvObjectsRightsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
@@ -134,18 +135,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private void navigatorPanel_PageSizeChanged(object sender, EventArgs e)
         {
             UpdateList();
-        }
-
-        private void timerSearch_Tick(object sender, EventArgs e)
-        {
-            timerSearch.Stop();
-            navigatorPanel.CurrentPage = 1;
-        }
-
-        private void txtSearchObject_TextChanged(object sender, EventArgs e)
-        {
-            timerSearch.Stop();
-            timerSearch.Start();
         }
 
         private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
@@ -220,6 +209,24 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public void HandleEvent(ObjectRightUpdatedEvent e)
         {
             UpdateList();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            searchRunnable = true;
+            navigatorPanel.CurrentPage = 1;
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchRunnable)
+                return;
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                searchRunnable = true;
+                navigatorPanel.CurrentPage = 1;
+            }
         }
     }
 }

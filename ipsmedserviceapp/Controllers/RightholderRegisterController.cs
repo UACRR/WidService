@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IpsCommonTypes.Types;
 using IpsCommonTypes.Enums;
 using ipsmedserviceapp.Model;
+using IpsCommonTypes.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +21,9 @@ namespace ipsmedserviceapp.Controllers
     public class RightholderRegisterController : ControllerBase
     {
         private readonly MediaServiceContext _dbContext;
-        private readonly ILogger<CatalogController> _logger;
+        private readonly ILogger<RightholderRegisterController> _logger;
 
-        public RightholderRegisterController(MediaServiceContext dbContext, ILogger<CatalogController> logger)
+        public RightholderRegisterController(MediaServiceContext dbContext, ILogger<RightholderRegisterController> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
@@ -126,6 +127,8 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("{custId}/file/{fileId}/validate")]
         public async Task<IActionResult> ValidateFile(int custId, int fileId)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
+            _dbContext.Database.SetCommandTimeout(2400);
 
             var file = await _dbContext.CatalogFile
             .Where(rec => rec.CustId == custId && rec.FileId == fileId)
@@ -156,7 +159,7 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>
+                var responce = new ExecSqlResponse<CatalogFile>
                 {
                     Message = message.Value.ToString(),
                     StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
@@ -173,8 +176,13 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
+            }
+            finally
+            {
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
 
@@ -187,6 +195,9 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("{custId}/file/{fileId}/process")]
         public async Task<IActionResult> ProcessFile(int custId, int fileId)
         {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
+            _dbContext.Database.SetCommandTimeout(2400);
+
             var file = await _dbContext.CatalogFile
             .Where(rec => rec.CustId == custId && rec.FileId == fileId)
             .FirstOrDefaultAsync();
@@ -216,10 +227,12 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
-                var responce = new ExecSqlResponce<CatalogFile>
+                var responce = new ExecSqlResponse<CatalogFile>
                 {
                     Message = message.Value.ToString(),
-                    StatusCode = Convert.ToInt32(returnCode.Value) == 0 ? ExecSqlResponceStatus.Successed : ExecSqlResponceStatus.Failed
+                    StatusCode = Convert.ToInt32(returnCode.Value) == 0
+                        ? ExecSqlResponceStatus.Successed
+                        : ExecSqlResponceStatus.Failed
                 };
 
                 // Процедура виконала дії без помилок
@@ -235,8 +248,13 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
+            }
+            finally
+            {
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
 
@@ -244,47 +262,44 @@ namespace ipsmedserviceapp.Controllers
         /// Upload new file
         /// </summary>
         /// <param name="custId"></param>
-        /// <param name="sors"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        [Authorize]
         [HttpPost("{custId}/upload")]
-        public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile sors)
+        public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
             var currentTimeOut = _dbContext.Database.GetCommandTimeout();
             IDbContextTransaction transaction = null;
             try
             {
-                if (sors == null)
+                if (source == null)
                 {
                     string msg = $"Upload *** Catalog File is empty";
                     _logger.LogWarning(msg);
                     return BadRequest(msg);
                 }
 
-                _dbContext.Database.SetCommandTimeout(1200);
+                _dbContext.Database.SetCommandTimeout(2400);
                 var vcustomer = await _dbContext.vCustomer.SingleOrDefaultAsync(rec => rec.CustId == custId);
                 var rightholder = _dbContext.RightHolder.SingleOrDefault(rec => rec.CustId == custId);
                 if (rightholder == null)
                     return NotFound($"RightHolder with ID:{custId} not found!");
 
-                CatalogFile dest = new CatalogFile
+                var dest = new CatalogFile
                 {
                     CustId = custId,
                     Status = 0,
-                    UserId = User.Identity.Name,
+                    UserId = source.UserId ?? "system",
                     RhType = rightholder.RHolderType,
                     CreateDate = DateTime.Now,
-                    CountZap = sors.RhcatalogItem.Count,
-                    FileName = sors.FileName,
-                    CustName = vcustomer?.name,
+                    CountZap = source.RhcatalogItem.Count,
+                    FileName = source.FileName,
+                    CustName = vcustomer?.Name,
                 };
 
-                //dest.SetFields(sors, new[] { "CustId", "FileId", "Status", "UserId", "RhType", "CreateDate", "CountZap" });
-
-                var items = sors.RhcatalogItem.ToArray();
+                var items = source.RhcatalogItem.ToArray();
                 foreach (var item in items)
                 {
-                    sors.RhcatalogItem.Remove(item);
+                    source.RhcatalogItem.Remove(item);
                     item.Status = 0;
                     item.CustId = custId;
                     dest.RhcatalogItem.Add(item);
@@ -300,14 +315,15 @@ namespace ipsmedserviceapp.Controllers
 
                 return Ok(dest);
             }
-            catch
+            catch (Exception ex)
             {
                 transaction?.Rollback();
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
             finally
             {
-                if(currentTimeOut.HasValue)
+                if (currentTimeOut.HasValue)
                     _dbContext.Database.SetCommandTimeout(currentTimeOut);
             }
         }
@@ -339,7 +355,7 @@ namespace ipsmedserviceapp.Controllers
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                _logger.LogError(ex.InnerException.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
             finally

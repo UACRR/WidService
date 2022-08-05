@@ -5,7 +5,10 @@ using System.Text;
 using System.Dynamic;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Data;
 using System.Reflection;
+using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Dictionary;
@@ -34,6 +37,18 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Отримати список товариств
+        /// </summary>
+        /// <param name="searchModuleResource"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest<DataTable>> GetCommunitiesList(SearchModuleResource searchModuleResource)
+        {
+            string url = $"{Prefix}list";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, searchModuleResource);
+            return result;
+        }
+
+        /// <summary>
         /// Отримати VIEW у вигляді списку елементів 
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -45,7 +60,8 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null, string columnName = null) where T : class
         {
-            string url = Prefix + "list/view";
+            // Prefix + "list/view"
+            string url = $"{Prefix}list/view";
             List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("viewName", viewName),

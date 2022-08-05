@@ -25,6 +25,7 @@ namespace ipsFormsDesign.Model
         public int? Paidid { get; set; }
         public byte? FlCourt { get; set; }
         public int? CustIdRh { get; set; }
+        public decimal? Rate { get; set; }
 
         public virtual PaymentStatus PayStatusNavigation { get; set; }
     }

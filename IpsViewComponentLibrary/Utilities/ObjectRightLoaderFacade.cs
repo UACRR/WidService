@@ -23,7 +23,7 @@ namespace IpsViewComponentLibrary.Utilities
             _excelEngine = ExcelEngine.GetInstance();
             _parser = new ObjectRightDataParser();
             _validator = new ObjectRightDataValidator();
-            _objectRightService = new ObjectRightService();
+            _objectRightService = ObjectRightService.GetInstance();
             _dialogService = new DialogService();
         }
 

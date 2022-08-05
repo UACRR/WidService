@@ -47,16 +47,16 @@
             this.panelCommand.Controls.Add(this.btnCancel);
             this.panelCommand.Controls.Add(this.btnOk);
             this.panelCommand.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelCommand.Location = new System.Drawing.Point(0, 362);
+            this.panelCommand.Location = new System.Drawing.Point(0, 444);
             this.panelCommand.Name = "panelCommand";
-            this.panelCommand.Size = new System.Drawing.Size(803, 31);
+            this.panelCommand.Size = new System.Drawing.Size(1048, 31);
             this.panelCommand.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(690, 4);
+            this.btnCancel.Location = new System.Drawing.Point(935, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnOk.Location = new System.Drawing.Point(574, 4);
+            this.btnOk.Location = new System.Drawing.Point(819, 4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(110, 24);
             this.btnOk.TabIndex = 0;
@@ -90,17 +90,17 @@
             this.ctrlRightholderList.SearchText = "";
             this.ctrlRightholderList.SelectedRightholder = null;
             this.ctrlRightholderList.ShowCommandColumns = false;
-            this.ctrlRightholderList.Size = new System.Drawing.Size(803, 358);
+            this.ctrlRightholderList.Size = new System.Drawing.Size(1048, 440);
             this.ctrlRightholderList.TabIndex = 24;
             this.ctrlRightholderList.RightholderSelected += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderList_RightholderSelected);
             // 
             // RightholderSelectionView
             // 
             this.AcceptButton = this.btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(803, 393);
+            this.ClientSize = new System.Drawing.Size(1048, 475);
             this.Controls.Add(this.ctrlRightholderList);
             this.Controls.Add(this.panelCommand);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;

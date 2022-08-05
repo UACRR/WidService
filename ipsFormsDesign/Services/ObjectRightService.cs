@@ -6,15 +6,34 @@ using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.ObjectsRight;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types;
+using IpsCommonTypes.Wrappers;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
 {
     public class ObjectRightService
     {
-        private ApiConnector _webApi = new ApiConnector();
+        private const string prefix = "objectright";
+        private readonly ApiConnector _webApi;
+        private static ObjectRightService _service;
+
+        private ObjectRightService()
+        {
+            _webApi = new ApiConnector();
+        }
+
+        public static ObjectRightService GetInstance()
+        {
+            if (_service == null)
+                _service = new ObjectRightService();
+
+            return _service;
+        }
 
         public ObjectRightDictionaries GetDictionary()
         {
@@ -40,6 +59,13 @@ namespace ipsFormsDesign.Services
             return await Task.Factory.StartNew(() => GetObjectRights(query));
         }
 
+        public async Task<ResponseOfRequest<DataTable>> GetObjectRightListAsync(SearchModuleResource moduleResource)
+        {
+            string url = "objectright/list";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, moduleResource);
+            return result;
+        }
+
         public ObjectRight New(int categoryCode)
         {
             ObjectRight newObject = new ObjectRight { CategoryCode = categoryCode };
@@ -61,10 +87,16 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<ObjectRightMainView>(url);
             return list;
         }
-
-        public IList<ObjectRightForRightholder> GetRightholdersObjectsRights(int custId)
+        
+        public ItemListResponse<ObjectRightForRightholder> GetRightholdersObjectsRights(int? custId, int? custIdSecondary, int skip, int take)
         {
-            var list = _webApi.GetList<ObjectRightForRightholder>($"objectright/view/list_0302/{custId}");
+            if (custId == null)
+                return null;
+
+            var url = $"objectright/view/list_0302/{skip}/{take}/";
+            url += custIdSecondary != null ? $"{custId}/{custIdSecondary}" : $"{custId}";
+
+            var list = _webApi.GetItemById<ItemListResponse<ObjectRightForRightholder>>(url, null);
             return list;
         }
 
@@ -157,6 +189,21 @@ namespace ipsFormsDesign.Services
             }
 
             return _webApi.UpdateItem("objectright/br/detail", objectRight.ObjId.ToString(), objectRight);
+        }
+
+        public async Task<bool> CheckUniqueObject(RegisterItemViewModel obj)
+        {
+            string url = $"{prefix}/CheckUniqueObject";
+            var result =  await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<bool>, string>(url, obj.ItemName);
+            return result.Data;
+        }
+
+        public async Task<List<string>> CheckUniqueObjectList(ICollection<RegisterItemViewModel> objects)
+        {
+            string url = $"{prefix}/CheckUniqueObjectList";
+            var items = objects.Select(rec => rec.ItemName).ToList();
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<List<string>>, List<string>>(url, items);
+            return result.Data;
         }
     }
 }

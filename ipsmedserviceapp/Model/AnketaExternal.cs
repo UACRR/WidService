@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string CountryCode { get; set; }
         public string InnOkpo { get; set; }
+        public string FirstName { get; set; }
 
         public virtual Country CountryCodeNavigation { get; set; }
         public virtual Customer Cust { get; set; }

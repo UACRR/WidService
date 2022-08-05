@@ -22,20 +22,9 @@ namespace ReportsLibrary
             Telerik.Reporting.ReportParameter reportParameter3 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter4 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter5 = new Telerik.Reporting.ReportParameter();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(R_5_25_SRLic_1));
             Telerik.Reporting.ReportParameter reportParameter6 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter7 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter8 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter9 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter10 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter11 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter12 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter13 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter14 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter15 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter16 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter17 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter18 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule2 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule3 = new Telerik.Reporting.Drawing.StyleRule();
@@ -52,7 +41,6 @@ namespace ReportsLibrary
             this.textBox6 = new Telerik.Reporting.TextBox();
             this.textBox7 = new Telerik.Reporting.TextBox();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
-            this.sqlDataSource2 = new Telerik.Reporting.SqlDataSource();
             this.sqlDataSource3 = new Telerik.Reporting.SqlDataSource();
             this.sqlDataSource4 = new Telerik.Reporting.SqlDataSource();
             this.textBox1 = new Telerik.Reporting.TextBox();
@@ -79,12 +67,6 @@ namespace ReportsLibrary
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             this.textBox21 = new Telerik.Reporting.TextBox();
             this.reportHeaderSection1 = new Telerik.Reporting.ReportHeaderSection();
-            this.textBox36 = new Telerik.Reporting.TextBox();
-            this.textBox35 = new Telerik.Reporting.TextBox();
-            this.textBox34 = new Telerik.Reporting.TextBox();
-            this.textBox19 = new Telerik.Reporting.TextBox();
-            this.textBox3 = new Telerik.Reporting.TextBox();
-            this.textBox2 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // textBox4
@@ -94,7 +76,7 @@ namespace ReportsLibrary
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox4.StyleName = "BlueOpal.TableHeader";
-            this.textBox4.Value = "π Ô.Ô";
+            this.textBox4.Value = "‚Ññ –ø.–ø";
             // 
             // textBox6
             // 
@@ -103,7 +85,7 @@ namespace ReportsLibrary
             this.textBox6.Style.Font.Bold = true;
             this.textBox6.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox6.StyleName = "BlueOpal.TableHeader";
-            this.textBox6.Value = "–Â„≥ÒÚ Ó·Î≥ÍÛ/ ÓËÒÚÛ‚‡˜";
+            this.textBox6.Value = "–†–µ–≥—ñ—Å—Ç—Ä –æ–±–ª—ñ–∫—É/–ö–æ—Ä–∏—Å—Ç—É–≤–∞—á";
             // 
             // textBox7
             // 
@@ -112,81 +94,80 @@ namespace ReportsLibrary
             this.textBox7.Style.Font.Bold = true;
             this.textBox7.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox7.StyleName = "BlueOpal.TableHeader";
-            this.textBox7.Value = "—ÛÏ‡";
+            this.textBox7.Value = "–°—É–º–∞";
             // 
             // sqlDataSource1
             // 
+            this.sqlDataSource1.CommandTimeout = 1200;
             this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.DateTime, "= Parameters.datebegin_date.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.DateTime, "= Parameters.dateEnd.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.Date, "= Parameters.dateBegin.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.Date, "= Parameters.dateEnd.Value"),
             new Telerik.Reporting.SqlDataSourceParameter("@rateCommiss", System.Data.DbType.Decimal, "= Parameters.rateComm.Value"),
             new Telerik.Reporting.SqlDataSourceParameter("@cmCustId", System.Data.DbType.Int64, "= Parameters.Community.Value"),
             new Telerik.Reporting.SqlDataSourceParameter("@licCode", System.Data.DbType.String, "= Parameters.licCode.Value")});
             this.sqlDataSource1.SelectCommand = "select * from dbo.ft_Tsk_5_25_1_SRLic (@dateBegin, @dateEnd, @rateCommiss, @cmCus" +
     "tId ,@licCode )";
             // 
-            // sqlDataSource2
-            // 
-            this.sqlDataSource2.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
-            this.sqlDataSource2.Name = "sqlDataSource2";
-            this.sqlDataSource2.SelectCommand = "select name,positionNmae,bossShortName,jaCity from vMyAnk";
-            // 
             // sqlDataSource3
             // 
+            this.sqlDataSource3.CommandTimeout = 1200;
             this.sqlDataSource3.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource3.Name = "sqlDataSource3";
             this.sqlDataSource3.SelectCommand = "select * from dbo.ft_vCommunity()";
             // 
             // sqlDataSource4
             // 
+            this.sqlDataSource4.CommandTimeout = 1200;
             this.sqlDataSource4.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource4.Name = "sqlDataSource4";
-            this.sqlDataSource4.SelectCommand = "select -1 as id,\'¬Ò≥\'  prcnt\r\nunion\r\nselect \r\nrateCommiss, convert(varchar(5),  c" +
+            this.sqlDataSource4.SelectCommand = "select -1 as id,\'–í—Å—ñ\'  prcnt\r\nunion\r\nselect \r\nrateCommiss, convert(varchar(5),  c" +
     "onvert(numeric(5,2), rateCommiss))\r\nfrom vRateCommiss\r\n";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(5.244D), Telerik.Reporting.Drawing.Unit.Cm(1.05D));
+            this.textBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(4.694D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.4D), Telerik.Reporting.Drawing.Unit.Cm(0.868D));
+            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(18.258D), Telerik.Reporting.Drawing.Unit.Cm(0.817D));
             this.textBox1.Style.Font.Bold = true;
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox1.Value = "–ÓˇÎÚ≥ ‰Ó ÓÁÔÓ‰≥ÎÛ\r\n‚≥‰ ÍÓËÒÚÛ‚‡˜≥‚ Á \"Ï‡ÎËı Ô‡‚\" Á‡ ‚Ë‰‡ÏË ‰Ó„Ó‚Ó≥‚";
+            this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox1.Value = "–†–æ—è–ª—Ç—ñ –¥–æ —Ä–æ–∑–ø–æ–¥—ñ–ª—É –≤—ñ–¥ –∫–æ—Ä–∏—Å—Ç—É–≤–∞—á—ñ–≤ –∑ \"–º–∞–ª–∏—Ö –ø—Ä–∞–≤\" –∑–∞ –≤–∏–¥–∞–º–∏ –¥–æ–≥–æ–≤–æ—Ä—ñ–≤";
             // 
             // textBox12
             // 
-            this.textBox12.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.511D), Telerik.Reporting.Drawing.Unit.Cm(4.876D));
+            this.textBox12.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.892D), Telerik.Reporting.Drawing.Unit.Cm(3.818D));
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(0.4D));
             this.textBox12.Style.Font.Bold = true;
-            this.textBox12.Value = "¬Ò¸„Ó:";
+            this.textBox12.Value = "–í—Å—å–≥–æ:";
             // 
             // textBox13
             // 
             this.textBox13.Format = "{0:N2}";
-            this.textBox13.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(5.618D), Telerik.Reporting.Drawing.Unit.Cm(4.876D));
+            this.textBox13.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.316D), Telerik.Reporting.Drawing.Unit.Cm(3.796D));
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
+            this.textBox13.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(0.431D));
             this.textBox13.Style.Font.Bold = true;
             this.textBox13.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox13.Value = "= Parameters.all_amount.Value";
             // 
             // textBox5
             // 
-            this.textBox5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(4.318D), Telerik.Reporting.Drawing.Unit.Cm(1.944D));
+            this.textBox5.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.54D), Telerik.Reporting.Drawing.Unit.Cm(1.288D));
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
+            this.textBox5.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox5.Style.Font.Bold = true;
             this.textBox5.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox5.Value = "Á‡ ÔÂ≥Ó‰ Á";
+            this.textBox5.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox5.Value = "–∑–∞ –ø–µ—Ä—ñ–æ–¥ –∑";
             // 
             // textBox46
             // 
             this.textBox46.Format = "{0:d}";
-            this.textBox46.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.617D), Telerik.Reporting.Drawing.Unit.Cm(1.944D));
+            this.textBox46.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(8.84D), Telerik.Reporting.Drawing.Unit.Cm(1.288D));
             this.textBox46.Name = "textBox46";
             this.textBox46.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.3D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox46.Style.Font.Bold = true;
@@ -196,19 +177,20 @@ namespace ReportsLibrary
             // 
             // textBox14
             // 
-            this.textBox14.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(8.917D), Telerik.Reporting.Drawing.Unit.Cm(1.944D));
+            this.textBox14.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(11.14D), Telerik.Reporting.Drawing.Unit.Cm(1.288D));
             this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.7D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
+            this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(0.7D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox14.Style.Font.Bold = true;
             this.textBox14.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox14.Value = "ÔÓ";
+            this.textBox14.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox14.Value = "–ø–æ";
             // 
             // textBox48
             // 
             this.textBox48.Format = "{0:d}";
-            this.textBox48.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(9.818D), Telerik.Reporting.Drawing.Unit.Cm(1.944D));
+            this.textBox48.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.04D), Telerik.Reporting.Drawing.Unit.Cm(1.288D));
             this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox48.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.651D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox48.Style.Font.Bold = true;
             this.textBox48.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox48.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -216,34 +198,34 @@ namespace ReportsLibrary
             // 
             // textBox15
             // 
-            this.textBox15.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.511D), Telerik.Reporting.Drawing.Unit.Cm(3.535D));
+            this.textBox15.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.892D), Telerik.Reporting.Drawing.Unit.Cm(2.731D));
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.4D), Telerik.Reporting.Drawing.Unit.Cm(0.4D));
             this.textBox15.Style.Font.Bold = true;
             this.textBox15.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox15.Value = "–Â„≥ÒÚ Ó·Î≥ÍÛ (%):";
+            this.textBox15.Value = "–†–µ–≥—ñ—Å—Ç—Ä –æ–±–ª—ñ–∫—É (%):";
             // 
             // textBox16
             // 
-            this.textBox16.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.002D), Telerik.Reporting.Drawing.Unit.Cm(3.535D));
+            this.textBox16.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.316D), Telerik.Reporting.Drawing.Unit.Cm(2.731D));
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.809D), Telerik.Reporting.Drawing.Unit.Cm(0.4D));
             this.textBox16.Style.Font.Bold = true;
             this.textBox16.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox16.Value = "= IIf(Parameters.rateComm.Value=-1,\'¬Ò≥\', Parameters.rateComm.Label)";
+            this.textBox16.Value = "= IIf(Parameters.rateComm.Value=-1,\'–í—Å—ñ\', Parameters.rateComm.Label)";
             // 
             // textBox17
             // 
-            this.textBox17.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.511D), Telerik.Reporting.Drawing.Unit.Cm(4.255D));
+            this.textBox17.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.892D), Telerik.Reporting.Drawing.Unit.Cm(3.274D));
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(0.4D));
             this.textBox17.Style.Font.Bold = true;
             this.textBox17.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox17.Value = "“Ó‚‡ËÒÚ‚Ó:";
+            this.textBox17.Value = "–¢–æ–≤–∞—Ä–∏—Å—Ç–≤–æ:";
             // 
             // textBox18
             // 
-            this.textBox18.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.002D), Telerik.Reporting.Drawing.Unit.Cm(4.103D));
+            this.textBox18.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.316D), Telerik.Reporting.Drawing.Unit.Cm(3.264D));
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.209D), Telerik.Reporting.Drawing.Unit.Cm(0.4D));
             this.textBox18.Style.Font.Bold = true;
@@ -252,14 +234,14 @@ namespace ReportsLibrary
             // 
             // textBox11
             // 
-            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.317D), Telerik.Reporting.Drawing.Unit.Cm(2.573D));
+            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.74D), Telerik.Reporting.Drawing.Unit.Cm(2.023D));
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(12.1D), Telerik.Reporting.Drawing.Unit.Cm(0.468D));
+            this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(16.545D), Telerik.Reporting.Drawing.Unit.Cm(0.468D));
             this.textBox11.Value = "= Parameters.licName.Value";
             // 
             // textBox24
             // 
-            typeReportSource1.TypeName = "ReportsLibrary.ReportS, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
+            typeReportSource1.TypeName = "ReportsLibrary.ReportB, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
     "eyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox24.Action = navigateToReportAction1;
@@ -277,7 +259,7 @@ namespace ReportsLibrary
             this.textBox24.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox24.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox24.Value = "«‚≥ÚË. √ÓÎÓ‚Ì‡.";
+            this.textBox24.Value = "–ó–≤—ñ—Ç–∏. –ì–æ–ª–æ–≤–Ω–∞.";
             // 
             // detailSection1
             // 
@@ -285,7 +267,7 @@ namespace ReportsLibrary
             this.detailSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.table1});
             this.detailSection1.Name = "detailSection1";
-            this.detailSection1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(1.5D);
+            this.detailSection1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
             // 
             // table1
             // 
@@ -321,7 +303,7 @@ namespace ReportsLibrary
             this.textBox4,
             this.textBox6,
             this.textBox7});
-            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.2D));
+            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.438D));
             this.table1.Name = "table1";
             tableGroup5.Name = "group";
             tableGroup6.Groupings.Add(new Telerik.Reporting.Grouping(null));
@@ -333,6 +315,7 @@ namespace ReportsLibrary
             tableGroup4.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.rateCommiss", Telerik.Reporting.SortDirection.Asc));
             this.table1.RowGroups.Add(tableGroup4);
             this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(17.165D), Telerik.Reporting.Drawing.Unit.Cm(1.976D));
+            this.table1.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox8
@@ -391,8 +374,8 @@ namespace ReportsLibrary
             this.textBox20.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox20.StyleName = "BlueOpal.TableBody";
-            this.textBox20.Value = "=\'           ¬Ò¸„Ó ÔÓ Â„≥ÒÚÛ \'+ IIf( IsNull(CStr(Fields.rateCommiss),\'\')=\'\',\'  " +
-    "        ÌÂ ‚ËÁÌ‡˜ÂÌÓ\',\r\nSubstr( CStr(Fields.rateCommiss),0, Len(CStr(Fields.rate" +
+            this.textBox20.Value = "=\'           –í—Å—å–≥–æ –ø–æ —Ä–µ–≥—ñ—Å—Ç—Ä—É \'+ IIf( IsNull(CStr(Fields.rateCommiss),\'\')=\'\',\'  " +
+    "        –Ω–µ –≤–∏–∑–Ω–∞—á–µ–Ω–æ\',\r\nSubstr( CStr(Fields.rateCommiss),0, Len(CStr(Fields.rate" +
     "Commiss))-1)\r\n)";
             // 
             // pageFooterSection1
@@ -409,13 +392,14 @@ namespace ReportsLibrary
             this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Inch(1.175D), Telerik.Reporting.Drawing.Unit.Inch(0.2D));
             this.textBox21.Style.Font.Bold = true;
             this.textBox21.Style.Font.Name = "Segoe UI Light";
+            this.textBox21.Style.Padding.Left = Telerik.Reporting.Drawing.Unit.Cm(0D);
             this.textBox21.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox21.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox21.Value = "=\'- \' +PageNumber+\' -\'";
             // 
             // reportHeaderSection1
             // 
-            this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(5.622D);
+            this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(4.754D);
             this.reportHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox24,
             this.textBox15,
@@ -429,64 +413,8 @@ namespace ReportsLibrary
             this.textBox17,
             this.textBox18,
             this.textBox12,
-            this.textBox13,
-            this.textBox36,
-            this.textBox35,
-            this.textBox34,
-            this.textBox19,
-            this.textBox3,
-            this.textBox2});
+            this.textBox13});
             this.reportHeaderSection1.Name = "reportHeaderSection1";
-            // 
-            // textBox36
-            // 
-            this.textBox36.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.753D), Telerik.Reporting.Drawing.Unit.Cm(3.294D));
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.505D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox36.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox36.Value = "=\'_________\'+Parameters.bossShortName.Value";
-            // 
-            // textBox35
-            // 
-            this.textBox35.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.753D), Telerik.Reporting.Drawing.Unit.Cm(1.554D));
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.3D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox35.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox35.Value = "= Parameters.positionNmae.Value";
-            // 
-            // textBox34
-            // 
-            this.textBox34.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.753D), Telerik.Reporting.Drawing.Unit.Cm(2.094D));
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(5.2D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox34.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox34.Value = "= Parameters.name.Value";
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.753D), Telerik.Reporting.Drawing.Unit.Cm(2.694D));
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.005D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox19.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox19.Value = "= \'Ï. \'+ Parameters.Òity.Value";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.753D), Telerik.Reporting.Drawing.Unit.Cm(1.006D));
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.7D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox3.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.textBox3.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox3.Value = "«¿“¬≈–ƒ∆”ﬁ \r";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Format = "{0:D}";
-            this.textBox2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(16.753D), Telerik.Reporting.Drawing.Unit.Cm(3.794D));
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.005D), Telerik.Reporting.Drawing.Unit.Cm(0.346D));
-            this.textBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox2.Value = "= Parameters.lastday.Value";
             // 
             // R_5_25_SRLic_1
             // 
@@ -500,83 +428,50 @@ namespace ReportsLibrary
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             reportParameter1.AutoRefresh = true;
-            reportParameter1.Name = "month";
-            reportParameter1.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter1.Value = "= CInt(Substr(CStr(Parameters.dateEnd.Value),3,2))";
-            reportParameter2.Name = "year";
-            reportParameter2.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter2.Value = "= CInt(Substr(CStr(Parameters.dateEnd.Value),6,4))";
-            reportParameter3.AutoRefresh = true;
-            reportParameter3.Name = "dateBegin";
-            reportParameter3.Text = "«‡ ÔÂ≥Ó‰ Á ";
-            reportParameter3.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter3.Value = "= Date(Now().Year,Now().Month,1)";
-            reportParameter3.Visible = true;
+            reportParameter1.Name = "dateBegin";
+            reportParameter1.Text = "–ó–∞ –ø–µ—Ä—ñ–æ–¥ –∑ ";
+            reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
+            reportParameter1.Value = "= Date(Now().Year,Now().Month,1)";
+            reportParameter1.Visible = true;
+            reportParameter2.AutoRefresh = true;
+            reportParameter2.Name = "dateEnd";
+            reportParameter2.Text = "–ø–æ ";
+            reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
+            reportParameter2.Value = "=Today()";
+            reportParameter2.Visible = true;
+            reportParameter3.AllowNull = true;
+            reportParameter3.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter3.AvailableValues.ValueMember = "= Sum(IsNull(Fields.amount,0))";
+            reportParameter3.Name = "all_amount";
+            reportParameter3.Type = Telerik.Reporting.ReportParameterType.Float;
+            reportParameter3.Value = "= Sum(IsNull(Fields.amount,0))";
             reportParameter4.AutoRefresh = true;
-            reportParameter4.Name = "dateEnd";
-            reportParameter4.Text = "ÔÓ ";
-            reportParameter4.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter4.Value = "=Today()";
+            reportParameter4.AvailableValues.DataSource = this.sqlDataSource3;
+            reportParameter4.AvailableValues.DisplayMember = "= Fields.cmName";
+            reportParameter4.AvailableValues.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.id", Telerik.Reporting.SortDirection.Asc));
+            reportParameter4.AvailableValues.ValueMember = "= Fields.cmCustId";
+            reportParameter4.Name = "Community";
+            reportParameter4.Text = "–¢–æ–≤–∞—Ä–∏—Å—Ç–≤–∞";
+            reportParameter4.Type = Telerik.Reporting.ReportParameterType.Integer;
+            reportParameter4.Value = "= Fields.cmCustId";
             reportParameter4.Visible = true;
-            reportParameter5.Name = "month_text";
-            reportParameter5.Value = resources.GetString("reportParameter5.Value");
-            reportParameter6.Name = "lastday";
-            reportParameter6.Value = "=\'\"\'+Substr(CStr(Parameters.dateEnd.Value),0,2)+\'\" \'+ Parameters.month_text_rv.Va" +
-    "lue+\' \'+ Parameters.year.Value";
-            reportParameter7.Name = "month_text_rv";
-            reportParameter7.Value = resources.GetString("reportParameter7.Value");
-            reportParameter8.Name = "datebegin_date";
-            reportParameter8.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter8.Value = "= CDate(Parameters.dateBegin.Value)";
-            reportParameter9.AllowNull = true;
-            reportParameter9.AvailableValues.DataSource = this.sqlDataSource1;
-            reportParameter9.AvailableValues.ValueMember = "= Sum(IsNull(Fields.amount,0))";
-            reportParameter9.Name = "all_amount";
-            reportParameter9.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter9.Value = "= Sum(IsNull(Fields.amount,0))";
-            reportParameter10.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter10.AvailableValues.ValueMember = "= Fields.positionNmae";
-            reportParameter10.Name = "positionNmae";
-            reportParameter10.Value = "= Fields.positionNmae";
-            reportParameter11.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter11.AvailableValues.ValueMember = "= Fields.name";
-            reportParameter11.Name = "name";
-            reportParameter11.Value = "= Fields.name";
-            reportParameter12.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter12.AvailableValues.ValueMember = "= Fields.bossShortName";
-            reportParameter12.Name = "bossShortName";
-            reportParameter12.Value = "= Fields.bossShortName";
-            reportParameter13.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter13.AvailableValues.ValueMember = "= Fields.jaCity";
-            reportParameter13.Name = "Òity";
-            reportParameter13.Value = "= Fields.jaCity";
-            reportParameter14.AutoRefresh = true;
-            reportParameter14.AvailableValues.DataSource = this.sqlDataSource3;
-            reportParameter14.AvailableValues.DisplayMember = "= Fields.cmName";
-            reportParameter14.AvailableValues.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.id", Telerik.Reporting.SortDirection.Asc));
-            reportParameter14.AvailableValues.ValueMember = "= Fields.cmCustId";
-            reportParameter14.Name = "Community";
-            reportParameter14.Text = "“Ó‚‡ËÒÚ‚‡";
-            reportParameter14.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter14.Value = "= Fields.cmCustId";
-            reportParameter14.Visible = true;
-            reportParameter15.AutoRefresh = true;
-            reportParameter15.AvailableValues.DataSource = this.sqlDataSource4;
-            reportParameter15.AvailableValues.DisplayMember = "= Fields.prcnt";
-            reportParameter15.AvailableValues.ValueMember = "= Fields.id";
-            reportParameter15.Name = "rateComm";
-            reportParameter15.Text = "–Â„≥ÒÚ Ó·Î≥ÍÛ (%)";
-            reportParameter15.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter15.Value = "= Fields.id";
-            reportParameter15.Visible = true;
-            reportParameter16.Name = "licCode";
-            reportParameter16.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter16.Value = "28";
-            reportParameter17.Name = "licName";
-            reportParameter17.Value = "";
-            reportParameter18.Name = "cmCustId";
-            reportParameter18.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter18.Value = "-1";
+            reportParameter5.AutoRefresh = true;
+            reportParameter5.AvailableValues.DataSource = this.sqlDataSource4;
+            reportParameter5.AvailableValues.DisplayMember = "= Fields.prcnt";
+            reportParameter5.AvailableValues.ValueMember = "= Fields.id";
+            reportParameter5.Name = "rateComm";
+            reportParameter5.Text = "–†–µ–≥—ñ—Å—Ç—Ä –æ–±–ª—ñ–∫—É (%)";
+            reportParameter5.Type = Telerik.Reporting.ReportParameterType.Float;
+            reportParameter5.Value = "= Fields.id";
+            reportParameter5.Visible = true;
+            reportParameter6.Name = "licCode";
+            reportParameter6.Type = Telerik.Reporting.ReportParameterType.Integer;
+            reportParameter6.Value = "28";
+            reportParameter7.Name = "licName";
+            reportParameter7.Value = "";
+            reportParameter8.Name = "cmCustId";
+            reportParameter8.Type = Telerik.Reporting.ReportParameterType.Integer;
+            reportParameter8.Value = "-1";
             this.ReportParameters.Add(reportParameter1);
             this.ReportParameters.Add(reportParameter2);
             this.ReportParameters.Add(reportParameter3);
@@ -585,16 +480,6 @@ namespace ReportsLibrary
             this.ReportParameters.Add(reportParameter6);
             this.ReportParameters.Add(reportParameter7);
             this.ReportParameters.Add(reportParameter8);
-            this.ReportParameters.Add(reportParameter9);
-            this.ReportParameters.Add(reportParameter10);
-            this.ReportParameters.Add(reportParameter11);
-            this.ReportParameters.Add(reportParameter12);
-            this.ReportParameters.Add(reportParameter13);
-            this.ReportParameters.Add(reportParameter14);
-            this.ReportParameters.Add(reportParameter15);
-            this.ReportParameters.Add(reportParameter16);
-            this.ReportParameters.Add(reportParameter17);
-            this.ReportParameters.Add(reportParameter18);
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.HtmlTextBox))});
@@ -682,7 +567,6 @@ namespace ReportsLibrary
         #endregion
 
         private Telerik.Reporting.SqlDataSource sqlDataSource1;
-        private Telerik.Reporting.SqlDataSource sqlDataSource2;
         private Telerik.Reporting.SqlDataSource sqlDataSource3;
         private Telerik.Reporting.SqlDataSource sqlDataSource4;
         private Telerik.Reporting.TextBox textBox1;
@@ -711,12 +595,6 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox11;
         private Telerik.Reporting.TextBox textBox24;
         private Telerik.Reporting.ReportHeaderSection reportHeaderSection1;
-        private Telerik.Reporting.TextBox textBox36;
-        private Telerik.Reporting.TextBox textBox35;
-        private Telerik.Reporting.TextBox textBox34;
-        private Telerik.Reporting.TextBox textBox19;
-        private Telerik.Reporting.TextBox textBox3;
-        private Telerik.Reporting.TextBox textBox2;
         private Telerik.Reporting.TextBox textBox21;
     }
 }

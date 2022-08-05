@@ -32,18 +32,18 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtBoxPasportNumber = new Telerik.WinControls.UI.RadTextBox();
+            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.dtIssuedDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.dtValidityDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBoxPasportNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtIssuedDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtValidityDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -73,6 +73,10 @@
             this.txtBoxPasportNumber.Size = new System.Drawing.Size(276, 21);
             this.txtBoxPasportNumber.TabIndex = 6;
             this.txtBoxPasportNumber.ThemeName = "Office2013Light";
+            // 
+            // bsAnketaPerson
+            // 
+            this.bsAnketaPerson.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
             // 
             // radLabel2
             // 
@@ -115,14 +119,10 @@
             this.dtValidityDate.ThemeName = "Office2013Light";
             this.dtValidityDate.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // bsAnketaPerson
-            // 
-            this.bsAnketaPerson.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
-            // 
             // PassportInternationalControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.dtValidityDate);
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.txtBoxPasportNumber);
@@ -134,10 +134,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBoxPasportNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtIssuedDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtValidityDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

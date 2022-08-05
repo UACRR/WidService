@@ -44,7 +44,9 @@
             // 
             // FixationForm
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AccessibleDescription = "Violation";
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1227, 609);
             this.Controls.Add(this.fixationListControl1);
             this.Name = "FixationForm";
@@ -54,6 +56,7 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Фіксація порушень";
             this.ThemeName = "Office2013Light";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

@@ -1,0 +1,270 @@
+﻿<UserControl x:Class="IPSModulesLibrary.ClientBRList.ClientBRListControl"
+             x:Name="thisControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IPSModulesLibrary.ClientBRList"
+             xmlns:search="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl;assembly=IPSViewComponentLibraryWPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             Background="WhiteSmoke"
+             d:DesignHeight="450" d:DesignWidth="1200">
+
+    <Control.DataContext>
+        <local:ClientBRListViewModel/>
+    </Control.DataContext>
+
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/GridViewResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/StyleManagerResoureDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/TreeViewItemResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/ButtonsResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" CommandParameter="{Binding ElementName=thisControl}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <t:RadBusyIndicator IsBusy="{Binding IsBusy}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Фільтр реєстру" Margin="3" FontWeight="SemiBold"/>
+
+                <t:RadTreeView Grid.Row="1" MinWidth="200" Margin="5" SelectedItem="{Binding SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
+                                   IsSelected="True"
+                                   HeaderStringFormat="* {0}"
+                                   Header="{Binding LOC.TV_ALL}"/>
+
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
+                                   IsSelectable="False"
+                                   Header="* Генеральні договори">
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                       Name="StatusMasterActive"
+                                       Header="Активні" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                       Name="NotAccepted"
+                                       Header="На акцепті" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                       Name="NotConfirmed"
+                                       Header="Не підтвердженні" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                       Name="StatusMasterProlong"
+                                       Header="Для пролонгації" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                       Name="Closed"
+                                       Header="Закриті" />
+                    </t:RadTreeViewItem>
+
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
+                                       IsSelectable="False"
+                                       Header="* Ліцензії">
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="licenseAll"
+                                           Header="Всі" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic1Active"
+                                           Header="Активні" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic1ToProlong"
+                                           Header="Для пролонгації" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic1Close"
+                                           Header="Закриті" />
+                    </t:RadTreeViewItem>
+
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
+                                       IsSelectable="False"
+                                       Header="* Заявки">
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="requestAll"
+                                           Header="Всі" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic2Active"
+                                           Header="Активні" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic2NoActive"
+                                           Header="Не підтверджені" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic2ForAccept"
+                                           Header="На погодженні"/>
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic2Rejected"
+                                           Header="Відхилені" />
+                    </t:RadTreeViewItem>
+
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" IsExpanded="True" FontWeight="Bold"
+                                       IsSelectable="False"
+                                       Header="* Довідки">
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="referenceALl"
+                                           Header="Всі" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic3Active"
+                                           Header="Активні" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic3NoActive"
+                                           Header="Не підтверджені" />
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic3ForAccept"
+                                           Header="На погодженні"/>
+                        <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Normal"
+                                           Name="Lic3Rejected"
+                                           Header="Відхилені"/>
+                    </t:RadTreeViewItem>
+
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
+                                       Name="StatusUndistribute"
+                                       Header="* Нерозподілені"/>
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
+                                       Name="Debt"
+                                       Header="* Борг"/>
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" FontWeight="Bold"
+                                       Name="unattachAmount"
+                                       Header="* Відсутні Роз.Листи" />
+                </t:RadTreeView>
+            </Grid>
+
+            <GridSplitter Grid.Column="1" 
+                              Margin="0,3,0,3"
+                              HorizontalAlignment="Stretch"
+                              Width="3" Background="Silver" ShowsPreview="False"/>
+
+            <Grid Grid.Column="2" Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
+
+                <t:RadGridView Grid.Row="1"
+                               Margin="3"
+                               ColumnWidth="*"
+                               x:Name="gridView"
+                               ItemsSource="{Binding ClientsBRItemSource}">
+                    <t:RadGridView.Columns>
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="ID"
+                                              DataMemberBinding="{Binding CustId}"/>
+                        <t:GridViewDataColumn Width="120" 
+                                              Header="ЄДРПОУ"
+                                              DataMemberBinding="{Binding Innokpo}"/>
+                        <t:GridViewDataColumn Width="110" 
+                                              Header="№ ген. договору"
+                                              DataMemberBinding="{Binding AgrNumber}"/>
+                        <t:GridViewDataColumn Header="Назва"
+                                              DataMemberBinding="{Binding Name}"/>
+                        <t:GridViewDataColumn Header="Місто"
+                                              DataMemberBinding="{Binding JaCity}"/>
+                        <t:GridViewDataColumn Width="110" 
+                                              Header="Статус угоди"
+                                              TextTrimming="CharacterEllipsis"
+                                              DataMemberBinding="{Binding StatusName}"/>
+                        <t:GridViewDataColumn Width="50" 
+                                              Header="К-сть активних ліцензій" 
+                                              DataMemberBinding="{Binding CountLic1Active}"/>
+                        <t:GridViewDataColumn Width="50" 
+                                              Header="К-сть активних заявок"
+                                              DataMemberBinding="{Binding CountLic2Active}"/>
+                        <t:GridViewDataColumn Width="50" 
+                                              Header="К-сть активних довідок"
+                                              DataMemberBinding="{Binding CountLic3Active}"/>
+                        <t:GridViewDataColumn Width="120" 
+                                              TextAlignment="Right"
+                                              Header="Нерозподілені кошти"
+                                              DataMemberBinding="{Binding UndistribAmount, StringFormat='{}{0:N2}'}"/>
+                        <t:GridViewDataColumn Width="120" 
+                                              TextAlignment="Right"
+                                              Header="Незакріплені кошти"
+                                              DataMemberBinding="{Binding UnattachAmount, StringFormat='{}{0:N2}'}"/>
+                        <t:GridViewDataColumn Width="120" 
+                                              TextAlignment="Right"
+                                              Header="Борг" 
+                                              DataMemberBinding="{Binding Borg, StringFormat='{}{0:N2}'}"/>
+                        <t:GridViewDataColumn Header="Представник" 
+                                              DataMemberBinding="{Binding PartnerName}"/>
+
+                        <t:GridViewColumn Width="25">
+                            <t:GridViewColumn.Header>
+                                <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                            </t:GridViewColumn.Header>
+                            <t:GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Margin="0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent"
+                                            Command="{Binding DataContext.OpenClientCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                            CommandParameter="{Binding}">
+                                        <Image Source="../Resources/Icons/edit-icon.png" Width="20"/>
+                                    </Button>
+                                </DataTemplate>
+                            </t:GridViewColumn.CellTemplate>
+                        </t:GridViewColumn>
+                    </t:RadGridView.Columns>
+                </t:RadGridView>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <t:RadDataPager Grid.Column="0"
+                                        Margin="3 0"
+                                        BorderThickness="0"
+                                        x:Name="DataPager"
+                                        t:StyleManager.Theme="VisualStudio2013"
+                                        PageSize="250"
+                                        Source="{Binding Items, ElementName=gridView}"
+                                        IsTotalItemCountFixed="False"
+                                        DisplayMode="All, All"/>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Margin="5 0 0 0" Content="К-сть на сторінку:"/>
+
+                        <TextBox Text="{Binding ElementName=DataPager, Path=PageSize, Mode=TwoWay, StringFormat='{}{0:N0}'}"
+                                     VerticalContentAlignment="Center"
+                                     MaxLength="5"
+                                     HorizontalContentAlignment="Right"
+                                     MinWidth="50"
+                                     Margin="3"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Margin="10 0" Content="К-сть записів:"/>
+                        <Label Margin="0 0 10 0" Content="{Binding ElementName=DataPager, Path=ItemCount}"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <t:RadButton Margin="3"
+                                 Style="{StaticResource ddButton}"
+                                 MinWidth="140"
+                                 HorizontalAlignment="Left"
+                                 Content="Новий клієнт"
+                                 Command="{Binding CreateClientCommand}"/>
+                </Grid>
+            </Grid>
+
+
+        </Grid>
+    </t:RadBusyIndicator>
+</UserControl>

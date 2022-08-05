@@ -45,29 +45,87 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.gvRightholdersObjectsRights = new Telerik.WinControls.UI.RadGridView();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panelRightsControl = new Telerik.WinControls.UI.RadPanel();
-            this.lblTxtCount = new System.Windows.Forms.Label();
-            this.lblCountObjectsRight = new System.Windows.Forms.Label();
             this.ctrlRightholderSelector = new IpsViewComponentLibrary.RightholderControls.RightholderSelectorControl();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.bottomPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
+            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
+            this.gvRightholdersObjectsRights = new Telerik.WinControls.UI.RadGridView();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.ctrlRightholderSelectorSecondary = new IpsViewComponentLibrary.RightholderControls.RightholderSelectorControl();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).BeginInit();
+            this.bottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelRightsControl)).BeginInit();
-            this.panelRightsControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-            this.radPanel1.SuspendLayout();
+            this.gvRightholdersObjectsRights.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
+            this.backgroundPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // objectRightForRightholderBindingSource
+            // 
+            this.objectRightForRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightForRightholder);
+            // 
+            // ctrlRightholderSelector
+            // 
+            this.ctrlRightholderSelector.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctrlRightholderSelector.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRightholderSelector.MinimumSize = new System.Drawing.Size(880, 35);
+            this.ctrlRightholderSelector.Name = "ctrlRightholderSelector";
+            this.ctrlRightholderSelector.Rightholder = null;
+            this.ctrlRightholderSelector.RightholderPrimarily = IpsViewComponentLibrary.RightholderControls.RightholderPrimarily.Primary;
+            this.ctrlRightholderSelector.Size = new System.Drawing.Size(909, 35);
+            this.ctrlRightholderSelector.TabIndex = 0;
+            this.ctrlRightholderSelector.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelector_RightholderChanged);
+            this.ctrlRightholderSelector.ShowAnketaCommandExecuted += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelector_ShowAnketaCommandExecuted);
+            // 
+            // bottomPanel
+            // 
+            this.bottomPanel.BackColor = System.Drawing.Color.Silver;
+            this.bottomPanel.BorderVisible = false;
+            this.bottomPanel.Controls.Add(this.navigatorPanel);
+            this.bottomPanel.Controls.Add(this.ctrlGridRowCount);
+            this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bottomPanel.Location = new System.Drawing.Point(0, 373);
+            this.bottomPanel.Name = "bottomPanel";
+            this.bottomPanel.Size = new System.Drawing.Size(909, 34);
+            this.bottomPanel.TabIndex = 7;
+            // 
+            // navigatorPanel
+            // 
+            this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.navigatorPanel.CurrentPage = 1;
+            this.navigatorPanel.Location = new System.Drawing.Point(395, 3);
+            this.navigatorPanel.Name = "navigatorPanel";
+            this.navigatorPanel.PageSize = 100;
+            this.navigatorPanel.ReadOnlyPageSize = false;
+            this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
+            this.navigatorPanel.TabIndex = 2;
+            this.navigatorPanel.TotalPages = 0;
+            this.navigatorPanel.CurrentPageChanged += new System.EventHandler(this.navigatorPanel_CurrentPageChanged);
+            this.navigatorPanel.PageSizeChanged += new System.EventHandler(this.navigatorPanel_PageSizeChanged);
+            // 
+            // ctrlGridRowCount
+            // 
+            this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(751, 3);
+            this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
+            this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.Name = "ctrlGridRowCount";
+            this.ctrlGridRowCount.RadGridViewDataSource = null;
+            this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
+            this.ctrlGridRowCount.TabIndex = 0;
             // 
             // gvRightholdersObjectsRights
             // 
-            this.gvRightholdersObjectsRights.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvRightholdersObjectsRights.Location = new System.Drawing.Point(0, 0);
+            this.gvRightholdersObjectsRights.Controls.Add(this.waitingBar);
+            this.gvRightholdersObjectsRights.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvRightholdersObjectsRights.Location = new System.Drawing.Point(0, 70);
             // 
             // 
             // 
@@ -101,71 +159,74 @@
             gridViewDecimalColumn2.IsAutoGenerated = true;
             gridViewDecimalColumn2.Name = "ObjId";
             gridViewDecimalColumn2.ReadOnly = true;
-            gridViewDecimalColumn2.Width = 62;
+            gridViewDecimalColumn2.Width = 63;
             gridViewTextBoxColumn2.FieldName = "Name";
             gridViewTextBoxColumn2.HeaderText = "Назва твору";
             gridViewTextBoxColumn2.IsAutoGenerated = true;
             gridViewTextBoxColumn2.Name = "Name";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 127;
+            gridViewTextBoxColumn2.Width = 130;
             gridViewTextBoxColumn3.FieldName = "Category";
             gridViewTextBoxColumn3.HeaderText = "В/М";
             gridViewTextBoxColumn3.IsAutoGenerated = true;
             gridViewTextBoxColumn3.Name = "Category";
             gridViewTextBoxColumn3.ReadOnly = true;
-            gridViewTextBoxColumn3.Width = 44;
+            gridViewTextBoxColumn3.Width = 45;
             gridViewTextBoxColumn4.FieldName = "GenreName";
             gridViewTextBoxColumn4.HeaderText = "Жанр";
             gridViewTextBoxColumn4.IsAutoGenerated = true;
             gridViewTextBoxColumn4.Name = "GenreName";
             gridViewTextBoxColumn4.ReadOnly = true;
-            gridViewTextBoxColumn4.Width = 83;
+            gridViewTextBoxColumn4.Width = 85;
             gridViewTextBoxColumn5.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewTextBoxColumn5.FieldName = "Duration";
             gridViewTextBoxColumn5.HeaderText = "Час";
             gridViewTextBoxColumn5.IsAutoGenerated = true;
             gridViewTextBoxColumn5.Name = "Duration";
             gridViewTextBoxColumn5.ReadOnly = true;
-            gridViewTextBoxColumn5.Width = 62;
+            gridViewTextBoxColumn5.Width = 63;
             gridViewTextBoxColumn6.FieldName = "RoleName";
             gridViewTextBoxColumn6.HeaderText = "Творчий профіль";
             gridViewTextBoxColumn6.IsAutoGenerated = true;
             gridViewTextBoxColumn6.Name = "RoleName";
             gridViewTextBoxColumn6.ReadOnly = true;
-            gridViewTextBoxColumn6.Width = 82;
+            gridViewTextBoxColumn6.Width = 83;
             gridViewTextBoxColumn7.FieldName = "SpecName";
             gridViewTextBoxColumn7.HeaderText = "Переклад / обробка / оригінал";
             gridViewTextBoxColumn7.IsAutoGenerated = true;
             gridViewTextBoxColumn7.Name = "SpecName";
             gridViewTextBoxColumn7.ReadOnly = true;
-            gridViewTextBoxColumn7.Width = 75;
+            gridViewTextBoxColumn7.Width = 77;
             gridViewDecimalColumn3.DataType = typeof(double);
             gridViewDecimalColumn3.FieldName = "RateTotal";
+            gridViewDecimalColumn3.FormatString = "{0:N2}";
             gridViewDecimalColumn3.HeaderText = "Спільний % володіння";
             gridViewDecimalColumn3.IsAutoGenerated = true;
             gridViewDecimalColumn3.Name = "RateTotal";
             gridViewDecimalColumn3.ReadOnly = true;
-            gridViewDecimalColumn3.Width = 62;
+            gridViewDecimalColumn3.Width = 63;
             gridViewDecimalColumn4.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn4.FieldName = "RateRh";
+            gridViewDecimalColumn4.FormatString = "{0:N2}";
             gridViewDecimalColumn4.HeaderText = "Його % володіння";
             gridViewDecimalColumn4.IsAutoGenerated = true;
             gridViewDecimalColumn4.Name = "RateRh";
             gridViewDecimalColumn4.ReadOnly = true;
-            gridViewDecimalColumn4.Width = 62;
+            gridViewDecimalColumn4.Width = 63;
             gridViewTextBoxColumn8.FieldName = "Performer";
             gridViewTextBoxColumn8.HeaderText = "Виконавець";
             gridViewTextBoxColumn8.IsAutoGenerated = true;
             gridViewTextBoxColumn8.Name = "Performer";
             gridViewTextBoxColumn8.ReadOnly = true;
-            gridViewTextBoxColumn8.Width = 87;
+            gridViewTextBoxColumn8.Width = 89;
             gridViewDecimalColumn5.DataType = typeof(double);
             gridViewDecimalColumn5.FieldName = "Profit";
+            gridViewDecimalColumn5.FormatString = "{0:N2}";
             gridViewDecimalColumn5.HeaderText = "Дохід з початку року";
             gridViewDecimalColumn5.IsAutoGenerated = true;
             gridViewDecimalColumn5.Name = "Profit";
             gridViewDecimalColumn5.ReadOnly = true;
-            gridViewDecimalColumn5.Width = 93;
+            gridViewDecimalColumn5.Width = 98;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Редагувати";
             gridViewCommandColumn1.HeaderText = "";
@@ -196,8 +257,8 @@
             this.gvRightholdersObjectsRights.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvRightholdersObjectsRights.Name = "gvRightholdersObjectsRights";
             this.gvRightholdersObjectsRights.ShowGroupPanel = false;
-            this.gvRightholdersObjectsRights.Size = new System.Drawing.Size(889, 467);
-            this.gvRightholdersObjectsRights.TabIndex = 2;
+            this.gvRightholdersObjectsRights.Size = new System.Drawing.Size(909, 303);
+            this.gvRightholdersObjectsRights.TabIndex = 8;
             this.gvRightholdersObjectsRights.ThemeName = "Office2013Light";
             this.gvRightholdersObjectsRights.ValueChanged += new System.EventHandler(this.gvRightholdersObjectsRights_ValueChanged);
             this.gvRightholdersObjectsRights.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersObjectsRights_CellDoubleClick);
@@ -205,91 +266,88 @@
             this.gvRightholdersObjectsRights.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersObjectsRights_CommandCellClick);
             this.gvRightholdersObjectsRights.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRightholdersObjectsRights_ToolTipTextNeeded);
             // 
-            // objectRightForRightholderBindingSource
+            // waitingBar
             // 
-            this.objectRightForRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightForRightholder);
+            this.waitingBar.AssociatedControl = this.backgroundPanel;
+            this.waitingBar.Location = new System.Drawing.Point(419, 116);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 2;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
-            // panelRightsControl
+            // backgroundPanel
             // 
-            this.panelRightsControl.BackColor = System.Drawing.Color.Transparent;
-            this.panelRightsControl.Controls.Add(this.radPanel1);
-            this.panelRightsControl.Controls.Add(this.gvRightholdersObjectsRights);
-            this.panelRightsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelRightsControl.Location = new System.Drawing.Point(0, 29);
-            this.panelRightsControl.Name = "panelRightsControl";
-            this.panelRightsControl.Size = new System.Drawing.Size(889, 501);
-            this.panelRightsControl.TabIndex = 4;
-            this.panelRightsControl.ThemeName = "Office2013Light";
+            this.backgroundPanel.BorderVisible = false;
+            this.backgroundPanel.Controls.Add(this.gvRightholdersObjectsRights);
+            this.backgroundPanel.Controls.Add(this.bottomPanel);
+            this.backgroundPanel.Controls.Add(this.ctrlRightholderSelectorSecondary);
+            this.backgroundPanel.Controls.Add(this.ctrlRightholderSelector);
+            this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
+            this.backgroundPanel.Name = "backgroundPanel";
+            this.backgroundPanel.Size = new System.Drawing.Size(909, 407);
+            this.backgroundPanel.TabIndex = 10;
             // 
-            // lblTxtCount
+            // ctrlRightholderSelectorSecondary
             // 
-            this.lblTxtCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTxtCount.Location = new System.Drawing.Point(723, 9);
-            this.lblTxtCount.Name = "lblTxtCount";
-            this.lblTxtCount.Size = new System.Drawing.Size(79, 13);
-            this.lblTxtCount.TabIndex = 4;
-            this.lblTxtCount.Text = "К-ть рядків";
+            this.ctrlRightholderSelectorSecondary.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctrlRightholderSelectorSecondary.Location = new System.Drawing.Point(0, 35);
+            this.ctrlRightholderSelectorSecondary.MinimumSize = new System.Drawing.Size(880, 35);
+            this.ctrlRightholderSelectorSecondary.Name = "ctrlRightholderSelectorSecondary";
+            this.ctrlRightholderSelectorSecondary.Rightholder = null;
+            this.ctrlRightholderSelectorSecondary.RightholderPrimarily = IpsViewComponentLibrary.RightholderControls.RightholderPrimarily.Secondary;
+            this.ctrlRightholderSelectorSecondary.Size = new System.Drawing.Size(909, 35);
+            this.ctrlRightholderSelectorSecondary.TabIndex = 9;
+            this.ctrlRightholderSelectorSecondary.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelectorSecondary_RightholderChanged);
+            this.ctrlRightholderSelectorSecondary.ShowAnketaCommandExecuted += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelector_ShowAnketaCommandExecuted);
             // 
-            // lblCountObjectsRight
+            // lineRingWaitingBarIndicatorElement1
             // 
-            this.lblCountObjectsRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountObjectsRight.Location = new System.Drawing.Point(808, 9);
-            this.lblCountObjectsRight.Name = "lblCountObjectsRight";
-            this.lblCountObjectsRight.Size = new System.Drawing.Size(73, 13);
-            this.lblCountObjectsRight.TabIndex = 3;
-            this.lblCountObjectsRight.Text = "0";
-            this.lblCountObjectsRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // ctrlRightholderSelector
-            // 
-            this.ctrlRightholderSelector.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctrlRightholderSelector.Location = new System.Drawing.Point(0, 0);
-            this.ctrlRightholderSelector.Name = "ctrlRightholderSelector";
-            this.ctrlRightholderSelector.Rightholder = null;
-            this.ctrlRightholderSelector.Size = new System.Drawing.Size(889, 29);
-            this.ctrlRightholderSelector.TabIndex = 0;
-            this.ctrlRightholderSelector.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelector_RightholderChanged);
-            this.ctrlRightholderSelector.ShowAnketaCommandExecuted += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelector_ShowAnketaCommandExecuted);
-            // 
-            // radPanel1
-            // 
-            this.radPanel1.BackColor = System.Drawing.Color.Silver;
-            this.radPanel1.Controls.Add(this.lblTxtCount);
-            this.radPanel1.Controls.Add(this.lblCountObjectsRight);
-            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanel1.Location = new System.Drawing.Point(0, 469);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(889, 32);
-            this.radPanel1.TabIndex = 5;
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
             // RightholdersObjectsRightsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panelRightsControl);
-            this.Controls.Add(this.ctrlRightholderSelector);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.backgroundPanel);
             this.Name = "RightholdersObjectsRightsControl";
-            this.Size = new System.Drawing.Size(889, 530);
+            this.Size = new System.Drawing.Size(909, 407);
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bottomPanel)).EndInit();
+            this.bottomPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelRightsControl)).EndInit();
-            this.panelRightsControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-            this.radPanel1.ResumeLayout(false);
+            this.gvRightholdersObjectsRights.ResumeLayout(false);
+            this.gvRightholdersObjectsRights.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
+            this.backgroundPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme1;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private RightholderSelectorControl ctrlRightholderSelector;
-        private Telerik.WinControls.UI.RadGridView gvRightholdersObjectsRights;
         private System.Windows.Forms.BindingSource objectRightForRightholderBindingSource;
-        private Telerik.WinControls.UI.RadPanel panelRightsControl;
-        private System.Windows.Forms.Label lblCountObjectsRight;
-        private System.Windows.Forms.Label lblTxtCount;
-        private Telerik.WinControls.UI.RadPanel radPanel1;
+        private Common.Editors.IpsPanel bottomPanel;
+        private Common.GridRowCountControl ctrlGridRowCount;
+        private Telerik.WinControls.UI.RadGridView gvRightholdersObjectsRights;
+        private RightholderSelectorControl ctrlRightholderSelectorSecondary;
+        private Common.NavigatorPanelControl navigatorPanel;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
+        private Common.Editors.IpsPanel backgroundPanel;
     }
 }

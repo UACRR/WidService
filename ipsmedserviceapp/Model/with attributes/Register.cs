@@ -7,29 +7,44 @@ namespace ipsmedserviceapp.Model
     {
         public Register()
         {
-            BrRegister = new HashSet<BrRegister>();
+            BrRegItem = new HashSet<BrRegItem>();
             Distribution = new HashSet<Distribution>();
             RegisterItem = new HashSet<RegisterItem>();
         }
 
         public int RegId { get; set; }
-        public int? CustId { get; set; }
-        public int? CountRows { get; set; }
-        public string Login { get; set; }
-        public int? RgStatus { get; set; }
+        public int? RmId { get; set; }
+        public string Number { get; set; }
+        public int CountRows { get; set; }
+        public int CustId { get; set; }
         public DateTime? CreateDate { get; set; }
-        public int? PeriodId { get; set; }
-        public string UserId { get; set; }
+        public int Durationticks { get; set; }
+        public int? RgStatus { get; set; }
         public string FileName { get; set; }
+        public string UserId { get; set; }
+        public int? PeriodId { get; set; }
+        public decimal? RegAmount { get; set; }
+        public decimal? RegRate { get; set; }
+        public decimal? RegRoyalty { get; set; }
+        public decimal? MusicAmount { get; set; }
+        public decimal? MusicRate { get; set; }
+        public decimal? AuthAmount { get; set; }
+        public decimal? AuthRate { get; set; }
+        public decimal? PaidAmount { get; set; }
         public int? LicId { get; set; }
-        public TimeSpan? DurationItems { get; set; }
+        public int? SchemaId { get; set; }
+        public int? AlgorithmId { get; set; }
+        public string ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
+        public decimal? PrepayAmount { get; set; }
 
-        public Customer Cust { get; set; }
-        public PaidPeriod Period { get; set; }
-        public RegisterStatus RgStatusNavigation { get; set; }
-        public AspNetUsers User { get; set; }
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
-        public ICollection<RegisterItem> RegisterItem { get; set; }
+        public virtual AlgorithmType Algorithm { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual RegisterStatus RgStatusNavigation { get; set; }
+        public virtual RegisterRatedList Rm { get; set; }
+        public virtual RegisterCcid RegisterCcid { get; set; }
+        public virtual ICollection<BrRegItem> BrRegItem { get; set; }
+        public virtual ICollection<Distribution> Distribution { get; set; }
+        public virtual ICollection<RegisterItem> RegisterItem { get; set; }
     }
 }

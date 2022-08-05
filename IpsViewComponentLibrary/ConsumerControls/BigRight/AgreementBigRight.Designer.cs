@@ -103,9 +103,9 @@
             this.radLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radLabel4.Location = new System.Drawing.Point(3, 41);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(141, 19);
+            this.radLabel4.Size = new System.Drawing.Size(139, 19);
             this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Періодичність платежів";
+            this.radLabel4.Text = "Періодичність звітності";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
             // txtDayForPay
@@ -241,8 +241,8 @@
             // 
             // AgreementBigRight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.lblContrDo);
             this.Controls.Add(this.rdtPickerDateEnd);
             this.Controls.Add(this.lblContrDoTo);

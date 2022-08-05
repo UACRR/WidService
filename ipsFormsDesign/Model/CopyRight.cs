@@ -11,15 +11,16 @@ namespace ipsFormsDesign.Model
             CopyRightHistoryChild = new ObservableListSource<CopyRightHistory>();
             CopyRightHistoryParent = new ObservableListSource<CopyRightHistory>();
             Distribution = new ObservableListSource<Distribution>();
-            PubCatalogItem = new ObservableListSource<PubCatalogItem>();
+            LicAuthorBr = new ObservableListSource<LicAuthorBr>();
             RhcatalogItem = new ObservableListSource<RhcatalogItem>();
+            Status = 0;
         }
 
         public int CRightId { get; set; }
         public int CustId { get; set; }
         public int? ObjId { get; set; }
         public int? LBasis { get; set; }
-        public decimal? Rate { get; set; }
+        public decimal Rate { get; set; }
         public decimal? RoleRate { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
@@ -31,20 +32,21 @@ namespace ipsFormsDesign.Model
         public int? ParentId { get; set; }
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
-        public decimal? RateMech { get; set; }
+        public decimal RateMech { get; set; }
         public int? LoadId { get; set; }
         public string SourceName { get; set; }
+        public int? LoadSeqNr { get; set; }
+        public string CreateLogin { get; set; }
 
         public virtual RightHolder Cust { get; set; }
         public virtual ObjectRight Obj { get; set; }
         public virtual CreativeRoleType RoleCodeNavigation { get; set; }
         public virtual CrightStatus StatusNavigation { get; set; }
-        public virtual LicAuthorBr LicAuthorBr { get; set; }
         public virtual WorkRh WorkRh { get; set; }
         public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryChild { get; set; }
         public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryParent { get; set; }
         public virtual ObservableListSource<Distribution> Distribution { get; set; }
-        public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
+        public virtual ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
         public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }

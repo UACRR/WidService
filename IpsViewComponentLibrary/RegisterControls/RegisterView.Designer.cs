@@ -50,10 +50,9 @@
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlRegisterItemListStage = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.mebMusicRate = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
-            this.lblMusicRate = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.ddlAlgorithmId = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.txtPeriodName = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -63,19 +62,20 @@
             this.dtCreateDate = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.ddlLicCode = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.mebRegRate = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.lblAuthRateByRegister = new Telerik.WinControls.UI.RadLabel();
             this.txtConsumerName = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ddlAlgorithmId = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
-            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.mebMusicRate = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
+            this.lblMusicRate = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gboxStatus)).BeginInit();
@@ -101,9 +101,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mebMusicRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblMusicRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
+            this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlAlgorithmId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriodName)).BeginInit();
@@ -114,20 +115,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebRegRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAuthRateByRegister)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConsumerName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mebMusicRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblMusicRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlAlgorithmId)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
-            this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -161,7 +161,7 @@
             this.gboxStatus.Controls.Add(this.btnSetCanceledStatus);
             this.gboxStatus.Controls.Add(this.btnSetStatus);
             this.gboxStatus.HeaderText = "Cтатус";
-            this.gboxStatus.Location = new System.Drawing.Point(14, 567);
+            this.gboxStatus.Location = new System.Drawing.Point(14, 572);
             this.gboxStatus.Name = "gboxStatus";
             this.gboxStatus.Size = new System.Drawing.Size(240, 57);
             this.gboxStatus.TabIndex = 18;
@@ -198,7 +198,7 @@
             this.gboxSearch.Controls.Add(this.btnSearchNotLinked);
             this.gboxSearch.Controls.Add(this.btnSearchAuto);
             this.gboxSearch.HeaderText = "Дії з об\'єктами звіту";
-            this.gboxSearch.Location = new System.Drawing.Point(277, 567);
+            this.gboxSearch.Location = new System.Drawing.Point(277, 572);
             this.gboxSearch.Name = "gboxSearch";
             this.gboxSearch.Size = new System.Drawing.Size(814, 57);
             this.gboxSearch.TabIndex = 19;
@@ -283,7 +283,7 @@
             // 
             // 
             this.splitContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitContainer.Size = new System.Drawing.Size(1235, 433);
+            this.splitContainer.Size = new System.Drawing.Size(1235, 438);
             this.splitContainer.SplitterWidth = 5;
             this.splitContainer.TabIndex = 92;
             this.splitContainer.TabStop = false;
@@ -301,7 +301,7 @@
             // 
             // 
             this.splitPanelStage.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelStage.Size = new System.Drawing.Size(1235, 163);
+            this.splitPanelStage.Size = new System.Drawing.Size(1235, 165);
             this.splitPanelStage.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1187215F);
             this.splitPanelStage.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -52);
             this.splitPanelStage.TabIndex = 0;
@@ -347,11 +347,13 @@
             // 
             // ctrlRegisterItemListStage
             // 
+            this.ctrlRegisterItemListStage.AllowActionRegisterItem = true;
             this.ctrlRegisterItemListStage.AllowCreateObjectCommand = true;
             this.ctrlRegisterItemListStage.AllowEditList = false;
             this.ctrlRegisterItemListStage.AllowFindCommand = true;
             this.ctrlRegisterItemListStage.AllowLinkCommand = true;
             this.ctrlRegisterItemListStage.AllowShowDeleteCommand = true;
+            this.ctrlRegisterItemListStage.AllowShowDurationItem = false;
             this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
             this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
             this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
@@ -366,26 +368,28 @@
             this.ctrlRegisterItemListStage.ShowAuthors = true;
             this.ctrlRegisterItemListStage.ShowDurationUse = true;
             this.ctrlRegisterItemListStage.ShowFilters = true;
+            this.ctrlRegisterItemListStage.ShowGenre = false;
+            this.ctrlRegisterItemListStage.ShowGenreAndRate = false;
             this.ctrlRegisterItemListStage.ShowLinked = true;
             this.ctrlRegisterItemListStage.ShowObjectInfo = true;
             this.ctrlRegisterItemListStage.ShowTimeStartEnd = false;
-            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1235, 163);
+            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1235, 165);
             this.ctrlRegisterItemListStage.TabIndex = 0;
             // 
             // splitPanel2
             // 
-            this.splitPanel2.Controls.Add(this.radWaitingBar1);
+            this.splitPanel2.Controls.Add(this.waitingBar);
             this.splitPanel2.Controls.Add(this.mebMusicRate);
             this.splitPanel2.Controls.Add(this.lblMusicRate);
             this.splitPanel2.Controls.Add(this.radLabel4);
             this.splitPanel2.Controls.Add(this.ctrlRegisterItemList);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 168);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 170);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(1235, 265);
+            this.splitPanel2.Size = new System.Drawing.Size(1235, 268);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1187215F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 52);
             this.splitPanel2.TabIndex = 1;
@@ -393,64 +397,42 @@
             this.splitPanel2.Text = "splitPanel2";
             this.splitPanel2.ThemeName = "Office2013Light";
             // 
-            // mebMusicRate
+            // waitingBar
             // 
-            this.mebMusicRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "MusicRate", true));
-            this.mebMusicRate.Location = new System.Drawing.Point(680, 3);
-            this.mebMusicRate.Mask = "N0";
-            this.mebMusicRate.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
-            this.mebMusicRate.Name = "mebMusicRate";
-            this.mebMusicRate.Size = new System.Drawing.Size(53, 21);
-            this.mebMusicRate.TabIndex = 108;
-            this.mebMusicRate.TabStop = false;
-            this.mebMusicRate.Text = "0";
-            this.mebMusicRate.ThemeName = "Office2013Light";
+            this.waitingBar.AssociatedControl = this.radPanel2;
+            this.waitingBar.Location = new System.Drawing.Point(535, 60);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 109;
+            this.waitingBar.Text = "waitingBar";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             // 
-            // lblMusicRate
+            // radPanel2
             // 
-            this.lblMusicRate.Location = new System.Drawing.Point(399, 3);
-            this.lblMusicRate.Name = "lblMusicRate";
-            this.lblMusicRate.Size = new System.Drawing.Size(275, 19);
-            this.lblMusicRate.TabIndex = 107;
-            this.lblMusicRate.Text = "% авторської винагороди по музичним творам";
-            this.lblMusicRate.ThemeName = "Office2013Light";
+            this.radPanel2.Controls.Add(this.ddlAlgorithmId);
+            this.radPanel2.Controls.Add(this.radGroupBox1);
+            this.radPanel2.Controls.Add(this.radLabel11);
+            this.radPanel2.Controls.Add(this.gboxStatus);
+            this.radPanel2.Controls.Add(this.radGroupBox2);
+            this.radPanel2.Controls.Add(this.gboxSearch);
+            this.radPanel2.Controls.Add(this.splitContainer);
+            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanel2.Location = new System.Drawing.Point(0, 0);
+            this.radPanel2.Name = "radPanel2";
+            this.radPanel2.Size = new System.Drawing.Size(1267, 633);
+            this.radPanel2.TabIndex = 101;
             // 
-            // radLabel4
+            // ddlAlgorithmId
             // 
-            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel4.Location = new System.Drawing.Point(297, 3);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(96, 19);
-            this.radLabel4.TabIndex = 2;
-            this.radLabel4.Text = "Музичні твори";
-            this.radLabel4.ThemeName = "Office2013Light";
-            // 
-            // ctrlRegisterItemList
-            // 
-            this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
-            this.ctrlRegisterItemList.AllowEditList = false;
-            this.ctrlRegisterItemList.AllowFindCommand = true;
-            this.ctrlRegisterItemList.AllowLinkCommand = true;
-            this.ctrlRegisterItemList.AllowShowDeleteCommand = true;
-            this.ctrlRegisterItemList.AllowShowObjectCommand = true;
-            this.ctrlRegisterItemList.AllowUnlinkCommand = true;
-            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
-            this.ctrlRegisterItemList.DataSourceRegisterCount = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
-            this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
-            this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
-            this.ctrlRegisterItemList.Mode = IpsViewComponentLibrary.RegisterControls.RegisterItemListMode.Default;
-            this.ctrlRegisterItemList.MultiSelect = true;
-            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
-            this.ctrlRegisterItemList.SelectedRegisterItem = null;
-            this.ctrlRegisterItemList.ShowAuthors = true;
-            this.ctrlRegisterItemList.ShowDurationUse = true;
-            this.ctrlRegisterItemList.ShowFilters = true;
-            this.ctrlRegisterItemList.ShowLinked = true;
-            this.ctrlRegisterItemList.ShowObjectInfo = true;
-            this.ctrlRegisterItemList.ShowTimeStartEnd = false;
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1235, 265);
-            this.ctrlRegisterItemList.TabIndex = 1;
+            this.ddlAlgorithmId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ddlAlgorithmId.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRegister, "AlgorithmId", true));
+            this.ddlAlgorithmId.Location = new System.Drawing.Point(141, 551);
+            this.ddlAlgorithmId.Name = "ddlAlgorithmId";
+            this.ddlAlgorithmId.Size = new System.Drawing.Size(151, 21);
+            this.ddlAlgorithmId.TabIndex = 100;
+            this.ddlAlgorithmId.ThemeName = "Office2013Light";
             // 
             // radGroupBox1
             // 
@@ -520,6 +502,7 @@
             // 
             // dtCreateDate
             // 
+            this.dtCreateDate.BorderVisible = true;
             this.dtCreateDate.CalendarSize = new System.Drawing.Size(220, 180);
             this.dtCreateDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsRegister, "CreateDate", true));
             this.dtCreateDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -552,12 +535,22 @@
             this.radLabel1.Text = "Номер";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
+            // radLabel11
+            // 
+            this.radLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radLabel11.Location = new System.Drawing.Point(14, 551);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(121, 19);
+            this.radLabel11.TabIndex = 99;
+            this.radLabel11.Text = "Алгоритм розподілу";
+            this.radLabel11.ThemeName = "Office2013Light";
+            // 
             // radGroupBox2
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox2.Controls.Add(this.ddlLicCode);
             this.radGroupBox2.Controls.Add(this.mebRegRate);
-            this.radGroupBox2.Controls.Add(this.radLabel9);
+            this.radGroupBox2.Controls.Add(this.lblAuthRateByRegister);
             this.radGroupBox2.Controls.Add(this.txtConsumerName);
             this.radGroupBox2.Controls.Add(this.radLabel8);
             this.radGroupBox2.Controls.Add(this.radLabel7);
@@ -592,14 +585,14 @@
             this.mebRegRate.ThemeName = "Office2013Light";
             this.mebRegRate.Validating += new System.ComponentModel.CancelEventHandler(this.mebRegRate_Validating);
             // 
-            // radLabel9
+            // lblAuthRateByRegister
             // 
-            this.radLabel9.Location = new System.Drawing.Point(5, 76);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(199, 19);
-            this.radLabel9.TabIndex = 103;
-            this.radLabel9.Text = "% авторської винагороди по звіту";
-            this.radLabel9.ThemeName = "Office2013Light";
+            this.lblAuthRateByRegister.Location = new System.Drawing.Point(5, 76);
+            this.lblAuthRateByRegister.Name = "lblAuthRateByRegister";
+            this.lblAuthRateByRegister.Size = new System.Drawing.Size(199, 19);
+            this.lblAuthRateByRegister.TabIndex = 103;
+            this.lblAuthRateByRegister.Text = "% авторської винагороди по звіту";
+            this.lblAuthRateByRegister.ThemeName = "Office2013Light";
             // 
             // txtConsumerName
             // 
@@ -628,71 +621,87 @@
             this.radLabel7.Text = "Назва";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
-            // radLabel11
+            // lineRingWaitingBarIndicatorElement1
             // 
-            this.radLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel11.Location = new System.Drawing.Point(14, 546);
-            this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(121, 19);
-            this.radLabel11.TabIndex = 99;
-            this.radLabel11.Text = "Алгоритм розподілу";
-            this.radLabel11.ThemeName = "Office2013Light";
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            // 
+            // mebMusicRate
+            // 
+            this.mebMusicRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "MusicRate", true));
+            this.mebMusicRate.Location = new System.Drawing.Point(680, 3);
+            this.mebMusicRate.Mask = "N0";
+            this.mebMusicRate.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
+            this.mebMusicRate.Name = "mebMusicRate";
+            this.mebMusicRate.Size = new System.Drawing.Size(53, 21);
+            this.mebMusicRate.TabIndex = 108;
+            this.mebMusicRate.TabStop = false;
+            this.mebMusicRate.Text = "0";
+            this.mebMusicRate.ThemeName = "Office2013Light";
+            // 
+            // lblMusicRate
+            // 
+            this.lblMusicRate.Location = new System.Drawing.Point(399, 3);
+            this.lblMusicRate.Name = "lblMusicRate";
+            this.lblMusicRate.Size = new System.Drawing.Size(275, 19);
+            this.lblMusicRate.TabIndex = 107;
+            this.lblMusicRate.Text = "% авторської винагороди по музичним творам";
+            this.lblMusicRate.ThemeName = "Office2013Light";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel4.Location = new System.Drawing.Point(297, 3);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(96, 19);
+            this.radLabel4.TabIndex = 2;
+            this.radLabel4.Text = "Музичні твори";
+            this.radLabel4.ThemeName = "Office2013Light";
+            // 
+            // ctrlRegisterItemList
+            // 
+            this.ctrlRegisterItemList.AllowActionRegisterItem = true;
+            this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
+            this.ctrlRegisterItemList.AllowEditList = false;
+            this.ctrlRegisterItemList.AllowFindCommand = true;
+            this.ctrlRegisterItemList.AllowLinkCommand = true;
+            this.ctrlRegisterItemList.AllowShowDeleteCommand = true;
+            this.ctrlRegisterItemList.AllowShowDurationItem = false;
+            this.ctrlRegisterItemList.AllowShowObjectCommand = true;
+            this.ctrlRegisterItemList.AllowUnlinkCommand = true;
+            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemList.DataSourceRegisterCount = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
+            this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
+            this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemList.Mode = IpsViewComponentLibrary.RegisterControls.RegisterItemListMode.Default;
+            this.ctrlRegisterItemList.MultiSelect = true;
+            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
+            this.ctrlRegisterItemList.SelectedRegisterItem = null;
+            this.ctrlRegisterItemList.ShowAuthors = true;
+            this.ctrlRegisterItemList.ShowDurationUse = true;
+            this.ctrlRegisterItemList.ShowFilters = true;
+            this.ctrlRegisterItemList.ShowGenre = false;
+            this.ctrlRegisterItemList.ShowGenreAndRate = false;
+            this.ctrlRegisterItemList.ShowLinked = true;
+            this.ctrlRegisterItemList.ShowObjectInfo = true;
+            this.ctrlRegisterItemList.ShowTimeStartEnd = false;
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1235, 268);
+            this.ctrlRegisterItemList.TabIndex = 1;
             // 
             // errorProvider
             // 
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
-            // ddlAlgorithmId
-            // 
-            this.ddlAlgorithmId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ddlAlgorithmId.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRegister, "AlgorithmId", true));
-            this.ddlAlgorithmId.Location = new System.Drawing.Point(141, 546);
-            this.ddlAlgorithmId.Name = "ddlAlgorithmId";
-            this.ddlAlgorithmId.Size = new System.Drawing.Size(151, 21);
-            this.ddlAlgorithmId.TabIndex = 100;
-            this.ddlAlgorithmId.ThemeName = "Office2013Light";
-            // 
-            // radPanel2
-            // 
-            this.radPanel2.Controls.Add(this.ddlAlgorithmId);
-            this.radPanel2.Controls.Add(this.radGroupBox1);
-            this.radPanel2.Controls.Add(this.radLabel11);
-            this.radPanel2.Controls.Add(this.gboxStatus);
-            this.radPanel2.Controls.Add(this.radGroupBox2);
-            this.radPanel2.Controls.Add(this.gboxSearch);
-            this.radPanel2.Controls.Add(this.splitContainer);
-            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radPanel2.Location = new System.Drawing.Point(0, 0);
-            this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(1267, 628);
-            this.radPanel2.TabIndex = 101;
-            // 
-            // radWaitingBar1
-            // 
-            this.radWaitingBar1.AssociatedControl = this.radPanel2;
-            this.radWaitingBar1.Location = new System.Drawing.Point(535, 60);
-            this.radWaitingBar1.Name = "radWaitingBar1";
-            this.radWaitingBar1.Size = new System.Drawing.Size(70, 70);
-            this.radWaitingBar1.TabIndex = 109;
-            this.radWaitingBar1.Text = "radWaitingBar1";
-            this.radWaitingBar1.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
-            this.radWaitingBar1.WaitingSpeed = 50;
-            this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            // 
-            // lineRingWaitingBarIndicatorElement1
-            // 
-            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
-            // 
             // RegisterView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1267, 664);
-            this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radPanel2);
+            this.Controls.Add(this.radPanel1);
             this.Name = "RegisterView";
             // 
             // 
@@ -728,9 +737,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             this.splitPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mebMusicRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblMusicRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
+            this.radPanel2.ResumeLayout(false);
+            this.radPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlAlgorithmId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
@@ -742,22 +753,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
             this.radGroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebRegRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAuthRateByRegister)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConsumerName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mebMusicRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblMusicRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlAlgorithmId)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
-            this.radPanel2.ResumeLayout(false);
-            this.radPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -798,7 +807,7 @@
         private IpsViewComponentLibrary.Common.Editors.IpsTextBox txtConsumerName;
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox mebRegRate;
-        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadLabel lblAuthRateByRegister;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private IpsViewComponentLibrary.Common.Editors.IpsDropDownList ddlLicCode;
         private IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox mebAuthRate;
@@ -809,7 +818,7 @@
         private IpsViewComponentLibrary.Common.Editors.IpsDropDownList ddlAlgorithmId;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private Telerik.WinControls.UI.RadPanel radPanel2;
-        private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

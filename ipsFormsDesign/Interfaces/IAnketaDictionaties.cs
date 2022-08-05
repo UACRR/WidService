@@ -49,6 +49,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<RelGenrePercent> relGenrePercent { get; set; }
         public IList<FixStageStatus> fixStageStatus { get; set; }
         public IList<IsAuthorType> isAuthorType { get; set; }
+        public IList<SchemaType> schemaType { get; set; }
     }
 
 

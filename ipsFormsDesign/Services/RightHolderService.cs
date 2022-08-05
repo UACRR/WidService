@@ -4,8 +4,11 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Model.SQLViewsData;
 using ipsFormsDesign.ViewModels.Rightholders;
 using System.Collections.Generic;
+using System.Data;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using IpsCommonTypes.ClassesForSearchQuery;
+using IpsCommonTypes.Types;
 using WebAPIConnector;
 
 [assembly: InternalsVisibleTo("ipsFormsDesign.Tests")]
@@ -15,6 +18,15 @@ namespace ipsFormsDesign.Services
     public class RightholderService : IRightHolderService
     {
         private ApiConnector _webApi = new ApiConnector();
+        private static RightholderService _service;
+
+        public static RightholderService GetInstance()
+        {
+            if (_service == null)
+                _service = new RightholderService();
+
+            return _service;
+        }
 
         /* Info */
         public vCustomer GetOwnerName()
@@ -68,20 +80,53 @@ namespace ipsFormsDesign.Services
             return await Task.Factory.StartNew(() => GetRightholdersPage(query));
         }
 
+        /// <summary>
+        /// Отримати список правовласників
+        /// </summary>
+        /// <param name="searchModuleResource"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest<DataTable>> GetRightholdersList(SearchModuleResource searchModuleResource)
+        {
+            string url = "rh/list";
+            var result = await _webApi.SendPostRequestWithResultAsync<ResponseOfRequest<DataTable>, SearchModuleResource>(url, searchModuleResource);
+            return result;
+        }
+
         public Customer NewCustomer(int custType)
         {
-            var anketaDic = _webApi.GetItemById<Customer>("rh/newrightholder", custType.ToString());
-            return anketaDic;
+            var resultById = _webApi.GetItemById<Customer>("rh/newrightholder", custType.ToString());
+            return resultById;
+        }
+
+        /// <summary>
+        /// Створити зовнішнього правовласника
+        /// </summary>
+        /// <param name="rhType"></param>
+        /// <returns></returns>
+        public Customer NewExternalRightholder(int rhType)
+        {
+            var result = _webApi.GetItemById<Customer>("rh/newrightholder/external", rhType.ToString());
+            return result;
         }
 
         public bool Save(Customer cust)
         {
             if (cust.CustId == 0) // Новий споживач
             {
-                return _webApi.NewItem<Customer>("rh/newrightholder", cust);
+                return _webApi.NewItem("rh/newrightholder", cust);
             }
 
-            return _webApi.UpdateItem<Customer>("rh/detail", cust.CustId.ToString(), cust);
+            return _webApi.UpdateItem("rh/detail", cust.CustId.ToString(), cust);
+        }
+
+        /// <summary>
+        ///  Зберегти зовнішнього правовласника
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public bool SaveRightholderExternal(Customer customer)
+        {
+            return _webApi.NewItem("rh/saverightholder/external/new", customer);
         }
 
         private IList<RightholderMainView> GetRightholdersList(string resourceUrl)
@@ -97,7 +142,7 @@ namespace ipsFormsDesign.Services
 
         public bool Inherit(int rhId, List<RightHolder> inheritData)
         {
-            return _webApi.ApiAction<RightHolder>("rh/inheritance", rhId, inheritData);
+            return _webApi.NewItem<List<RightHolder>>($"rh/inheritance/{rhId}", inheritData);
         }
 
         public bool Transfer(TransferParameters transferParameters)
@@ -146,22 +191,5 @@ namespace ipsFormsDesign.Services
         }
 
         #endregion
-
-        public class DebugInheritData
-        {
-            public DebugInheritData()
-            {
-                ListCopyRight = new List<CopyRight>();
-                Authtors = new List<Authors>();
-                Inheriers = new List<CopyRight>();
-            }
-            public List<CopyRight> ListCopyRight { get; }
-            public List<Authors> Authtors { get; }
-            public List<CopyRight> Inheriers { get; }
-        }
-        public DebugInheritData InheritDebug(int checkCustId, List<RightHolder> inheritData)
-        {
-            return _webApi.ApiFunc<RightHolder, DebugInheritData>("rh/inheritancedebug", checkCustId, inheritData);
-        }
     }
 }

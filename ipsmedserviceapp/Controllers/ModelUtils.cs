@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
-
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -61,54 +59,51 @@ namespace ipsmedserviceapp.Controllers
     public static class ModelUtils
     {
         /// <summary>
-        /// 
+        /// Синхронізувати об'єкти однакового типу
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sors"></param>
-        /// <param name="dest"></param>
-        /// <param name="maxId"></param>
-        /// <param name="compId"></param>
-
-        public static void SetFields(this object dest, object source, string[] FieldExclude = null )
+        /// <param name="target">об'єкт якому буде присвоєно значення</param>
+        /// <param name="source">об'єкт з якого буде присвоєно значення</param>
+        /// <param name="fieldExclude">ігноровані властивості</param>
+        public static void SetFields(this object target, object source, string[] fieldExclude = null )
         {
-            if (ReferenceEquals(dest, source)) return;
-            if ((dest == null) || (source == null)) return;
-            if (dest.GetType() != source.GetType()) return;
+            if (ReferenceEquals(target, source))
+                return;
 
-            List<string> excludeList = new List<string>();
-            if (FieldExclude != null)
+            if ((target == null) || (source == null))
+                return;
+
+            if (target.GetType() != source.GetType())
+                return;
+
+            var excludeList = new List<string>();
+            if (fieldExclude != null)
             {
-                excludeList.AddRange(FieldExclude);
+                excludeList.AddRange(fieldExclude);
                 excludeList.Sort();
             }
 
-            foreach (var property in dest.GetType().GetProperties())
+            foreach (var property in target.GetType().GetProperties())
             {
                 if (excludeList.Contains(property.Name))
                     continue;
 
                 // If nullable
                 Type checkType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
-                TypeInfo ti = checkType == null ? property.GetType().GetTypeInfo() : checkType.GetTypeInfo();
+                TypeInfo typeInfo = checkType.GetTypeInfo();
 
-                if (!(ti.IsPrimitive == true
-                  || checkType == typeof(string)
-                  || checkType == typeof(Decimal)
-                  || checkType == typeof(DateTime)
-                  || checkType == typeof(TimeSpan)
-                  ))
+                if (!(typeInfo.IsPrimitive || checkType == typeof(string) || checkType == typeof(decimal) || checkType == typeof(DateTime) || checkType == typeof(TimeSpan)))
                     continue;
 
-                var objValue = property.GetValue(dest);
+                var objValue = property.GetValue(target);
                 var anotherValue = property.GetValue(source);
                 //Recursion
                 if (anotherValue == null)
                 {
                     if (objValue != null)
-                        property.SetValue(dest, anotherValue, null);
+                        property.SetValue(target, anotherValue, null);
                 }
                 else if (objValue == null || !objValue.Equals(anotherValue))
-                    property.SetValue(dest, anotherValue, null);
+                    property.SetValue(target, anotherValue, null);
             }
         }
     }

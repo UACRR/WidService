@@ -40,8 +40,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvDistributionPayment = new Telerik.WinControls.UI.RadGridView();
-            this.btnSaveDistrib = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtPayNumber = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -54,7 +52,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.txtPayGoalInvoice = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrNum = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceAgreement = new System.Windows.Forms.BindingSource(this.components);
+            this.bsAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtLicDate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
@@ -62,10 +60,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSaveDistrib)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
@@ -78,20 +75,20 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
-            this.radSeparator2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // gvDistributionPayment
             // 
-            this.gvDistributionPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.gvDistributionPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvDistributionPayment.AutoScroll = true;
             this.gvDistributionPayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(241)))), ((int)(((byte)(242)))));
@@ -99,7 +96,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.gvDistributionPayment.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.gvDistributionPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.gvDistributionPayment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.gvDistributionPayment.Location = new System.Drawing.Point(12, 128);
+            this.gvDistributionPayment.Location = new System.Drawing.Point(0, 128);
             // 
             // 
             // 
@@ -113,46 +110,46 @@ namespace IpsViewComponentLibrary.ConsumerForms
             gridViewTextBoxColumn1.HeaderText = "Період";
             gridViewTextBoxColumn1.Name = "PeriodName";
             gridViewTextBoxColumn1.ReadOnly = true;
-            gridViewTextBoxColumn1.Width = 141;
+            gridViewTextBoxColumn1.Width = 146;
             gridViewTextBoxColumn2.EnableExpressionEditor = false;
             gridViewTextBoxColumn2.FieldName = "Status";
             gridViewTextBoxColumn2.HeaderText = "Стан періоду";
             gridViewTextBoxColumn2.Name = "Status";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 141;
+            gridViewTextBoxColumn2.Width = 146;
             gridViewDecimalColumn1.EnableExpressionEditor = false;
             gridViewDecimalColumn1.FieldName = "Amount";
             gridViewDecimalColumn1.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn1.HeaderText = "Вимога";
             gridViewDecimalColumn1.Name = "Amount";
             gridViewDecimalColumn1.ReadOnly = true;
-            gridViewDecimalColumn1.Width = 141;
+            gridViewDecimalColumn1.Width = 146;
             gridViewDecimalColumn2.EnableExpressionEditor = false;
             gridViewDecimalColumn2.FieldName = "AmountBound";
             gridViewDecimalColumn2.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn2.HeaderText = "Прив\'язано";
             gridViewDecimalColumn2.Name = "AmountBound";
             gridViewDecimalColumn2.ReadOnly = true;
-            gridViewDecimalColumn2.Width = 141;
+            gridViewDecimalColumn2.Width = 146;
             gridViewDecimalColumn3.EnableExpressionEditor = false;
             gridViewDecimalColumn3.FieldName = "Arrears";
             gridViewDecimalColumn3.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn3.HeaderText = "Борг";
             gridViewDecimalColumn3.Name = "Arrears";
             gridViewDecimalColumn3.ReadOnly = true;
-            gridViewDecimalColumn3.Width = 141;
+            gridViewDecimalColumn3.Width = 146;
             gridViewDecimalColumn4.FieldName = "DistAmount";
-            gridViewDecimalColumn4.FormatString = "{0:### ### ##0.00}";
+            gridViewDecimalColumn4.FormatString = "{0:N2}";
             gridViewDecimalColumn4.HeaderText = "Сума прив\'язки";
             gridViewDecimalColumn4.MinWidth = 20;
             gridViewDecimalColumn4.Name = "DistAmount";
-            gridViewDecimalColumn4.Width = 141;
+            gridViewDecimalColumn4.Width = 146;
             gridViewCheckBoxColumn1.EnableExpressionEditor = false;
             gridViewCheckBoxColumn1.FieldName = "AutoSet";
             gridViewCheckBoxColumn1.HeaderText = "Автоматично";
             gridViewCheckBoxColumn1.MinWidth = 20;
             gridViewCheckBoxColumn1.Name = "AutoSet";
-            gridViewCheckBoxColumn1.Width = 96;
+            gridViewCheckBoxColumn1.Width = 95;
             this.gvDistributionPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -168,37 +165,14 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.gvDistributionPayment.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvDistributionPayment.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvDistributionPayment.ShowGroupPanel = false;
-            this.gvDistributionPayment.Size = new System.Drawing.Size(962, 196);
+            this.gvDistributionPayment.Size = new System.Drawing.Size(991, 239);
             this.gvDistributionPayment.TabIndex = 10;
             this.gvDistributionPayment.ThemeName = "Office2013Light";
             this.gvDistributionPayment.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GvDistributionPayment_CellValueChanged);
             // 
-            // btnSaveDistrib
-            // 
-            this.btnSaveDistrib.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSaveDistrib.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSaveDistrib.Location = new System.Drawing.Point(12, 330);
-            this.btnSaveDistrib.Name = "btnSaveDistrib";
-            this.btnSaveDistrib.Size = new System.Drawing.Size(110, 24);
-            this.btnSaveDistrib.TabIndex = 12;
-            this.btnSaveDistrib.Text = "Зберегти";
-            this.btnSaveDistrib.ThemeName = "Office2013Light";
-            this.btnSaveDistrib.Click += new System.EventHandler(this.BtnSaveDistrib_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(864, 330);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 13;
-            this.btnCancel.Text = "Скасувати";
-            this.btnCancel.ThemeName = "Office2013Light";
-            // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(13, 13);
+            this.radLabel1.Location = new System.Drawing.Point(0, 13);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(95, 19);
             this.radLabel1.TabIndex = 14;
@@ -208,10 +182,10 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // txtPayNumber
             // 
             this.txtPayNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "NumberInvoice", true));
-            this.txtPayNumber.Location = new System.Drawing.Point(106, 12);
+            this.txtPayNumber.Location = new System.Drawing.Point(152, 12);
             this.txtPayNumber.Name = "txtPayNumber";
             this.txtPayNumber.ReadOnly = true;
-            this.txtPayNumber.Size = new System.Drawing.Size(224, 21);
+            this.txtPayNumber.Size = new System.Drawing.Size(178, 21);
             this.txtPayNumber.TabIndex = 15;
             this.txtPayNumber.ThemeName = "Office2013Light";
             // 
@@ -227,6 +201,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.txtPayDate.ReadOnly = true;
             this.txtPayDate.Size = new System.Drawing.Size(102, 21);
             this.txtPayDate.TabIndex = 17;
+            this.txtPayDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPayDate.ThemeName = "Office2013Light";
             // 
             // radLabel2
@@ -240,17 +215,18 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // txtPayAmount
             // 
-            this.txtPayAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true));
-            this.txtPayAmount.Location = new System.Drawing.Point(610, 12);
+            this.txtPayAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "Amount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N2"));
+            this.txtPayAmount.Location = new System.Drawing.Point(638, 12);
             this.txtPayAmount.Name = "txtPayAmount";
             this.txtPayAmount.ReadOnly = true;
-            this.txtPayAmount.Size = new System.Drawing.Size(122, 21);
+            this.txtPayAmount.Size = new System.Drawing.Size(130, 21);
             this.txtPayAmount.TabIndex = 19;
+            this.txtPayAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPayAmount.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(526, 13);
+            this.radLabel3.Location = new System.Drawing.Point(547, 13);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(85, 19);
             this.radLabel3.TabIndex = 18;
@@ -261,17 +237,17 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             this.txtPayDistribution.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPayDistribution.Location = new System.Drawing.Point(852, 12);
+            this.txtPayDistribution.Location = new System.Drawing.Point(846, 12);
             this.txtPayDistribution.Name = "txtPayDistribution";
             this.txtPayDistribution.ReadOnly = true;
-            this.txtPayDistribution.Size = new System.Drawing.Size(122, 21);
+            this.txtPayDistribution.Size = new System.Drawing.Size(130, 21);
             this.txtPayDistribution.TabIndex = 21;
             this.txtPayDistribution.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPayDistribution.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
-            this.radLabel4.Location = new System.Drawing.Point(738, 13);
+            this.radLabel4.Location = new System.Drawing.Point(784, 13);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(56, 19);
             this.radLabel4.TabIndex = 20;
@@ -283,16 +259,16 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.txtPayGoalInvoice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPayGoalInvoice.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "GoalInvoice", true));
-            this.txtPayGoalInvoice.Location = new System.Drawing.Point(141, 36);
+            this.txtPayGoalInvoice.Location = new System.Drawing.Point(152, 39);
             this.txtPayGoalInvoice.Name = "txtPayGoalInvoice";
             this.txtPayGoalInvoice.ReadOnly = true;
-            this.txtPayGoalInvoice.Size = new System.Drawing.Size(833, 21);
+            this.txtPayGoalInvoice.Size = new System.Drawing.Size(581, 21);
             this.txtPayGoalInvoice.TabIndex = 23;
             this.txtPayGoalInvoice.ThemeName = "Office2013Light";
             // 
             // radLabel5
             // 
-            this.radLabel5.Location = new System.Drawing.Point(13, 37);
+            this.radLabel5.Location = new System.Drawing.Point(0, 40);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(133, 19);
             this.radLabel5.TabIndex = 22;
@@ -301,7 +277,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // txtAgrNum
             // 
-            this.txtAgrNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAgreement, "AgrNumber", true));
+            this.txtAgrNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreement, "AgrNumber", true));
             this.txtAgrNum.Location = new System.Drawing.Point(112, 77);
             this.txtAgrNum.Name = "txtAgrNum";
             this.txtAgrNum.ReadOnly = true;
@@ -309,9 +285,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.txtAgrNum.TabIndex = 25;
             this.txtAgrNum.ThemeName = "Office2013Light";
             // 
-            // bindingSourceAgreement
+            // bsAgreement
             // 
-            this.bindingSourceAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
+            this.bsAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
             // 
             // radLabel6
             // 
@@ -324,12 +300,13 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // txtLicDate
             // 
-            this.txtLicDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAgreement, "AgrDate", true));
+            this.txtLicDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreement, "AgrDate", true));
             this.txtLicDate.Location = new System.Drawing.Point(434, 77);
             this.txtLicDate.Name = "txtLicDate";
             this.txtLicDate.ReadOnly = true;
             this.txtLicDate.Size = new System.Drawing.Size(102, 21);
             this.txtLicDate.TabIndex = 27;
+            this.txtLicDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLicDate.ThemeName = "Office2013Light";
             // 
             // radLabel7
@@ -343,39 +320,55 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // radSeparator1
             // 
-            this.radSeparator1.Location = new System.Drawing.Point(13, 62);
+            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator1.Location = new System.Drawing.Point(0, 62);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(961, 10);
+            this.radSeparator1.Size = new System.Drawing.Size(991, 10);
             this.radSeparator1.TabIndex = 28;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // radSeparator2
             // 
-            this.radSeparator2.Controls.Add(this.radLabel8);
-            this.radSeparator2.Location = new System.Drawing.Point(13, 103);
+            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator2.Location = new System.Drawing.Point(0, 103);
             this.radSeparator2.Name = "radSeparator2";
-            this.radSeparator2.Size = new System.Drawing.Size(961, 28);
+            this.radSeparator2.Size = new System.Drawing.Size(991, 28);
             this.radSeparator2.TabIndex = 29;
             this.radSeparator2.ThemeName = "Office2013Light";
             // 
             // radLabel8
             // 
-            this.radLabel8.AutoSize = false;
-            this.radLabel8.Location = new System.Drawing.Point(392, 0);
+            this.radLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel8.Location = new System.Drawing.Point(424, 105);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(146, 28);
+            this.radLabel8.Size = new System.Drawing.Size(158, 19);
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "Періоди та суми прив\'язки";
-            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.radLabel8.ThemeName = "Office2013Light";
+            // 
+            // ctrlSaveCancelButtons
+            // 
+            this.ctrlSaveCancelButtons.ButtonSaveDialogResult = System.Windows.Forms.DialogResult.OK;
+            this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 373);
+            this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
+            this.ctrlSaveCancelButtons.SaveButtonEnabled = true;
+            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(994, 31);
+            this.ctrlSaveCancelButtons.TabIndex = 30;
             // 
             // DistributionForm
             // 
-            this.AcceptButton = this.btnSaveDistrib;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(986, 376);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(994, 404);
+            this.Controls.Add(this.ctrlSaveCancelButtons);
+            this.Controls.Add(this.radLabel8);
             this.Controls.Add(this.radSeparator2);
             this.Controls.Add(this.radSeparator1);
             this.Controls.Add(this.txtLicDate);
@@ -392,23 +385,17 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.txtPayNumber);
             this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSaveDistrib);
             this.Controls.Add(this.gvDistributionPayment);
-            this.MaximumSize = new System.Drawing.Size(994, 407);
-            this.MinimumSize = new System.Drawing.Size(994, 407);
             this.Name = "DistributionForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.RootElement.MaxSize = new System.Drawing.Size(994, 407);
+            this.RootElement.MaxSize = new System.Drawing.Size(0, 0);
             this.Text = "Прив\'язка суми платежу до Розрахункових періодів";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSaveDistrib)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
@@ -421,13 +408,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
-            this.radSeparator2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -437,8 +423,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         #endregion
         private Telerik.WinControls.UI.RadGridView gvDistributionPayment;
-        private Telerik.WinControls.UI.RadButton btnSaveDistrib;
-        private RadButton btnCancel;
         private RadLabel radLabel1;
         private RadTextBox txtPayNumber;
         private RadTextBox txtAgrNum;
@@ -457,7 +441,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private RadSeparator radSeparator2;
         private RadLabel radLabel8;
         private System.Windows.Forms.BindingSource bindingSource;
-        private System.Windows.Forms.BindingSource bindingSourceAgreement;
+        private System.Windows.Forms.BindingSource bsAgreement;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
     }
 }

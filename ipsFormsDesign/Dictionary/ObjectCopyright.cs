@@ -9,6 +9,7 @@ namespace ipsFormsDesign.Dictionary
         public event PropertyChangedEventHandler PropertyChanged;
 
         public int ObjId { get; set; }
+        public int? CRightId { get; set; }
         public int CustId { get; set; }
         public int RoleCode { get; set; }
         public string InnerCode { get; set; }
@@ -17,7 +18,7 @@ namespace ipsFormsDesign.Dictionary
         private decimal _rate;
         public decimal Rate
         {
-            get { return _rate; }
+            get => _rate;
             set
             {
                 _rate = value;

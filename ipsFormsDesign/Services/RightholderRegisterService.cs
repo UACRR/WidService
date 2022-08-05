@@ -1,11 +1,14 @@
 ﻿using IpsCommonTypes.Types;
 using ipsFormsDesign.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using IpsCommonTypes.Wrappers;
+using ipsFormsDesign.Services.Interfaces;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
 {
-    public class RightholderRegisterService
+    public class RightholderRegisterService : ICatalogFileItemsService
     {
         private const string Prefix = "RightholderRegister";
         private readonly ApiConnector _apiConnector;
@@ -47,6 +50,12 @@ namespace ipsFormsDesign.Services
             return _apiConnector.GetItemById<CatalogFile>(url, fileId.ToString());
         }
 
+        public async Task<List<RhcatalogItem>> GetCatalogFileItems(int fileId)
+        {
+            string url = $"{Prefix}/fileitems/{fileId}";
+            return await _apiConnector.GetListAsync<RhcatalogItem>(url);
+        }
+
         /// <summary>
         /// Видалити файл правовласника
         /// </summary>
@@ -78,20 +87,30 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
-        public ExecSqlResponce<CatalogFile> Validate(CatalogFile file)
+        public ExecSqlResponse<CatalogFile> Validate(CatalogFile file)
         {
             int custId = file.CustId ?? 0, fileId = file.FileId;
             string url = $"{Prefix}/{custId}/file/{fileId}/validate";
-            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
+            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponse<CatalogFile> outResult);
             return outResult;
         }
 
-        public ExecSqlResponce<CatalogFile> Process(CatalogFile file)
+        public ExecSqlResponse<CatalogFile> Process(CatalogFile file)
         {
             int custId = file.CustId ?? 0, fileId = file.FileId;
             string url = $"{Prefix}/{custId}/file/{fileId}/process";
-            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
+            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponse<CatalogFile> outResult);
             return outResult;
+        }
+
+        public Task<ExecSqlResponse<CatalogFile>> ValidateCatalogFileItemsAsync(CatalogFile catalogFile)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<ExecSqlResponse<CatalogFile>> ProcessCatalogFileItemsAsync(CatalogFile catalogFile)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

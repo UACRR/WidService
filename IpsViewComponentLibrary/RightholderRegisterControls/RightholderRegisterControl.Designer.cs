@@ -45,18 +45,18 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
-            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
-            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.backgroundPanel = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
             this.gridCatalogFiles.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).BeginInit();
             this.backgroundPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoadFile
@@ -199,26 +199,11 @@
             this.gridCatalogFiles.Name = "gridCatalogFiles";
             this.gridCatalogFiles.ReadOnly = true;
             this.gridCatalogFiles.ShowGroupPanel = false;
-            this.gridCatalogFiles.Size = new System.Drawing.Size(808, 422);
+            this.gridCatalogFiles.Size = new System.Drawing.Size(695, 422);
             this.gridCatalogFiles.TabIndex = 3;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             this.gridCatalogFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gridCatalogFiles_CommandCellClick);
             this.gridCatalogFiles.DoubleClick += new System.EventHandler(this.gridCatalogFiles_DoubleClick);
-            // 
-            // bsGridData
-            // 
-            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
-            // 
-            // backgroundPanel
-            // 
-            this.backgroundPanel.BorderVisible = false;
-            this.backgroundPanel.Controls.Add(this.gridCatalogFiles);
-            this.backgroundPanel.Controls.Add(this.btnLoadFile);
-            this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
-            this.backgroundPanel.Name = "backgroundPanel";
-            this.backgroundPanel.Size = new System.Drawing.Size(814, 458);
-            this.backgroundPanel.TabIndex = 5;
             // 
             // waitingBar
             // 
@@ -236,6 +221,17 @@
             ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
+            // backgroundPanel
+            // 
+            this.backgroundPanel.BorderVisible = false;
+            this.backgroundPanel.Controls.Add(this.gridCatalogFiles);
+            this.backgroundPanel.Controls.Add(this.btnLoadFile);
+            this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
+            this.backgroundPanel.Name = "backgroundPanel";
+            this.backgroundPanel.Size = new System.Drawing.Size(701, 458);
+            this.backgroundPanel.TabIndex = 5;
+            // 
             // lineRingWaitingBarIndicatorElement1
             // 
             this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -243,23 +239,27 @@
             this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
+            // bsGridData
+            // 
+            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
+            // 
             // RightholderRegisterControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.backgroundPanel);
             this.Name = "RightholderRegisterControl";
-            this.Size = new System.Drawing.Size(814, 458);
+            this.Size = new System.Drawing.Size(701, 458);
             this.Load += new System.EventHandler(this.RightholderRegisterControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
             this.gridCatalogFiles.ResumeLayout(false);
             this.gridCatalogFiles.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPanel)).EndInit();
             this.backgroundPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
             this.ResumeLayout(false);
 
         }

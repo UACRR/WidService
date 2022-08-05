@@ -12,13 +12,14 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private readonly IAnketaControls _anketaControl;
 
-        private PartnerAnketaPhisControl _phisControl = null;
-        private PartnerAnketaJurControl _jurControl = null;
-        private Customer _customer;
+        private readonly PartnerAnketaPhisControl _phisControl = null;
+        private readonly PartnerAnketaJurControl _jurControl = null;
+        private readonly Customer _customer;
 
         public CreatePartnerForm(Customer customer)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             _customer = customer;
             DialogResult = DialogResult.None;
 

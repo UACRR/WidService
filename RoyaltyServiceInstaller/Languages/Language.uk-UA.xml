@@ -1,0 +1,872 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageObjectModel specificationCode="uk-UA">
+  <uiContainer name="CopyrightRequestLD">
+    <uiItem name="UIbtnSave">
+      <content>Зберегти</content>
+      <description>кнопка збереження</description>
+      <defaultContent>Зберегти</defaultContent>
+    </uiItem>
+    <uiItem name="UIbtnCancel">
+      <content>Скасувати</content>
+      <description>кнопка скасування</description>
+      <defaultContent>Скасувати</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RegisterCurrencyChangeLD">
+    <uiItem name="UITitle">
+      <content>Змінити курс</content>
+      <description>
+      </description>
+      <defaultContent>Змінити курс</defaultContent>
+    </uiItem>
+    <uiItem name="UICurrency">
+      <content>Курс валюти</content>
+      <description>
+      </description>
+      <defaultContent>Курс валюти</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RegisterItemCcidTypeLD">
+    <uiItem name="UITitle">
+      <content>Звіт</content>
+      <description>назва вікна</description>
+      <defaultContent>Звіт</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="LauncherLD">
+    <uiItem name="RH_OR">
+      <content>Правовласники та Об`єкти прав</content>
+      <description>
+      </description>
+      <defaultContent>Правовласники та Об`єкти прав</defaultContent>
+    </uiItem>
+    <uiItem name="ReportsAndRoyalty">
+      <content>Обробка звітів Користувачів (ідентифікація)</content>
+      <description>
+      </description>
+      <defaultContent>Обробка звітів Користувачів (ідентифікація)</defaultContent>
+    </uiItem>
+    <uiItem name="AnalyticsAndReports">
+      <content>Звітність (аналітика)</content>
+      <description>
+      </description>
+      <defaultContent>Звітність (аналітика)</defaultContent>
+    </uiItem>
+    <uiItem name="OperativeReporting">
+      <content>Оперативна звітність</content>
+      <description>
+      </description>
+      <defaultContent>Оперативна звітність</defaultContent>
+    </uiItem>
+    <uiItem name="Clients_WP">
+      <content>Користувачі (Малі права)</content>
+      <description>
+      </description>
+      <defaultContent>Користувачі (Малі права)</defaultContent>
+    </uiItem>
+    <uiItem name="Theatres_WP">
+      <content>Користувачі (Великі права)</content>
+      <description>
+      </description>
+      <defaultContent>Користувачі (Великі права)</defaultContent>
+    </uiItem>
+    <uiItem name="Partner_WP">
+      <content>Представники компанії</content>
+      <description>
+      </description>
+      <defaultContent>Представники компанії</defaultContent>
+    </uiItem>
+    <uiItem name="FixationOfViolations">
+      <content>Фіксація порушень авторських прав</content>
+      <description>
+      </description>
+      <defaultContent>Фіксація порушень авторських прав</defaultContent>
+    </uiItem>
+    <uiItem name="SystemDictionaries">
+      <content>Системні довідники</content>
+      <description>
+      </description>
+      <defaultContent>Системні довідники</defaultContent>
+    </uiItem>
+    <uiItem name="AnketaOfTheCompany">
+      <content>Анкета компанії</content>
+      <description>
+      </description>
+      <defaultContent>Анкета компанії</defaultContent>
+    </uiItem>
+    <uiItem name="SysAdmin">
+      <content>Права доступу</content>
+      <description>
+      </description>
+      <defaultContent>Права доступу</defaultContent>
+    </uiItem>
+    <uiItem name="Processes">
+      <content>Управління технологічними процесами</content>
+      <description>
+      </description>
+      <defaultContent>Управління технологічними процесами</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_SYS">
+      <content>Система</content>
+      <description>
+      </description>
+      <defaultContent>Система</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_OTHER">
+      <content>Інше</content>
+      <description>
+      </description>
+      <defaultContent>Інше</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_CONSUMERS">
+      <content>Користувачі</content>
+      <description>
+      </description>
+      <defaultContent>Користувачі</defaultContent>
+    </uiItem>
+    <uiItem name="CAT_RIGHTS">
+      <content>Права</content>
+      <description>
+      </description>
+      <defaultContent>Права</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="SmRoPermitLD">
+    <uiItem name="ERR">
+      <content>Помилка</content>
+      <description>
+      </description>
+      <defaultContent>Помилка</defaultContent>
+    </uiItem>
+    <uiItem name="INFO">
+      <content>Інформація</content>
+      <description>
+      </description>
+      <defaultContent>Інформація</defaultContent>
+    </uiItem>
+    <uiItem name="WARN">
+      <content>Попередження</content>
+      <description>
+      </description>
+      <defaultContent>Попередження</defaultContent>
+    </uiItem>
+    <uiItem name="QUEST">
+      <content>Питання</content>
+      <description>
+      </description>
+      <defaultContent>Питання</defaultContent>
+    </uiItem>
+    <uiItem name="CONF_SAVE">
+      <content>Були внесені зміни. Збережіть або відмініть.</content>
+      <description>
+      </description>
+      <defaultContent>Були внесені зміни. Збережіть або відмініть.</defaultContent>
+    </uiItem>
+    <uiItem name="NEW_USER">
+      <content>Новий користувач</content>
+      <description>
+      </description>
+      <defaultContent>Новий користувач</defaultContent>
+    </uiItem>
+    <uiItem name="DEL_USER">
+      <content>Видалити користувача?</content>
+      <description>
+      </description>
+      <defaultContent>Видалити користувача?</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_DELETE_SELF">
+      <content>Не можна видалити власний аккаунт</content>
+      <description>
+      </description>
+      <defaultContent>Не можна видалити власний аккаунт</defaultContent>
+    </uiItem>
+    <uiItem name="PROVIDE_USER_LOGIN">
+      <content>Потрібно вказати логін користувача</content>
+      <description>
+      </description>
+      <defaultContent>Потрібно вказати логін користувача</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_LOGIN">
+      <content>Не можна змінити власний логін</content>
+      <description>
+      </description>
+      <defaultContent>Не можна змінити власний логін</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_BLOCK_LOGIN">
+      <content>Не можна заблокувати власний логін</content>
+      <description>
+      </description>
+      <defaultContent>Не можна заблокувати власний логін</defaultContent>
+    </uiItem>
+    <uiItem name="DEF_PWD_CREATED">
+      <content>Тимчасовий пароль створено і розміщено в буфері обміну.</content>
+      <description>
+      </description>
+      <defaultContent>Тимчасовий пароль створено і розміщено в буфері обміну.</defaultContent>
+    </uiItem>
+    <uiItem name="PLEASE_PASTE">
+      <content>Вставте значення з буферу в будь-який локальний файл і збережіть його для подальшого використання. Текст паролю знаходиться всередині лапок (')</content>
+      <description>
+      </description>
+      <defaultContent>Вставте значення з буферу в будь-який локальний файл і збережіть його для подальшого використання. Текст паролю знаходиться всередині лапок (')</defaultContent>
+    </uiItem>
+    <uiItem name="UNSAVED_CHANGES">
+      <content>Були внесені зміни. Збережіть або відмініть.</content>
+      <description>
+      </description>
+      <defaultContent>Були внесені зміни. Збережіть або відмініть.</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_PERM">
+      <content>Не можна змінити власні права доступу</content>
+      <description>
+      </description>
+      <defaultContent>Не можна змінити власні права доступу</defaultContent>
+    </uiItem>
+    <uiItem name="CANNOT_CHANGE_PWD">
+      <content>Не можна змінити свій власний пароль</content>
+      <description>
+      </description>
+      <defaultContent>Не можна змінити свій власний пароль</defaultContent>
+    </uiItem>
+    <uiItem name="CONFIRM_PWD_RESET">
+      <content>Пароль буде змінено. Півдтвердіть, будь ласка.</content>
+      <description>
+      </description>
+      <defaultContent>Пароль буде змінено. Півдтвердіть, будь ласка.</defaultContent>
+    </uiItem>
+    <uiItem name="USER_LIST">
+      <content>Користувачі</content>
+      <description>
+      </description>
+      <defaultContent>Користувачі</defaultContent>
+    </uiItem>
+    <uiItem name="ADMIN_CONSOLE">
+      <content>Адміністрування користувачів</content>
+      <description>
+      </description>
+      <defaultContent>Адміністрування користувачів</defaultContent>
+    </uiItem>
+    <uiItem name="ADD">
+      <content>Додати</content>
+      <description>
+      </description>
+      <defaultContent>Додати</defaultContent>
+    </uiItem>
+    <uiItem name="DELETE">
+      <content>Видалити</content>
+      <description>
+      </description>
+      <defaultContent>Видалити</defaultContent>
+    </uiItem>
+    <uiItem name="RESET_PWD">
+      <content>Оновити пароль</content>
+      <description>
+      </description>
+      <defaultContent>Оновити пароль</defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN">
+      <content>Логін</content>
+      <description>
+      </description>
+      <defaultContent>Логін</defaultContent>
+    </uiItem>
+    <uiItem name="FIRST_NAME">
+      <content>Ім'я</content>
+      <description>
+      </description>
+      <defaultContent>Ім'я</defaultContent>
+    </uiItem>
+    <uiItem name="SURNAME">
+      <content>По-батькові</content>
+      <description>
+      </description>
+      <defaultContent>По-батькові</defaultContent>
+    </uiItem>
+    <uiItem name="LAST_NAME">
+      <content>Прізвище</content>
+      <description>
+      </description>
+      <defaultContent>Прізвище</defaultContent>
+    </uiItem>
+    <uiItem name="SAVE">
+      <content>Зберегти</content>
+      <description>
+      </description>
+      <defaultContent>Зберегти</defaultContent>
+    </uiItem>
+    <uiItem name="CANCEL">
+      <content>Відмінити</content>
+      <description>
+      </description>
+      <defaultContent>Відмінити</defaultContent>
+    </uiItem>
+    <uiItem name="CODE">
+      <content>Код</content>
+      <description>
+      </description>
+      <defaultContent>Код</defaultContent>
+    </uiItem>
+    <uiItem name="ROLE">
+      <content>Роль</content>
+      <description>
+      </description>
+      <defaultContent>Роль</defaultContent>
+    </uiItem>
+    <uiItem name="CAN_READ">
+      <content>Може переглядати дані</content>
+      <description>
+      </description>
+      <defaultContent>Може переглядати дані</defaultContent>
+    </uiItem>
+    <uiItem name="CAN_WRITE">
+      <content>Може редагувати дані</content>
+      <description>
+      </description>
+      <defaultContent>Може редагувати дані</defaultContent>
+    </uiItem>
+    <uiItem name="SYS_INFO">
+      <content>Системна інформація</content>
+      <description>
+      </description>
+      <defaultContent>Системна інформація</defaultContent>
+    </uiItem>
+    <uiItem name="MODIFIED_ON">
+      <content>Час зміни:</content>
+      <description>
+      </description>
+      <defaultContent>Час зміни:</defaultContent>
+    </uiItem>
+    <uiItem name="CODE_LAB">
+      <content>Код:</content>
+      <description>
+      </description>
+      <defaultContent>Код:</defaultContent>
+    </uiItem>
+    <uiItem name="CREATED_ON">
+      <content>Час створення:</content>
+      <description>
+      </description>
+      <defaultContent>Час створення:</defaultContent>
+    </uiItem>
+    <uiItem name="USER_ACCOUNT">
+      <content>Обліковий запис</content>
+      <description>
+      </description>
+      <defaultContent>Обліковий запис</defaultContent>
+    </uiItem>
+    <uiItem name="BLOCKED">
+      <content>Заблоковано</content>
+      <description>
+      </description>
+      <defaultContent>Заблоковано</defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_LAB">
+      <content>Логін:</content>
+      <description>
+      </description>
+      <defaultContent>Логін:</defaultContent>
+    </uiItem>
+    <uiItem name="PASSWORD_LAB">
+      <content>Пароль:</content>
+      <description>
+      </description>
+      <defaultContent>Пароль:</defaultContent>
+    </uiItem>
+    <uiItem name="PERSONAL_DATA">
+      <content>Персональні дані</content>
+      <description>
+      </description>
+      <defaultContent>Персональні дані</defaultContent>
+    </uiItem>
+    <uiItem name="FIRST_NAME_LAB">
+      <content>Ім'я:</content>
+      <description>
+      </description>
+      <defaultContent>Ім'я:</defaultContent>
+    </uiItem>
+    <uiItem name="SURNAME_LAB">
+      <content>По-батькові:</content>
+      <description>
+      </description>
+      <defaultContent>По-батькові:</defaultContent>
+    </uiItem>
+    <uiItem name="LAST_NAME_LAB">
+      <content>Прізвище:</content>
+      <description>
+      </description>
+      <defaultContent>Прізвище:</defaultContent>
+    </uiItem>
+    <uiItem name="EMAIL_LAB">
+      <content>E-Mail:</content>
+      <description>
+      </description>
+      <defaultContent>E-Mail:</defaultContent>
+    </uiItem>
+    <uiItem name="COMMENT_LAB">
+      <content>Коментар:</content>
+      <description>
+      </description>
+      <defaultContent>Коментар:</defaultContent>
+    </uiItem>
+    <uiItem name="PHONE_LAB">
+      <content>Телефон:</content>
+      <description>
+      </description>
+      <defaultContent>Телефон:</defaultContent>
+    </uiItem>
+    <uiItem name="CLOSE">
+      <content>Вийти</content>
+      <description>
+      </description>
+      <defaultContent>Вийти</defaultContent>
+    </uiItem>
+    <uiItem name="PERMIT">
+      <content>Дозволи</content>
+      <description>
+      </description>
+      <defaultContent>Дозволи</defaultContent>
+    </uiItem>
+    <uiItem name="WILL_TERMINATE">
+      <content>, програма буде завершена</content>
+      <description>
+      </description>
+      <defaultContent>, програма буде завершена</defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_CANCELLED">
+      <content>Користувач відмінив спробу зайти в систему</content>
+      <description>
+      </description>
+      <defaultContent>Користувач відмінив спробу зайти в систему</defaultContent>
+    </uiItem>
+    <uiItem name="LOGIN_NOT_UNIQUE">
+      <content>Логін вже використовується,  будь ласка, введіть інший логін</content>
+      <description>
+      </description>
+      <defaultContent>Логін вже використовується,  будь ласка, введіть інший логін</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="SearchControlLD">
+    <uiItem name="TAB_SIMPLE">
+      <content>Пошук з одним параметром</content>
+      <description>
+      </description>
+      <defaultContent>Пошук з одним параметром</defaultContent>
+    </uiItem>
+    <uiItem name="TAB_MULTI">
+      <content>Пошук з окремими параметрами</content>
+      <description>
+      </description>
+      <defaultContent>Пошук з окремими параметрами</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_SEARCH">
+      <content>Пошук</content>
+      <description>
+      </description>
+      <defaultContent>Пошук</defaultContent>
+    </uiItem>
+    <uiItem name="CHECK_SEARCH_ENUM">
+      <content>Шукати в таких полях:</content>
+      <description>
+      </description>
+      <defaultContent>Шукати в таких полях:</defaultContent>
+    </uiItem>
+    <uiItem name="EQ_VAL">
+      <content>Точне значення</content>
+      <description>
+      </description>
+      <defaultContent>Точне значення</defaultContent>
+    </uiItem>
+    <uiItem name="LIKE_VAL">
+      <content>Містить текст</content>
+      <description>
+      </description>
+      <defaultContent>Містить текст</defaultContent>
+    </uiItem>
+    <uiItem name="CONTAINS_VAL">
+      <content>Містить слово</content>
+      <description>
+      </description>
+      <defaultContent>Містить слово</defaultContent>
+    </uiItem>
+    <uiItem name="TXT_SEARCH_ENUM">
+      <content>Введіть дані в поля, в яких буде здійснюватись пошук:</content>
+      <description>
+      </description>
+      <defaultContent>Введіть дані в поля, в яких буде здійснюватись пошук:</defaultContent>
+    </uiItem>
+    <uiItem name="ALL_CHECK_ITEM">
+      <content>Всі поля</content>
+      <description>
+      </description>
+      <defaultContent>Всі поля</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="CopyrightAdminWorkplaceLD">
+    <uiItem name="TITLE_CRIGHT_ADMIN_WP">
+      <content>Правовласники та Об`єкти прав</content>
+      <description>
+      </description>
+      <defaultContent>Правовласники та Об`єкти прав</defaultContent>
+    </uiItem>
+    <uiItem name="RH_1">
+      <content>Правовласники</content>
+      <description>
+      </description>
+      <defaultContent>Правовласники</defaultContent>
+    </uiItem>
+    <uiItem name="RH_2">
+      <content>Список правовласників</content>
+      <description>
+      </description>
+      <defaultContent>Список правовласників</defaultContent>
+    </uiItem>
+    <uiItem name="RH_CHANGE">
+      <content>Зміна правовласника</content>
+      <description>
+      </description>
+      <defaultContent>Зміна правовласника</defaultContent>
+    </uiItem>
+    <uiItem name="RH_REQUEST">
+      <content>Запити</content>
+      <description>
+      </description>
+      <defaultContent>Запити</defaultContent>
+    </uiItem>
+    <uiItem name="OR">
+      <content>Об'єкти права</content>
+      <description>
+      </description>
+      <defaultContent>Об'єкти права</defaultContent>
+    </uiItem>
+    <uiItem name="COMMUNITIES">
+      <content>Товариства</content>
+      <description>
+      </description>
+      <defaultContent>Товариства</defaultContent>
+    </uiItem>
+    <uiItem name="PUB_SUB">
+      <content>Видавництва/Субвидаництва</content>
+      <description>
+      </description>
+      <defaultContent>Видавництва/Субвидаництва</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="RightholdersListLD">
+    <uiItem name="BTN_UPDATE">
+      <content>Оновити</content>
+      <description>
+      </description>
+      <defaultContent>Оновити</defaultContent>
+    </uiItem>
+    <uiItem name="DDBTN_ADD_RH">
+      <content>Додати Правовласника ОКУ</content>
+      <description>
+      </description>
+      <defaultContent>Додати Правовласника ОКУ</defaultContent>
+    </uiItem>
+    <uiItem name="DDBTN_ADD_EXTERNAL_RH">
+      <content>Додати зовнішнього правовласника</content>
+      <description>
+      </description>
+      <defaultContent>Додати зовнішнього правовласника</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_RH_PHIS">
+      <content>Фізична особа</content>
+      <description>
+      </description>
+      <defaultContent>Фізична особа</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_RH_JUR">
+      <content>Юридична особа</content>
+      <description>
+      </description>
+      <defaultContent>Юридична особа</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_EXT_RH">
+      <content>Правовласник</content>
+      <description>
+      </description>
+      <defaultContent>Правовласник</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_EXT_PUBL">
+      <content>Видавництво</content>
+      <description>
+      </description>
+      <defaultContent>Видавництво</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RH_CODE">
+      <content>Шифр автор/правовласника</content>
+      <description>
+      </description>
+      <defaultContent>Шифр автор/правовласника</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RH_NAME">
+      <content>Правовласник</content>
+      <description>
+      </description>
+      <defaultContent>Правовласник</defaultContent>
+    </uiItem>
+    <uiItem name="GV_AGR_DATE">
+      <content>Дата договору</content>
+      <description>
+      </description>
+      <defaultContent>Дата договору</defaultContent>
+    </uiItem>
+    <uiItem name="GV_COUNT_OBJ">
+      <content>К-сть об'єктів</content>
+      <description>
+      </description>
+      <defaultContent>К-сть об'єктів</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RH_PROFIT">
+      <content>Дохід з початку року</content>
+      <description>
+      </description>
+      <defaultContent>Дохід з початку року</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RH_TYPE">
+      <content>Тип правовласника</content>
+      <description>
+      </description>
+      <defaultContent>Тип правовласника</defaultContent>
+    </uiItem>
+    <uiItem name="TV_CAT_ALL_RH">
+      <content>Всі правовласники</content>
+      <description>
+      </description>
+      <defaultContent>Всі правовласники</defaultContent>
+    </uiItem>
+    <uiItem name="TV_CAT_OKM_RH">
+      <content>Правовласники ОКУ</content>
+      <description>
+      </description>
+      <defaultContent>Правовласники ОКУ</defaultContent>
+    </uiItem>
+    <uiItem name="TV_CAT_EXTERNAL_RH">
+      <content>Зовнішні правовласники</content>
+      <description>
+      </description>
+      <defaultContent>Зовнішні правовласники</defaultContent>
+    </uiItem>
+    <uiItem name="TV_ALL">
+      <content>Всі</content>
+      <description>
+      </description>
+      <defaultContent>Всі</defaultContent>
+    </uiItem>
+    <uiItem name="TV_NO_ACCEPTED">
+      <content>Не підтверджені</content>
+      <description>
+      </description>
+      <defaultContent>Не підтверджені</defaultContent>
+    </uiItem>
+    <uiItem name="TV_ON_ACCEPTED">
+      <content>На акцепті</content>
+      <description>
+      </description>
+      <defaultContent>На акцепті</defaultContent>
+    </uiItem>
+    <uiItem name="TV_ACTIVE">
+      <content>Активний</content>
+      <description>
+      </description>
+      <defaultContent>Активний</defaultContent>
+    </uiItem>
+    <uiItem name="TV_CLOSED">
+      <content>Закритий</content>
+      <description>
+      </description>
+      <defaultContent>Закритий</defaultContent>
+    </uiItem>
+    <uiItem name="TV_HERITAGE">
+      <content>Оформлення спадщини</content>
+      <description>
+      </description>
+      <defaultContent>Оформлення спадщини</defaultContent>
+    </uiItem>
+    <uiItem name="TV_BLOCKED">
+      <content>Заблокований</content>
+      <description>
+      </description>
+      <defaultContent>Заблокований</defaultContent>
+    </uiItem>
+    <uiItem name="CREATE_RH_EXT_SUCC_MSG">
+      <content>Нового зовнішнього Правовласника(Видавництво) додано!</content>
+      <description>
+      </description>
+      <defaultContent>Нового зовнішнього Правовласника(Видавництво) додано!</defaultContent>
+    </uiItem>
+    <uiItem name="CREATE_RH_EXT_ERR_MSG">
+      <content>Неможливо додати нового зовнішнього правовласника/видавництво!</content>
+      <description>
+      </description>
+      <defaultContent>Неможливо додати нового зовнішнього правовласника/видавництво!</defaultContent>
+    </uiItem>
+    <uiItem name="EXT_SEARCH_EXP">
+      <content>Розширений пошук</content>
+      <description>
+      </description>
+      <defaultContent>Розширений пошук</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="ObjectsRightListLD">
+    <uiItem name="TV_CAT_STATE">
+      <content>Стан</content>
+      <description>
+      </description>
+      <defaultContent>Стан</defaultContent>
+    </uiItem>
+    <uiItem name="TV_ALL">
+      <content>Всі</content>
+      <description>
+      </description>
+      <defaultContent>Всі</defaultContent>
+    </uiItem>
+    <uiItem name="TV_NO_ACCEPT">
+      <content>Не підтверджені</content>
+      <description>
+      </description>
+      <defaultContent>Не підтверджені</defaultContent>
+    </uiItem>
+    <uiItem name="TV_NO_ATTACH">
+      <content>Не прив'язані</content>
+      <description>
+      </description>
+      <defaultContent>Не прив'язані</defaultContent>
+    </uiItem>
+    <uiItem name="TV_NO_DISTRIB">
+      <content>Не розподілені</content>
+      <description>
+      </description>
+      <defaultContent>Не розподілені</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_UPDATE">
+      <content>Оновити</content>
+      <description>
+      </description>
+      <defaultContent>Оновити</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_CREATE_OBJ">
+      <content>Додати</content>
+      <description>
+      </description>
+      <defaultContent>Додати</defaultContent>
+    </uiItem>
+    <uiItem name="GV_IN_CODE">
+      <content>Шифр Об'єту</content>
+      <description>
+      </description>
+      <defaultContent>Шифр Об'єту</defaultContent>
+    </uiItem>
+    <uiItem name="GV_OBJ_NAME">
+      <content>Назва Об'єкту</content>
+      <description>
+      </description>
+      <defaultContent>Назва Об'єкту</defaultContent>
+    </uiItem>
+    <uiItem name="GV_BS_CAT_NAME">
+      <content>В/М</content>
+      <description>
+      </description>
+      <defaultContent>В/М</defaultContent>
+    </uiItem>
+    <uiItem name="GVTT_BS_CAT_NAME">
+      <content>Об'єкт великих/малих прав</content>
+      <description>
+      </description>
+      <defaultContent>Об'єкт великих/малих прав</defaultContent>
+    </uiItem>
+    <uiItem name="GV_GENRE">
+      <content>Жанр</content>
+      <description>
+      </description>
+      <defaultContent>Жанр</defaultContent>
+    </uiItem>
+    <uiItem name="GV_AUTHOR">
+      <content>Автори</content>
+      <description>
+      </description>
+      <defaultContent>Автори</defaultContent>
+    </uiItem>
+    <uiItem name="GV_PERFORMER">
+      <content>Виконавець</content>
+      <description>
+      </description>
+      <defaultContent>Виконавець</defaultContent>
+    </uiItem>
+    <uiItem name="GV_RATE">
+      <content>Спільний % володіння</content>
+      <description>
+      </description>
+      <defaultContent>Спільний % володіння</defaultContent>
+    </uiItem>
+    <uiItem name="GV_UNDISTRIB_MONEY">
+      <content>Нерозподілена сума</content>
+      <description>
+      </description>
+      <defaultContent>Нерозподілена сума</defaultContent>
+    </uiItem>
+    <uiItem name="EXT_SEARCH_EXP">
+      <content>Розширений пошук</content>
+      <description>
+      </description>
+      <defaultContent>Розширений пошук</defaultContent>
+    </uiItem>
+  </uiContainer>
+  <uiContainer name="CommunitiesListLD">
+    <uiItem name="CREATE_COMM_SUCC_MSG">
+      <content>Нове товариство додано!</content>
+      <description>
+      </description>
+      <defaultContent>Нове товариство додано!</defaultContent>
+    </uiItem>
+    <uiItem name="CREATE_COMM_ERR_MSG">
+      <content>Неможливо додати нове товариство!</content>
+      <description>
+      </description>
+      <defaultContent>Неможливо додати нове товариство!</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_UPDATE">
+      <content>Оновити</content>
+      <description>
+      </description>
+      <defaultContent>Оновити</defaultContent>
+    </uiItem>
+    <uiItem name="EXT_SEARCH_EXP">
+      <content>Розширений пошук</content>
+      <description>
+      </description>
+      <defaultContent>Розширений пошук</defaultContent>
+    </uiItem>
+    <uiItem name="IN_CODE">
+      <content>Шифр</content>
+      <description>
+      </description>
+      <defaultContent>Шифр</defaultContent>
+    </uiItem>
+    <uiItem name="COMMUNITY_NAME">
+      <content>Назва товариства</content>
+      <description>
+      </description>
+      <defaultContent>Назва товариства</defaultContent>
+    </uiItem>
+    <uiItem name="COMM_REG_DATE">
+      <content>Дата створення</content>
+      <description>
+      </description>
+      <defaultContent>Дата створення</defaultContent>
+    </uiItem>
+    <uiItem name="AUTH_COUNT">
+      <content>К-сть авторів</content>
+      <description>
+      </description>
+      <defaultContent>К-сть авторів</defaultContent>
+    </uiItem>
+    <uiItem name="BTN_CREATE_COMMUNITY">
+      <content>Додати нове товариство</content>
+      <description>
+      </description>
+      <defaultContent>Додати нове товариство</defaultContent>
+    </uiItem>
+  </uiContainer>
+</LanguageObjectModel>

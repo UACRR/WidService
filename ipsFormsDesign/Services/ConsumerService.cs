@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using WebAPIConnector;
@@ -99,7 +100,7 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// 
+        /// Зберегти розрахунковий лист
         /// </summary>
         /// <param name="regRatedList"></param>
         /// <param name="retObject"></param>
@@ -111,7 +112,7 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// 
+        /// Зберегти звіт
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
@@ -122,7 +123,7 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// 
+        /// Видалити звіт
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
@@ -161,9 +162,9 @@ namespace ipsFormsDesign.Services
         /// <param name="state"></param>
         /// <param name="period"></param>
         /// <returns></returns>
-        public bool SetPeriodState(PeriodState state, PaidPeriod period)
+        public bool SetPeriodState(PaidPeriod period)
         {
-            string url = _prefix + $"period/state/{period.PeriodId}/{(int)state}";
+            string url = _prefix + $"period/state/{period.PeriodId}/{period.Status}";
             return _webApi.UpdateItem(url, string.Empty, period);
         }
 
@@ -205,6 +206,8 @@ namespace ipsFormsDesign.Services
                 return _webApi.NewItem<Customer>("consumer/newconsumer", cust);
             }
 
+            cust.Client.MoneyReceived.Clear();
+            
             return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
 
@@ -365,6 +368,14 @@ namespace ipsFormsDesign.Services
         public List<MoneyPeriodLink> SaveLink(int custId, List<MoneyPeriodLink> listLinks)
         {
             List<MoneyPeriodLink> list;
+            // trims redundant objects
+            listLinks.ForEach(item =>
+            {
+                item.Lic = null;
+                item.Period = null;
+                item.Paid.MoneyPeriodLink = null;
+                item.Paid.MoneyPrepayLink = null;
+            });
             var retCode = _webApi.UpdateListItemWithReturn("consumer/Period/Payments/linkperiods", custId.ToString(), listLinks, out list );
             if (retCode)
                 return list;

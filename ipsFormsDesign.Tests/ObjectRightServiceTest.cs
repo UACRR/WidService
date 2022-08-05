@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Tests
         [TestInitialize]
         public void TestInit()
         {
-            _objectRightService = new ObjectRightService();
+            _objectRightService = ObjectRightService.GetInstance();
             //check on null state
             Assert.IsNotNull(_objectRightService, "ObjectRightService is not initialized, state -null");
         }
@@ -112,12 +112,12 @@ namespace ipsFormsDesign.Tests
             Assert.AreNotEqual(list.Count, 0, "Count != 0");
         }
 
-        [TestMethod()]
-        public void TestGetRightholdersObjectsRights()
-        {
-            var list = _objectRightService.GetRightholdersObjectsRights(1835);
-            Assert.IsNotNull(list);
-        }
+        //[TestMethod()]
+        //public void TestGetRightholdersObjectsRights()
+        //{
+        //    var list = _objectRightService.GetRightholdersObjectsRights(1835);
+        //    Assert.IsNotNull(list);
+        //}
 
         [TestMethod()]
         public void TestGetObjectById()

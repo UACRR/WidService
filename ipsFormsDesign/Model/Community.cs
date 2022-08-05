@@ -10,7 +10,6 @@ namespace ipsFormsDesign.Model
         {
             AgreementAddCommunity = new ObservableListSource<AgreementAddCommunity>();
             CustCmRight = new ObservableListSource<CustCmRight>();
-            RegisterCount = new ObservableListSource<RegisterCount>();
         }
 
         public int CustId { get; set; }
@@ -20,7 +19,6 @@ namespace ipsFormsDesign.Model
         public virtual Customer Cust { get; set; }
         public virtual ObservableListSource<AgreementAddCommunity> AgreementAddCommunity { get; set; }
         public virtual ObservableListSource<CustCmRight> CustCmRight { get; set; }
-        public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }
 }
 

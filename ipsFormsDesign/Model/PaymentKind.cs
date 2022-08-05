@@ -8,14 +8,12 @@ namespace ipsFormsDesign.Model
     {
         public PaymentKind()
         {
-            PaymentCase = new ObservableListSource<PaymentCase>();
             PaymentKindTr = new ObservableListSource<PaymentKindTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public virtual ObservableListSource<PaymentCase> PaymentCase { get; set; }
         public virtual ObservableListSource<PaymentKindTr> PaymentKindTr { get; set; }
     }
 }

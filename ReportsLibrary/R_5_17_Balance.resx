@@ -117,13 +117,115 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox13.Value" xml:space="preserve">
+    <value>= Fields.turn_D</value>
+  </data>
+  <data name="reportParameter2.Text" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="$this.DocumentName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="textBox24.Value" xml:space="preserve">
+    <value>Д</value>
+  </data>
+  <data name="textBox36.Value" xml:space="preserve">
+    <value>Всього</value>
+  </data>
+  <data name="textBox10.Value" xml:space="preserve">
+    <value>= Fields.balsname</value>
+  </data>
+  <data name="textBox41.Value" xml:space="preserve">
+    <value>= Sum(Fields.rest_end_K)</value>
+  </data>
+  <data name="textBox21.Value" xml:space="preserve">
+    <value>К</value>
+  </data>
+  <data name="textBox22.Value" xml:space="preserve">
+    <value>Д</value>
+  </data>
+  <data name="textBox16.Value" xml:space="preserve">
+    <value>= Fields.rest_end_K</value>
+  </data>
+  <data name="textBox39.Value" xml:space="preserve">
+    <value>= Sum(Fields.turn_K)</value>
+  </data>
+  <data name="textBox11.Value" xml:space="preserve">
+    <value>= Fields.rest_begin_D</value>
+  </data>
+  <data name="textBox7.Value" xml:space="preserve">
+    <value>Залишок вихідний</value>
+  </data>
+  <data name="textBox14.Value" xml:space="preserve">
+    <value>= Fields.turn_K</value>
+  </data>
+  <data name="textBox3.Value" xml:space="preserve">
+    <value>Залишок вхідний</value>
+  </data>
+  <data name="textBox37.Value" xml:space="preserve">
+    <value>= Sum(Fields.rest_begin_K)</value>
+  </data>
+  <data name="textBox5.Value" xml:space="preserve">
+    <value>Оборот</value>
+  </data>
+  <data name="textBox1.Value" xml:space="preserve">
+    <value>Рахунок</value>
+  </data>
+  <data name="textBox6.Value" xml:space="preserve">
+    <value>= Sum(Fields.rest_begin_D)</value>
+  </data>
+  <data name="textBox2.Value" xml:space="preserve">
+    <value>Назва рахунку</value>
+  </data>
+  <data name="textBox12.Value" xml:space="preserve">
+    <value>= Fields.rest_begin_K</value>
+  </data>
+  <data name="textBox38.Value" xml:space="preserve">
+    <value>= Sum(Fields.turn_D)</value>
+  </data>
+  <data name="textBox35.Value" xml:space="preserve">
+    <value>Звіти. Головна.</value>
+  </data>
+  <data name="textBox28.Value" xml:space="preserve">
+    <value>='- ' +PageNumber+' -'</value>
+  </data>
+  <data name="textBox25.Value" xml:space="preserve">
+    <value>К</value>
+  </data>
+  <data name="textBox9.Value" xml:space="preserve">
+    <value>= Fields.codeI</value>
+  </data>
+  <data name="textBox40.Value" xml:space="preserve">
+    <value>= Sum(Fields.rest_end_D)</value>
+  </data>
+  <data name="reportParameter1.Text" xml:space="preserve">
+    <value>                               з</value>
+  </data>
+  <data name="textBox23.Value" xml:space="preserve">
+    <value>К</value>
+  </data>
+  <data name="textBox4.Value" xml:space="preserve">
+    <value>='1. Баланс  за період з '+ Substr(CStr(Parameters.dateBegin.Value),0,10)+' по '+Substr(CStr(Parameters.dateEnd.Value),0,10)</value>
+  </data>
+  <data name="textBox15.Value" xml:space="preserve">
+    <value>= Fields.rest_end_D</value>
+  </data>
+  <data name="textBox20.Value" xml:space="preserve">
+    <value>Д</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>en-US</value>
+  </metadata>
+  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+    <value>0.1cm</value>
+  </metadata>
   <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.SnapToSnapLines" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
-  </metadata>
-  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-    <value>0.1cm</value>
   </metadata>
 </root>

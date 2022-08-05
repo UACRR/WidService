@@ -3,8 +3,9 @@ using ipsmedserviceapp.Model.SQLViewsData;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
+using RightholderMainView = ipsmedserviceapp.Model.SQLViewsData.RightholderMainView;
 
 namespace ipsmedserviceapp.Repositories
 {
@@ -17,7 +18,7 @@ namespace ipsmedserviceapp.Repositories
             _dbContext = dbContext;
         }
 
-        public RightHolder GetRightholderById(int custId, DateTime? includeCopyrightsOnDate = null)
+        public RightHolder GetRightholderById(int custId, DateTime? includeCopyrightsOnDate = null, int[] copyRightIds = null)
         {
             var query = _dbContext.RightHolder;
 
@@ -31,10 +32,24 @@ namespace ipsmedserviceapp.Repositories
 
                 if (rightholder != null)
                 {
-                    var copyrights = _dbContext.Entry(rightholder).Collection(r => r.CopyRight)
-                        .Query()
-                        .Where(cr => cr.BeginDate <= includeCopyrightsOnDate.Value && cr.EndDate >= includeCopyrightsOnDate.Value)
-                        .ToList();
+                    List<CopyRight> copyrights = null;
+                    if(copyRightIds != null && copyRightIds.Any())
+                    {
+                        copyrights = _dbContext.Entry(rightholder)
+                            .Collection(r => r.CopyRight).Query()
+                            .Where(cr => cr.BeginDate <= includeCopyrightsOnDate.Value
+                                         && cr.EndDate >= includeCopyrightsOnDate.Value
+                                         && copyRightIds.Contains(cr.CRightId))
+                            .ToList();
+                    }
+                    else
+                    {
+                        copyrights = _dbContext.Entry(rightholder)
+                            .Collection(r => r.CopyRight).Query()
+                            .Where(cr => cr.BeginDate <= includeCopyrightsOnDate.Value
+                                         && cr.EndDate >= includeCopyrightsOnDate.Value)
+                            .ToList();
+                    }
                 }
             }
 
@@ -43,13 +58,23 @@ namespace ipsmedserviceapp.Repositories
 
         public List<RightholderMainView> GetRightholders(IEnumerable<int> ids = null)
         {
-            var query = _dbContext.RightholderMainView
-                .FromSql("select * from vTsk_1_ListRightHolder01");
+            var query = "select * from vTsk_1_ListRightHolder01";
+            List<RightholderMainView> list;
 
-            if (ids != null)
-                query = query.Where(r => ids.Contains(r.CustId));
+            // ReSharper disable once PossibleMultipleEnumeration
+            if (ids != null && ids.Any())
+            {
+                var enumerable = ids.ToArray();
+                query += $" where custId in (@ids)";
+                var param = new SqlParameter("@ids", $"{string.Join(", ", enumerable)}");
+                list = _dbContext.RightholderMainView.FromSql(query, param).ToList();
+            }
+            else
+            {
+                list = _dbContext.RightholderMainView.FromSql(query).ToList();
+            }
 
-            return query.ToList();
+            return list;
         }
     }
 }

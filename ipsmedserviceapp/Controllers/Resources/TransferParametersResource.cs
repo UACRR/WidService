@@ -17,6 +17,7 @@ namespace ipsmedserviceapp.Controllers.Resources
     public class TransferedObjectResource
     {
         public int ObjId { get; set; }
+        public int? CRightId { get; set; }
         public List<NewRightholderResource> NewRightholderList { get; set; } = new List<NewRightholderResource>();
     }
 

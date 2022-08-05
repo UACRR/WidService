@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.Shared.Controls
@@ -17,7 +18,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         private string _agreemnentName = "";
         private DateTime _dateEndNullDate = new DateTime(1,1,1);
         private string _dateEndNullText = "";
-        private ConsumerAgreementInitType _type = ConsumerAgreementInitType.None;
+        private AgreementModifyType _agreementModifyType = AgreementModifyType.CreateNewAgreement;
         private TypeRights _rights = TypeRights.SmallRights;
 
         /// <summary>
@@ -40,9 +41,9 @@ namespace IpsViewComponentLibrary.Shared.Controls
         public ContractConsumerMainControl()
         {
             InitializeComponent();
-            rdtPickerAgrDate.SetUserCalendarSettingsm();
-            dtDateBegin.SetUserCalendarSettingsm();
-            rdtPickerDateEnd.SetUserCalendarSettingsm();
+            dtAgreementDate.SetUserCalendarSettings();
+            dtDateBegin.SetUserCalendarSettings();
+            dtDateEnd.SetUserCalendarSettings();
         }
 
         [Category("Data")]
@@ -55,20 +56,20 @@ namespace IpsViewComponentLibrary.Shared.Controls
             {
                 if(value is LicenseAgrParam)
                 {
-                    rtxtBoxContrNumber.DataBindings.Clear();
-                    rdtPickerAgrDate.DataBindings.Clear();
+                    txtAgreementNumber.DataBindings.Clear();
+                    dtAgreementDate.DataBindings.Clear();
                     dtDateBegin.DataBindings.Clear();
-                    rdtPickerDateEnd.DataBindings.Clear();
+                    dtDateEnd.DataBindings.Clear();
 
                     bsLicenseAgrParam.DataSource = value;
 
-                    rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsLicenseAgrParam, "LicNum", true,
+                    txtAgreementNumber.DataBindings.Add(new Binding("Text", bsLicenseAgrParam, "LicNum", true,
                         DataSourceUpdateMode.OnPropertyChanged, string.Empty));
-                    rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "LicDate", true,
+                    dtAgreementDate.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "LicDate", true,
                         DataSourceUpdateMode.OnPropertyChanged));
                     dtDateBegin.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "DateBegin", true,
                         DataSourceUpdateMode.OnPropertyChanged));
-                    rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "DateEnd", true,
+                    dtDateEnd.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "DateEnd", true,
                         DataSourceUpdateMode.OnPropertyChanged));
                 }
             }
@@ -82,20 +83,20 @@ namespace IpsViewComponentLibrary.Shared.Controls
             get => bsAgreementAddRh.DataSource;
             set
             {
-                rtxtBoxContrNumber.DataBindings.Clear();
-                rdtPickerAgrDate.DataBindings.Clear();
+                txtAgreementNumber.DataBindings.Clear();
+                dtAgreementDate.DataBindings.Clear();
                 dtDateBegin.DataBindings.Clear();
-                rdtPickerDateEnd.DataBindings.Clear();
+                dtDateEnd.DataBindings.Clear();
 
                 bsAgreementAddRh.DataSource = value;
 
-                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsAgreementAddRh, "AgrNumber", true,
+                txtAgreementNumber.DataBindings.Add(new Binding("Text", bsAgreementAddRh, "AgrNumber", true,
                     DataSourceUpdateMode.OnPropertyChanged, string.Empty));
-                rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "AgrDate", true,
+                dtAgreementDate.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "AgrDate", true,
                     DataSourceUpdateMode.OnPropertyChanged));
                 dtDateBegin.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "DateBegin", true,
                     DataSourceUpdateMode.OnPropertyChanged));
-                rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "DateEnd", true,
+                dtDateEnd.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "DateEnd", true,
                     DataSourceUpdateMode.OnPropertyChanged));
             }
         }
@@ -123,11 +124,11 @@ namespace IpsViewComponentLibrary.Shared.Controls
                 if (_dateEndNullDate != value)
                 {
                     _dateEndNullDate = value;
-                    rdtPickerDateEnd.NullDate = value;
+                    dtDateEnd.NullDate = value;
 
                     // update binding
-                    rdtPickerDateEnd.DataBindings.Clear();
-                    rdtPickerDateEnd.DataBindings.Add("Value", bsLicenseAgrParam, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged, _dateEndNullDate);
+                    dtDateEnd.DataBindings.Clear();
+                    dtDateEnd.DataBindings.Add("Value", bsLicenseAgrParam, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged, _dateEndNullDate);
                 }
             }
         }
@@ -141,34 +142,34 @@ namespace IpsViewComponentLibrary.Shared.Controls
                 if (_dateEndNullText != value)
                 {
                     _dateEndNullText = value;
-                    rdtPickerDateEnd.NullText = value;
+                    dtDateEnd.NullText = value;
                 }
             }
         }
 
-        public ConsumerAgreementInitType DateTimeType
+        public AgreementModifyType DateTimeType
         {
-            get => _type;
+            get => _agreementModifyType;
             set
             {
-                _type = value;
-                switch (_type)
+                _agreementModifyType = value;
+                switch (_agreementModifyType)
                 {
-                    case ConsumerAgreementInitType.AddNewAgreement:
+                    //case ConsumerAgreementInitType.AddNewAgreement:
+                    case AgreementModifyType.CreateNewAgreement:
                         break;
-                    case ConsumerAgreementInitType.ChangeAgreement:
-                    {
-                        rdtPickerDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
-                        rdtPickerDateEnd.ReadOnly = true;
-                    }
+                    //case ConsumerAgreementInitType.ChangeAgreement: 
+                    case AgreementModifyType.CreateAgreementVersion:
+                    case AgreementModifyType.CreateAgreementProlongation:
+                        dtDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
+                        dtDateEnd.ReadOnly = true;
                         break;
-                    case ConsumerAgreementInitType.Prolongation:
-                    {
+                    //case ConsumerAgreementInitType.Prolongation:
+                    case AgreementModifyType.EditAgreementProlongation:
                         dtDateBegin.ReadOnly = true;
-                        rdtPickerDateEnd.ReadOnly = true;
                         dtDateBegin.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
-                        rdtPickerDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
-                    }
+                        dtDateEnd.ReadOnly = true;
+                        dtDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
                         break;
                 }
             }
@@ -178,7 +179,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         {
             bool isValid = true;
 
-            if (rtxtBoxContrNumber.Text == string.Empty)
+            if (txtAgreementNumber.Text == string.Empty)
             {
                 lblContrNumb.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
@@ -198,7 +199,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
 
             if(dtDateBegin.Value.AddDays(1) is DateTime newDate)
-                rdtPickerDateEnd.MinDate = new DateTime(newDate.Year, newDate.Month, newDate.Day);
+                dtDateEnd.MinDate = new DateTime(newDate.Year, newDate.Month, newDate.Day);
         }
     }
 }

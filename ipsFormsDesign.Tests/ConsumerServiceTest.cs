@@ -6,6 +6,7 @@ using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.ViewModels.Consumer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ipsFormsDesign.Tests
@@ -396,7 +397,7 @@ namespace ipsFormsDesign.Tests
         //        PeriodId = 1196
         //    };
         //    //set data
-        //    var result = _consumerService.SetPeriodState(state, period);
+        //    var result = _consumerService.ChangePeriodStatus(state, period);
         //    //check on success action
         //    Assert.IsTrue(result, "data is not set");
         //}

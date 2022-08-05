@@ -13,7 +13,7 @@ namespace ipsmedserviceapp.Model
         public DateTime? LDate { get; set; }
         public int? Status { get; set; }
 
-        public LicenseAgrParam Lic { get; set; }
-        public ClnBusinessPlace Place { get; set; }
+        public virtual LicenseAgrParam Lic { get; set; }
+        public virtual ClnBusinessPlace Place { get; set; }
     }
 }

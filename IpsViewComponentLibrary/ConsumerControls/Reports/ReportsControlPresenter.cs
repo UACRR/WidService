@@ -71,8 +71,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
         private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)
         {
-            if( e == null ) return;
-            _service.SetPeriodState((PeriodState) e.Status, e);
+            if (e == null)
+                return;
+
+            _service.SetPeriodState(e);
         }
 
         private void _control_SetRegisterStateExecuted(object sender, List<Register> e)
@@ -88,9 +90,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             }
         }
 
-        private void DeleteRegisterExecuted(object sender, Register e)
+        private bool DeleteRegisterExecuted(Register register)
         {
-            _service.DeleteRegister(e);
+            return _service.DeleteRegister(register);
         }
 
         private bool SaveRegisterRatedListExecuted(RegisterRatedList e)
@@ -117,7 +119,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             int? custId = _control?.Customer?.CustId;
             if (custId == null)
                 return;
-            List<PaidPeriod> retList = _service.SavePeriods((int)custId, e);
+            List<PaidPeriod> retList = _service.SavePeriods(custId.Value, e);
             if (retList != null)
             {
                 var dic = retList.ToDictionary(di => new { di.LicId ,di.PeriodName } );

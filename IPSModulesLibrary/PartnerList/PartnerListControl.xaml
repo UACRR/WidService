@@ -1,0 +1,226 @@
+﻿<UserControl x:Class="IPSModulesLibrary.PartnerList.PartnerListControl"
+             x:Name="thisControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IPSModulesLibrary.PartnerList"
+             xmlns:search="clr-namespace:IPSViewComponentLibraryWPF.Controls.SearchControl;assembly=IPSViewComponentLibraryWPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             Background="WhiteSmoke"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Control.DataContext>
+        <local:PartnerListViewModel/>
+    </Control.DataContext>
+
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/GridViewResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/StyleManagerResoureDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/DropDownButtonResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/TreeViewItemResourceDictionary.xaml"/>
+                <ResourceDictionary Source="../Resources/ResourceDictionaries/ButtonsResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}" CommandParameter="{Binding ElementName=thisControl}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <t:RadBusyIndicator IsBusy="{Binding IsBusy}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <t:RadTreeView Grid.Row="1" 
+                               SelectedItem="{Binding SelectedTreeViewItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               MinWidth="200" 
+                               Margin="5">
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
+                                       IsSelected="True"
+                                       Header="Всі"/>
+
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}"
+                                       Header="Активні"
+                                       Name="Active"/>
+
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
+                                       Header="На акцепті"
+                                       Name="OnAccept"/>
+
+                    <t:RadTreeViewItem Template="{StaticResource TreeViewItemTemplate}" 
+                                       Header="Не підтверджені"
+                                       Name="NotAccept"/>
+
+                </t:RadTreeView>
+            </Grid>
+
+            <GridSplitter Grid.Column="1" 
+                              Margin="0,3,0,3"
+                              HorizontalAlignment="Stretch"
+                              Width="3" Background="Silver" ShowsPreview="False"/>
+
+            <Grid Grid.Column="2" Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <search:SearchControl Grid.Row="0" x:Name="searchControl"/>
+
+                <t:RadGridView Grid.Row="1"
+                               x:Name="gridView"
+                               ColumnWidth="*"
+                               ItemsSource="{Binding PartnersItemSource}"
+                               Margin="3">
+                    <t:RadGridView.Columns>
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="ID" 
+                                              DataMemberBinding="{Binding CustId}"/>
+
+                        <t:GridViewDataColumn Header="Представник"
+                                              DataMemberBinding="{Binding Name}"/>
+                        
+                        <t:GridViewDataColumn Width="100" 
+                                              Header="ЄДРПОУ/ІПН"
+                                              DataMemberBinding="{Binding INNOKPO}"/>
+                        <t:GridViewCheckBoxColumn Width="50" 
+                                                  Header="Співробітник компанії"
+                                                  ShowToolTipOnTrimmedText="True"
+                                                  HeaderTextWrapping="WrapWithOverflow"
+                                                  HeaderTextAlignment="Center"
+                                                  HeaderTextTrimming="CharacterEllipsis"
+                                                  IsReadOnly="True"
+                                                  IsFilterable="False"
+                                                  DataMemberBinding="{Binding IsMy}">
+                            <t:GridViewCheckBoxColumn.CellStyle>
+                                <Style TargetType="t:GridViewCell">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+                            </t:GridViewCheckBoxColumn.CellStyle>
+                        </t:GridViewCheckBoxColumn>
+
+                        <t:GridViewDataColumn Width="75" 
+                                              Header="ID договору" 
+                                              DataMemberBinding="{Binding AgrId}"/>
+
+                        <t:GridViewDataColumn Width="90" 
+                                              Header="№ договору"
+                                              DataMemberBinding="{Binding AgrNumber}"/>
+                        <t:GridViewDataColumn Width="90" 
+                                              Header="Дата договору" 
+                                              TextAlignment="Center" 
+                                              DataMemberBinding="{Binding AgrDate, StringFormat='{}{0:d}'}"/>
+                        
+                        <t:GridViewDataColumn Header="Місто реєстрації" 
+                                              Width="200"
+                                              DataMemberBinding="{Binding JaCity}"/>
+                        <t:GridViewDataColumn Width="115"
+                                              IsFilterable="True"
+                                              HeaderTextWrapping="WrapWithOverflow"
+                                              Header="Статус договору" 
+                                              DataMemberBinding="{Binding StatusName}"/>
+                        <t:GridViewDataColumn Width="90" 
+                                              Header="К-сть договорів (всі/активні)" 
+                                              HeaderTextWrapping="WrapWithOverflow"
+                                              DataMemberBinding="{Binding AgrCount}"/>
+                        <t:GridViewDataColumn Width="75" 
+                                              HeaderTextWrapping="WrapWithOverflow"
+                                              Header="К-сть користувачів" 
+                                              DataMemberBinding="{Binding ClnCount}"/>
+                        <t:GridViewColumn Width="25">
+                            <t:GridViewColumn.Header>
+                                <Image Width="20" Height="20" Source="../Resources/Icons/edit-icon.png"/>
+                            </t:GridViewColumn.Header>
+                            <t:GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <t:RadButton Margin="0" Width="25" Height="20" 
+                                                 Command="{Binding DataContext.OpenPartnerCommand, RelativeSource={RelativeSource AncestorType={x:Type t:RadGridView}}}"
+                                                 CommandParameter="{Binding}">
+                                        <Image Source="../Resources/Icons/edit-icon.png"/>
+                                    </t:RadButton>
+                                </DataTemplate>
+                            </t:GridViewColumn.CellTemplate>
+                        </t:GridViewColumn>
+                    </t:RadGridView.Columns>
+                </t:RadGridView>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <t:RadDataPager Grid.Column="0"
+                                        Margin="3 0"
+                                        BorderThickness="0"
+                                        x:Name="DataPager"
+                                        t:StyleManager.Theme="VisualStudio2013"
+                                        PageSize="250"
+                                        Source="{Binding Items, ElementName=gridView}"
+                                        IsTotalItemCountFixed="False"
+                                        DisplayMode="All, All"/>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Margin="5 0 0 0" Content="К-сть на сторінку:"/>
+
+                        <TextBox Text="{Binding ElementName=DataPager, Path=PageSize, Mode=TwoWay, StringFormat='{}{0:N0}'}"
+                                     VerticalContentAlignment="Center"
+                                     MaxLength="5"
+                                     HorizontalContentAlignment="Right"
+                                     MinWidth="50"
+                                     Margin="3"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Margin="10 0" Content="К-сть записів:"/>
+                        <Label Margin="0 0 10 0" Content="{Binding ElementName=DataPager, Path=ItemCount}"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <t:RadDropDownButton HorizontalAlignment="Left"
+                                         Content="Створити нового представника"
+                                         MinWidth="175"
+                                         CloseOnPopupMouseLeftButtonUp="True"
+                                         Template="{StaticResource RadDropDownButtonTemplate}"
+                                         Margin="3">
+                        <t:RadDropDownButton.DropDownContent>
+                            <StackPanel>
+                                <t:RadButton Margin="0"
+                                             MinWidth="140"
+                                             Style="{StaticResource ddButton}"
+                                             HorizontalContentAlignment="Left"
+                                             Content="Фізична особа"
+                                             Command="{Binding Create_P_PartnerCommand}"/>
+                                <t:RadButton Margin="0"
+                                             MinWidth="140"
+                                             Style="{StaticResource ddButton}"
+                                             HorizontalContentAlignment="Left"
+                                             Content="Юридична особа"
+                                             Command="{Binding Create_J_PartnerCommand}"/>
+                            </StackPanel>
+                        </t:RadDropDownButton.DropDownContent>
+                    </t:RadDropDownButton>
+                </Grid>
+            </Grid>
+        </Grid>
+    </t:RadBusyIndicator>
+</UserControl>

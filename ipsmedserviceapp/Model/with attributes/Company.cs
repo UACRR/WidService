@@ -14,8 +14,8 @@ namespace ipsmedserviceapp.Model
         public int CustId { get; set; }
         public int Version { get; set; }
 
-        public Customer Cust { get; set; }
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
-        public ICollection<RelEmployee> RelEmployee { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompany { get; set; }
+        public virtual ICollection<RelEmployee> RelEmployee { get; set; }
     }
 }

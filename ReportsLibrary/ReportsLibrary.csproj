@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +29,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,26 +53,25 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-      <SpecificVersion>True</SpecificVersion>
-    </Reference>
-    <Reference Include="Telerik.ReportViewer.WinForms, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-      <SpecificVersion>True</SpecificVersion>
-    </Reference>
-    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.UI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\TelerikCommon.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReportB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportB.designer.cs">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports1.Designer.cs">
+      <DependentUpon>Reports1.cs</DependentUpon>
+    </Compile>
     <Compile Include="IpsReportGlobal.cs" />
     <Compile Include="LIcAgr.cs">
       <SubType>Component</SubType>
@@ -102,6 +113,12 @@
     </Compile>
     <Compile Include="ReportS.Designer.cs">
       <DependentUpon>ReportS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportіС.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportіС.designer.cs">
+      <DependentUpon>ReportіС.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_14_RegisterSR.cs">
       <SubType>Component</SubType>
@@ -157,6 +174,12 @@
     <Compile Include="R_5_18_TurnAccounN.Designer.cs">
       <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_1921_SRSH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_1921_SRSH.Designer.cs">
+      <DependentUpon>R_5_1921_SRSH.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_19_0_BR.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -180,6 +203,24 @@
     </Compile>
     <Compile Include="R_5_19_2_SR.Designer.cs">
       <DependentUpon>R_5_19_2_SR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_19_3_BRSH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_3_BRSH.Designer.cs">
+      <DependentUpon>R_5_19_3_BRSH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_19_3_BRSH_detail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_3_BRSH_detail.designer.cs">
+      <DependentUpon>R_5_19_3_BRSH_detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_19_3_SRSH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_3_SRSH.Designer.cs">
+      <DependentUpon>R_5_19_3_SRSH.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_20_1_BR.cs">
       <SubType>Component</SubType>
@@ -381,10 +422,39 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ReportB.en-US.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportB.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportB.ru-RU.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportB.uk-UA.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportB.uk.resx">
+      <DependentUpon>ReportB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.en-US.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.ru-RU.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.uk-UA.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports1.en-US.resx">
+      <DependentUpon>Reports1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports1.resx">
+      <DependentUpon>Reports1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LIcAgr.resx">
       <DependentUpon>LIcAgr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -401,6 +471,12 @@
     <EmbeddedResource Include="ReportS.resx">
       <DependentUpon>ReportS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports1.ru-RU.resx">
+      <DependentUpon>Reports1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportіС.resx">
+      <DependentUpon>ReportіС.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_14_RegisterSR.resx">
       <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
     </EmbeddedResource>
@@ -416,7 +492,13 @@
     <EmbeddedResource Include="R_5_16_AuthorSRFact.resx">
       <DependentUpon>R_5_16_AuthorSRFact.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.en-US.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_Balance.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.ru-RU.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
@@ -427,6 +509,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_18_TurnAccounN.resx">
       <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_1921_SRSH.resx">
+      <DependentUpon>R_5_1921_SRSH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_19_0_BR.resx">
       <DependentUpon>R_5_19_0_BR.cs</DependentUpon>
@@ -439,6 +524,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_19_2_SR.resx">
       <DependentUpon>R_5_19_2_SR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_3_BRSH.resx">
+      <DependentUpon>R_5_19_3_BRSH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_3_BRSH_detail.resx">
+      <DependentUpon>R_5_19_3_BRSH_detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_3_SRSH.resx">
+      <DependentUpon>R_5_19_3_SRSH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_20_1_BR.resx">
       <DependentUpon>R_5_20_1_BR.cs</DependentUpon>
@@ -548,12 +642,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
-      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
-      <Name>ipsFormsDesign</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

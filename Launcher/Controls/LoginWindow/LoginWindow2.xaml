@@ -1,0 +1,303 @@
+﻿<Window x:Class="Launcher.Controls.LoginWindow.LoginWindow2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:local="clr-namespace:Launcher.Controls.LoginWindow"
+        mc:Ignorable="d"
+        x:Name="window"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Width="390" Height="420" >
+    <Window.DataContext>
+        <local:LoginViewModel/>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger x:Name="keyUpEvent" EventName="KeyUp">
+            <i:InvokeCommandAction Command="{Binding WindowUpEventCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.Resources>
+
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+        </Style>
+
+        <Style x:Key="resetStyle" TargetType="Button">
+            <Setter  Property="Margin" Value="0 6 0 0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Image Width="17" 
+                                   Height="17"  
+                                   Source="../../Images/close.png"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource" 
+                                 Background="Transparent" 
+                                 Panel.ZIndex="2"
+                                 Padding="16 0"
+                                 VerticalContentAlignment="Center"/>
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1" VerticalContentAlignment="Center" Padding="16 0">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="#272A33"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--PASSWORD PLACEHOLDER-->
+        <Style TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="#e7e7e7"/>
+            <Setter Property="Padding" Value="16 0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0 0 0 16"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!--LOGIN BTN-->
+        <Style TargetType="{x:Type t:RadButton}" x:Key="loginBtn">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border HorizontalAlignment="Stretch" Height="45" CornerRadius="20" Margin="0 0 0 16">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                                    <GradientStop Color="#00E0FF" Offset="0.949" />
+                                    <GradientStop Color="#8F00FF" Offset="0.153" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                        <Setter Property="FontSize" Value="16"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextAlignment" Value="Center"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!--HOVER-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border HorizontalAlignment="Stretch" Height="45" CornerRadius="20" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                                            <GradientStop Color="#FF009FB6" Offset="0.949" />
+                                            <GradientStop Color="#FF5E04A5" Offset="0.153" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="TextAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+
+                <!--CLICK-->
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border HorizontalAlignment="Stretch" Height="45" CornerRadius="20" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                                            <GradientStop Color="#FF04606D" Offset="0.949" />
+                                            <GradientStop Color="#FF39095F" Offset="0.153" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="TextAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border HorizontalAlignment="Stretch" Height="45" CornerRadius="20" Margin="0 0 0 16">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                                            <GradientStop Color="#26E3FE" Offset="0.949" />
+                                            <GradientStop Color="#A025FF" Offset="0.153" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}">
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="TextAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="Silver"/>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="DarkGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ComboBoxItem">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="DarkGray"/>
+                    <Setter Property="Background" Value="#F6F6F6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <t:RadBusyIndicator t:StyleManager.Theme="VisualStudio2013" IsBusy="{Binding IsBusy}">
+        <Border>
+            <Border.Background>
+                <SolidColorBrush Color="Transparent" Opacity="0.4" />
+            </Border.Background>
+            <Border Width="390" CornerRadius="15" BorderThickness="5" Background="White" Padding="25 25 25 30">
+                <StackPanel VerticalAlignment="Stretch" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="30" Margin="0 0 0 24">SIGN IN</TextBlock>
+                        <Button Grid.Column="1"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Cursor="Hand" 
+                                Width="24" 
+                                Height="24" 
+                                VerticalAlignment="Top" 
+                                Style="{DynamicResource resetStyle}"
+                                Click="Button_Click"
+                                HorizontalAlignment="Right">
+                            <Image Source="../../Images/close.png"/>
+                        </Button>
+                    </Grid>
+                    <ComboBox Background="Red" FontSize="14" Height="40" Margin="0 0 0 25" VerticalContentAlignment="Center">
+                        <ComboBoxItem IsSelected="True" >
+                            <TextBlock FontSize="14" Padding="13 8" Text="Use application Indetification" VerticalAlignment="Center" />
+                        </ComboBoxItem>
+                        <ComboBoxItem IsEnabled="False">
+                            <TextBlock FontSize="14" Padding="13 8" Text="Use Windows Identification" VerticalAlignment="Center" />
+                        </ComboBoxItem>
+                    </ComboBox>
+
+                    <TextBox Style="{StaticResource placeHolder}"
+                                 Text="{Binding User.UserName}"
+                                 Background="#e7e7e7"
+                                 TextWrapping="NoWrap"
+                                 FontSize="14" 
+                                 Height="40"
+                                 Margin="0 0 0 16"
+                                 VerticalContentAlignment="Center" 
+                                 VerticalAlignment="Center"
+                                 Tag="username"/>
+
+                    <PasswordBox x:Name="pwBox">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="KeyUp">
+                                <i:InvokeCommandAction Command="{Binding KeyUpCommand}" PassEventArgsToCommand="True"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </PasswordBox>
+
+                    <t:Label Content="Caps Lock on!" 
+                             HorizontalAlignment="Center" 
+                             Foreground="DimGray" 
+                             FontWeight="SemiBold" 
+                             Margin="0 -5 0 5"
+                             FontSize="18"
+                             Visibility="{Binding CapsLockOnVisibility}"/>
+
+                    <t:RadButton Style="{DynamicResource loginBtn}" 
+                                 Content="SIGN IN"
+                                 Width="240"
+                                 Margin="45 25"
+                                 Command="{Binding LoginCommand}"
+                                 CommandParameter="{Binding ElementName=pwBox}"/>
+                </StackPanel>
+            </Border>
+        </Border>
+    </t:RadBusyIndicator>
+</Window>

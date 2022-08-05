@@ -1,12 +1,7 @@
 ﻿using IpsViewComponentLibrary.Utilities;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.Data;
@@ -31,8 +26,15 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
                 groupDescriptor.Format = "{1}";
                 gvRightLimitations.GroupDescriptors.Add(groupDescriptor);
 
-                gvRightLimitations.SetComboboxColumnDataSource("CommunityCustId", IpsGlobal.AnketaDictionaties.communities, "CustId", "Name");
+                var list = IpsGlobal.AnketaDictionaties.communities.Where(rec => rec.CustId != IpsGlobal.MyAnketa.CustId).ToList();
+                gvRightLimitations.SetComboboxColumnDataSource("CommunityCustId", list, "CustId", "Name");
             }
+        }
+
+        public bool IsExternalRightHolder
+        {
+            get => !gvRightLimitations.Columns["OurService"].IsVisible;
+            set => gvRightLimitations.Columns["OurService"].IsVisible = !value;
         }
 
         [Category("Data")]

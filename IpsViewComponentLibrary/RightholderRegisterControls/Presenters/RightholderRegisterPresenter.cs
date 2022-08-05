@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
+using System.Security.Principal;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using IpsCommonTypes.Types;
+using IpsCommonTypes.Wrappers;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Shared.Interfaces;
-using Telerik.WinControls.UI;
 using TimeSpan = System.TimeSpan;
 
 namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
 {
-    public class RightholderRegisterPresenter: ICatalogFileItemsHandler
+    public sealed class RightholderRegisterPresenter: ICatalogFileItemsHandler<RhcatalogItem>
     {
         private readonly RightholderRegisterService _service;
         private readonly ExcelEngine _exelEngine;
@@ -36,13 +35,30 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             return _service.GetFile(custId, fileId);
         }
 
+        /// <summary>
+        /// Завантажити реєстр правовласника
+        /// </summary>
+        /// <param name="catalogFile"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
 
-            var PubCatalogItemList = GetRightholderRegister(path);
-            catalogFile.RhcatalogItem = new ObservableListSource<RhcatalogItem>(PubCatalogItemList);
+            //string name = Environment.UserName;
+            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
+            catalogFile.UserId = identityName;
+
+            var rhcatalogItemList = GetRightholderRegister(path);
+
+            if (rhcatalogItemList == null)
+                return null;
+
+            if (!CheckValidDataLength(rhcatalogItemList))
+                return null;
+
+            catalogFile.RhcatalogItem = new ObservableListSource<RhcatalogItem>(rhcatalogItemList);
 
             // result can be used
             var result = _service.UploadFile((int)catalogFile.CustId, catalogFile);
@@ -59,20 +75,76 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             try
             {
                 var data = _exelEngine.ReadData(fileName);
-                
+
+                if (!data.Any())
+                {
+                    MessageShow.ShowError("Неправильна структура файлу! Дані не завантажились!");
+                    return null;
+                }
+
+                if (data[0].Count < 9)
+                {
+                    MessageShow.ShowError("Неправильна структура файлу! Кількість колонок з даними повинно бути не меншне 9!");
+                    return null;
+                }
+
                 List<RhcatalogItem> newItems = new List<RhcatalogItem>();
 
                 foreach (var item in data)
                 {
-                    RhcatalogItem newItem = CreateItemFromXlsRow(item);
+                    var newItem = CreateItemFromXlsRow(item);
                     newItems.Add(newItem);
                 }
                 return newItems;
             }
-            catch
+            catch (Exception e)
             {
-                throw;
+                MessageShow.ShowError(e.Message);
+                return null;
             }
+        }
+
+        private bool CheckValidDataLength(ICollection<RhcatalogItem> rhcatalogItemList)
+        {
+            var dbTableLangth = new Dictionary<string, int>
+            {
+                ["itemCode".ToUpper()] = 50,
+                ["objName".ToUpper()] = 254,
+                ["genreName".ToUpper()] = 100,
+                ["roleName".ToUpper()] = 100,
+                ["authorName".ToUpper()] = 254,
+            };
+
+
+            bool ShowWarningNotValidDataLength(RhcatalogItem item, string propertyName)
+            {
+                string length = $"Довжина поля \"{propertyName}\" перевищує допустиму довжину '{dbTableLangth[propertyName.ToUpper()]}' символи!";
+                string msg = $"Помилка завантаження! Запис з кодом (шифр твору) '{item.ItemCode}' не може бути записаний! {length}";
+
+                MessageShow.ShowWarning(msg);
+
+                return false;
+            }
+
+            foreach (var rhcatalogItem in rhcatalogItemList)
+            {
+                if (rhcatalogItem.ItemCode.Length > dbTableLangth[nameof(rhcatalogItem.ItemCode).ToUpper()])
+                    return ShowWarningNotValidDataLength(rhcatalogItem, nameof(rhcatalogItem.ItemCode));
+
+                if (rhcatalogItem.ObjName.Length > dbTableLangth[nameof(rhcatalogItem.ObjName).ToUpper()])
+                    return ShowWarningNotValidDataLength(rhcatalogItem, nameof(rhcatalogItem.ObjName));
+
+                if (rhcatalogItem.GenreName.Length > dbTableLangth[nameof(rhcatalogItem.GenreName).ToUpper()])
+                    return ShowWarningNotValidDataLength(rhcatalogItem, nameof(rhcatalogItem.GenreName));
+
+                if (rhcatalogItem.RoleName.Length > dbTableLangth[nameof(rhcatalogItem.RoleName).ToUpper()])
+                    return ShowWarningNotValidDataLength(rhcatalogItem, nameof(rhcatalogItem.RoleName));
+
+                if (rhcatalogItem.AuthorName.Length > dbTableLangth[nameof(rhcatalogItem.AuthorName).ToUpper()])
+                    return ShowWarningNotValidDataLength(rhcatalogItem, nameof(rhcatalogItem.AuthorName));
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -82,9 +154,6 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
         /// <returns></returns>
         private RhcatalogItem CreateItemFromXlsRow(List<string> item)
         {
-            if (item.Count < 7)
-                throw new ArgumentException("Неправильна структура файлу! Кількість колонок з даними повинна дорівнювати 7!");
-
             var newItem = new RhcatalogItem
             {
                 ItemCode = item[0],
@@ -93,11 +162,19 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
                 Duration = GetTimeFromString(item[3]),
                 RoleName = item[4],
                 AuthorName = item[5],
-                Rate = 0
+                Rate = 0,
+                DateBegin = null,
+                DateEnd = null,
             };
 
             if (decimal.TryParse(item[6], out decimal outBuffer))
                 newItem.Rate = outBuffer;
+
+            if (DateTime.TryParse(item[7], out DateTime dtBegin))
+                newItem.DateBegin = dtBegin;
+
+            if (DateTime.TryParse(item[8], out DateTime dtEnd))
+                newItem.DateEnd = dtEnd;
 
             return newItem;
         }
@@ -151,14 +228,24 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             return _service.SaveFileComment(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponse<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.Validate(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponse<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.Process(catalogFile);
+        }
+
+        public List<RhcatalogItem> GetCatalogFileItems(int fileId, int skip, int take)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<object[]> GetCatalogItemList(int fileId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -41,6 +41,9 @@ namespace IpsViewComponentLibrary.Common
             }
         }
 
+        public int Skip => (CurrentPage - 1) * PageSize;
+        public int Take => PageSize;
+
         public event EventHandler CurrentPageChanged;
         public event EventHandler PageSizeChanged;
 

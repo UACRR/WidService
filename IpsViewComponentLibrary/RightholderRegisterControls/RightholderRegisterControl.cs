@@ -69,13 +69,16 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
                         CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
+
                     CatalogFile result = null;
+
                     waitingBar.StartWaiting();
                     await Task.Factory.StartNew(() =>
                     {
                         result = _presenter.UploadCatalogFile(catalogFile, fileExel.FileName);
                     });
                     waitingBar.StopWaiting();
+
                     var boolResult = result != null;
                     MessageShow.ShowInfoByResult(LoadCatalogFileSuccessMsg, LoadCatalogFileErrorMsg, boolResult);
                     if (boolResult)
@@ -90,11 +93,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             switch (e.Column.FieldName)
             {
                 case "infoBtn":
-                    LoadDetailForm(row);
-                    break;
-                case "editBtn":
                     var commentForm = new ChangeCommentForm(row);
-
                     if (commentForm.ShowDialog() == DialogResult.OK)
                     {
                         var result = _presenter.SaveRightholderRegister(row);
@@ -102,6 +101,10 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
                         if (result)
                             UpdateGridData();
                     }
+                    break;
+
+                case "editBtn":
+                    LoadDetailForm(row);
                     break;
 
                 case "deleteBtn":
@@ -126,10 +129,17 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
         /// Завантажити та показати список елементів файлу
         /// </summary>
         /// <param name="file"></param>
-        private void LoadDetailForm(CatalogFile file)
+        private async void LoadDetailForm(CatalogFile file)
         {
-            // todo: waibar for load
-            var item = _presenter.GetFileWithRHCatalogItems((int)file.CustId, file.FileId);
+            CatalogFile item = null;
+
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() =>
+            {
+                item = _presenter.GetFileWithRHCatalogItems((int) file.CustId, file.FileId);
+            });
+            waitingBar.StopWaiting();
+
             var form = new RightholderRegisterDetailForm(item);
             form.ShowDialog();
         }

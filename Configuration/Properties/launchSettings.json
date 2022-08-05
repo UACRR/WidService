@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Configuration": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "LAUNCH_SETTINGS": "Prod"
+      }
+    }
+  }
+}

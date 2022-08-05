@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using IpsViewComponentLibrary.ConsumerForms;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -51,7 +52,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                     Rate = obj.Rate,
                 };
 
-                if (obj.WorkTypeRH.HasValue || obj.WorkDateRH.HasValue || !String.IsNullOrEmpty(obj.WorkCommentRH))
+                if (obj.WorkTypeRH.HasValue || obj.WorkDateRH.HasValue || !string.IsNullOrEmpty(obj.WorkCommentRH))
                 {
                     copyright.WorkRh = new WorkRh
                     {
@@ -84,7 +85,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
             var objectRightList = (ICollection<ObjectRightNotAccepted>)_view.ObjectRightListDataSource;
 
-            var printView = new ViewAndPrintAgreementForm();
+            var printView = new DocumentViewerForm();
             printView.Text = "Запит - " + _view.SelectedRightholder.Name;
             printView.ShowCopyrightRequest(_view.SelectedRightholder, objectRightList);
 

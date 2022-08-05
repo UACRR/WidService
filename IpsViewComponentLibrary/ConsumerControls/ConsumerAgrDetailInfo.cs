@@ -12,7 +12,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private const string NullNumberString = "0,00";
 
         private readonly AnketaDictionaties _dictionaties;
-        public event EventHandler OnSaveCommentNeed;
+        public event Action<LicenseAgrParam> OnSaveCommentNeed;
+
         public ConsumerAgrDetailInfo()
         {
             InitializeComponent();
@@ -76,8 +77,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void btnSaveComment_Click(object sender, EventArgs e)
         {
-            if (txtNotation.Text != string.Empty)
-                OnSaveCommentNeed?.Invoke(sender, e);
+            if (!(bsComment.DataSource is LicenseAgrParam licenseAgrParam))
+                return;
+
+            if (licenseAgrParam.LicId != 0)
+                OnSaveCommentNeed?.Invoke(licenseAgrParam);
         }
     }
 }

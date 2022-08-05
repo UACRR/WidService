@@ -35,6 +35,9 @@ namespace ipsmedserviceapp.Model
         public int? LicId { get; set; }
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
+        public string ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
+        public decimal? PrepayAmount { get; set; }
 
         [JsonIgnore]
         public virtual AlgorithmType Algorithm { get; set; }
@@ -44,6 +47,8 @@ namespace ipsmedserviceapp.Model
         public virtual RegisterStatus RgStatusNavigation { get; set; }
         [JsonIgnore]
         public virtual RegisterRatedList Rm { get; set; }
+        [JsonIgnore]
+        public virtual RegisterCcid RegisterCcid { get; set; }
         [JsonIgnore]
         public virtual ICollection<BrRegItem> BrRegItem { get; set; }
         public virtual ICollection<Distribution> Distribution { get; set; }

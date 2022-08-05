@@ -180,7 +180,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ddbtnChangeAgrStatus.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnAcceptAgr,
             this.btnCloseAgr});
-            this.ddbtnChangeAgrStatus.Location = new System.Drawing.Point(337, 200);
+            this.ddbtnChangeAgrStatus.Location = new System.Drawing.Point(279, 200);
             this.ddbtnChangeAgrStatus.Name = "ddbtnChangeAgrStatus";
             this.ddbtnChangeAgrStatus.Size = new System.Drawing.Size(177, 19);
             this.ddbtnChangeAgrStatus.TabIndex = 3;
@@ -215,7 +215,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.lblStatusName.AutoSize = false;
             this.lblStatusName.BorderVisible = true;
-            this.lblStatusName.Location = new System.Drawing.Point(188, 201);
+            this.lblStatusName.Location = new System.Drawing.Point(130, 201);
             this.lblStatusName.MinimumSize = new System.Drawing.Size(120, 18);
             this.lblStatusName.Name = "lblStatusName";
             // 
@@ -244,9 +244,9 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.radLabel7.Location = new System.Drawing.Point(25, 200);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(157, 19);
+            this.radLabel7.Size = new System.Drawing.Size(99, 19);
             this.radLabel7.TabIndex = 0;
-            this.radLabel7.Text = "Поточний статус договору";
+            this.radLabel7.Text = "Статус договору";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
             // ctrlAgreement

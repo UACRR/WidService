@@ -50,13 +50,19 @@ namespace ipsFormsDesign.Services
 
         ~WordEngine()
         {
+
+
             ClearFiles();
-            if (app != null)
+
+            lock (new object())
             {
-                app.Quit();
-                Marshal.ReleaseComObject(app);
-                app = null;
-                appVersion = 0;
+                if (app != null)
+                {
+                    app.Quit();
+                    Marshal.ReleaseComObject(app);
+                    app = null;
+                    appVersion = 0;
+                }
             }
         }
 
@@ -221,10 +227,14 @@ namespace ipsFormsDesign.Services
             string PasportIssued = string.Empty;
             string CstNikName = string.Empty;
             string NikName = string.Empty;
+            string CitizenShip = string.Empty;
 
 
             if (cust.CustType < 3) // фіз. особа
             {
+                var countryName = countries.ContainsKey(anketaPerson?.Citizenship ?? string.Empty) ? countries[anketaPerson.Citizenship].CountryName : string.Empty;
+                CitizenShip = $"{countryName}";
+
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
                     $"{countries[anketaPerson.LeCountry ?? "804"].CountryName}, {anketaPerson.LeCity}, {anketaPerson.LeAddress}, {anketaPerson.LePostIndex}" : leAddress;
@@ -321,6 +331,9 @@ namespace ipsFormsDesign.Services
 
                 switch (title)
                 {
+                    case "CstCitizenship":
+                        item.Range.Text = CitizenShip;
+                        break;
                     case "docNumberC":
                         item.Range.Text = agrRh.AgrNumber;
                         break;
@@ -1039,7 +1052,7 @@ namespace ipsFormsDesign.Services
             Table tableObjects = tables[1];
             int index = 1;
             ObjectRightService _objectRightService;
-            _objectRightService = new ObjectRightService();
+            _objectRightService = ObjectRightService.GetInstance();
             foreach (var item in objectRightList)
             {
                 var newRow = tableObjects.Rows.Add();
@@ -1617,12 +1630,17 @@ namespace ipsFormsDesign.Services
             numberVAT = anketaCompany?.NumberVat;
             typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
 
-            LicenseBigR licenseBigR = licA?.LicenseBigR;
+            LicenseBigR licenseBigR = licA?.LicenseAgrParam.Single(rec => rec.LicVersion == licA.LicVersion).LicenseBigR;
             var creativeRoleType = _dic.creativeRoleType;
             var authors = licenseBigR?.Obj.Authors?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
             var copyright = licenseBigR?.Obj.CopyRight?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
             //            var licauthorbr = licenseBigR?.Obj.CopyRight.Where(rec=>rec.LicAuthorBr != null ).Select(rec => rec.LicAuthorBr   ).ToList();
-            var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
+            //var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
+            
+            var licauthorbr = new List<LicAuthorBr>();
+            foreach (var copyRight in licenseBigR?.Obj.CopyRight) 
+                licauthorbr.AddRange(copyRight.LicAuthorBr);
+            
             string ObjName = licenseBigR?.Obj?.Name;
             LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
                          (rec.LicVersion == licA.LicVersion)).Single();

@@ -1,0 +1,105 @@
+﻿<Window x:Class="IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.CurrencyChange.CurrencyChangeWindow"
+        x:Name="thisWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.CurrencyChange"
+        xmlns:t="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        ResizeMode="NoResize"
+        Title="Конвертація" Height="200" Width="425"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
+
+    <Window.DataContext>
+        <local:CurrencyChangeViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Style TargetType="t:RadButton">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="t:Label">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+        <Style TargetType="t:RadComboBox">
+            <Setter Property="t:StyleManager.Theme" Value="VisualStudio2013"/>
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+    </Window.Resources>
+
+    <t:RadBusyIndicator
+        IsBusy="{Binding IsBusy, IsAsync=True}"
+        Name="busyIndicator"
+        IsIndeterminate="True"
+        t:StyleManager.Theme="VisualStudio2013">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <t:Label Grid.Row="0" Grid.Column="0" Content="Сума звіту, в валюті"/>
+                <TextBox Grid.Row="0" Grid.Column="1" 
+                         IsReadOnly="True" 
+                         IsReadOnlyCaretVisible="False" 
+                         Background="GhostWhite"
+                         Text="{Binding CurrencyChangeData.CurrencyAmount, StringFormat='{}{0:N10}'}"/>
+
+                <t:Label Grid.Row="1" Grid.Column="0" Content="Валюта"/>
+                <t:RadComboBox Grid.Row="1" Grid.Column="1"
+                               IsReadOnly="{Binding IsReadonly}"
+                               ItemsSource="{Binding CurrencyTypeItemSource}"
+                               SelectedValue="{Binding CurrencyChangeData.CurrencyType, Mode=TwoWay}"
+                               SelectedValuePath="R030"
+                               DisplayMemberPath="R030Name"/>
+
+                <t:Label Grid.Row="2" Grid.Column="0" Content="Сума звіту, в грн"/>
+                <TextBox Grid.Row="2" Grid.Column="1"
+                         IsReadOnly="{Binding IsReadonly}" IsReadOnlyCaretVisible="False"
+                         Text="{Binding CurrencyChangeData.RegRoyalty, StringFormat='{}{0:N2}', NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                         Validation.Error="Validation_OnError"/>
+
+                <t:Label Grid.Row="3" Grid.Column="0" Content="Курс (грн за одиницю валюти)"/>
+                <TextBox Grid.Row="3" Grid.Column="1"
+                         IsReadOnly="{Binding IsReadonly}" IsReadOnlyCaretVisible="False"
+                         Text="{Binding CurrencyChangeData.ExchangeRate, StringFormat='{}{0:N2}', NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                         Validation.Error="Validation_OnError"/>
+            </Grid>
+
+            <StackPanel Grid.Row="1" FlowDirection="RightToLeft" Orientation="Horizontal" Background="Silver">
+                <t:RadButton Content="Скасувати"
+                         IsCancel="True"
+                         Command="{Binding CloseWindowCommand}"
+                         CommandParameter="{Binding ElementName=thisWindow}"/>
+                <t:RadButton Content="Прийняти"
+                         Command="{Binding ChangeCurrencyCommand}"
+                         CommandParameter="{Binding ElementName=thisWindow}"/>
+            </StackPanel>
+        </Grid>
+
+    </t:RadBusyIndicator>
+</Window>

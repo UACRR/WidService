@@ -4,14 +4,17 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms.Register;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.Reports.Forms;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Utilities;
@@ -19,15 +22,28 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Reports
 {
+    /*
+     * в контролі наявний WaitingBar;
+     */
+
     public partial class ReportsControl : UserControl
     {
         private const string SaveReportSuccessMsg = "Звіт збережено!";
         private const string SaveReportErrorMsg = "Неможливо зберегти звіт!";
 
+        private const string LoadReportFromFileSuccessMsg = "Новий звіт додано!";
+        private const string LoadReportFromFileErrorMsg = "Неможливо додати звіт!";
+
+        private const string DeleteRegisterSuccessMsg = "Звіт видалено!";
+        private const string DeleteRegisterErrorMsg = "Неможливо видалити звіт!";
+
+        private const string DifferentAmountsWarningMsg = "Сума авторської винагороди по Р/Л не співпадає з загальною сумою по введеним рапортичкам! Виконайте необхідні коригування суми!";
+        private const string HasNotValidRegisterStatusWarningMsg = "Наявний звіт зі статусом «Новий» або «На погодженні»!";
+
         private readonly ExcelEngine _excel = ExcelEngine.GetInstance();
 
         public event Func<RegisterRatedList, bool> SaveRegisterRatedListExecuted;
-        public event EventHandler<Register> DeleteRegisterExecuted;
+        public event Func<Register, bool> DeleteRegisterExecuted;
         public event Func<Register, bool> SaveRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
@@ -35,7 +51,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         public event UpdateCustomerDataEventHandler UpdateData;
 
         public Func<int, List<RegisterItem>> GetRegisterItems;
-        private ButtonEnableControl buttonController;
+        private readonly ButtonEnableControl buttonController;
         private Dictionary<int, PeriodStatus> dicPeriodStatus;
         private Dictionary<int, RegisterStatus> dicRegStatus;
         private Dictionary<int, RegisterListStatus> dicRatedListStatus;
@@ -58,8 +74,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
             if (IpsGlobal.AnketaDictionaties != null)
                 SubscribeDictionary(null, null);
-            else
-                IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
+            //else
+            //    IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
         }
 
         public Customer Customer
@@ -121,7 +137,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
             dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
             dicRatedListStatus = IpsGlobal.AnketaDictionaties.registerListStatus.ToDictionary(rec => rec.CodeI);
-
         }
 
         public void RefreshData()
@@ -233,17 +248,28 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 buttonController.SetPeriodState(null, null);
             }
 
-            var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.SingleOrDefault(rec => rec.CodeI == lic.Lic.LicCode);
-            // Цирк,Філармонія,Концертна діяльність
-            bool isCollapsed = agrType?.SchemaId == 2;
+            // Цирк,Філармонія,Концертна діяльність, YouTube
+            //bool isCollapsed = SchemaId == 2 || SchemaId == 3;
+            bool isCollapsed = SchemaId == 1;
             // AddReport Xls disable for Цирк, Філармонія, Концертна діяльність
-            btnAddReport.Enabled = !isCollapsed;
+            btnAddReport.Enabled = isCollapsed;
 
-            splitPanelRatedList.Collapsed = !isCollapsed;
-            btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
+            splitPanelRatedList.Collapsed = isCollapsed;
+            btnAcceptType1.Visible = isCollapsed;
             if (CurrentAgreementController != null && !CurrentAgreementController.Broadcast && lic.Lic?.LicId != CurrentAgreementController.LicId)
             {
                 CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
+            }
+        }
+
+        private int? SchemaId
+        {
+            get
+            {
+                var agreementData = gvLicenseAgr.CurrentRow?.DataBoundItem as IAgreementData;
+                var licCode = agreementData?.Lic.LicCode;
+                var schemaId = IpsGlobal.AnketaDictionaties.agrLicenseType.SingleOrDefault(rec => rec.CodeI == licCode)?.SchemaId;
+                return schemaId;
             }
         }
 
@@ -295,7 +321,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             btnToAcception.Enabled = register.RgStatus == 0 || register.RgStatus == 5;
         }
 
-
         // * * *  * * *  КНОПКИ:
         // * * * НА ГРІД [Періоди платежів]
         private void GvPeriods_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -330,7 +355,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         }
 
         // * * * [Додати звіт]
-        private void BtnAddReport_Click(object sender, EventArgs e)
+        private async void BtnAddReport_Click(object sender, EventArgs e)
         {
             if (!(gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period))
                 return;
@@ -339,12 +364,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var licenseAgreement = _customer.Client.LicenseAgreement.FirstOrDefault(rec => rec.LicId == period.LicId);
-                waitingBar.StartWaiting();
                 EnableButtons(false);
 
                 Register addRegister = null;
                 bool statusDoubledRecordExist = false;
-                Task.Run(() =>
+                bool result = false;
+
+                string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
+
+                waitingBar.StartWaiting();
+                await Task.Factory.StartNew(() =>
                 {
                     var list = _excel.GetReportItems(dialog.FileName);
                     statusDoubledRecordExist = ReportsHandler.CheckDoubleRecord(list);
@@ -372,14 +401,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                             Rm = RatedList,
                             LicId = period.LicId,
                             SchemaId = licenseAgreement?.LicCodeNavigation?.SchemaId ?? 1,
-                            AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ?? 1
+                            AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ?? 1,
+                            UserId = identityName
                         };
 
                         foreach (var item in list)
                             addRegister.RegisterItem.Add(item);
 
                         RatedList.Register.Add(addRegister);
-                        var result = SaveRegisterRatedListExecuted?.Invoke(RatedList);
+                        result = SaveRegisterRatedListExecuted?.Invoke(RatedList) ?? false;
                     }
                 })
                 .ContinueWith(tsk => {
@@ -392,6 +422,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 }, TaskScheduler.FromCurrentSynchronizationContext());
 
                 waitingBar.StopWaiting();
+
+                if (!statusDoubledRecordExist)
+                    MessageShow.ShowInfoByResult(LoadReportFromFileSuccessMsg, LoadReportFromFileErrorMsg, result);
             }
 
             RefreshData();
@@ -406,11 +439,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         {
             if (!(gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period))
                 return;
-            
+
+            string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
+
             if (!period.RegisterRatedList.Any())
             {
                 period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
             }
+
+            var algorithmId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.AlgorithmId;
+            var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
 
             //об'єкт звіт
             var registerTemp = new Register
@@ -421,17 +459,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 CustId = _customer.CustId,
                 RgStatusNavigation = dicRegStatus[0],
                 LicId = period.LicId,
-                AlgorithmId = 2,
+                AlgorithmId = algorithmId,
                 PeriodId = period.PeriodId,
+                SchemaId = schemaId,
+                UserId = identityName,
             };
-
-            // для визначення рапортички
-            var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
-
+            
             // рапортичка
             if (schemaId == 2)
             {
-                registerTemp.SchemaId = 2;
                 var progReportBigRight = new ReportExtendedForm(registerTemp)
                 {
                     HeaderInfoCustomerName = GetCustomerName(),
@@ -452,7 +488,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             // не рапотричка
             else
             {
-                registerTemp.SchemaId = 1;
                 var viewForm = new ReportExcelForm(registerTemp, true);
                 if (viewForm.ShowDialog() == DialogResult.OK)
                 {
@@ -466,8 +501,47 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             RefreshData();
         }
 
-        // * * * [Переглянути звіт]
-        private void RegisterReport()
+        /// <summary>
+        ///  Найменування користувача
+        /// </summary>
+        /// <returns></returns>
+        private string GetCustomerName()
+        {
+            string customerName;
+            if (_customer.CustType == 3)
+            {
+                customerName = _customer.Company?.AnketaCompany?.SingleOrDefault()?.ShortName;
+            }
+            else
+            {
+                var anketaPerson = _customer.Person?.AnketaPerson?.SingleOrDefault();
+                customerName = $"{anketaPerson?.LastName} {anketaPerson?.FirstName} {anketaPerson?.SurName}";
+            }
+
+            return customerName;
+        }
+
+        #endregion
+
+        private void GvPeriodReports_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var columnName = e.Column.Name;
+
+            if (columnName == "EditColumn")
+            {
+                OpenRegisterForView();
+            }
+            else if (columnName == "DeleteColumn")
+            {
+                DeleteRegister();
+                RefreshData();
+            }
+        }
+
+        /// <summary>
+        /// Переглянути звіт
+        /// </summary>
+        private void OpenRegisterForView()
         {
             if (GetRegisterItems == null || !(gvPeriodReports.CurrentRow?.DataBoundItem is Register register))
                 return;
@@ -508,37 +582,20 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         }
 
         /// <summary>
-        ///  Найменування користувача
+        /// Видалити звіт
         /// </summary>
-        /// <returns></returns>
-        private string GetCustomerName()
-        {
-            string customerName;
-            if (_customer.CustType == 3)
-            {
-                customerName = _customer.Company?.AnketaCompany?.SingleOrDefault()?.ShortName;
-            }
-            else
-            {
-                var anketaPerson = _customer.Person?.AnketaPerson?.SingleOrDefault();
-                customerName = $"{anketaPerson?.LastName} {anketaPerson?.FirstName} {anketaPerson?.SurName}";
-            }
-
-            return customerName;
-        }
-
-        #endregion
-
         private void DeleteRegister()
         {
-            if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
+            if (GetRegisterItems == null)
                 return;
-            if (!(gvPeriodReports.CurrentRow.DataBoundItem is Register register))
+
+            if (!(gvPeriodReports.CurrentRow?.DataBoundItem is Register register))
                 return;
-            if (MessageBox.Show($"Видалити звіт {register.FileName}?", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+            if (MessageShow.ConfirmAction($"Видалити звіт \"{register.FileName}\"?") == DialogResult.Yes)
             {
-                DeleteRegisterExecuted(this, register);
                 var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
+                var result = DeleteRegisterExecuted?.Invoke(register) ?? false;
                 foreach (var item in period.RegisterRatedList)
                 {
                     if (item.Register.Contains(register))
@@ -549,21 +606,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
                 }
                 bindingReports.Remove(register);
                 gvPeriodReports.MasterTemplate.Refresh();
-            }
-        }
-
-        private void GvPeriodReports_CommandCellClick(object sender, GridViewCellEventArgs e)
-        {
-            var columnName = e.Column.Name;
-
-            if (columnName == "EditColumn")
-            {
-                RegisterReport();
-            }
-            else if (columnName == "DeleteColumn")
-            {
-                DeleteRegister();
-                RefreshData();
+                MessageShow.ShowInfoByResult(DeleteRegisterSuccessMsg, DeleteRegisterErrorMsg, result);
             }
         }
 
@@ -619,7 +662,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         {
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
             if (period.RegisterRatedList.Sum(rec => rec.Register.Count(item => item.RgStatus < 2)) > 0)
+            {
+                MessageShow.ShowWarning(HasNotValidRegisterStatusWarningMsg);
                 return;
+            }
+
+            if (SchemaId == 2)
+            {
+                var amounrRatedList = period.RegisterRatedList.SingleOrDefault().Amount;
+                var registersAmount = period.RegisterRatedList.SingleOrDefault().Register.Sum(rec => rec.RegAmount);
+                if (amounrRatedList != registersAmount)
+                {
+                    MessageShow.ShowWarning(DifferentAmountsWarningMsg);
+                    return;
+                }
+            }
 
             period.Status = 2;
             period.StatusNavigation = dicPeriodStatus[2];
@@ -640,8 +697,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
 
-            RegisterRatedList addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0, StatusNavigation = dicRatedListStatus[0] };
-            CreateRatedList form = new CreateRatedList
+            var addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0, StatusNavigation = dicRatedListStatus[0] };
+            var form = new CreateRatedList
             {
                 RatedList = addRatedList
             };
@@ -669,7 +726,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             {
                 var row = e.Row;
                 var modifyRatedList = row.DataBoundItem as RegisterRatedList;
-                CreateRatedList form = new CreateRatedList
+                var form = new CreateRatedList
                 {
                     RatedList = modifyRatedList
                 };
@@ -685,9 +742,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
         private void BtnAddPeriod_Click(object sender, EventArgs e)
         {
-            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData item))
                 return;
-            var lic = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData).Lic;
+
+            var lic = item.Lic;
             CreatePeriod form = new CreatePeriod(lic);
 
             if (form.ShowDialog() == DialogResult.OK)
@@ -703,75 +761,5 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
             UpdateData?.Invoke(_customer.CustId);
             SetupBindings();
         }
-    }
-
-    /// <summary>
-    /// Керування станом кнопок 
-    /// </summary>
-    class ButtonEnableControl
-    {
-        private RadButton _addReport,
-                          _create,
-                          _toAcception,
-                          _acceptedType1,
-                          _acceptedType2;
-
-        public ButtonEnableControl(RadButton addReport, RadButton toAcception, RadButton acceptedType1, RadButton acceptedType2, RadButton create)
-        {
-            _addReport = addReport;
-            _toAcception = toAcception;
-            _acceptedType1 = acceptedType1;
-            _acceptedType2 = acceptedType2;
-            _create = create;
-        }
-        public void SetPeriodState(int? state, List<Register> list)
-        {
-            if (state == null)
-            {
-                _addReport.Enabled = false;
-                _toAcception.Enabled = false;
-                _acceptedType1.Enabled = false;
-                _acceptedType2.Enabled = false;
-                _create.Enabled = false;
-                return;
-            }
-            int[] regStates = new[] { 0, 0, 0, 0, 0, 0 };
-            int countInList = list.Count();
-            // Накоплюємо кіль
-            foreach (var item in list)
-                regStates[item.RgStatus ?? 0]++;
-
-            switch (state)
-            {
-                case 0: // Новий
-                case 1: // Прийом звітів
-                case 3: // Борг
-                case 4: // Судова робота
-                    _addReport.Enabled = true;
-                    _create.Enabled = true;
-                    _toAcception.Enabled = regStates[0] > 0; // Нових > 0;
-                    _acceptedType1.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
-                    _acceptedType2.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
-
-                    break;
-                case 2: // Прийом поштів
-                case 5: // 
-                case 6: // Кошти отримані
-                    _addReport.Enabled = false;
-                    _toAcception.Enabled = regStates[0] > 0; // Нових > 0;
-                    _acceptedType1.Enabled = false;
-                    _acceptedType2.Enabled = false;
-                    _create.Enabled = false;
-                    break;
-                default: // Зактритий
-                    _addReport.Enabled = false;
-                    _toAcception.Enabled = false;
-                    _acceptedType1.Enabled = false;
-                    _acceptedType2.Enabled = false;
-                    _create.Enabled = false;
-                    break;
-            }
-        }
-
     }
 }

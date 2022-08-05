@@ -5,6 +5,7 @@ using ipsFormsDesign.ViewModels.Fixations;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IPSComponentLibrary.Forms;
 using IpsViewComponentLibrary.ConsumerForms;
 
 namespace IpsViewComponentLibrary.Utilities
@@ -20,7 +21,7 @@ namespace IpsViewComponentLibrary.Utilities
 
         public async void PrintFixationOrder(Fixation fixation)
         {
-            var _previewView = new ViewAndPrintAgreementForm();
+            var _previewView = new DocumentViewerForm();
             _previewView.SetHeader("Наказ на фіксацію - " + fixation.EventName);
             _previewView.Show();
             _previewView.StartWaiting();
@@ -35,7 +36,7 @@ namespace IpsViewComponentLibrary.Utilities
 
         public async void PrintFixationAct(Fixation fixation)
         {
-            var _previewView = new ViewAndPrintAgreementForm();
+            var _previewView = new DocumentViewerForm();
             _previewView.SetHeader("Акт фіксації - " + fixation.EventName);
             _previewView.Show();
             _previewView.StartWaiting();
@@ -50,7 +51,7 @@ namespace IpsViewComponentLibrary.Utilities
 
         public async void PrintFixationSlugbova(Fixation fixation)
         {
-            var _previewView = new ViewAndPrintAgreementForm();
+            var _previewView = new DocumentViewerForm();
             _previewView.SetHeader("Службова - " + fixation.EventName);
             _previewView.Show();
             _previewView.StartWaiting();
@@ -65,7 +66,7 @@ namespace IpsViewComponentLibrary.Utilities
 
         public async void PrintFixationIdentificationAct(Fixation fixation, IEnumerable<RegisterCountViewModel> registerCountList)
         {
-            var _previewView = new ViewAndPrintAgreementForm();
+            var _previewView = new DocumentViewerForm();
             _previewView.SetHeader("Акт ідентифікації - " + fixation.EventName);
             _previewView.Show();
             _previewView.StartWaiting();

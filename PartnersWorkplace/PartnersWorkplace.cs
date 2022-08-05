@@ -16,8 +16,7 @@ namespace PartnersWorkplace
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
 
-            // ReSharper disable once ObjectCreationAsStatement
-            new PartnerPresenter(ctrlPartners);
+            ctrlPartners.LoadData();
         }
     }
 }

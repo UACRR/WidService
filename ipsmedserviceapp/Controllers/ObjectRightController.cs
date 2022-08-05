@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.Types;
 using ipsmedserviceapp.Controllers.Resources;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
+using ipsmedserviceapp.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,13 +18,14 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace ipsmedserviceapp.Controllers
 {
     /// <summary>
-    /// Об'єкти права
+    /// Контролер роботи з Об'єктами права
     /// </summary>
     [Produces("application/json")]
     [Route("api/ObjectRight")]
     public class ObjectRightController : Controller
     {
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
+
         public ObjectRightController(MediaServiceContext dbContext)
         {
             _dbContext = dbContext;
@@ -68,6 +73,13 @@ namespace ipsmedserviceapp.Controllers
             dest.MediaTrack.SetFields(sors.MediaTrack);
             dest.MediaTrack.Duration = sors.MediaTrack.Duration;
             dest.MediaTrack.Name = sors.Name;
+
+            foreach (CopyRight copyRight in sors.CopyRight)
+            {
+                if (copyRight.Status.HasValue == false)
+                    copyRight.Status = 0;
+            }
+
             _dbContext.UpdateList(sors.CopyRight, dest.CopyRight, i => { }, (l, r) => l.CRightId == r.CRightId);
             _dbContext.UpdateList(sors.Authors, dest.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
             _dbContext.UpdateList(sors.SeekObject, dest.SeekObject, i => { }, (l, r) => l.Id == r.Id);
@@ -249,17 +261,34 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetObjectRights([FromQuery] ObjectRightQueryResource query)
         {
-            var queryText = "select * from vtsk_3_OR_01";
+            //var queryText = "select * from vtsk_3_OR_01";
+            var queryText = "select t1.* from vtsk_3_OR_01 t1 join ft_tsk_3_OR_01_SEEK(@searchText) t2 on t1.objid = t2.objid";
 
-            queryText = ApplyFiltering(queryText, query);
+            //queryText = ApplyFiltering(queryText, query);
 
-            var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
+            if (query?.State == 0) // Not active
+                queryText += " where statusNoActive = 1";
+            if (query?.State == 1) // Not linked
+                queryText += " where statusNoRelate = 1";
+            if (query?.State == 2) // Undistributed
+                queryText += " where statusUnDistrib = 1";
 
-            queryText = ApplyPaging(queryText, query);
+            //var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
 
-            var list = await _dbContext.getViewData(queryText, null);
+            //queryText = ApplyPaging(queryText, query);
 
-            return Ok(new { List = list, TotalItems = totalItems });
+            //queryText += $" ORDER BY ObjId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
+            // 
+            int skip = (query.Page.Value - 1) * query.PageSize.Value;
+            int take = query.PageSize.Value;
+
+            var list = await _dbContext.getViewData(queryText, new[]{new SqlParameter("@searchText", query.SearchText) });
+            
+            return Ok(new
+            {
+                List = list.Skip(skip).Take(take), 
+                TotalItems = list.Count
+            });
         }
 
         private string ApplyFiltering(string queryText, ObjectRightQueryResource query)
@@ -338,7 +367,7 @@ namespace ipsmedserviceapp.Controllers
             return Ok(rightholders);
         }
 
-        #region Big right
+        #region * * * Big right * * * 
 
         private async Task<ObjectRight> GetObjectRightBrById(int objId)
         {
@@ -401,7 +430,7 @@ namespace ipsmedserviceapp.Controllers
                 }
 
                 if (destCopyRight.LicAuthorBr == null)
-                    destCopyRight.LicAuthorBr = new LicAuthorBr();
+                    destCopyRight.LicAuthorBr = new List<LicAuthorBr>();
 
                 destCopyRight.LicAuthorBr.SetFields(sourceCopyRight.LicAuthorBr);
             }
@@ -415,8 +444,6 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(new { objectRight = or, rhList });
         }
-
-        
 
         [HttpPost("br/detail")]
         public async Task<IActionResult> CreateObjectRightBrById([FromBody] ObjectRight objectRight)
@@ -470,6 +497,7 @@ namespace ipsmedserviceapp.Controllers
         #endregion
 
         #region Views
+
         /// <summary>
         /// Получити  список об'єктів права для основного єкрану інтерфейсу користувача
         /// </summary>
@@ -496,7 +524,6 @@ namespace ipsmedserviceapp.Controllers
             });
             return Json(list);
         }
-
 
         /// <summary>
         /// Список всіх об'єктів Єкран "Об'єкти (ВСІ)"
@@ -535,11 +562,47 @@ namespace ipsmedserviceapp.Controllers
         /// Об'єкти (ВСІ)-от правообл Grid 2
         /// </summary>
         /// <returns></returns>
-        [HttpGet("view/list_0302/{id}")]
-        public async Task<IActionResult> vtsk_3_OR_03_V2(int id)
+        [HttpGet("view/list_0302/{skip}/{take}/{id}")]
+        public async Task<IActionResult> vtsk_3_OR_03_V2(int skip, int take, int id)
         {
-            var list = await _dbContext.getViewData($"select * from vtsk_3_OR_03_V2  where custId = {id}", null);
-            return Json(list);
+            var count = await _dbContext.getViewData($"select count(*) from vtsk_3_OR_03_V2 where custId = {id}", null);
+
+            string query = $"select * from vtsk_3_OR_03_V2 where custId = {id}";
+            query = DBQueryHelper.ApplySqlOrderByAndPaging(query, "objid", skip, take);
+
+            var list = await _dbContext.getViewData(query, null);
+
+            var responce = new
+            {
+                TotalItems = count?.FirstOrDefault()?.Values.FirstOrDefault(),
+                List = list,
+            };
+
+            return Ok(responce);
+        }
+
+        /// <summary>
+        /// Об'єкти (ВСІ)-от правовласники Grid 2 з додатковим правовласником
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("view/list_0302/{skip}/{take}/{custId}/{custIdSecondary}")]
+        public async Task<IActionResult> vtsk_3_OR_03_V2(int skip, int take, int custId, int custIdSecondary)
+        {
+            string queryCount = $"select count(*) from vtsk_3_OR_03_V4 t1 where parentid is not null and custId = {custId} and exists (select 1 from vtsk_3_OR_03_V4 t2 where t2.objid = t1.objid and custId = {custIdSecondary})";
+            var count = await _dbContext.getViewData(queryCount, null);
+
+            string query = $"select * from vtsk_3_OR_03_V4 t1 where parentid is not null and custId = {custId} and exists (select 1 from vtsk_3_OR_03_V4 t2 where t2.objid = t1.objid and custId = {custIdSecondary})";
+            query = DBQueryHelper.ApplySqlOrderByAndPaging(query, "objid", skip, take);
+
+            var list = await _dbContext.getViewData(query, null);
+
+            var responce = new
+            {
+                TotalItems = count?.FirstOrDefault()?.Values.FirstOrDefault(),
+                List = list,
+            };
+
+            return Ok(responce);
         }
 
         /// <summary>
@@ -555,7 +618,87 @@ namespace ipsmedserviceapp.Controllers
 
         #endregion
 
+        /// <summary>
+        /// Get object right list
+        /// </summary>
+        /// <param name="searchResource"></param>
+        /// <returns></returns>
+        [HttpPost("list")]
+        public async Task<IActionResult> GetObjectsRightList([FromBody] ObjectRightSearchResource searchResource)
+        {
+            ResponseOfRequest<DataTable> response;
+            try
+            {
+                DataTable data = null;
+                var frameParam = await _dbContext.FrameParam.Where(rec => rec.FrameCode == 1).ToListAsync();
+
+                string query = $"select t0.* from vtsk_3_OR_01_wpf t0";
+
+                using (var sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
+                {
+                    List<SqlParameter> parameters = new List<SqlParameter>();
+                    if (searchResource.SimpleSearch != null)
+                    {
+                        query = SearchQueryHelper.CreateSearchQuery(query, frameParam, searchResource.SimpleSearch, out SqlParameter sqlParameter);
+                        parameters.Add(sqlParameter);
+                    }
+                    if (searchResource.MultiplySearch != null)
+                    {
+                        query = SearchQueryHelper.CreateSearchQuery(query, frameParam, searchResource.MultiplySearch, out List<SqlParameter> sqlParameters);
+                        parameters = sqlParameters;
+                    }
+
+                    await Task.Factory.StartNew(() => data = ExecuteQuery.GetDataFromSqlServer(sqlConnection, query, parameters));
+
+                    response = new ResponseOfRequest<DataTable>(data);
+
+                    return Ok(response);
+                }
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest<DataTable>(e);
+                return Ok(response);
+            }
+        }
+
+        [HttpPost("CheckUniqueObject")]
+        public async Task<IActionResult> CheckUniqueObject([FromBody] string itemName)
+        {
+            var objects = await _dbContext.ObjectRight
+                .Where(rec => rec.Name == itemName)
+                .ToListAsync();
+
+            bool isUnique = objects.Count == 0;
+
+            var responseOfRequest = new ResponseOfRequest<bool>(isUnique);
+
+            return Ok(responseOfRequest);
+        }
+
+        /// <summary>
+        /// Перевірка наявності об'єктів права по назвам
+        /// </summary>
+        /// <param name="itemNames"></param>
+        /// <returns>список об'єків права які були знайдені за назвами</returns>
+        [HttpPost("CheckUniqueObjectList")]
+        public async Task<IActionResult> CheckUniqueObjectList([FromBody] List<string> itemNames)
+        {
+            var list = new List<string>();
+
+            foreach (var itemName in itemNames)
+            {
+                var objects = await _dbContext.ObjectRight
+                    .Where(rec => rec.Name == itemName)
+                    .ToListAsync();
+
+                if (objects.Any())
+                    list.Add(itemName);
+            }
+
+            var responseOfRequest = new ResponseOfRequest<List<string>>(list);
+
+            return Ok(responseOfRequest);
+        }
     }
-
-
 }

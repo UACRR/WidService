@@ -89,9 +89,9 @@
             // 
             this.radLabel4.Location = new System.Drawing.Point(4, 78);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(141, 19);
+            this.radLabel4.Size = new System.Drawing.Size(139, 19);
             this.radLabel4.TabIndex = 5;
-            this.radLabel4.Text = "Періодичність платежів";
+            this.radLabel4.Text = "Періодичність звітності";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
             // rtxtBoxAuthorPaymentPercent
@@ -168,8 +168,8 @@
             // 
             // ContractConsumerDetailControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.radLabel5);
             this.Controls.Add(this.rddListTypeAutoProl);
             this.Controls.Add(this.ddlPeriodPayment);

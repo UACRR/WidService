@@ -49,16 +49,28 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug IIS|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug IIS\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug HttpSys|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug HttpSys\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Interop.Word1">
-      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Word\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,44 +78,23 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Fixed.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Flow.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Windows.Zip, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Zip.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Diagrams.Core, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.FormatProviders.Pdf, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ApplicationCustomerData.cs" />
+    <Compile Include="Data\ApplicationSettings.cs" />
+    <Compile Include="Data\CurrentClient.cs" />
     <Compile Include="Dictionary\AgreementStatuses.cs" />
     <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />
     <Compile Include="Dictionary\ConsumerFilterEnum.cs" />
-    <Compile Include="Dictionary\ItemListResponse.cs" />
     <Compile Include="Dictionary\DictBaseTypeI.cs" />
-    <Compile Include="Dictionary\DictionaryBaseControl.cs" />
     <Compile Include="Dictionary\DictTr.cs" />
     <Compile Include="Dictionary\EditableObjectBase.cs" />
     <Compile Include="Dictionary\FixationModel.cs" />
@@ -129,7 +120,6 @@
     <Compile Include="Dictionary\TermsOfServiceWrapper.cs" />
     <Compile Include="Enums\CPartnerObjectStatus.cs" />
     <Compile Include="Enums\LicType.cs" />
-    <Compile Include="Enums\PeriodState.cs" />
     <Compile Include="Enums\RegisterState.cs" />
     <Compile Include="EventAggregator\EventAggregator.cs" />
     <Compile Include="EventAggregator\IEventAggregator.cs" />
@@ -145,6 +135,7 @@
     <Compile Include="Interfaces\IConsumerService.cs" />
     <Compile Include="Interfaces\IDBFPresenter.cs" />
     <Compile Include="Interfaces\IFilteredControl.cs" />
+    <Compile Include="Interfaces\ILazyLoadData.cs" />
     <Compile Include="Interfaces\IModel.cs" />
     <Compile Include="Interfaces\IObjectRightItemPresenter.cs" />
     <Compile Include="Interfaces\IObjectRightItemView.cs" />
@@ -267,11 +258,15 @@
     <Compile Include="Model\FixStorageDevice.cs" />
     <Compile Include="Model\FolkType.cs" />
     <Compile Include="Model\FolkTypeTr.cs" />
+    <Compile Include="Model\FrameParam.cs" />
+    <Compile Include="Model\FrameParamTr.cs" />
+    <Compile Include="Model\FrameTask.cs" />
     <Compile Include="Model\GenreType.cs" />
     <Compile Include="Model\GenreTypeTr.cs" />
     <Compile Include="Model\HandDocPay.cs" />
     <Compile Include="Model\InputFile.cs" />
     <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\InvoiceStatus.cs" />
     <Compile Include="Model\IsAuthorType.cs" />
     <Compile Include="Model\ItemStatus.cs" />
     <Compile Include="Model\ItemStatusTr.cs" />
@@ -295,6 +290,7 @@
     <Compile Include="Model\LicenseAgrParam.cs" />
     <Compile Include="Model\LicenseBigR.cs" />
     <Compile Include="Model\LicenseClass.cs" />
+    <Compile Include="Model\LicenseMethodType.cs" />
     <Compile Include="Model\LicenseType.cs" />
     <Compile Include="Model\LicenseTypeTr.cs" />
     <Compile Include="Model\LicPlace.cs" />
@@ -336,6 +332,7 @@
     <Compile Include="Model\PaymentStatusTr.cs" />
     <Compile Include="Model\PayMethodType.cs" />
     <Compile Include="Model\PayMethodTypeTr.cs" />
+    <Compile Include="Model\PayServiceType.cs" />
     <Compile Include="Model\PayTurn.cs" />
     <Compile Include="Model\PayTurnCm.cs" />
     <Compile Include="Model\PayTurnExtra.cs" />
@@ -348,8 +345,15 @@
     <Compile Include="Model\PeriodStatus.cs" />
     <Compile Include="Model\PeriodStatusTr.cs" />
     <Compile Include="Model\PeriodTr.cs" />
+    <Compile Include="Model\PermitRole.cs" />
+    <Compile Include="Model\PermitRoleTask.cs" />
+    <Compile Include="Model\PermitRoleTr.cs" />
+    <Compile Include="Model\PermitTask.cs" />
+    <Compile Include="Model\PermitTaskTr.cs" />
     <Compile Include="Model\PermitType.cs" />
     <Compile Include="Model\PermitTypeTr.cs" />
+    <Compile Include="Model\PermitUser.cs" />
+    <Compile Include="Model\PermitUserRole.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\PopGenre.cs" />
     <Compile Include="Model\PopGenreTr.cs" />
@@ -359,11 +363,13 @@
     <Compile Include="Model\PositionTypeTr.cs" />
     <Compile Include="Model\PrePayType.cs" />
     <Compile Include="Model\PrePayTypeTr.cs" />
+    <Compile Include="Model\ProcessManagement.cs" />
     <Compile Include="Model\PubCatalogItem.cs" />
     <Compile Include="Model\Region.cs" />
     <Compile Include="Model\RegionTr.cs" />
     <Compile Include="Model\Register.cs" />
     <Compile Include="Model\RegisterAuthors.cs" />
+    <Compile Include="Model\RegisterCcid.cs" />
     <Compile Include="Model\RegisterCount.cs" />
     <Compile Include="Model\RegisterExtra.cs" />
     <Compile Include="Model\RegisterItem.cs" />
@@ -392,6 +398,7 @@
     <Compile Include="Model\RelReqMedia.cs" />
     <Compile Include="Model\RelReqObj.cs" />
     <Compile Include="Model\RelSerialEpisode.cs" />
+    <Compile Include="Model\RelSubPublish.cs" />
     <Compile Include="Model\RelTvepisode.cs" />
     <Compile Include="Model\ReportList.cs" />
     <Compile Include="Model\Reports.cs" />
@@ -421,6 +428,7 @@
     <Compile Include="Model\RholderTypeTr.cs" />
     <Compile Include="Model\RightHolder.cs" />
     <Compile Include="Model\SaldoDay.cs" />
+    <Compile Include="Model\SchemaType.cs" />
     <Compile Include="Model\SeekObject.cs" />
     <Compile Include="Model\SeekType.cs" />
     <Compile Include="Model\SeekTypeTr.cs" />
@@ -467,29 +475,45 @@
     <Compile Include="Model\WorkRh.cs" />
     <Compile Include="Model\WorkType.cs" />
     <Compile Include="Model\WorkTypeTr.cs" />
+    <Compile Include="Patterns\Notifier\INotifier.cs" />
+    <Compile Include="Patterns\Notifier\ISubscriber.cs" />
     <Compile Include="Presenters\UniqueCheckerPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CatalogService.cs" />
+    <Compile Include="Services\CalculationBRService.cs" />
+    <Compile Include="Services\ConsumerRegisterService.cs" />
+    <Compile Include="Services\CopyrightRequestService.cs" />
+    <Compile Include="Services\ExportReportToFileService.cs" />
+    <Compile Include="Services\FinishingWorksService.cs" />
+    <Compile Include="Services\HelperService.cs" />
+    <Compile Include="Services\Interfaces\ICatalogFileItemsService.cs" />
+    <Compile Include="Services\LanguagesService.cs" />
+    <Compile Include="Services\RightholderCatalogService.cs" />
     <Compile Include="Services\CommunityService.cs" />
+    <Compile Include="Services\ConsumerAgreementService.cs" />
     <Compile Include="Services\ConsumerBigRightService.cs" />
     <Compile Include="Services\ConsumerService.cs" />
     <Compile Include="Data\Global.cs" />
     <Compile Include="Engines\DbfEngine.cs" />
     <Compile Include="Engines\ExcelEngine.cs" />
-    <Compile Include="Services\ConsumerSmallRightService.cs" />
+    <Compile Include="Services\ClientSmallRightService.cs" />
     <Compile Include="Services\DbfService.cs" />
     <Compile Include="Services\DictionaryService.cs" />
     <Compile Include="Services\FixationService.cs" />
-    <Compile Include="Services\LicenseDataService.cs" />
+    <Compile Include="Services\LicenseBRService.cs" />
     <Compile Include="Services\ObjectUploading\ObjectRightData.cs" />
     <Compile Include="Services\ObjectUploading\ObjectRightDataClientSideValidator.cs" />
     <Compile Include="Services\ObjectUploading\ObjectRightDataParser.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
     <Compile Include="Services\PartnerService.cs" />
+    <Compile Include="Services\PublisherAndSubpublisherSevice.cs" />
     <Compile Include="Services\RegisterService.cs" />
     <Compile Include="Services\ObjectUploading\RightholderData.cs" />
+    <Compile Include="Services\RegisterWIDService.cs" />
+    <Compile Include="Services\RightholderExternalService.cs" />
     <Compile Include="Services\RightholderRegisterService.cs" />
     <Compile Include="Services\RightHolderService.cs" />
+    <Compile Include="Services\RoyaltyCorrectionService.cs" />
+    <Compile Include="Services\TransferOfRightService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Utils.cs" />
     <Compile Include="Engines\WordEngine.cs" />
@@ -510,7 +534,8 @@
     <Compile Include="ViewModels\Fixations\RegisterCountViewModel.cs" />
     <Compile Include="ViewModels\ObjectsRight\ObjectRightForTransfering.cs" />
     <Compile Include="ViewModels\ObjectsRight\ObjectRightholderViewModel.cs" />
-    <Compile Include="ViewModels\Rightholders\LegalBasisType.cs" />
+    <Compile Include="ViewModels\Other\PublisherAndSubpublisherView.cs" />
+    <Compile Include="ViewModels\Other\PublishersView.cs" />
     <Compile Include="ViewModels\Rightholders\TransferParameters.cs" />
     <Compile Include="ViewModels\Users\UserViewModel.cs" />
   </ItemGroup>
@@ -542,6 +567,7 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
     </COMReference>
     <COMReference Include="Microsoft.Office.Interop.Word">
       <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
@@ -551,6 +577,7 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
     </COMReference>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
@@ -559,17 +586,23 @@
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

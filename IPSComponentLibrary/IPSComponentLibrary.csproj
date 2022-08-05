@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5882F17A-4E15-4E89-AEC6-9CB163B43316}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IPSComponentLibrary</RootNamespace>
+    <AssemblyName>IPSComponentLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\GridRowCountControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\GridRowCountControl.Designer.cs">
+      <DependentUpon>GridRowCountControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\SaveCancelButtonsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\SaveCancelButtonsControl.Designer.cs">
+      <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ExtensionMethods.cs" />
+    <Compile Include="Extensions\MessageShow.cs" />
+    <Compile Include="Forms\DocumentViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DocumentViewerForm.Designer.cs">
+      <DependentUpon>DocumentViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Register\CompositionOfReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\CompositionOfReport.Designer.cs">
+      <DependentUpon>CompositionOfReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Register\CreatePeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\CreatePeriod.Designer.cs">
+      <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Register\ReportExcelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\ReportExcelForm.Designer.cs">
+      <DependentUpon>ReportExcelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Register\ReportExtendedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\ReportExtendedForm.Designer.cs">
+      <DependentUpon>ReportExtendedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{b17076a8-b8f9-4f60-aac0-3845773a4d43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Common\GridRowCountControl.resx">
+      <DependentUpon>GridRowCountControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\SaveCancelButtonsControl.resx">
+      <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DocumentViewerForm.resx">
+      <DependentUpon>DocumentViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\CompositionOfReport.resx">
+      <DependentUpon>CompositionOfReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\CreatePeriod.resx">
+      <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\ReportExcelForm.resx">
+      <DependentUpon>ReportExcelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\ReportExtendedForm.resx">
+      <DependentUpon>ReportExtendedForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle-double-down-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle-double-left-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle-double-right-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle-double-up-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle-left-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle-right-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\createAct.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus-square-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\status-change.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unlink-solid.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unlink-solid1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\viewAct.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

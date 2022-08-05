@@ -36,8 +36,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public ObjectAuthorRightholder SelectedObjectAuthorRightholder => gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
 
-        private readonly BindingList<ObjectAuthorRightholder> _objectAuthorRightholderList = new BindingList<ObjectAuthorRightholder>();
-        public Collection<ObjectAuthorRightholder> ObjectAuthorRightholderList => _objectAuthorRightholderList;
+        public Collection<ObjectAuthorRightholder> ObjectAuthorRightholderList { get; } = new BindingList<ObjectAuthorRightholder>();
 
         public ObjectRightSrView()
         {
@@ -97,9 +96,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholderList)
         {
-            // TODO: (implemented) move map to presenter and bind to binding sources exposes from view - think about it (there is ObjectAuthorRightholderList property)
-            // TODO: move to constructor, move other binding initialization to constructor, set bindings for MediaTrack, SeekObject in the presenter throught property
-
             ObjectRight = objectRight;
 
             if (ObjectRight.GenreType == null)
@@ -111,7 +107,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ObjectRight.SeekObject = ObjectRight.SeekObject;
             seekObjectBindingSource.DataSource = ObjectRight.SeekObject;
 
-            objectAuthorRightholderBindingSource.DataSource = _objectAuthorRightholderList;
+            bsObjectAuthorRightholder.DataSource =  ObjectAuthorRightholderList;
         }
 
         public void SetHeader(string header)
@@ -245,7 +241,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void UpdateTotalPersent()
         {
-            var totalPersent = ObjectAuthorRightholderList.Where(ar => ar.Rate != null).Sum(s => s.Rate);
+            var totalPersent = ObjectAuthorRightholderList.Where(ar => true).Sum(s => s.Rate);
 
             txtTotalPersent.Text = totalPersent.ToString();
 

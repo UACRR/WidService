@@ -18,8 +18,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
     public partial class RequestReferenceControl : UserControl
     {
-        private const string SuccessRequestAdd = "Нову завявку додано!";
-        private const string ErrorRequestAdd = "Неможливо зберегти нову заявку!";
         private const string ChangeToReferenceSuccess = "Заявка переведена в довідку!";
         private const string ChangeToReferenceError = "Неможливо перевести заявку в довідку!";
         private const string ChangeToLicenseSuccess = "Довідка переведена в ліцензію!";
@@ -213,21 +211,19 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                     {
                         case ControlRequestOrReferenceType.Request:
                             // статуси 0, 1, 5 - редагування
-                            if (2 <= item.LicStatus && item.LicStatus <= 3)
-                                CallRequestForm(ScopeOfUseForm.View, item);
-                            else
-                                CallRequestForm(ScopeOfUseForm.Edit, item);
-
+                            var reqScope = new int?[] {0, 1, 5}.Contains(item.LicStatus) ? ScopeOfUseForm.Edit : ScopeOfUseForm.View;
+                            CallRequestForm(reqScope, item);
                             break;
 
                         case ControlRequestOrReferenceType.Reference:
-                            CallRequestForm(item.LicStatus != 3 ? ScopeOfUseForm.Edit : ScopeOfUseForm.View, item);
+                            var refScope = item.LicStatus != 3 ? ScopeOfUseForm.Edit : ScopeOfUseForm.View;
+                            CallRequestForm(refScope, item);
                             break;
                     }
                     
                     break;
                 case "deleteBtn":
-                    if(_typeControl == ControlRequestOrReferenceType.Request && item.LicStatus == 0)
+                    if(_typeControl == ControlRequestOrReferenceType.Request && new int?[] {0, 5}.Contains(item.LicStatus))
                         DeleteLicense();
                     break;
             }
@@ -236,21 +232,34 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// <summary>
         /// Показати форму заявки
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="scopeOfUse"></param>
         /// <param name="item"></param>
-        private void CallRequestForm(ScopeOfUseForm type, RequestsOrReferenceBigRightView item)
+        private void CallRequestForm(ScopeOfUseForm scopeOfUse, RequestsOrReferenceBigRightView item)
         {
-            var requestForm = new RequestForm(_customer, ViewsSingleton.ConsumerBigRightView, type, item.LicId, windowType: _typeControl);
+            //var requestForm = new RequestForm(_customer, ViewsSingleton.ConsumerBigRightView, type, item.LicId, windowType: _typeControl);
+            
+            var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
+            RequestForm requestForm = null;
 
-            if (requestForm.ShowDialog() == DialogResult.OK && type == ScopeOfUseForm.Edit)
+            if (scopeOfUse == ScopeOfUseForm.Edit)
+                requestForm = RequestForm.UpdateLicenseBRForm(licenseAgreement);
+
+            if (scopeOfUse == ScopeOfUseForm.View)
+                requestForm = RequestForm.ViewLicenseBRForm(licenseAgreement);
+
+            if (requestForm?.ShowDialog() == DialogResult.OK)
             {
-                var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
-                if (result)
-                {
-                    OnLicenseStatusChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
-                    UpdateData?.Invoke();
-                }
-                MessageShow.ShowInfoAfterChanges(result);
+                //// todo: move to helper
+                //var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
+                //if (result)
+                //{
+                //    // todo: move to controller
+                //    OnLicenseStatusChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
+                //    UpdateData?.Invoke();
+                //}
+                //MessageShow.ShowInfoAfterChanges(result);
+
+                //UpdateData?.Invoke();
             }
         }
 
@@ -309,13 +318,17 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         {
             if (_typeControl == ControlRequestOrReferenceType.Request)
             {
-                var requestForm = new RequestForm(_customer, ViewsSingleton.ConsumerBigRightView);
+                var requestForm = RequestForm.CreateLicenseBRForm();
                 if (requestForm.ShowDialog() == DialogResult.OK)
                 {
-                    var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
-                    if (result)
+                    //var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
+                    //if (result)
+                    //    UpdateData?.Invoke();
+                    
+                    //MessageShow.ShowInfoByResult(SuccessRequestAdd, ErrorRequestAdd, result.IsSuccess);
+
+                    //if (result.IsSuccess)
                         UpdateData?.Invoke();
-                    MessageShow.ShowInfoByResult(SuccessRequestAdd, ErrorRequestAdd, result);
                 }
             }
         }

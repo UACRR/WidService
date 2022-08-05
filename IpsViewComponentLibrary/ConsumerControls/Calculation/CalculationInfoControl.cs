@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms.Register;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
@@ -104,8 +106,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
             SubscribeForGridEvents(gvPeriodsPayment, gvUserMoneys);
         }
 
-
-
         private void SubscribeForGridEvents(RadGridView grid, RadGridView GridTarget)
         {
             RadDragDropService dragDropService = grid.GridViewElement.GetService<RadDragDropService>();
@@ -121,13 +121,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
 
         }
 
-
         #region Drag & drop logic *****************************************************************************
 
         private bool ValidPeriodForPay( PaidPeriod period )
         {
             // Прийом звітів
-            if (period.Status == 1) return false;
+            if (period.Status == 1) 
+                return false;
             // Беремо тільки Погоджені РЛ
             var rrl = period.RegisterRatedList.Where(rec => rec.Status == 1).ToList();
             // Сумуємо кількість звітів, які можно оплачувати
@@ -253,7 +253,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
         private Customer _customer;
         public Customer Customer
         {
-            get { return _customer; }
+            get => _customer;
             set
             {
                 _customer = value;
@@ -528,5 +528,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
         public decimal Arrears { get; set; }
         public bool AutoSet { get; set; }
         public decimal? MaxSum { get; set; }
+        public int? SchemaType { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.InternalControlsModel;
 using Telerik.WinControls.UI;
@@ -35,9 +36,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public TypeRights Rights { get; set; }
 
-        public void InitializeObjects(ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
+        public void InitializeObjects(ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, AgreementModifyType agreementModifyType)
         {
-            _selectFirstItemNeed = agreementInitType == ConsumerAgreementInitType.AddNewAgreement;
+            _selectFirstItemNeed = agreementModifyType == AgreementModifyType.CreateNewAgreement;
+            //_selectFirstItemNeed = agreementInitType == ConsumerAgreementInitType.AddNewAgreement;
             _tempPlaces = places;
             _licenseAgr = licenseAgr;
             _license = license;
@@ -66,7 +68,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             CheckPlaces();
 
             ctrlAgrMain.DataSource = _licenseAgr;
-            ctrlAgrMain.DateTimeType = agreementInitType;
+            ctrlAgrMain.DateTimeType = agreementModifyType;
             bindingSourceDictionary.DataSource = _anketaDictionaties.agrLicenseType.Where(rec =>
             {
                 switch (Rights)
@@ -98,8 +100,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             {
                 bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_tempPlaces);
 
-                //gvPlaces.DataSource = _tempPlaces;
-                //
                 foreach (var item in _licenseAgr.License)
                 {
                     var gvPlacesRow = gvPlaces.Rows.SingleOrDefault(row => PlaceChooserPredicate(row, item));

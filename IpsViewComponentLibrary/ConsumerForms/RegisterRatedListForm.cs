@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms.Register;
 using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.InternalControlsModel;
 using Telerik.WinControls.UI;
@@ -124,6 +127,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                     TempRegId = register.RegId,
                     ActCode = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.FirstOrDefault()?.ObjId)?.ActCode,
                     LicId = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.FirstOrDefault()?.ObjId)?.LicId,
+                    PrepayAmount = register.PrepayAmount,
                 });
             }
 
@@ -238,11 +242,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
             }
 
             if (_scopeOfUseForm == ScopeOfUseForm.Create)
-                foreach (var item in _registerRatedList.Register)
-                {
+            {
+                foreach (var item in _registerRatedList.Register) 
                     item.RegId = 0;
-                }
+            }
 
+            _registerRatedList.PrepayAmount = _registerRatedList.Register.Sum(rec => rec.PrepayAmount);
             DialogResult = DialogResult.OK;
         }
 
@@ -260,7 +265,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         }
 
         // зміна значень полів гріда
-        private void gvRegisterView_CellValueChanged(object sender, GridViewCellEventArgs e)
+        private async void gvRegisterView_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
             if (!(e.Row.DataBoundItem is RegisterRatedListGridDataSource item))
                 return;
@@ -278,14 +283,20 @@ namespace IpsViewComponentLibrary.ConsumerForms
                     reg.AuthRate = sw?.Rate;
                     reg.MusicRate = sw?.RateMusic;
                     item.LicId = sw?.LicId;
-                    reg.LicId = (sw?.LicId ?? default(int));
-                    //var mus = _customer?.Client?.LicenseAgreementChange?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
+                    reg.LicId = sw?.LicId ?? default(int);
                 }
                 else if (e.Column.FieldName == "Amount")
                 {
-                    reg.RegAmount = item.Amount;
-                    reg.AuthAmount = reg.RegAmount / 100 * reg.AuthRate;
-                    reg.MusicAmount = reg.RegAmount / 100 * reg.MusicRate;
+                    reg.RegAmount = Math.Round(item.Amount ?? 0m, 2);
+                    reg.AuthAmount = Math.Round((reg.RegAmount / 100 * reg.AuthRate) ?? 0m, 2);
+                    reg.MusicAmount = Math.Round((reg.RegAmount / 100 * reg.MusicRate) ?? 0m, 2);
+
+                    var service = HelperService.GetInstance();
+                    var result = await service.GetPrepayAmountAsync(item.LicId.Value, reg.AuthAmount.Value);
+
+                    reg.PrepayAmount = result?.Data?.PrepayAmount;
+
+                    // call
                 }
                 else if (e.Column.FieldName == "CountUse")
                 {
@@ -326,5 +337,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public int? LicId { get; set; }
         public int? TempRegId { get; set; }
         public int? ObjId { get; set; }
+        public decimal? PrepayAmount { get; set; }
     }
 }

@@ -9,14 +9,14 @@ namespace ipsFormsDesign.Model
         public PayMethodType()
         {
             PayMethodTypeTr = new ObservableListSource<PayMethodTypeTr>();
-            PaymentCase = new ObservableListSource<PaymentCase>();
+            PayServiceType = new ObservableListSource<PayServiceType>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
         public virtual ObservableListSource<PayMethodTypeTr> PayMethodTypeTr { get; set; }
-        public virtual ObservableListSource<PaymentCase> PaymentCase { get; set; }
+        public virtual ObservableListSource<PayServiceType> PayServiceType { get; set; }
     }
 }
 

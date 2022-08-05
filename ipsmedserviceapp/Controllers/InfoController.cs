@@ -9,11 +9,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ipsmedserviceapp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class InfoController : ControllerBase
     {
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
         public InfoController(MediaServiceContext dbContext)
         {
             _dbContext = dbContext;
@@ -22,7 +23,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("Owner")]
         public async Task<IActionResult> GetOwner()
         {
-            var owner = await _dbContext.vCustomer.Where(rec => rec.ankMy == 1).FirstOrDefaultAsync();
+            var owner = await _dbContext.vCustomer.Where(rec => rec.AnkMy == 1).FirstOrDefaultAsync();
             return Ok(owner);
         }
     }

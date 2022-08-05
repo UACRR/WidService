@@ -1,0 +1,6 @@
+{
+  "CurrentEnvironment": {
+    //"ConfigName": "applicationSettings.Prod.json",
+    "ConfigName": "applicationSettings.Dev.json"
+  }
+}

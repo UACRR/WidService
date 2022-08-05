@@ -37,7 +37,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
@@ -84,21 +83,21 @@
             gridViewTextBoxColumn2.MinWidth = 75;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "Objid";
-            gridViewTextBoxColumn2.Width = 83;
+            gridViewTextBoxColumn2.Width = 93;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "ObjName";
             gridViewTextBoxColumn3.HeaderText = "Назва вистави";
             gridViewTextBoxColumn3.MinWidth = 150;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 215;
+            gridViewTextBoxColumn3.Width = 241;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ ліцензійного договору";
             gridViewTextBoxColumn4.MinWidth = 100;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "LicNum";
-            gridViewTextBoxColumn4.Width = 111;
+            gridViewTextBoxColumn4.Width = 124;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "LicDate";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
@@ -106,15 +105,17 @@
             gridViewTextBoxColumn5.MinWidth = 75;
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "LicDate";
-            gridViewTextBoxColumn5.Width = 83;
+            gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn5.Width = 93;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.FieldName = "Rate";
-            gridViewTextBoxColumn6.FormatString = "{0:##0.00}";
+            gridViewTextBoxColumn6.FormatString = "{0:N2}";
             gridViewTextBoxColumn6.HeaderText = "АВ%";
             gridViewTextBoxColumn6.MinWidth = 45;
             gridViewTextBoxColumn6.Multiline = true;
             gridViewTextBoxColumn6.Name = "Rate";
             gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn6.Width = 56;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "LicDateBegin";
             gridViewTextBoxColumn7.FormatString = "{0:d}";
@@ -122,7 +123,8 @@
             gridViewTextBoxColumn7.MinWidth = 75;
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "LicDateBegin";
-            gridViewTextBoxColumn7.Width = 83;
+            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn7.Width = 93;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "LicDateEnd";
             gridViewTextBoxColumn8.FormatString = "{0:d}";
@@ -130,22 +132,14 @@
             gridViewTextBoxColumn8.MinWidth = 75;
             gridViewTextBoxColumn8.Multiline = true;
             gridViewTextBoxColumn8.Name = "LicDateEnd";
-            gridViewTextBoxColumn8.Width = 83;
+            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn8.Width = 93;
             gridViewTextBoxColumn8.WrapText = true;
-            gridViewTextBoxColumn9.FieldName = "prepayAvans";
-            gridViewTextBoxColumn9.FormatString = "{0:### ### ##0.00}";
-            gridViewTextBoxColumn9.HeaderText = "Аванс";
-            gridViewTextBoxColumn9.MinWidth = 95;
-            gridViewTextBoxColumn9.Multiline = true;
-            gridViewTextBoxColumn9.Name = "prepayAvans";
-            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn9.Width = 105;
-            gridViewTextBoxColumn9.WrapText = true;
-            gridViewTextBoxColumn10.FieldName = "LicStatusName";
-            gridViewTextBoxColumn10.HeaderText = "Статус ліцензії";
-            gridViewTextBoxColumn10.MinWidth = 90;
-            gridViewTextBoxColumn10.Name = "LicStatusName";
-            gridViewTextBoxColumn10.Width = 105;
+            gridViewTextBoxColumn9.FieldName = "LicStatusName";
+            gridViewTextBoxColumn9.HeaderText = "Статус ліцензії";
+            gridViewTextBoxColumn9.MinWidth = 90;
+            gridViewTextBoxColumn9.Name = "LicStatusName";
+            gridViewTextBoxColumn9.Width = 124;
             gridViewCommandColumn1.FieldName = "viewBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
@@ -174,7 +168,6 @@
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
             gridViewCommandColumn1,
             gridViewCommandColumn2});
             this.gvViewLicences.MasterTemplate.EnableCustomFiltering = true;
@@ -267,8 +260,8 @@
             // 
             // LicensesControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.ctrlAgrDetailInfo);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnToProlongation);

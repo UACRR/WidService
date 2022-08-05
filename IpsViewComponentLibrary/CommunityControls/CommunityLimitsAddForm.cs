@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.CommunityControls.InternalModel;
 using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -35,9 +29,11 @@ namespace IpsViewComponentLibrary.CommunityControls
         public CommunityLimitsAddForm(int communityCustId)
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+
             if (!IsDesignMode)
                 _presenter = new CommunityViewsPresenter();
-            WindowState = FormWindowState.Maximized;
+
             parentGridPanel.PanelElement.PanelBorder.Width = 0f;
             ctrlSaveCancel.SaveButtonEnabled = false;
             ctrlSaveCancel.ButtonSaveDialogResult = DialogResult.None;

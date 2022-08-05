@@ -79,6 +79,12 @@ public interface IAgreementAddCommunity
          int? AgrStatus { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
+         DateTime? DateBeginMec { get; set; }
+         DateTime? DateEndMec { get; set; }
+         DateTime? DateBeginPer { get; set; }
+         DateTime? DateEndPer { get; set; }
+         bool? IsMec { get; set; }
+         bool? IsPer { get; set; }
 }
 public interface IAgreementAddPartner
     {
@@ -165,6 +171,8 @@ public interface IAgrLicenseType
          string Series { get; set; }
          decimal? AuthRate { get; set; }
          short? IsPortal { get; set; }
+         short? IsPortalSale { get; set; }
+         int? LicClass { get; set; }
 }
 public interface IAgrLicenseTypeTr
     {
@@ -244,6 +252,7 @@ public interface IAnketaExternal
          string Name { get; set; }
          string CountryCode { get; set; }
          string InnOkpo { get; set; }
+         string FirstName { get; set; }
 }
 public interface IAnketaPerson
     {
@@ -557,7 +566,7 @@ public interface ICopyRight
          int CustId { get; set; }
          int? ObjId { get; set; }
          int? LBasis { get; set; }
-         decimal? Rate { get; set; }
+         decimal Rate { get; set; }
          decimal? RoleRate { get; set; }
          DateTime? BeginDate { get; set; }
          DateTime? EndDate { get; set; }
@@ -569,9 +578,11 @@ public interface ICopyRight
          int? ParentId { get; set; }
          int? RoleCode { get; set; }
          int? Status { get; set; }
-         decimal? RateMech { get; set; }
+         decimal RateMech { get; set; }
          int? LoadId { get; set; }
          string SourceName { get; set; }
+         int? LoadSeqNr { get; set; }
+         string CreateLogin { get; set; }
 }
 public interface ICopyRightHistory
     {
@@ -688,6 +699,8 @@ public interface ICustCmRight
          int CmCustId { get; set; }
          DateTime DateBegin { get; set; }
          DateTime DateEnd { get; set; }
+         DateTime? ModifyDate { get; set; }
+         string ModifyLogin { get; set; }
 }
 public interface ICustomer
     {    int CustId { get; set; }
@@ -699,6 +712,10 @@ public interface ICustomer
          byte? AnkTech { get; set; }
          string UserId { get; set; }
          int? LoadId { get; set; }
+         DateTime? DateCreate { get; set; }
+         string CreateLogin { get; set; }
+         DateTime? ModifyDate { get; set; }
+         string ModifyLogin { get; set; }
 }
 public interface ICustomerStatus
     {    int CodeI { get; set; }
@@ -811,6 +828,7 @@ public interface IDocPreparePay
          int? Paidid { get; set; }
          byte? FlCourt { get; set; }
          int? CustIdRh { get; set; }
+         decimal? Rate { get; set; }
 }
 public interface IDocReq
     {
@@ -974,6 +992,31 @@ public interface IFolkTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IFrameParam
+    {    int SeekCode { get; set; }
+         int? FrameCode { get; set; }
+         string SeekCodeName { get; set; }
+         string SeekName { get; set; }
+         string SeekClm { get; set; }
+         string SeekTbl { get; set; }
+         string SeekString { get; set; }
+         string SeekComment { get; set; }
+         string SeekOut { get; set; }
+}
+public interface IFrameParamTr
+    {
+         int SeekCode { get; set; }
+         string Lang { get; set; }
+         string SeekName { get; set; }
+}
+public interface IFrameTask
+    {    int TaskCode { get; set; }
+         int FrameCode { get; set; }
+         string FrameName { get; set; }
+         string Comment { get; set; }
+         string FrameShort { get; set; }
+         string FrameExtra { get; set; }
+}
 public interface IGenreType
     {    int CodeI { get; set; }
          int CategoryCode { get; set; }
@@ -1019,18 +1062,38 @@ public interface IInputFile
 }
 public interface IInvoice
     {
-         int DocId { get; set; }
+         int InvId { get; set; }
+         int? LicId { get; set; }
          int? PayCustId { get; set; }
          int? RecCustId { get; set; }
          int? PayAnk { get; set; }
          int? RecAnk { get; set; }
-         string R030 { get; set; }
-         decimal? Amount { get; set; }
          string RecMfo { get; set; }
          string RecBankName { get; set; }
-         string Purpose { get; set; }
-         int? Status { get; set; }
-    }
+         string RecAccount { get; set; }
+         string R030 { get; set; }
+         decimal? Amount { get; set; }
+         string Details { get; set; }
+         string InvNumber { get; set; }
+         DateTime? InvDate { get; set; }
+         DateTime? CreateDate { get; set; }
+         DateTime? ModifyDate { get; set; }
+         string UserId { get; set; }
+         DateTime? DateForPay { get; set; }
+         int? InvStatus { get; set; }
+         int? PayServiceType { get; set; }
+         string ApprovalCode { get; set; }
+         string Locale { get; set; }
+         string ProxyPan { get; set; }
+         string PurchaseTime { get; set; }
+         string Rrn { get; set; }
+         string TranCode { get; set; }
+         string XId { get; set; }
+}
+public interface IInvoiceStatus
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
 public interface IIsAuthorType
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1101,6 +1164,7 @@ public interface IKlR031
 public interface ILang
     {    string CodeS { get; set; }
          string Name { get; set; }
+         string Lang1 { get; set; }
 }
 public interface ILangTr
     {
@@ -1126,8 +1190,7 @@ public interface ILegalBasisTr
          string Name { get; set; }
 }
 public interface ILicAuthorBr
-    {
-         int CRightId { get; set; }
+    {    int CRightId { get; set; }
          int? PrepayType { get; set; }
          DateTime? DateCreate { get; set; }
          DateTime? DateClose { get; set; }
@@ -1140,6 +1203,10 @@ public interface ILicAuthorBr
          DateTime? PrepayDateDo { get; set; }
          decimal? PrepayRest { get; set; }
          decimal? PrepayUsed { get; set; }
+         int CustIdRh { get; set; }
+         string ModifyLogin { get; set; }
+         int LicId { get; set; }
+         int LicVersion { get; set; }
 }
 public interface ILicense
     {
@@ -1162,6 +1229,7 @@ public interface ILicenseAgreement
          int? LicSize { get; set; }
          int? LicVersion { get; set; }
          int? ProlongVersion { get; set; }
+         int? LicMethod { get; set; }
 }
 public interface ILicenseAgrParam
     {    int LicId { get; set; }
@@ -1182,6 +1250,7 @@ public interface ILicenseAgrParam
          string ModifyLogin { get; set; }
          int? AnkVersion { get; set; }
          string Comment { get; set; }
+         int? CntMonth { get; set; }
 }
 public interface ILicenseBigR
     {    int LicId { get; set; }
@@ -1199,12 +1268,16 @@ public interface ILicenseBigR
          int? PerformType { get; set; }
          short? LicTerm { get; set; }
          decimal? RateMusic { get; set; }
+         int LicVersion { get; set; }
 }
 public interface ILicenseClass
-    {
-         int CodeI { get; set; }
+    {    int CodeI { get; set; }
          string Name { get; set; }
-    }
+}
+public interface ILicenseMethodType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
 public interface ILicenseType
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1310,9 +1383,14 @@ public interface IMoneyPeriodLink
 }
 public interface IMoneyPrepayLink
     {
+         int LinkId { get; set; }
          int PaidId { get; set; }
-         int CRightId { get; set; }
-         decimal? Amount { get; set; }
+         int LicId { get; set; }
+         int LicVersion { get; set; }
+         int CustIdRh { get; set; }
+         decimal Amount { get; set; }
+         int? TurnId { get; set; }
+         int? PrepayType { get; set; }
 }
 public interface IMoneyReceived
     {    int PaidId { get; set; }
@@ -1357,6 +1435,7 @@ public interface IMusicalDesign
          string AuthorText { get; set; }
          TimeSpan? Duration { get; set; }
          int? NumbPerfom { get; set; }
+         int LicVersion { get; set; }
 }
 public interface IMyAnketa
     {    int CustId { get; set; }
@@ -1365,6 +1444,7 @@ public interface IMyAnketa
          string AccInCommission { get; set; }
          string AccCourt { get; set; }
          short? TypeAlg { get; set; }
+         string AccPrepayCompany { get; set; }
 }
 public interface IMyCategory
     {
@@ -1404,6 +1484,7 @@ public interface IObjectRight
          int? ActCode { get; set; }
          string InnerCode { get; set; }
          string SourceName { get; set; }
+         string CreateLogin { get; set; }
 }
 public interface IObjectStatus
     {    int CodeI { get; set; }
@@ -1490,6 +1571,11 @@ public interface IPayMethodTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IPayServiceType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+         int? PayMethodType { get; set; }
+}
 public interface IPayTurn
     {
          int TurnId { get; set; }
@@ -1513,10 +1599,14 @@ public interface IPayTurn
          int? PayTurnType { get; set; }
          short? DocType { get; set; }
          int? HandId { get; set; }
+         decimal? Rate { get; set; }
 }
 public interface IPayTurnCm
     {
+         int Id { get; set; }
          int AccId { get; set; }
+         int? CategoryCode { get; set; }
+         DateTime DateBegin { get; set; }
          DateTime DateWork { get; set; }
          int KindCode { get; set; }
          decimal? AmountSum { get; set; }
@@ -1526,7 +1616,6 @@ public interface IPayTurnCm
          decimal? Amount { get; set; }
          decimal? AmountCourt { get; set; }
          decimal? AmountCommiss { get; set; }
-         int? Custid { get; set; }
          int? CustIdRh { get; set; }
          int? CustIdCm { get; set; }
          string AccNls { get; set; }
@@ -1537,6 +1626,11 @@ public interface IPayTurnExtra
          DateTime Datework { get; set; }
          int? Custid { get; set; }
          int? Payturntype { get; set; }
+         int? CmCustId { get; set; }
+         string BalsDebet { get; set; }
+         string BalsCredit { get; set; }
+         int? CategoryCode { get; set; }
+         int? Objid { get; set; }
     }
 public interface IPayTurnRed
     {
@@ -1594,6 +1688,33 @@ public interface IPeriodTr
          string Name { get; set; }
          string NameR { get; set; }
 }
+public interface IPermitRole
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IPermitRoleTask
+    {
+         int RoleCode { get; set; }
+         int TaskCode { get; set; }
+}
+public interface IPermitRoleTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
+public interface IPermitTask
+    {    int CodeI { get; set; }
+         string CodeName { get; set; }
+         string Name { get; set; }
+         DateTime? CreateDate { get; set; }
+}
+public interface IPermitTaskTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
 public interface IPermitType
     {    bool CodeB { get; set; }
          string Name { get; set; }
@@ -1603,6 +1724,31 @@ public interface IPermitTypeTr
          bool CodeB { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
+}
+public interface IPermitUser
+    {    int CodeI { get; set; }
+         string Login { get; set; }
+         string FirstName { get; set; }
+         string SurName { get; set; }
+         string LastName { get; set; }
+         string Email { get; set; }
+         string PhoneNumber { get; set; }
+         byte[] PasswordHash { get; set; }
+         DateTime? CreateDate { get; set; }
+         DateTime? ModifyDate { get; set; }
+         short? IsLock { get; set; }
+         string Comment { get; set; }
+         bool? IsTempPassword { get; set; }
+         bool? IsWindowsAuth { get; set; }
+}
+public interface IPermitUserRole
+    {
+         int UserCode { get; set; }
+         int RoleCode { get; set; }
+         DateTime? CreateDate { get; set; }
+         DateTime? ModifyDate { get; set; }
+         bool? IsRead { get; set; }
+         bool? IsWrite { get; set; }
 }
 public interface IPerson
     {    int CustId { get; set; }
@@ -1648,6 +1794,20 @@ public interface IPrePayTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IProcessManagement
+    {
+         int ProcessId { get; set; }
+         int? ProcessCode { get; set; }
+         string ProcessName { get; set; }
+         string Comment { get; set; }
+         int? Status { get; set; }
+         DateTime? DateStop { get; set; }
+         string UserLogin { get; set; }
+         DateTime? DateModify { get; set; }
+         int? StatusAvto { get; set; }
+         DateTime? DateStopAvto { get; set; }
+         DateTime? DateStopBegin { get; set; }
+    }
 public interface IPubCatalogItem
     {
          int ItemId { get; set; }
@@ -1670,6 +1830,8 @@ public interface IPubCatalogItem
          int? Status { get; set; }
          string ErrComment { get; set; }
          string RhName { get; set; }
+         DateTime? DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
 }
 public interface IRegion
     {    int CodeI { get; set; }
@@ -1704,6 +1866,9 @@ public interface IRegister
          int? LicId { get; set; }
          int? SchemaId { get; set; }
          int? AlgorithmId { get; set; }
+         string ModifyDate { get; set; }
+         string ModifyLogin { get; set; }
+         decimal? PrepayAmount { get; set; }
 }
 public interface IRegisterAuthors
     {
@@ -1712,6 +1877,16 @@ public interface IRegisterAuthors
          int AuthId { get; set; }
          int CodeRole { get; set; }
          string Name { get; set; }
+}
+public interface IRegisterCcid
+    {
+         int RegId { get; set; }
+         int DdexReportId { get; set; }
+         int CcidClFileId { get; set; }
+         decimal? AmountCur { get; set; }
+         decimal? ExchangeRate { get; set; }
+         string R030 { get; set; }
+         decimal? AmountCurR { get; set; }
 }
 public interface IRegisterCount
     {
@@ -1758,6 +1933,7 @@ public interface IRegisterItem
          int Ticks { get; set; }
          bool IsAuto { get; set; }
          int? GenreType { get; set; }
+         int? Wic { get; set; }
 }
 public interface IRegisterItemFix
     {
@@ -1790,6 +1966,7 @@ public interface IRegisterRatedList
          int? Status { get; set; }
          int? CntReport { get; set; }
          decimal? PaidAmount { get; set; }
+         decimal? PrepayAmount { get; set; }
 }
 public interface IRegisterStatus
     {    int CodeI { get; set; }
@@ -1901,6 +2078,15 @@ public interface IRelSerialEpisode
          int ReqId { get; set; }
          int EpisodeTypeCode { get; set; }
          double? EpDuration { get; set; }
+}
+public interface IRelSubPublish
+    {
+         int CustIdPub { get; set; }
+         int CustIdSub { get; set; }
+         DateTime DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
+         DateTime? CreateDate { get; set; }
+         DateTime? ModifyDate { get; set; }
 }
 public interface IRelTvepisode
     {
@@ -2118,6 +2304,8 @@ public interface IRhcatalogItem
          string ErrComment { get; set; }
          TimeSpan? Duration { get; set; }
          int? RhCustId { get; set; }
+         DateTime? DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
 }
 public interface IRholderType
     {    int CodeI { get; set; }
@@ -2144,7 +2332,7 @@ public interface ISaldoDay
     {
          int AccId { get; set; }
          DateTime DateBegin { get; set; }
-         DateTime DateEnd { get; set; }
+         DateTime? DateEnd { get; set; }
          string R030 { get; set; }
          decimal? Rest { get; set; }
          decimal? RestCourt { get; set; }
@@ -2155,12 +2343,20 @@ public interface ISaldoDay
          decimal? RestBegin { get; set; }
          decimal? RestBeginCourt { get; set; }
     }
+public interface ISchemaType
+    {
+         int CodeI { get; set; }
+         string Name { get; set; }
+         short? IsMinAmount { get; set; }
+         short? IsRateAmount { get; set; }
+    }
 public interface ISeekObject
     {
          int Id { get; set; }
          int? CodeI { get; set; }
          int? ObjId { get; set; }
          string Name { get; set; }
+         DateTime? CreateDate { get; set; }
 }
 public interface ISeekType
     {    int CodeI { get; set; }
@@ -2196,6 +2392,8 @@ public interface ISystemConstant
     {    int CodeI { get; set; }
          string Name { get; set; }
          decimal? Rate { get; set; }
+         decimal? Amount { get; set; }
+         string ValStr { get; set; }
 }
 public interface ISystemConstantTr
     {

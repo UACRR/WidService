@@ -13,6 +13,7 @@ namespace ipsmedserviceapp.Model
 
         public string CodeS { get; set; }
         public string Name { get; set; }
+        public string Lang1 { get; set; }
 
         public virtual ICollection<AnketaPerson> AnketaPerson { get; set; }
         public virtual ICollection<LangTr> LangTr { get; set; }

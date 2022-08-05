@@ -8,6 +8,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Shared.Forms;
@@ -20,7 +21,7 @@ namespace IpsViewComponentLibrary.RightholderControls
     {
         private RequestsOrReferenceBigRightView _licenseAgreement;
 
-        private readonly LicenseDataService _licenseDataService;
+        private readonly LicenseBRService _licenseDataService;
         private readonly DialogService _dialogService;
         private readonly AgreementStatuses[] _allowedStatuses =
         {
@@ -41,7 +42,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (!IsDesignMode)
             {
-                _licenseDataService = new LicenseDataService();
+                _licenseDataService = LicenseBRService.GetInstance();
                 _dialogService = new DialogService();
             }
         }
@@ -189,20 +190,30 @@ namespace IpsViewComponentLibrary.RightholderControls
             var consumer = consumerService.GetData(selectedLicenseAgreement.CustId.Value);
             var bigRightView = consumerService.GetMainBigRightView().FirstOrDefault(rec => rec.CustId == selectedLicenseAgreement.CustId.Value);
 
-            var view = new RequestForm(consumer, bigRightView, ScopeOfUseForm.Edit, selectedLicenseAgreement.LicId, RequestForm.FormMode.ForSmallRightAdmin);
+            IpsGlobal.CurrentClient.CustId = consumer.CustId;
+            IpsGlobal.CurrentClient.ClnBusinessPlaceCollection = consumer.Client.ClnBusinessPlace;
+            ViewsSingleton.SetConsumerBigRightView(bigRightView);
+
+            //var view = new RequestForm(consumer, bigRightView, ScopeOfUseForm.Edit, selectedLicenseAgreement.LicId, RequestForm.FormMode.ForSmallRightAdmin);
+
+            var licenseAgreement = consumer.Client.LicenseAgreement.Single(rec => rec.LicId == selectedLicenseAgreement.LicId);
+
+            var view = RequestForm.UpdateLicenseBRForm(licenseAgreement, RequestForm.FormMode.ForSmallRightAdmin);
 
             if (view.ShowDialog() == DialogResult.OK)
             {
-                var result = consumerService.Save(consumer);
+                UpdateList();
 
-                if (result)
-                {
-                    UpdateList();
-                }
-                else
-                {
-                    _dialogService.ShowError("Не вдалося зберегти зміни.");
-                }
+                //var result = consumerService.Save(consumer);
+
+                //if (result)
+                //{
+                //    UpdateList();
+                //}
+                //else
+                //{
+                //    _dialogService.ShowError("Не вдалося зберегти зміни.");
+                //}
             }
         }
 

@@ -10,10 +10,15 @@ namespace ipsmedserviceapp.Model
             AgreementAddRh = new HashSet<AgreementAddRh>();
             AnketaAddNick = new HashSet<AnketaAddNick>();
             Authors = new HashSet<Authors>();
+            CatalogFile = new HashSet<CatalogFile>();
             CopyRight = new HashSet<CopyRight>();
             LicAuthorBr = new HashSet<LicAuthorBr>();
+            PubCatalogItem = new HashSet<PubCatalogItem>();
             RegisterCount = new HashSet<RegisterCount>();
+            RelSubPublishCustIdPubNavigation = new HashSet<RelSubPublish>();
+            RelSubPublishCustIdSubNavigation = new HashSet<RelSubPublish>();
             ReqAgreement = new HashSet<ReqAgreement>();
+            RhcatalogItem = new HashSet<RhcatalogItem>();
             TermsOfService = new HashSet<TermsOfService>();
             TerritoryExclude = new HashSet<TerritoryExclude>();
             TerritoryInclude = new HashSet<TerritoryInclude>();
@@ -24,17 +29,26 @@ namespace ipsmedserviceapp.Model
         public bool? AroundWord { get; set; }
         public string InterCode { get; set; }
         public string InnerCode { get; set; }
+        public int? RHolderType { get; set; }
+        public string Ipibase { get; set; }
+        public string Comment { get; set; }
+        public DateTime? DatePassed { get; set; }
 
-        public Customer Cust { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
-        public ICollection<TermsOfService> TermsOfService { get; set; }
-        public ICollection<TerritoryExclude> TerritoryExclude { get; set; }
-        public ICollection<TerritoryInclude> TerritoryInclude { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ICollection<AnketaAddNick> AnketaAddNick { get; set; }
+        public virtual ICollection<Authors> Authors { get; set; }
+        public virtual ICollection<CatalogFile> CatalogFile { get; set; }
+        public virtual ICollection<CopyRight> CopyRight { get; set; }
+        public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
+        public virtual ICollection<RegisterCount> RegisterCount { get; set; }
+        public virtual ICollection<RelSubPublish> RelSubPublishCustIdPubNavigation { get; set; }
+        public virtual ICollection<RelSubPublish> RelSubPublishCustIdSubNavigation { get; set; }
+        public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
+        public virtual ICollection<TermsOfService> TermsOfService { get; set; }
+        public virtual ICollection<TerritoryExclude> TerritoryExclude { get; set; }
+        public virtual ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }

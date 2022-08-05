@@ -37,11 +37,12 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictCountry = new System.Windows.Forms.BindingSource(this.components);
             this.txtCustIdCode = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtInnOkpo = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rhName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
@@ -50,7 +51,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustIdCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInnOkpo)).BeginInit();
@@ -115,7 +116,7 @@
             // ddlCountry
             // 
             this.ddlCountry.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaExternal, "CountryCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ddlCountry.DataSource = this.bsCountry;
+            this.ddlCountry.DataSource = this.bsDictCountry;
             this.ddlCountry.DisplayMember = "CountryName";
             this.ddlCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCountry.Location = new System.Drawing.Point(192, 110);
@@ -126,9 +127,9 @@
             this.ddlCountry.ThemeName = "Office2013Light";
             this.ddlCountry.ValueMember = "CountryCode";
             // 
-            // bsCountry
+            // bsDictCountry
             // 
-            this.bsCountry.DataSource = typeof(ipsFormsDesign.Model.Country);
+            this.bsDictCountry.DataSource = typeof(ipsFormsDesign.Model.Country);
             // 
             // txtCustIdCode
             // 
@@ -170,8 +171,8 @@
             // 
             // AnketaExternalRightholderControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.txtInnOkpo);
             this.Controls.Add(this.radLabel5);
             this.Controls.Add(this.txtCustIdCode);
@@ -194,7 +195,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustIdCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInnOkpo)).EndInit();
@@ -218,6 +219,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private System.Windows.Forms.BindingSource bsAnketaExternal;
         private System.Windows.Forms.BindingSource bsRightHolder;
-        private System.Windows.Forms.BindingSource bsCountry;
+        private System.Windows.Forms.BindingSource bsDictCountry;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

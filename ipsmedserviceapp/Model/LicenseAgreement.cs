@@ -10,6 +10,7 @@ namespace ipsmedserviceapp.Model
         {
             BrRegItem = new HashSet<BrRegItem>();
             Fixation = new HashSet<Fixation>();
+            Invoice = new HashSet<Invoice>();
             LicPlace = new HashSet<LicPlace>();
             LicenseAgrParam = new HashSet<LicenseAgrParam>();
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
@@ -26,6 +27,7 @@ namespace ipsmedserviceapp.Model
         public int? LicSize { get; set; }
         public int? LicVersion { get; set; }
         public int? ProlongVersion { get; set; }
+        public int? LicMethod { get; set; }
 
         public virtual AgreementMaster Agr { get; set; }
         [JsonIgnore]
@@ -33,14 +35,17 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public virtual AgrLicenseType LicCodeNavigation { get; set; }
         [JsonIgnore]
+        public virtual LicenseMethodType LicMethodNavigation { get; set; }
+        [JsonIgnore]
         public virtual AgreementStatus LicStatusNavigation { get; set; }
         [JsonIgnore]
         public virtual LicenseType LicTypeNavigation { get; set; }
-        public virtual LicenseBigR LicenseBigR { get; set; }
         [JsonIgnore]
         public virtual ICollection<BrRegItem> BrRegItem { get; set; }
         [JsonIgnore]
         public virtual ICollection<Fixation> Fixation { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Invoice> Invoice { get; set; }
         [JsonIgnore]
         public virtual ICollection<LicPlace> LicPlace { get; set; }
         public virtual ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }

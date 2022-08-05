@@ -16,6 +16,7 @@ using ipsFormsDesign.Events;
 using ipsFormsDesign.Data;
 using System.ComponentModel;
 using ipsFormsDesign.ViewModels.Fixations;
+using IPSViewComponentLibraryWPF.IPSExtensions;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -37,7 +38,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public object DataSourceRegisterExtra
         {
-            get { return bsRegisterExtra.DataSource; }
+            get => bsRegisterExtra.DataSource;
             set
             {
                 if (bsRegisterExtra.DataSource != value)
@@ -62,7 +63,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private RegisterItemViewModel _selectedRegisterItem;
         public RegisterItemViewModel SelectedRegisterItem
         {
-            get { return _selectedRegisterItem; }
+            get => _selectedRegisterItem;
             set
             {
                 _selectedRegisterItem = value;
@@ -111,7 +112,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private bool _allowFindCommand = true;
         public bool AllowFindCommand
         {
-            get { return _allowFindCommand; }
+            get => _allowFindCommand;
             set
             {
                 _allowFindCommand = value;
@@ -119,11 +120,24 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        // Видимість командної кнопки "Видалити"
-        private bool _allowShowDeleteCommand = true;
+        private bool _allowShowDurationItem;
+        public bool AllowShowDurationItem
+        {
+            get => _allowShowDurationItem;
+            set
+            {
+                _allowShowDurationItem = value;
+                gvRegisterItemList.SetColumnVisibility("DurationItem", value);
+            }
+        }
+
+            private bool _allowShowDeleteCommand = true;
+        /// <summary>
+        /// Видимість командної кнопки "Видалити"
+        /// </summary>
         public bool AllowShowDeleteCommand
         {
-            get { return _allowShowDeleteCommand; }
+            get => _allowShowDeleteCommand;
             set
             {
                 _allowShowDeleteCommand = value;
@@ -134,7 +148,6 @@ namespace IpsViewComponentLibrary.RegisterControls
                 registerCount.Columns["DeleteRhColumn"].IsVisible = _allowShowDeleteCommand;
             }
         }
-
 
         private bool _allowShowObjectCommand = true;
         public bool AllowShowObjectCommand
@@ -201,7 +214,6 @@ namespace IpsViewComponentLibrary.RegisterControls
                 gvRegisterItemList.SetColumnVisibility("Linked", _showLinked);
             }
         }
-
         public bool MultiSelect
         {
             get => gvRegisterItemList.MultiSelect;
@@ -294,6 +306,16 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        public bool ShowObjectDuration
+        {
+            set => gvRegisterItemList.SetColumnVisibility("ObjectDuration", value);
+        }
+        
+        public bool ShowObjectSource
+        {
+            set => gvRegisterItemList.SetColumnVisibility("ObjectSource", value);
+        }
+
         public RegisterItemListMode Mode { get; set; } = RegisterItemListMode.Default;
 
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
@@ -308,13 +330,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<CancelEventArgs> RegisterItemListValidating;
         public event EventHandler<RowValidatingEventArgs> RegisterItemRowValidating;
 
-
         public RegisterItemListControl()
         {
             InitializeComponent();
 
             gvRegisterItemList.DataSource = bsRegisterItemViewModel;
             ddlLinkedStatus.SelectedIndex = 0;
+
+            gvRegisterItemList.SubscribeToolTipTextNeeded();
 
             gvRegisterItemList.SetCommandColumnImageAlignment("FindColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("LinkColumn", ContentAlignment.MiddleCenter);
@@ -395,12 +418,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        private void GvRegisterItemList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
-        {
-            Utilities.GridViewHelper.SetTooltipText(sender, e);
-        }
-
-        // *** MED-526
         public void ResetErrorText()
         {
             foreach( var row in gvRegisterItemList.Rows )
@@ -423,8 +440,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             var cnt = gvRegisterItemList.Rows.Count(rec => (rec.DataBoundItem as RegisterItemViewModel)?.ObjId == null);
             return cnt;
         }
-
-        // *** MED-526
 
         private void GvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
@@ -526,13 +541,22 @@ namespace IpsViewComponentLibrary.RegisterControls
             SetFilter(ddlLinkedStatus.SelectedIndex);
         }
 
+        /// <summary>
+        /// Відфільтрувати об'єкти
+        /// </summary>
+        /// <param name="linkedStatus"></param>
         private void SetFilter(int linkedStatus)
         {
+            if (linkedStatus == 1)
+                gvRegisterItemList.FilterDescriptors.LogicalOperator = FilterLogicalOperator.Or;
+            else if (linkedStatus == 2)
+                gvRegisterItemList.FilterDescriptors.LogicalOperator = FilterLogicalOperator.And;
+
             gvRegisterItemList.FilterDescriptors.Clear();
 
             if (linkedStatus != 0)
             {
-                FilterDescriptor filterByObjId = new FilterDescriptor
+                var filterByObjId = new FilterDescriptor
                 {
                     PropertyName = "ObjId",
                     Operator = linkedStatus == 1 ? FilterOperator.IsNotEqualTo : FilterOperator.IsEqualTo,
@@ -540,9 +564,22 @@ namespace IpsViewComponentLibrary.RegisterControls
                     IsFilterEditor = true
                 };
                 gvRegisterItemList.FilterDescriptors.Add(filterByObjId);
+
+                var filterByWic = new FilterDescriptor
+                {
+                    PropertyName = "Wic",
+                    Operator = linkedStatus == 1 ? FilterOperator.IsNotEqualTo : FilterOperator.IsEqualTo,
+                    Value = null,
+                    IsFilterEditor = true
+                };
+                gvRegisterItemList.FilterDescriptors.Add(filterByWic);
             }
         }
 
+        /// <summary>
+        /// Прив'язати за не строгим пошуком (лупа)
+        /// </summary>
+        /// <param name="selectedRegisterItem"></param>
         private void OnFindCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowFindCommand)
@@ -557,6 +594,10 @@ namespace IpsViewComponentLibrary.RegisterControls
             FindCommandExecuted?.Invoke(this, selectedRegisterItem);
         }
 
+        /// <summary>
+        /// Прив'язати за строгим пошуком 
+        /// </summary>
+        /// <param name="selectedRegisterItem"></param>
         private void OnLinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowLinkCommand)
@@ -564,14 +605,20 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
 
-            // TODO: move to presenter
-            using (var selectionView = new ObjectRightSelectionView())
+            using (var selectionView = new ObjectRightSelectionExtendedView())
             {
-                selectionView.ObjectSelected += SelectionView_ObjectSelected;
-                selectionView.ShowDialog();
+                selectionView.RegisterItemViewModel = selectedRegisterItem;
+                if (selectionView.ShowDialog() == DialogResult.OK)
+                {
+                    SelectedRegisterItem.SetObjectData(selectionView.ObjectRight);
+                }
             }
         }
 
+        /// <summary>
+        /// Відв'язати прив'язаний об'єкт
+        /// </summary>
+        /// <param name="selectedRegisterItem"></param>
         private void OnUnlinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowUnlinkCommand)
@@ -580,17 +627,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             UnlinkCommandExecuted?.Invoke(this, selectedRegisterItem);
 
             selectedRegisterItem.ClearObjectData();
-        }
-
-        private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
-        {
-            SelectedRegisterItem.SetObjectData(
-                selectedObject.ObjId,
-                selectedObject.Name,
-                selectedObject.Author,
-                selectedObject.Performer,
-                selectedObject.Duration
-            );
         }
 
         private void BsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)
@@ -609,6 +645,10 @@ namespace IpsViewComponentLibrary.RegisterControls
             ObjectLinked?.Invoke(this, new ObjectLinkedEventArgs { RegisterItem = registerItem, ObjId = objId });
         }
 
+        /// <summary>
+        /// Показати прив'язаний об'єкт
+        /// </summary>
+        /// <param name="selectedRegisterItem"></param>
         private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowShowObjectCommand)
@@ -616,17 +656,25 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             ShowObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
 
-            if (selectedRegisterItem.ObjId != null)
+            if (selectedRegisterItem.ObjId.HasValue)
             {
                 using (var view = new ObjectRightSrView())
                 {
                     var presenter = new ObjectRightSrPresenter(view);
-                    presenter.Show((int)selectedRegisterItem.ObjId);
+                    presenter.Show(selectedRegisterItem.ObjId.Value);
+                }
+            }
+            else if (selectedRegisterItem.Wic.HasValue)
+            {
+                using (var viewWid = new ObjectRightWIDView())
+                {
+                    viewWid.LoadData(selectedRegisterItem.Wic.Value);
+                    viewWid.ShowDialog();
                 }
             }
         }
 
-        private void OnCreateObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
+        private async void OnCreateObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (!_allowCreateObjectCommand)
                 return;
@@ -637,9 +685,19 @@ namespace IpsViewComponentLibrary.RegisterControls
                 return;
             }
 
+            var service = ipsFormsDesign.Services.ObjectRightService.GetInstance();
+            
+            var isUnique = await service.CheckUniqueObject(selectedRegisterItem);
+            if (!isUnique)
+            {
+                string message = $"Можливий дубль об'єкта права! Об'єкт права з назвою «{selectedRegisterItem.ItemName}» наявний в системі!" +
+                                 $"\nРекомендовано через пошук прив'язати наявний. Якщо це інший об'єкт з аналогічною назвою - зареєструйте його вручну в \"Реєстрі ОП\", а потім прив'яжіть в режимі ідентифікації.";
+                ShowMessage.ShowWarning(message);
+                return;
+            }
+
             CreateObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
 
-            var service = new ipsFormsDesign.Services.ObjectRightService(); // TODO: move to presenter or application controller
             var newObject = service.New(5);
             newObject.SetDataFromRegisterItem(selectedRegisterItem);
 

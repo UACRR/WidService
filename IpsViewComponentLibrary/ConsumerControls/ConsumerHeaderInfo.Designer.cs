@@ -37,6 +37,8 @@
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.panelMeneger = new Telerik.WinControls.UI.RadPanel();
+            this.txtHeadEmail = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.txtHeadPhone = new Telerik.WinControls.UI.RadLabel();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
             this.txtHeadName = new Telerik.WinControls.UI.RadLabel();
@@ -48,8 +50,6 @@
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.txtContactName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.txtHeadEmail = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelUserInfo)).BeginInit();
             this.panelUserInfo.SuspendLayout();
@@ -61,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelMeneger)).BeginInit();
             this.panelMeneger.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeadEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeadPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeadName)).BeginInit();
@@ -73,8 +75,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtContactName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeadEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -208,6 +208,42 @@
             this.panelMeneger.Size = new System.Drawing.Size(358, 88);
             this.panelMeneger.TabIndex = 4;
             this.panelMeneger.ThemeName = "Office2013Light";
+            // 
+            // txtHeadEmail
+            // 
+            this.txtHeadEmail.BorderVisible = true;
+            this.txtHeadEmail.Location = new System.Drawing.Point(49, 63);
+            this.txtHeadEmail.MinimumSize = new System.Drawing.Size(306, 18);
+            this.txtHeadEmail.Name = "txtHeadEmail";
+            // 
+            // 
+            // 
+            this.txtHeadEmail.RootElement.MinSize = new System.Drawing.Size(306, 18);
+            this.txtHeadEmail.Size = new System.Drawing.Size(306, 18);
+            this.txtHeadEmail.TabIndex = 20;
+            this.txtHeadEmail.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.txtHeadEmail.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtHeadEmail.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtHeadEmail.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // radLabel19
+            // 
+            this.radLabel19.Location = new System.Drawing.Point(3, 62);
+            this.radLabel19.Name = "radLabel19";
+            this.radLabel19.Size = new System.Drawing.Size(41, 19);
+            this.radLabel19.TabIndex = 19;
+            this.radLabel19.Text = "E-Mail";
+            this.radLabel19.ThemeName = "Office2013Light";
             // 
             // txtHeadPhone
             // 
@@ -408,46 +444,10 @@
             this.radLabel9.Text = "ПІБ";
             this.radLabel9.ThemeName = "Office2013Light";
             // 
-            // txtHeadEmail
-            // 
-            this.txtHeadEmail.BorderVisible = true;
-            this.txtHeadEmail.Location = new System.Drawing.Point(49, 63);
-            this.txtHeadEmail.MinimumSize = new System.Drawing.Size(306, 18);
-            this.txtHeadEmail.Name = "txtHeadEmail";
-            // 
-            // 
-            // 
-            this.txtHeadEmail.RootElement.MinSize = new System.Drawing.Size(306, 18);
-            this.txtHeadEmail.Size = new System.Drawing.Size(306, 18);
-            this.txtHeadEmail.TabIndex = 20;
-            this.txtHeadEmail.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.txtHeadEmail.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtHeadEmail.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtHeadEmail.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtHeadEmail.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            // 
-            // radLabel19
-            // 
-            this.radLabel19.Location = new System.Drawing.Point(3, 62);
-            this.radLabel19.Name = "radLabel19";
-            this.radLabel19.Size = new System.Drawing.Size(41, 19);
-            this.radLabel19.TabIndex = 19;
-            this.radLabel19.Text = "E-Mail";
-            this.radLabel19.ThemeName = "Office2013Light";
-            // 
             // ConsumerHeaderInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.panelUserInfo);
             this.MaximumSize = new System.Drawing.Size(836, 178);
@@ -467,6 +467,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelMeneger)).EndInit();
             this.panelMeneger.ResumeLayout(false);
             this.panelMeneger.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeadEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeadPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeadName)).EndInit();
@@ -480,8 +482,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtContactName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeadEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

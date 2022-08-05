@@ -16,7 +16,6 @@ namespace ipsmedserviceapp.Model
             BankAccount = new HashSet<BankAccount>();
             Employee = new HashSet<Employee>();
             FileCustomer = new HashSet<FileCustomer>();
-            Register = new HashSet<Register>();
             ReqAgreement = new HashSet<ReqAgreement>();
             ReqCustomer = new HashSet<ReqCustomer>();
             Request = new HashSet<Request>();
@@ -30,30 +29,36 @@ namespace ipsmedserviceapp.Model
         public byte? AnkMy { get; set; }
         public byte? AnkPublish { get; set; }
         public byte? AnkTech { get; set; }
+        public string UserId { get; set; }
+        public int? LoadId { get; set; }
+        public DateTime? DateCreate { get; set; }
+        public string CreateLogin { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
 
-        public CustomerType CustTypeNavigation { get; set; }
-        public CustomerStatus StatusNavigation { get; set; }
-        public AnketaExternal AnketaExternal { get; set; }
-        public Client Client { get; set; }
-        public Community Community { get; set; }
-        public Company Company { get; set; }
-        public MyAnketa MyAnketa { get; set; }
-        public Partner Partner { get; set; }
-        public Person Person { get; set; }
-        public RightHolder RightHolder { get; set; }
-        public ICollection<Account> Account { get; set; }
-        public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        public ICollection<AnketaAddName> AnketaAddName { get; set; }
-        public ICollection<AnketaAddParam> AnketaAddParam { get; set; }
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<BankAccount> BankAccount { get; set; }
-        public ICollection<Employee> Employee { get; set; }
-        public ICollection<FileCustomer> FileCustomer { get; set; }
-        public ICollection<Register> Register { get; set; }
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
-        public ICollection<ReqCustomer> ReqCustomer { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<UserRole> UserRole { get; set; }
+        public virtual CustomerType CustTypeNavigation { get; set; }
+        public virtual CustomerStatus StatusNavigation { get; set; }
+        public virtual AspNetUsers User { get; set; }
+        public virtual AnketaExternal AnketaExternal { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Community Community { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual MyAnketa MyAnketa { get; set; }
+        public virtual Partner Partner { get; set; }
+        public virtual Person Person { get; set; }
+        public virtual RightHolder RightHolder { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<AgreementMaster> AgreementMaster { get; set; }
+        public virtual ICollection<AnketaAddName> AnketaAddName { get; set; }
+        public virtual ICollection<AnketaAddParam> AnketaAddParam { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompany { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPerson { get; set; }
+        public virtual ICollection<BankAccount> BankAccount { get; set; }
+        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<FileCustomer> FileCustomer { get; set; }
+        public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ICollection<ReqCustomer> ReqCustomer { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
+        public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }

@@ -1,0 +1,16 @@
+SELECT RightType
+      ,[RELEASE_ID]
+      ,[RESOURCE_ID]
+      ,[ISRC]
+      ,[ISWC]
+      ,[WORKCODE]
+      ,[WORK_TITLE]
+      ,[USE_QUANTITY]
+      ,[CLAIM_LICENSOR_COMBINED]
+      ,[AMOUNT_INVOICED_TOTAL]
+      --,[CLAIM_LICENSOR_MECH]
+      --,[CLAIM_LICENSOR_PERF]
+      --,[AMOUNT_LICENSOR_MECH]
+      --,[AMOUNT_LICENSOR_PERF]
+  FROM [YoutubeReports].[dbo].[CcidInvoiceDetailRecord]
+  order by SourceBlockId, SourceMusicWorkIndex

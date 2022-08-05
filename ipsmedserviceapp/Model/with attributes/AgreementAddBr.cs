@@ -7,22 +7,21 @@ namespace ipsmedserviceapp.Model
     {
         public int AgrId { get; set; }
         public int Version { get; set; }
-        public string AddNumber { get; set; }
-        public DateTime? AddDate { get; set; }
+        public string AgrNumber { get; set; }
+        public DateTime? AgrDate { get; set; }
         public DateTime? DateBegin { get; set; }
         public DateTime? DateEnd { get; set; }
         public int? PeriodCode { get; set; }
         public int? AgrStatus { get; set; }
         public int? DayForPay { get; set; }
-        public int? IsCurrent { get; set; }
         public int? AnkVersion { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
         public int? CustId { get; set; }
 
-        public AgreementMaster Agr { get; set; }
-        public AgreementStatus AgrStatusNavigation { get; set; }
-        public Client Cust { get; set; }
-        public Period PeriodCodeNavigation { get; set; }
+        public virtual AgreementMaster Agr { get; set; }
+        public virtual AgreementStatus AgrStatusNavigation { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual Period PeriodCodeNavigation { get; set; }
     }
 }

@@ -19,11 +19,13 @@ namespace ipsFormsDesign.Dictionary
         public string Performer { get; set; }
         public double Profit { get; set; }
         public int CategoryCode { get; set; }
+        public int? Wic { get; set; }
     }
 
     public class ObjectRightForRightholder : ObjectRightMainView
     {
         public int CustId { get; set; }
+        public int? CRightId { get; set; }
         public string NameClient { get; set; }
         public string RoleName { get; set; }
         public decimal? RateRh { get; set; }
@@ -39,7 +41,7 @@ namespace ipsFormsDesign.Dictionary
         public string Duration { get; set; }
         public string RoleName { get; set; }
         public string SpecName { get; set; }
-        public decimal? Rate { get; set; }
+        public decimal Rate { get; set; }
         public string Performer { get; set; }
         public string WorkCommentRH { get; set; }
         public DateTime? WorkDateRH { get; set; }
@@ -54,7 +56,8 @@ namespace ipsFormsDesign.Dictionary
         public int isClient { get; set; }
         public int isRHolder { get; set; }
         public int isPartner { get; set; }
-        public string Community_Name { get; set; }
+        public string CustIdSUbName { get; set; }
+        public DateTime? DateEndSUB { get; set; }
         public string InnerCode { get; set; }
         public string InterCode { get; set; }
         public string Country { get; set; }

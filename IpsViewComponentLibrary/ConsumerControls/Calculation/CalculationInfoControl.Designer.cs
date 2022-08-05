@@ -318,7 +318,7 @@
             gridViewTextBoxColumn11.Name = "State";
             gridViewTextBoxColumn11.Width = 97;
             gridViewTextBoxColumn12.FieldName = "PeriodPaymentName";
-            gridViewTextBoxColumn12.HeaderText = "Періодичність оплати";
+            gridViewTextBoxColumn12.HeaderText = "Періодичність звітності";
             gridViewTextBoxColumn12.Name = "PeriodPayment";
             gridViewTextBoxColumn12.Width = 132;
             gridViewDecimalColumn10.EnableExpressionEditor = false;
@@ -371,7 +371,7 @@
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(325, 21);
             this.radLabel3.TabIndex = 12;
-            this.radLabel3.Text = "Періоди платежів";
+            this.radLabel3.Text = "Звітні періоди";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
             // btnNewPeriod
@@ -509,11 +509,12 @@
             this.btnCancelDistribute.Enabled = false;
             this.btnCancelDistribute.Name = "btnCancelDistribute";
             this.btnCancelDistribute.Text = "Скасувати прив\'язку";
+            this.btnCancelDistribute.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // CalculationInfoControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.radSplitContainer1);
             this.Name = "CalculationInfoControl";
             this.Size = new System.Drawing.Size(955, 562);

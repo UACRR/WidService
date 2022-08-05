@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
         public int PositionCode { get; set; }
         public string RelDocument { get; set; }
 
-        public Company Cust { get; set; }
-        public Employee Empl { get; set; }
-        public PositionType PositionCodeNavigation { get; set; }
+        public virtual Company Cust { get; set; }
+        public virtual Employee Empl { get; set; }
+        public virtual PositionType PositionCodeNavigation { get; set; }
     }
 }

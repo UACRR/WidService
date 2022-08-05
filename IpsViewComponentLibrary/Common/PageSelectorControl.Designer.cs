@@ -54,14 +54,14 @@
             this.btnPrev.ThemeName = "Office2013Light";
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
-            // PageSelector
+            // PageSelectorControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
-            this.Name = "PageSelector";
+            this.Name = "PageSelectorControl";
             this.Size = new System.Drawing.Size(362, 30);
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrev)).EndInit();

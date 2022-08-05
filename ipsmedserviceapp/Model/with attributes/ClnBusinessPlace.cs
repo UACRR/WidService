@@ -23,10 +23,10 @@ namespace ipsmedserviceapp.Model
         public string PlacePhone { get; set; }
         public bool? FreeEntry { get; set; }
 
-        public Client Cust { get; set; }
-        public TypePlace PlCodeNavigation { get; set; }
-        public ICollection<ClnPlaceHoll> ClnPlaceHoll { get; set; }
-        public ICollection<LicPlace> LicPlace { get; set; }
-        public ICollection<License> License { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual TypePlace PlCodeNavigation { get; set; }
+        public virtual ICollection<ClnPlaceHoll> ClnPlaceHoll { get; set; }
+        public virtual ICollection<LicPlace> LicPlace { get; set; }
+        public virtual ICollection<License> License { get; set; }
     }
 }

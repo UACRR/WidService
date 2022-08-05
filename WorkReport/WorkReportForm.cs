@@ -16,14 +16,36 @@ namespace workReport
     {
         public WorkReportForm()
         {
-            var objectrightService = new ObjectRightService();
+            var objectrightService = ObjectRightService.GetInstance();
             IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
             var rightholderService = new RightholderService();
             IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
+
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
+            
+            ctrlRegisterList.IsExternalRegister = false;
+            ctrlRegisterList.UpdateList();
+
+            ctrlExternalRegisterList.IsExternalRegister = true;
+            ctrlExternalRegisterList.UpdateList();
+        }
+
+        public WorkReportForm(string[] args)
+        {
+            InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+
+            ThemeResolutionService.ApplicationThemeName = "Office2013Light";
+
+            ctrlRegisterList.IsExternalRegister = false;
+            ctrlRegisterList.UpdateList();
+
+            ctrlExternalRegisterList.IsExternalRegister = true;
+            ctrlExternalRegisterList.UpdateList();
         }
     }
 }

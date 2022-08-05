@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
@@ -82,16 +83,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         {
             if (!(e.Row.DataBoundItem is LicenseAgreementBigRightView item))
                 return;
+            
+            var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
 
             switch (e.Column.FieldName)
             {
                 case "viewBtn":
-                    var viewLicenseForm = new RequestForm(_customer, ViewsSingleton.ConsumerBigRightView, ScopeOfUseForm.View, item.LicId);
+                    //var viewLicenseForm = new RequestForm(_customer, ViewsSingleton.ConsumerBigRightView, ScopeOfUseForm.View, item.LicId);
+                    var viewLicenseForm = RequestForm.ViewLicenseBRForm(licenseAgreement);
                     viewLicenseForm.ShowDialog();
                     break;
                 case "printBtn":
-                    var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == item.LicId);
-                    var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+                    var print = new DocumentViewerForm(_customer, licenseAgreement);
                     print.ShowDialog();
                     break;
             }

@@ -13,8 +13,11 @@ namespace ipsFormsDesign.Model
             Authors = new ObservableListSource<Authors>();
             CatalogFile = new ObservableListSource<CatalogFile>();
             CopyRight = new ObservableListSource<CopyRight>();
+            LicAuthorBr = new ObservableListSource<LicAuthorBr>();
             PubCatalogItem = new ObservableListSource<PubCatalogItem>();
             RegisterCount = new ObservableListSource<RegisterCount>();
+            RelSubPublishCustIdPubNavigation = new ObservableListSource<RelSubPublish>();
+            RelSubPublishCustIdSubNavigation = new ObservableListSource<RelSubPublish>();
             ReqAgreement = new ObservableListSource<ReqAgreement>();
             RhcatalogItem = new ObservableListSource<RhcatalogItem>();
             TermsOfService = new ObservableListSource<TermsOfService>();
@@ -38,8 +41,11 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<Authors> Authors { get; set; }
         public virtual ObservableListSource<CatalogFile> CatalogFile { get; set; }
         public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
+        public virtual ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
         public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
         public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public virtual ObservableListSource<RelSubPublish> RelSubPublishCustIdPubNavigation { get; set; }
+        public virtual ObservableListSource<RelSubPublish> RelSubPublishCustIdSubNavigation { get; set; }
         public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
         public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
         public virtual ObservableListSource<TermsOfService> TermsOfService { get; set; }

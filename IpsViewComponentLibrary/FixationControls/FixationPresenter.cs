@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _consumerService = new ConsumerService();
             _dialogService = new DialogService();
             _fixationService = new FixationService();
-            _objectRightService = new ObjectRightService();
+            _objectRightService = ObjectRightService.GetInstance();
             _userService = new UserService();
             _percentDistributor = new AmountDistributor();
             _registerService = new RegisterService();

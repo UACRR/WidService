@@ -3,6 +3,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services.ObjectUploading;
 using System.Collections.Generic;
 using System.Linq;
+using ipsFormsDesign.Interfaces;
 
 namespace ipsFormsDesign.Utilities
 {
@@ -79,6 +80,7 @@ namespace ipsFormsDesign.Utilities
                     ObjId = objectAuthorRightholder.ObjId,
                     RoleCode = objectAuthorRightholder.RoleCode,
                     Rate = objectAuthorRightholder.Rate,
+                    RateMech = objectAuthorRightholder.RateMech,
                     BeginDate = objectAuthorRightholder.BeginDate,
                     EndDate = objectAuthorRightholder.EndDate,
                     Status = objectAuthorRightholder.CopyrightStatus,
@@ -98,7 +100,10 @@ namespace ipsFormsDesign.Utilities
                 copyRight.CustId = (int)objectAuthorRightholder.Author.CustId;
                 copyRight.RoleCode = objectAuthorRightholder.Author.RoleCode;
 
-                copyRight.LicAuthorBr = objectAuthorRightholder.LicAuthorBr;
+                //copyRight.LicAuthorBr = new ObservableListSource<LicAuthorBr>
+                //{
+                //    objectAuthorRightholder.LicAuthorBr,
+                //};
                 copyRight.WorkRh = objectAuthorRightholder.WorkRh;
 
                 objectRight.CopyRight.Add(copyRight);
@@ -107,30 +112,61 @@ namespace ipsFormsDesign.Utilities
 
         public static List<ObjectAuthorRightholderBrViewModel> GetObjectBrAuthorRightholderList(this ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
         {
+            var licenseBigR = objectRight.LicenseBigR.FirstOrDefault();
             var authorRightholderList = objectRight.Authors.Select(a =>
-            {
-                var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
-                var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
-
-                return new ObjectAuthorRightholderBrViewModel
                 {
-                    Author = a,
-                    IsRightholder = a.CustId.HasValue,
-                    Country = foundedRightholder?.Country,
-                    InnerCode = foundedRightholder?.InnerCode,
-                    CopyRight = foundedCopyright ?? new CopyRight(),
-                    LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new LicAuthorBr(),
-                    WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
-                };
-            })
-            .ToList();
+                    var foundedLicAuthorBr = licenseBigR.LicAuthorBr.FirstOrDefault(l => l.LicVersion == licenseBigR.LicVersion && l.CustIdRh == a.CustId);
+
+                    var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
+
+                    var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
+
+                    return new ObjectAuthorRightholderBrViewModel
+                    {
+                        Author = a,
+                        IsRightholder = a.CustId.HasValue,
+                        Country = foundedRightholder?.Country,
+                        InnerCode = foundedRightholder?.InnerCode,
+                        CopyRight = foundedCopyright ?? new CopyRight(),
+                        LicAuthorBr = foundedLicAuthorBr ?? new LicAuthorBr(),
+                        WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
+                    };
+                })
+                .ToList();
+
+            return authorRightholderList;
+        }
+
+        public static List<ObjectAuthorRightholderBrViewModel> GetObjectBrAuthorRightholderList(this LicenseBigR licenseBigR, IList<ViewCustomer> rightholderList = null)
+        {
+            var objectRight = licenseBigR.Obj;
+            var authorRightholderList = objectRight.Authors.Select(a =>
+                {
+                    var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
+
+                    var foundedLicAuthorBr = licenseBigR.LicAuthorBr.FirstOrDefault(l => l.CRightId == foundedCopyright?.CRightId);
+
+                    var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
+
+                    return new ObjectAuthorRightholderBrViewModel
+                    {
+                        Author = a,
+                        IsRightholder = a.CustId.HasValue,
+                        Country = foundedRightholder?.Country,
+                        InnerCode = foundedRightholder?.InnerCode,
+                        CopyRight = foundedCopyright ?? new CopyRight(),
+                        LicAuthorBr = foundedLicAuthorBr ?? new LicAuthorBr(),
+                        WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
+                    };
+                })
+                .ToList();
 
             return authorRightholderList;
         }
 
         public static decimal GetTotalRate(this ICollection<CopyRight> copyrightList)
         {
-            return copyrightList.Where(cr => cr.Rate != null).Sum(cr => cr.Rate.Value);
+            return copyrightList.Where(cr => true).Sum(cr => cr.Rate);
         }
 
         public static decimal GetTotalRoleRate(this ICollection<CopyRight> copyrightList)

@@ -1,0 +1,16 @@
+insert DDEX..AgrParamType select * from DDEX_37..AgrParamType
+insert DDEX..CcidClFileStatus select * from DDEX_37..CcidClFileStatus
+insert DDEX..CcidInFileStatus select * from DDEX_37..CcidInFileStatus
+insert DDEX..CcidInvoiceStatus select * from DDEX_37..CcidInvoiceStatus
+insert DDEX..CrfDetailStatus select * from DDEX_37..CrfDetailStatus
+insert DDEX..DdexAdjustmentType select * from DDEX_37..DdexAdjustmentType
+insert DDEX..DdexEnumContentCategory select * from DDEX_37..DdexEnumContentCategory
+insert DDEX..DdexEnumRightsType select * from DDEX_37..DdexEnumRightsType
+insert DDEX..DdexIdentBacklogStatus select * from DDEX_37..DdexIdentBacklogStatus
+insert DDEX..DdexReportStatus select * from DDEX_37..DdexReportStatus
+insert DDEX..DdexReportSubStatus select * from DDEX_37..DdexReportSubStatus
+insert DDEX..ExceptionSetStatus select * from DDEX_37..ExceptionSetStatus
+insert DDEX..ExceptionStatus select * from DDEX_37..ExceptionStatus
+insert DDEX..ExceptionType select * from DDEX_37..ExceptionType
+insert DDEX..IdentBacklogStatus select * from DDEX_37..IdentBacklogStatus
+insert DDEX..IdentMWStatus select * from DDEX_37..IdentMWStatus

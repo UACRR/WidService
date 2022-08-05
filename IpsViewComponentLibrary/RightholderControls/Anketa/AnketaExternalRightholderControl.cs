@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using ipsFormsDesign.Data;
-using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
@@ -19,7 +10,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
         {
             InitializeComponent();
             if (IpsGlobal.AnketaDictionaties != null)
-                bsCountry.DataSource = IpsGlobal.AnketaDictionaties.country;
+                bsDictCountry.DataSource = IpsGlobal.AnketaDictionaties.country;
 
             txtInnOkpo.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
         }

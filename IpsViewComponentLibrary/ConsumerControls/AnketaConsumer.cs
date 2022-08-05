@@ -4,11 +4,13 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.ConsumerControls.BigRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
@@ -152,7 +154,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     var places = _customer.Client.ClnBusinessPlace;
                     var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == 0);
                     var licAgr = license?.LicenseAgrParam.SingleOrDefault();
-                    _ctrlAgreementSmallRights.InitializeObjects(places, license, licAgr, ConsumerAgreementInitType.AddNewAgreement);
+                    _ctrlAgreementSmallRights.InitializeObjects(places, license, licAgr, AgreementModifyType.CreateNewAgreement);
                 }
                     break;
             }
@@ -228,7 +230,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
             var licenseAgreement = _customer?.Client?.LicenseAgreement?.FirstOrDefault();
-            var printForm = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+            var printForm = new DocumentViewerForm(_customer, licenseAgreement);
             if (printForm.ValidTemplate)
                 printForm.ShowDialog();
         }

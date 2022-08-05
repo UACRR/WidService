@@ -23,6 +23,11 @@ namespace ipsmedserviceapp.Utilities
             public CopyRight CopyrightToDb { get; set; }
         }
 
+        /// <summary>
+        /// Передача прав видавництва, права якого належать іншому субвиданвицтву
+        /// </summary>
+        private bool IsSubpublisherTransfer { get; set; }
+
         private readonly MediaServiceContext _dbContext;
         private readonly RightholderRepository _rightholderRepository;
         private readonly TransferParametersResource _transferParams;
@@ -34,7 +39,7 @@ namespace ipsmedserviceapp.Utilities
         private decimal _rateTotal;
         private decimal _rateTransfer;
         private decimal _kDecrTotal;
-        private DateTime _maxDate = new DateTime(3000, 1, 1);
+        private readonly DateTime _maxDate = new DateTime(3000, 1, 1);
         private List<CopyrightData> _intermidiateCopyrightData = new List<CopyrightData>();
 
         public ValidationResult Result { get; } = new ValidationResult();
@@ -60,7 +65,7 @@ namespace ipsmedserviceapp.Utilities
             {
                 _oldCopyrights = _oldRightholder.CopyRight.Where(c => c.ObjId == transferedObject.ObjId).ToList();
 
-                _rateTotal = _oldCopyrights.Sum(c => c.Rate ?? 0);
+                _rateTotal = _oldCopyrights.Sum(c => c.Rate);
 
                 if (_rateTotal == 0m)
                 {
@@ -108,9 +113,14 @@ namespace ipsmedserviceapp.Utilities
 
         private void PrepareDataForTransfering()
         {
-            _oldRightholder = _rightholderRepository.GetRightholderById(
-                _transferParams.OldRightholderId,
-                includeCopyrightsOnDate: _transferParams.DateFrom);
+            int[] copyRightIds = _transferParams.ObjectsRightList
+                .Where(rec => rec.CRightId.HasValue)
+                .Select(rec => rec.CRightId.Value)
+                .Distinct().ToArray();
+
+            IsSubpublisherTransfer = copyRightIds.Any();
+
+            _oldRightholder = _rightholderRepository.GetRightholderById(_transferParams.OldRightholderId, _transferParams.DateFrom, copyRightIds);
 
             var newRightholderIds = _transferParams.ObjectsRightList
                 .SelectMany(o => o.NewRightholderList)
@@ -140,6 +150,36 @@ namespace ipsmedserviceapp.Utilities
             return !Result.AreErrorsExist;
         }
 
+        /// <summary>
+        /// Закрити поточні права правовласника
+        /// </summary>
+        private void CloseExistingCopyrightsForOldRightholder()
+        {
+            var endDate = _transferParams.DateFrom.AddDays(-1);
+            foreach (var copyright in _oldCopyrights)
+            {
+                copyright.EndDate = endDate;
+            }
+
+            // clear custId in authors table for old rightholder if rights are transfered at all
+            // Патлякевич Зберігаємо custId
+            //if (_transferParams.DateTill == _maxDate)
+            //{
+            //    var authors = _dbContext.Authors
+            //        .Where(a => _transferParams.ObjectsRightList.Any(o => o.ObjId == a.ObjId))
+            //        .ToList();
+
+            //    foreach (var author in authors)
+            //    {
+            //        author.CustId = null;
+            //    }
+            //}
+        }
+
+        /// <summary>
+        /// Створити нові права для нового правовласника
+        /// </summary>
+        /// <param name="transferedObject"></param>
         private void CreateNewCopyrights(TransferedObjectResource transferedObject)
         {
             _intermidiateCopyrightData.Clear();
@@ -161,7 +201,7 @@ namespace ipsmedserviceapp.Utilities
                 // 1. create new copyrights for each of new rightholders
                 foreach (var newRightholderParams in transferedObject.NewRightholderList)
                 {
-                    var newRate = Math.Round(oldCopyright.Rate.Value * newRightholderParams.Rate / _rateTotal, 2);
+                    var newRate = Math.Round(oldCopyright.Rate * newRightholderParams.Rate / _rateTotal, 2);
 
                     totalTransferedRate += newRate;
 
@@ -174,6 +214,7 @@ namespace ipsmedserviceapp.Utilities
                         BeginDate = _transferParams.DateFrom,
                         EndDate = _transferParams.DateTill,
                         Rate = newRate,
+                        Status = oldCopyright.Status
                     };
 
                     _intermidiateCopyrightData.Add(new CopyrightData
@@ -196,6 +237,7 @@ namespace ipsmedserviceapp.Utilities
                         BeginDate = _transferParams.DateFrom,
                         EndDate = _transferParams.DateTill,
                         Rate = oldCopyright.Rate - totalTransferedRate,
+                        Status = oldCopyright.Status,
                     };
 
                     _intermidiateCopyrightData.Add(new CopyrightData
@@ -212,7 +254,16 @@ namespace ipsmedserviceapp.Utilities
         {
             // final copyright's list
             var groupedCopyrightData = _intermidiateCopyrightData
-                .GroupBy(cd => new { cd.Copyright.CustId, cd.Copyright.ObjId, cd.Copyright.LBasis, cd.Copyright.BeginDate, cd.Copyright.EndDate, cd.Copyright.RoleCode });
+                .GroupBy(cd => new
+                {
+                    cd.Copyright.CustId,
+                    cd.Copyright.ObjId,
+                    cd.Copyright.LBasis,
+                    cd.Copyright.BeginDate,
+                    cd.Copyright.EndDate,
+                    cd.Copyright.RoleCode,
+                    cd.Copyright.Status,
+                });
 
             var copyrightList = new List<CopyRight>();
             var copyrightHistoryList = new List<CopyRightHistory>();
@@ -221,14 +272,14 @@ namespace ipsmedserviceapp.Utilities
             {
                 var newCopyright = new CopyRight
                 {
-                    //ParentId = 101, // TODO: only for debug
                     CustId = group.Key.CustId,
                     ObjId = group.Key.ObjId,
                     RoleCode = group.Key.RoleCode,
                     LBasis = group.Key.LBasis,
                     BeginDate = group.Key.BeginDate,
                     EndDate = group.Key.EndDate,
-                    Rate = group.Sum(c => c.Copyright.Rate ?? 0),
+                    Rate = group.Sum(c => c.Copyright.Rate),
+                    Status = group.Key.Status,
                 };
 
                 copyrightList.Add(newCopyright);
@@ -253,7 +304,15 @@ namespace ipsmedserviceapp.Utilities
             // add new rightholders to authors table
             var groupedCopyrightData1 = _intermidiateCopyrightData
                 .Where(cd => cd.IsNewRightholder)
-                .GroupBy(cd => new { cd.Copyright.CustId, cd.Copyright.ObjId, cd.Copyright.LBasis, cd.Copyright.BeginDate, cd.Copyright.EndDate, cd.Copyright.RoleCode });
+                .GroupBy(cd => new
+                {
+                    cd.Copyright.CustId,
+                    cd.Copyright.ObjId,
+                    cd.Copyright.LBasis,
+                    cd.Copyright.BeginDate,
+                    cd.Copyright.EndDate,
+                    cd.Copyright.RoleCode
+                });
 
             foreach (var group in groupedCopyrightData1)
             {
@@ -273,10 +332,22 @@ namespace ipsmedserviceapp.Utilities
                 }
             }
 
+            if (IsSubpublisherTransfer)
+            {
+                foreach (var copyRight in copyrightList)
+                {
+                    var parentId = copyrightHistoryList.SingleOrDefault(rec => rec.Child.CustId == copyRight.CustId)?.Parent?.CRightId;
+                    copyRight.ParentId = parentId ?? 0;
+                }
+            }
+
             _dbContext.CopyRight.AddRange(copyrightList);
             _dbContext.CopyRightHistory.AddRange(copyrightHistoryList);
         }
 
+        /// <summary>
+        ///  Зробити повернення прав якщо об'єкт було передано на деякий термін
+        /// </summary>
         private void CreateNewCopyrightsForOldrightholder()
         {
             // create new copyrights for old rightholder if object is transfered for a certain time
@@ -294,6 +365,7 @@ namespace ipsmedserviceapp.Utilities
                         BeginDate = _transferParams.DateTill.AddDays(1),
                         EndDate = _maxDate,
                         Rate = oldCopyright.Rate,
+                        Status = oldCopyright.Status,
                     };
 
                     _dbContext.CopyRight.Add(restoredCopyright);
@@ -311,30 +383,6 @@ namespace ipsmedserviceapp.Utilities
                     }
                 }
             }
-        }
-
-        private void CloseExistingCopyrightsForOldRightholder()
-        {
-            var endDate = _transferParams.DateFrom.AddDays(-1);
-
-            foreach (var copyright in _oldCopyrights)
-            {
-                copyright.EndDate = endDate;
-            }
-
-            // clear custId in authors table for old rightholder if rights are transfered at all
-            // Патлякевич Зберігаємо custId
-            //if (_transferParams.DateTill == _maxDate)
-            //{
-            //    var authors = _dbContext.Authors
-            //        .Where(a => _transferParams.ObjectsRightList.Any(o => o.ObjId == a.ObjId))
-            //        .ToList();
-
-            //    foreach (var author in authors)
-            //    {
-            //        author.CustId = null;
-            //    }
-            //}
         }
     }
 }

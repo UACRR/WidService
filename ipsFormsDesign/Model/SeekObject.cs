@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         public int? CodeI { get; set; }
         public int? ObjId { get; set; }
         public string Name { get; set; }
+        public DateTime? CreateDate { get; set; }
 
         public virtual SeekType CodeINavigation { get; set; }
         public virtual ObjectRight Obj { get; set; }

@@ -16,18 +16,30 @@ namespace ipsFormsDesign.Dictionary
 
         public int? CustId { get; set; }
         public int? CRightId { get; set; }
-        public int? CopyrightStatus { get; set; }
-        public int? StatusZayavky { get; set; }
+        public int CopyrightStatus { get; set; }
         public string CommunityName { get; set; }
+        public DateTime? ValidUntilCommunityDate { get; set; }
 
-        private decimal? _rate;
-        public decimal? Rate
+        private decimal _rate;
+        public decimal Rate
         {
             get => _rate;
             set
             {
                 _rate = value;
                 OnPropertyChanged(nameof(Rate));
+            }
+        }
+
+        private decimal _rateMech;
+
+        public decimal RateMech
+        {
+            get => _rateMech;
+            set
+            {
+                _rateMech = value;
+                OnPropertyChanged(nameof(RateMech));
             }
         }
 
@@ -128,9 +140,8 @@ namespace ipsFormsDesign.Dictionary
         {
             IsRightholder = false;
             CustId = null;
-            CopyrightStatus = null;
-            StatusZayavky = null;
-            Rate = null;
+            CopyrightStatus = 0;
+            Rate = 0m;
             BeginDate = null;
             EndDate = null;
             AuthorName = string.Empty;

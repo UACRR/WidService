@@ -24,9 +24,12 @@ namespace ipsmedserviceapp.Model
         public string Series { get; set; }
         public decimal? AuthRate { get; set; }
         public short? IsPortal { get; set; }
+        public short? IsPortalSale { get; set; }
+        public int? LicClass { get; set; }
 
         public virtual AlgorithmType Algorithm { get; set; }
         public virtual CopyrightKind KindCodeNavigation { get; set; }
+        public virtual LicenseClass LicClassNavigation { get; set; }
         public virtual UsesKind UsesKindNavigation { get; set; }
         public virtual ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
         public virtual ICollection<LicenseAgreement> LicenseAgreement { get; set; }

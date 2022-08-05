@@ -17,6 +17,10 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class RightholderView : RadForm, IRightholderView
     {
+        private const string TransferRightholderConfirmMsg = "Перевести зовнішнього Правовласника в УААСП?";
+        private const string TransferRightholderSuccessMsg = "Правовласника переведено. Для подальшої роботи з його з Анкетою та Договором шукайте Правовласника в «Не підтверджені».";
+        private const string TransferRightholderErrorMsg = "Неможливо перевести Правовласника!";
+
         private const int CustomerTypeJuridicalCode = 3;
         private string _pdf;
         private string _doc;
@@ -78,8 +82,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             get => bsCustomer.DataSource;
             set
             {
-                bsCustomer.DataSource = value;
-                ctrlCatalog.CustId = ((Customer) value).CustId;
+                if (value != null)
+                {
+                    bsCustomer.DataSource = value;
+                    ctrlCatalog.CustId = ((Customer)value).CustId;
+                }
             }
         }
 
@@ -92,8 +99,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         //TernsOfService control for External Anketa
         public object TermsOfServiceExternalAnketaDataSource
         {
-            get => rightLimitationsControl1_ExternalAnketa.DataSource;
-            set => rightLimitationsControl1_ExternalAnketa.DataSource = value;
+            get => ctrlRightLimitationsExternal.DataSource;
+            set => ctrlRightLimitationsExternal.DataSource = value;
         }
 
         public object RightholderDataSource
@@ -119,7 +126,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         /// </summary>
         /// <param name="customerType"></param>
         /// <param name="rhType"></param>
-        public void SetCatalogsTabVisible(int? customerType, int? rhType)
+        private void SetCatalogsTabVisible(int? customerType, int? rhType)
         {
             // тип користувача/правовласника юр або фіз особи
             if (customerType == null || customerType >= 4 || rhType == null)
@@ -139,7 +146,27 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        
+        /// <summary>
+        /// Показати вкладку повноважень субвидавництва
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="rhType"></param>
+        /// <param name="custType"></param>
+        private void ShowPublishers(int custId, int? rhType, int? custType)
+        {
+            if (rhType == 3)
+            {
+                ctrlRightholderPublishers.LoadData(custId);
+
+                if (custType == 5)
+                    ctrlSubPublisherInUkraine.LoadData(custId);
+            }
+            else
+            {
+                pvPublishers.Item.Visibility = ElementVisibility.Collapsed;
+            }
+        }
+
         public RightholderView()
         {
             InitializeComponent();
@@ -150,10 +177,16 @@ namespace IpsViewComponentLibrary.RightholderControls
             passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
-            dtDatePassed.SetUserCalendarSettingsm();
+            dtDatePassed.SetUserCalendarSettings();
 
-            sbSave.DefaultItem = miSave;
-            sbSave.Text = miSave.Text;
+            sbtnSaveAnketa.DefaultItem = mibtnSaveAnketa;
+            sbtnSaveAnketa.Text = mibtnSaveAnketa.Text;
+
+            sbtnSaveAgreement.DefaultItem = mibtnSaveAgreement;
+            sbtnSaveAgreement.Text = mibtnSaveAgreement.Text;
+
+            sbtnSaveAnketaExternal.DefaultItem = mibtnSaveAnketaExternal;
+            sbtnSaveAnketaExternal.Text = mibtnSaveAnketaExternal.Text;
         }
 
         ~RightholderView()
@@ -199,74 +232,18 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             }
         }
-        //define active pages
-        private void ShowActivePages(Customer customer)
-        {
-            //check on exist state field 'CustType'
-            if (customer.CustType == null) { return; }
-            //get all pages
-            foreach (var external in pageCatalog.Pages)
-                //hide current page if it's: Anketa, Contract
-                if (customer.CustType == 5 && (external.Name == "Anketa" || external.Name == "Contract"))
-                    external.Item.Visibility = ElementVisibility.Collapsed;
-                //hide current page if it's: ExternalAnketa
-                else if (customer.CustType != 5 && external.Name == "AnketaExternal")
-                    external.Item.Visibility = ElementVisibility.Collapsed;
-
-        }
 
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
             SetCatalogsTabVisible(customer.CustType, customer.RightHolder.RHolderType);
             ctrlRightholderRegister.CustId = customer.CustId;
-            //set active pages on depends field 'CustType'
-            //ShowActivePages(customer);
 
-            //disable unusable code
-            //_isCompany = customer.CustType == 3;
+            ShowPublishers(customer.CustId, customer.RightHolder.RHolderType, customer.CustType);
 
-
-            //test model
             DirectorCustType _director = new DirectorCustType(this, customer);
             _director.CurrentTypeCustomer.ShowPages();
             _director.CurrentTypeCustomer.RunSetings();
-            //if (customer.CustType == 3)
-            //{
-            //    rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
-            //    rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    anketaPageView.SelectedPage = rightholderCompanyPage;
-
-            //    contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
-            //    contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    ctrlMiddleControlAddress.SetDataSources(customer);
-
-            //    managersPage.Item.Visibility = ElementVisibility.Visible;
-            //    passportPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    ctrlMiddleControlManagers.SetDataSources(customer);
-            //}
-            //else if (customer.CustType == 5)
-            //{
-            //    //set default active page for External Anketa
-            //    pageViewMain.SelectedPage = AnketaExternal;
-            //    //set data of the External Anketa
-            //    anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
-            //    anketaExternalRightholderControl1.DataSourceRightHolder = bsRightHolder;
-
-            //}
-            //else
-            //{
-            //    rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
-            //    anketaPageView.SelectedPage = rightholderPersonPage;
-
-            //    contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
-
-            //    managersPage.Item.Visibility = ElementVisibility.Collapsed;
-            //    passportPage.Item.Visibility = ElementVisibility.Visible;
-            //}
-
             ShowDialog();
         }
 
@@ -522,6 +499,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        /// <summary>
+        /// Перевести Правовласника в УААСП
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTransferToInternal_Click(object sender, EventArgs e)
+        {
+            if (MessageShow.ConfirmAction(TransferRightholderConfirmMsg) == DialogResult.Yes)
+            {
+                var result = RightholderExternalService.GetInstance().TransferExternalRHToInternal(bsCustomer.DataSource as Customer);
+                MessageShow.ShowInfoByResult(TransferRightholderSuccessMsg, TransferRightholderErrorMsg, result);
+
+                if (result)
+                    _presenter.Close();
+            }
+        }
         
         /// <summary>
         /// define common class for all Types
@@ -638,8 +631,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 //set default active page for External Anketa
                 _rightholderView.pageCatalog.SelectedPage = _rightholderView.AnketaExternal;
                 //set data of the External Anketa
-                _rightholderView.anketaExternalRightholderControl1.DataSourceAnketaExternal = _rightholderView.bsAnketaExternal;
-                _rightholderView.anketaExternalRightholderControl1.DataSourceRightHolder = _rightholderView.bsRightHolder;
+                _rightholderView.ctrlAnketaExternalRightholder.DataSourceAnketaExternal = _rightholderView.bsAnketaExternal;
+                _rightholderView.ctrlAnketaExternalRightholder.DataSourceRightHolder = _rightholderView.bsRightHolder;
+                _rightholderView.ctrlRightLimitationsExternal.IsExternalRightHolder = true;
             }
             
             //check on valid state input data
@@ -652,10 +646,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             //show necessary pages
             public void ShowPages()
             {
+                var hidepages = new[] { "Anketa", "Contract", "pvCatalog", "pvRegisters" };
                 foreach (var page in _rightholderView.pageCatalog.Pages)
                 {
-                    if (page.Name == "Anketa" || page.Name == "Contract")
+                    if (hidepages.Contains(page.Name))
                         page.Item.Visibility = ElementVisibility.Collapsed;
+
+                    //if (page.Name == "Anketa" || page.Name == "Contract")
+                    //    page.Item.Visibility = ElementVisibility.Collapsed;
                 }
             }
         }

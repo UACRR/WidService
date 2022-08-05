@@ -21,11 +21,18 @@ namespace ipsmedserviceapp.Model
         public bool? IsTour { get; set; }
         public string WhereTour { get; set; }
         public decimal? Rate { get; set; }
-        public DateTime? PrepayDateDo { get; set; }
+        public decimal? PrepayRest { get; set; }
+        public string LangCode { get; set; }
+        public int? PerformType { get; set; }
+        public short? LicTerm { get; set; }
+        public decimal? RateMusic { get; set; }
+        public int LicVersion { get; set; }
 
-        public LicenseAgreement Lic { get; set; }
-        public ObjectRight Obj { get; set; }
-        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
-        public ICollection<MusicalDesign> MusicalDesign { get; set; }
+        public virtual Language LangCodeNavigation { get; set; }
+        public virtual LicenseAgrParam Lic { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual PerformType PerformTypeNavigation { get; set; }
+        public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        public virtual ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }

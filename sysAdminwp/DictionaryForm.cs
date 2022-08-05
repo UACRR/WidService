@@ -76,8 +76,8 @@ namespace sysAdminwp
             InitializeComponent();
             pageView.Pages[pvSimpleOld.Name].Item.Visibility = ElementVisibility.Collapsed;
             
-            IpsGlobal.SetAnketaDictionaties(DictionaryService.GetInstance().GetAnketaDictionaties());
-            IpsGlobal.SetObjectRightDictionaries(DictionaryService.GetInstance().GetObjectRightDictionaries());
+            //IpsGlobal.SetAnketaDictionaties(DictionaryService.GetInstance().GetAnketaDictionaties());
+            //IpsGlobal.SetObjectRightDictionaries(DictionaryService.GetInstance().GetObjectRightDictionaries());
             SetTreeViewDataSource();
             //UpdateEditPanel();
         }

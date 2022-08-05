@@ -7,11 +7,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
-    public partial class RegisterView : Telerik.WinControls.UI.RadForm
+    public partial class RegisterView : RadForm
     {
         private RegisterPresenter _presenter;
         public RegisterPresenter Presenter
@@ -36,7 +38,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public Register Register
         {
-            get { return bsRegister.DataSource as Register; }
+            get => bsRegister.DataSource as Register;
             set
             {
                 if (bsRegister.DataSource != value)
@@ -44,16 +46,21 @@ namespace IpsViewComponentLibrary.RegisterControls
                     bsRegister.DataSource = value;
                     txtPeriodName.Text = value?.Rm?.Period?.PeriodName;
                     ddlLicCode.SelectedValue = value?.Rm?.Period?.Lic?.LicCode;
+
+                    if (value?.Rm?.Period?.Lic?.LicCode is int licCode)
+                    {
+                        var licenseType = IpsGlobal.AnketaDictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licCode);
+                        bool visible = licenseType?.SchemaId != 1;
+                        mebRegRate.Visible = visible;
+                        lblAuthRateByRegister.Visible = visible;
+                    }
                 }
             }
         }
 
         public ConsumerSmallRightView ConsumerInfo
         {
-            set
-            {
-                txtConsumerName.Text = value.Name;
-            }
+            set => txtConsumerName.Text = value.Name;
         }
 
         public BindingList<RegisterItemViewModel> RegisterItemList { get; private set; } = new BindingList<RegisterItemViewModel>();
@@ -69,7 +76,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             InitializeComponent();
 
-            dtCreateDate.SetReadOnly(true);
+            dtCreateDate.ReadOnly = true;
 
             SetDictionaries();
 
@@ -89,14 +96,14 @@ namespace IpsViewComponentLibrary.RegisterControls
             ShowDialog();
         }
 
-        public void SetStatus(RegisterStatusType status)
-        {
-            ddlStatus.SelectedValue = (int)status;
+        //public void SetStatus(RegisterStatusType status)
+        //{
+        //    ddlStatus.SelectedValue = (int)status;
 
-            SetAllowedStatus(status);
-            SetAllowedCommand(status);
-            SetControlEnabled(status);
-        }
+        //    SetAllowedStatus(status);
+        //    SetAllowedCommand(status);
+        //    SetControlEnabled(status);
+        //}
 
         private void SetUpViewForFormType()
         {
@@ -104,7 +111,9 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 splitPanelStage.Collapsed = true;
 
+                ctrlRegisterItemList.ShowObjectDuration = false;
                 ctrlRegisterItemList.ShowAuthors = true;
+                ctrlRegisterItemList.AllowShowDeleteCommand = false;
                 ctrlRegisterItemListStage.ShowAuthors = true;
 
                 lblMusicRate.Visible = false;
@@ -114,11 +123,13 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 splitPanelStage.Collapsed = false;
 
+                ctrlRegisterItemList.ShowObjectSource = false;
                 ctrlRegisterItemList.ShowAuthors = false;
                 ctrlRegisterItemList.ExpandAll();
 
                 ctrlRegisterItemListStage.ShowAuthors = false;
 
+                ctrlRegisterItemListStage.ShowObjectSource = false;
                 ctrlRegisterItemListStage.ShowGenre = true;
                 ctrlRegisterItemList.ShowGenreAndRate = true;
 
@@ -184,13 +195,13 @@ namespace IpsViewComponentLibrary.RegisterControls
             btnSetCanceledStatus.Enabled = !((int)status >= 2);
         }
 
-        private void btnSearchAuto_Click(object sender, EventArgs e)
+        private async void btnSearchAuto_Click(object sender, EventArgs e)
         {
-            radWaitingBar1.StartWaiting();
-            Task.Run(() => _presenter.SearchObjectsAuto())
-                    .ContinueWith(ct => radWaitingBar1.StopWaiting(), TaskScheduler.FromCurrentSynchronizationContext());
-            
-            //_presenter.SearchObjectsAuto();
+            //TODO: change
+            //await Task.Factory.StartNew(() => MessageShow.ShowInfo("Процес може зайняти тривалий час. Дочекайтеся завершення процесу."));
+            waitingBar.StartWaiting();
+            await Task.Factory.StartNew(() => _presenter.SearchObjectsAuto());
+            waitingBar.StopWaiting();
         }
 
         private void btnSearchAll_Click(object sender, EventArgs e)
@@ -219,9 +230,12 @@ namespace IpsViewComponentLibrary.RegisterControls
             btnSetCanceledStatus.Enabled = false;
             ddlStatus.ForeColor = Color.DarkGreen;
         }
+
         private void btnSetStatus_Click(object sender, EventArgs e)
         {
-            if (_presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag) == false) return; ;
+            if (_presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag) == false)
+                return;
+
             bsRegister.ResetCurrentItem();
             disableButtons();
         }

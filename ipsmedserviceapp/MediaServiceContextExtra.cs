@@ -4,19 +4,33 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.SQLViews;
 using ipsmedserviceapp.Controllers;
 using ipsmedserviceapp.Model.SQLViewsData;
+using IpsCommonTypes.Types.ObjectRightInfoWID;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ipsmedserviceapp.Model
 {
     public partial class MediaServiceContext : DbContext
     {
-        // mapped to vTsk_1_ListRightHolder01
         public DbQuery<RightholderMainView> RightholderMainView { get; set; }
         public DbQuery<vCustomer> vCustomer { get; set; }
         public DbQuery<vTsk1ListRightHolder01> vTsk_1_ListRightHolder01 { get; set; }
+        public DbQuery<ObjectsRightForLink> ObjectsRightForLink { get; set; }
+
+        public DbQuery<WIDObjectRight> WIDObjectRight { get; set; }
+        public DbQuery<WIDiswc> WIDiswc { get; set; }
+        public DbQuery<WIDObjectAuthors> WIDObjectAuthors { get; set; }
+        public DbQuery<WIDObjectAuthorsCommunities> WIDObjectAuthorsCommunities { get; set; }
+        public DbQuery<WIDObjectAlternativeNames> WIDObjectAlternativeNames { get; set; }
+        public DbQuery<WIDObjectPerformers> WIDObjectPerformers { get; set; }
+
+        public DbQuery<MPay41_D21K21_TransferList> MPay41D21K21TransferLists { get; set; }
+        public DbQuery<FT_TSK_1_BRMoneyPrepay> FT_TSK_1_BRMoneyPrepay { get; set; }
+        public DbQuery<QUERY_RegisterPrepayAmountSum> QUERY_RegisterPrepayAmountSumList { get; set; }
+
+        public DbQuery<FT_TSK_2_BRRegisterAuthor> FT_TSK_2_BRRegisterAuthor { get; set; }
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {
@@ -72,8 +86,6 @@ namespace ipsmedserviceapp.Model
             });
 
         }
-
-
 
         /// <summary>
         /// 
@@ -131,7 +143,6 @@ namespace ipsmedserviceapp.Model
             });
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -167,7 +178,7 @@ namespace ipsmedserviceapp.Model
             List<Dictionary<string, object>> vActiveOrders = null;
 
             var connection = this.Database.GetDbConnection();
-            var timeout = Database.GetCommandTimeout() ?? 600;
+            var timeout = Database.GetCommandTimeout() ?? 1200;
 
             try
             {

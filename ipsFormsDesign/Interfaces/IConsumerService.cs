@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.ViewModels.Consumer;
@@ -12,130 +14,150 @@ namespace ipsFormsDesign.Interfaces
     public class ConsumerBigRightView
     {
         /// <summary>
-        /// Тип Ген. угоди
-        /// </summary>
-        public int AgrType { get; set; }
-        /// <summary>
-        /// Назва Типу
-        /// </summary>
-        public string AgrTypeName { get; set; }
-        /// <summary>
-        /// Ід Сподивача
+        /// ID клієнта
         /// </summary>
         public int CustId { get; set; }
+
+        /// <summary>
+        ///  Назва клієнта
+        /// </summary>
+        public string Name { get; set; }
+
         /// <summary>
         /// ЄДРПОУ
         /// </summary>
         public string Innokpo { get; set; }
+
         /// <summary>
         /// Ід Генеральной угоди
         /// </summary>
         public int AgrId { get; set; }
+
         /// <summary>
         /// Номер Ген. угоди
         /// </summary>
         public string AgrNumber { get; set; }
+
         /// <summary>
         /// Дата ген. угоди
         /// </summary>
         public DateTime? AgrDate { get; set; }
+
         /// <summary>
         /// Дата початку дії
         /// </summary>
         public DateTime? DateBegin { get; set; }
+
         /// <summary>
         /// Кінцева дата дії
         /// </summary>
         public DateTime? DateEnd { get; set; }
-        /// <summary>
-        ///  Назва Споживача
-        /// </summary>
-        public string Name { get; set; }
-        /// <summary>
-        /// Код країни Споживача 
-        /// </summary>
-        public string CountryCode { get; set; }
+
         /// <summary>
         /// Місто
         /// </summary>        
         public string JaCity { get; set; }
+
         /// <summary>
-        ///  Статус Ген. Угоди
+        /// Тип Ген. угоди
         /// </summary>
-        public int? AgrStatus { get; set; }
+        public int AgrType { get; set; }
+
         /// <summary>
-        /// Назва статусу 
+        /// Назва Типу
         /// </summary>
-        public string StatusName { get; set; }
+        public string AgrTypeName { get; set; }
+
         /// <summary>
-        /// Статус Доп угоди
+        /// Код країни Споживача 
         /// </summary>
-        public int? AddStatus { get; set; }
-        /// <summary>
-        /// Назва Статус 
-        /// </summary>
-        public string AddStatusName { get; set; }
-        /// <summary>
-        /// Кількість
-        /// </summary>
-        public int? CountLic1Active { get; set; }
-        /// <summary>
-        /// Кількість
-        /// </summary>
-        public int? CountLic1NoActive { get; set; }
-        /// <summary>
-        /// Кількість
-        /// </summary>
-        public int? CountLic1ToProlong { get; set; }
-        /// <summary>
-        /// Кількість
-        /// </summary>
-        public int? CountLic2Active { get; set; }
-        /// <summary>
-        /// Кількість
-        /// </summary>
-        public int? CountLic2NoActive { get; set; }
-        /// <summary>
-        /// Кількість
-        /// </summary>
-        public int? CountLic3Active { get; set; }
-        /// <summary>
-        /// Кількість
-        /// </summary>
-        public int? CountLic3NoActive { get; set; }
-        /// <summary>
-        /// Сума
-        /// </summary>
-        public decimal? UndistribAmount { get; set; }
-        /// <summary>
-        /// Сума
-        /// </summary>
-        public decimal? Borg { get; set; }
-        /// <summary>
-        /// Сума
-        /// </summary>
-        public decimal? UnattachAmount { get; set; }
-        /// <summary>
-        /// Сума
-        /// </summary>
-        public decimal? PrePayRest { get; set; }
+        public string CountryCode { get; set; }
+
         /// <summary>
         /// Дата останього платежу
         /// </summary>
         public DateTime? DatePayLast { get; set; }
+
         /// <summary>
         /// Ід Партнера
         /// </summary>
         public int? ClcustId { get; set; }
+
         /// <summary>
         /// Назва Партнера
         /// </summary>
         public string PartnerName { get; set; }
+
         /// <summary>
         /// Адреса
         /// </summary>
         public string JaAddress { get; set; }
 
+        public float? UndistribAmount { get; set; }
+        public float? Borg { get; set; }
+        public float? UnattachAmount { get; set; }
+        public float? PrePayRest { get; set; }
+
+        private int? _agrStatus;
+
+        /// <summary>
+        ///  Статус Ген. Угоди
+        /// </summary>
+        public int? AgrStatus
+        {
+            get => _agrStatus;
+            set
+            {
+                _agrStatus = value;
+                if (value.HasValue)
+                {
+                    StatusName = IpsGlobal.AnketaDictionaties.agreementStatus.First(rec => rec.CodeI == value.Value)
+                        .Name;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Назва статусу 
+        /// </summary>
+        public string StatusName { get; set; }
+
+        private int? _addStatus;
+
+        /// <summary>
+        /// Статус Доп угоди
+        /// </summary>
+        public int? AddStatus
+        {
+            get => _addStatus;
+            set
+            {
+                _addStatus = value;
+                if (value.HasValue)
+                {
+                    AddStatusName = IpsGlobal.AnketaDictionaties.agreementStatus.First(rec => rec.CodeI == value.Value)
+                        .Name;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Назва Статус 
+        /// </summary>
+        public string AddStatusName { get; set; }
+
+        public int CountLic1Active { get; set; }
+        public int CountLic1NoActive { get; set; }
+        public int CountLic1ToProlong { get; set; }
+        public int CountLic1Close { get; set; }
+        public int CountLic2Active { get; set; }
+        public int CountLic2NoActive { get; set; }
+        public int CountLic2ForAccept { get; set; }
+        public int CountLic2Rejected { get; set; }
+        public int CountLic3Active { get; set; }
+        public int CountLic3NoActive { get; set; }
+        public int CountLic3ForAccept { get; set; }
+        public int CountLic3Rejected { get; set; }
     }
 
     public interface IConsumerService : IModel
@@ -167,8 +189,7 @@ namespace ipsFormsDesign.Interfaces
         public int? ObjStatus { get; set; }
         public int? GenreType { get; set; }
         public int? PerformNumb { get; set; }
-        public decimal? PrepayPaush { get; set; }
-        public decimal? PrepayAvans { get; set; }
+
         public decimal? PrepayRest { get; set; }
         public decimal? TicketPriceNC { get; set; }
         public decimal? TicketPriceUSD { get; set; }
@@ -187,7 +208,11 @@ namespace ipsFormsDesign.Interfaces
         public string WhereTour { get; set; }
         public string ToProlong { get; set; }
         public string Comment { get; set; }
-        public string R030 { get; set; }
+
+        public string R030Paush { get; set; }
+        public string R030Avans { get; set; }
+        public decimal? PrepayPaush { get; set; }
+        public decimal? PrepayAvans { get; set; }
     }
 
     /// <summary>
@@ -317,6 +342,7 @@ namespace ipsFormsDesign.Interfaces
         public decimal Distribamount { get; set; }
         public decimal? Borg { get; set; }
         public decimal? PrepaySum { get; set; }
+        public decimal? PayAmountCL { get; set; }
         public string PeriodName { get; set; }
         public string StatusName { get; set; }
     }
@@ -326,25 +352,27 @@ namespace ipsFormsDesign.Interfaces
     /// </summary>
     public class RatedListSpectacleBigRightView
     {
+        public int CustId { get; set; }
         public int RmId { get; set; }
         public int RegId { get; set; }
         public int? ObjId { get; set; }
+        public string ItemName { get; set; }
         public int? ActCode { get; set; }
-        public int? CountUse { get; set; }
-        public int CustId { get; set; }
+        //public int? CountUse { get; set; }
         public decimal? RegAmount { get; set; }
         public decimal? AuthAmount { get; set; }
-        public decimal PrepaySumAuthor { get; set; }
-        public decimal? AvanseRest { get; set; }
-        public decimal AvanseUsed { get; set; }
-        public decimal? AuthRate { get; set; }
-        public decimal? RoleRate { get; set; }
-        public decimal? AmountDistributed { get; set; }
-        public string ItemName { get; set; }
-        public string RoleName { get; set; }
-        public string NameRh { get; set; }
-        public decimal? MusicRate { get; set; }
-        public decimal? MusicAmount { get; set; }
+        public decimal? PrepayAmount { get; set; }
+        public decimal? PayAmountCL { get; set; }
+
+        //public decimal? AvanseRest { get; set; }
+        //public decimal AvanseUsed { get; set; }
+        //public decimal? AuthRate { get; set; }
+        //public decimal? RoleRate { get; set; }
+        //public decimal? AmountDistributed { get; set; }
+        //public string RoleName { get; set; }
+        //public string NameRh { get; set; }
+        //public decimal? MusicRate { get; set; }
+        //public decimal? MusicAmount { get; set; }
     }
 
     /// <summary>
@@ -352,13 +380,13 @@ namespace ipsFormsDesign.Interfaces
     /// </summary>
     public class RatedListMusicDesignBigRightView
     {
-        public TimeSpan? Duration { get; set; }
         public int RmId { get; set; }
         public int RegId { get; set; }
         public int? ObjId { get; set; }
         public string ObjName { get; set; }
         public string NameMusician { get; set; }
         public string NameSinger { get; set; }
+        public long? Duration { get; set; }
     }
 
     public class PartnerView

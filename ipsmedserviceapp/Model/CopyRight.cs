@@ -11,15 +11,16 @@ namespace ipsmedserviceapp.Model
             CopyRightHistoryChild = new HashSet<CopyRightHistory>();
             CopyRightHistoryParent = new HashSet<CopyRightHistory>();
             Distribution = new HashSet<Distribution>();
-            PubCatalogItem = new HashSet<PubCatalogItem>();
+            LicAuthorBr = new HashSet<LicAuthorBr>();
             RhcatalogItem = new HashSet<RhcatalogItem>();
+            Status = 0;
         }
 
         public int CRightId { get; set; }
         public int CustId { get; set; }
         public int? ObjId { get; set; }
         public int? LBasis { get; set; }
-        public decimal? Rate { get; set; }
+        public decimal Rate { get; set; }
         public decimal? RoleRate { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
@@ -31,9 +32,11 @@ namespace ipsmedserviceapp.Model
         public int? ParentId { get; set; }
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
-        public decimal? RateMech { get; set; }
+        public decimal RateMech { get; set; }
         public int? LoadId { get; set; }
         public string SourceName { get; set; }
+        public int? LoadSeqNr { get; set; }
+        public string CreateLogin { get; set; }
 
         [JsonIgnore]
         public virtual RightHolder Cust { get; set; }
@@ -42,7 +45,6 @@ namespace ipsmedserviceapp.Model
         public virtual CreativeRoleType RoleCodeNavigation { get; set; }
         [JsonIgnore]
         public virtual CrightStatus StatusNavigation { get; set; }
-        public virtual LicAuthorBr LicAuthorBr { get; set; }
         public virtual WorkRh WorkRh { get; set; }
         [JsonIgnore]
         public virtual ICollection<CopyRightHistory> CopyRightHistoryChild { get; set; }
@@ -50,8 +52,7 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<CopyRightHistory> CopyRightHistoryParent { get; set; }
         [JsonIgnore]
         public virtual ICollection<Distribution> Distribution { get; set; }
-        [JsonIgnore]
-        public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
+        public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
         [JsonIgnore]
         public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
     }

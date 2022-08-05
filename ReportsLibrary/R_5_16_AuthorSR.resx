@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox17.Value" xml:space="preserve">
+    <value>='27.  Відомість "Розподіл авторської винагороди на правовласників" за '+ Substr(CStr(Parameters.dateBegin.Value),0,10)+
+ IIf(Parameters.categoryCode.Value=0,' ( Всі )', IIf(Parameters.categoryCode.Value=6,' ( Великі права )',' ( Малі права )' ))</value>
+  </data>
   <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

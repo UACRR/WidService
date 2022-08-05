@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using IPSComponentLibrary.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -70,7 +71,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             var row = e.Row.DataBoundItem as GeneralAgreementBigRightView;
             var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
-            var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+            var print = new DocumentViewerForm(_customer, licenseAgreement);
             if (print.ValidTemplate)
                 print.ShowDialog();
         }
@@ -151,7 +152,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             if ((bool)result)
                 UpdateData?.Invoke();
 
-            ExtensionUtils.ShowMessage((bool)result, MessageType.GeneralAgreementChange);
+            MessageShow.ShowInfoAfterChanges((bool)result);
         }
 
         #endregion

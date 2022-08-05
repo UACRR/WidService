@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Common
 {
-    public partial class ConfirmationView : Telerik.WinControls.UI.RadForm
+    public partial class ConfirmationView : RadForm
     {
         private bool _showAcceptButton = false;
         public bool ShowAcceptButton

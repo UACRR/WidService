@@ -146,7 +146,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 }
             }
             // view
-            else if (item.Status == 1)
+            else if (item.Status == 1 || item.Status == 3)
             {
                 var addform = new RegisterRatedListForm(ScopeOfUseForm.View, _customer, spectacles, ratedList);
                 addform.ShowDialog();
@@ -223,50 +223,54 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
         private void SetSpectacleViewGridDataSource(int rmId)
         {
-            var dicParent = new Dictionary<int, ParentTemplate>();
-            var parentList = new List<ParentTemplate>();
-            var childList = new List<ChildTemplate>();
+            var list = _payslipsSpectacleViews.Where(rec => rec.RmId == rmId).ToList();
+            gvViewSpectacles.DataSource = list;
 
-            foreach (var item in _payslipsSpectacleViews.Where(rec => rec.RmId == rmId))
-            {
-                if (!dicParent.Keys.Contains((int)item.ObjId))
-                {
-                    var parent = new ParentTemplate
-                    {
-                        ObjId = (int)item.ObjId,
-                        RegId = item.RegId,
-                        ObjName = item.ItemName,
-                        ActCode = item.ActCode,
-                        AuthAmount = item.AuthAmount,
-                        AuthRate = item.AuthRate,
-                        MusicAmount = item.MusicAmount,
-                        MusicRate = item.MusicRate,
-                        AvanseRest = item.AvanseRest,
-                        PrepaySumAuthor = item.PrepaySumAuthor,
-                        Amount = item.RegAmount,
-                        CountUse = item.CountUse,
-                    };
-                    dicParent.Add((int)parent.ObjId, parent);
-                    parentList.Add(parent);
-                }
+            //var dicParent = new Dictionary<int, ParentTemplate>();
+            //var parentList = new List<ParentTemplate>();
+            //var childList = new List<ChildTemplate>();
 
-                var addItem = new ChildTemplate
-                {
-                    CustId = item.CustId,
-                    ObjId = item.ObjId,
-                    AmountDistributed = item.AmountDistributed,
-                    AvanseUsed = item.AvanseUsed,
-                    NameRh = item.NameRh,
-                    RoleName = item.RoleName,
-                    RoleRate = item.RoleRate
-                };
+            //foreach (var item in _payslipsSpectacleViews.Where(rec => rec.RmId == rmId))
+            //{
+            //    if (!dicParent.Keys.Contains((int)item.ObjId))
+            //    {
+            //        var parent = new ParentTemplate
+            //        {
+            //            ObjId = (int)item.ObjId,
+            //            RegId = item.RegId,
+            //            ObjName = item.ItemName,
+            //            ActCode = item.ActCode,
+            //            AuthAmount = item.AuthAmount,
+            //            AuthRate = item.AuthRate,
+            //            MusicAmount = item.MusicAmount,
+            //            MusicRate = item.MusicRate,
+            //            AvanseRest = item.AvanseRest,
+            //            PrepaySumAuthor = item.PrepaySumAuthor,
+            //            Amount = item.RegAmount,
+            //            CountUse = item.CountUse,
+            //        };
+            //        dicParent.Add((int)parent.ObjId, parent);
+            //        parentList.Add(parent);
+            //    }
 
-                childList.Add(addItem);
-                
-            }
 
-            gvViewSpectacles.DataSource = parentList;
-            bsChildTemplate.DataSource = childList;
+            //    var addItem = new ChildTemplate
+            //    {
+            //        CustId = item.CustId,
+            //        ObjId = item.ObjId,
+            //        AmountDistributed = item.AmountDistributed,
+            //        AvanseUsed = item.AvanseUsed,
+            //        NameRh = item.NameRh,
+            //        RoleName = item.RoleName,
+            //        RoleRate = item.RoleRate
+            //    };
+
+            //    childList.Add(addItem);
+
+            //}
+
+            //gvViewSpectacles.DataSource = parentList;
+            //bsChildTemplate.DataSource = childList;
         }
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
@@ -276,14 +280,22 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             if (pageView.SelectedPage == pvMusicalDesign)
             {
-
-                if (!(gvViewSpectacles.CurrentRow.DataBoundItem is ParentTemplate source))
-                    source = ((GridViewRowInfo)((GridViewHierarchyRowInfo)gvViewSpectacles.CurrentRow).Parent)?.DataBoundItem as ParentTemplate;
-
-                ctrlMusicDesignHeaderInfo.DataSource = source;
+                var item = (RatedListSpectacleBigRightView) gvViewSpectacles.CurrentRow.DataBoundItem;
+                
+                ctrlMusicDesignHeaderInfo.DataSource = new MusicDesignHeaderInfo
+                {
+                    ObjName = item.ItemName,
+                    ActCode = item.ActCode,
+                    CountUse = null,
+                    Amount = item.RegAmount,
+                    AuthAmount = item.AuthAmount,
+                    AuthRate = null,
+                    MusicAmount = null,
+                    MusicRate = null
+                };
 
                 var musicDesign = ViewsSingleton.RatedListMusicDesignBigRightView;
-                var dataSource = musicDesign?.Where(r => r.RegId == source?.RegId).ToList();
+                var dataSource = musicDesign?.Where(r => r.RegId == item?.RegId).ToList();
                 gvMusicDesignView.DataSource = dataSource;
             }
         }

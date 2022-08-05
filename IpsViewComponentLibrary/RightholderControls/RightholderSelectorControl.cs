@@ -10,10 +10,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private RightholderMainView _rightholder;
         public RightholderMainView Rightholder
         {
-            get
-            {
-                return _rightholder;
-            }
+            get => _rightholder;
             set
             {
                 if (_rightholder != value)
@@ -28,6 +25,21 @@ namespace IpsViewComponentLibrary.RightholderControls
         public event CancelEventHandler RightholderChanging;
         public event EventHandler<RightholderMainView> RightholderChanged;
         public event EventHandler<RightholderMainView> ShowAnketaCommandExecuted;
+
+        private const string PrimaryRightholderPrimarily = "Правовласник:";
+        private const string SecondaryRightholderPrimarily = "Додатково Правовласник:";
+        
+        private RightholderPrimarily _rightholderPrimarily = RightholderPrimarily.Primary;
+        [Browsable(true)]
+        public RightholderPrimarily RightholderPrimarily
+        {
+            get => _rightholderPrimarily;
+            set
+            {
+                _rightholderPrimarily = value;
+                lblRightholderPrimarily.Text = value == RightholderPrimarily.Primary ? PrimaryRightholderPrimarily : SecondaryRightholderPrimarily;
+            }
+        }
 
         public RightholderSelectorControl()
         {
@@ -65,6 +77,18 @@ namespace IpsViewComponentLibrary.RightholderControls
                 OnShowAnketaCommandExecuted(_rightholder);
         }
 
+        protected void OnShowAnketaCommandExecuted(RightholderMainView selectedRightholder)
+        {
+            using (var rightholderView = new RightholderView())
+            {
+                var rightholderPresenter = new RightholderPresenter(rightholderView);
+                rightholderPresenter.Show(selectedRightholder.CustId);
+            }
+
+            if (selectedRightholder != null)
+                ShowAnketaCommandExecuted?.Invoke(this, selectedRightholder);
+        }
+
         private void UpdateView()
         {
             if (_rightholder != null)
@@ -83,7 +107,10 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         protected void OnRightholderChanging(CancelEventArgs arg)
         {
-            var handlers = RightholderChanging.GetInvocationList();
+            var handlers = RightholderChanging?.GetInvocationList();
+
+            if (handlers == null)
+                return;
 
             foreach (CancelEventHandler handler in handlers)
             {
@@ -100,17 +127,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             RightholderChanged?.Invoke(this, _rightholder);
         }
+    }
 
-        protected void OnShowAnketaCommandExecuted(RightholderMainView selectedRightholder)
-        {
-            using (var rightholderView = new RightholderView())
-            {
-                var rightholderPresenter = new RightholderPresenter(rightholderView);
-                rightholderPresenter.Show(selectedRightholder.CustId);
-            }
-
-            if (selectedRightholder != null)
-                ShowAnketaCommandExecuted?.Invoke(this, selectedRightholder);
-        }
+    public enum RightholderPrimarily
+    {
+        Primary = 0,
+        Secondary = 1,
     }
 }

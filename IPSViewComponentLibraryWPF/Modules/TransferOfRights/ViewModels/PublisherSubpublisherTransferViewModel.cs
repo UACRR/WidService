@@ -1,0 +1,375 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using IPSViewComponentLibraryWPF.IPSExtensions;
+using IPSViewComponentLibraryWPF.Modules.TransferOfRights.Model;
+using IPSViewComponentLibraryWPF.Modules.TransferOfRights.Windows;
+using Telerik.Windows.Controls;
+
+namespace IPSViewComponentLibraryWPF.Modules.TransferOfRights.ViewModels
+{
+    public class PublisherSubpublisherTransferViewModel : ViewModelBase
+    {
+        public PublisherSubpublisherTransferViewModel()
+        {
+            SelectedPubSubTransferType = PubSubTransferTypeItemSource.FirstOrDefault(rec => rec.Value == 0);
+        }
+
+        #region * * * BAHAVIOR PROPERTIES * * *
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged(() => IsBusy);
+            }
+        }
+
+        private Visibility _rightholderAddVisibility;
+        public Visibility RightholderAddVisibility
+        {
+            get => _rightholderAddVisibility;
+            set
+            {
+                _rightholderAddVisibility = value;
+                OnPropertyChanged(() => RightholderAddVisibility);
+            }
+        }
+
+        private bool _isAllCheck;
+        public bool IsAllCheck
+        {
+            get => _isAllCheck;
+            set
+            {
+                _isAllCheck = value;
+                OnPropertyChanged(() => IsAllCheck);
+            }
+        }
+        
+        #endregion
+
+        #region * * * DATA PROPERTIES * * *
+
+        public LM_TransferOfRights LM { get; set; } = new LM_TransferOfRights();
+
+        private ObservableCollection<PubSubTransferType> _pubSubTransferTypeItemSource = new ObservableCollection<PubSubTransferType>
+        {
+            new PubSubTransferType
+            {
+                Value = 0,
+                Name = "Видавництво -> Субвидавництво",
+            },
+            new PubSubTransferType
+            {
+                Value = 1,
+                Name = "Повернення прав Видавництву від Субвидавництва",
+            },
+            new PubSubTransferType
+            {
+                Value = 2,
+                Name = "Передача на інше Субвидавництво",
+            }
+        };
+        /// <summary>
+        /// Тип передачі між видавництвами
+        /// </summary>
+        public ObservableCollection<PubSubTransferType> PubSubTransferTypeItemSource
+        {
+            get => _pubSubTransferTypeItemSource;
+            set
+            {
+                _pubSubTransferTypeItemSource = value;
+                OnPropertyChanged(() => PubSubTransferTypeItemSource);
+            }
+        }
+
+        private PubSubTransferType _selectedPubSubTransferType;
+        public PubSubTransferType SelectedPubSubTransferType
+        {
+            get => _selectedPubSubTransferType;
+            set
+            {
+                _selectedPubSubTransferType = value;
+                OnPropertyChanged(() => SelectedPubSubTransferType);
+            }
+        }
+
+        private ObservableCollection<ObjectsRightOfRightholder> _objectsRightItemSource = new ObservableCollection<ObjectsRightOfRightholder>
+        {
+                new ObjectsRightOfRightholder {Name = "rightolder1"},
+                new ObjectsRightOfRightholder {Name = "rightolder2"},
+                new ObjectsRightOfRightholder {Name = "rightolder3"},
+                new ObjectsRightOfRightholder {Name = "rightolder4"},
+                new ObjectsRightOfRightholder {Name = "rightolder5"},
+        };
+        public ObservableCollection<ObjectsRightOfRightholder> ObjectsRightItemSource
+        {
+            get => _objectsRightItemSource;
+            set
+            {
+                _objectsRightItemSource = value;
+                OnPropertyChanged(() => ObjectsRightItemSource);
+            }
+        }
+
+        private ObservableCollection<TransferedObjectsRightModel> _selectedObjectsRightItemSource = new ObservableCollection<TransferedObjectsRightModel>
+        {
+            new TransferedObjectsRightModel
+            {
+                ObjId = 1,
+                Name = "objectname3",
+                RateRh = 44.54m,
+                RoleName = "Композитор",
+                Rightholders = new ObservableCollection<RightholderInfoModel>
+                {
+                    new RightholderInfoModel
+                    {
+                        CustId = 1,
+                        RightholderCode = "454DS",
+                        IPI = "555/AD4D/DF",
+                        RightholderName = "The thread"
+                    },
+                    new RightholderInfoModel
+                    {
+                        CustId = 2,
+                        RightholderCode = "454DS",
+                        IPI = "888-99-425/15",
+                        RightholderName = "Trace"
+                    },
+                }
+            },
+            new TransferedObjectsRightModel
+            {
+                ObjId = 2,
+                Name = "OnPropertyChanged",
+                RateRh = 44.54m,
+                RoleName = "Композитор",
+                Rightholders = new ObservableCollection<RightholderInfoModel>
+                {
+                    new RightholderInfoModel
+                    {
+                        CustId = 1,
+                        RightholderCode = "454DS",
+                        IPI = "555/AD4D/DF",
+                        RightholderName = "The thread"
+                    },
+                    new RightholderInfoModel
+                    {
+                        CustId = 2,
+                        RightholderCode = "454DS",
+                        IPI = "888-99-425/15",
+                        RightholderName = "Trace"
+                    },
+                    new RightholderInfoModel
+                    {
+                        CustId = 2,
+                        RightholderCode = "454DS",
+                        IPI = "888-99-425/15",
+                        RightholderName = "Trace"
+                    },
+                }
+            },
+            new TransferedObjectsRightModel
+            {
+                ObjId = 3,
+                Name = "objectname6",
+                RateRh = 44.54m,
+                RoleName = "Композитор",
+            },
+            new TransferedObjectsRightModel
+            {
+                ObjId = 4,
+                Name = "underground",
+                RateRh = 44.54m,
+                RoleName = "Композитор",
+            }
+        };
+        public ObservableCollection<TransferedObjectsRightModel> SelectedObjectsRightItemSource
+        {
+            get => _selectedObjectsRightItemSource;
+            set
+            {
+                _selectedObjectsRightItemSource = value;
+                OnPropertyChanged(() => SelectedObjectsRightItemSource);
+            }
+        }
+
+        private RightholderInfoModel _selectedRightholder = new RightholderInfoModel
+        {
+            RightholderName = "Sony - Умиг",
+        };
+        public RightholderInfoModel SelectedRightholder
+        {
+            get => _selectedRightholder;
+            set
+            {
+                _selectedRightholder = value;
+                OnPropertyChanged(() => SelectedRightholder);
+            }
+        }
+
+        private RightholderInfoModel _selectedRightholderAdd;
+        public RightholderInfoModel SelectedRightholderAdd
+        {
+            get => _selectedRightholderAdd;
+            set
+            {
+                _selectedRightholderAdd = value;
+                OnPropertyChanged(() => SelectedRightholderAdd);
+            }
+        }
+
+        private DateProperty _dateProperty;
+        public DateProperty DateProperty
+        {
+            get => _dateProperty;
+            set
+            {
+                _dateProperty = value;
+                OnPropertyChanged(() => DateProperty);
+            }
+        }
+        #endregion
+
+        #region * * * METHODS * * *
+
+
+
+        #endregion
+
+        #region * * * COMMANDS * * *
+
+        /// <summary>
+        /// Завантаження
+        /// </summary>
+        public ICommand LoadCommand => new IPSDelegateCommand(LoadCommandExecute);
+        private void LoadCommandExecute(object o)
+        {
+
+        }
+
+        /// <summary>
+        /// Відкрити об'єкт права на перегляд
+        /// </summary>
+        public ICommand ViewObjectRightCommand => new IPSDelegateCommand(ViewObjectRightCommandExecute);
+        private void ViewObjectRightCommandExecute(object o)
+        {
+
+        }
+
+        /// <summary>
+        /// Відкрити об'єкт права на перегляд
+        /// </summary>
+        public ICommand RemoveObjectRightCommand => new IPSDelegateCommand(RemoveObjectRightCommandExecute);
+        private void RemoveObjectRightCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand ChangeTransferTypeCommand => new IPSDelegateCommand(ChangeTransferTypeCommandExecute);
+        private void ChangeTransferTypeCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand CheckAllCommand => new IPSDelegateCommand(CheckAllCommandExecute);
+        private void CheckAllCommandExecute(object o)
+        {
+
+        }
+
+        /// <summary>
+        /// Обрати правовласника
+        /// </summary>
+        public ICommand SelectRightholderCommand => new IPSDelegateCommand(SelectRightholderCommandExecute);
+        private void SelectRightholderCommandExecute(object o)
+        {
+            int? i = SelectedRightholder?.CustId + 1;
+
+            SelectedRightholder = new RightholderInfoModel
+            {
+                CustId = i ?? 0,
+                RightholderName = $"Василькович Адам Герцович ({i})",
+            };
+
+            RightholdersListWindow window = new RightholdersListWindow();
+            window.Show();
+        }
+
+        /// <summary>
+        /// Показати анкету правовласника
+        /// </summary>
+        public ICommand OpenRightholderAnketaCommand => new IPSDelegateCommand(OpenRightholderAnketaCommandExecute, o => SelectedRightholder != null);
+        private void OpenRightholderAnketaCommandExecute(object o)
+        {
+
+        }
+
+        /// <summary>
+        /// Обрати додаткового правовласника
+        /// </summary>
+        public ICommand SelectRightholderAddCommand => new IPSDelegateCommand(SelectRightholderAddCommandExecute);
+        private void SelectRightholderAddCommandExecute(object o)
+        {
+
+        }
+
+        /// <summary>
+        /// Показати анкету додаткового правовласника
+        /// </summary>
+        public ICommand OpenRightholderAddAnketaCommand => new IPSDelegateCommand(OpenRightholderAnketaAddCommandExecute, o => SelectedRightholderAdd != null);
+        private void OpenRightholderAnketaAddCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand MoveSelectedObjectsCommand => new IPSDelegateCommand(MoveSelectedObjectsCommandExecute);
+        private void MoveSelectedObjectsCommandExecute(object o)
+        {
+            var items = ObjectsRightItemSource.Where(rec => rec.IsSelected).ToList();
+            DateProperty = new DateProperty();
+
+        }
+
+        public ICommand MoveAllObjectsCommand => new IPSDelegateCommand(MoveAllObjectsCommandExecute);
+        private void MoveAllObjectsCommandExecute(object o)
+        {
+
+        }
+
+
+        #region - нижня панель - 
+
+        public ICommand AddRightholderToTransferCommand => new IPSDelegateCommand(AddRightholderToTransferCommandExecute);
+        private void AddRightholderToTransferCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand ClearObjectsCommand => new IPSDelegateCommand(ClearObjectsCommandExecute);
+        private void ClearObjectsCommandExecute(object o)
+        {
+
+        }
+
+        public ICommand SaveCommand => new IPSDelegateCommand(SaveCommandExecute);
+        private void SaveCommandExecute(object o)
+        {
+
+        }
+
+        #endregion
+
+
+        #endregion
+    }
+}

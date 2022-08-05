@@ -80,7 +80,7 @@
             gridViewComboBoxColumn1.HeaderText = "Творча роль";
             gridViewComboBoxColumn1.MinWidth = 85;
             gridViewComboBoxColumn1.Name = "RoleCode";
-            gridViewComboBoxColumn1.Width = 85;
+            gridViewComboBoxColumn1.Width = 89;
             gridViewComboBoxColumn1.WrapText = true;
             gridViewCheckBoxColumn1.FieldName = "IsRightholder";
             gridViewCheckBoxColumn1.HeaderText = "Є правовласником";
@@ -93,7 +93,7 @@
             gridViewTextBoxColumn1.HeaderText = "ПІБ";
             gridViewTextBoxColumn1.MinWidth = 150;
             gridViewTextBoxColumn1.Name = "AuthorName";
-            gridViewTextBoxColumn1.Width = 150;
+            gridViewTextBoxColumn1.Width = 156;
             gridViewTextBoxColumn2.EnableExpressionEditor = false;
             gridViewTextBoxColumn2.FieldName = "InnerCode";
             gridViewTextBoxColumn2.HeaderText = "Шифр автора";
@@ -101,7 +101,7 @@
             gridViewTextBoxColumn2.MinWidth = 85;
             gridViewTextBoxColumn2.Name = "InnerCode";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 85;
+            gridViewTextBoxColumn2.Width = 89;
             gridViewTextBoxColumn3.EnableExpressionEditor = false;
             gridViewTextBoxColumn3.FieldName = "Country";
             gridViewTextBoxColumn3.HeaderText = "Країна автора";
@@ -109,7 +109,7 @@
             gridViewTextBoxColumn3.MinWidth = 95;
             gridViewTextBoxColumn3.Name = "Country";
             gridViewTextBoxColumn3.ReadOnly = true;
-            gridViewTextBoxColumn3.Width = 95;
+            gridViewTextBoxColumn3.Width = 99;
             gridViewDecimalColumn1.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn1.EnableExpressionEditor = false;
             gridViewDecimalColumn1.FieldName = "CopyRight.RoleRate";
@@ -117,14 +117,14 @@
             gridViewDecimalColumn1.HeaderText = "Доля";
             gridViewDecimalColumn1.MinWidth = 75;
             gridViewDecimalColumn1.Name = "RoleRate";
-            gridViewDecimalColumn1.Width = 75;
+            gridViewDecimalColumn1.Width = 78;
             gridViewComboBoxColumn2.DataType = typeof(System.Nullable<int>);
             gridViewComboBoxColumn2.EnableExpressionEditor = false;
             gridViewComboBoxColumn2.FieldName = "LicAuthorBr.PrepayType";
             gridViewComboBoxColumn2.HeaderText = "Тип передплати";
             gridViewComboBoxColumn2.MinWidth = 100;
             gridViewComboBoxColumn2.Name = "PrepayType";
-            gridViewComboBoxColumn2.Width = 100;
+            gridViewComboBoxColumn2.Width = 104;
             gridViewComboBoxColumn2.WrapText = true;
             gridViewComboBoxColumn3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             gridViewComboBoxColumn3.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDown;
@@ -133,22 +133,22 @@
             gridViewComboBoxColumn3.HeaderText = "Валюта";
             gridViewComboBoxColumn3.MinWidth = 75;
             gridViewComboBoxColumn3.Name = "Currency";
-            gridViewComboBoxColumn3.Width = 75;
+            gridViewComboBoxColumn3.Width = 78;
             gridViewDecimalColumn2.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn2.EnableExpressionEditor = false;
-            gridViewDecimalColumn2.FieldName = "LicAuthorBr.PrepaySum";
+            gridViewDecimalColumn2.FieldName = "LicAuthorBr.PrepaySumAuthor";
             gridViewDecimalColumn2.FormatString = "{0:N2}";
             gridViewDecimalColumn2.HeaderText = "Сума передплати";
             gridViewDecimalColumn2.MinWidth = 75;
-            gridViewDecimalColumn2.Name = "PrepaySum";
-            gridViewDecimalColumn2.Width = 75;
+            gridViewDecimalColumn2.Name = "PrepaySumAuthor";
+            gridViewDecimalColumn2.Width = 78;
             gridViewComboBoxColumn4.DataType = typeof(System.Nullable<int>);
             gridViewComboBoxColumn4.EnableExpressionEditor = false;
             gridViewComboBoxColumn4.FieldName = "WorkRh.WorkTypeRh";
             gridViewComboBoxColumn4.HeaderText = "Стан роботи з автором";
             gridViewComboBoxColumn4.MinWidth = 100;
             gridViewComboBoxColumn4.Name = "WorkTypeRh";
-            gridViewComboBoxColumn4.Width = 100;
+            gridViewComboBoxColumn4.Width = 104;
             gridViewComboBoxColumn4.WrapText = true;
             gridViewComboBoxColumn5.DataType = typeof(System.Nullable<int>);
             gridViewComboBoxColumn5.EnableExpressionEditor = false;
@@ -156,7 +156,7 @@
             gridViewComboBoxColumn5.HeaderText = "Стан роботи з клієнтом";
             gridViewComboBoxColumn5.MinWidth = 100;
             gridViewComboBoxColumn5.Name = "WorkTypeCl";
-            gridViewComboBoxColumn5.Width = 100;
+            gridViewComboBoxColumn5.Width = 107;
             gridViewComboBoxColumn5.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Редагувати";
@@ -202,7 +202,7 @@
             this.gvAuthorRightholderList.Name = "gvAuthorRightholderList";
             this.gvAuthorRightholderList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvAuthorRightholderList.ShowGroupPanel = false;
-            this.gvAuthorRightholderList.Size = new System.Drawing.Size(644, 369);
+            this.gvAuthorRightholderList.Size = new System.Drawing.Size(1033, 395);
             this.gvAuthorRightholderList.TabIndex = 23;
             this.gvAuthorRightholderList.ThemeName = "Office2013Light";
             this.gvAuthorRightholderList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.GvAuthorRightholderList_CellFormatting);
@@ -221,7 +221,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(4, 378);
+            this.btnAdd.Location = new System.Drawing.Point(4, 404);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(110, 24);
             this.btnAdd.TabIndex = 24;
@@ -236,7 +236,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gvAuthorRightholderList);
             this.Name = "AuthorRightholderBrListControl";
-            this.Size = new System.Drawing.Size(650, 405);
+            this.Size = new System.Drawing.Size(1039, 431);
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthorRightholderList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthorRightholderList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBrViewModelBindingSource)).EndInit();
