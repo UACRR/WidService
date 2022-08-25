@@ -1457,7 +1457,7 @@ namespace ipsFormsDesign.Services
             if (!isPresentTemplate(pathTemplate))
                 return;
 
-            AgreementAddBr agr = agrMain.AgreementAddBr.Where(rec => rec.Version == agrMain.Version).First();
+            AgreementAddBr agr = agrMain.AgreementAddBr.Where(rec => rec.Version == agrMain.Version).FirstOrDefault();
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var docFile = tempFileName + ".docx";
@@ -1623,7 +1623,7 @@ namespace ipsFormsDesign.Services
             GdocDateC = $"{agreementAddBr?.AgrDate:dd.MM.yyyy}";
             GdocDateBeginC = $"{agreementAddBr?.DateBegin:dd.MM.yyyy}";
             GdocDateEndC = $"{agreementAddBr?.DateEnd:dd.MM.yyyy}";
-            GdocNumber = agreementAddBr?.AgrNumber?.ToString() ?? agr.AgrNumber?.ToString();
+            GdocNumber = agreementAddBr?.AgrNumber?.ToString() ?? agr?.AgrNumber?.ToString();
 
             registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
             registerNumber = anketaCompany?.RegistrNumber;
@@ -2603,7 +2603,7 @@ namespace ipsFormsDesign.Services
 
         private void FormTablePl2(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
-            ClnBusinessPlace places;
+            ClnBusinessPlace place;
             if (tables.Count == 0) return;
             Table table = tables[1];
             if (BuisnessPlace.Count == 0)
@@ -2621,29 +2621,26 @@ namespace ipsFormsDesign.Services
             PlaceHollValue = string.Empty;
             foreach (var item in BuisnessPlace)
             {
-                places = item;
+                place = item;
 
                 curRow = table.Rows.Add();
                 curRow.Cells[1].Range.Text = index.ToString();
                 index++;
 
-                curRow.Cells[3].Range.Text = places.PlaceName;
-                curRow.Cells[2].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
-                curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
-                    + $"{regions[places?.PlaceRegion ?? 0].Name}" + ","
-           + places.PlaceCity + "," + places.PlaceAddress;
+                //curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}, {regions[places?.PlaceRegion ?? 0].Name}, {places.PlaceCity}, {places.PlaceAddress}";
+                curRow.Cells[2].Range.Text = $"{regions[place?.PlaceRegion ?? 0].Name}, {place.PlaceCity}, {place.PlaceAddress}";
+
                 PlaceHollValue = string.Empty;
-                foreach (var place in item.ClnPlaceHoll)
+
+                foreach (var holl in item.ClnPlaceHoll)
                 {
-                    if (place.ValueAdd == null)
-                        PlaceHollValue = place?.ValuePlace ?? "";
+                    if (holl.ValueAdd == null)
+                        PlaceHollValue = holl?.ValuePlace ?? "";
                     else
-                        PlaceHollValue = place.ValueAdd;
-
+                        PlaceHollValue = holl.ValueAdd;
                 }
-                curRow.Cells[5].Range.Text = PlaceHollValue;
 
-
+                curRow.Cells[3].Range.Text = $"{typePlace[place.PlCode ?? 1].Name} \"{place.PlaceName}\" / {PlaceHollValue}";
             }
         }
 
@@ -2670,11 +2667,12 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[1].Range.Text = index.ToString();
                 index++;
 
-                curRow.Cells[2].Range.Text = places.PlaceName;
-                //                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
-                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
-                                        + $"{regions[places?.PlaceRegion ?? 0].Name}" + ","
-                                        + places.PlaceCity + "," + places.PlaceAddress;
+                curRow.Cells[2].Range.Text = $"{places.PlaceName}";
+
+                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}, {regions[places?.PlaceRegion ?? 0].Name}, {places.PlaceCity}, {places.PlaceAddress}";
+
+                // curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
+
                 foreach (var place in item.ClnPlaceHoll)
                 {
                     curRow = table.Rows.Add();
@@ -2684,10 +2682,11 @@ namespace ipsFormsDesign.Services
                         curRow.Cells[5].Range.Text = place?.ValuePlace ?? "";
                     else
                         curRow.Cells[5].Range.Text = place.ValueAdd;
-
                 }
             }
         }
+
+        private const int KyivRegion = 25;
 
         private void FormTablePl4(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
