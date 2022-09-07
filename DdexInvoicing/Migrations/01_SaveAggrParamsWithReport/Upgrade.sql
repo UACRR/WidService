@@ -1123,6 +1123,5 @@ from IdentBacklog t1
 where t1.DdexReportId = @ddexReportId
 	and (t1.IncludedInCcid is null or t1.IncludedInCcid = @invoiceId)
 	and (t2.[Status] = 1 or t2.[Status] = 2)
-
 end
 go
