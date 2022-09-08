@@ -38,7 +38,7 @@ namespace DdexInvoicing
                 radPageViewMain.Pages.RemoveAt(2);
             }
 
-            ucMwIdent.SetReport(ddexReportId);
+            //ucMwIdent.SetDdexReportId(ddexReportId);
             ucCcidInvoices.SetReport(ddexReportId);
 
             ucDdexLoad.LoadStarted += UcDdexLoad_LoadStarted;
