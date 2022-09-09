@@ -112,6 +112,12 @@
     <Compile Include="FormCreateInvoice.Designer.cs">
       <DependentUpon>FormCreateInvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDataLoadSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataLoadSettings.Designer.cs">
+      <DependentUpon>FormDataLoadSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDdexInvoicing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,29 +210,20 @@
     <Compile Include="UcInvoiceStatistics.Designer.cs">
       <DependentUpon>UcInvoiceStatistics.cs</DependentUpon>
     </Compile>
-    <None Include="UcMwIdent.cs">
+    <Compile Include="UcMwIdent.cs">
       <SubType>UserControl</SubType>
-    </None>
+    </Compile>
     <Compile Include="UcMwIdent.Designer.cs">
       <DependentUpon>UcMwIdent.cs</DependentUpon>
     </Compile>
-    <Compile Include="UcMwSearch.cs">
+    <Compile Include="UcMwIdentHelpers.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UcMwSearch.Designer.cs">
-      <DependentUpon>UcMwSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="UcReportInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UcReportInfo.Designer.cs">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UcReportMw.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UcReportMw.Designer.cs">
-      <DependentUpon>UcReportMw.cs</DependentUpon>
     </Compile>
     <Compile Include="UсReconcile.cs">
       <SubType>UserControl</SubType>
@@ -245,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateInvoice.resx">
       <DependentUpon>FormCreateInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDataLoadSettings.resx">
+      <DependentUpon>FormDataLoadSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDdexInvoicing.resx">
       <DependentUpon>FormDdexInvoicing.cs</DependentUpon>
@@ -305,14 +305,8 @@
     <EmbeddedResource Include="UcMwIdent.resx">
       <DependentUpon>UcMwIdent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UcMwSearch.resx">
-      <DependentUpon>UcMwSearch.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UcReportInfo.resx">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UcReportMw.resx">
-      <DependentUpon>UcReportMw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UсReconcile.resx">
       <DependentUpon>UсReconcile.cs</DependentUpon>
