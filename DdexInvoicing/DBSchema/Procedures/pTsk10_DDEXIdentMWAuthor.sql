@@ -1,4 +1,14 @@
-﻿ALTER PROCEDURE [dbo].[pTsk10_DDEXIdentMWAuthor] @DdexReportId integer, @isNetRevenue integer = NULL
+USE [DDEX]
+GO
+
+/****** Object:  StoredProcedure [dbo].[pTsk10_DDEXIdentMWAuthor]    Script Date: 12.09.2022 13:02:56 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[pTsk10_DDEXIdentMWAuthor] @DdexReportId integer, @isNetRevenue integer = NULL
 as
 --Процедура формирования IdentMWAuthor - табл.правообладателей и их процентов владения 
 --@DdexReportId = ddexreportid
@@ -119,7 +129,7 @@ insert into #TmpObj
    from IdentBacklog t1 
    join IdentMW t3 on t1.mwId = t3.id and (isnull(t3.WIC,0) + isnull(objid,0)) <> 0
   where --t1.DdexReportId = 1 and t1.BlockId < 10000 --@DdexReportId
-        t1.DdexReportId = @DdexReportId
+        t1.DdexReportId in (select id from ft_AgreementReportIds(@DdexReportId))
 		and t1.NetRevenue > 0 
     and not exists 
      (select  1 from IdentMWAuthor t2 where t1.DdexReportId = t2.DdexReportId and t1.BlockId = t2.BlockId and t1.SalesTransactionId = t2.SalesTransactionId)
@@ -132,7 +142,7 @@ insert into #TmpObj
    from IdentBacklog t1 
    join IdentMW t3 on t1.mwId = t3.id and (isnull(t3.WIC,0) + isnull(objid,0)) <> 0
   where --t1.DdexReportId = 1 and t1.BlockId < 10000 --@DdexReportId
-        t1.DdexReportId = @DdexReportId
+        t1.DdexReportId in (select id from ft_AgreementReportIds(@DdexReportId))
   and not exists 
      (select  1 from IdentMWAuthor t2 where t1.DdexReportId = t2.DdexReportId and t1.BlockId = t2.BlockId and t1.SalesTransactionId = t2.SalesTransactionId)
 END 
@@ -327,4 +337,6 @@ END
 GRANT EXEC
     ON OBJECT::[dbo].[pTsk10_DDEXIdentMWAuthor] TO [DdexRobot], [robot]
     AS [dbo];
+
+GO
 

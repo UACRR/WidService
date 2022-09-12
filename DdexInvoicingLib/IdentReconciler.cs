@@ -400,7 +400,7 @@ namespace InvoicingLib
                     , 0 isApplied
                 from IdentBacklog t1
                     join IdentMw t2 on t1.mwId = t2.Id
-                    join wid_ipi..TblTitle t3 on t2.wic = t3.wic
+                    join SocWid..WidTitle t3 on t2.wic = t3.wic
                 where DdexReportId = @ddexReportId
                     and t2.ISWC <> ''
                     and t2.Wic is not null";

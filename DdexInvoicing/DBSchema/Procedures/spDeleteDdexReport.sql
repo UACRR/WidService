@@ -1,4 +1,15 @@
-﻿alter procedure [dbo].[spDeleteDdexReport]
+USE [DDEX]
+GO
+
+/****** Object:  StoredProcedure [dbo].[spDeleteDdexReport]    Script Date: 12.09.2022 13:08:22 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER procedure [dbo].[spDeleteDdexReport]
 	@ddexReportId int
 as
 /*
@@ -103,10 +114,6 @@ from DdexRecordHead
 where ddexReportId = @ddexReportId;
 
 delete
-from DdexRecordSY_Base
-where ddexReportId = @ddexReportId;
-
-delete
 from DdexRecordSY_04_01
 where ddexReportId = @ddexReportId;
 
@@ -155,3 +162,5 @@ from DdexReport
 where id = @ddexReportId;
 
 end
+GO
+

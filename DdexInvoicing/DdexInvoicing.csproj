@@ -112,12 +112,6 @@
     <Compile Include="FormCreateInvoice.Designer.cs">
       <DependentUpon>FormCreateInvoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDataLoadSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormDataLoadSettings.Designer.cs">
-      <DependentUpon>FormDataLoadSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormDdexInvoicing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,14 +210,23 @@
     <Compile Include="UcMwIdent.Designer.cs">
       <DependentUpon>UcMwIdent.cs</DependentUpon>
     </Compile>
-    <Compile Include="UcMwIdentHelpers.cs">
+    <Compile Include="UcMwSearch.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMwSearch.Designer.cs">
+      <DependentUpon>UcMwSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="UcReportInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UcReportInfo.Designer.cs">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcReportMw.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcReportMw.Designer.cs">
+      <DependentUpon>UcReportMw.cs</DependentUpon>
     </Compile>
     <Compile Include="UсReconcile.cs">
       <SubType>UserControl</SubType>
@@ -242,9 +245,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateInvoice.resx">
       <DependentUpon>FormCreateInvoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormDataLoadSettings.resx">
-      <DependentUpon>FormDataLoadSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDdexInvoicing.resx">
       <DependentUpon>FormDdexInvoicing.cs</DependentUpon>
@@ -305,8 +305,14 @@
     <EmbeddedResource Include="UcMwIdent.resx">
       <DependentUpon>UcMwIdent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UcMwSearch.resx">
+      <DependentUpon>UcMwSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcReportInfo.resx">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcReportMw.resx">
+      <DependentUpon>UcReportMw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UсReconcile.resx">
       <DependentUpon>UсReconcile.cs</DependentUpon>
@@ -337,9 +343,38 @@
     <Content Include="CcidStat.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DBSchema\Procedures\pTsk10_AddCcIdCLDdexAdjustment.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_DDEXFormRate.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_Export2018.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_Export2018_duplicate.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_ExportCcidCLFile.sql" />
+    <Content Include="DBSchema\Procedures\spCopyExceptionSet.sql" />
+    <Content Include="DBSchema\Procedures\spCreateCcidParamsForSubscr.sql" />
+    <Content Include="DBSchema\Procedures\spCreateClFromAdjustmentReport.sql" />
+    <Content Include="DBSchema\Procedures\spCreateClFromCrf.sql" />
+    <Content Include="DBSchema\Procedures\spCreateCorrectedInFile.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoice.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceDeezer.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSpotify.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSrmf.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSubscr.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSubscrM.sql" />
+    <Content Include="DBSchema\Procedures\spDdexAdjConsolidatedCalcRoyalty.sql" />
+    <Content Include="DBSchema\Procedures\spDdexAdjConsolidatedDistRoyalty.sql" />
+    <Content Include="DBSchema\Procedures\spDdexCreateAuthorsSplitted.sql" />
+    <Content Include="DBSchema\Procedures\spDdexDeleteReportData.sql" />
+    <Content Include="DBSchema\Procedures\spDdexDeleteReportInvoices.sql" />
+    <Content Include="DBSchema\Procedures\spDdexDeleteReportTypeInvoices.sql" />
+    <Content Include="DBSchema\Procedures\spDdexInsertSplittedAuthors.sql" />
     <Content Include="DBSchema\Procedures\spDeleteDdexReport.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_DDEXExceptionStatus.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_DDEXIdentMWAuthor.sql" />
+    <Content Include="DBSchema\Procedures\spDeleteExceptionSet.sql" />
+    <Content Include="DBSchema\Procedures\spIdentByNameAndPerformer.sql" />
+    <Content Include="DBSchema\Procedures\spPrepareDataForIdent.sql" />
+    <Content Include="DBSchema\Procedures\spRemoveLowRoyaltyFromCcidDetail.sql" />
+    <Content Include="DBSchema\Procedures\spSaveExceptionSet.sql" />
+    <Content Include="DBSchema\Procedures\spUpdateIdentProgress.sql" />
     <Content Include="FullDatabase.sql" />
     <Content Include="FullDdexDatabase.sql" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
