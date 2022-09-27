@@ -148,6 +148,67 @@ insert into #TmpObj
 END 
 
 
+raiserror ('Автрські проценти (ненульові) для ідентифікованих в WID творів репорту', 0, 1) with nowait 
+
+-- Про всяк випадок видаляємо проміжні таблиці
+drop table if exists #ReportWics
+drop table if exists #WidAuthorShares
+drop table if exists #WicsWithOver100
+
+-- Твори репорту з WID
+select distinct t2.Wic
+into #ReportWics
+from Ddex..IdentBacklog t1
+	join Ddex..IdentMW t2 on t1.mwId = t2.id
+where t1.DdexReportId = @ddexReportId
+	and isnull(t2.Wic, 0) <> 0
+
+-- Розподіл процентів між авторами
+select
+	  Wic
+	, IpBaseNr
+	, IpNameNr
+	, IpRole
+	, MEC rateMEC
+	, PER ratePER
+into #WidAuthorShares
+from (
+	select
+		  t2.Wic
+		, t1.IpBaseNr
+		, t2.IpNameNr
+		, t2.IpRole
+		, t3.RightType
+		, isnull(t3.Shares, 0) Shares
+	from SocIpi..IpiName t1
+	    join SocWid..widIntrPty t2 on t1.IpNameNr = t2.IpNameNr
+		join SocWid..WidShares t3 on t2.Wic = t3.Wic and t2.RolId = t3.IntrPtyRolid
+		join #ReportWics t4 on t2.Wic = t4.Wic
+	where isnull(t3.Shares, 0) <> 0
+) as TableToPivot
+pivot (
+	sum(Shares)
+	for RightType in (MEC, PER)  
+) as result
+
+-- Коррекція null, що можуть зявитись при транспонуванні
+update #WidAuthorShares
+set 
+	  rateMEC = isnull(rateMEC, 0)
+	, ratePER = isnull(ratePER, 0)
+
+-- Твори з сумою процентів, що перевищує 100
+select wic, sum(rateMec) rateMec, sum(ratePer) ratePer
+into #WicsWithOver100
+from #WidAuthorShares
+group by Wic
+having sum(rateMec) > 100 or sum(ratePer) > 100
+
+-- Виключити твори з сумою процентів, що перевищує 100
+delete t1
+from #WidAuthorShares t1
+	join #WicsWithOver100 t2 on t1.Wic = t2.Wic
+
 RAISERROR ('Авторы WID вносим!', 0, 1) WITH NOWAIT 
 delete #TmpAuthor
 --Авторы с процентами по WID
@@ -160,23 +221,28 @@ insert into  #TmpAuthor
 	ValidityPeriodEnd, ValidityPeriodStart) 
  select  t1.DdexReportId,  t1.BlockId, t1.SalesTransactionId, 
      t1.tmpObjId, t1.mwId, t1.WIC, t1.objid, 
-	 t2.IP_BASE_NR, t2.IPInr, NULL, 
+	 t2.IpBaseNr, t2.IpNameNr, NULL, 
 	 t2.ratePER, t2.rateMEC, 
 	 t1.ValidityPeriodEnd, t1.ValidityPeriodStart
-    from #TmpObj t1, 
-    WID_IPI..wObjectAuthor t2 
+    from #TmpObj t1 
+		join #WidAuthorShares t2 on t1.WIC = t2.WIC 
      where t1.WIC = t2.WIC 
-         and t2.WIC>0 
-		 and isnull(ratePER,0)+isnull(rateMEC,0) <> 0
 
+-- Видаляємо проміжні таблиці
+drop table #ReportWics
+drop table #WidAuthorShares
+drop table if exists #WicsWithOver100
 
 --Международный код ОКУ-ТОВАРИСТВА
 --/*
 RAISERROR ('CmCodePER проставляем!', 0, 1) WITH NOWAIT 
-update #TmpAuthor set CmCodePER = t2.SOC_CDE, rateCmPER = convert(decimal(5,2),t2.MBR_SHARE/100)
-  from #TmpAuthor t1 
-       join WID_IPI..wCmAuthor t2 on t1.IP_BASE_NR = t2.IP_BASE_NR and t2.RGT_CDE = 'PR'
-  where t1.WIC is not NULL
+update #TmpAuthor 
+set 
+	  CmCodePER = t2.SOC_CDE
+	, rateCmPER = convert(decimal(5,2),t2.MBR_SHARE/100)
+from #TmpAuthor t1 
+    join WID_IPI..wCmAuthor t2 on t1.IP_BASE_NR = t2.IP_BASE_NR and t2.RGT_CDE = 'PR'
+where t1.WIC is not NULL
 
 
 RAISERROR ('CmCodeMEC проставляем!', 0, 1) WITH NOWAIT 
@@ -184,19 +250,6 @@ update #TmpAuthor set CmCodeMEC = t3.SOC_CDE, rateCmMEC = convert(decimal(5,2),t
   from #TmpAuthor t1 
 	   join WID_IPI..wCmAuthor t3 on t1.IP_BASE_NR = t3.IP_BASE_NR and t3.RGT_CDE = 'MR'
    where t1.WIC is not NULL
---5.26
---*/
-/* --закомментировала, т.к. выше скрипт работает быстрее
-RAISERROR ('Авторы из MS - CmCode!', 0, 1) WITH NOWAIT 
-update #TmpAuthor set CmCodePER = t2.SOC_CDE_PER
-                     ,cmCodeMEC = t2.SOC_CDE_MEC
-                     ,rateCmPER = convert(decimal(5,2),t2.MBR_SHARE_PER/100)
-					 ,rateCmMEC = convert(decimal(5,2),t2.MBR_SHARE_MEC/100)
-  from #TmpAuthor t1 
-       join WID_IPI..vIP_SOC t2 on t1.IP_BASE_NR = t2.IP_BASE_NR
-  where t1.WIC is not NULL 
---7.40
-*/
 
 RAISERROR ('Авторы из MS!', 0, 1) WITH NOWAIT 
 --Авторы с процентами по MS
@@ -208,33 +261,6 @@ create table  #TmpCRightId
  roleCode integer )
  
 delete #TmpCRightId
-
- 
-
-/*--2020-07-15 до
-insert into  #TmpAuthorMS
-   (DdexReportId,  BlockId, SalesTransactionId, 
-    tmpObjId, mwId, WIC, objId, 
-	IP_BASE_NR, IPInr, custId, 
-	ratePER, rateMEC, 
-	--cmCodePER, cmCodeMEC, rateCmPER, rateCmMEC, 
-	ValidityPeriodEnd, ValidityPeriodStart) 
- select  t1.DdexReportId,  t1.BlockId, t1.SalesTransactionId, 
-     t1.tmpObjId, t1.mwId, t1.WIC, t1.objid, 
-	 left(t3.interCode,13), left(t3.IPIbase,13), t2.custId, 
-	 t2.rate, t2.rate, --t2.rateMECH, 
-	 t1.ValidityPeriodEnd, t1.ValidityPeriodStart
-    from #TmpObj t1, 
-    MEDIASERVICE..copyright t2 
-	join MEDIASERVICE..RightHolder t3 on t2.custId = t3.custId 
-     where t1.objId = t2.objID 
-	     --and t2.endDate >= t1.ValidityPeriodEnd  --так было до 2020-07-15
-         and isnull(t1.objId, 0) > 0 
-		 and isnull(t2.rate,0)+isnull(t2.rateMECH,0) <> 0
-		 and --2020-07-15 -- проверка прав в периоде
-		 ( @periodDateBegin between t2.beginDate and t2.endDate
-		    or  @periodDateEnd between t2.beginDate and t2.endDate )
-*/
 
 --Из-за того, что может попасть закрытие и открытие прав в один период делаю через промежуточную таблицу
 --Отбираю все, которые попадают по дате. В pTsk10_DDEXExceptionStatus отсеку, если комьюнити или договор не попадают
