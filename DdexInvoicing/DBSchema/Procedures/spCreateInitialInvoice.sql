@@ -219,7 +219,7 @@ select
 					then ''
 					else t4.[name] 
 				end
-			else t3.ttl 
+			else t3.WrkTtl
 			end
 			, 60) work_title
 		, t1.usages use_quantity
@@ -262,7 +262,7 @@ select
 				as amount_licensor_perf
 from IdentBacklog t1 
 	inner join IdentMW t2 on t2.id = t1.mwid
-	left join WID_IPI.dbo.TblTitle t3 on t3.Wic = t2.Wic
+	left join SocWid..WidTitle t3 on t3.Wic = t2.Wic
 	left join MediaService.dbo.ObjectRight t4 on t4.[ObjId] = t2.[ObjId]
 where t1.DdexReportId = @ddexReportId
 	and (t1.IncludedInCcid is null or t1.IncludedInCcid = @invoiceId)

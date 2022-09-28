@@ -9,8 +9,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 ALTER procedure [dbo].[spCreateInitialInvoiceSrmf]
-		 @ddexReportId int
-	  ,  @fileId int
+		@ddexReportId int
+	  , @fileId int
+	  , @setCode int
 as
 
 begin
@@ -70,7 +71,6 @@ where isnull(wic, 0) > 0
 raiserror ('Авторы с процентами по WID', 0, 1) with nowait 
 drop table if exists #TmpAuthorWid
 create table #TmpAuthorWid ( 
-   authorId				int					 not null,
    mwId					int					 not null,		
    wic                  int                  not null,
    objId                int                  not null,
@@ -85,29 +85,38 @@ create table #TmpAuthorWid (
    rateCmMEC            decimal(5,2)         null,
    validityPeriodStart  date                 null,
    validityPeriodEnd	date                 null,
-   roleCode             int                  not null,
-   primary key (authorId, mwId) 
+   roleCode             int                  not null
 )
+
+declare @WidAuthorShares tblTypeWidAuthorShares
+
+insert @WidAuthorShares
+exec spGetWidAuthorShares 
+	  @DdexReportId
+	, @startDate
+	, @endDate
+	, @setCode
+
+
 insert into #TmpAuthorWid
 select  
-	   t2.id			authorId
-	 , t1.mwId			mwId
+	   t1.mwId			mwId
 	 , t1.wic			wic
 	 , 0				objId
-	 , t2.IP_BASE_NR	IP_BASE_NR
+	 , t2.IpBaseNr	    IP_BASE_NR
 	 , null				custId
-	 , t2.IPInr			IPInr
-	 , t2.ratePER		ratePER
-	 , t2.rateMEC		rateMEC
-	 , null				cmCodePER
-	 , null				cmCodeMEC
-	 , null				rateCmPER
-	 , null				rateCmMEC
+	 , t2.IpNameNr		IPInr
+	 , t2.PerWidShr		ratePER
+	 , t2.MecWidShr		rateMEC
+	 , t2.PerSoc		cmCodePER
+	 , t2.MecSoc		cmCodeMEC
+	 , t2.PerSocShr		rateCmPER
+	 , t2.MecSocShr		rateCmMEC
 	 , @startDate		validityPeriodStart
 	 , @endDate			validityPeriodEnd
 	 , 0				roleCode
 from #tmpIdentifiedWidMw t1
-	join WID_IPI..wObjectAuthor t2 on t1.wic = t2.wic
+	join @WidAuthorShares t2 on t1.wic = t2.wic
 
 update #TmpAuthorWid 
 set 
@@ -121,6 +130,9 @@ set
 	, rateCmMEC = convert(decimal(5, 2), t3.MBR_SHARE / 100)   
 from #TmpAuthorWid t1 
 	join WID_IPI..wCmAuthor t3 on t1.IP_BASE_NR = t3.IP_BASE_NR and t3.RGT_CDE = 'MR'
+
+delete from @WidAuthorShares
+
 end
 
 begin --Авторы с процентами по MS
@@ -165,7 +177,6 @@ group by t2.objId, t2.custId, t2.roleCode
 
 drop table if exists #TmpAuthorMS
 create table #TmpAuthorMS ( 
-   authorId				int					 not null,
    mwId					int					 not null,
    wic                  int                  null,
    objId                int                  null,
@@ -180,13 +191,11 @@ create table #TmpAuthorMS (
    rateCmMEC            decimal(5,2)         null,
    validityPeriodStart  date                 null,
    validityPeriodEnd	date                 null,
-   roleCode             int					 not null,
-   primary key (authorId, mwId, roleCode) 
+   roleCode             int					 not null
 )
 insert into #TmpAuthorMS
 select 
-	   t3.custId				authorId
-	 , t1.mwId					mwId
+	   t1.mwId					mwId
 	 , 0						wic
 	 , t1.objId					objId
 	 , left(t3.interCode,13)	IP_BASE_NR
@@ -246,7 +255,6 @@ begin --Авторы с процентами по WID и MS
 raiserror ('Авторы с процентами по WID и MS', 0, 1) with nowait 
 drop table if exists #TmpAuthorBoth
 create table #TmpAuthorBoth ( 
-   authorId				int					 not null,
    mwId					int					 not null,
    wic                  int                  null,
    objId                int                  null,
@@ -261,8 +269,7 @@ create table #TmpAuthorBoth (
    rateCmMEC            decimal(5,2)         null,
    validityPeriodStart  date                 null,
    validityPeriodEnd	date                 null,
-   roleCode             int					 not null,
-   primary key (authorId, mwId, roleCode) 
+   roleCode             int					 not null
 )
 insert into #TmpAuthorBoth 
 select *
@@ -290,7 +297,6 @@ declare @setId int = (select SetCode from DdexReport where Id = @ddexReportId);;
 raiserror ('Fill-in table #TmpAuthor', 0, 1) with nowait 
 drop table if exists #TmpAuthor;
 create table #TmpAuthor (
-	authorId			 int			  not null,
 	mwId				 int			  not null,
 	IP_BASE_NR           varchar(13)	  null,
 	IPInr                varchar(13)	  null,
@@ -305,8 +311,7 @@ create table #TmpAuthor (
 	rateMec	             decimal(5,2)	  null, 
 	includPER            bit			  null,
 	includMEC            bit			  null, 
-	custId               int		      null,
-	primary key (authorId, mwId, roleCode) 
+	custId               int		      null
 )
 create index i_1 on #TmpAuthor(IP_Base_NR)
 create index i_2 on #TmpAuthor(IPInr)
@@ -315,8 +320,7 @@ create index i_2 on #TmpAuthor(IPInr)
 raiserror ('Отбираю идентификаторы для работы', 0, 1) with nowait 
  insert into #TmpAuthor  
  select 
-	  authorId
-	, mwId
+	  mwId
 	, IP_Base_Nr
 	, IPInr
 	, cmCodePer
@@ -602,9 +606,9 @@ values (
 
 -- Select unique iswcs
 drop table if exists #tmpIswcs
-select Wic, min(ISWC) iswc
+select Wic, min(Iswc) iswc
 into #tmpIswcs
-from WID_IPI.dbo.TblISWC
+from SocWid..WidIswc
 group by Wic
 
 
@@ -700,7 +704,7 @@ select
 					t4.[name] 
 			end
 		else 
-			t3.ttl 
+			t3.WrkTtl 
 		end
 		, 60)														work_title
 	, 0																use_quantity
@@ -741,7 +745,7 @@ select
 
 from PreClaimMappings t1
 	inner join #TmpNewRates t2					on t1.mwId			= t2.mwId
-	left  join WID_IPI.dbo.TblTitle t3			on t3.Wic			= t1.Wic
+	left  join SocWid..WidTitle t3			    on t3.Wic			= t1.Wic
 	left  join MediaService.dbo.ObjectRight t4	on t4.[ObjId]		= t1.ObjId
 	left join #tmpIswcs t5						on t5.WIC			= t3.wic
 where t1.rateTotalPER <> t2.rateTotalPER

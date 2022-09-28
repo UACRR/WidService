@@ -343,6 +343,7 @@
     <Content Include="CcidStat.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DBSchema\Procedures\spGetWidAuthorShares.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_AddCcIdCLDdexAdjustment.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_DDEXFormRate.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_Export2018.sql" />
@@ -375,6 +376,7 @@
     <Content Include="DBSchema\Procedures\spRemoveLowRoyaltyFromCcidDetail.sql" />
     <Content Include="DBSchema\Procedures\spSaveExceptionSet.sql" />
     <Content Include="DBSchema\Procedures\spUpdateIdentProgress.sql" />
+    <Content Include="DBSchema\Types\TblTypeWidAuthorShares.sql" />
     <Content Include="FullDatabase.sql" />
     <Content Include="FullDdexDatabase.sql" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
@@ -412,6 +414,17 @@
     <Content Include="Migrations\06 Fixes\CcidInFile.sql" />
     <Content Include="Migrations\06 Fixes\spCreateInitialInvoiceDeezer.sql" />
     <Content Include="Migrations\07 PreClaim Reconcile\PreClaimIdentReconcile.sql" />
+    <Content Include="Migrations\08 WidReplication\%2802%29 SpGetWidAuthorShares.sql" />
+    <Content Include="Migrations\08 WidReplication\%2801%29 TblTypeWidAuthorShares.sql" />
+    <Content Include="Migrations\08 WidReplication\%2803%29 pTsk10_DDEXIdentMWAuthor.sql" />
+    <Content Include="Migrations\08 WidReplication\%2804%29 spCreateInitialInvoice.sql" />
+    <Content Include="Migrations\08 WidReplication\%2805%29 spCreateInitialInvoiceDeezer.sql" />
+    <Content Include="Migrations\08 WidReplication\%2806%29 spCreateInitialInvoiceSpotify.sql" />
+    <Content Include="Migrations\08 WidReplication\%2807%29 spCreateInitialInvoiceSubscr.sql" />
+    <Content Include="Migrations\08 WidReplication\%2808%29 spPrepareDataForIdent.sql" />
+    <Content Include="Migrations\08 WidReplication\%2809%29 spIdentByNameAndPerformer.sql" />
+    <Content Include="Migrations\08 WidReplication\%2810%29 spDdexAdjConsolidatedDistRoyalty.sql" />
+    <Content Include="Migrations\08 WidReplication\%2811%29 spCreateInitialInvoiceSrmf.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -433,5 +446,6 @@
       <Version>4.7.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

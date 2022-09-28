@@ -49,7 +49,7 @@ from #TmpSpotifyMw t1
 	join MediaService..ObjectRight t3  on t1.Title = t3.name and t1.DisplayArtistName = t3.performer
 
 ; with wObjectUnique as (
-	select name, performers, count(*) cnt
+	select distinct name, performers
 	from  WID_IPI..wObject
 	group by name, performers
 	having count(*) = 1
@@ -62,6 +62,51 @@ from #TmpSpotifyMw t1
 	join wObjectUnique t2 on t1.Title = t2.name and t1.DisplayArtistName = t2.performers
 	join WID_IPI..wObject t3  on t1.Title = t3.name and t1.DisplayArtistName = t3.performers
 where t1.status <> 2
+
+; with TitleAndPerformer as
+(
+	select
+		t1.Wic
+		, t1.WrkTtl
+		, t2.PerfArtistFstName + ' ' + t2.PerfArtistLstName Performer
+	from SocWid..WidTitle t1
+		join SocWid..widArtist t2 on t1.Wic = t2.Wic
+	union
+	select
+		  t1.Wic
+		, t1.WrkTtl
+		, t2.PerfArtistLstName + ' ' + t2.PerfArtistFstName Performer
+	from SocWid..WidTitle t1
+		join SocWid..widArtist t2 on t1.Wic = t2.Wic
+	union
+	select
+		  t1.Wic
+		, t1.WrkTtl
+		, t2.PerfArtistLstName Performer
+	from SocWid..WidTitle t1
+		join SocWid..widArtist t2 on t1.Wic = t2.Wic
+	union
+	select
+		  t1.Wic
+		, t1.WrkTtl
+		, t2.PerfArtistFstName Performer
+	from SocWid..WidTitle t1
+		join SocWid..widArtist t2 on t1.Wic = t2.Wic
+),
+WithUniqueWic as (
+	select WrkTtl, Performer, min(Wic) Wic
+	from TitleAndPerformer
+	group by WrkTtl, Performer
+having count(*) = 1
+)
+update t1
+set 
+	  t1.WIC = t2.WIC
+	, t1.status = 2
+from #TmpSpotifyMw t1
+	join WithUniqueWic t2 on t1.DisplayArtistName = t2.Performer 
+		and t1.Title = t2.WrkTtl
+
 
 update t1
 set

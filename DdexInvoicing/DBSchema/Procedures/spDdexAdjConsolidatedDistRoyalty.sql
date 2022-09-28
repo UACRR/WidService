@@ -198,14 +198,81 @@ from #CCIDMW t1
   where t1.WIC is NULL and t1.objId is NULL 
 -->
 
+-- WID&IPI - Окремо заповнюємо виконавців, композиторів та поетів
+ /*
  update #CCIDMW  
   set performer = left(t2.performers, 100)
      ,authorMusic = left(t2.composers, 100)
 	 ,authorText = left(t2.Lirics, 100)
  from #CCIDMW t1 
    join WID_IPI..wObject t2 on t1.WIC = t2.WIC 
+ */
 
+ -- ВИКОНАВЦІ
+ ; with Perfomer as (
+	select
+		  Wic
+		, left(
+			string_agg (convert(varchar(max), trim(PerfArtistFstName + ' ' + PerfArtistLstName)), ', ')
+			, 100
+		) Performer
+	from SocWid..WidArtist
+	group by Wic
+)
+update #CCIDMW  
+set performer = t2.Performer
+from #CCIDMW t1 
+	join Perfomer t2 on t1.Wic = t2.Wic 
 
+-- КОМПОЗИТОРИ
+; with AuthorMusicSingle as (
+	select distinct 
+		  t1.Wic
+		, trim(t2.FstName + ' ' + t2.Name) Name
+	from SocWid..widIntrPty t1
+		join SocIpi..IpiName t2 on t1.IpNameNr = t2.IpNameNr
+	where IpRole in ('C', 'CA')
+),
+AuthorMusic as (
+	select
+		  Wic
+		, left(
+			string_agg (convert(varchar(max), Name), ', ')
+			, 100
+		) AuthorMusic
+	from AuthorMusicSingle
+	group by Wic
+)
+update #CCIDMW  
+set authorMusic = t2.AuthorMusic
+from #CCIDMW t1 
+   join AuthorMusic t2 on t1.Wic = t2.Wic
+
+-- ПОЕТИ
+; with AuthorTextSingle as (
+	select distinct
+		  t1.Wic
+		, trim(t2.FstName + ' ' + t2.Name) Name
+	from SocWid..widIntrPty t1
+		join SocIpi..IpiName t2 on t1.IpNameNr = t2.IpNameNr
+	where IpRole in ('A', 'CA')
+),
+AuthorText as (
+	select
+		  Wic
+		, left(
+			string_agg (convert(varchar(max), Name), ', ')
+			, 100
+		) AuthorText
+	from AuthorTextSingle
+	group by Wic
+)
+update #CCIDMW  
+set authorText = t2.AuthorText
+from #CCIDMW t1 
+   join AuthorText t2 on t1.Wic = t2.Wic 
+ 
+ -- MEDIA SERVICE
  update #CCIDMW  
   set performer = left(t2.performers, 100)
      ,authorMusic = left(t2.composers, 100)

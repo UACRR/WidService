@@ -8,7 +8,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[pTsk10_DDEXIdentMWAuthor] @DdexReportId integer, @isNetRevenue integer = NULL
+ALTER PROCEDURE [dbo].[pTsk10_DDEXIdentMWAuthor] @DdexReportId integer, @setId int
 as
 --Процедура формирования IdentMWAuthor - табл.правообладателей и их процентов владения 
 --@DdexReportId = ddexreportid
@@ -18,73 +18,75 @@ as
 begin
 SET NOCOUNT ON;
 declare @RetCode integer = 0
-declare @cntWID integer, @cntMS integer 
+declare @cntWID integer, @cntMS integer
+declare @isNetRevenue int = NULL -- це параметр процедури, який не використовується, переносимо сюди, щоб не вносити зміни в процедуру
 
---drop table #TmpObj 
-create table #TmpObj 
-( tmpObjId integer not null identity,
-  ddexreportid integer not null, 
-  blockid varchar(10) not null, 
-  salestransactionid varchar(100) not null, 
-  WIC integer null, 
-  objid integer null, 
-  mwId integer not null,
-  ValidityPeriodStart date, 
-  ValidityPeriodEnd date, 
-  primary key (tmpObjId) 
- )
+drop table if exists #TmpObj 
+create table #TmpObj ( 
+	tmpObjId			int				not null identity,
+	ddexreportid		int				not null, 
+	blockid				varchar(10)		not null, 
+	salestransactionid	varchar(100)	not null, 
+	WIC					int				null, 
+	objid				int				null, 
+	mwId				int				not null,
+	ValidityPeriodStart date, 
+	ValidityPeriodEnd	date, 
+	primary key (tmpObjId) 
+)
 
---drop table #TmpAuthor
-create table #TmpAuthor 
-(  id                   int                  not null identity,
-   DdexReportId         int                  not null,
-   BlockId              int                  not null,
-   SalesTransactionId   varchar(100)         not null,
-   tmpObjId             integer              not null, 
-   mwId                 int                  not null,
-   WIC                  int                  null,
-   objId                int                  null,
-   IP_BASE_NR           varchar(13)          null,
-   custId               int                  null,
-   IPInr                varchar(13)          null,
-   ratePER              decimal(5,2)         null,
-   rateMEC              decimal(5,2)         null,
-   cmCodePER            varchar(3)           null,
-   cmCodeMEC            varchar(3)           null,
-   rateCmPER            decimal(5,2)         null,
-   rateCmMEC            decimal(5,2)         null,
-   ValidityPeriodEnd    date                 null,
-   ValidityPeriodStart  date                 null,
-   roleCode             integer              null,
-   primary key (id) 
-   )
---drop table #TmpAuthorMS
-create table #TmpAuthorMS
-(  id                   int                  not null identity,
-   DdexReportId         int                  not null,
-   BlockId              int                  not null,
-   SalesTransactionId   varchar(100)         not null,
-   tmpObjId             integer              not null, 
-   mwId                 int                  not null,
-   WIC                  int                  null,
-   objId                int                  null,
-   IP_BASE_NR           varchar(13)          null,
-   custId               int                  null,
-   IPInr                varchar(13)          null,
-   ratePER              decimal(5,2)         null,
-   rateMEC              decimal(5,2)         null,
-   cmCodePER            varchar(3)           null,
-   cmCodeMEC            varchar(3)           null,
-   rateCmPER            decimal(5,2)         null,
-   rateCmMEC            decimal(5,2)         null,
-   ValidityPeriodEnd    date                 null,
-   ValidityPeriodStart  date                 null,
-   roleCode             integer              null,
-   primary key (id) 
-   )
+drop table if exists #TmpAuthor
+create table #TmpAuthor (  
+	id                   int                  not null identity,
+	DdexReportId         int                  not null,
+	BlockId              int                  not null,
+	SalesTransactionId   varchar(100)         not null,
+	tmpObjId             int				  not null, 
+	mwId                 int                  not null,
+	WIC                  int                  null,
+	objId                int                  null,
+	IP_BASE_NR           varchar(13)          null,
+	custId               int                  null,
+	IPInr                varchar(13)          null,
+	ratePER              decimal(5,2)         null,
+	rateMEC              decimal(5,2)         null,
+	cmCodePER            varchar(3)           null,
+	cmCodeMEC            varchar(3)           null,
+	rateCmPER            decimal(5,2)         null,
+	rateCmMEC            decimal(5,2)         null,
+	ValidityPeriodEnd    date                 null,
+	ValidityPeriodStart  date                 null,
+	roleCode             int                  null,
+	primary key (id) 
+)
+
+drop table if exists #TmpAuthorMS
+create table #TmpAuthorMS (  
+	id                   int                  not null identity,
+	DdexReportId         int                  not null,
+	BlockId              int                  not null,
+	SalesTransactionId   varchar(100)         not null,
+	tmpObjId             int				  not null, 
+	mwId                 int                  not null,
+	WIC                  int                  null,
+	objId                int                  null,
+	IP_BASE_NR           varchar(13)          null,
+	custId               int                  null,
+	IPInr                varchar(13)          null,
+	ratePER              decimal(5,2)         null,
+	rateMEC              decimal(5,2)         null,
+	cmCodePER            varchar(3)           null,
+	cmCodeMEC            varchar(3)           null,
+	rateCmPER            decimal(5,2)         null,
+	rateCmMEC            decimal(5,2)         null,
+	ValidityPeriodEnd    date                 null,
+	ValidityPeriodStart  date                 null,
+	roleCode             int                  null,
+	primary key (id) 
+)
 
 --Отбираю проидентифицированные записи 
-delete #TmpObj  
+--delete #TmpObj  
 --delete IdentMWAuthor
 
 RAISERROR ('Отбор!', 0, 1) WITH NOWAIT 
@@ -97,7 +99,9 @@ declare @ddexReportingPeriodId integer
 	, @month integer
 	, @quarter integer
 	, @year integer
-select @ddexReportingPeriodId = ddexReportingPeriodId from vFileCcidDdex where ddexReportId = @ddexReportId
+select @ddexReportingPeriodId = ddexReportingPeriodId 
+from vFileCcidDdex 
+where ddexReportId = @ddexReportId
  
 select 
 	  @month = month
@@ -121,6 +125,7 @@ end
 
 --select @periodDateBegin, @periodDateEnd
 
+/*
 IF isnull(@isNetRevenue, 0) = 0 
 BEGIN 
 insert into #TmpObj  
@@ -134,107 +139,100 @@ insert into #TmpObj
     and not exists 
      (select  1 from IdentMWAuthor t2 where t1.DdexReportId = t2.DdexReportId and t1.BlockId = t2.BlockId and t1.SalesTransactionId = t2.SalesTransactionId)
 END 
-ELSE 
-BEGIN   
-insert into #TmpObj  
- ( DdexReportId, BlockId, SalesTransactionId, objId, WIC, mwId, ValidityPeriodStart, ValidityPeriodEnd )
- select t1.DdexReportId, t1.BlockId, SalesTransactionId, t3.objId, t3.WIC, t3.id, t1.ValidityPeriodStart, t1.ValidityPeriodEnd 
-   from IdentBacklog t1 
-   join IdentMW t3 on t1.mwId = t3.id and (isnull(t3.WIC,0) + isnull(objid,0)) <> 0
-  where --t1.DdexReportId = 1 and t1.BlockId < 10000 --@DdexReportId
-        t1.DdexReportId in (select id from ft_AgreementReportIds(@DdexReportId))
-  and not exists 
-     (select  1 from IdentMWAuthor t2 where t1.DdexReportId = t2.DdexReportId and t1.BlockId = t2.BlockId and t1.SalesTransactionId = t2.SalesTransactionId)
-END 
+else 
+begin  */ 
+insert into #TmpObj ( 
+	  DdexReportId
+	, BlockId
+	, SalesTransactionId
+	, objId
+	, WIC
+	, mwId
+	, ValidityPeriodStart
+	, ValidityPeriodEnd 
+)
+select 
+	  t1.DdexReportId
+	, t1.BlockId
+	, SalesTransactionId
+	, t3.objId
+	, t3.WIC
+	, t3.id
+	, t1.ValidityPeriodStart
+	, t1.ValidityPeriodEnd 
+from IdentBacklog t1 
+	join IdentMW t3 on t1.mwId = t3.id 
+					and (isnull(t3.WIC,0) + isnull(objid,0)) <> 0
+where t1.DdexReportId in (select id from ft_AgreementReportIds(@DdexReportId))
+	and not exists (select 1 
+					from IdentMWAuthor t2 
+					where t1.DdexReportId = t2.DdexReportId 
+						and t1.BlockId = t2.BlockId 
+						and t1.SalesTransactionId = t2.SalesTransactionId
+	)
+--end 
 
 
 raiserror ('Автрські проценти (ненульові) для ідентифікованих в WID творів репорту', 0, 1) with nowait 
 
--- Про всяк випадок видаляємо проміжні таблиці
-drop table if exists #ReportWics
-drop table if exists #WidAuthorShares
-drop table if exists #WicsWithOver100
+declare @WidAuthorShares tblTypeWidAuthorShares
 
--- Твори репорту з WID
-select distinct t2.Wic
-into #ReportWics
-from Ddex..IdentBacklog t1
-	join Ddex..IdentMW t2 on t1.mwId = t2.id
-where t1.DdexReportId = @ddexReportId
-	and isnull(t2.Wic, 0) <> 0
-
--- Розподіл процентів між авторами
-select
-	  Wic
-	, IpBaseNr
-	, IpNameNr
-	, IpRole
-	, MEC rateMEC
-	, PER ratePER
-into #WidAuthorShares
-from (
-	select
-		  t2.Wic
-		, t1.IpBaseNr
-		, t2.IpNameNr
-		, t2.IpRole
-		, t3.RightType
-		, isnull(t3.Shares, 0) Shares
-	from SocIpi..IpiName t1
-	    join SocWid..widIntrPty t2 on t1.IpNameNr = t2.IpNameNr
-		join SocWid..WidShares t3 on t2.Wic = t3.Wic and t2.RolId = t3.IntrPtyRolid
-		join #ReportWics t4 on t2.Wic = t4.Wic
-	where isnull(t3.Shares, 0) <> 0
-) as TableToPivot
-pivot (
-	sum(Shares)
-	for RightType in (MEC, PER)  
-) as result
-
--- Коррекція null, що можуть зявитись при транспонуванні
-update #WidAuthorShares
-set 
-	  rateMEC = isnull(rateMEC, 0)
-	, ratePER = isnull(ratePER, 0)
-
--- Твори з сумою процентів, що перевищує 100
-select wic, sum(rateMec) rateMec, sum(ratePer) ratePer
-into #WicsWithOver100
-from #WidAuthorShares
-group by Wic
-having sum(rateMec) > 100 or sum(ratePer) > 100
-
--- Виключити твори з сумою процентів, що перевищує 100
-delete t1
-from #WidAuthorShares t1
-	join #WicsWithOver100 t2 on t1.Wic = t2.Wic
+insert @WidAuthorShares
+exec spGetWidAuthorShares 
+  @DdexReportId
+, @periodDateBegin
+, @periodDateEnd
+, @setId
 
 RAISERROR ('Авторы WID вносим!', 0, 1) WITH NOWAIT 
 delete #TmpAuthor
 --Авторы с процентами по WID
-insert into  #TmpAuthor 
-   (DdexReportId,  BlockId, SalesTransactionId, 
-    tmpObjId, mwId, WIC, objId, 
-	IP_BASE_NR, IPInr, custId, 
-	ratePER, rateMEC, 
-	--cmCodePER, cmCodeMEC, rateCmPER, rateCmMEC, 
-	ValidityPeriodEnd, ValidityPeriodStart) 
- select  t1.DdexReportId,  t1.BlockId, t1.SalesTransactionId, 
-     t1.tmpObjId, t1.mwId, t1.WIC, t1.objid, 
-	 t2.IpBaseNr, t2.IpNameNr, NULL, 
-	 t2.ratePER, t2.rateMEC, 
-	 t1.ValidityPeriodEnd, t1.ValidityPeriodStart
-    from #TmpObj t1 
-		join #WidAuthorShares t2 on t1.WIC = t2.WIC 
-     where t1.WIC = t2.WIC 
+insert into #TmpAuthor (
+	  DdexReportId
+	, BlockId
+	, SalesTransactionId
+	, tmpObjId
+	, mwId
+	, WIC
+	, objId
+	, IP_BASE_NR
+	, IPInr
+	, custId
+	, ratePER
+	, rateMEC 
+	, cmCodePER
+	, cmCodeMEC
+	, rateCmPER
+	, rateCmMEC
+	, ValidityPeriodEnd
+	, ValidityPeriodStart
+) 
+select  
+	  t1.DdexReportId				DdexReportId
+	, t1.BlockId					BlockId
+	, t1.SalesTransactionId			SalesTransactionId
+    , t1.tmpObjId					tmpObjId
+	, t1.mwId						mwId
+	, t1.WIC						WIC
+	, t1.objid 						objId
+	, t2.IpBaseNr					IP_BASE_NR
+	, t2.IpNameNr					IPInr
+	, null							custId
+	, t2.PerWidShr					ratePER
+	, t2.MecWidShr					rateMEC 
+	, t2.PerSoc						cmCodePER
+	, t2.MecSoc						cmCodeMEC
+	, t2.PerSocShr					rateCmPER
+	, t2.MecSocShr					rateCmMEC
+	, t1.ValidityPeriodEnd			ValidityPeriodEnd
+	, t1.ValidityPeriodStart		ValidityPeriodStart
+from #TmpObj t1 
+	join @WidAuthorShares t2 on t1.WIC = t2.WIC 
 
--- Видаляємо проміжні таблиці
-drop table #ReportWics
-drop table #WidAuthorShares
-drop table if exists #WicsWithOver100
+delete @WidAuthorShares -- очищаємо робочу інформацію
 
---Международный код ОКУ-ТОВАРИСТВА
---/*
+--Международный код ОКУ-ТОВАРИСТВА (більш не потрібно, виконано вище)
+/*
 RAISERROR ('CmCodePER проставляем!', 0, 1) WITH NOWAIT 
 update #TmpAuthor 
 set 
@@ -250,6 +248,8 @@ update #TmpAuthor set CmCodeMEC = t3.SOC_CDE, rateCmMEC = convert(decimal(5,2),t
   from #TmpAuthor t1 
 	   join WID_IPI..wCmAuthor t3 on t1.IP_BASE_NR = t3.IP_BASE_NR and t3.RGT_CDE = 'MR'
    where t1.WIC is not NULL
+*/
+
 
 RAISERROR ('Авторы из MS!', 0, 1) WITH NOWAIT 
 --Авторы с процентами по MS

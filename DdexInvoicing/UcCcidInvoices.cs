@@ -172,11 +172,15 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC:
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
-                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
                         cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@fileId", fileId);
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
+                        cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                        cmd.Parameters.AddWithValue("@fileId", fileId);
+                        cmd.Parameters.AddWithValue("@setCode", setCode);
                         break;
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
                         cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
@@ -292,8 +296,9 @@ namespace DdexInvoicing
                 {
                     cmd.Parameters.Clear();
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                     cmd.CommandText = "dbo.pTsk10_DdexIdentMWAuthor";
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                    cmd.Parameters.AddWithValue("@setId", setCode);
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = "dbo.pTsk10_DdexExceptionStatus";
@@ -521,11 +526,15 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC:
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC:
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
-                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
                         cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@fileId", DBNull.Value);
+                        break;
+                    case DdexReport.ReportTypeEnum.YOUTUBE_SRMF:
+                        cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                        cmd.Parameters.AddWithValue("@fileId", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@setCode", setCode);
                         break;
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
                         cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
