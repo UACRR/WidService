@@ -425,6 +425,31 @@
     <Content Include="Migrations\08 WidReplication\%2809%29 spIdentByNameAndPerformer.sql" />
     <Content Include="Migrations\08 WidReplication\%2810%29 spDdexAdjConsolidatedDistRoyalty.sql" />
     <Content Include="Migrations\08 WidReplication\%2811%29 spCreateInitialInvoiceSrmf.sql" />
+    <Content Include="SqlQueries\vWidQuery.sql" />
+    <Content Include="SqlQueries\CCID-Tables.sql" />
+    <Content Include="SqlQueries\CcidInvoiceView.sql" />
+    <Content Include="SqlQueries\CopyStaticTables.sql" />
+    <Content Include="SqlQueries\CreateCcidTables.sql" />
+    <Content Include="SqlQueries\CreateFinalCcidInvoice.sql" />
+    <Content Include="SqlQueries\DDEX-Tables.sql" />
+    <Content Include="SqlQueries\DdexReportTables.sql" />
+    <Content Include="SqlQueries\FullDatabase.sql" />
+    <Content Include="SqlQueries\FullDdexDatabase.sql" />
+    <Content Include="SqlQueries\Helpers.sql" />
+    <Content Include="SqlQueries\InvoiceSummaryView.sql" />
+    <Content Include="SqlQueries\PurgeCcidInvoice.sql" />
+    <Content Include="SqlQueries\PurgeDdexReport.sql" />
+    <Content Include="SqlQueries\RawDataAnalysis.sql" />
+    <Content Include="SqlQueries\RegisterReport.sql" />
+    <Content Include="SqlQueries\SelectInvoiceDetails.sql" />
+    <Content Include="SqlQueries\SocWidAuthorShares.sql" />
+    <Content Include="SqlQueries\spCreateCorrectedInvoice.sql" />
+    <Content Include="SqlQueries\spCreateInitialInvoice.sql" />
+    <Content Include="SqlQueries\vAuthorsForIdentification.sql" />
+    <Content Include="SqlQueries\vCcidInitialInDetail.sql" />
+    <Content Include="SqlQueries\vCcidInitialInDetailBase.sql" />
+    <Content Include="SqlQueries\vDdexRecordLiEx.sql" />
+    <Content Include="SqlQueries\vSplitAuthors.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
