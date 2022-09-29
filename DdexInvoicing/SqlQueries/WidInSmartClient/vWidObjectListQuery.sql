@@ -1,0 +1,99 @@
+/* œŒœ≈–≈ƒÕﬂ –≈¿À≤«¿÷≤ﬂ
+select 
+	  Wic
+	, iswc
+	, name
+	, author
+	, performer
+	, genreName
+	, rateTotalMEC
+	, rateTotalPER
+from [WID_IPI].[dbo].[vObjRigthsForLink]
+
+select top 1000
+      Wic
+	, iswc
+	, name
+	, authors as author
+	, performers as performer
+	, genreName
+	, rateTotalMEC
+	, rateTotalPER
+from WID_IPI..wObject
+where rateTotalPer <> 100 and rateTotalPer <> 0
+*/
+; with
+-- ISWC
+Iswcs as (
+	select 
+		  Wic				Wic
+		, max(PrefIswc)		iswc
+	from SocWid..widIswc
+	group by Wic
+),
+-- ¬» ŒÕ¿¬÷≤
+Perfomers as (
+	select
+		  Wic
+		, left(
+			string_agg (convert(varchar(max), trim(PerfArtistFstName + ' ' + PerfArtistLstName)), ', ')
+			, 254
+		) Performers
+	from SocWid..WidArtist
+	group by Wic
+),
+-- ¿¬“Œ–»
+AuthorSingle as (
+	select distinct 
+		  t1.Wic
+		, trim(t2.FstName + ' ' + t2.Name) Name
+	from SocWid..widIntrPty t1
+		join SocIpi..IpiName t2 on t1.IpNameNr = t2.IpNameNr
+	where IpRole in ('C', 'CA', 'A')
+),
+Authors as (
+	select
+		  Wic
+		, left(
+			string_agg (convert(varchar(max), Name), ', ')
+			, 100
+		) Authors
+	from AuthorSingle
+	group by Wic
+),
+-- œ–Œ÷≈Õ“» œ”¡À≤◊ ¿
+RatePer as (
+	select
+		  Wic
+		, sum(Shares) ratePer
+	from SocWid..widShares
+	where RightType = 'PER'
+	group by Wic
+),
+-- œ–Œ÷≈Õ“» Ã≈’¿Õ≤ ¿
+RateMec as (
+	select
+		  Wic
+		, sum(Shares) rateMec
+	from SocWid..widShares
+	where RightType = 'MEC'
+	group by Wic
+)
+select --top 100 
+	  t1.Wic		as Wic
+	, t2.iswc		as iswc
+	, t1.WrkTtl		as name
+	, t4.Authors	as author
+	, t3.Performers as performer
+	, t1.MwDistrCat	as genreName
+	, t5.rateMec	as rateTotalMEC
+	, t6.ratePer	as rateTotalPER
+from 
+	SocWid..widTitle t1
+	join Iswcs		 t2	on t1.Wic = t2.Wic
+	join Perfomers	 t3	on t2.Wic = t3.Wic
+	join Authors	 t4	on t3.Wic = t4.Wic
+	join RateMec	 t5	on t4.Wic = t5.Wic
+	join RatePer	 t6	on t5.Wic = t6.Wic
+--where t5.rateMec <> 100
+--order by Wic
