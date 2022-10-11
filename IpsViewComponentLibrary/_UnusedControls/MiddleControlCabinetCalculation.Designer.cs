@@ -523,7 +523,7 @@
             // MiddleControlCabinetCalculation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.pageViewParent);
             this.Name = "MiddleControlCabinetCalculation";
             this.Size = new System.Drawing.Size(1039, 572);

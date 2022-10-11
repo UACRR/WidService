@@ -192,7 +192,7 @@ namespace IpsViewComponentLibrary
             // MiddleControlAgreementAnketaType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.gvPlaces);
             this.Controls.Add(this.lblParam);
             this.Controls.Add(this.panel);
