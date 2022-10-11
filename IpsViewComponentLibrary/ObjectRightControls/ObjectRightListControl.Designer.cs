@@ -522,7 +522,7 @@
             // ObjectRightListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.backgroundPanel);
             this.Name = "ObjectRightListControl";
             this.Size = new System.Drawing.Size(936, 460);
