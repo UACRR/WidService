@@ -30,7 +30,8 @@
 +  private const string WID_ObjectAlternativeNames = @"select WIC, SeqNr, AltTtl from [WID_IPI].[dbo].[TblAltTtl]";
 +  private const string WID_ObjectPerformers = @"select WIC, SeqNr, LstNa + FstNa as PerformerName from [WID_IPI].[dbo].[TblArtist]";
 
-
++  vtsk_3_OR_01_WID_short (same as vWidObjectRight.sql)
++  vTsk10_WIDObjects (same as vWidObjectListQuery.sql)
 
 
 
