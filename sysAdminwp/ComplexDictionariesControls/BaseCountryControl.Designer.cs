@@ -429,7 +429,7 @@
             // BaseCountryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.totalCountry);
             this.Controls.Add(this.lbTotalCountry);
             this.Controls.Add(this.ddlFilterCountry);
