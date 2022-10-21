@@ -92,6 +92,10 @@ namespace ipsFormsDesign.Services
         // Запуск Word
         internal Application StartWordApp()
         {
+            // possible solution if Application doesn't create
+            //Type wordType = Type.GetTypeFromProgID("Word.Application");
+            //dynamic msword = Activator.CreateInstance(wordType);
+
             if (app == null)
                 app = new Application();
             if (app != null)
