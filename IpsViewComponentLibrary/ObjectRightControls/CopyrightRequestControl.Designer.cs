@@ -541,7 +541,7 @@
             // CopyrightRequestControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.radSplitContainer1);
             this.Name = "CopyrightRequestControl";
             this.Size = new System.Drawing.Size(841, 500);

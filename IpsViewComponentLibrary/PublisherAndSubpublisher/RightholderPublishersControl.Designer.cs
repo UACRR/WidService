@@ -144,7 +144,7 @@
             // RightholderPublishersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.gvPublishers);
             this.Controls.Add(this.ipsPanel1);
             this.Name = "RightholderPublishersControl";

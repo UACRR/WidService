@@ -413,7 +413,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(546, 294);
             this.Controls.Add(this.rpanelFolkType);

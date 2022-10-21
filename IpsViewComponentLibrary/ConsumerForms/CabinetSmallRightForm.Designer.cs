@@ -47,7 +47,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // CabinetSmallRightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1070, 774);
             this.Controls.Add(this.cabinet);
             this.Name = "CabinetSmallRightForm";

@@ -357,7 +357,7 @@
             // BaseSystemConstantControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.totalSystemConstant);
             this.Controls.Add(this.lbTotalSystemConstant);
             this.Controls.Add(this.lblSearchSystemConstant);

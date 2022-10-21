@@ -129,18 +129,6 @@
     <Compile Include="RightholderCatalogControls\RightholderCatalogControl.Designer.cs">
       <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="_trash\RightholderCatalogDetailWPFForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="_trash\RightholderCatalogDetailWPFForm.Designer.cs">
-      <DependentUpon>RightholderCatalogDetailWPFForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\RightholderCatalogDetailForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="_trash\RightholderCatalogDetailForm.Designer.cs">
-      <DependentUpon>RightholderCatalogDetailForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Common\Enums\AgreementModifyType.cs" />
     <Compile Include="CommunityControls\InternalModel\InternalCommunity.cs" />
     <Compile Include="ConsumerControls\Places\Enums\MeasurementOfPlaces.cs" />
@@ -323,12 +311,6 @@
       <DependentUpon>PersonalAddressControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\IpsUARadGridLocalizationProvider.cs" />
-    <Compile Include="_UnusedControls\AddCompositionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="_UnusedControls\AddCompositionForm.Designer.cs">
-      <DependentUpon>AddCompositionForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddFileDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,12 +334,6 @@
     </Compile>
     <Compile Include="ConsumerControls\ManagersControl.Designer.cs">
       <DependentUpon>ManagersControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_UnusedControls\AgreementPhis.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_UnusedControls\AgreementPhis.Designer.cs">
-      <DependentUpon>AgreementPhis.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\InternalModel\GridLicenseAgreementView.cs" />
     <Compile Include="ConsumerDialogForms\ContactPersonActionForm.cs">
@@ -924,23 +900,11 @@
     <Compile Include="RightholderControls\Anketa\RightLimitationsControl.Designer.cs">
       <DependentUpon>RightLimitationsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="_UnusedControls\MainViewSwitcher.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_UnusedControls\MainViewSwitcher.Designer.cs">
-      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
-    </Compile>
     <Compile Include="Shared\Controls\JuridicalAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Shared\Controls\JuridicalAddressControl.Designer.cs">
       <DependentUpon>JuridicalAddressControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_UnusedControls\MiddleControlAgreementAnketaType.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_UnusedControls\MiddleControlAgreementAnketaType.Designer.cs">
-      <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\AgreementWithPlacesControl.cs">
       <SubType>UserControl</SubType>
@@ -959,12 +923,6 @@
     </Compile>
     <Compile Include="ConsumerControls\PartnerOfConsumerControl.Designer.cs">
       <DependentUpon>PartnerOfConsumerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_UnusedControls\MiddleControlCabinetCalculation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_UnusedControls\MiddleControlCabinetCalculation.Designer.cs">
-      <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlCabinetFiles.cs">
       <SubType>UserControl</SubType>
@@ -1169,12 +1127,6 @@
     <EmbeddedResource Include="RightholderCatalogControls\RightholderCatalogControl.resx">
       <DependentUpon>RightholderCatalogControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\RightholderCatalogDetailWPFForm.resx">
-      <DependentUpon>RightholderCatalogDetailWPFForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\RightholderCatalogDetailForm.resx">
-      <DependentUpon>RightholderCatalogDetailForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\LicenseAgreementNotActiveControl.resx">
       <DependentUpon>LicenseAgreementNotActiveControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1250,9 +1202,6 @@
     <EmbeddedResource Include="Shared\Controls\PersonalAddressControl.resx">
       <DependentUpon>PersonalAddressControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
-      <DependentUpon>AddCompositionForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddFileDialogForm.resx">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1264,9 +1213,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ManagersControl.resx">
       <DependentUpon>ManagersControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_UnusedControls\AgreementPhis.resx">
-      <DependentUpon>AgreementPhis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ContactPersonActionForm.resx">
       <DependentUpon>ContactPersonActionForm.cs</DependentUpon>
@@ -1523,14 +1469,8 @@
     <EmbeddedResource Include="RightholderControls\Anketa\RightLimitationsControl.resx">
       <DependentUpon>RightLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_UnusedControls\MainViewSwitcher.resx">
-      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Shared\Controls\JuridicalAddressControl.resx">
       <DependentUpon>JuridicalAddressControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_UnusedControls\MiddleControlAgreementAnketaType.resx">
-      <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\AgreementWithPlacesControl.resx">
       <DependentUpon>AgreementWithPlacesControl.cs</DependentUpon>
@@ -1540,9 +1480,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\PartnerOfConsumerControl.resx">
       <DependentUpon>PartnerOfConsumerControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_UnusedControls\MiddleControlCabinetCalculation.resx">
-      <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetFiles.resx">
       <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>

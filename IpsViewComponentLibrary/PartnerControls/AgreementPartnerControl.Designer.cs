@@ -235,7 +235,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // AgreementPartnerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.checkForever);
             this.Controls.Add(this.lblContrDo);
             this.Controls.Add(this.dtDateEnd);

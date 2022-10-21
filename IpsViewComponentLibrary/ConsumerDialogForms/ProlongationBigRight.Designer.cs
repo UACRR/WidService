@@ -105,7 +105,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // ProlongationBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(457, 152);
             this.Controls.Add(this.ctrlAgrMain);
