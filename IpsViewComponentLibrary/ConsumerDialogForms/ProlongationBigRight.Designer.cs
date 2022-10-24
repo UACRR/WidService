@@ -95,7 +95,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgrMain.DateEndNullText = "";
-            this.ctrlAgrMain.DateTimeType = AgreementModifyType.CreateNewAgreement;
+            this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.Common.Enums.AgreementModifyType.CreateNewAgreement;
             this.ctrlAgrMain.Location = new System.Drawing.Point(12, 40);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";
@@ -104,7 +104,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // ProlongationBigRight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(457, 152);
