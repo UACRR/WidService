@@ -297,7 +297,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // CabinetPartnerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1075, 546);
             this.Controls.Add(this.pageView);
