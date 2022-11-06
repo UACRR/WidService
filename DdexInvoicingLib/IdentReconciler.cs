@@ -391,7 +391,7 @@ namespace InvoicingLib
                       t1.DdexReportId
                     , t2.id
                     , left(t2.ResourceTitle, 256) TITLE
-                    , left(t3.Ttl, 256) TITLE_FROM_ISWC_IN_WID
+                    , left(t3.WrkTtl, 256) TITLE_FROM_ISWC_IN_WID
                     , left(t2.DisplayArtistName, 64) ARTIST
                     , 0 isConfirmed
                     , 0 isRejected
