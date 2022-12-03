@@ -445,13 +445,6 @@ namespace DdexInvoicing
 
         private bool LoadDdexAdjConsolidated(int ddexReportId, int ddexReportingPeriodId)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Файли консолідованих звітів від клієнта (*.tsv)|*.tsv";
-            if (DialogResult.OK != dlg.ShowDialog())
-                return false;
-            string fileFullName = dlg.FileName;
-            string fileName = Path.GetFileNameWithoutExtension(dlg.FileName);
-
             // Get data for file name validation from db
             string fileType = "";
             int year = 0;
@@ -478,6 +471,14 @@ namespace DdexInvoicing
                 fileType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase) ? "SubscriptionMusic" :
                                                                                             "SubscriptionPremium";
             string expectedFileStart = $"DSR_UACRR-CS_YouTube_AdjConsolidated-{expectedAdjFileType}-Music-All_{year}-Q{quarter}_UA_1of1_";
+
+            OpenFileDialog dlg = new OpenFileDialog();
+            //dlg.Filter = "Файли консолідованих звітів від клієнта (*.tsv)|*.tsv";
+            dlg.Filter = $"Файли консолідованих звітів від клієнта (*.tsv)|{expectedFileStart}*.tsv";
+            if (DialogResult.OK != dlg.ShowDialog())
+                return false;
+            string fileFullName = dlg.FileName;
+            string fileName = Path.GetFileNameWithoutExtension(dlg.FileName);
 
             if (!fileName.StartsWith(expectedFileStart, StringComparison.OrdinalIgnoreCase))
             {

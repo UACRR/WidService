@@ -33,10 +33,10 @@
             this.radBtnClose = new Telerik.WinControls.UI.RadButton();
             this.panelMain = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
             this.ucDdexReports = new DdexInvoicing.UcDdexReports();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucExceptionSets = new DdexInvoicing.UcExceptionSets();
+            this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
@@ -89,28 +89,28 @@
             // radPageViewPage1
             // 
             this.radPageViewPage1.Controls.Add(this.ucDdexReports);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(38F, 24F);
-            this.radPageViewPage1.Location = new System.Drawing.Point(10, 33);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(42F, 28F);
+            this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1086, 477);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1086, 473);
             this.radPageViewPage1.Text = "Звіти";
-            // 
-            // radPageViewPage2
-            // 
-            this.radPageViewPage2.Controls.Add(this.ucExceptionSets);
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(77F, 24F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
-            this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(1086, 473);
-            this.radPageViewPage2.Text = "Виключення";
             // 
             // ucDdexReports
             // 
             this.ucDdexReports.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucDdexReports.Location = new System.Drawing.Point(0, 0);
             this.ucDdexReports.Name = "ucDdexReports";
-            this.ucDdexReports.Size = new System.Drawing.Size(1086, 477);
+            this.ucDdexReports.Size = new System.Drawing.Size(1086, 473);
             this.ucDdexReports.TabIndex = 2;
+            // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.Controls.Add(this.ucExceptionSets);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(81F, 28F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(1086, 473);
+            this.radPageViewPage2.Text = "Виключення";
             // 
             // ucExceptionSets
             // 

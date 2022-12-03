@@ -563,7 +563,7 @@ namespace InvoicingLib
             var reportType = (string)cmd.ExecuteScalar();
             cmd.Parameters.Clear();
 
-            return AgreementReportTypes[reportType];
+            return AgreementReportTypes[reportType.ToLower()];
         }
 
         public static string GetFileNameWildcard(string agreementReportType)

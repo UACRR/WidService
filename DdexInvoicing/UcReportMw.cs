@@ -286,7 +286,8 @@ namespace DdexInvoicing
             }
             else
             {
-                cell.Value = ilStatuses.Images[rec.Status - 1];
+                var simpleStatus = rec.Status >= 10 ? Status.unprocessed : (Status)(rec.Status - 1);
+                cell.Value = ilStatuses.Images[(int)simpleStatus];
             }
         }
 

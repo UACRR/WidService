@@ -83,24 +83,6 @@ namespace InvoicingLib
                     throw;
             }
         }
-        public static void RunSqlOperationWid(SqlOperation oper)
-        {
-            try
-            {
-                using (var waitCursor = new WaitCursor())
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConnectionStringWid"]))
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    conn.Open();
-                    cmd.CommandTimeout = 0;
-                    oper(cmd);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         public static void RunSqlOperationMs(SqlOperation oper)
         {
             try
