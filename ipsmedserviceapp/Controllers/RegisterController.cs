@@ -210,7 +210,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception e)
             {
-                response = new ResponseOfRequest("Неможливо виконати синхронізацію!", e);
+                response = new ResponseOfRequest($"Неможливо виконати синхронізацію! {e.Message}", e);
                 return BadRequest(response);
             }
         }
