@@ -178,7 +178,11 @@ namespace ipsmedserviceapp.Controllers
             ResponseOfRequest response;
             try
             {
-                string query = $"exec @retCode = pTsk10_LoadWICRegister @regId";
+                //>>> OlegM:NewWid
+                //string query = $"exec @retCode = pTsk10_LoadWICRegister @regId";
+                string query = $"exec @retCode = spWidLoadRegister @regId";
+                //<<< OlegM:NewWid
+
                 var param = new SqlParameter("regId", regId);
                 var returnedCode = new SqlParameter
                 {
@@ -206,7 +210,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception e)
             {
-                response = new ResponseOfRequest("Неможливо виконати синхронізацію!", e);
+                response = new ResponseOfRequest($"Неможливо виконати синхронізацію! {e.Message}", e);
                 return BadRequest(response);
             }
         }
@@ -222,7 +226,10 @@ namespace ipsmedserviceapp.Controllers
             ResponseOfRequest response;
             try
             {
-                string query = $"exec @retCode = p_CreateDistribution_DDEX @regId";
+                //>>> OlegM:NewWid
+                //string query = $"exec @retCode = p_CreateDistribution_DDEX @regId";
+                string query = $"exec @retCode = spCreateDistributionDdex @regId";
+                //<<< OlegM:NewWid
                 var param = new SqlParameter("regId", regId);
                 var returnedCode = new SqlParameter
                 {

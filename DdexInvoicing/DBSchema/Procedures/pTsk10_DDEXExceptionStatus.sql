@@ -1,6 +1,12 @@
-﻿--Обнулить исключения
---update IdentMWAuthor set excId = NULL, excStatus = NULL 
---29-10-2019 добавила проставление исправленных кодов ОКУ в конечном апдейте
+USE [DDEX]
+GO
+
+/****** Object:  StoredProcedure [dbo].[pTsk10_DDEXExceptionStatus]    Script Date: 12.09.2022 13:02:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
 
 ALTER PROCEDURE [dbo].[pTsk10_DDEXExceptionStatus] @DdexReportId integer, @setId integer 
 as
@@ -38,7 +44,7 @@ create index i_2 on #TmpAuthor(IPInr)
          (CASE WHEN cmCodePER is NULL then 2 else 1 end), 
 		 (CASE When cmCodeMEC is NULL THEN 2 Else 1 end), ratePer, rateMEC, custId
    from IdentMWAuthor
-   where DdexReportId = @DdexReportId 
+   where DdexReportId  in (select id from ft_AgreementReportIds(@DdexReportId))
      and isnull(excStatusPER,0) = 0
  
  --Исключаются сложно
@@ -183,4 +189,6 @@ END
 --select count(*) from IdentMWAuthor where ddexReportId = 1 and excStatus <> 2  --3 433 405/10 879 189
 --Оброблено: 14312594. Виключено PER: 3 433 405. Виключено MEC: 1 087 294
 --select top 100 * from IdentMWAuthor
+
+GO
 

@@ -1,0 +1,1 @@
+select distinct Wic from SocWid..WidAltTtl
