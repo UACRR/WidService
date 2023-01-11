@@ -112,12 +112,6 @@
     <Compile Include="FormCreateInvoice.Designer.cs">
       <DependentUpon>FormCreateInvoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDataLoadSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormDataLoadSettings.Designer.cs">
-      <DependentUpon>FormDataLoadSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormDdexInvoicing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,14 +210,23 @@
     <Compile Include="UcMwIdent.Designer.cs">
       <DependentUpon>UcMwIdent.cs</DependentUpon>
     </Compile>
-    <Compile Include="UcMwIdentHelpers.cs">
+    <Compile Include="UcMwSearch.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMwSearch.Designer.cs">
+      <DependentUpon>UcMwSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="UcReportInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UcReportInfo.Designer.cs">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcReportMw.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcReportMw.Designer.cs">
+      <DependentUpon>UcReportMw.cs</DependentUpon>
     </Compile>
     <Compile Include="UсReconcile.cs">
       <SubType>UserControl</SubType>
@@ -242,9 +245,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateInvoice.resx">
       <DependentUpon>FormCreateInvoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormDataLoadSettings.resx">
-      <DependentUpon>FormDataLoadSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDdexInvoicing.resx">
       <DependentUpon>FormDdexInvoicing.cs</DependentUpon>
@@ -305,8 +305,14 @@
     <EmbeddedResource Include="UcMwIdent.resx">
       <DependentUpon>UcMwIdent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UcMwSearch.resx">
+      <DependentUpon>UcMwSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcReportInfo.resx">
       <DependentUpon>UcReportInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcReportMw.resx">
+      <DependentUpon>UcReportMw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UсReconcile.resx">
       <DependentUpon>UсReconcile.cs</DependentUpon>
@@ -337,9 +343,40 @@
     <Content Include="CcidStat.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DBSchema\Procedures\spGetWidAuthorShares.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_AddCcIdCLDdexAdjustment.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_DDEXFormRate.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_Export2018.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_Export2018_duplicate.sql" />
+    <Content Include="DBSchema\Procedures\pTsk10_ExportCcidCLFile.sql" />
+    <Content Include="DBSchema\Procedures\spCopyExceptionSet.sql" />
+    <Content Include="DBSchema\Procedures\spCreateCcidParamsForSubscr.sql" />
+    <Content Include="DBSchema\Procedures\spCreateClFromAdjustmentReport.sql" />
+    <Content Include="DBSchema\Procedures\spCreateClFromCrf.sql" />
+    <Content Include="DBSchema\Procedures\spCreateCorrectedInFile.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoice.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceDeezer.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSpotify.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSrmf.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSubscr.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSubscrM.sql" />
+    <Content Include="DBSchema\Procedures\spDdexAdjConsolidatedCalcRoyalty.sql" />
+    <Content Include="DBSchema\Procedures\spDdexAdjConsolidatedDistRoyalty.sql" />
+    <Content Include="DBSchema\Procedures\spDdexCreateAuthorsSplitted.sql" />
+    <Content Include="DBSchema\Procedures\spDdexDeleteReportData.sql" />
+    <Content Include="DBSchema\Procedures\spDdexDeleteReportInvoices.sql" />
+    <Content Include="DBSchema\Procedures\spDdexDeleteReportTypeInvoices.sql" />
+    <Content Include="DBSchema\Procedures\spDdexInsertSplittedAuthors.sql" />
     <Content Include="DBSchema\Procedures\spDeleteDdexReport.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_DDEXExceptionStatus.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_DDEXIdentMWAuthor.sql" />
+    <Content Include="DBSchema\Procedures\spDeleteExceptionSet.sql" />
+    <Content Include="DBSchema\Procedures\spIdentByNameAndPerformer.sql" />
+    <Content Include="DBSchema\Procedures\spPrepareDataForIdent.sql" />
+    <Content Include="DBSchema\Procedures\spRemoveLowRoyaltyFromCcidDetail.sql" />
+    <Content Include="DBSchema\Procedures\spSaveExceptionSet.sql" />
+    <Content Include="DBSchema\Procedures\spUpdateIdentProgress.sql" />
+    <Content Include="DBSchema\Types\TblTypeWidAuthorShares.sql" />
     <Content Include="FullDatabase.sql" />
     <Content Include="FullDdexDatabase.sql" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
@@ -377,6 +414,63 @@
     <Content Include="Migrations\06 Fixes\CcidInFile.sql" />
     <Content Include="Migrations\06 Fixes\spCreateInitialInvoiceDeezer.sql" />
     <Content Include="Migrations\07 PreClaim Reconcile\PreClaimIdentReconcile.sql" />
+    <Content Include="Migrations\08 WidReplication\%2802%29 SpGetWidAuthorShares.sql" />
+    <Content Include="Migrations\08 WidReplication\%2801%29 TblTypeWidAuthorShares.sql" />
+    <Content Include="Migrations\08 WidReplication\%2803%29 pTsk10_DDEXIdentMWAuthor.sql" />
+    <Content Include="Migrations\08 WidReplication\%2804%29 spCreateInitialInvoice.sql" />
+    <Content Include="Migrations\08 WidReplication\%2805%29 spCreateInitialInvoiceDeezer.sql" />
+    <Content Include="Migrations\08 WidReplication\%2806%29 spCreateInitialInvoiceSpotify.sql" />
+    <Content Include="Migrations\08 WidReplication\%2807%29 spCreateInitialInvoiceSubscr.sql" />
+    <Content Include="Migrations\08 WidReplication\%2808%29 spPrepareDataForIdent.sql" />
+    <Content Include="Migrations\08 WidReplication\%2809%29 spIdentByNameAndPerformer.sql" />
+    <Content Include="Migrations\08 WidReplication\%2810%29 spDdexAdjConsolidatedDistRoyalty.sql" />
+    <Content Include="Migrations\08 WidReplication\%2811%29 spCreateInitialInvoiceSrmf.sql" />
+    <Content Include="SqlQueries\WidInMediaService\fnWidIpRolePrty.sql" />
+    <Content Include="SqlQueries\WidInMediaService\fnWidPrtyIpRole.sql" />
+    <Content Include="SqlQueries\WidInMediaService\spWidImportToMs.sql" />
+    <Content Include="SqlQueries\WidInMediaService\spWidIpBasNrSoc.sql" />
+    <Content Include="SqlQueries\WidInMediaService\spWidLoadDdexRegister.sql" />
+    <Content Include="SqlQueries\WidInMediaService\spWidLoadRegister.sql" />
+    <Content Include="SqlQueries\WidInMediaService\spWidLoadSoc.sql" />
+    <Content Include="SqlQueries\WidInMediaService\vWidAuthorAgg.sql" />
+    <Content Include="SqlQueries\WidInMediaService\vWidComposerAgg.sql" />
+    <Content Include="SqlQueries\WidInMediaService\vWidPerformerAgg.sql" />
+    <Content Include="SqlQueries\WidInMediaService\vWidPrefIswc.sql" />
+    <Content Include="SqlQueries\WidInMediaService\vWidPublisherAgg.sql" />
+    <Content Include="SqlQueries\WidInMediaService\vWidTextWriterAgg.sql" />
+    <Content Include="SqlQueries\WidInMediaService\vWidWorkIps.sql" />
+    <Content Include="SqlQueries\WidInSmartClient\vWidObjectListQuery.sql" />
+    <Content Include="SqlQueries\WidInSmartClient\vWidObjectRight.sql" />
+    <Content Include="SqlQueries\WidInSmartClient\vWidIswc.sql" />
+    <Content Include="SqlQueries\WidInSmartClient\vWidObjectAuthors.sql" />
+    <Content Include="SqlQueries\WidInSmartClient\vWidObjectAuthorsCommunities.sql" />
+    <Content Include="SqlQueries\WidInSmartClient\vWidObjectAlternativeNames.sql" />
+    <Content Include="SqlQueries\WidInSmartClient\vWidObjectPerformers.sql" />
+    <Content Include="SqlQueries\WidInSmartClient\vWidQuery.sql" />
+    <Content Include="SqlQueries\Other\CCID-Tables.sql" />
+    <Content Include="SqlQueries\Other\CcidInvoiceView.sql" />
+    <Content Include="SqlQueries\Other\CopyStaticTables.sql" />
+    <Content Include="SqlQueries\Other\CreateCcidTables.sql" />
+    <Content Include="SqlQueries\Other\CreateFinalCcidInvoice.sql" />
+    <Content Include="SqlQueries\Other\DDEX-Tables.sql" />
+    <Content Include="SqlQueries\Other\DdexReportTables.sql" />
+    <Content Include="SqlQueries\Other\FullDatabase.sql" />
+    <Content Include="SqlQueries\Other\FullDdexDatabase.sql" />
+    <Content Include="SqlQueries\Other\Helpers.sql" />
+    <Content Include="SqlQueries\Other\InvoiceSummaryView.sql" />
+    <Content Include="SqlQueries\Other\PurgeCcidInvoice.sql" />
+    <Content Include="SqlQueries\Other\PurgeDdexReport.sql" />
+    <Content Include="SqlQueries\Other\RawDataAnalysis.sql" />
+    <Content Include="SqlQueries\Other\RegisterReport.sql" />
+    <Content Include="SqlQueries\Other\SelectInvoiceDetails.sql" />
+    <Content Include="SqlQueries\Other\SocWidAuthorShares.sql" />
+    <Content Include="SqlQueries\Other\spCreateCorrectedInvoice.sql" />
+    <Content Include="SqlQueries\Other\spCreateInitialInvoice.sql" />
+    <Content Include="SqlQueries\Other\vAuthorsForIdentification.sql" />
+    <Content Include="SqlQueries\Other\vCcidInitialInDetail.sql" />
+    <Content Include="SqlQueries\Other\vCcidInitialInDetailBase.sql" />
+    <Content Include="SqlQueries\Other\vDdexRecordLiEx.sql" />
+    <Content Include="SqlQueries\Other\vSplitAuthors.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -398,5 +492,6 @@
       <Version>4.7.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

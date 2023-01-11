@@ -1,0 +1,42 @@
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\pTsk10_DDEXIdentMWAuthor.sql(242):    join WID_IPI..wCmAuthor t2 on t1.IP_BASE_NR = t2.IP_BASE_NR and t2.RGT_CDE = 'PR'
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\pTsk10_DDEXIdentMWAuthor.sql(249):	   join WID_IPI..wCmAuthor t3 on t1.IP_BASE_NR = t3.IP_BASE_NR and t3.RGT_CDE = 'MR'
+-  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\pTsk10_Export2018.sql(141):   join WID_IPI..wObject t2 on t1.WIC = t2.WIC 
+-  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\pTsk10_Export2018_duplicate.sql(141):   join WID_IPI..wObject t2 on t1.WIC = t2.WIC 
+-  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\pTsk10_ExportCcidCLFile.sql(145):   join WID_IPI..wObject t2 on t1.WIC = t2.WIC 
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spCreateInitialInvoice.sql(265):	left join WID_IPI.dbo.TblTitle t3 on t3.Wic = t2.Wic
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spCreateInitialInvoiceDeezer.sql(295):	left join WID_IPI.dbo.TblTitle t3 on t3.Wic = t2.Wic
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spCreateInitialInvoiceSpotify.sql(241):	left join WID_IPI.dbo.TblTitle t3 on t3.Wic = t2.Wic
+-  vDdexIdentResult
+-  vIdentMWAuthor
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spCreateInitialInvoiceSubscr.sql(326):		left join WID_IPI.dbo.TblTitle t3 on t3.Wic = t2.Wic
+-  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spCreateInitialInvoiceSubscrM.sql(429):			left join WID_IPI.dbo.TblTitle t3 on t3.Wic = t2.Wic
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spPrepareDataForIdent.sql(83):	join wid_ipi.DBO.tblIswc t2 on t1.ISWC = t2.ISWC
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spIdentByNameAndPerformer.sql(53):	from  WID_IPI..wObject
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spDdexAdjConsolidatedDistRoyalty.sql(206):   join WID_IPI..wObject t2 on t1.WIC = t2.WIC 
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\DBSchema\Procedures\spCreateInitialInvoiceSrmf.sql(110):	join WID_IPI..wObjectAuthor t2 on t1.wic = t2.wic
+
++  D:\IPS\Sources\DdexInvoicingStarter\DdexInvoicingStarter\App.config(12):    <add key="ConnectionStringWid" value="Persist Security Info=False;User=OlegM;Password=111111;Initial Catalog = WID_IPI; Server=89.184.65.168\IPSDATA,60675"/>
++  D:\IPS\Sources\DdexInvoicingStarter\DdexInvoicingStarter\App.config(16):    <add key="ConnectionStringWid" value="Persist Security Info=False;User=OlegM;Password=111111;Initial Catalog = WID_IPI; Server=89.184.65.166\IPSDATA,60675"/>
++  D:\IPS\Sources\DdexInvoicingStarter\DdexInvoicingStarter\App.config(25):    <add key="WidDbName" value="WID_IPI"/>
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\App.config(8):    <add key="ConnectionStringWid" value="Persist Security Info=False;User=OlegM;Password=111111;Initial Catalog = WID_IPI; Server=93.126.99.28\IPSDATA,60675"/>
++  D:\IPS\Sources\ipssysadmin\DdexInvoicing\App.config(17):    <add key="WidDbName" value="WID_IPI"/>
+
++  private const string WIDQuery = @"select distinct t1.wic from [WID_IPI].[dbo].[TblAltTtl] t1 left join [WID_IPI].[dbo].[TblArtist] t2 on t2.WIC = t1.WIC left join [WID_IPI].[dbo].[wObjectAuthor] t3 on t3.WIC = t1.WIC";
++  private const string ObjectListQuery = @"select * from [WID_IPI].[dbo].[vObjRigthsForLink]";
++  private const string WID_ObjectRight = @"select * from vtsk_3_OR_01_WID_short";
++  private const string WID_ISWC = @"SELECT WIC, ISWC FROM [WID_IPI].[dbo].[tblISWC]";
++  private const string WID_ObjectAuthors = @"select WIC, SeqNr, IPINr, IP_BASE_NR, IntrPtyRol, CONCAT(RTRIM(NAME), ' ', FST_NAME) as authName, ratePER, rateMEC from [WID_IPI].[dbo].[v_objects_authors_5_shares]";
++  private const string WID_ObjectAuthorsCommunities = @"select IP_BASE_NR, SOC_CDE, t2.name as OKU_NAME, ROL_CDE,RGT_CDE, AGR_VALID_FROM_DT, cast(MBR_SHARE/100 as decimal(5,2)) as MBR_SHARE, TISAN from [WID_IPI].[dbo].[TBLMBRAGREETERR] t1 left join vCustomerRholder t2 on t1.SOC_CDE = t2.interCode and t2.rHolderType = 2";
++  private const string WID_ObjectAlternativeNames = @"select WIC, SeqNr, AltTtl from [WID_IPI].[dbo].[TblAltTtl]";
++  private const string WID_ObjectPerformers = @"select WIC, SeqNr, LstNa + FstNa as PerformerName from [WID_IPI].[dbo].[TblArtist]";
+
++  vtsk_3_OR_01_WID_short (same as vWidObjectRight.sql)
++  vTsk10_WIDObjects (same as vWidObjectListQuery.sql)
+
+
+
+
+
+
+
+ 

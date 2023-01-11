@@ -329,10 +329,12 @@ namespace InvoicingLib
 
                         cmd.CommandText = $@"update t1
                             set t1.Wic = t2.Wic, t1.status = 2
-                            from IdentReportMwRecords t3
-                                join IdentMW t1 on t3.mwId = t1.Id
-                                join wid_ipi.DBO.tblIswc t2 on t1.ISWC = t2.ISWC
-                            where T1.status <> 2 and t3.ddexReportId {filter}";
+                            from Ddex..IdentReportMwRecords t3
+                                join Ddex..IdentMW t1 on t3.mwId = t1.Id
+                                join SocWid..WidIswc t2 on t1.Iswc = t2.Iswc
+                            where t1.status <> 2
+                                and trim(isnull(t1.Iswc, '')) <> ''
+                                and t3.ddexReportId {filter}";
                         cmd.ExecuteNonQuery();
 
                         cmd.CommandType = CommandType.StoredProcedure;

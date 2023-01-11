@@ -245,16 +245,16 @@ namespace DdexInvoicing
                         , cast('20191231' as Date) dateEnd
                         , @setCode setCode
                         , cast(null as int) rHolderType
-                        , NAME memberName
+                        , name memberName
                         , cast(null as varchar(100)) nameForSeek  
-                        , IP_BASE_NR interCode
+                        , IpBaseNr interCode
                         , 2 excType
                         , cast(null as int) custId
                         , cast(null as varchar(100)) comment
-                        , IP_NAME_NR IPInr 
+                        , cast(IpNameNr as varchar(11)) IPInr 
                         , GetDate() dateCreated 
-                    from WID_IPI..TBLIPINAME 
-                    where name like @nameForSeek
+                    from SocIpi..IpiName
+                    where name like @nameForSeek and fstName = ''
                 ";
                 cmd.Parameters.AddWithValue("@nameForSeek", $"%{genericRightHolder}%");
                 cmd.Parameters.AddWithValue("@setCode", setCode);
@@ -405,14 +405,14 @@ namespace DdexInvoicing
                         , null rHolderType
                         , NAME memberName
                         , cast(null as varchar(100)) nameForSeek  
-                        , IP_BASE_NR interCode
+                        , IpBaseNr interCode
                         , null excType
                         , null custId
                         , null comment
-                        , IP_NAME_NR IPInr 
+                        , cast(IpNameNr as varchar(11)) IPInr 
                         , GetDate() dateCreated 
-                    from WID_IPI..TBLIPINAME 
-                    where name like @nameForSeek
+                    from SocIpi..IpiName 
+                    where name like @nameForSeek and fstName = ''
                 ";
                 cmd.Parameters.AddWithValue("@nameForSeek", $"%{key}%");
 

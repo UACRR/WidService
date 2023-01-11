@@ -166,6 +166,7 @@ namespace InvoicingLib
     {
         public override void Run()
         {
+            /*
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -173,6 +174,7 @@ namespace InvoicingLib
                 cmd.CommandText = "dbo.pTsk10_DdexIdentMWAuthor";
                 cmd.ExecuteNonQuery();
             }, true);
+            */
         }
     }
     public class ProcessExclusionsRunner : ActionRunner
@@ -195,6 +197,7 @@ namespace InvoicingLib
     {
         public override void Run()
         {
+            /*
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -202,6 +205,7 @@ namespace InvoicingLib
                 cmd.Parameters.AddWithValue("@ddexReportId", DdexReportId);
                 cmd.ExecuteNonQuery();
             }, true);
+            */
         }
     }
     /*public class DoPreIdentificationRunner : ActionRunner

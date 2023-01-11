@@ -54,6 +54,30 @@ namespace ipsmedserviceapp.Utilities
             return queryText;
         }
 
+        //>>> OlegM:NewWid
+        public static string ApplySqlWhereEqualCondition(string queryText, Dictionary<string[], string> conditionDictionary)
+        {
+            if (!conditionDictionary.Any())
+                return queryText;
+
+            var andConditions = new Collection<string>();
+
+            foreach (var condDef in conditionDictionary)
+            {
+                var orConditions = new Collection<string>();
+                foreach (var colName in condDef.Key)
+                {
+                    orConditions.Add($"{colName} = \'{StrongNormalizeString(condDef.Value)}\'");
+                }
+                andConditions.Add($"({string.Join(" or ", orConditions)})");
+            }
+
+            queryText += $" where {string.Join(" and ", andConditions)}";
+
+            return queryText;
+        }
+        //<<< OlegM:NewWid
+
         public static string ApplySqlWhereInCondition<T>(string queryText, string parameterName, ICollection<T> valueCollection)
         {
             if (valueCollection.Count == 0)

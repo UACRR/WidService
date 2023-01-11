@@ -23,6 +23,9 @@ namespace ipsmedserviceapp.Controllers
     {
         private const string WID = "wid";
         private const string Local = "local";
+
+        //>>> OlegM:NewWid
+        /* Removed
         //private const string WIDQuery = @"select t1.wic, t1.AltTtl as objectName, t2.LstNa as performerLastName, t2.FstNa as performerFirstName, t3.lstName as authorLastName, t3.fstName as authorFirstName, ratePer, rateMEc from [WID_IPI].[dbo].[TblAltTtl] t1 join [WID_IPI].[dbo].[TblArtist] t2 on t2.WIC = t1.WIC join [WID_IPI].[dbo].[wObjectAuthor] t3 on t3.WIC = t1.WIC";
         private const string WIDQuery = @"select distinct t1.wic from [WID_IPI].[dbo].[TblAltTtl] t1 left join [WID_IPI].[dbo].[TblArtist] t2 on t2.WIC = t1.WIC left join [WID_IPI].[dbo].[wObjectAuthor] t3 on t3.WIC = t1.WIC";
         private const string ObjectListQuery = @"select * from [WID_IPI].[dbo].[vObjRigthsForLink]";
@@ -34,6 +37,20 @@ namespace ipsmedserviceapp.Controllers
         private const string WID_ObjectAuthorsCommunities = @"select IP_BASE_NR, SOC_CDE, t2.name as OKU_NAME, ROL_CDE,RGT_CDE, AGR_VALID_FROM_DT, cast(MBR_SHARE/100 as decimal(5,2)) as MBR_SHARE, TISAN from [WID_IPI].[dbo].[TBLMBRAGREETERR] t1 left join vCustomerRholder t2 on t1.SOC_CDE = t2.interCode and t2.rHolderType = 2";
         private const string WID_ObjectAlternativeNames = @"select WIC, SeqNr, AltTtl from [WID_IPI].[dbo].[TblAltTtl]";
         private const string WID_ObjectPerformers = @"select WIC, SeqNr, LstNa + FstNa as PerformerName from [WID_IPI].[dbo].[TblArtist]";
+        */
+
+        // Added instead
+        private const string WIDQuery                       = "select distinct Wic from vWidSrQuery";
+        private const string ObjectListQuery                = "select * from vWidSrObjectListQuery";
+        private const string WID_ObjectRight                = "select * from vWidSrObjectRight";
+        private const string WID_ISWC                       = "select * from vWidSrIswc";
+        private const string WID_ObjectAuthors              = "select * from vWidSrObjectAuthors";
+        private const string WID_ObjectAuthorsCommunities   = "select * from vWidSrObjectAuthorsCommunities";
+        private const string WID_ObjectAlternativeNames     = "select * from vWidSrObjectAlternativeNames";
+        private const string WID_ObjectPerformers           = "select * from vWidSrObjectPerformers";
+
+        //<<< OlegM:NewWid
+
 
         private readonly MediaServiceContext _dbContext;
 
@@ -88,20 +105,32 @@ namespace ipsmedserviceapp.Controllers
 
                         if (!string.IsNullOrEmpty(searchObjectRightQuery.ObjectName))
                         {
-                            conditionsDictionary.Add(new[] { "t1.AltTtl" }, searchObjectRightQuery.ObjectName.Replace("\"", "\"\""));
+                            //>>> OlegM:NewWid
+                            //conditionsDictionary.Add(new[] { "t1.AltTtl" }, searchObjectRightQuery.ObjectName.Replace("\"", "\"\""));
+                            conditionsDictionary.Add(new[] { "AltTtl" }, searchObjectRightQuery.ObjectName.Replace("\"", "\"\""));
+                            //<<< OlegM:NewWid
                         }
 
                         if (!string.IsNullOrEmpty(searchObjectRightQuery.Performer))
                         {
-                            conditionsDictionary.Add(new[] { "t2.LstNa", "t2.FstNa" }, searchObjectRightQuery.Performer.Replace("\"", "\"\""));
+                            //>>> OlegM:NewWid
+                            //conditionsDictionary.Add(new[] { "t2.LstName", "t2.FstName" }, searchObjectRightQuery.Performer.Replace("\"", "\"\""));
+                            conditionsDictionary.Add(new[] { "PerfArtistLstName", "PerfArtistFstName" }, searchObjectRightQuery.Performer.Replace("\"", "\"\""));
+                            //<<< OlegM:NewWid
                         }
 
                         if (!string.IsNullOrEmpty(searchObjectRightQuery.Author))
                         {
-                            conditionsDictionary.Add(new []{ "t3.lstName", "t3.fstName" }, searchObjectRightQuery.Author.Replace("\"", "\"\""));
+                            //>>> OlegM:NewWid
+                            //conditionsDictionary.Add(new []{ "t3.lstName", "t3.fstName" }, searchObjectRightQuery.Author.Replace("\"", "\"\""));
+                            conditionsDictionary.Add(new[] { "AuthorLstName", "AuthorFstName" }, searchObjectRightQuery.Author.Replace("\"", "\"\""));
+                            //<<< OlegM:NewWid
                         }
 
-                        queryWID = ApplySqlWhereContainsCondition(queryWID, conditionsDictionary);
+                        //>>> OlegM:NewWid
+                        //queryWID = ApplySqlWhereContainsCondition(queryWID, conditionsDictionary);
+                        queryWID = ApplySqlWhereEqualCondition(queryWID, conditionsDictionary);
+                        //<<< OlegM:NewWid
                         queryWID = ApplySqlWhereInCondition(ObjectListQuery, "WIC", queryWID);
 
                         var queryWIDParam = new SqlParameter
