@@ -2,6 +2,7 @@
 using Microsoft.Office.Interop.Word;
 using System.Linq;
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +15,8 @@ using ipsFormsDesign.ViewModels.Fixations;
 using System.Globalization;
 using System.Windows.Forms;
 
+using G = System.Collections.Generic;
+
 
 using Application = Microsoft.Office.Interop.Word.Application;
 using Table = Microsoft.Office.Interop.Word.Table;
@@ -21,6 +24,7 @@ using Telerik.Windows.Documents.Common.FormatProviders;
 using Telerik.Windows.Documents.Flow.FormatProviders.Pdf;
 using Telerik.Windows.Documents.Flow.FormatProviders.Docx;
 using Telerik.Windows.Documents.Flow.Model;
+using ipsFormsDesign.Engines.Helpers;
 
 namespace ipsFormsDesign.Services
 {
@@ -722,6 +726,16 @@ namespace ipsFormsDesign.Services
             }
             pay_period = $"{period[licenseAgrParam?.PeriodCode ?? 1].Name}";
             pay_period2 = $"{period[licenseAgrParam?.PeriodCode ?? 1].NameR}";
+
+            var values = PeriodHelper.GetValuesById(licenseAgrParam.PeriodCode.Value);
+
+            string pay_period_1 = values[Const.I_Each];
+            string pay_period_2 = values[Const.I_NumEach];
+            string pay_period_3 = values[Const.I_Next];
+            string pay_period_4 = values[Const.I_NumEach2];
+            string pay_period_5 = values[Const.I_Previous];
+
+
             DocDateEnd = $"{licenseAgrParam?.DateEnd:dd.MM.yyyy}";
             ///            prcntPrl = licenseAgrParam?.AddRate?.ToString();
             prcntPrl = $"{licenseAgrParam?.AddRate:F}";
@@ -845,6 +859,25 @@ namespace ipsFormsDesign.Services
                     case "rltPayPeriod2":
                         item.Range.Text = pay_period2;
                         break;
+
+                    case "payPeriod1":
+                        item.Range.Text = pay_period_1;
+                        break;
+                    case "payPeriod2":
+                        item.Range.Text = pay_period_2;
+                        break;
+                    case "payPeriod3":
+                        item.Range.Text = pay_period_3;
+                        break;
+                    case "payPeriod4":
+                        item.Range.Text = pay_period_4;
+                        break;
+                    case "payPeriod5":
+                        item.Range.Text = pay_period_5;
+                        break;
+
+
+
                     case "docDateEnd":
                         item.Range.Text = DocDateEnd;
                         break;

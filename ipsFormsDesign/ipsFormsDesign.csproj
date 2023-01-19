@@ -118,6 +118,8 @@
     <Compile Include="Dictionary\RightholderStates.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />
     <Compile Include="Dictionary\TermsOfServiceWrapper.cs" />
+    <Compile Include="Engines\Helpers\Const.cs" />
+    <Compile Include="Engines\Helpers\PeriodHelper.cs" />
     <Compile Include="Enums\CPartnerObjectStatus.cs" />
     <Compile Include="Enums\LicType.cs" />
     <Compile Include="Enums\RegisterState.cs" />
