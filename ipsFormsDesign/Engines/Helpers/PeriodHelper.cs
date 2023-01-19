@@ -25,6 +25,7 @@ namespace ipsFormsDesign.Engines.Helpers
                 [Const.I_Next] = "наступний місяць",
                 [Const.I_NumEach2] = "кожного місяця",
                 [Const.I_Previous] = "попередній місяць",
+                [Const.I_PeriodDates] = "",
             },
             [Const.Quarter] = new Dictionary<string, string>
             {
@@ -33,6 +34,7 @@ namespace ipsFormsDesign.Engines.Helpers
                 [Const.I_Next] = "наступний квартал",
                 [Const.I_NumEach2] = "першого місяця кожного кварталу",
                 [Const.I_Previous] = "попередній квартал",
+                [Const.I_PeriodDates] = " (20 квітня, 20 липня, 20 жовтня, 20 січня)",
             },
             [Const.HalfYear] = new Dictionary<string, string>
             {
@@ -41,6 +43,7 @@ namespace ipsFormsDesign.Engines.Helpers
                 [Const.I_Next] = "наступне півріччя",
                 [Const.I_NumEach2] = "першого місяця кожного півріччя",
                 [Const.I_Previous] = "попереднє півріччя",
+                [Const.I_PeriodDates] = " (20 січня, 20 липня)",
             },
             [Const.Year] = new Dictionary<string, string>
             {
@@ -49,6 +52,7 @@ namespace ipsFormsDesign.Engines.Helpers
                 [Const.I_Next] = "наступний рік",
                 [Const.I_NumEach2] = "першого місяця кожного року",
                 [Const.I_Previous] = "попередній рік",
+                [Const.I_PeriodDates] = " (20 січня)",
             },
         };
 

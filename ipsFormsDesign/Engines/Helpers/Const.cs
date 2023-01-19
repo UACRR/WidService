@@ -12,5 +12,6 @@
         public const string I_NumEach2 = "NumEach2";
         public const string I_Next = "Next";
         public const string I_Previous = "Previous";
+        public const string I_PeriodDates = "PeriodDates";
     }
 }

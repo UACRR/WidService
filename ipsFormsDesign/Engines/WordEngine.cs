@@ -734,6 +734,7 @@ namespace ipsFormsDesign.Services
             string pay_period_3 = values[Const.I_Next];
             string pay_period_4 = values[Const.I_NumEach2];
             string pay_period_5 = values[Const.I_Previous];
+            string pay_period_ext = values[Const.I_PeriodDates];
 
 
             DocDateEnd = $"{licenseAgrParam?.DateEnd:dd.MM.yyyy}";
@@ -875,7 +876,9 @@ namespace ipsFormsDesign.Services
                     case "payPeriod5":
                         item.Range.Text = pay_period_5;
                         break;
-
+                    case "rltPayPeriod2ext":
+                        item.Range.Text = pay_period_ext;
+                        break;
 
 
                     case "docDateEnd":
