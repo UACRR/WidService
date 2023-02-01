@@ -41,6 +41,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     {
                         LicVersion = 1,
                         LicStatus = 0,
+                        PeriodCode = 1,
                     }
                 }
             };

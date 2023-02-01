@@ -727,7 +727,7 @@ namespace ipsFormsDesign.Services
             pay_period = $"{period[licenseAgrParam?.PeriodCode ?? 1].Name}";
             pay_period2 = $"{period[licenseAgrParam?.PeriodCode ?? 1].NameR}";
 
-            var values = PeriodHelper.GetValuesById(licenseAgrParam.PeriodCode.Value);
+            var values = PeriodHelper.GetValuesById(licenseAgrParam.PeriodCode ?? 1);
 
             string pay_period_1 = values[Const.I_Each];
             string pay_period_2 = values[Const.I_NumEach];
