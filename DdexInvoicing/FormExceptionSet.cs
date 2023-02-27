@@ -247,13 +247,13 @@ namespace DdexInvoicing
                         , cast(null as int) rHolderType
                         , NAME memberName
                         , cast(null as varchar(100)) nameForSeek  
-                        , IP_BASE_NR interCode
+                        , IpBaseNr interCode
                         , 2 excType
                         , cast(null as int) custId
                         , cast(null as varchar(100)) comment
-                        , IP_NAME_NR IPInr 
+                        , IpNameNr IPInr 
                         , GetDate() dateCreated 
-                    from WID_IPI..TBLIPINAME 
+                    from SocIpi..IpiName
                     where name like @nameForSeek
                 ";
                 cmd.Parameters.AddWithValue("@nameForSeek", $"%{genericRightHolder}%");
@@ -405,13 +405,13 @@ namespace DdexInvoicing
                         , null rHolderType
                         , NAME memberName
                         , cast(null as varchar(100)) nameForSeek  
-                        , IP_BASE_NR interCode
+                        , IpBaseNr interCode
                         , null excType
                         , null custId
                         , null comment
-                        , IP_NAME_NR IPInr 
+                        , IpNameNr IPInr 
                         , GetDate() dateCreated 
-                    from WID_IPI..TBLIPINAME 
+                    from SocIpi..IpiName 
                     where name like @nameForSeek
                 ";
                 cmd.Parameters.AddWithValue("@nameForSeek", $"%{key}%");

@@ -39,7 +39,7 @@ namespace DdexInvoicing
             int cnt = 0;
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandText = "select count(*) from WID_IPI..TBLIPINAME where name like @name";
+                cmd.CommandText = "select count(*) from SocIpi..IpiName where name like @name";
                 cmd.Parameters.AddWithValue("@name", $"%{radTbName.Text}%");
                 cnt = (int)cmd.ExecuteScalar();
             });
