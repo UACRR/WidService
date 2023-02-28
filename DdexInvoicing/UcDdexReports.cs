@@ -306,14 +306,14 @@ namespace DdexInvoicing
 
             // Check that folder contains files for all services
             var errorText = "";
+            var serviceNamesInFolder = "";
             foreach(var serviceName in serviceNames)
             {
                 var filter = DdexReport.GetFileNameWildcardForService(agreementReportType, serviceName);
                 var files = Directory.GetFiles(fullFolderName, filter);
-                if(files.Length == 0)
+                if(files.Length == 1)
                 {
-                    errorText = $"Не знайдено файл для сервісу {serviceName}";
-                    break;
+                    serviceNamesInFolder += $"{serviceName} ";
                 }
                 else if (files.Length > 1)
                 {
@@ -325,6 +325,19 @@ namespace DdexInvoicing
             if(!string.IsNullOrEmpty(errorText))
             {
                 MessageBox.Show(errorText, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(serviceNamesInFolder))
+            {
+                MessageBox.Show("Фолдер не містить жодного файлу сервісу", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if(DialogResult.Yes != MessageBox.Show(
+                $"Фолдер містить файли для наступних сервісів - {serviceNamesInFolder.Trim()}. Виконати реєстрацію?", 
+                "Реєстрація", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
                 return;
             }
 
