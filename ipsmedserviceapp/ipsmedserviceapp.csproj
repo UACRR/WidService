@@ -8,6 +8,7 @@
     <StartupObject></StartupObject>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -36,6 +37,7 @@
 
   <ItemGroup>
     <Content Remove="appsettings.Development.json" />
+    <Content Remove="appsettings.Production.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="appsettings.Production.json" />
     <None Include="appsettings.Development.json" />
   </ItemGroup>
 
@@ -50,7 +53,7 @@
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="AutoMapper.Collection" Version="5.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
-    <PackageReference Include="Castle.Core" Version="4.4.0" />
+    <PackageReference Include="Castle.Core" Version="4.4.1" />
     <PackageReference Include="MailKit" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview.19074.3" />
@@ -61,13 +64,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.5" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="4.6.0-preview.19073.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj" />
+    <ProjectReference Include="..\SmRoPermitCommonLib\SmRoPermitCommonLib.csproj" />
   </ItemGroup>
 
 
@@ -75,6 +80,22 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="Languages\Language.en-US.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Languages\Language.ru-RU.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Languages\Language.uk-UA.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Languages\LanguagesInfo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" appsettings_1Development_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
