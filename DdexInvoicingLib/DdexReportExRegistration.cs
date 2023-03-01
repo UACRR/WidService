@@ -222,6 +222,10 @@ namespace InvoicingLib
                 {
                     var filter = GetFileNameWildcardForService(agreementReportType, serviceName);
                     var files = Directory.GetFiles(fullFolderName, filter);
+                    if(files.Length == 0)
+                    {
+                        continue;
+                    }
                     var fullFileName = files[0];
                     InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId);
                 }
