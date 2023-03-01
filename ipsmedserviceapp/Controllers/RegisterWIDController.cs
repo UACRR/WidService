@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.Extensions.Logging;
+using ipsmedserviceapp.Extensions;
+using IpsCommonTypes.Types;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -51,12 +54,15 @@ namespace ipsmedserviceapp.Controllers
 
         //<<< OlegM:NewWid
 
+        private ExceptionHelper Helper { get; } = new ExceptionHelper(nameof(RegisterWIDController));
 
         private readonly MediaServiceContext _dbContext;
+        private readonly ILogger<RegisterWIDController> _logger;
 
-        public RegisterWIDController(MediaServiceContext dbContext)
+        public RegisterWIDController(MediaServiceContext dbContext, ILogger<RegisterWIDController> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         /// <summary>
@@ -303,6 +309,10 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception e)
             {
+                string msg = Helper.GetMessage(e, Request);
+                _logger.LogError(e, msg);
+                var response = new ResponseOfRequest(e, "Неможливо виконати розподіл!", msg);
+                return BadRequest(response);
                 return BadRequest(e.ToString());
             }
         }

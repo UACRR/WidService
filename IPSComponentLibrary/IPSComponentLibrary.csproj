@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -76,6 +77,12 @@
     </Compile>
     <Compile Include="Forms\DocumentViewerForm.Designer.cs">
       <DependentUpon>DocumentViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IPSMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IPSMessageBox.Designer.cs">
+      <DependentUpon>IPSMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Register\CompositionOfReport.cs">
       <SubType>Form</SubType>
@@ -127,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DocumentViewerForm.resx">
       <DependentUpon>DocumentViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IPSMessageBox.resx">
+      <DependentUpon>IPSMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register\CompositionOfReport.resx">
       <DependentUpon>CompositionOfReport.cs</DependentUpon>
@@ -201,6 +211,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\viewAct.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

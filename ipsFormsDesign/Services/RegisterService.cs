@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using IpsCommonTypes.ClassesForSearchQuery;
 using IpsCommonTypes.Types;
 using WebAPIConnector;
+using System.Threading;
 
 namespace ipsFormsDesign.Services
 {
@@ -181,6 +182,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public async Task<ResponseOfRequest> ExecuteDistributionProcedure(int regId)
         {
+            
             string url = $"register/ccid/distribution/{regId}";
             var result = await _webApi.GetRequestAsync<ResponseOfRequest>(url);
             return result;

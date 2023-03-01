@@ -11,6 +11,7 @@ using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -19,10 +20,13 @@ namespace ipsmedserviceapp.Controllers
     public class RegisterController : Controller
     {
         private readonly MediaServiceContext _dbContext;
+        private readonly ILogger<RegisterController> _logger;
+        private ExceptionHelper Helper { get; } = new ExceptionHelper(nameof(RegisterController));
 
-        public RegisterController(MediaServiceContext dbContext)
+        public RegisterController(MediaServiceContext dbContext, ILogger<RegisterController> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         /// <summary>
@@ -191,7 +195,7 @@ namespace ipsmedserviceapp.Controllers
                     Direction = ParameterDirection.Output
                 };
 
-                _dbContext.Database.SetCommandTimeout(600);
+                _dbContext.Database.SetCommandTimeout(1800);
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
                 if ((int)returnedCode.Value == 1)
                 {
@@ -238,7 +242,7 @@ namespace ipsmedserviceapp.Controllers
                     Direction = ParameterDirection.Output
                 };
 
-                _dbContext.Database.SetCommandTimeout(600);
+                _dbContext.Database.SetCommandTimeout(3600);
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
                 if ((int)returnedCode.Value == 1)
                 {
@@ -257,7 +261,9 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception e)
             {
-                response = new ResponseOfRequest("Неможливо виконати розподіл!", e);
+                string msg = Helper.GetMessage(e, Request);
+                _logger.LogError(e, msg);
+                response = new ResponseOfRequest(e, "Неможливо виконати розподіл!", msg);
                 return BadRequest(response);
             }
         }
@@ -283,7 +289,7 @@ namespace ipsmedserviceapp.Controllers
 
                 var param = new SqlParameter("regId", regId);
 
-                _dbContext.Database.SetCommandTimeout(600);
+                _dbContext.Database.SetCommandTimeout(1800);
                 var result = await _dbContext.Database.ExecuteSqlCommandAsync(query, param, returnedCode);
                 if ((int)returnedCode.Value == 1)
                 {

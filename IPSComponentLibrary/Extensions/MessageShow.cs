@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using IpsCommonTypes.Types;
+using IPSComponentLibrary.Forms;
+using System.Windows.Forms;
 
 namespace IPSComponentLibrary.Extensions
 {
@@ -77,6 +79,21 @@ namespace IPSComponentLibrary.Extensions
             MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
 
             MessageBox.Show(message, caption, MessageBoxButtons.OK, icon);
+        }
+
+        public static void ShowInfoByResult(ResponseOfRequest response)
+        {
+            if (response.IsSuccess)
+            {
+                MessageBox.Show(response.Message, SuccessTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                using (IPSMessageBox mb = new IPSMessageBox(response.Message, response.InnerMessage))
+                {
+                    mb.Show();
+                }
+            }
         }
 
         /// <summary>

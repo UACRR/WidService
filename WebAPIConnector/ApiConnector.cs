@@ -38,7 +38,7 @@ namespace WebAPIConnector
             client.BaseAddress = new Uri(Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.Timeout = TimeSpan.FromMinutes(20);
+            client.Timeout = TimeSpan.FromMinutes(120);
 
             clientForStream = new HttpClient(handler);
             clientForStream.BaseAddress = new Uri(Uri);

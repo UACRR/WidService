@@ -32,6 +32,19 @@ namespace IpsCommonTypes.Types
             Exception = e;
         }
 
+        /// <summary>
+        /// Error response. IsSuccess = false
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="e"></param>
+        public ResponseOfRequest(Exception e, string errorMessage, string innerMessage)
+        {
+            Message = errorMessage;
+            InnerMessage = innerMessage;
+            StatusCode = e.HResult;
+            Exception = e;
+        }
+
         private ResponseOfRequest(Exception e)
         {
             Message = e.Message;

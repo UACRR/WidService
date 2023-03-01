@@ -43,6 +43,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Drawing" />
@@ -59,6 +60,7 @@
     <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.PdfViewer, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI.Design, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
@@ -97,6 +99,12 @@
     </Compile>
     <Compile Include="ConsumerControls\BigRight\Cabinet\CalculationControl.Designer.cs">
       <DependentUpon>CalculationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Calculation\ChangePeriodAmount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Calculation\ChangePeriodAmount.Designer.cs">
+      <DependentUpon>ChangePeriodAmount.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerDialogForms\ChangeAmountForm.cs">
       <SubType>Form</SubType>
@@ -1114,6 +1122,9 @@
     <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\CalculationControl.resx">
       <DependentUpon>CalculationControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Calculation\ChangePeriodAmount.resx">
+      <DependentUpon>ChangePeriodAmount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ChangeAmountForm.resx">
       <DependentUpon>ChangeAmountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1583,6 +1594,7 @@
     <None Include="Properties\DataSources\IpsCommonTypes.Types.ObjectRightInfoWID.WIDObjectAuthorsCommunities.datasource" />
     <None Include="Properties\DataSources\IpsCommonTypes.Types.ObjectRightInfoWID.WIDObjectPerformers.datasource" />
     <None Include="Properties\DataSources\IpsCommonTypes.Types.ObjectRightInfoWID.WIDObjectRight.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.CustomModel.ChangePeriodAmountModel2.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObbjectRightNotAccepted.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />

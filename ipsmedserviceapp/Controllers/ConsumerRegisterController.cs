@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using IpsCommonTypes.IntermediaryTypes;
 using IpsCommonTypes.Types;
 using ipsmedserviceapp.Controllers.Resources;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,8 @@ namespace ipsmedserviceapp.Controllers
     {
         private readonly MediaServiceContext _dbContext;
         private readonly ILogger<ConsumerRegisterController> _logger;
-        
+        private ExceptionHelper Helper { get; } = new ExceptionHelper(nameof(ConsumerRegisterController));
+
         public ConsumerRegisterController(MediaServiceContext dbContext, ILogger<ConsumerRegisterController> logger)
         {
             _dbContext = dbContext;
@@ -70,6 +72,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError(e, Helper.GetMessage(e, Request));
                 throw;
             }
         }

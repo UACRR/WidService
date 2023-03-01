@@ -76,7 +76,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Person)
                         .Include(item => item.AnketaPerson)
                         .Include(item => item.BankAccount)
-                        .Include(item => item.FileCustomer).ThenInclude(file => file.DocTypeNavigation)
+                        //.Include(item => item.FileCustomer).ThenInclude(file => file.DocTypeNavigation)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
                         .SingleOrDefaultAsync();

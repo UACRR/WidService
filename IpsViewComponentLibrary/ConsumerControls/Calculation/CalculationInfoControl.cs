@@ -477,16 +477,34 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
         // оновити дані
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _stateRecorder.RecordState();
-            UpdateData?.Invoke();
-            SetupAllBinding();
-            _stateRecorder.RestoreState();
+            ReloadData();
         }
 
         // зміни на гріду активних ліцензій
         private void GvLicenseAgr_SelectionChanged(object sender, EventArgs e)
         {
             SetGrid3DataSource();
+        }
+
+        private void btnChangeAmount_Click(object sender, EventArgs e)
+        {
+            if (!(gvPeriodsPayment.CurrentRow?.DataBoundItem is PaidPeriod period))
+                return;
+
+            using (ChangePeriodAmount form = new ChangePeriodAmount(period))
+            {
+                var dr = form.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                    ReloadData();
+            }
+        }
+
+        private void ReloadData()
+        {
+            _stateRecorder.RecordState();
+            UpdateData?.Invoke();
+            SetupAllBinding();
+            _stateRecorder.RestoreState();
         }
     }
 

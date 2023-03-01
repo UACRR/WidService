@@ -75,7 +75,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 var result = await _registerService.ExecuteDistributionProcedure(_register.RegId);
                 _view.IsBusy = false;
 
-                MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
+                MessageShow.ShowInfoByResult(result);
                 UpdateRegister();
             }
         }
@@ -89,7 +89,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 var result = await _registerService.ExecutePaymentProcedure(_register.RegId);
                 _view.IsBusy = false;
 
-                MessageShow.ShowInfoByResult(result.Message, result.IsSuccess);
+                MessageShow.ShowInfoByResult(result);
                 UpdateRegister();
             }
         }
