@@ -117,7 +117,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             gridViewTextBoxColumn5.MinWidth = 165;
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "AuthorText";
-            gridViewTextBoxColumn5.Width = 197;
+            gridViewTextBoxColumn5.Width = 195;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTimeSpanColumn1.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewTimeSpanColumn1.FieldName = "DurationItem";
@@ -147,7 +147,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports.Forms
             gridViewTimeSpanColumn2.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewTimeSpanColumn2.FieldName = "DurationUse";
             gridViewTimeSpanColumn2.Format = "hh:mm:ss";
-            gridViewTimeSpanColumn2.FormatString = "hh:mm:ss";
+            gridViewTimeSpanColumn2.FormatString = "d.hh:mm:ss";
             gridViewTimeSpanColumn2.HeaderText = "Загальна тривалість звучання твору";
             gridViewTimeSpanColumn2.MaxWidth = 95;
             gridViewTimeSpanColumn2.Minimum = System.TimeSpan.Parse("00:00:01");

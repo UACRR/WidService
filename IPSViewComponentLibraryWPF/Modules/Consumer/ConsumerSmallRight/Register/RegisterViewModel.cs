@@ -798,7 +798,13 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             IsBusy = false;
 
             CurrentRegister.Register.RegisterItem.Clear();
-            items.ForEach(item => CurrentRegister.Register.RegisterItem.Add(item));
+            items.ForEach(item =>
+            {
+                if (item.DurationItem.HasValue && item.CountUse.HasValue)
+                    item.DurationUse = TimeSpan.FromSeconds(item.DurationItem.Value.TotalSeconds * item.CountUse.Value);
+                
+                CurrentRegister.Register.RegisterItem.Add(item);
+            });
 
             bool isEdit = CurrentRegister.Register.RgStatus == 0 || CurrentRegister.Register.RgStatus == 5;
 
@@ -1109,8 +1115,14 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
                     register = GetRegisterTemplate();
 
+                    var maxDurationUse = TimeSpan.FromSeconds(86399);
                     foreach (var item in list)
+                    {
+                        if (item.DurationUse.HasValue && item.DurationUse > maxDurationUse)
+                            item.DurationUse = maxDurationUse;
+
                         register.RegisterItem.Add(item);
+                    }
 
                     register.FileName = dialog.SafeFileName;
                 });
