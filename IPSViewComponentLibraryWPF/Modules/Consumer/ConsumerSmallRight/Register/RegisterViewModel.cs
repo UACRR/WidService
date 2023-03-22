@@ -938,7 +938,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             CurrentLicenseAgreement.LicenseAgreement.LicCodeNavigation = agrLicenseType;
 
             var form = new CreatePeriod(CurrentLicenseAgreement.LicenseAgreement);
-            var saveNeed = form.ShowDialog() == DialogResult.OK; 
+            var saveNeed = form.ShowDialog() == DialogResult.OK;
             
             if (saveNeed)
             {

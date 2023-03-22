@@ -168,6 +168,8 @@ namespace ipsmedserviceapp.Controllers
                             Direction = ParameterDirection.Output,
                         };
 
+                        _logger.LogInformation($"Method: SearchObjectRightsByQuery;\nQuery: [{queryWID}]");
+
                         string execProcedureString = @"exec sp_ObjectsRightForLink @searchObjectRightQuery, @offset, @fetch, @count OUT";
                         var objlist = _dbContext.ObjectsRightForLink.FromSql(execProcedureString, queryWIDParam, offset, fetch, count).AsNoTracking().ToList();
                         
@@ -199,6 +201,8 @@ namespace ipsmedserviceapp.Controllers
                         var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
 
                         queryText = ApplySqlOrderByAndPaging(queryText, "objId", page: searchObjectRightQuery.Page, pageSize: searchObjectRightQuery.PageSize);
+
+                        _logger.LogInformation($"Method: SearchObjectRightsByQuery;\nQuery: [{queryText}]");
 
                         var list = await _dbContext.getViewData(queryText, null);
 

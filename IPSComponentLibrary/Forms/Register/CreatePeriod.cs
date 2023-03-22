@@ -108,7 +108,7 @@ namespace IPSComponentLibrary.Forms.Register
                 invalidItems.Add("дата завершення ліцензії");
 
             // для схеми 2 мінімальної суми може не бути
-            var schemaType = IpsGlobal.AnketaDictionaties.agrLicenseType.First(rec => rec.CodeI == license.Lic.LicCode).SchemaId;
+            var schemaType = IpsGlobal.AnketaDictionaties.agrLicenseType.First(rec => rec.CodeI == _licenseAgreement.LicCode).SchemaId;
             
             if (!license.MinAmount.HasValue && schemaType != 2)
                 invalidItems.Add("мінімальна сума");
