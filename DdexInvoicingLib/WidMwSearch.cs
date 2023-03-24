@@ -68,6 +68,9 @@ namespace DdexInvoicingLib
                 _titleAuthorsPerformers = new Dictionary<int, TitleAuthorsPerformersEntry>();
                 while (r.Read())
                 {
+                    if (_titleAuthorsPerformers.ContainsKey(r.GetInt32(0)))
+                        continue;
+
                     _titleAuthorsPerformers.Add(r.GetInt32(0), new TitleAuthorsPerformersEntry
                     {
                         Wic = r.GetInt32(0),
