@@ -2708,20 +2708,22 @@ namespace ipsFormsDesign.Services
                 index++;
 
                 curRow.Cells[2].Range.Text = $"{places.PlaceName}";
-
                 curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}, {regions[places?.PlaceRegion ?? 0].Name}, {places.PlaceCity}, {places.PlaceAddress}";
 
-                // curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
-
+                bool notSkipRow = false;
                 foreach (var place in item.ClnPlaceHoll)
                 {
-                    curRow = table.Rows.Add();
+                    if (notSkipRow)
+                        curRow = table.Rows.Add();
+                    
                     curRow.Cells[4].Range.Text = place.HollName;
 
                     if (place.ValueAdd == null)
                         curRow.Cells[5].Range.Text = place?.ValuePlace ?? "";
                     else
                         curRow.Cells[5].Range.Text = place.ValueAdd;
+                    
+                    notSkipRow = true;
                 }
             }
         }
@@ -2753,20 +2755,21 @@ namespace ipsFormsDesign.Services
                 index++;
                 curRow.Cells[2].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
                 curRow.Cells[3].Range.Text = places.PlaceName;
-                //                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
-                curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
-                                            + $"{regions[places?.PlaceRegion ?? 0].Name}" + ","
-                                            + places.PlaceCity + "," + places.PlaceAddress;
+                curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}, {regions[places?.PlaceRegion ?? 0].Name}, {places.PlaceCity}, {places.PlaceAddress}";
+
+                bool notSkipRow = false;
                 foreach (var place in item.ClnPlaceHoll)
                 {
+                    if (notSkipRow)
+                        curRow = table.Rows.Add();
 
-                    curRow = table.Rows.Add();
                     curRow.Cells[5].Range.Text = place.HollName;
                     if (place.ValueAdd == null)
                         curRow.Cells[6].Range.Text = place?.ValuePlace ?? "";
                     else
                         curRow.Cells[6].Range.Text = place.ValueAdd;
 
+                    notSkipRow = true;
                 }
             }
         }

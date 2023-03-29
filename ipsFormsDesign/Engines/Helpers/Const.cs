@@ -6,6 +6,7 @@
         public const string Quarter = "Quarter";
         public const string HalfYear = "HalfYear";
         public const string Year = "Year";
+        public const string Once = "Once";
 
         public const string I_Each = "Each";
         public const string I_NumEach = "NumEach";

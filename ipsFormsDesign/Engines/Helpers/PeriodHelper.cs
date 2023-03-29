@@ -14,6 +14,7 @@ namespace ipsFormsDesign.Engines.Helpers
             [2] = Const.Quarter,
             [3] = Const.HalfYear,
             [4] = Const.Year,
+            [5] = Const.Once,
         };
 
         private static readonly Dictionary<string, Dictionary<string, string>> _periodValues = new Dictionary<string, Dictionary<string, string>>
@@ -54,6 +55,15 @@ namespace ipsFormsDesign.Engines.Helpers
                 [Const.I_Previous] = "попередній рік",
                 [Const.I_PeriodDates] = " (20 січня)",
             },
+            [Const.Once] = new Dictionary<string, string>
+            {
+                [Const.I_Each] = string.Empty,
+                [Const.I_NumEach] = string.Empty,
+                [Const.I_Next] = string.Empty,
+                [Const.I_NumEach2] = string.Empty,
+                [Const.I_Previous] = string.Empty,
+                [Const.I_PeriodDates] = string.Empty,
+            }
         };
 
         public static Dictionary<string, string> GetValuesById(int periodId)

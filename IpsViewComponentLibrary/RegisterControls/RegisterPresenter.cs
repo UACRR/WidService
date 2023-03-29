@@ -344,7 +344,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
 
                 // об'єкт існує в зовнішній бд
-                if (r.Wic.HasValue && listObjectRightWithWID.SingleOrDefault(rec => rec.Wic == r.Wic) is ObjectRightWithWID obj)
+                if (r.Wic.HasValue && listObjectRightWithWID.FirstOrDefault(rec => rec.Wic == r.Wic) is ObjectRightWithWID obj)
                    rvm.SetObjectData(obj.Name, obj.Author, obj.Performer, resetIsAuto: false);
 
                 rvm.RegisterExtraList.AddRange(r.RegisterExtra);

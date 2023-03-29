@@ -1,5 +1,6 @@
 ﻿using IpsCommonTypes.Types;
 using IPSComponentLibrary.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace IPSComponentLibrary.Extensions
@@ -89,10 +90,18 @@ namespace IPSComponentLibrary.Extensions
             }
             else
             {
-                using (IPSMessageBox mb = new IPSMessageBox(response.Message, response.InnerMessage))
+                using (IPSMessageBox mb = new IPSMessageBox(response))
                 {
-                    mb.Show();
+                    mb.ShowDialog();
                 }
+            }
+        }
+
+        public static void ShowException(Exception e, string msg = null)
+        {
+            using (IPSMessageBox mb = new IPSMessageBox(msg ?? e.Message, e.ToString()))
+            {
+                mb.ShowDialog();
             }
         }
 

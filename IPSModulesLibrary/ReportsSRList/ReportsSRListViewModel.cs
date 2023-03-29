@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using IpsCommonTypes.ClassesForSearchQuery;
+using IPSComponentLibrary.Extensions;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -227,14 +228,21 @@ namespace IPSModulesLibrary.ReportsSRList
         {
             if (o == null)
                 return;
-            
-            var service = new RegisterService();
-            var id = ((ReportsSRListModel) o).RegId;
 
-            using (var view = new RegisterView())
+            try
             {
-                var presenter = new RegisterPresenter(view, service);
-                presenter.Show(id);
+                var service = new RegisterService();
+                var id = ((ReportsSRListModel)o).RegId;
+
+                using (var view = new RegisterView())
+                {
+                    var presenter = new RegisterPresenter(view, service);
+                    presenter.Show(id);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageShow.ShowException(e);
             }
         }
 
