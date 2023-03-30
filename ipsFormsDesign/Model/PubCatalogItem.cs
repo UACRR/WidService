@@ -16,6 +16,7 @@ namespace ipsFormsDesign.Model
         public string GenreName { get; set; }
         public string RoleName { get; set; }
         public decimal? Rate { get; set; }
+        public decimal? RateMech { get; set; }
         public string AuthorMusic { get; set; }
         public string AuthorText { get; set; }
         public string Performer { get; set; }

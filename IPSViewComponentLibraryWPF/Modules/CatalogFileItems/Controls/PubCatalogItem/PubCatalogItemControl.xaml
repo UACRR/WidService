@@ -48,7 +48,8 @@
                     <telerik:GridViewDataColumn Header="Автор(и) тексту" DataMemberBinding="{Binding AuthorText}" HeaderTextAlignment="Center" Width="350" />
                     <telerik:GridViewDataColumn Header="Творча роль правовласника" DataMemberBinding="{Binding RoleName}" HeaderTextAlignment="Center" MinWidth="100" />
                     <telerik:GridViewDataColumn Header="Назва Правовласника" DataMemberBinding="{Binding RhName}" HeaderTextAlignment="Center" MinWidth="150" />
-                    <telerik:GridViewDataColumn Header="%" DataMemberBinding="{Binding Rate}" HeaderTextAlignment="Center" TextAlignment="Right" MinWidth="50" DataFormatString="N2"/>
+                    <telerik:GridViewDataColumn Header="% (публ)" DataMemberBinding="{Binding Rate}" HeaderTextAlignment="Center" TextAlignment="Right" MinWidth="50" DataFormatString="N2"/>
+                    <telerik:GridViewDataColumn Header="% (мех)" DataMemberBinding="{Binding RateMech}" HeaderTextAlignment="Center" TextAlignment="Right" MinWidth="50" DataFormatString="N2"/>
                     <telerik:GridViewDataColumn Header='Діє "з"' DataMemberBinding="{Binding DateBegin}" HeaderTextAlignment="Center" TextAlignment="Center" MinWidth="75" DataFormatString="{}{0:d}"/>
                     <telerik:GridViewDataColumn Header='Діє "по"' DataMemberBinding="{Binding DateEnd, StringFormat='{}{0:d}'}" HeaderTextAlignment="Center" TextAlignment="Center" MinWidth="75"/>
                     <telerik:GridViewDataColumn Header="Помилка" DataMemberBinding="{Binding ErrComment}" HeaderTextAlignment="Center" MinWidth="100" DataFormatString="N2"/>

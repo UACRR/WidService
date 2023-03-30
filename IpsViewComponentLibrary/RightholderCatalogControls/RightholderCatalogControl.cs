@@ -84,13 +84,21 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls
                         FileName = fileExel.SafeFileName,
                     };
                     CatalogFile result = null;
-                    
+
+                    string msg = string.Empty;
                     waitingBar.StartWaiting();
-                    result = await _catalogPresenter.UploadCatalogFileAsync(catalogFile, fileExel.FileName);
+                    try
+                    {
+                        result = await _catalogPresenter.UploadCatalogFileAsync(catalogFile, fileExel.FileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        msg = ex.Message;
+                    }
                     waitingBar.StopWaiting();
 
                     var boolResult = result != null;
-                    MessageShow.ShowInfoByResult(LoadCatalogFileSuccessMsg, LoadCatalogFileErrorMsg, boolResult);
+                    MessageShow.ShowInfoByResult(LoadCatalogFileSuccessMsg, $"{LoadCatalogFileErrorMsg}\n{msg}", boolResult);
                     if (boolResult)
                         UpdateGridData();
                 }

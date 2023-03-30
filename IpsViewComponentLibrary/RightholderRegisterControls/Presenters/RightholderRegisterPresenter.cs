@@ -163,6 +163,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
                 RoleName = item[4],
                 AuthorName = item[5],
                 Rate = 0,
+                RateMech = 0,
                 DateBegin = null,
                 DateEnd = null,
             };
@@ -170,10 +171,13 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             if (decimal.TryParse(item[6], out decimal outBuffer))
                 newItem.Rate = outBuffer;
 
-            if (DateTime.TryParse(item[7], out DateTime dtBegin))
+            if (decimal.TryParse(item[7], out decimal rateMech))
+                newItem.RateMech = rateMech;
+
+            if (DateTime.TryParse(item[8], out DateTime dtBegin))
                 newItem.DateBegin = dtBegin;
 
-            if (DateTime.TryParse(item[8], out DateTime dtEnd))
+            if (DateTime.TryParse(item[9], out DateTime dtEnd))
                 newItem.DateEnd = dtEnd;
 
             return newItem;

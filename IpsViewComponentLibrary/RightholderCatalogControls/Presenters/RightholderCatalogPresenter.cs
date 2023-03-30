@@ -44,7 +44,7 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             string identityName = new WindowsPrincipal(WindowsIdentity.GetCurrent()).Identity?.Name;
             catalogFile.UserId = identityName;
 
-            var data = _exelEngine.ReadData(path, 12);
+            var data = _exelEngine.ReadData(path, 13);
             TrimNotValidData(data);
 
             var result = await _service.UploadCatalogFileAsync(catalogFile, data);
@@ -220,15 +220,21 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
                 else
                     item[9] = item[9].Replace(",", ".");
 
-                if (string.IsNullOrWhiteSpace(item[10]))
+                if (!decimal.TryParse(item[9], out decimal rateMech))
                     item[10] = null;
-                else if (DateTime.TryParse(item[10], culture, dateTimeStyles, out DateTime dtBegin))
-                    item[10] = dtBegin.ToString("yyyy-MM-dd");
+                else
+                    item[10] = item[9].Replace(",", ".");
+
 
                 if (string.IsNullOrWhiteSpace(item[11]))
                     item[11] = null;
+                else if (DateTime.TryParse(item[10], culture, dateTimeStyles, out DateTime dtBegin))
+                    item[11] = dtBegin.ToString("yyyy-MM-dd");
+
+                if (string.IsNullOrWhiteSpace(item[12]))
+                    item[12] = null;
                 else if (DateTime.TryParse(item[11], culture, dateTimeStyles, out DateTime dtEnd))
-                    item[11] = dtEnd.ToString("yyyy-MM-dd");
+                    item[12] = dtEnd.ToString("yyyy-MM-dd");
 
             }
         }
@@ -298,10 +304,13 @@ namespace IpsViewComponentLibrary.RightholderCatalogControls.Presenters
             if (decimal.TryParse(item[9], out decimal outBuffer))
                 newItem.Rate = outBuffer;
 
-            if (DateTime.TryParse(item[10], out DateTime dtBegin))
+            if (decimal.TryParse(item[10], out decimal rateMech))
+                newItem.RateMech = rateMech;
+
+            if (DateTime.TryParse(item[11], out DateTime dtBegin))
                 newItem.DateBegin = dtBegin;
 
-            if (DateTime.TryParse(item[11], out DateTime dtEnd))
+            if (DateTime.TryParse(item[12], out DateTime dtEnd))
                 newItem.DateEnd = dtEnd;
 
             return newItem;

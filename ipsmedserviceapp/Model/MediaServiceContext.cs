@@ -8003,6 +8003,10 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("rate")
                     .HasColumnType("numeric(10, 5)");
 
+                entity.Property(e => e.RateMech)
+                    .HasColumnName("rateMech")
+                    .HasColumnType("decimal(5, 2)");
+
                 entity.Property(e => e.RhName)
                     .HasColumnName("rhName")
                     .HasMaxLength(254)
@@ -10008,6 +10012,10 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Rate)
                     .HasColumnName("rate")
                     .HasColumnType("numeric(10, 5)");
+                
+                entity.Property(e => e.RateMech)
+                    .HasColumnName("rateMech")
+                    .HasColumnType("decimal(5, 2)");
 
                 entity.Property(e => e.RhCustId).HasColumnName("rhCustId");
 

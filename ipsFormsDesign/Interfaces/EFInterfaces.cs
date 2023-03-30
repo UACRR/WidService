@@ -1820,6 +1820,7 @@ public interface IPubCatalogItem
          string GenreName { get; set; }
          string RoleName { get; set; }
          decimal? Rate { get; set; }
+         decimal? RateMech { get; set; }
          string AuthorMusic { get; set; }
          string AuthorText { get; set; }
          string Performer { get; set; }
@@ -2292,6 +2293,7 @@ public interface IRhcatalogItem
          string RoleName { get; set; }
          string AuthorName { get; set; }
          decimal? Rate { get; set; }
+         decimal? RateMech { get; set; }
          string CmName { get; set; }
          string Comment { get; set; }
          int? ObjId { get; set; }

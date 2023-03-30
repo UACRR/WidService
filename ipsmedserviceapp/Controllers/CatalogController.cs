@@ -83,7 +83,7 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 DataTable table;
-                string query = "select itemCode, iswc, objName, genreName, performer, authorMusic, authorText, roleName, rhName, rate, dateBegin, dateEnd, errComment from PubCatalogItem";
+                string query = "select itemCode, iswc, objName, genreName, performer, authorMusic, authorText, roleName, rhName, rate, rateMech, dateBegin, dateEnd, errComment from PubCatalogItem";
                 query += $" where fileId = {fileId}";
                 using (SqlConnection sqlConnection = (SqlConnection)_dbContext.Database.GetDbConnection())
                 {
@@ -193,7 +193,11 @@ namespace ipsmedserviceapp.Controllers
                             new DataColumn("errComment", typeof(string)),
                             new DataColumn("rhName", typeof(string)),
                             new DataColumn("dateBegin", typeof(DateTime)),
-                            new DataColumn("dateEnd", typeof(DateTime)),
+                            new DataColumn("dateEnd", typeof(DateTime))
+                            {
+                                AllowDBNull = true,
+                            },
+                            new DataColumn("rateMech", typeof(decimal)),
                         };
 
                     dataTable.Columns.AddRange(dataColumns);
@@ -223,8 +227,9 @@ namespace ipsmedserviceapp.Controllers
                             0,
                             null,
                             item[8], // RhName = item[8],
-                            item[10],// DateBegin = item[10]
-                            item[11],// DateEnd = item[11]
+                            item[11],// DateBegin = item[11]
+                            string.IsNullOrEmpty(item[12]) ? (object) DBNull.Value : item[12],// DateEnd = item[12]
+                            item[10],// RateMech,item[10]
                         };
 
                         dataTable.Rows.Add(row);
@@ -240,7 +245,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex, "Loading catalog file error!");
 
                 if (catalogFileLoadedId.HasValue)
                 {

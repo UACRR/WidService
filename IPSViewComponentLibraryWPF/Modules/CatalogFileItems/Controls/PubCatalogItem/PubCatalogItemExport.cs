@@ -11,7 +11,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalo
 {
     public static class PubCatalogItemExport
     {
-        private static readonly int[] _columnWidths = { 15, 15, 28, 15, 40, 55, 55, 28, 27, 12, 12, 12, 38 };
+        private static readonly int[] _columnWidths = { 15, 15, 28, 15, 40, 55, 55, 28, 27, 12, 12, 12, 12, 38 };
         private static readonly string[] _columnHeaders =
         {
             "Шифр твору",
@@ -23,7 +23,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalo
             "Автор(и) тексту",
             "Творча роль правовласника",
             "Назва Правовласника",
-            "%",
+            "% (публ)",
+            "% (мех)",
             "діє \"з\"",
             "діє \"по\"",
             "Повідомлення про помилку",
@@ -82,7 +83,8 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalo
                                     ExportAuthorText(rowExporter, item, normalFormat);
                                     ExportRoleName(rowExporter, item, normalFormat);
                                     ExportRhName(rowExporter, item, normalFormat);
-                                    ExportRate(rowExporter, item);
+                                    ExportRate(rowExporter, item.Rate);
+                                    ExportRate(rowExporter, item.RateMech);
                                     ExportDateBegin(rowExporter, item, dateFormat);
                                     ExportDateEnd(rowExporter, item, dateFormat);
                                     ExportErrComment(rowExporter, item, normalFormat);
@@ -191,7 +193,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalo
                 cellExporter.SetFormat(format);
             }
         }
-        private static void ExportRate(IRowExporter rowExporter, PubCatalogItemModel item)
+        private static void ExportRate(IRowExporter rowExporter, decimal? rate)
         {
             using (ICellExporter cellExporter = rowExporter.CreateCellExporter())
             {
@@ -201,7 +203,7 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems.Controls.PubCatalo
                 percentFormat.HorizontalAlignment = SpreadHorizontalAlignment.Center;
                 percentFormat.NumberFormat = "#0.00";
 
-                cellExporter.SetValue((double)(item.Rate ?? 0m));
+                cellExporter.SetValue((double)(rate ?? 0m));
                 cellExporter.SetFormat(percentFormat);
             }
         }

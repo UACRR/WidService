@@ -62,7 +62,7 @@
             // btnLoadFile
             // 
             this.btnLoadFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLoadFile.Location = new System.Drawing.Point(3, 431);
+            this.btnLoadFile.Location = new System.Drawing.Point(3, 470);
             this.btnLoadFile.Name = "btnLoadFile";
             this.btnLoadFile.Size = new System.Drawing.Size(219, 24);
             this.btnLoadFile.TabIndex = 4;
@@ -95,11 +95,12 @@
             gridViewTextBoxColumn1.MinWidth = 50;
             gridViewTextBoxColumn1.Name = "number";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn1.Width = 51;
             gridViewTextBoxColumn2.FieldName = "FileName";
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.MinWidth = 175;
             gridViewTextBoxColumn2.Name = "fileName";
-            gridViewTextBoxColumn2.Width = 175;
+            gridViewTextBoxColumn2.Width = 178;
             gridViewTextBoxColumn3.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn3.FieldName = "CreateDate";
             gridViewTextBoxColumn3.FormatString = "{0:dd.MM.yyyy HH:mm:ss}";
@@ -114,14 +115,14 @@
             gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
             gridViewTextBoxColumn4.MinWidth = 95;
             gridViewTextBoxColumn4.Name = "countFiles";
-            gridViewTextBoxColumn4.Width = 95;
+            gridViewTextBoxColumn4.Width = 97;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn5.FieldName = "CountErr";
             gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
             gridViewTextBoxColumn5.MinWidth = 95;
             gridViewTextBoxColumn5.Name = "countLeaveFiles";
-            gridViewTextBoxColumn5.Width = 95;
+            gridViewTextBoxColumn5.Width = 97;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn6.FieldName = "Status";
@@ -133,17 +134,17 @@
             gridViewTextBoxColumn7.HeaderText = "Статус файлу";
             gridViewTextBoxColumn7.MinWidth = 90;
             gridViewTextBoxColumn7.Name = "StatusNavigation";
-            gridViewTextBoxColumn7.Width = 90;
+            gridViewTextBoxColumn7.Width = 92;
             gridViewTextBoxColumn8.FieldName = "Comment";
             gridViewTextBoxColumn8.HeaderText = "Коментар";
             gridViewTextBoxColumn8.MinWidth = 130;
             gridViewTextBoxColumn8.Name = "comment";
-            gridViewTextBoxColumn8.Width = 130;
+            gridViewTextBoxColumn8.Width = 132;
             gridViewTextBoxColumn9.FieldName = "UserId";
             gridViewTextBoxColumn9.HeaderText = "Хто завантажив";
             gridViewTextBoxColumn9.MinWidth = 100;
             gridViewTextBoxColumn9.Name = "downloadFace";
-            gridViewTextBoxColumn9.Width = 100;
+            gridViewTextBoxColumn9.Width = 106;
             gridViewCommandColumn1.FieldName = "infoBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.HeaderText = "";
@@ -199,7 +200,7 @@
             this.gridCatalogFiles.Name = "gridCatalogFiles";
             this.gridCatalogFiles.ReadOnly = true;
             this.gridCatalogFiles.ShowGroupPanel = false;
-            this.gridCatalogFiles.Size = new System.Drawing.Size(695, 422);
+            this.gridCatalogFiles.Size = new System.Drawing.Size(984, 461);
             this.gridCatalogFiles.TabIndex = 3;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             this.gridCatalogFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gridCatalogFiles_CommandCellClick);
@@ -229,7 +230,7 @@
             this.backgroundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundPanel.Location = new System.Drawing.Point(0, 0);
             this.backgroundPanel.Name = "backgroundPanel";
-            this.backgroundPanel.Size = new System.Drawing.Size(701, 458);
+            this.backgroundPanel.Size = new System.Drawing.Size(990, 497);
             this.backgroundPanel.TabIndex = 5;
             // 
             // lineRingWaitingBarIndicatorElement1
@@ -249,7 +250,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.backgroundPanel);
             this.Name = "RightholderRegisterControl";
-            this.Size = new System.Drawing.Size(701, 458);
+            this.Size = new System.Drawing.Size(990, 497);
             this.Load += new System.EventHandler(this.RightholderRegisterControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();

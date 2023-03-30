@@ -14,6 +14,7 @@ namespace ipsmedserviceapp.Model
         public string RoleName { get; set; }
         public string AuthorName { get; set; }
         public decimal? Rate { get; set; }
+        public decimal? RateMech { get; set; }
         public string CmName { get; set; }
         public string Comment { get; set; }
         public int? ObjId { get; set; }

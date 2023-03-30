@@ -200,9 +200,10 @@ namespace IPSViewComponentLibraryWPF.Modules.CatalogFileItems
                     RoleName = item[7] as string,
                     RhName = item[8] as string,
                     Rate = (decimal?)(item[9] as double?),
-                    DateBegin = item[10] as DateTime?,
-                    DateEnd = item[11] as DateTime?,
-                    ErrComment = item[12] as string,
+                    RateMech = (decimal?)(item[10] as double?),
+                    DateBegin = item[11] as DateTime?,
+                    DateEnd = item[12] as DateTime?,
+                    ErrComment = item[13] as string,
                 });
             }
 
