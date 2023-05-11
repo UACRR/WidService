@@ -425,6 +425,12 @@
     <Content Include="Migrations\08 WidReplication\%2809%29 spIdentByNameAndPerformer.sql" />
     <Content Include="Migrations\08 WidReplication\%2810%29 spDdexAdjConsolidatedDistRoyalty.sql" />
     <Content Include="Migrations\08 WidReplication\%2811%29 spCreateInitialInvoiceSrmf.sql" />
+    <Content Include="Migrations\09_FixesForExceptionSet\%2806%29 DeleteSpotifyInvoices.sql" />
+    <Content Include="Migrations\09_FixesForExceptionSet\%2805%29 FixDoubleIdent.sql" />
+    <Content Include="Migrations\09_FixesForExceptionSet\%2801%29 spCreateCcidParamsForSubscr.sql" />
+    <Content Include="Migrations\09_FixesForExceptionSet\%2803%29 spCreateInitialInvoiceSpotify.sql" />
+    <Content Include="Migrations\09_FixesForExceptionSet\%2802%29 spDdexApplyReportExceptions.sql" />
+    <Content Include="Migrations\09_FixesForExceptionSet\%2804%29 spDdexDeleteReportTypeInvoices.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidIpRolePrty.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidPrtyIpRole.sql" />
     <Content Include="SqlQueries\WidInMediaService\spWidImportToMs.sql" />

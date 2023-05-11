@@ -211,7 +211,7 @@ namespace InvoicingLib
                                     where ddexReportId = @ddexReportId 
                                     and SubscriberType = 'all'
                                     )
-                                declare @MusicPlusGEMusicViews int = 
+                                declare @MusicPlusGEMusicViews bigint = 
                                     (select sum(TotalUsages) 
                                     from DdexRecordSY_05_02 
                                     where ddexReportId = @ddexReportId 
