@@ -106,6 +106,7 @@
             this.ucMwSearch.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.ucMwSearch.Size = new System.Drawing.Size(762, 252);
             this.ucMwSearch.TabIndex = 0;
+            this.ucMwSearch.Load += new System.EventHandler(this.ucMwSearch_Load);
             // 
             // UcMwIdent
             // 

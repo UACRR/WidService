@@ -33,5 +33,10 @@ namespace DdexInvoicing
         {
             ucReportMw.SetDdexReportId(ddexReportId);
         }
+
+        private void ucMwSearch_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

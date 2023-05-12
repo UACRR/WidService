@@ -71,6 +71,7 @@ namespace DdexInvoicing
             var rec = (ReportRecordEntry)row.DataBoundItem;
             rec.Status = (int)Status.identified;
             rec.Wic = wic;
+            rec.ObjId = null;
             SaveStatus(rec.Id, rec.Status);
             SaveWic(rec.Id, (int)rec.Wic);
             SetStatusImage(row);
@@ -82,6 +83,7 @@ namespace DdexInvoicing
             var rec = (ReportRecordEntry)row.DataBoundItem;
             rec.Status = (int)Status.identified;
             rec.ObjId = objId;
+            rec.Wic = null;
             SaveStatus(rec.Id, rec.Status);
             SaveObjId(rec.Id, (int)rec.ObjId);
             SetStatusImage(row);
@@ -314,7 +316,7 @@ namespace DdexInvoicing
             {
                 cmd.CommandText = $@"
                     update IdentMW
-                    set wic = @wic
+                    set wic = @wic, objId = null
                     where Id = @Id
                  ";
 
@@ -330,7 +332,7 @@ namespace DdexInvoicing
             {
                 cmd.CommandText = $@"
                     update IdentMW
-                    set objId = @objId
+                    set Wic = null, objId = @objId
                     where Id = @Id
                  ";
 
