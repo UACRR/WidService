@@ -192,6 +192,37 @@
                                                                 HeaderTextAlignment="Center" 
                                                                 TextAlignment="Center"
                                                                 Width="80"/>
+
+                                <!--редагувати/переглянути звичайний звіт-->
+                                <telerik:GridViewColumn Width="25">
+                                    <telerik:GridViewColumn.Header>
+                                        <Image Width="19" Source="../../../../Resources/Icons/edit-icon.png"/>
+                                    </telerik:GridViewColumn.Header>
+                                    <telerik:GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <telerik:RadButton Margin="0" ToolTip="Редагувати період"
+                                                               Command="{Binding DataContext.EditPeriodCommand, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
+                                                               CommandParameter="{Binding}">
+                                                <Image Width="19" Source="../../../../Resources/Icons/edit-icon.png"/>
+                                            </telerik:RadButton>
+                                        </DataTemplate>
+                                    </telerik:GridViewColumn.CellTemplate>
+                                </telerik:GridViewColumn>
+                                <!--видалити період-->
+                                <telerik:GridViewColumn Width="25">
+                                    <telerik:GridViewColumn.Header>
+                                        <Image Width="17" Source="../../../../Resources/Icons/delete-icon.png"/>
+                                    </telerik:GridViewColumn.Header>
+                                    <telerik:GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <telerik:RadButton Margin="0" ToolTip="Видалити період"
+                                                               Command="{Binding DataContext.DeletePeriodCommand, RelativeSource={RelativeSource AncestorType={x:Type telerik:RadGridView}}}"
+                                                               CommandParameter="{Binding}">
+                                                <Image Width="17" Source="../../../../Resources/Icons/delete-icon.png"/>
+                                            </telerik:RadButton>
+                                        </DataTemplate>
+                                    </telerik:GridViewColumn.CellTemplate>
+                                </telerik:GridViewColumn>
                             </telerik:RadGridView.Columns>
 
                             <b:Interaction.Triggers>

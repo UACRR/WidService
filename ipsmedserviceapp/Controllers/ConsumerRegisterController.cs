@@ -108,6 +108,50 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Редагувати період платежів
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPost("paidperiod/create")]
+        public async Task<IActionResult> EditPaidPeriod(PaidPeriod source)
+        {
+            ResponseOfRequest response;
+            try
+            {
+                PaidPeriod target = _dbContext.PaidPeriod.FirstOrDefault(rec => rec.PeriodId == source.PeriodId);
+                if (target == null)
+                {
+                    return BadRequest(ResponseOfRequest.NotSuccess($"Не знайдено період PeriodId: {source.PeriodId}!"));
+                }
+                if (target.BeginDate < target.EndDate)
+                {
+                    return BadRequest(ResponseOfRequest.NotSuccess($"Дата початку періоду ({target.BeginDate:dd.MM.yyyy}) не може бути більшою дати завершення ({target.EndDate:dd.MM.yyyy})!"));
+                }
+
+                target.PeriodName = source.PeriodName;
+                target.BeginDate = source.BeginDate;
+                target.EndDate = source.EndDate;
+
+
+                var periods = await _dbContext.PaidPeriod.Where(rec => rec.LicId == target.LicId && rec.PeriodId != target.PeriodId).ToListAsync();
+                bool fuck = periods.Any(rec => rec.EndDate >= source.BeginDate || rec.BeginDate >= source.EndDate);
+
+                var first = periods.Min(rec => rec.BeginDate);
+                var last = periods.Max(rec => rec.EndDate);
+
+                await _dbContext.SaveChangesAsync();
+
+                response = new ResponseOfRequest($"Період [ID:{source.PeriodId}] редаговано!");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response = new ResponseOfRequest("Неможливо редагувати період!", e);
+                return BadRequest(response);
+            }
+        }
+
+        /// <summary>
         /// Видалити період
         /// </summary>
         /// <param name="paidPeriodId"></param>
@@ -132,9 +176,10 @@ namespace ipsmedserviceapp.Controllers
                     return BadRequest(response);
                 }
 
-                var registerRatedList = await _dbContext.RegisterRatedList.SingleOrDefaultAsync(rec => rec.PeriodId == target.PeriodId);
+                var registerRatedList = await _dbContext.RegisterRatedList.FirstOrDefaultAsync(rec => rec.PeriodId == target.PeriodId);
+                if (registerRatedList != null)
+                    _dbContext.RegisterRatedList.Remove(registerRatedList);
 
-                _dbContext.RegisterRatedList.Remove(registerRatedList);
                 _dbContext.PaidPeriod.Remove(target);
 
                 transaction = _dbContext.Database.BeginTransaction();

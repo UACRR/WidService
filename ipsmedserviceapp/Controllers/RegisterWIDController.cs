@@ -219,6 +219,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError(e, Helper.GetMessage(e, Request));
                 return BadRequest(e.ToString());
             }
             finally
@@ -317,7 +318,6 @@ namespace ipsmedserviceapp.Controllers
                 _logger.LogError(e, msg);
                 var response = new ResponseOfRequest(e, "Неможливо виконати розподіл!", msg);
                 return BadRequest(response);
-                return BadRequest(e.ToString());
             }
         }
 
@@ -341,7 +341,7 @@ namespace ipsmedserviceapp.Controllers
                 string queryObjectAlternativeNames = ApplySqlWhereEqualCondition(WID_ObjectAlternativeNames, whereWicCondition);
                 string queryObjectPerformers = ApplySqlWhereEqualCondition(WID_ObjectPerformers, whereWicCondition);
 
-                var widObjectRight = await _dbContext.WIDObjectRight.FromSql(queryObjectRight).AsNoTracking().SingleOrDefaultAsync();
+                var widObjectRight = await _dbContext.WIDObjectRight.FromSql(queryObjectRight).AsNoTracking().FirstOrDefaultAsync();
 
                 var widISWC = await _dbContext.WIDiswc.FromSql(queryISWC).AsNoTracking().ToListAsync();
 
@@ -369,6 +369,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError(e, Helper.GetMessage(e, Request));
                 return BadRequest(e.ToString());
             }
             finally

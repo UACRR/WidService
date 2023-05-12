@@ -50,6 +50,8 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -59,8 +61,8 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn7 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn8 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn9 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn10 = new Telerik.WinControls.UI.GridViewDecimalColumn();
@@ -68,7 +70,7 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn12 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn7 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.bindingAgreement = new System.Windows.Forms.BindingSource(this.components);
@@ -270,25 +272,25 @@
             gridViewTextBoxColumn8.HeaderText = "Період";
             gridViewTextBoxColumn8.MinWidth = 220;
             gridViewTextBoxColumn8.Name = "PeriodName";
-            gridViewTextBoxColumn8.Width = 351;
+            gridViewTextBoxColumn8.Width = 320;
             gridViewTextBoxColumn9.FieldName = "StatusNavigation.Name";
             gridViewTextBoxColumn9.HeaderText = "Стан періоду";
             gridViewTextBoxColumn9.MinWidth = 130;
             gridViewTextBoxColumn9.Name = "Status";
-            gridViewTextBoxColumn9.Width = 178;
+            gridViewTextBoxColumn9.Width = 162;
             gridViewDecimalColumn3.FieldName = "Amount";
             gridViewDecimalColumn3.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn3.HeaderText = "Вимога";
             gridViewDecimalColumn3.MinWidth = 120;
             gridViewDecimalColumn3.Name = "Amount";
-            gridViewDecimalColumn3.Width = 166;
+            gridViewDecimalColumn3.Width = 151;
             gridViewDecimalColumn4.EnableExpressionEditor = true;
             gridViewDecimalColumn4.Expression = "Undistribamount+Distribamount";
             gridViewDecimalColumn4.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn4.HeaderText = "Розподілено";
             gridViewDecimalColumn4.MinWidth = 120;
             gridViewDecimalColumn4.Name = "Distrib";
-            gridViewDecimalColumn4.Width = 256;
+            gridViewDecimalColumn4.Width = 260;
             gridViewTextBoxColumn10.DataType = typeof(int);
             gridViewTextBoxColumn10.FieldName = "ReportCount";
             gridViewTextBoxColumn10.HeaderText = "Звітів";
@@ -342,6 +344,24 @@
             gridViewDecimalColumn6.IsVisible = false;
             gridViewDecimalColumn6.Name = "Undistribamount";
             gridViewDecimalColumn6.Width = 40;
+            gridViewCommandColumn3.FieldName = "edit";
+            gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn3.MaxWidth = 30;
+            gridViewCommandColumn3.MinWidth = 30;
+            gridViewCommandColumn3.Name = "edit";
+            gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn3.Width = 30;
+            gridViewCommandColumn4.FieldName = "delete";
+            gridViewCommandColumn4.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn4.HeaderText = "";
+            gridViewCommandColumn4.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn4.MaxWidth = 30;
+            gridViewCommandColumn4.MinWidth = 30;
+            gridViewCommandColumn4.Name = "delete";
+            gridViewCommandColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn4.Width = 30;
             this.gvPeriods.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
@@ -353,7 +373,9 @@
             gridViewCommandColumn2,
             gridViewTextBoxColumn12,
             gridViewDecimalColumn5,
-            gridViewDecimalColumn6});
+            gridViewDecimalColumn6,
+            gridViewCommandColumn3,
+            gridViewCommandColumn4});
             this.gvPeriods.MasterTemplate.DataSource = this.bsPaidPeriod;
             this.gvPeriods.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvPeriods.Name = "gvPeriods";
@@ -454,19 +476,19 @@
             gridViewComboBoxColumn1.Name = "RgStatus";
             gridViewComboBoxColumn1.Width = 165;
             gridViewComboBoxColumn1.WrapText = true;
-            gridViewCommandColumn3.EnableExpressionEditor = false;
-            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
-            gridViewCommandColumn3.MaxWidth = 30;
-            gridViewCommandColumn3.MinWidth = 30;
-            gridViewCommandColumn3.Name = "EditColumn";
-            gridViewCommandColumn3.Width = 30;
-            gridViewCommandColumn4.EnableExpressionEditor = false;
-            gridViewCommandColumn4.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn4.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn4.MaxWidth = 30;
-            gridViewCommandColumn4.MinWidth = 30;
-            gridViewCommandColumn4.Name = "DeleteColumn";
-            gridViewCommandColumn4.Width = 30;
+            gridViewCommandColumn5.EnableExpressionEditor = false;
+            gridViewCommandColumn5.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewCommandColumn5.MaxWidth = 30;
+            gridViewCommandColumn5.MinWidth = 30;
+            gridViewCommandColumn5.Name = "EditColumn";
+            gridViewCommandColumn5.Width = 30;
+            gridViewCommandColumn6.EnableExpressionEditor = false;
+            gridViewCommandColumn6.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn6.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn6.MaxWidth = 30;
+            gridViewCommandColumn6.MinWidth = 30;
+            gridViewCommandColumn6.Name = "DeleteColumn";
+            gridViewCommandColumn6.Width = 30;
             this.gvPeriodReports.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn13,
             gridViewTextBoxColumn14,
@@ -476,8 +498,8 @@
             gridViewDecimalColumn7,
             gridViewDecimalColumn8,
             gridViewComboBoxColumn1,
-            gridViewCommandColumn3,
-            gridViewCommandColumn4});
+            gridViewCommandColumn5,
+            gridViewCommandColumn6});
             this.gvPeriodReports.MasterTemplate.DataSource = this.bindingReports;
             this.gvPeriodReports.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvPeriodReports.Name = "gvPeriodReports";
@@ -756,14 +778,14 @@
             gridViewTextBoxColumn19.MinWidth = 150;
             gridViewTextBoxColumn19.Name = "StatusNavigation";
             gridViewTextBoxColumn19.Width = 198;
-            gridViewCommandColumn5.EnableExpressionEditor = false;
-            gridViewCommandColumn5.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
-            gridViewCommandColumn5.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            gridViewCommandColumn5.MaxWidth = 30;
-            gridViewCommandColumn5.MinWidth = 30;
-            gridViewCommandColumn5.Name = "ViewColumn";
-            gridViewCommandColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn5.Width = 30;
+            gridViewCommandColumn7.EnableExpressionEditor = false;
+            gridViewCommandColumn7.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewCommandColumn7.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            gridViewCommandColumn7.MaxWidth = 30;
+            gridViewCommandColumn7.MinWidth = 30;
+            gridViewCommandColumn7.Name = "ViewColumn";
+            gridViewCommandColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn7.Width = 30;
             this.gvRatedList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn9,
             gridViewDecimalColumn10,
@@ -771,7 +793,7 @@
             gridViewDecimalColumn12,
             gridViewTextBoxColumn18,
             gridViewTextBoxColumn19,
-            gridViewCommandColumn5});
+            gridViewCommandColumn7});
             this.gvRatedList.MasterTemplate.DataSource = this.bindingRatedList;
             this.gvRatedList.MasterTemplate.EnableGrouping = false;
             this.gvRatedList.MasterTemplate.ViewDefinition = tableViewDefinition4;

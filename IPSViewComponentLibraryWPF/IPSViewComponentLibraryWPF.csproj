@@ -138,6 +138,10 @@
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\Model\RegisterModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\Model\RegisterPeriodModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\Model\RegisterRatedListModel.cs" />
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\EditPaidPeriod\EditPaidPeriod.xaml.cs">
+      <DependentUpon>EditPaidPeriod.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\EditPaidPeriod\EditPaidPeriodViewModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterControl.xaml.cs">
       <DependentUpon>RegisterControl.xaml</DependentUpon>
     </Compile>
@@ -172,6 +176,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Consumer\ConsumerSmallRight\Register\EditPaidPeriod\EditPaidPeriod.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

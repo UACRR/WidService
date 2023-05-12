@@ -96,6 +96,12 @@
     <Compile Include="Forms\Register\CreatePeriod.Designer.cs">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Register\EditPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Register\EditPeriod.Designer.cs">
+      <DependentUpon>EditPeriod.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Register\ReportExcelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register\CreatePeriod.resx">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Register\EditPeriod.resx">
+      <DependentUpon>EditPeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Register\ReportExcelForm.resx">
       <DependentUpon>ReportExcelForm.cs</DependentUpon>
