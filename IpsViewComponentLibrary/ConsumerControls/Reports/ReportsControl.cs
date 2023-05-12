@@ -68,6 +68,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
 
             gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+            gvPeriods.SetCommandColumnImageAlignment("edit", ContentAlignment.MiddleCenter);
+            gvPeriods.SetCommandColumnImageAlignment("delete", ContentAlignment.MiddleCenter);
 
             gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
             buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
@@ -325,25 +327,28 @@ namespace IpsViewComponentLibrary.ConsumerControls.Reports
         // * * * НА ГРІД [Періоди платежів]
         private void GvPeriods_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
+            if (!(e.Row.DataBoundItem is PaidPeriod period))
+                return;
+
             switch (e.Column.FieldName)
             {
-                case "CreateAct":
-                    CreateAct();
+                case "edit":
+                    EditPeriod(period);
                     break;
-                case "ViewAct":
-                    ViewAct();
+                case "delete":
+                    DeletePeriod(period);
                     break;
             }
         }
 
-        private void CreateAct()
+        private void EditPeriod(PaidPeriod period)
         {
-            MessageBox.Show("Створення акту");
+
         }
 
-        private void ViewAct()
+        private void DeletePeriod(PaidPeriod period)
         {
-            MessageBox.Show("Перегляд акту");
+
         }
 
         private void EnableButtons(bool enabled)

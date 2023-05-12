@@ -55,13 +55,25 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Редагувати період платежів
+        /// </summary>
+        /// <param name="paidPeriod"></param>
+        /// <returns></returns>
+        public async Task<ResponseOfRequest> EditPaidPeriod(PaidPeriod paidPeriod)
+        {
+            string url = $"{Prefix}/paidperiod/edit";
+            var result = await _apiConnector.SendPostRequestWithResultAsync<ResponseOfRequest, PaidPeriod>(url, paidPeriod);
+            return result;
+        }
+
+        /// <summary>
         /// Видалити період платежів
         /// </summary>
         /// <param name="paidPeriod"></param>
         /// <returns></returns>
-        public async Task<ResponseOfRequest> DeletePaidPeriod(PaidPeriod paidPeriod)
+        public async Task<ResponseOfRequest> DeletePaidPeriod(int periodId)
         {
-            string url = $"{Prefix}/paidperiod/delete/{paidPeriod.PeriodId}";
+            string url = $"{Prefix}/paidperiod/delete/{periodId}";
             var result = await _apiConnector.SendDeleteRequestWithResultAsync<ResponseOfRequest>(url);
             return result;
         }

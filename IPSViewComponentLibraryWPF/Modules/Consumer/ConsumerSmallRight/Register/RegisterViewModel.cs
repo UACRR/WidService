@@ -540,7 +540,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         /// </summary>
         private void UpdatePeriodList()
         {
-            var periodList = new ObservableCollection<RegisterPeriodModel>();
+            var periodList = new List<RegisterPeriodModel>();
 
             if (CurrentLicenseAgreement?.LicenseAgreement?.PaidPeriod != null)
             {
@@ -552,8 +552,8 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                     });
                 }
             }
-
-            PeriodsOfLicenseItemSource = periodList;
+            var result = new ObservableCollection<RegisterPeriodModel>(periodList.OrderBy(rec => rec.BeginDate).ToList());
+            PeriodsOfLicenseItemSource = result;
         }
 
         /// <summary>
@@ -932,6 +932,32 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             RrlCancelButtonVisibility = Visibility.Collapsed;
 
             await LoadData();
+        }
+
+        public ICommand EditPeriodCommand => new IPSDelegateCommand(EditPeriodCommandExecute);
+        private void EditPeriodCommandExecute(object o)
+        {
+            if (!(o is RegisterPeriodModel item))
+                return;
+
+            EditPaidPeriod.EditPaidPeriod window = new EditPaidPeriod.EditPaidPeriod(item.PaidPeriod);
+            window.ShowDialog();
+            UpdateData();
+        }
+
+        public ICommand DeletePeriodCommand => new IPSDelegateCommand(DeletePeriodCommandExecute);
+        private async void DeletePeriodCommandExecute(object o)
+        {
+            if (!(o is RegisterPeriodModel item))
+                return;
+
+            var confirm = MessageShow.ConfirmAction($"Видалити період [ID:{item.PeriodId}] '{item.PeriodName}'?");
+            if (confirm == DialogResult.Yes)
+            {
+                ResponseOfRequest result = await _service.DeletePaidPeriod(item.PeriodId);
+                MessageShow.ShowInfoByResult(result);
+                UpdateData();
+            }
         }
 
         /// <summary>
