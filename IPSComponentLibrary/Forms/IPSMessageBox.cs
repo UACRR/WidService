@@ -20,18 +20,21 @@ namespace IPSComponentLibrary.Forms
 
         public IPSMessageBox(string message, string details) : this()
         {
-            txtMessage.AppendText(message);
-            txtDetails.AppendText(details);
+            if (!string.IsNullOrEmpty(message))
+                txtMessage.AppendText(message);
+            if (!string.IsNullOrEmpty(details))
+                txtDetails.AppendText(details);
         }
 
         public IPSMessageBox(ResponseOfRequest response) : this()
         {
-            txtMessage.AppendText(response.Message);
-            txtDetails.AppendText(response.InnerMessage);
-            txtDetails.AppendText(response.Exception.ToString());
+            if (!string.IsNullOrEmpty(response.Message))
+                txtMessage.AppendText(response.Message);
+            if (!string.IsNullOrEmpty(response.InnerMessage))
+                txtDetails.AppendText(response.InnerMessage);
+            if (response.Exception != null)
+                txtDetails.AppendText(response.Exception.ToString());
         }
-
-        
 
         private void btnSend_Click(object sender, EventArgs e)
         {

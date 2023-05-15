@@ -112,7 +112,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        [HttpPost("paidperiod/create")]
+        [HttpPost("paidperiod/edit")]
         public async Task<IActionResult> EditPaidPeriod(PaidPeriod source)
         {
             ResponseOfRequest response;
@@ -123,7 +123,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     return BadRequest(ResponseOfRequest.NotSuccess($"Не знайдено період PeriodId: {source.PeriodId}!"));
                 }
-                if (target.BeginDate < target.EndDate)
+                if (target.BeginDate > target.EndDate)
                 {
                     return BadRequest(ResponseOfRequest.NotSuccess($"Дата початку періоду ({target.BeginDate:dd.MM.yyyy}) не може бути більшою дати завершення ({target.EndDate:dd.MM.yyyy})!"));
                 }

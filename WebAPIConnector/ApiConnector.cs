@@ -177,7 +177,15 @@ namespace WebAPIConnector
             if (result != null && !result.IsSuccessStatusCode)
                 LogError(result);
 
-            return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
+            try
+            {
+                return result?.Content != null ? result.Content.ReadAs<TResult>() : default(TResult);
+            }
+            catch (Exception e)
+            {
+                ShowError(result);
+                return default;
+            }
         }
 
         /// <summary>
@@ -917,21 +925,17 @@ namespace WebAPIConnector
 
         private void LogError(HttpResponseMessage result)
         {
-            //string url = $"errorhandler/error/apiconnector";
-            //var item = new ResponseError
-            //{
-            //    StatusCode = (int) result.StatusCode,
-            //    ReasonPhrase = result.ReasonPhrase,
-            //    MethodType = result.RequestMessage.Method.Method,
-                
-            //};
-            //_responseErrors.Clear();
-            //_responseErrors.Add(item);
-            ////client.PostAsJson(url, item);
+
         }
 
-        //private readonly List<ResponseError> _responseErrors = new List<ResponseError>();
-        //public List<ResponseError> ResponseErrors => _responseErrors;
-    
+        private void ShowError(HttpResponseMessage result)
+        {
+            MessageBox.Show($"StatusCode: {result.StatusCode}, ReasonPhrase: {result.ReasonPhrase}\n{result.Content}", "Request error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void ShowError(string error)
+        {
+            MessageBox.Show($"{error}", "Request error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }
