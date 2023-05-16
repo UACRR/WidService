@@ -38,6 +38,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         private const string DifferentAmountsWarningMsg = "Сума авторської винагороди по Р/Л не співпадає з загальною сумою по введеним рапортичкам! Виконайте необхідні коригування суми!";
         private const string HasInvalidRegisterStatusWarningMsg = "Наявний звіт зі статусом «Новий» або «На погодженні»!";
         private const string HasInvalidRegisterStatusSchema3WarningMsg = "Всі звіти повинні бути в стані «Погоджено. Сконвертовано.» або «Синхронізація виконано. До розподілу.»!";
+        private readonly TimeSpan MaxDurationUse = TimeSpan.FromSeconds(86399);
 
         private ConsumerRegisterService _service;
 
@@ -811,6 +812,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             var registerExcelTypeForm = new ReportExcelForm(CurrentRegister.Register, isEdit);
             if (registerExcelTypeForm.ShowDialog() == DialogResult.OK)
             {
+                TrimDurations(CurrentRegister.Register.RegisterItem);
                 var result = await _service.UpdateRegister(CurrentRegister.Register);
                 ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
             }
@@ -819,6 +821,15 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 registerExcelTypeForm.Dispose();
 
             UpdateData();
+        }
+
+        private void TrimDurations(ICollection<RegisterItem> items)
+        {
+            foreach (var item in items)
+            {
+                if (item.DurationUse.HasValue && item.DurationUse > MaxDurationUse)
+                    item.DurationUse = MaxDurationUse;
+            }
         }
 
         /// <summary>
@@ -1140,15 +1151,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                         return;
 
                     register = GetRegisterTemplate();
-
-                    var maxDurationUse = TimeSpan.FromSeconds(86399);
-                    foreach (var item in list)
-                    {
-                        if (item.DurationUse.HasValue && item.DurationUse > maxDurationUse)
-                            item.DurationUse = maxDurationUse;
-
-                        register.RegisterItem.Add(item);
-                    }
+                    
+                    TrimDurations(list);
+                    list.ForEach(i => register.RegisterItem.Add(i));
 
                     register.FileName = dialog.SafeFileName;
                 });
