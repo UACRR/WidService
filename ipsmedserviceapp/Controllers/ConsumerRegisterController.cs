@@ -132,13 +132,6 @@ namespace ipsmedserviceapp.Controllers
                 target.BeginDate = source.BeginDate;
                 target.EndDate = source.EndDate;
 
-
-                var periods = await _dbContext.PaidPeriod.Where(rec => rec.LicId == target.LicId && rec.PeriodId != target.PeriodId).ToListAsync();
-                bool fuck = periods.Any(rec => rec.EndDate >= source.BeginDate || rec.BeginDate >= source.EndDate);
-
-                var first = periods.Min(rec => rec.BeginDate);
-                var last = periods.Max(rec => rec.EndDate);
-
                 await _dbContext.SaveChangesAsync();
 
                 response = new ResponseOfRequest($"Період [ID:{source.PeriodId}] редаговано!");
