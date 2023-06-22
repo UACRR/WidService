@@ -526,6 +526,7 @@
     <Compile Include="Utilities\CustomerUtility.cs" />
     <Compile Include="Utilities\EnumUtility.cs" />
     <Compile Include="Utilities\FixationExtensions.cs" />
+    <Compile Include="Utilities\LicenseAgreementUtility.cs" />
     <Compile Include="Utilities\ObjectRightExtensions.cs" />
     <Compile Include="Utilities\RegisterExtensions.cs" />
     <Compile Include="Utilities\UpdateEventHandlerUtility.cs" />

@@ -255,7 +255,7 @@ namespace ipsmedserviceapp.Controllers
                     return BadRequest(response);
                 }
 
-                _dbContext.Database.SetCommandTimeout(30);
+                _dbContext.Database.SetCommandTimeout(120);
                 response = new ResponseOfRequest("Процедуру розподілу виконано!");
                 return Ok(response);
             }

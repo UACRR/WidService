@@ -59,7 +59,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <control:RoyaltyCorrectionControl/>
+        <t:RadButton Width="100" Height="50" Content="press" Click="RadButton_Click"/>
 
         <!--<StackPanel>
             <t:RadDropDownButton Width="200" Height="75" Content="Button"/>

@@ -129,6 +129,10 @@
     <Compile Include="Modules\CatalogFileItems\CatalogFileItemsListViewModel.cs" />
     <Compile Include="Modules\CatalogFileItems\Controls\PubCatalogItem\PubCatalogItemExport.cs" />
     <Compile Include="Modules\CatalogFileItems\Enums\CatalogFileType.cs" />
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CreatePaidPeriod\CreatePaidPeriod.xaml.cs">
+      <DependentUpon>CreatePaidPeriod.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CreatePaidPeriod\CreatePaidPeriodViewModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeViewModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeWindow.xaml.cs">
@@ -174,6 +178,10 @@
     <Page Include="Modules\CatalogFileItems\CatalogFileItemsListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modules\Consumer\ConsumerSmallRight\Register\CreatePaidPeriod\CreatePaidPeriod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeWindow.xaml">
       <SubType>Designer</SubType>

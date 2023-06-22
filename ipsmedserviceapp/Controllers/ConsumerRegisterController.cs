@@ -417,13 +417,13 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> DeleteRegister(int regId)
         {
             ResponseOfRequest response;
-            IDbContextTransaction transaction = null;
             try
             {
-                var targetRegister = await _dbContext.Register.SingleOrDefaultAsync(rec => rec.RegId == regId);
-                var targetRegisterItem = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId).ToListAsync();
+                var targetRegister = await _dbContext.Register.AnyAsync(rec => rec.RegId == regId);
+                    //.Include(item => item.RegisterItem)
+                //var targetRegisterItem = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId).ToListAsync();
 
-                if (targetRegister == null)
+                if (!targetRegister)
                 {
                     response = new ResponseOfRequest
                     {
@@ -432,25 +432,20 @@ namespace ipsmedserviceapp.Controllers
                     return NotFound(response);
                 }
 
-                _dbContext.RegisterItem.RemoveRange(targetRegisterItem);
-                _dbContext.Register.Remove(targetRegister);
+                SqlParameter parameter = new SqlParameter("@regId", regId);
+                await _dbContext.Database.ExecuteSqlCommandAsync("delete RegisterItem where regid = @regId", parameter);
+                await _dbContext.Database.ExecuteSqlCommandAsync("delete Register where regid = @regId", parameter);
 
-                transaction = _dbContext.Database.BeginTransaction();
-                await _dbContext.SaveChangesAsync();
-                transaction.Commit();
+                //_dbContext.RegisterItem.RemoveRange(targetRegister.RegisterItem);
+                //_dbContext.Register.Remove(targetRegister);
 
                 response = new ResponseOfRequest("Звіт видалено!");
                 return Ok(response);
             }
             catch (Exception e)
             {
-                transaction?.Rollback();
                 response = new ResponseOfRequest("Неможливо видалити звіт!", e);
                 return BadRequest(response);
-            }
-            finally
-            {
-                transaction?.Dispose();
             }
         }
 
