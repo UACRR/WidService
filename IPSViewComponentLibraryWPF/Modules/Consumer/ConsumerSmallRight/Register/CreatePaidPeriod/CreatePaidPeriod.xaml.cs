@@ -31,22 +31,4 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             ((CreatePaidPeriodViewModel)DataContext).Init(licenseAgreement);
         }
     }
-
-    public class PeriodMode
-    {
-        public bool IsDefault { get; set; } = true;
-        public bool IsCustom { get; set; }
-    }
-
-    public class SelecteblePeriods
-    {
-        public SelecteblePeriods(PaidPeriod value)
-        {
-            PeriodName = value.PeriodName;
-            Value = value;
-        }
-
-        public string PeriodName { get; set; }
-        public PaidPeriod Value { get; set; }
-    }
 }

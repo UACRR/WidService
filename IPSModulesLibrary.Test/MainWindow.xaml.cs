@@ -38,6 +38,8 @@ namespace IPSModulesLibrary.Test
 
         private void RadButton_Click(object sender, RoutedEventArgs e)
         {
+            bool isInt = int.TryParse(txtInput.Text, out int result);
+
             CreatePaidPeriod p = new CreatePaidPeriod(new LicenseAgreement
             {
                 CustId = 1,
@@ -48,13 +50,16 @@ namespace IPSModulesLibrary.Test
                     new LicenseAgrParam
                     {
                         LicVersion = 1,
-                        PeriodCode = 3,
+                        PeriodCode = isInt ? result : 1,
+                        DateBegin = DateTime.Now.AddDays(-74),
+                        DateEnd = DateTime.Now.AddDays(99),
+                        MinAmount = 1455,
                     }
                 },
                 LicCode = 12,
                 LicCodeNavigation = IpsGlobal.AnketaDictionaties.agrLicenseType.FirstOrDefault(i => i.CodeI == 12),
             });
-            p.Show();
+            p.ShowDialog();
         }
     }
 }

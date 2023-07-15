@@ -975,24 +975,13 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
         /// Створити період до обраної ліцензії
         /// </summary>
         public ICommand CreatePeriodCommand => new IPSDelegateCommand(CreatePeriodCommandExecute, (o) => CanExecuteCreatePeriodCommand);
-        private async void CreatePeriodCommandExecute(object o)
+        private void CreatePeriodCommandExecute(object o)
         {
             var agrLicenseType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == CurrentLicenseAgreement.LicenseAgreement.LicCode);
             CurrentLicenseAgreement.LicenseAgreement.LicCodeNavigation = agrLicenseType;
 
-            var form = new CreatePeriod(CurrentLicenseAgreement.LicenseAgreement);
-            var saveNeed = form.ShowDialog() == DialogResult.OK;
-            
-            if (saveNeed)
-            {
-                var period = CurrentLicenseAgreement.LicenseAgreement.PaidPeriod.Single(rec => rec.PeriodId == 0);
-                period.CustId = CurrentLicenseAgreement.CustId;
-                period.LicId = CurrentLicenseAgreement.LicId;
-
-                var result = await _service.CreatePaidPeriod(period);
-                ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
-            }
-
+            var window = new CreatePaidPeriod.CreatePaidPeriod(CurrentLicenseAgreement.LicenseAgreement);
+            var dialogResult = window.ShowDialog();
             UpdateData();
         }
 

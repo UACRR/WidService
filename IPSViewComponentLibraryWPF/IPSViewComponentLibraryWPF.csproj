@@ -133,6 +133,7 @@
       <DependentUpon>CreatePaidPeriod.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CreatePaidPeriod\CreatePaidPeriodViewModel.cs" />
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CreatePaidPeriod\PeriodMode.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeViewModel.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\CurrencyChange\CurrencyChangeWindow.xaml.cs">
@@ -146,6 +147,7 @@
       <DependentUpon>EditPaidPeriod.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\EditPaidPeriod\EditPaidPeriodViewModel.cs" />
+    <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\Model\SelecteblePeriods.cs" />
     <Compile Include="Modules\Consumer\ConsumerSmallRight\Register\RegisterControl.xaml.cs">
       <DependentUpon>RegisterControl.xaml</DependentUpon>
     </Compile>

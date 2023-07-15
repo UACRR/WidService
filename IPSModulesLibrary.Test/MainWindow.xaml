@@ -59,7 +59,13 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <t:RadButton Width="100" Height="50" Content="press" Click="RadButton_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="txtInput" Width="100" Height="50" />
+        <t:RadButton Grid.Row="1" Width="100" Height="50" Content="press" Click="RadButton_Click"/>
 
         <!--<StackPanel>
             <t:RadDropDownButton Width="200" Height="75" Content="Button"/>
