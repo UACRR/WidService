@@ -98,6 +98,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                         LicId = _licenseAgr.Lic.LicId,
                         Status = 1,
                         Lic = _licenseAgr.Lic,
+                        ModifyDate = DateTime.Now,
                         Period = period
                     };
 

@@ -1158,6 +1158,12 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                     register.FileName = dialog.SafeFileName;
                 });
 
+                if (repeatableRecordExist)
+                {
+                    IsBusy = false;
+                    return;
+                }
+
                 var result = await _service.CreateRegister(register);
                 IsBusy = false;
 
