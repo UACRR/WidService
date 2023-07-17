@@ -12,8 +12,6 @@ using IPSComponentLibrary.Extensions;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.Data;
-using System.Windows.Controls;
-using System.Globalization;
 using System.Windows;
 using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.Model;
 
@@ -60,6 +58,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
                 return string.Format("{0:yyyy} рік", d);
             },
         };
+
+        private Window _window;
+        public bool IsDataValid { get; set; } = true;
 
         public CreatePaidPeriodViewModel() { }
 
@@ -173,12 +174,13 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
         private bool CheckDates(DateTime start, DateTime end)
         {
-            bool isInvalid = _paidPeriods.Any(i => i.BeginDate > start && i.EndDate < start || i.BeginDate > end && i.EndDate < end);
+            bool isInvalid = _paidPeriods.Any(i => i.BeginDate <= start && start <= i.EndDate || i.BeginDate <= end && end <= i.EndDate);
             return isInvalid;
         }
 
-        public void Init(LicenseAgreement licenseAgreement)
+        public void Init(LicenseAgreement licenseAgreement, Window window)
         {
+            _window = window;
             _licenseAgreement = licenseAgreement;
             _paidPeriods = licenseAgreement.PaidPeriod.ToList();
 
@@ -193,7 +195,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             {
                 PaidPeriod lastPeriod = licenseAgreement.PaidPeriod.OrderBy(rec => rec.BeginDate).LastOrDefault();
                 BeginDate = BeginCustomDate = lastPeriod?.EndDate.AddDays(1) ?? new DateTime(2023, 07, 31); //DateTime.Today;
-                EndCustomDate = BeginCustomDate.AddMonths(CountMonths[code]);
+                EndCustomDate = BeginCustomDate.AddMonths(CountMonths[code]).AddDays(lastPeriod == null ? 0 : -1);
             }
         }
 
@@ -202,7 +204,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             if (_licenseAgreement.PaidPeriod.Any())
             {
                 MessageShow.ShowWarning("Для даної ліцензії період вже створено!");
-                //DialogResult = false;
+                IsDataValid = false;
                 return;
             }
 
@@ -223,6 +225,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             if (invalidItems.Any())
             {
                 MessageShow.ShowWarning($"Для створення періоду в даній ліцензії відсутні необхідні дані!\n({string.Join(", ", invalidItems)})");
+                IsDataValid = false;
                 return;
             }
 
@@ -267,7 +270,7 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
 
             for (int i = 0; i < cntInList; i++)
             {
-                PaidPeriod period = CreateNewPaidPeriod(beginDateNewPeriod, beginDateNewPeriod.AddMonths(countMonths), minAmount);
+                PaidPeriod period = CreateNewPaidPeriod(beginDateNewPeriod, beginDateNewPeriod.AddMonths(countMonths).AddDays(-1), minAmount);
                 period.PeriodName = periodNameFunc(beginDateNewPeriod);
 
                 beginDateNewPeriod = beginDateNewPeriod.AddMonths(countMonths);
@@ -297,20 +300,17 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             };
         }
 
-        private static string UpdateCustomPeriodName(DateTime d1, DateTime d2)
+        private static string UpdateCustomPeriodName(DateTime begin, DateTime end)
         {
-            string y1 = d1.Year != d2.Year ? $" {d1:yyyy}р." : string.Empty;
-            string y2 = $" {d2:yyyy}р.";
-
-            return $"{d1:MMMM}{y1} - {d2:MMMM}{y2}";
+            string firstYear = begin.Year != end.Year ? $" {begin:yyyy}р." : string.Empty;
+            string firstPart = begin.Month != end.Month ? $"{begin:MMMM}{firstYear} - " : string.Empty;
+            
+            return $"{firstPart}{end:MMMM} {end:yyyy}р.";
         }
 
-        public ICommand SaveWindowCommand => new IPSDelegateCommand(SaveWindowCommandExecute);
-        private async void SaveWindowCommandExecute(object o)
+        public ICommand SaveCommand => new IPSDelegateCommand(SaveCommandExecute);
+        private async void SaveCommandExecute(object o)
         {
-            var window = o as Window;
-            if (window == null)
-                return;
             PaidPeriod paidPeriod = null;
 
             if (PeriodMode.IsDefault)
@@ -320,12 +320,13 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             else if (PeriodMode.IsCustom)
             {
                 paidPeriod = CreateNewPaidPeriod(BeginCustomDate, EndCustomDate, GetMinAmount());
+                paidPeriod.PeriodName = CustomPeriodName;
             }
 
             var periodExist = CheckDates(paidPeriod.BeginDate, paidPeriod.EndDate);
             if (periodExist)
             {
-                MessageShow.ShowWarning("Такий період вже існує!");
+                MessageShow.ShowWarning("Дати початку та закінчення вказаного періоду перетинаються з існуючим періодом!");
                 return;
             }
 
@@ -336,19 +337,15 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             var result = await service.CreatePaidPeriod(paidPeriod);
             ShowMessage.ShowInfoByResult(result.Message, result.IsSuccess);
 
-            window.DialogResult = true;
-            window.Close();
+            _window.DialogResult = true;
+            _window.Close();
         }
 
         public ICommand CloseWindowCommand => new IPSDelegateCommand(CloseWindowCommandExecute);
         private void CloseWindowCommandExecute(object o)
         {
-            var window = o as Window;
-            if (window == null)
-                return;
-
-            window.DialogResult = false;
-            window.Close();
+            _window.DialogResult = false;
+            _window.Close();
         }
     }
 }

@@ -981,7 +981,9 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
             CurrentLicenseAgreement.LicenseAgreement.LicCodeNavigation = agrLicenseType;
 
             var window = new CreatePaidPeriod.CreatePaidPeriod(CurrentLicenseAgreement.LicenseAgreement);
-            var dialogResult = window.ShowDialog();
+            if (window.IsDataValid)
+                window.ShowDialog();
+
             UpdateData();
         }
 

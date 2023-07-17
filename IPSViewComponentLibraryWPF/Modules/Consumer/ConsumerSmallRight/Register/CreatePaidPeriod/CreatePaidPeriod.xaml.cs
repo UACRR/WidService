@@ -25,10 +25,14 @@ namespace IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Registe
     /// </summary>
     public partial class CreatePaidPeriod : Window
     {
+        public bool IsDataValid { get; set; } = true;
+
         public CreatePaidPeriod(LicenseAgreement licenseAgreement)
         {
             InitializeComponent();
-            ((CreatePaidPeriodViewModel)DataContext).Init(licenseAgreement);
+            var context = (CreatePaidPeriodViewModel)DataContext;
+            context.Init(licenseAgreement, this);
+            IsDataValid = context.IsDataValid;
         }
     }
 }
