@@ -61,12 +61,10 @@ namespace ipsFormsDesign.Services
             var result = _webApi.NewItemWithResult(url, file);
 
             return result;
-
         }
 
         public InputFile SaveInputFile( InputFile file )
         {
-
             string url = string.Concat(_prefix, "file");
             var result = _webApi.UpdateItemWithResult(url, file.FileId.ToString(), file);
 
@@ -77,7 +75,6 @@ namespace ipsFormsDesign.Services
         {
             string url = string.Concat(_prefix, "file");
             return _webApi.DeleteItem(url, file.FileId.ToString());
-
         }
 
         public List<vCustomer> GetListOfConsumers()

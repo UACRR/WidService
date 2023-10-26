@@ -5,7 +5,9 @@ using System.Data.OleDb;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using ipsFormsDesign.CustomModel;
 using ipsFormsDesign.Model;
+using Newtonsoft.Json.Schema;
 
 namespace ipsFormsDesign.Engines
 {
@@ -29,7 +31,7 @@ namespace ipsFormsDesign.Engines
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public InputFile ReadDbfFile(string fileName)
+        public InputFileLoad ReadDbfFile(string fileName)
         {
             // Копіюємо файл в тимчасову копію
 
@@ -43,7 +45,7 @@ namespace ipsFormsDesign.Engines
             File.Copy(fileName, tempFile);
 
 
-            InputFile dest = new InputFile {FileName = Path.GetFileName(fileName), InputTime = DateTime.Now};
+            InputFileLoad dest = new InputFileLoad {FileName = Path.GetFileName(fileName), InputTime = DateTime.Now};
             string path = Path.GetDirectoryName(tempFile);
             string tableName = Path.GetFileNameWithoutExtension(tempFile);
 
@@ -82,7 +84,7 @@ namespace ipsFormsDesign.Engines
             return dest;
         }
 
-        private void LoadData(InputFile dest, DataTable data)
+        private void LoadData(InputFileLoad dest, DataTable data)
         {
             int index = 1;
             for( int i = 0, cnt=data.Rows.Count; i < cnt; i++  )
@@ -92,46 +94,60 @@ namespace ipsFormsDesign.Engines
                     continue;
                 try
                 {
-                    dest.CheckParamPays.Add(new CheckParamPays
+                    var accountCorr = item["ACCCOR"].ToString();
+                    var okpoCorr = item["OKPOCOR"].ToString();
+                    var mfoCorr = item["MFOCOR"].ToString();
+                    var docNum = item["NDOC"].ToString();
+                    var summa = Convert.ToDecimal(item["SUMMA"]) / 100;
+                    var nplat = item.Field<string>("NAZN");
+                    var docDate = item.Field<DateTime>("DT");
+
+                    var checkParamPays = new CheckParamPays
                     {
                         CheckId = index++,
-                        AccountCorr = item["ACCCOR"].ToString(),
-                        OkpoCorr = item["OKPOCOR"].ToString(),
-                        MfoCorr = item["MFOCOR"].ToString(),
-                        DocNum = item["NDOC"].ToString(),
-                        DocDate = item.Field<DateTime>("DT"),
-                        SCredit = Convert.ToDecimal(item["SUMMA"]) / 100,
-                        Nplat = item.Field<string>("NAZN")
-                    });
-                    dest.ExternalPay.Add(new ExternalPay
+                        AccountCorr = accountCorr,
+                        OkpoCorr = okpoCorr,
+                        MfoCorr = mfoCorr,
+                        DocNum = docNum,
+                        DocDate = docDate,
+                        SCredit = summa,
+                        Nplat = nplat
+                    };
+
+                    dest.CheckParamPays.Add(checkParamPays);
+
+                    var externalPay = new ExternalPay
                     {
                         InputDate = DateTime.Today,
                         Mfo = item["MFOCLI"].ToString(),
                         Okpol = item["OKPOCLI"].ToString(),
                         Account = item["ACCCLI"].ToString(),
-                        DateOper = item.Field<DateTime?>("DT"),
+                        DateOper = docDate,
                         R030 = "980",
                         CodeOper = "1",
-                        MfoCorr = item["MFOCOR"].ToString(),
+                        MfoCorr = mfoCorr,
                         NameMfoCorr = item["BANKCOR"].ToString(),
-                        AccountCorr = item["ACCCOR"].ToString(),
-                        OkpoCorr = item["OKPOCOR"].ToString(),
+                        AccountCorr = accountCorr,
+                        OkpoCorr = okpoCorr,
                         NameCorr = item["NAMECOR"].ToString(),
-                        DocNum = item["NDOC"].ToString(),
-                        DocDate = item.Field<DateTime?>("DT"),
+                        DocNum = docNum,
+                        DocDate = docDate,
                         SDebet = 0,
-                        SCredit = Convert.ToDecimal(item["SUMMA"]) / 100,
-                        SNcCur = Convert.ToDecimal(item["SUMMA"]) / 100,
-                        Nplat = item.Field<string>("NAZN"),
+                        SCredit = summa,
+                        SNcCur = summa,
+                        Nplat = nplat,
                         Status = 1
-                    });
+                    };
+
+                    //dest.ExternalPay.Add(externalPay);
+
+                    dest.Params.Add(checkParamPays, externalPay);
                 }
                 catch(Exception)
                 {
                     throw;
                 }
             }
-
         }
 
         /// <summary>

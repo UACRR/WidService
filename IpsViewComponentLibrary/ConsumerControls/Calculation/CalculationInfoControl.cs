@@ -12,6 +12,7 @@ using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
+using IPSViewComponentLibraryWPF.Modules.Consumer.ConsumerSmallRight.Register.CreatePaidPeriod;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -347,14 +348,22 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
         private void BtnNewPeriod_Click(object sender, EventArgs e)
         {
             var currentAgree = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
-            CreatePeriod dialog = new CreatePeriod(currentAgree.Lic);
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                SavePariodCommandExecuted(this, currentAgree.Lic.PaidPeriod.ToList());
-                UpdateData?.Invoke();
-                SetupAllBinding();
-            }
+            var window = new CreatePaidPeriod(currentAgree.Lic);
+            if (window.IsDataValid)
+                window.ShowDialog();
+
+            UpdateData?.Invoke();
+            SetupAllBinding();
+
+            //CreatePeriod dialog = new CreatePeriod(currentAgree.Lic);
+            
+            //if (dialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    SavePariodCommandExecuted(this, currentAgree.Lic.PaidPeriod.ToList());
+            //    UpdateData?.Invoke();
+            //    SetupAllBinding();
+            //}
         }
         
         bool boolRunFromDragDrop = false;
@@ -447,10 +456,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Calculation
 
         private void SetupAllBinding()
         {
-
             BindAllSum();
             BindLicAgreements();
-
             SetGrid3DataSource();
         }
 

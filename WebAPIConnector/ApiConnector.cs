@@ -54,7 +54,7 @@ namespace WebAPIConnector
                 ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "environment.config")
             };
             Configuration cfg = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-            string configName = cfg.AppSettings.Settings["environment"].Value;
+            string configName = cfg.AppSettings.Settings["environment"]?.Value ?? "workplace.config";
 
             //string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
 

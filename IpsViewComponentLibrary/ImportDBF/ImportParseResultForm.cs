@@ -10,8 +10,6 @@ namespace IpsViewComponentLibrary.ImportDBF
 {
     public partial class ImportParseResultForm : RadForm
     {
-        private const string DoubleExistWarningMsg = "Неможливо прийняти файл! Наявні дублі платежів!";
-
         public ImportParseResultForm(string fileName)
         {
             InitializeComponent();
@@ -25,9 +23,10 @@ namespace IpsViewComponentLibrary.ImportDBF
 
             if (parsedList.Any(rec => rec.InputStatus == 0))
             {
-                btnAcceptData.Enabled = false;
-                MessageShow.ShowWarning(DoubleExistWarningMsg);
+                parsedList = parsedList.Where(rec => rec.InputStatus == 1).ToList();
             }
+
+            btnAcceptData.Enabled = parsedList.Any(rec => rec.InputStatus != 0);
         }
 
         private void btnAcceptData_Click(object sender, EventArgs e)

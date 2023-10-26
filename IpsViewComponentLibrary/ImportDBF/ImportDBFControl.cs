@@ -12,13 +12,14 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Engines;
 using ipsFormsDesign.Model.SQLViewsData;
 using IpsViewComponentLibrary.ImportDBF.Presenters;
+using ipsFormsDesign.CustomModel;
 
 namespace IpsViewComponentLibrary.ImportDBF
 {
     public partial class ImportDBFControl : UserControl
     {
         private const string DefaultFileName = "Файл не вибраний";
-        private InputFile _inputFile;
+        private InputFileLoad _inputFile;
         private List<vCustomer> _clientsList;
         private readonly DbfEngine _dbfEngine = new DbfEngine();
         private readonly DBFPresenter _presenter;
@@ -72,7 +73,8 @@ namespace IpsViewComponentLibrary.ImportDBF
 
             if (importParseResult.ShowDialog() == DialogResult.OK)
             {
-                // збереження таблиці в базі
+                var externalPays = _inputFile.Params.Where(i => i.Key.InputStatus != 0).Select(i => i.Value).ToList();
+                _inputFile.ExternalPay = new ObservableListSource<ExternalPay>(externalPays);
                 _presenter.SaveInputFile(_inputFile);
                 bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
             }

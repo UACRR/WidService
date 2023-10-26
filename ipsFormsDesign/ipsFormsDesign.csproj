@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomModel\ChangePeriodAmountModel.cs" />
+    <Compile Include="CustomModel\InputFileLoad.cs" />
     <Compile Include="Data\ApplicationCustomerData.cs" />
     <Compile Include="Data\ApplicationSettings.cs" />
     <Compile Include="Data\CurrentClient.cs" />
