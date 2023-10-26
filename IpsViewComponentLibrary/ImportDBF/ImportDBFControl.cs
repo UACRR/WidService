@@ -69,7 +69,7 @@ namespace IpsViewComponentLibrary.ImportDBF
             // форма результату для підтвердження або сказування збереження даних
             var importParseResult = new ImportParseResultForm(lblFileName.Text);
 
-            importParseResult.SetParsedList(_inputFile.CheckParamPays.ToList());
+            importParseResult.SetParsedList(_inputFile.CheckParamPays);
 
             if (importParseResult.ShowDialog() == DialogResult.OK)
             {

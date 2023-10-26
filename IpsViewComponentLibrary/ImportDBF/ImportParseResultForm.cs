@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -17,15 +18,12 @@ namespace IpsViewComponentLibrary.ImportDBF
             lblFileName.Text = fileName;
         }
 
-        public void SetParsedList(List<CheckParamPays> parsedList)
+        public void SetParsedList(ICollection<CheckParamPays> parsedList)
         {
-            gvPaysFromFile.DataSource = parsedList;
-
             if (parsedList.Any(rec => rec.InputStatus == 0))
-            {
-                parsedList = parsedList.Where(rec => rec.InputStatus == 1).ToList();
-            }
+                parsedList = new ObservableListSource<CheckParamPays>(parsedList.Where(rec => rec.InputStatus != 0).ToList());
 
+            gvPaysFromFile.DataSource = parsedList;
             btnAcceptData.Enabled = parsedList.Any(rec => rec.InputStatus != 0);
         }
 
