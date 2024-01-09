@@ -431,6 +431,8 @@
     <Content Include="Migrations\09_FixesForExceptionSet\%2803%29 spCreateInitialInvoiceSpotify.sql" />
     <Content Include="Migrations\09_FixesForExceptionSet\%2802%29 spDdexApplyReportExceptions.sql" />
     <Content Include="Migrations\09_FixesForExceptionSet\%2804%29 spDdexDeleteReportTypeInvoices.sql" />
+    <Content Include="Migrations\11_Fixes\%2801%29 spCreateCcidParamsForSubscr.sql" />
+    <Content Include="Migrations\11_Fixes\%2802%29 spCreateInitialInvoiceSpotify.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidIpRolePrty.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidPrtyIpRole.sql" />
     <Content Include="SqlQueries\WidInMediaService\spWidImportToMs.sql" />
