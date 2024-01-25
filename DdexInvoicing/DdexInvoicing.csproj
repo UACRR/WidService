@@ -136,6 +136,12 @@
     <Compile Include="FormInvoiceDetails.Designer.cs">
       <DependentUpon>FormInvoiceDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLoadMediaLinks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLoadMediaLinks.Designer.cs">
+      <DependentUpon>FormLoadMediaLinks.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLongOperation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInvoiceDetails.resx">
       <DependentUpon>FormInvoiceDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLoadMediaLinks.resx">
+      <DependentUpon>FormLoadMediaLinks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLongOperation.resx">
       <DependentUpon>FormLongOperation.cs</DependentUpon>

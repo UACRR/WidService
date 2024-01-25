@@ -208,6 +208,28 @@ namespace InvoicingLib
             */
         }
     }
+
+    public class LoadMediaLinksRunner : ActionRunner
+    {
+        public override void Run()
+        {
+            if (DdexReport.IsSrmf(DdexReportId))
+            {
+                return;
+            }
+            else
+            {
+                switch (DdexReport.GetDigitalServiceProvider(DdexReportId))
+                {
+                    case DdexReport.DigitalServiceProviderEnum.YOUTUBE:
+                        new DdexReport(ConnectionString, DdexReportId)
+                            .ProcessFiles(new DdexReportActionLoadMediaLinksYouTube());
+                        break;
+                }
+            }
+        }
+    }
+
     /*public class DoPreIdentificationRunner : ActionRunner
     {
         public override void Run()

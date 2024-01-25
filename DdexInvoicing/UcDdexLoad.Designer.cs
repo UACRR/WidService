@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Стадія");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Стан Виконання");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Стадія");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Стан Виконання");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcDdexLoad));
             this.panelLoadReport = new System.Windows.Forms.TableLayoutPanel();
             this.tbLog = new System.Windows.Forms.TextBox();
@@ -45,6 +45,7 @@
             this.radTbThreshold = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.bw = new System.ComponentModel.BackgroundWorker();
+            this.btnLoadLinks = new Telerik.WinControls.UI.RadButton();
             this.panelLoadReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.panelActions.SuspendLayout();
@@ -55,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTbThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadLinks)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLoadReport
@@ -101,6 +103,7 @@
             // 
             this.panelActions.Controls.Add(this.radLabel1);
             this.panelActions.Controls.Add(this.radBtnLoadReport);
+            this.panelActions.Controls.Add(this.btnLoadLinks);
             this.panelActions.Location = new System.Drawing.Point(3, 40);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(509, 31);
@@ -130,13 +133,13 @@
             this.radLvActions.AllowColumnResize = false;
             this.radLvActions.AllowEdit = false;
             this.radLvActions.AllowRemove = false;
-            listViewDetailColumn1.HeaderText = "Стадія";
-            listViewDetailColumn1.Width = 400F;
-            listViewDetailColumn2.HeaderText = "Стан Виконання";
-            listViewDetailColumn2.Width = 100F;
+            listViewDetailColumn3.HeaderText = "Стадія";
+            listViewDetailColumn3.Width = 400F;
+            listViewDetailColumn4.HeaderText = "Стан Виконання";
+            listViewDetailColumn4.Width = 100F;
             this.radLvActions.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn1,
-            listViewDetailColumn2});
+            listViewDetailColumn3,
+            listViewDetailColumn4});
             this.radLvActions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLvActions.EnableAnalytics = false;
             this.radLvActions.EnableGestures = false;
@@ -203,6 +206,15 @@
             this.bw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bw_ProgressChanged);
             this.bw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bw_RunWorkerCompleted);
             // 
+            // btnLoadLinks
+            // 
+            this.btnLoadLinks.Location = new System.Drawing.Point(225, 3);
+            this.btnLoadLinks.Name = "btnLoadLinks";
+            this.btnLoadLinks.Size = new System.Drawing.Size(158, 21);
+            this.btnLoadLinks.TabIndex = 1;
+            this.btnLoadLinks.Text = "Завантажити посилання";
+            this.btnLoadLinks.Click += new System.EventHandler(this.btnLoadLinks_Click);
+            // 
             // UcDdexLoad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -222,6 +234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTbThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadLinks)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -241,5 +254,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadTextBox radTbThreshold;
         private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadButton btnLoadLinks;
     }
 }
