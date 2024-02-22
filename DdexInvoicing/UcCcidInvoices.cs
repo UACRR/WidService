@@ -111,6 +111,38 @@ namespace DdexInvoicing
 
         void UpdateInvoice(int fileId)
         {
+            var curSetCode = 0;
+            var newSetCode = 0;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandText = $@"
+                    select setCode
+                    from CcidInFile
+                    where fileId = @fileId
+                 ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                curSetCode = (int)cmd.ExecuteScalar();
+
+                cmd.CommandText = $@"
+                    select setCode
+                    from DdexReport
+                    where Id = @ddexReportId
+                 ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                newSetCode = (int)cmd.ExecuteScalar();
+
+            });
+
+            if(curSetCode != newSetCode)
+            {
+                var result = MessageBox.Show("Вибрана конфігурація виключень, відмінна від застосованої раніше. Продовжити?"
+                    , "Обробка рахунків CCID", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                    return;
+            }
+
             CalcMarketShare();
 
             Helpers.RunSqlOperationDdexT(cmd =>
@@ -187,11 +219,117 @@ namespace DdexInvoicing
                         cmd.Parameters.AddWithValue("@leadingFileId", fileId); break;
                 }
                 cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "spCcidFileOutCheck";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.Parameters.AddWithValue("@setCode", setCode);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = @"select t4.dateUpdated
+                    from CcidInFile t1
+                        join CcidInvoice t2 on t1.ccidInvoiceId = t2.Id
+                        join DdexReport t3 on t2.ddexReportId = t3.Id
+                        join ExceptionSet t4 on t3.SetCode = t4.setCode
+                    where t1.fileId = @fileId";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                var setCodeDate = (DateTime)cmd.ExecuteScalar();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = @"update CcidInFile
+                    set setCode = @setCode, setCodeDate = @setCodeDate
+                    where fileId = @fileId";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.Parameters.AddWithValue("@setCode", setCode);
+                cmd.Parameters.AddWithValue("@setCodeDate", setCodeDate);
+                cmd.ExecuteNonQuery();
             });
         }
 
         private void SaveInvoice(int fileId)
         {
+            DateTime curSetCodeDate = DateTime.Now;
+            DateTime newSetCodeDate = DateTime.Now;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandText = $@"
+                    select setCodeDate
+                    from CcidInFile
+                    where fileId = @fileId
+                 ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                curSetCodeDate = (DateTime)cmd.ExecuteScalar();
+
+                cmd.CommandText = $@"
+                    select t2.dateUpdated
+                    from DdexReport t1
+                        join ExceptionSet t2 on t1.setCode = t2.setCode
+                    where Id = @ddexReportId
+                 ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                newSetCodeDate = (DateTime)cmd.ExecuteScalar();
+            });
+
+            if (curSetCodeDate != newSetCodeDate)
+            {
+                MessageBox.Show("Конфігурація виключень зазнала змін, оновіть інвойс."
+                    , "Обробка рахунків CCID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+            }
+
+            var hasCriticalErrors = false;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandText = $@"
+                    select count(*) 
+                    from CcidInFileTestResult t1
+                        join CcidInFileTestType t2 on t1.ccidInFileTestType = t2.code
+                    where t1.fileId = @fileId
+                        and t1.result = 0
+                        and t2.severity = 0
+                 ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                hasCriticalErrors = (int)cmd.ExecuteScalar() != 0;
+            });
+
+            if (hasCriticalErrors)
+            {
+                MessageBox.Show("Інвойс містить критичні помилки. Виправьте і спробуйте створити файл ще раз."
+                    , "Обробка рахунків CCID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var hasWarnings = false;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandText = $@"
+                    select count(*) 
+                    from CcidInFileTestResult t1
+                        join CcidInFileTestType t2 on t1.ccidInFileTestType = t2.code
+                    where t1.fileId = @fileId
+                        and t1.result = 0
+                        and t2.severity = 1
+                 ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                hasWarnings = (int)cmd.ExecuteScalar() != 0;
+            });
+
+            if (hasWarnings)
+            {
+                var result = MessageBox.Show("Інвойс містить некритичні проблеми. Продовжити?"
+                    , "Обробка рахунків CCID", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(result != DialogResult.Yes)
+                    return;
+            }
+
             string filesPath;
             using (var fbd = new FolderBrowserDialog())
             {
@@ -224,6 +362,21 @@ namespace DdexInvoicing
                 ids.ForEach(x => {
                     SaveInvoiceFile(filesPath, x);
                 });
+            });
+
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = $@"
+                    update t2
+                    set isUsed = 1
+                    from CcidInFile t1
+                        join ExceptionSet t2 on t1.setCode = t2.setCode
+                    where t1.fileId = @fileId
+                 ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.ExecuteNonQuery();
             });
         }
 
@@ -536,6 +689,41 @@ namespace DdexInvoicing
                         cmd.Parameters.AddWithValue("@leadingFileId", DBNull.Value); break;
                 }
                 cmd.ExecuteNonQuery();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select max(fileId) from CcidInFile";
+                cmd.Parameters.Clear();
+                var fileId = (int)cmd.ExecuteScalar();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spCcidFileOutCheck";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.Parameters.AddWithValue("@setCode", setCode);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = @"select t4.dateUpdated
+                    from CcidInFile t1
+                        join CcidInvoice t2 on t1.ccidInvoiceId = t2.Id
+                        join DdexReport t3 on t2.ddexReportId = t3.Id
+                        join ExceptionSet t4 on t3.SetCode = t4.setCode
+                    where t1.fileId = @fileId";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                var setCodeDate = (DateTime)cmd.ExecuteScalar();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = @"update CcidInFile
+                    set setCode = @setCode, setCodeDate = @setCodeDate
+                    where fileId = @fileId";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.Parameters.AddWithValue("@setCode", setCode);
+                cmd.Parameters.AddWithValue("@setCodeDate", setCodeDate);
+                cmd.ExecuteNonQuery();
+
             });
             ShowInvoices();
         }
@@ -672,8 +860,7 @@ namespace DdexInvoicing
             setCode = form.setCode;
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandText = @"update DdexReport set setCode = @setCode where id = @ddexReportId;
-                    update ExceptionSet set isUsed = 1";
+                cmd.CommandText = @"update DdexReport set setCode = @setCode where id = @ddexReportId";
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                 cmd.Parameters.AddWithValue("@setCode", setCode);
                 cmd.ExecuteNonQuery();

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Стадія");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Стан Виконання");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Стадія");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Стан Виконання");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcDdexLoad));
             this.panelLoadReport = new System.Windows.Forms.TableLayoutPanel();
             this.tbLog = new System.Windows.Forms.TextBox();
@@ -38,6 +38,7 @@
             this.panelActions = new System.Windows.Forms.FlowLayoutPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radBtnLoadReport = new Telerik.WinControls.UI.RadButton();
+            this.btnLoadLinks = new Telerik.WinControls.UI.RadButton();
             this.radLvActions = new Telerik.WinControls.UI.RadListView();
             this.ilMain = new System.Windows.Forms.ImageList(this.components);
             this.panelThreshold = new System.Windows.Forms.FlowLayoutPanel();
@@ -45,18 +46,17 @@
             this.radTbThreshold = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.bw = new System.ComponentModel.BackgroundWorker();
-            this.btnLoadLinks = new Telerik.WinControls.UI.RadButton();
             this.panelLoadReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.panelActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnLoadReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadLinks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLvActions)).BeginInit();
             this.panelThreshold.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTbThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadLinks)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLoadReport
@@ -127,19 +127,29 @@
             this.radBtnLoadReport.Text = "Завантажити";
             this.radBtnLoadReport.Click += new System.EventHandler(this.radBtnLoadReport_Click);
             // 
+            // btnLoadLinks
+            // 
+            this.btnLoadLinks.Enabled = false;
+            this.btnLoadLinks.Location = new System.Drawing.Point(225, 3);
+            this.btnLoadLinks.Name = "btnLoadLinks";
+            this.btnLoadLinks.Size = new System.Drawing.Size(158, 21);
+            this.btnLoadLinks.TabIndex = 1;
+            this.btnLoadLinks.Text = "Завантажити посилання";
+            this.btnLoadLinks.Click += new System.EventHandler(this.btnLoadLinks_Click);
+            // 
             // radLvActions
             // 
             this.radLvActions.AllowColumnReorder = false;
             this.radLvActions.AllowColumnResize = false;
             this.radLvActions.AllowEdit = false;
             this.radLvActions.AllowRemove = false;
-            listViewDetailColumn3.HeaderText = "Стадія";
-            listViewDetailColumn3.Width = 400F;
-            listViewDetailColumn4.HeaderText = "Стан Виконання";
-            listViewDetailColumn4.Width = 100F;
+            listViewDetailColumn1.HeaderText = "Стадія";
+            listViewDetailColumn1.Width = 400F;
+            listViewDetailColumn2.HeaderText = "Стан Виконання";
+            listViewDetailColumn2.Width = 100F;
             this.radLvActions.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn3,
-            listViewDetailColumn4});
+            listViewDetailColumn1,
+            listViewDetailColumn2});
             this.radLvActions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLvActions.EnableAnalytics = false;
             this.radLvActions.EnableGestures = false;
@@ -206,15 +216,6 @@
             this.bw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bw_ProgressChanged);
             this.bw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bw_RunWorkerCompleted);
             // 
-            // btnLoadLinks
-            // 
-            this.btnLoadLinks.Location = new System.Drawing.Point(225, 3);
-            this.btnLoadLinks.Name = "btnLoadLinks";
-            this.btnLoadLinks.Size = new System.Drawing.Size(158, 21);
-            this.btnLoadLinks.TabIndex = 1;
-            this.btnLoadLinks.Text = "Завантажити посилання";
-            this.btnLoadLinks.Click += new System.EventHandler(this.btnLoadLinks_Click);
-            // 
             // UcDdexLoad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -228,13 +229,13 @@
             this.panelActions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnLoadReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadLinks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLvActions)).EndInit();
             this.panelThreshold.ResumeLayout(false);
             this.panelThreshold.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTbThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadLinks)).EndInit();
             this.ResumeLayout(false);
 
         }

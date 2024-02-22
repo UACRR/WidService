@@ -435,7 +435,7 @@ namespace InvoicingLib
                     case (int)FieldIds.UsagesInSubPeriod:
                     case (int)FieldIds.Subscribers:
                     case (int)FieldIds.UsagesInReportingPeriod:
-                        return string.IsNullOrEmpty(fields[fieldIndex].Trim()) ? 0 : int.Parse(fields[fieldIndex]);
+                        return string.IsNullOrEmpty(fields[fieldIndex].Trim()) ? 0 : long.Parse(fields[fieldIndex]);
 
                     case (int)FieldIds.ExchangeRate:
                     case (int)FieldIds.NetRevenue:

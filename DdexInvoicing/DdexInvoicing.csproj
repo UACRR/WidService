@@ -180,11 +180,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UcCcidInvoiceWrongIpBaseNr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCcidInvoiceWrongIpBaseNr.Designer.cs">
+      <DependentUpon>UcCcidInvoiceWrongIpBaseNr.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcCcidInvoices.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UcCcidInvoices.Designer.cs">
       <DependentUpon>UcCcidInvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcCcidInvoiceExpectedDist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCcidInvoiceExpectedDist.Designer.cs">
+      <DependentUpon>UcCcidInvoiceExpectedDist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcCcidInvoiceTestResults.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCcidInvoiceTestResults.Designer.cs">
+      <DependentUpon>UcCcidInvoiceTestResults.cs</DependentUpon>
     </Compile>
     <Compile Include="UcDdexLoad.cs">
       <SubType>UserControl</SubType>
@@ -203,6 +221,12 @@
     </Compile>
     <Compile Include="UcExceptionSets.Designer.cs">
       <DependentUpon>UcExceptionSets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcInvoiceDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcInvoiceDetails.Designer.cs">
+      <DependentUpon>UcInvoiceDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="UcInvoiceStatistics.cs">
       <SubType>UserControl</SubType>
@@ -296,8 +320,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UcCcidInvoiceWrongIpBaseNr.resx">
+      <DependentUpon>UcCcidInvoiceWrongIpBaseNr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcCcidInvoices.resx">
       <DependentUpon>UcCcidInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcCcidInvoiceExpectedDist.resx">
+      <DependentUpon>UcCcidInvoiceExpectedDist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcCcidInvoiceTestResults.resx">
+      <DependentUpon>UcCcidInvoiceTestResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcDdexLoad.resx">
       <DependentUpon>UcDdexLoad.cs</DependentUpon>
@@ -307,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcExceptionSets.resx">
       <DependentUpon>UcExceptionSets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcInvoiceDetails.resx">
+      <DependentUpon>UcInvoiceDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcInvoiceStatistics.resx">
       <DependentUpon>UcInvoiceStatistics.cs</DependentUpon>
