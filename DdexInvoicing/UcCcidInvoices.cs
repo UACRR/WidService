@@ -220,13 +220,6 @@ namespace DdexInvoicing
                 }
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "spCcidFileOutCheck";
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                cmd.Parameters.AddWithValue("@setCode", setCode);
-                cmd.ExecuteNonQuery();
-
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = @"select t4.dateUpdated
                     from CcidInFile t1
@@ -248,6 +241,18 @@ namespace DdexInvoicing
                 cmd.Parameters.AddWithValue("@setCodeDate", setCodeDate);
                 cmd.ExecuteNonQuery();
             });
+
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spCcidFileOutCheck";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.Parameters.AddWithValue("@setCode", setCode);
+                cmd.ExecuteNonQuery();
+            });
+
         }
 
         private void SaveInvoice(int fileId)
@@ -641,6 +646,8 @@ namespace DdexInvoicing
        
             CalcMarketShare();
 
+            var fileId = 0;
+
             Helpers.RunSqlOperationDdexT(cmd =>
             {
                 var agreementReportTypeEnum = DdexReport.GetAgreementReportType(cmd, ddexReportId);
@@ -693,15 +700,7 @@ namespace DdexInvoicing
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select max(fileId) from CcidInFile";
                 cmd.Parameters.Clear();
-                var fileId = (int)cmd.ExecuteScalar();
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spCcidFileOutCheck";
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                cmd.Parameters.AddWithValue("@setCode", setCode);
-                cmd.ExecuteNonQuery();
+                fileId = (int)cmd.ExecuteScalar();
 
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = @"select t4.dateUpdated
@@ -725,6 +724,18 @@ namespace DdexInvoicing
                 cmd.ExecuteNonQuery();
 
             });
+
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spCcidFileOutCheck";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.Parameters.AddWithValue("@setCode", setCode);
+                cmd.ExecuteNonQuery();
+            });
+
             ShowInvoices();
         }
 
