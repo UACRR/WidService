@@ -19,6 +19,12 @@ namespace DdexInvoicing
     public partial class UcDdexReports : UserControl
     {
         private bool skipFillReports;
+
+        private int licId = 0;
+        private int custId = 0;
+        private string licenseeName = null;
+        private string licenseDescription = null;
+
         public UcDdexReports()
         {
             InitializeComponent();
@@ -29,17 +35,14 @@ namespace DdexInvoicing
             radGridViewReports.MasterTemplate.AutoExpandGroups = true;
 
             GroupDescriptor descriptor = new GroupDescriptor();
-            descriptor.GroupNames.Add("licenseeName", ListSortDirection.Ascending);
-            radGridViewReports.GroupDescriptors.Add(descriptor);
-
-            descriptor = new GroupDescriptor();
-            descriptor.GroupNames.Add("year", ListSortDirection.Descending);
+           /* descriptor.GroupNames.Add("year", ListSortDirection.Descending);
             radGridViewReports.GroupDescriptors.Add(descriptor);
 
             descriptor = new GroupDescriptor();
             descriptor.GroupNames.Add("quarter", ListSortDirection.Descending);
-            radGridViewReports.GroupDescriptors.Add(descriptor);
+            radGridViewReports.GroupDescriptors.Add(descriptor);*/
 
+            radGridAgreements.MasterTemplate.AutoExpandGroups = true;
             descriptor = new GroupDescriptor();
             descriptor.GroupNames.Add("licenseeName", ListSortDirection.Descending);
             radGridAgreements.GroupDescriptors.Add(descriptor);
@@ -143,6 +146,7 @@ namespace DdexInvoicing
                             join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
                             join DdexReportStatus t5 on t5.codeI = t2.Status
                         where t2.licId = @licId and t2.custId = @custId
+                        order by t4.year desc, t4.month desc
                     ";
                 }
                 else
@@ -170,6 +174,7 @@ namespace DdexInvoicing
                                      t1.licId = @licId 
                                  and t1.custId = @custId
                                  and t6.ServiceDescription = @ServiceDescription
+                            order by t4.year desc, t4.quarter desc
                         ";
                         cmd.Parameters.AddWithValue("@ServiceDescription", DdexReport.GetServiceNames(agreementReportType)[0]);
                     }
@@ -193,6 +198,7 @@ namespace DdexInvoicing
                                 join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
                                 join DdexReportStatus t5 on t5.codeI = t2.Status
                             where t1.licId = @licId and t1.custId = @custId
+                            order by t4.year desc, t4.quarter desc
                         ";
                     }
                 }
@@ -203,9 +209,9 @@ namespace DdexInvoicing
                 radGridViewReports.DataSource = dt;
 
                 if (dt.Rows.Count == 0)
-                    radLabelReports.Text = $"Звіти договору {radGridAgreements.CurrentRow.Cells[4].Value} - договір не має звітів";
+                    radLabelReports.Text = $"Звіти {licenseeName}- {licenseDescription} - договір не має звітів";
                 else
-                    radLabelReports.Text = $"Звіти договору {radGridAgreements.CurrentRow.Cells[4].Value}";
+                    radLabelReports.Text = $"Звіти {licenseeName}- {licenseDescription}";
             });
         }
 
@@ -456,7 +462,53 @@ namespace DdexInvoicing
 
         }
 
-        private bool LoadDdexAdjConsolidated(int ddexReportId, int ddexReportingPeriodId)
+        private string DoDistSpotifyRoyalty(int ddexReportId, string fileFullName, string fileType)
+        {
+            try
+            {
+                string retVal = "";
+                Helpers.RunSqlOperationDdexT(cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                    cmd.CommandText = $@"spCreateAdjConsolidatedDetailForSpotify";
+                    cmd.ExecuteNonQuery();
+                }, true);
+
+                Helpers.RunSqlOperationDdex(cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+
+                    cmd.Parameters.Add("@result", SqlDbType.VarChar);
+                    cmd.Parameters["@result"].Direction = ParameterDirection.Output;
+                    cmd.Parameters["@result"].Size = 100;
+
+                    cmd.Parameters.Add("@RetCode", SqlDbType.Int);
+                    cmd.Parameters["@RetCode"].Direction = ParameterDirection.Output;
+
+                    cmd.CommandText = $@"spDdexAdjConsolidatedDistRoyalty";
+                    cmd.ExecuteNonQuery();
+
+                    if ((int)cmd.Parameters["@RetCode"].Value == 1)
+                    {
+                        retVal = (string)cmd.Parameters["@result"].Value;
+                    }
+                }, true);
+
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+
+        private bool DistGoogle(int ddexReportId, int ddexReportingPeriodId)
         {
             // Get data for file name validation from db
             string fileType = "";
@@ -517,53 +569,122 @@ namespace DdexInvoicing
             return true;
         }
 
-        private void radGridViewReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
+        private bool DistSpotify(int ddexReportId, int ddexReportingPeriodId)
         {
+            // Get data for file name validation from db
+            string fileType = "";
+            int year = 0;
+            int month = 0;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
+
+                cmd.CommandText = "select FileType from DdexReport where id = @ddexReportId";
+                fileType = (string)cmd.ExecuteScalar();
+
+                cmd.CommandText = "select year from DdexReportingPeriod where id = @ddexReportingPeriodId";
+                year = (int)cmd.ExecuteScalar();
+
+                cmd.CommandText = "select month from DdexReportingPeriod where id = @ddexReportingPeriodId";
+                month = (int)cmd.ExecuteScalar();
+            });
+
+            var confirmResult = MessageBox.Show(
+                "Ви плануєте передати до розподілу замовлені роялті для звіту. Сперш переконайтесь, що заявлена сума оплачена. Продовжити?",
+                "Розподіл роялті", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmResult != DialogResult.Yes)
+                return false;
+
+            var canDistribute = false;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandText = @"select count(*)
+                    from CcidInFile t1
+                        join CcidInvoice t2 on t1.ccidInvoiceId = t2.Id
+                    where t2.ddexReportId = @ddexReportId and t1.Status = 2";
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                var cnt = (int)cmd.ExecuteScalar();
+                canDistribute = cnt > 0;
+            });
+
+            if(!canDistribute)
+            {
+                MessageBox.Show(
+                    "Файл інвойсу не було надіслано, розподіл неможливий.",
+                    "Розподіл роялті", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            FormLongOperation form = new FormLongOperation("Виконується побудова даних для розподілу. Зачекайте, будь ласка.");
+            Form parent = FindForm();
+            form.Show(parent);
+            var task = new Task<string>(() => { return DoDistSpotifyRoyalty(ddexReportId, "", fileType); });
+            task.Start();
+            task.Wait();
+            form.Hide();
+
+            if (!string.IsNullOrEmpty(task.Result))
+            {
+                MessageBox.Show(task.Result, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            MessageBox.Show("Дані для розподілу роялті побудовані і передані в БД MediaService", "Операція завершена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
+        }
+
+        private void radGridViewReports_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            var dr = ((DataRowView)e.Row.DataBoundItem).Row;
+            int status = Convert.ToInt32(dr["status"]);
+
             if (e.Column.FieldName.Equals("Show", StringComparison.OrdinalIgnoreCase))
             {
                 RadButtonElement btn = (e.CellElement as GridCommandCellElement).CommandButton;
                 btn.Text = "Показати";
-                int status = (int)e.Row.Cells["status"].Value;
                 btn.Enabled = !(status == Meta.DdexReportStatus.ARCHIVING
                     || status == Meta.DdexReportStatus.ARCHIVED
                     || status == Meta.DdexReportStatus.RESTORING
                     || status == Meta.DdexReportStatus.CLEANING);
-                return;
+                btn.Visibility = Telerik.WinControls.ElementVisibility.Visible;
             }
             else if (e.Column.FieldName.Equals("AgreementParams", StringComparison.OrdinalIgnoreCase))
             {
                 RadButtonElement btn = (e.CellElement as GridCommandCellElement).CommandButton;
                 btn.Text = "Параметри договору";
+                btn.Visibility = Telerik.WinControls.ElementVisibility.Visible;
             }
             else if (e.Column.FieldName.Equals("Archive", StringComparison.OrdinalIgnoreCase))
             {
-                int status = (int)e.Row.Cells["status"].Value;
+                RadButtonElement btn = (e.CellElement as GridCommandCellElement).CommandButton;
+                btn.Visibility = Telerik.WinControls.ElementVisibility.Visible;
                 if (status == Meta.DdexReportStatus.INVOICING)
-                    //(e.CellElement as GridCommandCellElement).CommandButton.Text = "Обробку завершено";
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Розподілити";
+                    btn.Text = "Розподілити";
                 else if (status == Meta.DdexReportStatus.INVOICING_COMPLETED)
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "До архіву";
+                    btn.Text = "До архіву";
                 else if (status == Meta.DdexReportStatus.ARCHIVING)
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "До архіву";
+                    btn.Text = "До архіву";
                 else if (status == Meta.DdexReportStatus.ARCHIVED)
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Відновити з архіву";
+                    btn.Text = "Відновити з архіву";
                 else if (status == Meta.DdexReportStatus.RESTORING)
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Відновити з архіву";
+                    btn.Text = "Відновити з архіву";
                 else if (status == Meta.DdexReportStatus.RESTORED)
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Видалити відновлені записи";
+                    btn.Text = "Видалити відновлені записи";
                 else if (status == Meta.DdexReportStatus.CLEANING)
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "Видалити відновлені записи";
+                    btn.Text = "Видалити відновлені записи";
                 else
-                    (e.CellElement as GridCommandCellElement).CommandButton.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
-                return;
+                    btn.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
             }
 
         }
 
-        private void radGridViewReports_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void radGridViewReports_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             int ddexReportId = (int)e.Row.Cells["ddexReportId"].Value;
             int ddexReportingPeriodId = (int)e.Row.Cells["ddexReportingPeriodId"].Value;
+
+            var agreementReportType = DdexReport.GetAgreementReportType(licId, custId);
 
             if (e.Column.FieldName.Equals("Show", StringComparison.OrdinalIgnoreCase))
             {
@@ -578,17 +699,17 @@ namespace DdexInvoicing
                 DdexReportArchiver.OperationMode mode;
                 if (status == Meta.DdexReportStatus.INVOICING)
                 {
-                    /*
-                    Helpers.RunSqlOperationDdex(cmd =>
+                    var res = false;
+                    if (DdexReport.IsGooglePreClaimReport(agreementReportType))
                     {
-                        cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                        cmd.Parameters.AddWithValue("@status", Meta.DdexReportStatus.INVOICING_COMPLETED);
-                        cmd.CommandText = "update DdexReport set status = @status where id = @ddexReportId";
-                        cmd.ExecuteNonQuery();
-                        FillReports();
-                    });
-                    */
-                    if (LoadDdexAdjConsolidated(ddexReportId, ddexReportingPeriodId))
+                        res = DistGoogle(ddexReportId, ddexReportingPeriodId);
+                    }
+                    else if (DdexReport.IsSpotifyReport(agreementReportType))
+                    {
+                        res = DistSpotify(ddexReportId, ddexReportingPeriodId);
+                    }
+
+                    if (res)
                     {
                         Helpers.RunSqlOperationDdex(cmd =>
                         {
@@ -599,7 +720,6 @@ namespace DdexInvoicing
                         });
                         FillReports();
                     }
-
                     return;
                 }
                 else if (status == Meta.DdexReportStatus.INVOICING_COMPLETED || status == Meta.DdexReportStatus.ARCHIVING)
@@ -665,6 +785,22 @@ namespace DdexInvoicing
 
         private void radGridAgreements_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
+            if (e.CurrentRow == null || e.CurrentRow is GridViewGroupRowInfo)
+            {
+                licId = 0;
+                custId = 0;
+                licenseeName = null;
+                licenseDescription = null;
+            }
+            else
+            {
+                var dr = ((DataRowView)e.CurrentRow.DataBoundItem).Row;
+                licId = Convert.ToInt32(dr["licId"]);
+                custId = Convert.ToInt32(dr["custId"]);
+                licenseeName = (string)dr["licenseeName"];
+                licenseDescription = (string)dr["licenseDescription"];
+            }
+
             FillReports();
         }
 

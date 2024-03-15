@@ -599,6 +599,33 @@ namespace InvoicingLib
                  AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.YOUTUBE_SRMF;
         }
 
+        public static bool IsGooglePreClaimReport(string agreementReportType)
+        {
+            return AgreementReportTypes.ContainsKey(agreementReportType.ToLower()) &&
+                 (
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC ||
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC ||
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM
+                 );
+        }
+
+        public static bool IsSpotifyReport(string agreementReportType)
+        {
+            return AgreementReportTypes.ContainsKey(agreementReportType.ToLower()) &&
+                 (
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.SPOTIFY_FREE ||
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.SPOTIFY_PREMIUM
+                 );
+        }
+
+        public static bool IsDeezerReport(string agreementReportType)
+        {
+            return AgreementReportTypes.ContainsKey(agreementReportType.ToLower()) &&
+                 (
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.DEEZER_ALL
+                 );
+        }
+
         public static DigitalServiceProviderEnum GetDigitalServiceProvider(string agreementReportType)
         {
             return GetReportTypeInfo(agreementReportType).DigitalServiceProvider;

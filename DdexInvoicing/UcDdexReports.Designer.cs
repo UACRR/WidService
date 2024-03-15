@@ -67,6 +67,7 @@
             // 
             // radGridAgreements
             // 
+            this.radGridAgreements.AutoSizeRows = true;
             this.radGridAgreements.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridAgreements.EnableHotTracking = false;
             this.radGridAgreements.Location = new System.Drawing.Point(3, 37);
@@ -123,7 +124,7 @@
             this.radGridAgreements.Name = "radGridAgreements";
             this.radGridAgreements.ShowGroupPanel = false;
             this.radGridAgreements.ShowGroupPanelScrollbars = false;
-            this.radGridAgreements.Size = new System.Drawing.Size(986, 175);
+            this.radGridAgreements.Size = new System.Drawing.Size(986, 244);
             this.radGridAgreements.TabIndex = 2;
             this.radGridAgreements.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridAgreements_CellFormatting);
             this.radGridAgreements.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.radGridAgreements_CurrentRowChanged);
@@ -142,10 +143,9 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(992, 430);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -153,7 +153,7 @@
             // 
             this.radGridViewReports.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridViewReports.EnableHotTracking = false;
-            this.radGridViewReports.Location = new System.Drawing.Point(3, 252);
+            this.radGridViewReports.Location = new System.Drawing.Point(3, 321);
             // 
             // 
             // 
@@ -183,6 +183,7 @@
             gridViewTextBoxColumn8.Width = 60;
             gridViewTextBoxColumn9.FieldName = "serviceDescription";
             gridViewTextBoxColumn9.HeaderText = "Тип звіту";
+            gridViewTextBoxColumn9.IsVisible = false;
             gridViewTextBoxColumn9.Name = "s";
             gridViewTextBoxColumn9.Width = 300;
             gridViewTextBoxColumn10.FieldName = "status";
@@ -230,7 +231,7 @@
             this.radGridViewReports.Name = "radGridViewReports";
             this.radGridViewReports.ShowGroupPanel = false;
             this.radGridViewReports.ShowGroupPanelScrollbars = false;
-            this.radGridViewReports.Size = new System.Drawing.Size(986, 175);
+            this.radGridViewReports.Size = new System.Drawing.Size(986, 106);
             this.radGridViewReports.TabIndex = 2;
             this.radGridViewReports.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridViewReports_CellFormatting);
             this.radGridViewReports.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.radGridViewReports_CommandCellClick);
@@ -243,7 +244,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171F));
             this.tableLayoutPanel2.Controls.Add(this.radLabelReports, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 218);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 287);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
