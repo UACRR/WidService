@@ -28,405 +28,266 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInvoiceDetails));
-            this.panelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.panelMiddleLeft = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radGridSales = new Telerik.WinControls.UI.RadGridView();
+            this.panelFormMain = new System.Windows.Forms.TableLayoutPanel();
+            this.panelPageHead = new System.Windows.Forms.TableLayoutPanel();
+            this.radLabelTotalAmount = new Telerik.WinControls.UI.RadLabel();
+            this.radTbTotalAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.splitPanleProperties = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.radTbExceptionSet = new Telerik.WinControls.UI.RadTextBox();
+            this.radTbExceptionSetDate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.pgDdex = new System.Windows.Forms.PropertyGrid();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.pgCcid = new System.Windows.Forms.PropertyGrid();
-            this.panelLoad = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radBtnLoad = new Telerik.WinControls.UI.RadButton();
-            this.radCbServices = new Telerik.WinControls.UI.RadDropDownList();
-            this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.panelMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelMiddleLeft)).BeginInit();
-            this.panelMiddleLeft.Panel1.SuspendLayout();
-            this.panelMiddleLeft.Panel2.SuspendLayout();
-            this.panelMiddleLeft.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridSales)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridSales.MasterTemplate)).BeginInit();
+            this.ucInvoiceDetails = new DdexInvoicing.UcInvoiceDetails();
+            this.ucCcidInvoiceTestResults = new DdexInvoicing.UcCcidInvoiceTestResults();
+            this.ucCcidInvoiceExpectedDist = new DdexInvoicing.UcCcidInvoiceExpectedDist();
+            this.ucCcidInvoiceWrongIpBaseNr = new DdexInvoicing.UcCcidInvoiceWrongIpBaseNr();
+            this.panelFormMain.SuspendLayout();
+            this.panelPageHead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelTotalAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbTotalAmount)).BeginInit();
+            this.tabControlMain.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanleProperties)).BeginInit();
-            this.splitPanleProperties.Panel1.SuspendLayout();
-            this.splitPanleProperties.Panel2.SuspendLayout();
-            this.splitPanleProperties.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSetDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            this.panelLoad.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnLoad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCbServices)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
-            this.radPageView1.SuspendLayout();
-            this.radPageViewPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelMain
+            // panelFormMain
             // 
-            this.panelMain.ColumnCount = 1;
-            this.panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelMain.Controls.Add(this.panelMiddleLeft, 0, 1);
-            this.panelMain.Controls.Add(this.panelLoad, 0, 0);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 0);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.RowCount = 4;
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelMain.Size = new System.Drawing.Size(737, 378);
-            this.panelMain.TabIndex = 0;
+            this.panelFormMain.ColumnCount = 1;
+            this.panelFormMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelFormMain.Controls.Add(this.panelPageHead, 0, 0);
+            this.panelFormMain.Controls.Add(this.tabControlMain, 0, 1);
+            this.panelFormMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFormMain.Location = new System.Drawing.Point(0, 0);
+            this.panelFormMain.Name = "panelFormMain";
+            this.panelFormMain.RowCount = 3;
+            this.panelFormMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.panelFormMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelFormMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.panelFormMain.Size = new System.Drawing.Size(937, 533);
+            this.panelFormMain.TabIndex = 2;
             // 
-            // panelMiddleLeft
+            // panelPageHead
             // 
-            this.panelMiddleLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMiddleLeft.Location = new System.Drawing.Point(3, 36);
-            this.panelMiddleLeft.Name = "panelMiddleLeft";
+            this.panelPageHead.ColumnCount = 8;
+            this.panelPageHead.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.panelPageHead.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 143F));
+            this.panelPageHead.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 143F));
+            this.panelPageHead.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 207F));
+            this.panelPageHead.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.panelPageHead.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelPageHead.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
+            this.panelPageHead.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.panelPageHead.Controls.Add(this.radLabelTotalAmount, 0, 0);
+            this.panelPageHead.Controls.Add(this.radTbTotalAmount, 1, 0);
+            this.panelPageHead.Controls.Add(this.radLabel1, 2, 0);
+            this.panelPageHead.Controls.Add(this.radTbExceptionSet, 3, 0);
+            this.panelPageHead.Controls.Add(this.radTbExceptionSetDate, 6, 0);
+            this.panelPageHead.Controls.Add(this.radLabel2, 4, 0);
+            this.panelPageHead.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPageHead.Location = new System.Drawing.Point(3, 3);
+            this.panelPageHead.Name = "panelPageHead";
+            this.panelPageHead.RowCount = 1;
+            this.panelPageHead.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelPageHead.Size = new System.Drawing.Size(931, 26);
+            this.panelPageHead.TabIndex = 2;
             // 
-            // panelMiddleLeft.Panel1
+            // radLabelTotalAmount
             // 
-            this.panelMiddleLeft.Panel1.Controls.Add(this.tableLayoutPanel1);
+            this.radLabelTotalAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabelTotalAmount.Location = new System.Drawing.Point(3, 3);
+            this.radLabelTotalAmount.Name = "radLabelTotalAmount";
+            this.radLabelTotalAmount.Size = new System.Drawing.Size(86, 20);
+            this.radLabelTotalAmount.TabIndex = 0;
+            this.radLabelTotalAmount.Text = "Заявлена сума:";
             // 
-            // panelMiddleLeft.Panel2
+            // radTbTotalAmount
             // 
-            this.panelMiddleLeft.Panel2.Controls.Add(this.splitPanleProperties);
-            this.panelMiddleLeft.Size = new System.Drawing.Size(731, 323);
-            this.panelMiddleLeft.SplitterDistance = 535;
-            this.panelMiddleLeft.TabIndex = 0;
+            this.radTbTotalAmount.Location = new System.Drawing.Point(95, 3);
+            this.radTbTotalAmount.Name = "radTbTotalAmount";
+            this.radTbTotalAmount.ReadOnly = true;
+            this.radTbTotalAmount.Size = new System.Drawing.Size(137, 20);
+            this.radTbTotalAmount.TabIndex = 1;
             // 
-            // tableLayoutPanel1
+            // tabControlMain
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.radGridSales, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(535, 323);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tabControlMain.Controls.Add(this.tabPage1);
+            this.tabControlMain.Controls.Add(this.tabPage2);
+            this.tabControlMain.Controls.Add(this.tabPage3);
+            this.tabControlMain.Controls.Add(this.tabPage4);
+            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlMain.Location = new System.Drawing.Point(3, 35);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new System.Drawing.Size(931, 487);
+            this.tabControlMain.TabIndex = 3;
             // 
-            // radGridSales
+            // tabPage1
             // 
-            this.radGridSales.AllowDrop = true;
-            this.radGridSales.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGridSales.EnableTheming = false;
-            this.radGridSales.Location = new System.Drawing.Point(3, 25);
+            this.tabPage1.Controls.Add(this.ucInvoiceDetails);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(923, 461);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Рядки Продажів";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ucCcidInvoiceTestResults);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(923, 461);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Результати тестування";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            this.radGridSales.MasterTemplate.AllowAddNewRow = false;
-            this.radGridSales.MasterTemplate.AllowCellContextMenu = false;
-            this.radGridSales.MasterTemplate.AllowColumnChooser = false;
-            this.radGridSales.MasterTemplate.AllowColumnHeaderContextMenu = false;
-            this.radGridSales.MasterTemplate.AllowColumnReorder = false;
-            this.radGridSales.MasterTemplate.AllowColumnResize = false;
-            this.radGridSales.MasterTemplate.AllowDeleteRow = false;
-            this.radGridSales.MasterTemplate.AllowDragToGroup = false;
-            this.radGridSales.MasterTemplate.AllowEditRow = false;
-            this.radGridSales.MasterTemplate.AllowRowHeaderContextMenu = false;
-            this.radGridSales.MasterTemplate.AllowRowResize = false;
-            this.radGridSales.MasterTemplate.AutoGenerateColumns = false;
-            gridViewTextBoxColumn1.FieldName = "SalesTransactionId";
-            gridViewTextBoxColumn1.HeaderText = "SalesTransactionId";
-            gridViewTextBoxColumn1.Name = "SalesTransactionId";
-            gridViewTextBoxColumn1.Width = 250;
-            gridViewTextBoxColumn2.FieldName = "ResourceTitle";
-            gridViewTextBoxColumn2.HeaderText = "ResourceTitle";
-            gridViewTextBoxColumn2.Name = "ResourceTitle";
-            gridViewTextBoxColumn2.Width = 200;
-            gridViewTextBoxColumn3.FieldName = "Title";
-            gridViewTextBoxColumn3.HeaderText = "Title";
-            gridViewTextBoxColumn3.Name = "Title";
-            gridViewTextBoxColumn3.Width = 200;
-            gridViewTextBoxColumn4.FieldName = "ComposerAuthor";
-            gridViewTextBoxColumn4.HeaderText = "ComposerAuthor";
-            gridViewTextBoxColumn4.Name = "ComposerAuthor";
-            gridViewTextBoxColumn4.Width = 200;
-            gridViewTextBoxColumn5.FieldName = "DisplayArtistName";
-            gridViewTextBoxColumn5.HeaderText = "DisplayArtistName";
-            gridViewTextBoxColumn5.Name = "DisplayArtistName";
-            gridViewTextBoxColumn5.Width = 200;
-            gridViewTextBoxColumn6.FieldName = "ISWC";
-            gridViewTextBoxColumn6.HeaderText = "ISWC";
-            gridViewTextBoxColumn6.Name = "ISWC";
-            gridViewTextBoxColumn6.Width = 80;
-            this.radGridSales.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6});
-            this.radGridSales.MasterTemplate.EnableSorting = false;
-            this.radGridSales.MasterTemplate.ShowFilteringRow = false;
-            this.radGridSales.MasterTemplate.ShowRowHeaderColumn = false;
-            this.radGridSales.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.radGridSales.Name = "radGridSales";
-            this.radGridSales.ShowCellErrors = false;
-            this.radGridSales.ShowGroupPanel = false;
-            this.radGridSales.ShowGroupPanelScrollbars = false;
-            this.radGridSales.ShowRowErrors = false;
-            this.radGridSales.Size = new System.Drawing.Size(529, 286);
-            this.radGridSales.TabIndex = 7;
-            this.radGridSales.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.radGridSales_CurrentRowChanged);
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.ucCcidInvoiceExpectedDist);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(923, 461);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Очікуваний розподіл";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.ucCcidInvoiceWrongIpBaseNr);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(923, 461);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Проблемні міжнародні коди";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // radLabel1
             // 
             this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel1.Location = new System.Drawing.Point(3, 3);
+            this.radLabel1.Location = new System.Drawing.Point(238, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(529, 16);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Інформація про продажі з DDEX";
+            this.radLabel1.Size = new System.Drawing.Size(138, 18);
+            this.radLabel1.TabIndex = 2;
+            this.radLabel1.Text = "Застосовані виключення:";
             // 
-            // splitPanleProperties
+            // radTbExceptionSet
             // 
-            this.splitPanleProperties.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitPanleProperties.Location = new System.Drawing.Point(0, 0);
-            this.splitPanleProperties.Name = "splitPanleProperties";
-            this.splitPanleProperties.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.radTbExceptionSet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radTbExceptionSet.Location = new System.Drawing.Point(381, 3);
+            this.radTbExceptionSet.Name = "radTbExceptionSet";
+            this.radTbExceptionSet.ReadOnly = true;
+            this.radTbExceptionSet.Size = new System.Drawing.Size(201, 20);
+            this.radTbExceptionSet.TabIndex = 1;
             // 
-            // splitPanleProperties.Panel1
+            // radTbExceptionSetDate
             // 
-            this.splitPanleProperties.Panel1.Controls.Add(this.tableLayoutPanel2);
-            // 
-            // splitPanleProperties.Panel2
-            // 
-            this.splitPanleProperties.Panel2.Controls.Add(this.tableLayoutPanel3);
-            this.splitPanleProperties.Size = new System.Drawing.Size(192, 323);
-            this.splitPanleProperties.SplitterDistance = 155;
-            this.splitPanleProperties.TabIndex = 2;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.pgDdex, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(192, 155);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.radTbExceptionSetDate.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.radTbExceptionSetDate.Location = new System.Drawing.Point(688, 3);
+            this.radTbExceptionSetDate.Name = "radTbExceptionSetDate";
+            this.radTbExceptionSetDate.ReadOnly = true;
+            this.radTbExceptionSetDate.Size = new System.Drawing.Size(129, 20);
+            this.radTbExceptionSetDate.TabIndex = 1;
             // 
             // radLabel2
             // 
-            this.radLabel2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel2.Location = new System.Drawing.Point(3, 3);
+            this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabel2.Location = new System.Drawing.Point(588, 3);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(169, 16);
-            this.radLabel2.TabIndex = 0;
-            this.radLabel2.Text = "Додаткова інформація з DDEX";
+            this.radLabel2.Size = new System.Drawing.Size(94, 18);
+            this.radLabel2.TabIndex = 3;
+            this.radLabel2.Text = "Дата виключень:";
             // 
-            // pgDdex
+            // ucInvoiceDetails
             // 
-            this.pgDdex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pgDdex.HelpVisible = false;
-            this.pgDdex.Location = new System.Drawing.Point(3, 25);
-            this.pgDdex.Name = "pgDdex";
-            this.pgDdex.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.pgDdex.Size = new System.Drawing.Size(186, 119);
-            this.pgDdex.TabIndex = 1;
-            this.pgDdex.ToolbarVisible = false;
+            this.ucInvoiceDetails.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.ucInvoiceDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInvoiceDetails.Location = new System.Drawing.Point(3, 3);
+            this.ucInvoiceDetails.Name = "ucInvoiceDetails";
+            this.ucInvoiceDetails.Size = new System.Drawing.Size(917, 455);
+            this.ucInvoiceDetails.TabIndex = 0;
             // 
-            // tableLayoutPanel3
+            // ucCcidInvoiceTestResults
             // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.radLabel3, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.pgCcid, 0, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(192, 164);
-            this.tableLayoutPanel3.TabIndex = 0;
+            this.ucCcidInvoiceTestResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCcidInvoiceTestResults.Location = new System.Drawing.Point(3, 3);
+            this.ucCcidInvoiceTestResults.Name = "ucCcidInvoiceTestResults";
+            this.ucCcidInvoiceTestResults.Size = new System.Drawing.Size(917, 455);
+            this.ucCcidInvoiceTestResults.TabIndex = 0;
             // 
-            // radLabel3
+            // ucCcidInvoiceExpectedDist
             // 
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(3, 3);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(167, 17);
-            this.radLabel3.TabIndex = 0;
-            this.radLabel3.Text = "Відповідна інформація в CCID";
+            this.ucCcidInvoiceExpectedDist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCcidInvoiceExpectedDist.Location = new System.Drawing.Point(0, 0);
+            this.ucCcidInvoiceExpectedDist.Name = "ucCcidInvoiceExpectedDist";
+            this.ucCcidInvoiceExpectedDist.Size = new System.Drawing.Size(923, 461);
+            this.ucCcidInvoiceExpectedDist.TabIndex = 0;
             // 
-            // pgCcid
+            // ucCcidInvoiceWrongIpBaseNr
             // 
-            this.pgCcid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pgCcid.HelpVisible = false;
-            this.pgCcid.Location = new System.Drawing.Point(3, 26);
-            this.pgCcid.Name = "pgCcid";
-            this.pgCcid.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.pgCcid.Size = new System.Drawing.Size(186, 127);
-            this.pgCcid.TabIndex = 1;
-            this.pgCcid.ToolbarVisible = false;
-            // 
-            // panelLoad
-            // 
-            this.panelLoad.ColumnCount = 6;
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 339F));
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 14F));
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.panelLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 910F));
-            this.panelLoad.Controls.Add(this.radLabel4, 0, 0);
-            this.panelLoad.Controls.Add(this.radBtnLoad, 4, 0);
-            this.panelLoad.Controls.Add(this.radCbServices, 2, 0);
-            this.panelLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLoad.Location = new System.Drawing.Point(3, 3);
-            this.panelLoad.Name = "panelLoad";
-            this.panelLoad.RowCount = 1;
-            this.panelLoad.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelLoad.Size = new System.Drawing.Size(731, 27);
-            this.panelLoad.TabIndex = 1;
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel4.Location = new System.Drawing.Point(3, 3);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(244, 21);
-            this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Завантажити 1000 перших записів для сервісу";
-            // 
-            // radBtnLoad
-            // 
-            this.radBtnLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radBtnLoad.Location = new System.Drawing.Point(624, 3);
-            this.radBtnLoad.Name = "radBtnLoad";
-            this.radBtnLoad.Size = new System.Drawing.Size(84, 21);
-            this.radBtnLoad.TabIndex = 2;
-            this.radBtnLoad.Text = "Виконати";
-            this.radBtnLoad.Click += new System.EventHandler(this.radBtnLoad_Click);
-            // 
-            // radCbServices
-            // 
-            this.radCbServices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radCbServices.DropDownAnimationEnabled = false;
-            this.radCbServices.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.radCbServices.Location = new System.Drawing.Point(271, 3);
-            this.radCbServices.Name = "radCbServices";
-            this.radCbServices.Size = new System.Drawing.Size(333, 21);
-            this.radCbServices.TabIndex = 3;
-            this.radCbServices.Text = "radCbServices";
-            this.radCbServices.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.radCbServices_SelectedIndexChanged);
-            // 
-            // radPageView1
-            // 
-            this.radPageView1.Controls.Add(this.radPageViewPage2);
-            this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPageView1.Location = new System.Drawing.Point(0, 0);
-            this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage2;
-            this.radPageView1.Size = new System.Drawing.Size(758, 426);
-            this.radPageView1.TabIndex = 1;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            // 
-            // radPageViewPage2
-            // 
-            this.radPageViewPage2.Controls.Add(this.panelMain);
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(73F, 28F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
-            this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(737, 378);
-            this.radPageViewPage2.Text = "Подробиці";
+            this.ucCcidInvoiceWrongIpBaseNr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCcidInvoiceWrongIpBaseNr.Location = new System.Drawing.Point(0, 0);
+            this.ucCcidInvoiceWrongIpBaseNr.Name = "ucCcidInvoiceWrongIpBaseNr";
+            this.ucCcidInvoiceWrongIpBaseNr.Size = new System.Drawing.Size(923, 461);
+            this.ucCcidInvoiceWrongIpBaseNr.TabIndex = 0;
             // 
             // FormInvoiceDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(758, 426);
-            this.Controls.Add(this.radPageView1);
+            this.ClientSize = new System.Drawing.Size(937, 533);
+            this.Controls.Add(this.panelFormMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInvoiceDetails";
             this.Text = "Рахунок-фактура";
             this.Load += new System.EventHandler(this.FormInvoiceDetails_Load);
-            this.panelMain.ResumeLayout(false);
-            this.panelMiddleLeft.Panel1.ResumeLayout(false);
-            this.panelMiddleLeft.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelMiddleLeft)).EndInit();
-            this.panelMiddleLeft.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridSales.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridSales)).EndInit();
+            this.panelFormMain.ResumeLayout(false);
+            this.panelPageHead.ResumeLayout(false);
+            this.panelPageHead.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelTotalAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbTotalAmount)).EndInit();
+            this.tabControlMain.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            this.splitPanleProperties.Panel1.ResumeLayout(false);
-            this.splitPanleProperties.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanleProperties)).EndInit();
-            this.splitPanleProperties.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSetDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            this.panelLoad.ResumeLayout(false);
-            this.panelLoad.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnLoad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCbServices)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
-            this.radPageView1.ResumeLayout(false);
-            this.radPageViewPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel panelMain;
-        private System.Windows.Forms.SplitContainer panelMiddleLeft;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private Telerik.WinControls.UI.RadGridView radGridSales;
+        private System.Windows.Forms.TableLayoutPanel panelFormMain;
+        private System.Windows.Forms.TableLayoutPanel panelPageHead;
+        private Telerik.WinControls.UI.RadLabel radLabelTotalAmount;
+        private Telerik.WinControls.UI.RadTextBox radTbTotalAmount;
+        private System.Windows.Forms.TabControl tabControlMain;
+        private System.Windows.Forms.TabPage tabPage1;
+        private UcInvoiceDetails ucInvoiceDetails;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private UcCcidInvoiceTestResults ucCcidInvoiceTestResults;
+        private UcCcidInvoiceExpectedDist ucCcidInvoiceExpectedDist;
+        private UcCcidInvoiceWrongIpBaseNr ucCcidInvoiceWrongIpBaseNr;
         private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadTextBox radTbExceptionSet;
+        private Telerik.WinControls.UI.RadTextBox radTbExceptionSetDate;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private System.Windows.Forms.PropertyGrid pgDdex;
-        private System.Windows.Forms.PropertyGrid pgCcid;
-        private System.Windows.Forms.TableLayoutPanel panelLoad;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadButton radBtnLoad;
-        private System.Windows.Forms.SplitContainer splitPanleProperties;
-        private Telerik.WinControls.UI.RadPageView radPageView1;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
-        private Telerik.WinControls.UI.RadDropDownList radCbServices;
     }
 }

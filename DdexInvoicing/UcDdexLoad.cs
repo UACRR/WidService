@@ -291,5 +291,12 @@ namespace DdexInvoicing
                 return;
             }
         }
+
+        private void btnLoadLinks_Click(object sender, EventArgs e)
+        {
+            ActionRunner runner = new LoadMediaLinksRunner();
+            runner.Init(ConfigurationManager.AppSettings["ConnectionStringDdex"], ddexReportingPeriodId, ddexReportId);
+            runner.Run();
+        }
     }
 }

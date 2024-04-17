@@ -38,6 +38,7 @@
             this.panelActions = new System.Windows.Forms.FlowLayoutPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radBtnLoadReport = new Telerik.WinControls.UI.RadButton();
+            this.btnLoadLinks = new Telerik.WinControls.UI.RadButton();
             this.radLvActions = new Telerik.WinControls.UI.RadListView();
             this.ilMain = new System.Windows.Forms.ImageList(this.components);
             this.panelThreshold = new System.Windows.Forms.FlowLayoutPanel();
@@ -50,6 +51,7 @@
             this.panelActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnLoadReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadLinks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLvActions)).BeginInit();
             this.panelThreshold.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -101,6 +103,7 @@
             // 
             this.panelActions.Controls.Add(this.radLabel1);
             this.panelActions.Controls.Add(this.radBtnLoadReport);
+            this.panelActions.Controls.Add(this.btnLoadLinks);
             this.panelActions.Location = new System.Drawing.Point(3, 40);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(509, 31);
@@ -123,6 +126,16 @@
             this.radBtnLoadReport.TabIndex = 1;
             this.radBtnLoadReport.Text = "Завантажити";
             this.radBtnLoadReport.Click += new System.EventHandler(this.radBtnLoadReport_Click);
+            // 
+            // btnLoadLinks
+            // 
+            this.btnLoadLinks.Enabled = false;
+            this.btnLoadLinks.Location = new System.Drawing.Point(225, 3);
+            this.btnLoadLinks.Name = "btnLoadLinks";
+            this.btnLoadLinks.Size = new System.Drawing.Size(158, 21);
+            this.btnLoadLinks.TabIndex = 1;
+            this.btnLoadLinks.Text = "Завантажити посилання";
+            this.btnLoadLinks.Click += new System.EventHandler(this.btnLoadLinks_Click);
             // 
             // radLvActions
             // 
@@ -216,6 +229,7 @@
             this.panelActions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnLoadReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadLinks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLvActions)).EndInit();
             this.panelThreshold.ResumeLayout(false);
             this.panelThreshold.PerformLayout();
@@ -241,5 +255,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadTextBox radTbThreshold;
         private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadButton btnLoadLinks;
     }
 }

@@ -432,6 +432,7 @@
             // radPvRh1
             // 
             this.radPvRh1.Controls.Add(this.tlpExc3_1);
+            this.radPvRh1.ItemSize = new System.Drawing.SizeF(137F, 28F);
             this.radPvRh1.Location = new System.Drawing.Point(10, 37);
             this.radPvRh1.Name = "radPvRh1";
             this.radPvRh1.Size = new System.Drawing.Size(731, 413);
@@ -537,6 +538,7 @@
             // radPvRh2
             // 
             this.radPvRh2.Controls.Add(this.tableLayoutPanel11);
+            this.radPvRh2.ItemSize = new System.Drawing.SizeF(104F, 28F);
             this.radPvRh2.Location = new System.Drawing.Point(10, 37);
             this.radPvRh2.Name = "radPvRh2";
             this.radPvRh2.Size = new System.Drawing.Size(731, 413);

@@ -78,6 +78,7 @@
     <Compile Include="DdexReportActionLoadIdentDataDeezer.cs" />
     <Compile Include="DdexReportActionLoadIdentDataSrmf.cs" />
     <Compile Include="DdexReportActionLoadIdentDataSpotify.cs" />
+    <Compile Include="DdexReportActionLoadMediaLinksYouTube.cs" />
     <Compile Include="DdexReportActionLoadIdentDataYouTube.cs" />
     <Compile Include="DdexReportActionRegisterErrorsSkip.cs" />
     <Compile Include="DdexReportActionRegisterErrorsYouTube.cs" />
