@@ -1,0 +1,103 @@
+<div class="page-title">Пошук серед творів партнерів</div>
+
+<div *ngFor="let item of items; let itemIdx = index" class="item-div" [@.disabled]="isAnimationDisabled">
+  <div [id] ="getItemHtmlId(itemIdx)" class="icons-div">
+    <span [innerHtml]="getSearchResultHtml(item, 'SMART')"></span>
+    <span [innerHtml]="getSearchResultHtml(item, 'WID')"></span>
+    <span [innerHtml]="getSearchResultHtml(item, 'ISWC')"></span>
+  </div>
+
+  <div>
+    <div class="action-div" (click)="onEditItemClicked(itemIdx)">
+      <i *ngIf="!isEditingItem(item)" class="fa fa-search"><span style="margin-left: 5px;">Шукати</span></i>
+    </div>
+    <div class="index-div">{{itemIdx + 1}}</div>
+    <div class="caret-div" (click)="onCaretClicked(item)"><i [class]="getCaretClass(item)"></i></div>
+    <span class="title-span">{{item.title}}</span>
+  </div>
+
+  <!-- ДЕТАЛІ-->
+  <div *ngIf="isItemExpanded(item)" class="details-div" [@slideInOut]>
+
+    <!-- Від партнерів -->
+    <div style="margin-top: 10px;">
+      <span style="font-style: italic; font-size: smaller; padding-top: 0px; padding-bottom: 5px;">Інформація від партнерів</span>
+    </div>
+    <div style="margin-top: 5px; line-height: 1.8;">
+      <span>
+        <span class="label-span">Автори:</span>&nbsp;
+        <span class="value-span">{{item.authors}}</span>
+      </span>
+      <span>
+        <span class="label-span">Виконавці:</span>&nbsp;
+        <span class="value-span">{{item.performers}}</span>
+      </span>
+      <span>
+        <span class="label-span">ISWC:</span>&nbsp;
+        <span class="value-span">
+          {{item.iswc}}
+        </span>
+      </span>
+    </div>
+
+    <!-- В БД товариства -->
+    <div style="margin-top: 10px;">
+      <span style="font-style: italic; font-size: smaller; padding-top: 0px; padding-bottom: 5px;">Знайдено в БД товариства</span>
+    </div>
+    <div class="soc-codes-div">
+      <span>
+        <span class="label-span">Код SMART:</span>&nbsp;
+        <span [class]="getClassObjIdCell(item)" (click)="onObjIdClicked(item)">{{formatObjId(item)}}</span>
+      </span>
+      <span>
+        <span class="label-span">Код WID:</span>&nbsp;
+        <span [class]="getClassWicCell(item)" (click)="onWicClicked(item)">{{formatWic(item)}}</span>
+      </span>
+      <span>
+        <span class="label-span">Код ISWC:</span>&nbsp;
+        <span [class]="getClassIswcCell(item)" (click)="onIswcClicked(item)">{{formatIswc(item)}}</span>
+      </span>
+    </div>
+
+    <!-- Прямий ввід кодів творів товариства -->
+    <div>
+      <div *ngIf="isEditingObjId(item)" [@slideInOut]>
+        <app-objid-edit [inputExternalObjectId]="item.id" (finished)="onEditObjIdFinished($event)"></app-objid-edit>
+      </div>
+      <div *ngIf="isEditingWic(item)" [@slideInOut]>
+        <app-wic-edit [inputExternalObjectId]="item.id" (finished)="onEditWicFinished($event)"></app-wic-edit>
+      </div>
+      <div *ngIf="isEditingIswc(item)" [@slideInOut]>
+        <app-iswc-edit [inputExternalObjectId]="item.id" (finished)="onEditIswcFinished($event)"></app-iswc-edit>
+      </div>
+    </div>
+
+    <!-- ОБЛАСТЬ ПОШУКУ -->
+    <div *ngIf="isEditingItem(item)" [@slideInOut]>
+      <!-- Заголовок області пошуку -->
+      <div style="margin-top: 10px;">
+        <span style="font-style: italic; font-size: smaller; padding-top: 0px; padding-bottom: 0px;">Пошук в БД товариства</span>
+      </div>
+
+      <!-- Завершення процесу пошуку творів товариства -->
+      <div class="search-finish-div">
+        <button (click)="onFinishEditingClicked(item)">Завершити</button>
+        <button (click)="onEditNextClicked(item, itemIdx)">Наступний твір</button>
+      </div>
+
+      <!-- Пошук вибором з БД товариства -->
+      <div class="search-by-select-div">
+        <app-search-in-soc-db
+          [inputExternalObjectId] = "getInitiaExternalObjectId()"
+          [inputName]             = "getInitiaSearchWorkName()"
+          [inputAuthors]          = "getInitialWorkAuthors()"
+          [inputPerformers]       = "getInitialWorkPerformers()"
+          (objectSelected)        = "onObjectSelected($event)"
+        ></app-search-in-soc-db>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

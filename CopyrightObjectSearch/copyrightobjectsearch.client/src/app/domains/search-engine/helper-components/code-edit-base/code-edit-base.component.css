@@ -1,0 +1,40 @@
+.component-div {
+  background-color: antiquewhite;
+  padding: 10px 20px 10px 10px;
+  border:  solid 1px black;
+  width: 330px;
+}
+
+.prompt-div {
+}
+
+.value-div {
+
+}
+
+.value-input {
+  width: 100%;
+}
+
+.error-div {
+    color: white;
+    background-color: red;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.no-value-div {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.warning-div {
+  color: teal;
+  margin-top: 5px;
+}
+
+.actions-div {
+  color: teal;
+  margin-top: 5px;
+}
+

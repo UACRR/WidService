@@ -1,0 +1,18 @@
+ЗНАЙДЕНІ У С#
+ft_tsk_3_SearchObjWID +
+pTsk10_LoadWICRegister +
+vtsk_3_OR_01_WID_short +
+
+ПЛЮС ЗНАЙДЕНІ В БД
+ft_Tsk_3_AutoLink_WID +
+ft_Tsk_3_AutoLink_WIDW + 
+p_Tsk_3_AutoLink_WID ?
+p_Tsk_3_AutoLink_WIDW ?
+pTsk10_InputWID +
+PTsk10_LoadDDEXRegister ?
+pTsk10_LoadObjectRight ?
+pTsk10_Transfer
+
+
+
+

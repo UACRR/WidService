@@ -1,0 +1,96 @@
+<div style="font-size: x-large; font-weight: bold; padding: 10px 10px 30px 10px; text-align: left; margin-left: 40px;">Пошук серед творів партнерів</div>
+
+<table class="main-table">
+  <ng-container *ngFor="let item of items; let index = index">
+    <tr>
+      <td style="border-top: solid 1px; padding-top: 32px; padding-bottom: 5px;">{{index + 1}}</td>
+      <td class="caret-cell" (click)="onCaretClicked(item)"><i [class]="getCaretClass(item)"></i></td>
+      <td class="title-cell" style="vertical-align: top; padding-bottom: 5px; width: 100%;">
+        <div>
+          <span [innerHtml]="getSearchResultHtml(item, 'SMART')"></span>
+          <span [innerHtml]="getSearchResultHtml(item, 'WID')"></span>
+          <span [innerHtml]="getSearchResultHtml(item, 'ISWC')"></span>
+        </div>
+        <div style="margin-top: 5px;">
+          {{item.title}}
+        </div>
+      </td>
+      <td class="action-cell" (click)="onEditItemClicked(item)">
+        <i *ngIf="!isEditingItem(item)" class="fa fa-search"><span style="margin-left: 5px;">Шукати</span></i>
+      </td>
+    </tr>
+    <ng-container *ngIf="isItemExpanded(item)">
+      <tr>
+        <td colspan="2" style="font-style: italic; font-size: smaller; padding-top: 0px;"></td>
+        <td colspan="2" style="font-style: italic; font-size: smaller; padding-top: 0px; padding-bottom: 5px;">Інформація від партнерів</td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td>
+          <table style="width: 100%">
+            <tr>
+              <td class="label-cell">Автори:</td>
+              <td class="value-cell" style="width: 50%">{{item.authors}}</td>
+              <td class="label-cell">Виконавці:</td>
+              <td class="value-cell" style="width: 40%">{{item.performers}}</td>
+              <td class="label-cell">ISWC:</td>
+              <td class="value-cell" style="width: 10%">
+                {{item.iswc}}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td colspan="2" style="font-style: italic; font-size: smaller; padding-top: 10px; padding-bottom: 10px;">Знайдено в БД товариства</td>
+      </tr>
+      <tr>
+        <td colspan="2"></td>
+        <td colspan="2" style="padding: 0px 10px 10px 0px">
+          <span class="label-cell">Код SMART:</span>
+          <span [class]="getClassObjIdCell(item)" (click)="onObjIdClicked(item)">{{formatObjId(item)}}</span>
+          <span class="label-cell">Код WID:</span>
+          <span [class]="getClassWicCell(item)" (click)="onWicClicked(item)">{{formatWic(item)}}</span>
+          <span class="label-cell">Код ISWC:</span>
+          <span [class]="getClassIswcCell(item)" (click)="onIswcClicked(item)">{{formatIswc(item)}}</span>
+        </td>
+      </tr>
+      <tr *ngIf="isEditingObjId(item)">
+        <td colspan="2"></td>
+        <td colspan="2" style="padding: 0px 10px 10px 0px; text-align: left;">
+          <app-objid-edit (finished)="onEditObjIdFinished($event)"></app-objid-edit>
+        </td>
+      </tr>
+      <tr *ngIf="isEditingWic(item)">
+        <td colspan="2"></td>
+        <td colspan="2" style="padding: 0px 10px 10px 0px; text-align: left;">
+          <app-wic-edit (finished)="onEditWicFinished($event)"></app-wic-edit>
+        </td>
+      </tr>
+      <tr *ngIf="isEditingIswc(item)">
+        <td colspan="2"></td>
+        <td colspan="2" style="padding: 0px 10px 10px 0px; text-align: left;">
+          <app-iswc-edit (finished)="onEditIswcFinished($event)"></app-iswc-edit>
+        </td>
+      </tr>
+      <tr *ngIf="isEditingItem(item)">
+        <td colspan="2"></td>
+        <td colspan="2" style="padding: 0px 10px 10px 0px; text-align: left;">
+          <button (click)="onFinishEditingClicked(item)">Завершити пошук</button>
+          <button (click)="onEditNextClicked(item, index)">Шукати наступний твір партнерів</button>
+        </td>
+      </tr>
+      <tr *ngIf="isEditingItem(item)">
+        <td colspan="2"></td>
+        <td colspan="2" style="padding: 0px 10px 10px 0px; text-align: left;">
+          <app-search-in-soc-db></app-search-in-soc-db>
+        </td>
+      </tr>
+    </ng-container>
+
+  </ng-container>
+
+  <tr [id] = "getItemHtmlId(index)"></tr>
+
+</table>

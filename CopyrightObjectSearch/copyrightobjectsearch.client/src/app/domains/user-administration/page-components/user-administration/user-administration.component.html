@@ -1,0 +1,41 @@
+<div class="component-div" [@slideInOut]>
+  <div class="page-title-div">Адміністрування користувачів</div>
+
+  <div class="new-user-div">
+    <button (click)="onNewUser()">Новий користувач</button>
+  </div>
+
+  <div class="items-div">
+    <div *ngFor="let item of items; let itemIdx = index;" class="item-div">
+      <div class="index-div">{{itemIdx + 1}}</div>
+      <div class="caret-div" (click)="onCaretClicked(item)"><i [class]="getCaretClass(item)"></i></div>
+      <span class="title-span">{{item.login}}</span>
+      <div *ngIf="isUserDataDivVisible(item)" class="user-data-div" [@slideInOut]>
+        <table>
+          <tr>
+            <td>Обліковий запис</td>
+            <td class="user-param-input-cell"><input [formControl]="item.loginFormControl" /></td>
+          </tr>
+          <tr>
+            <td>Ім'я користувача</td>
+            <td class="user-param-input-cell"><input [formControl]="item.nameFormControl" /></td>
+          </tr>
+          <tr>
+            <td>Ролі</td>
+          </tr>
+          <tr *ngFor="let role of item.roles">
+            <td></td>
+            <td class="user-role-name-cell">{{role.description}}</td>
+            <td><input type="checkbox" [formControl]="role.roleChkFormControl" /></td>
+          </tr>
+        </table>
+
+        <div class="apply-changes-div">
+          <button (click)="onDeleteUser(itemIdx)">Видалити</button>
+          <button>Згенерувати пароль</button>
+          <button *ngIf="isApplyChangesDivVisible(item)">Застосувати зміни</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

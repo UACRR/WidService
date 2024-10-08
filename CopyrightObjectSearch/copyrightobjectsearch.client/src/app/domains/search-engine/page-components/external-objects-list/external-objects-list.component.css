@@ -1,0 +1,124 @@
+button {
+  color: white;
+  background-color: cadetblue;
+  margin-left: 10px;
+  border: none;
+  padding: 6px 6px 6px 6px;
+  cursor: pointer;
+}
+
+  button:hover {
+    background-color: darkcyan;
+  }
+
+.item-div {
+  margin-left: 40px;
+  text-align: left;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: double 1px;
+}
+
+.icons-div {
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.index-div {
+  text-align: center;
+  width: 40px;
+  float: left;
+}
+
+.caret-div {
+  font-size:initial;
+  color: darkgray;
+  cursor: pointer;
+  width: 20px;
+  text-align: left;
+  float: left;
+}
+
+        .caret-div:hover {
+          color: blue;
+        }
+
+.title-span {
+  margin-top: 10px;
+  vertical-align: top;
+  font-size: initial;
+  font-weight: bold;
+  text-align: left;
+}
+
+.action-div {
+  cursor: pointer;
+  vertical-align: top;
+  font-size: initial;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 20px;
+  float:right;
+}
+
+        .action-div:hover {
+          color: blue;
+        }
+
+.details-div {
+  margin-left: 0px;
+}
+
+
+  .label-span {
+    font-style: italic;
+    font-weight: bold;
+  }
+
+.soc-codes-div {
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+.value-span {
+  background-color: antiquewhite;
+  margin-right: 10px;
+  padding: 5px 5px 5px 5px;
+}
+
+.value-span-editable {
+  background-color: antiquewhite;
+  margin-right: 10px;
+  padding: 5px 5px 5px 5px;
+  text-decoration: dotted underline;
+}
+
+.value-span-editable:hover {
+    color: blue;
+    cursor: pointer;
+  }
+
+.value-span-edited {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px 5px 10px;
+  background-color: antiquewhite;
+  font-weight: bold;
+}
+
+.code-input-div {
+  padding: 0px 10px 10px 0px;
+  text-align: left;
+}
+
+.search-finish-div {
+  padding: 5px 10px 10px 0px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.search-by-select-div {
+  padding: 10px;
+  background-color:floralwhite;
+}

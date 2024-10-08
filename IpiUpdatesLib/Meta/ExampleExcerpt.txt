@@ -1,0 +1,3670 @@
+Ex. 1  - Add IP   ( CAE Migration)
+IPA Upload  ( File name = IPI01080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980121
+Creation time		6	T		112900
+Transmission date		8	D		19980121
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		IPA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		IPA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		
+Current status code		1	N		
+IP-NAME-NUMBER 		11	N		00052403417
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		
+Current status code ref.		1	N		
+IP-NAME-NUMBER-ref.		11	N		00052403417
+Name type ref.		2	A		PA
+
+Base-data
+Field	Size	Fmt	Contents
+Record type		3	A		BDN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Type of interested party		1	A		N
+Year of birth/foundation		4	A		
+Month of birth/foundation		2	A		
+Day of birth/foundation		2	A		
+Year of death/dissolution		4	A		
+Month of death/dissolution		2	A		
+Day of death/dissolution		2	A		
+Place of birth/foundation		30	A		
+State of birth/foundation		30	A		
+TISN birth/foundation		4	N		
+TISN valid from		8	D		
+TISAN birth/foundation		20	A		
+TISAN valid from		8	D		
+Sex		1	A		
+Amendment date		8	D		
+Amendment time		6	T		
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00052403417
+Name		90	A		LEHMANN  (D 2)
+First name		45	A		HANS PETER
+Name type		2	A		PA
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00052403417
+Creation class code		2	A		MW
+Role code		2	A		MC
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+IP-NAME-NUMBER		11	N		00052403417
+Creation class code		2	A		MW
+Role code		2	A		LY
+Name single IP usage ield	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000005
+IP-NAME-NUMBER		11	N		00052403417
+Creation class code		2	A		DM
+Role code		2	A		LY
+
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000006
+IP-NAME-NUMBER		11	N		00052403417
+Creation class code		2	A		DM
+Role code		2	A		MC
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000007
+IP-NAME-NUMBER		11	N		00052403613
+Name		90	A		HPL
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000008
+IP-NAME-NUMBER		11	N		00052403613
+Creation class code		2	A		MW
+Role code		2	A		MC
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000009
+IP-NAME-NUMBER		11	N		00052403613
+Creation class code		2	A		MW
+Role code		2	A		LY
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000010
+IP-NAME-NUMBER		11	N		00052403613
+Creation class code		2	A		DM
+Role code		2	A		LY
+Name single IP usage
+Field	Size	Fmt		 	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000011
+IP-NAME-NUMBER		11	N		00052403613
+Creation class code		2	A		DM
+Role code		2	A		MC
+
+Name single IP connect	ion		
+Field	Size	Fmt		 	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000012
+IP-NAME-NUMBER		11	N		00052403515
+Name		90	A		LIEMANS  
+First name		45	A		HPL
+Name type		2	A		PP
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Name single IP usage
+Field	Size	Fmt		 	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000013
+IP-NAME-NUMBER		11	N		00052403515
+Creation class code		2	A		MW
+Role code		2	A		MC
+Name single IP usage
+Field	Size	Fmt		 	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000014
+IP-NAME-NUMBER		11	N		00052403515
+Creation class code		2	A		MW
+Role code		2	A		LY
+Name single IP usage
+Field	Size	Fmt		 	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000015
+IP-NAME-NUMBER		11	N		00052403515
+Creation class code		2	A		DM
+Role code		2	A		LY
+Name single IP usage
+Field	Size	Fmt		 	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000016
+IP-NAME-NUMBER		11	N		00052403515
+Creation class code		2	A		DM
+Role code		2	A		MC
+
+Mem. agreement
+Field	Size	Fmt		 	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000017
+Society code		3	N		035
+Creation class code		2	A		MW
+Role code		2	A		MC
+Right code		2	A		PR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000018
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt		 	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000019
+Society code		3	N		035
+Creation class code		2	A		MW
+Role code		2	A		MC
+Right code		2	A		MR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000020
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+
+Mem. agreement
+Field	Size	Fmt		 	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000021
+Society code		3	N		035
+Creation class code		2	A		MW
+Role code		2	A		LY
+Right code		2	A		PR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000022
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt		 	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000023
+Society code		3	N		035
+Creation class code		2	A		MW
+Role code		2	A		LY
+Right code		2	A		MR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000024
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+
+Mem. agreement
+Field	Size	Fmt		 	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000025
+Society code		3	N		035
+Creation class code		2	A		DM
+Role code		2	A		LY
+Right code		2	A		MR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000026
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt		 	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000027
+Society code		3	N		035
+Creation class code		2	A		DM
+Role code		2	A		MC
+Right code		2	A		MR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000028
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+
+Group trailer
+Field	Size	Fmt		 	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000031
+Transmission trailer
+Field	Size	Fmt		 	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000033
+ 
+IPA Download  ( File name = 19980121.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980121
+Creation time		6	T		113001
+Transmission date		8	D		19980121
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		IPA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		IPA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980121
+Transaction time		6	T		113000
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000230-0
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00052403417
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000230-0
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00052403417
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980121
+Creation time ref.		6	T		112900
+File name ref.		12	A		IPI01080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Base-data
+Field	Size	Fmt	Contents
+Record type		3	A		BDN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+Type of interested party		1	A		N
+Year of birth/foundation		4	A		
+Month of birth/foundation		2	A		
+Day of birth/foundation		2	A		
+Year of death/dissolution		4	A		
+Month of death/dissolution		2	A		
+Day of death/dissolution		2	A		
+Place of birth/foundation		30	A		
+State of birth/foundation		30	A		
+TISN birth/foundation		4	N		
+TISN valid from		8	D		
+TISAN birth/foundation		20	A		
+TISAN valid from		8	D		
+Sex		1	A		
+Amendment date		8	D		19980121
+Amendment time		6	T		113000
+Status of an IP
+Field	Size	Fmt	Contents
+Record type		3	A		STN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-BASE-NUMBER-ref.		13	A		I-000000230-0
+Status code		1	N		1
+Valid from date		8	D		19980120
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Amendment date		8	D		19980121
+Amendment time		6	T		113000
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+IP-NAME-NUMBER		11	N		00052403417
+Name		90	A		LEHMANN  (D 2)
+First name		45	A		HANS PETER
+Name type		2	A		PA
+Date of creation		8	D		19980121
+Time of creation		6	T		113000
+Date of last amendment		8	D		19980121
+Time of last amendment		6	T		113000
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000005
+IP-NAME-NUMBER		11	N		00052403417
+Creation class code		2	A		MW
+Role code		2	A		MC
+
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000006
+IP-NAME-NUMBER		11	N		00052403417
+Creation class code		2	A		MW
+Role code		2	A		LY
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000007
+IP-NAME-NUMBER		11	N		00052403417
+Creation class code		2	A		DM
+Role code		2	A		LY
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000008
+IP-NAME-NUMBER		11	N		00052403417
+Creation class code		2	A		DM
+Role code		2	A		MC
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000009
+IP-NAME-NUMBER		11	N		00052403613
+Name		90	A		HPL
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980121
+Time of creation		6	T		113000
+Date of last amendment		8	D		19980121
+Time of last amendment		6	T		113000
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000010
+IP-NAME-NUMBER		11	N		00052403613
+Creation class code		2	A		MW
+Role code		2	A		MC
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000011
+IP-NAME-NUMBER		11	N		00052403613
+Creation class code		2	A		MW
+Role code		2	A		LY
+
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000012
+IP-NAME-NUMBER		11	N		00052403613
+Creation class code		2	A		DM
+Role code		2	A		LY
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000013
+IP-NAME-NUMBER		11	N		00052403613
+Creation class code		2	A		DM
+Role code		2	A		MC
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000014
+IP-NAME-NUMBER		11	N		00052403515
+Name		90	A		LIEMANS  
+First name		45	A		HPL
+Name type		2	A		PP
+Date of creation		8	D		19980121
+Time of creation		6	T		113000
+Date of last amendment		8	D		19980121
+Time of last amendment		6	T		113000
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000015
+IP-NAME-NUMBER		11	N		00052403515
+Creation class code		2	A		MW
+Role code		2	A		MC
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000016
+IP-NAME-NUMBER		11	N		00052403515
+Creation class code		2	A		MW
+Role code		2	A		LY
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000017
+IP-NAME-NUMBER		11	N		00052403515
+Creation class code		2	A		DM
+Role code		2	A		LY
+
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000018
+IP-NAME-NUMBER		11	N		00052403515
+Creation class code		2	A		DM
+Role code		2	A		MC
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000019
+Society code		3	N		035
+Creation class code		2	A		MW
+Role code		2	A		MC
+Right code		2	A		PR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		19980121
+Amendment time		6	T		113000
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000020
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000021
+Society code		3	N		035
+Creation class code		2	A		MW
+Role code		2	A		MC
+Right code		2	A		MR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		19980121
+Amendment time		6	T		113000
+
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000022
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000023
+Society code		3	N		035
+Creation class code		2	A		MW
+Role code		2	A		LY
+Right code		2	A		PR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		19980121
+Amendment time		6	T		113000
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000024
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000025
+Society code		3	N		035
+Creation class code		2	A		MW
+Role code		2	A		LY
+Right code		2	A		MR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		19980121
+Amendment time		6	T		113000
+
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000026
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000027
+Society code		3	N		035
+Creation class code		2	A		DM
+Role code		2	A		LY
+Right code		2	A		MR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		19980121
+Amendment time		6	T		113000
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000028
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000029
+Society code		3	N		035
+Creation class code		2	A		DM
+Role code		2	A		MC
+Right code		2	A		MR
+Valid from date		8	D		19820501
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19820420
+Membership share		5	N		10000
+Amendment date		8	D		19980121
+Amendment time		6	T		113000
+
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000030
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000033
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000035
+ 
+Ex. 2  - Add IP
+IPA Upload   ( File name = IPI02080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980122
+Creation time		6	T		094500
+Transmission date		8	D		19980122
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		IPA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		IPA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		
+Current status code		1	N		
+IP-NAME-NUMBER 		11	N		
+Name type		2	A		
+IP-BASE-NUMBER-ref.		13	A		
+Current status code ref.		1	N		
+IP-NAME-NUMBER-ref.		11	N		
+Name type ref.		2	A		
+Base-data
+Field	Size	Fmt	Contents
+Record type		3	A		BDN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Type of interested party		1	A		N
+Year of birth/foundation		4	A		1959
+Month of birth/foundation		2	A		11
+Day of birth/foundation		2	A		25
+Year of death/dissolution		4	A		
+Month of death/dissolution		2	A		
+Day of death/dissolution		2	A		
+Place of birth/foundation		30	A		
+State of birth/foundation		30	A		
+TISN birth/foundation		4	N		
+TISN valid from		8	D		
+TISAN birth/foundation		20	A		
+TISAN valid from		8	D		
+Sex		1	A		M
+Amendment date		8	D		
+Amendment time		6	T		
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		
+Name		90	A		CASPARI
+First name		45	A		CARLHEINZ
+Name type		2	A		PA
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		
+Creation class code		2	A		AV
+Role code		2	A		RE
+Remark
+Field	Size	Fmt	Contents
+Record type		3	A		REN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+IP-NAME-NUMBER		11	N		
+Society code		3	N		132
+Sequence no.		4	N		0001
+Text		20	A		274639
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000005
+IP-NAME-NUMBER		11	N		
+Name		90	A		ARTHUS
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000006
+IP-NAME-NUMBER		11	N		
+Creation class code		2	A		AV
+Role code		2	A		RE
+
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000007
+Society code		3	N		132
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		RT
+Valid from date		8	D		19591125
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19591125
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000008
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000009
+Society code		3	N		132
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		RL
+Valid from date		8	D		19591125
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19591125
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000010
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000011
+Society code		3	N		132
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		BT
+Valid from date		8	D		19591125
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19591125
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000012
+TISN		4	N		2136
+TISN valid from		8	D		
+TISAN		20	A		WORLD
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+Nationality
+Field	Size	Fmt	Contents
+Record type		3	A		NTN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000013
+TISN		4	N		0276
+TISN valid from		8	D		
+TISAN		20	A		GERMANY
+TISAN valid from		8	D		
+Valid from date		8	D		19591125
+Valid to date		8	D		99991231
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000016
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000018
+IPA Download  ( File name = 19980122.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980122
+Creation time		6	T		104501
+Transmission date		8	D		19980122
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		IPA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		IPA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980122
+Transaction time		6	T		104500
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980122
+Creation time ref.		6	T		094500
+File name ref.		12	A		IPI02080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Base-data
+Field	Size	Fmt	Contents
+Record type		3	A		BDN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+Type of interested party		1	A		N
+Year of birth/foundation		4	A		1959
+Month of birth/foundation		2	A		11
+Day of birth/foundation		2	A		25
+Year of death/dissolution		4	A		
+Month of death/dissolution		2	A		
+Day of death/dissolution		2	A		
+Place of birth/foundation		30	A		
+State of birth/foundation		30	A		
+TISN birth/foundation		4	N		
+TISN valid from		8	D		
+TISAN birth/foundation		20	A		
+TISAN valid from		8	D		
+Sex		1	A		M
+Amendment date		8	D		19980122
+Amendment time		6	T		104500
+Status of an IP
+Field	Size	Fmt	Contents
+Record type		3	A		STN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Status code		1	N		1
+Valid from date		8	D		19980122
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Amendment date		8	D		19980122
+Amendment time		6	T		104500
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+IP-NAME-NUMBER		11	N		00202198302
+Name		90	A		CASPARI
+First name		45	A		CARLHEINZ
+Name type		2	A		PA
+Date of creation		8	D		19980122
+Time of creation		6	T		104500
+Date of last amendment		8	D		19980122
+Time of last amendment		6	T		104500
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000005
+IP-NAME-NUMBER		11	N		00202198302
+Creation class code		2	A		AV
+Role code		2	A		RE
+
+Remark
+Field	Size	Fmt	Contents
+Record type		3	A		REN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000006
+IP-NAME-NUMBER		11	N		00202198302
+Society code		3	N		0132
+Sequence no.		4	N		0001
+Text		20	A		274639
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000007
+IP-NAME-NUMBER		11	N		00202198400
+Name		90	A		ARTHUS
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980122
+Time of creation		6	T		104500
+Date of last amendment		8	D		19980122
+Time of last amendment		6	T		104500
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000008
+IP-NAME-NUMBER		11	N		00202198400
+Creation class code		2	A		AV
+Role code		2	A		RE
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000009
+Society code		3	N		132
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		RT
+Valid from date		8	D		19591125
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19591125
+Membership share		5	N		10000
+Amendment date		8	D		19980122
+Amendment time		6	T		104500
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000010
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000011
+Society code		3	N		132
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		RL
+Valid from date		8	D		19591125
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19591125
+Membership share		5	N		10000
+Amendment date		8	D		19980122
+Amendment time		6	T		104500
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000012
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Mem. agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000013
+Society code		3	N		132
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		BT
+Valid from date		8	D		19591125
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19591125
+Membership share		5	N		10000
+Amendment date		8	D		19980122
+Amendment time		6	T		104500
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000014
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+
+Nationality
+Field	Size	Fmt	Contents
+Record type		3	A		NTN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000015
+TISN		4	N		0276
+TISN valid from		8	D		19901003
+TISAN		20	A		GERMANY
+TISAN valid from		8	D		19901003
+Valid from date		8	D		19591125
+Valid to date		8	D		99991231
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000018
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000020
+ 
+Ex. 3  - Issue birth date
+BDU Upload  ( File name = IPI03080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980211
+Creation time		6	T		150000
+Transmission date		8	D		19980211
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		BDU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		BDU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000230-0
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00052403417
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000230-0
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00052403417
+Name type ref.		2	A		PA
+Base-data
+Field	Size	Fmt	Contents
+Record type		3	A		BDO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Type of interested party		1	A		N
+Date of birth/foundation		8	D		
+Date of death/dissolution		8	D		
+Place of birth/foundation		30	A		
+State of birth/foundation		30	A		
+TISN birth/foundation		4	N		
+TISN valid from		8	D		
+TISAN birth/foundation		20	A		
+TISAN valid from		8	D		
+Sex		1	A		
+Amendment date		8	D		19980122
+Amendment time		6	T		104500
+
+Base-data
+Field	Size	Fmt	Contents
+Record type		3	A		BDN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+Type of interested party		1	A		N
+Year of birth/foundation		4	A		1954
+Month of birth/foundation		2	A		08
+Day of birth/foundation		2	A		18
+Year of death/dissolution		4	A		
+Month of death/dissolution		2	A		
+Day of death/dissolution		2	A		
+Place of birth/foundation		30	A		
+State of birth/foundation		30	A		
+TISN birth/foundation		4	N		
+TISN valid from		8	D		
+TISAN birth/foundation		20	A		
+TISAN valid from		8	D		
+Sex		1	A		
+Amendment date		8	D		
+Amendment time		6	T		
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+BDU Download  ( File name = 19980211.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980211
+Creation time		6	T		160001
+Transmission date		8	D		19980211
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		BDU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		BDU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980211
+Transaction time		6	T		160000
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000230-0
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00052403417
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000230-0
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00052403417
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980211
+Creation time ref.		6	T		150000
+File name ref.		12	A		IPI03080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Base-data
+Field	Size	Fmt	Contents
+Record type		3	A		BDO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+Type of interested party		1	A		N
+Date of birth/foundation		8	D		
+Date of death/dissolution		8	D		
+Place of birth/foundation		30	A		
+State of birth/foundation		30	A		
+TISN birth/foundation		4	N		
+TISN valid from		8	D		
+TISAN birth/foundation		20	A		
+TISAN valid from		8	D		
+Sex		1	A		
+Amendment date		8	D		19980122
+Amendment time		6	T		104500
+Base-data
+Field	Size	Fmt	Contents
+Record type		3	A		BDN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+Type of interested party		1	A		N
+Year of birth/foundation		4	A		1954
+Month of birth/foundation		2	A		08
+Day of birth/foundation		2	A		18
+Year of death/dissolution		4	A		
+Month of death/dissolution		2	A		
+Day of death/dissolution		2	A		
+Place of birth/foundation		30	A		
+State of birth/foundation		30	A		
+TISN birth/foundation		4	N		
+TISN valid from		8	D		
+TISAN birth/foundation		20	A		
+TISAN valid from		8	D		
+Sex		1	A		
+Amendment date		8	D		19980211
+Amendment time		6	T		160000
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000008
+Ex. 4  - Update PP name
+NCU Upload  ( File name = IPI04080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980212
+Creation time		6	T		152000
+Transmission date		8	D		19980212
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000230-0
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00052403417
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000230-0
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00052403417
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000230-0
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00052403417
+Name type new		2	A		PA
+A base no. ref. new		13	A		I-000000230-0
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00052403417
+Name type ref. new		2	A		PA
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		00052403613
+Name		90	A		HPL
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980121
+Time of creation		6	T		113000
+Date of last amendment		8	D		19980121
+Time of last amendment		6	T		113000
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00052403613
+Name		90	A		XPL
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980121
+Time of creation		6	T		113000
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+ 
+NCU Download  ( File name = 19980212.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980212
+Creation time		6	T		162001
+Transmission date		8	D		19980212
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980212
+Transaction time		6	T		162000
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000230-0
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00052403417
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000230-0
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00052403417
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000230-0
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00052403417
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000230-0
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00052403417
+Name type ref. new		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980212
+Creation time ref.		6	T		162000
+File name ref.		12	A		IPI04080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00052403613
+Name		90	A		HPL
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980121
+Time of creation		6	T		113000
+Date of last amendment		8	D		19980121
+Time of last amendment		6	T		113000
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00052403613
+Name		90	A		XPL
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980121
+Time of creation		6	T		113000
+Date of last amendment		8	D		19980212
+Time of last amendment		6	T		162000
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000008
+Ex. 5  - Add name usage
+NUA Upload  ( File name = IPI05080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980213
+Creation time		6	T		152500
+Transmission date		8	D		19980213
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NUA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NUA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Name single IP usage
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		00202198302
+Creation class code		2	A		AV
+Role code		2	A		CG
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000004
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+NUA Download  ( File name = 19980213.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980213
+Creation time		6	T		162501
+Transmission date		8	D		19980213
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NUA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NUA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980213
+Transaction time		6	T		162500
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980213
+Creation time ref.		6	T		152500
+File name ref.		12	A		IPI05080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+Name single IP usage
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202198302
+Creation class code		2	A		AV
+Role code		2	A		CG
+
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+ 
+Ex. 6  - Add PP
+NCA Upload  ( File name = IPI06080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980214
+Creation time		6	T		155000
+Transmission date		8	D		19980214
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		
+Name		90	A		XASPARI
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+
+Name single IP usage
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		
+Creation class code		2	A		AV
+Role code		2	A		CG
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+ 
+NCA Download  ( File name = 19980214.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980214
+Creation time		6	T		165001
+Transmission date		8	D		19980214
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980214
+Transaction time		6	T		165000
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980214
+Creation time ref.		6	T		155000
+File name ref.		12	A		IPI06080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202198893
+Name		90	A		XASPARI
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980214
+Time of creation		6	T		165000
+Date of last amendment		8	D		19980214
+Time of last amendment		6	T		165000
+Name single IP usage
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00202198893
+Creation class code		2	A		AV
+Role code		2	A		CG
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000008
+Ex. 7  - Add DF to PP
+NCA Upload  ( File name = IPI07080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980215
+Creation time		6	T		155500
+Transmission date		8	D		19980215
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Other name connection
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		ONN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		
+Name		90	A		XASPARI DF
+First name		45	A		
+Name type		2	A		DF
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+IP-NAME-NUMBER-ref		11	N		00202198893
+
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000004
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+ 
+NCA Download  ( File name = 19980215.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980215
+Creation time		6	T		165501
+Transmission date		8	D		19980215
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980215
+Transaction time		6	T		165500
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980215
+Creation time ref.		6	T		155500
+File name ref.		12	A		IPI07080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Other name connection
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		ONN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202198991
+Name		90	A		XASPARI DF
+First name		45	A		
+Name type		2	A		DF
+Date of creation		8	D		19980215
+Time of creation		6	T		165500
+Date of last amendment		8	D		19980215
+Time of last amendment		6	T		165500
+IP-NAME-NUMBER-ref		11	N		00202198893
+Inherited name single IP usage
+	Field	Size	Fmt	Contents
+Record type		3		A		INN
+Transaction sequence no.		8		N		00000000
+Detail record sequence no.		8		N		00000003
+IP-NAME-NUMBER		11		N		00202198991
+Creation class code		2		A		AV
+Role code		2		A		CG
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000008
+Ex. 8  - Link DF of PP as PP to other IP
+NCU Upload  ( File name = IPI08080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980216
+Creation time		6	T		163000
+Transmission date		8	D		19980216
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER old		13	A		I-000000229-7
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00202198302
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000229-7
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00202198302
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000230-0
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00052403417
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000230-0
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00052403417
+Name type ref. new		2	A		PA
+
+Other name connection
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		ONO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		00202198991
+Name		90	A		XASPARI DF
+First name		45	A		
+Name type		2	A		DF
+Date of creation		8	D		19980215
+Time of creation		6	T		165500
+Date of last amendment		8	D		19980215
+Time of last amendment		6	T		165500
+IP-NAME-NUMBER-ref.		11	A		00202198893
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202198991
+Name		90	A		HPL FROM
+First name		45	A		XASPARI DF
+Name type		2	A		PP
+Date of creation		8	D		19980215
+Time of creation		6	T		165500
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+NCU Download  ( File name = 19980216.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980216
+Creation time		6	T		173001
+Transmission date		8	D		19980216
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU 
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980216
+Transaction time		6	T		173000
+Code of remitting society		3	N		132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER old		13	A		I-000000229-7
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00202198302
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000229-7
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00202198302
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000230-0
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00052403417
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000230-0
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00052403417
+Name type ref. new		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980216
+Creation time ref.		6	T		163000
+File name ref.		12	A		IPI08080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Inherited name single IP usage
+	Field	Size	Fmt	Contents
+Record type		3	A		INO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202198991
+Creation class code		2	A		AV
+Role code		2	A		CG
+Other name connection
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		ONO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00202198991
+Name		90	A		XASPARI DF
+First name		45	A		
+Name type		2	A		DF
+Date of creation		8	D		19980215
+Time of creation		6	T		165500
+Date of last amendment		8	D		19980215
+Time of last amendment		6	T		165500
+IP-NAME-NUMBER-ref.		11	A		00202198893
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Detail-rec. header		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+IP-NAME-NUMBER		11	N		00202198991
+Name		90	A		HPL FROM
+First name		45	A		XASPARI DF
+Name type		2	A		PP
+Date of creation		8	D		19980215
+Time of creation		6	T		165500
+Date of last amendment		8	D		19980216
+Time of last amendment		6	T		173000
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000009
+Ex. 9  - Add PG
+NCA Upload  ( File name = IPI09080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980217
+Creation time		6	T		164000
+Transmission date		8	D		19980217
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000230-0
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00052403417
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000230-0
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00052403417
+Name type ref.		2	A		PA
+Name multi IP connecti	on		
+Field	Size	Fmt	Contents
+Record type		3	A		MCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		
+Name		90	A		CASPARI-LEHMAN GROUP
+Name type		2	A		PG
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+IP-BASE-NUMBER		13	A		I-000000230-0
+
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000004
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+ 
+NCA Download  ( File name = 19980217.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980217
+Creation time		6	T		174001
+Transmission date		8	D		19980217
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980217
+Transaction time		6	T		174000
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000230-0
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00052403417
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000230-0
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00052403417
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980217
+Creation time ref.		6	T		164000
+File name ref.		12	A		IPI09080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Name multi IP connecti	on		
+Field	Size	Fmt	Contents
+Record type		3	A		MCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199005
+Name		90	A		CASPARI-LEHMAN GROUP
+Name type		2	A		PG
+Date of creation		8	D		19980217
+Time of creation		6	T		174000
+Date of last amendment		8	D		19980217
+Time of last amendment		6	T		174000
+IP-BASE-NUMBER		13	A		I-000000230-0
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+ 
+Ex. 10  - Link PG to IP
+NCA Upload  ( File name = IPI10080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980218
+Creation time		6	T		165500
+Transmission date		8	D		19980218
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Name multi IP connecti	on		
+Field	Size	Fmt	Contents
+Record type		3	A		MCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		00202199005
+Name		90	A		CASPARI-LEHMAN GROUP
+Name type		2	A		PG
+Date of creation		8	D		19980217
+Time of creation		6	T		174000
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+IP-BASE-NUMBER		13	A		I-000000229-7
+
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000004
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+ 
+NCA Download  ( File name = 19980218.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980218
+Creation time		6	T		175501
+Transmission date		8	D		19980218
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980218
+Transaction time		6	T		175500
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000229-7
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202198302
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000229-7
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202198302
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980218
+Creation time ref.		6	T		165500
+File name ref.		12	A		IPI10080.080
+Group ID ref.		5	N		00001
+Transaction sequence no. ref.		8	N		00000000
+
+Name multi IP connecti	on		
+Field	Size	Fmt	Contents
+Record type		3	A		MCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199005
+Name		90	A		CASPARI-LEHMAN GROUP
+Name type		2	A		PG
+Date of creation		8	D		19980217
+Time of creation		6	T		174000
+Date of last amendment		8	D		19980218
+Time of last amendment		6	T		175500
+IP-BASE-NUMBER		13	A		I-000000229-7
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+ 
+Ex. 11  - Replace PA by a new name
+NPA Upload  ( File name = IPI12080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980220
+Creation time		6	T		081743
+Transmission date		8	D		19980220
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NPA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NPA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000234-4
+Current status code		1	N		1
+IP-NAME-NUMBER		11	N		
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000234-4
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		
+Name type ref.		2	A		PA
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		
+Name		90	A		ROBI
+First name		45	A		
+Name type		2	A		PA
+Date of creation		8	D		
+Time of creation		6	T		
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000004
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+ 
+NPA Download  ( File name = 19980220.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980220
+Creation time		6	T		091744
+Transmission date		8	D		19980220
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NPA
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NPA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	A		19980220
+Transaction time		6	A		091743
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER		13	A		I-000000234-4
+Current status code		1	N		1
+IP-NAME-NUMBER		11	N		00230967859
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000234-4
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00230967859
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980220
+Creation time ref.		6	T		081743
+File name ref.		12	A		IPI12080.080
+Group ID ref.		8	N		00000001
+Transaction sequence no. ref.		8	N		00000000
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199890
+Name		90	A		ROEBI
+First name		45	A		
+Name type		2	A		PA
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00202199890
+Name		90	A		ROEBI
+First name		45	A		
+Name type		2	A		MO
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980220
+Time of last amendment		6	T		091743
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+IP-NAME-NUMBER		11	N		00230967859
+Name		90	A		ROBI
+First name		45	A		
+Name type		2	A		PA
+Date of creation		8	D		19980220
+Time of creation		6	T		091743
+Date of last amendment		8	D		19980220
+Time of last amendment		6	T		091743
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000005
+IP-NAME-NUMBER		11	N		00230967859
+Creation class code		2	A		AV
+Role code		2	A		RE
+Name single IP usage
+Field	Size	Fmt	Contents
+Record type		3	A		NUN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000006
+IP-NAME-NUMBER		11	N		00230967859
+Creation class code		2	A		AV
+Role code		2	A		CD
+
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000009
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL 
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		000000011
+ 
+Ex. 12  - Change PP name
+NCU Upload  ( File name = IPI13080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980222
+Creation time		6	T		082310
+Transmission date		8	D		19980222
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000234-4
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00230967859
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000234-4
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00230967859
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000234-4
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00230967859
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000234-4
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00230967859
+Name type ref. new		2	A		PA
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		00202199988
+Name		90	A		RABI
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199988
+Name		90	A		RABIS
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+ 
+NCU Download  ( File name = 19980221.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980222
+Creation time		6	T		092311
+Transmission date		8	D		19980222
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980222
+Transaction time		6	T		092310
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000234-4
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00230967859
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000234-4
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00230967859
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000234-4
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00230967859
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000234-4
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00230967859
+Name type ref. new		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980222
+Creation time ref.		6	T		082310
+File name ref.		12	A		IPI13080.080
+Group ID ref.		8	N		00000001
+Transaction sequence no. ref.		8	N		00000000
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199988
+Name		90	A		RABI
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00202199988
+Name		90	A		RABIS
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		199802222
+Time of last amendment		6	T		092310
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000008
+Ex. 13  - Change PG name
+NCU Upload  ( File name = IPI14080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980222
+Creation time		6	T		085232
+Transmission date		8	D		19980222
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000234-4
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00230967859
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000234-4
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00230967859
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000234-4
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00230967859
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000234-4
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00230967859
+Name type ref. new		2	A		PA
+Name multi IP connecti	on		
+Field	Size	Fmt	Contents
+Record type		3	A		MCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		00202199694
+Name		90	A		NICK-ROEBI GROUP
+Name type		2	A		PG
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+IP-BASE-NUMBER		13	A		I-000000234-4
+
+Name multi IP connecti	on		
+Field	Size	Fmt	Contents
+Record type		3	A		MCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199694
+Name		90	A		NICK-ROBI GROUP
+Name type		2	A		PG
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+IP-BASE-NUMBER		13	A		I-000000234-4
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+ 
+NCU Download  ( File name = 19980222.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980222
+Creation time		6	T		095233
+Transmission date		8	D		19980222
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980222
+Transaction time		6	T		095232
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000234-4
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00230967859
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000234-4
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00230967859
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000234-4
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00230967859
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000234-4
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00230967859
+Name type ref. new		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980222
+Creation time ref.		6	T		085232
+File name ref.		12	A		IPI14080.080
+Group ID ref.		8	N		00000001
+Transaction sequence no. ref.		8	N		00000000
+
+Name multi IP connecti	on		
+Field	Size	Fmt	Contents
+Record type		3	A		MCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199694
+Name		90	A		NICK-ROEBI GROUP
+Name type		2	A		PG
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+IP-BASE-NUMBER		13	A		I-000000234-4
+Name multi IP connecti	on		
+Field	Size	Fmt	Contents
+Record type		3	A		MCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00202199694
+Name		90	A		NICK-ROBI GROUP
+Name type		2	A		PG
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980222
+Time of last amendment		6	T		095232
+IP-BASE-NUMBER		13	A		I-000000234-4
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000008
+Ex. 14  - Link PP (with DF) to other IP
+NCU Upload  ( File name = IPI15080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980223
+Creation time		6	T		141100
+Transmission date		8	D		19980223
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU 
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000234-4
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00230967859
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000234-4
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00230967859
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000233-3
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00202199300
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000233-3
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00202199300
+Name type ref. new		2	A		PA
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		00202199988
+Name		90	A		RABIS
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199988
+Name		90	A		RABIS
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+NCU Download  ( File name = 19980223.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980223
+Creation time		6	T		151101
+Transmission date		8	D		19980223
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU 
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980223
+Transaction time		6	T		151100
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000234-4
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00230967859
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000234-4
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00230967859
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000233-3
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00202199300
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000233-3
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00202199300
+Name type ref. new		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980223
+Creation time ref.		6	T		141100
+File name ref.		12	A		IPI15080.080
+Group ID ref.		8	N		00000001
+Transaction sequence no. ref.		8	N		00000000
+
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199988
+Name		90	A		RABIS
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+Name single IP connect	ion		
+Field	Size	Fmt	Contents
+Record type		3	A		NCN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00202199988
+Name		90	A		RABIS
+First name		45	A		
+Name type		2	A		PP
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980223
+Time of last amendment		6	T		151100
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000006
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000008
+Ex. 15  - Link DF(PG) to other PG
+NCU Upload  ( File name = IPI16080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980224
+Creation time		6	T		144432
+Transmission date		8	D		19980224
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU 
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		
+Transaction time		6	T		
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000234-4
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00230967859
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000234-4
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00230967859
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000230-0
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00052403417
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000230-0
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00052403417
+Name type ref. new		2	A		PA
+
+Other name connection
+Field	Size	Fmt	Contents
+Record type		3	A		ONO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+IP-NAME-NUMBER		11	N		00202199792
+Name		90	A		NICKROBIS
+First name		45	A		
+Name type		2	A		DF
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+IP-NAME-NUMBER-ref.		11	N		00202199694
+Other name connection
+Field	Size	Fmt	Contents
+Record type		3	A		ONN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199792
+Name		90	A		NICKROBIS
+First name		45	A		
+Name type		2	A		DF
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		
+Time of last amendment		6	T		
+IP-NAME-NUMBER-ref.		11	N		00202199005
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000005
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000007
+NCU Download  ( File name = 19980224.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980224
+Creation time		6	T		154433
+Transmission date		8	D		19980224
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		NCU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		NCU 
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980224
+Transaction time		6	T		154432
+Code of remitting society		3	N		080
+Name of remitting society		20	A		SUISA
+IP-BASE-NUMBER old		13	A		I-000000234-4
+Current status code old		1	N		1
+IP-NAME-NUMBER old		11	N		00230967859
+Name type old		2	A		PA
+IP-BASE-NUMBER-ref. old		13	A		I-000000234-4
+Current status code ref. old		1	N		1
+IP-NAME-NUMBER-ref. old		11	N		00230967859
+Name type ref. old		2	A		PA
+IP-BASE-NUMBER new		13	A		I-000000230-0
+Current status code new		1	N		1
+IP-NAME-NUMBER new		11	N		00052403417
+Name type new		2	A		PA
+IP-BASE-NUMBER-ref. new		13	A		I-000000230-0
+Current status code ref. new		1	N		1
+IP-NAME-NUMBER-ref. new		11	N		00052403417
+Name type ref. new		2	A		PA
+
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980224
+Creation time ref.		6	T		144432
+File name ref.		12	A		IPI16080.080
+Group ID ref.		8	N		00000001
+Transaction sequence no. ref.		8	N		00000000
+Inherited name multi IP 	usage		
+Field	Size	Fmt	Contents
+Record type		3	A		IMO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+IP-NAME-NUMBER		11	N		00202199792
+Creation class code		2	A		MW
+Role code		2	A		MC
+IP-BASE-NUMBER		13	A		I-000000233-3
+Inherited name multi IP 	usage		
+Field	Size	Fmt	Contents
+Record type		3	A		IMO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+IP-NAME-NUMBER		11	N		00202199792
+Creation class code		2	A		AV
+Role code		2	A		CD
+IP-BASE-NUMBER		13	A		I-000000234-4
+Other name connection
+Field	Size	Fmt	Contents
+Record type		3	A		ONO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+IP-NAME-NUMBER		11	N		00202199792
+Name		90	A		NICKROBIS
+First name		45	A		
+Name type		2	A		DF
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980219
+Time of last amendment		6	T		170000
+IP-NAME-NUMBER-ref.		11	N		00202199694
+Other name connection
+Field	Size	Fmt	Contents
+Record type		3	A		ONN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000005
+IP-NAME-NUMBER		11	N		00202199792
+Name		90	A		NICKROBIS
+First name		45	A		
+Name type		2	A		DF
+Date of creation		8	D		19980219
+Time of creation		6	T		170000
+Date of last amendment		8	D		19980224
+Time of last amendment		6	T		154432
+IP-NAME-NUMBER-ref.		11	N		00202199005
+
+Inherited name multi IP 	usage		
+Field	Size	Fmt	Contents
+Record type		3	A		IMN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000006
+IP-NAME-NUMBER		11	N		00202199792
+Creation class code		2	A		MW
+Role code		2	A		MC
+IP-BASE-NUMBER		13	A		I-000000230-0
+Inherited name multi IP 	usage		
+Field	Size	Fmt	Contents
+Record type		3	A		IMN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000007
+IP-NAME-NUMBER		11	N		00202199792
+Creation class code		2	A		AV
+Role code		2	A		RE
+IP-BASE-NUMBER		13	A		I-000000229-7
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000010
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000012
+Ex. 16  - Alter territory of a membership agreement
+MAU Upload  ( File name = IPI17080.080 )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980810
+Creation time		6	T		160000
+Transmission date		8	D		19980810
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		MAU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		MAU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980810
+Transaction time		6	T		160000
+Code of remitting society		3	N		0132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000234-4
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202199890
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000234-4
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202199890
+Name type ref.		2	A		PA
+Mem. Agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Society code		3	N		080
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		RT
+Valid from date		8	D		19980101
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19971215
+Membership share		5	N		10000
+Amendment date		8	D		19980219
+Amendment time		6	T		170000
+
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Mem. Agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+Society code		3	N		080
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		RT
+Valid from date		8	D		19980801
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19980801
+Membership share		5	N		10000
+Amendment date		8	D		
+Amendment time		6	T		
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+TISN		4	N		2129
+TISN valid from		8	D		
+TISAN		20	A		NORTH AMERICA
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000005
+TISN		4	N		0124
+TISN valid from		8	D		
+TISAN		20	A		CANADA
+TISAN valid from		8	D		
+I/E Indicator		1	A		E
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000006
+TISN		4	N		2124
+TISN valid from		8	D		
+TISAN		20	A		GSA COUNTRIES
+TISAN valid from		8	D		
+I/E Indicator		1	A		I
+
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000007
+TISN		4	N		0040
+TISN valid from		8	D		
+TISAN		20	A		AUSTRIA
+TISAN valid from		8	D		
+I/E Indicator		1	A		E
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000010
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000012
+ 
+MAU Download  ( File name = 19980810.IPI )
+Transmission header
+Field	Size	Fmt	Contents
+Record type		3	A		HDR
+Sender type		2	A		SO
+Sender ID		9	N		080
+Sender Name		45	A		SUISA
+Standard version number		5	A		01.00
+Creation date		8	D		19980810
+Creation time		6	T		160101
+Transmission date		8	D		19980810
+Group header
+Field	Size	Fmt	Contents
+Record type		3	A		GRH
+Transaction type		3	A		MAU
+Group ID		5	N		00001
+Version Number		5	A		01.00
+Transaction
+Field	Size	Fmt	Contents
+Record type		3	A		MAU
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000000
+Transaction date		8	D		19980810
+Transaction time		6	T		160100
+Code of remitting society		3	N		0132
+Name of remitting society		20	A		BILD-KUNST
+IP-BASE-NUMBER		13	A		I-000000234-4
+Current status code		1	N		1
+IP-NAME-NUMBER 		11	N		00202199890
+Name type		2	A		PA
+IP-BASE-NUMBER-ref.		13	A		I-000000234-4
+Current status code ref.		1	N		1
+IP-NAME-NUMBER-ref.		11	N		00202199890
+Name type ref.		2	A		PA
+Transaction status
+Field	Size	Fmt	Contents
+Record type		3	A		TRS
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000001
+Status code		4	N		0000
+Status message		100	A		SUCCESSFUL  COMPLETION
+Name of transaction submitter		8	A		SUISA
+Creation date ref.		8	D		19980810
+Creation time ref.		6	T		160100
+File name ref.		12	A		IPI17080.080
+Group ID ref.		8	N		00000001
+Transaction sequence no. ref.		8	N		00000000
+
+Mem. Agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAO
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000002
+Society code		3	N		080
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		RT
+Valid from date		8	D		19980101
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19971215
+Membership share		5	N		10000
+Amendment date		8	D		19980219
+Amendment time		6	T		170000
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000003
+TISN		4	N		2136
+TISN valid from		8	D		10000101
+TISAN		20	A		WORLD
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Mem. Agreement
+Field	Size	Fmt	Contents
+Record type		3	A		MAN
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000004
+Society code		3	N		080
+Creation class code		2	A		AV
+Role code		2	A		RE
+Right code		2	A		RT
+Valid from date		8	D		19980801
+Valid from time		6	T		000000
+Valid to date		8	D		99991231
+Valid to time		6	T		235959
+Date of signature		8	D		19980801
+Membership share		5	N		10000
+Amendment date		8	D		19980810
+Amendment time		6	T		160100
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000005
+TISN		4	N		2129
+TISN valid from		8	D		10000101
+TISAN		20	A		NORTH AMERICA
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000006
+TISN		4	N		0124
+TISN valid from		8	D		10000101
+TISAN		20	A		CANADA
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		E
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000007
+TISN		4	N		2124
+TISN valid from		8	D		10000101
+TISAN		20	A		GSA COUNTRIES
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		I
+Territory
+Field	Size	Fmt	Contents
+Record type		3	A		TMA
+Transaction sequence no.		8	N		00000000
+Detail record sequence no.		8	N		00000008
+TISN		4	N		0040
+TISN valid from		8	D		10000101
+TISAN		20	A		AUSTRIA
+TISAN valid from		8	D		10000101
+I/E Indicator		1	A		E
+Group trailer
+Field	Size	Fmt	Contents
+Record type		3	A		GRT
+Group ID		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000011
+Transmission trailer
+Field	Size	Fmt	Contents
+Record type		3	A		TRL
+Group count		5	N		00001
+Transaction count		8	N		00000001
+Record count		8	N		00000013
+ 

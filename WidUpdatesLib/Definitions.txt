@@ -1,0 +1,218 @@
+#	WIA	WIU	SOC
+Record Type	1	3	A	M	Set Record Type = WIA (Work Information Add) for new registrations, WIU (Work Information Update) for revisions, or SOC (Society Notification)	A
+Transaction Sequence #	4	8	N	M	If this is the first transaction within a group, the Transaction Sequence # must be equal to 00000000. Otherwise, the Transaction Sequence # must be equal to the previous transaction header’s Transaction Sequence # incremented by 1.	B,C,D,G,H
+Record Sequence #	12	8	N	M	Always set to 00000000.	E,F
+Work Title	20	60	A	M	Name/Title of the work.	1
+Language Code	80	2	L	O	The Code representing the language of this title.  These values reside in the Language Code Table.	2
+Submitter Work #	82	14	A	M	Number assigned to the work by the party submitting the file.  This number must be unique for the submitter.  On files sent to the WID it is the society work #.  On SOC transactions it is the work # of the society that last submitted the work.	3
+ISWC	96	11	A	O	The preferred International Standard Work Code assigned to this work as confirmed by the CSI.	4,18
+Copyright Date	107	8	D	O	Original copyright date of the work.	5
+Copyright Number	115	12	A	O	Original copyright number of the work.	
+Musical Work Distribution Category	127	3	L	M	Describes the type of music as it applies to special distribution rules.  Values for this field reside in the Musical Work Distribution Category Table. 	6,7
+Duration	130	6	T	C	Duration of the work in hours, minutes, and seconds.  This field must be greater than zero if Musical Work Distribution Category is equal to SER.  	8
+Recorded Indicator	136	1	F	M	Indicates whether or not the work has ever been recorded.	9
+Text Music Relationship	137	3	A	O	Indicates whether this work contains music, text, and/or both.  Values are MTX = Both Music and Text, MUS = Music only, TXT = Text only.	10
+Composite Type	140	3	L	O	If this is a composite work, this field will indicate the type of composite.  Values reside in the Composite Type Table.	11
+Version Type	143	3	L	M	Indicates relationships between this work and other works.  Note that this field is used to indicate whether or not this work is an arrangement.  Values reside in the Version Type Table.	12,14,15
+Excerpt Type	146	3	L	O	If this is an excerpt, this field will indicate the type of excerpt.  Values reside in the Excerpt Type Table.	13
+Music Arrangement 	149	3	L	C	If Version Type is equal to ‘MOD’, this field indicates the type of music arrangement.  Values reside in the Music Arrangement Table.	14
+Lyric Adaptation	152	3	L	C	If Version Type is equal to ‘MOD’, this field indicates the type of lyric adaptation.  Values reside in the Lyric Adaptation Table.	15
+WI Code	155	10	N	C	The unique code used by the WI Center to identify this work.	16,17,18,19
+Update date 	165	8	N	O	This field contains the date of the last update done on the corresponding Work in the legacy system  This field is mandatory/optional in case you use the CIS-Net Dataloader.	
+First sending date to CIS-Net	173	8	N	O	This date indicates the ' First sending date to CIS-Net'.. This field is mandatory/optional in case you use the CIS-Net Dataloader	
+Last sending date to CIS-Net	181	8	N	O	This date indicates the 'Last sending date to CIS-Net '.  This field is mandatory/optional in case you use the CIS-Net Dataloader	
+Society Work type	189	3	L	C	Indicates if it is a domestic work ('DOM') or an international work ('INT').  This field is required by the CIS-Net Data loader.	
+
+#	TTU
+Record Type	1	3	A	M	Set Record Type = TTU (Work Title Update)	A
+Transaction Sequence #	4	8	N	M	If this is the first transaction within a group, the Transaction Sequence # must be equal to 00000000. Otherwise, the Transaction Sequence # must be equal to the previous transaction header’s Transaction Sequence # incremented by 1.	B,C,D,G,H
+Record Sequence #	12	8	N	M	Always set to 00000000.	E,F
+ISWC	20	11	L	C	ISWC of title to be changed.  This field is required if WI Code is not entered.	1,3,5
+WI Code	31	10	N	C	WI Code of title to be changed.  This field is required if ISWC is not entered.	2,3,5
+Original Work Title	41	60	A	M	The original title of the work.	5
+New Work Title	101	60	A	M	The new title of the work	6
+
+#	CON
+Record Type	1	3	A	M	Set Record Type = CON (Conflict Notification)	A
+Transaction Sequence #	4	8	N	M	If this is the first transaction within a group, the Transaction Sequence # must be equal to 00000000. Otherwise, the Transaction Sequence # must be equal to the previous transaction header’s Transaction Sequence # incremented by 1.	B,C,D,G,H
+Record Sequence #	12	8	N	M	Always set to 00000000.	E,F
+ISWC	20	11	L	C	ISWC of title to be marked in conflict.  This field is required if WI Code is not entered.	1,3,4
+WI Code	31	10	N	C	WI Code of title to be marked in conflict.  This field is required if ISWC is not entered.	2,3,4
+Conflict Reason Code	41	3	L	M	The reason that this work is being marked in conflict.  Values for this field reside in the Conflict Reason Code Table.	7
+Type of Right	44	3	L	M	The type of right for which this conflict exists. These values reside on the Type of Right Table.	6
+Work Title	47	60	A	M	The title of the work to be marked in conflict.	5
+Conflict Note	107	60	A	O	A description of the issue creating the conflict.	
+Contact Name	167	30	A	O	The name of a business contact person at the organization that originated this transaction.	8
+Contact ID	197	10	A	O	An identifier associated with the contact person at the organization that originated this transaction.	
+Society Code	207	3	N	M	The code representing the society that submitted this conflict.  These values reside on the Society Code Table.	9
+
+#	RES
+Record Type	1	3	A	M	Set Record Type = RES (Conflict Resolution)	A
+Transaction Sequence #	4	8	N	M	If this is the first transaction within a group, the Transaction Sequence # must be equal to 00000000. Otherwise, the Transaction Sequence # must be equal to the previous transaction header’s Transaction Sequence # incremented by 1.	B,C,D,G,H
+Record Sequence #	12	8	N	M	Always set to 00000000.	E,F
+ISWC	20	11	L	C	ISWC of title to be marked resolved.  This field is required if WI Code is not entered.	1,3,4,5
+WI Code	31	10	N	C	WI Code of title to be marked resolved.  This field is required if ISWC is not entered.	2,3,4,5
+Type of Right	41	3	L	M	The type of right for which this conflict exists. These values reside on the Type of Right Table.	8
+Work Title	44	60	A	M	The title of the work to be marked resolved.	5
+Society Code	104	3	N	M	The code representing the society that submitted this resolution.  These values reside on the Society Code Table.	6
+
+#	DEL
+Record Type	1	3	A	M	Set Record Type = DEL 	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Submitter Work #	20	14	A	M	Submitter Work # of work to delete. 	1,2
+ISWC	34	11	A	O	ISWC of work to delete.	
+WIC 	45	10	N	O	WI Code of work to delete. 	
+Right Type	55	3	A	O	Right type(s) controlled by submitter to delete. (PER, MEC or spaces).	6
+
+#	ACK
+Record Type	1	3	A	M	Set Record Type = ACK (Acknowledgment of Transaction)	A
+Transaction Sequence #	4	8	N	M	If this is the first transaction within a group, the Transaction Sequence # must be equal to 00000000. Otherwise, the Transaction Sequence # must be equal to the previous transaction header’s Transaction Sequence # incremented by 1.	B,C,D,G,H
+Record Sequence #	12	8	N	M	Always set to 00000000.	E,F
+Creation Date	20	8	D	M	The Creation Date of the original file that contained the transaction which this ACK applies to.	1,2
+Creation Time	28	6	T	M	The Creation Time of the original file that contained the transaction which this ACK applies to.	1,2
+Original Group Number	34	5	N	M	The Group Number within which the original transaction that this ACK applies to was located.  Note that if the ACK is a result of a HDR or TRL record problem, set this field to zeroes.	2
+Original Transaction Sequence #	39	8	N	M	The Transaction Sequence # of the original transaction that this ACK applies to. Note that if the ACK is a result of a HDR or TRL record problem, set this field to zeroes.	2
+Original Transaction Type	47	3	L	M	The Transaction Type of the original transaction that this ACK applies to. Note that if the ACK is a result of a HDR or TRL record problem, set this field to HDR or TRL (whichever is applicable).	
+Creation Title	50	60	A	C	The creation title as delivered by the submitter (i.e. the title of the musical work or audio visual production).  This field is required if the ACK is in response to a transaction.	4
+Submitter Creation #	110	20	A	C	The unique identifier assigned by the submitter to this work. This field is required if the ACK is in response to a transaction.	4,5
+Recipient Creation #	130	20	A	O	The preferred ISWC assigned to this work as confirmed by the CSI.	6
+Processing Date	150	8	D	M	The date this transaction or file was formally processed by the recipient.	7
+Transaction Status	158	2	L	M	The current status of this transaction.  Values for this field reside in the Transaction Status Table.	8
+
+#	ISW
+Record Type	1	3	A	M	Set Record Type = ISW (Notification of Additional ISWC)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Creation Title	20	60	A	C	The creation title as delivered by the submitter (i.e. the title of the musical work).	1
+Archived ISWC	80	11	A	M	An Archived ISWC assigned to this musical work. 	2
+
+#	LNK
+Record Type	1	3	A	M	Set Record Type = LNK (Notification of Work Merged to its Duplicate)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+WIC of Newly Merged Work	20	10	N	M	The WIC assigned to the newly merged musical work. 	1
+WIC of Deleted Work	30	10	N	M	The WIC assigned to the duplicate work that is being deleted.	2
+
+#	SIP	OIP
+Record Type	1	3	A	M	Set Record Type = SIP (Interested Party Controlled by Submitter) or OIP (Other Interested Party)	A,2
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Filler	20	9	 	 	No longer in use	
+Interested Party #	29	9	A	C	Submitters unique identifier for this IP.  This field is required for record type SIP and optional for record type OIP.	2,3
+IP Name	38	45	A	M	For publisher IP’s, enter the name of the publisher.  For writer IP’s, enter the writers last name.	4
+IP First Name	83	30	O	O	For writer IP’s, enter the writers first name.	4
+IP Role	113	2	L	M	Code defining this interested party’s role in this work.   These values reside on the Works IP Role  Table.	5
+IPI Name #	115	11	L	M	The IPI name number assigned to this IP.	1,7,8,9
+
+#	SSR	OSR
+Record Type	1	3	A	M	Set Record Type = SSR (Shares Controlled by Submitter) or OSR (Other Shares)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Filler	20	9	 	 	No longer in use	
+Type of Right	29	3	L	M	The type of right for which these shares exist. These values reside on the Type of Right Table.	2
+Shares	32	5	N	M	The shares assigned to this IP for this type of right.  Shares should be formatted as 999V99 (implied decimal point).  For example, 25.87% would be entered as ‘02587’.	3
+IPI Name #	37	11	N	M	The IPI name number assigned to this IP.	1,4
+Affiliation	48	3	L	O	The society to which this IP belongs for this right.	
+
+#	WPL
+Record Type	1	3	A	M	Set Record Type = WPL (Writer Publisher Link)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Filler	20	9	 	 	No longer used	
+Filler	29	9	L	C	No longer used	 
+Writer IPI Name #	38	11	L	C	The IPI Name # for the writer linked to the Publisher IPI Name #on this record.	1
+Publisher  IPI Name #	49	11	L	C	The IPI Name #for the publisher linked to the Writer IPI Name #on this record.	2
+
+#	ALT
+Record Type	1	3	A	M	Set Record Type = ALT (Alternate Title)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Alternate Title	20	60	A	M	AKA or pseudonym of the work title.	1
+Title Type	80	3	L	M	Indicates the type of alternate title presented on this record.  These values reside in the Title Type Table.	2
+Language Code	83	2	L	O	The Code representing the language that this alternate title has been translated into.  These values reside in the Language Code Table.	3
+
+#	EWT
+Record Type	1	3	A	M	Set Record Type = EWT (Entire Work Title for Excerpts)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Entire Work Title	20	60	A	M	The title of the entire work from which this excerpt has been derived.	1
+ISWC of Entire Work	80	11	A	O	The International Standard Work Code assigned to the work from which this excerpt has been derived.	2,5
+Language Code	91	2	L	O	The Code defining the language in which the entire was originally written.  These values reside in the Language Code Table.	3
+Writer Last Name	93	45	A	O	Last name of the original writer/composer of the work from which this excerpt has been taken. Note that if the submitter does not have the ability to split first and last names, the entire name should be entered in this field in the format “LastName, FirstName” including the comma after the last name.	
+Writer First Name	138	30	A	O	First name of the original writer/composer of the work from which this excerpt has been taken.	
+Source	168	60	A	O	A description of the source from which the work was obtained.	
+WI Code	228	10	N	O	The WI Code assigned to the work from which this excerpt has been derived.	4,5
+
+#	VER
+Record Type	1	3	A	M	Set Record Type = VER (Original Work Title for Versions)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Original Work Title	20	60	A	M	Original title of the work from which this version was derived.	1
+ISWC of Original Work	80	11	A	O	The International Standard Work Code assigned to the work from which this version has been derived.	2,5
+Language Code	91	2	L	O	The Code defining the language in which the work was originally written.  These values reside in the Language Code Table.	3
+Writer Last Name	93	45	A	O	Last name of the original writer/composer of the work from which this version has been derived. Note that if the submitter does not have the ability to split first and last names, the entire name should be entered in this field in the format “LastName, FirstName” including the comma after the last name.	
+Writer First Name	138	30	A	O	First name of the original writer/composer of the work from which this version has been derived.	
+Source	168	60	A	O	A description of the source from which the work was obtained.	
+WI Code	228	10	N	O	The WI Code assigned to the work from which this version has been derived.	4,5
+
+#	PER
+Record Type	1	3	A	M	Set Record Type = PER (Performing Artist)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Performing Artist Last Name	20	45	A	M	Last name of a person or name of a group that has performed the work on a recording or in public.	1
+Performing Artist First Name	65	30	A	O	First name associated with the performing artist identified in the previous field.	
+Filler	95	9	 	 	No longer used	 
+Performing Artist IPI Name #	104	11	L	O	The IPI Name # corresponding to this performing artist.  Values reside in the IPI System.	2
+
+#	ORN
+Record Type	1	3	A	M	Set Record Type = ORN (Work Origin)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Intended Purpose	20	3	L	M	Indicates the type of production from which this work originated.  These values reside in the Intended Purpose Table.	1
+Production Title	23	60	A	M	Name of the production or library from which this work originated.	2
+CD Identifier	83	15	A	C	If Intended Purpose is equal to LIB (Library Work), enter the identifier associated with the CD upon which the work appears	3
+Cut Number	98	4	N	C	If Intended Purpose is equal to LIB (Library Work), enter the track number on the CD Identifier where the work appears.  This field is required when CD Identifier is entered.	3
+
+#	INS
+Record Type	1	3	A	M	Set Record Type = INS (Instrumentation Summary)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Number of Voices	20	3	N	M	Indicates the number of independent parts on this work.	1
+Standard Instrumentation Type	23	3	L	C	Describes instrumentation if standard instrumentation is used on this work. Note that this field is required if IND records are not entered or if Instrumentation Description is blank.  These values reside in the Standard Instrumentation Table.	2,3
+Instrumentation Description	26	50	A	C	Describes instrumentation if non-standard instrumentation is used on this work. Note that this field is required if IND records are not entered or if Standard Instrumentation Type is blank.	
+
+#	IND
+Record Type	1	3	A	M	Set Record Type = IND (Instrumentation Detail)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Instrument Code	20	3	L	M	Indicates the use of a specific instrument in this version of instrumentation.  These values reside in the Instrument Table.	1
+Number of Players	23	3	N	M	Indicates the number of players for the above instrument.  Note if the number of players is not a significant detail enter zero.	2
+
+#	COM
+Record Type	1	3	A	M	Set Record Type = COM (Composite Component)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Title	20	60	A	M	The title of the original work from which a portion was taken to include in the composite.	1
+ISWC of Component	80	11	L	O	The International Standard Work Code assigned to the original work from which a portion was taken and included in this composite work.	2
+Submitter Work #	91	14	A	O	The number that the submitting publisher uses to refer to this  component.	
+Duration	105	6	T	O	The duration of the individual  component within the composite work.	3
+Writer 1: Last Name	111	45	A	M	Last name of the first writer of this component. Note that if the submitter does not have the ability to split first and last names, the entire name should be entered in this field in the format “LastName, FirstName” including the comma after the last name.	4
+Writer 1: First Name	156	30	A	O	First name of the first writer of this component.	
+Filler	186	9	 	 	No longer used	 
+Writer 2: Last Name	195	45	A	O	Last name of the second writer of this component. Note that if the submitter does not have the ability to split first and last names, the entire name should be entered in this field in the format “LastName, FirstName” including the comma after the last name.	
+Writer 2: First Name	240	30	A	O	First name of the second writer of this component.	
+Filler	270	9	 	 	No longer used	 
+Writer 1: IPI Name #	279	11	N	O	IPI Name # of the first writer of this component.	6
+Writer 2: IPI Name #	290	11	N	O	IPI Name # of the second writer of this component.	6
+
+#	MSG
+Record Type	1	3	A	M	Set Record Type = MSG (Message)	A
+Transaction Sequence #	4	8	N	M	The Transaction Sequence # of the previous transaction header.	B,C,D,G,H
+Record Sequence #	12	8	N	M	The Record Sequence # of the previous record written to the file incremented by 1.	E,F
+Message Type	20	1	L	M	Indicates whether this information is a warning, error, or for information only.  Values are F = Field Rejected, R = Record Rejected, T = Transaction Rejected, G = Group Rejected, E = Entire File Rejected	1
+Original Record Sequence 	21	8	N	M	The Record Sequence Number within the packet associated with this acknowledgment that caused the generation of this message.	2
+Original Record Type	29	3	A	M	The record type within the original transaction that caused generation of this message.	
+Message Level	32	1	L	M	The level of editing that was responsible for generation of this message.  Values are E = Entire File, G = Group, T = Transaction, R = Record, F = Field.	3
+Condition Number	33	3	A	M	Identifies the specific edit condition that generated this message.  Note that the combination of Record Type, Message Level, and Condition Number points back to a condition within this document.	
+Message Text	36	150	A	M	The text associated with this message.	4

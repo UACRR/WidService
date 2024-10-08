@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\RecBdu.cs" />
+    <Compile Remove="Entities\RecIda.cs" />
+    <Compile Remove="Entities\RecIpa.cs" />
+    <Compile Remove="Entities\RecMaa.cs" />
+    <Compile Remove="Entities\RecMad.cs" />
+    <Compile Remove="Entities\RecMau.cs" />
+    <Compile Remove="Entities\RecNca.cs" />
+    <Compile Remove="Entities\RecNcd.cs" />
+    <Compile Remove="Entities\RecNcu.cs" />
+    <Compile Remove="Entities\RecNpa.cs" />
+    <Compile Remove="Entities\RecNta.cs" />
+    <Compile Remove="Entities\RecNtd.cs" />
+    <Compile Remove="Entities\RecNtu.cs" />
+    <Compile Remove="Entities\RecNua.cs" />
+    <Compile Remove="Entities\RecNud.cs" />
+    <Compile Remove="Entities\RecRea.cs" />
+    <Compile Remove="Entities\RecSta.cs" />
+    <Compile Remove="Entities\RecStd.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SharedLib\FtpClient.cs" Link="FtpClient.cs" />
+    <Compile Include="..\SharedLib\TryCatch.cs" Link="TryCatch.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WidService\WidServiceLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Meta\ExampleExcerpt.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Meta\Fields.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Sql\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,144 @@
+.search-in-soc-db-component {
+}
+
+.search-criterium-table {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  border-collapse: collapse;
+  text-align: left;
+  table-layout: fixed;
+  width: auto;
+}
+
+.search-conditions-title-cell {
+  text-align: left;
+  font-weight: bold;
+  font-style: italic;
+  vertical-align: top;
+  padding: 0px 0px 0px 0px;
+}
+
+.search-type-cell {
+  white-space: nowrap;
+  padding: 0px 5px 0px 5px;
+  text-align: center;
+  cursor: help;
+}
+
+.search-condition-title-cell {
+    padding-right: 5px;
+}
+
+.search-condition-value-cell {
+}
+
+.search-condition-chk-cell {
+}
+
+.search-error-div {
+    background-color: red;
+    color: white;
+    padding: 5px;
+}
+
+.buttons-div {
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.found-works-heading-div {
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.found-works-prompt-div {
+}
+
+.found-works-search-div{
+}
+
+.work-list-div {
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: white;
+  border: 1px solid grey;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.work-list-item-div {
+  line-height: 1.2;
+  padding: 3px;
+}
+
+  .work-list-item-div:hover {
+      background-color: gainsboro;
+  }
+
+  .found-work-cde-span {
+    padding: 5px 1px 1px 5px;
+    text-align: left;
+    font-style: normal;
+    font-weight: bold;
+    background-color: beige;
+    white-space: nowrap;
+  }
+
+.found-work-label-span {
+  padding: 5px 1px 1px 5px;
+  text-align: left;
+  font-style: italic;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.found-work-value-span {
+  padding: 1px 5px 1px 5px;
+  text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  background-color: antiquewhite;
+  white-space: normal;
+}
+
+.apply-work-div {
+  cursor: pointer;
+  vertical-align: top;
+  font-size: initial;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 5px;
+  margin-top: 0px;
+  float: right;
+  display: inline-block;
+}
+
+.button-select {
+  color: white;
+  background-color:dodgerblue;
+  margin-left: 10px;
+  border: none;
+  padding: 3px 6px 3px 6px;
+  cursor: pointer;
+}
+
+  .button-select:hover {
+    background-color: royalblue;
+  }
+
+.button-search {
+  color: white;
+  background-color: dodgerblue;
+  margin-left: 10px;
+  border: none;
+  padding: 6px 6px 6px 6px;
+  cursor: pointer;
+}
+
+  .button-search:hover {
+    background-color: royalblue;
+  }

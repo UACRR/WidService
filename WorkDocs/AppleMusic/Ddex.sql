@@ -1,0 +1,28 @@
+drop table if exists AppleContentReport
+go
+
+create table AppleContentReport (
+	  RecordType  nvarchar(1000)
+	, TrackDspId nvarchar(1000)
+	, TrackIsrc nvarchar(1000)
+	, TrackTitle nvarchar(1000)
+	, TrackPrimaryArtist nvarchar(1000)
+	, TrackDuration nvarchar(1000)
+	, ComposerAuthor nvarchar(1000)
+	, Arranger	 nvarchar(1000)
+	, Publisher	 nvarchar(1000)
+	, ContentProvider nvarchar(1000)
+	, ISWC	 nvarchar(1000)
+	, AlbumDspId nvarchar(1000)
+	, AlbumUpc nvarchar(1000)
+	, AlbumTitle nvarchar(1000)
+	, PopularityRank nvarchar(1000)
+	, ContentType nvarchar(1000)
+	, RecordLabel nvarchar(1000)
+	, ContentProviderTrackId nvarchar(1000)
+	, ContentProviderAlbumId nvarchar(1000)
+	, SpecialAttributes nvarchar(1000)
+	, ReleaseYear nvarchar(1000)
+	, TrackNumber nvarchar(1000)
+	, VolumeNumber nvarchar(1000)
+)

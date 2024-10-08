@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SharedLib\Dto\WidTaskObjectDto.cs" Link="Dto\WidTaskObjectDto.cs" />
+    <Compile Include="..\SharedLib\Dto\WidTaskSubjectDto.cs" Link="Dto\WidTaskSubjectDto.cs" />
+    <Compile Include="..\SharedLib\Dto\WidUpdatePeriodDto.cs" Link="Dto\WidUpdatePeriodDto.cs" />
+    <Compile Include="..\SharedLib\Enums.cs" Link="Enums.cs" />
+    <Compile Include="..\SharedLib\FtpClient.cs" Link="FtpClient.cs" />
+    <Compile Include="..\SharedLib\Requests\WidConfigurationRq.cs" Link="Requests\WidConfigurationRq.cs" />
+    <Compile Include="..\SharedLib\Responses\WidAllTasksRsp.cs" Link="Responses\WidAllTasksRsp.cs" />
+    <Compile Include="..\SharedLib\Responses\WidConfigurationRsp.cs" Link="Responses\WidConfigurationRsp.cs" />
+    <Compile Include="..\SharedLib\Responses\WidTasksRsp.cs" Link="Responses\WidTasksRsp.cs" />
+    <Compile Include="..\SharedLib\TryCatch.cs" Link="TryCatch.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WidReplicationServiceLib\WidReplicationServiceLib.csproj" />
+    <ProjectReference Include="..\WidService\WidServiceLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dto\" />
+    <Folder Include="Responses\" />
+    <Folder Include="Requests\" />
+  </ItemGroup>
+
+</Project>

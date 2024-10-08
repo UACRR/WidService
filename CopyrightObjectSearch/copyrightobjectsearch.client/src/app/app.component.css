@@ -1,0 +1,36 @@
+button {
+  color: white;
+  background-color: cadetblue;
+  margin-left: 10px;
+  border: none;
+  padding: 6px 6px 6px 6px;
+  cursor: pointer;
+}
+
+  button:hover {
+    background-color: darkcyan;
+  }
+
+.menu-link {
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.menu-link:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.page-title {
+  font-size: x-large;
+  font-weight: bold;
+  padding: 10px 10px 30px 10px;
+  text-align: left;
+  margin-left: 40px;
+}
+
+.page-content {
+    margin: 0px 10px 10px 40px;
+}
+

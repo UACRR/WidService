@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Enums.cs" />
+    <Compile Remove="FtpClient.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Enums.cs" />
+    <None Include="FtpClient.cs" />
+  </ItemGroup>
+
+</Project>

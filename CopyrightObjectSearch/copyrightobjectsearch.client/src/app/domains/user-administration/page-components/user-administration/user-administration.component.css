@@ -1,0 +1,78 @@
+.component-div {
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+}
+
+.page-title-div {
+  font-size: x-large;
+  font-weight: bold;
+  margin: auto;
+  width: 90%;
+  white-space: nowrap;
+}
+
+.new-user-div {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.items-div {
+    padding: 10px;
+}
+
+.item-div {
+  text-align: left;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  border-top: double 1px;
+}
+
+.index-div {
+  text-align: center;
+  width: 40px;
+  float: left;
+}
+
+.caret-div {
+  font-size: initial;
+  color: darkgray;
+  cursor: pointer;
+  width: 20px;
+  text-align: left;
+  float: left;
+}
+
+  .caret-div:hover {
+    color: blue;
+  }
+
+.title-span {
+  margin-top: 10px;
+  vertical-align: top;
+  font-size: initial;
+  font-weight: bold;
+  text-align: left;
+}
+
+.actions-div {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.user-data-div {
+  margin-top: 10px;
+}
+
+.user-param-input-cell {
+  padding-left: 5px;
+}
+
+.user-role-name-cell {
+  padding-left: 5px;
+}
+
+.apply-changes-div {
+    margin-top: 10px;
+}
+

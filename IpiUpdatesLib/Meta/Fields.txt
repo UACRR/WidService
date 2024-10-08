@@ -1,0 +1,93 @@
+A base no. ref. new:IpBaseNrRefNew
+Amendment date:AmdD
+Amendment time:AmdT
+Code of remitting society:RemitSocCde
+Creation class code:CreClsCde
+Creation date ref.:CreDRef
+Creation date:CreD
+Creation time ref.:CreTRef
+Creation time:CreT
+Current status code new:SttCdeNew
+Current status code old:SttCdeOld
+Current status code ref. new:SttCdeRefNew
+Current status code ref. old:SttCdeRefOld
+Current status code ref.:SttCdeRef
+Current status code:SttCde
+Date of birth/foundation:BirthD
+Date of creation:CreD
+Date of death/dissolution:DeathD
+Date of last amendment:AmdD
+Date of signature:SignD
+Day of birth/foundation:BirthDd
+Day of death/dissolution:DeathDd
+Detail record sequence no.:RecSeqNr
+File name ref.:FileNameRef
+First name:FstName
+Group count:GrCnt
+Group ID ref.:GrIdRef
+Group ID:GrId
+I/E Indicator:IncExcInd
+IP-BASE-NUMBER new:IpBaseNrNew
+IP-BASE-NUMBER old:IpBaseNrOld
+IP-BASE-NUMBER:IpBaseNr
+IP-BASE-NUMBER-ref. new:IpBaseNrRefNew
+IP-BASE-NUMBER-ref. old:IpBaseNrRefOld
+IP-BASE-NUMBER-ref.:IpBaseNrRef
+IP-NAME-NUMBER :IpNameNr
+IP-NAME-NUMBER new:IpNameNrNew
+IP-NAME-NUMBER old:IpNameNrOld
+IP-NAME-NUMBER:IpNameNr
+IP-NAME-NUMBER-ref. new:IpNameNrRefNew
+IP-NAME-NUMBER-ref. old:IpNameNrRefOld
+IP-NAME-NUMBER-ref.:IpNameNrRef
+Membership share:Shr
+Month of birth/foundation:BirthMm
+Month of death/dissolution:DeathMm
+Name of remitting society:RemitSocName
+Name of transaction submitter:TransSubmName
+Name type new:NameTypeNew
+Name type old:NameTypeOld
+Name type ref. new:NameTypeRefNew
+Name type ref. old:NameTypeRefOld
+Name type ref.:NameTypeRef
+Name type:NameType
+Name:Name
+Place of birth/foundation:BirthPlace
+Record count:RecCnt
+Record type:RecType
+Right code:RgtCde
+Role code:RolCde
+Sender ID:SenderId
+Sender Name:SenderName
+Sender type:SenderType
+Sequence no.:SeqNr
+Sex:Sex
+Society code:SocCde
+Standard version number:StdVerNr
+State of birth/foundation:BirthState
+Status code:SttCde
+Status message:SttMsg
+Text:Txt
+Time of creation:CreT
+Time of last amendment:AmdT
+TISAN birth/foundation:BirthTisan
+TISAN valid from:TisanValidFrom
+TISAN:Tisan
+TISN birth/foundation:BirthTisNr
+TISN valid from:TisNrValidFrom
+TISN:TisNr
+Transaction count:TransCnt
+Transaction date:TransD
+Transaction sequence no. ref.:TransSeqNrRef
+Transaction sequence no.:TransSeqNr
+Transaction time:TransT
+Transaction type:TransType
+Transmission date:TransmitD
+Type of interested party:IpType
+Valid from date:ValidFromD
+Valid from time:ValidFromT
+Valid to date:ValidToD
+Valid to time:ValidToT
+Version Number:VerNr
+Year of birth/foundation:BirthYy
+Year of death/dissolution:DeathYy

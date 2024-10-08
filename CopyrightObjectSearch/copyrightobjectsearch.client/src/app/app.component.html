@@ -1,0 +1,13 @@
+<div style="text-align: left; margin-left: 20px; display: table;">
+  <img src="assets/Logo.png">
+  <span style="display: table-cell; vertical-align: middle; padding-left: 30px; font-size: x-large; font-weight: bold;">ПОШУК І РОЗПОДІЛ</span>
+</div>
+
+<table *ngIf="isMenuVisible()" style="width: 100%">
+  <tr>
+    <td style="width: 100%"></td>
+    <td class="menu-link" *ngFor="let menuItem of menuItems" [innerHTML]="menuItem.name" (click)="onMenuItemClicked(menuItem)"></td>
+  </tr>
+</table>
+
+<router-outlet></router-outlet>

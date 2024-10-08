@@ -1,0 +1,5 @@
+﻿SocIpi:20220905141811_initial
+SocWid:20220726192240_initial
+SocWidUpdates:20220726192407_initial
+SocWidInitial:20220726192240_initial
+SocWidAdmin:20220901104250_initial

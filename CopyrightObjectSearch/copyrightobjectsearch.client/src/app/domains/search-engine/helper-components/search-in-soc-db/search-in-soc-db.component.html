@@ -1,0 +1,88 @@
+<div class="search-in-soc-db-component">
+  <div>
+    <table class="search-criterium-table">
+      <tr>
+        <td colspan="2" class="search-conditions-title-cell">
+          <div>Правило пошуку</div>
+        </td>
+        <td class="search-type-cell" title="Точне значення">
+          <i class="fa fa-star"></i>
+        </td>
+        <td class="search-type-cell" title="Слово">
+          <i class="fa fa-file-word-o"></i>
+        </td>
+        <td class="search-type-cell" title="Фрагмент тесту">
+          <i class="fa fa-star-o"></i>
+        </td>
+        <td class="search-type-cell" title="Текст на початку">
+          <i class="fa fa-star-half-o"></i>
+        </td>
+        <td class="search-type-cell" title="Текст за шаблоном">
+          <i class="fa fa-file-text-o"></i>
+        </td>
+      </tr>
+
+      <tr *ngFor="let searchCondition of searchConditions">
+        <td class="search-condition-title-cell">
+          {{searchCondition.title}}:
+        </td>
+        <td class="search-condition-value-cell">
+          <input style="width:130px;"[formControl]="searchCondition.valueFrmControl" />
+        </td>
+        <td *ngFor="let chkFrmControl of searchCondition.chkFrmControls; let searchMethodIdx = index"
+            class="search-condition-chk-cell">
+          <input type="checkbox"
+                 [formControl]="chkFrmControl"
+                 (click)="onSrchCondMethClicked(searchCondition, searchMethodIdx)" />
+        </td>
+      </tr>
+    </table>
+
+    <div *ngIf="isErrorVisible()" class="search-error-div">
+      <i class="fa fa-warning"></i>
+      {{searchErrorText}}
+      <i class="fa fa-times" style="float: right; cursor: pointer;" (click)="onHideSearchError()"></i>
+    </div>
+
+    <div class="buttons-div">
+      <button class="button-search" (click)="onSearchInSmartClicked()">Знайти в SMART</button>
+      <button class="button-search" (click)="onSearchInWidClicked()">
+        Знайти в WID
+        <i *ngIf="isSearchInProgressSpinnerVisibleWid()" class="fa fa-spinner fa-spin" style="margin-left: 5px;"></i>
+      </button>
+    </div>
+
+    <div class="found-works-heading-div">Знайдені твори</div>
+
+    <div class="found-works-prompt-div">
+      Вибір серед знайдених творів за текстом:
+    </div>
+
+    <div class="found-works-search-div">
+      <input [formControl]="searchInFoundFormControl" />
+      <button class="button-search" (click)="onSearchInFoundWorksClicked()">Вибрати</button>
+    </div>
+
+    <div class="work-list-div">
+      <div *ngIf="isSearchInProgressDivVisible()"><i>Виконується пошук ...</i></div>
+      <div *ngIf="isNotFoundDivVisible()"        ><i>Твори не знайдені</i></div>
+      <div *ngIf="isNotSelectedDivVisible()"     ><i>Серед знайдених творів потрібних не вибрано</i></div>
+
+      <div *ngFor="let foundItem of foundItems; let foundItemIndex = index;">
+        <div *ngIf="isFoundItemVisible(foundItem)" class="work-list-item-div">
+          <div class="apply-work-div">
+            <button class="button-select" (click)="onSelectWorkClicked(foundItem)">Вибрати</button>
+          </div>
+          <span class="found-work-cde-span">({{(foundItemIndex + 1)}}) {{getFoundItemCodeText(foundItem)}}</span><br />
+          <span class="found-work-label-span">Назва:</span>
+          <span class="found-work-value-span" [innerHtml]="foundItem.nameHtml"></span>
+          <span class="found-work-label-span">Автори:</span>
+          <span class="found-work-value-span" [innerHtml]="foundItem.authorsHtml"></span>
+          <span class="found-work-label-span">Виконавці:</span>
+          <span class="found-work-value-span" [innerHtml]="foundItem.performersHtml"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

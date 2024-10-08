@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63B395F1-3446-4F48-A6E9-A05B0FE679B2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WidExport</RootNamespace>
+    <AssemblyName>WidExport</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.6.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.6.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedLib\FtpClient.cs">
+      <Link>FtpClient.cs</Link>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="CustomAttributes.cs" />
+    <Compile Include="FileValidator.cs" />
+    <Compile Include="FormDciSearchInMs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDciSearchInMs.Designer.cs">
+      <DependentUpon>FormDciSearchInMs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RecMsg.cs" />
+    <Compile Include="Entities\RecAlt.cs" />
+    <Compile Include="Entities\RecGrh.cs" />
+    <Compile Include="Entities\RecGrt.cs" />
+    <Compile Include="Entities\RecHdr.cs" />
+    <Compile Include="Entities\RecOip.cs" />
+    <Compile Include="Entities\RecOsr.cs" />
+    <Compile Include="Entities\RecPer.cs" />
+    <Compile Include="Entities\RecSip.cs" />
+    <Compile Include="Entities\RecSsr.cs" />
+    <Compile Include="Entities\RecTrl.cs" />
+    <Compile Include="Entities\RecAck.cs" />
+    <Compile Include="Entities\RecWia.cs" />
+    <Compile Include="Entities\RecWiu.cs" />
+    <Compile Include="Entities\SubmFile.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRhIpiRights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRhIpiRights.Designer.cs">
+      <DependentUpon>FormRhIpiRights.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectParty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectParty.Designer.cs">
+      <DependentUpon>FormSelectParty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWidSubmit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWidSubmit.Designer.cs">
+      <DependentUpon>FormWidSubmit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWidSubmGroupSelectEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWidSubmGroupSelectEdit.Designer.cs">
+      <DependentUpon>FormWidSubmGroupSelectEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWidWorkSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWidWorkSearch.Designer.cs">
+      <DependentUpon>FormWidWorkSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FoundWork.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="LocalWork.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportWork.cs" />
+    <Compile Include="RespFilePresenter.cs" />
+    <Compile Include="Tests.cs" />
+    <Compile Include="Translit.cs" />
+    <Compile Include="UcMainPublishedWorks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMainPublishedWorks.Designer.cs">
+      <DependentUpon>UcMainPublishedWorks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMainStatistics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMainStatistics.Designer.cs">
+      <DependentUpon>UcMainStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMainWorks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMainWorks.Designer.cs">
+      <DependentUpon>UcMainWorks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMainAuthors.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMainAuthors.Designer.cs">
+      <DependentUpon>UcMainAuthors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMainFileExchange.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMainFileExchange.Designer.cs">
+      <DependentUpon>UcMainFileExchange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcMainWorkGroups.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMainWorkGroups.Designer.cs">
+      <DependentUpon>UcMainWorkGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWidGroupStatistics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWidGroupStatistics.Designer.cs">
+      <DependentUpon>UcWidGroupStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWidSubmWorkCheckList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWidSubmWorkCheckList.Designer.cs">
+      <DependentUpon>UcWidSubmWorkCheckList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWidSubmWorkPerformers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWidSubmWorkPerformers.Designer.cs">
+      <DependentUpon>UcWidSubmWorkPerformers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWidSubmWorkNames.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWidSubmWorkNames.Designer.cs">
+      <DependentUpon>UcWidSubmWorkNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWidSubmWorkResp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWidSubmWorkResp.Designer.cs">
+      <DependentUpon>UcWidSubmWorkResp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWidSubmWorks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWidSubmWorks.Designer.cs">
+      <DependentUpon>UcWidSubmWorks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWidSubmWorksChanges.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWidSubmWorksChanges.Designer.cs">
+      <DependentUpon>UcWidSubmWorksChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWidSubmWorkShares.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWidSubmWorkShares.Designer.cs">
+      <DependentUpon>UcWidSubmWorkShares.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaitCursor.cs" />
+    <Compile Include="WidSubmGroup.cs" />
+    <Compile Include="WidSubmGroupPreProcService.cs" />
+    <Compile Include="WidSubmWorkCheckList.cs" />
+    <Compile Include="WidSubmWorkState.cs" />
+    <Compile Include="WidTransBuilder.cs" />
+    <Compile Include="WorksComparer.cs" />
+    <Content Include="Html\WorksCompare.html" />
+    <Content Include="Html\Err.html" />
+    <Content Include="SqlScripts\DeleteAll.sql" />
+    <Content Include="SqlScripts\DciWorkToObjId.sql" />
+    <Content Include="SqlScripts\Migrations\001\FixAlreadyRegistered.sql" />
+    <Content Include="SqlScripts\Migrations\001\FixInvalidIpiName.sql" />
+    <Content Include="SqlScripts\Migrations\001\FixInvalidIpiNameInvalidStatus.sql" />
+    <Content Include="SqlScripts\Migrations\001\FixIpRoleMustBeEntered.sql" />
+    <Content Include="SqlScripts\Migrations\001\FixPerformingAristNameMustBeEntered.sql" />
+    <Content Include="SqlScripts\Migrations\001\FixWorningIpNameDoesNotMatch.sql" />
+    <Content Include="SqlScripts\Migrations\001\FixWrongChars.sql" />
+    <Content Include="SqlScripts\Migrations\001\MakeSubmGroupWorkCorrections.sql" />
+    <Content Include="SqlScripts\Migrations\001\SelectWrongCharacters.sql" />
+    <Content Include="SqlScripts\Migrations\001\spSelectDataForSipAndOip.sql" />
+    <Content Include="SqlScripts\Migrations\001\spSubmFileClearRecRefs.sql" />
+    <Content Include="SqlScripts\Migrations\001\spWidSubmGroupPartyAdd.sql" />
+    <Content Include="SqlScripts\Migrations\001\SUBMITTED_TITLES_DONT_MATCH _URRENT_ISWC_DOCUMENTATION.sql" />
+    <Content Include="SqlScripts\Migrations\002\FixProblemsComplete.sql" />
+    <Content Include="SqlScripts\Migrations\003\01_All.sql" />
+    <Content Include="SqlScripts\Migrations\003\04_spWidSubmGroupWorkUpdateHash.sql" />
+    <Content Include="SqlScripts\Migrations\003\05_spWidSubmGroupApplyToSmart.sql" />
+    <Content Include="SqlScripts\Migrations\003\06_spWidSubmGroupChangedWorksUpdate.sql" />
+    <Content Include="SqlScripts\Migrations\003\19_Indices.sql" />
+    <Content Include="SqlScripts\Migrations\003\20_run_spWidSubmGroupWorkUpdateHash.sql" />
+    <Content Include="SqlScripts\Migrations\003\03_spUpdateObjIdToWicFromMs.sql" />
+    <Content Include="SqlScripts\Migrations\003\07_spWidSubmGroupClear.sql" />
+    <Content Include="SqlScripts\Migrations\003\08_spWidSubmGroupClose.sql" />
+    <Content Include="SqlScripts\Migrations\003\09_spWidSubmGroupPartyAdd.sql" />
+    <Content Include="SqlScripts\Migrations\003\10_spWidSubmGroupPartyCanDelete.sql" />
+    <Content Include="SqlScripts\Migrations\003\11_spWidSubmGroupPartySelect.sql" />
+    <Content Include="SqlScripts\Migrations\003\12_spWidSubmGroupPartyWorkSelect.sql" />
+    <Content Include="SqlScripts\Migrations\003\13_spWidSubmGroupPreProc.sql" />
+    <Content Include="SqlScripts\Migrations\003\14_spWidSubmGroupSelect.sql" />
+    <Content Include="SqlScripts\Migrations\003\15_spWidSubmGroupUpdateChecklist.sql" />
+    <Content Include="SqlScripts\Migrations\003\16_spWidSubmGroupWorkPreProc.sql" />
+    <Content Include="SqlScripts\Migrations\003\17_spWidSubmGroupWorkUpdateChecklist.sql" />
+    <Content Include="SqlScripts\Migrations\003\18_spWidSubmGroupWorkUpdateFromMs.sql" />
+    <Content Include="SqlScripts\Migrations\003\02_WidSubmGroupWorkHash.sql" />
+    <Content Include="SqlScripts\Migrations\003\21_spWidSubmGroupAdd.sql" />
+    <Content Include="SqlScripts\Migrations\003\CompareWorks.sql" />
+    <Content Include="SqlScripts\Migrations\003\FixAltNamesInMs.sql" />
+    <Content Include="SqlScripts\Migrations\003\fnGetChangesGroupId.sql" />
+    <Content Include="SqlScripts\Migrations\003\fnGetProblemGroupId.sql" />
+    <Content Include="SqlScripts\Migrations\003\fnIsChangesGroup.sql" />
+    <Content Include="SqlScripts\Migrations\003\fnIsIpBaseNr.sql" />
+    <Content Include="SqlScripts\Migrations\003\fnIsIswc.sql" />
+    <Content Include="SqlScripts\Migrations\003\fnIsSystemGroup.sql" />
+    <Content Include="SqlScripts\Migrations\003\spMainAuthors.sql" />
+    <Content Include="SqlScripts\Migrations\003\spMainWorks.sql" />
+    <Content Include="SqlScripts\Migrations\003\spRefreshWicIswc.sql" />
+    <Content Include="SqlScripts\Migrations\003\spRespFileProcess.sql" />
+    <Content Include="SqlScripts\Migrations\003\spRespFileUpdateErrCodes.sql" />
+    <Content Include="SqlScripts\Migrations\003\spSubmFileDecline.sql" />
+    <Content Include="SqlScripts\Migrations\003\spSubmFilePostSent.sql" />
+    <Content Include="SqlScripts\Migrations\003\spWidSubmGroupChangedAltNamesSelect.sql" />
+    <Content Include="SqlScripts\Migrations\003\spWidSubmGroupChangedPerformersSelect.sql" />
+    <Content Include="SqlScripts\Migrations\003\spWidSubmGroupChangedSharesSelect.sql" />
+    <Content Include="SqlScripts\Migrations\003\spWidSubmGroupChangedWorksSelect.sql" />
+    <Content Include="SqlScripts\Migrations\003\spWidSubmGroupPartyWorkSelect.sql" />
+    <Content Include="SqlScripts\Migrations\003\spWidSubmGroupWorkUpdateFromMs.sql" />
+    <Content Include="SqlScripts\Migrations\003\vPerformerAgg.sql" />
+    <Content Include="SqlScripts\Migrations\003\vWorkIpiNames.sql" />
+    <Content Include="SqlScripts\Migrations\SocIpiDataFixes\IpiAgreementAddMissing.sql" />
+    <Content Include="SqlScripts\Migrations\SocIpiDataFixes\IpiTerritoryDeleteOrphans.sql" />
+    <Content Include="SqlScripts\Migrations\SocIpiDataFixes\IpiAgreementDeleteOrphans.sql" />
+    <Content Include="SqlScripts\Migrations\SocIpiDataFixes\IpiAgreementRemoveDup.sql" />
+    <Content Include="SqlScripts\ObjIdToWicSource.sql" />
+    <Content Include="SqlScripts\Procedures\spRespFileDelete.sql" />
+    <Content Include="SqlScripts\Procedures\spSubmFilePostSent.sql" />
+    <Content Include="SqlScripts\Procedures\spSubmFileClearRecRefs.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkPreProc.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkSelectWia.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkUpdateChecklist.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkUpdateFromMs.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupStatistics.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupPartyCanDelete.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupUpdateChecklist.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupPreProc.sql" />
+    <Content Include="SqlScripts\Procedures\spMainStatistics.sql" />
+    <Content Include="SqlScripts\Procedures\spMainAuthors.sql" />
+    <Content Include="SqlScripts\Procedures\spMainFileExchangeSelect.sql" />
+    <Content Include="SqlScripts\Procedures\spMainWorks.sql" />
+    <Content Include="SqlScripts\Procedures\spRespFileUpdateErrCodes.sql" />
+    <Content Include="SqlScripts\Procedures\spRespFileSelectErrors.sql" />
+    <Content Include="SqlScripts\Procedures\spRespFileProcess.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupClearRecRefs.sql" />
+    <Content Include="SqlScripts\Procedures\spSubmFileSetSubmitted.sql" />
+    <Content Include="SqlScripts\Procedures\spUpdateObjIdToWicFromMs.sql" />
+    <Content Include="SqlScripts\Procedures\spSelectDataForSipAndOip.sql" />
+    <Content Include="SqlScripts\Procedures\spSelectDataForWia.sql" />
+    <Content Include="SqlScripts\Procedures\spSubmFileClear.sql" />
+    <Content Include="SqlScripts\Procedures\spRespFileClear.sql" />
+    <Content Include="SqlScripts\Procedures\spRespFileSelectOrCreate.sql" />
+    <Content Include="SqlScripts\Procedures\spSubmFileSelectCurrent.sql" />
+    <Content Include="SqlScripts\Procedures\spSubmFileDeleteAll.sql" />
+    <Content Include="SqlScripts\Procedures\spCreateSubmInDb.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkSelectErrors.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkPerformerApprove.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkNameApprove.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkPerformerSelect.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupWorkNameSelect.sql" />
+    <Content Include="SqlScripts\Procedures\spMsWorkShareDetails.sql" />
+    <Content Include="SqlScripts\Procedures\spMsWorkSharesSelect.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupPartyDelete.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupPartyAdd.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupDeleteLast.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupAdd.sql" />
+    <Content Include="SqlScripts\Procedures\spIpiPartySelect.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupPartyWorkSelect.sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupPartySelect .sql" />
+    <Content Include="SqlScripts\Procedures\spWidSubmGroupSelect.sql" />
+    <Content Include="SqlScripts\RespFileErrCode.sql" />
+    <Content Include="SqlScripts\RecMsgLevel.sql" />
+    <Content Include="SqlScripts\RecMsgType.sql" />
+    <Content Include="SqlScripts\RecMsg.sql" />
+    <Content Include="SqlScripts\RecAck.sql" />
+    <Content Include="SqlScripts\RecGrhRsp.sql" />
+    <Content Include="SqlScripts\RecGrtRsp.sql" />
+    <Content Include="SqlScripts\RecHdrRsp.sql" />
+    <Content Include="SqlScripts\RecTrlRsp.sql" />
+    <Content Include="SqlScripts\ObjIdToWic.sql" />
+    <Content Include="SqlScripts\SelectQueries\CreateDciData.sql" />
+    <Content Include="SqlScripts\SelectQueries\DbData.sql" />
+    <Content Include="SqlScripts\SelectQueries\MergeTemplate.sql" />
+    <Content Include="SqlScripts\SelectQueries\CreateRightHolderGroup.sql" />
+    <Content Include="SqlScripts\SelectQueries\Constants.sql" />
+    <Content Include="SqlScripts\SelectQueries\DeleteAll.sql" />
+    <Content Include="SqlScripts\SelectQueries\SelectDataForAlt.sql" />
+    <Content Include="SqlScripts\SelectQueries\SelectDataForPer.sql" />
+    <Content Include="SqlScripts\SelectQueries\SelectDataForSipAndOip.sql" />
+    <Content Include="SqlScripts\SelectQueries\SelectDataForWia.sql" />
+    <Content Include="SqlScripts\SelectQueries\SelectWorkAuthors.sql" />
+    <Content Include="SqlScripts\SelectQueries\SelectWorkInvolvedParties.sql" />
+    <Content Include="SqlScripts\RespFile.sql" />
+    <Content Include="SqlScripts\RespFileErr.sql" />
+    <Content Include="SqlScripts\Procedures\spMainPublishedWorks.sql" />
+    <Content Include="SqlScripts\WidSubmGroupStatus.sql" />
+    <Content Include="SqlScripts\WidSubmGroupWorkCheckList.sql" />
+    <Content Include="SqlScripts\WidSubmGroupWorkPerformer.sql" />
+    <Content Include="SqlScripts\WidSubmGroupWorkName.sql" />
+    <Content Include="SqlScripts\WidSubmGroupWorkShare.sql" />
+    <Content Include="SqlScripts\SubmFileStatus.sql" />
+    <Content Include="SqlScripts\RecAckStatus.sql" />
+    <Content Include="SqlScripts\WidSubmGroupWorkStatus.sql" />
+    <Content Include="SqlScripts\WidSubmGroupWork.sql" />
+    <Content Include="SqlScripts\WidSubmGroupPartyWork.sql" />
+    <Content Include="SqlScripts\WidSubmWorkState.sql" />
+    <Content Include="SqlScripts\RecPer.sql" />
+    <Content Include="SqlScripts\RecAlt.sql" />
+    <Content Include="SqlScripts\RecOsr.sql" />
+    <Content Include="SqlScripts\RecOip.sql" />
+    <Content Include="SqlScripts\RecSsr.sql" />
+    <Content Include="SqlScripts\RecSip.sql" />
+    <Content Include="SqlScripts\RecWia.sql" />
+    <Content Include="SqlScripts\RecWiu.sql" />
+    <Content Include="SqlScripts\RecGrt.sql" />
+    <Content Include="SqlScripts\RecGrh.sql" />
+    <Content Include="SqlScripts\RecTrl.sql" />
+    <Content Include="SqlScripts\RecHdr.sql" />
+    <Content Include="SqlScripts\SubmFile.sql" />
+    <Content Include="SqlScripts\WidSubmGroup.sql" />
+    <Content Include="SqlScripts\WidSubmGroupParty.sql" />
+    <Content Include="UkrTranslit.txt" />
+    <EmbeddedResource Include="FormDciSearchInMs.resx">
+      <DependentUpon>FormDciSearchInMs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRhIpiRights.resx">
+      <DependentUpon>FormRhIpiRights.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectParty.resx">
+      <DependentUpon>FormSelectParty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWidSubmGroupSelectEdit.resx">
+      <DependentUpon>FormWidSubmGroupSelectEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWidSubmit.resx">
+      <DependentUpon>FormWidSubmit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWidWorkSearch.resx">
+      <DependentUpon>FormWidWorkSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UcMainPublishedWorks.resx">
+      <DependentUpon>UcMainPublishedWorks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMainStatistics.resx">
+      <DependentUpon>UcMainStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMainWorkGroups.resx">
+      <DependentUpon>UcMainWorkGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMainWorks.resx">
+      <DependentUpon>UcMainWorks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMainAuthors.resx">
+      <DependentUpon>UcMainAuthors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMainFileExchange.resx">
+      <DependentUpon>UcMainFileExchange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWidGroupStatistics.resx">
+      <DependentUpon>UcWidGroupStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWidSubmWorkCheckList.resx">
+      <DependentUpon>UcWidSubmWorkCheckList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWidSubmWorkPerformers.resx">
+      <DependentUpon>UcWidSubmWorkPerformers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWidSubmWorkNames.resx">
+      <DependentUpon>UcWidSubmWorkNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWidSubmWorkResp.resx">
+      <DependentUpon>UcWidSubmWorkResp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWidSubmWorks.resx">
+      <DependentUpon>UcWidSubmWorks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWidSubmWorksChanges.resx">
+      <DependentUpon>UcWidSubmWorksChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWidSubmWorkShares.resx">
+      <DependentUpon>UcWidSubmWorkShares.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Doc\WidSubmit-UserManual.docx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

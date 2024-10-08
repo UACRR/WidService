@@ -1,0 +1,56 @@
+HDRSO000000140UACRR                                        02.102023021205443720230212                                            
+GRHWIA0000001.30
+WIA0000000000000000000T.B.                                                       8047                                         UNC      Y      ORI                                              
+SIP0000000000000001         2365     BARANOVSKYI                                  OLEKSANDR IHOROVYCH           C 00829484695
+SSR0000000000000002         PER0100000829484695   
+SSR0000000000000003         MEC0100000829484695   
+SIP0000000000000004         2364     SKURATOVSKYI                                 VIKTOR VASYLOVYCH             C 00860766019
+SSR0000000000000005         PER0100000860766019   
+SSR0000000000000006         MEC0100000860766019   
+SIP0000000000000007         2343     KHARCHYSHYN                                  VALERII VOLODYMYROVYCH        CA00829483205
+SSR0000000000000008         PER0600000829483205   
+SSR0000000000000009         MEC0600000829483205   
+SIP0000000000000010         2357     BILICHENKO                                   SERHII OLEKSANDROVYCH         C 00724453941
+SSR0000000000000011         PER0100000724453941   
+SSR0000000000000012         MEC0100000724453941   
+SIP0000000000000013         2369     DOROSHENKO                                   OLEKSII VOLODYMYROVYCH        C 00829483698
+SSR0000000000000014         PER0100000829483698   
+SSR0000000000000015         MEC0100000829483698   
+PER0000000000000016DRUHA RIKA                                                                                     
+WIA0000000100000000PEREMOHA                                                      851300                                       UNC      Y      ORI                                              
+SIP0000000100000001         2327     SUPERSIMETRIJA                                                             E 00683006552
+SSR0000000100000002         PER1000000683006552   
+SSR0000000100000003         MEC1000000683006552   
+SIP0000000100000004         2413     VAKARCHUK                                    SVJATOSLAV IVANOVICH          CA00458606529
+SSR0000000100000005         PER0000000458606529   
+SSR0000000100000006         MEC0000000458606529   
+ALT0000000100000007PEREMOGA                                                    ET   
+ALT0000000100000008PEREMOHA                                                    ET   
+PER0000000100000009OKEAN ELZY                                                                                     
+PER0000000100000010OKEAN ELZY I KALUSH                                                                            
+WIA0000000200000000KUSHCHI                                                       5658                                         UNC      Y      ORI                                              
+SIP0000000200000001         2398     BOHDANOV                                     MYKYTA MYKOLAIOVYCH           A 00364337260
+SSR0000000200000002         PER0166700364337260   
+SIP0000000200000003         2398     BOHDANOV                                     MYKYTA MYKOLAIOVYCH           C 00364337260
+SSR0000000200000004         PER0166700364337260   
+OIP0000000200000005         2446     POROTKOV                                     VADYM                         C 00622806952
+OSR0000000200000006         PER0166700622806952   
+OIP0000000200000007         2447     MALYKHIN                                     YAROSLAV ANATOLIIOVYCH        CA00364106481
+OSR0000000200000008         PER0333300364106481   
+OIP0000000200000009         2446     POROTKOV                                     VADYM                         A 00622806952
+OSR0000000200000010         PER0166600622806952   
+PER0000000200000011VILNA KASA                                                                                     
+WIA0000000300000000NOVYI AIFON                                                   5659                                         UNC      Y      ORI                                              
+SIP0000000300000001         2398     BOHDANOV                                     MYKYTA MYKOLAIOVYCH           A 00364337260
+SSR0000000300000002         PER0166700364337260   
+SIP0000000300000003         2398     BOHDANOV                                     MYKYTA MYKOLAIOVYCH           C 00364337260
+SSR0000000300000004         PER0166700364337260   
+OIP0000000300000005         2447     MALYKHIN                                     YAROSLAV ANATOLIIOVYCH        CA00364106481
+OSR0000000300000006         PER0333300364106481   
+OIP0000000300000007         2446     POROTKOV                                     VADYM                         C 00622806952
+OSR0000000300000008         PER0166700622806952   
+OIP0000000300000009         2446     POROTKOV                                     VADYM                         A 00622806952
+OSR0000000300000010         PER0166600622806952   
+PER0000000300000011VILNA KASA                                                                                     
+GRT000000000000400000054
+TRL000010000000400000056

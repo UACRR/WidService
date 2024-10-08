@@ -1,0 +1,41 @@
+<div class="component-div">
+
+  <!-- PROMPT -->
+  <div class="prompt-div">{{getPromptText()}}</div>
+
+  <!-- VALUE -->
+  <div *ngIf="isValueInputEnabled()" class="value-div">
+    <input class="value-input" [formControl]="valueFormControl" />
+  </div>
+
+  <!-- NO VALUE -->
+  <div class="no-value-div">
+    <span>{{getNoValueText()}}</span>&nbsp;
+    <input type="checkbox" [formControl]="noValueChkFormControl" (click)="onNoValueChkClicked()"/>
+  </div>
+
+  <!-- ERROR -->
+  <div *ngIf="isErrorVisible()" class="error-div">
+    <i class="fa fa-warning"></i>
+    {{getErrorText()}}
+    <i class="fa fa-times" style="float: right; cursor: pointer;" (click)="onHideError()"></i>
+  </div>
+
+  <!-- WARNING -->
+  <div class="warning-div">
+    <i class="fa fa-exclamation-triangle">
+      {{getWarningText()}}
+    </i>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions-div">
+    <button (click)="onApply()">
+      {{getActionApplyText()}}
+      <i *ngIf="isUpdateInProgress" class="fa fa-spinner fa-spin" style="margin-left: 5px;"></i>
+    </button>
+    <button (click)="onCancel()">
+      {{getActionCancelText()}}
+    </button>
+  </div>
+</div>

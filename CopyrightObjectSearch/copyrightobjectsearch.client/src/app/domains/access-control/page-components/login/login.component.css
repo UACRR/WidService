@@ -1,0 +1,27 @@
+.component-div {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.page-title-div {
+  font-size: x-large;
+  font-weight: bold;
+  margin: auto;
+  width: 50%;
+  white-space: nowrap;
+}
+
+.label-div {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.input-el {
+  width: 100%;
+}
+
+.buttons-div {
+    margin-top: 10px;
+    margin-left: 0px;
+}

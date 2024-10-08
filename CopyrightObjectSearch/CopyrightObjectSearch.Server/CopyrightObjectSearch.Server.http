@@ -1,0 +1,6 @@
+@CopyrightObjectSearch.Server_HostAddress = http://localhost:5235
+
+GET {{CopyrightObjectSearch.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
