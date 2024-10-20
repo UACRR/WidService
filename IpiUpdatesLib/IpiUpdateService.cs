@@ -74,23 +74,77 @@ namespace IpiUpdatesLib
 
         private static Dictionary<string, BulkUploadToSql> _bulkLoaders = new Dictionary<string, BulkUploadToSql>();
 
+        // For indepemdent load, not used in PROD
         public static void LoadDumpFiles()
         {
-            SqlQueries.SocIpiDbName = "SocIpi_2024_08_31";
             var ftpClient = new FtpClient("ftp://ftp.suisa.ch", "UACRR", "S0c-74084lXY-?", true);
-            var inputDir = "IPI/IPI_Pub/Complete_IPI/20240831";
+            var inputDir = "IPI/IPI_Pub/Complete_IPI/20240601";
             var dir = ftpClient.ReadDirectory(inputDir);
             var fileNames = new List<string>();
             dir.ForEach(x => fileNames.Add(x.Split(' ').Last()));
             var outputDir = @"d:\Tmp";
             fileNames.Where(x => x.EndsWith(".zip")).OrderBy(x => x).ToList().ForEach(fileName =>
             {
-                ftpClient.DownloadFile("IPI/IPI_Pub/Complete_IPI/20240831", fileName, outputDir);
+                ftpClient.DownloadFile("IPI/IPI_Pub/Complete_IPI/20240601", fileName, outputDir);
                 ZipFile.ExtractToDirectory(Path.Combine(outputDir, fileName), outputDir, true);
                 File.Delete(Path.Combine(outputDir, fileName));
                 var targetFileFullName = (Path.Combine(outputDir, fileName.Substring(0, fileName.Length - 4)));
                 LoadDumpFile(targetFileFullName, x => { });
                 File.Delete(targetFileFullName);
+            });
+        }
+
+        // For indepemdent aplly, not used in PROD
+        public static void LoadUpdateFiles(DateTime dateFrom, DateTime dateTo)
+        {
+            var ftpClient = new FtpClient("ftp://ftp.suisa.ch", "UACRR", "S0c-74084lXY-?", true);
+
+            var fileNames = new List<string>();
+            var curDate = dateFrom;
+            while (true)
+            {
+                var fileName = curDate.ToString("yyyyMMdd");
+                fileNames.Add($"{fileName}.IPI");
+                if (curDate == dateTo)
+                {
+                    break;
+                }
+                curDate = curDate.AddDays(1);
+            }
+
+            var outputDir = @"d:\Tmp";
+            fileNames.ForEach(fileName =>
+            {
+                ftpClient.DownloadFile("/IPI/download", fileName, outputDir);
+                LoadUpdFile(Path.Combine(outputDir, fileName), x => { });
+                File.Delete(fileName);
+            });
+        }
+
+        // For indepemdent aplly, not used in PROD
+        public static void ApplyUpdateFiles(DateTime dateFrom, DateTime dateTo)
+        {
+            var ftpClient = new FtpClient("ftp://ftp.suisa.ch", "UACRR", "S0c-74084lXY-?", true);
+
+            var fileNames = new List<string>();
+            var curDate = dateFrom;
+            while(true)
+            {
+                var fileName = curDate.ToString("yyyyMMdd");
+                fileNames.Add($"{fileName}.IPI");
+                if (curDate == dateTo)
+                {
+                    break;
+                }
+                curDate = curDate.AddDays(1);
+            }
+
+            var outputDir = @"d:\Tmp";
+            fileNames.ForEach(fileName =>
+            {
+                ftpClient.DownloadFile("/IPI/download", fileName, outputDir);
+                ApplySingleFileUpdates(Path.Combine(outputDir, fileName), x => { });
+                File.Delete(fileName);
             });
         }
 
@@ -188,10 +242,13 @@ namespace IpiUpdatesLib
                         x.Flush();
                     });
                     tran.Commit();
+
+                    _bulkLoaders.Clear();
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 tran.Rollback();
                 throw;
             }

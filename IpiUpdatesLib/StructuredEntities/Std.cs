@@ -17,7 +17,8 @@ namespace IpiUpdatesLib.StructuredEntities
             RecStoList.ForEach(x =>
             {
                 cmd.Parameters.AddWithValue("@IpBaseNr", UpdTrans.IpBaseNr);
-                cmd.Parameters.AddWithValue("@IpBaseNrRef", x.IpBaseNrRef);
+                cmd.Parameters.AddWithValue("@FromDt", ParseFromTs(x.ValidFromD, x.ValidFromT));
+                cmd.Parameters.AddWithValue("@ToDt", ParseToTs(x.ValidToD, x.ValidToT));
                 cmd.ExecuteNonQuery();
             });
         }

@@ -78,7 +78,7 @@ namespace RadioStationReports
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
            Workbook xlWorkbook = xlApp.Workbooks.Add();
-           _Worksheet xlWorksheet = xlWorkbook.ActiveSheet;
+           _Worksheet xlWorksheet = (_Worksheet)xlWorkbook.ActiveSheet;
 
             body(xlWorksheet);
 
@@ -113,7 +113,7 @@ namespace RadioStationReports
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             Workbook xlWorkbook = xlApp.Workbooks.Open(fileFullName);
-           _Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+           _Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
 
             body(xlWorksheet);
 
@@ -148,7 +148,7 @@ namespace RadioStationReports
             File.Copy(inputFileFullName, outputFileFullName, true);
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             Workbook xlWorkbook = xlApp.Workbooks.Open(outputFileFullName);
-           _Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+           _Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
 
             body(xlWorksheet);
 
@@ -179,7 +179,7 @@ namespace RadioStationReports
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             Workbook xlWorkbook = xlApp.Workbooks.Open(inputFileFullName);
-           _Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+           _Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
 
             try
             {

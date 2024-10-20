@@ -66,7 +66,8 @@ export class ExternalObjectsListComponent implements OnInit {
   getItems() {
     console.log('getItems entered');
     this.http
-      .get<ExternalObjectDto[]>('http://localhost:5235/api/SearchEngine/GetExternalObjects')
+      //.get<ExternalObjectDto[]>('http://localhost:5235/api/SearchEngine/GetExternalObjects')
+      .get<ExternalObjectDto[]>('http://localhost:7157/api/SearchEngine/GetExternalObjects')
       .pipe(
         tap(_ => console.log('Got')),
         map(res => {

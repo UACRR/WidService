@@ -36,7 +36,7 @@ namespace IpiUpdatesLib.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("IpAgreeNr")
-                        .HasColumnType("varchar(26)");
+                        .HasColumnType("varchar(41)");
 
                     b.Property<string>("IpBaseNr")
                         .HasColumnType("varchar(13)");
@@ -276,7 +276,7 @@ namespace IpiUpdatesLib.Migrations
                         .HasColumnType("varchar(1)");
 
                     b.Property<string>("IpAgreeNr")
-                        .HasColumnType("varchar(26)");
+                        .HasColumnType("varchar(41)");
 
                     b.Property<string>("TisNr")
                         .HasColumnType("varchar(4)");

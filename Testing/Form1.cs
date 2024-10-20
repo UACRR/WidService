@@ -24,7 +24,7 @@ namespace Testing
                 "S0c-74084lXY-?", 
                 "IPI/IPI_Pub/Complete_IPI/20240831",
                 @"c:\tmp",
-                @"Persist Security Info=False;User=OlegM;Password=111111;Initial Catalog =SocIpiTesting; Server=IPS-TESTS\IPSDATA");
+                @"Persist Security Info=False;User=OlegM;Password=111111;Server=193.178.146.103\IPSDATA,60675;Initial Catalog=SocIpi_2024_08_31;");
         }
 
         private void btnTestConnection_Click(object sender, EventArgs e)

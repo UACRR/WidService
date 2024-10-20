@@ -12,7 +12,7 @@ namespace IpiUpdatesLib.StructuredEntities
 
         protected override void UpdateDatabase(SqlCommand cmd)
         {
-            cmd.CommandText = SqlQueries.DeleteIpiAgreementAll;
+            cmd.CommandText = SqlQueries.DeleteIpiAgreement;
 
             if (MaoList != null)
             {
@@ -33,7 +33,7 @@ namespace IpiUpdatesLib.StructuredEntities
                 });
             }
 
-            cmd.CommandText = $"delete from {SqlQueries.SocIpiDbName}..IpiTerritory where IpAgreeNr = @IpAgreeNr";
+            cmd.CommandText = $"delete from IpiTerritory where IpAgreeNr = @IpAgreeNr";
 
             if (MaoList != null)
             {

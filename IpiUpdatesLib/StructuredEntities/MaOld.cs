@@ -15,7 +15,7 @@ namespace IpiUpdatesLib.StructuredEntities
         }
         public string GetIpAgreeNr(string ipBaseNr)
         {
-            return $"{ipBaseNr}-{RecMao.SocCde}-{RecMao.CreClsCde}-{RecMao.RolCde}-{RecMao.RgtCde}";
+            return $"{ipBaseNr}-{RecMao.SocCde}-{RecMao.CreClsCde}-{RecMao.RolCde}-{RecMao.RgtCde}-{RecMao.ValidFromD}{RecMao.ValidFromT}";
         }
     }
 }

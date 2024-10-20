@@ -30,6 +30,7 @@ namespace IpiUpdatesLib.StructuredEntities
                 using (cmd = conn.CreateCommand())
                 {
                     conn.Open();
+                    cmd.CommandTimeout = 0;
                     using (tran = conn.BeginTransaction())
                     {
                         cmd.Transaction = tran;

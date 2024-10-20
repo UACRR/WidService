@@ -8,7 +8,7 @@ namespace IpiUpdatesLib.Entities.Main
     public class IpiTerritory
     {
         [Column(TypeName = "int")] public int Id { get; set; }
-        [Column(TypeName = "varchar(26)")] public string IpAgreeNr { get; set; }
+        [Column(TypeName = "varchar(41)")] public string IpAgreeNr { get; set; }
         [Column(TypeName = "varchar(4)")] public string TisNr { get; set; }
         [Column(TypeName = "date")] public DateTime TisNrFromD { get; set; }
         [Column(TypeName = "varchar(20)")] public string Tisan { get; set; }

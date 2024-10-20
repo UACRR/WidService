@@ -93,9 +93,8 @@ namespace IpiUpdatesLib
         }
         public string GetConnectionString()
         {
-            return "Persist Security Info=False;User=OlegM;Password=111111;Server=193.178.146.103\\IPSDATA,60675;Initial Catalog=SocIpi_2024_08_31;";
             var exeFileFullName = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            var rootPath = System.IO.Path.GetDirectoryName(exeFileFullName);
+            var rootPath = Path.GetDirectoryName(exeFileFullName);
             var fileName = Path.Combine(rootPath, "appsettings.json");
 
             var builder = new ConfigurationBuilder();
@@ -104,14 +103,14 @@ namespace IpiUpdatesLib
                 var connectionString = builder
                     .AddJsonFile(fileName, optional: false)
                     .Build()
-                    .GetConnectionString("WidDbServer");
-                return $"Initial Catalog={SqlQueries.SocIpiDbName};{connectionString}";
+                    .GetConnectionString("SocIpiDb");
+                return connectionString;
             }
             else
             {
                 //return @"Persist Security Info=False;Trusted_Connection=yes;Initial Catalog = SocIpi; Server=localhost";
                 //return @"Persist Security Info=False;Trusted_Connection=yes;Initial Catalog = SocWidUpdates; Server=DESKTOP-FT79FOI\SQLEXPRESS";
-                return $@"Persist Security Info=False;User=OlegM;Password=111111;Initial Catalog = {SqlQueries.SocIpiDbName}; Server=89.184.65.168\IPSDATA,60675";
+                return $@"Persist Security Info=False;User=OlegM;Password=111111;Initial Catalog = SocIpi; Server=89.184.65.168\IPSDATA,60675";
             }
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

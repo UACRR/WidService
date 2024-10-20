@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
+using Range = Microsoft.Office.Interop.Excel.Range;
 
 namespace RadioStationReports
 {
@@ -120,7 +121,7 @@ namespace RadioStationReports
             //Create COM Objects. Create a COM object for everything that is referenced
             Excel.Application xlApp = new Excel.Application();
             Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fileFullName);
-            Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            Excel._Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
             Excel.Range xlRange = xlWorksheet.UsedRange;
 
             int rowCount = xlRange.Rows.Count;
@@ -139,7 +140,7 @@ namespace RadioStationReports
                 var cell = (Excel.Range)xlWorksheet.Cells[i, 1];
                 var seqNrStr = cell.Text;
                 int seqNr;
-                if (!int.TryParse(seqNrStr, out seqNr))
+                if (!int.TryParse((string)seqNrStr, out seqNr))
                 {
                     break;
                 }
@@ -833,13 +834,13 @@ namespace RadioStationReports
 
         private static void SetCellValue(Excel._Worksheet xlWorkSheet, int row, int col, string value)
         {
-            var cell = xlWorkSheet.Cells[row, col];
+            Range cell = (Range)xlWorkSheet.Cells[row, col];
             cell.Value = value;
         }
 
         private static void SetCellFormula(Excel._Worksheet xlWorkSheet, int row, int col, string value)
         {
-            var cell = xlWorkSheet.Cells[row, col];
+            Range cell = (Range)xlWorkSheet.Cells[row, col];
             cell.Formula = value;
         }
 
@@ -950,7 +951,7 @@ namespace RadioStationReports
 
                     var fromCell = (Excel.Range)xlWorksheet.Cells[1, 1];
                     var toCell = (Excel.Range)xlWorksheet.Cells[rowCount, 4];
-                    var values = xlWorksheet.get_Range(fromCell, toCell).Value2;
+                    var values = (object[,])xlWorksheet.get_Range(fromCell, toCell).Value2;
 
                     for(var rowIdx = 2; rowIdx <= rowCount; rowIdx++)
                     {
@@ -965,7 +966,7 @@ namespace RadioStationReports
                         importData.ObjId = objId;
                         importData.Wic = wic;
                         
-                        importData.Iswc = iswc == null ? "" : iswc;
+                        importData.Iswc = (string)(iswc == null ? "" : iswc);
                         importData.Iswc = importData.Iswc.Replace("-", "");
                         importData.Iswc = importData.Iswc.Replace(".", "");
 
@@ -1199,18 +1200,18 @@ namespace RadioStationReports
 
                 var fromCell = (Excel.Range)xlWorksheet.Cells[ROW_START, COL_CODE];
                 var toCell = (Excel.Range)xlWorksheet.Cells[rowCount, COL_CODE];
-                var workCodes = xlWorksheet.get_Range(fromCell, toCell).Value2;
+                object[,] workCodes = (object[,])xlWorksheet.get_Range(fromCell, toCell).Value2;
 
                 fromCell = (Excel.Range)xlWorksheet.Cells[ROW_START, COL_SHARE_TOPAY];
                 toCell = (Excel.Range)xlWorksheet.Cells[rowCount, COL_SHARE_TOPAY];
-                var sharesToPay = xlWorksheet.get_Range(fromCell, toCell).Value2;
+                object[,] sharesToPay = (object[,])xlWorksheet.get_Range(fromCell, toCell).Value2;
 
                 List<List<double?>> inputShareSets = new List<List<double?>>();
                 List<double?> inputShares = null;
                 string workCode = "";
                 for(var idx = 1; idx <= rowCount - ROW_START + 1; idx++)
                 {
-                    var curWorkCode = workCodes[idx, 1];
+                    var curWorkCode = (string)workCodes[idx, 1];
                     var curShare = sharesToPay[idx, 1];
                     if(workCode != curWorkCode)
                     {
@@ -1219,12 +1220,12 @@ namespace RadioStationReports
                             inputShareSets.Add(inputShares);
                         }
                         inputShares = new List<double?>();
-                        inputShares.Add(curShare);
+                        inputShares.Add((double?)curShare);
                         workCode = curWorkCode;
                     }
                     else
                     {
-                        inputShares.Add(curShare);
+                        inputShares.Add((double?)curShare);
                     }
                 }
 

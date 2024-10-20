@@ -6,11 +6,9 @@ namespace IpiUpdatesLib
 {
     public static class SqlQueries
     {
-        public static string SocIpiDbName = "SocIpi";
-
         public static readonly string AddIpiBase = $@"
-            if not exists (select null from {SocIpiDbName}..IpiBase where IpBaseNr = @IpBaseNr)
-                insert {SocIpiDbName}..IpiBase (
+            if not exists (select null from IpiBase where IpBaseNr = @IpBaseNr)
+                insert IpiBase (
                       IpBaseNr
                     , IpType
                     , BirthD
@@ -39,7 +37,7 @@ namespace IpiUpdatesLib
                     , @AmdDt
         ";
         public static readonly string UpdateIpiBase = $@"
-            update {SocIpiDbName}..IpiBase
+            update IpiBase
             set
                   IpBaseNr   = @IpBaseNr
                 , IpType     = @IpType
@@ -57,8 +55,8 @@ namespace IpiUpdatesLib
         ";
 
         public static readonly string AddIpiName = $@"
-            if not exists (select null from {SocIpiDbName}..IpiName where IpBaseNr = @IpBaseNr and IpNameNr = @IpNameNr)
-                insert {SocIpiDbName}..IpiName(
+            if not exists (select null from IpiName where IpBaseNr = @IpBaseNr and IpNameNr = @IpNameNr)
+                insert IpiName(
                       IpNameNr
                     , IpBaseNr
                     , IpNameNrRef
@@ -83,7 +81,7 @@ namespace IpiUpdatesLib
                     , 0
             ";
         public static readonly string UpdateIpiName = $@"
-                update {SocIpiDbName}..IpiName
+                update IpiName
                 set
                           IpNameNr      = @IpNameNr
                         , IpBaseNr      = @IpBaseNr
@@ -97,21 +95,20 @@ namespace IpiUpdatesLib
                 where IpBaseNr = @IpBaseNr and IpNameNr = @IpNameNr
             ";
         public static readonly string DeleteIpiName = $@"
-                update {SocIpiDbName}..IpiName
-                set IsDeleted = 1
+                delete from IpiName
                 where IpBaseNr = @IpBaseNr and IpNameNr = @IpNameNr
             ";
 
         public static readonly string AddIpiNameUsage = $@"
             if not exists ( select null 
-                            from {SocIpiDbName}..IpiNameUsage
+                            from IpiNameUsage
                             where 
                                     IpBaseNr =  @IpBaseNr 
                                 and IpNameNr =  @IpNameNr
                                 and CreClsCde = @CreClsCde
                                 and RolCde =  @RolCde
             )
-                insert {SocIpiDbName}..IpiNameUsage(
+                insert IpiNameUsage(
                       IpNameNr
                     , IpBaseNr
                     , CreClsCde
@@ -126,7 +123,7 @@ namespace IpiUpdatesLib
                     , 1
             ";
         public static readonly string DeleteIpiNameUsage = $@"
-            delete from {SocIpiDbName}..IpiNameUsage 
+            delete from IpiNameUsage 
             where 
                     IpBaseNr =  @IpBaseNr 
                 and IpNameNr =  @IpNameNr
@@ -135,8 +132,13 @@ namespace IpiUpdatesLib
             ";
 
         public static readonly string AddIpiStatus = $@"
-                if not exists (select null from {SocIpiDbName}..IpiStatus where IpBaseNr = @IpBaseNr and IpBaseNrRef = @IpBaseNrRef)
-                insert {SocIpiDbName}..IpiStatus(
+                if not exists (select null 
+                    from IpiStatus 
+                    where IpBaseNr = @IpBaseNr
+                        and FromDt = @FromDt
+                        and ToDt   = @ToDt
+                )
+                insert IpiStatus(
                         IpBaseNr
                       , IpBaseNrRef
                       , SttCde
@@ -153,12 +155,15 @@ namespace IpiUpdatesLib
                       , @AmdDt
             ";
         public static readonly string DeleteIpiStatus = $@"
-                delete from {SocIpiDbName}..IpiStatus where IpBaseNr = @IpBaseNr and IpBaseNrRef = @IpBaseNrRef
+                delete from IpiStatus 
+                where IpBaseNr = @IpBaseNr
+                    and FromDt = @FromDt
+                    and ToDt   = @ToDt
             ";
 
         public static readonly string AddIpiAgreement = $@"
                 if not exists ( select null 
-                                from {SocIpiDbName}..IpiAgreement 
+                                from IpiAgreement 
                                 where
                                     IpBaseNr     = @IpBaseNr 
                                 and SocCde       = @SocCde
@@ -168,7 +173,7 @@ namespace IpiUpdatesLib
                                 and FromDt       = @FromDt
                                 and ToDt         = @ToDt
                 )
-                insert {SocIpiDbName}..IpiAgreement(
+                insert IpiAgreement(
                         IpAgreeNr
                       , IpBaseNr 
                       , SocCde
@@ -197,7 +202,7 @@ namespace IpiUpdatesLib
                       , 0
             ";
         public static readonly string UpdateIpiAgreement = $@"
-                update {SocIpiDbName}..IpiAgreement
+                update IpiAgreement
                 set
                         FromDt  = @FromDt
                       , ToDt    = @ToDt
@@ -210,23 +215,9 @@ namespace IpiUpdatesLib
                     and RolCde      = @RolCde 
                     and RgtCde      = @RgtCde 
             ";
-        public static readonly string DeleteIpiAgreement = $@"
-                update {SocIpiDbName}..IpiAgreement
-                set IsDeleted = 1
-                where 
-                        IpBaseNr    = @IpBaseNr 
-                    and SocCde       = @SocCde
-                    and CreClsCde   = @CreClsCde 
-                    and RolCde      = @RolCde 
-                    and RgtCde      = @RgtCde
-                    and FromDt       = @FromDt
-                    and ToDt         = @ToDt
-                    and SignD        = @SignD
-                    and Shr          = @Shr
-            ";
 
-        public static readonly string DeleteIpiAgreementAll = $@"
-                delete from {SocIpiDbName}..IpiAgreement
+        public static readonly string DeleteIpiAgreement = $@"
+                delete from IpiAgreement
                 where 
                         IpBaseNr    = @IpBaseNr 
                     and SocCde       = @SocCde
@@ -241,7 +232,7 @@ namespace IpiUpdatesLib
 
         public static readonly string AddIpiTerritory = $@"
                 if not exists ( select null 
-                                from {SocIpiDbName}..IpiTerritory 
+                                from IpiTerritory 
                                 where
                                     IpAgreeNr   = @IpAgreeNr 
                                 and TisNr       = @TisNr
@@ -250,7 +241,7 @@ namespace IpiUpdatesLib
                                 and TisanFromD  = @TisanFromD 
                                 and IncExcInd   = @IncExcInd 
                 )
-                insert {SocIpiDbName}..IpiTerritory(
+                insert IpiTerritory(
                         IpAgreeNr 
                       , TisNr     
                       , TisNrFromD
@@ -267,19 +258,14 @@ namespace IpiUpdatesLib
                       , @IncExcInd 
             ";
         public static readonly string DeleteIpiTerritory = $@"
-                delete from {SocIpiDbName}..IpiTerritory 
+                delete from IpiTerritory 
                 where
                     IpAgreeNr   = @IpAgreeNr 
-                and TisNr       = @TisNr
-                and TisNrFromD  = @TisNrFromD 
-                and Tisan       = @Tisan 
-                and TisanFromD  = @TisanFromD 
-                and IncExcInd   = @IncExcInd 
-            ";
+              ";
 
         public static readonly string AddIpiNationality = $@"
                 if not exists ( select null 
-                                from {SocIpiDbName}..IpiNationality 
+                                from IpiNationality 
                                 where
                                     IpBaseNr    = @IpBaseNr 
                                 and TisNr       = @TisNr
@@ -287,7 +273,7 @@ namespace IpiUpdatesLib
                                 and Tisan       = @Tisan 
                                 and TisanFromD  = @TisanFromD 
                 )
-                insert {SocIpiDbName}..IpiNationality(
+                insert IpiNationality(
                         IpBaseNr 
                       , TisNr     
                       , TisNrFromD
@@ -302,7 +288,7 @@ namespace IpiUpdatesLib
                       , @TisanFromD
             ";
         public static readonly string DeleteIpiNationality = $@"
-                delete from {SocIpiDbName}..IpiNationality 
+                delete from IpiNationality 
                 where
                     IpBaseNr    = @IpBaseNr 
                 and TisNr       = @TisNr
@@ -313,12 +299,12 @@ namespace IpiUpdatesLib
 
         public static readonly string AddIpiRemark = $@"
                 if not exists ( select null 
-                                from {SocIpiDbName}..IpiRemark 
+                                from IpiRemark 
                                 where
                                         IpBaseNr  = @IpBaseNr 
                                     and SocCde    = @SocCde
                                     and SeqNr     = @SeqNr 
-                insert {SocIpiDbName}..IpiRemark(
+                insert IpiRemark(
                         IpBaseNr 
                       , SocCde
                       , SeqNr 
@@ -331,7 +317,7 @@ namespace IpiUpdatesLib
                       , @Txt 
             ";
         public static readonly string DeleteIpiRemark = $@"
-                delete from {SocIpiDbName}..IpiRemark 
+                delete from IpiRemark 
                 where
                         IpBaseNr  = @IpBaseNr 
                     and SocCde    = @SocCde

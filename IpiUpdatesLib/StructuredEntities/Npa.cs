@@ -14,6 +14,16 @@ namespace IpiUpdatesLib.StructuredEntities
 
         protected override void UpdateDatabase(SqlCommand cmd)
         {
+            cmd.CommandText = SqlQueries.DeleteIpiName;
+
+            if(RecNco != null)
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@IpBaseNr", UpdTrans.IpBaseNr);
+                cmd.Parameters.AddWithValue("@IpNameNr", int.Parse(RecNco.IpNameNr));
+                cmd.ExecuteNonQuery();
+            }
+
             cmd.CommandText = SqlQueries.AddIpiName;
 
             if (RecNcnList != null)

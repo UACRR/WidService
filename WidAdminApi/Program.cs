@@ -15,8 +15,20 @@ namespace WidAdminApi
     {
         public static async Task Main(string[] args)
         {
-            IpiUpdateService.LoadDumpFiles();
+            /*
+           var ipiInitialLoader = new IpiInitialLoader {
+                IpiFtpUrl           = "ftp://ftp.suisa.ch"                   ,
+                IpiFtpLogin         = "UACRR"                                ,
+                IpiFtpPassword      = "S0c-74084lXY-?"                       ,
+                CompleteIpiDir      = "/IPI/IPI_Pub/Complete_IPI/"           ,
+                CompleteIpiDate     = new DateTime(2024, 08, 31)             ,
+                UpdatesIpiDir       = "/IPI/download"                        ,
+                UpdatesLastDate     = new DateTime(2024, 10, 17)             ,
+                LocalWorkFilesDir   = @"d:\Tmp"                              ,
+            };
+            ipiInitialLoader.ResetDatabase();
             return;
+            */
             /*
             var service = new WidReplicationServiceLib.WidReplicationService();
             service.ConnectionString = "Persist Security Info = False; User = OlegM; Password = 111111; Server = 193.178.146.103\\IPSDATA,60675";

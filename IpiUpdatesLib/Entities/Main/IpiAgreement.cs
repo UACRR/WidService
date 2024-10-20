@@ -8,7 +8,7 @@ namespace IpiUpdatesLib.Entities.Main
     public class IpiAgreement
     {
         [Column(TypeName = "int")] public int Id { get; set; }
-        [Column(TypeName = "varchar(26)")] public string IpAgreeNr { get; set; }
+        [Column(TypeName = "varchar(41)")] public string IpAgreeNr { get; set; }
         [Column(TypeName = "varchar(13)")] public string IpBaseNr { get; set; }
         [Column(TypeName = "varchar(3)")] public string SocCde { get; set; }
         [Column(TypeName = "varchar(2)")] public string CreClsCde { get; set; }

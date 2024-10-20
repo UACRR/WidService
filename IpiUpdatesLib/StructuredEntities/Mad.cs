@@ -11,12 +11,11 @@ namespace IpiUpdatesLib.StructuredEntities
 
         protected override void UpdateDatabase(SqlCommand cmd)
         {
-            cmd.CommandText = SqlQueries.DeleteIpiAgreement;
-
             if (MaoList != null)
             {
                 MaoList.ForEach(x =>
                 {
+                    cmd.CommandText = SqlQueries.DeleteIpiAgreement;
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@IpBaseNr", UpdTrans.IpBaseNr);
                     cmd.Parameters.AddWithValue("@SocCde", x.RecMao.SocCde);
@@ -29,7 +28,16 @@ namespace IpiUpdatesLib.StructuredEntities
                     cmd.Parameters.AddWithValue("@Shr", ParseShare(x.RecMao.Shr));
                     cmd.Parameters.AddWithValue("@AmdDt", ParseFromTs(x.RecMao.AmdD, x.RecMao.AmdT));
                     cmd.ExecuteNonQuery();
+
+                    if (x.RecTmaList != null)
+                    {
+                        cmd.CommandText = SqlQueries.DeleteIpiTerritory;
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@IpAgreeNr", x.GetIpAgreeNr(UpdTrans.IpBaseNr));
+                        cmd.ExecuteNonQuery();
+                    }
                 });
+
             }
         }
     }
