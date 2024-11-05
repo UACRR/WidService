@@ -7,7 +7,15 @@ import { Subject } from "rxjs";
   providedIn: 'root'
 })
 export class AppService {
-  userId: number = 0;
+  userId              : number = 0      ;
+  userLogin           : string = ''     ;
+  userName            : string = ''     ;
+  userIsUserAdmin     : boolean = false ;
+  userIsTaskAdmin     : boolean = false ;
+  userIsTaskOperator  : boolean = false;
+  userIsMultyRole     : boolean = false;
+
+
   constructor() {
   }
 

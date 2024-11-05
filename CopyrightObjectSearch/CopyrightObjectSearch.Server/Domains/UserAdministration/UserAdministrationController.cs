@@ -28,5 +28,17 @@ namespace CopyrightObjectSearch.Server
             return _userAdministrationRqHandler.AddUser();
         }
 
+        [HttpPost("api/UserAdministration/UpdateUser")]
+        public UpdateUserRsp UpdateUser(UpdateUserRq rq)
+        {
+            return _userAdministrationRqHandler.UpdateUser(rq);
+        }
+
+        [HttpPost("api/UserAdministration/DeleteUser")]
+        public DeleteUserRsp DeleteUser(DeleteUserRq rq)
+        {
+            return _userAdministrationRqHandler.DeleteUser(rq);
+        }
+
     }
 }

@@ -288,7 +288,7 @@ where t2.Tisan in ('WORLD', 'EASTERN EUROPE', 'EUROPE', 'EUROPEAN CONT.', 'UKRAI
 -- Перелік договорів з індикаторами використання територій
 drop table if exists #AgreementTerrIndicators
 create table #AgreementTerrIndicators  (
-	  IpAgreeNr varchar(26)
+	  IpAgreeNr varchar(41)
 	
 	, WldI bit default(0)
 	, CisI bit default(0)

@@ -14,6 +14,56 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Database\Functions\fnDdexFileTitle.sql" />
+    <None Remove="Database\Functions\fnDdexFileTypePartnerId.sql" />
+    <None Remove="Database\Functions\fnDdexFileTypeSourceTypeId.sql" />
+    <None Remove="Database\Functions\fnPreProcessNames.sql" />
+    <None Remove="Database\Procedures\spApplyDataFromDdexTransfer.sql" />
+    <None Remove="Database\Procedures\spImportPartnerWorks.sql" />
+    <None Remove="Database\Procedures\spImportPartnerWorksFromDdex.sql" />
+    <None Remove="Database\Procedures\spNormalizeNames.sql" />
+    <None Remove="Database\Procedures\spSetPartnerWorkIswc.sql" />
+    <None Remove="Database\Procedures\spSetPartnerWorkObjId.sql" />
+    <None Remove="Database\Procedures\spSetPartnerWorkWic.sql" />
+    <None Remove="Database\Procedures\spUpdatePartnerWorkAlbums.sql" />
+    <None Remove="Database\Procedures\spUpdatePartnerWorkAuthors.sql" />
+    <None Remove="Database\Procedures\spUpdatePartnerWorkIswcs.sql" />
+    <None Remove="Database\Procedures\spUpdatePartnerWorkNames.sql" />
+    <None Remove="Database\Procedures\spUpdatePartnerWorkPerformers.sql" />
+    <None Remove="Database\Procedures\spUpdatePartnerWorks.sql" />
+    <None Remove="Database\Procedures\spUpdatePartnerWorkSources.sql" />
+    <None Remove="Database\Views\vWidAuthorAgg.sql" />
+    <None Remove="Database\Views\vWidNameAuthorsPerformers.sql" />
+    <None Remove="Database\Views\vWidPartyAgg.sql" />
+    <None Remove="Database\Views\vWidPerformerAgg.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Database\Functions\fnDdexFileTitle.sql" />
+    <EmbeddedResource Include="Database\Functions\fnDdexFileTypePartnerId.sql" />
+    <EmbeddedResource Include="Database\Functions\fnDdexFileTypeSourceTypeId.sql" />
+    <EmbeddedResource Include="Database\Functions\fnPreProcessNames.sql" />
+    <EmbeddedResource Include="Database\Procedures\spApplyDataFromDdexTransfer.sql" />
+    <EmbeddedResource Include="Database\Procedures\spImportPartnerWorks.sql" />
+    <EmbeddedResource Include="Database\Procedures\spImportPartnerWorksFromDdex.sql" />
+    <EmbeddedResource Include="Database\Procedures\spNormalizeNames.sql" />
+    <EmbeddedResource Include="Database\Procedures\spSetPartnerWorkIswc.sql" />
+    <EmbeddedResource Include="Database\Procedures\spSetPartnerWorkObjId.sql" />
+    <EmbeddedResource Include="Database\Procedures\spSetPartnerWorkWic.sql" />
+    <EmbeddedResource Include="Database\Procedures\spUpdatePartnerWorkAlbums.sql" />
+    <EmbeddedResource Include="Database\Procedures\spUpdatePartnerWorkAuthors.sql" />
+    <EmbeddedResource Include="Database\Procedures\spUpdatePartnerWorkIswcs.sql" />
+    <EmbeddedResource Include="Database\Procedures\spUpdatePartnerWorkNames.sql" />
+    <EmbeddedResource Include="Database\Procedures\spUpdatePartnerWorkPerformers.sql" />
+    <EmbeddedResource Include="Database\Procedures\spUpdatePartnerWorks.sql" />
+    <EmbeddedResource Include="Database\Procedures\spUpdatePartnerWorkSources.sql" />
+    <EmbeddedResource Include="Database\Views\vWidAuthorAgg.sql" />
+    <EmbeddedResource Include="Database\Views\vWidNameAuthorsPerformers.sql" />
+    <EmbeddedResource Include="Database\Views\vWidPartyAgg.sql" />
+    <EmbeddedResource Include="Database\Views\vWidPerformerAgg.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>8.*-*</Version>
@@ -32,15 +82,15 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domains\TaskAdministration\Dto\" />
+  </ItemGroup>
+
   <!--
   <ItemGroup>
     <ProjectReference Include="..\copyrightobjectsearch.client\copyrightobjectsearch.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>-->
-
-  <ItemGroup>
-    <Folder Include="Database\Procedures\" />
-  </ItemGroup>
 
 </Project>

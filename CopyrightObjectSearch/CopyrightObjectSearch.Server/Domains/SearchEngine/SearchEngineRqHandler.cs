@@ -16,23 +16,23 @@ namespace CopyrightObjectSearch.Server
             _dbContext = dbContext;
 
             _mapper = new Mapper(new MapperConfiguration(cfg => {
-                cfg.CreateMap<ExternalObject, ExternalObjectDto>();
+                cfg.CreateMap<PartnerWork, PartnerWorkDto>();
             }));
 
         }
-        public IEnumerable<ExternalObjectDto> GetExternalObjects()
+        public IEnumerable<PartnerWorkDto> GetPartnerWorks()
         {
             var externalObjects = _dbContext
-                .ExternalObjects
+                .PartnerWorks
                 .Where(x => x.FoundObjId != 0 || x.FoundWic != 0)
                 .Take(100)
                 .ToArray();
-            return _mapper.Map<ExternalObject[], ExternalObjectDto[]>(externalObjects);
+            return _mapper.Map<PartnerWork[], PartnerWorkDto[]>(externalObjects);
         }
 
-        public GetFoundObjectsRsp GetFoundObjects(SearchParamsDto searchParamsDto)
+        public GetFoundWorksRsp GetFoundWorks(SearchParamsDto searchParamsDto)
         {
-            var retVal = new GetFoundObjectsRsp();
+            var retVal = new GetFoundWorksRsp();
             try
             {
                 var searcher = new MwSearchWid(_dbContext, searchParamsDto.SearchConditions.ToList());
@@ -70,23 +70,23 @@ namespace CopyrightObjectSearch.Server
             if (code[0] == 'M')
             {
                 var intCode = int.Parse(code.Substring(2, code.Length - 2));
-                SetObjId(setWorkCodeRq.ExternalObjectId, intCode);
+                SetObjId(setWorkCodeRq.PartnerWorkId, intCode);
             }
             else if (code[0] == 'W')
             {
                 var intCode = int.Parse(code.Substring(2, code.Length - 2));
-                SetWic(setWorkCodeRq.ExternalObjectId, intCode);
+                SetWic(setWorkCodeRq.PartnerWorkId, intCode);
             }
             else if (code[0] == 'T')
             {
-                SetIswc(setWorkCodeRq.ExternalObjectId, code);
+                SetIswc(setWorkCodeRq.PartnerWorkId, code);
             }
 
-            var codes = _dbContext.ExternalObjects
-                .Single(x => x.Id == setWorkCodeRq.ExternalObjectId );
+            var codes = _dbContext.PartnerWorks
+                .Single(x => x.Id == setWorkCodeRq.PartnerWorkId);
 
             var retVal = new SetWorkCodeRsp {
-                ExternalObjectId = codes.Id,
+                PartnerWorkId = codes.Id,
                 ObjId = codes.FoundObjId,
                 Wic = codes.FoundWic,
                 Iswc = codes.FoundIswc

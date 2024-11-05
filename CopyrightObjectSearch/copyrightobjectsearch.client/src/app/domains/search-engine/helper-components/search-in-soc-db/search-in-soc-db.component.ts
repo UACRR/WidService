@@ -3,12 +3,11 @@ import { Type } from '@angular/compiler';
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { SearchConditionDto, SearchParamsDto } from '../../server-proxy/dto/search-params-rq';
 import { map, catchError, Observable, of } from 'rxjs';
-import { FoundNameAuthorsPerformers } from '../../server-proxy/dto/found-object-dto';
-import { GetFoundObjectsRsp } from '../../server-proxy/dto/GetFoundObjectsRsp';
 import { SetWorkCodeRq } from '../../server-proxy/dto/SetWorkCodeRq';
 import { SetWorkCodeRsp } from '../../server-proxy/dto/SetWorkCodeRsp';
+import { SearchParamsDto } from '../../server-proxy/dto/SearchParamsDto';
+import { GetFoundWorksRsp } from '../../server-proxy/dto/GetFoundWorksRsp';
 
 enum SearchFieldEnum
 {
@@ -167,7 +166,7 @@ export class SearchInSocDbComponent implements OnInit {
         value        : x.valueFrmControl.value,
       });
     });
-    this.http.post<GetFoundObjectsRsp>('http://localhost:5235/api/SearchEngine/GetFoundObjects', rq)
+    this.http.post<GetFoundWorksRsp>('http://localhost:5235/api/SearchEngine/GetFoundWorks', rq)
       .subscribe({
         next: response => {
           this.foundItems = [];
@@ -215,7 +214,7 @@ export class SearchInSocDbComponent implements OnInit {
   onSelectWorkClicked(foundItem: FoundItem) {
     const rq: SetWorkCodeRq = {
       workCode: this.getFoundItemCodeText(foundItem),
-      externalObjectId: this.inputExternalObjectId,
+      partnerWorkId: this.inputExternalObjectId,
     };
     this.http.post<SetWorkCodeRsp>('http://localhost:5235/api/SearchEngine/SetWorkCode', rq)
       .subscribe({

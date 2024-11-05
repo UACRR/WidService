@@ -2,10 +2,16 @@
   <div class="page-title-div">Вхід в додаток</div>
   <div class="page-content">
     <div class="label-div">Логін:</div>
-    <div><input class="input-el" /></div>
+    <div><input class="input-el" [formControl]="loginFormControl" /></div>
     <div class="label-div">Пароль:</div>
-    <div><input class="input-el" /></div>
-    <div class="buttons-div"><button (click)="onApply()">Увійти</button></div>
+    <div><input type="password" class="input-el" [formControl]="passwordFormControl" /></div>
+
+    <div class="buttons-div"><button (click)="onLogin()">Увійти</button></div>
+
+    <div *ngIf="isErrorDivVisible()" class="error-div">
+      <i class="fa fa-times-circle"></i>
+      {{errorText}}
+    </div>
   </div>
 </div>
 

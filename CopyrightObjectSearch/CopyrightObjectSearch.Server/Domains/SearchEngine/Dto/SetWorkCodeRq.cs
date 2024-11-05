@@ -3,7 +3,7 @@
     public class SetWorkCodeRq
     {
         public required string WorkCode { get; set; }
-        public int ExternalObjectId { get; set; }
+        public int PartnerWorkId { get; set; }
 
         public SetWorkCodeRq()
         {

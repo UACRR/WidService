@@ -16,16 +16,16 @@ namespace CopyrightObjectSearch.Server
             _searchEngineRqHandler = searchEngineRqHandler;
         }
 
-        [HttpGet("api/SearchEngine/GetExternalObjects")]
-        public IEnumerable<ExternalObjectDto> GetExternalObjects()
+        [HttpGet("api/SearchEngine/GetPartnerWorks")]
+        public IEnumerable<PartnerWorkDto> GetPartnerWorks()
         {
-            return _searchEngineRqHandler.GetExternalObjects();
+            return _searchEngineRqHandler.GetPartnerWorks();
         }
 
-        [HttpPost("api/SearchEngine/GetFoundObjects")]
-        public GetFoundObjectsRsp GetFoundObjects(SearchParamsDto searchParamsDto)
+        [HttpPost("api/SearchEngine/GetFoundWorks")]
+        public GetFoundWorksRsp GetFoundWorks(SearchParamsDto searchParamsDto)
         {
-            return _searchEngineRqHandler.GetFoundObjects(searchParamsDto);
+            return _searchEngineRqHandler.GetFoundWorks(searchParamsDto);
         }
 
         [HttpPost("api/SearchEngine/SetWorkCode")]

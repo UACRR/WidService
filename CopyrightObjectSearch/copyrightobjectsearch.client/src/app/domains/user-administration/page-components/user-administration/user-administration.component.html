@@ -30,10 +30,26 @@
           </tr>
         </table>
 
-        <div class="apply-changes-div">
+        <div *ngIf="isActionsDivVisible(item)" class="apply-changes-div">
           <button (click)="onDeleteUser(itemIdx)">Видалити</button>
-          <button>Згенерувати пароль</button>
-          <button *ngIf="isApplyChangesDivVisible(item)">Застосувати зміни</button>
+          <button (click)="onGeneratePassword(itemIdx)">Згенерувати пароль</button>
+          <button *ngIf="isApplyChangesDivVisible(item)" (click)="onUpdateUser(itemIdx)">Застосувати зміни</button>
+        </div>
+
+        <div *ngIf="isConfirmDivVisible(item)" class="confirm-div">
+          Видалити користувача?&nbsp;
+          <button (click)="onDeleteUserConfirmed(itemIdx)">Так</button>&nbsp;
+          <button (click)="onDeleteUserRejected(itemIdx)">Ні</button>
+        </div>
+
+        <div *ngIf="isErrorDivVisible(item)" class="error-div">
+          <i class="fa fa-times-circle"></i>
+          {{errorText}}&nbsp;
+          <button (click)="onErrorClose()">Продовжити</button>
+        </div>
+
+        <div *ngIf="isInfoDivVisible(item)" class="info-div">
+          {{infoText}}
         </div>
       </div>
     </div>

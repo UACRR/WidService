@@ -1,6 +1,9 @@
 using CopyrightObjectSearch.Server;
 using Microsoft.EntityFrameworkCore;
 
+//var test = new ProgrammabilityBuilder(null);
+//test.Run();
+
 Console.WriteLine("CopyrightObjectSearch.Server starting");
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,8 +31,9 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddTransient<SearchEngineRqHandler, SearchEngineRqHandler>();
-builder.Services.AddTransient<UserAdministrationRqHandler, UserAdministrationRqHandler>();
+builder.Services.AddTransient<SearchEngineRqHandler       , SearchEngineRqHandler>        ();
+builder.Services.AddTransient<UserAdministrationRqHandler , UserAdministrationRqHandler>  ();
+builder.Services.AddTransient<AccessRqHandler             , AccessRqHandler>              ();
 
 Console.WriteLine("CopyrightObjectSearch.Server building application");
 

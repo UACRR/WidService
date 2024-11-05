@@ -76,3 +76,26 @@
     margin-top: 10px;
 }
 
+.confirm-div {
+  margin-top: 10px;
+}
+
+.error-div {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+}
+
+.info-div {
+  margin-top: 10px;
+  color: green;
+  font-weight: bold;
+  animation: blinker 0.3s step-start infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+

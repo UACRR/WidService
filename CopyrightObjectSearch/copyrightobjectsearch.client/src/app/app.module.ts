@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth.interceptor';
-import { ExternalObjectsListComponent } from './domains/search-engine/page-components/external-objects-list/external-objects-list.component';
 import { InternalObjectsListComponent } from './domains/search-engine/page-components/internal-objects-list/internal-objects-list.component';
 import { TaskManagementComponent } from './domains/task-management/page-components/task-management/task-management.component';
 import { UserAdministrationComponent } from './domains/user-administration/page-components/user-administration/user-administration.component';
@@ -19,11 +18,12 @@ import { SearchInSocDbComponent } from './domains/search-engine/helper-component
 import { ReactiveFormsModule } from '@angular/forms';
 import { CodeEditBaseComponent } from './domains/search-engine/helper-components/code-edit-base/code-edit-base.component';
 import { LoginComponent } from './domains/access-control/page-components/login/login.component';
+import { PartnerWorksListComponent } from './domains/search-engine/page-components/partner-works-list/partner-works-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExternalObjectsListComponent,
+    PartnerWorksListComponent,
     InternalObjectsListComponent,
     TaskManagementComponent,
     UserAdministrationComponent,

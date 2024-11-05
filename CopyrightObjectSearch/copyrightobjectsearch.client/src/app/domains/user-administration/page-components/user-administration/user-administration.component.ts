@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Item } from '../../../search-engine/page-components/external-objects-list/external-objects-list.component';
 import { slideInOut } from '../../../../animations';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AddUserRsp } from '../../server-proxy/dto/AddUserRsp';
 import { GetUsersRsp } from '../../server-proxy/dto/GetUsersRsp';
+import { DeleteUserRsp } from '../../server-proxy/dto/DeleteUsersRsp';
+import { DeleteUserRq } from '../../server-proxy/dto/DeleteUsersRq';
+import { UpdateUserRq } from '../../server-proxy/dto/UpdateUserRq';
+import { UpdateUserRsp } from '../../server-proxy/dto/UpdateUserRsp';
 
 class RoleItem {
   id: number = 0;
@@ -77,6 +80,10 @@ export class UserAdministrationComponent implements OnInit {
 
   expandedItem: UserItem | undefined;
 
+  isConfirmingDelete = false;
+  errorText = '';
+  infoText = '';
+
   constructor(
     private http: HttpClient,
     private sanitizer: DomSanitizer,
@@ -116,13 +123,12 @@ export class UserAdministrationComponent implements OnInit {
       });
   }
 
-  onNewUser() {
-
+  addUser() {
     this.http.get<AddUserRsp>('http://localhost:5235/api/UserAdministration/AddUser')
       .subscribe({
         next: response => {
-          const isUserAdmin    = response.roleIds.includes(1);
-          const isTaskAdmin    = response.roleIds.includes(2);
+          const isUserAdmin = response.roleIds.includes(1);
+          const isTaskAdmin = response.roleIds.includes(2);
           const isTaskOperator = response.roleIds.includes(3);
           this.items.unshift({
             id: response.id,
@@ -131,9 +137,9 @@ export class UserAdministrationComponent implements OnInit {
             nameFormControl: new FormControl(response.name),
             loginFormControl: new FormControl(response.login),
             roles: [
-              { id: 1, description: 'Адміністратор користувачів', isSelected: isUserAdmin     , roleChkFormControl: new FormControl(isUserAdmin)    },
-              { id: 2, description: 'Адміністратор завдань'     , isSelected: isTaskAdmin     , roleChkFormControl: new FormControl(isTaskAdmin)    },
-              { id: 3, description: 'Виконавець завдань'        , isSelected: isTaskOperator  , roleChkFormControl: new FormControl(isTaskOperator) },
+              { id: 1, description: 'Адміністратор користувачів', isSelected: isUserAdmin, roleChkFormControl: new FormControl(isUserAdmin) },
+              { id: 2, description: 'Адміністратор завдань', isSelected: isTaskAdmin, roleChkFormControl: new FormControl(isTaskAdmin) },
+              { id: 3, description: 'Виконавець завдань', isSelected: isTaskOperator, roleChkFormControl: new FormControl(isTaskOperator) },
             ]
           });
           this.expandedItem = this.items[0];
@@ -141,11 +147,94 @@ export class UserAdministrationComponent implements OnInit {
         error: error => {
         }
       });
+  }
 
+  updateUser(itemIdx: number) {
+    var userItem = this.items[itemIdx];
+    const rq: UpdateUserRq = {
+      id     : userItem.id,
+      name   : userItem.nameFormControl.value,
+      login  : userItem.loginFormControl.value,
+      roleIds: [],
+    };
+    userItem.roles.forEach(x => {
+      if (x.roleChkFormControl.value) {
+        rq.roleIds.push(x.id);
+      }
+    });
+    this.http.post<UpdateUserRsp>('http://localhost:5235/api/UserAdministration/UpdateUser', rq)
+      .subscribe({
+        next: response => {
+          if (response.errorText !== '') {
+            this.errorText = response.errorText;
+          }
+          else {
+            userItem.login = userItem.loginFormControl.value;
+            userItem.name = userItem.nameFormControl.value;
+            userItem.roles.forEach(x => {
+              x.isSelected = x.roleChkFormControl.value;
+            });
+
+            this.infoText = 'Зміни успішно застосовані';
+            setTimeout(() => {
+              this.infoText = '';
+            }, 2000);
+          }
+        },
+        error: error => {
+          this.errorText = error.message;
+        }
+      });
+  }
+
+  deleteUser(itemIdx: number) {
+    const rq: DeleteUserRq = {
+      userId: this.items[itemIdx].id
+    };
+    this.http.post<DeleteUserRsp>('http://localhost:5235/api/UserAdministration/DeleteUser', rq)
+      .subscribe({
+        next: response => {
+          this.isConfirmingDelete = false;
+          if (response.errorText !== '') {
+            this.errorText = response.errorText;
+          }
+          else {
+            this.items.splice(itemIdx, 1);
+            this.expandedItem = undefined;
+          }
+        },
+        error: error => {
+          this.errorText = error;
+        }
+      });
+  }
+
+  onNewUser() {
+    this.addUser();
+  }
+
+  onGeneratePassword(itemIdx: number) {
+    alert('Не використовується в поточній версії - пароль генерується автоматично за певними правилами на основі облікового запису');
+  }
+
+  onUpdateUser(itemIdx: number) {
+    this.updateUser(itemIdx);
   }
 
   onDeleteUser(itemIdx: number) {
-    this.items.splice(itemIdx, 1);
+    this.isConfirmingDelete = true;
+  }
+
+  onDeleteUserConfirmed(itemIdx: number) {
+    this.deleteUser(itemIdx);
+  }
+
+  onDeleteUserRejected(itemIdx: number) {
+    this.isConfirmingDelete = false;
+  }
+
+  onErrorClose() {
+    this.errorText = '';
   }
 
   getCaretClass(item: UserItem): SafeHtml {
@@ -167,6 +256,8 @@ export class UserAdministrationComponent implements OnInit {
   }
 
   onCaretClicked(item: UserItem) {
+    this.errorText = '';
+    this.isConfirmingDelete = false;
     this.resetItemParams(item);
     if (this.isItemExpanded(item) && this.expandedItem) {
       this.expandedItem = undefined;
@@ -179,7 +270,19 @@ export class UserAdministrationComponent implements OnInit {
   }
 
   isActionsDivVisible(item: UserItem): boolean {
-    return this.expandedItem != item;
+    return this.expandedItem == item && !this.isConfirmingDelete && this.errorText === '' && this.infoText === '';
+  }
+
+  isConfirmDivVisible(item: UserItem): boolean {
+    return this.expandedItem == item && this.isConfirmingDelete && this.errorText === '';
+  }
+
+  isErrorDivVisible(item: UserItem): boolean {
+    return this.expandedItem == item && this.errorText !== '';
+  }
+
+  isInfoDivVisible(item: UserItem): boolean {
+    return this.expandedItem == item && this.infoText !== '';
   }
 
   isUserDataDivVisible(item: UserItem): boolean {

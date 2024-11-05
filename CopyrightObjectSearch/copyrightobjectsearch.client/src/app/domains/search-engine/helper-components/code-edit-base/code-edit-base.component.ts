@@ -72,7 +72,7 @@ export class CodeEditBaseComponent implements OnInit {
     this.errorText = '';
     const rq: SetWorkCodeRq = {
       workCode: this.formatWorkCodeInRq(),
-      externalObjectId: this.inputExternalObjectId,
+      partnerWorkId: this.inputExternalObjectId,
     };
     this.http.post<SetWorkCodeRsp>('http://localhost:5235/api/SearchEngine/SetWorkCode', rq)
       .subscribe({

@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   menuItems: MenuItem[] = [
     {name: 'Твори партнерів' , routePath: 'domains/search-engine/page-components/external-objects-list'    },
     {name: 'Твори товариства', routePath: 'domains/search-engine/page-components/internal-objects-list'    },
-    {name: 'Завдання'                  , routePath: 'domains/task-management/page-components/task-management'        },
-    {name: 'Користувачі'           , routePath: 'domains/user-administration/page-components/user-administration'},
+    {name: 'Завдання'        , routePath: 'domains/task-management/page-components/task-management'        },
+    {name: 'Користувачі'     , routePath: 'domains/user-administration/page-components/user-administration'},
   ];
 
   constructor(
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   isMenuVisible(): boolean {
-    return this.appService.userId > 0;
+    return this.appService.userIsMultyRole;
   }
 
   title = 'УААСП Пошук і Розподіл';
