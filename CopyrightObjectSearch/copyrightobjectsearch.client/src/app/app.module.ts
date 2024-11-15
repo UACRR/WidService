@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CodeEditBaseComponent } from './domains/search-engine/helper-components/code-edit-base/code-edit-base.component';
 import { LoginComponent } from './domains/access-control/page-components/login/login.component';
 import { PartnerWorksListComponent } from './domains/search-engine/page-components/partner-works-list/partner-works-list.component';
+import { EditTaskComponent } from './domains/task-management/helper-components/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { PartnerWorksListComponent } from './domains/search-engine/page-componen
     SearchInSocDbComponent,
 
     LoginComponent,
+
+    EditTaskComponent,
   ],
   imports: [
     BrowserModule,

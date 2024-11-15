@@ -17,7 +17,7 @@ select
 	, trim(value)							  as Name
 into #SeparateNames
 from TmpInitialNames
-cross apply string_split(Names, '|')
+	cross apply string_split(Names, '|')
 
 -- Split names into parts
 drop table if exists #SeparateNameParts
@@ -80,6 +80,8 @@ into TmpNormalizedNames
 from #NormalizedSeparateNames
 group by MwId
 order by MwId
+
+-- TmpNormalizedNames will be missing some MwIds, insert those
 
 set identity_insert TmpNormalizedNames on
 insert TmpNormalizedNames(MwId, Names)

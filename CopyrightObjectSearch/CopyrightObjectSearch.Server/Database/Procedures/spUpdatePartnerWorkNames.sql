@@ -5,16 +5,18 @@ create or alter procedure spUpdatePartnerWorkNames
 as
 begin
 
+-- do not normalize here
+
 drop table if exists TmpInitialNames
 select 
-	  Id			 as MwId
-	, Title			 as Names
+	  Id			  as MwId
+	, left(Title, 64) as Names
 into TmpInitialNames
 from Ddex..IdentMw
 
 delete from PartnerWorkNames
 insert PartnerWorkNames (Name)
-select distinct left(Names, 64)
+select distinct Names
 from TmpInitialNames
 
 update t1

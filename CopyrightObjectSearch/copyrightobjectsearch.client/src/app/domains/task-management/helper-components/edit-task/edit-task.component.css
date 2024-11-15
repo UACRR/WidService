@@ -1,0 +1,21 @@
+.component-div {
+    padding: 10px;
+    background-color: antiquewhite;
+}
+
+.title-div {
+    font-weight: bold;
+}
+
+.task-type-span {
+    display: inline;
+    margin: 5px;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.partner-report-span {
+  border-bottom: 1px black dotted;
+  font-style: italic;
+  cursor: pointer;
+}

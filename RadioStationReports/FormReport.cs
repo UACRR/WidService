@@ -502,11 +502,13 @@ namespace RadioStationReports
             if(selectedItem == null)
             {
                 ucReportLineWork.Clear();
+                ucReportLineDistribution.Clear();
                 return;
             }
 
             var reportLine = (ReportLine)selectedItem.Tag;
             ucReportLineWork.Update(_report.Id, reportLine.LineNr);
+            ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
         }
 
         private void btnShowHideActions_Click(object sender, EventArgs e)

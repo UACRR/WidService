@@ -78,7 +78,7 @@ namespace RadioStationReports
             // 
             // splitMiddle
             // 
-            this.splitMiddle.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splitMiddle.Cursor = System.Windows.Forms.Cursors.Default;
             this.splitMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitMiddle.Location = new System.Drawing.Point(3, 36);
             this.splitMiddle.Name = "splitMiddle";

@@ -143,8 +143,6 @@ namespace CopyrightObjectSearch.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlbumId");
-
                     b.HasIndex("AuthorsId");
 
                     b.HasIndex("IswcId");
@@ -153,7 +151,7 @@ namespace CopyrightObjectSearch.Server.Migrations
 
                     b.HasIndex("PerformersId");
 
-                    b.HasIndex("NameId", "AuthorsId", "PerformersId", "IswcId")
+                    b.HasIndex("AlbumId", "NameId", "AuthorsId", "PerformersId", "IswcId")
                         .IsUnique();
 
                     b.ToTable("PartnerWorks");
@@ -369,7 +367,7 @@ namespace CopyrightObjectSearch.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ParnterWorkId")
+                    b.Property<int>("PartnerWorkId")
                         .HasColumnType("int");
 
                     b.Property<int>("PartnerWorkSourceId")
@@ -377,7 +375,7 @@ namespace CopyrightObjectSearch.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParnterWorkId");
+                    b.HasIndex("PartnerWorkId");
 
                     b.HasIndex("PartnerWorkSourceId");
 
@@ -652,6 +650,12 @@ namespace CopyrightObjectSearch.Server.Migrations
                             Id = 2,
                             Code = "SearchPartnerWork",
                             Description = "Пошук творів партнерів"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "SearchRightHolderWork",
+                            Description = "Пошук творів правовласників"
                         });
                 });
 
@@ -719,9 +723,9 @@ namespace CopyrightObjectSearch.Server.Migrations
 
             modelBuilder.Entity("CopyrightObjectSearch.Server.PartnerWorkToSource", b =>
                 {
-                    b.HasOne("CopyrightObjectSearch.Server.PartnerWork", "ParnterWork")
+                    b.HasOne("CopyrightObjectSearch.Server.PartnerWork", "PartnerWork")
                         .WithMany()
-                        .HasForeignKey("ParnterWorkId")
+                        .HasForeignKey("PartnerWorkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -731,7 +735,7 @@ namespace CopyrightObjectSearch.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ParnterWork");
+                    b.Navigation("PartnerWork");
 
                     b.Navigation("PartnerWorkSource");
                 });

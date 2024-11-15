@@ -70,7 +70,7 @@ namespace CopyrightObjectSearch.Server
                 .IsUnique(false);
 
             modelBuilder.Entity<PartnerWork>()
-                .HasIndex(x => new { x.NameId, x.AuthorsId, x.PerformersId, x.IswcId })
+                .HasIndex(x => new { x.AlbumId, x.NameId, x.AuthorsId, x.PerformersId, x.IswcId })
                 .IsUnique(true);
 
             modelBuilder
@@ -115,8 +115,9 @@ namespace CopyrightObjectSearch.Server
             modelBuilder
                 .Entity<UserTaskType>()
                 .HasData([
-                    new Role { Id = 1,  Code = "SeachSocWork"      , Description = "Пошук творів товариства" },
-                    new Role { Id = 2,  Code = "SearchPartnerWork" , Description = "Пошук творів партнерів"  },
+                    new Role { Id = 1,  Code = "SeachSocWork"          , Description = "Пошук творів товариства"      },
+                    new Role { Id = 2,  Code = "SearchPartnerWork"     , Description = "Пошук творів партнерів"       },
+                    new Role { Id = 3,  Code = "SearchRightHolderWork" , Description = "Пошук творів правовласників"  },
                 ]);
         }
 

@@ -5,16 +5,17 @@ create or alter procedure spUpdatePartnerWorkAlbums
 as
 begin
 
+-- do not normalize names here
 drop table if exists TmpInitialNames
 select 
-	  Id			 as MwId
-	, ResourceTitle  as Names
+	  Id			           as MwId
+	, left(ResourceTitle, 64)  as Names
 into TmpInitialNames
 from Ddex..IdentMw
 
 delete from PartnerWorkAlbums
 insert PartnerWorkAlbums (Name)
-select distinct left(Names, 64)
+select distinct Names
 from TmpInitialNames
 
 update t1

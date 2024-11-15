@@ -2,7 +2,8 @@ use [RadioStationReports]
 go
 
 create or alter procedure spSelectDistribution
-	@ReportId int
+	  @ReportId int
+	, @lineNr int = null
 as
 begin
 
@@ -100,6 +101,7 @@ from ReportLines t1
 		and t2.FoundIn = t3.FoundIn
 		and t2.FoundCde = t3.FoundCde
 where t1.reportId = @ReportId
+	and (@lineNr is null or t1.LineNr = @lineNr)
 order by t1.LineNr
 
 update #ReportDistribution
@@ -156,7 +158,7 @@ set
 	, t1.TotalShareToPay	= t2.TotalShareToPay
 from #ReportDistribution t1
 	join TmpSums t2 on t1.LineNr = t2.LineNr
-where t1.reportId = @ReportId
+--where t1.reportId = @ReportId
 
 update t1
 set t1.FoundRhPerSocToPayName = trim(t3.shortName)
@@ -164,7 +166,7 @@ set t1.FoundRhPerSocToPayName = trim(t3.shortName)
 from #ReportDistribution t1
 	join MediaService..Community t2 on t1.FoundRhPerSocToPayCde = cast(t2.interCode as int)
 	join MediaService..vCustomerNamesShort t3 on t2.CustId = t3.CustId
-where t1.reportId = @ReportId
+--where t1.reportId = @ReportId
 
 update t1
 set t1.FoundRhMecSocToPayName = trim(t3.shortName)
@@ -172,7 +174,7 @@ set t1.FoundRhMecSocToPayName = trim(t3.shortName)
 from #ReportDistribution t1
 	join MediaService..Community t2 on t1.FoundRhMecSocToPayCde = cast(t2.interCode as int)
 	join MediaService..vCustomerNamesShort t3 on t2.CustId = t3.CustId
-where t1.reportId = @ReportId
+--where t1.reportId = @ReportId
 
 -- Проставляємо CustId на основі IpBaseNr
 update t1
@@ -192,22 +194,22 @@ set
 from #ReportDistribution t1
 	join MediaService..AgreementAddRh t2 on t1.FoundRhCustId = t2.custId
 	join MediaService..AgreementStatus t3 on t2.agrStatus = t3.codeI
-where t1.reportId = @ReportId
+--where t1.reportId = @ReportId
 
 -- Проставляємо імена авторів із СМАРТУ
 update t1
 set t1.FoundRhName = t2.ShortName
 from #ReportDistribution t1
 	join vCustomerNamesShort t2 on t1.FoundRhCustId = t2.CustId
-where t1.reportId = @ReportId
+--where t1.reportId = @ReportId
 
 -- Проставляємо імена авторів із ВІД
 update t1
 set t1.FoundRhName = trim(concat(t2.Name, ' ', t2.FstName))
 from #ReportDistribution t1
 	join SocIpi..IpiName t2 on t1.FoundRhIpNameNr = t2.IpNameNr
-where t1.reportId = @ReportId
-	and t1.FoundRhName = ''
+where t1.FoundRhName = ''
+--	and t1.reportId = @ReportId
 
 --  Проставляємо субвидавців
 update t1
@@ -225,4 +227,4 @@ order by cast(LineNr as int)
 end
 go
 
--- exec spSelectDistribution 20
+-- exec spSelectDistribution 20, 946

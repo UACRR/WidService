@@ -16,8 +16,8 @@ import { FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  loginFormControl    : FormControl = new FormControl('SuperAdmin');
-  passwordFormControl : FormControl = new FormControl('&SuperAdmin$');
+  loginFormControl    : FormControl = new FormControl('SUPERADMIN');
+  passwordFormControl : FormControl = new FormControl('&SUPERADMIN$');
   
   errorText = '';
 

@@ -5,6 +5,8 @@ create or alter procedure spUpdatePartnerWorkSources
 as
 begin
 
+delete from PartnerWorkSources
+
 insert PartnerWorkSources (
 	  Title
 	, PartnerId
@@ -36,7 +38,7 @@ from  Ddex..DdexReport t1
 		and t2.year									 = t3.year
 		and isnull(t2.Quarter, 0)					 = t3.Quarter
 		and isnull(t2.Month, 0)						 = t3.Month
-where t1.NetRevenue is null -- skip secondary Deezer reports
+where t1.NetRevenue is not null -- skip secondary Deezer reports
 	and t3.PartnerId is null
 
 end

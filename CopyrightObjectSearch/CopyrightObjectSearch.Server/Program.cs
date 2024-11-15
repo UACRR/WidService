@@ -63,6 +63,17 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
+// >>>>> Create super user if not exists
+var dbContext = app.Services.CreateScope().ServiceProvider.GetService<CopyrightObjectSearchDbContext>();
+if(dbContext != null )
+{
+    var userAdministrationRqHandler = new UserAdministrationRqHandler(dbContext);
+    userAdministrationRqHandler.CreateSuperAdmin();
+}
+// <<<<< Create super user if not exists
+
+
+
 Console.WriteLine("CopyrightObjectSearch.Server initialized");
 
 app.Run();

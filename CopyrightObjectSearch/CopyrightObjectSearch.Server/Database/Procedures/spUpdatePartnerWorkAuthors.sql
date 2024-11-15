@@ -22,8 +22,8 @@ from TmpNormalizedNames
 update t1
 set t1.AuthorsId = t3.Id
 from TmpPartnerWorks t1
-	join TmpInitialNames t2 on t1.MwId = t2.MwId
-	join PartnerWorkAuthors t3 on t2.Names = t3.Name
+	join TmpNormalizedNames t2 on t1.MwId = t2.MwId
+	join PartnerWorkAuthors t3 on left(t2.Names, 256) = t3.Name
 
 end
 

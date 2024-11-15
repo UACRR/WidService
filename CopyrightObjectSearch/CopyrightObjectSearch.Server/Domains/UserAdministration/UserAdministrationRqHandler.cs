@@ -32,6 +32,56 @@ namespace CopyrightObjectSearch.Server
             return crypto;
         }
 
+        public void CreateSuperAdmin()
+        {
+            var superAdmin = _dbContext.Users
+                .SingleOrDefault(x => x.Login.ToUpper() == "SUPERADMIN");
+            if (superAdmin != null)
+            {
+                return;
+            }
+
+            var uid = Guid.NewGuid().ToString();
+            var newUserName = "SUPERADMIN";
+            var newUserLogin = "SUPERADMIN";
+
+            var newUser = new User
+            {
+                Name = newUserName,
+                Login = newUserLogin,
+                PasswordHash = CreatePasswordHash(newUserLogin),
+                IsPwdDefault = false,
+                IsBlocked = false,
+                IsSuperUser = true,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+
+                UserRoles = [
+                    new UserRole
+                    {
+                        RoleId = 1,
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now,
+                    },
+                    new UserRole
+                    {
+                        RoleId = 2,
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now,
+                    },
+                    new UserRole
+                    {
+                        RoleId = 3,
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now,
+                    }
+                ],
+            };
+
+            _dbContext.Users.Add(newUser);
+            _dbContext.SaveChanges();
+        }
+
         public GetUsersRsp GetUsers()
         {
             var users = _dbContext.Users

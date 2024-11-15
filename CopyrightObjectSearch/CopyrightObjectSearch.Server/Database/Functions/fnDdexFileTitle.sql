@@ -8,7 +8,7 @@ create or alter function fnDdexFileTitle
 	, @quarter		int
 	, @month		int
 )
-returns varchar(255)
+returns nvarchar(255)
 as
 begin
 

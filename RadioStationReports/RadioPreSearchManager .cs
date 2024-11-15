@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Excel = Microsoft.Office.Interop.Excel;
 using Range = Microsoft.Office.Interop.Excel.Range;
 
 namespace RadioStationReports
@@ -119,10 +118,10 @@ namespace RadioStationReports
             _reportLines = new List<ReportLine>();
 
             //Create COM Objects. Create a COM object for everything that is referenced
-            Excel.Application xlApp = new Excel.Application();
-            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(fileFullName);
-            Excel._Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
-            Excel.Range xlRange = xlWorksheet.UsedRange;
+            Application xlApp = new Application();
+            Workbook xlWorkbook = xlApp.Workbooks.Open(fileFullName);
+            _Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
+            Range xlRange = xlWorksheet.UsedRange;
 
             int rowCount = xlRange.Rows.Count;
             int colCount = xlRange.Columns.Count;
@@ -137,7 +136,7 @@ namespace RadioStationReports
             for (int i = 2; i <= rowCount; i++)
             {
 
-                var cell = (Excel.Range)xlWorksheet.Cells[i, 1];
+                var cell = (Range)xlWorksheet.Cells[i, 1];
                 var seqNrStr = cell.Text;
                 int seqNr;
                 if (!int.TryParse((string)seqNrStr, out seqNr))
@@ -145,31 +144,31 @@ namespace RadioStationReports
                     break;
                 }
 
-                cell = (Excel.Range)xlWorksheet.Cells[i, 2];
+                cell = (Range)xlWorksheet.Cells[i, 2];
                 string name = Convert.ToString(cell.Text == null ? "" : cell.Text);
                 name = name.Trim().Replace('\t', ' ');
 
-                cell = (Excel.Range)xlWorksheet.Cells[i, 3];
+                cell = (Range)xlWorksheet.Cells[i, 3];
                 string performer = Convert.ToString(cell.Text == null ? "" : cell.Text);
                 performer = performer.Trim().Replace('\t', ' ');
 
-                cell = (Excel.Range)xlWorksheet.Cells[i, 4];
+                cell = (Range)xlWorksheet.Cells[i, 4];
                 string musicAuthor = Convert.ToString(cell.Text == null ? "" : cell.Text);
                 musicAuthor = musicAuthor.Trim().Replace('\t', ' ');
 
-                cell = (Excel.Range)xlWorksheet.Cells[i, 5];
+                cell = (Range)xlWorksheet.Cells[i, 5];
                 string textAuthor = Convert.ToString(cell.Text == null ? "" : cell.Text);
                 textAuthor = textAuthor.Trim().Replace('\t', ' ');
 
-                cell = (Excel.Range)xlWorksheet.Cells[i, 6];
+                cell = (Range)xlWorksheet.Cells[i, 6];
                 string duratrion = Convert.ToString(cell.Text == null ? "" : cell.Text);
                 duratrion = duratrion.Trim().Replace('\t', ' ');
 
-                cell = (Excel.Range)xlWorksheet.Cells[i, 7];
+                cell = (Range)xlWorksheet.Cells[i, 7];
                 string countUses = Convert.ToString(cell.Text == null ? "" : cell.Text);
                 countUses = countUses.Trim().Replace('\t', ' ');
 
-                cell = (Excel.Range)xlWorksheet.Cells[i, 8];
+                cell = (Range)xlWorksheet.Cells[i, 8];
                 string totalDuration = Convert.ToString(cell.Text == null ? "" : cell.Text);
                 totalDuration = totalDuration.Trim().Replace('\t', ' ');
 
@@ -389,6 +388,11 @@ namespace RadioStationReports
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@reportId", _reportId);
             using var r = cmd.ExecuteReader();
+            FillWorks(r);
+        }
+
+        private void FillWorks(SqlDataReader r)
+        {
             _works = new List<Work>();
             while (r.Read())
             {
@@ -413,6 +417,23 @@ namespace RadioStationReports
                 reportWork.MatchingWorks = new List<MatchingWork>();
                 _works.Add(reportWork);
             }
+        }
+
+        public void LoadReportWorkForLine(SqlCommand cmd, int lineNr)
+        {
+            cmd.CommandText = $@"
+                select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Share
+                from RadioStationReports..ReportLines t1
+                    join RadioStationReports..Works t2 on t1.WorkId = t2.Id
+                where t1.ReportId = @reportId 
+                    and t1.LineNr = @lineNr
+            ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@reportId", _reportId);
+            cmd.Parameters.AddWithValue("@lineNr", lineNr);
+            using var r = cmd.ExecuteReader();
+            FillWorks(r);
         }
 
         public void LoadMatchingWorks(SqlCommand cmd, bool unprocessedOnly)
@@ -788,6 +809,16 @@ namespace RadioStationReports
             cmd.ExecuteNonQuery();
         }
 
+        public void CalcLineShares(SqlCommand cmd, int lineNr)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "spCreateReportAuthors";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@reportId", _reportId);
+            cmd.Parameters.AddWithValue("@lineNr", lineNr);
+            cmd.ExecuteNonQuery();
+        }
+
         public void InsertIswcs(SqlCommand cmd)
         {
             cmd.CommandType = CommandType.StoredProcedure;
@@ -832,13 +863,13 @@ namespace RadioStationReports
             });
         }
 
-        private static void SetCellValue(Excel._Worksheet xlWorkSheet, int row, int col, string value)
+        private static void SetCellValue(_Worksheet xlWorkSheet, int row, int col, string value)
         {
             Range cell = (Range)xlWorkSheet.Cells[row, col];
             cell.Value = value;
         }
 
-        private static void SetCellFormula(Excel._Worksheet xlWorkSheet, int row, int col, string value)
+        private static void SetCellFormula(_Worksheet xlWorkSheet, int row, int col, string value)
         {
             Range cell = (Range)xlWorkSheet.Cells[row, col];
             cell.Formula = value;
@@ -874,8 +905,8 @@ namespace RadioStationReports
                     dataArray[idxRow, idxCol++] = x.Performer;
                 });
 
-                var c1 = (Excel.Range)xlWorksheet.Cells[1, 1];
-                var c2 = (Excel.Range)xlWorksheet.Cells[1 + reportLines.Count, 6];
+                var c1 = (Range)xlWorksheet.Cells[1, 1];
+                var c2 = (Range)xlWorksheet.Cells[1 + reportLines.Count, 6];
                 var range = xlWorksheet.get_Range(c1, c2);
                 range.Value2 = dataArray;
 
@@ -904,24 +935,24 @@ namespace RadioStationReports
                 cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 cells.Borders.Weight = XlBorderWeight.xlThin;
 
-                var row = (Excel.Range)xlWorksheet.Rows[1];
+                var row = (Range)xlWorksheet.Rows[1];
                 row.Font.Bold = true;
                 row.Borders.Weight = XlBorderWeight.xlMedium;
 
-                var col = (Excel.Range)xlWorksheet.Columns[1];
+                var col = (Range)xlWorksheet.Columns[1];
                 col.ColumnWidth = 20;
                 col.Locked = false;
-                col = (Excel.Range)xlWorksheet.Columns[2];
+                col = (Range)xlWorksheet.Columns[2];
                 col.ColumnWidth = 20;
                 col.Locked = false;
-                col = (Excel.Range)xlWorksheet.Columns[3];
+                col = (Range)xlWorksheet.Columns[3];
                 col.ColumnWidth = 20;
                 col.Locked = false;
-                col = (Excel.Range)xlWorksheet.Columns[4];
+                col = (Range)xlWorksheet.Columns[4];
                 col.ColumnWidth = 8;
-                col = (Excel.Range)xlWorksheet.Columns[5];
+                col = (Range)xlWorksheet.Columns[5];
                 col.ColumnWidth = 60;
-                col = (Excel.Range)xlWorksheet.Columns[6];
+                col = (Range)xlWorksheet.Columns[6];
                 col.ColumnWidth = 60;
 
                 xlWorksheet.Application.ActiveWindow.SplitRow = 1;
@@ -943,14 +974,14 @@ namespace RadioStationReports
                 ErrorText = "";
                 var data = new List<ImportData>();
                 Helpers.ReadExcelFile( Path.Combine(report.FilePath, report.SearchFileName), xlWorksheet => {
-                    Excel.Range xlRange = xlWorksheet.UsedRange;
+                    Range xlRange = xlWorksheet.UsedRange;
                     int rowCount = xlRange.Rows.Count;
                     int colCount = xlRange.Columns.Count;
 
                     ProgressMax = rowCount * 2 + 1;
 
-                    var fromCell = (Excel.Range)xlWorksheet.Cells[1, 1];
-                    var toCell = (Excel.Range)xlWorksheet.Cells[rowCount, 4];
+                    var fromCell = (Range)xlWorksheet.Cells[1, 1];
+                    var toCell = (Range)xlWorksheet.Cells[rowCount, 4];
                     var values = (object[,])xlWorksheet.get_Range(fromCell, toCell).Value2;
 
                     for(var rowIdx = 2; rowIdx <= rowCount; rowIdx++)
@@ -1144,8 +1175,8 @@ namespace RadioStationReports
                     row++;
                 });
 
-                var c1 = (Excel.Range)xlWorksheet.Cells[3, 1];
-                var c2 = (Excel.Range)xlWorksheet.Cells[3 + data.Count - 1, COL_COUNT];
+                var c1 = (Range)xlWorksheet.Cells[3, 1];
+                var c2 = (Range)xlWorksheet.Cells[3 + data.Count - 1, COL_COUNT];
                 var range = xlWorksheet.get_Range(c1, c2);
                 range.Value2 = dataArray;
 
@@ -1158,8 +1189,8 @@ namespace RadioStationReports
                 });
 
 
-                c1 = (Excel.Range)xlWorksheet.Cells[3, 14];
-                c2 = (Excel.Range)xlWorksheet.Cells[3 + data.Count - 1, 14];
+                c1 = (Range)xlWorksheet.Cells[3, 14];
+                c2 = (Range)xlWorksheet.Cells[3 + data.Count - 1, 14];
                 range = xlWorksheet.get_Range(c1, c2);
                 range.Formula = dataArray;
 
@@ -1172,13 +1203,13 @@ namespace RadioStationReports
                 });
 
 
-                c1 = (Excel.Range)xlWorksheet.Cells[3, 17];
-                c2 = (Excel.Range)xlWorksheet.Cells[3 + data.Count - 1, 17];
+                c1 = (Range)xlWorksheet.Cells[3, 17];
+                c2 = (Range)xlWorksheet.Cells[3 + data.Count - 1, 17];
                 range = xlWorksheet.get_Range(c1, c2);
                 range.Formula = dataArray;
 
-                c1 = (Excel.Range)xlWorksheet.Cells[ROW_FISRT_DATA, COL_RIGHTHOLDER_SHARE];
-                c2 = (Excel.Range)xlWorksheet.Cells[ROW_FISRT_DATA + data.Count - 1, COL_RIGHTHOLDER_SHARE_TOPAY];
+                c1 = (Range)xlWorksheet.Cells[ROW_FISRT_DATA, COL_RIGHTHOLDER_SHARE];
+                c2 = (Range)xlWorksheet.Cells[ROW_FISRT_DATA + data.Count - 1, COL_RIGHTHOLDER_SHARE_TOPAY];
                 range = xlWorksheet.get_Range(c1, c2);
                 range.NumberFormat = $"0.00%";
 
@@ -1194,16 +1225,16 @@ namespace RadioStationReports
                 const int COL_SHARE_TOPAY = 16;
                 const int ROW_START = 3;
 
-                Excel.Range xlRange = xlWorksheet.UsedRange;
+                Range xlRange = xlWorksheet.UsedRange;
                 int rowCount = xlRange.Rows.Count;
                 int colCount = xlRange.Columns.Count;
 
-                var fromCell = (Excel.Range)xlWorksheet.Cells[ROW_START, COL_CODE];
-                var toCell = (Excel.Range)xlWorksheet.Cells[rowCount, COL_CODE];
+                var fromCell = (Range)xlWorksheet.Cells[ROW_START, COL_CODE];
+                var toCell = (Range)xlWorksheet.Cells[rowCount, COL_CODE];
                 object[,] workCodes = (object[,])xlWorksheet.get_Range(fromCell, toCell).Value2;
 
-                fromCell = (Excel.Range)xlWorksheet.Cells[ROW_START, COL_SHARE_TOPAY];
-                toCell = (Excel.Range)xlWorksheet.Cells[rowCount, COL_SHARE_TOPAY];
+                fromCell = (Range)xlWorksheet.Cells[ROW_START, COL_SHARE_TOPAY];
+                toCell = (Range)xlWorksheet.Cells[rowCount, COL_SHARE_TOPAY];
                 object[,] sharesToPay = (object[,])xlWorksheet.get_Range(fromCell, toCell).Value2;
 
                 List<List<double?>> inputShareSets = new List<List<double?>>();
@@ -1249,13 +1280,13 @@ namespace RadioStationReports
                     });
                 });
 
-                var c1 = (Excel.Range)xlWorksheet.Cells[ROW_START, COL_SHARE_TOTAL];
-                var c2 = (Excel.Range)xlWorksheet.Cells[rowCount, COL_SHARE_TOTAL];
+                var c1 = (Range)xlWorksheet.Cells[ROW_START, COL_SHARE_TOTAL];
+                var c2 = (Range)xlWorksheet.Cells[rowCount, COL_SHARE_TOTAL];
                 var range = xlWorksheet.get_Range(c1, c2);
                 range.Value2 = dataArraySharesTotal;
 
-                c1 = (Excel.Range)xlWorksheet.Cells[ROW_START, COL_SHARE_TOPAY];
-                c2 = (Excel.Range)xlWorksheet.Cells[rowCount, COL_SHARE_TOPAY];
+                c1 = (Range)xlWorksheet.Cells[ROW_START, COL_SHARE_TOPAY];
+                c2 = (Range)xlWorksheet.Cells[rowCount, COL_SHARE_TOPAY];
                 range = xlWorksheet.get_Range(c1, c2);
                 range.Value2 = dataArrayShares;
 

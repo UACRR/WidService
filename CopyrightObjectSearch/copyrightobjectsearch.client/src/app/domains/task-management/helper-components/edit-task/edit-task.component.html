@@ -1,0 +1,29 @@
+<div class="component-div" [@slideInOut]>
+  <div class="title-div">
+    Включити в завдання
+  </div>
+  <div>
+    <span class="task-type-span">
+      <input type="checkbox" [formControl]="taskTypeCheckFormControls[0]" (click)=[onTaskTypeCheckClicked(0)] />Найпопулярніші твори
+    </span>
+    <span>&nbsp;</span>
+    <span class="task-type-span">
+      <input type="checkbox" [formControl]="taskTypeCheckFormControls[1]" (click)=[onTaskTypeCheckClicked(1)] />Твори із звіту партнера
+    </span>
+    <span>&nbsp;</span>
+    <span class="task-type-span">
+      <input type="checkbox" [formControl]="taskTypeCheckFormControls[2]" (click)=[onTaskTypeCheckClicked(2)] />Твори правовласника
+    </span>
+  </div>
+
+  <div class="title-div">
+    Звіт партнера
+  </div>
+
+  <div>
+    <span class="partner-report-span">
+      {{getReportText()}}
+    </span>
+  </div>
+
+</div>
