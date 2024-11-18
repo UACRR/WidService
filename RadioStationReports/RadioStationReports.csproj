@@ -23,12 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="FormMainRadio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

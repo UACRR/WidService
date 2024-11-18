@@ -29,125 +29,310 @@ namespace RadioStationReports
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelMain = new System.Windows.Forms.TableLayoutPanel();
-            this.panelBottom = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnShowReport = new System.Windows.Forms.Button();
-            this.btnRegisterReport = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lvReports = new System.Windows.Forms.ListView();
-            this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
-            this.panelMain.SuspendLayout();
-            this.panelBottom.SuspendLayout();
-            this.SuspendLayout();
+            panelMain = new System.Windows.Forms.TableLayoutPanel();
+            panelBottom = new System.Windows.Forms.FlowLayoutPanel();
+            btnClose = new System.Windows.Forms.Button();
+            btnShowReport = new System.Windows.Forms.Button();
+            btnArhive = new System.Windows.Forms.Button();
+            btnDelete = new System.Windows.Forms.Button();
+            btnParams = new System.Windows.Forms.Button();
+            btnRegisterReport = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            lvReports = new System.Windows.Forms.ListView();
+            panelFilterArchived = new System.Windows.Forms.FlowLayoutPanel();
+            radioFilterActive = new System.Windows.Forms.RadioButton();
+            radioFilterArchived = new System.Windows.Forms.RadioButton();
+            panelFilter = new System.Windows.Forms.FlowLayoutPanel();
+            label2 = new System.Windows.Forms.Label();
+            cbFilterRadioStation = new System.Windows.Forms.ComboBox();
+            label3 = new System.Windows.Forms.Label();
+            cbFilterStartYear = new System.Windows.Forms.ComboBox();
+            filterStartMonth = new System.Windows.Forms.ComboBox();
+            label4 = new System.Windows.Forms.Label();
+            cbFilterEndYEar = new System.Windows.Forms.ComboBox();
+            cbFilterEndMonth = new System.Windows.Forms.ComboBox();
+            btnFilterApply = new System.Windows.Forms.Button();
+            openFileDlg = new System.Windows.Forms.OpenFileDialog();
+            panelMain.SuspendLayout();
+            panelBottom.SuspendLayout();
+            panelFilterArchived.SuspendLayout();
+            panelFilter.SuspendLayout();
+            SuspendLayout();
             // 
             // panelMain
             // 
-            this.panelMain.ColumnCount = 1;
-            this.panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelMain.Controls.Add(this.panelBottom, 0, 3);
-            this.panelMain.Controls.Add(this.label1, 0, 0);
-            this.panelMain.Controls.Add(this.lvReports, 0, 2);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 0);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.RowCount = 5;
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelMain.Size = new System.Drawing.Size(800, 450);
-            this.panelMain.TabIndex = 0;
+            panelMain.ColumnCount = 1;
+            panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            panelMain.Controls.Add(panelBottom, 0, 4);
+            panelMain.Controls.Add(label1, 0, 0);
+            panelMain.Controls.Add(lvReports, 0, 3);
+            panelMain.Controls.Add(panelFilterArchived, 0, 1);
+            panelMain.Controls.Add(panelFilter, 0, 2);
+            panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            panelMain.Location = new System.Drawing.Point(0, 0);
+            panelMain.Name = "panelMain";
+            panelMain.RowCount = 6;
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            panelMain.Size = new System.Drawing.Size(800, 450);
+            panelMain.TabIndex = 0;
             // 
             // panelBottom
             // 
-            this.panelBottom.Controls.Add(this.btnClose);
-            this.panelBottom.Controls.Add(this.btnShowReport);
-            this.panelBottom.Controls.Add(this.btnRegisterReport);
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBottom.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.panelBottom.Location = new System.Drawing.Point(3, 413);
-            this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(794, 26);
-            this.panelBottom.TabIndex = 0;
+            panelBottom.Controls.Add(btnClose);
+            panelBottom.Controls.Add(btnShowReport);
+            panelBottom.Controls.Add(btnArhive);
+            panelBottom.Controls.Add(btnDelete);
+            panelBottom.Controls.Add(btnParams);
+            panelBottom.Controls.Add(btnRegisterReport);
+            panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            panelBottom.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            panelBottom.Location = new System.Drawing.Point(3, 413);
+            panelBottom.Name = "panelBottom";
+            panelBottom.Size = new System.Drawing.Size(794, 26);
+            panelBottom.TabIndex = 0;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(679, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(112, 23);
-            this.btnClose.TabIndex = 0;
-            this.btnClose.Text = "Закрити Форму";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            btnClose.Location = new System.Drawing.Point(735, 3);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new System.Drawing.Size(56, 23);
+            btnClose.TabIndex = 0;
+            btnClose.Text = "Вихід";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // btnShowReport
             // 
-            this.btnShowReport.Location = new System.Drawing.Point(509, 3);
-            this.btnShowReport.Name = "btnShowReport";
-            this.btnShowReport.Size = new System.Drawing.Size(164, 23);
-            this.btnShowReport.TabIndex = 0;
-            this.btnShowReport.Text = "Показати вибраний звіт";
-            this.btnShowReport.UseVisualStyleBackColor = true;
-            this.btnShowReport.Click += new System.EventHandler(this.btnShowReport_Click);
+            btnShowReport.Location = new System.Drawing.Point(649, 3);
+            btnShowReport.Name = "btnShowReport";
+            btnShowReport.Size = new System.Drawing.Size(80, 23);
+            btnShowReport.TabIndex = 0;
+            btnShowReport.Text = "Показати";
+            btnShowReport.UseVisualStyleBackColor = true;
+            btnShowReport.Click += btnShowReport_Click;
+            // 
+            // btnArhive
+            // 
+            btnArhive.Location = new System.Drawing.Point(568, 3);
+            btnArhive.Name = "btnArhive";
+            btnArhive.Size = new System.Drawing.Size(75, 23);
+            btnArhive.TabIndex = 1;
+            btnArhive.Text = "До архіву";
+            btnArhive.UseVisualStyleBackColor = true;
+            btnArhive.Click += btnArhive_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new System.Drawing.Point(487, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new System.Drawing.Size(75, 23);
+            btnDelete.TabIndex = 1;
+            btnDelete.Text = "Видалити";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnParams
+            // 
+            btnParams.Location = new System.Drawing.Point(398, 3);
+            btnParams.Name = "btnParams";
+            btnParams.Size = new System.Drawing.Size(83, 23);
+            btnParams.TabIndex = 1;
+            btnParams.Text = "Параметри";
+            btnParams.UseVisualStyleBackColor = true;
+            btnParams.Click += btnParams_Click;
             // 
             // btnRegisterReport
             // 
-            this.btnRegisterReport.Location = new System.Drawing.Point(331, 3);
-            this.btnRegisterReport.Name = "btnRegisterReport";
-            this.btnRegisterReport.Size = new System.Drawing.Size(172, 23);
-            this.btnRegisterReport.TabIndex = 0;
-            this.btnRegisterReport.Text = "Зареєструвати новий звіт";
-            this.btnRegisterReport.UseVisualStyleBackColor = true;
-            this.btnRegisterReport.Click += new System.EventHandler(this.btnRegisterReport_Click);
+            btnRegisterReport.Location = new System.Drawing.Point(220, 3);
+            btnRegisterReport.Name = "btnRegisterReport";
+            btnRegisterReport.Size = new System.Drawing.Size(172, 23);
+            btnRegisterReport.TabIndex = 0;
+            btnRegisterReport.Text = "Зареєструвати новий звіт";
+            btnRegisterReport.UseVisualStyleBackColor = true;
+            btnRegisterReport.Click += btnRegisterReport_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(5);
-            this.label1.Size = new System.Drawing.Size(794, 30);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Зареєстровані в базі даних звіти";
+            label1.AutoSize = true;
+            label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            label1.Location = new System.Drawing.Point(3, 0);
+            label1.Name = "label1";
+            label1.Padding = new System.Windows.Forms.Padding(5);
+            label1.Size = new System.Drawing.Size(794, 30);
+            label1.TabIndex = 1;
+            label1.Text = "Зареєстровані в базі даних звіти";
             // 
             // lvReports
             // 
-            this.lvReports.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvReports.FullRowSelect = true;
-            this.lvReports.GridLines = true;
-            this.lvReports.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvReports.HideSelection = false;
-            this.lvReports.Location = new System.Drawing.Point(3, 41);
-            this.lvReports.MultiSelect = false;
-            this.lvReports.Name = "lvReports";
-            this.lvReports.Size = new System.Drawing.Size(794, 366);
-            this.lvReports.TabIndex = 2;
-            this.lvReports.UseCompatibleStateImageBehavior = false;
-            this.lvReports.View = System.Windows.Forms.View.Details;
-            this.lvReports.SelectedIndexChanged += new System.EventHandler(this.lvReports_SelectedIndexChanged);
-            this.lvReports.DoubleClick += new System.EventHandler(this.lvReports_DoubleClick);
+            lvReports.Dock = System.Windows.Forms.DockStyle.Fill;
+            lvReports.FullRowSelect = true;
+            lvReports.GridLines = true;
+            lvReports.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            lvReports.HideSelection = false;
+            lvReports.Location = new System.Drawing.Point(3, 98);
+            lvReports.MultiSelect = false;
+            lvReports.Name = "lvReports";
+            lvReports.Size = new System.Drawing.Size(794, 309);
+            lvReports.TabIndex = 2;
+            lvReports.UseCompatibleStateImageBehavior = false;
+            lvReports.View = System.Windows.Forms.View.Details;
+            lvReports.SelectedIndexChanged += lvReports_SelectedIndexChanged;
+            lvReports.DoubleClick += lvReports_DoubleClick;
+            // 
+            // panelFilterArchived
+            // 
+            panelFilterArchived.Controls.Add(radioFilterActive);
+            panelFilterArchived.Controls.Add(radioFilterArchived);
+            panelFilterArchived.Dock = System.Windows.Forms.DockStyle.Fill;
+            panelFilterArchived.Location = new System.Drawing.Point(3, 33);
+            panelFilterArchived.Name = "panelFilterArchived";
+            panelFilterArchived.Size = new System.Drawing.Size(794, 24);
+            panelFilterArchived.TabIndex = 3;
+            // 
+            // radioFilterActive
+            // 
+            radioFilterActive.AutoSize = true;
+            radioFilterActive.Location = new System.Drawing.Point(3, 3);
+            radioFilterActive.Name = "radioFilterActive";
+            radioFilterActive.Size = new System.Drawing.Size(67, 19);
+            radioFilterActive.TabIndex = 0;
+            radioFilterActive.TabStop = true;
+            radioFilterActive.Text = "Активні";
+            radioFilterActive.UseVisualStyleBackColor = true;
+            // 
+            // radioFilterArchived
+            // 
+            radioFilterArchived.AutoSize = true;
+            radioFilterArchived.Location = new System.Drawing.Point(76, 3);
+            radioFilterArchived.Name = "radioFilterArchived";
+            radioFilterArchived.Size = new System.Drawing.Size(65, 19);
+            radioFilterArchived.TabIndex = 0;
+            radioFilterArchived.TabStop = true;
+            radioFilterArchived.Text = "В архіві";
+            radioFilterArchived.UseVisualStyleBackColor = true;
+            // 
+            // panelFilter
+            // 
+            panelFilter.Controls.Add(label2);
+            panelFilter.Controls.Add(cbFilterRadioStation);
+            panelFilter.Controls.Add(label3);
+            panelFilter.Controls.Add(cbFilterStartYear);
+            panelFilter.Controls.Add(filterStartMonth);
+            panelFilter.Controls.Add(label4);
+            panelFilter.Controls.Add(cbFilterEndYEar);
+            panelFilter.Controls.Add(cbFilterEndMonth);
+            panelFilter.Controls.Add(btnFilterApply);
+            panelFilter.Dock = System.Windows.Forms.DockStyle.Fill;
+            panelFilter.Location = new System.Drawing.Point(3, 63);
+            panelFilter.Name = "panelFilter";
+            panelFilter.Size = new System.Drawing.Size(794, 29);
+            panelFilter.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(3, 0);
+            label2.Name = "label2";
+            label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            label2.Size = new System.Drawing.Size(92, 21);
+            label2.TabIndex = 0;
+            label2.Text = "Від радіостанції";
+            // 
+            // cbFilterRadioStation
+            // 
+            cbFilterRadioStation.FormattingEnabled = true;
+            cbFilterRadioStation.Location = new System.Drawing.Point(101, 3);
+            cbFilterRadioStation.Name = "cbFilterRadioStation";
+            cbFilterRadioStation.Size = new System.Drawing.Size(121, 23);
+            cbFilterRadioStation.TabIndex = 2;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(228, 0);
+            label3.Name = "label3";
+            label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            label3.Size = new System.Drawing.Size(75, 21);
+            label3.TabIndex = 0;
+            label3.Text = "за період від";
+            // 
+            // cbFilterStartYear
+            // 
+            cbFilterStartYear.FormattingEnabled = true;
+            cbFilterStartYear.Location = new System.Drawing.Point(309, 3);
+            cbFilterStartYear.Name = "cbFilterStartYear";
+            cbFilterStartYear.Size = new System.Drawing.Size(73, 23);
+            cbFilterStartYear.TabIndex = 2;
+            // 
+            // filterStartMonth
+            // 
+            filterStartMonth.FormattingEnabled = true;
+            filterStartMonth.Location = new System.Drawing.Point(388, 3);
+            filterStartMonth.Name = "filterStartMonth";
+            filterStartMonth.Size = new System.Drawing.Size(44, 23);
+            filterStartMonth.TabIndex = 1;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(438, 0);
+            label4.Name = "label4";
+            label4.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            label4.Size = new System.Drawing.Size(20, 21);
+            label4.TabIndex = 0;
+            label4.Text = "до";
+            // 
+            // cbFilterEndYEar
+            // 
+            cbFilterEndYEar.FormattingEnabled = true;
+            cbFilterEndYEar.Location = new System.Drawing.Point(464, 3);
+            cbFilterEndYEar.Name = "cbFilterEndYEar";
+            cbFilterEndYEar.Size = new System.Drawing.Size(87, 23);
+            cbFilterEndYEar.TabIndex = 2;
+            // 
+            // cbFilterEndMonth
+            // 
+            cbFilterEndMonth.FormattingEnabled = true;
+            cbFilterEndMonth.Location = new System.Drawing.Point(557, 3);
+            cbFilterEndMonth.Name = "cbFilterEndMonth";
+            cbFilterEndMonth.Size = new System.Drawing.Size(60, 23);
+            cbFilterEndMonth.TabIndex = 1;
+            // 
+            // btnFilterApply
+            // 
+            btnFilterApply.Location = new System.Drawing.Point(623, 3);
+            btnFilterApply.Name = "btnFilterApply";
+            btnFilterApply.Size = new System.Drawing.Size(88, 23);
+            btnFilterApply.TabIndex = 3;
+            btnFilterApply.Text = "Завтосувати";
+            btnFilterApply.UseVisualStyleBackColor = true;
             // 
             // openFileDlg
             // 
-            this.openFileDlg.FileName = "openFileDialog1";
+            openFileDlg.FileName = "openFileDialog1";
             // 
             // FormMainReports
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panelMain);
-            this.Name = "FormMainReports";
-            this.Text = "Звіти радіо";
-            this.Load += new System.EventHandler(this.FormMainReports_Load);
-            this.panelMain.ResumeLayout(false);
-            this.panelMain.PerformLayout();
-            this.panelBottom.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(800, 450);
+            Controls.Add(panelMain);
+            Name = "FormMainReports";
+            Text = "Звіти радіо";
+            Load += FormMainReports_Load;
+            panelMain.ResumeLayout(false);
+            panelMain.PerformLayout();
+            panelBottom.ResumeLayout(false);
+            panelFilterArchived.ResumeLayout(false);
+            panelFilterArchived.PerformLayout();
+            panelFilter.ResumeLayout(false);
+            panelFilter.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -160,5 +345,21 @@ namespace RadioStationReports
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView lvReports;
         private System.Windows.Forms.OpenFileDialog openFileDlg;
+        private System.Windows.Forms.Button btnArhive;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnParams;
+        private System.Windows.Forms.FlowLayoutPanel panelFilterArchived;
+        private System.Windows.Forms.RadioButton radioFilterActive;
+        private System.Windows.Forms.RadioButton radioFilterArchived;
+        private System.Windows.Forms.FlowLayoutPanel panelFilter;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbFilterRadioStation;
+        private System.Windows.Forms.ComboBox cbFilterStartYear;
+        private System.Windows.Forms.ComboBox filterStartMonth;
+        private System.Windows.Forms.ComboBox cbFilterEndYEar;
+        private System.Windows.Forms.ComboBox cbFilterEndMonth;
+        private System.Windows.Forms.Button btnFilterApply;
     }
 }

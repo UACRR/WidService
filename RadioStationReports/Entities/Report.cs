@@ -10,10 +10,17 @@ namespace RadioStationReports
     public class Report
     {
         public int          Id                          { get; set; }
+        public int?         RadioStationId              { get; set; }
+        public string       RadioStationName            { get; set; }
+        public int?         StartYear		            { get; set; }
+        public int?         StartMonth	                { get; set; }
+        public int?         EndYear		                { get; set; }
+        public int?         EndMonth                    { get; set; }
         public string       FileName                    { get; set; }
         public string       FilePath                    { get; set; }
         public string       SearchFileName              { get; set; }
         public string       DistributionFileName        { get; set; }
+        public bool         IsArchived                  { get; set; }
         public DateTime?    CreatedAt                   { get; set; }
         public DateTime?    UpdatedAt                   { get; set; }
         public DateTime?    AutoSearchFinishedAt        { get; set; }
@@ -28,12 +35,29 @@ namespace RadioStationReports
         {
             var idx = 0;
             var report = new Report();
-            report.Id = r.GetInt32(idx++);
-            report.FileName = r.GetString(idx++);
-            report.FilePath = r.GetString(idx++);
+            report.Id = r.GetInt32(idx);
+            idx++;
+            report.RadioStationId = r.IsDBNull(idx) ? null : r.GetInt32(idx);
+            idx++;
+            report.RadioStationName = r.IsDBNull(idx) ? null : r.GetString(idx);
+            idx++;
+            report.StartYear = r.IsDBNull(idx) ? null : r.GetInt32(idx);
+            idx++;
+            report.StartMonth = r.IsDBNull(idx) ? null : r.GetInt32(idx);
+            idx++;
+            report.EndYear = r.IsDBNull(idx) ? null : r.GetInt32(idx);
+            idx++;
+            report.EndMonth = r.IsDBNull(idx) ? null : r.GetInt32(idx);
+            idx++;
+            report.FileName = r.GetString(idx);
+            idx++;
+            report.FilePath = r.GetString(idx);
+            idx++;
             report.SearchFileName = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;
             report.DistributionFileName = r.IsDBNull(idx) ? "" : r.GetString(idx);
+            idx++;
+            report.IsArchived =  r.IsDBNull(idx) ? false : r.GetBoolean(idx);
             idx++;
             report.CreatedAt = r.IsDBNull(idx) ? null : r.GetDateTime(idx);
             idx++;
