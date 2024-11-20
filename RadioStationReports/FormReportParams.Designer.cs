@@ -45,6 +45,7 @@
             panelRadioStation = new System.Windows.Forms.FlowLayoutPanel();
             cbRadioStation = new System.Windows.Forms.ComboBox();
             btnNewRadioStation = new System.Windows.Forms.Button();
+            btnDeleteRadioStation = new System.Windows.Forms.Button();
             btnAddRadioStation = new System.Windows.Forms.Button();
             button1 = new System.Windows.Forms.Button();
             panelActions = new System.Windows.Forms.FlowLayoutPanel();
@@ -216,6 +217,7 @@
             // 
             panelRadioStation.Controls.Add(cbRadioStation);
             panelRadioStation.Controls.Add(btnNewRadioStation);
+            panelRadioStation.Controls.Add(btnDeleteRadioStation);
             panelRadioStation.Controls.Add(btnAddRadioStation);
             panelRadioStation.Controls.Add(button1);
             panelRadioStation.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -230,19 +232,30 @@
             cbRadioStation.FormattingEnabled = true;
             cbRadioStation.Location = new System.Drawing.Point(3, 3);
             cbRadioStation.Name = "cbRadioStation";
-            cbRadioStation.Size = new System.Drawing.Size(181, 23);
+            cbRadioStation.Size = new System.Drawing.Size(116, 23);
             cbRadioStation.TabIndex = 0;
             cbRadioStation.SelectedIndexChanged += cbRadioStation_SelectedIndexChanged;
             cbRadioStation.TextUpdate += cbRadioStation_TextUpdate;
             // 
             // btnNewRadioStation
             // 
-            btnNewRadioStation.Location = new System.Drawing.Point(190, 3);
+            btnNewRadioStation.Location = new System.Drawing.Point(125, 3);
             btnNewRadioStation.Name = "btnNewRadioStation";
             btnNewRadioStation.Size = new System.Drawing.Size(75, 23);
             btnNewRadioStation.TabIndex = 3;
             btnNewRadioStation.Text = "Створити";
             btnNewRadioStation.UseVisualStyleBackColor = true;
+            btnNewRadioStation.Click += btnNewRadioStation_Click;
+            // 
+            // btnDeleteRadioStation
+            // 
+            btnDeleteRadioStation.Location = new System.Drawing.Point(206, 3);
+            btnDeleteRadioStation.Name = "btnDeleteRadioStation";
+            btnDeleteRadioStation.Size = new System.Drawing.Size(75, 23);
+            btnDeleteRadioStation.TabIndex = 3;
+            btnDeleteRadioStation.Text = "Видалити";
+            btnDeleteRadioStation.UseVisualStyleBackColor = true;
+            btnDeleteRadioStation.Click += btnDeleteRadioStation_Click;
             // 
             // btnAddRadioStation
             // 
@@ -363,5 +376,6 @@
         private System.Windows.Forms.TextBox tbFileName;
         private System.Windows.Forms.Button btnNewRadioStation;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDeleteRadioStation;
     }
 }

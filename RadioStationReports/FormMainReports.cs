@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,16 @@ namespace RadioStationReports
     public partial class FormMainReports : Form
     {
 
+        private class Filter
+        {
+            public string CurrentValue { get; set; }
+            public ComboBox FilterControl { get; set; }
+            public string ColumnName { get; set; }
+            public string ColumnParamName { get; set; }
+        }
+
         private List<Report> _reports;
+        private List<Filter> _filter;
 
         public FormMainReports()
         {
@@ -31,8 +41,85 @@ namespace RadioStationReports
             lvReports.Columns.Clear();
             lvReports.Columns.Add("№з/п", 60);
             lvReports.Columns.Add("Код", 60);
+            lvReports.Columns.Add("Радіостанція", 120);
+            lvReports.Columns.Add("Період", 120);
             lvReports.Columns.Add("Назва файлу", 300);
-            lvReports.Columns.Add("Розташування файлу", 500);
+
+            btnShowDetails.Text = "<";
+            splitPanelReports.Panel2Collapsed = true;
+
+            _filter = new List<Filter>()
+            {
+               new Filter {CurrentValue = "", FilterControl = cbFilterRadioStation, ColumnName = "t2.Name       " , ColumnParamName = "@RadioStationName"},
+               new Filter {CurrentValue = "", FilterControl = cbFilterStartYear   , ColumnName = "t1.StartYear	" , ColumnParamName = "@StartYear"       },
+               new Filter {CurrentValue = "", FilterControl = cbFilterStartMonth  , ColumnName = "t1.StartMonth " , ColumnParamName = "@StartMonth"      },
+               new Filter {CurrentValue = "", FilterControl = cbFilterEndYear     , ColumnName = "t1.EndYear	" , ColumnParamName = "@EndYear"         },
+               new Filter {CurrentValue = "", FilterControl = cbFilterEndMonth    , ColumnName = "t1.EndMonth   " , ColumnParamName = "@EndMonth"        }                     
+            };
+            radioFilterActive.Checked = true;
+            radioFilterArchived.Checked = false;
+
+            FillFilterControls();
+            UpdateFilterButtons();
+        }
+
+        private void FillFilterControls()
+        {
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = "select Name from RadioStations";
+
+                using (var r = cmd.ExecuteReader())
+                {
+                    cbFilterRadioStation.Items.Add("<Всі>");
+                    while (r.Read())
+                    {
+                        cbFilterRadioStation.Items.Add(r.GetString(0));
+                    }
+                }
+                cbFilterRadioStation.SelectedIndex = 0;
+            });
+
+            cbFilterStartYear.Items.Add("<Всі>");
+            cbFilterEndYear.Items.Add("<Всі>");
+            for (var year = Configuration.StartYear; year <= Configuration.EndYear; year++)
+            {
+                cbFilterStartYear.Items.Add(year.ToString());
+                cbFilterEndYear.Items.Add(year.ToString());
+            }
+            cbFilterStartYear.SelectedIndex = 0;
+            cbFilterEndYear.SelectedIndex = 0;
+
+            cbFilterStartMonth.Items.Add("<Всі>");
+            cbFilterEndMonth.Items.Add("<Всі>");
+            for (var Month = 1; Month <= 12; Month++)
+            {
+                cbFilterStartMonth.Items.Add(Month.ToString());
+                cbFilterEndMonth.Items.Add(Month.ToString());
+            }
+            cbFilterStartMonth.SelectedIndex = 0;
+            cbFilterEndMonth.SelectedIndex = 0;
+        }
+
+        private bool IsFilterChanged()
+        {
+            foreach (var filterItem in _filter)
+            {
+                if (filterItem.FilterControl.SelectedIndex == 0)
+                {
+                    if (filterItem.CurrentValue != "") return true;
+                }
+                else
+                {
+                    if (filterItem.FilterControl.Text != filterItem.CurrentValue) return true;
+                }
+            }
+            return false;
+        }
+
+        private void UpdateFilterButtons()
+        {
+            btnFilterApply.Visible = btnFilterCancel.Visible = IsFilterChanged();
         }
 
         private void RefreshReports()
@@ -46,7 +133,7 @@ namespace RadioStationReports
         {
             Helpers.RunSql(cmd =>
             {
-                cmd.CommandText = @"
+                cmd.CommandText = $@"
                     select
 	                      t1.Id                       
 	                    , t1.RadioStationId           
@@ -70,9 +157,15 @@ namespace RadioStationReports
 	                    , t1.DistributionFileCreatedAt
 	                    , t1.DistributionFileUpdatedAt
                     from Reports t1
-	                    left join RadioStations t2 on t1.RadioStationId = t2.Id 
-                    order by t1.FileName
+	                    left join RadioStations t2 on t1.RadioStationId = t2.Id
+                    {GetReportsFilterSql()}
+                    order by t2.Name
                 ";
+                cmd.Parameters.AddWithValue("@IsArchived", radioFilterActive.Checked ? 0 : 1);
+                _filter.Where(x => x.FilterControl.SelectedIndex != 0).ToList().ForEach(x => {
+                    cmd.Parameters.AddWithValue(x.ColumnParamName, x.FilterControl.Text);
+                });
+
                 using (var r = cmd.ExecuteReader())
                 {
                     _reports = new List<Report>();
@@ -84,23 +177,69 @@ namespace RadioStationReports
             });
         }
 
+        private string FormatPeriod(Report report)
+        {
+            try
+            {
+                var dateStart = new DateTime((int)report.StartYear, (int)report.StartMonth, 1);
+                var dateEnd = new DateTime((int)report.EndYear, (int)report.EndMonth, 1);
+                return $"{dateStart.ToString("yyyy-MM")} : {dateEnd.ToString("yyyy-MM")}";
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        private string GetReportsFilterSql()
+        {
+            var retVal = $"where IsArchived = @IsArchived";
+            _filter.Where(x => x.FilterControl.SelectedIndex != 0).ToList().ForEach(x => {
+                retVal += $"\r\n  and {x.ColumnName} = {x.ColumnParamName}";
+            });
+
+            return retVal;
+        }
+
         private void FillLvReports(int selectedReportId)
         {
+            lvReports.Visible = false;
             lvReports.Items.Clear();
             var seqNr = 1;
             _reports.ForEach(x =>
             {
                 var item = lvReports.Items.Add(seqNr.ToString());
                 item.SubItems.Add(x.Id.ToString());
+                item.SubItems.Add(x.RadioStationName);
+                item.SubItems.Add(FormatPeriod(x));
                 item.SubItems.Add(x.FileName);
-                item.SubItems.Add(x.FilePath);
                 item.Tag = x;
                 if (x.Id == selectedReportId)
                 {
                     item.Selected = true;
                     item.EnsureVisible();
                 }
+                seqNr++;
             });
+            lvReports.Visible = true;
+        }
+
+        private void FillReportDetails(Report report)
+        {
+            if (report == null)
+            {
+                tbReportFileName.Text = "";
+                tbReportFilePath.Text = "";
+                tbReportSearchFile.Text = "";
+                tbReportDistributionFile.Text = "";
+            }
+            else
+            {
+                tbReportFileName.Text = report.FileName;
+                tbReportFilePath.Text = report.FilePath;
+                tbReportSearchFile.Text = report.SearchFileName;
+                tbReportDistributionFile.Text = report.DistributionFileName;
+            }
         }
 
         private void UpdateControls()
@@ -146,16 +285,57 @@ namespace RadioStationReports
         {
             Helpers.RunSql(cmd =>
             {
-                cmd.CommandText = "update Reports set IsArchoved = @IsArchived where Id = @ReportId";
+                cmd.CommandText = "update Reports set IsArchived = @IsArchived where Id = @ReportId";
                 cmd.Parameters.AddWithValue("@ReportId", selectedReport.Id);
                 cmd.Parameters.AddWithValue("@IsArchived", setArhived);
                 cmd.ExecuteNonQuery();
             });
         }
 
+        private void ApplyFilter()
+        {
+            RefreshReports();
+            _filter.ForEach(x =>
+            {
+                if (x.FilterControl.SelectedIndex == 0)
+                {
+                    x.CurrentValue = "";
+                }
+                else
+                {
+                    x.CurrentValue = x.FilterControl.Text;
+                }
+            });
+            UpdateFilterButtons();
+        }
+
+        private void CancelFilter()
+        {
+            _filter.ForEach(x =>
+            {
+                if(x.CurrentValue == "")
+                {
+                    x.FilterControl.SelectedIndex = 0;
+                }
+                else
+                {
+                    x.FilterControl.SelectedItem = x.CurrentValue;
+                }
+            });
+            UpdateFilterButtons();
+        }
+
         private void lvReports_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateControls();
+
+            var selectedReport = GetSelectedReport();
+            if (selectedReport == null)
+            {
+                return;
+            }
+
+            FillReportDetails(selectedReport);
         }
 
         private void btnRegisterReport_Click(object sender, EventArgs e)
@@ -284,8 +464,69 @@ namespace RadioStationReports
             }
 
             var form = new FormReportParams();
-            form.SetReport(selectedReport);
+            form.SetExistingReport(selectedReport);
             form.ShowDialog();
+
+            var item = lvReports.SelectedItems[0];
+            item.SubItems[2].Text = selectedReport.RadioStationName;
+            item.SubItems[3].Text = FormatPeriod(selectedReport);
+        }
+
+        private void btnShowDetails_Click(object sender, EventArgs e)
+        {
+            splitPanelReports.Panel2Collapsed = !splitPanelReports.Panel2Collapsed;
+            btnShowDetails.Text = splitPanelReports.Panel2Collapsed ? "<" : ">";
+        }
+
+        private void radioFilterActive_CheckedChanged(object sender, EventArgs e)
+        {
+            timerApplyFilter.Enabled = true;
+        }
+
+        private void radioFilterArchived_CheckedChanged(object sender, EventArgs e)
+        {
+            timerApplyFilter.Enabled = true;
+        }
+
+        private void timerApplyFilter_Tick(object sender, EventArgs e)
+        {
+            timerApplyFilter.Enabled = false;
+            RefreshReports();
+        }
+
+        private void cbFilterRadioStation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateFilterButtons();
+        }
+
+        private void cbFilterStartYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateFilterButtons();
+        }
+
+        private void cbFilterStartMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateFilterButtons();
+        }
+
+        private void cbFilterEndYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateFilterButtons();
+        }
+
+        private void cbFilterEndMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateFilterButtons();
+        }
+
+        private void btnFilterApply_Click(object sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+
+        private void btnFilterCancel_Click(object sender, EventArgs e)
+        {
+            CancelFilter();
         }
     }
 }

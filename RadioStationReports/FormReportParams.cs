@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,17 +15,27 @@ namespace RadioStationReports
     {
         private Report _report;
         private List<RadioStation> _radioStations = new List<RadioStation>();
+        private string _reportFileFullName;
+
+        public bool IsNewReport { get; set; }
 
         public FormReportParams()
         {
             InitializeComponent();
         }
 
-        public void SetReport(Report report)
+        public void SetExistingReport(Report report)
         {
             _report = report;
             FillControls();
         }
+
+        public void SetNewReport(string reportFileFullName)
+        {
+            _reportFileFullName = reportFileFullName;
+            FillControls();
+        }
+
         private void FillRadioStations()
         {
             _radioStations.Clear();
@@ -57,11 +68,22 @@ namespace RadioStationReports
         {
             FillRadioStations();
 
-            tbFileName.Text = _report.FileName;
-            tbStartYear.Text = _report.StartYear == null ? "" : _report.StartYear.ToString();
-            tbStartMonth.Text = _report.StartMonth == null ? "" : _report.StartMonth.ToString();
-            tbEndYear.Text = _report.EndYear == null ? "" : _report.EndYear.ToString();
-            tbEndMonth.Text = _report.EndMonth == null ? "" : _report.EndMonth.ToString();
+            if (_report != null)
+            {
+                tbFileName.Text = _report.FileName;
+                tbStartYear.Text = _report.StartYear == null ? "" : _report.StartYear.ToString();
+                tbStartMonth.Text = _report.StartMonth == null ? "" : _report.StartMonth.ToString();
+                tbEndYear.Text = _report.EndYear == null ? "" : _report.EndYear.ToString();
+                tbEndMonth.Text = _report.EndMonth == null ? "" : _report.EndMonth.ToString();
+            }
+            else
+            {
+                tbFileName.Text = Path.GetFileName(_reportFileFullName);
+                tbStartYear.Text = "";
+                tbStartMonth.Text = "";
+                tbEndYear.Text = "";
+                tbEndMonth.Text = "";
+            }
 
             UpdateBtnNewRadioStation();
         }
@@ -71,6 +93,7 @@ namespace RadioStationReports
             var name = cbRadioStation.Text;
             btnNewRadioStation.Visible = !string.IsNullOrEmpty(name) &&
                 !_radioStations.Any(x => x.Name.ToUpper() == name.ToUpper());
+            btnDeleteRadioStation.Visible = _radioStations.Any(x => x.Name.ToUpper() == name.ToUpper());
         }
 
         private bool ValideatePeriod()
@@ -99,7 +122,7 @@ namespace RadioStationReports
                 return;
             }
 
-            if(string.IsNullOrEmpty(cbRadioStation.Text))
+            if (string.IsNullOrEmpty(cbRadioStation.Text))
             {
                 MessageBox.Show("Не вказана радіостанція", "Параметри договору", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -125,23 +148,71 @@ namespace RadioStationReports
                     where Id = @ReportId
                 ";
 
-                cmd.Parameters.AddWithValue("@ReportId"         , _report.Id        );
-                cmd.Parameters.AddWithValue("@RadioStationId"   , radioStationId    );
-                cmd.Parameters.AddWithValue("@StartYear"        , int.Parse(tbStartYear.Text  ));
-                cmd.Parameters.AddWithValue("@StartMonth"       , int.Parse(tbStartMonth.Text ));
-                cmd.Parameters.AddWithValue("@EndYear"          , int.Parse(tbEndYear.Text    ));
-                cmd.Parameters.AddWithValue("@EndMonth"         , int.Parse(tbEndMonth.Text   ));
+                cmd.Parameters.AddWithValue("@ReportId", _report.Id);
+                cmd.Parameters.AddWithValue("@RadioStationId", radioStationId);
+                cmd.Parameters.AddWithValue("@StartYear", int.Parse(tbStartYear.Text));
+                cmd.Parameters.AddWithValue("@StartMonth", int.Parse(tbStartMonth.Text));
+                cmd.Parameters.AddWithValue("@EndYear", int.Parse(tbEndYear.Text));
+                cmd.Parameters.AddWithValue("@EndMonth", int.Parse(tbEndMonth.Text));
 
                 cmd.ExecuteNonQuery();
             });
 
-            _report.RadioStationName    = cbRadioStation.Text;
-            _report.StartYear           = int.Parse(tbStartYear.Text );
-            _report.StartMonth          = int.Parse(tbStartMonth.Text);
-            _report.EndYear             = int.Parse(tbEndYear.Text   );
-            _report.EndMonth            = int.Parse(tbEndMonth.Text  );
+            _report.RadioStationId = radioStationId;
+            _report.RadioStationName = cbRadioStation.Text;
+            _report.StartYear = int.Parse(tbStartYear.Text);
+            _report.StartMonth = int.Parse(tbStartMonth.Text);
+            _report.EndYear = int.Parse(tbEndYear.Text);
+            _report.EndMonth = int.Parse(tbEndMonth.Text);
 
             Close();
+        }
+
+        private void CreateRadioStation()
+        {
+            var radioStationName = cbRadioStation.Text;
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = @"
+                    if not exists (select null from RadioStations where Name = @RadioStationName)
+                    insert RadioStations (Name) values (@RadioStationName)
+                ";
+
+                cmd.Parameters.AddWithValue("@RadioStationName", radioStationName);
+
+                cmd.ExecuteNonQuery();
+            });
+
+            FillRadioStations();
+            cbRadioStation.Text = radioStationName;
+            UpdateBtnNewRadioStation();
+        }
+
+        private void DeleteRadioStation()
+        {
+            var radioStationName = cbRadioStation.Text;
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = @"
+                    delete from RadioStations where Name = @RadioStationName
+                ";
+
+                cmd.Parameters.AddWithValue("@RadioStationName", radioStationName);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    MessageBox.Show("Радіостанція вказана у звітах, видалення неможливе.",
+                        "Параметри договору", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            });
+
+            FillRadioStations();
+            UpdateBtnNewRadioStation();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -162,6 +233,16 @@ namespace RadioStationReports
         private void cbRadioStation_TextUpdate(object sender, EventArgs e)
         {
             UpdateBtnNewRadioStation();
+        }
+
+        private void btnNewRadioStation_Click(object sender, EventArgs e)
+        {
+            CreateRadioStation();
+        }
+
+        private void btnDeleteRadioStation_Click(object sender, EventArgs e)
+        {
+            DeleteRadioStation();
         }
     }
 }
