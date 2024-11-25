@@ -17,6 +17,8 @@ namespace RadioStationReports
         private List<RadioStation> _radioStations = new List<RadioStation>();
         private string _reportFileFullName;
 
+        public ReportParameters OutputParameters { get; set; }
+
         public bool IsNewReport { get; set; }
 
         public FormReportParams()
@@ -61,7 +63,7 @@ namespace RadioStationReports
                 var item = cbRadioStation.Items.Add(x);
             });
 
-            cbRadioStation.Text = _report.RadioStationName == null ? "" : _report.RadioStationName;
+            cbRadioStation.Text = _report == null ? "" : _report.RadioStationName == null ? "" : _report.RadioStationName;
         }
 
         private void FillControls()
@@ -70,19 +72,19 @@ namespace RadioStationReports
 
             if (_report != null)
             {
-                tbFileName.Text = _report.FileName;
-                tbStartYear.Text = _report.StartYear == null ? "" : _report.StartYear.ToString();
+                tbFileName.Text   = _report.FileName;
+                tbStartYear.Text  = _report.StartYear  == null ? "" : _report.StartYear.ToString();
                 tbStartMonth.Text = _report.StartMonth == null ? "" : _report.StartMonth.ToString();
-                tbEndYear.Text = _report.EndYear == null ? "" : _report.EndYear.ToString();
-                tbEndMonth.Text = _report.EndMonth == null ? "" : _report.EndMonth.ToString();
+                tbEndYear.Text    = _report.EndYear    == null ? "" : _report.EndYear.ToString();
+                tbEndMonth.Text   = _report.EndMonth   == null ? "" : _report.EndMonth.ToString();
             }
             else
             {
-                tbFileName.Text = Path.GetFileName(_reportFileFullName);
-                tbStartYear.Text = "";
+                tbFileName.Text   = Path.GetFileName(_reportFileFullName);
+                tbStartYear.Text  = "";
                 tbStartMonth.Text = "";
-                tbEndYear.Text = "";
-                tbEndMonth.Text = "";
+                tbEndYear.Text    = "";
+                tbEndMonth.Text   = "";
             }
 
             UpdateBtnNewRadioStation();
@@ -135,36 +137,17 @@ namespace RadioStationReports
             }
 
             var radioStationId = _radioStations.Single(x => x.Name.ToUpper() == cbRadioStation.Text.ToUpper()).Id;
-            Helpers.RunSql(cmd =>
+            OutputParameters = new ReportParameters
             {
-                cmd.CommandText = @"
-                    update Reports
-                    set 
-                          RadioStationId = @RadioStationId
-                        , StartYear      = @StartYear
-                        , StartMonth     = @StartMonth
-                        , EndYear        = @EndYear
-                        , EndMonth       = @EndMonth
-                    where Id = @ReportId
-                ";
+                RadioStationId   = radioStationId              ,
+                RadioStationName = cbRadioStation.Text         ,     
+                StartYear        = int.Parse(tbStartYear.Text ),
+                StartMonth       = int.Parse(tbStartMonth.Text),
+                EndYear          = int.Parse(tbEndYear.Text   ),
+                EndMonth         = int.Parse(tbEndMonth.Text  ),
+            };
 
-                cmd.Parameters.AddWithValue("@ReportId", _report.Id);
-                cmd.Parameters.AddWithValue("@RadioStationId", radioStationId);
-                cmd.Parameters.AddWithValue("@StartYear", int.Parse(tbStartYear.Text));
-                cmd.Parameters.AddWithValue("@StartMonth", int.Parse(tbStartMonth.Text));
-                cmd.Parameters.AddWithValue("@EndYear", int.Parse(tbEndYear.Text));
-                cmd.Parameters.AddWithValue("@EndMonth", int.Parse(tbEndMonth.Text));
-
-                cmd.ExecuteNonQuery();
-            });
-
-            _report.RadioStationId = radioStationId;
-            _report.RadioStationName = cbRadioStation.Text;
-            _report.StartYear = int.Parse(tbStartYear.Text);
-            _report.StartMonth = int.Parse(tbStartMonth.Text);
-            _report.EndYear = int.Parse(tbEndYear.Text);
-            _report.EndMonth = int.Parse(tbEndMonth.Text);
-
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -217,6 +200,7 @@ namespace RadioStationReports
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 

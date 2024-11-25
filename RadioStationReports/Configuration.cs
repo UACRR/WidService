@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace RadioStationReports
         public static string DecimalSep { get; set; }
         public static int StartYear { get; set; }
         public static int EndYear { get; set; }
+        public static string WorkFilesRootDir { get; set; }
         public static void Load()
         {
             Helpers.RunSql( cmd =>
@@ -26,6 +28,7 @@ namespace RadioStationReports
                     EndYear = r.GetInt32(4);
                 }
             });
+            WorkFilesRootDir = Path.Combine(Path.GetDirectoryName(TemplateFileFullName), "Робочі файли");
         }
     }
 }

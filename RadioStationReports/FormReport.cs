@@ -327,7 +327,6 @@ namespace RadioStationReports
             {
                 RadioPreSearchManager.CreateSearchFile(_report, _reportLines);
 
-                _report.SearchFileName = $"Search_{_report.FileName}";
                 Helpers.RunSql(cmd =>
                 {
                     cmd.CommandText = @"
@@ -356,13 +355,13 @@ namespace RadioStationReports
                 return;
             }
 
-            Helpers.ShowSuccess($"Файл створено/оновлено - {Path.Combine(_report.FilePath, _report.SearchFileName)}");
+            Helpers.ShowSuccess($"Файл створено/оновлено - {Path.Combine(_report.WorkFilesPath, _report.SearchFileName)}");
 
         }
 
         private void btnShowSearchFile_Click(object sender, EventArgs e)
         {
-            var fileFullName = Path.Combine(_report.FilePath, _report.SearchFileName);
+            var fileFullName = RadioPreSearchManager.GetSearchFileFullName(_report);
             if (!File.Exists(fileFullName))
             {
                 Helpers.ShowError("Файл не знайдений");
@@ -419,7 +418,6 @@ namespace RadioStationReports
             {
                 RadioPreSearchManager.CreateDistributionFile(_report);
 
-                _report.DistributionFileName = $"Distribution_{_report.FileName}";
                 Helpers.RunSql(cmd =>
                 {
                     cmd.CommandText = @"
@@ -448,13 +446,13 @@ namespace RadioStationReports
                 return;
             }
 
-            Helpers.ShowSuccess($"File created - {Path.Combine(_report.FilePath, _report.DistributionFileName)}");
+            Helpers.ShowSuccess($"File created - {Path.Combine(_report.WorkFilesPath, _report.DistributionFileName)}");
 
         }
         
         private void btnShowDistributionFile_Click(object sender, EventArgs e)
         {
-            var fileFullName = Path.Combine(_report.FilePath, _report.DistributionFileName);
+            var fileFullName = RadioPreSearchManager.GetDistributionFileFullName(_report);
             if (!File.Exists(fileFullName))
             {
                 Helpers.ShowError("Файл не знайдений");
@@ -480,7 +478,7 @@ namespace RadioStationReports
                 return;
             }
 
-            Helpers.ShowSuccess($"Проценти вирівняні, файл {Path.Combine(_report.FilePath, _report.DistributionFileName)}");
+            Helpers.ShowSuccess($"Проценти вирівняні, файл {Path.Combine(_report.WorkFilesPath, _report.DistributionFileName)}");
         }
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)

@@ -12,6 +12,8 @@ create table Reports (
 	, EndMonth						int				null
 	, FileName						nvarchar(100)	not null
 	, FilePath						nvarchar(1028)	null
+	, WorkFilesPath					nvarchar(1028)	not null
+	, SourceFileCopyName			nvarchar(100)	not null
 	, SearchFileName				nvarchar(100)	not null
 	, DistributionFileName			nvarchar(100)	not null
 	, IsArchived					bit				not null default(0)

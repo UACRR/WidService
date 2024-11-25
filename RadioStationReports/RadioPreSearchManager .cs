@@ -235,29 +235,48 @@ namespace RadioStationReports
             }
         }
 
-        public int LoadReport(string fileFullName)
+        private bool CheckReportExists(ReportParameters reportParameters)        
         {
-            var fileName = Path.GetFileName(fileFullName);
-            var filePath = Path.GetDirectoryName(fileFullName);
             var exists = false;
             Helpers.RunSql(cmd =>
             {
-                cmd.CommandText = "select min(Id) from RadioStationReports..Reports where FileName = @fileName";
+                cmd.CommandText = @"
+                    select min(Id) 
+                    from Reports 
+                    where 
+                            RadioStationId = @RadioStationId
+                        and StartYear      = @StartYear     
+                        and StartMonth     = @StartMonth    
+                        and EndYear        = @EndYear       
+                        and EndMonth       = @EndMonth
+                ";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@fileName", fileName);
+                cmd.Parameters.AddWithValue("@RadioStationId", reportParameters.RadioStationId);
+                cmd.Parameters.AddWithValue("@StartYear"     , reportParameters.StartYear     );
+                cmd.Parameters.AddWithValue("@StartMonth"    , reportParameters.StartMonth    );
+                cmd.Parameters.AddWithValue("@EndYear"       , reportParameters.EndYear       );
+                cmd.Parameters.AddWithValue("@EndMonth"      , reportParameters.EndMonth);
                 var reportId = cmd.ExecuteScalar();
 
                 if (reportId != DBNull.Value)
                 {
                     exists = true;
                 }
-           });
+            });
+            return exists;
+        }
 
-            if(exists)
+        public int LoadReport(
+            string fileFullName,
+            ReportParameters reportParameters
+        )
+        {
+            var fileName = Path.GetFileName(fileFullName);
+            var filePath = Path.GetDirectoryName(fileFullName);
+            if(CheckReportExists(reportParameters))
             {
                 throw new Exception("Файл вже завантажений.");
             }
-
 
             try
             {
@@ -270,45 +289,55 @@ namespace RadioStationReports
 
             Helpers.RunSqlT(cmd =>
             {
-                // Додатова перевірка існування файлу (може трапитись, якшо той самий файл вантажити паралельно)
-                exists = false;
-                cmd.CommandText = "select min(Id) from Reports where FileName = @fileName";
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@fileName", fileName);
-                var reportId = cmd.ExecuteScalar();
-
-                if (reportId != DBNull.Value)
-                {
-                    exists = true;
-                    return;
-                }
-
                 cmd.CommandText = @"
                     insert Reports (
-                          FileName
+                          RadioStationId 
+                        , StartYear      
+                        , StartMonth     
+                        , EndYear        
+                        , EndMonth       
+                        , FileName
                         , FilePath
+                        , WorkFilesPath
+                        , SourceFileCopyName
                         , SearchFileName
                         , DistributionFileName
                         , CreatedAt
                         , UpdatedAt
                     )
                     values (
-                          @fileName
+                          @RadioStationId 
+                        , @StartYear      
+                        , @StartMonth     
+                        , @EndYear        
+                        , @EndMonth       
+                        , @fileName
                         , @filePath
-                        , ''
-                        , ''
+                        , @WorkFilesPath
+                        , @SourceFileCopyName
+                        , @SearchFileName
+                        , @DistributionFileName
                         , getdate()
                         , getdate()
                     )
                     select scope_identity()";
+                
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@fileName", fileName);
-                cmd.Parameters.AddWithValue("@filePath", filePath);
-                reportId = cmd.ExecuteScalar();
+                cmd.Parameters.AddWithValue("@RadioStationId"       , reportParameters.RadioStationId);
+                cmd.Parameters.AddWithValue("@StartYear"            , reportParameters.StartYear);
+                cmd.Parameters.AddWithValue("@StartMonth"           , reportParameters.StartMonth);
+                cmd.Parameters.AddWithValue("@EndYear"              , reportParameters.EndYear);
+                cmd.Parameters.AddWithValue("@EndMonth"             , reportParameters.EndMonth);
+                cmd.Parameters.AddWithValue("@fileName"             , fileName);
+                cmd.Parameters.AddWithValue("@filePath"             , filePath);
+                cmd.Parameters.AddWithValue("@WorkFilesPath"        , FormatWorkFilesPath(reportParameters));
+                cmd.Parameters.AddWithValue("@SourceFileCopyName"   , FormatSourceFileCopyName(reportParameters));
+                cmd.Parameters.AddWithValue("@SearchFileName"       , "");
+                cmd.Parameters.AddWithValue("@DistributionFileName" , "");
+
+                var reportId = cmd.ExecuteScalar();
 
                 InsertReportLinesIntoDb(cmd, Convert.ToInt32(reportId));
-
-                _reportId = Convert.ToInt32(reportId);
 
                 cmd.CommandTimeout = 0;
                 LoadReportWorks(cmd, WorksFilter.unprocessed);
@@ -322,13 +351,145 @@ namespace RadioStationReports
                 //FindAuthorPerformerMatches(cmd);
                 //ApplyMatches(cmd);
                 //CalcShares(cmd);
+
+                CreateFilesSpace(reportParameters, filePath, fileName);
             });
 
-            if(exists)
-            {
-                throw new Exception("Файл вже завантажений.");
-            }
             return _reportId;
+        }
+
+        private void CreateFilesSpace(ReportParameters reportParameters, string sourceFilePath, string sourceFileName)
+        {
+            var targetFileFullName = Path.Combine(FormatWorkFilesPath(reportParameters), FormatSourceFileCopyName(reportParameters));
+            var sourceFileFullName = Path.Combine(sourceFilePath, sourceFileName);
+
+            var workFilesRoot = Path.GetDirectoryName(targetFileFullName);
+            Directory.CreateDirectory(workFilesRoot);
+
+            File.Copy(sourceFileFullName, targetFileFullName, true);
+        }
+
+        public static void MoveFilesSpace(Report report, ReportParameters newReportParameters)
+        {
+            var oldReportParameters = new ReportParameters
+            {
+                RadioStationId      = report.RadioStationId     == null ? 0  : (int)report.RadioStationId,
+                RadioStationName    = report.RadioStationName   == null ? "" : report.RadioStationName,
+                StartYear           = report.StartYear          == null ? 0  : (int)report.StartYear,
+                StartMonth          = report.StartMonth         == null ? 0  : (int)report.StartMonth,
+                EndYear             = report.EndYear            == null ? 0  : (int)report.EndYear,
+                EndMonth            = report.EndMonth           == null ? 0  : (int)report.EndMonth,
+            };
+
+            var isFromWorkDir = oldReportParameters.RadioStationId != 0;
+
+            // Create work directory
+            var workFilesRoot = FormatWorkFilesPath(newReportParameters);
+            Directory.CreateDirectory(workFilesRoot);
+
+            // Old files root dir
+            var oldFilesRootDir = isFromWorkDir ? FormatWorkFilesPath(oldReportParameters) : report.FilePath;
+
+            // Source Report File
+            var fromSourceFileCopyFullName = "";
+            if(isFromWorkDir && !string.IsNullOrEmpty(report.SourceFileCopyName))
+            {
+                fromSourceFileCopyFullName = Path.Combine(oldFilesRootDir, report.SourceFileCopyName);
+            }
+            else if(!isFromWorkDir && !string.IsNullOrEmpty(report.FileName))
+            {
+                fromSourceFileCopyFullName = Path.Combine(oldFilesRootDir, report.FileName);
+            }
+            if(!File.Exists(fromSourceFileCopyFullName))
+            {
+                fromSourceFileCopyFullName = "";
+            }
+
+            // Search File
+            var fromSearchFileFullName = Path.Combine(oldFilesRootDir, report.SearchFileName);
+            if (!File.Exists(fromSearchFileFullName))
+            {
+                fromSearchFileFullName = "";
+            }
+
+            // Distribution File
+            var fromDistributionFileFullName = Path.Combine(oldFilesRootDir, report.DistributionFileName);
+            if (!File.Exists(fromDistributionFileFullName))
+            {
+                fromDistributionFileFullName = "";
+            }
+
+            // Target Files
+            var toSourceFileCopyName    = fromSourceFileCopyFullName == "" ? "" : FormatSourceFileCopyName(newReportParameters);
+            var toSearchFileName        = fromSearchFileFullName == "" ? "" : FormatSearchFileName(newReportParameters);
+            var toDistributionFileName  = fromDistributionFileFullName == "" ? "" : FormatDistributionFileName(newReportParameters);
+  
+            // Copy report file
+            if(fromSourceFileCopyFullName != "")
+            {
+                File.Copy(fromSourceFileCopyFullName, Path.Combine(workFilesRoot, toSourceFileCopyName), true);
+            }
+ 
+            // Copy search file
+            if (fromSearchFileFullName != "")
+            {
+                File.Copy(fromSourceFileCopyFullName, Path.Combine(workFilesRoot, toSearchFileName), true);
+            }
+ 
+            // Copy distribution file
+            if (fromDistributionFileFullName != "")
+            {
+                File.Copy(fromDistributionFileFullName, Path.Combine(workFilesRoot, toDistributionFileName), true);
+            }
+
+            // Delete old directory
+            var oldReportFilesPath = report.WorkFilesPath;
+            if (isFromWorkDir)
+            {
+                Directory.Delete(oldReportFilesPath, true);
+            }
+
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = @"
+                    update Reports
+                    set 
+                          RadioStationId        = @RadioStationId
+                        , StartYear             = @StartYear
+                        , StartMonth            = @StartMonth
+                        , EndYear               = @EndYear
+                        , EndMonth              = @EndMonth
+                        , WorkFilesPath         = @WorkFilesPath       
+                        , SourceFileCopyName    = @SourceFileCopyName  
+                        , SearchFileName        = @SearchFileName      
+                        , DistributionFileName  = @DistributionFileName
+                    where Id = @ReportId
+                ";
+
+                cmd.Parameters.AddWithValue("@ReportId"             , report.Id);
+                cmd.Parameters.AddWithValue("@RadioStationId"       , newReportParameters.RadioStationId);
+                cmd.Parameters.AddWithValue("@StartYear"            , newReportParameters.StartYear     );
+                cmd.Parameters.AddWithValue("@StartMonth"           , newReportParameters.StartMonth    );
+                cmd.Parameters.AddWithValue("@EndYear"              , newReportParameters.EndYear       );
+                cmd.Parameters.AddWithValue("@EndMonth"             , newReportParameters.EndMonth      );
+                cmd.Parameters.AddWithValue("@WorkFilesPath"        , workFilesRoot                     );
+                cmd.Parameters.AddWithValue("@SourceFileCopyName"   , toSourceFileCopyName              );
+                cmd.Parameters.AddWithValue("@SearchFileName"       , toSearchFileName                  );
+                cmd.Parameters.AddWithValue("@DistributionFileName" , toDistributionFileName            );
+
+                cmd.ExecuteNonQuery();
+            });
+
+            report.RadioStationId       = newReportParameters.RadioStationId  ;
+            report.RadioStationName     = newReportParameters.RadioStationName;
+            report.StartYear            = newReportParameters.StartYear       ;
+            report.StartMonth           = newReportParameters.StartMonth      ;
+            report.EndYear              = newReportParameters.EndYear         ;
+            report.EndMonth             = newReportParameters.EndMonth        ;
+            report.WorkFilesPath        = workFilesRoot                       ;
+            report.SourceFileCopyName   = toSourceFileCopyName                ;
+            report.SearchFileName       = toSearchFileName                    ;
+            report.DistributionFileName = toDistributionFileName              ;
         }
 
         public static List<string> GetReportsList()
@@ -877,7 +1038,9 @@ namespace RadioStationReports
 
         public static void CreateSearchFile(Report report, List<ReportLine> reportLines)
         {
-            var fileFullName = Path.Combine(report.FilePath, $"Search_{report.FileName}");
+            var reportParameters = report.GetReportParameters();
+            report.SearchFileName = FormatSearchFileName(reportParameters);
+            var fileFullName = Path.Combine(report.WorkFilesPath, report.SearchFileName);
             Helpers.CreateExcelFile( fileFullName, xlWorksheet => {
                 xlWorksheet.Name = "Рядки звіту";
 
@@ -973,7 +1136,7 @@ namespace RadioStationReports
                 Progress = 0;
                 ErrorText = "";
                 var data = new List<ImportData>();
-                Helpers.ReadExcelFile( Path.Combine(report.FilePath, report.SearchFileName), xlWorksheet => {
+                Helpers.ReadExcelFile( Path.Combine(report.WorkFilesPath, report.SearchFileName), xlWorksheet => {
                     Range xlRange = xlWorksheet.UsedRange;
                     int rowCount = xlRange.Rows.Count;
                     int colCount = xlRange.Columns.Count;
@@ -1132,7 +1295,10 @@ namespace RadioStationReports
 
             data = data.OrderBy(x => int.Parse(x.LineNr)).ThenBy(x => int.Parse(x.AuthorSeqNr)).ToList();
 
-            var outputFileFullName = Path.Combine(report.FilePath,  $"Distribution_{report.FileName}");
+            var reportParameters = report.GetReportParameters();
+            report.DistributionFileName = FormatDistributionFileName(reportParameters);
+
+            var outputFileFullName = Path.Combine(report.WorkFilesPath, report.DistributionFileName);
 
             Helpers.UpdateExcelFile(Configuration.TemplateFileFullName, outputFileFullName, xlWorksheet => {
 
@@ -1219,7 +1385,7 @@ namespace RadioStationReports
 
         public static void BallancePercents(Report report)
         {
-            Helpers.UpdateExcelFile(Path.Combine(report.FilePath, report.DistributionFileName), xlWorksheet => {
+            Helpers.UpdateExcelFile(Path.Combine(report.WorkFilesPath, report.DistributionFileName), xlWorksheet => {
                 const int COL_CODE = 1;
                 const int COL_SHARE_TOTAL = 4;
                 const int COL_SHARE_TOPAY = 16;
@@ -1292,5 +1458,80 @@ namespace RadioStationReports
 
             });
         }
+
+        private static string FormatWorkFilesPath(ReportParameters reportParameters)
+        {
+            try
+            {
+                var startDate = new DateTime(reportParameters.StartYear, reportParameters.StartMonth, 1);
+                var endDate = new DateTime(reportParameters.EndYear, reportParameters.EndMonth, 1);
+                var subDirName = $"{startDate:yyyy-MM}_{endDate:yyyy-MM}";
+                var rootPath = Path.GetDirectoryName(Configuration.TemplateFileFullName);
+
+                return Path.Combine(rootPath, "Робочі файли", reportParameters.RadioStationName, subDirName);
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        private static string FormatReportFileBaseName(ReportParameters reportParameters)
+        {
+            try
+            {
+                var startDate   = new DateTime(reportParameters.StartYear, reportParameters.StartMonth, 1);
+                var endDate     = new DateTime(reportParameters.EndYear, reportParameters.EndMonth, 1);
+                var periodName  = $"{startDate:yyyy-MM}_{endDate:yyyy-MM}";
+                return $"{reportParameters.RadioStationName}_{periodName}";
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        private static string FormatSourceFileCopyName(ReportParameters reportParameters)
+        {
+            var baseName = FormatReportFileBaseName(reportParameters);
+            return baseName != "" ? $"{baseName}.xlsx" : "";
+        }
+
+        public static string FormatSearchFileName(ReportParameters reportParameters)
+        {
+            var baseName = FormatReportFileBaseName(reportParameters);
+            return baseName != "" ? $"{baseName}.Пошук.xlsx" : "";
+        }
+
+        public static string FormatDistributionFileName(ReportParameters reportParameters)
+        {
+            var baseName = FormatReportFileBaseName(reportParameters);
+            return baseName != "" ? $"{baseName}.Розподіл.xlsx" : "";
+        }
+
+        public static string GetSearchFileFullName(Report report)
+        {
+            if(string.IsNullOrEmpty(report.WorkFilesPath))
+            {
+                return Path.Combine(report.FilePath, report.SearchFileName);
+            }
+            else
+            {
+                return Path.Combine(report.WorkFilesPath, report.SearchFileName);
+            }
+        }
+
+        public static string GetDistributionFileFullName(Report report)
+        {
+            if (string.IsNullOrEmpty(report.WorkFilesPath))
+            {
+                return Path.Combine(report.FilePath, report.DistributionFileName);
+            }
+            else
+            {
+                return Path.Combine(report.WorkFilesPath, report.DistributionFileName);
+            }
+        }
+
     }
 }

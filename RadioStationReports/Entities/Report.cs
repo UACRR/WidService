@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,35 @@ namespace RadioStationReports
 {
     public class Report
     {
+        public const string SelectSql = @"
+            select
+	              t1.Id                       
+	            , t1.RadioStationId           
+	            , t2.Name         
+	            , t1.StartYear		         
+	            , t1.StartMonth	             
+	            , t1.EndYear		             
+	            , t1.EndMonth                 
+	            , t1.FileName                 
+	            , t1.FilePath   
+                , t1.WorkFilesPath    
+                , t1.SourceFileCopyName    
+	            , t1.SearchFileName           
+	            , t1.DistributionFileName     
+	            , t1.IsArchived               
+	            , t1.CreatedAt                
+	            , t1.UpdatedAt                
+	            , t1.AutoSearchFinishedAt     
+	            , t1.CalcRoyaltyFinishedAt    
+	            , t1.SearchFileCreatedAt      
+	            , t1.SearchFileUpdatedAt      
+	            , t1.SearchFileImportedAt     
+	            , t1.DistributionFileCreatedAt
+	            , t1.DistributionFileUpdatedAt
+            from Reports t1
+	            left join RadioStations t2 on t1.RadioStationId = t2.Id
+        ";
+
         public int          Id                          { get; set; }
         public int?         RadioStationId              { get; set; }
         public string       RadioStationName            { get; set; }
@@ -18,6 +48,8 @@ namespace RadioStationReports
         public int?         EndMonth                    { get; set; }
         public string       FileName                    { get; set; }
         public string       FilePath                    { get; set; }
+        public string       WorkFilesPath               { get; set; }
+        public string       SourceFileCopyName          { get; set; }
         public string       SearchFileName              { get; set; }
         public string       DistributionFileName        { get; set; }
         public bool         IsArchived                  { get; set; }
@@ -51,7 +83,11 @@ namespace RadioStationReports
             idx++;
             report.FileName = r.GetString(idx);
             idx++;
-            report.FilePath = r.GetString(idx);
+            report.FilePath = r.IsDBNull(idx) ? "" : r.GetString(idx);
+            idx++;            
+            report.WorkFilesPath = r.IsDBNull(idx) ? "" : r.GetString(idx);
+            idx++;
+            report.SourceFileCopyName = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;
             report.SearchFileName = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;
@@ -85,7 +121,7 @@ namespace RadioStationReports
             Report retVal = null;
             Helpers.RunSql(cmd =>
             {
-                cmd.CommandText = "select * from Reports where Id = @ReportId";
+                cmd.CommandText = $"{SelectSql} where t1.Id = @ReportId";
                 cmd.Parameters.AddWithValue("@ReportId", reportId);
                 using(var r = cmd.ExecuteReader())
                 {
@@ -100,7 +136,7 @@ namespace RadioStationReports
             Report newReportData = null;
             Helpers.RunSql(cmd =>
             {
-                cmd.CommandText = "select * from Reports where Id = @ReportId";
+                cmd.CommandText = $"{SelectSql} where t1.Id = @ReportId";
                 cmd.Parameters.AddWithValue("@ReportId", report.Id);
                 using(var r = cmd.ExecuteReader())
                 {
@@ -114,8 +150,16 @@ namespace RadioStationReports
         public static void AssignData(Report targetReport, Report sourceReport)
         {
             targetReport.Id                             = sourceReport.Id                           ;
+            targetReport.RadioStationId                 = sourceReport.RadioStationId               ;
+            targetReport.RadioStationName               = sourceReport.RadioStationName             ;
+            targetReport.StartYear		                = sourceReport.StartYear                    ;
+            targetReport.StartMonth	                    = sourceReport.StartMonth                   ;
+            targetReport.EndYear		                = sourceReport.EndYear                      ;
+            targetReport.EndMonth                       = sourceReport.EndMonth                     ;
             targetReport.FileName                       = sourceReport.FileName                     ;
             targetReport.FilePath                       = sourceReport.FilePath                     ;
+            targetReport.WorkFilesPath                  = sourceReport.WorkFilesPath                ;
+            targetReport.SourceFileCopyName             = sourceReport.SourceFileCopyName           ;
             targetReport.SearchFileName                 = sourceReport.SearchFileName               ;
             targetReport.DistributionFileName           = sourceReport.DistributionFileName         ;
             targetReport.CreatedAt                      = sourceReport.CreatedAt                    ;
@@ -127,6 +171,19 @@ namespace RadioStationReports
             targetReport.SearchFileImportedAt           = sourceReport.SearchFileImportedAt         ;
             targetReport.DistributionFileCreatedAt      = sourceReport.DistributionFileCreatedAt    ;
             targetReport.DistributionFileUpdatedAt      = sourceReport.DistributionFileUpdatedAt    ;
+        }
+        
+        public ReportParameters GetReportParameters()
+        {
+            return new ReportParameters
+            {
+                RadioStationId      = RadioStationId   == null ? 0  : (int)RadioStationId  ,
+                RadioStationName    = RadioStationName == null ? "" : RadioStationName     ,
+                StartYear           = StartYear        == null ? 0  : (int)StartYear       ,
+                StartMonth          = StartMonth       == null ? 0  : (int)StartMonth      ,
+                EndYear             = EndYear          == null ? 0  : (int)EndYear         ,
+                EndMonth            = EndMonth         == null ? 0  : (int)EndMonth        ,
+            };
         }
     }
 }
