@@ -552,6 +552,21 @@ namespace RadioStationReports
             FillWorks(r);
         }
 
+        public void LoadSingleReportWork(SqlCommand cmd, int reportWorkId)
+        {
+            cmd.CommandText = $@"
+                select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Share
+                from RadioStationReports..ReportLines t1
+                    join RadioStationReports..Works t2 on t1.WorkId = t2.Id
+                where t2.Id = @reportWorkId
+            ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@reportWorkId", reportWorkId);
+            using var r = cmd.ExecuteReader();
+            FillWorks(r);
+        }
+
         private void FillWorks(SqlDataReader r)
         {
             _works = new List<Work>();
@@ -1015,11 +1030,27 @@ namespace RadioStationReports
                 cmd.CommandTimeout = 0;
                 //CleanFoundAuthors(cmd);
                 //CleanFoundPerformers(cmd);
-                LoadReportWorks(cmd, WorksFilter.all);
+                //LoadReportWorks(cmd, WorksFilter.all);
                 //LoadMatchingWorks(cmd, false);
                 //FindAuthorPerformerMatches(cmd);
                 //ApplyMatches(cmd);
                 CalcShares(cmd);
+                //InsertIswcs(cmd);
+            });
+        }
+
+        public void RecalcShares(int lineNr)
+        {
+            Helpers.RunSqlT(cmd =>
+            {
+                cmd.CommandTimeout = 0;
+                //CleanFoundAuthors(cmd);
+                //CleanFoundPerformers(cmd);
+                //LoadSingleReportWork(cmd, workId);
+                //LoadMatchingWorks(cmd, false);
+                //FindAuthorPerformerMatches(cmd);
+                //ApplyMatches(cmd);
+                CalcLineShares(cmd, lineNr);
                 //InsertIswcs(cmd);
             });
         }

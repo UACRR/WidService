@@ -34,12 +34,21 @@ namespace RadioStationReports
             panelSplit = new System.Windows.Forms.SplitContainer();
             panelSplitTop = new System.Windows.Forms.TableLayoutPanel();
             lvReportLines = new System.Windows.Forms.ListView();
+            panelCodesEdit = new System.Windows.Forms.TableLayoutPanel();
+            label7 = new System.Windows.Forms.Label();
+            label8 = new System.Windows.Forms.Label();
+            label9 = new System.Windows.Forms.Label();
+            tbObjId = new System.Windows.Forms.TextBox();
+            tbWic = new System.Windows.Forms.TextBox();
+            tbIswc = new System.Windows.Forms.TextBox();
+            btnApplyCode = new System.Windows.Forms.Button();
+            btnCancelCode = new System.Windows.Forms.Button();
             panelSplitBottom = new System.Windows.Forms.TableLayoutPanel();
             tabDetails = new System.Windows.Forms.TabControl();
-            tabPage1 = new System.Windows.Forms.TabPage();
-            ucReportLineWork = new UcReportLineWork();
             tabPage2 = new System.Windows.Forms.TabPage();
             ucReportLineDistribution = new UcReportLineDistribution();
+            tabPage1 = new System.Windows.Forms.TabPage();
+            ucReportLineWork = new UcReportLineWork();
             panelFilter = new System.Windows.Forms.FlowLayoutPanel();
             label1 = new System.Windows.Forms.Label();
             cbFilter = new System.Windows.Forms.ComboBox();
@@ -78,10 +87,11 @@ namespace RadioStationReports
             panelSplit.Panel2.SuspendLayout();
             panelSplit.SuspendLayout();
             panelSplitTop.SuspendLayout();
+            panelCodesEdit.SuspendLayout();
             panelSplitBottom.SuspendLayout();
             tabDetails.SuspendLayout();
-            tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            tabPage1.SuspendLayout();
             panelFilter.SuspendLayout();
             panelActions.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -129,7 +139,7 @@ namespace RadioStationReports
             // 
             panelSplit.Panel2.Controls.Add(panelSplitBottom);
             panelSplit.Size = new System.Drawing.Size(844, 504);
-            panelSplit.SplitterDistance = 159;
+            panelSplit.SplitterDistance = 230;
             panelSplit.TabIndex = 3;
             // 
             // panelSplitTop
@@ -138,14 +148,16 @@ namespace RadioStationReports
             panelSplitTop.ColumnCount = 1;
             panelSplitTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             panelSplitTop.Controls.Add(lvReportLines, 0, 0);
+            panelSplitTop.Controls.Add(panelCodesEdit, 0, 1);
             panelSplitTop.Dock = System.Windows.Forms.DockStyle.Fill;
             panelSplitTop.Location = new System.Drawing.Point(0, 0);
             panelSplitTop.Name = "panelSplitTop";
-            panelSplitTop.RowCount = 3;
+            panelSplitTop.RowCount = 4;
             panelSplitTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            panelSplitTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            panelSplitTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             panelSplitTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            panelSplitTop.Size = new System.Drawing.Size(842, 157);
+            panelSplitTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            panelSplitTop.Size = new System.Drawing.Size(842, 228);
             panelSplitTop.TabIndex = 0;
             // 
             // lvReportLines
@@ -154,10 +166,115 @@ namespace RadioStationReports
             lvReportLines.HideSelection = false;
             lvReportLines.Location = new System.Drawing.Point(3, 3);
             lvReportLines.Name = "lvReportLines";
-            lvReportLines.Size = new System.Drawing.Size(836, 142);
+            lvReportLines.Size = new System.Drawing.Size(836, 179);
             lvReportLines.TabIndex = 0;
             lvReportLines.UseCompatibleStateImageBehavior = false;
             lvReportLines.SelectedIndexChanged += lvReportLines_SelectedIndexChanged;
+            // 
+            // panelCodesEdit
+            // 
+            panelCodesEdit.ColumnCount = 9;
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            panelCodesEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            panelCodesEdit.Controls.Add(label7, 0, 0);
+            panelCodesEdit.Controls.Add(label8, 2, 0);
+            panelCodesEdit.Controls.Add(label9, 4, 0);
+            panelCodesEdit.Controls.Add(tbObjId, 1, 0);
+            panelCodesEdit.Controls.Add(tbWic, 3, 0);
+            panelCodesEdit.Controls.Add(tbIswc, 5, 0);
+            panelCodesEdit.Controls.Add(btnApplyCode, 6, 0);
+            panelCodesEdit.Controls.Add(btnCancelCode, 7, 0);
+            panelCodesEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            panelCodesEdit.Location = new System.Drawing.Point(3, 188);
+            panelCodesEdit.Name = "panelCodesEdit";
+            panelCodesEdit.RowCount = 1;
+            panelCodesEdit.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            panelCodesEdit.Size = new System.Drawing.Size(836, 29);
+            panelCodesEdit.TabIndex = 1;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(3, 0);
+            label7.Name = "label7";
+            label7.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            label7.Size = new System.Drawing.Size(71, 22);
+            label7.TabIndex = 0;
+            label7.Text = "Код СМАРТ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new System.Drawing.Point(181, 0);
+            label8.Name = "label8";
+            label8.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            label8.Size = new System.Drawing.Size(52, 22);
+            label8.TabIndex = 0;
+            label8.Text = "Код WID";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new System.Drawing.Point(338, 0);
+            label9.Name = "label9";
+            label9.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            label9.Size = new System.Drawing.Size(58, 22);
+            label9.TabIndex = 0;
+            label9.Text = "Код ISWC";
+            // 
+            // tbObjId
+            // 
+            tbObjId.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbObjId.Location = new System.Drawing.Point(82, 3);
+            tbObjId.Name = "tbObjId";
+            tbObjId.Size = new System.Drawing.Size(93, 23);
+            tbObjId.TabIndex = 1;
+            tbObjId.TextChanged += tbObjId_TextChanged;
+            // 
+            // tbWic
+            // 
+            tbWic.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbWic.Location = new System.Drawing.Point(240, 3);
+            tbWic.Name = "tbWic";
+            tbWic.Size = new System.Drawing.Size(92, 23);
+            tbWic.TabIndex = 1;
+            tbWic.TextChanged += tbWic_TextChanged;
+            // 
+            // tbIswc
+            // 
+            tbIswc.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbIswc.Location = new System.Drawing.Point(404, 3);
+            tbIswc.Name = "tbIswc";
+            tbIswc.Size = new System.Drawing.Size(118, 23);
+            tbIswc.TabIndex = 1;
+            tbIswc.TextChanged += tbIswc_TextChanged;
+            // 
+            // btnApplyCode
+            // 
+            btnApplyCode.Location = new System.Drawing.Point(528, 3);
+            btnApplyCode.Name = "btnApplyCode";
+            btnApplyCode.Size = new System.Drawing.Size(95, 23);
+            btnApplyCode.TabIndex = 2;
+            btnApplyCode.Text = "Застосувати";
+            btnApplyCode.UseVisualStyleBackColor = true;
+            btnApplyCode.Click += btnApplyCode_Click;
+            // 
+            // btnCancelCode
+            // 
+            btnCancelCode.Location = new System.Drawing.Point(629, 3);
+            btnCancelCode.Name = "btnCancelCode";
+            btnCancelCode.Size = new System.Drawing.Size(71, 23);
+            btnCancelCode.TabIndex = 2;
+            btnCancelCode.Text = "Відмінити";
+            btnCancelCode.UseVisualStyleBackColor = true;
+            btnCancelCode.Click += btnCancelCode_Click;
             // 
             // panelSplitBottom
             // 
@@ -171,39 +288,19 @@ namespace RadioStationReports
             panelSplitBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             panelSplitBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             panelSplitBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            panelSplitBottom.Size = new System.Drawing.Size(842, 339);
+            panelSplitBottom.Size = new System.Drawing.Size(842, 268);
             panelSplitBottom.TabIndex = 0;
             // 
             // tabDetails
             // 
-            tabDetails.Controls.Add(tabPage1);
             tabDetails.Controls.Add(tabPage2);
+            tabDetails.Controls.Add(tabPage1);
             tabDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             tabDetails.Location = new System.Drawing.Point(3, 3);
             tabDetails.Name = "tabDetails";
             tabDetails.SelectedIndex = 0;
-            tabDetails.Size = new System.Drawing.Size(836, 325);
+            tabDetails.Size = new System.Drawing.Size(836, 254);
             tabDetails.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Controls.Add(ucReportLineWork);
-            tabPage1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            tabPage1.Location = new System.Drawing.Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            tabPage1.Size = new System.Drawing.Size(828, 297);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Пов'язаний твір";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // ucReportLineWork
-            // 
-            ucReportLineWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            ucReportLineWork.Location = new System.Drawing.Point(3, 3);
-            ucReportLineWork.Name = "ucReportLineWork";
-            ucReportLineWork.Size = new System.Drawing.Size(822, 291);
-            ucReportLineWork.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -212,7 +309,7 @@ namespace RadioStationReports
             tabPage2.Location = new System.Drawing.Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            tabPage2.Size = new System.Drawing.Size(828, 297);
+            tabPage2.Size = new System.Drawing.Size(828, 226);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Розподіл";
             tabPage2.UseVisualStyleBackColor = true;
@@ -222,8 +319,28 @@ namespace RadioStationReports
             ucReportLineDistribution.Dock = System.Windows.Forms.DockStyle.Fill;
             ucReportLineDistribution.Location = new System.Drawing.Point(3, 3);
             ucReportLineDistribution.Name = "ucReportLineDistribution";
-            ucReportLineDistribution.Size = new System.Drawing.Size(822, 291);
+            ucReportLineDistribution.Size = new System.Drawing.Size(822, 220);
             ucReportLineDistribution.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(ucReportLineWork);
+            tabPage1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            tabPage1.Location = new System.Drawing.Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            tabPage1.Size = new System.Drawing.Size(828, 226);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Додаткова інформація";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ucReportLineWork
+            // 
+            ucReportLineWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            ucReportLineWork.Location = new System.Drawing.Point(3, 3);
+            ucReportLineWork.Name = "ucReportLineWork";
+            ucReportLineWork.Size = new System.Drawing.Size(822, 220);
+            ucReportLineWork.TabIndex = 0;
             // 
             // panelFilter
             // 
@@ -589,10 +706,12 @@ namespace RadioStationReports
             ((System.ComponentModel.ISupportInitialize)panelSplit).EndInit();
             panelSplit.ResumeLayout(false);
             panelSplitTop.ResumeLayout(false);
+            panelCodesEdit.ResumeLayout(false);
+            panelCodesEdit.PerformLayout();
             panelSplitBottom.ResumeLayout(false);
             tabDetails.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
             panelFilter.ResumeLayout(false);
             panelFilter.PerformLayout();
             panelActions.ResumeLayout(false);
@@ -653,5 +772,17 @@ namespace RadioStationReports
         private System.Windows.Forms.ToolStripStatusLabel statusBarLabel;
         private System.Windows.Forms.ToolStripProgressBar pbOperationProgress;
         private UcReportLineDistribution ucReportLineDistribution;
+        private System.Windows.Forms.TableLayoutPanel panelCodesEdit;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button btnApplyCode;
+        private System.Windows.Forms.Button btnCancelCode;
+        private System.Windows.Forms.TextBox tbObjId;
+        private System.Windows.Forms.TextBox tbWic;
+        private System.Windows.Forms.TextBox tbIswc;
     }
 }

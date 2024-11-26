@@ -21,6 +21,8 @@ namespace RadioStationReports
         private bool _cbFilterIgnoreSelectedIndexChanged;
         private bool _actionsVisible;
 
+        private bool _ignoreCodeChangedEvent = false;
+
         private Report _report;
         private List<ReportLine> _reportLines;
 
@@ -35,7 +37,7 @@ namespace RadioStationReports
 
         private void FormReport_Load(object sender, EventArgs e)
         {
-            _actionsVisible = true;
+            _actionsVisible = false;
 
             ucReportLineWork.Changed += UcReportLineWork_Changed;
 
@@ -67,17 +69,15 @@ namespace RadioStationReports
             lvReportLines.FullRowSelect = true;
             lvReportLines.MultiSelect = false;
 
-            lvReportLines.Columns.Add("Номер рядка"       , 90  );
-            lvReportLines.Columns.Add("Назва твору"         , 200 );
-            lvReportLines.Columns.Add("Виконавці"    , 200 );
-            lvReportLines.Columns.Add("Автор(и) Музики"  , 120 );
-            lvReportLines.Columns.Add("Автор(и) Тексту"   , 120 );
-            lvReportLines.Columns.Add("Тривалість твору"     , 120 );
-            lvReportLines.Columns.Add("Кількість прослуховувань"    , 160 );
-            lvReportLines.Columns.Add("Загальна тривалість", 140 );
+            lvReportLines.Columns.Add("Номер рядка", 90);
+            lvReportLines.Columns.Add("Назва твору", 200);
+            lvReportLines.Columns.Add("Виконавці", 200);
+            lvReportLines.Columns.Add("Де знайдено", 90);
+            lvReportLines.Columns.Add("Знайдений код", 100);
+            lvReportLines.Columns.Add("Код ISWC", 80);
 
             var formWidth = 44;
-            foreach(ColumnHeader col in lvReportLines.Columns)
+            foreach (ColumnHeader col in lvReportLines.Columns)
             {
                 formWidth += col.Width;
             }
@@ -101,26 +101,31 @@ namespace RadioStationReports
 
         private void UpdateControls()
         {
-            labAutoSearch.Text =  "Автоматичний пошук";
+            labAutoSearch.Text = "Автоматичний пошук";
 
             labAutoSearchStatus.Text = "Автоматичний пошук виконаний";
             labAutoSearchStatus.Visible = _report.AutoSearchFinishedAt != null;
 
             btnAutoSearch.Visible = _report.AutoSearchFinishedAt == null;
 
+            /*
             btnCalcRoyalty.Visible = _report.AutoSearchFinishedAt != null
                 && (_report.CalcRoyaltyFinishedAt == null || _report.CalcRoyaltyFinishedAt < _report.UpdatedAt);
 
             labCalcShareStatus.Visible = !btnCalcRoyalty.Visible;
             labCalcShareStatus.Text = _report.AutoSearchFinishedAt == null ?
                 "Виконайте сперше автоматичний пошук" : "Розрахунок для поточних даних виконаний";
+            */
+
+            btnCalcRoyalty.Visible = true;
+            labCalcShareStatus.Visible = false;
 
             tbSearchFileName.Text = _report.SearchFileName;
 
             btnCreateSearchFile.Enabled = _report.AutoSearchFinishedAt != null
                 && (_report.SearchFileCreatedAt == null
-                    ||  
-                    (      _report.SearchFileUpdatedAt  <  _report.UpdatedAt
+                    ||
+                    (_report.SearchFileUpdatedAt < _report.UpdatedAt
                         && _report.SearchFileImportedAt != _report.UpdatedAt
                     )
                 );
@@ -128,14 +133,14 @@ namespace RadioStationReports
                 "Створити файл" : "Оновити файл";
 
             btnShowSearchFile.Enabled = !string.IsNullOrEmpty(_report.SearchFileName);
-            
+
             btnImportSearchFile.Enabled = !string.IsNullOrEmpty(_report.SearchFileName);
 
             tbDistrFileName.Text = _report.DistributionFileName;
 
             btnCreateDistributionFile.Enabled = _report.AutoSearchFinishedAt != null
                 && !btnCalcRoyalty.Visible
-                && (   _report.DistributionFileCreatedAt == null
+                && (_report.DistributionFileCreatedAt == null
                     || _report.DistributionFileUpdatedAt < _report.UpdatedAt
                 );
 
@@ -154,7 +159,7 @@ namespace RadioStationReports
         private void LoadReportLines()
         {
             var filter = "";
-            if(cbFilter.SelectedIndex == FILTER_INDEX_SMART)
+            if (cbFilter.SelectedIndex == FILTER_INDEX_SMART)
             {
                 filter = " and FoundIn = 'M'";
             }
@@ -177,25 +182,25 @@ namespace RadioStationReports
                     order by t1.LineNr";
                 cmd.Parameters.AddWithValue("@ReportId", _report.Id);
 
-                using(var r = cmd.ExecuteReader())
+                using (var r = cmd.ExecuteReader())
                 {
                     _reportLines = new List<ReportLine>();
-                    while(r.Read())
+                    while (r.Read())
                     {
                         var reportLine = new ReportLine();
                         var idx = 2; // Пропускаємо Id і ReportId
 
-                        reportLine.LineNr        = r.GetInt32(idx++);
-                        reportLine.Name          = r.GetString(idx++);
-                        reportLine.Performer     = r.GetString(idx++);
-                        reportLine.MusicAuthor   = r.GetString(idx++);
-                        reportLine.TextAuthor    = r.GetString(idx++);
-                        reportLine.Duration      = r.GetString(idx++);
-                        reportLine.CountUses     = r.GetString(idx++);
+                        reportLine.LineNr = r.GetInt32(idx++);
+                        reportLine.Name = r.GetString(idx++);
+                        reportLine.Performer = r.GetString(idx++);
+                        reportLine.MusicAuthor = r.GetString(idx++);
+                        reportLine.TextAuthor = r.GetString(idx++);
+                        reportLine.Duration = r.GetString(idx++);
+                        reportLine.CountUses = r.GetString(idx++);
                         reportLine.TotalDuration = r.GetString(idx++);
 
                         idx++;
-                        
+
                         var work = new Work();
                         work.Id = r.GetInt32(idx++);
                         work.Name = r.GetString(idx++);
@@ -229,15 +234,29 @@ namespace RadioStationReports
             _reportLines.ForEach(x =>
             {
                 var item = lvReportLines.Items.Add(x.LineNr.ToString());
-                item.SubItems.Add(x.Name         );
-                item.SubItems.Add(x.Performer    );
-                item.SubItems.Add(x.MusicAuthor  );
-                item.SubItems.Add(x.TextAuthor   );
-                item.SubItems.Add(x.Duration     );
-                item.SubItems.Add(x.CountUses    );
-                item.SubItems.Add(x.TotalDuration);
+                item.SubItems.Add(x.Name);
+                item.SubItems.Add(x.Performer);
+                item.SubItems.Add(x.Work.FoundIn);
+                item.SubItems.Add(x.Work.FoundCde.ToString());
+                item.SubItems.Add(x.Work.Iswc);
                 item.Tag = x;
             });
+        }
+
+        private void UpdateLvReportLine()
+        {
+            var item = GetSelectedItem();
+            if (item == null) {
+                return;
+            }
+
+            var line = GetSelectedLine();
+
+            item.SubItems[1].Text = line.Name;
+            item.SubItems[2].Text = line.Performer;
+            item.SubItems[3].Text = line.Work.FoundIn;
+            item.SubItems[4].Text = line.Work.FoundCde.ToString();
+            item.SubItems[5].Text = line.Work.Iswc;
         }
 
         private void FillLabLinesCnt()
@@ -245,6 +264,247 @@ namespace RadioStationReports
             labLinesCnt.Text = $"(кількість рядків {lvReportLines.Items.Count})";
         }
 
+        private ReportLine GetSelectedLine()
+        {
+            var item = GetSelectedItem();
+            if (item != null)
+            {
+                return (ReportLine)item.Tag;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private void UpdateCodeEditControls(string ChangedCodeField)
+        {
+            _ignoreCodeChangedEvent = true;
+            var line = GetSelectedLine();
+            if (line == null)
+            {
+                tbObjId.Text = "";
+                tbWic.Text = "";
+                tbIswc.Text = "";
+                tbObjId.Enabled = false;
+                tbWic.Enabled = false;
+                tbIswc.Enabled = false;
+                btnApplyCode.Enabled = false;
+                btnCancelCode.Enabled = false;
+            }
+
+            else if (ChangedCodeField == "NONE")
+            {
+                tbObjId.Text = line.Work.FoundIn == "M" ? line.Work.FoundCde.ToString() : "";
+                tbWic.Text = line.Work.FoundIn == "W" ? line.Work.FoundCde.ToString() : "";
+                tbIswc.Text = line.Work.Iswc;
+                tbObjId.Enabled = true;
+                tbWic.Enabled = true;
+                tbIswc.Enabled = true;
+                btnApplyCode.Enabled = false;
+                btnCancelCode.Enabled = false;
+            }
+
+            else if (ChangedCodeField == "SMART")
+            {
+                tbWic.Text = "";
+                tbIswc.Text = "";
+                btnApplyCode.Enabled = true;
+                btnCancelCode.Enabled = true;
+            }
+
+            else if (ChangedCodeField == "WID")
+            {
+                tbObjId.Text = "";
+                tbIswc.Text = "";
+                btnApplyCode.Enabled = true;
+                btnCancelCode.Enabled = true;
+            }
+
+            else if (ChangedCodeField == "ISWC")
+            {
+                tbObjId.Text = "";
+                tbWic.Text = "";
+                btnApplyCode.Enabled = true;
+                btnCancelCode.Enabled = true;
+            }
+
+            _ignoreCodeChangedEvent = false;
+        }
+
+        private string SetObjId(string objId)
+        {
+            var line = GetSelectedLine();
+
+            int objIdInt;
+            if (!int.TryParse(objId, out objIdInt))
+            {
+                return "Невірне значення - мусить бути цілим числом.";
+            }
+
+            var res = "";
+            Helpers.RunSqlT(cmd =>
+            {
+                cmd.CommandText = "select ObjId from MediaService..ObjectRight where ObjId = @ObjId";
+                cmd.Parameters.AddWithValue("@ObjId", objIdInt);
+                var foundObjId = Convert.ToInt32(cmd.ExecuteScalar());
+                if (foundObjId == 0)
+                {
+                    res = "Невірне значення - твір з таким кодом не знайдено.";
+                    return;
+                }
+
+                cmd.CommandText = @"
+                    update Works set FoundIn = 'M', FoundCde = @ObjId where Id = @Id
+                    update Reports set UpdatedAt = getdate() where Id = @ReportId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ObjId", objIdInt);
+                cmd.Parameters.AddWithValue("@Id", line.Work.Id);
+                cmd.Parameters.AddWithValue("@ReportId", _report.Id);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "select Iswc from MediaService..MediaTrack where ObjId = @ObjId";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@ObjId", objIdInt);
+                var iswc = Convert.ToString(cmd.ExecuteScalar());
+                if (string.IsNullOrEmpty(iswc))
+                {
+                    iswc = "";
+                }
+
+                cmd.CommandText = "update Works set Iswc = @Iswc where Id = @Id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Iswc", iswc);
+                cmd.Parameters.AddWithValue("@Id", line.Work.Id);
+                cmd.ExecuteNonQuery();
+
+                line.Work.FoundIn = "M";
+                line.Work.FoundCde = foundObjId;
+                line.Work.Iswc = iswc;
+
+            });
+            return res;
+        }
+
+        private string SetWic(string wic)
+        {
+            var line = GetSelectedLine();
+
+            int wicInt;
+            if (!int.TryParse(wic, out wicInt))
+            {
+                return "Невірне значення - мусить бути цілим числом.";
+            }
+
+            var res = "";
+            Helpers.RunSqlT(cmd =>
+            {
+                cmd.CommandText = "select Wic from SocWid..WidTitle where Wic = @Wic";
+                cmd.Parameters.AddWithValue("@Wic", wicInt);
+                var foundWic = Convert.ToInt32(cmd.ExecuteScalar());
+                if (foundWic == 0)
+                {
+                    res = "Невірне значення - твір з таким кодом не знайдено.";
+                    return;
+                }
+
+                cmd.CommandText = @"
+                    update Works set FoundIn = 'W', FoundCde = @Wic where Id = @Id
+                    update Reports set UpdatedAt = getdate() where Id = @ReportId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Wic", wicInt);
+                cmd.Parameters.AddWithValue("@Id", line.Work.Id);
+                cmd.Parameters.AddWithValue("@ReportId", _report.Id);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "select min(PrefIswc) from SocWid..WidIswc where Wic = @Wic";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Wic", wicInt);
+                var iswc = Convert.ToString(cmd.ExecuteScalar());
+                if (string.IsNullOrEmpty(iswc))
+                {
+                    iswc = "";
+                }
+
+                cmd.CommandText = "update Works set Iswc = @Iswc where Id = @Id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Iswc", iswc);
+                cmd.Parameters.AddWithValue("@Id", line.Work.Id);
+                cmd.ExecuteNonQuery();
+
+                line.Work.FoundIn = "W";
+                line.Work.FoundCde = foundWic;
+                line.Work.Iswc = iswc;
+
+            });
+            return res;
+        }
+
+        private string SetIswc(string iswc)
+        {
+            var line = GetSelectedLine();
+
+            var res = "";
+            iswc = iswc.Replace("-", "");
+            iswc = iswc.Replace(".", "");
+            Helpers.RunSqlT(cmd =>
+            {
+                cmd.CommandText = "select min(Wic) from SocWid..WidIswc where Iswc = @Iswc";
+                cmd.Parameters.AddWithValue("@Iswc", iswc);
+                var foundWic = Convert.ToInt32(cmd.ExecuteScalar());
+                if (foundWic == 0)
+                {
+                    res = "Невірне значення - твір з таким кодом не знайдено.";
+                    return;
+                }
+
+                cmd.CommandText = @"
+                    update Works set FoundIn = 'W', FoundCde = @Wic where Id = @Id
+                    update Reports set UpdatedAt = getdate() where Id = @ReportId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Wic", foundWic);
+                cmd.Parameters.AddWithValue("@Id", line.Work.Id);
+                cmd.Parameters.AddWithValue("@ReportId", _report.Id);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "update Works set Iswc = @Iswc where Id = @Id";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Iswc", iswc);
+                cmd.Parameters.AddWithValue("@Id", line.Work.Id);
+                cmd.ExecuteNonQuery();
+
+                line.Work.FoundIn = "W";
+                line.Work.FoundCde = foundWic;
+                line.Work.Iswc = iswc;
+
+            });
+            return res;
+        }
+
+        private string SetNotFound()
+        {
+            var line = GetSelectedLine();
+
+            var res = "";
+            Helpers.RunSqlT(cmd =>
+            {
+                cmd.CommandText = @"
+                    update Works set FoundIn = null, FoundCde = null, Iswc = null where Id = @Id
+                    update Reports set UpdatedAt = getdate() where Id = @ReportId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Id", line.Work.Id);
+                cmd.Parameters.AddWithValue("@ReportId", _report.Id);
+                cmd.ExecuteNonQuery();
+
+                line.Work.FoundIn = null;
+                line.Work.FoundCde = null;
+                line.Work.Iswc = null;
+            });
+            return res;
+        }
         private void btnAutoSearch_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -274,7 +534,7 @@ namespace RadioStationReports
 
                 Cursor.Current = Cursors.Default;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Cursor.Current = Cursors.Default;
                 Helpers.ShowError(ex.Message);
@@ -284,7 +544,7 @@ namespace RadioStationReports
             Helpers.ShowSuccess("Автоматичний пошук творів для рядків звіту виконано.");
 
         }
-        
+
         private void btnCalcRoyalty_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -310,7 +570,7 @@ namespace RadioStationReports
 
                 Cursor.Current = Cursors.Default;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Cursor.Current = Cursors.Default;
                 Helpers.ShowError(ex.Message);
@@ -348,7 +608,7 @@ namespace RadioStationReports
 
                 Cursor.Current = Cursors.Default;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Cursor.Current = Cursors.Default;
                 Helpers.ShowError($"{ex.Message} Можливо, файл відкритий в додатку Ексель. Закрийте файл і спробуйте ще раз.");
@@ -381,7 +641,8 @@ namespace RadioStationReports
             panelMain.Enabled = false;
             try
             {
-                var thread = new Thread(() => {
+                var thread = new Thread(() =>
+                {
                     _radioPreSearchManager.ImportSearchFile(_report);
                     Helpers.RunSql(cmd =>
                     {
@@ -400,7 +661,7 @@ namespace RadioStationReports
                 thread.Start();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Cursor.Current = Cursors.Default;
                 Helpers.ShowError(ex.Message);
@@ -439,7 +700,7 @@ namespace RadioStationReports
 
                 Cursor.Current = Cursors.Default;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Cursor.Current = Cursors.Default;
                 Helpers.ShowError(ex.Message);
@@ -449,7 +710,7 @@ namespace RadioStationReports
             Helpers.ShowSuccess($"File created - {Path.Combine(_report.WorkFilesPath, _report.DistributionFileName)}");
 
         }
-        
+
         private void btnShowDistributionFile_Click(object sender, EventArgs e)
         {
             var fileFullName = RadioPreSearchManager.GetDistributionFileFullName(_report);
@@ -471,7 +732,7 @@ namespace RadioStationReports
                 RadioPreSearchManager.BallancePercents(_report);
                 Cursor.Current = Cursors.Default;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Cursor.Current = Cursors.Default;
                 Helpers.ShowError(ex.Message);
@@ -483,7 +744,7 @@ namespace RadioStationReports
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_cbFilterIgnoreSelectedIndexChanged)
+            if (_cbFilterIgnoreSelectedIndexChanged)
             {
                 return;
             }
@@ -497,12 +758,15 @@ namespace RadioStationReports
         private void lvReportLines_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedItem = GetSelectedItem();
-            if(selectedItem == null)
+            if (selectedItem == null)
             {
                 ucReportLineWork.Clear();
                 ucReportLineDistribution.Clear();
+                UpdateCodeEditControls("NONE");
                 return;
             }
+
+            UpdateCodeEditControls("NONE");
 
             var reportLine = (ReportLine)selectedItem.Tag;
             ucReportLineWork.Update(_report.Id, reportLine.LineNr);
@@ -517,10 +781,10 @@ namespace RadioStationReports
 
         private void timerImportSearchFileProgress_Tick(object sender, EventArgs e)
         {
-            if(!_radioPreSearchManager.IsInProgress)
+            if (!_radioPreSearchManager.IsInProgress)
             {
                 timerImportSearchFileProgress.Enabled = false;
-                if(_radioPreSearchManager.ErrorText != "")
+                if (_radioPreSearchManager.ErrorText != "")
                 {
                     Cursor.Current = Cursors.Default;
                     pbOperationProgress.Visible = false;
@@ -537,9 +801,9 @@ namespace RadioStationReports
                     statusBarLabel.Text = "Імпорт файлу пошуку завершено";
                     Helpers.ShowSuccess(statusBarLabel.Text);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    statusBarLabel.Text =$"ПОМИЛКА: {ex.Message}";
+                    statusBarLabel.Text = $"ПОМИЛКА: {ex.Message}";
                     Helpers.ShowError(statusBarLabel.Text);
                 }
                 finally
@@ -556,6 +820,83 @@ namespace RadioStationReports
                 pbOperationProgress.Maximum = _radioPreSearchManager.ProgressMax;
                 pbOperationProgress.Value = _radioPreSearchManager.Progress;
             }
+        }
+
+        private void tbObjId_TextChanged(object sender, EventArgs e)
+        {
+            if (_ignoreCodeChangedEvent)
+            {
+                return;
+            }
+
+            UpdateCodeEditControls("SMART");
+        }
+
+        private void tbWic_TextChanged(object sender, EventArgs e)
+        {
+            if (_ignoreCodeChangedEvent)
+            {
+                return;
+            }
+
+            UpdateCodeEditControls("WID");
+        }
+
+        private void tbIswc_TextChanged(object sender, EventArgs e)
+        {
+            if (_ignoreCodeChangedEvent)
+            {
+                return;
+            }
+
+            UpdateCodeEditControls("ISWC");
+        }
+
+        private void btnApplyCode_Click(object sender, EventArgs e)
+        {
+            var res = "";
+            if(tbObjId.Text.Trim() != "")
+            {
+                res = SetObjId(tbObjId.Text.Trim());
+            }
+            else if (tbWic.Text.Trim() != "")
+            {
+                res = SetWic(tbWic.Text.Trim());
+            }
+            else if (tbIswc.Text.Trim() != "")
+            {
+                res = SetIswc(tbIswc.Text.Trim());
+            }
+            else
+            {
+                res = SetNotFound();
+            }
+            
+            if (!string.IsNullOrEmpty(res))
+            {
+                Helpers.ShowError(res);
+                UpdateCodeEditControls("NONE");
+                return;
+            }
+            else
+            {
+                UpdateLvReportLine();
+            }
+
+            var line = GetSelectedLine();
+
+            var radioPreSearchManager = new RadioPreSearchManager(_report.Id);
+            radioPreSearchManager.RecalcShares(line.LineNr);
+
+            ucReportLineWork.Update(_report.Id, line.LineNr);
+            ucReportLineDistribution.Update(_report.Id, line.LineNr);
+            UpdateCodeEditControls("NONE");
+
+        }
+
+        private void btnCancelCode_Click(object sender, EventArgs e)
+        {
+            UpdateCodeEditControls("NONE");
         }
     }
 }

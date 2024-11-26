@@ -105,7 +105,7 @@ namespace RadioStationReports
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             panelMain.Size = new System.Drawing.Size(872, 524);
@@ -121,9 +121,9 @@ namespace RadioStationReports
             panelBottom.Controls.Add(btnRegisterReport);
             panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             panelBottom.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            panelBottom.Location = new System.Drawing.Point(3, 467);
+            panelBottom.Location = new System.Drawing.Point(3, 461);
             panelBottom.Name = "panelBottom";
-            panelBottom.Size = new System.Drawing.Size(866, 25);
+            panelBottom.Size = new System.Drawing.Size(866, 31);
             panelBottom.TabIndex = 0;
             // 
             // btnClose
@@ -340,7 +340,7 @@ namespace RadioStationReports
             // splitPanelReports.Panel2
             // 
             splitPanelReports.Panel2.Controls.Add(panelReportDetails);
-            splitPanelReports.Size = new System.Drawing.Size(866, 363);
+            splitPanelReports.Size = new System.Drawing.Size(866, 357);
             splitPanelReports.SplitterDistance = 556;
             splitPanelReports.TabIndex = 5;
             // 
@@ -356,7 +356,7 @@ namespace RadioStationReports
             panelReportMain.RowCount = 2;
             panelReportMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             panelReportMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            panelReportMain.Size = new System.Drawing.Size(556, 363);
+            panelReportMain.Size = new System.Drawing.Size(556, 357);
             panelReportMain.TabIndex = 0;
             // 
             // lvReports
@@ -369,7 +369,7 @@ namespace RadioStationReports
             lvReports.Location = new System.Drawing.Point(3, 36);
             lvReports.MultiSelect = false;
             lvReports.Name = "lvReports";
-            lvReports.Size = new System.Drawing.Size(550, 324);
+            lvReports.Size = new System.Drawing.Size(550, 318);
             lvReports.TabIndex = 2;
             lvReports.UseCompatibleStateImageBehavior = false;
             lvReports.View = System.Windows.Forms.View.Details;
@@ -422,7 +422,7 @@ namespace RadioStationReports
             panelReportDetails.RowCount = 2;
             panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            panelReportDetails.Size = new System.Drawing.Size(306, 363);
+            panelReportDetails.Size = new System.Drawing.Size(306, 357);
             panelReportDetails.TabIndex = 0;
             // 
             // label6
@@ -468,7 +468,7 @@ namespace RadioStationReports
             panelReportDetailValues.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             panelReportDetailValues.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             panelReportDetailValues.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            panelReportDetailValues.Size = new System.Drawing.Size(300, 323);
+            panelReportDetailValues.Size = new System.Drawing.Size(300, 317);
             panelReportDetailValues.TabIndex = 4;
             // 
             // label7
