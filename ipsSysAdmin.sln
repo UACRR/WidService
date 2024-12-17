@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30330.147
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sysAdminwp", "sysAdminwp\sysAdminwp.csproj", "{C08CD8F1-BC04-4EB9-99D1-BE924649F23A}"
 EndProject
@@ -88,6 +88,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IPS.Database", "IPS.Database", "{2A808738-2872-4F8D-AD3B-530DCA739545}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IPS.DDEX", "IPS.DDEX", "{A76EF71D-79CE-4BC5-9053-61C4A451552B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DdexInvoicingStarter", "DdexInvoicingStarter\DdexInvoicingStarter.csproj", "{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -823,6 +825,30 @@ Global
 		{E133CEFC-424B-446F-A7A1-6C59170BD7CD}.Release|x64.Build.0 = Release|Any CPU
 		{E133CEFC-424B-446F-A7A1-6C59170BD7CD}.Release|x86.ActiveCfg = Release|Any CPU
 		{E133CEFC-424B-446F-A7A1-6C59170BD7CD}.Release|x86.Build.0 = Release|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug HttpSys|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug HttpSys|Any CPU.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug HttpSys|x64.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug HttpSys|x64.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug HttpSys|x86.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug HttpSys|x86.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug IIS|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug IIS|Any CPU.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug IIS|x64.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug IIS|x64.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug IIS|x86.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug IIS|x86.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Release|x64.Build.0 = Release|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8A5425F-9EC2-44F4-A1E1-C83FAA1A50EB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

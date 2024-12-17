@@ -36,6 +36,8 @@
             this.ucDdexReports = new DdexInvoicing.UcDdexReports();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucExceptionSets = new DdexInvoicing.UcExceptionSets();
+            this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ucRoyaltyDistribution = new DdexInvoicing.UcRoyaltyDistribution();
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnClose)).BeginInit();
@@ -43,6 +45,7 @@
             this.panelMain.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
             this.radPageViewPage2.SuspendLayout();
+            this.radPageViewPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -75,6 +78,7 @@
             // 
             this.panelMain.Controls.Add(this.radPageViewPage1);
             this.panelMain.Controls.Add(this.radPageViewPage2);
+            this.panelMain.Controls.Add(this.radPageViewPage3);
             this.panelMain.DefaultPage = this.radPageViewPage1;
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(3, 3);
@@ -82,6 +86,7 @@
             this.panelMain.SelectedPage = this.radPageViewPage1;
             this.panelMain.Size = new System.Drawing.Size(1107, 521);
             this.panelMain.TabIndex = 3;
+            this.panelMain.SelectedPageChanged += new System.EventHandler(this.panelMain_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.panelMain.GetChildAt(0))).ShowItemPinButton = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.panelMain.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.panelMain.GetChildAt(0))).ShowItemCloseButton = false;
@@ -120,6 +125,23 @@
             this.ucExceptionSets.Size = new System.Drawing.Size(1086, 473);
             this.ucExceptionSets.TabIndex = 0;
             // 
+            // radPageViewPage3
+            // 
+            this.radPageViewPage3.Controls.Add(this.ucRoyaltyDistribution);
+            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(97F, 28F);
+            this.radPageViewPage3.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage3.Name = "radPageViewPage3";
+            this.radPageViewPage3.Size = new System.Drawing.Size(1086, 473);
+            this.radPageViewPage3.Text = "Розподіл Роялті";
+            // 
+            // UcRoyaltyDistribution
+            // 
+            this.ucRoyaltyDistribution.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucRoyaltyDistribution.Location = new System.Drawing.Point(0, 0);
+            this.ucRoyaltyDistribution.Name = "ucRoyaltyDistribution";
+            this.ucRoyaltyDistribution.Size = new System.Drawing.Size(1086, 473);
+            this.ucRoyaltyDistribution.TabIndex = 0;
+            // 
             // DdexInvoicingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -138,6 +160,7 @@
             this.panelMain.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
             this.radPageViewPage2.ResumeLayout(false);
+            this.radPageViewPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -152,5 +175,7 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
         private UcExceptionSets ucExceptionSets;
         private Telerik.WinControls.RadThemeManager radThemeManager1;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
+        private UcRoyaltyDistribution ucRoyaltyDistribution;
     }
 }

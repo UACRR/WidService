@@ -118,6 +118,12 @@
     <Compile Include="FormDdexInvoicing.Designer.cs">
       <DependentUpon>FormDdexInvoicing.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDistributionRunner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDistributionRunner.Designer.cs">
+      <DependentUpon>FormDistributionRunner.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExceptionSet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,6 +264,12 @@
     <Compile Include="UcReportMw.Designer.cs">
       <DependentUpon>UcReportMw.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcRoyaltyDistribution.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcRoyaltyDistribution.Designer.cs">
+      <DependentUpon>UcRoyaltyDistribution.cs</DependentUpon>
+    </Compile>
     <Compile Include="UсReconcile.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -278,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDdexInvoicing.resx">
       <DependentUpon>FormDdexInvoicing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDistributionRunner.resx">
+      <DependentUpon>FormDistributionRunner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormExceptionSet.resx">
       <DependentUpon>FormExceptionSet.cs</DependentUpon>
@@ -358,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcReportMw.resx">
       <DependentUpon>UcReportMw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcRoyaltyDistribution.resx">
+      <DependentUpon>UcRoyaltyDistribution.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UсReconcile.resx">
       <DependentUpon>UсReconcile.cs</DependentUpon>

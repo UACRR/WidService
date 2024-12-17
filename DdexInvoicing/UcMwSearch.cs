@@ -451,31 +451,52 @@ namespace DdexInvoicing
 
         private void btnSearchWid_Click(object sender, EventArgs e)
         {
-            BeforeSearch();
-            gridSearchResults.DataSource = SearchWid();
-            AfterSearch();
+            try
+            {
+                BeforeSearch();
+                gridSearchResults.DataSource = SearchWid();
+                AfterSearch();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Пошук творів в WID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSearchMs_Click(object sender, EventArgs e)
         {
-            BeforeSearch();
-            gridSearchResults.DataSource = SearchMs();
-            AfterSearch();
+            try
+            {
+                BeforeSearch();
+                gridSearchResults.DataSource = SearchMs();
+                AfterSearch();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Пошук творів в СМАРТ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSearchBoth_Click(object sender, EventArgs e)
         {
-            BeforeSearch();
-            var widResult = SearchWid();
-            var msResult = SearchMs();
-            var result = widResult != null ? widResult.Union(msResult).ToList() : msResult;
-            if (result != null)
+            try
             {
-                int seqNr = 1;
-                result.ForEach(x => x.SeqNr = seqNr++);
+                BeforeSearch();
+                var widResult = SearchWid();
+                var msResult = SearchMs();
+                var result = widResult != null ? widResult.Union(msResult).ToList() : msResult;
+                if (result != null)
+                {
+                    int seqNr = 1;
+                    result.ForEach(x => x.SeqNr = seqNr++);
+                }
+                gridSearchResults.DataSource = result;
+                AfterSearch();
             }
-            gridSearchResults.DataSource = result;
-            AfterSearch();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void gridSearchResults_CellClick(object sender, GridViewCellEventArgs e)

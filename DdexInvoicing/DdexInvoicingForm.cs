@@ -40,5 +40,13 @@ namespace DdexInvoicing
         {
             Close();
         }
+
+        private void panelMain_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (panelMain.Pages.IndexOf(panelMain.SelectedPage) == 2)
+            {
+                ucRoyaltyDistribution.ReadData();
+            }
+        }
     }
 }
