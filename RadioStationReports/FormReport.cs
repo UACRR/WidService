@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RadioStationReports
 {
@@ -28,6 +29,8 @@ namespace RadioStationReports
 
         private RadioPreSearchManager _radioPreSearchManager = new RadioPreSearchManager();
         private bool _importSearchFileInProgress = false;
+
+        private string _textToCopy = "";
 
         public FormReport(Report report)
         {
@@ -240,13 +243,16 @@ namespace RadioStationReports
                 item.SubItems.Add(x.Work.FoundCde.ToString());
                 item.SubItems.Add(x.Work.Iswc);
                 item.Tag = x;
+
             });
+
         }
 
         private void UpdateLvReportLine()
         {
             var item = GetSelectedItem();
-            if (item == null) {
+            if (item == null)
+            {
                 return;
             }
 
@@ -548,6 +554,14 @@ namespace RadioStationReports
         private void btnCalcRoyalty_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
+
+            var line = GetSelectedLine();
+            var lineNr = 0;
+            if(line != null)
+            {
+                lineNr = line.LineNr;
+            }
+
             try
             {
                 var radioPreSearchManager = new RadioPreSearchManager(_report.Id);
@@ -565,6 +579,16 @@ namespace RadioStationReports
 
                 Report.UpdateFromDb(_report);
                 LoadReportLines();
+                FillLvReportLines();
+
+                foreach(ListViewItem item in lvReportLines.Items)
+                {
+                    if(((ReportLine)item.Tag).LineNr == lineNr)
+                    {
+                        item.Selected = true;
+                        return;
+                    }
+                }
 
                 UpdateControls();
 
@@ -750,6 +774,7 @@ namespace RadioStationReports
             }
 
             ucReportLineWork.Clear();
+            ucReportLineDistribution.Clear();
             LoadReportLines();
             FillLvReportLines();
             FillLabLinesCnt();
@@ -854,49 +879,89 @@ namespace RadioStationReports
 
         private void btnApplyCode_Click(object sender, EventArgs e)
         {
-            var res = "";
-            if(tbObjId.Text.Trim() != "")
+            try
             {
-                res = SetObjId(tbObjId.Text.Trim());
-            }
-            else if (tbWic.Text.Trim() != "")
-            {
-                res = SetWic(tbWic.Text.Trim());
-            }
-            else if (tbIswc.Text.Trim() != "")
-            {
-                res = SetIswc(tbIswc.Text.Trim());
-            }
-            else
-            {
-                res = SetNotFound();
-            }
-            
-            if (!string.IsNullOrEmpty(res))
-            {
-                Helpers.ShowError(res);
+                Cursor.Current= Cursors.WaitCursor;
+                var res = "";
+                if (tbObjId.Text.Trim() != "")
+                {
+                    res = SetObjId(tbObjId.Text.Trim());
+                }
+                else if (tbWic.Text.Trim() != "")
+                {
+                    res = SetWic(tbWic.Text.Trim());
+                }
+                else if (tbIswc.Text.Trim() != "")
+                {
+                    res = SetIswc(tbIswc.Text.Trim());
+                }
+                else
+                {
+                    res = SetNotFound();
+                }
+
+                if (!string.IsNullOrEmpty(res))
+                {
+                    Helpers.ShowError(res);
+                    UpdateCodeEditControls("NONE");
+                    return;
+                }
+                else
+                {
+                    UpdateLvReportLine();
+                }
+
+                var line = GetSelectedLine();
+
+                var radioPreSearchManager = new RadioPreSearchManager(_report.Id);
+                radioPreSearchManager.RecalcShares(line.LineNr);
+
+                ucReportLineWork.Update(_report.Id, line.LineNr);
+                ucReportLineDistribution.Update(_report.Id, line.LineNr);
                 UpdateCodeEditControls("NONE");
-                return;
             }
-            else
+            catch (Exception ex)
             {
-                UpdateLvReportLine();
+                MessageBox.Show(ex.Message, "Застосування коду твору", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            var line = GetSelectedLine();
-
-            var radioPreSearchManager = new RadioPreSearchManager(_report.Id);
-            radioPreSearchManager.RecalcShares(line.LineNr);
-
-            ucReportLineWork.Update(_report.Id, line.LineNr);
-            ucReportLineDistribution.Update(_report.Id, line.LineNr);
-            UpdateCodeEditControls("NONE");
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+ 
 
         }
 
         private void btnCancelCode_Click(object sender, EventArgs e)
         {
             UpdateCodeEditControls("NONE");
+        }
+
+        private void lvReportLines_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var item = lvReportLines.GetItemAt(e.X, e.Y);
+                if (item == null)
+                {
+                    return;
+                }
+                var text = item.GetSubItemAt(e.X, e.Y).Text;
+                _textToCopy = string.IsNullOrEmpty(text) ? "" : text;
+                contextMenuStrip.Show(lvReportLines, new Point(e.X, e.Y), ToolStripDropDownDirection.BelowRight);
+            }
+        }
+
+        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(_textToCopy))
+            {
+                Clipboard.SetText(_textToCopy);
+            }
+            else
+            {
+                Clipboard.Clear();
+            }
         }
     }
 }

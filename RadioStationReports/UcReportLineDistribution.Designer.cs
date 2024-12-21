@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lvDistribution = new System.Windows.Forms.ListView();
+            contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
+            toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            contextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // lvDistribution
@@ -45,6 +49,20 @@
             lvDistribution.TabIndex = 0;
             lvDistribution.UseCompatibleStateImageBehavior = false;
             lvDistribution.View = System.Windows.Forms.View.Details;
+            lvDistribution.MouseDown += lvDistribution_MouseDown;
+            // 
+            // contextMenuStrip
+            // 
+            contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItemCopy });
+            contextMenuStrip.Name = "contextMenuStrip";
+            contextMenuStrip.Size = new System.Drawing.Size(181, 48);
+            contextMenuStrip.ItemClicked += contextMenuStrip_ItemClicked;
+            // 
+            // toolStripMenuItemCopy
+            // 
+            toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
+            toolStripMenuItemCopy.Size = new System.Drawing.Size(180, 22);
+            toolStripMenuItemCopy.Text = "Копіювати";
             // 
             // UcReportLineDistribution
             // 
@@ -54,11 +72,14 @@
             Name = "UcReportLineDistribution";
             Size = new System.Drawing.Size(1004, 445);
             Load += UcReportLineDistribution_Load;
+            contextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private System.Windows.Forms.ListView lvDistribution;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
     }
 }

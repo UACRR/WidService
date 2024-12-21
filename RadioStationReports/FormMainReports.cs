@@ -28,6 +28,8 @@ namespace RadioStationReports
 
         private bool _ignoreFilterChanged = false;
 
+        private string _textToCopy = "";
+
         public FormMainReports()
         {
             InitializeComponent();
@@ -57,7 +59,7 @@ namespace RadioStationReports
                new Filter {CurrentValue = "", FilterControl = cbFilterStartYear   , ColumnName = "t1.StartYear	" , ColumnParamName = "@StartYear"       },
                new Filter {CurrentValue = "", FilterControl = cbFilterStartMonth  , ColumnName = "t1.StartMonth " , ColumnParamName = "@StartMonth"      },
                new Filter {CurrentValue = "", FilterControl = cbFilterEndYear     , ColumnName = "t1.EndYear	" , ColumnParamName = "@EndYear"         },
-               new Filter {CurrentValue = "", FilterControl = cbFilterEndMonth    , ColumnName = "t1.EndMonth   " , ColumnParamName = "@EndMonth"        }                     
+               new Filter {CurrentValue = "", FilterControl = cbFilterEndMonth    , ColumnName = "t1.EndMonth   " , ColumnParamName = "@EndMonth"        }
             };
             radioFilterActive.Checked = true;
             radioFilterArchived.Checked = false;
@@ -73,7 +75,7 @@ namespace RadioStationReports
             var selectIndex = 0;
             Helpers.RunSql(cmd =>
             {
-                cmd.CommandText = "select Name from RadioStations";
+                cmd.CommandText = "select Name from RadioStations order by Name";
 
                 using (var r = cmd.ExecuteReader())
                 {
@@ -84,7 +86,7 @@ namespace RadioStationReports
                     {
                         var radioStationName = r.GetString(0);
                         cbFilterRadioStation.Items.Add(r.GetString(0));
-                        if(radioStationName == selectedRadioStationName)
+                        if (radioStationName == selectedRadioStationName)
                         {
                             selectIndex = idx++;
                         }
@@ -158,7 +160,8 @@ namespace RadioStationReports
                     order by t2.Name
                 ";
                 cmd.Parameters.AddWithValue("@IsArchived", radioFilterActive.Checked ? 0 : 1);
-                _filter.Where(x => x.FilterControl.SelectedIndex != 0).ToList().ForEach(x => {
+                _filter.Where(x => x.FilterControl.SelectedIndex != 0).ToList().ForEach(x =>
+                {
                     cmd.Parameters.AddWithValue(x.ColumnParamName, x.FilterControl.Text);
                 });
 
@@ -190,7 +193,8 @@ namespace RadioStationReports
         private string GetReportsFilterSql()
         {
             var retVal = $"where IsArchived = @IsArchived";
-            _filter.Where(x => x.FilterControl.SelectedIndex != 0).ToList().ForEach(x => {
+            _filter.Where(x => x.FilterControl.SelectedIndex != 0).ToList().ForEach(x =>
+            {
                 retVal += $"\r\n  and {x.ColumnName} = {x.ColumnParamName}";
             });
 
@@ -224,21 +228,21 @@ namespace RadioStationReports
         {
             if (report == null)
             {
-                tbReportFileName.Text               = "";
-                tbReportFilePath.Text               = "";
-                tbReportWorkFilesPath.Text          = "";
-                tbReprotSourceFileCopyName.Text     = "";
-                tbReportSearchFile.Text             = "";
-                tbReportDistributionFile.Text       = "";
+                tbReportFileName.Text = "";
+                tbReportFilePath.Text = "";
+                tbReportWorkFilesPath.Text = "";
+                tbReprotSourceFileCopyName.Text = "";
+                tbReportSearchFile.Text = "";
+                tbReportDistributionFile.Text = "";
             }
             else
             {
-                tbReportFileName.Text               = report.FileName            ;
-                tbReportFilePath.Text               = report.FilePath            ;
-                tbReportWorkFilesPath.Text          = report.WorkFilesPath       ;
-                tbReprotSourceFileCopyName.Text     = report.SourceFileCopyName  ;
-                tbReportSearchFile.Text             = report.SearchFileName      ;
-                tbReportDistributionFile.Text       = report.DistributionFileName;
+                tbReportFileName.Text = report.FileName;
+                tbReportFilePath.Text = report.FilePath;
+                tbReportWorkFilesPath.Text = report.WorkFilesPath;
+                tbReprotSourceFileCopyName.Text = report.SourceFileCopyName;
+                tbReportSearchFile.Text = report.SearchFileName;
+                tbReportDistributionFile.Text = report.DistributionFileName;
             }
         }
 
@@ -246,6 +250,7 @@ namespace RadioStationReports
         {
             var selectedReport = GetSelectedReport();
 
+            btnRegisterReport.Enabled = radioFilterActive.Checked;
             btnShowReport.Enabled = selectedReport != null;
             btnDelete.Enabled = selectedReport != null;
             btnArhive.Enabled = selectedReport != null;
@@ -279,8 +284,9 @@ namespace RadioStationReports
                 cmd.Parameters.AddWithValue("@ReportId", selectedReport.Id);
                 cmd.ExecuteNonQuery();
             });
-            if (Directory.Exists(selectedReport.WorkFilesPath)) { 
-                Directory.Delete(selectedReport.WorkFilesPath, true); 
+            if (Directory.Exists(selectedReport.WorkFilesPath))
+            {
+                Directory.Delete(selectedReport.WorkFilesPath, true);
             }
         }
 
@@ -315,7 +321,7 @@ namespace RadioStationReports
         {
             _filter.ForEach(x =>
             {
-                if(x.CurrentValue == "")
+                if (x.CurrentValue == "")
                 {
                     x.FilterControl.SelectedIndex = 0;
                 }
@@ -351,6 +357,7 @@ namespace RadioStationReports
             openFileDlg.Title = "Виберіть файл звіту";
             if (openFileDlg.ShowDialog() != DialogResult.OK)
             {
+                FillFilterRadioStations(); 
                 return;
             }
 
@@ -371,9 +378,24 @@ namespace RadioStationReports
             try
             {
                 var reportId = radioPreSearchManager.LoadReport(
-                    fileFullName          ,
+                    fileFullName,
                     form.OutputParameters
                 );
+
+                radioPreSearchManager = new RadioPreSearchManager(reportId);
+                radioPreSearchManager.AutoSearch();
+
+                Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = @"
+                        update Reports 
+                        set 
+                              UpdatedAt             = getdate()
+                            , AutoSearchFinishedAt  = getdate()
+                        where Id = @ReportId";
+                    cmd.Parameters.AddWithValue("@ReportId", reportId);
+                    cmd.ExecuteNonQuery();
+                });
 
                 Helpers.ShowSuccess("Звіт успішно зареєстровано!");
 
@@ -381,7 +403,9 @@ namespace RadioStationReports
                 FillLvReports(reportId);
                 UpdateControls();
                 lvReports.Focus();
-            }
+                FillFilterRadioStations();
+
+             }
             catch (Exception ex)
             {
                 Helpers.ShowError(ex.Message);
@@ -479,13 +503,14 @@ namespace RadioStationReports
             var form = new FormReportParams();
             form.SetExistingReport(selectedReport);
             form.ShowDialog();
-            if(form.DialogResult == DialogResult.Cancel)
+            if (form.DialogResult == DialogResult.Cancel)
             {
+                FillFilterRadioStations();
                 return;
             }
 
             var pNew = form.OutputParameters;
-            
+
             // Check that report exists
             var reportExists = false;
             Helpers.RunSql(cmd =>
@@ -500,11 +525,11 @@ namespace RadioStationReports
                        and EndYear        = @EndYear
                        and EndMonth       = @EndMonth
                 ";
-                cmd.Parameters.AddWithValue("@RadioStationId"   , pNew.RadioStationId);
-                cmd.Parameters.AddWithValue("@StartYear"        , pNew.StartYear);
-                cmd.Parameters.AddWithValue("@StartMonth"       , pNew.StartMonth);
-                cmd.Parameters.AddWithValue("@EndYear"          , pNew.EndYear);
-                cmd.Parameters.AddWithValue("@EndMonth"         , pNew.EndMonth);
+                cmd.Parameters.AddWithValue("@RadioStationId", pNew.RadioStationId);
+                cmd.Parameters.AddWithValue("@StartYear", pNew.StartYear);
+                cmd.Parameters.AddWithValue("@StartMonth", pNew.StartMonth);
+                cmd.Parameters.AddWithValue("@EndYear", pNew.EndYear);
+                cmd.Parameters.AddWithValue("@EndMonth", pNew.EndMonth);
                 using (var r = cmd.ExecuteReader())
                 {
                     if (r.HasRows)
@@ -521,7 +546,7 @@ namespace RadioStationReports
             }
 
             RadioPreSearchManager.MoveFilesSpace(selectedReport, pNew);
-            
+
             var item = lvReports.SelectedItems[0];
             item.SubItems[2].Text = selectedReport.RadioStationName;
             item.SubItems[3].Text = FormatPeriod(selectedReport);
@@ -537,7 +562,7 @@ namespace RadioStationReports
 
         private void radioFilterActive_CheckedChanged(object sender, EventArgs e)
         {
-            if(_ignoreFilterChanged) return;
+            if (_ignoreFilterChanged) return;
             timerApplyFilter.Enabled = true;
         }
 
@@ -596,6 +621,33 @@ namespace RadioStationReports
         private void btnFilterCancel_Click(object sender, EventArgs e)
         {
             CancelFilter();
+        }
+
+        private void lvReports_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var item = lvReports.GetItemAt(e.X, e.Y);
+                if (item == null)
+                {
+                    return;
+                }
+                var text = item.GetSubItemAt(e.X, e.Y).Text;
+                _textToCopy = string.IsNullOrEmpty(text) ? "" : text;
+                contextMenuStrip.Show(lvReports, new Point(e.X, e.Y), ToolStripDropDownDirection.BelowRight);
+            }
+        }
+
+        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(_textToCopy))
+            {
+                Clipboard.SetText(_textToCopy);
+            }
+            else
+            {
+                Clipboard.Clear();
+            }
         }
     }
 }

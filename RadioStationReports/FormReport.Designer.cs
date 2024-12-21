@@ -81,6 +81,8 @@ namespace RadioStationReports
             statusStrip1 = new System.Windows.Forms.StatusStrip();
             statusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
             pbOperationProgress = new System.Windows.Forms.ToolStripProgressBar();
+            contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
+            toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)panelSplit).BeginInit();
             panelSplit.Panel1.SuspendLayout();
@@ -99,6 +101,7 @@ namespace RadioStationReports
             panelAutoSearchStatus.SuspendLayout();
             panelCalcShare.SuspendLayout();
             statusStrip1.SuspendLayout();
+            contextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // panelMain
@@ -170,6 +173,7 @@ namespace RadioStationReports
             lvReportLines.TabIndex = 0;
             lvReportLines.UseCompatibleStateImageBehavior = false;
             lvReportLines.SelectedIndexChanged += lvReportLines_SelectedIndexChanged;
+            lvReportLines.MouseDown += lvReportLines_MouseDown;
             // 
             // panelCodesEdit
             // 
@@ -688,6 +692,19 @@ namespace RadioStationReports
             pbOperationProgress.Size = new System.Drawing.Size(648, 32);
             pbOperationProgress.Visible = false;
             // 
+            // contextMenuStrip
+            // 
+            contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItemCopy });
+            contextMenuStrip.Name = "contextMenuStrip";
+            contextMenuStrip.Size = new System.Drawing.Size(133, 26);
+            contextMenuStrip.ItemClicked += contextMenuStrip_ItemClicked;
+            // 
+            // toolStripMenuItemCopy
+            // 
+            toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
+            toolStripMenuItemCopy.Size = new System.Drawing.Size(132, 22);
+            toolStripMenuItemCopy.Text = "Копіювати";
+            // 
             // FormReport
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -724,6 +741,7 @@ namespace RadioStationReports
             panelCalcShare.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            contextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -784,5 +802,7 @@ namespace RadioStationReports
         private System.Windows.Forms.TextBox tbObjId;
         private System.Windows.Forms.TextBox tbWic;
         private System.Windows.Forms.TextBox tbIswc;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
     }
 }

@@ -29,6 +29,12 @@ namespace RadioStationReports
                 }
             });
             WorkFilesRootDir = Path.Combine(Path.GetDirectoryName(TemplateFileFullName), "Робочі файли");
+
+            Logger.WriteLine("Конфігурація завантажена");
+            Logger.WriteLine($"    TemplateFileFullName = {TemplateFileFullName}");
+            Logger.WriteLine($"    StartYear = {StartYear}");
+            Logger.WriteLine($"    EndYear = {EndYear}");
+            Logger.WriteLine($"    TemplateFileFullName = {WorkFilesRootDir}");
         }
     }
 }

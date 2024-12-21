@@ -211,7 +211,7 @@ namespace RadioStationReports
             try
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "RadioStationReports..spInsertReportLine";
+                cmd.CommandText = "spInsertReportLine";
                 _reportLines.ForEach(x =>
                 {
                     cmd.Parameters.Clear();
@@ -271,6 +271,8 @@ namespace RadioStationReports
             ReportParameters reportParameters
         )
         {
+            var reportId = 0;
+
             var fileName = Path.GetFileName(fileFullName);
             var filePath = Path.GetDirectoryName(fileFullName);
             if(CheckReportExists(reportParameters))
@@ -335,7 +337,7 @@ namespace RadioStationReports
                 cmd.Parameters.AddWithValue("@SearchFileName"       , "");
                 cmd.Parameters.AddWithValue("@DistributionFileName" , "");
 
-                var reportId = cmd.ExecuteScalar();
+                reportId = Convert.ToInt32(cmd.ExecuteScalar());
 
                 InsertReportLinesIntoDb(cmd, Convert.ToInt32(reportId));
 
@@ -353,9 +355,10 @@ namespace RadioStationReports
                 //CalcShares(cmd);
 
                 CreateFilesSpace(reportParameters, filePath, fileName);
+
             });
 
-            return _reportId;
+            return reportId;
         }
 
         private void CreateFilesSpace(ReportParameters reportParameters, string sourceFilePath, string sourceFileName)
@@ -371,6 +374,7 @@ namespace RadioStationReports
 
         public static void MoveFilesSpace(Report report, ReportParameters newReportParameters)
         {
+            Logger.WriteLine("> MoveFilesSpace");
             var oldReportParameters = new ReportParameters
             {
                 RadioStationId      = report.RadioStationId     == null ? 0  : (int)report.RadioStationId,
@@ -386,9 +390,11 @@ namespace RadioStationReports
             // Create work directory
             var workFilesRoot = FormatWorkFilesPath(newReportParameters);
             Directory.CreateDirectory(workFilesRoot);
+            Logger.WriteLine($"    Створено робочу папку {workFilesRoot}");
 
             // Old files root dir
             var oldFilesRootDir = isFromWorkDir ? FormatWorkFilesPath(oldReportParameters) : report.FilePath;
+            Logger.WriteLine($"   Папка звідки переміщаються файли {oldFilesRootDir}");
 
             // Source Report File
             var fromSourceFileCopyFullName = "";
@@ -404,6 +410,7 @@ namespace RadioStationReports
             {
                 fromSourceFileCopyFullName = "";
             }
+            Logger.WriteLine($"   Файл звіту {fromSourceFileCopyFullName}");
 
             // Search File
             var fromSearchFileFullName = Path.Combine(oldFilesRootDir, report.SearchFileName);
@@ -411,6 +418,7 @@ namespace RadioStationReports
             {
                 fromSearchFileFullName = "";
             }
+            Logger.WriteLine($"   Файл пошуку {fromSearchFileFullName}");
 
             // Distribution File
             var fromDistributionFileFullName = Path.Combine(oldFilesRootDir, report.DistributionFileName);
@@ -418,6 +426,7 @@ namespace RadioStationReports
             {
                 fromDistributionFileFullName = "";
             }
+            Logger.WriteLine($"   Файл розподілу {fromDistributionFileFullName}");
 
             // Target Files
             var toSourceFileCopyName    = fromSourceFileCopyFullName == "" ? "" : FormatSourceFileCopyName(newReportParameters);
@@ -427,19 +436,25 @@ namespace RadioStationReports
             // Copy report file
             if(fromSourceFileCopyFullName != "")
             {
-                File.Copy(fromSourceFileCopyFullName, Path.Combine(workFilesRoot, toSourceFileCopyName), true);
+                var toFileFullName = Path.Combine(workFilesRoot, toSourceFileCopyName);
+                File.Copy(fromSourceFileCopyFullName, toFileFullName, true);
+                Logger.WriteLine($"   Переміщено файл {fromSourceFileCopyFullName} => {toFileFullName}");
             }
  
             // Copy search file
             if (fromSearchFileFullName != "")
             {
-                File.Copy(fromSourceFileCopyFullName, Path.Combine(workFilesRoot, toSearchFileName), true);
+                var toFileFullName = Path.Combine(workFilesRoot, toSearchFileName);
+                File.Copy(fromSourceFileCopyFullName, toFileFullName, true);
+                Logger.WriteLine($"   Переміщено файл {fromSourceFileCopyFullName} => {toFileFullName}");
             }
  
             // Copy distribution file
             if (fromDistributionFileFullName != "")
             {
-                File.Copy(fromDistributionFileFullName, Path.Combine(workFilesRoot, toDistributionFileName), true);
+                var toFileFullName = Path.Combine(workFilesRoot, toDistributionFileName);
+                File.Copy(fromDistributionFileFullName, toFileFullName, true);
+                Logger.WriteLine($"   Переміщено файл {fromDistributionFileFullName} => {toFileFullName}");
             }
 
             // Delete old directory
@@ -447,6 +462,7 @@ namespace RadioStationReports
             if (isFromWorkDir)
             {
                 Directory.Delete(oldReportFilesPath, true);
+                Logger.WriteLine($"    Видалено папку {oldReportFilesPath}");
             }
 
             Helpers.RunSql(cmd =>
@@ -500,7 +516,7 @@ namespace RadioStationReports
             {
                 cmd.CommandText = @"
                     select Id, FileName
-                    from RadioStationReports..Reports
+                    from Reports
                     order by FileName
                 ";
                 cmd.Parameters.Clear();
@@ -526,13 +542,13 @@ namespace RadioStationReports
             switch(filter)
             {
                 case WorksFilter.hasMatches:
-                    filterText = " and exists (select null from RadioStationReports..MatchingWorks where WorkId = t2.Id)";
+                    filterText = " and exists (select null from MatchingWorks where WorkId = t2.Id)";
                     break;
                 case WorksFilter.hasNoMatches:
-                    filterText = " and not exists (select null from RadioStationReports..MatchingWorks where WorkId = t2.Id)";
+                    filterText = " and not exists (select null from MatchingWorks where WorkId = t2.Id)";
                     break;
                 case WorksFilter.hasStrongMatches:
-                    filterText = " and exists (select null from RadioStationReports..MatchingWorks where WorkId = t2.Id and IsStrongMatch = 1)";
+                    filterText = " and exists (select null from MatchingWorks where WorkId = t2.Id and IsStrongMatch = 1)";
                     break;
                 case WorksFilter.unprocessed:
                     filterText = " and IsProcessed is null";
@@ -540,8 +556,8 @@ namespace RadioStationReports
             }
             cmd.CommandText = $@"
                 select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Share
-                from RadioStationReports..ReportLines t1
-                    join RadioStationReports..Works t2 on t1.WorkId = t2.Id
+                from ReportLines t1
+                    join Works t2 on t1.WorkId = t2.Id
                 where t1.ReportId = @reportId {filterText}
                 order by t1.LineNr
             ";
@@ -556,8 +572,8 @@ namespace RadioStationReports
         {
             cmd.CommandText = $@"
                 select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Share
-                from RadioStationReports..ReportLines t1
-                    join RadioStationReports..Works t2 on t1.WorkId = t2.Id
+                from ReportLines t1
+                    join Works t2 on t1.WorkId = t2.Id
                 where t2.Id = @reportWorkId
             ";
             cmd.CommandType = CommandType.Text;
@@ -599,8 +615,8 @@ namespace RadioStationReports
         {
             cmd.CommandText = $@"
                 select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Share
-                from RadioStationReports..ReportLines t1
-                    join RadioStationReports..Works t2 on t1.WorkId = t2.Id
+                from ReportLines t1
+                    join Works t2 on t1.WorkId = t2.Id
                 where t1.ReportId = @reportId 
                     and t1.LineNr = @lineNr
             ";
@@ -625,9 +641,9 @@ namespace RadioStationReports
                     , t2.FoundInDb
                     , t2.MainOrAlt
                     , t2.FoundId
-                from RadioStationReports..ReportLines t0
-                    join RadioStationReports..Works t1 on t0.WorkId = t1.Id
-                    join RadioStationReports..MatchingWorks t2 on t1.Id = t2.WorkId
+                from ReportLines t0
+                    join Works t1 on t0.WorkId = t1.Id
+                    join MatchingWorks t2 on t1.Id = t2.WorkId
                 where t0.ReportId = @reportId
                     {filter}
             ";
@@ -672,8 +688,8 @@ namespace RadioStationReports
                     , t2.MainOrAlt
                     , t2.FoundId
                     , t2.IsStrongMatch
-                from RadioStationReports..Works t1
-                    join RadioStationReports..MatchingWorks t2 on t1.Id = t2.WorkId
+                from Works t1
+                    join MatchingWorks t2 on t1.Id = t2.WorkId
                 where t2.WorkId = @workId
             ";
             cmd.CommandType = CommandType.Text;
@@ -700,11 +716,18 @@ namespace RadioStationReports
             }
         }
 
+        private void ClearMatchingWorks(SqlCommand cmd)
+        {
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "truncate table MatchingWorks";
+            cmd.ExecuteNonQuery();
+        }
+
         private void TranslitReportWorks(SqlCommand cmd)
         {
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = @"
-                update RadioStationReports..Works
+                update Works
                 set 
                       NameT = @NameT
                     , AuthorsT = @AuthorsT
@@ -742,7 +765,7 @@ namespace RadioStationReports
                 $@"join MediaService..ObjectRight t2 on t1.{sourceColName} = t2.name";
 
             cmd.CommandText = $@"
-                insert RadioStationReports..MatchingWorks (
+                insert MatchingWorks (
                       WorkId
                     , Name
                     , Authors
@@ -761,13 +784,13 @@ namespace RadioStationReports
                     , '{mainOrAlt}' as MainOrAlt
                     , t2.objId as FoundId
                     , 0 as IsStrongMatch
-                from RadioStationReports..ReportLines t0
-                    join RadioStationReports..Works t1 on t0.WorkId = t1.Id
+                from ReportLines t0
+                    join Works t1 on t0.WorkId = t1.Id
                     {joinText}
                 where t0.ReportId = @reportId
                     and t1.{sourceColName} <> ''
                     and t1.IsProcessed is null
-                    and t2.ObjId not in (select FoundId from RadioStationReports..MatchingWorks tt where tt.WorkId = t1.Id)
+                    and t2.ObjId not in (select FoundId from MatchingWorks tt where tt.WorkId = t1.Id)
                 ";
             cmd.ExecuteNonQuery();
         }
@@ -801,7 +824,7 @@ namespace RadioStationReports
                     = t2.name";
 
             cmd.CommandText = $@"
-                insert RadioStationReports..MatchingWorks (
+                insert MatchingWorks (
                       WorkId
                     , Name
                     , Authors
@@ -820,13 +843,13 @@ namespace RadioStationReports
                     , '{mainOrAlt}' as MainOrAlt
                     , t2.objId as FoundId
                     , 0 as IsStrongMatch
-                from RadioStationReports..ReportLines t0
-                    join RadioStationReports..Works t1 on t0.WorkId = t1.Id
+                from ReportLines t0
+                    join Works t1 on t0.WorkId = t1.Id
                     {joinText}
                 where t0.ReportId = @reportId
                     and t1.IsProcessed is null
                     and t1.{sourceColName} <> ''
-                    and t2.ObjId not in (select FoundId from RadioStationReports..MatchingWorks tt where tt.WorkId = t1.Id)
+                    and t2.ObjId not in (select FoundId from MatchingWorks tt where tt.WorkId = t1.Id)
                 ";
             cmd.ExecuteNonQuery();
         }
@@ -850,7 +873,7 @@ namespace RadioStationReports
         private void SearchInWid(SqlCommand cmd)
         {
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "RadioStationReports..spSearchMatchingWorksInWid";
+            cmd.CommandText = "spSearchMatchingWorksInWid";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@reportId", _reportId);
             cmd.ExecuteNonQuery();
@@ -862,9 +885,9 @@ namespace RadioStationReports
             cmd.CommandText = @"
                 update t1
                 set t1.Authors = ''
-                from RadioStationReports..ReportLines t0
-                    join RadioStationReports..MatchingWorks t1 on t0.WorkId = t1.Id
-                    join RadioStationReports..Works t2 on t1.WorkId = t2.Id
+                from ReportLines t0
+                    join MatchingWorks t1 on t0.WorkId = t1.Id
+                    join Works t2 on t1.WorkId = t2.Id
                 where t1.Authors is null
                     and t0.ReportId = @reportId
             ";
@@ -879,9 +902,9 @@ namespace RadioStationReports
             cmd.CommandText = @"
                 update t1
                 set t1.Performers = ''
-                from RadioStationReports..ReportLines t0
-                    join RadioStationReports..MatchingWorks t1 on t0.WorkId = t1.Id
-                    join RadioStationReports..Works t2 on t1.WorkId = t2.Id
+                from ReportLines t0
+                    join MatchingWorks t1 on t0.WorkId = t1.Id
+                    join Works t2 on t1.WorkId = t2.Id
                 where t1.Performers is null
                     and t0.ReportId = @reportId
             ";
@@ -896,7 +919,7 @@ namespace RadioStationReports
             {
                 SearchMatchesInFoundWorks(cmd, reportWork);
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "update RadioStationReports..Works set IsProcessed = 1 where Id = @id";
+                cmd.CommandText = "update Works set IsProcessed = 1 where Id = @id";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@id", reportWork.Id);
                 cmd.ExecuteNonQuery();
@@ -908,17 +931,17 @@ namespace RadioStationReports
             foundWork.IsMatchingAuthorPerformer = false;
             for (int idx = 0; idx < words.Length; idx++)
             {
-                var word = words[idx].Trim();
+                var word = words[idx].Trim().ToUpper();
                 if (word.Length < 3)
                 {
                     continue;
                 }
 
-                var foundAuthorsT = Translit.FromUkr(foundWork.Authors);
-                var foundPerformersT = Translit.FromUkr(foundWork.Performers);
+                var foundAuthorsT = Translit.FromUkr(foundWork.Authors).ToUpper();
+                var foundPerformersT = Translit.FromUkr(foundWork.Performers.ToUpper());
 
-                if (foundWork.Authors.Contains(word) || foundWork.Performers.Contains(word)
-                     || foundAuthorsT.Contains(word) || foundPerformersT.Contains(word))
+                if (foundWork.Authors.ToUpper().Contains(word) || foundWork.Performers.ToUpper().Contains(word)
+                     || foundAuthorsT.ToUpper().Contains(word) || foundPerformersT.ToUpper().Contains(word))
                 {
                     foundWork.IsMatchingAuthorPerformer = true;
                     break;
@@ -928,7 +951,7 @@ namespace RadioStationReports
             if(foundWork.IsMatchingAuthorPerformer)
             {
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "update RadioStationReports..MatchingWorks set IsStrongMatch = 1 where Id = @id";
+                cmd.CommandText = "update MatchingWorks set IsStrongMatch = 1 where Id = @id";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@id", foundWork.Id);
                 cmd.ExecuteNonQuery();
@@ -961,7 +984,7 @@ namespace RadioStationReports
         public void ApplyMatches(SqlCommand cmd)
         {
             cmd.CommandText = @"
-                    update RadioStationReports..Works
+                    update Works
                     set FoundIn = @foundIn, FoundCde = @foundCde, Share = null
                     where Id = @id
                 ";
@@ -1020,6 +1043,7 @@ namespace RadioStationReports
                 ApplyMatches(cmd);
                 CalcShares(cmd);
                 InsertIswcs(cmd);
+                ClearMatchingWorks(cmd);
             });
         }
 
@@ -1497,9 +1521,8 @@ namespace RadioStationReports
                 var startDate = new DateTime(reportParameters.StartYear, reportParameters.StartMonth, 1);
                 var endDate = new DateTime(reportParameters.EndYear, reportParameters.EndMonth, 1);
                 var subDirName = $"{startDate:yyyy-MM}_{endDate:yyyy-MM}";
-                var rootPath = Path.GetDirectoryName(Configuration.TemplateFileFullName);
 
-                return Path.Combine(rootPath, "Робочі файли", reportParameters.RadioStationName, subDirName);
+                return Path.Combine(Configuration.WorkFilesRootDir, reportParameters.RadioStationName, subDirName);
             }
             catch
             {

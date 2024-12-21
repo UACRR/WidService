@@ -10,7 +10,8 @@ GO
 
 
 create or alter procedure [dbo].[spGetWidAuthorShares] (
-	  @reportId int
+	     @reportId int
+	  ,  @lineNr int = null
 )
 as
 begin
@@ -18,12 +19,26 @@ begin
 declare @WidAuthorShares tblTypeWidAuthorShares
 
 drop table if exists #ReportWics
-select distinct t2.FoundCde
-into #ReportWics
-from ReportLines t1
-	join Works t2 on t1.WorkId = t2.id
-where t1.ReportId = @reportId
-	and t2.FoundIn = 'W'
+create table #ReportWics (
+	FoundCde int
+)
+
+if @lineNr is null
+	insert #ReportWics (FoundCde)
+	select distinct t2.FoundCde
+	from ReportLines t1
+		join Works t2 on t1.WorkId = t2.id
+	where t1.ReportId = @reportId
+		and t2.FoundIn = 'W'
+else
+	insert #ReportWics (FoundCde)
+	select distinct t2.FoundCde
+	from ReportLines t1
+		join Works t2 on t1.WorkId = t2.id
+	where t1.ReportId = @reportId
+		and t1.lineNr = @lineNr		
+		and t2.FoundIn = 'W'
+
 
 -- Видаляємо твори, у яких серед авторів є такі, що посілаються на гупове імя в IPI
 ; with DistinctAuthors as (

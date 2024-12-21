@@ -34,8 +34,8 @@ namespace RadioStationReports
             {
                 cmd.CommandText = @"
                     select t1.LineNr, t2.FoundIn, t2.FoundCde, t2.Share
-                    from RadioStationReports..ReportLines t1
-                        join RadioStationReports..Works t2 on t1.WorkId = t2.Id
+                    from ReportLines t1
+                        join Works t2 on t1.WorkId = t2.Id
                     where t1.ReportId = @reportId
                 ";
                 cmd.Parameters.AddWithValue("@reportId", reportId);

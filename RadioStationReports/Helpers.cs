@@ -26,6 +26,7 @@ namespace RadioStationReports
         public static void RunSql(Body body)
         {
             var connString = ConfigurationManager.ConnectionStrings["RadioStationReports"].ConnectionString;
+            Logger.WriteLine($"Connecting - '{connString}'");
             try
             {
                 using (var conn = new SqlConnection(connString))
