@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   menuItems: MenuItem[] = [
     {name: 'Твори партнерів' , routePath: 'domains/search-engine/page-components/external-objects-list'    },
-    {name: 'Твори товариства', routePath: 'domains/search-engine/page-components/internal-objects-list'    },
+    {name: 'Твори товариства', routePath: 'domains/search-engine/page-components/partner-works-list'    },
     {name: 'Завдання'        , routePath: 'domains/task-management/page-components/task-management'        },
     {name: 'Користувачі'     , routePath: 'domains/user-administration/page-components/user-administration'},
   ];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AppService } from '../../../../app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     private appService: AppService,
     private http: HttpClient,
     private router: Router,
+    //@Inject('BASE_URL') private baseUrl: string,
   ) {
   }
 

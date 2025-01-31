@@ -24,10 +24,29 @@ namespace CopyrightObjectSearch.Server
         {
             var externalObjects = _dbContext
                 .PartnerWorks
-                .Where(x => x.FoundObjId != 0 || x.FoundWic != 0)
+                .Include(x => x.Name)
+                .Include(x => x.Authors)
+                .Include(x => x.Performers)
+                .Include(x => x.Iswc)
+                .Select(x => new PartnerWorkDto { 
+                    Id         = x.Id,
+                    Title      = x.Name.Name,
+                    Authors    = x.Authors.Name,
+                    Performers = x.Performers.Name,
+                    Iswc       = x.Iswc.Name,
+                    FoundObjId = x.FoundObjId,
+                    FoundWic   = x.FoundWic,
+                    FoundIswc  = x.FoundIswc,
+                    FoundVia   = x.FoundVia,
+                    CreatedAt  = x.CreatedAt,
+                    UpdatedAt  = x.UpdatedAt,
+                } )
+                //.Where(x => x.FoundObjId != 0 || x.FoundWic != 0)
+                .OrderBy(x => x.Title)
+                .Skip(10000)
                 .Take(100)
                 .ToArray();
-            return _mapper.Map<PartnerWork[], PartnerWorkDto[]>(externalObjects);
+            return externalObjects;
         }
 
         public GetFoundWorksRsp GetFoundWorks(SearchParamsDto searchParamsDto)
@@ -49,19 +68,19 @@ namespace CopyrightObjectSearch.Server
             return retVal;
         }
 
-        private void SetObjId(int externalObjectId, int objId)
+        private void SetObjId(int partnerWorkId, int objId)
         {
-            _dbContext.Database.ExecuteSqlRaw("exec spSetExternalObjectObjId {0}, {1}", externalObjectId, objId);
+            _dbContext.Database.ExecuteSqlRaw("exec spSetPartnerWorkObjId {0}, {1}", partnerWorkId, objId);
         }
 
-        private void SetWic(int externalObjectId, int wic)
+        private void SetWic(int partnerWorkId, int wic)
         {
-            _dbContext.Database.ExecuteSqlRaw("exec spSetExternalObjectWic {0}, {1}", externalObjectId, wic);
+            _dbContext.Database.ExecuteSqlRaw("exec spSetPartnerWorkWic {0}, {1}", partnerWorkId, wic);
         }
 
-        private void SetIswc(int externalObjectId, string iswc)
+        private void SetIswc(int partnerWorkId, string iswc)
         {
-            _dbContext.Database.ExecuteSqlRaw("exec spSetExternalObjectIswc {0}, {1}", externalObjectId, iswc);
+            _dbContext.Database.ExecuteSqlRaw("exec spSetPartnerWorkIswc {0}, {1}", partnerWorkId, iswc);
         }
 
         public SetWorkCodeRsp SetWorkCode(SetWorkCodeRq setWorkCodeRq)

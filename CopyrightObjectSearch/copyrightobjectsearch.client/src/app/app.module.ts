@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth.interceptor';
-import { InternalObjectsListComponent } from './domains/search-engine/page-components/internal-objects-list/internal-objects-list.component';
 import { TaskManagementComponent } from './domains/task-management/page-components/task-management/task-management.component';
 import { UserAdministrationComponent } from './domains/user-administration/page-components/user-administration/user-administration.component';
 import { CommonModule } from '@angular/common';
@@ -20,12 +19,12 @@ import { CodeEditBaseComponent } from './domains/search-engine/helper-components
 import { LoginComponent } from './domains/access-control/page-components/login/login.component';
 import { PartnerWorksListComponent } from './domains/search-engine/page-components/partner-works-list/partner-works-list.component';
 import { EditTaskComponent } from './domains/task-management/helper-components/edit-task/edit-task.component';
+import { SelectPartnerWorkSourceComponent } from './domains/task-management/helper-components/select-partner-work-source/select-partner-work-source.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PartnerWorksListComponent,
-    InternalObjectsListComponent,
     TaskManagementComponent,
     UserAdministrationComponent,
 
@@ -38,6 +37,7 @@ import { EditTaskComponent } from './domains/task-management/helper-components/e
     LoginComponent,
 
     EditTaskComponent,
+    SelectPartnerWorkSourceComponent,
   ],
   imports: [
     BrowserModule,

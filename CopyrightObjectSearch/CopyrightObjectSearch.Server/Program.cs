@@ -34,6 +34,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddTransient<SearchEngineRqHandler       , SearchEngineRqHandler>        ();
 builder.Services.AddTransient<UserAdministrationRqHandler , UserAdministrationRqHandler>  ();
 builder.Services.AddTransient<AccessRqHandler             , AccessRqHandler>              ();
+builder.Services.AddTransient<TaskAdministrationRqHandler , TaskAdministrationRqHandler>  ();
 
 Console.WriteLine("CopyrightObjectSearch.Server building application");
 

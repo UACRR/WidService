@@ -82,10 +82,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Domains\TaskAdministration\Dto\" />
-  </ItemGroup>
-
   <!--
   <ItemGroup>
     <ProjectReference Include="..\copyrightobjectsearch.client\copyrightobjectsearch.client.esproj">

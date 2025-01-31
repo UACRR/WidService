@@ -285,7 +285,7 @@ export class PartnerWorksListComponent implements OnInit {
     }
   }
 
-  getInitiaExternalObjectId(): number {
+  getInitiaPartnerWorkId(): number {
     return this.expandedItem ? this.expandedItem.id : 0;
   }
 

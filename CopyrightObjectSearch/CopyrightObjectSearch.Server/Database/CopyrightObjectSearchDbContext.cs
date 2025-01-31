@@ -42,6 +42,7 @@ namespace CopyrightObjectSearch.Server
         public DbSet<PartnerWorkSource> PartnerWorkSources { get; set; }
         public DbSet<PartnerWorkSourceType> PartnerWorkSourceTypes { get; set; }
         public DbSet<PartnerWorkToSource> PartnerWorkToSources { get; set; }
+        public DbSet<PartnerToSourceType> PartnerToSourceType { get; set; }
 
         public DbSet<UserTask> UserTasks { get; set; }
         public DbSet<UserTaskItem> UserTaskItems { get; set; }
@@ -73,6 +74,9 @@ namespace CopyrightObjectSearch.Server
                 .HasIndex(x => new { x.AlbumId, x.NameId, x.AuthorsId, x.PerformersId, x.IswcId })
                 .IsUnique(true);
 
+            modelBuilder.Entity<PartnerToSourceType>()
+                .HasKey(x => new { x.PartnerId, x.SourceTypeId });
+
             modelBuilder
                 .Entity<Role>()
                 .HasData([
@@ -84,40 +88,56 @@ namespace CopyrightObjectSearch.Server
             modelBuilder
                 .Entity<Partner>()
                 .HasData([
-                    new Role { Id = 1,  Code = "Google"         , Description = "Google"           },
-                    new Role { Id = 2,  Code = "Spotify"        , Description = "Spotify"          },
-                    new Role { Id = 3,  Code = "Deezer"         , Description = "Deezer"           },
-                    new Role { Id = 4,  Code = "RadioStation"   , Description = "Українське радіо" },
+                    new Partner { Id = 1,  Code = "Google"         , Description = "Google"           },
+                    new Partner { Id = 2,  Code = "Spotify"        , Description = "Spotify"          },
+                    new Partner { Id = 3,  Code = "Deezer"         , Description = "Deezer"           },
+                    new Partner { Id = 4,  Code = "RadioStation"   , Description = "Українське радіо" },
                 ]);
 
             modelBuilder
                 .Entity<PartnerWorkSourceType>()
                 .HasData([
-                    new Role { Id = 1,  Code = "YouTubeAdv"         , Description = "Звіт про прибуток за рекламу"             },
-                    new Role { Id = 2,  Code = "YouTubeMusic"       , Description = "Звіт про прибуток за підписку"            },
-                    new Role { Id = 3,  Code = "YouTubePemium"      , Description = "Звіт про прибуток за преміальну підписку" },
-                    new Role { Id = 4,  Code = "YouTubePreClaim"    , Description = "Попередній звіт"                          },
-                    new Role { Id = 5,  Code = "SpotifyFree"        , Description = "Звіт про прибуток за рекламу"             },
-                    new Role { Id = 6,  Code = "SpotifySubscr"      , Description = "Звіт про прибуток за підписку"            },
-                    new Role { Id = 7,  Code = "DeezerAll"          , Description = "Всі звіти"                                },
-                    new Role { Id = 8,  Code = "RadioStationReport" , Description = "Звіт від радіо"                           },
+                    new PartnerWorkSourceType { Id = 1,  Code = "YouTubeAdv"         , Description = "Реклама"                  },
+                    new PartnerWorkSourceType { Id = 2,  Code = "YouTubeMusic"       , Description = "Підписка звичайна"        },
+                    new PartnerWorkSourceType { Id = 3,  Code = "YouTubePemium"      , Description = "Підписка преміальна"      },
+                    new PartnerWorkSourceType { Id = 4,  Code = "YouTubePreClaim"    , Description = "Попереднє прослуховування"},
+                    new PartnerWorkSourceType { Id = 5,  Code = "SpotifyFree"        , Description = "Реклама"                  },
+                    new PartnerWorkSourceType { Id = 6,  Code = "SpotifySubscr"      , Description = "Підписка"                 },
+                    new PartnerWorkSourceType { Id = 7,  Code = "DeezerAll"          , Description = "Прослуховування музики"   },
+                    new PartnerWorkSourceType { Id = 8,  Code = "RadioStationReport" , Description = "Прослуховування музики"   },
                 ]);
 
             modelBuilder
                 .Entity<UserTaskStatus>()
                 .HasData([
-                    new Role { Id = 1,  Code = "New"        , Description = "Нова"        },
-                    new Role { Id = 2,  Code = "Assigned"   , Description = "Запланована" },
-                    new Role { Id = 3,  Code = "InProgress" , Description = "В роботі"    },
-                    new Role { Id = 4,  Code = "Completed"  , Description = "Завершена"   },
+                    new UserTaskStatus { Id = 1,  Code = "New"        , Description = "Нова"        },
+                    new UserTaskStatus { Id = 2,  Code = "Assigned"   , Description = "Запланована" },
+                    new UserTaskStatus { Id = 3,  Code = "InProgress" , Description = "В роботі"    },
+                    new UserTaskStatus { Id = 4,  Code = "Completed"  , Description = "Завершена"   },
                 ]);
 
             modelBuilder
                 .Entity<UserTaskType>()
                 .HasData([
-                    new Role { Id = 1,  Code = "SeachSocWork"          , Description = "Пошук творів товариства"      },
-                    new Role { Id = 2,  Code = "SearchPartnerWork"     , Description = "Пошук творів партнерів"       },
-                    new Role { Id = 3,  Code = "SearchRightHolderWork" , Description = "Пошук творів правовласників"  },
+                    new UserTaskType { Id = 1,  Code = "SeachSocWork"          , Description = "Пошук творів товариства"      },
+                    new UserTaskType { Id = 2,  Code = "SearchPartnerWork"     , Description = "Пошук творів партнерів"       },
+                    new UserTaskType { Id = 3,  Code = "SearchRightHolderWork" , Description = "Пошук творів правовласників"  },
+                ]);
+
+            modelBuilder
+                .Entity<PartnerToSourceType>()
+                .HasData([
+                    new PartnerToSourceType { PartnerId = 1, SourceTypeId = 1 },
+                    new PartnerToSourceType { PartnerId = 1, SourceTypeId = 2 },
+                    new PartnerToSourceType { PartnerId = 1, SourceTypeId = 3 },
+                    new PartnerToSourceType { PartnerId = 1, SourceTypeId = 4 },
+
+                    new PartnerToSourceType { PartnerId = 2, SourceTypeId = 5 },
+                    new PartnerToSourceType { PartnerId = 2, SourceTypeId = 6 },
+
+                    new PartnerToSourceType { PartnerId = 3, SourceTypeId = 7 },
+
+                    new PartnerToSourceType { PartnerId = 4, SourceTypeId = 8 },
                 ]);
         }
 

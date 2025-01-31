@@ -10,5 +10,6 @@ namespace CopyrightObjectSearch.Server
         [Column(TypeName = "int")]  public required PartnerWorkSource PartnerWorkSource   { get; set; }
         [Column(TypeName = "int")]  public required int               PartnerWorkId       { get; set; }
         [Column(TypeName = "int")]  public required PartnerWork       PartnerWork         { get; set; }
+        [Column(TypeName = "int")]  public required int               Rate                { get; set; }
     }
 }

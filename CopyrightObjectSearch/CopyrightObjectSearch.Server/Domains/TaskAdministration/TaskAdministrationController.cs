@@ -20,5 +20,23 @@ namespace CopyrightObjectSearch.Server
         public void GetTasks()
         {
         }
+
+        [HttpPost("api/TaskAdministration/GetPartnerWorkSources")]
+        public IEnumerable<GetPartnerWorkSourcesRsp> GetPartnerWorkSources(GetPartnerWorkSourcesRq rq)
+        {
+            return _taskAdministrationRqHandler.GetPartnerWorkSources(rq);
+        }
+
+        [HttpGet("api/TaskAdministration/GetPartnerWorkFilterInfo")]
+        public GetPartnerWorkFilterInfoRsp GetPartnerWorkFilterInfo()
+        {
+            return _taskAdministrationRqHandler.GetPartnerWorkFilterInfo();
+        }
+
+        [HttpPost("api/TaskAdministration/GetPlannedTaskName")]
+        public GetPlannedTaskNameRsp GetPlannedTaskName(GetPlannedTaskNameRq rq)
+        {
+            return _taskAdministrationRqHandler.GetPlannedTaskName(rq);
+        }
     }
 }

@@ -60,11 +60,9 @@ namespace CopyrightObjectSearch.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Code")
-                        .IsRequired()
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
@@ -95,6 +93,63 @@ namespace CopyrightObjectSearch.Server.Migrations
                             Id = 4,
                             Code = "RadioStation",
                             Description = "Українське радіо"
+                        });
+                });
+
+            modelBuilder.Entity("CopyrightObjectSearch.Server.PartnerToSourceType", b =>
+                {
+                    b.Property<int>("PartnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SourceTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PartnerId", "SourceTypeId");
+
+                    b.HasIndex("SourceTypeId");
+
+                    b.ToTable("PartnerToSourceType");
+
+                    b.HasData(
+                        new
+                        {
+                            PartnerId = 1,
+                            SourceTypeId = 1
+                        },
+                        new
+                        {
+                            PartnerId = 1,
+                            SourceTypeId = 2
+                        },
+                        new
+                        {
+                            PartnerId = 1,
+                            SourceTypeId = 3
+                        },
+                        new
+                        {
+                            PartnerId = 1,
+                            SourceTypeId = 4
+                        },
+                        new
+                        {
+                            PartnerId = 2,
+                            SourceTypeId = 5
+                        },
+                        new
+                        {
+                            PartnerId = 2,
+                            SourceTypeId = 6
+                        },
+                        new
+                        {
+                            PartnerId = 3,
+                            SourceTypeId = 7
+                        },
+                        new
+                        {
+                            PartnerId = 4,
+                            SourceTypeId = 8
                         });
                 });
 
@@ -304,7 +359,15 @@ namespace CopyrightObjectSearch.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int?>("PartnerToSourceTypePartnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PartnerToSourceTypeSourceTypeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PartnerToSourceTypePartnerId", "PartnerToSourceTypeSourceTypeId");
 
                     b.ToTable("PartnerWorkSourceTypes");
 
@@ -313,49 +376,49 @@ namespace CopyrightObjectSearch.Server.Migrations
                         {
                             Id = 1,
                             Code = "YouTubeAdv",
-                            Description = "Звіт про прибуток за рекламу"
+                            Description = "Реклама"
                         },
                         new
                         {
                             Id = 2,
                             Code = "YouTubeMusic",
-                            Description = "Звіт про прибуток за підписку"
+                            Description = "Підписка звичайна"
                         },
                         new
                         {
                             Id = 3,
                             Code = "YouTubePemium",
-                            Description = "Звіт про прибуток за преміальну підписку"
+                            Description = "Підписка преміальна"
                         },
                         new
                         {
                             Id = 4,
                             Code = "YouTubePreClaim",
-                            Description = "Попередній звіт"
+                            Description = "Попереднє прослуховування"
                         },
                         new
                         {
                             Id = 5,
                             Code = "SpotifyFree",
-                            Description = "Звіт про прибуток за рекламу"
+                            Description = "Реклама"
                         },
                         new
                         {
                             Id = 6,
                             Code = "SpotifySubscr",
-                            Description = "Звіт про прибуток за підписку"
+                            Description = "Підписка"
                         },
                         new
                         {
                             Id = 7,
                             Code = "DeezerAll",
-                            Description = "Всі звіти"
+                            Description = "Прослуховування музики"
                         },
                         new
                         {
                             Id = 8,
                             Code = "RadioStationReport",
-                            Description = "Звіт від радіо"
+                            Description = "Прослуховування музики"
                         });
                 });
 
@@ -371,6 +434,9 @@ namespace CopyrightObjectSearch.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PartnerWorkSourceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rate")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -659,6 +725,25 @@ namespace CopyrightObjectSearch.Server.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CopyrightObjectSearch.Server.PartnerToSourceType", b =>
+                {
+                    b.HasOne("CopyrightObjectSearch.Server.Partner", "Partner")
+                        .WithMany("PartnerToSourceType")
+                        .HasForeignKey("PartnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CopyrightObjectSearch.Server.PartnerWorkSourceType", "SourceType")
+                        .WithMany()
+                        .HasForeignKey("SourceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Partner");
+
+                    b.Navigation("SourceType");
+                });
+
             modelBuilder.Entity("CopyrightObjectSearch.Server.PartnerWork", b =>
                 {
                     b.HasOne("CopyrightObjectSearch.Server.PartnerWorkAlbum", "Album")
@@ -719,6 +804,13 @@ namespace CopyrightObjectSearch.Server.Migrations
                     b.Navigation("Partner");
 
                     b.Navigation("SourceType");
+                });
+
+            modelBuilder.Entity("CopyrightObjectSearch.Server.PartnerWorkSourceType", b =>
+                {
+                    b.HasOne("CopyrightObjectSearch.Server.PartnerToSourceType", null)
+                        .WithMany("PartnerWorkSourceTypes")
+                        .HasForeignKey("PartnerToSourceTypePartnerId", "PartnerToSourceTypeSourceTypeId");
                 });
 
             modelBuilder.Entity("CopyrightObjectSearch.Server.PartnerWorkToSource", b =>
@@ -807,7 +899,14 @@ namespace CopyrightObjectSearch.Server.Migrations
 
             modelBuilder.Entity("CopyrightObjectSearch.Server.Partner", b =>
                 {
+                    b.Navigation("PartnerToSourceType");
+
                     b.Navigation("PartnerWorkSources");
+                });
+
+            modelBuilder.Entity("CopyrightObjectSearch.Server.PartnerToSourceType", b =>
+                {
+                    b.Navigation("PartnerWorkSourceTypes");
                 });
 
             modelBuilder.Entity("CopyrightObjectSearch.Server.PartnerWork", b =>

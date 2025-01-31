@@ -56,7 +56,7 @@ class FoundItem {
   ]
 })
 export class SearchInSocDbComponent implements OnInit {
-  @Input() inputExternalObjectId = 0;
+  @Input() inputPartnerWorkId = 0;
   @Input() inputName = '';
   @Input() inputAuthors = '';
   @Input() inputPerformers = '';
@@ -214,13 +214,13 @@ export class SearchInSocDbComponent implements OnInit {
   onSelectWorkClicked(foundItem: FoundItem) {
     const rq: SetWorkCodeRq = {
       workCode: this.getFoundItemCodeText(foundItem),
-      partnerWorkId: this.inputExternalObjectId,
+      partnerWorkId: this.inputPartnerWorkId,
     };
     this.http.post<SetWorkCodeRsp>('http://localhost:5235/api/SearchEngine/SetWorkCode', rq)
       .subscribe({
         next: response => {
           this.objectSelected.emit({
-            externalObjectId: response.externalObjectId,
+            partnerWorkId: response.partnerWorkId,
             objId: response.objId,
             wic: response.wic,
             iswc: response.iswc

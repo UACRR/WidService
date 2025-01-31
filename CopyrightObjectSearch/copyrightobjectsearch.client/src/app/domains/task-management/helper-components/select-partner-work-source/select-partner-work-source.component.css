@@ -1,0 +1,51 @@
+.component-div {
+  background-color: beige;
+  border:  solid 1px lightgreen;
+  width: 100%;
+}
+
+.filter-div {
+    line-height: 26px;
+}
+
+.partner-work-source-row {
+
+}
+
+.partner-work-source-row:hover {
+    background-color:aliceblue;
+}
+
+.prompt-div {
+}
+
+.value-div {
+
+}
+
+.value-input {
+  width: 100%;
+}
+
+.error-div {
+    color: white;
+    background-color: red;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.no-value-div {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.warning-div {
+  color: teal;
+  margin-top: 5px;
+}
+
+.actions-div {
+  color: teal;
+  margin-top: 5px;
+}
+

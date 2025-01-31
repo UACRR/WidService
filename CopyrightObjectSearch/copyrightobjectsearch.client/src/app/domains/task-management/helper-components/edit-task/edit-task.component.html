@@ -1,4 +1,4 @@
-<div class="component-div" [@slideInOut]>
+<div class="component-div">
   <div class="title-div">
     Включити в завдання
   </div>
@@ -16,14 +16,19 @@
     </span>
   </div>
 
-  <div class="title-div">
-    Звіт партнера
+  <div *ngIf="isSeachSocWork()">
+    Не реалізовано
   </div>
 
-  <div>
-    <span class="partner-report-span">
-      {{getReportText()}}
-    </span>
+  <div *ngIf="isSearchPartnerWork()">
+    <div style="padding: 10px 10px 10px 10px;">
+      <app-select-partner-work-source (finished)="onCreateTaskFinished()">
+      </app-select-partner-work-source>
+    </div>
+  </div>
+
+  <div *ngIf="isSearchRightHolderWork()">
+    Не реалізовано
   </div>
 
 </div>

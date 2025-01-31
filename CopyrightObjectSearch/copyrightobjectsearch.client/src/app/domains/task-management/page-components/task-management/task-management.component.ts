@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { slideInOut } from '../../../../animations';
 
 @Component({
   selector: 'app-task-management',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [
     './task-management.component.css',
     '../../../../app.component.css'
-   ],
+  ],
+  animations: [slideInOut]
 })
 export class TaskManagementComponent implements OnInit {
+
+  isNewTaskVisible: boolean = false;
+
   constructor(
   ) {
   }
@@ -17,5 +22,10 @@ export class TaskManagementComponent implements OnInit {
   }
 
   onNewTask() {
+    this.isNewTaskVisible = true;
+  }
+
+  onFinished() {
+    this.isNewTaskVisible = false;
   }
 }

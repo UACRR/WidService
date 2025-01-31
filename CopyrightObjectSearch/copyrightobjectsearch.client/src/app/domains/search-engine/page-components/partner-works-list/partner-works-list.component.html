@@ -62,13 +62,13 @@
     <!-- Прямий ввід кодів творів товариства -->
     <div>
       <div *ngIf="isEditingObjId(item)" [@slideInOut]>
-        <app-objid-edit [inputExternalObjectId]="item.id" (finished)="onEditObjIdFinished($event)"></app-objid-edit>
+        <app-objid-edit [inputPartnerWorkId]="item.id" (finished)="onEditObjIdFinished($event)"></app-objid-edit>
       </div>
       <div *ngIf="isEditingWic(item)" [@slideInOut]>
-        <app-wic-edit [inputExternalObjectId]="item.id" (finished)="onEditWicFinished($event)"></app-wic-edit>
+        <app-wic-edit [inputPartnerWorkId]="item.id" (finished)="onEditWicFinished($event)"></app-wic-edit>
       </div>
       <div *ngIf="isEditingIswc(item)" [@slideInOut]>
-        <app-iswc-edit [inputExternalObjectId]="item.id" (finished)="onEditIswcFinished($event)"></app-iswc-edit>
+        <app-iswc-edit [inputPartnerWorkId]="item.id" (finished)="onEditIswcFinished($event)"></app-iswc-edit>
       </div>
     </div>
 
@@ -88,7 +88,7 @@
       <!-- Пошук вибором з БД товариства -->
       <div class="search-by-select-div">
         <app-search-in-soc-db
-          [inputExternalObjectId] = "getInitiaExternalObjectId()"
+          [inputPartnerWorkId] = "getInitiaPartnerWorkId()"
           [inputName]             = "getInitiaSearchWorkName()"
           [inputAuthors]          = "getInitialWorkAuthors()"
           [inputPerformers]       = "getInitialWorkPerformers()"

@@ -1,0 +1,75 @@
+<div class="component-div">
+
+  <div style="padding: 10px 10px 10px 10px; ">
+    <!-- PROMPT -->
+    <div class="prompt-div">{{getPromptText()}}</div>
+
+    <!-- FILTER -->
+    <div class="filter-div">
+      <i>Показати&nbsp;звіти&nbsp;від&nbsp;</i>
+      <select [formControl]="formControlFilterPartner">
+        <option *ngFor="let filterPartner of filterInfoItem.partners;"
+                [value]="filterPartner.partnerId">
+          {{filterPartner.partnerName}}
+        </option>
+      </select>
+      <i>&nbsp;для&nbsp;сервісу&nbsp;</i>
+      <select [formControl]="formControlFilterSourceType">
+        <option *ngFor="let filterSourceType of getFilterSourceTypes()"
+                [value]="filterSourceType.sourceTypeId">
+          {{filterSourceType.sourceTypeName}}
+        </option>
+      </select>
+      <i>&nbsp;і&nbsp;періоду,&nbsp;що&nbsp;включає&nbsp;рік&nbsp;</i>
+      <select [formControl]="formControlFilterYear">
+        <option *ngFor="let filterYear of getFilterYears()"
+                [value]="filterYear">
+          {{filterYear}}
+        </option>
+      </select>
+      <i>&nbsp;і&nbsp;місяць&nbsp;</i>
+      <select [formControl]="formControlFilterMonth">
+        <option *ngFor="let filterMonth of getFilterMonths()"
+                [value]="filterMonth">
+          {{filterMonth}}
+        </option>
+      </select>
+    </div>
+
+    <!-- VALUE -->
+    <div style="overflow-y: scroll; height: 60px; background-color: white; width: 95%; padding: 10px 10px 10px 10px; ">
+      <table style="width: 100%;">
+        <tr *ngFor="let item of items" class="partner-work-source-row">
+          <td style="width: 100%;">{{item.title}}</td>
+          <td><button (click)="onSelectClicked(item)">Вибрати</button></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ERROR -->
+    <div *ngIf="isErrorVisible()" class="error-div">
+      <i class="fa fa-warning"></i>
+      {{getErrorText()}}
+      <i class="fa fa-times" style="float: right; cursor: pointer;" (click)="onHideError()"></i>
+    </div>
+
+    <!-- WARNING -->
+    <div *ngIf="isWarningTextVisible()" class="warning-div">
+      <i class="fa fa-exclamation-triangle">
+        {{getWarningText()}}
+      </i>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions-div">
+      <button *ngIf="isApplyVisible()" (click)="onApply()">
+        {{getActionApplyText()}}
+        <i *ngIf="isUpdateInProgress" class="fa fa-spinner fa-spin" style="margin-left: 5px;"></i>
+      </button>
+      <button (click)="onCancel()">
+        {{getActionCancelText()}}
+      </button>
+    </div>
+  </div>
+  
+</div>

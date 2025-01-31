@@ -2,9 +2,11 @@
   <div class="page-title-div">Адміністрування завдань</div>
 
   <div class="new-task-div">
-    <button (click)="onNewTask()">Нове завдання</button>
+    <button *ngIf="!isNewTaskVisible" (click)="onNewTask()">Нове завдання</button>
   </div>
 
-  <app-edit-task></app-edit-task>
+  <app-edit-task *ngIf="isNewTaskVisible" (finished)="onFinished()">
+
+  </app-edit-task>
 
 </div>

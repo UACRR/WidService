@@ -13,7 +13,7 @@ import { SetWorkCodeRsp } from '../../server-proxy/dto/SetWorkCodeRsp';
   ]
 })
 export class CodeEditBaseComponent implements OnInit {
-  @Input() inputExternalObjectId = 0;
+  @Input() inputPartnerWorkId = 0;
   @Input() inputIswc = '';
 
   @Output() finished = new EventEmitter();
@@ -72,7 +72,7 @@ export class CodeEditBaseComponent implements OnInit {
     this.errorText = '';
     const rq: SetWorkCodeRq = {
       workCode: this.formatWorkCodeInRq(),
-      partnerWorkId: this.inputExternalObjectId,
+      partnerWorkId: this.inputPartnerWorkId,
     };
     this.http.post<SetWorkCodeRsp>('http://localhost:5235/api/SearchEngine/SetWorkCode', rq)
       .subscribe({
@@ -81,7 +81,7 @@ export class CodeEditBaseComponent implements OnInit {
           if (response.errorText === '') {
             this.finished.emit({
               isCanceled: false,
-              externalObjectId: response.externalObjectId,
+              partnerWorkId: response.partnerWorkId,
               objId: response.objId,
               wic: response.wic,
               iswc: response.iswc
