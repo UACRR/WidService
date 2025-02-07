@@ -46,6 +46,18 @@ namespace InvoicingLib
             }
         }
 
+        public static void RunSqlOperationDdexUnsafe(SqlOperation oper, bool throwException = false)
+        {
+            using (var waitCursor = new WaitCursor())
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConnectionStringDdex"]))
+            using (SqlCommand cmd = conn.CreateCommand())
+            {
+                conn.Open();
+                cmd.CommandTimeout = 0;
+                oper(cmd);
+            }
+        }
+
         public static void RunSqlOperationDdexT(SqlOperation oper, bool throwException = false)
         {
             try
@@ -99,6 +111,18 @@ namespace InvoicingLib
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static void RunSqlOperationMsUnsafe(SqlOperation oper)
+        {
+            using (var waitCursor = new WaitCursor())
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConnectionStringMs"]))
+            using (SqlCommand cmd = conn.CreateCommand())
+            {
+                conn.Open();
+                cmd.CommandTimeout = 0;
+                oper(cmd);
             }
         }
     }

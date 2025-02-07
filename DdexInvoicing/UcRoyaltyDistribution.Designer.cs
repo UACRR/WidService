@@ -66,6 +66,14 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tbRegIdOld = new System.Windows.Forms.TextBox();
             this.tbPeriodIdOld = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbNumberInvoiceOld = new System.Windows.Forms.TextBox();
+            this.tbNumberInvoiceNew = new System.Windows.Forms.TextBox();
+            this.panelCreateGooglePayment = new System.Windows.Forms.FlowLayoutPanel();
+            this.chkCreateGooglePaiment = new System.Windows.Forms.CheckBox();
+            this.panelCreateGooglePaymentDetails = new System.Windows.Forms.FlowLayoutPanel();
+            this.radioCreateGooglePayment = new System.Windows.Forms.RadioButton();
+            this.radioBindGooglePayment = new System.Windows.Forms.RadioButton();
             this.panelFilter = new System.Windows.Forms.FlowLayoutPanel();
             this.label17 = new System.Windows.Forms.Label();
             this.cbFilterStatus = new System.Windows.Forms.ComboBox();
@@ -85,6 +93,8 @@
             this.panelReports.SuspendLayout();
             this.panelReportDetails.SuspendLayout();
             this.panelDistributionParameters.SuspendLayout();
+            this.panelCreateGooglePayment.SuspendLayout();
+            this.panelCreateGooglePaymentDetails.SuspendLayout();
             this.panelFilter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,7 +215,7 @@
             this.panelReportDetails.Name = "panelReportDetails";
             this.panelReportDetails.RowCount = 4;
             this.panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 286F));
+            this.panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 395F));
             this.panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.panelReportDetails.Size = new System.Drawing.Size(678, 509);
@@ -229,7 +239,7 @@
             this.panelDistributionParameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.panelDistributionParameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.panelDistributionParameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelDistributionParameters.Controls.Add(this.btnDestribute, 2, 9);
+            this.panelDistributionParameters.Controls.Add(this.btnDestribute, 2, 12);
             this.panelDistributionParameters.Controls.Add(this.label5, 0, 0);
             this.panelDistributionParameters.Controls.Add(this.label6, 1, 0);
             this.panelDistributionParameters.Controls.Add(this.label7, 2, 0);
@@ -239,26 +249,31 @@
             this.panelDistributionParameters.Controls.Add(this.tbPaidIdNew, 2, 4);
             this.panelDistributionParameters.Controls.Add(this.label8, 0, 3);
             this.panelDistributionParameters.Controls.Add(this.label9, 0, 4);
-            this.panelDistributionParameters.Controls.Add(this.label10, 0, 5);
-            this.panelDistributionParameters.Controls.Add(this.label11, 0, 6);
-            this.panelDistributionParameters.Controls.Add(this.label12, 0, 7);
-            this.panelDistributionParameters.Controls.Add(this.label13, 0, 8);
-            this.panelDistributionParameters.Controls.Add(this.tbGoalInvoiceOld, 1, 5);
-            this.panelDistributionParameters.Controls.Add(this.tbDateInvoiceOld, 1, 6);
-            this.panelDistributionParameters.Controls.Add(this.tbGoalInvoiceNew, 2, 5);
-            this.panelDistributionParameters.Controls.Add(this.tbDateInvoiceNew, 2, 6);
-            this.panelDistributionParameters.Controls.Add(this.tbAmountReceivedTotalOld, 1, 7);
-            this.panelDistributionParameters.Controls.Add(this.tbAmountReceivedPeriodOld, 1, 8);
-            this.panelDistributionParameters.Controls.Add(this.tbAmountReceivedPeriodNew, 2, 8);
-            this.panelDistributionParameters.Controls.Add(this.tbAmountReceivedTotalNew, 2, 7);
+            this.panelDistributionParameters.Controls.Add(this.label10, 0, 6);
+            this.panelDistributionParameters.Controls.Add(this.label11, 0, 7);
+            this.panelDistributionParameters.Controls.Add(this.label12, 0, 8);
+            this.panelDistributionParameters.Controls.Add(this.label13, 0, 9);
+            this.panelDistributionParameters.Controls.Add(this.tbGoalInvoiceOld, 1, 6);
+            this.panelDistributionParameters.Controls.Add(this.tbDateInvoiceOld, 1, 7);
+            this.panelDistributionParameters.Controls.Add(this.tbGoalInvoiceNew, 2, 6);
+            this.panelDistributionParameters.Controls.Add(this.tbDateInvoiceNew, 2, 7);
+            this.panelDistributionParameters.Controls.Add(this.tbAmountReceivedTotalOld, 1, 8);
+            this.panelDistributionParameters.Controls.Add(this.tbAmountReceivedPeriodOld, 1, 9);
+            this.panelDistributionParameters.Controls.Add(this.tbAmountReceivedPeriodNew, 2, 9);
+            this.panelDistributionParameters.Controls.Add(this.tbAmountReceivedTotalNew, 2, 8);
             this.panelDistributionParameters.Controls.Add(this.label14, 0, 1);
             this.panelDistributionParameters.Controls.Add(this.label15, 0, 2);
             this.panelDistributionParameters.Controls.Add(this.tbRegIdOld, 1, 1);
             this.panelDistributionParameters.Controls.Add(this.tbPeriodIdOld, 1, 2);
+            this.panelDistributionParameters.Controls.Add(this.label16, 0, 5);
+            this.panelDistributionParameters.Controls.Add(this.tbNumberInvoiceOld, 1, 5);
+            this.panelDistributionParameters.Controls.Add(this.tbNumberInvoiceNew, 2, 5);
+            this.panelDistributionParameters.Controls.Add(this.panelCreateGooglePayment, 0, 10);
+            this.panelDistributionParameters.Controls.Add(this.panelCreateGooglePaymentDetails, 0, 11);
             this.panelDistributionParameters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDistributionParameters.Location = new System.Drawing.Point(3, 23);
             this.panelDistributionParameters.Name = "panelDistributionParameters";
-            this.panelDistributionParameters.RowCount = 11;
+            this.panelDistributionParameters.RowCount = 14;
             this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
@@ -269,16 +284,19 @@
             this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.panelDistributionParameters.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.panelDistributionParameters.Size = new System.Drawing.Size(672, 280);
+            this.panelDistributionParameters.Size = new System.Drawing.Size(672, 389);
             this.panelDistributionParameters.TabIndex = 3;
             // 
             // btnDestribute
             // 
             this.btnDestribute.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDestribute.Location = new System.Drawing.Point(363, 249);
+            this.btnDestribute.Location = new System.Drawing.Point(363, 342);
             this.btnDestribute.Name = "btnDestribute";
-            this.btnDestribute.Size = new System.Drawing.Size(194, 22);
+            this.btnDestribute.Size = new System.Drawing.Size(194, 21);
             this.btnDestribute.TabIndex = 1;
             this.btnDestribute.Text = "Виконати розподіл і оплату";
             this.btnDestribute.UseVisualStyleBackColor = true;
@@ -380,7 +398,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 134);
+            this.label10.Location = new System.Drawing.Point(3, 162);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(154, 28);
             this.label10.TabIndex = 0;
@@ -391,7 +409,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 162);
+            this.label11.Location = new System.Drawing.Point(3, 190);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(154, 28);
             this.label11.TabIndex = 0;
@@ -402,7 +420,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(3, 190);
+            this.label12.Location = new System.Drawing.Point(3, 218);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(154, 28);
             this.label12.TabIndex = 0;
@@ -413,7 +431,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(3, 218);
+            this.label13.Location = new System.Drawing.Point(3, 246);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(154, 28);
             this.label13.TabIndex = 0;
@@ -423,7 +441,7 @@
             // tbGoalInvoiceOld
             // 
             this.tbGoalInvoiceOld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbGoalInvoiceOld.Location = new System.Drawing.Point(163, 137);
+            this.tbGoalInvoiceOld.Location = new System.Drawing.Point(163, 165);
             this.tbGoalInvoiceOld.Name = "tbGoalInvoiceOld";
             this.tbGoalInvoiceOld.ReadOnly = true;
             this.tbGoalInvoiceOld.Size = new System.Drawing.Size(194, 20);
@@ -432,7 +450,7 @@
             // tbDateInvoiceOld
             // 
             this.tbDateInvoiceOld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDateInvoiceOld.Location = new System.Drawing.Point(163, 165);
+            this.tbDateInvoiceOld.Location = new System.Drawing.Point(163, 193);
             this.tbDateInvoiceOld.Name = "tbDateInvoiceOld";
             this.tbDateInvoiceOld.ReadOnly = true;
             this.tbDateInvoiceOld.Size = new System.Drawing.Size(194, 20);
@@ -441,7 +459,7 @@
             // tbGoalInvoiceNew
             // 
             this.tbGoalInvoiceNew.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbGoalInvoiceNew.Location = new System.Drawing.Point(363, 137);
+            this.tbGoalInvoiceNew.Location = new System.Drawing.Point(363, 165);
             this.tbGoalInvoiceNew.Name = "tbGoalInvoiceNew";
             this.tbGoalInvoiceNew.Size = new System.Drawing.Size(194, 20);
             this.tbGoalInvoiceNew.TabIndex = 2;
@@ -449,7 +467,7 @@
             // tbDateInvoiceNew
             // 
             this.tbDateInvoiceNew.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDateInvoiceNew.Location = new System.Drawing.Point(363, 165);
+            this.tbDateInvoiceNew.Location = new System.Drawing.Point(363, 193);
             this.tbDateInvoiceNew.Name = "tbDateInvoiceNew";
             this.tbDateInvoiceNew.Size = new System.Drawing.Size(194, 20);
             this.tbDateInvoiceNew.TabIndex = 2;
@@ -457,7 +475,7 @@
             // tbAmountReceivedTotalOld
             // 
             this.tbAmountReceivedTotalOld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbAmountReceivedTotalOld.Location = new System.Drawing.Point(163, 193);
+            this.tbAmountReceivedTotalOld.Location = new System.Drawing.Point(163, 221);
             this.tbAmountReceivedTotalOld.Name = "tbAmountReceivedTotalOld";
             this.tbAmountReceivedTotalOld.ReadOnly = true;
             this.tbAmountReceivedTotalOld.Size = new System.Drawing.Size(194, 20);
@@ -466,7 +484,7 @@
             // tbAmountReceivedPeriodOld
             // 
             this.tbAmountReceivedPeriodOld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbAmountReceivedPeriodOld.Location = new System.Drawing.Point(163, 221);
+            this.tbAmountReceivedPeriodOld.Location = new System.Drawing.Point(163, 249);
             this.tbAmountReceivedPeriodOld.Name = "tbAmountReceivedPeriodOld";
             this.tbAmountReceivedPeriodOld.ReadOnly = true;
             this.tbAmountReceivedPeriodOld.Size = new System.Drawing.Size(194, 20);
@@ -475,7 +493,7 @@
             // tbAmountReceivedPeriodNew
             // 
             this.tbAmountReceivedPeriodNew.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbAmountReceivedPeriodNew.Location = new System.Drawing.Point(363, 221);
+            this.tbAmountReceivedPeriodNew.Location = new System.Drawing.Point(363, 249);
             this.tbAmountReceivedPeriodNew.Name = "tbAmountReceivedPeriodNew";
             this.tbAmountReceivedPeriodNew.Size = new System.Drawing.Size(194, 20);
             this.tbAmountReceivedPeriodNew.TabIndex = 2;
@@ -483,7 +501,7 @@
             // tbAmountReceivedTotalNew
             // 
             this.tbAmountReceivedTotalNew.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbAmountReceivedTotalNew.Location = new System.Drawing.Point(363, 193);
+            this.tbAmountReceivedTotalNew.Location = new System.Drawing.Point(363, 221);
             this.tbAmountReceivedTotalNew.Name = "tbAmountReceivedTotalNew";
             this.tbAmountReceivedTotalNew.Size = new System.Drawing.Size(194, 20);
             this.tbAmountReceivedTotalNew.TabIndex = 2;
@@ -527,6 +545,101 @@
             this.tbPeriodIdOld.ReadOnly = true;
             this.tbPeriodIdOld.Size = new System.Drawing.Size(194, 20);
             this.tbPeriodIdOld.TabIndex = 4;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Location = new System.Drawing.Point(3, 134);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(154, 28);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Номер платежу";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tbNumberInvoiceOld
+            // 
+            this.tbNumberInvoiceOld.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbNumberInvoiceOld.Location = new System.Drawing.Point(163, 137);
+            this.tbNumberInvoiceOld.Name = "tbNumberInvoiceOld";
+            this.tbNumberInvoiceOld.ReadOnly = true;
+            this.tbNumberInvoiceOld.Size = new System.Drawing.Size(194, 20);
+            this.tbNumberInvoiceOld.TabIndex = 2;
+            // 
+            // tbNumberInvoiceNew
+            // 
+            this.tbNumberInvoiceNew.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbNumberInvoiceNew.Location = new System.Drawing.Point(363, 137);
+            this.tbNumberInvoiceNew.Name = "tbNumberInvoiceNew";
+            this.tbNumberInvoiceNew.Size = new System.Drawing.Size(194, 20);
+            this.tbNumberInvoiceNew.TabIndex = 2;
+            // 
+            // panelCreateGooglePayment
+            // 
+            this.panelDistributionParameters.SetColumnSpan(this.panelCreateGooglePayment, 3);
+            this.panelCreateGooglePayment.Controls.Add(this.chkCreateGooglePaiment);
+            this.panelCreateGooglePayment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCreateGooglePayment.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.panelCreateGooglePayment.Location = new System.Drawing.Point(3, 277);
+            this.panelCreateGooglePayment.Name = "panelCreateGooglePayment";
+            this.panelCreateGooglePayment.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.panelCreateGooglePayment.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.panelCreateGooglePayment.Size = new System.Drawing.Size(554, 26);
+            this.panelCreateGooglePayment.TabIndex = 5;
+            // 
+            // chkCreateGooglePaiment
+            // 
+            this.chkCreateGooglePaiment.AutoSize = true;
+            this.chkCreateGooglePaiment.Location = new System.Drawing.Point(3, 7);
+            this.chkCreateGooglePaiment.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.chkCreateGooglePaiment.Name = "chkCreateGooglePaiment";
+            this.chkCreateGooglePaiment.Padding = new System.Windows.Forms.Padding(100, 0, 0, 0);
+            this.chkCreateGooglePaiment.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkCreateGooglePaiment.Size = new System.Drawing.Size(301, 17);
+            this.chkCreateGooglePaiment.TabIndex = 1;
+            this.chkCreateGooglePaiment.Text = "Створити дані про платіж від ГУГЛ";
+            this.chkCreateGooglePaiment.UseVisualStyleBackColor = true;
+            this.chkCreateGooglePaiment.CheckedChanged += new System.EventHandler(this.chkCreateGooglePaiment_CheckedChanged);
+            // 
+            // panelCreateGooglePaymentDetails
+            // 
+            this.panelDistributionParameters.SetColumnSpan(this.panelCreateGooglePaymentDetails, 3);
+            this.panelCreateGooglePaymentDetails.Controls.Add(this.radioCreateGooglePayment);
+            this.panelCreateGooglePaymentDetails.Controls.Add(this.radioBindGooglePayment);
+            this.panelCreateGooglePaymentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCreateGooglePaymentDetails.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+            this.panelCreateGooglePaymentDetails.Location = new System.Drawing.Point(3, 309);
+            this.panelCreateGooglePaymentDetails.Name = "panelCreateGooglePaymentDetails";
+            this.panelCreateGooglePaymentDetails.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.panelCreateGooglePaymentDetails.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.panelCreateGooglePaymentDetails.Size = new System.Drawing.Size(554, 27);
+            this.panelCreateGooglePaymentDetails.TabIndex = 5;
+            // 
+            // radioCreateGooglePayment
+            // 
+            this.radioCreateGooglePayment.AutoSize = true;
+            this.radioCreateGooglePayment.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.radioCreateGooglePayment.Location = new System.Drawing.Point(410, 0);
+            this.radioCreateGooglePayment.Name = "radioCreateGooglePayment";
+            this.radioCreateGooglePayment.Size = new System.Drawing.Size(141, 17);
+            this.radioCreateGooglePayment.TabIndex = 0;
+            this.radioCreateGooglePayment.Text = "Створити новий платіж";
+            this.radioCreateGooglePayment.UseVisualStyleBackColor = true;
+            this.radioCreateGooglePayment.CheckedChanged += new System.EventHandler(this.radioCreateGooglePayment_CheckedChanged);
+            // 
+            // radioBindGooglePayment
+            // 
+            this.radioBindGooglePayment.AutoSize = true;
+            this.radioBindGooglePayment.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.radioBindGooglePayment.Checked = true;
+            this.radioBindGooglePayment.Location = new System.Drawing.Point(153, 0);
+            this.radioBindGooglePayment.Name = "radioBindGooglePayment";
+            this.radioBindGooglePayment.Size = new System.Drawing.Size(251, 17);
+            this.radioBindGooglePayment.TabIndex = 1;
+            this.radioBindGooglePayment.TabStop = true;
+            this.radioBindGooglePayment.Text = "Пов\'язати суму за звіт із платежем що існує";
+            this.radioBindGooglePayment.UseVisualStyleBackColor = true;
+            this.radioBindGooglePayment.CheckedChanged += new System.EventHandler(this.radioBindGooglePayment_CheckedChanged);
             // 
             // panelFilter
             // 
@@ -651,6 +764,10 @@
             this.panelReportDetails.PerformLayout();
             this.panelDistributionParameters.ResumeLayout(false);
             this.panelDistributionParameters.PerformLayout();
+            this.panelCreateGooglePayment.ResumeLayout(false);
+            this.panelCreateGooglePayment.PerformLayout();
+            this.panelCreateGooglePaymentDetails.ResumeLayout(false);
+            this.panelCreateGooglePaymentDetails.PerformLayout();
             this.panelFilter.ResumeLayout(false);
             this.panelFilter.PerformLayout();
             this.ResumeLayout(false);
@@ -706,5 +823,13 @@
         private System.Windows.Forms.ComboBox cbFilterYear;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox cbFilterQuarter;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox tbNumberInvoiceOld;
+        private System.Windows.Forms.TextBox tbNumberInvoiceNew;
+        private System.Windows.Forms.FlowLayoutPanel panelCreateGooglePayment;
+        private System.Windows.Forms.CheckBox chkCreateGooglePaiment;
+        private System.Windows.Forms.FlowLayoutPanel panelCreateGooglePaymentDetails;
+        private System.Windows.Forms.RadioButton radioCreateGooglePayment;
+        private System.Windows.Forms.RadioButton radioBindGooglePayment;
     }
 }

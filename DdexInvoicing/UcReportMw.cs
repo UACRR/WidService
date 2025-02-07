@@ -92,7 +92,7 @@ namespace DdexInvoicing
         private void UcReportMw_Load(object sender, EventArgs e)
         {
             ddbBlock.Items.Clear();
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var startIndex = i * 1000 + 1;
                 var endIndex = (i + 1) * 1000;

@@ -13,6 +13,7 @@ namespace DdexInvoicing
 {
     public partial class UcCcidInvoiceTestResults : UserControl
     {
+        private int _fileId;
         public UcCcidInvoiceTestResults()
         {
             InitializeComponent();
@@ -20,6 +21,8 @@ namespace DdexInvoicing
 
         public void Init(int fileId)
         {
+            _fileId = fileId;
+
             lvResult.Columns.Clear();
             lvResult.Columns.Add("Код тесту", 70, HorizontalAlignment.Center);
             lvResult.Columns.Add("Зміст тесту", 520);
@@ -27,6 +30,11 @@ namespace DdexInvoicing
             lvResult.Columns.Add("Успіх", 60, HorizontalAlignment.Center);
             lvResult.Columns.Add("Помилка", 60, HorizontalAlignment.Center);
 
+            FillLvResult();
+        }
+
+        private void FillLvResult()
+        {
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandText = @"select t2.code, t2.description, t2.severity, t1.result
@@ -34,8 +42,9 @@ namespace DdexInvoicing
                         join CcidInFileTestType t2 on t1.ccidInFileTestType = t2.code
                     where t1.fileId = @fileId
                     order by t2.code";
-                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.Parameters.AddWithValue("@fileId", _fileId);
 
+                lvResult.Items.Clear();
                 using (var r = cmd.ExecuteReader())
                 {
                     while(r.Read())
@@ -47,7 +56,6 @@ namespace DdexInvoicing
                         item.SubItems.Add(r.GetBoolean(3) ? "" : "x");
                     }
                 }
-
             });
         }
 
@@ -80,6 +88,24 @@ namespace DdexInvoicing
             Clipboard.SetText(sb.ToString());
 
             MessageBox.Show("Дані передані в буфер обміну", "Операція завершена");
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = @"
+                    declare @ddeReportId int, @setCode int
+                    select @ddeReportId = t2.ddexReportId, @setCode = t1.setCode 
+                    from CcidInFile t1 join CcidInvoice t2 on t1.ccidInvoiceId = t2.Id where fileId  = @fileId
+
+                    exec spCcidFileOutCheck @ddeReportId, @fileId, @setCode
+                ";
+                cmd.Parameters.AddWithValue("@fileId", _fileId);
+                cmd.ExecuteNonQuery();
+            });
+            FillLvResult();
         }
     }
 }
