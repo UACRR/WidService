@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcTraceRoyaltyCalc));
             this.panelMain = new System.Windows.Forms.SplitContainer();
             this.panelTop = new System.Windows.Forms.TableLayoutPanel();
             this.labTopPanelTitle = new System.Windows.Forms.Label();
@@ -36,6 +38,7 @@
             this.tbFilter = new System.Windows.Forms.TextBox();
             this.btnApplyFilter = new System.Windows.Forms.Button();
             this.lvReportWorks = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelBottom = new System.Windows.Forms.TableLayoutPanel();
             this.panelTotalPercent = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -174,6 +177,14 @@
             this.lvReportWorks.UseCompatibleStateImageBehavior = false;
             this.lvReportWorks.SelectedIndexChanged += new System.EventHandler(this.lvReportWorks_SelectedIndexChanged);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Hopstarter-Sleek-Xp-Basic-Ok.ico");
+            this.imageList1.Images.SetKeyName(1, "Paomedia-Small-N-Flat-Sign-warning.ico");
+            this.imageList1.Images.SetKeyName(2, "Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico");
+            // 
             // panelBottom
             // 
             this.panelBottom.ColumnCount = 1;
@@ -288,8 +299,11 @@
             // tvCheckPlan
             // 
             this.tvCheckPlan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvCheckPlan.ImageIndex = 0;
+            this.tvCheckPlan.ImageList = this.imageList1;
             this.tvCheckPlan.Location = new System.Drawing.Point(3, 19);
             this.tvCheckPlan.Name = "tvCheckPlan";
+            this.tvCheckPlan.SelectedImageIndex = 0;
             this.tvCheckPlan.Size = new System.Drawing.Size(252, 254);
             this.tvCheckPlan.TabIndex = 0;
             this.tvCheckPlan.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCheckPlan_AfterSelect);
@@ -352,6 +366,7 @@
             this.lvDetails.Location = new System.Drawing.Point(3, 19);
             this.lvDetails.Name = "lvDetails";
             this.lvDetails.Size = new System.Drawing.Size(567, 120);
+            this.lvDetails.SmallImageList = this.imageList1;
             this.lvDetails.TabIndex = 1;
             this.lvDetails.UseCompatibleStateImageBehavior = false;
             // 
@@ -455,5 +470,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ListView lvDetails;
         private System.Windows.Forms.ListView lvChecks;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

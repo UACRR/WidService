@@ -33,32 +33,32 @@
             this.panelPageHead = new System.Windows.Forms.TableLayoutPanel();
             this.radLabelTotalAmount = new Telerik.WinControls.UI.RadLabel();
             this.radTbTotalAmount = new Telerik.WinControls.UI.RadTextBox();
-            this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radTbExceptionSet = new Telerik.WinControls.UI.RadTextBox();
             this.radTbExceptionSetDate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ucInvoiceDetails = new DdexInvoicing.UcInvoiceDetails();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ucCcidInvoiceTestResults = new DdexInvoicing.UcCcidInvoiceTestResults();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ucCcidInvoiceExpectedDist = new DdexInvoicing.UcCcidInvoiceExpectedDist();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.ucCcidInvoiceWrongIpBaseNr = new DdexInvoicing.UcCcidInvoiceWrongIpBaseNr();
             this.panelFormMain.SuspendLayout();
             this.panelPageHead.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelTotalAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTbTotalAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSetDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.tabControlMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSetDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelFormMain
@@ -119,67 +119,12 @@
             this.radTbTotalAmount.Size = new System.Drawing.Size(137, 20);
             this.radTbTotalAmount.TabIndex = 1;
             // 
-            // tabControlMain
-            // 
-            this.tabControlMain.Controls.Add(this.tabPage1);
-            this.tabControlMain.Controls.Add(this.tabPage2);
-            this.tabControlMain.Controls.Add(this.tabPage3);
-            this.tabControlMain.Controls.Add(this.tabPage4);
-            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlMain.Location = new System.Drawing.Point(3, 35);
-            this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(931, 487);
-            this.tabControlMain.TabIndex = 3;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.ucInvoiceDetails);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(923, 461);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Рядки Продажів";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.ucCcidInvoiceTestResults);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(923, 461);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Результати тестування";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.ucCcidInvoiceExpectedDist);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(923, 461);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Очікуваний розподіл";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.ucCcidInvoiceWrongIpBaseNr);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(923, 461);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Проблемні міжнародні коди";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // radLabel1
             // 
             this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel1.Location = new System.Drawing.Point(238, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(138, 18);
+            this.radLabel1.Size = new System.Drawing.Size(137, 20);
             this.radLabel1.TabIndex = 2;
             this.radLabel1.Text = "Застосовані виключення:";
             // 
@@ -206,9 +151,33 @@
             this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel2.Location = new System.Drawing.Point(588, 3);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(94, 18);
+            this.radLabel2.Size = new System.Drawing.Size(95, 20);
             this.radLabel2.TabIndex = 3;
             this.radLabel2.Text = "Дата виключень:";
+            // 
+            // tabControlMain
+            // 
+            this.tabControlMain.Controls.Add(this.tabPage1);
+            this.tabControlMain.Controls.Add(this.tabPage2);
+            this.tabControlMain.Controls.Add(this.tabPage3);
+            this.tabControlMain.Controls.Add(this.tabPage4);
+            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlMain.Location = new System.Drawing.Point(3, 35);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new System.Drawing.Size(931, 487);
+            this.tabControlMain.TabIndex = 3;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.ucInvoiceDetails);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(923, 461);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Рядки Продажів";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // ucInvoiceDetails
             // 
@@ -219,6 +188,17 @@
             this.ucInvoiceDetails.Size = new System.Drawing.Size(917, 455);
             this.ucInvoiceDetails.TabIndex = 0;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ucCcidInvoiceTestResults);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(923, 461);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Результати тестування";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // ucCcidInvoiceTestResults
             // 
             this.ucCcidInvoiceTestResults.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -227,6 +207,16 @@
             this.ucCcidInvoiceTestResults.Size = new System.Drawing.Size(917, 455);
             this.ucCcidInvoiceTestResults.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.ucCcidInvoiceExpectedDist);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(923, 461);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Очікуваний розподіл";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // ucCcidInvoiceExpectedDist
             // 
             this.ucCcidInvoiceExpectedDist.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -234,6 +224,16 @@
             this.ucCcidInvoiceExpectedDist.Name = "ucCcidInvoiceExpectedDist";
             this.ucCcidInvoiceExpectedDist.Size = new System.Drawing.Size(923, 461);
             this.ucCcidInvoiceExpectedDist.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.ucCcidInvoiceWrongIpBaseNr);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(923, 461);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Проблемні міжнародні коди";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // ucCcidInvoiceWrongIpBaseNr
             // 
@@ -258,15 +258,15 @@
             this.panelPageHead.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelTotalAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTbTotalAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSetDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.tabControlMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTbExceptionSetDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -47,6 +47,8 @@ namespace DdexInvoicing
             DdexReportInfo ddexReportInfo = ucDdexLoad.GetReportInfo();
             ucReportInfo.Update(ddexReportInfo);
 
+            ucTraceRoyaltyCalc.SetDdexReportId(ddexReportId);
+
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConnectionStringDdex"]))
             {
                 conn.Open();

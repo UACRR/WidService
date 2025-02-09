@@ -66,6 +66,9 @@ namespace DdexInvoicing
             public bool CheckWorkRightStatus        { get; set; }
             public bool CheckWorkRightPeriod        { get; set; }
 
+            public bool HasErrors                   { get; set; }
+            public bool HasWarnings                 { get; set; }
+            public bool IsIncluded                  { get; set; }
         }
 
         public class WorkInfo
@@ -75,6 +78,7 @@ namespace DdexInvoicing
 			public string    ReportName		    { get; set; }
 			public int       ReportYear		    { get; set; }
 			public int       ReportQuarter	    { get; set; }
+            public int       ReportMonth	    { get; set; }
 			public DateTime  ReportStartDate	{ get; set; }
 			public DateTime  ReportEndDate	    { get; set; }
 
@@ -90,12 +94,15 @@ namespace DdexInvoicing
             public decimal WorkPerShr			 { get; set; }
 			public decimal WorkMecShr			 { get; set; }
             public decimal WorkPerShrClaimed	 { get; set; }
-			public decimal WorkMecShrClaimed    { get; set; }
+			public decimal WorkMecShrClaimed     { get; set; }
+
+            public bool HasErrors                { get; set; }
+            public bool HasWarnings              { get; set; }
 
             public List<RightHolderInfo> RightHolders { get; set; }
         }
 
-        private int _ddexReportId = 457;
+        private int _ddexReportId;
         private WorkInfo _workInfo;
 
         public UcTraceRoyaltyCalc()
@@ -133,7 +140,7 @@ namespace DdexInvoicing
             lvDetails.MultiSelect = false;
             lvDetails.GridLines = true;
             lvDetails.Columns.Clear();
-            lvDetails.Columns.Add("Параметр", 200);
+            lvDetails.Columns.Add("Параметр", 400);
             lvDetails.Columns.Add("Значення", 200);
 
             lvChecks.View = View.Details;
@@ -143,7 +150,7 @@ namespace DdexInvoicing
             lvChecks.MultiSelect = false;
             lvChecks.GridLines = true;
             lvChecks.Columns.Clear();
-            lvChecks.Columns.Add("Назва", 200);
+            lvChecks.Columns.Add("Назва", 400);
             lvChecks.Columns.Add("Так", 60);
             lvChecks.Columns.Add("Ні", 60);
             lvChecks.Columns.Add("Не перевіряється", 160);
@@ -163,13 +170,14 @@ namespace DdexInvoicing
                 // ЗВІТ
                 cmd.CommandText = @"
                     select 
-	                      t1.Id													as reportId			
-	                    , t1.licId												as licId			
-	                    , Ddex.dbo.fnDdexReportNameFromLicId(t1.licId)			as reportName		
-	                    , t2.year												as reportYear		
-	                    , t2.quarter											as reportQuarter	
-	                    , Ddex.dbo.ft_DateQuarterStart(t2.Quarter, t2.Year)		as reportStartDate	
-	                    , Ddex.dbo.ft_DateQuarterEnd(t2.Quarter, t2.Year)		as reportEndDate	
+	                      t1.Id													        as reportId			
+	                    , t1.licId												        as licId			
+	                    , Ddex.dbo.fnDdexReportNameFromLicId(t1.licId)			        as reportName		
+	                    , t2.year												        as reportYear		
+	                    , isnull(t2.quarter, 0)									        as reportQuarter
+                        , isnull(t2.month, 0)									        as reportMonth   
+	                    , Ddex.dbo.ft_DatePeriodStart(t2.Month, t2.Quarter, t2.Year)	as reportStartDate	
+	                    , Ddex.dbo.ft_DatePeriodEnd(t2.Month, t2.Quarter, t2.Year)		as reportEndDate	
                     from Ddex..DdexReport t1
 	                    join Ddex..DdexReportingPeriod t2 on t1.ddexReportingPeriodId = t2.Id
                     where t1.Id = @ddexReportId
@@ -185,6 +193,7 @@ namespace DdexInvoicing
                     _workInfo.ReportName = r.GetString(idx++);
                     _workInfo.ReportYear = r.GetInt32(idx++);
                     _workInfo.ReportQuarter = r.GetInt32(idx++);
+                    _workInfo.ReportMonth = r.GetInt32(idx++);
                     _workInfo.ReportStartDate = r.GetDateTime(idx++);
                     _workInfo.ReportEndDate = r.GetDateTime(idx++);
                 }
@@ -231,6 +240,7 @@ namespace DdexInvoicing
             });
             
             CalcShares();
+            CalcErrors();
 
         }
 
@@ -241,6 +251,7 @@ namespace DdexInvoicing
                 from MediaService..CopyRight t1
                     join MediaService..vCustomerNamesShort t2 on t1.CustId = t2.CustId
                 where t1.ObjId = @ObjId
+                order by t2.ShortName
             ";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@ObjId", objId);
@@ -329,17 +340,17 @@ namespace DdexInvoicing
         {
             cmd.CommandText = @"
                 select 
-	                  t1.roleCode		as RhWorkCreativeRoleCode
-	                , t3.Name			as RhWorkCreativeRoleName
-	                , t1.status			as RhWorkRightsStatusCode
-	                , t2.name			as RhWorkRightsStatusName
-	                , t1.beginDate		as RhWorkRightsStartDate 
-	                , t1.endDate		as RhWorkRightsEndDate   
-	                , t1.rate			as RhWorkPerShr			
-	                , t1.rateMech		as RhWorkMecShr			
+                      t1.roleCode										as RhWorkCreativeRoleCode
+                    , t3.Name											as RhWorkCreativeRoleName
+                    , t1.status											as RhWorkRightsStatusCode
+                    , t2.name											as RhWorkRightsStatusName
+                    , isnull(t1.beginDate, datefromparts(1900, 1, 1))	as RhWorkRightsStartDate 
+                    , isnull(t1.endDate, datefromparts(9999, 12, 31))	as RhWorkRightsEndDate   
+                    , t1.rate											as RhWorkPerShr			
+                    , t1.rateMech										as RhWorkMecShr			
                 from MediaService..CopyRight t1
-	                join MediaService..CRightStatus t2 on t1.status = t2.codeI
-	                join MediaService..CreativeRoleType t3 on t1.roleCode = t3.codeI
+                    join MediaService..CRightStatus t2 on t1.status = t2.codeI
+                    join MediaService..CreativeRoleType t3 on t1.roleCode = t3.codeI
                 where t1.cRightId = @copyRightId            
             ";
             cmd.Parameters.Clear();
@@ -363,8 +374,8 @@ namespace DdexInvoicing
 			        rightHolderInfo.WorkRightsStatusName = r.GetString(idx++);
 			        rightHolderInfo.WorkRightsStartDate  = r.GetDateTime(idx++);
 			        rightHolderInfo.WorkRightsEndDate    = r.GetDateTime(idx++);
-			        rightHolderInfo.RightHolderPerShr			 = r.GetDecimal(idx++);
-                    rightHolderInfo.RightHolderMecShr           = r.GetDecimal(idx++);
+			        rightHolderInfo.RightHolderPerShr	 = r.GetDecimal(idx++);
+                    rightHolderInfo.RightHolderMecShr    = r.GetDecimal(idx++);
 
                 }
              }
@@ -414,18 +425,75 @@ namespace DdexInvoicing
             });
         }
 
+        private void CalcErrors()
+        {
+            _workInfo.HasErrors = false;
+            _workInfo.HasWarnings = false;
+            _workInfo.RightHolders.ForEach( x =>
+            {
+                x.HasErrors = false;
+                x.HasWarnings = false;
+                if (!x.CheckAgreementStatus ||
+                    !x.CheckWorkRightStatus ||
+                    !x.CheckAgreementPeriod ||
+                    !x.CheckWorkRightPeriod
+                )
+                {
+                    _workInfo.HasErrors = true;
+                    x.HasErrors = true;
+                }
+                else if (!x.CheckAgreementPerRights ||
+                    !x.CheckAgreementMecRights
+                )
+                {
+                    _workInfo.HasWarnings = true;
+                    x.HasWarnings = true;
+                }
+
+                x.IsIncluded = !x.HasErrors &&
+                    (x.CheckAgreementPerRights || x.CheckAgreementMecRights);
+            });
+        }
+
         private void FillCheckPlan()
         {
             tvCheckPlan.Nodes.Clear();
             var nodeWork = tvCheckPlan.Nodes.Add("Твір загалом");
+            if (_workInfo.WorkPerShrClaimed + _workInfo.WorkMecShrClaimed == 0)
+            {
+                nodeWork.ImageIndex = 2;
+                nodeWork.SelectedImageIndex = 2;
+            }
+            else if (_workInfo.HasErrors || _workInfo.HasWarnings)
+            {
+                nodeWork.ImageIndex = 1;
+                nodeWork.SelectedImageIndex = 1;
+            }
+            else
+            {
+                nodeWork.ImageIndex = 0;
+                nodeWork.SelectedImageIndex = 0;
+            }
             nodeWork.Tag = _workInfo;
 
             var nodeRightHolders = tvCheckPlan.Nodes.Add("Окремі правовласники");
+            nodeRightHolders.ImageIndex = 3;
+            nodeRightHolders.SelectedImageIndex = 3;
             nodeRightHolders.Tag = null;
             
             _workInfo.RightHolders.ForEach(x =>
             {
                 var nodeRightHolder = nodeRightHolders.Nodes.Add(x.Name);
+                if (!x.IsIncluded)
+                {
+                    nodeRightHolder.ImageIndex = 2;
+                    nodeRightHolder.SelectedImageIndex = 2;
+                }
+                else if (x.HasWarnings)
+                {
+                    nodeRightHolder.ImageIndex = 1;
+                    nodeRightHolder.SelectedImageIndex = 1;
+                }
                 nodeRightHolder.Tag = x;
             });
 
@@ -511,18 +579,25 @@ namespace DdexInvoicing
              AddLvDetailsItem("", "");
 
              AddLvDetailsItem("Код правовласника", RightHolderInfo.CustId );
-             AddLvDetailsItem("Наявність договору з УААСП", RightHolderInfo.HasAgreement ? "Так" : "Ні" );
+             AddLvDetailsItem("Наявність договору з УААСП", 
+                 RightHolderInfo.HasAgreement ? "Так" : "Ні",
+                 RightHolderInfo.HasAgreement ? 0 : 2);
              AddLvDetailsItem("Назва правовласника", RightHolderInfo.Name );
              AddLvDetailsItem("Поширення прав", RightHolderInfo.IsWorldWide ? "Світ" : "Україна" );
              AddLvDetailsItem("Міжнародний код правовласника", RightHolderInfo.IpBaseNr );
              AddLvDetailsItem("Тип равовласника (код - назва)", $"{RightHolderInfo.TypeCode} - {RightHolderInfo.TypeName}" );
-             AddLvDetailsItem("Початок договору", RightHolderInfo.AgrStart );
-             AddLvDetailsItem("Закінчення договору", RightHolderInfo.AgrEnd );
-             AddLvDetailsItem("Статус договору (код - назва)", $"{RightHolderInfo.AgrStatusCode} - {RightHolderInfo.AgrStatusName}" );
+             AddLvDetailsItem("Початок договору", RightHolderInfo.AgrStart, 
+                 RightHolderInfo.CheckAgreementPeriod ? 0 : 2);
+             AddLvDetailsItem("Закінчення договору", RightHolderInfo.AgrEnd,
+                 RightHolderInfo.CheckAgreementPeriod ? 0 : 2);
+             AddLvDetailsItem("Статус договору (код - назва)", $"{RightHolderInfo.AgrStatusCode} - {RightHolderInfo.AgrStatusName}",
+                 RightHolderInfo.CheckAgreementStatus ? 0 : 2);
              AddLvDetailsItem("Наявність права на публічне відтворення в Інтернет", 
-                 RightHolderInfo.InternetServicePer == 1 ? "Так" : "Ні" );
+                 RightHolderInfo.InternetServicePer == 1 ? "Так" : "Ні",
+                 RightHolderInfo.CheckAgreementPerRights ? 0 : 1);
              AddLvDetailsItem("Наявність права на механічне відтворення в Інтернет", 
-                 RightHolderInfo.InternetServiceMec == 1 ? "Так" : "Ні" );
+                 RightHolderInfo.InternetServiceMec == 1 ? "Так" : "Ні",
+                 RightHolderInfo.CheckAgreementMecRights ? 0 : 1);
              //AddLvDetailsItem("", RightHolderInfo.CommunityCustId );
              //AddLvDetailsItem("", RightHolderInfo.CommunityName );
 
@@ -531,10 +606,15 @@ namespace DdexInvoicing
 
             // Стосовно твору
             AddLvDetailsItem("Код правоволодіння твором", RightHolderInfo.CopyRightId           );
-            AddLvDetailsItem("Роль у створенні твору (код - назва)", $"{RightHolderInfo.WorkCreativeRoleCode} - {RightHolderInfo.WorkCreativeRoleName}");
-			AddLvDetailsItem("Статус правоволодіння (код - назва)", $"{RightHolderInfo.WorkRightsStatusCode} - {RightHolderInfo.WorkRightsStatusName}" );
-			AddLvDetailsItem("Початок правоволодіння", RightHolderInfo.WorkRightsStartDate   );
-			AddLvDetailsItem("Закінчення правоволодіння", RightHolderInfo.WorkRightsEndDate     );
+            AddLvDetailsItem("Роль у створенні твору (код - назва)", 
+                $"{RightHolderInfo.WorkCreativeRoleCode} - {RightHolderInfo.WorkCreativeRoleName}");
+			AddLvDetailsItem("Статус правоволодіння (код - назва)", 
+                $"{RightHolderInfo.WorkRightsStatusCode} - {RightHolderInfo.WorkRightsStatusName}",
+                RightHolderInfo.CheckWorkRightStatus ? 0 : 2);
+			AddLvDetailsItem("Початок правоволодіння", RightHolderInfo.WorkRightsStartDate  ,
+                RightHolderInfo.CheckWorkRightPeriod ? 0 : 2);
+			AddLvDetailsItem("Закінчення правоволодіння", RightHolderInfo.WorkRightsEndDate,
+                RightHolderInfo.CheckWorkRightPeriod ? 0 : 2);
 			AddLvDetailsItem("Проценти Пуб", RightHolderInfo.RightHolderPerShr			 );
 			AddLvDetailsItem("Проценти Мех", RightHolderInfo.RightHolderMecShr			 );
             AddLvDetailsItem("Заявлені проценти Пуб", RightHolderInfo.RightHolderPerShrClaimed	 );
@@ -553,13 +633,19 @@ namespace DdexInvoicing
 
         private void btnApplyFilter_Click(object sender, EventArgs e)
         {
+            tvCheckPlan.Nodes.Clear();
+            lvDetails.Items.Clear();
+            lvChecks.Items.Clear();
+            tbPerShrTotal.Text = "";
+            tbMecShrTotal.Text = "";
             FillReportWorks();
         }
 
-        private void AddLvDetailsItem(string caption, object value)
+        private void AddLvDetailsItem(string caption, object value, int imageIndex = -1)
         {
             var item = lvDetails.Items.Add(caption);
             item.SubItems.Add(value == null ? "" : value.ToString());
+            item.ImageIndex = imageIndex;
         }
 
         private void AddLvChecksItem(string caption, bool isOk, bool skip)
@@ -584,6 +670,8 @@ namespace DdexInvoicing
             tvCheckPlan.Nodes.Clear();
             lvDetails.Items.Clear();
             lvChecks.Items.Clear();
+            tbPerShrTotal.Text = "";
+            tbMecShrTotal.Text = "";
 
             if (lvReportWorks.SelectedItems.Count == 0)
             {
