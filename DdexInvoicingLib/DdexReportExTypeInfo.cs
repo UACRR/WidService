@@ -15,6 +15,7 @@ namespace InvoicingLib
 
         public enum ReportTypeEnum
         {
+            UNKNOWN = -1,
             YOUTUBE_ADSUPPORT_MUSIC,
             YOUTUBE_SUBSCRIPTION_MUSIC,
             YOUTUBE_SUBSCRIPTION_PREMIUM,
@@ -494,6 +495,31 @@ namespace InvoicingLib
 
         #region METHODS
 
+        public static ReportTypeEnum GetReportTypeEnum(int ddexReportId)
+        {
+            var fileType = "";
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.CommandText = @"
+                    select FileType from DdexReport where Id = @ddexReportId;
+                ";
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                fileType = (string)cmd.ExecuteScalar();
+            }, true);
+
+            switch(fileType.ToLower())
+            {
+                case "adsupport-music":         return ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC;
+                case "subscription-music":      return ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC;
+                case "subscription-premium":    return ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM;
+                case "srmf":                    return ReportTypeEnum.YOUTUBE_SRMF;
+                case "spotify-free":            return ReportTypeEnum.SPOTIFY_FREE;
+                case "spotify-premium":         return ReportTypeEnum.SPOTIFY_PREMIUM;
+                case "deezer-all":              return ReportTypeEnum.DEEZER_ALL;
+                default:                        return ReportTypeEnum.UNKNOWN;
+
+            }
+        }
         private static ReportTypeInfo GetReportTypeInfo(string agreementReportType)
         {
             return ReportTypes.Single(x => x.Name == agreementReportType.ToLower());

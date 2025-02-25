@@ -38,7 +38,6 @@
             this.tbFilter = new System.Windows.Forms.TextBox();
             this.btnApplyFilter = new System.Windows.Forms.Button();
             this.lvReportWorks = new System.Windows.Forms.ListView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelBottom = new System.Windows.Forms.TableLayoutPanel();
             this.panelTotalPercent = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,14 +48,12 @@
             this.panelSplitBottom = new System.Windows.Forms.SplitContainer();
             this.panelBottomLeft = new System.Windows.Forms.TableLayoutPanel();
             this.tvCheckPlan = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.panelSplitBottomRight = new System.Windows.Forms.SplitContainer();
             this.panelBottomRightTop = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.lvDetails = new System.Windows.Forms.ListView();
-            this.panelBottomRightBottom = new System.Windows.Forms.TableLayoutPanel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lvChecks = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
             this.panelMain.Panel1.SuspendLayout();
             this.panelMain.Panel2.SuspendLayout();
@@ -72,10 +69,8 @@
             this.panelBottomLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSplitBottomRight)).BeginInit();
             this.panelSplitBottomRight.Panel1.SuspendLayout();
-            this.panelSplitBottomRight.Panel2.SuspendLayout();
             this.panelSplitBottomRight.SuspendLayout();
             this.panelBottomRightTop.SuspendLayout();
-            this.panelBottomRightBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -93,8 +88,8 @@
             // panelMain.Panel2
             // 
             this.panelMain.Panel2.Controls.Add(this.panelBottom);
-            this.panelMain.Size = new System.Drawing.Size(841, 484);
-            this.panelMain.SplitterDistance = 134;
+            this.panelMain.Size = new System.Drawing.Size(751, 484);
+            this.panelMain.SplitterDistance = 228;
             this.panelMain.TabIndex = 0;
             // 
             // panelTop
@@ -111,7 +106,7 @@
             this.panelTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.panelTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.panelTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelTop.Size = new System.Drawing.Size(841, 134);
+            this.panelTop.Size = new System.Drawing.Size(751, 228);
             this.panelTop.TabIndex = 0;
             // 
             // labTopPanelTitle
@@ -122,7 +117,7 @@
             this.labTopPanelTitle.Location = new System.Drawing.Point(3, 0);
             this.labTopPanelTitle.Name = "labTopPanelTitle";
             this.labTopPanelTitle.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.labTopPanelTitle.Size = new System.Drawing.Size(835, 25);
+            this.labTopPanelTitle.Size = new System.Drawing.Size(745, 25);
             this.labTopPanelTitle.TabIndex = 0;
             this.labTopPanelTitle.Text = "Знайдені твори звіту";
             // 
@@ -134,7 +129,7 @@
             this.panelTopFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTopFilter.Location = new System.Drawing.Point(3, 28);
             this.panelTopFilter.Name = "panelTopFilter";
-            this.panelTopFilter.Size = new System.Drawing.Size(835, 33);
+            this.panelTopFilter.Size = new System.Drawing.Size(745, 33);
             this.panelTopFilter.TabIndex = 1;
             // 
             // label1
@@ -172,18 +167,10 @@
             this.lvReportWorks.HideSelection = false;
             this.lvReportWorks.Location = new System.Drawing.Point(3, 67);
             this.lvReportWorks.Name = "lvReportWorks";
-            this.lvReportWorks.Size = new System.Drawing.Size(835, 64);
+            this.lvReportWorks.Size = new System.Drawing.Size(745, 158);
             this.lvReportWorks.TabIndex = 2;
             this.lvReportWorks.UseCompatibleStateImageBehavior = false;
             this.lvReportWorks.SelectedIndexChanged += new System.EventHandler(this.lvReportWorks_SelectedIndexChanged);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Hopstarter-Sleek-Xp-Basic-Ok.ico");
-            this.imageList1.Images.SetKeyName(1, "Paomedia-Small-N-Flat-Sign-warning.ico");
-            this.imageList1.Images.SetKeyName(2, "Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico");
             // 
             // panelBottom
             // 
@@ -200,7 +187,7 @@
             this.panelBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.panelBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelBottom.Size = new System.Drawing.Size(841, 346);
+            this.panelBottom.Size = new System.Drawing.Size(751, 252);
             this.panelBottom.TabIndex = 0;
             // 
             // panelTotalPercent
@@ -210,9 +197,9 @@
             this.panelTotalPercent.Controls.Add(this.label4);
             this.panelTotalPercent.Controls.Add(this.tbMecShrTotal);
             this.panelTotalPercent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTotalPercent.Location = new System.Drawing.Point(3, 309);
+            this.panelTotalPercent.Location = new System.Drawing.Point(3, 215);
             this.panelTotalPercent.Name = "panelTotalPercent";
-            this.panelTotalPercent.Size = new System.Drawing.Size(835, 26);
+            this.panelTotalPercent.Size = new System.Drawing.Size(745, 26);
             this.panelTotalPercent.TabIndex = 0;
             // 
             // label2
@@ -259,7 +246,7 @@
             this.label5.Location = new System.Drawing.Point(3, 0);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label5.Size = new System.Drawing.Size(835, 24);
+            this.label5.Size = new System.Drawing.Size(745, 24);
             this.label5.TabIndex = 1;
             this.label5.Text = "Розрахунок процентів";
             // 
@@ -277,7 +264,7 @@
             // panelSplitBottom.Panel2
             // 
             this.panelSplitBottom.Panel2.Controls.Add(this.panelSplitBottomRight);
-            this.panelSplitBottom.Size = new System.Drawing.Size(835, 276);
+            this.panelSplitBottom.Size = new System.Drawing.Size(745, 182);
             this.panelSplitBottom.SplitterDistance = 258;
             this.panelSplitBottom.TabIndex = 2;
             // 
@@ -293,7 +280,7 @@
             this.panelBottomLeft.RowCount = 2;
             this.panelBottomLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.panelBottomLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelBottomLeft.Size = new System.Drawing.Size(258, 276);
+            this.panelBottomLeft.Size = new System.Drawing.Size(258, 182);
             this.panelBottomLeft.TabIndex = 0;
             // 
             // tvCheckPlan
@@ -304,9 +291,19 @@
             this.tvCheckPlan.Location = new System.Drawing.Point(3, 19);
             this.tvCheckPlan.Name = "tvCheckPlan";
             this.tvCheckPlan.SelectedImageIndex = 0;
-            this.tvCheckPlan.Size = new System.Drawing.Size(252, 254);
+            this.tvCheckPlan.Size = new System.Drawing.Size(252, 160);
             this.tvCheckPlan.TabIndex = 0;
             this.tvCheckPlan.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCheckPlan_AfterSelect);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Hopstarter-Sleek-Xp-Basic-Ok.ico");
+            this.imageList1.Images.SetKeyName(1, "Paomedia-Small-N-Flat-Sign-warning.ico");
+            this.imageList1.Images.SetKeyName(2, "Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico");
+            this.imageList1.Images.SetKeyName(3, "Collapsed.ico");
+            this.imageList1.Images.SetKeyName(4, "Expanded.ico");
             // 
             // label8
             // 
@@ -327,11 +324,8 @@
             // panelSplitBottomRight.Panel1
             // 
             this.panelSplitBottomRight.Panel1.Controls.Add(this.panelBottomRightTop);
-            // 
-            // panelSplitBottomRight.Panel2
-            // 
-            this.panelSplitBottomRight.Panel2.Controls.Add(this.panelBottomRightBottom);
-            this.panelSplitBottomRight.Size = new System.Drawing.Size(573, 276);
+            this.panelSplitBottomRight.Panel2Collapsed = true;
+            this.panelSplitBottomRight.Size = new System.Drawing.Size(483, 182);
             this.panelSplitBottomRight.SplitterDistance = 142;
             this.panelSplitBottomRight.TabIndex = 0;
             // 
@@ -347,7 +341,7 @@
             this.panelBottomRightTop.RowCount = 2;
             this.panelBottomRightTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.panelBottomRightTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelBottomRightTop.Size = new System.Drawing.Size(573, 142);
+            this.panelBottomRightTop.Size = new System.Drawing.Size(483, 182);
             this.panelBottomRightTop.TabIndex = 0;
             // 
             // label6
@@ -365,44 +359,12 @@
             this.lvDetails.HideSelection = false;
             this.lvDetails.Location = new System.Drawing.Point(3, 19);
             this.lvDetails.Name = "lvDetails";
-            this.lvDetails.Size = new System.Drawing.Size(567, 120);
+            this.lvDetails.Size = new System.Drawing.Size(477, 160);
             this.lvDetails.SmallImageList = this.imageList1;
             this.lvDetails.TabIndex = 1;
             this.lvDetails.UseCompatibleStateImageBehavior = false;
-            // 
-            // panelBottomRightBottom
-            // 
-            this.panelBottomRightBottom.ColumnCount = 1;
-            this.panelBottomRightBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelBottomRightBottom.Controls.Add(this.label7, 0, 0);
-            this.panelBottomRightBottom.Controls.Add(this.lvChecks, 0, 1);
-            this.panelBottomRightBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBottomRightBottom.Location = new System.Drawing.Point(0, 0);
-            this.panelBottomRightBottom.Name = "panelBottomRightBottom";
-            this.panelBottomRightBottom.RowCount = 2;
-            this.panelBottomRightBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.panelBottomRightBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelBottomRightBottom.Size = new System.Drawing.Size(573, 130);
-            this.panelBottomRightBottom.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Перевірки";
-            // 
-            // lvChecks
-            // 
-            this.lvChecks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvChecks.HideSelection = false;
-            this.lvChecks.Location = new System.Drawing.Point(3, 21);
-            this.lvChecks.Name = "lvChecks";
-            this.lvChecks.Size = new System.Drawing.Size(567, 106);
-            this.lvChecks.TabIndex = 1;
-            this.lvChecks.UseCompatibleStateImageBehavior = false;
+            this.lvDetails.Click += new System.EventHandler(this.lvDetails_Click);
+            this.lvDetails.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvDetails_MouseDoubleClick);
             // 
             // UcTraceRoyaltyCalc
             // 
@@ -410,7 +372,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelMain);
             this.Name = "UcTraceRoyaltyCalc";
-            this.Size = new System.Drawing.Size(841, 484);
+            this.Size = new System.Drawing.Size(751, 484);
             this.Load += new System.EventHandler(this.UcTraceRoyaltyCalc_Load);
             this.panelMain.Panel1.ResumeLayout(false);
             this.panelMain.Panel2.ResumeLayout(false);
@@ -431,13 +393,10 @@
             this.panelBottomLeft.ResumeLayout(false);
             this.panelBottomLeft.PerformLayout();
             this.panelSplitBottomRight.Panel1.ResumeLayout(false);
-            this.panelSplitBottomRight.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelSplitBottomRight)).EndInit();
             this.panelSplitBottomRight.ResumeLayout(false);
             this.panelBottomRightTop.ResumeLayout(false);
             this.panelBottomRightTop.PerformLayout();
-            this.panelBottomRightBottom.ResumeLayout(false);
-            this.panelBottomRightBottom.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -463,13 +422,10 @@
         private System.Windows.Forms.TreeView tvCheckPlan;
         private System.Windows.Forms.SplitContainer panelSplitBottomRight;
         private System.Windows.Forms.TableLayoutPanel panelBottomRightTop;
-        private System.Windows.Forms.TableLayoutPanel panelBottomRightBottom;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TableLayoutPanel panelBottomLeft;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ListView lvDetails;
-        private System.Windows.Forms.ListView lvChecks;
         private System.Windows.Forms.ImageList imageList1;
     }
 }

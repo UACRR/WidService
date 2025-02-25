@@ -178,6 +178,12 @@
     <Compile Include="FormRightHolderGroup.Designer.cs">
       <DependentUpon>FormRightHolderGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRoyaltyDistribution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRoyaltyDistribution.Designer.cs">
+      <DependentUpon>FormRoyaltyDistribution.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -339,6 +345,9 @@
     <EmbeddedResource Include="FormRightHolderGroup.resx">
       <DependentUpon>FormRightHolderGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRoyaltyDistribution.resx">
+      <DependentUpon>FormRoyaltyDistribution.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormStatistics.resx">
       <DependentUpon>FormStatistics.cs</DependentUpon>
     </EmbeddedResource>
@@ -469,6 +478,17 @@
     <Content Include="DBSchema\Types\TblTypeWidAuthorShares.sql" />
     <Content Include="FullDatabase.sql" />
     <Content Include="FullDdexDatabase.sql" />
+    <Content Include="Images\expand-more_119176.ico" />
+    <Content Include="Images\Expanded.ico" />
+    <Content Include="Images\Hopstarter-Sleek-Xp-Basic-Ok.ico" />
+    <Content Include="Images\Icojam-Blue-Bits-Document-arrow-down.ico" />
+    <Content Include="Images\iconfinder_Error_132716.png" />
+    <Content Include="Images\iconfinder_Forward_132664.png" />
+    <Content Include="Images\iconfinder_History_132755.png" />
+    <Content Include="Images\iconfinder_OK_132710.png" />
+    <Content Include="Images\icons8-ютуб-48.png" />
+    <Content Include="Images\Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico" />
+    <Content Include="Images\Paomedia-Small-N-Flat-Sign-warning.ico" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\Upgrade.sql" />
     <Content Include="Migrations\02 AdjConsolidatedSql\All.sql" />

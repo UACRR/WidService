@@ -32,17 +32,17 @@
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.radPageViewMain = new Telerik.WinControls.UI.RadPageView();
             this.radPageReportInfo = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ucReportInfo = new DdexInvoicing.UcReportInfo();
             this.radPageReportLoad = new Telerik.WinControls.UI.RadPageViewPage();
             this.panelLoadReport = new System.Windows.Forms.TableLayoutPanel();
-            this.radPageReconcile = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageMwIdent = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageInvoicing = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageAnalysis = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ucReportInfo = new DdexInvoicing.UcReportInfo();
             this.ucDdexLoad = new DdexInvoicing.UcDdexLoad();
+            this.radPageReconcile = new Telerik.WinControls.UI.RadPageViewPage();
             this.uсReconcile = new DdexInvoicing.UсReconcile();
+            this.radPageMwIdent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucMwIdent = new DdexInvoicing.UcMwIdent();
+            this.radPageInvoicing = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucCcidInvoices = new DdexInvoicing.UcCcidInvoices();
+            this.radPageAnalysis = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucTraceRoyaltyCalc = new DdexInvoicing.UcTraceRoyaltyCalc();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
@@ -83,7 +83,7 @@
             this.radPageViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageViewMain.Location = new System.Drawing.Point(3, 3);
             this.radPageViewMain.Name = "radPageViewMain";
-            this.radPageViewMain.SelectedPage = this.radPageReportInfo;
+            this.radPageViewMain.SelectedPage = this.radPageAnalysis;
             this.radPageViewMain.Size = new System.Drawing.Size(1364, 610);
             this.radPageViewMain.TabIndex = 15;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageViewMain.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -92,16 +92,24 @@
             // radPageReportInfo
             // 
             this.radPageReportInfo.Controls.Add(this.ucReportInfo);
-            this.radPageReportInfo.ItemSize = new System.Drawing.SizeF(72F, 24F);
-            this.radPageReportInfo.Location = new System.Drawing.Point(10, 33);
+            this.radPageReportInfo.ItemSize = new System.Drawing.SizeF(76F, 28F);
+            this.radPageReportInfo.Location = new System.Drawing.Point(10, 37);
             this.radPageReportInfo.Name = "radPageReportInfo";
-            this.radPageReportInfo.Size = new System.Drawing.Size(1343, 566);
+            this.radPageReportInfo.Size = new System.Drawing.Size(1343, 562);
             this.radPageReportInfo.Text = "Інформація";
+            // 
+            // ucReportInfo
+            // 
+            this.ucReportInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucReportInfo.Location = new System.Drawing.Point(0, 0);
+            this.ucReportInfo.Name = "ucReportInfo";
+            this.ucReportInfo.Size = new System.Drawing.Size(1343, 562);
+            this.ucReportInfo.TabIndex = 0;
             // 
             // radPageReportLoad
             // 
             this.radPageReportLoad.Controls.Add(this.panelLoadReport);
-            this.radPageReportLoad.ItemSize = new System.Drawing.SizeF(86F, 24F);
+            this.radPageReportLoad.ItemSize = new System.Drawing.SizeF(90F, 28F);
             this.radPageReportLoad.Location = new System.Drawing.Point(10, 37);
             this.radPageReportLoad.Name = "radPageReportLoad";
             this.radPageReportLoad.Size = new System.Drawing.Size(1343, 562);
@@ -122,50 +130,6 @@
             this.panelLoadReport.Size = new System.Drawing.Size(1343, 562);
             this.panelLoadReport.TabIndex = 0;
             // 
-            // radPageReconcile
-            // 
-            this.radPageReconcile.Controls.Add(this.uсReconcile);
-            this.radPageReconcile.ItemSize = new System.Drawing.SizeF(222F, 24F);
-            this.radPageReconcile.Location = new System.Drawing.Point(10, 37);
-            this.radPageReconcile.Name = "radPageReconcile";
-            this.radPageReconcile.Size = new System.Drawing.Size(1343, 562);
-            this.radPageReconcile.Text = "Корегування автоматичної ідентифікації";
-            // 
-            // radPageMwIdent
-            // 
-            this.radPageMwIdent.Controls.Add(this.ucMwIdent);
-            this.radPageMwIdent.ItemSize = new System.Drawing.SizeF(118F, 24F);
-            this.radPageMwIdent.Location = new System.Drawing.Point(10, 33);
-            this.radPageMwIdent.Name = "radPageMwIdent";
-            this.radPageMwIdent.Size = new System.Drawing.Size(1343, 566);
-            this.radPageMwIdent.Text = "Ідентифікація творів";
-            // 
-            // radPageInvoicing
-            // 
-            this.radPageInvoicing.Controls.Add(this.ucCcidInvoices);
-            this.radPageInvoicing.ItemSize = new System.Drawing.SizeF(54F, 24F);
-            this.radPageInvoicing.Location = new System.Drawing.Point(10, 37);
-            this.radPageInvoicing.Name = "radPageInvoicing";
-            this.radPageInvoicing.Size = new System.Drawing.Size(1343, 562);
-            this.radPageInvoicing.Text = "Рахунки";
-            // 
-            // radPageAnalysis
-            // 
-            this.radPageAnalysis.Controls.Add(this.ucTraceRoyaltyCalc);
-            this.radPageAnalysis.ItemSize = new System.Drawing.SizeF(63F, 24F);
-            this.radPageAnalysis.Location = new System.Drawing.Point(10, 37);
-            this.radPageAnalysis.Name = "radPageAnalysis";
-            this.radPageAnalysis.Size = new System.Drawing.Size(1343, 562);
-            this.radPageAnalysis.Text = "Аналітика";
-            // 
-            // ucReportInfo
-            // 
-            this.ucReportInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucReportInfo.Location = new System.Drawing.Point(0, 0);
-            this.ucReportInfo.Name = "ucReportInfo";
-            this.ucReportInfo.Size = new System.Drawing.Size(1343, 566);
-            this.ucReportInfo.TabIndex = 0;
-            // 
             // ucDdexLoad
             // 
             this.ucDdexLoad.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -173,6 +137,15 @@
             this.ucDdexLoad.Name = "ucDdexLoad";
             this.ucDdexLoad.Size = new System.Drawing.Size(1328, 556);
             this.ucDdexLoad.TabIndex = 3;
+            // 
+            // radPageReconcile
+            // 
+            this.radPageReconcile.Controls.Add(this.uсReconcile);
+            this.radPageReconcile.ItemSize = new System.Drawing.SizeF(226F, 28F);
+            this.radPageReconcile.Location = new System.Drawing.Point(10, 37);
+            this.radPageReconcile.Name = "radPageReconcile";
+            this.radPageReconcile.Size = new System.Drawing.Size(1343, 562);
+            this.radPageReconcile.Text = "Корегування автоматичної ідентифікації";
             // 
             // uсReconcile
             // 
@@ -182,13 +155,31 @@
             this.uсReconcile.Size = new System.Drawing.Size(1343, 562);
             this.uсReconcile.TabIndex = 0;
             // 
+            // radPageMwIdent
+            // 
+            this.radPageMwIdent.Controls.Add(this.ucMwIdent);
+            this.radPageMwIdent.ItemSize = new System.Drawing.SizeF(122F, 28F);
+            this.radPageMwIdent.Location = new System.Drawing.Point(10, 37);
+            this.radPageMwIdent.Name = "radPageMwIdent";
+            this.radPageMwIdent.Size = new System.Drawing.Size(1343, 562);
+            this.radPageMwIdent.Text = "Ідентифікація творів";
+            // 
             // ucMwIdent
             // 
             this.ucMwIdent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucMwIdent.Location = new System.Drawing.Point(0, 0);
             this.ucMwIdent.Name = "ucMwIdent";
-            this.ucMwIdent.Size = new System.Drawing.Size(1343, 566);
+            this.ucMwIdent.Size = new System.Drawing.Size(1343, 562);
             this.ucMwIdent.TabIndex = 0;
+            // 
+            // radPageInvoicing
+            // 
+            this.radPageInvoicing.Controls.Add(this.ucCcidInvoices);
+            this.radPageInvoicing.ItemSize = new System.Drawing.SizeF(58F, 28F);
+            this.radPageInvoicing.Location = new System.Drawing.Point(10, 37);
+            this.radPageInvoicing.Name = "radPageInvoicing";
+            this.radPageInvoicing.Size = new System.Drawing.Size(1343, 562);
+            this.radPageInvoicing.Text = "Рахунки";
             // 
             // ucCcidInvoices
             // 
@@ -197,6 +188,15 @@
             this.ucCcidInvoices.Name = "ucCcidInvoices";
             this.ucCcidInvoices.Size = new System.Drawing.Size(1343, 562);
             this.ucCcidInvoices.TabIndex = 0;
+            // 
+            // radPageAnalysis
+            // 
+            this.radPageAnalysis.Controls.Add(this.ucTraceRoyaltyCalc);
+            this.radPageAnalysis.ItemSize = new System.Drawing.SizeF(67F, 28F);
+            this.radPageAnalysis.Location = new System.Drawing.Point(10, 37);
+            this.radPageAnalysis.Name = "radPageAnalysis";
+            this.radPageAnalysis.Size = new System.Drawing.Size(1343, 562);
+            this.radPageAnalysis.Text = "Аналітика";
             // 
             // ucTraceRoyaltyCalc
             // 

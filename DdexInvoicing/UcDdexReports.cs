@@ -431,6 +431,7 @@ namespace DdexInvoicing
                     cmd.ExecuteNonQuery();
                 }, true);
 
+                /*
                 Helpers.RunSqlOperationDdex(cmd =>
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -452,8 +453,9 @@ namespace DdexInvoicing
                         retVal = (string)cmd.Parameters["@result"].Value;
                     }
                 }, true);
+                */
 
-                return retVal;
+               return retVal;
             }
             catch(Exception ex)
             {
@@ -508,7 +510,7 @@ namespace DdexInvoicing
         }
 
 
-        private bool DistGoogle(int ddexReportId, int ddexReportingPeriodId)
+        private bool DistGoogle(int ddexReportId, int ddexReportingPeriodId, bool loadInitialData)
         {
             // Get data for file name validation from db
             string fileType = "";
@@ -536,20 +538,30 @@ namespace DdexInvoicing
                 fileType.Equals("Subscription-Music", StringComparison.OrdinalIgnoreCase) ? "SubscriptionMusic" :
                                                                                             "SubscriptionPremium";
             string expectedFileStart = $"DSR_UACRR-CS_YouTube_AdjConsolidated-{expectedAdjFileType}-Music-All_{year}-Q{quarter}_UA_1of1_";
+            string fileFullName = "";
+            string fileName = "";
 
-            OpenFileDialog dlg = new OpenFileDialog();
-            //dlg.Filter = "Файли консолідованих звітів від клієнта (*.tsv)|*.tsv";
-            dlg.Filter = $"Файли консолідованих звітів від клієнта (*.tsv)|{expectedFileStart}*.tsv";
-            if (DialogResult.OK != dlg.ShowDialog())
-                return false;
-            string fileFullName = dlg.FileName;
-            string fileName = Path.GetFileNameWithoutExtension(dlg.FileName);
-
-            if (!fileName.StartsWith(expectedFileStart, StringComparison.OrdinalIgnoreCase))
+            if (loadInitialData)
             {
-                MessageBox.Show("Файл не відповідає типу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                OpenFileDialog dlg = new OpenFileDialog();
+                //dlg.Filter = "Файли консолідованих звітів від клієнта (*.tsv)|*.tsv";
+                dlg.Filter = $"Файли консолідованих звітів від клієнта (*.tsv)|{expectedFileStart}*.tsv";
+                if (DialogResult.OK != dlg.ShowDialog())
+                    return false;
+                fileFullName = dlg.FileName;
+                fileName = Path.GetFileNameWithoutExtension(dlg.FileName);
+            
+                if (!fileName.StartsWith(expectedFileStart, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Файл не відповідає типу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
+            
+
+            FormRoyaltyDistribution formRoyaltyDistribution = new FormRoyaltyDistribution(ddexReportId, fileFullName);
+            formRoyaltyDistribution.ShowDialog();
+            return true;
 
             FormLongOperation form = new FormLongOperation("Виконується побудова даних для розподілу. Зачекайте, будь ласка.");
             Form parent = FindForm();
@@ -616,6 +628,10 @@ namespace DdexInvoicing
                 return false;
             }
 
+            FormRoyaltyDistribution formRoyaltyDistribution = new FormRoyaltyDistribution(ddexReportId, "");
+            formRoyaltyDistribution.ShowDialog();
+            return true;
+
             FormLongOperation form = new FormLongOperation("Виконується побудова даних для розподілу. Зачекайте, будь ласка.");
             Form parent = FindForm();
             form.Show(parent);
@@ -661,7 +677,13 @@ namespace DdexInvoicing
                 btn.Visibility = Telerik.WinControls.ElementVisibility.Visible;
                 if (status == Meta.DdexReportStatus.INVOICING)
                     btn.Text = "Розподілити";
-                else if (status == Meta.DdexReportStatus.INVOICING_COMPLETED)
+                else if (status == Meta.DdexReportStatus.DISTRIBUTION_STARTED
+                        || status == Meta.DdexReportStatus.DISTRIBUTION_DATA_LOADED
+                        || status == Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS)
+                    btn.Text = "Продовжити розподіл";
+               else if (status == Meta.DdexReportStatus.DISTIBUTION_COMPLETED)
+                    btn.Text = "Повторити розподіл";
+                else if (status == Meta.DdexReportStatus.DISTRIBUTION_APPROVED)
                     btn.Text = "До архіву";
                 else if (status == Meta.DdexReportStatus.ARCHIVING)
                     btn.Text = "До архіву";
@@ -673,6 +695,16 @@ namespace DdexInvoicing
                     btn.Text = "Видалити відновлені записи";
                 else if (status == Meta.DdexReportStatus.CLEANING)
                     btn.Text = "Видалити відновлені записи";
+                else
+                    btn.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
+            }
+
+            else if (e.Column.FieldName.Equals("ButtonCol3", StringComparison.OrdinalIgnoreCase))
+            {
+                RadButtonElement btn = (e.CellElement as GridCommandCellElement).CommandButton;
+                btn.Visibility = Telerik.WinControls.ElementVisibility.Visible;
+                if (status == Meta.DdexReportStatus.DISTIBUTION_COMPLETED)
+                    btn.Text = "Затвердити розподіл";
                 else
                     btn.Visibility = Telerik.WinControls.ElementVisibility.Hidden;
             }
@@ -697,12 +729,17 @@ namespace DdexInvoicing
             {
                 int status = (int)e.Row.Cells["Status"].Value;
                 DdexReportArchiver.OperationMode mode;
-                if (status == Meta.DdexReportStatus.INVOICING)
+                if (   status == Meta.DdexReportStatus.INVOICING
+                    || status == Meta.DdexReportStatus.DISTRIBUTION_STARTED
+                    || status == Meta.DdexReportStatus.DISTRIBUTION_DATA_LOADED
+                    || status == Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS
+                    || status == Meta.DdexReportStatus.DISTIBUTION_COMPLETED
+                )
                 {
                     var res = false;
                     if (DdexReport.IsGooglePreClaimReport(agreementReportType))
                     {
-                        res = DistGoogle(ddexReportId, ddexReportingPeriodId);
+                        res = DistGoogle(ddexReportId, ddexReportingPeriodId, status == Meta.DdexReportStatus.INVOICING);
                     }
                     else if (DdexReport.IsSpotifyReport(agreementReportType))
                     {
@@ -711,17 +748,12 @@ namespace DdexInvoicing
 
                     if (res)
                     {
-                        Helpers.RunSqlOperationDdex(cmd =>
-                        {
-                            cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                            cmd.Parameters.AddWithValue("@status", Meta.DdexReportStatus.INVOICING_COMPLETED);
-                            cmd.CommandText = "update DdexReport set status = @status where id = @ddexReportId";
-                            cmd.ExecuteNonQuery();
-                        });
                         FillReports();
                     }
                     return;
                 }
+                else if (status == Meta.DdexReportStatus.DISTRIBUTION_APPROVED || status == Meta.DdexReportStatus.ARCHIVING)
+                    mode = DdexReportArchiver.OperationMode.Archive;
                 else if (status == Meta.DdexReportStatus.INVOICING_COMPLETED || status == Meta.DdexReportStatus.ARCHIVING)
                     mode = DdexReportArchiver.OperationMode.Archive;
                 else if (status == Meta.DdexReportStatus.ARCHIVED || status == Meta.DdexReportStatus.RESTORING)
@@ -746,6 +778,23 @@ namespace DdexInvoicing
 
                 FormArchiver form = new FormArchiver(ddexReportId, archFolder, mode);
                 form.ShowDialog();
+                FillReports();
+            }
+            else if (e.Column.FieldName.Equals("ButtonCol3", StringComparison.OrdinalIgnoreCase))
+            {
+                if(DialogResult.Yes != MessageBox.Show(
+                    "Дану дію рекомендовується виконути після оплати роялті на банківські рахунки правовласників.\r\n" +
+                    "Виконати?", 
+                    "Підтвердити дію", 
+                    MessageBoxButtons.YesNo, 
+                    MessageBoxIcon.Question))
+                {
+                    return;
+                }
+                Helpers.RunSqlOperationDdex(cmd =>
+                {
+                    DdexReport.SetReportStatus(ddexReportId, Meta.DdexReportStatus.DISTRIBUTION_APPROVED);
+                });
                 FillReports();
             }
         }

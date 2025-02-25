@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls;
 using Telerik.WinControls.Styles;
 using static DdexInvoicing.UcRoyaltyDistribution;
 
@@ -25,34 +27,40 @@ namespace DdexInvoicing
             Completed = 0,
             Failed = 2,
         }
-        private delegate bool Step(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment);
+        private delegate bool Step();
 
-        private readonly Step[] _steps = new Step[]
-        {
-            ClearPayments,
-            ClearDistribution,
-            CalcRoyalty,
-            PassRoyalty,
-            ApplyExchangeRate,
-            BindGooglePayment,
-            ImportFromWid,
-            CreateDistribution,
-            CreatePayment,
-        };
+        private Step[] _steps;
 
+        private string _inputFileName;
         private UcRoyaltyDistribution.DdexReportInfo _ddexReportInfo;
-        private bool _handleGooglePayment;
-        private bool _createGooglePayment;
+        private bool _handlePayment;
+        private bool _createPayment;
         private int _curStepIndex;
         
-        public FormDistributionRunner(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        public FormDistributionRunner(
+            string inputFileName,
+            UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
+            bool handlePayment, bool createPayment)
         {
             InitializeComponent();
+            _inputFileName = inputFileName;
             _ddexReportInfo = ddexReportInfo;
-            _handleGooglePayment = handleGooglePayment;
-            _createGooglePayment = createGooglePayment;
+            _handlePayment = handlePayment;
+            _createPayment = createPayment;
+
+            _steps = new Step[]
+            {
+                LoadFile,
+                ClearPayments,
+                ClearDistribution,
+                CalcRoyalty,
+                PassRoyalty,
+                ApplyExchangeRate,
+                BindPayment,
+                ImportFromWid,
+                CreateDistribution,
+                CreatePayment,
+            };
         }
 
         private void FormDistributionRunner_Load(object sender, EventArgs e)
@@ -75,6 +83,7 @@ namespace DdexInvoicing
             lvDistributionProgress.Columns.Add("Крок розподілу і оплати", 300);
             lvDistributionProgress.Columns.Add("Стан", 60);
 
+            lvDistributionProgress.Items.Add("Завантаження даних про оплату роялті з файлу");
             lvDistributionProgress.Items.Add("Видалення попередніх даних (оплата)");
             lvDistributionProgress.Items.Add("Видалення попередніх даних (розподіл)");
             lvDistributionProgress.Items.Add("Перерахунок роялті");
@@ -92,13 +101,67 @@ namespace DdexInvoicing
             }
         }
 
-        private static bool ClearPayments(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private bool LoadFile()
+        {
+            try
+            {
+                var reportStatus = DdexReport.GetReportStatus(_ddexReportInfo.DdexReportId);
+                if(reportStatus != Meta.DdexReportStatus.INVOICING &&
+                    reportStatus != Meta.DdexReportStatus.DISTRIBUTION_STARTED)
+                {
+                    return true;
+                }
+
+                DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_STARTED);
+
+                DdexReport ddexReport = new DdexReport(
+                        ConfigurationManager.AppSettings["ConnectionStringDdex"], 
+                        _ddexReportInfo.DdexReportId);
+
+                var reportTypeEnum = DdexReport.GetReportTypeEnum(_ddexReportInfo.DdexReportId);
+
+                Cursor.Current = Cursors.WaitCursor;
+                if (reportTypeEnum == DdexReport.ReportTypeEnum.YOUTUBE_ADSUPPORT_MUSIC)
+                {
+                    ddexReport.ProcessAdjustment(new DdexReportActionLoadAdjAvod(), _inputFileName);
+                }
+                else if (reportTypeEnum == DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_MUSIC ||
+                    reportTypeEnum == DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM)
+                {
+                    ddexReport.ProcessAdjustment(new DdexReportActionLoadAdjSvod(), _inputFileName);
+                }
+                else if (reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_FREE ||
+                    reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM)
+                {
+                    Helpers.RunSqlOperationDdexT(cmd =>
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportInfo.DdexReportId);
+                        cmd.CommandText = $@"spCreateAdjConsolidatedDetailForSpotify";
+                        cmd.ExecuteNonQuery();
+                    }, true);
+                }
+ 
+                DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_DATA_LOADED);
+
+                Cursor.Current = Cursors.Default;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Cursor.Current = Cursors.Default;
+                MessageBox.Show(ex.Message, MESSAGE_BOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+        private  bool ClearPayments()
         {
             var res = 0;
             try
             {
-                if(ddexReportInfo.RegId == null)
+                if(_ddexReportInfo.RegId == null)
                 {
                     return true;
                 }
@@ -107,7 +170,7 @@ namespace DdexInvoicing
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "MPay_Pay_A_rollback_regId";
-                    cmd.Parameters.AddWithValue("@regId", ddexReportInfo.RegId);
+                    cmd.Parameters.AddWithValue("@regId", _ddexReportInfo.RegId);
                     SqlParameter retVal = cmd.Parameters.Add("@retVal", SqlDbType.Int);
                     retVal.Direction = ParameterDirection.ReturnValue;
                     cmd.ExecuteNonQuery();
@@ -120,6 +183,7 @@ namespace DdexInvoicing
                 }
                 else
                 {
+                    DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                     return true;
                 }
             }
@@ -129,13 +193,12 @@ namespace DdexInvoicing
                 return false;
             }
         }
-        private static  bool ClearDistribution(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private   bool ClearDistribution()
         {
             var res = 0;
             try
             {
-                if(ddexReportInfo.PeriodId == null)
+                if(_ddexReportInfo.PeriodId == null)
                 {
                     return true;
                 }
@@ -144,7 +207,7 @@ namespace DdexInvoicing
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "SYS_DelPaidPeriod";
-                    cmd.Parameters.AddWithValue("@periodId", ddexReportInfo.PeriodId);
+                    cmd.Parameters.AddWithValue("@periodId", _ddexReportInfo.PeriodId);
                     SqlParameter retVal = cmd.Parameters.Add("@retVal", SqlDbType.Int);
                     retVal.Direction = ParameterDirection.ReturnValue;
                     cmd.ExecuteNonQuery();
@@ -157,6 +220,7 @@ namespace DdexInvoicing
                 }
                 else
                 {
+                    DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                     return true;
                 }
             }
@@ -166,18 +230,27 @@ namespace DdexInvoicing
                 return false;
             }
         }
-        private static  bool CalcRoyalty(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private   bool CalcRoyalty()
         {
+            var reportTypeEnum = DdexReport.GetReportTypeEnum(_ddexReportInfo.DdexReportId);
+
+            Cursor.Current = Cursors.WaitCursor;
+            if (reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_FREE ||
+                reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM)
+            {
+                return true;
+            }
+
             try
             {
                 Helpers.RunSqlOperationDdexUnsafe(cmd =>
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "spDdexAdjConsolidatedCalcRoyalty";
-                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportInfo.DdexReportId);
+                    cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportInfo.DdexReportId);
                     cmd.ExecuteNonQuery();
                 });
+                DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                 return true;
             }
             catch (Exception ex)
@@ -186,8 +259,7 @@ namespace DdexInvoicing
                 return false;
             }
         }
-        private static bool PassRoyalty(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private  bool PassRoyalty()
         {
             try
             {
@@ -195,7 +267,7 @@ namespace DdexInvoicing
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "spDdexAdjConsolidatedDistRoyalty";
-                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportInfo.DdexReportId);
+                    cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportInfo.DdexReportId);
                     SqlParameter result = cmd.Parameters.Add("@result", SqlDbType.VarChar, 100);
                     result.Direction = ParameterDirection.Output;
                     SqlParameter retCode = cmd.Parameters.Add("@retCode", SqlDbType.Int);
@@ -208,10 +280,11 @@ namespace DdexInvoicing
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "select RegId from RegisterCCID where DdexReportId = @ddexReportId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportInfo.DdexReportId);
-                    ddexReportInfo.RegId = Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportInfo.DdexReportId);
+                    _ddexReportInfo.RegId = Convert.ToInt32(cmd.ExecuteScalar());
                 });
 
+                DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                 return true;
             }
             catch (Exception ex)
@@ -220,19 +293,18 @@ namespace DdexInvoicing
                 return false;
             }
         }
-        private static  bool ApplyExchangeRate(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private   bool ApplyExchangeRate()
         {
             var res = 0;
             try
             {
-                if(ddexReportInfo.RegId == null)
+                if(_ddexReportInfo.RegId == null)
                 {
                     MessageBox.Show("Не вказаний код реєстру в СМАРТ", MESSAGE_BOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
-                if(ddexReportInfo.ExchangeRate == null)
+                if(_ddexReportInfo.ExchangeRate == null)
                 {
                     MessageBox.Show("Не вказаний курс обміну", MESSAGE_BOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -254,14 +326,14 @@ namespace DdexInvoicing
                         where RegId = @regId
                     ";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@regId", ddexReportInfo.RegId);
-                    cmd.Parameters.AddWithValue("@exchangeRate", ddexReportInfo.ExchangeRate);
+                    cmd.Parameters.AddWithValue("@regId", _ddexReportInfo.RegId);
+                    cmd.Parameters.AddWithValue("@exchangeRate", _ddexReportInfo.ExchangeRate);
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "p_CreateDistribution_DDEX_valuation1";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@regId", ddexReportInfo.RegId);
+                    cmd.Parameters.AddWithValue("@regId", _ddexReportInfo.RegId);
                     SqlParameter retVal = cmd.Parameters.Add("@retVal", SqlDbType.Int);
                     retVal.Direction = ParameterDirection.ReturnValue;
                     cmd.ExecuteNonQuery();
@@ -269,16 +341,17 @@ namespace DdexInvoicing
 
                     if(res != 0)
                     {
+                        DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                         return;
                     }
 
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "select PeriodId from Register where RegId = @regId";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@regId", ddexReportInfo.RegId);
+                    cmd.Parameters.AddWithValue("@regId", _ddexReportInfo.RegId);
                     cmd.ExecuteNonQuery();
 
-                    ddexReportInfo.PeriodId = Convert.ToInt32(cmd.ExecuteScalar());
+                    _ddexReportInfo.PeriodId = Convert.ToInt32(cmd.ExecuteScalar());
 
                 });
                 if(res != 0)
@@ -288,6 +361,7 @@ namespace DdexInvoicing
                 }
                 else
                 {
+                    DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                     return true;
                 }
             }
@@ -303,13 +377,12 @@ namespace DdexInvoicing
             return value ?? DBNull.Value;
         }
 
-        private static  bool BindGooglePayment(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private   bool BindPayment()
         {
             var res = 0;
             try
             {
-                if(ddexReportInfo.PeriodId == null)
+                if(_ddexReportInfo.PeriodId == null)
                 {
                     MessageBox.Show("Не вказаний період оплати", MESSAGE_BOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -320,15 +393,15 @@ namespace DdexInvoicing
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "spDdexReportBindGooglePaiment";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@ddexReportId"         , ddexReportInfo.DdexReportId);
-                    cmd.Parameters.AddWithValue("@handlePayment"        , handleGooglePayment);
-                    cmd.Parameters.AddWithValue("@createPayment"        , createGooglePayment);
-                    cmd.Parameters.AddWithValue("@paidId"               , GetDbNullableValue(ddexReportInfo.PaidId));
-                    cmd.Parameters.AddWithValue("@numberInvoice"        , GetDbNullableValue(ddexReportInfo.NumberInvoice));
-                    cmd.Parameters.AddWithValue("@goalInvoice"          , GetDbNullableValue(ddexReportInfo.GoalInvoice));
-                    cmd.Parameters.AddWithValue("@dateInvoice"          , GetDbNullableValue(ddexReportInfo.DateInvoice));
-                    cmd.Parameters.AddWithValue("@amountReceivedTotal"  , GetDbNullableValue(ddexReportInfo.AmountReceivedTotal));
-                    cmd.Parameters.AddWithValue("@amountReceivedPeriod" , GetDbNullableValue(ddexReportInfo.AmountReceivedPeriod));
+                    cmd.Parameters.AddWithValue("@ddexReportId"         , _ddexReportInfo.DdexReportId);
+                    cmd.Parameters.AddWithValue("@handlePayment"        , _handlePayment);
+                    cmd.Parameters.AddWithValue("@createPayment"        , _createPayment);
+                    cmd.Parameters.AddWithValue("@paidId"               , GetDbNullableValue(_ddexReportInfo.PaidId));
+                    cmd.Parameters.AddWithValue("@numberInvoice"        , GetDbNullableValue(_ddexReportInfo.NumberInvoice));
+                    cmd.Parameters.AddWithValue("@goalInvoice"          , GetDbNullableValue(_ddexReportInfo.GoalInvoice));
+                    cmd.Parameters.AddWithValue("@dateInvoice"          , GetDbNullableValue(_ddexReportInfo.DateInvoice));
+                    cmd.Parameters.AddWithValue("@amountReceivedTotal"  , GetDbNullableValue(_ddexReportInfo.AmountReceivedTotal));
+                    cmd.Parameters.AddWithValue("@amountReceivedPeriod" , GetDbNullableValue(_ddexReportInfo.AmountReceivedPeriod));
                     SqlParameter retVal = cmd.Parameters.Add("@retVal", SqlDbType.Int);
                     retVal.Direction = ParameterDirection.ReturnValue;
                     cmd.ExecuteNonQuery();
@@ -341,6 +414,7 @@ namespace DdexInvoicing
                 }
                 else
                 {
+                    DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                     return true;
                 }
             }
@@ -350,13 +424,12 @@ namespace DdexInvoicing
                 return false;
             }
        }
-        private static  bool ImportFromWid(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private   bool ImportFromWid()
         {
             var res = 0;
             try
             {
-                if(ddexReportInfo.RegId == null)
+                if(_ddexReportInfo.RegId == null)
                 {
                     MessageBox.Show("Не вказаний код неєстру", MESSAGE_BOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -367,7 +440,7 @@ namespace DdexInvoicing
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "spWidLoadRegister";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@regId", ddexReportInfo.RegId);
+                    cmd.Parameters.AddWithValue("@regId", _ddexReportInfo.RegId);
                     SqlParameter retVal = cmd.Parameters.Add("@retVal", SqlDbType.Int);
                     retVal.Direction = ParameterDirection.ReturnValue;
                     cmd.ExecuteNonQuery();
@@ -380,6 +453,7 @@ namespace DdexInvoicing
                 }
                 else
                 {
+                    DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                     return true;
                 }
             }
@@ -389,13 +463,12 @@ namespace DdexInvoicing
                 return false;
             }
         }
-        private static  bool CreateDistribution(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private   bool CreateDistribution()
         {
             var res = 0;
             try
             {
-                if(ddexReportInfo.RegId == null)
+                if(_ddexReportInfo.RegId == null)
                 {
                     MessageBox.Show("Не вказаний код неєстру", MESSAGE_BOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -406,7 +479,7 @@ namespace DdexInvoicing
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "spCreateDistributionDdex";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@regId", ddexReportInfo.RegId);
+                    cmd.Parameters.AddWithValue("@regId", _ddexReportInfo.RegId);
                     SqlParameter retVal = cmd.Parameters.Add("@retVal", SqlDbType.Int);
                     retVal.Direction = ParameterDirection.ReturnValue;
                     cmd.ExecuteNonQuery();
@@ -419,6 +492,7 @@ namespace DdexInvoicing
                 }
                 else
                 {
+                    DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTRIBUTION_IN_PROGRESS);
                     return true;
                 }
             }
@@ -428,13 +502,12 @@ namespace DdexInvoicing
                 return false;
             }
         }
-        private static  bool CreatePayment(UcRoyaltyDistribution.DdexReportInfo ddexReportInfo,
-            bool handleGooglePayment, bool createGooglePayment)
+        private   bool CreatePayment()
         {
             var res = 0;
             try
             {
-                if(ddexReportInfo.RegId == null)
+                if(_ddexReportInfo.RegId == null)
                 {
                     MessageBox.Show("Не вказаний код неєстру", MESSAGE_BOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
@@ -445,7 +518,7 @@ namespace DdexInvoicing
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "MPPay_#DDEX";
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@regId", ddexReportInfo.RegId);
+                    cmd.Parameters.AddWithValue("@regId", _ddexReportInfo.RegId);
                     SqlParameter retVal = cmd.Parameters.Add("@retVal", SqlDbType.Int);
                     retVal.Direction = ParameterDirection.ReturnValue;
                     cmd.ExecuteNonQuery();
@@ -458,6 +531,7 @@ namespace DdexInvoicing
                 }
                 else
                 {
+                    DdexReport.SetReportStatus(_ddexReportInfo.DdexReportId, Meta.DdexReportStatus.DISTIBUTION_COMPLETED);
                     return true;
                 }
             }
@@ -471,7 +545,7 @@ namespace DdexInvoicing
         private void timerDistributionStep_Tick(object sender, EventArgs e)
         {
             timerDistributionStep.Enabled = false;
-            var res = _steps[_curStepIndex](_ddexReportInfo, _handleGooglePayment, _createGooglePayment);
+            var res = _steps[_curStepIndex]();
             if(!res)
             {
                 lvDistributionProgress.Items[_curStepIndex].ImageIndex = (int)DistributionStepStatusImageIndex.Failed;

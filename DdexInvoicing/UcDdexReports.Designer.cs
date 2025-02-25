@@ -44,6 +44,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
@@ -204,6 +205,11 @@
             gridViewCommandColumn4.Name = "Archive";
             gridViewCommandColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn4.Width = 140;
+            gridViewCommandColumn5.FieldName = "ButtonCol3";
+            gridViewCommandColumn5.HeaderText = "";
+            gridViewCommandColumn5.Name = "ButtonCol3";
+            gridViewCommandColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn5.Width = 140;
             gridViewTextBoxColumn12.FieldName = "licenseeName";
             gridViewTextBoxColumn12.HeaderText = "licenseeName";
             gridViewTextBoxColumn12.IsVisible = false;
@@ -222,6 +228,7 @@
             gridViewTextBoxColumn11,
             gridViewCommandColumn3,
             gridViewCommandColumn4,
+            gridViewCommandColumn5,
             gridViewTextBoxColumn12,
             gridViewTextBoxColumn13});
             this.radGridViewReports.MasterTemplate.EnableAlternatingRowColor = true;

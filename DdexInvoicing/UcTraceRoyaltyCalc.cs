@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,9 @@ namespace DdexInvoicing
             public int          CommunityCustId { get; set; }
             public string       CommunityName { get; set; }
 
+            public ForeignRightHolderInfo ForeignRhPer { get; set; }
+            public ForeignRightHolderInfo ForeignRhMec { get; set; }
+
             // Стосовно твору
             public int CopyRightId           { get; set; }
             public int WorkCreativeRoleCode  { get; set; }
@@ -60,15 +64,53 @@ namespace DdexInvoicing
 			public decimal RightHolderMecShrClaimed    { get; set; }
 
             public bool CheckAgreementStatus        { get; set; }
-            public bool CheckAgreementPeriod        { get; set; }
+            public bool CheckAgreementPeriodStart        { get; set; }
+            public bool CheckAgreementPeriodEnd        { get; set; }
             public bool CheckAgreementPerRights     { get; set; }
             public bool CheckAgreementMecRights     { get; set; }
+
+            public bool CheckAgreementInGeneral        { get; set; }
+            
             public bool CheckWorkRightStatus        { get; set; }
+            public bool CheckWorkRightPeriodStart        { get; set; }
+            public bool CheckWorkRightPeriodEnd        { get; set; }
             public bool CheckWorkRightPeriod        { get; set; }
+
+            
+
+            public bool CheckWorkRightFinal         { get; set; }
 
             public bool HasErrors                   { get; set; }
             public bool HasWarnings                 { get; set; }
             public bool IsIncluded                  { get; set; }
+        }
+
+        public class ForeignRightHolderInfo
+        {
+            public int          CommunityCustId        { get; set; }
+            public int          CommunityInterCode     { get; set; }
+            public string       CommunityName          { get; set; }
+            public bool         CommunityHasAgr        { get; set; }
+            public int          CommunityAgrStatusCode { get; set; }
+            public string       CommunityAgrStatusName { get; set; }
+            public bool         CommunityAgrHasRight   { get; set; }
+            public DateTime     CommunityAgrRightStart { get; set; }
+            public DateTime     CommunityAgrRightEnd   { get; set; }
+            public DateTime     RhAgrStart             { get; set; }
+            public DateTime     RhAgrEnd               { get; set; }
+
+            public bool CheckCommunityHasAggr       { get; set; }
+            public bool CheckCommunityAgrStatus     { get; set; }
+            public bool CheckCommunityAgrHasRight     { get; set; }
+            public bool CheckCommunityAgrStart      { get; set; }
+            public bool CheckCommunityAgrEnd        { get; set; }
+            public bool CheckRhAgrStart             { get; set; }
+            public bool CheckRhAgrEnd               { get; set; }
+
+            public bool CheckCommunityHasRight      { get; set; }
+            public bool CheckIncluded               { get; set; }
+
+            
         }
 
         public class WorkInfo
@@ -102,8 +144,21 @@ namespace DdexInvoicing
             public List<RightHolderInfo> RightHolders { get; set; }
         }
 
+        private enum TitleItemEnum
+        {
+            OwnAgr,
+            ForeignAgrPer,
+            ForeignAgrMec,
+            WorkAgr,
+        }
+
         private int _ddexReportId;
         private WorkInfo _workInfo;
+
+        private bool _titleOwnAgrExpanded;
+        private bool _titleForeignAgrExpandedPer;
+        private bool _titleForeignAgrExpandedMec;
+        private bool _titleWorkAgrExpanded;
 
         public UcTraceRoyaltyCalc()
         {
@@ -114,7 +169,7 @@ namespace DdexInvoicing
         {
             Configure();
 
-            tbFilter.Text = "%з твоїх%";
+            tbFilter.Text = "329286";
         }
 
         private void Configure()
@@ -126,6 +181,7 @@ namespace DdexInvoicing
             lvReportWorks.MultiSelect = false;
             lvReportWorks.GridLines = true;
             lvReportWorks.Columns.Clear();
+            lvReportWorks.Columns.Add("#", 60);
             lvReportWorks.Columns.Add("Код", 60);
             lvReportWorks.Columns.Add("Назва", 200);
             lvReportWorks.Columns.Add("Автори", 200);
@@ -139,21 +195,12 @@ namespace DdexInvoicing
             lvDetails.HideSelection = false;
             lvDetails.MultiSelect = false;
             lvDetails.GridLines = true;
+            lvDetails.SmallImageList = imageList1;
+            lvDetails.StateImageList = imageList1;
             lvDetails.Columns.Clear();
             lvDetails.Columns.Add("Параметр", 400);
             lvDetails.Columns.Add("Значення", 200);
 
-            lvChecks.View = View.Details;
-            lvChecks.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            lvChecks.FullRowSelect = true;
-            lvChecks.HideSelection = false;
-            lvChecks.MultiSelect = false;
-            lvChecks.GridLines = true;
-            lvChecks.Columns.Clear();
-            lvChecks.Columns.Add("Назва", 400);
-            lvChecks.Columns.Add("Так", 60);
-            lvChecks.Columns.Add("Ні", 60);
-            lvChecks.Columns.Add("Не перевіряється", 160);
         }
 
         private void ShowError(Exception ex)
@@ -287,7 +334,7 @@ namespace DdexInvoicing
 		            , t2.rHolderType									as RhTypeCode			
 		            , t3.Name											as RhTypeName			
 		            , isnull(t5.dateBegin, datefromparts(1900, 1, 1))	as RhAgrStart			
-		            , isnull(t5.dateEnd, datefromparts(1900, 1, 1))		as RhAgrEnd				
+		            , isnull(t5.dateEnd, datefromparts(9999, 12, 31))   as RhAgrEnd				
 		            , t5.agrStatus										as RhAgrStatus			
 		            , t6.Name											as RhAgrStatusName		
 		            --, isnull(t7.custId, 0)							as RhCommunityCustId	
@@ -305,11 +352,14 @@ namespace DdexInvoicing
             ";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@custId", rightHolderInfo.CustId);
+
+            var loadForeignRh = false;
             using (var r = cmd.ExecuteReader())
             {
                 if (!r.HasRows)
                 {
                     rightHolderInfo.HasAgreement = false;
+                    loadForeignRh = true;
                 }
                 else
                 {
@@ -334,6 +384,99 @@ namespace DdexInvoicing
                 rightHolderInfo.CommunityCustId = 2; // НАше товариство
                 rightHolderInfo.CommunityName = "ГО УААСП";
             }
+
+            if(loadForeignRh)
+            {
+                LoadForeignRightHolderInfo(cmd, rightHolderInfo, true);
+                LoadForeignRightHolderInfo(cmd, rightHolderInfo, false);
+            }
+        }
+
+        private void LoadForeignRightHolderInfo(SqlCommand cmd, RightHolderInfo rightHolderInfo, bool isPer)
+        {
+            cmd.CommandText = @"
+                select
+                    t2.cmCustId													as CommunityCustId  
+                  , cast(t2.interCode as int)									as CommunityInterCode
+                  , t2.cmName													as CommunityName         
+                  , case 
+		                when t3.custId is null 
+		                then cast(0 as bit)
+		                else cast(1 as bit)
+	                end															as CommunityHasAgr
+                  , t2.agrStatus												as CommunityAgrStatusCode
+                  , t4.Name														as CommunityAgrStatusName
+                  , isnull(t3.IsPer			, 0	)								as CommunityAgrHasPer     
+                  , isnull(t3.dateBeginPer	, datefromparts(1900, 1, 1))		as CommunityAgrStartPer     
+                  , isnull(t3.dateEndPer	, datefromparts(1900, 1, 1)	)		as CommunityAgrEndPer
+                  , isnull(t3.IsMec			, 0	)								as CommunityAgrHasMec
+                  , isnull(t3.dateBeginMec	, datefromparts(1900, 1, 1)	)		as CommunityAgrStartMec
+                  , isnull(t3.dateEndMec	, datefromparts(1900, 1, 1)	)		as CommunityAgrEndMec
+                  , t1.dateBegin												as CustomerAgrStart              
+                  , t1.dateEnd													as CustomerAgrEnd               
+                from MediaService..CustCmRight					  t1
+	                join MediaService..vCommunity				  t2 on t1.cmCustId = t2.cmCustId
+	                left join MediaService..AgreementAddCommunity t3 on t2.cmCustId = t3.custId
+	                join MediaService..AgreementStatus			  t4 on t2.agrStatus = t4.codeI                
+                                where t1.cRKindCode = @cRKindCode
+                                    and t1.custId = @custId
+            ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@cRKindCode", isPer ? 5 : 7);
+            cmd.Parameters.AddWithValue("@custId", rightHolderInfo.CustId);
+            using (var r = cmd.ExecuteReader())
+            {
+                if (!r.HasRows)
+                {
+                    if (isPer)
+                    {
+                        rightHolderInfo.ForeignRhPer = null;
+                    }
+                    else
+                    {
+                        rightHolderInfo.ForeignRhMec = null;
+                    }
+                }
+                else
+                {
+                    var foreignRh = new ForeignRightHolderInfo();
+
+                    r.Read();
+
+                    var idx = 0;
+                    foreignRh.CommunityCustId            = r.GetInt32(idx++);
+                    foreignRh.CommunityInterCode         = r.GetInt32(idx++);
+                    foreignRh.CommunityName              = r.GetString(idx++);
+                    foreignRh.CommunityHasAgr            = r.GetBoolean(idx++);
+                    foreignRh.CommunityAgrStatusCode     = r.GetInt32(idx++);
+                    foreignRh.CommunityAgrStatusName     = r.GetString(idx++);
+                    if(isPer)
+                    {
+                        foreignRh.CommunityAgrHasRight   = r.GetBoolean(idx++);
+                        foreignRh.CommunityAgrRightStart = r.GetDateTime(idx++);
+                        foreignRh.CommunityAgrRightEnd   = r.GetDateTime(idx++);
+                        idx += 3;
+                    }
+                    else
+                    {
+                        idx += 3;
+                        foreignRh.CommunityAgrHasRight   = r.GetBoolean(idx++);
+                        foreignRh.CommunityAgrRightStart = r.GetDateTime(idx++);
+                        foreignRh.CommunityAgrRightEnd   = r.GetDateTime(idx++);
+                    }
+                    foreignRh.RhAgrStart                 = r.GetDateTime(idx++);
+                    foreignRh.RhAgrEnd                   = r.GetDateTime(idx++);
+
+                    if (isPer)
+                    {
+                        rightHolderInfo.ForeignRhPer = foreignRh;
+                    }
+                    else
+                    {
+                        rightHolderInfo.ForeignRhMec = foreignRh;
+                    }
+                }
+             }
         }
 
         private void LoadRightHolderWorkInfo(SqlCommand cmd, RightHolderInfo rightHolderInfo)
@@ -381,18 +524,60 @@ namespace DdexInvoicing
              }
         }
 
+        private void CheckForeignRightHolder(ForeignRightHolderInfo foreignRh)
+        {
+            if (foreignRh != null)
+            {
+                foreignRh.CheckCommunityHasAggr = foreignRh.CommunityHasAgr;
+                foreignRh.CheckCommunityAgrStatus = foreignRh.CommunityAgrStatusCode == 2;
+                foreignRh.CheckCommunityAgrHasRight = foreignRh.CommunityAgrHasRight;
+                foreignRh.CheckCommunityAgrStart = foreignRh.CommunityAgrRightStart <= _workInfo.ReportEndDate;
+                foreignRh.CheckCommunityAgrEnd = foreignRh.CommunityAgrRightEnd >= _workInfo.ReportStartDate;
+                foreignRh.CheckRhAgrStart = foreignRh.RhAgrStart <= _workInfo.ReportEndDate;
+                foreignRh.CheckRhAgrEnd = foreignRh.RhAgrEnd >= _workInfo.ReportStartDate;
+
+                foreignRh.CheckCommunityHasRight =
+                    foreignRh.CheckCommunityHasAggr &&
+                    foreignRh.CheckCommunityAgrStatus &&
+                    foreignRh.CheckCommunityAgrHasRight &&
+                    foreignRh.CheckCommunityAgrStart &&
+                    foreignRh.CheckCommunityAgrEnd
+                 ;
+                foreignRh.CheckIncluded =
+                    foreignRh.CheckCommunityHasRight &&
+                    foreignRh.CheckRhAgrStart &&
+                    foreignRh.CheckRhAgrEnd
+                 ;
+            }
+        }
+
         private void CheckRightHolder(RightHolderInfo rightHolderInfo)
         {
             rightHolderInfo.CheckAgreementStatus    = rightHolderInfo.AgrStatusCode == 2;
-            rightHolderInfo.CheckAgreementPeriod    = 
-                rightHolderInfo.AgrStart <= _workInfo.ReportEndDate && 
+            rightHolderInfo.CheckAgreementPeriodStart    = 
+                rightHolderInfo.AgrStart <= _workInfo.ReportEndDate;
+            rightHolderInfo.CheckAgreementPeriodEnd    = 
                 rightHolderInfo.AgrEnd >= _workInfo.ReportStartDate;
+            
+            rightHolderInfo.CheckAgreementInGeneral    = 
+                rightHolderInfo.CheckAgreementStatus &&
+                rightHolderInfo.CheckAgreementPeriodStart && 
+                rightHolderInfo.CheckAgreementPeriodEnd;
+            
             rightHolderInfo.CheckAgreementPerRights = rightHolderInfo.InternetServicePer == 1;
             rightHolderInfo.CheckAgreementMecRights = rightHolderInfo.InternetServiceMec == 1;
-            rightHolderInfo.CheckWorkRightStatus    = rightHolderInfo.WorkRightsStatusCode == 1;
-            rightHolderInfo.CheckWorkRightPeriod    = 
-                rightHolderInfo.WorkRightsStartDate <= _workInfo.ReportEndDate && 
+            
+            rightHolderInfo.CheckWorkRightStatus    = true;
+            rightHolderInfo.CheckWorkRightPeriodStart    = 
+                rightHolderInfo.WorkRightsStartDate <= _workInfo.ReportEndDate;
+            rightHolderInfo.CheckWorkRightPeriodEnd    = 
                 rightHolderInfo.WorkRightsEndDate >= _workInfo.ReportStartDate;
+            rightHolderInfo.CheckWorkRightPeriod    = 
+                rightHolderInfo.CheckWorkRightPeriodStart && 
+                rightHolderInfo.CheckWorkRightPeriodEnd;
+
+            CheckForeignRightHolder(rightHolderInfo.ForeignRhPer);
+            CheckForeignRightHolder(rightHolderInfo.ForeignRhMec);
         }
 
         private void CalcShares()
@@ -407,14 +592,28 @@ namespace DdexInvoicing
                 x.RightHolderPerShrClaimed = 0;
                 x.RightHolderMecShrClaimed = 0;
 
-                if(x.CheckAgreementStatus &&
-                    x.CheckAgreementPeriod &&
+                if( x.HasAgreement &&
+                    x.CheckAgreementStatus &&
+                    x.CheckAgreementPeriodStart &&
+                    x.CheckAgreementPeriodEnd &&
                     x.CheckWorkRightPeriod &&
                     x.CheckWorkRightStatus
                 )
                 {
                     x.RightHolderPerShrClaimed = x.CheckAgreementPerRights ? x.RightHolderPerShr : 0;
                     x.RightHolderMecShrClaimed = x.CheckAgreementMecRights ? x.RightHolderMecShr : 0;
+                }
+                else
+                {
+                    if(x.ForeignRhPer != null && x.ForeignRhPer.CheckIncluded)
+                    {
+                        x.RightHolderPerShrClaimed = x.RightHolderPerShr;
+                    }
+
+                    if(x.ForeignRhMec != null && x.ForeignRhMec.CheckIncluded)
+                    {
+                        x.RightHolderMecShrClaimed = x.RightHolderMecShr;
+                    }
                 }
 
 
@@ -429,45 +628,103 @@ namespace DdexInvoicing
         {
             _workInfo.HasErrors = false;
             _workInfo.HasWarnings = false;
-            _workInfo.RightHolders.ForEach( x =>
+
+            var hasIncluded = false;
+
+             _workInfo.RightHolders.ForEach( x =>
             {
                 x.HasErrors = false;
                 x.HasWarnings = false;
-                if (!x.CheckAgreementStatus ||
-                    !x.CheckWorkRightStatus ||
-                    !x.CheckAgreementPeriod ||
-                    !x.CheckWorkRightPeriod
-                )
+                if (x.HasAgreement)
                 {
-                    _workInfo.HasErrors = true;
-                    x.HasErrors = true;
-                }
-                else if (!x.CheckAgreementPerRights ||
-                    !x.CheckAgreementMecRights
-                )
-                {
-                    _workInfo.HasWarnings = true;
-                    x.HasWarnings = true;
-                }
+                    if (!x.CheckAgreementStatus ||
+                        !x.CheckWorkRightStatus ||
+                        !x.CheckAgreementPeriodStart ||
+                        !x.CheckAgreementPeriodEnd ||
+                        !x.CheckWorkRightPeriod
+                    )
+                    {
+                        x.HasErrors = true;
+                    }
+                    else if (!x.CheckAgreementPerRights ||
+                        !x.CheckAgreementMecRights
+                    )
+                    {
+                        _workInfo.HasWarnings = true;
+                        x.HasWarnings = true;
+                    }
 
-                x.IsIncluded = !x.HasErrors &&
-                    (x.CheckAgreementPerRights || x.CheckAgreementMecRights);
+                    x.IsIncluded = !x.HasErrors &&
+                        (x.CheckAgreementPerRights || x.CheckAgreementMecRights);
+
+                    if (x.IsIncluded)
+                    {
+                        hasIncluded = true;
+                    }
+                }
+                else
+                {
+                    if(
+                        !(x.ForeignRhPer != null && x.ForeignRhPer.CheckIncluded) &&
+                        !(x.ForeignRhMec != null && x.ForeignRhMec.CheckIncluded)
+                    )
+                    {
+                        x.HasErrors = true;
+                    }
+
+                    else if(
+                        !(x.ForeignRhPer != null && x.ForeignRhPer.CheckIncluded) ||
+                        !(x.ForeignRhMec != null && x.ForeignRhMec.CheckIncluded)
+                    )
+                    {
+                        x.HasWarnings = true;
+                        x.IsIncluded = true;
+                        hasIncluded = true;
+                    }
+                    else
+                    {
+                        x.IsIncluded = true;
+                        hasIncluded = true;
+                    }
+                }
             });
+
+            if (
+                _workInfo.WorkPerShrClaimed > 100 ||
+                _workInfo.WorkMecShrClaimed > 100 ||
+                !hasIncluded
+            )
+            {
+                _workInfo.HasErrors = true;
+            }
+            else if (
+                _workInfo.WorkPerShrClaimed +
+                _workInfo.WorkMecShrClaimed < 200
+            )
+            {
+                _workInfo.HasWarnings = true;
+            }
+
         }
 
         private void FillCheckPlan()
         {
             tvCheckPlan.Nodes.Clear();
             var nodeWork = tvCheckPlan.Nodes.Add("Твір загалом");
-            if (_workInfo.WorkPerShrClaimed + _workInfo.WorkMecShrClaimed == 0)
+            if (_workInfo.HasErrors)
             {
                 nodeWork.ImageIndex = 2;
                 nodeWork.SelectedImageIndex = 2;
             }
-            else if (_workInfo.HasErrors || _workInfo.HasWarnings)
+            else if (_workInfo.HasWarnings)
             {
                 nodeWork.ImageIndex = 1;
                 nodeWork.SelectedImageIndex = 1;
+            }
+            else if (_workInfo.WorkPerShrClaimed + _workInfo.WorkMecShrClaimed == 0)
+            {
+                nodeWork.ImageIndex = 2;
+                nodeWork.SelectedImageIndex = 2;
             }
             else
             {
@@ -477,8 +734,8 @@ namespace DdexInvoicing
             nodeWork.Tag = _workInfo;
 
             var nodeRightHolders = tvCheckPlan.Nodes.Add("Окремі правовласники");
-            nodeRightHolders.ImageIndex = 3;
-            nodeRightHolders.SelectedImageIndex = 3;
+            nodeRightHolders.ImageIndex = 10;
+            nodeRightHolders.SelectedImageIndex = 10;
             nodeRightHolders.Tag = null;
             
             _workInfo.RightHolders.ForEach(x =>
@@ -516,17 +773,16 @@ namespace DdexInvoicing
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandText = @"
-                     select distinct top 100
-	                      t3.ObjId
-	                    , t3.Name
-	                    , isnull(t3.Author, '')
-	                    , isnull(t3.Performer, '')
-                    from Ddex..IdentBacklog t1
-	                    join Ddex..IdentMw t2 on t1.mwId = t2.Id
-	                    join MediaService..ObjectRight t3 on t2.ObjId = t3.objId
+                     select distinct top 1000
+                          t2.ObjId
+                        , t2.Name
+                        , isnull(t2.Author, '')
+                        , isnull(t2.Performer, '')
+                    from IdentMwObjId t1
+                        join MediaService..ObjectRight t2 on t1.ObjId = t2.objId
                     where t1.DdexReportId = @DdexReportId
-	                    and t2.ObjId is not null
-	                    and (t3.ObjId = @ObjId or Name like @Name)
+	                    and (t2.ObjId = @ObjId or t2.Name like @Name)
+                    order by t2.Name
                 ";
                 cmd.Parameters.AddWithValue("@DdexReportId", _ddexReportId);
                 cmd.Parameters.AddWithValue("@ObjId", ObjId);
@@ -534,6 +790,7 @@ namespace DdexInvoicing
 
                 using (var r = cmd.ExecuteReader())
                 {
+                    var idx = 1;
                     while (r.Read())
                     {
                         var reportWork = new ReportWork
@@ -544,11 +801,13 @@ namespace DdexInvoicing
                             Performers = r.GetString(3)
                         };
 
-                        var item = lvReportWorks.Items.Add(reportWork.ObjId.ToString());
+                        var item = lvReportWorks.Items.Add(idx.ToString());
+                        item.SubItems.Add(reportWork.ObjId.ToString());
                         item.SubItems.Add(reportWork.Name);
                         item.SubItems.Add(reportWork.Authors);
                         item.SubItems.Add(reportWork.Performers);
                         item.Tag = reportWork;
+                        idx++;
                     }
                 }
                 
@@ -565,111 +824,225 @@ namespace DdexInvoicing
             AddLvDetailsItem("Походження"           , _workInfo.WorkSourceName);
         }
 
-        private void FillWorkCheckInfo()
+        private void FillForeignRightHolderInfo(ForeignRightHolderInfo foreignRh, bool isPer)
         {
-            AddLvChecksItem("Категорія твору відповідає вимогам", false, true);
-            AddLvChecksItem("Статус твору відповідає вимогам", false, true);
+            AddLvDetailsItem("", "");
+
+            var ttl = isPer ? "ПУБЛІЧНЕ" : "МЕХАНІЧНЕ";
+
+            var item = AddLvDetailsItem($"{ttl} ВИКОРИСТАННЯ (ДОГОВІР З ІНШИМ ТОВАРИСТВОМ)",
+                    "",
+                    foreignRh != null && foreignRh.CheckIncluded ? 0 : 2);
+            item.Tag = isPer ? TitleItemEnum.ForeignAgrPer : TitleItemEnum.ForeignAgrMec;
+            item.StateImageIndex = isPer && _titleForeignAgrExpandedPer || !isPer && _titleForeignAgrExpandedMec ? 4 : 3;
+            
+            if(isPer && _titleForeignAgrExpandedPer || !isPer && _titleForeignAgrExpandedMec)
+            {
+                InsertForeignAgrDetails(item.Index + 1, foreignRh, isPer);
+            }
         }
 
-        private void FillRightHolderInfo(RightHolderInfo RightHolderInfo)
+        private void FillRightHolderInfo(RightHolderInfo rightHolderInfo)
         {
-             AddLvDetailsItem("Початок звітного періоду", _workInfo.ReportStartDate );
-             AddLvDetailsItem("Початок звітного періоду", _workInfo.ReportEndDate );
+            ListViewItem curItem = null;
+            lvDetails.Items.Clear();
+             AddLvDetailsItem("Початок звітного періоду", _workInfo.ReportStartDate.ToString("yyyy-MM-dd") );
+             AddLvDetailsItem("Початок звітного періоду", _workInfo.ReportEndDate.ToString("yyyy-MM-dd") );
 
              AddLvDetailsItem("", "");
 
-             AddLvDetailsItem("Код правовласника", RightHolderInfo.CustId );
-             AddLvDetailsItem("Наявність договору з УААСП", 
-                 RightHolderInfo.HasAgreement ? "Так" : "Ні",
-                 RightHolderInfo.HasAgreement ? 0 : 2);
-             AddLvDetailsItem("Назва правовласника", RightHolderInfo.Name );
-             AddLvDetailsItem("Поширення прав", RightHolderInfo.IsWorldWide ? "Світ" : "Україна" );
-             AddLvDetailsItem("Міжнародний код правовласника", RightHolderInfo.IpBaseNr );
-             AddLvDetailsItem("Тип равовласника (код - назва)", $"{RightHolderInfo.TypeCode} - {RightHolderInfo.TypeName}" );
-             AddLvDetailsItem("Початок договору", RightHolderInfo.AgrStart, 
-                 RightHolderInfo.CheckAgreementPeriod ? 0 : 2);
-             AddLvDetailsItem("Закінчення договору", RightHolderInfo.AgrEnd,
-                 RightHolderInfo.CheckAgreementPeriod ? 0 : 2);
-             AddLvDetailsItem("Статус договору (код - назва)", $"{RightHolderInfo.AgrStatusCode} - {RightHolderInfo.AgrStatusName}",
-                 RightHolderInfo.CheckAgreementStatus ? 0 : 2);
-             AddLvDetailsItem("Наявність права на публічне відтворення в Інтернет", 
-                 RightHolderInfo.InternetServicePer == 1 ? "Так" : "Ні",
-                 RightHolderInfo.CheckAgreementPerRights ? 0 : 1);
-             AddLvDetailsItem("Наявність права на механічне відтворення в Інтернет", 
-                 RightHolderInfo.InternetServiceMec == 1 ? "Так" : "Ні",
-                 RightHolderInfo.CheckAgreementMecRights ? 0 : 1);
-             //AddLvDetailsItem("", RightHolderInfo.CommunityCustId );
-             //AddLvDetailsItem("", RightHolderInfo.CommunityName );
+             AddLvDetailsItem("Код правовласника", rightHolderInfo.CustId );
+             AddLvDetailsItem("Назва правовласника", rightHolderInfo.Name );
 
+             AddLvDetailsItem("", "");
+
+            curItem = AddLvDetailsItem("ДОГОВІР З УААСП",
+                "",
+                !rightHolderInfo.CheckAgreementInGeneral ? 2 :
+                rightHolderInfo.CheckAgreementPerRights && !rightHolderInfo.CheckAgreementMecRights ? 1 :
+                !rightHolderInfo.CheckAgreementPerRights && rightHolderInfo.CheckAgreementMecRights ? 1 :
+                !rightHolderInfo.CheckAgreementPerRights && !rightHolderInfo.CheckAgreementMecRights ? 2 :
+                0);
+            curItem.Tag = TitleItemEnum.OwnAgr;
+            curItem.StateImageIndex = _titleOwnAgrExpanded ? 4 : 3;
+            if (_titleOwnAgrExpanded)
+            {
+                InsertOwnAgrDetails(curItem.Index + 1, rightHolderInfo);
+             }
+
+            if(!rightHolderInfo.HasAgreement)
+            {
+                FillForeignRightHolderInfo(rightHolderInfo.ForeignRhPer, true);
+                FillForeignRightHolderInfo(rightHolderInfo.ForeignRhMec, false);
+            }
 
             AddLvDetailsItem("", "");
+            curItem = AddLvDetailsItem("ПРАВОВОЛОДІННЯ ТВОРОМ",
+                "",
+                rightHolderInfo.CheckWorkRightPeriod ? 0 : 2);
+             curItem.Tag = TitleItemEnum.WorkAgr;
+            curItem.StateImageIndex = _titleWorkAgrExpanded ? 4 : 3;
 
             // Стосовно твору
-            AddLvDetailsItem("Код правоволодіння твором", RightHolderInfo.CopyRightId           );
-            AddLvDetailsItem("Роль у створенні твору (код - назва)", 
-                $"{RightHolderInfo.WorkCreativeRoleCode} - {RightHolderInfo.WorkCreativeRoleName}");
-			AddLvDetailsItem("Статус правоволодіння (код - назва)", 
-                $"{RightHolderInfo.WorkRightsStatusCode} - {RightHolderInfo.WorkRightsStatusName}",
-                RightHolderInfo.CheckWorkRightStatus ? 0 : 2);
-			AddLvDetailsItem("Початок правоволодіння", RightHolderInfo.WorkRightsStartDate  ,
-                RightHolderInfo.CheckWorkRightPeriod ? 0 : 2);
-			AddLvDetailsItem("Закінчення правоволодіння", RightHolderInfo.WorkRightsEndDate,
-                RightHolderInfo.CheckWorkRightPeriod ? 0 : 2);
-			AddLvDetailsItem("Проценти Пуб", RightHolderInfo.RightHolderPerShr			 );
-			AddLvDetailsItem("Проценти Мех", RightHolderInfo.RightHolderMecShr			 );
-            AddLvDetailsItem("Заявлені проценти Пуб", RightHolderInfo.RightHolderPerShrClaimed	 );
-			AddLvDetailsItem("Заявлені проценти Мех", RightHolderInfo.RightHolderMecShrClaimed    );
+            if (_titleWorkAgrExpanded)
+            {
+                InsertWorkAgrDetails(curItem.Index + 1, rightHolderInfo);
+
+            }
         }
 
-        private void FillRightHolderCheckInfo(RightHolderInfo RightHolderInfo)
+        private void InsertOwnAgrDetails(int idx, RightHolderInfo rightHolderInfo)
         {
-            AddLvChecksItem("Договір з товариством активний", RightHolderInfo.CheckAgreementStatus, false);
-            AddLvChecksItem("Період дії договору перетинається з періодом звіту", RightHolderInfo.CheckAgreementPeriod, false);
-            AddLvChecksItem("Наявні права на відтворення в інтернеті (пуб)", RightHolderInfo.CheckAgreementPerRights, false);
-            AddLvChecksItem("Наявні права на відтворення в інтернеті (мех)", RightHolderInfo.CheckAgreementMecRights, false);
-            AddLvChecksItem("Правоволодіння твором затверджене", RightHolderInfo.CheckWorkRightStatus, false);
-            AddLvChecksItem("Період правоволодіння на твір перетинається з періодом звіту", RightHolderInfo.CheckWorkRightPeriod, false);
+            InsertLvDetailsItem(idx++, "    Наявність договору",
+                 rightHolderInfo.HasAgreement ? "Так" : "Ні",
+                 rightHolderInfo.HasAgreement ? 0 : 2);
+            if (rightHolderInfo.HasAgreement)
+            {
+                InsertLvDetailsItem(idx++, "    Поширення прав", rightHolderInfo.IsWorldWide ? "Світ" : "Україна");
+                InsertLvDetailsItem(idx++, "    Міжнародний код правовласника", rightHolderInfo.IpBaseNr);
+                InsertLvDetailsItem(idx++, "    Тип равовласника (код - назва)", $"{rightHolderInfo.TypeCode} - {rightHolderInfo.TypeName}");
+                InsertLvDetailsItem(idx++, "    Початок договору", rightHolderInfo.AgrStart.ToString("yyyy-MM-dd"),
+                    rightHolderInfo.CheckAgreementPeriodStart ? 0 : 2);
+                InsertLvDetailsItem(idx++, "    Закінчення договору", rightHolderInfo.AgrEnd.ToString("yyyy-MM-dd"),
+                    rightHolderInfo.CheckAgreementPeriodEnd ? 0 : 2);
+                InsertLvDetailsItem(idx++, "    Статус договору (код - назва)", $"{rightHolderInfo.AgrStatusCode} - {rightHolderInfo.AgrStatusName}",
+                    rightHolderInfo.CheckAgreementStatus ? 0 : 2);
+                InsertLvDetailsItem(idx++, "    Наявність права на публічне відтворення в Інтернет",
+                    rightHolderInfo.CheckAgreementPerRights ? "Так" : "Ні",
+                    rightHolderInfo.CheckAgreementPerRights ? 0 : 2);
+                InsertLvDetailsItem(idx++, "    Наявність права на механічне відтворення в Інтернет",
+                    rightHolderInfo.CheckAgreementMecRights ? "Так" : "Ні",
+                    rightHolderInfo.CheckAgreementMecRights ? 0 : 2);
+            }
+        }
+
+        private void RemoveOwnAgrDetails(int idx, RightHolderInfo rightHolderInfo)
+        {
+            lvDetails.Items.RemoveAt(idx);
+            if (rightHolderInfo.HasAgreement)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    lvDetails.Items.RemoveAt(idx);
+                }
+            }
+        }
+
+        private void InsertForeignAgrDetails(int idx, ForeignRightHolderInfo foreignRh, bool isPer)
+        {
+            var ttl = isPer ? "публічне" : "механічне";
+
+            InsertLvDetailsItem(idx++, "    Наявність договору",
+                    foreignRh != null ? "Так": "Ні",
+                    foreignRh != null ? 0 : 2);
+
+            if (foreignRh != null)
+            {
+                InsertLvDetailsItem(idx++, "    Код товариства в СМАРТ", foreignRh.CommunityCustId);
+                InsertLvDetailsItem(idx++, "    Міжнародний код товариства", foreignRh.CommunityInterCode.ToString());
+                InsertLvDetailsItem(idx++, "    Назва товариства", foreignRh.CommunityName);
+                InsertLvDetailsItem(idx++, "    Початок дії договора",
+                    foreignRh.RhAgrStart.ToString("yyyy-MM-dd"),
+                    foreignRh.CheckRhAgrStart ? 0 : 2);
+                InsertLvDetailsItem(idx++, "    Завершення дії договора",
+                    foreignRh.RhAgrEnd.ToString("yyyy-MM-dd"),
+                    foreignRh.CheckRhAgrEnd ? 0 : 2);
+                InsertLvDetailsItem(idx++, "    ДОГОВІРНІ ВІДНОСИНИ ТОВАРИСТВА З УААСП",
+                    "",
+                    foreignRh.CheckCommunityHasRight ? 0 : 2);
+                InsertLvDetailsItem(idx++, "        Наявність договору",
+                    foreignRh.CommunityHasAgr ? "Так" : "Ні",
+                    foreignRh.CheckCommunityHasAggr ? 0 : 2);
+                InsertLvDetailsItem(idx++, "        Статус договору (код)",
+                    foreignRh.CommunityAgrStatusCode);
+                InsertLvDetailsItem(idx++, "        Статус договору (назва)",
+                    foreignRh.CommunityAgrStatusName,
+                    foreignRh.CheckCommunityAgrStatus ? 0 : 2);
+                InsertLvDetailsItem(idx++, $"        Включає права на {ttl.ToLower()} використання",
+                    foreignRh.CommunityAgrHasRight ? "Так" : "Ні",
+                    foreignRh.CheckCommunityAgrHasRight ? 0 : 2);
+                InsertLvDetailsItem(idx++, "        Початок дії прав",
+                    foreignRh.CommunityAgrRightStart.ToString("yyyy-MM-dd"),
+                    foreignRh.CheckCommunityAgrStart ? 0 : 2);
+                InsertLvDetailsItem(idx++, "        Закінчення дії прав",
+                    foreignRh.CommunityAgrRightEnd.ToString("yyyy-MM-dd"),
+                    foreignRh.CheckCommunityAgrEnd ? 0 : 2);
+            }
+        }
+
+        private void RemoveForeignAgrDetails(int idx, ForeignRightHolderInfo foreignRh)
+        {
+            lvDetails.Items.RemoveAt(idx);
+            if (foreignRh != null)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    lvDetails.Items.RemoveAt(idx);
+                }
+            }
+        }
+
+        private void InsertWorkAgrDetails(int idx, RightHolderInfo rightHolderInfo)
+        {
+            InsertLvDetailsItem(idx++, "    Код правоволодіння твором", rightHolderInfo.CopyRightId);
+            InsertLvDetailsItem(idx++, "    Роль у створенні твору (код - назва)",
+                $"{rightHolderInfo.WorkCreativeRoleCode} - {rightHolderInfo.WorkCreativeRoleName}");
+            InsertLvDetailsItem(idx++, "    Статус правоволодіння (код - назва)",
+                $"{rightHolderInfo.WorkRightsStatusCode} - {rightHolderInfo.WorkRightsStatusName}");
+            InsertLvDetailsItem(idx++, "    Початок правоволодіння",
+                rightHolderInfo.WorkRightsStartDate.ToString("yyyy-MM-dd"),
+                rightHolderInfo.CheckWorkRightPeriod ? 0 : 2);
+            InsertLvDetailsItem(idx++, "    Закінчення правоволодіння",
+                rightHolderInfo.WorkRightsEndDate.ToString("yyyy-MM-dd"),
+                rightHolderInfo.CheckWorkRightPeriod ? 0 : 2);
+            InsertLvDetailsItem(idx++, "    Проценти Пуб", rightHolderInfo.RightHolderPerShr);
+            InsertLvDetailsItem(idx++, "    Проценти Мех", rightHolderInfo.RightHolderMecShr);
+            InsertLvDetailsItem(idx++, "    Заявлені проценти Пуб", rightHolderInfo.RightHolderPerShrClaimed);
+            InsertLvDetailsItem(idx++, "    Заявлені проценти Мех", rightHolderInfo.RightHolderMecShrClaimed);
+        }
+
+        private void RemoveWorkAgrDetails(int idx)
+        {
+            for (int i = 0; i < 9; i++)
+            { 
+                lvDetails.Items.RemoveAt(idx); 
+            }
         }
 
         private void btnApplyFilter_Click(object sender, EventArgs e)
         {
             tvCheckPlan.Nodes.Clear();
             lvDetails.Items.Clear();
-            lvChecks.Items.Clear();
             tbPerShrTotal.Text = "";
             tbMecShrTotal.Text = "";
             FillReportWorks();
         }
 
-        private void AddLvDetailsItem(string caption, object value, int imageIndex = -1)
+        private ListViewItem AddLvDetailsItem(string caption, object value, int imageIndex = -1)
         {
             var item = lvDetails.Items.Add(caption);
             item.SubItems.Add(value == null ? "" : value.ToString());
             item.ImageIndex = imageIndex;
+            return item;
         }
 
-        private void AddLvChecksItem(string caption, bool isOk, bool skip)
+        private ListViewItem InsertLvDetailsItem(int idx, string caption, object value, int imageIndex = -1)
         {
-            var item = lvChecks.Items.Add(caption);
-            if (skip)
-            {
-                item.SubItems.Add("");
-                item.SubItems.Add("");
-            }
-            else
-            {
-                item.SubItems.Add(isOk ? "x" : "");
-                item.SubItems.Add(isOk ? "" : "x");
-            }
-            item.SubItems.Add(skip ? "x" : "");
-            
+            var item = lvDetails.Items.Insert(idx, caption);
+            item.SubItems.Add(value == null ? "" : value.ToString());
+            item.ImageIndex = imageIndex;
+            return item;
         }
 
         private void lvReportWorks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            _titleOwnAgrExpanded            = false;
+            _titleForeignAgrExpandedPer     = false;
+            _titleForeignAgrExpandedMec     = false;
+            _titleWorkAgrExpanded           = false;
+
             tvCheckPlan.Nodes.Clear();
             lvDetails.Items.Clear();
-            lvChecks.Items.Clear();
             tbPerShrTotal.Text = "";
             tbMecShrTotal.Text = "";
 
@@ -689,8 +1062,12 @@ namespace DdexInvoicing
 
         private void tvCheckPlan_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            _titleOwnAgrExpanded            = false;
+            _titleForeignAgrExpandedPer     = false;
+            _titleForeignAgrExpandedMec     = false;
+            _titleWorkAgrExpanded           = false;
+
             lvDetails.Items.Clear();
-            lvChecks.Items.Clear();
 
             var selectedNode = e.Node;
 
@@ -703,12 +1080,84 @@ namespace DdexInvoicing
             if (type == typeof(WorkInfo))
             {
                 FillWorkInfo();
-                FillWorkCheckInfo();
             }
             else if (type == typeof(RightHolderInfo))
             {
                 FillRightHolderInfo((RightHolderInfo)selectedNode.Tag);
-                FillRightHolderCheckInfo((RightHolderInfo)selectedNode.Tag);
+            }
+        }
+
+        private void lvDetails_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void lvDetails_Click(object sender, EventArgs e)
+        {
+            Point mousePos = lvDetails.PointToClient(MousePosition);
+            ListViewHitTestInfo hitTest = lvDetails.HitTest(mousePos);
+            var location = hitTest.Location;
+            var item = hitTest.Item;
+            int columnIndex = hitTest.Item.SubItems.IndexOf(hitTest.SubItem);
+            var rightHolderInfo = (RightHolderInfo)tvCheckPlan.SelectedNode.Tag;
+            if (item.Tag != null && location == ListViewHitTestLocations.StateImage)
+            {
+                switch((TitleItemEnum)item.Tag)
+                {
+                    case TitleItemEnum.OwnAgr:
+                        _titleOwnAgrExpanded = !_titleOwnAgrExpanded;
+                        if (_titleOwnAgrExpanded)
+                        { 
+                            InsertOwnAgrDetails(item.Index + 1, rightHolderInfo);
+                            item.StateImageIndex = 4;
+                        }
+                        else
+                        {
+                            RemoveOwnAgrDetails(item.Index + 1, rightHolderInfo);
+                            item.StateImageIndex = 3;
+                        }
+                        break;
+                    case TitleItemEnum.ForeignAgrPer:
+                        _titleForeignAgrExpandedPer = !_titleForeignAgrExpandedPer;
+                        if (_titleForeignAgrExpandedPer)
+                        { 
+                            InsertForeignAgrDetails(item.Index + 1, rightHolderInfo.ForeignRhPer, true);
+                            item.StateImageIndex = 4;
+                        }
+                        else
+                        {
+                            RemoveForeignAgrDetails(item.Index + 1, rightHolderInfo.ForeignRhPer);
+                            item.StateImageIndex = 3;
+                        }
+                        break;
+                    case TitleItemEnum.ForeignAgrMec:
+                        _titleForeignAgrExpandedMec = !_titleForeignAgrExpandedMec;
+                        if (_titleForeignAgrExpandedMec)
+                        {
+                            InsertForeignAgrDetails(item.Index + 1, rightHolderInfo.ForeignRhMec, false);
+                            item.StateImageIndex = 4;
+                        }
+                        else
+                        {
+                            RemoveForeignAgrDetails(item.Index + 1, rightHolderInfo.ForeignRhMec);
+                            item.StateImageIndex = 3;
+                        }
+                        break;
+                    case TitleItemEnum.WorkAgr:
+                        _titleWorkAgrExpanded = !_titleWorkAgrExpanded;
+                        if (_titleWorkAgrExpanded)
+                        { 
+                            InsertWorkAgrDetails(item.Index + 1, rightHolderInfo);
+                            item.StateImageIndex = 4;
+                        }
+                        else
+                        {
+                            RemoveWorkAgrDetails(item.Index + 1);
+                            item.StateImageIndex = 3;
+                        }
+                        break;
+                }
+                //FillRightHolderInfo(rightHolderInfo);
             }
         }
     }

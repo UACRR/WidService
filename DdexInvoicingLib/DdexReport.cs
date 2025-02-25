@@ -32,6 +32,31 @@ namespace InvoicingLib
             this.ddexReportId = ddexReportId;
         }
 
+        public static int GetReportStatus(int ddexReportId)
+        {
+            var retVal = 0;
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@status", Meta.DdexReportStatus.INVOICING_COMPLETED);
+                cmd.CommandText = "select status from DdexReport where id = @ddexReportId";
+                retVal = (int)cmd.ExecuteScalar();
+            });
+            return retVal;
+        }
+
+        public static void SetReportStatus(int ddexReportId, int newStatus)
+        {
+            Helpers.RunSqlOperationDdex(cmd =>
+            {
+                cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                cmd.Parameters.AddWithValue("@status", newStatus);
+                cmd.CommandText = "update DdexReport set status = @status where id = @ddexReportId";
+                cmd.ExecuteNonQuery();
+            });
+        }
+
+        
         public bool IsFirstFile()
         {
             return curFileIndex == 0;
