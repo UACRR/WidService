@@ -37,12 +37,15 @@
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucExceptionSets = new DdexInvoicing.UcExceptionSets();
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
+            this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ucDspResourceAnalyser = new DdexInvoicing.UcDspResourceAnalyser();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
             this.panelMain.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
             this.radPageViewPage2.SuspendLayout();
+            this.radPageViewPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -75,6 +78,7 @@
             // 
             this.panelMain.Controls.Add(this.radPageViewPage1);
             this.panelMain.Controls.Add(this.radPageViewPage2);
+            this.panelMain.Controls.Add(this.radPageViewPage3);
             this.panelMain.DefaultPage = this.radPageViewPage1;
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(3, 3);
@@ -121,6 +125,23 @@
             this.ucExceptionSets.Size = new System.Drawing.Size(1086, 473);
             this.ucExceptionSets.TabIndex = 0;
             // 
+            // radPageViewPage3
+            // 
+            this.radPageViewPage3.Controls.Add(this.ucDspResourceAnalyser);
+            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(182F, 28F);
+            this.radPageViewPage3.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage3.Name = "radPageViewPage3";
+            this.radPageViewPage3.Size = new System.Drawing.Size(1086, 473);
+            this.radPageViewPage3.Text = "Ресурси цифрових майданчиків";
+            // 
+            // ucDspResourceAnalyser
+            // 
+            this.ucDspResourceAnalyser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDspResourceAnalyser.Location = new System.Drawing.Point(0, 0);
+            this.ucDspResourceAnalyser.Name = "ucDspResourceAnalyser";
+            this.ucDspResourceAnalyser.Size = new System.Drawing.Size(1086, 473);
+            this.ucDspResourceAnalyser.TabIndex = 0;
+            // 
             // DdexInvoicingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -139,6 +160,7 @@
             this.panelMain.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
             this.radPageViewPage2.ResumeLayout(false);
+            this.radPageViewPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -153,5 +175,7 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
         private UcExceptionSets ucExceptionSets;
         private Telerik.WinControls.RadThemeManager radThemeManager1;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
+        private UcDspResourceAnalyser ucDspResourceAnalyser;
     }
 }

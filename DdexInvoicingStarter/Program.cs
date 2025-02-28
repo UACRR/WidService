@@ -28,7 +28,10 @@ namespace DdexInvoicingStarter
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 //Application.Run(new FormTraceRoyaltyCalc());
+                //Application.Run(new FormDspResourceAnalyser());
+
                 Application.Run(new DdexInvoicingForm());
+
                 //Application.Run(new FormMwSearch());
             }
             catch (Exception ex)

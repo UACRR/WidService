@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="DdexDownloadActions.cs" />
     <Compile Include="DdexReportArchiver.cs" />
+    <Compile Include="DspResourceAnalyserHelper.cs" />
     <Compile Include="FormAgreementParams _Old.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +124,12 @@
     </Compile>
     <Compile Include="FormDistributionRunner.Designer.cs">
       <DependentUpon>FormDistributionRunner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDspResourceAnalyser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDspResourceAnalyser.Designer.cs">
+      <DependentUpon>FormDspResourceAnalyser.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExceptionSet.cs">
       <SubType>Form</SubType>
@@ -240,6 +247,12 @@
     <Compile Include="UcDdexReports.Designer.cs">
       <DependentUpon>UcDdexReports.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcDspResourceAnalyser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcDspResourceAnalyser.Designer.cs">
+      <DependentUpon>UcDspResourceAnalyser.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcExceptionSets.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -318,6 +331,9 @@
     <EmbeddedResource Include="FormDistributionRunner.resx">
       <DependentUpon>FormDistributionRunner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDspResourceAnalyser.resx">
+      <DependentUpon>FormDspResourceAnalyser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExceptionSet.resx">
       <DependentUpon>FormExceptionSet.cs</DependentUpon>
     </EmbeddedResource>
@@ -385,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcDdexReports.resx">
       <DependentUpon>UcDdexReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcDspResourceAnalyser.resx">
+      <DependentUpon>UcDspResourceAnalyser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcExceptionSets.resx">
       <DependentUpon>UcExceptionSets.cs</DependentUpon>
@@ -478,6 +497,7 @@
     <Content Include="DBSchema\Types\TblTypeWidAuthorShares.sql" />
     <Content Include="FullDatabase.sql" />
     <Content Include="FullDdexDatabase.sql" />
+    <Content Include="html\ResourceMetaData.html" />
     <Content Include="Images\expand-more_119176.ico" />
     <Content Include="Images\Expanded.ico" />
     <Content Include="Images\Hopstarter-Sleek-Xp-Basic-Ok.ico" />
