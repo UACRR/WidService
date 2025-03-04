@@ -235,7 +235,29 @@ namespace RadioStationReports
             }
         }
 
-        private bool CheckReportExists(ReportParameters reportParameters)        
+        private static string GetReportFilePostfix(ReportParameters reportParameters)
+        {
+            var postfix = "";
+            var path = FormatWorkFilesPath(reportParameters);
+            
+            if (Directory.Exists(path))
+            {
+                var idx = 0;
+                while(true)
+                {
+                    var fileName = FormatSourceFileCopyName(reportParameters, postfix);
+                    if(!File.Exists(Path.Combine(path, fileName)))
+                    {
+                        break;
+                    }
+                    idx++;
+                    postfix = $"({idx})";
+                }
+            }
+            return postfix;
+        }
+
+        private bool CheckReportExists(string fileName)        
         {
             var exists = false;
             Helpers.RunSql(cmd =>
@@ -243,19 +265,10 @@ namespace RadioStationReports
                 cmd.CommandText = @"
                     select min(Id) 
                     from Reports 
-                    where 
-                            RadioStationId = @RadioStationId
-                        and StartYear      = @StartYear     
-                        and StartMonth     = @StartMonth    
-                        and EndYear        = @EndYear       
-                        and EndMonth       = @EndMonth
+                    where FileName = @FileName
                 ";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@RadioStationId", reportParameters.RadioStationId);
-                cmd.Parameters.AddWithValue("@StartYear"     , reportParameters.StartYear     );
-                cmd.Parameters.AddWithValue("@StartMonth"    , reportParameters.StartMonth    );
-                cmd.Parameters.AddWithValue("@EndYear"       , reportParameters.EndYear       );
-                cmd.Parameters.AddWithValue("@EndMonth"      , reportParameters.EndMonth);
+                cmd.Parameters.AddWithValue("@FileName", fileName);
                 var reportId = cmd.ExecuteScalar();
 
                 if (reportId != DBNull.Value)
@@ -275,7 +288,7 @@ namespace RadioStationReports
 
             var fileName = Path.GetFileName(fileFullName);
             var filePath = Path.GetDirectoryName(fileFullName);
-            if(CheckReportExists(reportParameters))
+            if(CheckReportExists(fileName))
             {
                 throw new Exception("Файл вже завантажений.");
             }
@@ -288,6 +301,8 @@ namespace RadioStationReports
             {
                 throw new Exception("Файл не відповідає формату звітів від радіостанцій.\r\n" + ex.Message);
             }
+
+            var postfix = GetReportFilePostfix(reportParameters);
 
             Helpers.RunSqlT(cmd =>
             {
@@ -333,7 +348,7 @@ namespace RadioStationReports
                 cmd.Parameters.AddWithValue("@fileName"             , fileName);
                 cmd.Parameters.AddWithValue("@filePath"             , filePath);
                 cmd.Parameters.AddWithValue("@WorkFilesPath"        , FormatWorkFilesPath(reportParameters));
-                cmd.Parameters.AddWithValue("@SourceFileCopyName"   , FormatSourceFileCopyName(reportParameters));
+                cmd.Parameters.AddWithValue("@SourceFileCopyName"   , FormatSourceFileCopyName(reportParameters, postfix));
                 cmd.Parameters.AddWithValue("@SearchFileName"       , "");
                 cmd.Parameters.AddWithValue("@DistributionFileName" , "");
 
@@ -354,16 +369,16 @@ namespace RadioStationReports
                 //ApplyMatches(cmd);
                 //CalcShares(cmd);
 
-                CreateFilesSpace(reportParameters, filePath, fileName);
+                CreateFilesSpace(reportParameters, filePath, fileName, postfix);
 
             });
 
             return reportId;
         }
 
-        private void CreateFilesSpace(ReportParameters reportParameters, string sourceFilePath, string sourceFileName)
+        private void CreateFilesSpace(ReportParameters reportParameters, string sourceFilePath, string sourceFileName, string postfix)
         {
-            var targetFileFullName = Path.Combine(FormatWorkFilesPath(reportParameters), FormatSourceFileCopyName(reportParameters));
+            var targetFileFullName = Path.Combine(FormatWorkFilesPath(reportParameters), FormatSourceFileCopyName(reportParameters, postfix));
             var sourceFileFullName = Path.Combine(sourceFilePath, sourceFileName);
 
             var workFilesRoot = Path.GetDirectoryName(targetFileFullName);
@@ -428,16 +443,22 @@ namespace RadioStationReports
             }
             Logger.WriteLine($"   Файл розподілу {fromDistributionFileFullName}");
 
+            var postfix = GetReportFilePostfix(newReportParameters);
+
             // Target Files
-            var toSourceFileCopyName    = fromSourceFileCopyFullName == "" ? "" : FormatSourceFileCopyName(newReportParameters);
-            var toSearchFileName        = fromSearchFileFullName == "" ? "" : FormatSearchFileName(newReportParameters);
-            var toDistributionFileName  = fromDistributionFileFullName == "" ? "" : FormatDistributionFileName(newReportParameters);
+            var toSourceFileCopyName    = fromSourceFileCopyFullName == "" ? "" : FormatSourceFileCopyName(newReportParameters, postfix);
+            var toSearchFileName        = fromSearchFileFullName == "" ? "" : FormatSearchFileName(newReportParameters, postfix);
+            var toDistributionFileName  = fromDistributionFileFullName == "" ? "" : FormatDistributionFileName(newReportParameters, postfix);
   
             // Copy report file
             if(fromSourceFileCopyFullName != "")
             {
                 var toFileFullName = Path.Combine(workFilesRoot, toSourceFileCopyName);
                 File.Copy(fromSourceFileCopyFullName, toFileFullName, true);
+                if(isFromWorkDir)
+                {
+                    File.Delete(fromSourceFileCopyFullName);
+                }
                 Logger.WriteLine($"   Переміщено файл {fromSourceFileCopyFullName} => {toFileFullName}");
             }
  
@@ -445,8 +466,12 @@ namespace RadioStationReports
             if (fromSearchFileFullName != "")
             {
                 var toFileFullName = Path.Combine(workFilesRoot, toSearchFileName);
-                File.Copy(fromSourceFileCopyFullName, toFileFullName, true);
-                Logger.WriteLine($"   Переміщено файл {fromSourceFileCopyFullName} => {toFileFullName}");
+                File.Copy(fromSearchFileFullName, toFileFullName, true);
+                if(isFromWorkDir)
+                {
+                    File.Delete(fromSearchFileFullName);
+                }
+                Logger.WriteLine($"   Переміщено файл {fromSearchFileFullName} => {toFileFullName}");
             }
  
             // Copy distribution file
@@ -454,16 +479,22 @@ namespace RadioStationReports
             {
                 var toFileFullName = Path.Combine(workFilesRoot, toDistributionFileName);
                 File.Copy(fromDistributionFileFullName, toFileFullName, true);
+                if(isFromWorkDir)
+                {
+                    File.Delete(fromDistributionFileFullName);
+                }
                 Logger.WriteLine($"   Переміщено файл {fromDistributionFileFullName} => {toFileFullName}");
             }
 
-            // Delete old directory
-            var oldReportFilesPath = report.WorkFilesPath;
+            // Delete old directory - do not delete, files are deleted, may be reused later
+            /*
+             * var oldReportFilesPath = report.WorkFilesPath;
             if (isFromWorkDir)
             {
                 Directory.Delete(oldReportFilesPath, true);
                 Logger.WriteLine($"    Видалено папку {oldReportFilesPath}");
             }
+            */
 
             Helpers.RunSql(cmd =>
             {
@@ -1094,7 +1125,7 @@ namespace RadioStationReports
         public static void CreateSearchFile(Report report, List<ReportLine> reportLines)
         {
             var reportParameters = report.GetReportParameters();
-            report.SearchFileName = FormatSearchFileName(reportParameters);
+            report.SearchFileName = FormatSearchFileName(report);
             var fileFullName = Path.Combine(report.WorkFilesPath, report.SearchFileName);
             Helpers.CreateExcelFile( fileFullName, xlWorksheet => {
                 xlWorksheet.Name = "Рядки звіту";
@@ -1351,7 +1382,7 @@ namespace RadioStationReports
             data = data.OrderBy(x => int.Parse(x.LineNr)).ThenBy(x => int.Parse(x.AuthorSeqNr)).ToList();
 
             var reportParameters = report.GetReportParameters();
-            report.DistributionFileName = FormatDistributionFileName(reportParameters);
+            report.DistributionFileName = FormatDistributionFileName(report);
 
             var outputFileFullName = Path.Combine(report.WorkFilesPath, report.DistributionFileName);
 
@@ -1530,14 +1561,14 @@ namespace RadioStationReports
             }
         }
 
-        private static string FormatReportFileBaseName(ReportParameters reportParameters)
+        private static string FormatReportFileBaseName(ReportParameters reportParameters, string postfix)
         {
             try
             {
                 var startDate   = new DateTime(reportParameters.StartYear, reportParameters.StartMonth, 1);
                 var endDate     = new DateTime(reportParameters.EndYear, reportParameters.EndMonth, 1);
                 var periodName  = $"{startDate:yyyy-MM}_{endDate:yyyy-MM}";
-                return $"{reportParameters.RadioStationName}_{periodName}";
+                return $"{reportParameters.RadioStationName}_{periodName}{postfix}";
             }
             catch
             {
@@ -1545,22 +1576,32 @@ namespace RadioStationReports
             }
         }
 
-        private static string FormatSourceFileCopyName(ReportParameters reportParameters)
+        private static string FormatSourceFileCopyName(ReportParameters reportParameters, string postfix)
         {
-            var baseName = FormatReportFileBaseName(reportParameters);
+            var baseName = FormatReportFileBaseName(reportParameters, postfix);
             return baseName != "" ? $"{baseName}.xlsx" : "";
         }
 
-        public static string FormatSearchFileName(ReportParameters reportParameters)
+        public static string FormatSearchFileName(ReportParameters reportParameters, string postfix)
         {
-            var baseName = FormatReportFileBaseName(reportParameters);
+            var baseName = FormatReportFileBaseName(reportParameters, postfix);
             return baseName != "" ? $"{baseName}.Пошук.xlsx" : "";
         }
 
-        public static string FormatDistributionFileName(ReportParameters reportParameters)
+        public static string FormatSearchFileName(Report report)
         {
-            var baseName = FormatReportFileBaseName(reportParameters);
+            return $"{report.SourceFileCopyName}.Пошук.xlsx";
+        }
+
+        public static string FormatDistributionFileName(ReportParameters reportParameters, string postfix)
+        {
+            var baseName = FormatReportFileBaseName(reportParameters, postfix);
             return baseName != "" ? $"{baseName}.Розподіл.xlsx" : "";
+        }
+
+        public static string FormatDistributionFileName(Report report)
+        {
+            return $"{report.SourceFileCopyName}.Розподіл.xlsx";
         }
 
         public static string GetSearchFileFullName(Report report)

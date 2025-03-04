@@ -22,13 +22,17 @@ namespace WidTestConsole
             Console.WriteLine("Started");
             //IpiAnalyserOld.AddGrId();
             //IpiUpdateService.LoadUpdFile(@"D:\UACRR\WID\IPI\FtpMirror\IPI\download", "20220824.IPI", x => { });
-            //IpiUpdateService.LoadUpdFile(@"D:\UACRR\WID\IPI\FtpMirror\IPI\IPI_PUB\Complete_IPI\DOMAINS\DOMAINS.EDI", x => { });
+            IpiUpdateService.LoadUpdFile(@"D:\UACRR\WID\FtpMirror\IPI\IPI_PUB\Complete_IPI\DOMAINS\DOMAINS.EDI", x => { });
             //IpiUpdateService.LoadDumpFile(@"D:\UACRR\WID\IPI\FtpMirror\IPI\IPI_Pub\Complete_IPI\20220529\IPI01080.EDI", x => { });
             //IpiUpdateService.LoadDumpFiles();
             //IpiUpdateService.ApplySingleFileUpdates(@"D:\UACRR\WID\ReplicationWorkFiles\Ipi\20220909.IPI", x => { });
             //(new WidTaskPlanner()).PlanTasks();
+
+            /*
             var socWidAdminImporter = new SocWidAdminImporter(@"D:\UACRR\WID\Sources\WidService\DataFromProd");
             socWidAdminImporter.ImportFromFiles();
+            */
+
             return;
 
            //WidReplicationTests.RunFileDownload();

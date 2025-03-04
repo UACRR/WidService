@@ -284,9 +284,23 @@ namespace RadioStationReports
                 cmd.Parameters.AddWithValue("@ReportId", selectedReport.Id);
                 cmd.ExecuteNonQuery();
             });
-            if (Directory.Exists(selectedReport.WorkFilesPath))
+
+            var sourceFileCopyNameFull = Path.Combine(selectedReport.WorkFilesPath, selectedReport.SourceFileCopyName);
+            if(File.Exists(sourceFileCopyNameFull))
             {
-                Directory.Delete(selectedReport.WorkFilesPath, true);
+                File.Delete(sourceFileCopyNameFull);
+            }
+
+            var sourceSearchFileNameFull = Path.Combine(selectedReport.WorkFilesPath, selectedReport.SearchFileName);
+            if(File.Exists(sourceSearchFileNameFull))
+            {
+                File.Delete(sourceSearchFileNameFull);
+            }
+
+            var sourceDistributionFileNameFull = Path.Combine(selectedReport.WorkFilesPath, selectedReport.DistributionFileName);
+            if(File.Exists(sourceDistributionFileNameFull))
+            {
+                File.Delete(sourceDistributionFileNameFull);
             }
         }
 
@@ -510,40 +524,6 @@ namespace RadioStationReports
             }
 
             var pNew = form.OutputParameters;
-
-            // Check that report exists
-            var reportExists = false;
-            Helpers.RunSql(cmd =>
-            {
-                cmd.CommandText = @"
-                    select null
-                    from Reports
-                    where 
-                           RadioStationId = @RadioStationId
-                       and StartYear      = @StartYear
-                       and StartMonth     = @StartMonth
-                       and EndYear        = @EndYear
-                       and EndMonth       = @EndMonth
-                ";
-                cmd.Parameters.AddWithValue("@RadioStationId", pNew.RadioStationId);
-                cmd.Parameters.AddWithValue("@StartYear", pNew.StartYear);
-                cmd.Parameters.AddWithValue("@StartMonth", pNew.StartMonth);
-                cmd.Parameters.AddWithValue("@EndYear", pNew.EndYear);
-                cmd.Parameters.AddWithValue("@EndMonth", pNew.EndMonth);
-                using (var r = cmd.ExecuteReader())
-                {
-                    if (r.HasRows)
-                    {
-                        reportExists = true; ;
-                    }
-                }
-            });
-
-            if (reportExists)
-            {
-                MessageBox.Show("Звіт з вказаними параметрами вже існує.", "Параметри звіту", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
             RadioPreSearchManager.MoveFilesSpace(selectedReport, pNew);
 
