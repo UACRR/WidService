@@ -128,8 +128,8 @@ namespace InvoicingLib
                         while (firstBlock <= maxBlock)
                         {
                             int rowCount = cmd.ExecuteNonQuery();
-                            if (rowCount == 0)
-                                break;
+                            //if (rowCount == 0)
+                                //break;
                             insertedRowCount += rowCount;
                             Logger.WriteLine($"Додано {insertedRowCount} записів із {totalRowCount}");
 
