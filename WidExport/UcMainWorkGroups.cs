@@ -86,17 +86,15 @@ namespace WidExport
 
         private void RefreshControls()
         {
-            btnShow.Visible = 
+            btnShow.Visible =
             btnCreateSubmFile.Visible =
             btnDeleteGroup.Visible =
             btnClose.Visible =
-            btnRefreshWicIswc.Visible =
-            btnUpdate.Visible = _selectedGroup != null;
+            btnRefreshWicIswc.Visible = true;
 
             if (_selectedGroup != null)
             {
                 btnCreateSubmFile.Visible =
-                btnRefreshWicIswc.Visible = _selectedGroup.Status != WidSubmGroupStatus.Closed;
 
                 btnDeleteGroup.Visible =
                 btnClose.Visible = _selectedGroup.GroupType == 'M' && _selectedGroup.Status != WidSubmGroupStatus.Closed;
@@ -296,14 +294,27 @@ namespace WidExport
             ucWidGroupStatistics.SetGroup(_selectedGroup == null ? (int?)null : _selectedGroup.Id);
         }
 
+        private void CloseChildForms()
+        {
+            var formsToClose = new List<FormWidSubmit>();
+            foreach (var form in Application.OpenForms)
+            {
+                if(form.GetType() == typeof(FormWidSubmit))
+                {
+                    formsToClose.Add((FormWidSubmit)form);
+                }
+            }
+            formsToClose.ForEach(x =>
+            {
+                x.Close();
+            });
+        }
+
         private void btnRefreshWicIswc_Click(object sender, EventArgs e)
         {
-            if(_selectedGroup == null)
-            {
-                return;
-            }
-
-            var procResult = 0;
+            var cntCandidateWorks = 0;
+            var cntNotReadyWorks = 0;
+            var cntPassedWorks = 0;
             using (var wc = new WaitCursor())
             {
                 Helpers.RunSqlSocWidSubmitT(cmd =>
@@ -311,31 +322,44 @@ namespace WidExport
                     cmd.CommandTimeout = 0;
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "spWidSubmGroupApplyToSmart";
-                    cmd.Parameters.AddWithValue("@groupId", _selectedGroup.Id);
-                    SqlParameter returnValue = new SqlParameter();
-                    returnValue.Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add(returnValue);
+                    cmd.CommandText = "spWidSubmAllApplyToSmart";
+
+                    SqlParameter pmCntCandidateWorks = new SqlParameter();
+                    pmCntCandidateWorks.ParameterName = "@cntCandidateWorks";
+                    pmCntCandidateWorks.DbType = DbType.Int32;
+                    pmCntCandidateWorks.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(pmCntCandidateWorks);
+
+                    SqlParameter pmCntNotReadyWorks = new SqlParameter();
+                    pmCntNotReadyWorks.ParameterName = "@cntNotReadyWorks";
+                    pmCntNotReadyWorks.DbType = DbType.Int32;
+                    pmCntNotReadyWorks.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(pmCntNotReadyWorks);
+
+                    SqlParameter pmCntPassedWorks = new SqlParameter();
+                    pmCntPassedWorks.ParameterName = "@cntPassedWorks";
+                    pmCntPassedWorks.DbType = DbType.Int32;
+                    pmCntPassedWorks.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(pmCntPassedWorks);
+
                     cmd.ExecuteNonQuery();
-                    procResult = (int)returnValue.Value;
+
+                    cntCandidateWorks   = (int)pmCntCandidateWorks.Value;
+                    cntNotReadyWorks    = (int)pmCntNotReadyWorks .Value;
+                    cntPassedWorks      = (int)pmCntPassedWorks   .Value;
+            
                 });
             }
 
-            switch(procResult)
-            {
-                case -1:
-                    MessageBox.Show("Відсутні твори для передачі в СМАРТ", "Передача прийнятих творів в СМАРТ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
-                case -2:
-                    MessageBox.Show("Для прийнятих творів невідомі системні коди WID, можливо, ще не було застосовано щоденні апдейти WID. Спробуйте виконати операцію пізніше.",
-                        "Передача прийнятих творів в СМАРТ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    break;
-                default:
-                    ucWidGroupStatistics.SetGroup(_selectedGroup == null ? (int?)null : _selectedGroup.Id);
-                    MessageBox.Show($"Передано {procResult} творів.",
-                        "Передача прийнятих творів в СМАРТ", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
-                    break;
-            }
+            ucWidGroupStatistics.SetGroup(_selectedGroup == null ? (int?)null : _selectedGroup.Id);
+
+            var msg = 
+                  $"{cntCandidateWorks} нових творів створено в WID для передачі в СМАРТ\r\n"
+                + $"{cntNotReadyWorks} творів з них не отримали код ISWC\r\n"
+                + $"{cntPassedWorks} творів передано в СМАРТ\r\n";
+            MessageBox.Show(msg, "Передача творів в СМАРТ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            CloseChildForms();
         }
 
         private void btnApplyFilter_Click(object sender, EventArgs e)

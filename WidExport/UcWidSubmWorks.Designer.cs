@@ -48,20 +48,20 @@ namespace WidExport
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSubmit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDoNotSubmit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuUpdateAllFromMs = new System.Windows.Forms.ToolStripMenuItem();
             this.lvWorks = new System.Windows.Forms.ListView();
             this.panelAuthors = new System.Windows.Forms.TableLayoutPanel();
             this.tabMwInfo = new System.Windows.Forms.TabControl();
             this.tabPageShares = new System.Windows.Forms.TabPage();
-            this.tabPageMwNames = new System.Windows.Forms.TabPage();
-            this.tabPagePerformers = new System.Windows.Forms.TabPage();
-            this.tabPageDaignostics = new System.Windows.Forms.TabPage();
-            this.tabPageResp = new System.Windows.Forms.TabPage();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuUpdateAllFromMs = new System.Windows.Forms.ToolStripMenuItem();
             this.ucWidSubmShares = new WidExport.UcWidSubmWorkShares();
+            this.tabPageMwNames = new System.Windows.Forms.TabPage();
             this.ucWidSubmNames = new WidExport.UcWidSubmWorkNames();
+            this.tabPagePerformers = new System.Windows.Forms.TabPage();
             this.ucWidSubmPerformers = new WidExport.UcWidSubmWorkPerformers();
+            this.tabPageDaignostics = new System.Windows.Forms.TabPage();
             this.ucWidSubmWorkCheckList = new WidExport.UcWidSubmWorkCheckList();
+            this.tabPageResp = new System.Windows.Forms.TabPage();
             this.ucWidSubmWorkResp = new WidExport.UcWidSubmWorkResp();
             this.panelTop.SuspendLayout();
             this.panelMain.SuspendLayout();
@@ -261,28 +261,40 @@ namespace WidExport
             // mnuUpdateFromMs
             // 
             this.mnuUpdateFromMs.Name = "mnuUpdateFromMs";
-            this.mnuUpdateFromMs.Size = new System.Drawing.Size(364, 22);
+            this.mnuUpdateFromMs.Size = new System.Drawing.Size(363, 22);
             this.mnuUpdateFromMs.Text = "Оновити інформацію для  твору";
             this.mnuUpdateFromMs.Click += new System.EventHandler(this.mnuUpdateFromMs_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(361, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(360, 6);
             // 
             // mnuSubmit
             // 
             this.mnuSubmit.Name = "mnuSubmit";
-            this.mnuSubmit.Size = new System.Drawing.Size(364, 22);
+            this.mnuSubmit.Size = new System.Drawing.Size(363, 22);
             this.mnuSubmit.Text = "До передачі";
             this.mnuSubmit.Click += new System.EventHandler(this.ReSubmit_Click);
             // 
             // mnuDoNotSubmit
             // 
             this.mnuDoNotSubmit.Name = "mnuDoNotSubmit";
-            this.mnuDoNotSubmit.Size = new System.Drawing.Size(364, 22);
+            this.mnuDoNotSubmit.Size = new System.Drawing.Size(363, 22);
             this.mnuDoNotSubmit.Text = "Не передавати";
             this.mnuDoNotSubmit.Click += new System.EventHandler(this.DoNotPublish_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(360, 6);
+            // 
+            // mnuUpdateAllFromMs
+            // 
+            this.mnuUpdateAllFromMs.Name = "mnuUpdateAllFromMs";
+            this.mnuUpdateAllFromMs.Size = new System.Drawing.Size(363, 22);
+            this.mnuUpdateAllFromMs.Text = "Оновити інформацію для не переданих творів групи";
+            this.mnuUpdateAllFromMs.Click += new System.EventHandler(this.mnuUpdateAllFromMs_Click);
             // 
             // lvWorks
             // 
@@ -342,6 +354,14 @@ namespace WidExport
             this.tabPageShares.Text = "Розподіл процентів";
             this.tabPageShares.UseVisualStyleBackColor = true;
             // 
+            // ucWidSubmShares
+            // 
+            this.ucWidSubmShares.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucWidSubmShares.Location = new System.Drawing.Point(3, 3);
+            this.ucWidSubmShares.Name = "ucWidSubmShares";
+            this.ucWidSubmShares.Size = new System.Drawing.Size(1144, 295);
+            this.ucWidSubmShares.TabIndex = 0;
+            // 
             // tabPageMwNames
             // 
             this.tabPageMwNames.Controls.Add(this.ucWidSubmNames);
@@ -352,6 +372,14 @@ namespace WidExport
             this.tabPageMwNames.TabIndex = 1;
             this.tabPageMwNames.Text = "Назви твору";
             this.tabPageMwNames.UseVisualStyleBackColor = true;
+            // 
+            // ucWidSubmNames
+            // 
+            this.ucWidSubmNames.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucWidSubmNames.Location = new System.Drawing.Point(3, 3);
+            this.ucWidSubmNames.Name = "ucWidSubmNames";
+            this.ucWidSubmNames.Size = new System.Drawing.Size(1144, 295);
+            this.ucWidSubmNames.TabIndex = 0;
             // 
             // tabPagePerformers
             // 
@@ -364,6 +392,14 @@ namespace WidExport
             this.tabPagePerformers.Text = "Виконавці";
             this.tabPagePerformers.UseVisualStyleBackColor = true;
             // 
+            // ucWidSubmPerformers
+            // 
+            this.ucWidSubmPerformers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucWidSubmPerformers.Location = new System.Drawing.Point(3, 3);
+            this.ucWidSubmPerformers.Name = "ucWidSubmPerformers";
+            this.ucWidSubmPerformers.Size = new System.Drawing.Size(1144, 295);
+            this.ucWidSubmPerformers.TabIndex = 0;
+            // 
             // tabPageDaignostics
             // 
             this.tabPageDaignostics.Controls.Add(this.ucWidSubmWorkCheckList);
@@ -375,6 +411,14 @@ namespace WidExport
             this.tabPageDaignostics.Text = "Діагностика";
             this.tabPageDaignostics.UseVisualStyleBackColor = true;
             // 
+            // ucWidSubmWorkCheckList
+            // 
+            this.ucWidSubmWorkCheckList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucWidSubmWorkCheckList.Location = new System.Drawing.Point(3, 3);
+            this.ucWidSubmWorkCheckList.Name = "ucWidSubmWorkCheckList";
+            this.ucWidSubmWorkCheckList.Size = new System.Drawing.Size(1144, 295);
+            this.ucWidSubmWorkCheckList.TabIndex = 0;
+            // 
             // tabPageResp
             // 
             this.tabPageResp.Controls.Add(this.ucWidSubmWorkResp);
@@ -385,50 +429,6 @@ namespace WidExport
             this.tabPageResp.TabIndex = 4;
             this.tabPageResp.Text = "Відповідь WID";
             this.tabPageResp.UseVisualStyleBackColor = true;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(361, 6);
-            // 
-            // mnuUpdateAllFromMs
-            // 
-            this.mnuUpdateAllFromMs.Name = "mnuUpdateAllFromMs";
-            this.mnuUpdateAllFromMs.Size = new System.Drawing.Size(364, 22);
-            this.mnuUpdateAllFromMs.Text = "Оновити інформацію для не переданих творів групи";
-            this.mnuUpdateAllFromMs.Click += new System.EventHandler(this.mnuUpdateAllFromMs_Click);
-            // 
-            // ucWidSubmShares
-            // 
-            this.ucWidSubmShares.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucWidSubmShares.Location = new System.Drawing.Point(3, 3);
-            this.ucWidSubmShares.Name = "ucWidSubmShares";
-            this.ucWidSubmShares.Size = new System.Drawing.Size(1144, 295);
-            this.ucWidSubmShares.TabIndex = 0;
-            // 
-            // ucWidSubmNames
-            // 
-            this.ucWidSubmNames.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucWidSubmNames.Location = new System.Drawing.Point(3, 3);
-            this.ucWidSubmNames.Name = "ucWidSubmNames";
-            this.ucWidSubmNames.Size = new System.Drawing.Size(1144, 295);
-            this.ucWidSubmNames.TabIndex = 0;
-            // 
-            // ucWidSubmPerformers
-            // 
-            this.ucWidSubmPerformers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucWidSubmPerformers.Location = new System.Drawing.Point(3, 3);
-            this.ucWidSubmPerformers.Name = "ucWidSubmPerformers";
-            this.ucWidSubmPerformers.Size = new System.Drawing.Size(1144, 295);
-            this.ucWidSubmPerformers.TabIndex = 0;
-            // 
-            // ucWidSubmWorkCheckList
-            // 
-            this.ucWidSubmWorkCheckList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucWidSubmWorkCheckList.Location = new System.Drawing.Point(3, 3);
-            this.ucWidSubmWorkCheckList.Name = "ucWidSubmWorkCheckList";
-            this.ucWidSubmWorkCheckList.Size = new System.Drawing.Size(1144, 295);
-            this.ucWidSubmWorkCheckList.TabIndex = 0;
             // 
             // ucWidSubmWorkResp
             // 

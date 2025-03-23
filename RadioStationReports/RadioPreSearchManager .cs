@@ -128,6 +128,7 @@ namespace RadioStationReports
 
             if(colCount != 9)
             {
+                CloseExcelSession(xlApp, xlWorkbook, xlWorksheet, xlRange);
                 throw new Exception("Wrong file");
             }
 
@@ -185,6 +186,14 @@ namespace RadioStationReports
                 });
             }
 
+            CloseExcelSession(xlApp, xlWorkbook, xlWorksheet, xlRange);
+        }
+
+        private void CloseExcelSession(Application xlApp,
+            Workbook xlWorkbook,
+            _Worksheet xlWorksheet,
+            Range xlRange)
+        {
             //cleanup
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -689,7 +698,7 @@ namespace RadioStationReports
                 var newReportWorkId = r.GetInt32(0);
                 if(curReportWork == null || curReportWork.Id != newReportWorkId)
                 {
-                    curReportWork = _works.Single(x => x.Id == newReportWorkId);
+                    curReportWork = _works.First(x => x.Id == newReportWorkId);
                 }
                 var idx = 1;
                 var foundWork = new MatchingWork();

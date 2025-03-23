@@ -40,6 +40,7 @@ namespace WidExport
             this.btnRefreshWicIswc = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.labelGroupName = new System.Windows.Forms.Label();
+            this.ucWidGroupStatistics = new WidExport.UcWidGroupStatistics();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddGroup = new System.Windows.Forms.Button();
             this.panelGroups = new System.Windows.Forms.TableLayoutPanel();
@@ -52,7 +53,6 @@ namespace WidExport
             this.panelFilter = new System.Windows.Forms.FlowLayoutPanel();
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelMiddle = new System.Windows.Forms.SplitContainer();
-            this.ucWidGroupStatistics = new WidExport.UcWidGroupStatistics();
             this.panelAuthors.SuspendLayout();
             this.panelGroupCommandsRight.SuspendLayout();
             this.panelGroups.SuspendLayout();
@@ -120,7 +120,6 @@ namespace WidExport
             this.panelGroupCommandsRight.Controls.Add(this.btnUpdate);
             this.panelGroupCommandsRight.Controls.Add(this.btnShow);
             this.panelGroupCommandsRight.Controls.Add(this.btnCreateSubmFile);
-            this.panelGroupCommandsRight.Controls.Add(this.btnRefreshWicIswc);
             this.panelGroupCommandsRight.Controls.Add(this.btnClose);
             this.panelGroupCommandsRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGroupCommandsRight.Location = new System.Drawing.Point(4, 469);
@@ -174,7 +173,7 @@ namespace WidExport
             // 
             // btnRefreshWicIswc
             // 
-            this.btnRefreshWicIswc.Location = new System.Drawing.Point(391, 3);
+            this.btnRefreshWicIswc.Location = new System.Drawing.Point(94, 3);
             this.btnRefreshWicIswc.Name = "btnRefreshWicIswc";
             this.btnRefreshWicIswc.Size = new System.Drawing.Size(219, 23);
             this.btnRefreshWicIswc.TabIndex = 1;
@@ -185,7 +184,7 @@ namespace WidExport
             // btnClose
             // 
             this.btnClose.AutoSize = true;
-            this.btnClose.Location = new System.Drawing.Point(616, 3);
+            this.btnClose.Location = new System.Drawing.Point(391, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(90, 23);
             this.btnClose.TabIndex = 0;
@@ -205,6 +204,14 @@ namespace WidExport
             this.labelGroupName.TabIndex = 4;
             this.labelGroupName.Text = "-- назва групи --";
             // 
+            // ucWidGroupStatistics
+            // 
+            this.ucWidGroupStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucWidGroupStatistics.Location = new System.Drawing.Point(4, 273);
+            this.ucWidGroupStatistics.Name = "ucWidGroupStatistics";
+            this.ucWidGroupStatistics.Size = new System.Drawing.Size(758, 189);
+            this.ucWidGroupStatistics.TabIndex = 5;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -221,9 +228,9 @@ namespace WidExport
             this.btnAddGroup.AutoSize = true;
             this.btnAddGroup.Location = new System.Drawing.Point(3, 3);
             this.btnAddGroup.Name = "btnAddGroup";
-            this.btnAddGroup.Size = new System.Drawing.Size(67, 23);
+            this.btnAddGroup.Size = new System.Drawing.Size(85, 23);
             this.btnAddGroup.TabIndex = 0;
-            this.btnAddGroup.Text = "Додати";
+            this.btnAddGroup.Text = "Додати групу";
             this.btnAddGroup.UseVisualStyleBackColor = true;
             this.btnAddGroup.Click += new System.EventHandler(this.btnAddGroup_Click);
             // 
@@ -274,6 +281,7 @@ namespace WidExport
             // panelGroupCommands
             // 
             this.panelGroupCommands.Controls.Add(this.btnAddGroup);
+            this.panelGroupCommands.Controls.Add(this.btnRefreshWicIswc);
             this.panelGroupCommands.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGroupCommands.Location = new System.Drawing.Point(3, 471);
             this.panelGroupCommands.Name = "panelGroupCommands";
@@ -357,14 +365,6 @@ namespace WidExport
             this.panelMiddle.Size = new System.Drawing.Size(1125, 510);
             this.panelMiddle.SplitterDistance = 355;
             this.panelMiddle.TabIndex = 1;
-            // 
-            // ucWidGroupStatistics
-            // 
-            this.ucWidGroupStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucWidGroupStatistics.Location = new System.Drawing.Point(4, 273);
-            this.ucWidGroupStatistics.Name = "ucWidGroupStatistics";
-            this.ucWidGroupStatistics.Size = new System.Drawing.Size(758, 189);
-            this.ucWidGroupStatistics.TabIndex = 5;
             // 
             // UcMainWorkGroups
             // 

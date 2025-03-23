@@ -52,10 +52,10 @@ namespace WidExport
                     lvStatistics.Items.Add("Потребують попередньої обробки")
                         .SubItems.Add(r.GetInt32(i++).ToString());
 
-                    lvStatistics.Items.Add("Передені, очікують відповідь")
+                    lvStatistics.Items.Add("Передані, очікують відповідь")
                         .SubItems.Add(r.GetInt32(i++).ToString());
 
-                    lvStatistics.Items.Add("Передені повторно, очікують відповідь")
+                    lvStatistics.Items.Add("Передані повторно, очікують відповідь")
                         .SubItems.Add(r.GetInt32(i++).ToString());
 
                     lvStatistics.Items.Add("Опубліковані без зауважень")

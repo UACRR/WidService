@@ -261,7 +261,8 @@ namespace WidExport
                     seqNr++;
                 }
             });
-        }
+
+         }
 
         private string GetShouldSubmitTxt(Work work)
         {
@@ -289,7 +290,7 @@ namespace WidExport
         {
             using (var wc = new WaitCursor())
             {
-                tabMwInfo.Visible = true;
+                SetWorkDetailsVisble(true);
                 var item = lvWorks.SelectedItems[0];
                 var objId = int.Parse(item.SubItems[1].Text);
                 var work = (Work)item.Tag;
@@ -317,7 +318,7 @@ namespace WidExport
             if (lvWorks.SelectedItems.Count == 0)
             {
                 SetObjId(null);
-                tabMwInfo.Visible = false;
+                SetWorkDetailsVisble(false);
                 return;
             }
 
@@ -366,7 +367,7 @@ namespace WidExport
                     work.Status == (int)WidSubmGroupWorkStatusEnum.Rejected
                 );
 
-            tabMwInfo.Visible = work != null;
+            SetWorkDetailsVisble(work != null);
 
             tabMwInfo.TabPages[0].ImageIndex = ucWidSubmWorkCheckList.HasShareErrors() ? 3 : 2;
             tabMwInfo.TabPages[1].ImageIndex = ucWidSubmWorkCheckList.HasNameErrors() ? 3 : 2;
@@ -398,6 +399,13 @@ namespace WidExport
             {
                 return (Work)lvWorks.SelectedItems[0].Tag;
             }
+        }
+
+        private void SetWorkDetailsVisble(bool setVisible)
+        {
+            labStatus.Visible = setVisible;
+            mnuActions.Visible = setVisible;
+            tabMwInfo.Visible = setVisible;
         }
 
         private void mnuProcess_Click(object sender, EventArgs e)
@@ -438,6 +446,7 @@ namespace WidExport
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillWorks();
+            SetWorkDetailsVisble(false);
         }
 
         private void ReSubmit_Click(object sender, EventArgs e)
