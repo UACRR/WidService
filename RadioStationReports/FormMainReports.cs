@@ -234,6 +234,7 @@ namespace RadioStationReports
                 tbReprotSourceFileCopyName.Text = "";
                 tbReportSearchFile.Text = "";
                 tbReportDistributionFile.Text = "";
+                //tbReportCheckFile.Text = "";
             }
             else
             {
@@ -241,8 +242,8 @@ namespace RadioStationReports
                 tbReportFilePath.Text = report.FilePath;
                 tbReportWorkFilesPath.Text = report.WorkFilesPath;
                 tbReprotSourceFileCopyName.Text = report.SourceFileCopyName;
-                tbReportSearchFile.Text = report.SearchFileName;
                 tbReportDistributionFile.Text = report.DistributionFileName;
+                tbReportSearchFile.Text = report.SearchFileName;
             }
         }
 
@@ -301,6 +302,12 @@ namespace RadioStationReports
             if(File.Exists(sourceDistributionFileNameFull))
             {
                 File.Delete(sourceDistributionFileNameFull);
+            }
+
+            var sourceCheckFileNameFull = Path.Combine(selectedReport.WorkFilesPath, selectedReport.CheckFileName);
+            if(File.Exists(sourceCheckFileNameFull))
+            {
+                File.Delete(sourceCheckFileNameFull);
             }
         }
 

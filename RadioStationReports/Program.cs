@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,11 +34,20 @@ namespace RadioStationReports
                 //excelConnector.SaveReport(@"D:\UACRR\Çâ³òè ðàä³î\Âèõ³äí³\Çâ³ò_ÀÐÒ_ÓÀÀÑÏ_1 êâ. 2023.xlsx");
                 //return;
 
+                /*
                 Logger.WriteLine("Loading Configuration");
                 Configuration.Load();
                 Logger.WriteLine("Running main form");
-                Application.Run(new FormSearch());
-                //Application.Run(new FormMainReports());
+                var form = new FormSearch();
+                    form.SetNamePerformer("Novorichna", 
+                    "Liliia Ostapenko/Lileia",
+                    x => MessageBox.Show(x));                
+                Application.Run(form);
+                */
+                
+                Logger.WriteLine("Loading Configuration");
+                Configuration.Load();
+                Application.Run(new FormMainReports());
             }
             catch (Exception ex)
             {

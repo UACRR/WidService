@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static RadioStationReports.UcSearch;
 
 namespace RadioStationReports
 {
     public partial class FormSearch : Form
     {
+
+        public delegate void OnWorkApplied(string code);
+        private OnWorkApplied _onWorkApplied;
         public FormSearch()
         {
             InitializeComponent();
@@ -19,7 +23,20 @@ namespace RadioStationReports
 
         private void FormSearch_Load(object sender, EventArgs e)
         {
-            ucSearch.SetNamePerformer("Novorichna", "Liliia Ostapenko/Lileia");
+        }
+
+        public void SetNamePerformer(string name, string performers, OnWorkApplied onWorkApplied)
+        {
+            Activate();
+            ucSearch.SetNamePerformer(name, 
+                performers, 
+                x => onWorkApplied(x)
+            );
+        }
+
+        private void ucSearch_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

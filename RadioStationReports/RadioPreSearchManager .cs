@@ -126,7 +126,7 @@ namespace RadioStationReports
             int rowCount = xlRange.Rows.Count;
             int colCount = xlRange.Columns.Count;
 
-            if(colCount != 9)
+            if(colCount < 8)
             {
                 CloseExcelSession(xlApp, xlWorkbook, xlWorksheet, xlRange);
                 throw new Exception("Wrong file");
@@ -328,6 +328,7 @@ namespace RadioStationReports
                         , SourceFileCopyName
                         , SearchFileName
                         , DistributionFileName
+                        , CheckFileName
                         , CreatedAt
                         , UpdatedAt
                     )
@@ -343,6 +344,7 @@ namespace RadioStationReports
                         , @SourceFileCopyName
                         , @SearchFileName
                         , @DistributionFileName
+                        , @CheckFileName
                         , getdate()
                         , getdate()
                     )
@@ -360,6 +362,7 @@ namespace RadioStationReports
                 cmd.Parameters.AddWithValue("@SourceFileCopyName"   , FormatSourceFileCopyName(reportParameters, postfix));
                 cmd.Parameters.AddWithValue("@SearchFileName"       , "");
                 cmd.Parameters.AddWithValue("@DistributionFileName" , "");
+                cmd.Parameters.AddWithValue("@CheckFileName"        , "");
 
                 reportId = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -452,12 +455,21 @@ namespace RadioStationReports
             }
             Logger.WriteLine($"   Файл розподілу {fromDistributionFileFullName}");
 
+            // Check File
+            var fromCheckFileFullName = Path.Combine(oldFilesRootDir, report.CheckFileName);
+            if (!File.Exists(fromCheckFileFullName))
+            {
+                fromCheckFileFullName = "";
+            }
+            Logger.WriteLine($"   Файл перевірки {fromCheckFileFullName}");
+
             var postfix = GetReportFilePostfix(newReportParameters);
 
             // Target Files
             var toSourceFileCopyName    = fromSourceFileCopyFullName == "" ? "" : FormatSourceFileCopyName(newReportParameters, postfix);
             var toSearchFileName        = fromSearchFileFullName == "" ? "" : FormatSearchFileName(newReportParameters, postfix);
             var toDistributionFileName  = fromDistributionFileFullName == "" ? "" : FormatDistributionFileName(newReportParameters, postfix);
+            var toCheckFileName         = fromCheckFileFullName == "" ? "" : FormatCheckFileName(newReportParameters, postfix);
   
             // Copy report file
             if(fromSourceFileCopyFullName != "")
@@ -495,6 +507,18 @@ namespace RadioStationReports
                 Logger.WriteLine($"   Переміщено файл {fromDistributionFileFullName} => {toFileFullName}");
             }
 
+            // Copy check file
+            if (fromCheckFileFullName != "")
+            {
+                var toFileFullName = Path.Combine(workFilesRoot, toCheckFileName);
+                File.Copy(fromCheckFileFullName, toFileFullName, true);
+                if(isFromWorkDir)
+                {
+                    File.Delete(fromCheckFileFullName);
+                }
+                Logger.WriteLine($"   Переміщено файл {fromCheckFileFullName} => {toFileFullName}");
+            }
+
             // Delete old directory - do not delete, files are deleted, may be reused later
             /*
              * var oldReportFilesPath = report.WorkFilesPath;
@@ -519,6 +543,7 @@ namespace RadioStationReports
                         , SourceFileCopyName    = @SourceFileCopyName  
                         , SearchFileName        = @SearchFileName      
                         , DistributionFileName  = @DistributionFileName
+                        , CheckFileName         = @CheckFileName
                     where Id = @ReportId
                 ";
 
@@ -532,6 +557,7 @@ namespace RadioStationReports
                 cmd.Parameters.AddWithValue("@SourceFileCopyName"   , toSourceFileCopyName              );
                 cmd.Parameters.AddWithValue("@SearchFileName"       , toSearchFileName                  );
                 cmd.Parameters.AddWithValue("@DistributionFileName" , toDistributionFileName            );
+                cmd.Parameters.AddWithValue("@CheckFileName"        , toCheckFileName                   );
 
                 cmd.ExecuteNonQuery();
             });
@@ -546,6 +572,7 @@ namespace RadioStationReports
             report.SourceFileCopyName   = toSourceFileCopyName                ;
             report.SearchFileName       = toSearchFileName                    ;
             report.DistributionFileName = toDistributionFileName              ;
+            report.CheckFileName        = toDistributionFileName              ;
         }
 
         public static List<string> GetReportsList()
@@ -595,7 +622,21 @@ namespace RadioStationReports
                     break;
             }
             cmd.CommandText = $@"
-                select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Share
+                select 
+	                  t2.Id
+	                , t2.Name
+	                , t2.Authors
+	                , t2.Performers
+	                , t2.NameT
+	                , t2.AuthorsT
+	                , t2.PerformersT
+	                , t2.FoundIn
+	                , case 
+		                when t2.FoundIn = 'M' then t2.ObjId
+		                when t2.FoundIn = 'W' then t2.Wic
+		                else null
+		                end as FoundCde
+	                , t2.Share
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
                 where t1.ReportId = @reportId {filterText}
@@ -611,7 +652,21 @@ namespace RadioStationReports
         public void LoadSingleReportWork(SqlCommand cmd, int reportWorkId)
         {
             cmd.CommandText = $@"
-                select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Share
+                select 
+	                  t2.Id
+	                , t2.Name
+	                , t2.Authors
+	                , t2.Performers
+	                , t2.NameT
+	                , t2.AuthorsT
+	                , t2.PerformersT
+	                , t2.FoundIn
+	                , case 
+		                when t2.FoundIn = 'M' then t2.ObjId
+		                when t2.FoundIn = 'W' then t2.Wic
+		                else null
+		                end as FoundCde
+	                , t2.Share
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
                 where t2.Id = @reportWorkId
@@ -642,7 +697,9 @@ namespace RadioStationReports
                 idx++;
                 reportWork.FoundIn = r.IsDBNull(idx) ? "" : r.GetString(idx);
                 idx++;
-                reportWork.FoundCde = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
+                reportWork.ObjId = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
+                idx++;
+                reportWork.Wic = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
                 idx++;
                 reportWork.Share = r.IsDBNull(idx) ? (decimal?)null : r.GetDecimal(idx);
 
@@ -654,7 +711,21 @@ namespace RadioStationReports
         public void LoadReportWorkForLine(SqlCommand cmd, int lineNr)
         {
             cmd.CommandText = $@"
-                select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Share
+                select
+	                  t2.Id
+	                , t2.Name
+	                , t2.Authors
+	                , t2.Performers
+	                , t2.NameT
+	                , t2.AuthorsT
+	                , t2.PerformersT
+	                , t2.FoundIn
+	                , case 
+		                when t2.FoundIn = 'M' then t2.ObjId
+		                when t2.FoundIn = 'W' then t2.Wic
+		                else null
+		                end as FoundCde
+	                , t2.Share
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
                 where t1.ReportId = @reportId 
@@ -1025,7 +1096,11 @@ namespace RadioStationReports
         {
             cmd.CommandText = @"
                     update Works
-                    set FoundIn = @foundIn, FoundCde = @foundCde, Share = null
+                    set
+                          FoundIn = @foundIn
+                        , ObjId = @objId
+                        , Wic = @wic
+                        , Share = null
                     where Id = @id
                 ";
             _works.Where(x => x.HasMatchingWorks).ToList().ForEach(x =>
@@ -1034,7 +1109,8 @@ namespace RadioStationReports
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@id", x.Id);
                 cmd.Parameters.AddWithValue("@foundIn", matchingWork.FoundInDb);
-                cmd.Parameters.AddWithValue("@foundCde", matchingWork.FoundId);
+                cmd.Parameters.AddWithValue("@objId", matchingWork.FoundInDb == "M" ? matchingWork.FoundId : null);
+                cmd.Parameters.AddWithValue("@wic",  matchingWork.FoundInDb == "W" ? matchingWork.FoundId : null);
                 cmd.ExecuteNonQuery();
             });
         }
@@ -1155,8 +1231,8 @@ namespace RadioStationReports
                 {
                     idxRow++;
                     idxCol = 0;
-                    dataArray[idxRow, idxCol++] = x.Work.FoundIn == null ? "" : x.Work.FoundIn == "M" ? x.Work.FoundCde.ToString() : "";
-                    dataArray[idxRow, idxCol++] = x.Work.FoundIn == null ? "" : x.Work.FoundIn == "W" ? x.Work.FoundCde.ToString() : "";
+                    dataArray[idxRow, idxCol++] = x.Work.FoundIn == null ? "" : x.Work.FoundIn == "M" ? x.Work.ObjId.ToString() : "";
+                    dataArray[idxRow, idxCol++] = x.Work.FoundIn == null ? "" : x.Work.FoundIn == "W" ? x.Work.Wic.ToString() : "";
                     dataArray[idxRow, idxCol++] = x.Work.Iswc;
                     dataArray[idxRow, idxCol++] = x.LineNr.ToString();
                     dataArray[idxRow, idxCol++] = x.Name;
@@ -1168,26 +1244,6 @@ namespace RadioStationReports
                 var range = xlWorksheet.get_Range(c1, c2);
                 range.Value2 = dataArray;
 
-/*
-                SetCellValue(xlWorksheet, idxRow, idxCol++, "ObjId");
-                SetCellValue(xlWorksheet, idxRow, idxCol++, "Wic");
-                SetCellValue(xlWorksheet, idxRow, idxCol++, "Iswc");
-                SetCellValue(xlWorksheet, idxRow, idxCol++, "№");
-                SetCellValue(xlWorksheet, idxRow, idxCol++, "Назва");
-                SetCellValue(xlWorksheet, idxRow, idxCol++, "Виконавці");
-
-                reportLines.ForEach(x =>
-                {
-                    idxRow++;
-                    idxCol = 1;
-                    SetCellValue(xlWorksheet, idxRow, idxCol++, x.Work.FoundIn == null ? "" : x.Work.FoundIn == "M" ? x.Work.FoundCde.ToString() : "");
-                    SetCellValue(xlWorksheet, idxRow, idxCol++, x.Work.FoundIn == null ? "" : x.Work.FoundIn == "W" ? x.Work.FoundCde.ToString() : "");
-                    SetCellValue(xlWorksheet, idxRow, idxCol++, x.Work.Iswc);
-                    SetCellValue(xlWorksheet, idxRow, idxCol++, x.LineNr.ToString());
-                    SetCellValue(xlWorksheet, idxRow, idxCol++, x.Name);
-                    SetCellValue(xlWorksheet, idxRow, idxCol++, x.Performer);
-                });
-*/
                 var cells = xlWorksheet.Cells;
                 cells.NumberFormat = "@";
                 cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
@@ -1223,6 +1279,130 @@ namespace RadioStationReports
 
         }
     
+        public static void CreateCheckFile(Report report, List<ReportLine> reportLines)
+        {
+            var cntCols = 10;
+            var reportParameters = report.GetReportParameters();
+            report.CheckFileName = FormatCheckFileName(report);
+            var fileFullName = Path.Combine(report.WorkFilesPath, report.CheckFileName);
+            if(File.Exists(fileFullName))
+            {
+                File.Delete(fileFullName);
+            }
+            Helpers.CreateExcelFile( fileFullName, xlWorksheet => {
+                xlWorksheet.Name = "Рядки звіту";
+
+                var dataArray = new object[reportLines.Count + 1, cntCols];
+
+                var idxRow = 0;
+                var idxCol = 0;
+
+                dataArray[idxRow, idxCol++] = "№ п/п";
+                dataArray[idxRow, idxCol++] = "Назва публічно сповіщеного твору через мережу Інтернет";
+                dataArray[idxRow, idxCol++] = "Виконавець  - П.І.Б. виконавця (співвиконавців) або назва колективу виконавців";
+                dataArray[idxRow, idxCol++] = "Автор музики (П.І.Б.)";
+                dataArray[idxRow, idxCol++] = "Автор тексту (П.І.Б.)";
+                dataArray[idxRow, idxCol++] = "Тривалість звучання твору (год.:хвил.: сек.)";
+                dataArray[idxRow, idxCol++] = "Кількість публічних сповіщень твору";
+                dataArray[idxRow, idxCol++] = "Загальна Тривалість звучання твору";
+                dataArray[idxRow, idxCol++] = "СЦЕПКА";
+                dataArray[idxRow, idxCol++] = "% правовласності";
+
+                Helpers.RunSqlT(cmd =>
+                {
+                    cmd.CommandText = @"
+                        select 
+	                          cast(t1.LineNr as varchar(10))
+	                        , t1.Name
+	                        , t1.Performer
+	                        , ''
+	                        , ''
+	                        , concat('''', t1.Duration)
+	                        , t1.CountUses
+	                        , concat('''', t1.TotalDuration)
+	                        , concat(t1.Name, t1.Performer)
+	                        , case 
+		                        when t2.FoundIn is null then '' 
+		                        when t2.Share > 0 then '100'
+		                        else '0'
+	                          end
+                        from ReportLines t1
+	                        join Works t2 on t1.WorkId = t2.Id
+                        where t1.ReportId = @reportId
+                        order by t1.LineNr
+                    ";
+                    cmd.Parameters.AddWithValue("@reportId", report.Id);
+
+                    using(var r = cmd.ExecuteReader())
+                    {
+                        idxRow++;
+                        while (r.Read())
+                        {
+                            for(var idxCol = 0; idxCol < cntCols; idxCol++)
+                            {
+                                dataArray[idxRow, idxCol] = r.GetString(idxCol);
+                                //try
+                                //{
+                                //dataArray[idxRow, idxCol] = r.GetString(idxCol);
+                                //
+                                //}
+                                //catch(Exception ex)
+                                //{
+                                //    var e = ex.Message;
+                                //}
+                            }
+                            idxRow++;
+                        }
+                    }
+                });
+
+                var c1 = (Range)xlWorksheet.Cells[1, 1];
+                var c2 = (Range)xlWorksheet.Cells[1 + reportLines.Count, cntCols];
+                var range = xlWorksheet.get_Range(c1, c2);
+                range.Value2 = dataArray;
+
+                var cells = xlWorksheet.Cells;
+                cells.NumberFormat = "@";
+                cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+                cells.Borders.Weight = XlBorderWeight.xlThin;
+
+                var row = (Range)xlWorksheet.Rows[1];
+                row.Font.Bold = true;
+                row.Borders.Weight = XlBorderWeight.xlMedium;
+
+                var col = (Range)xlWorksheet.Columns[1];
+                col.ColumnWidth = 20;
+                col.Locked = false;
+                col = (Range)xlWorksheet.Columns[2];
+                col.ColumnWidth = 20;
+                col.Locked = false;
+                col = (Range)xlWorksheet.Columns[3];
+                col.ColumnWidth = 20;
+                col.Locked = false;
+                col = (Range)xlWorksheet.Columns[4];
+                col.ColumnWidth = 8;
+                col = (Range)xlWorksheet.Columns[5];
+                col.ColumnWidth = 20;
+                col = (Range)xlWorksheet.Columns[6];
+                col.ColumnWidth = 20;
+                col = (Range)xlWorksheet.Columns[7];
+                col.ColumnWidth = 20;
+                col = (Range)xlWorksheet.Columns[8];
+                col.ColumnWidth = 20;
+                col = (Range)xlWorksheet.Columns[9];
+                col.ColumnWidth = 20;
+                col = (Range)xlWorksheet.Columns[10];
+                col.ColumnWidth = 20;
+
+                xlWorksheet.Application.ActiveWindow.SplitRow = 1;
+                xlWorksheet.Application.ActiveWindow.FreezePanes = true;
+
+
+            });
+
+
+        }
+
         public void ImportSearchFile(Report report)
         {
             try
@@ -1602,6 +1782,18 @@ namespace RadioStationReports
             return $"{report.SourceFileCopyName}.Пошук.xlsx";
         }
 
+        public static string FormatCheckFileName(Report report)
+        {
+            var baseName = Path.GetFileNameWithoutExtension(report.SourceFileCopyName);
+            return $"{baseName}.Перевірено.xlsx";
+        }
+
+        public static string FormatCheckFileName(ReportParameters reportParameters, string postfix)
+        {
+            var baseName = FormatReportFileBaseName(reportParameters, postfix);
+            return baseName != "" ? $"{baseName}.Перевірено.xlsx" : "";
+        }
+
         public static string FormatDistributionFileName(ReportParameters reportParameters, string postfix)
         {
             var baseName = FormatReportFileBaseName(reportParameters, postfix);
@@ -1634,6 +1826,18 @@ namespace RadioStationReports
             else
             {
                 return Path.Combine(report.WorkFilesPath, report.DistributionFileName);
+            }
+        }
+
+        public static string GetCheckFileFullName(Report report)
+        {
+            if (string.IsNullOrEmpty(report.WorkFilesPath))
+            {
+                return Path.Combine(report.FilePath, report.CheckFileName);
+            }
+            else
+            {
+                return Path.Combine(report.WorkFilesPath, report.CheckFileName);
             }
         }
 

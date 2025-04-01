@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace RadioStationReports
 
         private RadioPreSearchManager _radioPreSearchManager = new RadioPreSearchManager();
         private bool _importSearchFileInProgress = false;
+
+        private FormSearch _formSearch;
 
         private string _textToCopy = "";
 
@@ -76,7 +79,8 @@ namespace RadioStationReports
             lvReportLines.Columns.Add("Назва твору", 200);
             lvReportLines.Columns.Add("Виконавці", 200);
             lvReportLines.Columns.Add("Де знайдено", 90);
-            lvReportLines.Columns.Add("Знайдений код", 100);
+            lvReportLines.Columns.Add("Код СМАРТ", 100);
+            lvReportLines.Columns.Add("Код WID", 100);
             lvReportLines.Columns.Add("Код ISWC", 80);
 
             var formWidth = 44;
@@ -140,6 +144,7 @@ namespace RadioStationReports
             btnImportSearchFile.Enabled = !string.IsNullOrEmpty(_report.SearchFileName);
 
             tbDistrFileName.Text = _report.DistributionFileName;
+            tbCheckFileName.Text = _report.CheckFileName;
 
             btnCreateDistributionFile.Enabled = _report.AutoSearchFinishedAt != null
                 && !btnCalcRoyalty.Visible
@@ -217,7 +222,9 @@ namespace RadioStationReports
                         idx++;
                         work.FoundIn = r.IsDBNull(idx) ? "" : r.GetString(idx);
                         idx++;
-                        work.FoundCde = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
+                        work.ObjId = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
+                        idx++;
+                        work.Wic = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
                         idx++;
                         work.Iswc = r.IsDBNull(idx) ? "" : r.GetString(idx);
                         idx++;
@@ -236,13 +243,24 @@ namespace RadioStationReports
             lvReportLines.Items.Clear();
             _reportLines.ForEach(x =>
             {
-                var item = lvReportLines.Items.Add(x.LineNr.ToString());
-                item.SubItems.Add(x.Name);
-                item.SubItems.Add(x.Performer);
-                item.SubItems.Add(x.Work.FoundIn);
-                item.SubItems.Add(x.Work.FoundCde.ToString());
-                item.SubItems.Add(x.Work.Iswc);
-                item.Tag = x;
+                var filterEx = tbFilterEx.Text.Trim();
+                var showLines = true;
+                if (filterEx != "")
+                {
+                    showLines = x.Performer.Contains(filterEx, StringComparison.OrdinalIgnoreCase);
+                }
+
+                if (showLines)
+                {
+                    var item = lvReportLines.Items.Add(x.LineNr.ToString());
+                    item.SubItems.Add(x.Name);
+                    item.SubItems.Add(x.Performer);
+                    item.SubItems.Add(x.Work.FoundIn);
+                    item.SubItems.Add(x.Work.ObjId.ToString());
+                    item.SubItems.Add(x.Work.Wic.ToString());
+                    item.SubItems.Add(x.Work.Iswc);
+                    item.Tag = x;
+                }
 
             });
 
@@ -261,8 +279,9 @@ namespace RadioStationReports
             item.SubItems[1].Text = line.Name;
             item.SubItems[2].Text = line.Performer;
             item.SubItems[3].Text = line.Work.FoundIn;
-            item.SubItems[4].Text = line.Work.FoundCde.ToString();
-            item.SubItems[5].Text = line.Work.Iswc;
+            item.SubItems[4].Text = line.Work.ObjId.ToString();
+            item.SubItems[5].Text = line.Work.Wic.ToString();
+            item.SubItems[6].Text = line.Work.Iswc;
         }
 
         private void FillLabLinesCnt()
@@ -300,8 +319,8 @@ namespace RadioStationReports
 
             else if (ChangedCodeField == "NONE")
             {
-                tbObjId.Text = line.Work.FoundIn == "M" ? line.Work.FoundCde.ToString() : "";
-                tbWic.Text = line.Work.FoundIn == "W" ? line.Work.FoundCde.ToString() : "";
+                tbObjId.Text = line.Work.ObjId != null ? line.Work.ObjId.ToString() : "";
+                tbWic.Text = line.Work.Wic != null ? line.Work.Wic.ToString() : "";
                 tbIswc.Text = line.Work.Iswc;
                 tbObjId.Enabled = true;
                 tbWic.Enabled = true;
@@ -360,7 +379,7 @@ namespace RadioStationReports
                 }
 
                 cmd.CommandText = @"
-                    update Works set FoundIn = 'M', FoundCde = @ObjId where Id = @Id
+                    update Works set FoundIn = 'M', ObjId = @ObjId where Id = @Id
                     update Reports set UpdatedAt = getdate() where Id = @ReportId
                 ";
                 cmd.Parameters.Clear();
@@ -385,7 +404,7 @@ namespace RadioStationReports
                 cmd.ExecuteNonQuery();
 
                 line.Work.FoundIn = "M";
-                line.Work.FoundCde = foundObjId;
+                line.Work.ObjId = foundObjId;
                 line.Work.Iswc = iswc;
 
             });
@@ -415,7 +434,7 @@ namespace RadioStationReports
                 }
 
                 cmd.CommandText = @"
-                    update Works set FoundIn = 'W', FoundCde = @Wic where Id = @Id
+                    update Works set FoundIn = 'W', Wic = @Wic where Id = @Id
                     update Reports set UpdatedAt = getdate() where Id = @ReportId
                 ";
                 cmd.Parameters.Clear();
@@ -440,7 +459,7 @@ namespace RadioStationReports
                 cmd.ExecuteNonQuery();
 
                 line.Work.FoundIn = "W";
-                line.Work.FoundCde = foundWic;
+                line.Work.Wic = foundWic;
                 line.Work.Iswc = iswc;
 
             });
@@ -466,7 +485,7 @@ namespace RadioStationReports
                 }
 
                 cmd.CommandText = @"
-                    update Works set FoundIn = 'W', FoundCde = @Wic where Id = @Id
+                    update Works set FoundIn = 'W', Wic = @Wic where Id = @Id
                     update Reports set UpdatedAt = getdate() where Id = @ReportId
                 ";
                 cmd.Parameters.Clear();
@@ -482,23 +501,31 @@ namespace RadioStationReports
                 cmd.ExecuteNonQuery();
 
                 line.Work.FoundIn = "W";
-                line.Work.FoundCde = foundWic;
+                line.Work.Wic = foundWic;
                 line.Work.Iswc = iswc;
 
             });
             return res;
         }
 
-        private string SetNotFound()
+        private void SetNotFound()
         {
             var line = GetSelectedLine();
 
-            var res = "";
             Helpers.RunSqlT(cmd =>
             {
                 cmd.CommandText = @"
-                    update Works set FoundIn = null, FoundCde = null, Iswc = null where Id = @Id
-                    update Reports set UpdatedAt = getdate() where Id = @ReportId
+                    update Works 
+                    set 
+                          FoundIn = null
+                        , ObjId = null
+                        , Wic = null
+                        , Iswc = null
+                    where Id = @Id
+
+                    update Reports
+                    set UpdatedAt = getdate()
+                    where Id = @ReportId
                 ";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@Id", line.Work.Id);
@@ -506,10 +533,13 @@ namespace RadioStationReports
                 cmd.ExecuteNonQuery();
 
                 line.Work.FoundIn = null;
-                line.Work.FoundCde = null;
+                line.Work.ObjId = null;
+                line.Work.Wic = null;
                 line.Work.Iswc = null;
             });
-            return res;
+
+            tbObjId.Text = tbWic.Text = tbIswc.Text = "";
+            UpdateLvReportLine();
         }
         private void btnAutoSearch_Click(object sender, EventArgs e)
         {
@@ -557,7 +587,7 @@ namespace RadioStationReports
 
             var line = GetSelectedLine();
             var lineNr = 0;
-            if(line != null)
+            if (line != null)
             {
                 lineNr = line.LineNr;
             }
@@ -581,9 +611,9 @@ namespace RadioStationReports
                 LoadReportLines();
                 FillLvReportLines();
 
-                foreach(ListViewItem item in lvReportLines.Items)
+                foreach (ListViewItem item in lvReportLines.Items)
                 {
-                    if(((ReportLine)item.Tag).LineNr == lineNr)
+                    if (((ReportLine)item.Tag).LineNr == lineNr)
                     {
                         item.Selected = true;
                         return;
@@ -782,20 +812,38 @@ namespace RadioStationReports
 
         private void lvReportLines_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedItem = GetSelectedItem();
-            if (selectedItem == null)
+            try
             {
-                ucReportLineWork.Clear();
-                ucReportLineDistribution.Clear();
+                Cursor.Current = Cursors.WaitCursor;
+                var selectedItem = GetSelectedItem();
+                if (selectedItem == null)
+                {
+                    ucReportLineWork.Clear();
+                    ucReportLineDistribution.Clear();
+                    UpdateCodeEditControls("NONE");
+                    return;
+                }
+
+                if (_formSearch != null)
+                {
+                    UpdateFormSearch();
+                }
+
                 UpdateCodeEditControls("NONE");
-                return;
+
+                var reportLine = (ReportLine)selectedItem.Tag;
+                ucReportLineWork.Update(_report.Id, reportLine.LineNr);
+                ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+
+                if (_formSearch != null && _formSearch.Visible)
+                {
+                    _formSearch.Activate();
+                }
             }
-
-            UpdateCodeEditControls("NONE");
-
-            var reportLine = (ReportLine)selectedItem.Tag;
-            ucReportLineWork.Update(_report.Id, reportLine.LineNr);
-            ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
         }
 
         private void btnShowHideActions_Click(object sender, EventArgs e)
@@ -877,48 +925,106 @@ namespace RadioStationReports
             UpdateCodeEditControls("ISWC");
         }
 
-        private void btnApplyCode_Click(object sender, EventArgs e)
+        private void ApplyWorkCode()
         {
+            int objId;
+            if(!int.TryParse(tbObjId.Text, out objId))
+            {
+                objId = 0;
+            }
+
+            int wic;
+            if(!int.TryParse(tbWic.Text, out wic))
+            {
+                wic = 0;
+            }
+
+            var iswc = tbIswc.Text.Trim();
+            iswc = iswc == "" ? "" : iswc.Substring(0, Math.Min(25, iswc.Length));
+            
             try
             {
-                Cursor.Current= Cursors.WaitCursor;
+                Cursor.Current = Cursors.WaitCursor;
                 var res = "";
-                if (tbObjId.Text.Trim() != "")
-                {
-                    res = SetObjId(tbObjId.Text.Trim());
-                }
-                else if (tbWic.Text.Trim() != "")
-                {
-                    res = SetWic(tbWic.Text.Trim());
-                }
-                else if (tbIswc.Text.Trim() != "")
-                {
-                    res = SetIswc(tbIswc.Text.Trim());
-                }
-                else
-                {
-                    res = SetNotFound();
-                }
-
-                if (!string.IsNullOrEmpty(res))
+                if (
+                    objId   == 0    &&
+                    wic     == 0    &&
+                    iswc    == ""
+                )
                 {
                     Helpers.ShowError(res);
                     UpdateCodeEditControls("NONE");
                     return;
                 }
-                else
-                {
-                    UpdateLvReportLine();
-                }
 
                 var line = GetSelectedLine();
 
-                var radioPreSearchManager = new RadioPreSearchManager(_report.Id);
-                radioPreSearchManager.RecalcShares(line.LineNr);
+                Helpers.RunSqlT(cmd =>
+                {
+                    cmd.CommandText = "spApplyFoundWork";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@reportId", _report.Id);
+                    cmd.Parameters.AddWithValue("@lineNr", line.LineNr);
+                    
+                    var paramObjId = new SqlParameter("@objId", SqlDbType.Int)
+                    { 
+                        Direction   = ParameterDirection.InputOutput,
+                        Value       = objId == 0 ? DBNull.Value : objId
+                    };
+                    cmd.Parameters.Add(paramObjId);
+
+                    var paramWic = new SqlParameter("@wic", SqlDbType.Int)
+                    { 
+                        Direction   = ParameterDirection.InputOutput,
+                        Value       = wic == 0 ? DBNull.Value : wic
+                    };
+                    cmd.Parameters.Add(paramWic);
+
+                    var paramIswc = new SqlParameter("@iswc", SqlDbType.VarChar)
+                    { 
+                        Direction   = ParameterDirection.InputOutput,
+                        Value       = iswc == "" ? DBNull.Value : iswc,
+                        Size        = 25
+                    };
+                    cmd.Parameters.Add(paramIswc);
+
+                    cmd.Parameters.AddWithValue("@nameInReport", line.Name);
+                    cmd.Parameters.AddWithValue("@performerInReport", line.Performer);
+                    cmd.ExecuteNonQuery();
+
+                    objId   = paramObjId.Value  == DBNull.Value ? 0 : (int)paramObjId.Value     ;
+                    wic     = paramWic.Value    == DBNull.Value ? 0 : (int)paramWic.Value       ;
+                    iswc    = paramIswc.Value   == DBNull.Value ? "": (string)paramIswc.Value   ;
+                });
+
+                if (objId != 0)
+                {
+                    line.Work.FoundIn = "M";
+                }
+                else if (wic != 0)
+                {
+                    line.Work.FoundIn = "W";
+                }
+
+                line.Work.ObjId = objId;
+                line.Work.Wic = wic;
+                line.Work.Iswc = iswc;
+
+                UpdateLvReportLine();
 
                 ucReportLineWork.Update(_report.Id, line.LineNr);
                 ucReportLineDistribution.Update(_report.Id, line.LineNr);
-                UpdateCodeEditControls("NONE");
+
+                _ignoreCodeChangedEvent = true;
+                tbObjId.Text = objId == 0 ? "" : objId.ToString();
+                tbWic.Text = wic == 0 ? "" : wic.ToString();
+                tbIswc.Text = iswc;
+                _ignoreCodeChangedEvent = false;
+                tbObjId.Enabled = true;
+                tbWic.Enabled = true;
+                tbIswc.Enabled = true;
+                btnApplyCode.Enabled = false;
+                btnCancelCode.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -928,8 +1034,21 @@ namespace RadioStationReports
             {
                 Cursor.Current = Cursors.Default;
             }
- 
-
+        }
+        private void btnApplyCode_Click(object sender, EventArgs e)
+        {
+            if (
+                 tbObjId.Text.Trim() == "" &&
+                 tbWic.Text.Trim() == "" &&
+                 tbIswc.Text.Trim() == "" 
+            )
+            {
+                SetNotFound();
+            }
+            else
+            {
+                ApplyWorkCode();
+            }
         }
 
         private void btnCancelCode_Click(object sender, EventArgs e)
@@ -962,6 +1081,132 @@ namespace RadioStationReports
             {
                 Clipboard.Clear();
             }
+        }
+
+        private void _formSearch_Closed(object sender, FormClosedEventArgs e)
+        {
+            _formSearch = null;
+            btnSearch.Enabled = true;
+        }
+
+        private void ApplyFoundWork(string workCode)
+        {
+            var workCodeRefined = workCode.Substring(1);
+
+            tbObjId.Text = "";
+            tbObjId.Text = "";
+            tbObjId.Text = "";
+
+            if (workCode[0] == 'M')
+            {
+                tbObjId.Text = workCodeRefined;
+            }
+            else if (workCode[0] == 'W')
+            {
+                tbWic.Text = workCodeRefined;
+            }
+            ApplyWorkCode();
+        }
+
+        private void UpdateFormSearch()
+        {
+            var selectedItem = GetSelectedItem();
+
+            if (selectedItem == null)
+            {
+                if (_formSearch != null)
+                {
+                    _formSearch.Hide();
+                }
+                return;
+            }
+
+            if (_formSearch == null)
+            {
+                _formSearch = new FormSearch();
+                _formSearch.FormClosed += _formSearch_Closed;
+            }
+
+            var reportLine = (ReportLine)selectedItem.Tag;
+            if (!_formSearch.Visible)
+            {
+                _formSearch.Show(this);
+            }
+            _formSearch.SetNamePerformer(reportLine.Name,
+                reportLine.Performer,
+                ApplyFoundWork);
+
+            btnSearch.Enabled = false;
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("NOT IMPLEMENTED");
+            UpdateFormSearch();
+        }
+
+        private void _formSearch_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnCreateCheckFile_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                RadioPreSearchManager.CreateCheckFile(_report, _reportLines);
+
+
+                Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = @"
+                        update Reports 
+                        set
+                            CheckFileName        = @CheckFileName
+                        where Id = @ReportId
+                    ";
+                    cmd.Parameters.AddWithValue("@CheckFileName", _report.CheckFileName);
+                    cmd.Parameters.AddWithValue("@ReportId", _report.Id);
+                    cmd.ExecuteNonQuery();
+                });
+
+                Report.UpdateFromDb(_report);
+
+                UpdateControls();
+
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                Helpers.ShowError($"{ex.Message} Можливо, файл відкритий в додатку Ексель. Закрийте файл і спробуйте ще раз.");
+                return;
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+
+            Helpers.ShowSuccess($"Файл створено/оновлено - {Path.Combine(_report.WorkFilesPath, _report.CheckFileName)}");
+        }
+
+        private void btnShowCheckFile_Click(object sender, EventArgs e)
+        {
+            var fileFullName = RadioPreSearchManager.GetCheckFileFullName(_report);
+            if (!File.Exists(fileFullName))
+            {
+                Helpers.ShowError("Файл не знайдений");
+                return;
+            }
+
+            var argument = $"/select, \"{fileFullName}\"";
+            System.Diagnostics.Process.Start("explorer.exe", argument);
+        }
+
+        private void btnApplyFilterEx_Click(object sender, EventArgs e)
+        {
+            FillLvReportLines();
         }
     }
 }

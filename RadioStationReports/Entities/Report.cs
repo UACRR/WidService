@@ -24,7 +24,8 @@ namespace RadioStationReports
                 , t1.WorkFilesPath    
                 , t1.SourceFileCopyName    
 	            , t1.SearchFileName           
-	            , t1.DistributionFileName     
+	            , t1.DistributionFileName 
+                , t1.CheckFileName
 	            , t1.IsArchived               
 	            , t1.CreatedAt                
 	            , t1.UpdatedAt                
@@ -52,6 +53,7 @@ namespace RadioStationReports
         public string       SourceFileCopyName          { get; set; }
         public string       SearchFileName              { get; set; }
         public string       DistributionFileName        { get; set; }
+        public string       CheckFileName               { get; set; }
         public bool         IsArchived                  { get; set; }
         public DateTime?    CreatedAt                   { get; set; }
         public DateTime?    UpdatedAt                   { get; set; }
@@ -92,6 +94,8 @@ namespace RadioStationReports
             report.SearchFileName = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;
             report.DistributionFileName = r.IsDBNull(idx) ? "" : r.GetString(idx);
+            idx++;
+            report.CheckFileName = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;
             report.IsArchived =  r.IsDBNull(idx) ? false : r.GetBoolean(idx);
             idx++;
@@ -162,6 +166,7 @@ namespace RadioStationReports
             targetReport.SourceFileCopyName             = sourceReport.SourceFileCopyName           ;
             targetReport.SearchFileName                 = sourceReport.SearchFileName               ;
             targetReport.DistributionFileName           = sourceReport.DistributionFileName         ;
+            targetReport.CheckFileName                  = sourceReport.CheckFileName                ;
             targetReport.CreatedAt                      = sourceReport.CreatedAt                    ;
             targetReport.UpdatedAt                      = sourceReport.UpdatedAt                    ;
             targetReport.AutoSearchFinishedAt           = sourceReport.AutoSearchFinishedAt         ;

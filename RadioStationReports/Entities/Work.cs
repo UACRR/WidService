@@ -19,7 +19,8 @@ namespace RadioStationReports
         public string   PerformersT      { get; set; }
         public bool     HasMatchingWorks { get; set; }
         public string   FoundIn          { get; set; }
-        public int?     FoundCde         { get; set; }
+        public int?     ObjId            { get; set; }
+        public int?     Wic              { get; set; }
         public string   Iswc             { get; set; }
         public decimal? Share            { get; set; }
 
@@ -28,7 +29,18 @@ namespace RadioStationReports
         public static Work CreateFromDb(SqlCommand cmd, int reportId, int lineNr)
         {
             cmd.CommandText = $@"
-                select t2.Id, t2.Name, t2.Authors, t2.Performers, t2.NameT, t2.AuthorsT, t2.PerformersT, t2.FoundIn, t2.FoundCde, t2.Iswc,t2.Share
+                select t2.Id
+                    , t2.Name
+                    , t2.Authors
+                    , t2.Performers
+                    , t2.NameT
+                    , t2.AuthorsT
+                    , t2.PerformersT
+                    , t2.FoundIn
+                    , t2.ObjId
+                    , t2.Wic
+                    , t2.Iswc
+                    , t2.Share
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
                 where t1.ReportId = @reportId and t1.LineNr = @lineNr
@@ -53,7 +65,9 @@ namespace RadioStationReports
             idx++;
             work.FoundIn = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;
-            work.FoundCde = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
+            work.ObjId = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
+            idx++;
+            work.Wic = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
             idx++;
             work.Iswc = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;

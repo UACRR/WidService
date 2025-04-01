@@ -33,7 +33,15 @@ namespace RadioStationReports
             Helpers.RunSqlT(cmd =>
             {
                 cmd.CommandText = @"
-                    select t1.LineNr, t2.FoundIn, t2.FoundCde, t2.Share
+                    select 
+	                      t1.LineNr
+	                    , t2.FoundIn
+	                    , case 
+		                    when t2.FoundIn = 'M' then t2.ObjId
+		                    when t2.FoundIn = 'W' then t2.Wic
+		                    else null
+		                    end as FoundCde
+	                    , t2.Share
                     from ReportLines t1
                         join Works t2 on t1.WorkId = t2.Id
                     where t1.ReportId = @reportId

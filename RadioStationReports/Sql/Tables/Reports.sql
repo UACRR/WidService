@@ -16,6 +16,7 @@ create table Reports (
 	, SourceFileCopyName			nvarchar(100)	not null
 	, SearchFileName				nvarchar(100)	not null
 	, DistributionFileName			nvarchar(100)	not null
+	, CheckFileName					nvarchar(100)	not null
 	, IsArchived					bit				not null default(0)
 	, CreatedAt						datetime		null
 	, UpdatedAt						datetime		null

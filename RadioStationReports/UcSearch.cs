@@ -14,20 +14,21 @@ namespace RadioStationReports
 {
     public partial class UcSearch : UserControl
     {
-
+        public delegate void OnWorkApplied(string code);
         public class FoundWork
         {
-            public string Code       { get; set; }
-            public string Name       { get; set; }
-            public string Authors    { get; set; }
+            public string Code { get; set; }
+            public string Name { get; set; }
+            public string Authors { get; set; }
             public string Performers { get; set; }
+            public bool IsMatching { get; set; }
         }
 
+        private OnWorkApplied _onWorkApplied;
         private string _name;
         private string _performers;
         private List<FoundWork> _foundWorks;
 
-        private bool _isWebControlInitialized;
         public UcSearch()
         {
             InitializeComponent();
@@ -35,35 +36,41 @@ namespace RadioStationReports
 
         private void UcSearch_Load(object sender, EventArgs e)
         {
-            _isWebControlInitialized = false;
         }
 
-        public async void SetNamePerformer(string name, string performers)
+        public void SetNamePerformer(string name, string performers, OnWorkApplied onWorkApplied)
         {
-            await InitWebControl();
             _name = name;
             _performers = performers;
+            _onWorkApplied = onWorkApplied;
 
-            LoadFoundWorks();
-            FillControls();
-        }
+            cbSerachUsingLike.Checked = false;
 
-        private async Task InitWebControl()
-        {
-            if(!_isWebControlInitialized)
+            try
             {
-                await wvFoundWorks.EnsureCoreWebView2Async();
-                _isWebControlInitialized = true;
+                Cursor = Cursors.WaitCursor;
+                FillControls(true);
+                timerLoad.Enabled = true;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+
         }
 
         private void LoadFoundWorks()
         {
             Helpers.RunSql(cmd =>
             {
-                cmd.CommandText = "MediaService..spSearchWorks";
+                cmd.CommandTimeout = cbSerachUsingLike.Checked ? 60 : 30;
+                cmd.CommandText = cbSerachUsingLike.Checked ? "MediaService..spSearchWorksEx" : "MediaService..spSearchWorks";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@name", _name);
+                cmd.Parameters.AddWithValue("@name", cbSerachUsingLike.Checked ? $"%{_name}%" : _name);
 
                 using (var r = cmd.ExecuteReader())
                 {
@@ -71,15 +78,15 @@ namespace RadioStationReports
                     while (r.Read())
                     {
                         var foundWork = new FoundWork();
-                        
+
                         var idx = 0;
 
-                        foundWork.Code       = r.GetString(idx++);
-                        foundWork.Name       = r.GetString(idx++);
-                        foundWork.Authors    = r.GetString(idx++);
+                        foundWork.Code = r.GetString(idx++);
+                        foundWork.Name = r.GetString(idx++);
+                        foundWork.Authors = r.GetString(idx++);
                         foundWork.Performers = r.GetString(idx++);
 
-                         _foundWorks.Add(foundWork);
+                        _foundWorks.Add(foundWork);
                     }
                 }
             });
@@ -106,23 +113,153 @@ namespace RadioStationReports
             return fragments;
         }
 
-        private void FillControls()
+        private void FillWebControl(bool isPreLoad)
         {
-            tbReportWorkName.Text = _name;
-            tbReportWorkPerformers.Text = _performers;
-
-            tbFilterName.Text = _name;
-            tbFilterTextFragment.Text = RefineString(_performers);
-
             var fragments = CreatePerformerFragments();
-            var htmlHelper = new UcSearchHelper(_foundWorks, fragments);
-            var html = htmlHelper.GetHtml();            
-            wvFoundWorks.NavigateToString(html);
+
+            if(!isPreLoad)
+            {
+                _foundWorks.ForEach(x =>
+                {
+                    x.IsMatching = false;
+                    fragments.ForEach(y =>
+                    {
+                        if (
+                            x.Authors.Contains(y, StringComparison.OrdinalIgnoreCase) ||
+                            x.Performers.Contains(y, StringComparison.OrdinalIgnoreCase))
+                        {
+                            x.IsMatching = true;
+                        }
+                    });
+                });
+
+                var foundWorks = _foundWorks.OrderByDescending(x => x.IsMatching).ToList();
+                if (rbShowSelected.Checked)
+                {
+                    foundWorks = foundWorks.Where(x => x.IsMatching).ToList();
+                }
+
+                var htmlHelper = new UcSearchHelper();
+                var html = htmlHelper.GetHtml(foundWorks, fragments);
+                wvFoundWorks.DocumentText = html;
+
+            }
+
+            else
+            {
+                var htmlHelper = new UcSearchHelper();
+                var html = htmlHelper.GetWaitHtml();
+                wvFoundWorks.DocumentText = html;
+            }
         }
 
-        private void wvFoundWorks_WebMessageReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
+        private void FillControls(bool isPreLoad)
         {
+            if (isPreLoad)
+            {
+                tbReportWorkName.Text = _name;
+                tbReportWorkPerformers.Text = _performers;
 
+                tbFilterName.Text = _name;
+                tbFilterTextFragment.Text = RefineString(_performers);
+            }
+
+            FillWebControl(isPreLoad);
+        }
+
+        private void rbShowAll_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                FillWebControl(false);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void rbShowSelected_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                FillWebControl(false);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnSelectByTextFragnemts_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                FillWebControl(false);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnSearchName_Click(object sender, EventArgs e)
+        {
+            _name = tbFilterName.Text;
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                FillWebControl(true);
+                timerLoad.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void wvFoundWorks_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if(_foundWorks != null)
+            {
+                _foundWorks.ForEach(x =>
+                {
+                    var el = wvFoundWorks.Document.GetElementById(x.Code);
+                    if (el != null)
+                    {
+                        el.Click += (y, z) =>
+                        {
+                            _onWorkApplied(((HtmlElement)y).Id);
+                        };
+                    }
+                });
+            }
+        }
+
+        private void timerLoad_Tick(object sender, EventArgs e)
+        {
+            timerLoad.Enabled = false;
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                LoadFoundWorks();
+                FillControls(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
     }
 }

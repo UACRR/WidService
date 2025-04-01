@@ -36,8 +36,10 @@
             ucSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             ucSearch.Location = new System.Drawing.Point(0, 0);
             ucSearch.Name = "ucSearch";
+            ucSearch.Padding = new System.Windows.Forms.Padding(5);
             ucSearch.Size = new System.Drawing.Size(800, 450);
             ucSearch.TabIndex = 0;
+            ucSearch.Load += ucSearch_Load;
             // 
             // FormSearch
             // 
