@@ -631,11 +631,8 @@ namespace RadioStationReports
 	                , t2.AuthorsT
 	                , t2.PerformersT
 	                , t2.FoundIn
-	                , case 
-		                when t2.FoundIn = 'M' then t2.ObjId
-		                when t2.FoundIn = 'W' then t2.Wic
-		                else null
-		                end as FoundCde
+	                , t2.ObjId
+                    , t2.Wic
 	                , t2.Share
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
@@ -1109,8 +1106,8 @@ namespace RadioStationReports
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@id", x.Id);
                 cmd.Parameters.AddWithValue("@foundIn", matchingWork.FoundInDb);
-                cmd.Parameters.AddWithValue("@objId", matchingWork.FoundInDb == "M" ? matchingWork.FoundId : null);
-                cmd.Parameters.AddWithValue("@wic",  matchingWork.FoundInDb == "W" ? matchingWork.FoundId : null);
+                cmd.Parameters.AddWithValue("@objId", matchingWork.FoundInDb == "M" ? matchingWork.FoundId : DBNull.Value);
+                cmd.Parameters.AddWithValue("@wic",  matchingWork.FoundInDb == "W" ? matchingWork.FoundId : DBNull.Value);
                 cmd.ExecuteNonQuery();
             });
         }

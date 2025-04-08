@@ -145,6 +145,12 @@
     <Compile Include="UcMainPublishedWorks.Designer.cs">
       <DependentUpon>UcMainPublishedWorks.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcMainRightHolderOwnership.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcMainRightHolderOwnership.Designer.cs">
+      <DependentUpon>UcMainRightHolderOwnership.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcMainStatistics.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -292,6 +298,8 @@
     <Content Include="SqlScripts\Migrations\003\spWidSubmGroupWorkUpdateFromMs.sql" />
     <Content Include="SqlScripts\Migrations\003\vPerformerAgg.sql" />
     <Content Include="SqlScripts\Migrations\003\vWorkIpiNames.sql" />
+    <Content Include="SqlScripts\Migrations\004\RightHolderOwnership.sql" />
+    <Content Include="SqlScripts\Migrations\004\RightHolderOwnershipType.sql" />
     <Content Include="SqlScripts\Migrations\SocIpiDataFixes\IpiAgreementAddMissing.sql" />
     <Content Include="SqlScripts\Migrations\SocIpiDataFixes\IpiTerritoryDeleteOrphans.sql" />
     <Content Include="SqlScripts\Migrations\SocIpiDataFixes\IpiAgreementDeleteOrphans.sql" />
@@ -425,6 +433,9 @@
     </Compile>
     <EmbeddedResource Include="UcMainPublishedWorks.resx">
       <DependentUpon>UcMainPublishedWorks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcMainRightHolderOwnership.resx">
+      <DependentUpon>UcMainRightHolderOwnership.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcMainStatistics.resx">
       <DependentUpon>UcMainStatistics.cs</DependentUpon>

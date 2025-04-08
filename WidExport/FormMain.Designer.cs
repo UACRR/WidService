@@ -32,28 +32,31 @@ namespace WidExport
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.ucMainWorkGroups = new WidExport.UcMainWorkGroups();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ucFileExchange = new WidExport.UcMainFileExchange();
-            this.ucAuthors = new WidExport.UcMainAuthors();
-            this.ucWorks = new WidExport.UcMainWorks();
-            this.ucPublishedWorks = new WidExport.UcMainPublishedWorks();
-            this.ucStatistics = new WidExport.UcMainStatistics();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.ucWidSubmWorksChanges = new WidExport.UcWidSubmWorksChanges();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.ucAuthors = new WidExport.UcMainAuthors();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.ucWorks = new WidExport.UcMainWorks();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.ucPublishedWorks = new WidExport.UcMainPublishedWorks();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.ucStatistics = new WidExport.UcMainStatistics();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.ucMainRightHolderOwnership = new WidExport.UcMainRightHolderOwnership();
             this.panelMain.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -81,6 +84,7 @@ namespace WidExport
             this.tabMain.Controls.Add(this.tabPage4);
             this.tabMain.Controls.Add(this.tabPage5);
             this.tabMain.Controls.Add(this.tabPage6);
+            this.tabMain.Controls.Add(this.tabPage8);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(3, 23);
             this.tabMain.Name = "tabMain";
@@ -99,6 +103,16 @@ namespace WidExport
             this.tabPage1.Text = "Групи творів";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // ucMainWorkGroups
+            // 
+            this.ucMainWorkGroups._selectedGroup = null;
+            this.ucMainWorkGroups.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMainWorkGroups.Location = new System.Drawing.Point(0, 0);
+            this.ucMainWorkGroups.Name = "ucMainWorkGroups";
+            this.ucMainWorkGroups.Size = new System.Drawing.Size(1043, 402);
+            this.ucMainWorkGroups.TabIndex = 0;
+            this.ucMainWorkGroups.Load += new System.EventHandler(this.ucMainWorkGroups_Load);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucFileExchange);
@@ -110,59 +124,6 @@ namespace WidExport
             this.tabPage2.Text = "Файли обміну";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.ucAuthors);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1043, 402);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Пошук груп для правовласників";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.ucWorks);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1043, 402);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Пошук груп для творів";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.ucPublishedWorks);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1043, 402);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Опубліковані твори";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.ucStatistics);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1043, 402);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Статистика";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // ucMainWorkGroups
-            // 
-            this.ucMainWorkGroups._selectedGroup = null;
-            this.ucMainWorkGroups.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMainWorkGroups.Location = new System.Drawing.Point(0, 0);
-            this.ucMainWorkGroups.Name = "ucMainWorkGroups";
-            this.ucMainWorkGroups.Size = new System.Drawing.Size(1043, 402);
-            this.ucMainWorkGroups.TabIndex = 0;
-            // 
             // ucFileExchange
             // 
             this.ucFileExchange.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -170,38 +131,6 @@ namespace WidExport
             this.ucFileExchange.Name = "ucFileExchange";
             this.ucFileExchange.Size = new System.Drawing.Size(1037, 396);
             this.ucFileExchange.TabIndex = 0;
-            // 
-            // ucAuthors
-            // 
-            this.ucAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucAuthors.Location = new System.Drawing.Point(3, 3);
-            this.ucAuthors.Name = "ucAuthors";
-            this.ucAuthors.Size = new System.Drawing.Size(1037, 396);
-            this.ucAuthors.TabIndex = 0;
-            // 
-            // ucWorks
-            // 
-            this.ucWorks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucWorks.Location = new System.Drawing.Point(3, 3);
-            this.ucWorks.Name = "ucWorks";
-            this.ucWorks.Size = new System.Drawing.Size(1037, 396);
-            this.ucWorks.TabIndex = 0;
-            // 
-            // ucPublishedWorks
-            // 
-            this.ucPublishedWorks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucPublishedWorks.Location = new System.Drawing.Point(3, 3);
-            this.ucPublishedWorks.Name = "ucPublishedWorks";
-            this.ucPublishedWorks.Size = new System.Drawing.Size(1037, 396);
-            this.ucPublishedWorks.TabIndex = 0;
-            // 
-            // ucStatistics
-            // 
-            this.ucStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucStatistics.Location = new System.Drawing.Point(3, 3);
-            this.ucStatistics.Name = "ucStatistics";
-            this.ucStatistics.Size = new System.Drawing.Size(1037, 396);
-            this.ucStatistics.TabIndex = 0;
             // 
             // tabPage7
             // 
@@ -222,6 +151,100 @@ namespace WidExport
             this.ucWidSubmWorksChanges.Size = new System.Drawing.Size(1037, 396);
             this.ucWidSubmWorksChanges.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.ucAuthors);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1043, 402);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Пошук груп для правовласників";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // ucAuthors
+            // 
+            this.ucAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucAuthors.Location = new System.Drawing.Point(3, 3);
+            this.ucAuthors.Name = "ucAuthors";
+            this.ucAuthors.Size = new System.Drawing.Size(1037, 396);
+            this.ucAuthors.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.ucWorks);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1043, 402);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Пошук груп для творів";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // ucWorks
+            // 
+            this.ucWorks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucWorks.Location = new System.Drawing.Point(3, 3);
+            this.ucWorks.Name = "ucWorks";
+            this.ucWorks.Size = new System.Drawing.Size(1037, 396);
+            this.ucWorks.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.ucPublishedWorks);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1043, 402);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Опубліковані твори";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // ucPublishedWorks
+            // 
+            this.ucPublishedWorks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPublishedWorks.Location = new System.Drawing.Point(3, 3);
+            this.ucPublishedWorks.Name = "ucPublishedWorks";
+            this.ucPublishedWorks.Size = new System.Drawing.Size(1037, 396);
+            this.ucPublishedWorks.TabIndex = 0;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.ucStatistics);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(1043, 402);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Статистика";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // ucStatistics
+            // 
+            this.ucStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStatistics.Location = new System.Drawing.Point(3, 3);
+            this.ucStatistics.Name = "ucStatistics";
+            this.ucStatistics.Size = new System.Drawing.Size(1037, 396);
+            this.ucStatistics.TabIndex = 0;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.ucMainRightHolderOwnership);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(1043, 402);
+            this.tabPage8.TabIndex = 8;
+            this.tabPage8.Text = "Приналежність правовласників";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // ucMainRightHolderOwnership
+            // 
+            this.ucMainRightHolderOwnership.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMainRightHolderOwnership.Location = new System.Drawing.Point(0, 0);
+            this.ucMainRightHolderOwnership.Name = "ucMainRightHolderOwnership";
+            this.ucMainRightHolderOwnership.Size = new System.Drawing.Size(1043, 402);
+            this.ucMainRightHolderOwnership.TabIndex = 0;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,11 +258,12 @@ namespace WidExport
             this.tabMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -262,6 +286,8 @@ namespace WidExport
         private UcMainStatistics ucStatistics;
         private System.Windows.Forms.TabPage tabPage7;
         private UcWidSubmWorksChanges ucWidSubmWorksChanges;
+        private System.Windows.Forms.TabPage tabPage8;
+        private UcMainRightHolderOwnership ucMainRightHolderOwnership;
     }
 }
 

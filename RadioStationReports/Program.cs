@@ -47,7 +47,8 @@ namespace RadioStationReports
                 
                 Logger.WriteLine("Loading Configuration");
                 Configuration.Load();
-                Application.Run(new FormMainReports());
+                //Application.Run(new FormMainReports());
+                Application.Run(new FormMainIntegrated());
             }
             catch (Exception ex)
             {

@@ -49,7 +49,15 @@ namespace WidExport
                 case 6:
                     ucStatistics.RefreshControls();
                     break;
+                case 7:
+                    ucMainRightHolderOwnership.RefreshControls();
+                    break;
             }
+        }
+
+        private void ucMainWorkGroups_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -127,21 +127,21 @@ namespace RadioStationReports
             btnCalcRoyalty.Visible = true;
             labCalcShareStatus.Visible = false;
 
-            tbSearchFileName.Text = _report.SearchFileName;
+            tbCheckFileName.Text = _report.SearchFileName;
 
-            btnCreateSearchFile.Enabled = _report.AutoSearchFinishedAt != null
-                && (_report.SearchFileCreatedAt == null
-                    ||
-                    (_report.SearchFileUpdatedAt < _report.UpdatedAt
-                        && _report.SearchFileImportedAt != _report.UpdatedAt
-                    )
-                );
-            btnCreateSearchFile.Text = string.IsNullOrEmpty(_report.SearchFileName) ?
-                "Створити файл" : "Оновити файл";
+            //btnCreateSearchFile.Enabled = _report.AutoSearchFinishedAt != null
+            //    && (_report.SearchFileCreatedAt == null
+            //        ||
+            //        (_report.SearchFileUpdatedAt < _report.UpdatedAt
+            //            && _report.SearchFileImportedAt != _report.UpdatedAt
+             //       )
+             //   );
+            //btnCreateSearchFile.Text = string.IsNullOrEmpty(_report.SearchFileName) ?
+             //   "Створити файл" : "Оновити файл";
 
-            btnShowSearchFile.Enabled = !string.IsNullOrEmpty(_report.SearchFileName);
+            //btnShowSearchFile.Enabled = !string.IsNullOrEmpty(_report.SearchFileName);
 
-            btnImportSearchFile.Enabled = !string.IsNullOrEmpty(_report.SearchFileName);
+            //btnImportSearchFile.Enabled = !string.IsNullOrEmpty(_report.SearchFileName);
 
             tbDistrFileName.Text = _report.DistributionFileName;
             tbCheckFileName.Text = _report.CheckFileName;
@@ -928,28 +928,28 @@ namespace RadioStationReports
         private void ApplyWorkCode()
         {
             int objId;
-            if(!int.TryParse(tbObjId.Text, out objId))
+            if (!int.TryParse(tbObjId.Text, out objId))
             {
                 objId = 0;
             }
 
             int wic;
-            if(!int.TryParse(tbWic.Text, out wic))
+            if (!int.TryParse(tbWic.Text, out wic))
             {
                 wic = 0;
             }
 
             var iswc = tbIswc.Text.Trim();
             iswc = iswc == "" ? "" : iswc.Substring(0, Math.Min(25, iswc.Length));
-            
+
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
                 var res = "";
                 if (
-                    objId   == 0    &&
-                    wic     == 0    &&
-                    iswc    == ""
+                    objId == 0 &&
+                    wic == 0 &&
+                    iswc == ""
                 )
                 {
                     Helpers.ShowError(res);
@@ -965,26 +965,26 @@ namespace RadioStationReports
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@reportId", _report.Id);
                     cmd.Parameters.AddWithValue("@lineNr", line.LineNr);
-                    
+
                     var paramObjId = new SqlParameter("@objId", SqlDbType.Int)
-                    { 
-                        Direction   = ParameterDirection.InputOutput,
-                        Value       = objId == 0 ? DBNull.Value : objId
+                    {
+                        Direction = ParameterDirection.InputOutput,
+                        Value = objId == 0 ? DBNull.Value : objId
                     };
                     cmd.Parameters.Add(paramObjId);
 
                     var paramWic = new SqlParameter("@wic", SqlDbType.Int)
-                    { 
-                        Direction   = ParameterDirection.InputOutput,
-                        Value       = wic == 0 ? DBNull.Value : wic
+                    {
+                        Direction = ParameterDirection.InputOutput,
+                        Value = wic == 0 ? DBNull.Value : wic
                     };
                     cmd.Parameters.Add(paramWic);
 
                     var paramIswc = new SqlParameter("@iswc", SqlDbType.VarChar)
-                    { 
-                        Direction   = ParameterDirection.InputOutput,
-                        Value       = iswc == "" ? DBNull.Value : iswc,
-                        Size        = 25
+                    {
+                        Direction = ParameterDirection.InputOutput,
+                        Value = iswc == "" ? DBNull.Value : iswc,
+                        Size = 25
                     };
                     cmd.Parameters.Add(paramIswc);
 
@@ -992,9 +992,9 @@ namespace RadioStationReports
                     cmd.Parameters.AddWithValue("@performerInReport", line.Performer);
                     cmd.ExecuteNonQuery();
 
-                    objId   = paramObjId.Value  == DBNull.Value ? 0 : (int)paramObjId.Value     ;
-                    wic     = paramWic.Value    == DBNull.Value ? 0 : (int)paramWic.Value       ;
-                    iswc    = paramIswc.Value   == DBNull.Value ? "": (string)paramIswc.Value   ;
+                    objId = paramObjId.Value == DBNull.Value ? 0 : (int)paramObjId.Value;
+                    wic = paramWic.Value == DBNull.Value ? 0 : (int)paramWic.Value;
+                    iswc = paramIswc.Value == DBNull.Value ? "" : (string)paramIswc.Value;
                 });
 
                 if (objId != 0)
@@ -1040,7 +1040,7 @@ namespace RadioStationReports
             if (
                  tbObjId.Text.Trim() == "" &&
                  tbWic.Text.Trim() == "" &&
-                 tbIswc.Text.Trim() == "" 
+                 tbIswc.Text.Trim() == ""
             )
             {
                 SetNotFound();
@@ -1207,6 +1207,12 @@ namespace RadioStationReports
         private void btnApplyFilterEx_Click(object sender, EventArgs e)
         {
             FillLvReportLines();
+        }
+
+        private void btnCreatePrintFile_Click(object sender, EventArgs e)
+        {
+            var printManager = new PrintManager(_report);
+            printManager.CreatePrintFile();
         }
     }
 }
