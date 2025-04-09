@@ -1,3 +1,12 @@
+insert ReportIdToRegId (ReportId, RegId)
+select t1.Id, t2.RegId
+from Reports t1
+	join MediaService..Register t2 on t1.FileName = t2.FileName
+	left join ReportIdToRegId t3 on 
+		t1.Id = t3. ReportId
+		and t2.RegId = t3.RegId
+where t3.ReportId is null
+
 select *
 from Reports
 

@@ -31,6 +31,8 @@ namespace RadioStationReports
         private List<CustomerItem> _foundCustomers = new List<CustomerItem>();
         private List<PlaceItem> _places = new List<PlaceItem>();
 
+        private static string _lastFilterText = "";
+
         public CustomerItem SelectedCustomer { get; set; }
 
         public FormSelectCustomer()
@@ -62,6 +64,8 @@ namespace RadioStationReports
             lvPlaces.Columns.Add("Адреса", 200);
 
             btnApply.Enabled = false;
+
+            tbSearchFilter.Text = _lastFilterText;
         }
 
         private void FillCustomers()
@@ -189,6 +193,7 @@ namespace RadioStationReports
 
         private void btnApply_Click(object sender, EventArgs e)
         {
+            _lastFilterText = tbSearchFilter.Text;
             SelectedCustomer = lvFoundCustomers.SelectedItems[0].Tag as CustomerItem;
             Close();
         }

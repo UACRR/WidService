@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="Sql\Migration2\" />
     <Folder Include="Sql\Procedures\" />
     <Folder Include="Sql\Tables\" />
