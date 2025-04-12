@@ -70,6 +70,8 @@ namespace RadioStationReports
 
         private void FillCustomers()
         {
+            var custId = 0;
+            int.TryParse(tbSearchFilter.Text, out custId);
             Helpers.RunSql(cmd =>
             {
                 cmd.CommandText = @"
@@ -86,9 +88,11 @@ namespace RadioStationReports
                                t1.Name like @Text
                             or t1.ShortName like @Text
 	                        or t2.PlaceName like @Text
+                            or t1.CustId = @custId
                         )
                     ";
                 cmd.Parameters.AddWithValue("@Text", $"%{tbSearchFilter.Text}%");
+                cmd.Parameters.AddWithValue("@custId", custId);
                 using (var r = cmd.ExecuteReader())
                 {
                     _foundCustomers.Clear();

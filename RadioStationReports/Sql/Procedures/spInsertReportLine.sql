@@ -16,11 +16,12 @@ begin
 	if exists (select null from ReportLines where ReportId = @ReportId and LineNr = @LineNr)
 		return
 
-	declare @Authors nvarchar(max) = concat(@MusicAuthor, '&', @TextAuthor)
-	if trim(@Authors) = '&'
-	begin
-		set @Authors = ''
-	end
+	--declare @Authors nvarchar(max) = concat(@MusicAuthor, '&', @TextAuthor)
+	--if trim(@Authors) = '&'
+	--begin
+	--	set @Authors = ''
+	--end
+	declare @Authors nvarchar(max) = ''
 	declare @WorkId int = (
 		select Id 
 		from Works 

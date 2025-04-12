@@ -43,8 +43,8 @@ namespace RadioStationReports
             // 
             // panelMain
             // 
-            panelMain.Controls.Add(tabPage1);
             panelMain.Controls.Add(tabPage2);
+            panelMain.Controls.Add(tabPage1);
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(0, 0);
             panelMain.Name = "panelMain";
@@ -79,7 +79,7 @@ namespace RadioStationReports
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(951, 458);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Зареєстповані звіти";
+            tabPage2.Text = "Зареєстровані звіти";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // ucRegisteredReports

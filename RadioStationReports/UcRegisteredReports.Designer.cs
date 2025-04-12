@@ -229,14 +229,14 @@
             cbFilterRadioStation.FormattingEnabled = true;
             cbFilterRadioStation.Location = new System.Drawing.Point(101, 3);
             cbFilterRadioStation.Name = "cbFilterRadioStation";
-            cbFilterRadioStation.Size = new System.Drawing.Size(121, 23);
+            cbFilterRadioStation.Size = new System.Drawing.Size(335, 23);
             cbFilterRadioStation.TabIndex = 2;
             cbFilterRadioStation.SelectedIndexChanged += cbFilterRadioStation_SelectedIndexChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(228, 0);
+            label3.Location = new System.Drawing.Point(442, 0);
             label3.Name = "label3";
             label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             label3.Size = new System.Drawing.Size(75, 21);
@@ -247,7 +247,7 @@
             // 
             cbFilterStartYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cbFilterStartYear.FormattingEnabled = true;
-            cbFilterStartYear.Location = new System.Drawing.Point(309, 3);
+            cbFilterStartYear.Location = new System.Drawing.Point(523, 3);
             cbFilterStartYear.Name = "cbFilterStartYear";
             cbFilterStartYear.Size = new System.Drawing.Size(54, 23);
             cbFilterStartYear.TabIndex = 2;
@@ -257,7 +257,7 @@
             // 
             cbFilterStartMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cbFilterStartMonth.FormattingEnabled = true;
-            cbFilterStartMonth.Location = new System.Drawing.Point(369, 3);
+            cbFilterStartMonth.Location = new System.Drawing.Point(583, 3);
             cbFilterStartMonth.Name = "cbFilterStartMonth";
             cbFilterStartMonth.Size = new System.Drawing.Size(54, 23);
             cbFilterStartMonth.TabIndex = 1;
@@ -266,7 +266,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(429, 0);
+            label4.Location = new System.Drawing.Point(643, 0);
             label4.Name = "label4";
             label4.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             label4.Size = new System.Drawing.Size(20, 21);
@@ -277,7 +277,7 @@
             // 
             cbFilterEndYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cbFilterEndYear.FormattingEnabled = true;
-            cbFilterEndYear.Location = new System.Drawing.Point(455, 3);
+            cbFilterEndYear.Location = new System.Drawing.Point(669, 3);
             cbFilterEndYear.Name = "cbFilterEndYear";
             cbFilterEndYear.Size = new System.Drawing.Size(54, 23);
             cbFilterEndYear.TabIndex = 2;
@@ -287,7 +287,7 @@
             // 
             cbFilterEndMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cbFilterEndMonth.FormattingEnabled = true;
-            cbFilterEndMonth.Location = new System.Drawing.Point(515, 3);
+            cbFilterEndMonth.Location = new System.Drawing.Point(729, 3);
             cbFilterEndMonth.Name = "cbFilterEndMonth";
             cbFilterEndMonth.Size = new System.Drawing.Size(54, 23);
             cbFilterEndMonth.TabIndex = 1;

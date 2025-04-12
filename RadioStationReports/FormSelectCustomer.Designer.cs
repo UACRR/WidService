@@ -35,11 +35,11 @@
             label1 = new System.Windows.Forms.Label();
             tbSearchFilter = new System.Windows.Forms.TextBox();
             btnSearchCustomer = new System.Windows.Forms.Button();
+            lvPlaces = new System.Windows.Forms.ListView();
+            label2 = new System.Windows.Forms.Label();
             panelFormActions = new System.Windows.Forms.TableLayoutPanel();
             btnClose = new System.Windows.Forms.Button();
             btnApply = new System.Windows.Forms.Button();
-            lvPlaces = new System.Windows.Forms.ListView();
-            label2 = new System.Windows.Forms.Label();
             panelMain.SuspendLayout();
             panelSearchCustomer.SuspendLayout();
             panelCustomerFilter.SuspendLayout();
@@ -111,13 +111,13 @@
             label1.Location = new System.Drawing.Point(3, 6);
             label1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(213, 15);
+            label1.Size = new System.Drawing.Size(274, 15);
             label1.TabIndex = 0;
-            label1.Text = "Вибрати користуча за текстом в назві";
+            label1.Text = "Вибрати користуча за текстом в назві або кодом";
             // 
             // tbSearchFilter
             // 
-            tbSearchFilter.Location = new System.Drawing.Point(222, 3);
+            tbSearchFilter.Location = new System.Drawing.Point(283, 3);
             tbSearchFilter.Name = "tbSearchFilter";
             tbSearchFilter.Size = new System.Drawing.Size(203, 23);
             tbSearchFilter.TabIndex = 1;
@@ -125,13 +125,33 @@
             // 
             // btnSearchCustomer
             // 
-            btnSearchCustomer.Location = new System.Drawing.Point(431, 3);
+            btnSearchCustomer.Location = new System.Drawing.Point(492, 3);
             btnSearchCustomer.Name = "btnSearchCustomer";
             btnSearchCustomer.Size = new System.Drawing.Size(75, 23);
             btnSearchCustomer.TabIndex = 2;
             btnSearchCustomer.Text = "Шукати";
             btnSearchCustomer.UseVisualStyleBackColor = true;
             btnSearchCustomer.Click += btnSearchCustomer_Click;
+            // 
+            // lvPlaces
+            // 
+            lvPlaces.Dock = System.Windows.Forms.DockStyle.Fill;
+            lvPlaces.HideSelection = false;
+            lvPlaces.Location = new System.Drawing.Point(3, 237);
+            lvPlaces.Name = "lvPlaces";
+            lvPlaces.Size = new System.Drawing.Size(654, 162);
+            lvPlaces.TabIndex = 2;
+            lvPlaces.UseCompatibleStateImageBehavior = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(3, 212);
+            label2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(77, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Майданчики";
             // 
             // panelFormActions
             // 
@@ -170,26 +190,6 @@
             btnApply.Text = "Застосувати";
             btnApply.UseVisualStyleBackColor = true;
             btnApply.Click += btnApply_Click;
-            // 
-            // lvPlaces
-            // 
-            lvPlaces.Dock = System.Windows.Forms.DockStyle.Fill;
-            lvPlaces.HideSelection = false;
-            lvPlaces.Location = new System.Drawing.Point(3, 237);
-            lvPlaces.Name = "lvPlaces";
-            lvPlaces.Size = new System.Drawing.Size(654, 162);
-            lvPlaces.TabIndex = 2;
-            lvPlaces.UseCompatibleStateImageBehavior = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(3, 212);
-            label2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(77, 15);
-            label2.TabIndex = 3;
-            label2.Text = "Майданчики";
             // 
             // FormSelectCustomer
             // 

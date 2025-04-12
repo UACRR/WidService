@@ -19,6 +19,13 @@ namespace RadioStationReports
             public string ShortName { get; set; }
         }
 
+        public class OtherCustomerItem
+        {
+            public int RegId { get; set; }
+            public int CustId { get; set; }
+            public string Name { get; set; }
+        }
+
         public class ReportItem
         {
             public int RegId { get; set; }
@@ -45,6 +52,7 @@ namespace RadioStationReports
         private List<ReportItem> _reports;
         private ReportItem _selectedReport;
         private List<ReportLineItem> _reportLines;
+        private List<OtherCustomerItem> _otherCustomers;
 
         public UcMainIntegrated()
         {
@@ -71,7 +79,7 @@ namespace RadioStationReports
             lvReports.MultiSelect = false;
             lvReports.View = View.Details;
             lvReports.SmallImageList = ilReports;
-            lvReports.Columns.Add("Код", 120);
+            lvReports.Columns.Add("Код звіту", 120);
             lvReports.Columns.Add("Початок", 120);
             lvReports.Columns.Add("Закінчення", 120);
             lvReports.Columns.Add("Назва файлу", 400);
@@ -83,11 +91,15 @@ namespace RadioStationReports
             lvReportLines.Columns.Add("№", 120);
             lvReportLines.Columns.Add("Назва твору", 300);
             lvReportLines.Columns.Add("Виконавець", 300);
-            //lvReportLines.Columns.Add("Автор музики", 400);
-            //lvReportLines.Columns.Add("Автор тексту", 400);
-            //lvReportLines.Columns.Add("Тривалість твору", 400);
-            //lvReportLines.Columns.Add("Кількість прослуховувань", 400);
-            //lvReportLines.Columns.Add("Загальна тривалість", 400);
+            
+            lvOtherCustomers.FullRowSelect = true;
+            lvOtherCustomers.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lvOtherCustomers.MultiSelect = false;
+            lvOtherCustomers.View = View.Details;
+            lvOtherCustomers.SmallImageList = ilReports;
+            lvOtherCustomers.Columns.Add("Код звіту", 120);
+            lvOtherCustomers.Columns.Add("Код користувача", 120);
+            lvOtherCustomers.Columns.Add("Назва корстувача", 400);
         }
 
         private string FormatCustomer(CustomerItem customer)
@@ -246,6 +258,46 @@ namespace RadioStationReports
             });
         }
 
+        private void FillOtherCustomers(int regId)
+        {
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = @"
+                    select t2.RegId, t2.CustId, t3.ShortName
+                    from MediaService..Register t1
+	                    join MediaService..Register t2 on t1.FileName = t2.FileName
+	                    join MediaService..vCustomerNamesShort t3 on t2.CustId = t3.CustId
+                    where t1.RegId = @RegId
+	                    and t2.RegId <> t1.RegId
+                    order by t3.ShortName
+                ";
+                cmd.Parameters.AddWithValue("@RegId", regId);
+                using (var r = cmd.ExecuteReader())
+                {
+                    _otherCustomers = new List<OtherCustomerItem>();
+                    while (r.Read())
+                    {
+                        var otherCustomer = new OtherCustomerItem();
+                        var idx = 0;
+                        otherCustomer.RegId = r.GetInt32(idx++);
+                        otherCustomer.CustId = r.GetInt32(idx++);
+                        otherCustomer.Name = r.GetString(idx++);
+
+                        _otherCustomers.Add(otherCustomer);
+                    }
+                }
+            });
+
+            lvOtherCustomers.Items.Clear();
+            _otherCustomers.ForEach(x =>
+            {
+                var item = lvOtherCustomers.Items.Add(x.CustId.ToString());
+                item.SubItems.Add(x.CustId.ToString());
+                item.SubItems.Add(x.Name);
+                item.Tag = x;
+            });
+        }
+
         private void ShowReport(int reportId)
         {
             var report = Report.CreateFromDb(reportId);
@@ -266,7 +318,7 @@ namespace RadioStationReports
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "spRegisterReportFromMs";
                     cmd.Parameters.AddWithValue("@RegId", regId);
-                    cmd.Parameters.AddWithValue("@ReportId", reportId).Direction = ParameterDirection.Output;
+                    cmd.Parameters.AddWithValue("@ReportId", reportId).Direction = ParameterDirection.InputOutput;
                     cmd.ExecuteNonQuery();
                 });
 
@@ -312,6 +364,18 @@ namespace RadioStationReports
                 Name = form.SelectedCustomer.Name,
                 ShortName = form.SelectedCustomer.ShortName,
             };
+
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = @"
+                    if exists (select null from LastUsedCustomers where custId = @custId)
+	                    update LastUsedCustomers set UsedAt = getdate() where CustId = @custId
+                    else
+	                    insert LastUsedCustomers(CustId, UsedAt) values(@custId, getdate())
+                ";
+                cmd.Parameters.AddWithValue("@custId", _selectedCustomer.CustId);
+                cmd.ExecuteNonQuery();
+            });
 
             var selectedCustomerIdx = -1;
             for (var idx = 0; idx < _lastUsedCustomers.Count; idx++)
@@ -368,6 +432,7 @@ namespace RadioStationReports
 
             _selectedReport = report;
             FillRegisterReportLines(_selectedReport.RegId);
+            FillOtherCustomers(_selectedReport.RegId);
 
             UpdateControls();
         }
@@ -399,6 +464,9 @@ namespace RadioStationReports
             if (reportId == null)
             {
                 RegisterReport(regId);
+                _selectedReport.IsRegistered = true;
+                lvReports.SelectedItems[0].ImageIndex = 0;
+                UpdateControls();
             }
             else
             {

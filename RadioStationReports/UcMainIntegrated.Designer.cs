@@ -40,13 +40,19 @@
             lvReports = new System.Windows.Forms.ListView();
             panelReportActions = new System.Windows.Forms.TableLayoutPanel();
             btnShowReport = new System.Windows.Forms.Button();
-            label3 = new System.Windows.Forms.Label();
+            tabAdditionalInfo = new System.Windows.Forms.TabControl();
+            tabPage1 = new System.Windows.Forms.TabPage();
             lvReportLines = new System.Windows.Forms.ListView();
+            tabPage2 = new System.Windows.Forms.TabPage();
+            lvOtherCustomers = new System.Windows.Forms.ListView();
             ilReports = new System.Windows.Forms.ImageList(components);
             panelMain.SuspendLayout();
             panelCustomer.SuspendLayout();
             panelReportsTitle.SuspendLayout();
             panelReportActions.SuspendLayout();
+            tabAdditionalInfo.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
             // panelMain
@@ -58,20 +64,17 @@
             panelMain.Controls.Add(panelReportsTitle, 0, 1);
             panelMain.Controls.Add(lvReports, 0, 2);
             panelMain.Controls.Add(panelReportActions, 0, 3);
-            panelMain.Controls.Add(label3, 0, 4);
-            panelMain.Controls.Add(lvReportLines, 0, 5);
+            panelMain.Controls.Add(tabAdditionalInfo, 0, 4);
             panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             panelMain.Location = new System.Drawing.Point(0, 0);
             panelMain.Name = "panelMain";
-            panelMain.RowCount = 7;
+            panelMain.RowCount = 6;
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             panelMain.Size = new System.Drawing.Size(1063, 487);
             panelMain.TabIndex = 1;
             // 
@@ -159,7 +162,7 @@
             lvReports.HideSelection = false;
             lvReports.Location = new System.Drawing.Point(3, 68);
             lvReports.Name = "lvReports";
-            lvReports.Size = new System.Drawing.Size(1052, 172);
+            lvReports.Size = new System.Drawing.Size(1052, 108);
             lvReports.TabIndex = 2;
             lvReports.UseCompatibleStateImageBehavior = false;
             lvReports.SelectedIndexChanged += lvReports_SelectedIndexChanged;
@@ -172,7 +175,7 @@
             panelReportActions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             panelReportActions.Controls.Add(btnShowReport, 1, 0);
             panelReportActions.Dock = System.Windows.Forms.DockStyle.Fill;
-            panelReportActions.Location = new System.Drawing.Point(3, 246);
+            panelReportActions.Location = new System.Drawing.Point(3, 182);
             panelReportActions.Name = "panelReportActions";
             panelReportActions.RowCount = 1;
             panelReportActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -189,24 +192,58 @@
             btnShowReport.UseVisualStyleBackColor = true;
             btnShowReport.Click += btnShowReport_Click;
             // 
-            // label3
+            // tabAdditionalInfo
             // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(3, 280);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(292, 15);
-            label3.TabIndex = 4;
-            label3.Text = "Рядки звіту (попередній перегляд, перші 100 рядків)";
+            tabAdditionalInfo.Controls.Add(tabPage1);
+            tabAdditionalInfo.Controls.Add(tabPage2);
+            tabAdditionalInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            tabAdditionalInfo.Location = new System.Drawing.Point(3, 219);
+            tabAdditionalInfo.Name = "tabAdditionalInfo";
+            tabAdditionalInfo.SelectedIndex = 0;
+            tabAdditionalInfo.Size = new System.Drawing.Size(1052, 260);
+            tabAdditionalInfo.TabIndex = 6;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(lvReportLines);
+            tabPage1.Location = new System.Drawing.Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            tabPage1.Size = new System.Drawing.Size(1044, 232);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Рядки звіту (попередній перегляд, перші 100 рядків)";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // lvReportLines
             // 
             lvReportLines.Dock = System.Windows.Forms.DockStyle.Fill;
             lvReportLines.HideSelection = false;
-            lvReportLines.Location = new System.Drawing.Point(3, 304);
+            lvReportLines.Location = new System.Drawing.Point(3, 3);
             lvReportLines.Name = "lvReportLines";
-            lvReportLines.Size = new System.Drawing.Size(1052, 172);
+            lvReportLines.Size = new System.Drawing.Size(1038, 226);
             lvReportLines.TabIndex = 5;
             lvReportLines.UseCompatibleStateImageBehavior = false;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(lvOtherCustomers);
+            tabPage2.Location = new System.Drawing.Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            tabPage2.Size = new System.Drawing.Size(1044, 232);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Інші кортистувачі звіту";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lvOtherCustomers
+            // 
+            lvOtherCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
+            lvOtherCustomers.HideSelection = false;
+            lvOtherCustomers.Location = new System.Drawing.Point(3, 3);
+            lvOtherCustomers.Name = "lvOtherCustomers";
+            lvOtherCustomers.Size = new System.Drawing.Size(1038, 226);
+            lvOtherCustomers.TabIndex = 0;
+            lvOtherCustomers.UseCompatibleStateImageBehavior = false;
             // 
             // ilReports
             // 
@@ -224,12 +261,14 @@
             Size = new System.Drawing.Size(1063, 487);
             Load += UcMainIntegrated_Load;
             panelMain.ResumeLayout(false);
-            panelMain.PerformLayout();
             panelCustomer.ResumeLayout(false);
             panelCustomer.PerformLayout();
             panelReportsTitle.ResumeLayout(false);
             panelReportsTitle.PerformLayout();
             panelReportActions.ResumeLayout(false);
+            tabAdditionalInfo.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -241,12 +280,15 @@
         private System.Windows.Forms.ListView lvReports;
         private System.Windows.Forms.TableLayoutPanel panelReportActions;
         private System.Windows.Forms.Button btnShowReport;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListView lvReportLines;
         private System.Windows.Forms.TableLayoutPanel panelCustomer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearchCustomer;
         private System.Windows.Forms.ComboBox cbCustomers;
         private System.Windows.Forms.ImageList ilReports;
+        private System.Windows.Forms.TabControl tabAdditionalInfo;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListView lvOtherCustomers;
     }
 }

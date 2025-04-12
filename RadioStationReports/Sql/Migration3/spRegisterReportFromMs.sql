@@ -8,7 +8,7 @@ as
 begin
 
 --begin tran
---declare @regId int = 3778
+--declare @regId int = 9427
 declare @rootPath nvarchar(max) = (select TemplateFileFullName from Configuration)
 set @rootPath = dbo.fnTrimRightAfter(@rootPath, '\', 1)
 
@@ -127,14 +127,18 @@ where regId = @regId
 )
 insert Works(
 	  Name
+	, Authors
 	, Performers
 	, NameT
+	, AuthorsT
 	, PerformersT
 )
 select
 	  Name													as Name
+	, ''													as Authors
 	, Performer												as Performers
 	, MediaService.dbo.TransLitCharFromUkrToLat(Name)		as NameT
+	, ''													as AuthorsT
 	, MediaService.dbo.TransLitCharFromUkrToLat(Performer)	as PerformersT
 from TmpWorksToAdd
 
@@ -150,13 +154,32 @@ where t1.ReportId = @reportId
 --select * from ReportLines where ReportId = @reportId and isnull(WorkId, 0) = 0
 
 -- ÑÒÂÎĞŞªÌÎ Â²ÄÏÎÂ²ÄÍ²ÑÒÜ ÇÂ²ÒÓ ÄÎÄÀÒÊÓ ÇÂ²ÒÀÌ ÑÌÀĞÒ ÍÀ ÎÑÍÎÂ² ÍÀÇÂÈ ÔÀÉËÓ
-select t4.*, t3.*, t2.*
+insert ReportIdToRegId (ReportId, RegId)
+select @reportId, t2.RegId
 from Reports t1
 	join MediaService..Register t2 on t1.FileName = t2.FileName
-	join MediaService..PaidPeriod t3 on t2.periodId = t3.PeriodId
-	join MediaService..vCustomerNamesShort t4 on t2.custId = t4.CustId
-where t1.FileName = t2.FileName
-	and t1.Id = @reportId
+where t1.Id = @reportId
+
+-- ÑÒÂÎĞŞªÌÎ ÏÎÑÈËÀÍÍß ÍÀ ĞÀÄ²ÎÑÒÀÍÖ²Ş
+declare @customerName nvarchar(max) = (
+	select t2.ShortName 
+	from MediaService..Register t1
+		join MediaService..vCustomerNamesShort t2 on t1.CustId = t2.CustId
+	where t1.RegId = @regId
+)
+declare @radioStationId int = (
+	select Id 
+	from RadioStations
+	where Name = @customerName
+)
+
+if @radioStationId is null
+begin
+	insert RadioStations(Name) values(@customerName)
+	set @radioStationId = scope_identity()
+end
+
+update Reports set RadioStationId = @radioStationId where Id = @reportId
 
 --rollback tran
 --select * from MediaService..RegisterItem
