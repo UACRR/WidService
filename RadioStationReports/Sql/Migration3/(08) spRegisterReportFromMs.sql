@@ -9,6 +9,22 @@ begin
 
 --begin tran
 --declare @regId int = 9427
+
+-- ÂÈÄÀËßªÌÎ ÇÀĞÅªÑÒĞÎÂÀÍÈÉ ÇÂ²Ò ßÊÙÎ ÇÀÂÀÍÒÀÆÅÍÍß ÍÅ ÇÀÂÅØÈËÎÑÜ
+declare @oldReportId int = (
+	select t1.Id
+	from Reports t1
+		join ReportIdToRegId t2 on t1.Id = t2.ReportId
+	where t2.RegId = @regId
+		and t1.Status = 0
+)
+
+if @oldReportId is not null
+begin
+	exec spDeleteReport @oldReportId
+end
+
+-- ÑÒÂÎĞŞªÌÎ ²ÍÔÎĞÌÀÖ²Ş ÄËß ÇÀÂÀÍÒÀÆÅÍÍß
 declare @rootPath nvarchar(max) = (select TemplateFileFullName from Configuration)
 set @rootPath = dbo.fnTrimRightAfter(@rootPath, '\', 1)
 
@@ -58,6 +74,7 @@ insert Reports (
 	, SearchFileImportedAt
 	, DistributionFileCreatedAt
 	, DistributionFileUpdatedAt
+	, Status
 )
 select
 	  null							as RadioStationId
@@ -82,13 +99,14 @@ select
 	, null							as SearchFileImportedAt
 	, null							as DistributionFileCreatedAt
 	, null							as DistributionFileUpdatedAt
+	, 0								as Status
 from MediaService..Register t1
 	join MediaService..PaidPeriod t2 on t1.periodId = t2.periodId
 where t1.RegId = @regId
 
 set @reportId = scope_identity()
 
--- ÑÒÂÎĞŞªÌÎ ÇÀÏÈÑ ÄËß ĞßÄÊ²Â ÇÂ²ÒÓ
+-- ÑÒÂÎĞŞªÌÎ ÇÀÏÈÑÈ ÄËß ĞßÄÊ²Â ÇÂ²ÒÓ
 insert ReportLines(
 	  ReportId
 	, LineNr
@@ -114,44 +132,6 @@ select
 	, null as WorkId
 from MediaService..RegisterItem
 where regId = @regId
-
--- ÄÎÄÀªÌÎ ÍÎÂ² ÒÂÎĞÈ, ßÊ² ÍÀÄ²ÉØËÈ Ó ÇÂ²Ò²
-; with TmpWorksToAdd as (
-	select t1.Name, t1.Performer
-	from ReportLines t1
-		left join Works t2 on
-			t1.Name = t2.Name
-			and t1.Performer = t2.Performers
-	where ReportId = @reportId
-		and t2.Id is null
-)
-insert Works(
-	  Name
-	, Authors
-	, Performers
-	, NameT
-	, AuthorsT
-	, PerformersT
-)
-select
-	  Name													as Name
-	, ''													as Authors
-	, Performer												as Performers
-	, MediaService.dbo.TransLitCharFromUkrToLat(Name)		as NameT
-	, ''													as AuthorsT
-	, MediaService.dbo.TransLitCharFromUkrToLat(Performer)	as PerformersT
-from TmpWorksToAdd
-
--- ÑÒÂÎĞŞªÌÎ ÏÎÑÈËÀÍÍß ĞßÄÊ²Â ÇÂ²ÒÓ ÍÀ ÒÂÎĞÈ
-update t1
-set t1.WorkId = t2.Id
-from ReportLines t1
-	join Works t2 on
-		t1.Name = t2.Name
-		and t1.Performer = t2.Performers
-where t1.ReportId = @reportId
-
---select * from ReportLines where ReportId = @reportId and isnull(WorkId, 0) = 0
 
 -- ÑÒÂÎĞŞªÌÎ Â²ÄÏÎÂ²ÄÍ²ÑÒÜ ÇÂ²ÒÓ ÄÎÄÀÒÊÓ ÇÂ²ÒÀÌ ÑÌÀĞÒ ÍÀ ÎÑÍÎÂ² ÍÀÇÂÈ ÔÀÉËÓ
 insert ReportIdToRegId (ReportId, RegId)
@@ -180,6 +160,9 @@ begin
 end
 
 update Reports set RadioStationId = @radioStationId where Id = @reportId
+
+--select * from ReportLines where ReportId = @reportId and isnull(WorkId, 0) = 0
+
 
 --rollback tran
 --select * from MediaService..RegisterItem

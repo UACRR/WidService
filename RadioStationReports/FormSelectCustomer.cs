@@ -178,6 +178,7 @@ namespace RadioStationReports
                 return;
             }
 
+            lvPlaces.Items.Clear();
             FillCustomers();
         }
 

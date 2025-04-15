@@ -218,6 +218,7 @@ namespace RadioStationReports
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                FillWebControl(false);
             }
             finally
             {
@@ -255,6 +256,7 @@ namespace RadioStationReports
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                FillWebControl(false);
             }
             finally
             {

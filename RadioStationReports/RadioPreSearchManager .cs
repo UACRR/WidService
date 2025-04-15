@@ -1282,6 +1282,7 @@ namespace RadioStationReports
             var reportParameters = report.GetReportParameters();
             report.CheckFileName = FormatCheckFileName(report);
             var fileFullName = Path.Combine(report.WorkFilesPath, report.CheckFileName);
+            Directory.CreateDirectory(report.WorkFilesPath);
             if(File.Exists(fileFullName))
             {
                 File.Delete(fileFullName);
@@ -1568,6 +1569,7 @@ namespace RadioStationReports
             data = data.OrderBy(x => int.Parse(x.LineNr)).ThenBy(x => int.Parse(x.AuthorSeqNr)).ToList();
 
             var reportParameters = report.GetReportParameters();
+            Directory.CreateDirectory(report.WorkFilesPath);
             report.DistributionFileName = FormatDistributionFileName(report);
 
             var outputFileFullName = Path.Combine(report.WorkFilesPath, report.DistributionFileName);
@@ -1781,7 +1783,7 @@ namespace RadioStationReports
 
         public static string FormatCheckFileName(Report report)
         {
-            var baseName = Path.GetFileNameWithoutExtension(report.SourceFileCopyName);
+            var baseName = Path.GetFileNameWithoutExtension(report.FileName);
             return $"{baseName}.Перевірено.xlsx";
         }
 
@@ -1799,7 +1801,8 @@ namespace RadioStationReports
 
         public static string FormatDistributionFileName(Report report)
         {
-            return $"{report.SourceFileCopyName}.Розподіл.xlsx";
+            var baseName = Path.GetFileNameWithoutExtension(report.FileName);
+            return $"{baseName}.Розподіл.xlsx";
         }
 
         public static string GetSearchFileFullName(Report report)

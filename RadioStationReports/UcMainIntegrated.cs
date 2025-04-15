@@ -12,6 +12,13 @@ namespace RadioStationReports
 {
     public partial class UcMainIntegrated : UserControl
     {
+        public enum ReportItemStatus
+        {
+            NotRegistered,
+            RegistrationFailed,
+            Registered,
+        }
+
         public class CustomerItem
         {
             public int CustId { get; set; }
@@ -32,7 +39,7 @@ namespace RadioStationReports
             public DateTime StartDate { get; set; }
             public DateTime EndDate { get; set; }
             public string FileName { get; set; }
-            public bool IsRegistered { get; set; }
+            public ReportItemStatus Status { get; set; }
         }
 
         public class ReportLineItem
@@ -113,7 +120,10 @@ namespace RadioStationReports
             if(lvReports.SelectedItems.Count > 0)
             {
                 var report = (ReportItem)lvReports.SelectedItems[0].Tag;
-                btnShowReport.Text = report.IsRegistered ? "Показати звіт" : "Зареєструвати звіт";
+                btnShowReport.Text = 
+                    report.Status == ReportItemStatus.Registered    ? "Показати звіт" :
+                    report.Status == ReportItemStatus.NotRegistered ? "Зареєструвати звіт" :
+                                                                      "Повторити реєстрацію";
 
             }
         }
@@ -158,18 +168,20 @@ namespace RadioStationReports
             {
                 cmd.CommandText = @"
                     select 
-	                      t1.RegId
-	                    , t2.beginDate
-	                    , t2.endDate
-	                    , t1.FileName
-	                    , case
-		                    when t3.RegId is null then cast(0 as bit)
-		                    else cast(1 as bit)
-	                      end								as IsRegistered
+                          t1.RegId
+                        , t2.beginDate
+                        , t2.endDate
+                        , t1.FileName
+                        , case
+                            when t4.Id is null then 0
+                            when t4.Id is not null and t4.Status = 0 then 1
+                            else 2
+                          end								as Status
                     from MediaService..Register t1
                         join MediaService..PaidPeriod t2 on t1.CUstId = t2.CustId
                             and t1.periodId = t2.periodId
-	                    left join ReportIdToRegId t3 on t1.regId = t3.RegId
+                        left join ReportIdToRegId t3 on t1.regId = t3.RegId
+	                    left join Reports t4 on t3.ReportId = t4.Id
                     where t1.CustId = @CustId
                     order by t2.beginDate desc
                 ";
@@ -185,7 +197,7 @@ namespace RadioStationReports
                             StartDate = r.GetDateTime(1),
                             EndDate = r.GetDateTime(2),
                             FileName = r.GetString(3),
-                            IsRegistered = r.GetBoolean(4),
+                            Status = (ReportItemStatus)r.GetInt32(4),
                         });
                     }
                 }
@@ -198,7 +210,10 @@ namespace RadioStationReports
                 item.SubItems.Add(x.StartDate.ToString("yyyy-MM-dd"));
                 item.SubItems.Add(x.EndDate.ToString("yyyy-MM-dd"));
                 item.SubItems.Add(x.FileName);
-                item.ImageIndex = x.IsRegistered ? 0 : -1;
+                item.ImageIndex =
+                    x.Status == ReportItemStatus.Registered          ?  0 :
+                    x.Status == (int)ReportItemStatus.NotRegistered  ? -1 :
+                                                                        1;
                 item.Tag = x;
             });
         }
@@ -305,8 +320,12 @@ namespace RadioStationReports
             form.Show();
         }
 
-        private void RegisterReport(int regId)
+        private ReportItemStatus RegisterReport(CustomerItem customer, ReportItem report)
         {
+            var form = new FormRegisterReport(customer, report);
+            form.ShowDialog();
+            return form.ReportItemStatus;
+
             var radioPreSearchManager = new RadioPreSearchManager();
 
             try
@@ -317,7 +336,7 @@ namespace RadioStationReports
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "spRegisterReportFromMs";
-                    cmd.Parameters.AddWithValue("@RegId", regId);
+                    cmd.Parameters.AddWithValue("@RegId", report.RegId);
                     cmd.Parameters.AddWithValue("@ReportId", reportId).Direction = ParameterDirection.InputOutput;
                     cmd.ExecuteNonQuery();
                 });
@@ -454,8 +473,10 @@ namespace RadioStationReports
             {
                 cmd.CommandText = @"
                     select ReportId
-                    from ReportIdToRegId
-                    where RegId = @RegId
+                    from ReportIdToRegId t1
+                        join Reports t2 on t1.ReportId = t2.Id
+                    where t1.RegId = @RegId
+                        and t2.Status >= 1
                 ";
                 cmd.Parameters.AddWithValue("@RegId", regId);
                 reportId = (int?)cmd.ExecuteScalar();
@@ -463,9 +484,12 @@ namespace RadioStationReports
 
             if (reportId == null)
             {
-                RegisterReport(regId);
-                _selectedReport.IsRegistered = true;
-                lvReports.SelectedItems[0].ImageIndex = 0;
+                var res = RegisterReport(_selectedCustomer, _selectedReport);
+                _selectedReport.Status = res;
+                lvReports.SelectedItems[0].ImageIndex =
+                    res == ReportItemStatus.Registered          ?  0 :
+                    res == (int)ReportItemStatus.NotRegistered  ? -1 :
+                                                                   1;
                 UpdateControls();
             }
             else

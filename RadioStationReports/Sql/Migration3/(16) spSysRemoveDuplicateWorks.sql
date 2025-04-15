@@ -1,4 +1,7 @@
-create procedure spSysRemoveDuplicateWorks
+use RadioStationReports
+go
+
+create or alter procedure spSysRemoveDuplicateWorks
 as
 begin
 drop table if exists #DupNamePerformers
@@ -42,3 +45,6 @@ from Works t1
 where t2.SeqNr > 1
 end
 go
+
+exec spSysRemoveDuplicateWorks
+

@@ -7,6 +7,7 @@ from Reports t1
 		and t2.RegId = t3.RegId
 where t3.ReportId is null
 
+/*
 select *
 from Reports
 
@@ -273,3 +274,4 @@ order by LineNr
 1097	6033
 1097	8353
 1101	5992
+*/

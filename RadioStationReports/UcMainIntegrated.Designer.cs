@@ -251,6 +251,7 @@
             ilReports.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("ilReports.ImageStream");
             ilReports.TransparentColor = System.Drawing.Color.Transparent;
             ilReports.Images.SetKeyName(0, "Hopstarter-Sleek-Xp-Basic-Ok.ico");
+            ilReports.Images.SetKeyName(1, "iconfinder_Error_132716.png");
             // 
             // UcMainIntegrated
             // 
