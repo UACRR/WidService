@@ -11,7 +11,7 @@ where WorkFilesPath = ''
 
 update Reports
 set 
-	SearchFileName = ''
+	  SearchFileName = ''
 	, CheckFileName = ''
 	, DistributionFileName = ''
 

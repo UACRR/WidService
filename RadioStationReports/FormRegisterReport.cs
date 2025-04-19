@@ -303,15 +303,32 @@ namespace RadioStationReports
                 return;
             }
 
-            if (_currentActionIdx != (int)ActionType.ImportWorkFromWid)
+            var finishedActionIdx = _currentActionIdx;
+
+            if (finishedActionIdx == (int)ActionType.GetWicsToImport)
             {
-                lvActions.Items[_currentActionIdx].SubItems[1].Text = "Завершено";
+                lvActions.Items[finishedActionIdx].SubItems[1].Text = "Завершено";
                 _currentActionIdx++;
+                if (_wicsToImport.Count > 0)
+                {
+                    _currentWicToImportIdx = 0;
+                }
+                else
+                {
+                    lvActions.Items[_currentActionIdx].SubItems[1].Text = "Немає творів для імпотру";
+                    lvActions.Items[_currentActionIdx].ImageIndex = 0;
+                    _currentActionIdx++;
+                    var itemNext = lvActions.Items[_currentActionIdx];
+                    itemNext.SubItems[1].Text = "Виконується ...";
+                    itemNext.ImageIndex = 0;
+                }
+                timerRunAction.Enabled = true;
+                return;
             }
-                
-            if (_currentActionIdx == (int)ActionType.ImportWorkFromWid)
+
+            if (finishedActionIdx == (int)ActionType.ImportWorkFromWid)
             {
-                var item = lvActions.Items[_currentActionIdx];
+                var item = lvActions.Items[finishedActionIdx];
                 item.SubItems[1].Text = $"Імпортовано {_currentWicToImportIdx + 1} творів з {_wicsToImport.Count} ";
                 item.ImageIndex = 0;
                 _currentWicToImportIdx++;
@@ -322,23 +339,25 @@ namespace RadioStationReports
                     itemNext.SubItems[1].Text = "Виконується ...";
                     itemNext.ImageIndex = 0;
                 }
-                timerRunAction.Enabled = ReportItemStatus == ReportItemStatus.NotRegistered;
+                timerRunAction.Enabled = true;
+                return;
+            }
+            
+            lvActions.Items[finishedActionIdx].SubItems[1].Text = "Завершено";
+            _currentActionIdx++;
+                
+            if (_currentActionIdx < ACTIONS.Count())
+            {
+                var item = lvActions.Items[_currentActionIdx];
+                item.SubItems[1].Text = "Виконується ...";
+                item.ImageIndex = 0;
+                timerRunAction.Enabled = true;
             }
             else
             {
-                if (_currentActionIdx < ACTIONS.Count())
-                {
-                    var item = lvActions.Items[_currentActionIdx];
-                    item.SubItems[1].Text = "Виконується ...";
-                    item.ImageIndex = 0;
-                    timerRunAction.Enabled = ReportItemStatus == ReportItemStatus.NotRegistered;
-                }
-                else
-                {
-                    ReportItemStatus = ReportItemStatus.Registered;
-                    btnRegister.Enabled = false;
-                    btnClose.Enabled = true;
-                }
+                ReportItemStatus = ReportItemStatus.Registered;
+                btnRegister.Enabled = false;
+                btnClose.Enabled = true;
             }
         }
 

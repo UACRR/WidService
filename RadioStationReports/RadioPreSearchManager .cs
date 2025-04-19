@@ -634,6 +634,8 @@ namespace RadioStationReports
 	                , t2.ObjId
                     , t2.Wic
 	                , t2.Share
+                    , t2.IsProcessed
+                    , t2.CheckValue
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
                 where t1.ReportId = @reportId {filterText}
@@ -664,6 +666,8 @@ namespace RadioStationReports
 		                else null
 		                end as FoundCde
 	                , t2.Share
+                    , t2.IsProcessed
+                    , t2.CheckValue
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
                 where t2.Id = @reportWorkId
@@ -699,6 +703,10 @@ namespace RadioStationReports
                 reportWork.Wic = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
                 idx++;
                 reportWork.Share = r.IsDBNull(idx) ? (decimal?)null : r.GetDecimal(idx);
+                idx++;
+                reportWork.IsProcessed = r.GetBoolean(idx);
+                idx++;
+                reportWork.CheckValue = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
 
                 reportWork.MatchingWorks = new List<MatchingWork>();
                 _works.Add(reportWork);
@@ -723,6 +731,8 @@ namespace RadioStationReports
 		                else null
 		                end as FoundCde
 	                , t2.Share
+                    , t2.IsProcessed
+                    , t2.CheckValue
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
                 where t1.ReportId = @reportId 
@@ -1276,7 +1286,7 @@ namespace RadioStationReports
 
         }
     
-        public static void CreateCheckFile(Report report, List<ReportLine> reportLines)
+        public static void CreateCheckFile(Report report)
         {
             var cntCols = 10;
             var reportParameters = report.GetReportParameters();
@@ -1287,10 +1297,24 @@ namespace RadioStationReports
             {
                 File.Delete(fileFullName);
             }
+
+            var reportLinesCnt = 0;
             Helpers.CreateExcelFile( fileFullName, xlWorksheet => {
                 xlWorksheet.Name = "Рядки звіту";
 
-                var dataArray = new object[reportLines.Count + 1, cntCols];
+                Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = @"
+                        select count(*)
+                        from ReportLines t1
+                        where ReportId = @reportId
+                    ";
+                    cmd.Parameters.AddWithValue("@reportId", report.Id);
+                    reportLinesCnt = (int)cmd.ExecuteScalar();
+                });
+
+
+                var dataArray = new object[reportLinesCnt + 1, cntCols];
 
                 var idxRow = 0;
                 var idxCol = 0;
@@ -1306,7 +1330,7 @@ namespace RadioStationReports
                 dataArray[idxRow, idxCol++] = "СЦЕПКА";
                 dataArray[idxRow, idxCol++] = "% правовласності";
 
-                Helpers.RunSqlT(cmd =>
+                Helpers.RunSql(cmd =>
                 {
                     cmd.CommandText = @"
                         select 
@@ -1320,8 +1344,8 @@ namespace RadioStationReports
 	                        , concat('''', t1.TotalDuration)
 	                        , concat(t1.Name, t1.Performer)
 	                        , case 
-		                        when t2.FoundIn is null then '' 
-		                        when t2.Share > 0 then '100'
+		                        when t2.CheckValue is null then '' 
+		                        when t2.CheckValue > 0 then '100'
 		                        else '0'
 	                          end
                         from ReportLines t1
@@ -1355,7 +1379,7 @@ namespace RadioStationReports
                 });
 
                 var c1 = (Range)xlWorksheet.Cells[1, 1];
-                var c2 = (Range)xlWorksheet.Cells[1 + reportLines.Count, cntCols];
+                var c2 = (Range)xlWorksheet.Cells[1 + reportLinesCnt, cntCols];
                 var range = xlWorksheet.get_Range(c1, c2);
                 range.Value2 = dataArray;
 

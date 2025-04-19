@@ -49,6 +49,7 @@ declare @endDate as varchar(10) = (
 declare @dateInterval varchar(21) = concat(@beginDate, '_', @endDate)
 
 declare @workFilesPath nvarchar(max) = concat(@rootPath, @customerShortName, '\', @dateInterval, '\')
+set @workFilesPath = replace(replace(replace(@workFilesPath, '"', ''), '«', ''), '»', '')
 
 -- ÑÒÂÎĞŞªÌÎ ÇÀÏÈÑ ÄËß ÇÂ²ÒÓ
 insert Reports (

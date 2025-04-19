@@ -47,6 +47,8 @@ namespace RadioStationReports
                 
                 Logger.WriteLine("Loading Configuration");
                 Configuration.Load();
+                //var chechInfoLoader = new ChechInfoLoader();
+                //chechInfoLoader.LoadCheckInfoFromWorkBook();
                 //Application.Run(new FormMainReports());
                 Application.Run(new FormMainIntegrated());
             }

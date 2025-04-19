@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[Works](
 	[Iswc] [varchar(13)] NULL,
 	[Share] [decimal](5, 2) NULL,
 	[IsProcessed] [bit] NULL,
+	[CheckValue] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

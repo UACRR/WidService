@@ -110,11 +110,11 @@ namespace RadioStationReports
             proc.Kill();
         }
 
-        public static void ReadExcelFile(string fileFullName, ExcelBody body)
+        public static void ReadExcelFile(string fileFullName, ExcelBody body, int sheetIdx = 1)
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             Workbook xlWorkbook = xlApp.Workbooks.Open(fileFullName);
-           _Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
+           _Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[sheetIdx];
 
             body(xlWorksheet);
 

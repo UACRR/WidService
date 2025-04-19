@@ -78,10 +78,12 @@ namespace RadioStationReports
             lvReportLines.Columns.Add("Номер рядка", 90);
             lvReportLines.Columns.Add("Назва твору", 200);
             lvReportLines.Columns.Add("Виконавці", 200);
-            lvReportLines.Columns.Add("Де знайдено", 90);
-            lvReportLines.Columns.Add("Код СМАРТ", 100);
-            lvReportLines.Columns.Add("Код WID", 100);
-            lvReportLines.Columns.Add("Код ISWC", 80);
+            lvReportLines.Columns.Add("Де знайдено", 80);
+            lvReportLines.Columns.Add("Код СМАРТ", 80);
+            lvReportLines.Columns.Add("Код WID", 80);
+            lvReportLines.Columns.Add("Код ISWC", 100);
+            lvReportLines.Columns.Add("До виплати %", 100);
+            lvReportLines.Columns.Add("Перевірка", 80);
 
             var formWidth = 44;
             foreach (ColumnHeader col in lvReportLines.Columns)
@@ -229,6 +231,10 @@ namespace RadioStationReports
                         work.Iswc = r.IsDBNull(idx) ? "" : r.GetString(idx);
                         idx++;
                         work.Share = r.IsDBNull(idx) ? (decimal?)null : r.GetDecimal(idx);
+                        idx++;
+                        work.IsProcessed = r.IsDBNull(idx) ? false : r.GetBoolean(idx);
+                        idx++;
+                        work.CheckValue = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
 
                         reportLine.Work = work;
 
@@ -259,6 +265,8 @@ namespace RadioStationReports
                     item.SubItems.Add(x.Work.ObjId.ToString());
                     item.SubItems.Add(x.Work.Wic.ToString());
                     item.SubItems.Add(x.Work.Iswc);
+                    item.SubItems.Add(x.Work.Share.ToString());
+                    item.SubItems.Add(x.Work.CheckValue.ToString());
                     item.Tag = x;
                 }
 
@@ -282,6 +290,8 @@ namespace RadioStationReports
             item.SubItems[4].Text = line.Work.ObjId.ToString();
             item.SubItems[5].Text = line.Work.Wic.ToString();
             item.SubItems[6].Text = line.Work.Iswc;
+            item.SubItems[7].Text = line.Work.Share.ToString();
+            item.SubItems[8].Text = line.Work.CheckValue.ToString();
         }
 
         private void FillLabLinesCnt()
@@ -942,6 +952,9 @@ namespace RadioStationReports
             var iswc = tbIswc.Text.Trim();
             iswc = iswc == "" ? "" : iswc.Substring(0, Math.Min(25, iswc.Length));
 
+            decimal share = 0;
+            int checkValue = 0;
+
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
@@ -995,6 +1008,24 @@ namespace RadioStationReports
                     objId = paramObjId.Value == DBNull.Value ? 0 : (int)paramObjId.Value;
                     wic = paramWic.Value == DBNull.Value ? 0 : (int)paramWic.Value;
                     iswc = paramIswc.Value == DBNull.Value ? "" : (string)paramIswc.Value;
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"
+                        select t2.Share, t2.CheckValue
+                        from ReportLines t1
+	                        join Works t2 on t1.WorkId = t2.Id
+                        where t1.ReportId = @reportId
+	                        and LineNr = @lineNr
+                    ";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@reportId", _report.Id);
+                    cmd.Parameters.AddWithValue("@lineNr", line.LineNr);
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        r.Read();
+                        share = r.GetDecimal(0);
+                        checkValue = r.GetInt32(1);
+                    }
                 });
 
                 if (objId != 0)
@@ -1009,6 +1040,8 @@ namespace RadioStationReports
                 line.Work.ObjId = objId;
                 line.Work.Wic = wic;
                 line.Work.Iswc = iswc;
+                line.Work.Share = share;
+                line.Work.CheckValue = checkValue;
 
                 UpdateLvReportLine();
 
@@ -1156,7 +1189,7 @@ namespace RadioStationReports
             Cursor.Current = Cursors.WaitCursor;
             try
             {
-                RadioPreSearchManager.CreateCheckFile(_report, _reportLines);
+                RadioPreSearchManager.CreateCheckFile(_report);
 
 
                 Helpers.RunSql(cmd =>

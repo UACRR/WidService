@@ -23,6 +23,8 @@ namespace RadioStationReports
         public int?     Wic              { get; set; }
         public string   Iswc             { get; set; }
         public decimal? Share            { get; set; }
+        public bool     IsProcessed      { get; set; }
+        public int?     CheckValue       { get; set; }
 
         public List<MatchingWork> MatchingWorks { get; set; }
 
@@ -41,6 +43,8 @@ namespace RadioStationReports
                     , t2.Wic
                     , t2.Iswc
                     , t2.Share
+                    , t2.IsProcessed
+                    , t2.CheckValue
                 from ReportLines t1
                     join Works t2 on t1.WorkId = t2.Id
                 where t1.ReportId = @reportId and t1.LineNr = @lineNr
@@ -72,6 +76,10 @@ namespace RadioStationReports
             work.Iswc = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;
             work.Share = r.IsDBNull(idx) ? (decimal?)null : r.GetDecimal(idx);
+            idx++;
+            work.IsProcessed = r.IsDBNull(idx) ? false : r.GetBoolean(idx);
+            idx++;
+            work.CheckValue = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
             return work;
         }
     }
