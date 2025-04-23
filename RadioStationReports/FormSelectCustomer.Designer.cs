@@ -111,13 +111,13 @@
             label1.Location = new System.Drawing.Point(3, 6);
             label1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(274, 15);
+            label1.Size = new System.Drawing.Size(322, 15);
             label1.TabIndex = 0;
-            label1.Text = "Вибрати користуча за текстом в назві або кодом";
+            label1.Text = "Вибрати за текстом в назві користувача або бізнес-точки";
             // 
             // tbSearchFilter
             // 
-            tbSearchFilter.Location = new System.Drawing.Point(283, 3);
+            tbSearchFilter.Location = new System.Drawing.Point(331, 3);
             tbSearchFilter.Name = "tbSearchFilter";
             tbSearchFilter.Size = new System.Drawing.Size(203, 23);
             tbSearchFilter.TabIndex = 1;
@@ -125,7 +125,7 @@
             // 
             // btnSearchCustomer
             // 
-            btnSearchCustomer.Location = new System.Drawing.Point(492, 3);
+            btnSearchCustomer.Location = new System.Drawing.Point(540, 3);
             btnSearchCustomer.Name = "btnSearchCustomer";
             btnSearchCustomer.Size = new System.Drawing.Size(75, 23);
             btnSearchCustomer.TabIndex = 2;
@@ -149,9 +149,9 @@
             label2.Location = new System.Drawing.Point(3, 212);
             label2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 0);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(77, 15);
+            label2.Size = new System.Drawing.Size(78, 15);
             label2.TabIndex = 3;
-            label2.Text = "Майданчики";
+            label2.Text = "Бізнес-точки";
             // 
             // panelFormActions
             // 

@@ -1,3 +1,6 @@
+update Works
+set CheckValue = null
+
 drop table if exists #CheckInfoFromWorkBook
 ; with NoDup as (
 	select
@@ -60,4 +63,4 @@ set
 
 update Works set CheckValue = 100 where CheckValue > 0
 update Works set CheckValue = 100 where Share > 0 and (CheckValue = 0 or CheckValue is null)
-update Works set CheckValue = 0 where Share = 0 and (CheckValue = 100 or CheckValue is null)
+-- update Works set CheckValue = 0 where Share = 0 and (CheckValue = 100 or CheckValue is null)

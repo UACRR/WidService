@@ -13,7 +13,7 @@ namespace RadioStationReports
 {
     public partial class FormMainIntegrated : Form
     {
-        
+
         public FormMainIntegrated()
         {
             InitializeComponent();
@@ -22,7 +22,10 @@ namespace RadioStationReports
         private void FormMainIntegrated_Load(object sender, EventArgs e)
         {
         }
-      
 
-     }
+        private void ucMainIntegrated_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

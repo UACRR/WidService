@@ -34,6 +34,7 @@
             btnShowReport = new System.Windows.Forms.Button();
             btnArhive = new System.Windows.Forms.Button();
             btnDelete = new System.Windows.Forms.Button();
+            btnRegisterReportFromFile = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             panelFilterArchived = new System.Windows.Forms.FlowLayoutPanel();
             radioFilterActive = new System.Windows.Forms.RadioButton();
@@ -115,6 +116,7 @@
             panelBottom.Controls.Add(btnShowReport);
             panelBottom.Controls.Add(btnArhive);
             panelBottom.Controls.Add(btnDelete);
+            panelBottom.Controls.Add(btnRegisterReportFromFile);
             panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
             panelBottom.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             panelBottom.Location = new System.Drawing.Point(3, 461);
@@ -151,6 +153,16 @@
             btnDelete.Text = "Видалити";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
+            // 
+            // btnRegisterReportFromFile
+            // 
+            btnRegisterReportFromFile.Location = new System.Drawing.Point(460, 3);
+            btnRegisterReportFromFile.Name = "btnRegisterReportFromFile";
+            btnRegisterReportFromFile.Size = new System.Drawing.Size(155, 23);
+            btnRegisterReportFromFile.TabIndex = 2;
+            btnRegisterReportFromFile.Text = "Зареєструвати з файлу ...";
+            btnRegisterReportFromFile.UseVisualStyleBackColor = true;
+            btnRegisterReportFromFile.Click += btnRegisterReportFromFile_Click;
             // 
             // label1
             // 
@@ -642,5 +654,6 @@
         private System.Windows.Forms.TextBox tbReprotSourceFileCopyName;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
+        private System.Windows.Forms.Button btnRegisterReportFromFile;
     }
 }

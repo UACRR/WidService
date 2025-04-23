@@ -704,7 +704,7 @@ namespace RadioStationReports
                 idx++;
                 reportWork.Share = r.IsDBNull(idx) ? (decimal?)null : r.GetDecimal(idx);
                 idx++;
-                reportWork.IsProcessed = r.GetBoolean(idx);
+                reportWork.IsProcessed = r.IsDBNull(idx) ? false : r.GetBoolean(idx);
                 idx++;
                 reportWork.CheckValue = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
 

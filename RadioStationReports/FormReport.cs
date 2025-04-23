@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,15 +11,95 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static RadioStationReports.FormReport;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RadioStationReports
 {
     public partial class FormReport : Form
     {
+        public class LvReportLinesColumnSorter : IComparer
+        {
+            private int ColumnToSort;
+            private System.Windows.Forms.SortOrder OrderOfSort;
+
+            private CaseInsensitiveComparer ObjectCompare;
+
+            public LvReportLinesColumnSorter()
+            {
+                ColumnToSort = 0;
+
+                OrderOfSort = System.Windows.Forms.SortOrder.None;
+
+                ObjectCompare = new CaseInsensitiveComparer();
+            }
+            public int Compare(object x, object y)
+            {
+                int compareResult;
+                ListViewItem listviewX, listviewY;
+
+                listviewX = (ListViewItem)x;
+                listviewY = (ListViewItem)y;
+
+                if(ColumnToSort == 1)
+                {
+                    compareResult = ObjectCompare.Compare(
+                        int.Parse(listviewX.SubItems[ColumnToSort].Text), 
+                        int.Parse(listviewY.SubItems[ColumnToSort].Text)
+                    );
+                }
+                else
+                {
+                    compareResult = ObjectCompare.Compare(listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
+                }
+
+                if (OrderOfSort == System.Windows.Forms.SortOrder.Ascending)
+                {
+                    return compareResult;
+                }
+                else if (OrderOfSort == System.Windows.Forms.SortOrder.Descending)
+                {
+                    return (-compareResult);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+
+            public int SortColumn
+            {
+                set
+                {
+                    ColumnToSort = value;
+                }
+                get
+                {
+                    return ColumnToSort;
+                }
+            }
+
+            public System.Windows.Forms.SortOrder Order
+            {
+                set
+                {
+                    OrderOfSort = value;
+                }
+                get
+                {
+                    return OrderOfSort;
+                }
+            }
+
+        }
+
         const int FILTER_INDEX_SMART = 1;
         const int FILTER_INDEX_WID = 2;
         const int FILTER_INDEX_NOT_FOUND = 3;
+
+
+        private LvReportLinesColumnSorter lvReportLinesColumnSorter;
 
         private bool _cbFilterIgnoreSelectedIndexChanged;
         private bool _actionsVisible;
@@ -70,11 +151,15 @@ namespace RadioStationReports
 
         private void ConfigureLvReportLines()
         {
+            lvReportLinesColumnSorter = new LvReportLinesColumnSorter();
+
+            lvReportLines.ListViewItemSorter = lvReportLinesColumnSorter;
             lvReportLines.View = View.Details;
-            lvReportLines.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lvReportLines.HeaderStyle = ColumnHeaderStyle.Clickable;
             lvReportLines.FullRowSelect = true;
             lvReportLines.MultiSelect = false;
 
+            lvReportLines.Columns.Add("№пп", 90);
             lvReportLines.Columns.Add("Номер рядка", 90);
             lvReportLines.Columns.Add("Назва твору", 200);
             lvReportLines.Columns.Add("Виконавці", 200);
@@ -84,6 +169,7 @@ namespace RadioStationReports
             lvReportLines.Columns.Add("Код ISWC", 100);
             lvReportLines.Columns.Add("До виплати %", 100);
             lvReportLines.Columns.Add("Перевірка", 80);
+
 
             var formWidth = 44;
             foreach (ColumnHeader col in lvReportLines.Columns)
@@ -110,12 +196,12 @@ namespace RadioStationReports
 
         private void UpdateControls()
         {
-            labAutoSearch.Text = "Автоматичний пошук";
+            //labAutoSearch.Text = "Автоматичний пошук";
 
-            labAutoSearchStatus.Text = "Автоматичний пошук виконаний";
-            labAutoSearchStatus.Visible = _report.AutoSearchFinishedAt != null;
+            //labAutoSearchStatus.Text = "Автоматичний пошук виконаний";
+            //labAutoSearchStatus.Visible = _report.AutoSearchFinishedAt != null;
 
-            btnAutoSearch.Visible = _report.AutoSearchFinishedAt == null;
+            //btnAutoSearch.Visible = _report.AutoSearchFinishedAt == null;
 
             /*
             btnCalcRoyalty.Visible = _report.AutoSearchFinishedAt != null
@@ -136,10 +222,10 @@ namespace RadioStationReports
             //        ||
             //        (_report.SearchFileUpdatedAt < _report.UpdatedAt
             //            && _report.SearchFileImportedAt != _report.UpdatedAt
-             //       )
-             //   );
+            //       )
+            //   );
             //btnCreateSearchFile.Text = string.IsNullOrEmpty(_report.SearchFileName) ?
-             //   "Створити файл" : "Оновити файл";
+            //   "Створити файл" : "Оновити файл";
 
             //btnShowSearchFile.Enabled = !string.IsNullOrEmpty(_report.SearchFileName);
 
@@ -246,19 +332,44 @@ namespace RadioStationReports
 
         private void FillLvReportLines()
         {
+            lvReportLines.ListViewItemSorter = null;
             lvReportLines.Items.Clear();
+            var seqNr = 1;
             _reportLines.ForEach(x =>
             {
                 var filterEx = tbFilterEx.Text.Trim();
-                var showLines = true;
+                var showLine = true;
                 if (filterEx != "")
                 {
-                    showLines = x.Performer.Contains(filterEx, StringComparison.OrdinalIgnoreCase);
+                    showLine = x.Name.Contains(filterEx, StringComparison.OrdinalIgnoreCase) ||
+                        x.Performer.Contains(filterEx, StringComparison.OrdinalIgnoreCase);
                 }
 
-                if (showLines)
+                if (showLine)
                 {
-                    var item = lvReportLines.Items.Add(x.LineNr.ToString());
+                    if (rbCheckedDefined.Checked)
+                    {
+                        showLine = x.Work.CheckValue != null;
+                    }
+                    else if (rbChecked100.Checked)
+                    {
+                        showLine = x.Work.CheckValue == 100;
+                    }
+                    else if (rbChecked0.Checked)
+                    {
+                        showLine = x.Work.CheckValue == 0;
+                    }
+                    else if (rbCheckedUndefined.Checked)
+                    {
+                        showLine = x.Work.CheckValue == null;
+                    }
+                }
+
+                if (showLine)
+                {
+
+                    var item = lvReportLines.Items.Add(seqNr.ToString());
+                    item.SubItems.Add(x.LineNr.ToString());
                     item.SubItems.Add(x.Name);
                     item.SubItems.Add(x.Performer);
                     item.SubItems.Add(x.Work.FoundIn);
@@ -268,10 +379,13 @@ namespace RadioStationReports
                     item.SubItems.Add(x.Work.Share.ToString());
                     item.SubItems.Add(x.Work.CheckValue.ToString());
                     item.Tag = x;
+                    seqNr++;
                 }
 
             });
 
+            lvReportLines.ListViewItemSorter = lvReportLinesColumnSorter;
+            lvReportLines.Sort();
         }
 
         private void UpdateLvReportLine()
@@ -284,14 +398,15 @@ namespace RadioStationReports
 
             var line = GetSelectedLine();
 
-            item.SubItems[1].Text = line.Name;
-            item.SubItems[2].Text = line.Performer;
-            item.SubItems[3].Text = line.Work.FoundIn;
-            item.SubItems[4].Text = line.Work.ObjId.ToString();
-            item.SubItems[5].Text = line.Work.Wic.ToString();
-            item.SubItems[6].Text = line.Work.Iswc;
-            item.SubItems[7].Text = line.Work.Share.ToString();
-            item.SubItems[8].Text = line.Work.CheckValue.ToString();
+            var idx = 2;
+            item.SubItems[idx++].Text = line.Name;
+            item.SubItems[idx++].Text = line.Performer;
+            item.SubItems[idx++].Text = line.Work.FoundIn;
+            item.SubItems[idx++].Text = line.Work.ObjId.ToString();
+            item.SubItems[idx++].Text = line.Work.Wic.ToString();
+            item.SubItems[idx++].Text = line.Work.Iswc;
+            item.SubItems[idx++].Text = line.Work.Share.ToString();
+            item.SubItems[idx++].Text = line.Work.CheckValue.ToString();
         }
 
         private void FillLabLinesCnt()
@@ -531,6 +646,8 @@ namespace RadioStationReports
                         , ObjId = null
                         , Wic = null
                         , Iswc = null
+                        , Share = 0
+                        , CheckValue = null
                     where Id = @Id
 
                     update Reports
@@ -546,6 +663,8 @@ namespace RadioStationReports
                 line.Work.ObjId = null;
                 line.Work.Wic = null;
                 line.Work.Iswc = null;
+                line.Work.Share = 0;
+                line.Work.CheckValue = null;
             });
 
             tbObjId.Text = tbWic.Text = tbIswc.Text = "";
@@ -830,6 +949,10 @@ namespace RadioStationReports
                 {
                     ucReportLineWork.Clear();
                     ucReportLineDistribution.Clear();
+                    if (_formSearch != null)
+                    {
+                        _formSearch.Visible = false;
+                    }
                     UpdateCodeEditControls("NONE");
                     return;
                 }
@@ -1037,8 +1160,8 @@ namespace RadioStationReports
                     line.Work.FoundIn = "W";
                 }
 
-                line.Work.ObjId = objId;
-                line.Work.Wic = wic;
+                line.Work.ObjId = objId == 0 ? null : objId;
+                line.Work.Wic = wic == 0 ? null : wic;
                 line.Work.Iswc = iswc;
                 line.Work.Share = share;
                 line.Work.CheckValue = checkValue;
@@ -1246,6 +1369,57 @@ namespace RadioStationReports
         {
             var printManager = new PrintManager(_report);
             printManager.CreatePrintFile();
+        }
+
+        private void rbCheckedAll_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvReportLines();
+        }
+
+        private void rbCheckedDefined_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvReportLines();
+        }
+
+        private void rbChecked100_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvReportLines();
+        }
+
+        private void rbChecked0_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvReportLines();
+        }
+
+        private void rbCheckedUndefined_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvReportLines();
+        }
+
+        private void lvReportLines_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if(e.Column < 1)
+            {
+                return;
+            }
+            if (e.Column == lvReportLinesColumnSorter.SortColumn)
+            {
+                if (lvReportLinesColumnSorter.Order == System.Windows.Forms.SortOrder.Ascending)
+                {
+                    lvReportLinesColumnSorter.Order = System.Windows.Forms.SortOrder.Descending;
+                }
+                else
+                {
+                    lvReportLinesColumnSorter.Order = System.Windows.Forms.SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                lvReportLinesColumnSorter.SortColumn = e.Column;
+                lvReportLinesColumnSorter.Order = System.Windows.Forms.SortOrder.Ascending;
+            }
+
+            lvReportLines.Sort();
         }
     }
 }

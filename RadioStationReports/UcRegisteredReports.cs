@@ -288,25 +288,25 @@ namespace RadioStationReports
             });
 
             var sourceFileCopyNameFull = Path.Combine(selectedReport.WorkFilesPath, selectedReport.SourceFileCopyName);
-            if(File.Exists(sourceFileCopyNameFull))
+            if (File.Exists(sourceFileCopyNameFull))
             {
                 File.Delete(sourceFileCopyNameFull);
             }
 
             var sourceSearchFileNameFull = Path.Combine(selectedReport.WorkFilesPath, selectedReport.SearchFileName);
-            if(File.Exists(sourceSearchFileNameFull))
+            if (File.Exists(sourceSearchFileNameFull))
             {
                 File.Delete(sourceSearchFileNameFull);
             }
 
             var sourceDistributionFileNameFull = Path.Combine(selectedReport.WorkFilesPath, selectedReport.DistributionFileName);
-            if(File.Exists(sourceDistributionFileNameFull))
+            if (File.Exists(sourceDistributionFileNameFull))
             {
                 File.Delete(sourceDistributionFileNameFull);
             }
 
             var sourceCheckFileNameFull = Path.Combine(selectedReport.WorkFilesPath, selectedReport.CheckFileName);
-            if(File.Exists(sourceCheckFileNameFull))
+            if (File.Exists(sourceCheckFileNameFull))
             {
                 File.Delete(sourceCheckFileNameFull);
             }
@@ -526,6 +526,70 @@ namespace RadioStationReports
             else
             {
                 Clipboard.Clear();
+            }
+        }
+
+        private void btnRegisterReportFromFile_Click(object sender, EventArgs e)
+        {
+            openFileDlg.Title = "Виберіть файл звіту";
+            if (openFileDlg.ShowDialog() != DialogResult.OK)
+            {
+                FillFilterRadioStations(); 
+                return;
+            }
+
+            var fileFullName = openFileDlg.FileName;
+
+            var form = new FormReportParams();
+            form.SetNewReport(fileFullName);
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            Cursor.Current = Cursors.WaitCursor;
+
+            var radioPreSearchManager = new RadioPreSearchManager();
+
+            try
+            {
+                var reportId = radioPreSearchManager.LoadReport(
+                    fileFullName,
+                    form.OutputParameters
+                );
+
+                radioPreSearchManager = new RadioPreSearchManager(reportId);
+                radioPreSearchManager.AutoSearch();
+
+                Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = @"
+                        update Reports 
+                        set 
+                              UpdatedAt             = getdate()
+                            , AutoSearchFinishedAt  = getdate()
+                        where Id = @ReportId";
+                    cmd.Parameters.AddWithValue("@ReportId", reportId);
+                    cmd.ExecuteNonQuery();
+                });
+
+                Helpers.ShowSuccess("Звіт успішно зареєстровано!");
+
+                LoadReports();
+                FillLvReports(reportId);
+                UpdateControls();
+                lvReports.Focus();
+                FillFilterRadioStations();
+
+             }
+            catch (Exception ex)
+            {
+                Helpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.WaitCursor;
             }
         }
     }

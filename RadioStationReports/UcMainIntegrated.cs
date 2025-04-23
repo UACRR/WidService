@@ -61,6 +61,8 @@ namespace RadioStationReports
         private List<ReportLineItem> _reportLines;
         private List<OtherCustomerItem> _otherCustomers;
 
+        private bool _ignoreCbLastUsedCustomersEvents = false;
+
         public UcMainIntegrated()
         {
             InitializeComponent();
@@ -74,7 +76,8 @@ namespace RadioStationReports
             }
 
             Configure();
-            FillLastUsedCustomers();
+            UpdateContent();
+
         }
 
         private void Configure()
@@ -112,6 +115,24 @@ namespace RadioStationReports
         private string FormatCustomer(CustomerItem customer)
         {
             return $"{customer.CustId} - {customer.ShortName}";
+        }
+
+        private void UpdateContent()
+        {
+            lvReports.Items.Clear();
+            lvReportLines.Items.Clear();
+            lvOtherCustomers.Items.Clear();   
+            
+            FillLastUsedCustomers();
+
+            _ignoreCbLastUsedCustomersEvents = true;
+            cbCustomers.SelectedIndex = 0;
+            _ignoreCbLastUsedCustomersEvents = false;
+
+            _selectedCustomer = _lastUsedCustomers[0];
+            
+            FillCustomerReports();
+            UpdateControls();
         }
 
         private void UpdateControls()
@@ -159,7 +180,6 @@ namespace RadioStationReports
                 cbCustomers.Items.Add(FormatCustomer(x));
             });
 
-            cbCustomers.SelectedIndex = 0;
         }
 
         private void FillCustomerReports()
@@ -223,7 +243,7 @@ namespace RadioStationReports
             Helpers.RunSql(cmd =>
             {
                 cmd.CommandText = @"
-                     select
+                     select top 100
 	                      RegIItemId	as LineNr
 	                    , ItemName		as Name
 	                    , Performer		as Performer
@@ -377,12 +397,30 @@ namespace RadioStationReports
                 return;
             }
 
-            _selectedCustomer = new CustomerItem
+            Helpers.RunSql(cmd =>
             {
-                CustId = form.SelectedCustomer.CustId,
-                Name = form.SelectedCustomer.Name,
-                ShortName = form.SelectedCustomer.ShortName,
-            };
+                cmd.CommandText = @"
+                    if exists (select null from LastUsedCustomers where custId = @custId)
+	                    update LastUsedCustomers set UsedAt = getdate() where CustId = @custId
+                    else
+	                    insert LastUsedCustomers(CustId, UsedAt) values(@custId, getdate())
+                ";
+                cmd.Parameters.AddWithValue("@custId", form.SelectedCustomer.CustId);
+                cmd.ExecuteNonQuery();
+            });
+
+            UpdateContent();
+        }
+
+        private void cbCustomers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (_ignoreCbLastUsedCustomersEvents)
+            {
+                return;
+            }
+
+            var customer = _lastUsedCustomers[cbCustomers.SelectedIndex];
 
             Helpers.RunSql(cmd =>
             {
@@ -392,47 +430,13 @@ namespace RadioStationReports
                     else
 	                    insert LastUsedCustomers(CustId, UsedAt) values(@custId, getdate())
                 ";
-                cmd.Parameters.AddWithValue("@custId", _selectedCustomer.CustId);
+                cmd.Parameters.AddWithValue("@custId", customer.CustId);
                 cmd.ExecuteNonQuery();
             });
 
-            var selectedCustomerIdx = -1;
-            for (var idx = 0; idx < _lastUsedCustomers.Count; idx++)
-            {
-                if (_lastUsedCustomers[idx].CustId == _selectedCustomer.CustId)
-                {
-                    selectedCustomerIdx = idx;
-                    break;
-                }
-            }
 
-            if (selectedCustomerIdx >= 0)
-            {
-                _lastUsedCustomers.RemoveAt(selectedCustomerIdx);
-                cbCustomers.Items.RemoveAt(selectedCustomerIdx);
-            }
+            UpdateContent();
 
-            _lastUsedCustomers.Insert(0, _selectedCustomer);
-
-            cbCustomers.Items.Insert(0, FormatCustomer(_selectedCustomer));
-            cbCustomers.SelectedIndex = 0;
-
-            FillCustomerReports();
-
-            UpdateControls();
-        }
-
-        private void cbCustomers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _selectedCustomer = _lastUsedCustomers[cbCustomers.SelectedIndex];
-            if (_reportLines != null)
-            {
-                _reportLines.Clear();
-            }
-            lvReportLines.Items.Clear();
-            FillCustomerReports();
-
-            UpdateControls();
         }
 
         private void lvReports_SelectedIndexChanged(object sender, EventArgs e)
