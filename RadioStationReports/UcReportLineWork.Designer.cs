@@ -29,20 +29,17 @@ namespace RadioStationReports
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             panelMain = new System.Windows.Forms.TableLayoutPanel();
-            lvWorks = new System.Windows.Forms.ListView();
-            contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
             toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            lvInfo = new System.Windows.Forms.ListView();
             panelMain.SuspendLayout();
-            contextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // panelMain
             // 
             panelMain.ColumnCount = 1;
             panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            panelMain.Controls.Add(lvWorks, 0, 0);
+            panelMain.Controls.Add(lvInfo, 0, 0);
             panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             panelMain.Location = new System.Drawing.Point(0, 0);
             panelMain.Name = "panelMain";
@@ -50,32 +47,23 @@ namespace RadioStationReports
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            panelMain.Size = new System.Drawing.Size(895, 431);
+            panelMain.Size = new System.Drawing.Size(1069, 460);
             panelMain.TabIndex = 0;
-            // 
-            // lvWorks
-            // 
-            lvWorks.Dock = System.Windows.Forms.DockStyle.Fill;
-            lvWorks.HideSelection = false;
-            lvWorks.Location = new System.Drawing.Point(3, 3);
-            lvWorks.Name = "lvWorks";
-            lvWorks.Size = new System.Drawing.Size(889, 417);
-            lvWorks.TabIndex = 0;
-            lvWorks.UseCompatibleStateImageBehavior = false;
-            lvWorks.MouseDown += lvWorks_MouseDown;
-            // 
-            // contextMenuStrip
-            // 
-            contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItemCopy });
-            contextMenuStrip.Name = "contextMenuStrip";
-            contextMenuStrip.Size = new System.Drawing.Size(181, 48);
-            contextMenuStrip.ItemClicked += contextMenuStrip_ItemClicked;
             // 
             // toolStripMenuItemCopy
             // 
             toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-            toolStripMenuItemCopy.Size = new System.Drawing.Size(180, 22);
-            toolStripMenuItemCopy.Text = "Копіювати";
+            toolStripMenuItemCopy.Size = new System.Drawing.Size(32, 19);
+            // 
+            // lvInfo
+            // 
+            lvInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            lvInfo.HideSelection = false;
+            lvInfo.Location = new System.Drawing.Point(3, 3);
+            lvInfo.Name = "lvInfo";
+            lvInfo.Size = new System.Drawing.Size(1063, 446);
+            lvInfo.TabIndex = 0;
+            lvInfo.UseCompatibleStateImageBehavior = false;
             // 
             // UcReportLineWork
             // 
@@ -83,18 +71,16 @@ namespace RadioStationReports
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Controls.Add(panelMain);
             Name = "UcReportLineWork";
-            Size = new System.Drawing.Size(895, 431);
+            Size = new System.Drawing.Size(1069, 460);
             Load += UcReportLineWork_Load;
             panelMain.ResumeLayout(false);
-            contextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel panelMain;
-        private System.Windows.Forms.ListView lvWorks;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
+        private System.Windows.Forms.ListView lvInfo;
     }
 }

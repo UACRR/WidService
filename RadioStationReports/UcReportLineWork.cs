@@ -7,19 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RadioStationReports
 {
     public partial class UcReportLineWork : UserControl
     {
-        private int _reportId;
-        private int _lineNr;
-        private Work _work;
-
-        private string _textToCopy = "";
-
-        public event EventHandler Changed;
-
         public UcReportLineWork()
         {
             InitializeComponent();
@@ -27,90 +20,60 @@ namespace RadioStationReports
 
         private void UcReportLineWork_Load(object sender, EventArgs e)
         {
-            Configure();
-            Clear();
+            lvInfo.MultiSelect = false;
+            lvInfo.FullRowSelect = true;
+            lvInfo.GridLines = true;
+            lvInfo.View = View.Details;
+            lvInfo.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lvInfo.Font = new Font(lvInfo.Font, FontStyle.Bold);
+            lvInfo.BackColor = Color.FloralWhite;
+            lvInfo.Height = 10;
+
+            lvInfo.Columns.Add("Параметри", 260);
+            lvInfo.Columns.Add("За кодом СМАРТ", 150);
+            lvInfo.Columns.Add("За кодом WID", 150);
+
+            var item = lvInfo.Items.Add("Назва твору");
+            item.Font = new Font(item.Font, FontStyle.Regular);
+
+            item = lvInfo.Items.Add("Правовласники");
+            item.Font = new Font(item.Font, FontStyle.Bold | FontStyle.Italic);
+
+            AddRightHolder();
+            AddRightHolder();
+            AddRightHolder();
+
         }
 
-        private void Configure()
+        private void AddItem(string title, string msValue, string widValue)
         {
-            lvWorks.View = View.Details;
-            lvWorks.FullRowSelect = true;
-            lvWorks.HeaderStyle = ColumnHeaderStyle.None;
-            lvWorks.GridLines = true;
-            lvWorks.MultiSelect = false;
-
-            lvWorks.Columns.Add("Параметр", 200);
-            lvWorks.Columns.Add("Значення", 200);
+            var item = lvInfo.Items.Add(title);
+            item.SubItems.Add(msValue);
+            item.SubItems.Add(widValue);
+            item.Font = new Font(item.Font, FontStyle.Regular);
         }
+
+        private void AddRightHolder()
+        {
+            AddItem("    Назва"                         , "asfdasds dd dds" , "@@@@@@@");
+            AddItem("        Код СМАРТ"                 , "1325"            , "0");
+            AddItem("        Міжнародни код (базовий)"  , "2433567"         , "0");
+            AddItem("        Міжнародни код (назва)"    , "2433567"         , "0");
+            AddItem("        Проценти Пуб"              , "34"              , "0");
+            AddItem("        Проценти Пуб"              , "0"               , "12");
+        }
+
+
 
         public void Clear()
         {
-            _work = null;
-            lvWorks.Items.Clear();
+
         }
 
         public void Update(int reportId, int lineNr)
         {
-            _reportId = reportId;
-            _lineNr = lineNr;
-            Helpers.RunSql(cmd =>
-            {
-                _work = Work.CreateFromDb(cmd, reportId, lineNr);
-            });
-
-            FillLvWorks();
 
         }
 
-        private void FillLvWorks()
-        {
-            lvWorks.Items.Clear();
-
-            AddLvWorkItem("ID", _work.Id);
-            AddLvWorkItem("Назва в звіті", _work.Name);
-            AddLvWorkItem("Назва в звіті транзлітерована", _work.NameT);
-            AddLvWorkItem("Виконавці в звіті", _work.Performers);
-            AddLvWorkItem("Виконавці в звіті транзлітеровані", _work.PerformersT);
-
-
-
-        }
-
-        private void AddLvWorkItem(string name, object value)
-        {
-            lvWorks.Items.Add(name).SubItems.Add(value == null ? "" : value.ToString());
-        }
-
-        private bool IsEditable(ListViewItem item)
-        {
-            return false;
-        }
-
-        private void lvWorks_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                var item = lvWorks.GetItemAt(e.X, e.Y);
-                if (item == null)
-                {
-                    return;
-                }
-                var text = item.GetSubItemAt(e.X, e.Y).Text;
-                _textToCopy = string.IsNullOrEmpty(text) ? "" : text;
-                contextMenuStrip.Show(lvWorks, new Point(e.X, e.Y), ToolStripDropDownDirection.BelowRight);
-            }
-        }
-
-        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(_textToCopy))
-            {
-                Clipboard.SetText(_textToCopy);
-            }
-            else
-            {
-                Clipboard.Clear();
-            }
-        }
     }
 }

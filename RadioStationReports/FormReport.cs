@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,10 +43,10 @@ namespace RadioStationReports
                 listviewX = (ListViewItem)x;
                 listviewY = (ListViewItem)y;
 
-                if(ColumnToSort == 1)
+                if (ColumnToSort == 1)
                 {
                     compareResult = ObjectCompare.Compare(
-                        int.Parse(listviewX.SubItems[ColumnToSort].Text), 
+                        int.Parse(listviewX.SubItems[ColumnToSort].Text),
                         int.Parse(listviewY.SubItems[ColumnToSort].Text)
                     );
                 }
@@ -126,7 +127,7 @@ namespace RadioStationReports
         {
             _actionsVisible = false;
 
-            ucReportLineWork.Changed += UcReportLineWork_Changed;
+            //ucReportLineWork.Changed += UcReportLineWork_Changed;
 
             ConfigureLvReportLines();
             ConfigureCbFilter();
@@ -330,9 +331,41 @@ namespace RadioStationReports
             });
         }
 
+        private void ClearEditControls()
+        {
+            tbObjId.Text = "";
+            tbWic.Text = "";
+            tbIswc.Text = "";
+            tbObjId.Enabled = false;
+            tbWic.Enabled = false;
+            tbIswc.Enabled = false;
+            btnApplyCode.Enabled = false;
+            btnCancelCode.Enabled = false;
+            btnSearch.Enabled = false;
+
+            rbCheckValueUndefined.Checked = false;
+            rbCheckValue100.Checked = false;
+            rbCheckValue0.Checked = false;
+
+            rbCheckValueUndefined.Enabled = false;
+            rbCheckValue100.Enabled = false;
+            rbCheckValue0.Enabled = false;
+
+            ucReportLineWork.Clear();
+            ucReportLineDistribution.Clear();
+
+            if (_formSearch != null)
+            {
+                _formSearch.Visible = false;
+            }
+        }
+
         private void FillLvReportLines()
         {
             lvReportLines.ListViewItemSorter = null;
+
+            ClearEditControls();
+
             lvReportLines.Items.Clear();
             var seqNr = 1;
             _reportLines.ForEach(x =>
@@ -362,6 +395,11 @@ namespace RadioStationReports
                     else if (rbCheckedUndefined.Checked)
                     {
                         showLine = x.Work.CheckValue == null;
+                    }
+                    else if (rbCheckedContradictory.Checked)
+                    {
+                        showLine = x.Work.CheckValue == 0 && x.Work.Share > 0 ||
+                            x.Work.CheckValue == 100 && x.Work.Share == 0;
                     }
                 }
 
@@ -440,6 +478,8 @@ namespace RadioStationReports
                 tbIswc.Enabled = false;
                 btnApplyCode.Enabled = false;
                 btnCancelCode.Enabled = false;
+                btnSearch.Enabled = false;
+
             }
 
             else if (ChangedCodeField == "NONE")
@@ -476,6 +516,27 @@ namespace RadioStationReports
                 tbWic.Text = "";
                 btnApplyCode.Enabled = true;
                 btnCancelCode.Enabled = true;
+            }
+
+            if (line == null)
+            {
+                rbCheckValueUndefined.Checked = false;
+                rbCheckValue100.Checked = false;
+                rbCheckValue0.Checked = false;
+
+                rbCheckValueUndefined.Enabled = false;
+                rbCheckValue100.Enabled = false;
+                rbCheckValue0.Enabled = false;
+            }
+            else
+            {
+                rbCheckValueUndefined.Checked = line.Work.CheckValue == null;
+                rbCheckValue100.Checked = line.Work.CheckValue == 100;
+                rbCheckValue0.Checked = line.Work.CheckValue == 0;
+
+                rbCheckValueUndefined.Enabled = true;
+                rbCheckValue100.Enabled = true;
+                rbCheckValue0.Enabled = true;
             }
 
             _ignoreCodeChangedEvent = false;
@@ -670,6 +731,28 @@ namespace RadioStationReports
             tbObjId.Text = tbWic.Text = tbIswc.Text = "";
             UpdateLvReportLine();
         }
+
+        private void SetCheckValue(int? checkValue)
+        {
+            var line = GetSelectedLine();
+
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = @"
+                    update Works set CheckValue = @checkValue where Id = @Id
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Id", line.Work.Id);
+                cmd.Parameters.AddWithValue("@checkValue", checkValue == null ? DBNull.Value : checkValue);
+                cmd.ExecuteNonQuery();
+
+                line.Work.CheckValue = checkValue;
+
+                UpdateLvReportLine();
+
+            });
+        }
+
         private void btnAutoSearch_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -953,9 +1036,12 @@ namespace RadioStationReports
                     {
                         _formSearch.Visible = false;
                     }
+                    btnSearch.Enabled = false; ;
                     UpdateCodeEditControls("NONE");
                     return;
                 }
+
+                btnSearch.Enabled = true;
 
                 if (_formSearch != null)
                 {
@@ -1396,9 +1482,15 @@ namespace RadioStationReports
             FillLvReportLines();
         }
 
+        private void rbCheckedCOntradictory_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvReportLines();
+        }
+
+
         private void lvReportLines_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if(e.Column < 1)
+            if (e.Column < 1)
             {
                 return;
             }
@@ -1421,6 +1513,43 @@ namespace RadioStationReports
 
             lvReportLines.Sort();
         }
-    }
+
+        private void rbCheckValueUndefined_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_ignoreCodeChangedEvent)
+            {
+                return;
+            }
+            if (rbCheckValueUndefined.Checked)
+            {
+                SetCheckValue(null);
+            }
+        }
+
+        private void rbCheckValue100_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_ignoreCodeChangedEvent)
+            {
+                return;
+            }
+            if (rbCheckValue100.Checked)
+            {
+                SetCheckValue(100);
+            }
+        }
+
+        private void rbCheckValue0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_ignoreCodeChangedEvent)
+            {
+                return;
+            }
+            if (rbCheckValue0.Checked)
+            {
+                SetCheckValue(0);
+            }
+        }
+
+     }
 }
 
