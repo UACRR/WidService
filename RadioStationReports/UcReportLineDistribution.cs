@@ -101,7 +101,10 @@ namespace RadioStationReports
             var WorkShareTotal = 0M;
             var PayShareTotal = 0M;
             lvDistribution.Items.Clear();
-            _distributions.ForEach(x =>
+            _distributions
+                .OrderBy(x => x.RightHolder)
+                .ToList()
+                .ForEach(x =>
             {
                 var item = lvDistribution.Items.Add(x.RightHolder);
                 item.SubItems.Add(x.IpBaseNr);

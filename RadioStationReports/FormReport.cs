@@ -342,6 +342,7 @@ namespace RadioStationReports
             btnApplyCode.Enabled = false;
             btnCancelCode.Enabled = false;
             btnSearch.Enabled = false;
+            btnUpdateFromWid.Enabled = false;
 
             rbCheckValueUndefined.Checked = false;
             rbCheckValue100.Checked = false;
@@ -479,6 +480,7 @@ namespace RadioStationReports
                 btnApplyCode.Enabled = false;
                 btnCancelCode.Enabled = false;
                 btnSearch.Enabled = false;
+                btnUpdateFromWid.Enabled = false;
 
             }
 
@@ -527,6 +529,8 @@ namespace RadioStationReports
                 rbCheckValueUndefined.Enabled = false;
                 rbCheckValue100.Enabled = false;
                 rbCheckValue0.Enabled = false;
+
+                btnUpdateFromWid.Enabled = false;
             }
             else
             {
@@ -537,6 +541,8 @@ namespace RadioStationReports
                 rbCheckValueUndefined.Enabled = true;
                 rbCheckValue100.Enabled = true;
                 rbCheckValue0.Enabled = true;
+
+                btnUpdateFromWid.Enabled = line.Work.Wic != null;
             }
 
             _ignoreCodeChangedEvent = false;
@@ -1051,8 +1057,16 @@ namespace RadioStationReports
                 UpdateCodeEditControls("NONE");
 
                 var reportLine = (ReportLine)selectedItem.Tag;
-                ucReportLineWork.Update(_report.Id, reportLine.LineNr);
-                ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+
+                if (tabDetails.SelectedIndex == 0)
+                {
+                    ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+                }
+
+                if (tabDetails.SelectedIndex == 1)
+                {
+                    ucReportLineWork.Update(_report.Id, reportLine.LineNr);
+                }
 
                 if (_formSearch != null && _formSearch.Visible)
                 {
@@ -1550,6 +1564,94 @@ namespace RadioStationReports
             }
         }
 
-     }
+        private void tabDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItem = GetSelectedItem();
+            if (selectedItem == null)
+            {
+                ucReportLineWork.Clear();
+                ucReportLineDistribution.Clear();
+                return;
+            }
+            var reportLine = (ReportLine)selectedItem.Tag;
+            if (tabDetails.SelectedIndex == 0)
+            {
+                ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+            }
+            else if (tabDetails.SelectedIndex == 1)
+            {
+                ucReportLineWork.Update(_report.Id, reportLine.LineNr);
+            }
+        }
+
+        private void btnUpdateFromWid_Click(object sender, EventArgs e)
+        {
+            var selectedItem = GetSelectedItem();
+            if (selectedItem == null)
+            {
+                return;
+            }
+
+            var reportLine = (ReportLine)selectedItem.Tag;
+
+            var objId = reportLine.Work.ObjId;
+            var wic = reportLine.Work.Wic;
+            if(objId == null || wic == null)
+            {
+                return;
+            }
+
+            var isOwn = false;
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = @"
+                    select * 
+                    from SocWid..WidSubmission 
+                    where SocCde = 140 and Wic = @wic
+                ";
+                cmd.Parameters.AddWithValue("@wic", wic);
+                using (var r = cmd.ExecuteReader())
+                {
+                    isOwn = r.HasRows;
+                }
+            });
+
+            if (isOwn)
+            {
+                MessageBox.Show("Твір був опублікований УААСП, оновлення не буде виконане.", 
+                    "Оновлення з WID",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Helpers.RunSqlT(cmd =>
+            {
+                cmd.CommandText = "MediaService..spUpdateWorkFromWid";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@objId", objId);
+                cmd.Parameters.AddWithValue("@wic", wic);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "spCreateReportAuthorsMs";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@reportId", _report.Id);
+                cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "select Share from Works where Id = @workId";
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
+                reportLine.Work.Share = (decimal)cmd.ExecuteScalar();
+            });
+
+            UpdateLvReportLine();
+
+            ucReportLineWork.Update(_report.Id, reportLine.LineNr);
+            ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+    
+        }
+    }
 }
 

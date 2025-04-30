@@ -24,6 +24,7 @@ namespace RadioStationReports
             GetWicsToImport,
             ImportWorkFromWid,
             SyncObjIdWicIswc,
+            UpdateWorksFromWid,
             CreateReportAuthors,
             SetReportRegistered,
        }
@@ -85,8 +86,16 @@ namespace RadioStationReports
                 Procedure = "spSyncObjIdWicIswc",
                 UseRegId = false,
                 UseReportId = false,
-           },
-            new Action
+            },
+             new Action
+            {
+                Code = (int)ActionType.UpdateWorksFromWid,
+                Description = "Оновлення інформації з WID",
+                Procedure = "MediaService..spUpdateCustomerReportWorksFromWid",
+                UseRegId = false,
+                UseReportId = false,
+            },
+           new Action
             {
                 Code = (int)ActionType.CreateReportAuthors,
                 Description = "Розрахунок процентів для знайдених творів",
@@ -193,6 +202,9 @@ namespace RadioStationReports
                     cmd.Parameters.AddWithValue("@objId", 0);
                     break; 
                 case ActionType.SyncObjIdWicIswc:
+                    break; 
+                case ActionType.UpdateWorksFromWid:
+                    cmd.Parameters.AddWithValue("@reportId", _reportId);
                     break; 
                 case ActionType.CreateReportAuthors:
                     cmd.Parameters.AddWithValue("@reportId", _reportId);

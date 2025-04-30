@@ -10,9 +10,9 @@ namespace RadioStationReports
     {
         public int Id           { get; set; }
         public int ReportId     { get; set; }
-        public string FoundIn   { get; set; }
-        public int FoundCde     { get; set; }
-        public string IpBaseNr  { get; set; }
+        public int WorkId   { get; set; }
+        public string Wic     { get; set; }
+        public string CalculatedFrom  { get; set; }
         public int CustId       { get; set; }
         public int IpNameNr     { get; set; }
         public decimal PerShr   { get; set; }

@@ -1125,9 +1125,13 @@ namespace RadioStationReports
         public void CalcShares(SqlCommand cmd)
         {
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "spCreateReportAuthors";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@reportId", _reportId);
+
+            cmd.CommandText = "MediaService..spUpdateCustomerReportWorksFromWid";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "spCreateReportAuthors";
             cmd.ExecuteNonQuery();
         }
 
