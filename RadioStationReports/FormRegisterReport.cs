@@ -122,8 +122,12 @@ namespace RadioStationReports
             public bool UseReportId { get; set; }
         }
 
-        private CustomerItem _customer;
-        private ReportItem _msReport;
+        private string _customerName;
+        private int _regId;
+        private string _startDate;
+        private string _endDate;
+        private string _fileName;
+
         private int _reportId;
 
         private int _currentActionIdx;
@@ -136,19 +140,36 @@ namespace RadioStationReports
         public FormRegisterReport(CustomerItem customer, ReportItem report)
         {
             InitializeComponent();
-            _customer = customer;
-            _msReport = report;
+            _customerName = customer.ShortName;
+            _regId = report.RegId;
+            _startDate = report.StartDate.ToString("yyy-MM-dd");
+            _endDate = report.EndDate.ToString("yyy-MM-dd") ;
+            _fileName = report.FileName;
+
+            _reportId = 0;
+        }
+
+        public FormRegisterReport(int reportId, string fileName)
+        {
+            InitializeComponent();
+            _customerName = "";
+            _regId = 0;
+            _startDate = "";
+            _endDate = "";
+            _fileName = fileName;
+
+            _reportId = reportId;
         }
         
         private void FormRegisterReport_Load(object sender, EventArgs e)
         {
             Configure();
 
-            tbRegId.Text = _msReport.RegId.ToString();
-            tbCustomerName.Text = _customer.ShortName;
-            tbStartDate.Text = _msReport.StartDate.ToString("yyy-MM-dd");
-            tbEndDate.Text = _msReport.EndDate.ToString("yyy-MM-dd");
-            tbFileName.Text = _msReport.FileName;
+            tbRegId.Text = _regId.ToString();
+            tbCustomerName.Text = _customerName;
+            tbStartDate.Text = _startDate;
+            tbEndDate.Text = _endDate;
+            tbFileName.Text = _fileName;
         }
 
         private void Configure()
@@ -177,7 +198,7 @@ namespace RadioStationReports
             switch ((ActionType)_currentActionIdx)
             {
                 case ActionType.RegisterReportFromMs:
-                    cmd.Parameters.AddWithValue("@regId", _msReport.RegId);
+                    cmd.Parameters.AddWithValue("@regId", _regId);
                     var paramReportId = new SqlParameter("@reportId", SqlDbType.Int)
                     { 
                         Direction = ParameterDirection.Output 
@@ -224,19 +245,22 @@ namespace RadioStationReports
             {
                 if (_currentActionIdx == (int)ActionType.RegisterReportFromMs)
                 {
-                    Helpers.RunSqlT(cmd =>
+                    if (_reportId == 0)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = ACTIONS[_currentActionIdx].Procedure;
-                        cmd.Parameters.AddWithValue("@regId", _msReport.RegId);
-                        var paramReportId = new SqlParameter("@reportId", SqlDbType.Int)
-                        { 
-                            Direction = ParameterDirection.Output 
-                        };
-                        cmd.Parameters.Add(paramReportId);
-                        cmd.ExecuteNonQuery();
-                        _reportId = (int)paramReportId.Value;
-                    });
+                        Helpers.RunSqlT(cmd =>
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = ACTIONS[_currentActionIdx].Procedure;
+                            cmd.Parameters.AddWithValue("@regId", _regId);
+                            var paramReportId = new SqlParameter("@reportId", SqlDbType.Int)
+                            {
+                                Direction = ParameterDirection.Output
+                            };
+                            cmd.Parameters.Add(paramReportId);
+                            cmd.ExecuteNonQuery();
+                            _reportId = (int)paramReportId.Value;
+                        });
+                    }
                 }
                 else if (_currentActionIdx == (int)ActionType.GetWicsToImport)
                 {

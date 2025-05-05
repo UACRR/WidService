@@ -70,10 +70,10 @@
             panelMain.RowCount = 5;
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 217F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            panelMain.Size = new System.Drawing.Size(798, 447);
+            panelMain.Size = new System.Drawing.Size(798, 470);
             panelMain.TabIndex = 0;
             // 
             // panelTop
@@ -235,7 +235,7 @@
             lvActions.HideSelection = false;
             lvActions.Location = new System.Drawing.Point(3, 189);
             lvActions.Name = "lvActions";
-            lvActions.Size = new System.Drawing.Size(787, 211);
+            lvActions.Size = new System.Drawing.Size(787, 234);
             lvActions.TabIndex = 2;
             lvActions.UseCompatibleStateImageBehavior = false;
             // 
@@ -243,7 +243,7 @@
             // 
             panelBottom.Controls.Add(btnClose);
             panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            panelBottom.Location = new System.Drawing.Point(3, 406);
+            panelBottom.Location = new System.Drawing.Point(3, 429);
             panelBottom.Name = "panelBottom";
             panelBottom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             panelBottom.Size = new System.Drawing.Size(787, 30);
@@ -275,7 +275,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(798, 447);
+            ClientSize = new System.Drawing.Size(798, 470);
             ControlBox = false;
             Controls.Add(panelMain);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

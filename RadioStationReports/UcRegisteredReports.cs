@@ -559,8 +559,12 @@ namespace RadioStationReports
                     form.OutputParameters
                 );
 
-                radioPreSearchManager = new RadioPreSearchManager(reportId);
-                radioPreSearchManager.AutoSearch();
+                var formRegisterReport = new FormRegisterReport(reportId, fileFullName);
+                formRegisterReport.ShowDialog();
+                //return form.ReportItemStatus;
+
+ //               radioPreSearchManager = new RadioPreSearchManager(reportId);
+  //              radioPreSearchManager.AutoSearch();
 
                 Helpers.RunSql(cmd =>
                 {
