@@ -22,5 +22,10 @@ namespace DdexInvoicing
         {
             Close();
         }
+
+        private void UcRoyaltyDistribution_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -43,6 +43,7 @@
             this.UcRoyaltyDistribution.Name = "UcRoyaltyDistribution";
             this.UcRoyaltyDistribution.Size = new System.Drawing.Size(1017, 511);
             this.UcRoyaltyDistribution.TabIndex = 0;
+            this.UcRoyaltyDistribution.Load += new System.EventHandler(this.UcRoyaltyDistribution_Load);
             // 
             // tableLayoutPanel1
             // 
