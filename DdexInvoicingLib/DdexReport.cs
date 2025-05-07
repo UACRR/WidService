@@ -249,6 +249,9 @@ namespace InvoicingLib
                                         case DigitalServiceProviderEnum.DEEZER:
                                             block = new DdexReportBlockDeezer(this, action.DoFiltering());
                                             break;
+                                        case DigitalServiceProviderEnum.TIKTOK:
+                                            block = new DdexReportBlockTiktok(this, action.DoFiltering());
+                                            break;
                                         default:
                                             throw new Exception("InvoicingLib.DdexReport.ProcessFile - Cannot identify dsp");
                                     }

@@ -461,6 +461,8 @@
     <Content Include="CcidStat.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSpotify.sql" />
+    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceTiktok.sql" />
     <Content Include="DBSchema\Procedures\spGetWidAuthorShares.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_AddCcIdCLDdexAdjustment.sql" />
     <Content Include="DBSchema\Procedures\pTsk10_DDEXFormRate.sql" />
@@ -472,9 +474,7 @@
     <Content Include="DBSchema\Procedures\spCreateClFromAdjustmentReport.sql" />
     <Content Include="DBSchema\Procedures\spCreateClFromCrf.sql" />
     <Content Include="DBSchema\Procedures\spCreateCorrectedInFile.sql" />
-    <Content Include="DBSchema\Procedures\spCreateInitialInvoice.sql" />
     <Content Include="DBSchema\Procedures\spCreateInitialInvoiceDeezer.sql" />
-    <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSpotify.sql" />
     <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSrmf.sql" />
     <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSubscr.sql" />
     <Content Include="DBSchema\Procedures\spCreateInitialInvoiceSubscrM.sql" />

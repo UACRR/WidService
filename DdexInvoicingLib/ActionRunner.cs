@@ -64,6 +64,10 @@ namespace InvoicingLib
                         new DdexReport(ConnectionString, DdexReportId)
                             .ProcessFiles(new DdexReportActionLoadIdentDataSpotify());
                         break;
+                    case DdexReport.DigitalServiceProviderEnum.TIKTOK:
+                        new DdexReport(ConnectionString, DdexReportId)
+                            .ProcessFiles(new DdexReportActionLoadIdentDataTiktok());
+                        break;
                     case DdexReport.DigitalServiceProviderEnum.DEEZER:
                         // For multifile reports DdexReportId corresppnds to the first file of group
                         // Need to iterate over all reports starting from the report that is not loaded completely

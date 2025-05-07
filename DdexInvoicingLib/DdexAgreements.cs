@@ -23,6 +23,7 @@ namespace InvoicingLib
                         , Name licenseeName
                         , licCodeName licenseDescription
                     from vMSCustomerUses
+                    order by custId
 /*                    union
                     select 1001 licId
                         , 10000 custId

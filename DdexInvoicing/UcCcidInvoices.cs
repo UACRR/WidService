@@ -673,6 +673,9 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
                         cmd.CommandText = "spCreateInitialInvoiceDeezer";
                         break;
+                    case DdexReport.ReportTypeEnum.TIKTOK:
+                        cmd.CommandText = "spCreateInitialInvoiceTiktok";
+                        break;
                 }
 
                 cmd.Parameters.Clear();
@@ -683,6 +686,7 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                    case DdexReport.ReportTypeEnum.TIKTOK:
                         cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@fileId", DBNull.Value);
                         break;

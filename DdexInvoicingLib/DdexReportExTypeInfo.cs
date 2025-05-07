@@ -23,6 +23,7 @@ namespace InvoicingLib
             SPOTIFY_FREE,
             SPOTIFY_PREMIUM,
             DEEZER_ALL,
+            TIKTOK,
         }
 
         public enum AgreementParamEnum
@@ -53,6 +54,7 @@ namespace InvoicingLib
             YOUTUBE,
             SPOTIFY,
             DEEZER,
+            TIKTOK,
         }
 
         public enum FileTypeEnum
@@ -300,6 +302,25 @@ namespace InvoicingLib
             },
             new ReportTypeInfo
             {
+                ReportType              = ReportTypeEnum.TIKTOK,
+                Name                    = "tiktok",
+                IsMonthly               = true,
+                FileNameWildcard        = "DSR_UACRR_TIKTOK_TIKTOK_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.TIKTOK,
+                NeedsExchRate           = false,
+                FileMayHaveErrors       = false,
+                RequiredParams          = new HashSet<AgreementParamEnum>
+                {
+                    AgreementParamEnum.MUSICRATE,
+                    AgreementParamEnum.MECHSPLIT,
+                    AgreementParamEnum.PERFSPLIT,
+                    AgreementParamEnum.ROYALTYTHRESHOLD,
+                },
+                GetReportingPeriodInfo  = GetTiktokDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
+            },
+            new ReportTypeInfo
+            {
                 ReportType              = ReportTypeEnum.DEEZER_ALL,
                 Name                    = "deezer-all",
                 IsMonthly               = false,
@@ -357,6 +378,7 @@ namespace InvoicingLib
             { "spotify-free",           ReportTypeEnum.SPOTIFY_FREE},
             { "spotify-premium",        ReportTypeEnum.SPOTIFY_PREMIUM},
             { "deezer-all",             ReportTypeEnum.DEEZER_ALL},
+            { "tiktok",                 ReportTypeEnum.TIKTOK},
         };
 
         public static Dictionary<DigitalServiceProviderEnum, Dictionary<string, ReportTypeEnum>> DspFileReportTypes =
@@ -387,6 +409,7 @@ namespace InvoicingLib
             { "youtube", DigitalServiceProviderEnum.YOUTUBE},
             { "spotify", DigitalServiceProviderEnum.SPOTIFY},
             { "deezer", DigitalServiceProviderEnum.DEEZER},
+            { "tiktok", DigitalServiceProviderEnum.TIKTOK},
         };
 
         public static Dictionary<AgreementParamEnum, AgreementParam> AgreementParams =
@@ -810,6 +833,18 @@ namespace InvoicingLib
         }
 
         public static ReportingPeriodInfo GetSpotifyDsrReportingPeriodInfo(string fullFileName)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(fullFileName);
+            var periodPart = fileName.Split('_')[4];
+            var dateParts = periodPart.Split('-');
+            return new ReportingPeriodInfo
+            {
+                Year = int.Parse(dateParts[0]),
+                Quarter = null,
+                Month = int.Parse(dateParts[1]),
+            };
+        }
+        public static ReportingPeriodInfo GetTiktokDsrReportingPeriodInfo(string fullFileName)
         {
             var fileName = Path.GetFileNameWithoutExtension(fullFileName);
             var periodPart = fileName.Split('_')[4];

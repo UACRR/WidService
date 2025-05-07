@@ -114,6 +114,11 @@ namespace InvoicingLib
             {
                 return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Quarter}_{service_description}_IN.dat";
             }
+            else if(receiver.Equals("Tiktok", StringComparison.OrdinalIgnoreCase))
+            {
+                return $"CCID_{version}_{sender}_{receiver}_{ccid_id}_{territory}_{use_type}_{Month}_{service_description}_IN.dat";
+            }
+            
             throw new Exception($"Невідомий приймач інвойсу '{receiver}' в полі Receiver запису CcidInHeader");
         }
 
