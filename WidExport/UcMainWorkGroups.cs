@@ -86,20 +86,22 @@ namespace WidExport
 
         private void RefreshControls()
         {
-            btnShow.Visible =
-            btnCreateSubmFile.Visible =
-            btnDeleteGroup.Visible =
-            btnClose.Visible =
-            btnRefreshWicIswc.Visible = true;
+            btnShow.Visible             =
+            btnCreateSubmFile.Visible   =
+            btnDeleteGroup.Visible      =
+            btnClose.Visible            =
+            btnUpdate.Visible           =
+            btnRefreshWicIswc.Visible   = false;
 
             if (_selectedGroup != null)
             {
-                btnCreateSubmFile.Visible =
-
-                btnDeleteGroup.Visible =
-                btnClose.Visible = _selectedGroup.GroupType == 'M' && _selectedGroup.Status != WidSubmGroupStatus.Closed;
-
-                btnUpdate.Visible = _selectedGroup.GroupType == 'C';
+                btnShow.Visible             = true;
+                btnCreateSubmFile.Visible   = _selectedGroup.Status != WidSubmGroupStatus.Closed;
+                btnDeleteGroup.Visible      =
+                btnClose.Visible            =
+                    _selectedGroup.GroupType == 'M' && _selectedGroup.Status != WidSubmGroupStatus.Closed;
+                btnUpdate.Visible           = _selectedGroup.GroupType == 'C';
+                btnRefreshWicIswc.Visible   = true;
             }
 
             FillParties();

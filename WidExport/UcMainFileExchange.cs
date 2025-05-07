@@ -146,8 +146,10 @@ namespace WidExport
 
             var fileName = "";
             using (var wc = new WaitCursor())
-            Helpers.RunSqlSocWidSubmit(cmd =>
+            Helpers.RunSqlSocWidSubmitT(cmd =>
             {
+                cmd.CommandTimeout = 60;
+
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "select Name from SubmFile where Id = @submFileId";
                 cmd.Parameters.Clear();

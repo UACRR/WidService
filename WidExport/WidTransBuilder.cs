@@ -181,6 +181,8 @@ namespace WidExport
                     var submFileId = 0;
                     var oldSubmFileName = "";
 
+                    cmd.CommandTimeout = 60;
+
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "spSubmFileSelectCurrent";
                     cmd.Parameters.Clear();
