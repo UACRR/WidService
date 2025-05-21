@@ -38,6 +38,7 @@ namespace RadioStationReports
                 Procedure = "spRegisterReportFromMs",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
             },
             new Action
             {
@@ -46,6 +47,7 @@ namespace RadioStationReports
                 Procedure = "spCreateWorksForRegisteredReport",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
             },
             new Action
             {
@@ -54,6 +56,7 @@ namespace RadioStationReports
                 Procedure = "spAutoSearchInMs",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
            },
             new Action
             {
@@ -62,6 +65,7 @@ namespace RadioStationReports
                 Procedure = "spAutoSearchInWid",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
             },
             new Action
             {
@@ -70,6 +74,7 @@ namespace RadioStationReports
                 Procedure = "spGetWicsToImport",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
             },
             new Action
             {
@@ -78,6 +83,7 @@ namespace RadioStationReports
                 Procedure = "MediaService..spImportWorkFromWid",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
             },
             new Action
             {
@@ -86,6 +92,7 @@ namespace RadioStationReports
                 Procedure = "spSyncObjIdWicIswc",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
             },
              new Action
             {
@@ -94,6 +101,7 @@ namespace RadioStationReports
                 Procedure = "MediaService..spUpdateCustomerReportWorksFromWid",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = false,
             },
            new Action
             {
@@ -102,6 +110,7 @@ namespace RadioStationReports
                 Procedure = "spCreateReportAuthors",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
             },
             new Action
             {
@@ -110,6 +119,7 @@ namespace RadioStationReports
                 Procedure = "spSetReportRegistered",
                 UseRegId = false,
                 UseReportId = false,
+                UseTran = true,
            },
        };
 
@@ -120,6 +130,7 @@ namespace RadioStationReports
             public string Procedure { get; set; }
             public bool UseRegId { get; set; }
             public bool UseReportId { get; set; }
+            public bool UseTran { get; set; }
         }
 
         private string _customerName;
@@ -283,14 +294,29 @@ namespace RadioStationReports
                 }
                 else
                 {
-                    Helpers.RunSqlT(cmd =>
+                    var action = ACTIONS[_currentActionIdx];
+                    if (action.UseTran)
                     {
-                        cmd.CommandTimeout = 300;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = ACTIONS[_currentActionIdx].Procedure;
-                        AddCurrentActionParams(cmd);
-                        cmd.ExecuteNonQuery();
-                    });
+                        Helpers.RunSqlT(cmd =>
+                        {
+                            cmd.CommandTimeout = 300;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = ACTIONS[_currentActionIdx].Procedure;
+                            AddCurrentActionParams(cmd);
+                            cmd.ExecuteNonQuery();
+                        });
+                    }
+                    else
+                    {
+                        Helpers.RunSql(cmd =>
+                        {
+                            cmd.CommandTimeout = 300;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = ACTIONS[_currentActionIdx].Procedure;
+                            AddCurrentActionParams(cmd);
+                            cmd.ExecuteNonQuery();
+                        });
+                    }
                 }
             }
             catch (Exception ex)

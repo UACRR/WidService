@@ -542,7 +542,7 @@ namespace RadioStationReports
                 rbCheckValue100.Enabled = true;
                 rbCheckValue0.Enabled = true;
 
-                btnUpdateFromWid.Enabled = line.Work.Wic != null;
+                btnUpdateFromWid.Enabled = line.Work.ObjId != null;
             }
 
             _ignoreCodeChangedEvent = false;
@@ -1596,62 +1596,114 @@ namespace RadioStationReports
 
             var objId = reportLine.Work.ObjId;
             var wic = reportLine.Work.Wic;
-            if(objId == null || wic == null)
+            var iswc = reportLine.Work.Iswc;
+
+            if (objId == null)
             {
                 return;
             }
 
-            var isOwn = false;
-            Helpers.RunSql(cmd =>
+            if (wic == null)
             {
-                cmd.CommandText = @"
-                    select * 
-                    from SocWid..WidSubmission 
-                    where SocCde = 140 and Wic = @wic
-                ";
-                cmd.Parameters.AddWithValue("@wic", wic);
-                using (var r = cmd.ExecuteReader())
+                var form = new FormJoinObjIdToWic((int)objId, iswc);
+                if (form.ShowDialog() == DialogResult.Cancel)
                 {
-                    isOwn = r.HasRows;
+                    return;
                 }
-            });
 
-            if (isOwn)
-            {
-                MessageBox.Show("Твір був опублікований УААСП, оновлення не буде виконане.", 
-                    "Оновлення з WID",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                wic = form.FoundWic;
+                iswc = form.FoundIswc;
+
+                reportLine.Work.Wic = wic;
+                reportLine.Work.Iswc = iswc;
+
+                _ignoreCodeChangedEvent = true;
+                tbWic.Text = wic.ToString();
+                tbIswc.Text = iswc;
+                _ignoreCodeChangedEvent = false;
+
+                selectedItem.SubItems[6].Text = wic.ToString();
+                selectedItem.SubItems[7].Text = iswc;
+
+                Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = @"
+                        update Works
+                        set Wic = @wic, Iswc = @iswc
+                        where Id = @workId
+                    ";
+                    cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
+                    cmd.Parameters.AddWithValue("@wic", wic);
+                    cmd.Parameters.AddWithValue("@iswc", iswc == "" ? DBNull.Value : iswc);
+                    cmd.ExecuteNonQuery();
+                });
             }
 
-            Helpers.RunSqlT(cmd =>
+            try
             {
-                cmd.CommandText = "MediaService..spUpdateWorkFromWid";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@objId", objId);
-                cmd.Parameters.AddWithValue("@wic", wic);
-                cmd.ExecuteNonQuery();
+                Cursor.Current = Cursors.WaitCursor;
+                var isOwn = false;
+                Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = @"
+                        select * 
+                        from SocWid..WidSubmission 
+                        where SocCde = 140 and Wic = @wic
+                    ";
+                    cmd.Parameters.AddWithValue("@wic", wic);
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        isOwn = r.HasRows;
+                    }
+                });
 
-                cmd.CommandText = "spCreateReportAuthorsMs";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@reportId", _report.Id);
-                cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
-                cmd.ExecuteNonQuery();
+                if (isOwn)
+                {
+                    MessageBox.Show("Твір був опублікований УААСП, оновлення не буде виконане.",
+                        "Оновлення з WID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                cmd.CommandText = "select Share from Works where Id = @workId";
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
-                reportLine.Work.Share = (decimal)cmd.ExecuteScalar();
-            });
+                Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = "MediaService..spUpdateWorkFromWid";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@objId", objId);
+                    cmd.Parameters.AddWithValue("@wic", wic);
+                    cmd.ExecuteNonQuery();
 
-            UpdateLvReportLine();
+                    cmd.CommandText = "spCreateReportAuthorsMs";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@reportId", _report.Id);
+                    cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
+                    cmd.ExecuteNonQuery();
 
-            ucReportLineWork.Update(_report.Id, reportLine.LineNr);
-            ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
-    
+                    cmd.CommandText = "select Share from Works where Id = @workId";
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
+                    reportLine.Work.Share = (decimal)cmd.ExecuteScalar();
+                });
+
+                UpdateLvReportLine();
+
+                ucReportLineWork.Update(_report.Id, reportLine.LineNr);
+                ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Оновлення інформації для твору", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+
         }
+ 
     }
 }
 

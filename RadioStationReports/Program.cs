@@ -50,6 +50,9 @@ namespace RadioStationReports
                 //var chechInfoLoader = new ChechInfoLoader();
                 //chechInfoLoader.LoadCheckInfoFromWorkBook();
                 //Application.Run(new FormMainReports());
+                
+                //Application.Run(new FormJoinObjIdToWic(920710, ""));
+                //return;
                 Application.Run(new FormMainIntegrated());
             }
             catch (Exception ex)
