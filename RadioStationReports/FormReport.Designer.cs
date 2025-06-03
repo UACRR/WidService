@@ -226,7 +226,6 @@ namespace RadioStationReports
             // lvReportLines
             // 
             lvReportLines.Dock = System.Windows.Forms.DockStyle.Fill;
-            lvReportLines.HideSelection = false;
             lvReportLines.Location = new System.Drawing.Point(3, 3);
             lvReportLines.Name = "lvReportLines";
             lvReportLines.Size = new System.Drawing.Size(841, 145);
@@ -472,7 +471,7 @@ namespace RadioStationReports
             // tabPage2
             // 
             tabPage2.Controls.Add(ucReportLineDistribution);
-            tabPage2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            tabPage2.Font = new System.Drawing.Font("Segoe UI", 9F);
             tabPage2.Location = new System.Drawing.Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -492,7 +491,7 @@ namespace RadioStationReports
             // tabPage1
             // 
             tabPage1.Controls.Add(ucReportLineWork);
-            tabPage1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            tabPage1.Font = new System.Drawing.Font("Segoe UI", 9F);
             tabPage1.Location = new System.Drawing.Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -526,7 +525,7 @@ namespace RadioStationReports
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             label1.Location = new System.Drawing.Point(3, 0);
             label1.Name = "label1";
             label1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -557,7 +556,7 @@ namespace RadioStationReports
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             label12.Location = new System.Drawing.Point(383, 0);
             label12.Name = "label12";
             label12.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -729,7 +728,7 @@ namespace RadioStationReports
             // labAutoSearch
             // 
             labAutoSearch.AutoSize = true;
-            labAutoSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            labAutoSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             labAutoSearch.Location = new System.Drawing.Point(3, 0);
             labAutoSearch.Name = "labAutoSearch";
             labAutoSearch.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -749,7 +748,7 @@ namespace RadioStationReports
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             label4.Location = new System.Drawing.Point(3, 196);
             label4.Name = "label4";
             label4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -760,7 +759,7 @@ namespace RadioStationReports
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             label6.Location = new System.Drawing.Point(3, 262);
             label6.Name = "label6";
             label6.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -833,7 +832,7 @@ namespace RadioStationReports
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             label10.Location = new System.Drawing.Point(3, 60);
             label10.Name = "label10";
             label10.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -853,7 +852,7 @@ namespace RadioStationReports
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             label3.Location = new System.Drawing.Point(3, 403);
             label3.Name = "label3";
             label3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -865,7 +864,7 @@ namespace RadioStationReports
             // 
             btnShowHideActions.AutoSize = true;
             btnShowHideActions.Dock = System.Windows.Forms.DockStyle.Right;
-            btnShowHideActions.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            btnShowHideActions.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnShowHideActions.Location = new System.Drawing.Point(1216, 23);
             btnShowHideActions.Name = "btnShowHideActions";
             btnShowHideActions.Size = new System.Drawing.Size(25, 30);

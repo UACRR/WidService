@@ -147,33 +147,58 @@ namespace RadioStationReports
         public static void UpdateExcelFile(string inputFileFullName, string outputFileFullName, ExcelBody body)
         {
             File.Copy(inputFileFullName, outputFileFullName, true);
-            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-            Workbook xlWorkbook = xlApp.Workbooks.Open(outputFileFullName);
-           _Worksheet xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
 
-            body(xlWorksheet);
+            Microsoft.Office.Interop.Excel.Application xlApp = null;
+            Workbook xlWorkbook = null;
+            _Worksheet xlWorksheet = null;
 
-            //cleanup
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            try
+            {
+                xlApp = new Microsoft.Office.Interop.Excel.Application();
+                xlWorkbook = xlApp.Workbooks.Open(outputFileFullName);
+                xlWorksheet = (_Worksheet)xlWorkbook.Sheets[1];
 
-            //release com objects to fully kill excel process from running in the background
-            Marshal.FinalReleaseComObject(xlWorksheet);
+                body(xlWorksheet);
 
-            //close and release
-            //xlWorkbook.SaveAs(outputFileFullName);
-            xlWorkbook.Save();
-            xlWorkbook.Close();
-            Marshal.FinalReleaseComObject(xlWorkbook);
-            //quit and release
-            //xlApp.Quit();
-            //Marshal.FinalReleaseComObject(xlApp);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Створення файлу", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+            finally
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
 
-            // Have to kill the process forcefully
-            uint processId = 0;
-            GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
-            var proc = Process.GetProcessById((int)processId);
-            proc.Kill();
+                //release com objects to fully kill excel process from running in the background
+                if (xlWorksheet != null)
+                {
+                    Marshal.FinalReleaseComObject(xlWorksheet);
+                }
+
+                //close and release
+                //xlWorkbook.SaveAs(outputFileFullName);
+                if (xlWorkbook != null) 
+                {
+                    xlWorkbook.Save();
+                    xlWorkbook.Close();
+                    Marshal.FinalReleaseComObject(xlWorkbook);
+                }
+                //quit and release
+                //xlApp.Quit();
+                //Marshal.FinalReleaseComObject(xlApp);
+
+                // Have to kill the process forcefully
+                if (xlApp != null)
+                {
+                    uint processId = 0;
+                    GetWindowThreadProcessId(new IntPtr(xlApp.Hwnd), out processId);
+                    var proc = Process.GetProcessById((int)processId);
+                    proc.Kill();
+                }
+            }
+             //cleanup
         }
 
         public static void UpdateExcelFile(string inputFileFullName, ExcelBody body)

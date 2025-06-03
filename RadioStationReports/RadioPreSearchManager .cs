@@ -1605,6 +1605,7 @@ namespace RadioStationReports
             Helpers.UpdateExcelFile(Configuration.TemplateFileFullName, outputFileFullName, xlWorksheet => {
 
                 var dataArray = new object[data.Count, COL_COUNT];
+                //var dataArray = new object[2, COL_COUNT];
 
                 var row = 0;
                 data.ForEach(x =>
@@ -1640,8 +1641,14 @@ namespace RadioStationReports
                     dataArray[row, col++] = x.SubPublisher;
 
 
+                    //if(row == 1)
+                    //{
+                    //    return;
+                    //}
+
                     row++;
-                });
+
+                 });
 
                 var c1 = (Range)xlWorksheet.Cells[3, 1];
                 var c2 = (Range)xlWorksheet.Cells[3 + data.Count - 1, COL_COUNT];

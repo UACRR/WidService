@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cisml>
+<comment></comment>
+<creationDate>2025-05-30T13:54:29.176+02:00</creationDate>
+<iba>DNL</iba>
+<numberOfDciItems>0</numberOfDciItems>
+<numberOfItems>1</numberOfItems>
+<packageId>59431174</packageId>
+<reasonCode>DOWNLOAD</reasonCode>
+<societyCode>140</societyCode>
+<status>OPEN</status>
+<userMail>a.ponomarova@uacrr.org.ua</userMail>
+<targets>
+   <targetSocietyCode>140</targetSocietyCode>
+   <targetStatus>UNPROCESSED</targetStatus>
+   <targetStatusCreationDate>2025-05-30T13:54:29.180+02:00</targetStatusCreationDate>
+</targets>
+    <mwiItemDetails>
+        <comment></comment>
+        <itemId>9048873</itemId>
+        <lastUpdateDate>2022-02-26T14:15:43+01:00</lastUpdateDate>
+        <originalTitle>GIRL</originalTitle>
+        <performDci>false</performDci>
+        <preferedIswc>T9000086339</preferedIswc>
+        <referenceNumbers>111</referenceNumbers>
+        <societyCode>140</societyCode>
+        <userMail>a.ponomarova@uacrr.org.ua</userMail>
+        <workNaturalKey>
+            <societyWorkCode>000469886</societyWorkCode>
+            <societyCode>021</societyCode>
+            <sourceDb>021</sourceDb>
+        </workNaturalKey>
+        <workDetail>
+            <workNaturalKey>
+                <societyWorkCode>000469886</societyWorkCode>
+                <societyCode>021</societyCode>
+                <sourceDb>021</sourceDb>
+            </workNaturalKey>
+            <authoritativeView>true</authoritativeView>
+            <duration>0</duration>
+            <recordingIndicator>Y</recordingIndicator>
+            <musicDistributionCategory>POP</musicDistributionCategory>
+            <postDate>2022-02-23T00:00:00</postDate>
+            <lastUpdateDate>2022-02-26T14:15:43</lastUpdateDate>
+            <createDate>2022-02-26T14:13:31</createDate>
+            <updateDate>2022-02-26T14:15:43</updateDate>
+            <workCategory>INT</workCategory>
+            <workTitles>
+                <languageCode>EN</languageCode>
+                <title>GIRL</title>
+                <titleType>OT</titleType>
+            </workTitles>
+            <artists>
+                <ipReference>
+                    <lastname>101 STRINGS ORCHESTRA</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>BEATLES</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>BRAVE COMBO</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>KING S SINGERS</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <firstname>STEPHAN</firstname>
+                    <lastname>MARSTON</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <firstname>GEORGE</firstname>
+                    <lastname>MARTIN</lastname>
+                </ipReference>
+            </artists>
+            <iswcPrefered>T9000086339</iswcPrefered>
+            <shareTerritories>
+                <territoryExpression>+000</territoryExpression>
+                <publicDomain>false</publicDomain>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001652493-7</ipBaseNumber>
+                        <ipNameNumber>00017798450</ipNameNumber>
+                        <lastname>LENNON JOHN WINSTON</lastname>
+                    </interestedParty>
+                    <ipRole>CA</ipRole>
+                    <ipRoleSequence>1</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>052</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>25.00</share>
+                        <societyOfLicense>021</societyOfLicense>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001654863-1</ipBaseNumber>
+                        <ipNameNumber>00018873266</ipNameNumber>
+                        <lastname>MCCARTNEY PAUL JAMES</lastname>
+                    </interestedParty>
+                    <ipRole>CA</ipRole>
+                    <ipRoleSequence>2</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>052</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>25.00</share>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001631451-3</ipBaseNumber>
+                        <ipNameNumber>00338164558</ipNameNumber>
+                        <lastname>SONY-ATV TUNES LLC</lastname>
+                    </interestedParty>
+                    <ipRole>E</ipRole>
+                    <ipRoleSequence>4</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>010</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>50.00</share>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001634178-7</ipBaseNumber>
+                        <ipNameNumber>00187062752</ipNameNumber>
+                        <lastname>SONY/ATV SONGS LLC</lastname>
+                    </interestedParty>
+                    <ipRole>SE</ipRole>
+                    <ipRoleSequence>3</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>099</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>0.00</share>
+                    </shares>
+                </interestedPartyRoles>
+            </shareTerritories>
+            <submissions>
+                <societyWorkCode>000469886</societyWorkCode>
+                <societyCode>021</societyCode>
+                <lastUpdateDate>2022-02-26T14:15:43</lastUpdateDate>
+                <transactionCode>WIA</transactionCode>
+            </submissions>
+        </workDetail>
+    </mwiItemDetails>
+</cisml><?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cisml>
+<comment></comment>
+<creationDate>2025-05-30T13:54:29.176+02:00</creationDate>
+<iba>DNL</iba>
+<numberOfDciItems>0</numberOfDciItems>
+<numberOfItems>1</numberOfItems>
+<packageId>59431174</packageId>
+<reasonCode>DOWNLOAD</reasonCode>
+<societyCode>140</societyCode>
+<status>OPEN</status>
+<userMail>a.ponomarova@uacrr.org.ua</userMail>
+<targets>
+   <targetSocietyCode>140</targetSocietyCode>
+   <targetStatus>UNPROCESSED</targetStatus>
+   <targetStatusCreationDate>2025-05-30T13:54:29.180+02:00</targetStatusCreationDate>
+</targets>
+    <mwiItemDetails>
+        <comment></comment>
+        <itemId>9048873</itemId>
+        <lastUpdateDate>2022-02-26T14:15:43+01:00</lastUpdateDate>
+        <originalTitle>GIRL</originalTitle>
+        <performDci>false</performDci>
+        <preferedIswc>T9000086339</preferedIswc>
+        <referenceNumbers>111</referenceNumbers>
+        <societyCode>140</societyCode>
+        <userMail>a.ponomarova@uacrr.org.ua</userMail>
+        <workNaturalKey>
+            <societyWorkCode>000469886</societyWorkCode>
+            <societyCode>021</societyCode>
+            <sourceDb>021</sourceDb>
+        </workNaturalKey>
+        <workDetail>
+            <workNaturalKey>
+                <societyWorkCode>000469886</societyWorkCode>
+                <societyCode>021</societyCode>
+                <sourceDb>021</sourceDb>
+            </workNaturalKey>
+            <authoritativeView>true</authoritativeView>
+            <duration>0</duration>
+            <recordingIndicator>Y</recordingIndicator>
+            <musicDistributionCategory>POP</musicDistributionCategory>
+            <postDate>2022-02-23T00:00:00</postDate>
+            <lastUpdateDate>2022-02-26T14:15:43</lastUpdateDate>
+            <createDate>2022-02-26T14:13:31</createDate>
+            <updateDate>2022-02-26T14:15:43</updateDate>
+            <workCategory>INT</workCategory>
+            <workTitles>
+                <languageCode>EN</languageCode>
+                <title>GIRL</title>
+                <titleType>OT</titleType>
+            </workTitles>
+            <artists>
+                <ipReference>
+                    <lastname>101 STRINGS ORCHESTRA</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>BEATLES</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>BRAVE COMBO</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>KING S SINGERS</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <firstname>STEPHAN</firstname>
+                    <lastname>MARSTON</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <firstname>GEORGE</firstname>
+                    <lastname>MARTIN</lastname>
+                </ipReference>
+            </artists>
+            <iswcPrefered>T9000086339</iswcPrefered>
+            <shareTerritories>
+                <territoryExpression>+000</territoryExpression>
+                <publicDomain>false</publicDomain>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001652493-7</ipBaseNumber>
+                        <ipNameNumber>00017798450</ipNameNumber>
+                        <lastname>LENNON JOHN WINSTON</lastname>
+                    </interestedParty>
+                    <ipRole>CA</ipRole>
+                    <ipRoleSequence>1</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>052</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>25.00</share>
+                        <societyOfLicense>021</societyOfLicense>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001654863-1</ipBaseNumber>
+                        <ipNameNumber>00018873266</ipNameNumber>
+                        <lastname>MCCARTNEY PAUL JAMES</lastname>
+                    </interestedParty>
+                    <ipRole>CA</ipRole>
+                    <ipRoleSequence>2</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>052</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>25.00</share>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001631451-3</ipBaseNumber>
+                        <ipNameNumber>00338164558</ipNameNumber>
+                        <lastname>SONY-ATV TUNES LLC</lastname>
+                    </interestedParty>
+                    <ipRole>E</ipRole>
+                    <ipRoleSequence>4</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>010</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>50.00</share>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001634178-7</ipBaseNumber>
+                        <ipNameNumber>00187062752</ipNameNumber>
+                        <lastname>SONY/ATV SONGS LLC</lastname>
+                    </interestedParty>
+                    <ipRole>SE</ipRole>
+                    <ipRoleSequence>3</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>099</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>0.00</share>
+                    </shares>
+                </interestedPartyRoles>
+            </shareTerritories>
+            <submissions>
+                <societyWorkCode>000469886</societyWorkCode>
+                <societyCode>021</societyCode>
+                <lastUpdateDate>2022-02-26T14:15:43</lastUpdateDate>
+                <transactionCode>WIA</transactionCode>
+            </submissions>
+        </workDetail>
+    </mwiItemDetails>
+</cisml><?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cisml>
+<comment></comment>
+<creationDate>2025-05-30T13:54:29.176+02:00</creationDate>
+<iba>DNL</iba>
+<numberOfDciItems>0</numberOfDciItems>
+<numberOfItems>1</numberOfItems>
+<packageId>59431174</packageId>
+<reasonCode>DOWNLOAD</reasonCode>
+<societyCode>140</societyCode>
+<status>OPEN</status>
+<userMail>a.ponomarova@uacrr.org.ua</userMail>
+<targets>
+   <targetSocietyCode>140</targetSocietyCode>
+   <targetStatus>UNPROCESSED</targetStatus>
+   <targetStatusCreationDate>2025-05-30T13:54:29.180+02:00</targetStatusCreationDate>
+</targets>
+    <mwiItemDetails>
+        <comment></comment>
+        <itemId>9048873</itemId>
+        <lastUpdateDate>2022-02-26T14:15:43+01:00</lastUpdateDate>
+        <originalTitle>GIRL</originalTitle>
+        <performDci>false</performDci>
+        <preferedIswc>T9000086339</preferedIswc>
+        <referenceNumbers>111</referenceNumbers>
+        <referenceNumbers>222</referenceNumbers>
+        <societyCode>140</societyCode>
+        <userMail>a.ponomarova@uacrr.org.ua</userMail>
+        <workNaturalKey>
+            <societyWorkCode>000469886</societyWorkCode>
+            <societyCode>021</societyCode>
+            <sourceDb>021</sourceDb>
+        </workNaturalKey>
+        <workDetail>
+            <workNaturalKey>
+                <societyWorkCode>000469886</societyWorkCode>
+                <societyCode>021</societyCode>
+                <sourceDb>021</sourceDb>
+            </workNaturalKey>
+            <authoritativeView>true</authoritativeView>
+            <duration>0</duration>
+            <recordingIndicator>Y</recordingIndicator>
+            <musicDistributionCategory>POP</musicDistributionCategory>
+            <postDate>2022-02-23T00:00:00</postDate>
+            <lastUpdateDate>2022-02-26T14:15:43</lastUpdateDate>
+            <createDate>2022-02-26T14:13:31</createDate>
+            <updateDate>2022-02-26T14:15:43</updateDate>
+            <workCategory>INT</workCategory>
+            <workTitles>
+                <languageCode>EN</languageCode>
+                <title>GIRL</title>
+                <titleType>OT</titleType>
+            </workTitles>
+            <artists>
+                <ipReference>
+                    <lastname>101 STRINGS ORCHESTRA</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>BEATLES</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>BRAVE COMBO</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <lastname>KING S SINGERS</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <firstname>STEPHAN</firstname>
+                    <lastname>MARSTON</lastname>
+                </ipReference>
+            </artists>
+            <artists>
+                <ipReference>
+                    <firstname>GEORGE</firstname>
+                    <lastname>MARTIN</lastname>
+                </ipReference>
+            </artists>
+            <iswcPrefered>T9000086339</iswcPrefered>
+            <shareTerritories>
+                <territoryExpression>+000</territoryExpression>
+                <publicDomain>false</publicDomain>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001652493-7</ipBaseNumber>
+                        <ipNameNumber>00017798450</ipNameNumber>
+                        <lastname>LENNON JOHN WINSTON</lastname>
+                    </interestedParty>
+                    <ipRole>CA</ipRole>
+                    <ipRoleSequence>1</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>052</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>25.00</share>
+                        <societyOfLicense>021</societyOfLicense>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001654863-1</ipBaseNumber>
+                        <ipNameNumber>00018873266</ipNameNumber>
+                        <lastname>MCCARTNEY PAUL JAMES</lastname>
+                    </interestedParty>
+                    <ipRole>CA</ipRole>
+                    <ipRoleSequence>2</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>052</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>25.00</share>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001631451-3</ipBaseNumber>
+                        <ipNameNumber>00338164558</ipNameNumber>
+                        <lastname>SONY-ATV TUNES LLC</lastname>
+                    </interestedParty>
+                    <ipRole>E</ipRole>
+                    <ipRoleSequence>4</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>010</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>50.00</share>
+                    </shares>
+                </interestedPartyRoles>
+                <interestedPartyRoles>
+                    <interestedParty>
+                        <ipBaseNumber>I-001634178-7</ipBaseNumber>
+                        <ipNameNumber>00187062752</ipNameNumber>
+                        <lastname>SONY/ATV SONGS LLC</lastname>
+                    </interestedParty>
+                    <ipRole>SE</ipRole>
+                    <ipRoleSequence>3</ipRoleSequence>
+                    <leadingPublisher>false</leadingPublisher>
+                    <shares>
+                        <affiliationSociety>099</affiliationSociety>
+                        <rightType>PER</rightType>
+                        <share>0.00</share>
+                    </shares>
+                </interestedPartyRoles>
+            </shareTerritories>
+            <submissions>
+                <societyWorkCode>000469886</societyWorkCode>
+                <societyCode>021</societyCode>
+                <lastUpdateDate>2022-02-26T14:15:43</lastUpdateDate>
+                <transactionCode>WIA</transactionCode>
+            </submissions>
+        </workDetail>
+    </mwiItemDetails>
+</cisml>
