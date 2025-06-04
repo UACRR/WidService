@@ -1703,7 +1703,42 @@ namespace RadioStationReports
             }
 
         }
- 
+
+        private void btnSearchInCisNet_Click(object sender, EventArgs e)
+        {
+            var selectedItem = GetSelectedItem();
+            if (selectedItem == null)
+            {
+                return;
+            }
+
+            var reportLine = (ReportLine)selectedItem.Tag;
+
+            var form = new FormSearchInCisNet(Path.GetFileNameWithoutExtension(_report.FileName));
+            if (DialogResult.OK != form.ShowDialog())
+            {
+                return;
+            }
+
+            var cisNetWorkId = form.CisNetWorkId;
+            try
+            {
+               Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = @"
+                        update Works
+                        set CisNetWorkId = @cisNetWorkId
+                        where Id = @workId
+                    ";
+                    cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
+                    cmd.Parameters.AddWithValue("@cisNetWorkId", cisNetWorkId);
+                    cmd.ExecuteNonQuery();
+                });
+            }
+            catch (Exception)
+            {
+            }
+       }
     }
 }
 
