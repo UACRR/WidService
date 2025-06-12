@@ -56,10 +56,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocIpiDumpLoader", "SocIpiDumpLoader\SocIpiDumpLoader.csproj", "{222A43B3-E251-43C2-842D-2F83D878EB56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocCisNetLib", "SocCisNetLib\SocCisNetLib.csproj", "{A73607FC-641F-40C7-B2CA-60627CF54466}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocCisNetTest", "SocCisNetTest\SocCisNetTest.csproj", "{7F3DD0C5-C740-48C6-986A-157825E7C14C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -168,14 +164,6 @@ Global
 		{222A43B3-E251-43C2-842D-2F83D878EB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{222A43B3-E251-43C2-842D-2F83D878EB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{222A43B3-E251-43C2-842D-2F83D878EB56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A73607FC-641F-40C7-B2CA-60627CF54466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A73607FC-641F-40C7-B2CA-60627CF54466}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A73607FC-641F-40C7-B2CA-60627CF54466}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A73607FC-641F-40C7-B2CA-60627CF54466}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F3DD0C5-C740-48C6-986A-157825E7C14C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F3DD0C5-C740-48C6-986A-157825E7C14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F3DD0C5-C740-48C6-986A-157825E7C14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F3DD0C5-C740-48C6-986A-157825E7C14C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

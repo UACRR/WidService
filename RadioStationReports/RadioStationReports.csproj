@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="CisNetFiles\" />
     <Folder Include="Sql\Migration2\" />
     <Folder Include="Sql\Migration4\" />

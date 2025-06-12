@@ -94,6 +94,8 @@ namespace RadioStationReports
             label10 = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
+            label19 = new System.Windows.Forms.Label();
+            btnImportFromCisNet = new System.Windows.Forms.Button();
             btnShowHideActions = new System.Windows.Forms.Button();
             panelExtraFilter = new System.Windows.Forms.FlowLayoutPanel();
             label5 = new System.Windows.Forms.Label();
@@ -635,6 +637,8 @@ namespace RadioStationReports
             panelActions.Controls.Add(label10, 0, 2);
             panelActions.Controls.Add(label11, 0, 3);
             panelActions.Controls.Add(label3, 0, 12);
+            panelActions.Controls.Add(label19, 0, 15);
+            panelActions.Controls.Add(btnImportFromCisNet, 0, 16);
             panelActions.Dock = System.Windows.Forms.DockStyle.Fill;
             panelActions.Location = new System.Drawing.Point(866, 94);
             panelActions.Name = "panelActions";
@@ -895,6 +899,27 @@ namespace RadioStationReports
             label3.Size = new System.Drawing.Size(36, 20);
             label3.TabIndex = 0;
             label3.Text = "Друк";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            label19.Location = new System.Drawing.Point(3, 461);
+            label19.Name = "label19";
+            label19.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            label19.Size = new System.Drawing.Size(121, 20);
+            label19.TabIndex = 4;
+            label19.Text = "Поєднання з CISNet";
+            // 
+            // btnImportFromCisNet
+            // 
+            btnImportFromCisNet.Location = new System.Drawing.Point(3, 499);
+            btnImportFromCisNet.Name = "btnImportFromCisNet";
+            btnImportFromCisNet.Size = new System.Drawing.Size(132, 26);
+            btnImportFromCisNet.TabIndex = 1;
+            btnImportFromCisNet.Text = "Імпортувати з CISNet";
+            btnImportFromCisNet.UseVisualStyleBackColor = true;
+            btnImportFromCisNet.Click += btnImportFromCisNet_Click;
             // 
             // btnShowHideActions
             // 
@@ -1192,5 +1217,7 @@ namespace RadioStationReports
         private System.Windows.Forms.FlowLayoutPanel panelSearchInCisNet;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnSearchInCisNet;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button btnImportFromCisNet;
     }
 }

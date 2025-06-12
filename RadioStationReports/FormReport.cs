@@ -1723,22 +1723,28 @@ namespace RadioStationReports
             var cisNetWorkId = form.CisNetWorkId;
             try
             {
-               Helpers.RunSql(cmd =>
-                {
-                    cmd.CommandText = @"
+                Helpers.RunSql(cmd =>
+                 {
+                     cmd.CommandText = @"
                         update Works
                         set CisNetWorkId = @cisNetWorkId
                         where Id = @workId
                     ";
-                    cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
-                    cmd.Parameters.AddWithValue("@cisNetWorkId", cisNetWorkId);
-                    cmd.ExecuteNonQuery();
-                });
+                     cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
+                     cmd.Parameters.AddWithValue("@cisNetWorkId", cisNetWorkId);
+                     cmd.ExecuteNonQuery();
+                 });
             }
             catch (Exception)
             {
             }
-       }
+        }
+
+        private void btnImportFromCisNet_Click(object sender, EventArgs e)
+        {
+            var form = new FormImportFromCisNet(_report.FileName, _report.WorkFilesPath);
+            form.ShowDialog();
+        }
     }
 }
 

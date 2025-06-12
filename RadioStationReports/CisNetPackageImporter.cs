@@ -6,12 +6,10 @@ using System;
 using System.Globalization;
 using System.Text;
 
-namespace SocCisNetLib
+namespace RadioStationReports
 {
-    public class WorkImporter
+    public class CisNetPackageImporter
     {
-        private const string _connString = "Persist Security Info=False;User=OlegM;Password=111111;Initial Catalog = RadioStationReports; Server=193.178.146.103\\IPSDATA,60675";
-
         public void ImportWorks(string fileFullName)
         {
             var xDoc = new XmlDocument();
@@ -19,31 +17,10 @@ namespace SocCisNetLib
             //xDoc.Load(fileFullName);
             var xRoot = xDoc.DocumentElement;
 
-            SqlTransaction tran = null;
-            try
+            Helpers.RunSqlT(cmd =>
             {
-                using (var conn = new SqlConnection(_connString))
-                {
-                    conn.Open();
-                    using (tran = conn.BeginTransaction())
-                    using (var cmd = conn.CreateCommand())
-                    {
-                        cmd.Transaction = tran;
-                        AddPackage(cmd, xRoot);
-                        tran.Commit();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                if(tran != null)
-                {
-                    tran.Rollback();
-                }
-                Console.WriteLine(ex.Message);
-                throw;
-            }
-
+                AddPackage(cmd, xRoot);
+            });
         }
 
         private string PreProcessPackage(string fileFullName)
