@@ -20,6 +20,7 @@ namespace RadioStationReports
             Helpers.RunSqlT(cmd =>
             {
                 AddPackage(cmd, xRoot);
+                FillIpBaseNrs(cmd);
             });
         }
 
@@ -96,12 +97,12 @@ namespace RadioStationReports
 
         private void AddWork(SqlCommand cmd, XmlElement elMwiItemDetails, int packageId)
         {
-            var workId = 0;
+            var workCode= "";
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "SocCisNet..spInsertWork";
             cmd.Parameters.Clear();
-            var parWorkId		= cmd.Parameters.AddWithValue("@WorkId"     , DBNull.Value);
+            var parWorkCode		= cmd.Parameters.AddWithValue("@WorkCode"   , DBNull.Value);
             var parName			= cmd.Parameters.AddWithValue("@Name"       , DBNull.Value);
             var parIswc			= cmd.Parameters.AddWithValue("@Iswc"       , DBNull.Value);
             var parSrcWorkId	= cmd.Parameters.AddWithValue("@SrcWorkId"  , DBNull.Value);
@@ -118,8 +119,8 @@ namespace RadioStationReports
                 switch (elMwiItemDetail.Name)
                 {
                     case "itemId":
-                        workId = int.Parse(elMwiItemDetail.InnerText);
-                        parWorkId.Value = workId;
+                        //workCode = elMwiItemDetail.InnerText;
+                        //parWorkCode.Value = workCode;
                         break;
                      case "originalTitle":
                         parName.Value = elMwiItemDetail.InnerText;
@@ -152,7 +153,8 @@ namespace RadioStationReports
                                                 switch(elWorkNaturalKey.Name)
                                                 {
                                                     case "societyWorkCode":
-                                                        parSrcWorkId.Value = int.Parse(elWorkNaturalKey.InnerText);
+                                                        workCode = elWorkNaturalKey.InnerText;
+                                                        parWorkCode.Value = workCode;
                                                         break;
                                                     case "societyCode":
                                                         parSrcSocCde.Value = int.Parse(elWorkNaturalKey.InnerText);
@@ -176,7 +178,7 @@ namespace RadioStationReports
             cmd.CommandText = "SocCisNet..spInsertPackageWork";
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@PackageId", packageId);
-            cmd.Parameters.AddWithValue("@WorkId"  , workId);
+            cmd.Parameters.AddWithValue("@WorkCode"  , workCode);
             cmd.ExecuteNonQuery();
 
             foreach (XmlElement elMwiItemDetail in elMwiItemDetails)
@@ -190,16 +192,16 @@ namespace RadioStationReports
                                 switch(elWorkDetail.Name)
                                 {
                                     case "workTitles":
-                                        AddAltName(cmd, elWorkDetail, workId);
+                                        AddAltName(cmd, elWorkDetail, workCode);
                                         break;
                                     case "artists":
-                                        AddPerformer(cmd, elWorkDetail, workId);
+                                        AddPerformer(cmd, elWorkDetail, workCode);
                                         break;
                                     case "shareTerritories":
-                                        AddRightHolders(cmd, elWorkDetail, workId);
+                                        AddRightHolders(cmd, elWorkDetail, workCode);
                                         break;
                                     case "submissions":
-                                        AddSubmission(cmd, elWorkDetail, workId);
+                                        AddSubmission(cmd, elWorkDetail, workCode);
                                         break;
                                 }
                             }
@@ -209,7 +211,7 @@ namespace RadioStationReports
             }
         }
 
-        private void AddAltName(SqlCommand cmd, XmlElement elWorkTitles, int workId)
+        private void AddAltName(SqlCommand cmd, XmlElement elWorkTitles, string workCode)
         {
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "SocCisNet..spInsertWorkAltName";
@@ -217,7 +219,7 @@ namespace RadioStationReports
             var parName = cmd.Parameters.AddWithValue("@Name", DBNull.Value);
             var parNameType = cmd.Parameters.AddWithValue("@NameType", DBNull.Value);
             var parLen = cmd.Parameters.AddWithValue("@Lan", DBNull.Value);
-            cmd.Parameters.AddWithValue("@WorkId"  , workId);
+            cmd.Parameters.AddWithValue("@WorkCode", workCode);
 
             foreach (XmlElement el in elWorkTitles)
             {
@@ -237,14 +239,14 @@ namespace RadioStationReports
             cmd.ExecuteNonQuery();
         }
 
-        private void AddPerformer(SqlCommand cmd, XmlElement elArtists, int workId)
+        private void AddPerformer(SqlCommand cmd, XmlElement elArtists, string workCode)
         {
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "SocCisNet..spInsertWorkPerformer";
             cmd.Parameters.Clear();
             var parFstName = cmd.Parameters.AddWithValue("@FstName", "");
             var parLstName = cmd.Parameters.AddWithValue("@LstName", "");
-            cmd.Parameters.AddWithValue("@WorkId"  , workId);
+            cmd.Parameters.AddWithValue("@WorkCode"  , workCode);
 
             foreach (XmlElement el in elArtists.ChildNodes[0].ChildNodes)
             {
@@ -261,7 +263,7 @@ namespace RadioStationReports
             cmd.ExecuteNonQuery();
         }
 
-        private void AddSubmission(SqlCommand cmd, XmlElement elSubmissions, int workId)
+        private void AddSubmission(SqlCommand cmd, XmlElement elSubmissions, string workCode)
         {
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "SocCisNet..spInsertWorkSubmission";
@@ -270,14 +272,14 @@ namespace RadioStationReports
             var parSrcSocCde = cmd.Parameters.AddWithValue("@SrcSocCde", DBNull.Value);
             var parTranCde = cmd.Parameters.AddWithValue("@TranCde", DBNull.Value);
             var parUpdatedAt = cmd.Parameters.AddWithValue("@UpdatedAt", DBNull.Value);
-            cmd.Parameters.AddWithValue("@WorkId", workId);
+            cmd.Parameters.AddWithValue("@WorkCode", workCode);
 
             foreach (XmlElement el in elSubmissions.ChildNodes)
             {
                 switch (el.Name)
                 {
                     case "societyWorkCode":
-                        parSrcWorkId.Value = int.Parse(el.InnerText);   
+                        //parSrcWorkId.Value = int.Parse(el.InnerText);   
                         break;
                     case "societyCode":
                         parSrcSocCde.Value = int.Parse(el.InnerText);   
@@ -293,15 +295,15 @@ namespace RadioStationReports
             cmd.ExecuteNonQuery();
         }
 
-        private void AddRightHolders(SqlCommand cmd, XmlElement elShareTerritories, int workId)
+        private void AddRightHolders(SqlCommand cmd, XmlElement elShareTerritories, string workCode)
         {
             foreach (XmlElement elInterestedPartyRole in elShareTerritories.GetElementsByTagName("interestedPartyRoles"))
             {
-                AddRightHolder(cmd, elInterestedPartyRole, workId);
+                AddRightHolder(cmd, elInterestedPartyRole, workCode);
             }
         }
 
-        private void AddRightHolder(SqlCommand cmd, XmlElement elInterestedPartyRole, int workId)
+        private void AddRightHolder(SqlCommand cmd, XmlElement elInterestedPartyRole, string workCode)
         {
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "SocCisNet..spInsertWorkRightHolder";
@@ -317,7 +319,7 @@ namespace RadioStationReports
             var parPerShr				 = cmd.Parameters.AddWithValue("@PerShr"                , DBNull.Value);
             var parMecSocCde			 = cmd.Parameters.AddWithValue("@MecSocCde"             , DBNull.Value);
             var parMecShr				 = cmd.Parameters.AddWithValue("@MecShr"                , DBNull.Value);
-            cmd.Parameters.AddWithValue("@WorkId", workId);
+            cmd.Parameters.AddWithValue("@WorkCode", workCode);
 
                 foreach (XmlElement elInterestedPartyRolesChild in elInterestedPartyRole)
                 {
@@ -385,5 +387,12 @@ namespace RadioStationReports
 
             cmd.ExecuteNonQuery();
         }
+        private void FillIpBaseNrs(SqlCommand cmd)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "SocCisNet..spFillIpBaseNrs";
+            cmd.Parameters.Clear();
+            cmd.ExecuteNonQuery();
+       }
     }
 }

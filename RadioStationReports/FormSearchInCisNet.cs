@@ -36,7 +36,7 @@ namespace RadioStationReports
 
         private string _reportFileName;
 
-        public int CisNetWorkId;
+        public string CisNetWorkCode;
 
         public FormSearchInCisNet(string reportFileName)
         {
@@ -191,7 +191,7 @@ namespace RadioStationReports
             {
                 case (int)ActionType.ACT_SET_WORK_CODE:
                     {
-                        if(!int.TryParse(action.ExCtrl.Text, out CisNetWorkId))
+                        if(string.IsNullOrEmpty(action.ExCtrl.Text))
                         {
                             MessageBox.Show("Невірнимй формат коду твору", "Передача творів з CISNet", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             _ignoreCheckChanged = true;
@@ -200,15 +200,16 @@ namespace RadioStationReports
                             return;
                         }
 
+                        CisNetWorkCode = action.ExCtrl.Text.Trim();
                         var isRegistered = false;
                         Helpers.RunSql(cmd =>
                         {
                             cmd.CommandText = @"
                                 select null
                                 from Works
-                                where CisNetWorkId = @cisNetWorkId
+                                where CisNetWorkCode = @cisNetWorkCode
                             ";
-                            cmd.Parameters.AddWithValue("@cisNetWorkId", CisNetWorkId);
+                            cmd.Parameters.AddWithValue("@cisNetWorkCode", CisNetWorkCode);
                             using(var r = cmd.ExecuteReader())
                             {
                                 isRegistered = r.HasRows;

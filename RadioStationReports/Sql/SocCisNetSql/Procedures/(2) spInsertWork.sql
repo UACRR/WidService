@@ -2,7 +2,7 @@ use SocCisNet
 go
 
 create or alter procedure spInsertWork
-	  @WorkId		int			
+	  @WorkCode		varchar(50)			
 	, @Name			varchar(128)
 	, @Iswc			varchar(11)
 	, @SrcWorkId	int
@@ -15,11 +15,11 @@ create or alter procedure spInsertWork
 	, @LoadedAt		datetime	
 as
 begin
-	if exists (select null from Works where WorkId = @WorkId)
+	if exists (select null from Works where WorkCode = @WorkCode)
 		return
 
 	insert Works (
-		  WorkId		
+		  WorkCode		
 		, Name			
 		, Iswc			
 		, SrcWorkId	
@@ -32,7 +32,7 @@ begin
 		, LoadedAt		
 	)
 	values (
-		  @WorkId		
+		  @WorkCode		
 		, @Name			
 		, @Iswc			
 		, @SrcWorkId	

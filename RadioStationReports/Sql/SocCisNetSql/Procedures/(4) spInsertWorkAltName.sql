@@ -5,23 +5,23 @@ create or alter procedure spInsertWorkAltName
 	  @Name		varchar(128)
 	, @NameType	char(2)
 	, @Lan		char(2)
-	, @WorkId	int			
+	, @WorkCode	varchar(50)			
 as
 begin
-	if exists (select null from WorkAltNames where Name = @Name and WorkId = @WorkId)
+	if exists (select null from WorkAltNames where Name = @Name and WorkCode = @WorkCode)
 		return
 
 	insert WorkAltNames (
 		  Name		
 		, NameType	
 		, Lan		
-		, WorkId	
+		, WorkCode	
 	)
 	values (
 		  @Name	
 		, @NameType
 		, @Lan	
-		, @WorkId
+		, @WorkCode
 	)
 end
 go

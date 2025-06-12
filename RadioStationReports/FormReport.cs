@@ -167,6 +167,7 @@ namespace RadioStationReports
             lvReportLines.Columns.Add("Де знайдено", 80);
             lvReportLines.Columns.Add("Код СМАРТ", 80);
             lvReportLines.Columns.Add("Код WID", 80);
+            lvReportLines.Columns.Add("Код CISNet", 100);
             lvReportLines.Columns.Add("Код ISWC", 100);
             lvReportLines.Columns.Add("До виплати %", 100);
             lvReportLines.Columns.Add("Перевірка", 80);
@@ -322,6 +323,8 @@ namespace RadioStationReports
                         work.IsProcessed = r.IsDBNull(idx) ? false : r.GetBoolean(idx);
                         idx++;
                         work.CheckValue = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
+                        idx++;
+                        work.CisNetWorkCode = r.IsDBNull(idx) ? (string?)null : r.GetString(idx);
 
                         reportLine.Work = work;
 
@@ -414,6 +417,7 @@ namespace RadioStationReports
                     item.SubItems.Add(x.Work.FoundIn);
                     item.SubItems.Add(x.Work.ObjId.ToString());
                     item.SubItems.Add(x.Work.Wic.ToString());
+                    item.SubItems.Add(x.Work.CisNetWorkCode);
                     item.SubItems.Add(x.Work.Iswc);
                     item.SubItems.Add(x.Work.Share.ToString());
                     item.SubItems.Add(x.Work.CheckValue.ToString());
@@ -443,6 +447,7 @@ namespace RadioStationReports
             item.SubItems[idx++].Text = line.Work.FoundIn;
             item.SubItems[idx++].Text = line.Work.ObjId.ToString();
             item.SubItems[idx++].Text = line.Work.Wic.ToString();
+            item.SubItems[idx++].Text = line.Work.CisNetWorkCode;
             item.SubItems[idx++].Text = line.Work.Iswc;
             item.SubItems[idx++].Text = line.Work.Share.ToString();
             item.SubItems[idx++].Text = line.Work.CheckValue.ToString();
@@ -1720,20 +1725,25 @@ namespace RadioStationReports
                 return;
             }
 
-            var cisNetWorkId = form.CisNetWorkId;
+            var cisNetWorkCode = form.CisNetWorkCode;
             try
             {
                 Helpers.RunSql(cmd =>
                  {
                      cmd.CommandText = @"
                         update Works
-                        set CisNetWorkId = @cisNetWorkId
+                        set CisNetWorkCode = @cisNetWorkCode
+                            , FoundIn = 'C'
                         where Id = @workId
                     ";
                      cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
-                     cmd.Parameters.AddWithValue("@cisNetWorkId", cisNetWorkId);
+                     cmd.Parameters.AddWithValue("@cisNetWorkCode", cisNetWorkCode);
                      cmd.ExecuteNonQuery();
                  });
+
+                reportLine.Work.FoundIn = "C";
+                reportLine.Work.CisNetWorkCode = cisNetWorkCode;
+                UpdateLvReportLine();
             }
             catch (Exception)
             {
@@ -1744,6 +1754,8 @@ namespace RadioStationReports
         {
             var form = new FormImportFromCisNet(_report.FileName, _report.WorkFilesPath);
             form.ShowDialog();
+            LoadReportLines();
+            FillLvReportLines();
         }
     }
 }

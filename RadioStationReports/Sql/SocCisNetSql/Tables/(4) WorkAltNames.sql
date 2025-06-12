@@ -7,12 +7,12 @@ create table WorkAltNames (
 	, Name varchar(128) not null
 	, NameType char(2)
 	, Lan char(2)
-	, WorkId int not null
+	, WorkCode varchar(50) not null
 )
 go
 
 alter table WorkAltNames
-add constraint fk_WorkAltNames_WorkId
-foreign key (WorkId) references Works(WorkId)
+add constraint fk_WorkAltNames_WorkCode
+foreign key (WorkCode) references Works(WorkCode)
 go
 

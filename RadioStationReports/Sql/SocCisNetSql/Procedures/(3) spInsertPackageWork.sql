@@ -3,19 +3,19 @@ go
 
 create or alter procedure spInsertPackageWork
 	  @PackageId int
-	, @WorkId	 int
+	, @WorkCode	 varchar(50)
 as
 begin
-	if exists (select null from PackageWorks where PackageId = @PackageId and WorkId = @WorkId)
+	if exists (select null from PackageWorks where PackageId = @PackageId and WorkCode = @WorkCode)
 		return
 
 	insert PackageWorks (
 		  PackageId
-		, WorkId	
+		, WorkCode	
 	)
 	values (
 		  @PackageId
-		, @WorkId	
+		, @WorkCode	
 	)
 end
 go

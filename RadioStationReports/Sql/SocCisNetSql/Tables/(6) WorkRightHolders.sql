@@ -15,14 +15,14 @@ create table WorkRightHolders (
 	, PerShr decimal(5, 2)
 	, MecSocCde int
 	, MecShr decimal(5, 2)
-	, WorkId int not null
+	, WorkCode varchar(50) not null
 
 )
 go
 
 alter table WorkRightHolders
-add constraint fk_WorkRightHolders_WorkId
-foreign key (WorkId) references Works(WorkId)
+add constraint fk_WorkRightHolders_WorkCode
+foreign key (WorkCode) references Works(WorkCode)
 go
 
 create index idxWorkRightHolders_IpBaseNr on WorkRightHolders(IpBaseNr);

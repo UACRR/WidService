@@ -5,17 +5,17 @@ create or alter view vCisNetComposerAgg
 as
 with AuthorDistinct as (
 	select 
-		  t1.WorkId												as WorkId
+		  t1.WorkCode											as WorkCode
 		, trim(concat(trim(t2.FstName), ' ', trim(t2.Name)))	as Name
 	from SocCisNet..WorkRightHolders t1
 		join SocIpi..IpiName t2 on t1.IpNameNr = t2.IpNameNr
 	where t1.IpRole in ('C', 'CA')
 )
 select
-	  WorkId											 as WorkId
+	  WorkCode										 as WorkCode
 	, string_agg(convert(varchar(max), Name), ', ')	 as Composers
 from AuthorDistinct
-group by WorkId
+group by WorkCode
 go
 
 -- select * from vCisNetComposerAgg

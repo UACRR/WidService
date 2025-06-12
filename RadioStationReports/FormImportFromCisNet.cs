@@ -81,7 +81,7 @@ namespace RadioStationReports
 
         private string _packageFileFulleName;
         private int _packageId;
-        private List<int> _packageWorkIds;
+        private List<string> _packageWorkCodes;
 
         public FormImportFromCisNet(string reportFileName, string reportWorkFilesPath)
         {
@@ -122,7 +122,7 @@ namespace RadioStationReports
                 },
                 new ManualAction {
                     ActionType = ManualActionType.ACT_DOWNLOAD_PACKAGE,
-                    Name = "В додатку натисніть Download CISML щоб вивантажити файл пакету. У фолдері завантажень буде створений файл з назвою, наведеною справа.",
+                    Name = "В додатку CISNet натисніть Download CISML щоб вивантажити файл пакету. У фолдері завантажень буде створений файл з назвою, наведеною справа.",
                     LabelCtrl = new Label(),
                     CheckCtrl = new CheckBox(),
                     ExCtrl = new TextBox(),
@@ -342,6 +342,8 @@ namespace RadioStationReports
             var sourcePackageFileFulleName = Path.Combine(sourcePackageFilePath, sourcePackageFileName);
             var targetPackageFileFulleName = Path.Combine(targetPackageFilePath, targetPackageFileName);
 
+            Directory.CreateDirectory(targetPackageFilePath);
+
             File.Copy(sourcePackageFileFulleName, targetPackageFileFulleName, true);
 
             _packageFileFulleName = targetPackageFileFulleName;
@@ -358,7 +360,7 @@ namespace RadioStationReports
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "MediaService..spImportWorkFromCisNet";
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@workId", _packageWorkIds[_curImportWorkIdx]);
+                cmd.Parameters.AddWithValue("@workCode", _packageWorkCodes[_curImportWorkIdx]);
                 cmd.Parameters.AddWithValue("@showTrace", false);
                 cmd.Parameters.AddWithValue("@objId", 0);
                 cmd.ExecuteNonQuery();
@@ -484,7 +486,7 @@ namespace RadioStationReports
                             Helpers.RunSql(cmd =>
                             {
                                 cmd.CommandText = @"
-                                    select t2.WorkId as CisNetWorkId
+                                    select t2.WorkCode as CisNetWorkCode
                                     from SocCisNet..Packages t1
 	                                    join SocCisNet..PackageWorks t2 on t1.PackageId = t2.PackageId
                                     where t1.PackageId = @packageId
@@ -493,14 +495,14 @@ namespace RadioStationReports
                                 cmd.Parameters.AddWithValue("@packageId", _packageId);
                                 using (var r = cmd.ExecuteReader())
                                 {
-                                    _packageWorkIds = new List<int>();
+                                    _packageWorkCodes = new List<string>();
                                     while(r.Read())
                                     {
-                                        _packageWorkIds.Add(r.GetInt32(0));
+                                        _packageWorkCodes.Add(r.GetString(0));
                                     }
                                 }
 
-                                _importWorksCnt = _packageWorkIds.Count;
+                                _importWorksCnt = _packageWorkCodes.Count;
                             });
                             
                             _curImportWorkIdx = 0;

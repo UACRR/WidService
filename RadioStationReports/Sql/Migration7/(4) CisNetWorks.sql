@@ -1,10 +1,10 @@
 use MediaService
 go
 
--- drop table if exists CisNetWorks
+drop table if exists CisNetWorks
 create table CisNetWorks (
 	  ObjId int primary key
-	, WorkId int not null
+	, WorkCode varchar(50) not null
 	, CreatedAt datetime not null
 )
 go

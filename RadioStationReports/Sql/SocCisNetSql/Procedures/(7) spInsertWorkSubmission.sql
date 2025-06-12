@@ -6,7 +6,7 @@ create or alter procedure spInsertWorkSubmission
 	, @SrcSocCde int
 	, @TranCde   varchar(3)
 	, @UpdatedAt  datetime
-	, @WorkId    int
+	, @WorkCode    varchar(50)
 as
 begin
 	if exists (select null
@@ -16,7 +16,7 @@ begin
 		and SrcSocCde = @SrcSocCde 
 		and TranCde   = @TranCde   
 		and UpdatedAt  = @UpdatedAt  
-		and WorkId    = @WorkId  
+		and WorkCode    = @WorkCode  
 	)
 		return
 
@@ -25,14 +25,14 @@ begin
 		, SrcSocCde
 		, TranCde  
 		, UpdatedAt 
-		, WorkId   
+		, WorkCode   
 	)
 	values (
 		  @SrcWorkId
 		, @SrcSocCde
 		, @TranCde  
 		, @UpdatedAt 
-		, @WorkId   
+		, @WorkCode   
 	)
 			
 end

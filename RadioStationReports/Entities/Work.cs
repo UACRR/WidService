@@ -21,6 +21,7 @@ namespace RadioStationReports
         public string   FoundIn          { get; set; }
         public int?     ObjId            { get; set; }
         public int?     Wic              { get; set; }
+        public string   CisNetWorkCode   { get; set; }
         public string   Iswc             { get; set; }
         public decimal? Share            { get; set; }
         public bool     IsProcessed      { get; set; }
@@ -41,6 +42,7 @@ namespace RadioStationReports
                     , t2.FoundIn
                     , t2.ObjId
                     , t2.Wic
+                    , t2.CidNetWorkCode
                     , t2.Iswc
                     , t2.Share
                     , t2.IsProcessed
@@ -72,6 +74,8 @@ namespace RadioStationReports
             work.ObjId = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
             idx++;
             work.Wic = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);
+            idx++;
+            work.CisNetWorkCode = r.IsDBNull(idx) ? (string?)null : r.GetString(idx);
             idx++;
             work.Iswc = r.IsDBNull(idx) ? "" : r.GetString(idx);
             idx++;

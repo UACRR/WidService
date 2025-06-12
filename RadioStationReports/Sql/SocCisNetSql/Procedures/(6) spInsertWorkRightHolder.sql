@@ -13,7 +13,7 @@ create or alter procedure spInsertWorkRightHolder
 	, @PerShr				decimal(5, 2)
 	, @MecSocCde			int
 	, @MecShr				decimal(5, 2)
-	, @WorkId				int
+	, @WorkCode				varchar(50)
 as
 begin
 	if exists (select null 
@@ -21,7 +21,7 @@ begin
 		where IpBaseNr	 = @IpBaseNr
 			and IpNameNr = @IpNameNr
 			and IpRole	 = @IpRole
-			and WorkId = @WorkId
+			and WorkCode = @WorkCode
 	)
 		return
 
@@ -37,7 +37,7 @@ begin
 		, PerShr			 
 		, MecSocCde		
 		, MecShr			 
-		, WorkId		
+		, WorkCode		
 	)
 	values (
 		  @SeqNr	
@@ -51,7 +51,7 @@ begin
 		, @PerShr			 
 		, @MecSocCde		
 		, @MecShr			 
-		, @WorkId			 
+		, @WorkCode			 
 	)
 end
 go

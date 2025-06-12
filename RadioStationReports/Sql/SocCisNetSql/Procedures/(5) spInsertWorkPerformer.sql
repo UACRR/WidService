@@ -4,21 +4,21 @@ go
 create or alter procedure spInsertWorkPerformer
 	  @FstName varchar(128)
 	, @LstName varchar(128)
-	, @WorkId  int
+	, @WorkCode  varchar(50)
 as
 begin
-	if exists (select * from WorkPerformers where FstName = @FstName and LstName = @LstName and WorkId = @WorkId)
+	if exists (select * from WorkPerformers where FstName = @FstName and LstName = @LstName and WorkCode = @WorkCode)
 		return
 
 	insert WorkPerformers (
 		  FstName
 		, LstName
-		, WorkId 
+		, WorkCode 
 	)
 	values (
 		  @FstName
 		, @LstName
-		, @WorkId
+		, @WorkCode
 	)
 end
 go

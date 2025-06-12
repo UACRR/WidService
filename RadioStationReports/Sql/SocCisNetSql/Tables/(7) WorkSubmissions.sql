@@ -8,12 +8,12 @@ create table WorkSubmissions (
 	, SrcSocCde int
 	, TranCde varchar(3)
 	, UpdatedAt datetime
-	, WorkId int not null
+	, WorkCode varchar(50) not null
 )
 go
 
 alter table WorkSubmissions
-add constraint fk_WorkSubmissions_WorkId
-foreign key (WorkId) references Works(WorkId)
+add constraint fk_WorkSubmissions_WorkCode
+foreign key (WorkCode) references Works(WorkCode)
 go
 
