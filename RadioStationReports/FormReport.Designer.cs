@@ -473,9 +473,9 @@ namespace RadioStationReports
             // 
             btnSearchInCisNet.Location = new System.Drawing.Point(172, 3);
             btnSearchInCisNet.Name = "btnSearchInCisNet";
-            btnSearchInCisNet.Size = new System.Drawing.Size(75, 23);
+            btnSearchInCisNet.Size = new System.Drawing.Size(160, 23);
             btnSearchInCisNet.TabIndex = 1;
-            btnSearchInCisNet.Text = "Шукати ...";
+            btnSearchInCisNet.Text = "Виконати чекліст ...";
             btnSearchInCisNet.UseVisualStyleBackColor = true;
             btnSearchInCisNet.Click += btnSearchInCisNet_Click;
             // 

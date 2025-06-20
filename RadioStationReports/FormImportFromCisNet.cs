@@ -98,7 +98,7 @@ namespace RadioStationReports
 
         private void ConfigureManualActions()
         {
-            _manualActions = [
+            _manualActions = new List<ManualAction> {
                 new ManualAction {
                     ActionType = ManualActionType.ACT_SELECT_PACKAGE,
                     Name = "У додатку CISNet виберіть пакет, який відповідає звіту. Потрібна назва в полі Package Comment мусить бути, як в полі справа.",
@@ -134,7 +134,7 @@ namespace RadioStationReports
                     CheckCtrl = null,
                     ExCtrl = null,
                 },
-            ];
+            };
         }
 
         private void FillManualActionControls()
@@ -205,7 +205,7 @@ namespace RadioStationReports
 
         private void ConfigureAutoActions()
         {
-            _autoActions = [
+            _autoActions = new List<AutoAction> {
                 new AutoAction {
                     ActionType = AutoActionType.ACT_COPY_PACKAGE_FILE,
                     Status = -1,
@@ -230,7 +230,7 @@ namespace RadioStationReports
                     Name = "Застосування імпортованих творів до звіту",
                     Progress = "",
                 },
-             ];
+            };
         }
 
         private void FillAutoActions()

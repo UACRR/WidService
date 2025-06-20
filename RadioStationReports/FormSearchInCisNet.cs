@@ -52,7 +52,7 @@ namespace RadioStationReports
 
         private void ConfigureActions()
         {
-            _actions = [
+            _actions = new List<Action> {
                 new Action {
                     ActionType = ActionType.ACT_SEARCH_WORK,
                     Name = "Виконайте пошук твору в CISNet.",
@@ -95,7 +95,7 @@ namespace RadioStationReports
                     CheckCtrl = null,
                     ExCtrl = null,
                 },
-            ];
+            };
         }
 
         private void Configure()

@@ -97,7 +97,8 @@ namespace RadioStationReports
 
         const int FILTER_INDEX_SMART = 1;
         const int FILTER_INDEX_WID = 2;
-        const int FILTER_INDEX_NOT_FOUND = 3;
+        const int FILTER_INDEX_CISNET = 3;
+        const int FILTER_INDEX_NOT_FOUND = 4;
 
 
         private LvReportLinesColumnSorter lvReportLinesColumnSorter;
@@ -189,6 +190,7 @@ namespace RadioStationReports
             cbFilter.Items.Add("Всі");
             cbFilter.Items.Add("Знайдені в СМАРТ");
             cbFilter.Items.Add("Знайдені в ВІД");
+            cbFilter.Items.Add("Знайдені в CISNet");
             cbFilter.Items.Add("Не знайдені");
 
             _cbFilterIgnoreSelectedIndexChanged = true;
@@ -264,6 +266,10 @@ namespace RadioStationReports
             else if (cbFilter.SelectedIndex == FILTER_INDEX_WID)
             {
                 filter = " and FoundIn = 'W'";
+            }
+            else if (cbFilter.SelectedIndex == FILTER_INDEX_CISNET)
+            {
+                filter = " and FoundIn = 'C'";
             }
             else if (cbFilter.SelectedIndex == FILTER_INDEX_NOT_FOUND)
             {
@@ -717,6 +723,7 @@ namespace RadioStationReports
                           FoundIn = null
                         , ObjId = null
                         , Wic = null
+                        , CisNetWorkCode = null
                         , Iswc = null
                         , Share = 0
                         , CheckValue = null
@@ -734,6 +741,7 @@ namespace RadioStationReports
                 line.Work.FoundIn = null;
                 line.Work.ObjId = null;
                 line.Work.Wic = null;
+                line.Work.CisNetWorkCode = null;
                 line.Work.Iswc = null;
                 line.Work.Share = 0;
                 line.Work.CheckValue = null;
