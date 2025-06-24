@@ -24,29 +24,6 @@ namespace InvoicingLib
                         , licCodeName licenseDescription
                     from vMSCustomerUses
                     order by custId
-/*                    union
-                    select 1001 licId
-                        , 10000 custId
-                        , 'Deezer' licenseeName
-                        , 'Ліцензійний договір (всі сервіси)' licenseDescription
-
-                    union
-                    select 1340 licId
-                        , 39556 custId
-                        , 'ТОВ ""Гугл ЛТД""' licenseeName
-                        , 'Ліцензійний договір онлайн-сервіси (pre-claim)' licenseDescription
-                    union
-                    select 1001 licId
-                        , 10000 custId
-                        , 'Spotify' licenseeName
-                        , 'Free' licenseDescription
-                    union
-                    select 1003 licId
-                        , 10000 custId
-                        , 'Spotify' licenseeName
-                        , 'Premium' licenseDescription
-*/
-                    -- order by t4.[year] desc,  t4.[quarter] desc
                 ";
 
                 using (var r = cmd.ExecuteReader())
@@ -78,7 +55,7 @@ namespace InvoicingLib
                     {
                         var licId = r.GetInt32(0);
                         var CustId = r.GetInt32(1);
-                        var agreement = Agreements.Single(x => x.LicId == r.GetInt32(0) && x.CustId == r.GetInt32(1));
+                        var agreement = Agreements.Single(x => x.LicId == licId && x.CustId == CustId);
                         var paramId = r.GetInt32(2);
                         if(r.IsDBNull(3))
                         {

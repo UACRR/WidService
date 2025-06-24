@@ -276,7 +276,7 @@
             gridViewCommandColumn3.HeaderText = "";
             gridViewCommandColumn3.Name = "Save";
             gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn3.Width = 80;
+            gridViewCommandColumn3.Width = 100;
             gridViewCommandColumn3.WrapText = true;
             gridViewCommandColumn4.FieldName = "Send";
             gridViewCommandColumn4.HeaderText = "";

@@ -563,6 +563,16 @@
     <Content Include="Migrations\09_FixesForExceptionSet\%2804%29 spDdexDeleteReportTypeInvoices.sql" />
     <Content Include="Migrations\11_Fixes\%2801%29 spCreateCcidParamsForSubscr.sql" />
     <Content Include="Migrations\11_Fixes\%2802%29 spCreateInitialInvoiceSpotify.sql" />
+    <Content Include="Migrations\12_TikTok\%281%29 AlterDdexReport.sql" />
+    <Content Include="Migrations\12_TikTok\%2810%29 UpdateCcidTestSeverity.sql" />
+    <Content Include="Migrations\12_TikTok\%282%29 spDeleteDdexReportTikTok.sql" />
+    <Content Include="Migrations\12_TikTok\%283%29 vTikTokReportsPerPeriod.sql" />
+    <Content Include="Migrations\12_TikTok\%284%29 spSetReportsTerritory.sql" />
+    <Content Include="Migrations\12_TikTok\%285%29 spCreateInitialInvoiceTiktok.sql" />
+    <Content Include="Migrations\12_TikTok\%286%29 spDdexTikTokCalcNetRevenuePerResource.sql" />
+    <Content Include="Migrations\12_TikTok\%287%29 spDdexApplyReportExceptions.sql" />
+    <Content Include="Migrations\12_TikTok\%288%29 spDdexUpdateIndentBacklogShares.sql" />
+    <Content Include="Migrations\12_TikTok\%289%29 spDdexUpdateIndentBacklogSharesTikTok.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidIpRolePrty.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidPrtyIpRole.sql" />
     <Content Include="SqlQueries\WidInMediaService\spWidImportToMs.sql" />

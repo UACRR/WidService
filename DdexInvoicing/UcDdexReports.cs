@@ -129,25 +129,50 @@ namespace DdexInvoicing
 
                 if (isMonthlyReport)
                 {
-                    col.FieldName = "month";
-                    col.HeaderText = "Місяць";
-                    cmd.CommandText = $@"
-                        select t2.ddexReportingPeriodId
-                            , t2.Id ddexReportId
-                            , t4.year
-                            , t4.month
-                            , 'Spotify' licenseeName
-                            , 'Free' licenseDescription
-                            , t3.serviceDescription
-                            , t2.status
-                            , case when t5.groupName is null then t5.name else t5.groupName end as statusName
-                        from ddexReport t2
-                            join ddexrecordhead t3 on t3.DdexReportId = t2.id
-                            join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
-                            join DdexReportStatus t5 on t5.codeI = t2.Status
-                        where t2.licId = @licId and t2.custId = @custId
-                        order by t4.year desc, t4.month desc
-                    ";
+                    if (isMultiFile)
+                    {
+                        col.FieldName = "month";
+                        col.HeaderText = "Місяць";
+                        cmd.CommandText = $@"
+                            select t2.ddexReportingPeriodId
+                                , t2.Id ddexReportId
+                                , t4.year
+                                , t4.month
+                                , 'Spotify' licenseeName
+                                , 'Free' licenseDescription
+                                , t3.serviceDescription
+                                , t2.status
+                                , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                            from ddexReport t2
+                                join ddexrecordhead t3 on t3.DdexReportId = t2.id
+                                join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                                join DdexReportStatus t5 on t5.codeI = t2.Status
+                            where t2.licId = @licId and t2.custId = @custId and IsMasterReport = 1
+                            order by t4.year desc, t4.month desc
+                        ";
+                    }
+                    else
+                    {
+                        col.FieldName = "month";
+                        col.HeaderText = "Місяць";
+                        cmd.CommandText = $@"
+                            select t2.ddexReportingPeriodId
+                                , t2.Id ddexReportId
+                                , t4.year
+                                , t4.month
+                                , 'Spotify' licenseeName
+                                , 'Free' licenseDescription
+                                , t3.serviceDescription
+                                , t2.status
+                                , case when t5.groupName is null then t5.name else t5.groupName end as statusName
+                            from ddexReport t2
+                                join ddexrecordhead t3 on t3.DdexReportId = t2.id
+                                join ddexReportingPeriod t4 on t4.id = t2.ddexReportingPeriodId
+                                join DdexReportStatus t5 on t5.codeI = t2.Status
+                            where t2.licId = @licId and t2.custId = @custId
+                            order by t4.year desc, t4.month desc
+                        ";
+                    }
                 }
                 else
                 {
@@ -235,9 +260,13 @@ namespace DdexInvoicing
                 return;
             }
 
-            if (DdexReport.IsMultiFile(agreementReportType))
+            if (DdexReport.IsDeezerType(agreementReportType))
             {
                 RegisterMultiFileReport(licId, custId, agreementReportType);
+            }
+            else if (DdexReport.IsTikTokType(agreementReportType))
+            {
+                RegisterTikTokFileReport(licId, custId, agreementReportType);
             }
             else
             {
@@ -378,6 +407,56 @@ namespace DdexInvoicing
             try
             {
                 DdexReport.RegisterMultiFileReport(licId, custId, agreementReportType, firstFileFullName);
+                FillReports();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void RegisterTikTokFileReport(int licId, int custId, string agreementReportType)
+        {
+            MessageBox.Show("Розташуйте файли від TikTok за місяць в окремому фолдері, потім виберіть "
+                + "в цьому фолдері файл звіту для території UA.", 
+                "Завантаження звітів TikTok", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            // SELECT VALID REPORT FILE
+            var filter = DdexReport.GetFileNameWildcard(agreementReportType);
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = $"Файли звітів від клієнта|{filter}";
+            if (DialogResult.OK != dlg.ShowDialog())
+                return;
+            string fullFileName = dlg.FileName;
+
+            // Because user may change filter, check that finally selected file matches wildcard
+            var dir = Path.GetDirectoryName(fullFileName);
+            if (!Directory.EnumerateFiles(dir, filter).Any(x => x.Equals(fullFileName, StringComparison.OrdinalIgnoreCase)))
+            {
+                MessageBox.Show("Файл не відповідає типу звіту", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // MAKE SURE REPORTING PERIOD FOR THE REPORT EXISTS BASED ON REPORT FILE
+            var ddexReportingPeriodId = DdexReport.CreateReportingPeriod(agreementReportType, fullFileName);
+
+            // CHECK THAT THE REPORT IS NOT REGISTERED YET
+            if (DdexReport.CheckSingleFileReportExists(agreementReportType, ddexReportingPeriodId))
+            {
+                MessageBox.Show("Вибраний файл вже зарейєстрований в системі", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // CONFIRM PARAMETERS FOR REPORT REGISTRATION
+            if (!ConfirmParametersForReportRegistration(licId, custId, fullFileName))
+            {
+                return;
+            }
+
+            // CREATE REGISTRATION RECORDS IN THE DATABASE
+            try
+            {
+                DdexReport.RegisterTikTokReport(licId, custId, agreementReportType, fullFileName);
                 FillReports();
             }
             catch (Exception ex)

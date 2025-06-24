@@ -71,6 +71,10 @@ namespace InvoicingLib
                             select @lastBlockId";
                     lastProcessedBlockId = (int)cmd.ExecuteScalar();
 
+                    Logger.WriteLine("Видалення раніше створенной інформації");
+                    SqlHelpers.DeleteRecords(conn, "delete from DdexRecordSY_Base where DdexReportId = @p0", report.ddexReportId);
+                    Logger.WriteLine($"Записи видалено за таблиці DdexRecordSY_Base");
+
                     cmd.CommandText = @"
                         select 
                               royaltyThreshold
@@ -92,6 +96,7 @@ namespace InvoicingLib
             }
 
             RegisterBulkUploader("DdexIdentificationBacklog");
+            RegisterBulkUploader("DdexRecordSY_Base");
         }
 
         public override int GetLastProcessedBlockId()
@@ -138,6 +143,37 @@ namespace InvoicingLib
             }
         }
 
+        private void InsertRecord(SYRecord_01_01 syRecord)
+        {
+            cntSalesLoaded++;
+            try
+            {
+                BulkUploadToSql bulkUploader = bulkUploaders["DdexRecordSY_Base"];
+                var data = new List<object>();
+                data.Add(report.ddexReportId);
+                data.Add(1);
+                data.Add(syRecord.SummaryRecordId);
+                data.Add(syRecord.DistributionChannel);
+                data.Add(syRecord.DistributionChannelDPID);
+                data.Add(syRecord.CommercialModel);
+                data.Add(syRecord.UseType);
+                data.Add(syRecord.Territory);
+                data.Add(syRecord.ServiceDescription);
+                data.Add(syRecord.Usages);
+                data.Add(Formatter.ToDecimal(syRecord.Subscribers));
+                data.Add(syRecord.CurrencyOfReporting);
+                data.Add(Formatter.ToDecimal(syRecord.NetRevenue));
+                data.Add(0.0);
+
+                bulkUploader.AddData(data);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLine($"Помилка формату - {ex.Message}");
+                throw;
+            }
+        }
+
         public override void ProcessHead(HEADRecordGoogle headRecord)
         {
             this.headRecord = headRecord;
@@ -147,6 +183,7 @@ namespace InvoicingLib
         public override void ProcessSY_01_01(SYRecord_01_01 record)
         {
             netRevenuePerUsage = Formatter.ToDecimal(record.NetRevenue) / Formatter.ToDecimal(record.Usages);
+            InsertRecord(record);
         }
 
         public override void ProcessBlock(DdexReportBlock blockBase)
@@ -181,6 +218,13 @@ namespace InvoicingLib
                     cmd.Parameters.Add(new SqlParameter("@cntMwInFile", cntSalesInFile));
                     cmd.Parameters.Add(new SqlParameter("@cntSalesLoaded", cntSalesLoaded));
                     cmd.Parameters.Add(new SqlParameter("@cntMwLoaded", cntSalesLoaded));
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "spDdexTikTokCalcNetRevenuePerResource";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@DdexReportId", report.ddexReportId));
+
                     cmd.ExecuteNonQuery();
                 }
                 catch (Exception ex)

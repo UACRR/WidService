@@ -45,7 +45,14 @@ namespace InvoicingLib
                     suRecord = record;
                 }
 
-                nextLine = streamReader.ReadLine();
+                while(true)
+                {
+                    nextLine = streamReader.ReadLine();
+                    if (nextLine[0] != '#')
+                    {
+                        break;
+                    }
+                }
                 fields = nextLine.Split('\t');
             }
 

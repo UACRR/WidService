@@ -140,7 +140,8 @@ namespace InvoicingLib
             int licId,
             int custId,
             decimal exchRate,
-            int ddexReportingPeriodId
+            int ddexReportingPeriodId,
+            bool isMasterReport
             )
         {
             cmd.Parameters.Clear();
@@ -155,47 +156,56 @@ namespace InvoicingLib
             cmd.Parameters.AddWithValue("@ddexReportingPeriodId", ddexReportingPeriodId);
             cmd.Parameters.AddWithValue($"@OptionName1", $"DdexFile1");
             cmd.Parameters.AddWithValue($"@FileName1", Path.GetFileName(fullFileName));
+            cmd.Parameters.AddWithValue($"@isMasterReport", isMasterReport);
 
+            cmd.CommandType = CommandType.Text;
             cmd.CommandText = $@"
-                        declare @DdexReportId int;
-                        insert into DdexReport (
-                              ddexReportingPeriodId
-                            , status
-                            , substatus
-                            , SourceUri
-                            , TargetFolder
-                            , filetype
-                            , licId
-                            , custId
+                declare @DdexReportId int;
+                insert into DdexReport (
+                        ddexReportingPeriodId
+                    , status
+                    , substatus
+                    , SourceUri
+                    , TargetFolder
+                    , filetype
+                    , licId
+                    , custId
 
-                            {GetAgreementParametersSqlInsertCols(agreementReportType)}
+                    {GetAgreementParametersSqlInsertCols(agreementReportType)}
 
-                            , exchRate
-                        ) 
-                        values (
-                              @ddexReportingPeriodId
-                            , @status
-                            , @substatus
-                            , ''
-                            , ''
-                            , @filetype
-                            , @licId
-                            , @custId
+                    , exchRate
+                    , isMasterReport
+                ) 
+                values (
+                        @ddexReportingPeriodId
+                    , @status
+                    , @substatus
+                    , ''
+                    , ''
+                    , @filetype
+                    , @licId
+                    , @custId
 
-                            {GetAgreementParametersSqlInsertValues(agreementReportType)}
+                    {GetAgreementParametersSqlInsertValues(agreementReportType)}
 
-                            , @exchRate
-                        )
-                        set @DdexReportId = SCOPE_IDENTITY();
-                        insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) 
-                            values(@DdexReportId, 0, @DdexSourceFolder, @DdexSourceFolderValue);
-                        insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) 
-                            values(@DdexReportId, 0, @OptionName1, @FileName1);
-                        select @DdexReportId;
-                    ";
+                    , @exchRate
+                    , @isMasterReport
+                )
+                set @DdexReportId = SCOPE_IDENTITY();
+                insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) 
+                    values(@DdexReportId, 0, @DdexSourceFolder, @DdexSourceFolderValue);
+                insert into DdexReportProcessingData(DdexReportId, DataGroup, DataName, DataValue) 
+                    values(@DdexReportId, 0, @OptionName1, @FileName1);
+                select @DdexReportId;
+            ";
             int ddexReportId = (int)cmd.ExecuteScalar();
 
             DoInsertHead(cmd, agreementReportType, ddexReportId, fullFileName);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "spSetReportsTerritory";
+            cmd.Parameters.Clear();
+            cmd.ExecuteNonQuery();
         }
 
         public static void RegisterSingleFileReport(int licId, int custId, string agreementReportType, string fullFileName)
@@ -205,7 +215,7 @@ namespace InvoicingLib
             decimal exchRate = fExchRate == null ? 0M : (decimal)fExchRate;
             Helpers.RunSqlOperationDdexT(cmd =>
             {
-                InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId);
+                InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId, true);
             }, true);
         }
 
@@ -227,7 +237,27 @@ namespace InvoicingLib
                         continue;
                     }
                     var fullFileName = files[0];
-                    InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId);
+                    var isMasterReport = firstFileFullName.Equals(fullFileName, StringComparison.OrdinalIgnoreCase);
+                    InsertDdexReportRecord(cmd, agreementReportType, fullFileName, licId, custId, exchRate, ddexReportingPeriodId, isMasterReport);
+                }
+            }, true);
+        }
+
+        public static void RegisterTikTokReport(int licId, int custId, string agreementReportType, string masterFileFullName)
+        {
+            int ddexReportingPeriodId = CreateReportingPeriod(agreementReportType, masterFileFullName);
+            var fullFolderName = Path.GetDirectoryName(masterFileFullName);
+            var masterFileName = Path.GetFileName(masterFileFullName);
+            var parts = masterFileName.Split('_');
+            var datePart = parts[4];
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                var filter = $"DSR_UACRR_TIKTOK_TIKTOK_{datePart}_*_1of1_*.tsv";
+                var files = Directory.GetFiles(fullFolderName, filter);
+                foreach (var file in files)
+                {
+                    var isMasterReport = masterFileFullName.Equals(file, StringComparison.OrdinalIgnoreCase);
+                    InsertDdexReportRecord(cmd, agreementReportType, file, licId, custId, 0, ddexReportingPeriodId, isMasterReport);
                 }
             }, true);
         }

@@ -165,28 +165,46 @@ namespace DdexInvoicing
             Helpers.RunSqlOperationDdex(cmd =>
             {
                 cmd.CommandText = @"
-                        select sum_amount_licensor from CcidInTrailer where fileId = @leadingFileId
-                        ";
+                    select sum_amount_licensor from CcidInTrailer where fileId = @leadingFileId
+                ";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@leadingFileId", leadingFileId);
                 var amount = cmd.ExecuteScalar();
-                //radTbTotalAmount.Text = amount.ToString().Replace(',', '.');
 
                 cmd.CommandText = @"
-                        declare @leadingDdexReportId int;
+                    select t2.ddexReportId
+                    from CcidInFile t1
+	                    join CcidInvoice t2 on t1.ccidInvoiceId = t2.Id
+                    where t1.fileId = @leadingFileId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@leadingFileId", leadingFileId);
+                var leadingDdexReportId = (int)cmd.ExecuteScalar();
 
-                        select @leadingDdexReportId = t2.ddexReportId
-                        from CcidInFile t1
-	                        join CcidInvoice t2 on t1.ccidInvoiceId = t2.Id
-                        where t1.fileId = @leadingFileId
-
+                var agreementReportType = DdexReport.GetAgreementReportType(cmd, leadingDdexReportId);
+                if(agreementReportType == DdexReport.ReportTypeEnum.TIKTOK)
+                {
+                    cmd.CommandText = @"
+                        select distinct
+	                          concat(Territory, ' - ', t2.Tisan) as Territory
+	                        , t1.Id
+                        from DdexReport t1
+	                        left join SocIpi..DicTna t2 on t1.Territory = t2.Tisa
+                        where t1.Id in (select id from ft_AgreementReportIds(@leadingDdexReportId))
+                        order by concat(Territory, ' - ', t2.Tisan)
+                    ";
+                }
+                else
+                {
+                    cmd.CommandText = @"
                         select ServiceDescription, DdexReportId
                         from DdexRecordHead
                         where ddexReportId in (select id from ft_AgreementReportIds(@leadingDdexReportId))
                         order by ServiceDescription
-                        ";
+                    ";
+                }
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@leadingFileId", leadingFileId);
+                cmd.Parameters.AddWithValue("@leadingDdexReportId", leadingDdexReportId);
                 var r = cmd.ExecuteReader();
                 serviceToReportMap = new Dictionary<string, int>();
                 while (r.Read())

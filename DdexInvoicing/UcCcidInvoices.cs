@@ -111,6 +111,35 @@ namespace DdexInvoicing
 
         void UpdateInvoice(int fileId)
         {
+            var invoiceStatus = -1;
+
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                 cmd.CommandText = $@"
+                    select isnull(status, 0)
+                    from CcidInFile
+                    where fileId = @fileId
+                 ";
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                using (SqlDataReader r = cmd.ExecuteReader())
+                {
+                    r.Read();
+                    invoiceStatus = r.GetInt32(0);
+                }
+             });
+            
+            if (invoiceStatus == 1)
+            {
+                var result = MessageBox.Show(@"
+Поточний рахунок-фактура вже підготований для відправки клієнту (файл(и) створені).
+Якщо файл(и) рахунку ще не надісланий клієнту, є можливість оновити рахунок новими даними.
+Для того слід відмовитись від надсиланни (натисніть на НЕ НАДСИЛАТИ).
+В іншому разі проставте відмітку, що інвойс надісланий (натисніть НАДІСЛАТИ).
+                "
+                    , "Обробка рахунків CCID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+            }
+
             var curSetCode = 0;
             var newSetCode = 0;
             Helpers.RunSqlOperationDdex(cmd =>
@@ -122,7 +151,8 @@ namespace DdexInvoicing
                  ";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@fileId", fileId);
-                curSetCode = (int)cmd.ExecuteScalar();
+                var curSetCodeObj = cmd.ExecuteScalar();
+                curSetCode = curSetCodeObj == DBNull.Value ? 0 : (int)curSetCodeObj;
 
                 cmd.CommandText = $@"
                     select setCode
@@ -149,32 +179,6 @@ namespace DdexInvoicing
             {
                 var agreementReportTypeEnum = DdexReport.GetAgreementReportType(cmd, ddexReportId);
 
-                int status = -1;
-
-                cmd.CommandText = $@"
-                    select isnull(status, 0)
-                    from CcidInFile
-                    where fileId = @fileId
-                 ";
-                cmd.Parameters.AddWithValue("@fileId", fileId);
-                using (SqlDataReader r = cmd.ExecuteReader())
-                {
-                    r.Read();
-                    status = r.GetInt32(0);
-                }
-                if (status == 2)
-                {
-                }
-                else if (status == 1)
-                {
-                    var result = MessageBox.Show("Поточний рахунок-фактура вже підготований для відправки клієнту. " +
-                                    "Якщо файл рахунку ще надісланий клієнту, є можливість оновити рахунок новими даними. " +
-                                    "Оновити?"
-                                    , "Обробка рахунків CCID", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == DialogResult.No)
-                        return;
-                }
-
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 switch (agreementReportTypeEnum)
@@ -196,6 +200,9 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
                         cmd.CommandText = "spCreateInitialInvoiceDeezer";
                         break;
+                    case DdexReport.ReportTypeEnum.TIKTOK:
+                        cmd.CommandText = "spCreateInitialInvoiceTikTok";
+                        break;
                 }
 
                 cmd.Parameters.Clear();
@@ -215,6 +222,7 @@ namespace DdexInvoicing
                         cmd.Parameters.AddWithValue("@setCode", setCode);
                         break;
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
+                    case DdexReport.ReportTypeEnum.TIKTOK:
                         cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@leadingFileId", fileId); break;
                 }
@@ -252,7 +260,19 @@ namespace DdexInvoicing
                 cmd.Parameters.AddWithValue("@setCode", setCode);
                 cmd.ExecuteNonQuery();
             });
+            ShowInvoices();
+        }
 
+        private void ClearInvoiceFiles(int fileId)
+        {
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                cmd.CommandText = "update CcidInFile set Status = 0 where FileId = @fileId";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", fileId);
+                cmd.ExecuteNonQuery();
+            });
+            ShowInvoices();
         }
 
         private void SaveInvoice(int fileId)
@@ -268,7 +288,8 @@ namespace DdexInvoicing
                  ";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@fileId", fileId);
-                curSetCodeDate = (DateTime)cmd.ExecuteScalar();
+                var curSetCodeDateObj = cmd.ExecuteScalar();
+                curSetCodeDate = curSetCodeDateObj == DBNull.Value ? DateTime.Now : (DateTime)curSetCodeDateObj;
 
                 cmd.CommandText = $@"
                     select t2.dateUpdated
@@ -279,6 +300,8 @@ namespace DdexInvoicing
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                 newSetCodeDate = (DateTime)cmd.ExecuteScalar();
+                //var newSetCodeDateObj = cmd.ExecuteScalar();
+                //curSetCodeDate = newSetCodeDateObj == null ? DateTime.Now : (DateTime)curSetCodeDateObj;
             });
 
             if (curSetCodeDate != newSetCodeDate)
@@ -450,7 +473,8 @@ namespace DdexInvoicing
                 return;
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                if (DdexReport.GetAgreementReportType(cmd, ddexReportId) != DdexReport.ReportTypeEnum.YOUTUBE_SRMF)
+                var agreementReportType = DdexReport.GetAgreementReportType(cmd, ddexReportId);
+                if (agreementReportType != DdexReport.ReportTypeEnum.YOUTUBE_SRMF)
                 {
                     cmd.Parameters.Clear();
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -460,6 +484,18 @@ namespace DdexInvoicing
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = "dbo.spDdexApplyReportExceptions";
+                    cmd.ExecuteNonQuery();
+
+                    if(agreementReportType == DdexReport.ReportTypeEnum.TIKTOK)
+                    {
+                        cmd.CommandText = "dbo.spDdexUpdateIndentBacklogSharesTiktok";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "dbo.spDdexUpdateIndentBacklogShares";
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                     cmd.ExecuteNonQuery();
                 }
             });
@@ -686,7 +722,6 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
-                    case DdexReport.ReportTypeEnum.TIKTOK:
                         cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@fileId", DBNull.Value);
                         break;
@@ -696,15 +731,34 @@ namespace DdexInvoicing
                         cmd.Parameters.AddWithValue("@setCode", setCode);
                         break;
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
+                    case DdexReport.ReportTypeEnum.TIKTOK:
                         cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@leadingFileId", DBNull.Value); break;
                 }
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select max(fileId) from CcidInFile";
-                cmd.Parameters.Clear();
-                fileId = (int)cmd.ExecuteScalar();
+                if(agreementReportTypeEnum == DdexReport.ReportTypeEnum.TIKTOK)
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"
+                        select max(t1.FileId)
+                        from CcidInFile t1
+                            join CcidInvoice t2 on t1.ccidInvoiceId = t2.Id
+	                        join CcidInHeader t3 on t1.FileId = t3.FileId
+                        where t2.ddexReportId = @ddexReportId
+	                        and t3.Territory = 'UA'
+                    ";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                    fileId = (int)cmd.ExecuteScalar();
+                }
+                else
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "select max(fileId) from CcidInFile";
+                    cmd.Parameters.Clear();
+                    fileId = (int)cmd.ExecuteScalar();
+                }
 
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = @"select t4.dateUpdated
@@ -747,6 +801,7 @@ namespace DdexInvoicing
         {
             int fileId = (int)e.Row.Cells["fileId"].Value;
             int fileType = (int)e.Row.Cells["fileType"].Value;
+            int fileStatus = (int)e.Row.Cells["fileStatus"].Value;
             if (fileType == 0 || fileType == 1)
             {
                 if (e.Column.FieldName.Equals("ShowDetails", StringComparison.OrdinalIgnoreCase))
@@ -763,7 +818,14 @@ namespace DdexInvoicing
                 }
                 else if (e.Column.FieldName.Equals("Save", StringComparison.OrdinalIgnoreCase))
                 {
-                    SaveInvoice(fileId);
+                    if(fileStatus == 1)
+                    {
+                        ClearInvoiceFiles(fileId);
+                    }
+                    else
+                    {
+                        SaveInvoice(fileId);
+                    }
                 }
                 else if (e.Column.FieldName.Equals("Send", StringComparison.OrdinalIgnoreCase))
                 {
@@ -822,12 +884,13 @@ namespace DdexInvoicing
                 else if (e.Column.FieldName.Equals("Update", StringComparison.OrdinalIgnoreCase))
                 {
                     (e.CellElement as GridCommandCellElement).CommandButton.Text = "Оновити";
-                    e.CellElement.Enabled = fileStatus < Meta.CcidInFileStatus.ReadyToSend && fileType != (int)CcidFileType.CorrectedIn;
+                    e.CellElement.Enabled = fileStatus < Meta.CcidInFileStatus.Sent && fileType != (int)CcidFileType.CorrectedIn;
                 }
                 else if (e.Column.FieldName.Equals("Save", StringComparison.OrdinalIgnoreCase))
                 {
-                    (e.CellElement as GridCommandCellElement).CommandButton.Text = "До файлу";
-                    e.CellElement.Enabled = fileStatus == Meta.CcidInFileStatus.Created;
+                    (e.CellElement as GridCommandCellElement).CommandButton.Text = 
+                        fileStatus == 0 ? "До файлу" : "Не надсилати";
+                    e.CellElement.Enabled = fileStatus == Meta.CcidInFileStatus.Created || fileStatus == Meta.CcidInFileStatus.ReadyToSend;
                 }
                 else if (e.Column.FieldName.Equals("Send", StringComparison.OrdinalIgnoreCase))
                 {

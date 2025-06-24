@@ -1027,6 +1027,7 @@ namespace InvoicingLib
                 case ReportTypeEnum.SPOTIFY_FREE:
                 case ReportTypeEnum.SPOTIFY_PREMIUM:
                 case ReportTypeEnum.DEEZER_ALL:
+                case ReportTypeEnum.TIKTOK:
                 {
                     var retVal ="";
                     cmd.CommandText = $@"
@@ -1068,15 +1069,31 @@ namespace InvoicingLib
             return areementReportType == ReportTypeEnum.YOUTUBE_SRMF;
         }
 
+        public static bool IsDeezerType(string agreementReportType)
+        {
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return reportTypeInfo.ReportType == ReportTypeEnum.DEEZER_ALL;
+        }
+
+        public static bool IsTikTokType(string agreementReportType)
+        {
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK;
+        }
+
         public static bool IsMultiFile(string agreementReportType)
         {
-            return GetReportTypeInfo(agreementReportType).ServiceNames != null;
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return reportTypeInfo.ReportType == ReportTypeEnum.DEEZER_ALL ||
+                reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK;
         }
 
         public static bool IsMultiFile(SqlCommand cmd, int ddexReportId)
         {
-            var agreementReportTypeEnum = GetAgreementReportType(cmd, ddexReportId);
-            return GetReportTypeInfo(agreementReportTypeEnum).ServiceNames != null;
+            var agreementReportType = GetAgreementReportType(cmd, ddexReportId);
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return reportTypeInfo.ReportType == ReportTypeEnum.DEEZER_ALL ||
+                reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK;
         }
 
         public static List<string> GetServiceNames(string agreementReportType)
@@ -1170,7 +1187,8 @@ namespace InvoicingLib
 
         public static string GetFilterStringShort(SqlCommand cmd, int ddexReportId)
         {
-            if (IsMultiFile(cmd, ddexReportId))
+            var agreementReportType = GetAgreementReportType(cmd, ddexReportId);
+            if (agreementReportType == ReportTypeEnum.DEEZER_ALL)
             {
                 var ddexReportIdsString = ConvertToCsvString(GetAgreementReportIds(cmd, ddexReportId));
                 return $" in ({ddexReportIdsString})";

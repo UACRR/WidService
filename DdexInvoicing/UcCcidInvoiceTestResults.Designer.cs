@@ -30,14 +30,14 @@
         {
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.TableLayoutPanel();
+            this.btnRefresh = new Telerik.WinControls.UI.RadButton();
             this.radBtnCopy = new Telerik.WinControls.UI.RadButton();
             this.lvResult = new System.Windows.Forms.ListView();
             this.ucCcidInvoiceTestDetails17 = new DdexInvoicing.UcCcidInvoiceTestDetails17();
-            this.btnRefresh = new Telerik.WinControls.UI.RadButton();
             this.panelMain.SuspendLayout();
             this.panelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnCopy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnCopy)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -64,7 +64,7 @@
             this.panelTop.ColumnCount = 3;
             this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 187F));
             this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 696F));
+            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 659F));
             this.panelTop.Controls.Add(this.btnRefresh, 1, 0);
             this.panelTop.Controls.Add(this.radBtnCopy, 0, 0);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -74,6 +74,16 @@
             this.panelTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelTop.Size = new System.Drawing.Size(970, 34);
             this.panelTop.TabIndex = 2;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRefresh.Location = new System.Drawing.Point(190, 3);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(118, 28);
+            this.btnRefresh.TabIndex = 1;
+            this.btnRefresh.Text = "Оновити";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // radBtnCopy
             // 
@@ -108,16 +118,6 @@
             this.ucCcidInvoiceTestDetails17.Size = new System.Drawing.Size(970, 154);
             this.ucCcidInvoiceTestDetails17.TabIndex = 4;
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRefresh.Location = new System.Drawing.Point(190, 3);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(81, 28);
-            this.btnRefresh.TabIndex = 1;
-            this.btnRefresh.Text = "Оновити";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // UcCcidInvoiceTestResults
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,8 +127,8 @@
             this.Size = new System.Drawing.Size(976, 461);
             this.panelMain.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnCopy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnCopy)).EndInit();
             this.ResumeLayout(false);
 
         }

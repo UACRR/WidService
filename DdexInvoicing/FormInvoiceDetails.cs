@@ -171,8 +171,8 @@ namespace DdexInvoicing
                         ";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@leadingFileId", leadingFileId);
-                var setCodeDate = (DateTime)cmd.ExecuteScalar();
-                radTbExceptionSetDate.Text = setCodeDate.ToString("yyyy-MM-dd hh:mm:ss");
+                var setCodeDate = cmd.ExecuteScalar();
+                radTbExceptionSetDate.Text = setCodeDate != DBNull.Value ? ((DateTime)setCodeDate).ToString("yyyy-MM-dd hh:mm:ss") : "";
 
                 cmd.CommandText = @"
                         select t2.setName from CcidInFile t1 join ExceptionSet t2 on t1.setCode = t2.setCode where fileId = @leadingFileId
