@@ -107,6 +107,12 @@
     <Compile Include="FormArchiver.Designer.cs">
       <DependentUpon>FormArchiver.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAutoSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAutoSearch.Designer.cs">
+      <DependentUpon>FormAutoSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCreateInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormArchiver.resx">
       <DependentUpon>FormArchiver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAutoSearch.resx">
+      <DependentUpon>FormAutoSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateInvoice.resx">
       <DependentUpon>FormCreateInvoice.cs</DependentUpon>
