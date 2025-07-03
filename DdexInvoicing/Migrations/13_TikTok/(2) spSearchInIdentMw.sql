@@ -1,7 +1,7 @@
 use AutoSearch
 go
 
-create or alter procedure spSearchNameInIdentMw
+create or alter procedure spSearchInIdentMw
 	@ddexReportId int
 as
 begin
@@ -130,4 +130,4 @@ update SearchSteps set Status = 2 where Id = 18
 */
 end
 
--- spSearchNameInIdentMw
+-- spSearchNameInIdentMw 1496

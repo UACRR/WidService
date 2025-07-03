@@ -396,5 +396,12 @@ namespace DdexInvoicing
                 rowChangedEvent(sender, rowChangedEventArgs);
             }
         }
+
+        private void radBtnAutoSearch_Click(object sender, EventArgs e)
+        {
+            var form = new FormAutoSearch(_ddexReportId);
+            form.ShowDialog();
+            ApplyFilter();
+        }
     }
 }

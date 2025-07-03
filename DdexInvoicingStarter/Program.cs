@@ -27,10 +27,10 @@ namespace DdexInvoicingStarter
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new FormAutoSearch(1496));
+                //Application.Run(new FormAutoSearch(1496));
                 //Application.Run(new FormDspResourceAnalyser());
 
-                //Application.Run(new DdexInvoicingForm());
+                Application.Run(new DdexInvoicingForm());
 
                 //Application.Run(new FormMwSearch());
             }

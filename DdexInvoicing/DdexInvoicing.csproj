@@ -582,6 +582,12 @@
     <Content Include="Migrations\12_TikTok\%287%29 spDdexApplyReportExceptions.sql" />
     <Content Include="Migrations\12_TikTok\%288%29 spDdexUpdateIndentBacklogShares.sql" />
     <Content Include="Migrations\12_TikTok\%289%29 spDdexUpdateIndentBacklogSharesTikTok.sql" />
+    <Content Include="Migrations\13_TikTok\%280%29 CreateTables.sql" />
+    <Content Include="Migrations\13_TikTok\%280.0.1%29 TransLitCharFromUkrToLat.sql" />
+    <Content Include="Migrations\13_TikTok\%280.0.2%29 TransLitFromUkrToLat.sql" />
+    <Content Include="Migrations\13_TikTok\%280.1%29 spFillInInitialInfo.sql" />
+    <Content Include="Migrations\13_TikTok\%282%29 spSearchInIdentMw.sql" />
+    <Content Include="Migrations\13_TikTok\AutoSearch.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidIpRolePrty.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidPrtyIpRole.sql" />
     <Content Include="SqlQueries\WidInMediaService\spWidImportToMs.sql" />

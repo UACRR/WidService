@@ -8,6 +8,23 @@ begin
 
 	update SearchSteps set Status = 0
 
+/*
+update t2
+set t2.ObjId = null, t2.Wic = null, Status = 0
+from Ddex..IdentBacklog t1
+	join Ddex..IdentMw t2 on t1.mwId = t2.Id
+where t1.DdexReportId = 1496
+*/
+
+/*
+select *
+from Ddex..IdentBacklog t1
+	join Ddex..IdentMw t2 on t1.mwId = t2.Id
+where t1.DdexReportId = 1496
+	and t2.Status= 2
+--	and Title = 'I Loved You - Denis First Extended Mix'
+*/
+
 -- =================================== ¬’≤ƒÕ¿ ≤Õ‘Œ–Ã¿÷≤ﬂ ≤« «¬≤“”
 
 	update SearchSteps set Status = 1 where Id = 1

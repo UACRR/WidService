@@ -54,6 +54,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ddbSort = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnApplyFilter = new Telerik.WinControls.UI.RadButton();
+            this.radBtnAutoSearch = new Telerik.WinControls.UI.RadButton();
             this.ilExpandCollapse = new System.Windows.Forms.ImageList(this.components);
             this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
             this.panelMain.SuspendLayout();
@@ -65,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddbStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbSort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnApplyFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnAutoSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -204,11 +206,13 @@
             // panelTop
             // 
             this.panelTop.AutoSize = true;
-            this.panelTop.ColumnCount = 2;
+            this.panelTop.ColumnCount = 3;
             this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 621F));
-            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 774F));
+            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 692F));
             this.panelTop.Controls.Add(this.panelFilter, 0, 0);
             this.panelTop.Controls.Add(this.btnApplyFilter, 1, 0);
+            this.panelTop.Controls.Add(this.radBtnAutoSearch, 2, 0);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
@@ -302,6 +306,15 @@
             this.btnApplyFilter.Visible = false;
             this.btnApplyFilter.Click += new System.EventHandler(this.btnApplyFilter_Click);
             // 
+            // radBtnAutoSearch
+            // 
+            this.radBtnAutoSearch.Location = new System.Drawing.Point(726, 3);
+            this.radBtnAutoSearch.Name = "radBtnAutoSearch";
+            this.radBtnAutoSearch.Size = new System.Drawing.Size(136, 28);
+            this.radBtnAutoSearch.TabIndex = 7;
+            this.radBtnAutoSearch.Text = "Шукати автоматично";
+            this.radBtnAutoSearch.Click += new System.EventHandler(this.radBtnAutoSearch_Click);
+            // 
             // ilExpandCollapse
             // 
             this.ilExpandCollapse.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilExpandCollapse.ImageStream")));
@@ -336,6 +349,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddbStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbSort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnApplyFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnAutoSearch)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -354,5 +368,6 @@
         private Telerik.WinControls.UI.RadButton btnApplyFilter;
         private System.Windows.Forms.ImageList ilExpandCollapse;
         private System.Windows.Forms.ImageList ilStatuses;
+        private Telerik.WinControls.UI.RadButton radBtnAutoSearch;
     }
 }
