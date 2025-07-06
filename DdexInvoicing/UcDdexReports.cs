@@ -818,7 +818,8 @@ namespace DdexInvoicing
                     var res = false;
                     if (DdexReport.IsGooglePreClaimReport(agreementReportType))
                     {
-                        res = DistGoogle(ddexReportId, ddexReportingPeriodId, status == Meta.DdexReportStatus.INVOICING);
+                        res = DistGoogle(ddexReportId, ddexReportingPeriodId, 
+                            status == Meta.DdexReportStatus.INVOICING || status == Meta.DdexReportStatus.DISTRIBUTION_STARTED);
                     }
                     else if (DdexReport.IsSpotifyReport(agreementReportType))
                     {

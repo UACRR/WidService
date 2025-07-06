@@ -28,7 +28,7 @@ where t1.DdexReportId = 1496
 -- =================================== ¬’≤ƒÕ¿ ≤Õ‘Œ–Ã¿÷≤ﬂ ≤« «¬≤“”
 
 	update SearchSteps set Status = 1 where Id = 1
-	delete from SourceWorks
+	truncate table SourceWorks
 	insert SourceWorks(WorkId, Name, Authors, Performers)
 	select t2.Id, t2.Title, t2.ComposerAuthor, t2.DisplayArtistName
 	from Ddex..IdentBacklog t1
@@ -42,21 +42,21 @@ where t1.DdexReportId = 1496
 		-- select count(*) from SourceWorks
 
 	update SearchSteps set Status = 1 where Id = 2
-	delete from SourceNames
+	truncate table SourceNames
 	insert SourceNames(Name)
 	select distinct Name
 	from SourceWorks
 	update SearchSteps set Status = 2 where Id = 2
 
 	update SearchSteps set Status = 1 where Id = 3
-	delete from SourceNamesT
+	truncate table SourceNamesT
 	insert SourceNamesT(SourceNameId, Name)
 	select SourceNameId, dbo.TransLitFromUkrToLat(Name)
 	from SourceNames
 	update SearchSteps set Status = 2 where Id = 3
 
 	update SearchSteps set Status = 1 where Id = 4
-	delete from SourceNameWorks
+	truncate table SourceNameWorks
 	insert SourceNameWorks(SourceNameId, WorkId, ObjId, Wic)
 	select distinct t1.SourceNameId, t2.WorkId, null, null
 	from SourceNames t1
@@ -64,7 +64,7 @@ where t1.DdexReportId = 1496
 	update SearchSteps set Status = 2 where Id = 4
 
 	update SearchSteps set Status = 1 where Id = 5
-	delete from SourcePerformerParts
+	truncate table SourcePerformerParts
 	insert SourcePerformerParts(WorkId, Name)
 	select distinct WorkId, value
 	from SourceWorks
@@ -77,7 +77,7 @@ where t1.DdexReportId = 1496
 	update SearchSteps set Status = 2 where Id = 6
 
 	update SearchSteps set Status = 1 where Id = 7
-	delete from SourceAuthorParts
+	truncate table SourceAuthorParts
 	insert SourceAuthorParts(WorkId, Name)
 	select distinct WorkId, value
 	from SourceWorks
@@ -91,31 +91,30 @@ where t1.DdexReportId = 1496
 
 -- =================================== ¬’≤ƒÕ¿ ≤Õ‘Œ–Ã¿÷≤ﬂ ƒÀﬂ œŒÿ” ”
 	update SearchSteps set Status = 1 where Id = 9
-	delete from TargetWorks
+	truncate table TargetWorks
 	insert TargetWorks(WorkId, Name, Authors, Performers)
-	select t2.Id, t2.Title, t2.ComposerAuthor, t2.DisplayArtistName
-	from Ddex..IdentBacklog t1
-		join Ddex..IdentMw t2 on t1.mwId = t2.Id
-	where isnull(t2.objId, 0) <> 0
-		or isnull(t2.Wic, 0) <> 0
+	select Id, Title, ComposerAuthor, DisplayArtistName
+	from Ddex..IdentMw
+	where isnull(objId, 0) <> 0
+		or isnull(Wic, 0) <> 0
 	update SearchSteps set Status = 2 where Id = 9
 
 	update SearchSteps set Status = 1 where Id = 10
-	delete from TargetNames
+	truncate table TargetNames
 	insert TargetNames(Name)
 	select distinct Name
 	from TargetWorks
 	update SearchSteps set Status = 2 where Id = 10
 
 	update SearchSteps set Status = 1 where Id = 11
-	delete from TargetNamesT
+	truncate table TargetNamesT
 	insert TargetNamesT(TargetNameId, Name)
 	select TargetNameId, dbo.TransLitFromUkrToLat(Name)
 	from TargetNames
 	update SearchSteps set Status = 2 where Id = 11
 
 	update SearchSteps set Status = 1 where Id = 12
-	delete from TargetNameWorks
+	truncate table TargetNameWorks
 	insert TargetNameWorks(TargetNameId, WorkId, ObjId, Wic)
 	select distinct t1.TargetNameId, t2.WorkId, null, null
 	from TargetNames t1
@@ -124,7 +123,7 @@ where t1.DdexReportId = 1496
 
 -- —ÀŒ¬¿ ” ¬» ŒÕ¿¬÷ﬂ’
 	update SearchSteps set Status = 1 where Id = 13
-	delete from TargetPerformerParts
+	truncate table TargetPerformerParts
 	insert TargetPerformerParts(WorkId, Name)
 	select distinct WorkId, left(value, 64)
 	from TargetWorks
@@ -138,7 +137,7 @@ where t1.DdexReportId = 1496
 
 -- —ÀŒ¬¿ ” ¿¬“Œ–¿’
 	update SearchSteps set Status = 1 where Id = 15
-	delete from TargetAuthorParts
+	truncate table TargetAuthorParts
 	insert TargetAuthorParts(WorkId, Name)
 	select distinct WorkId, left(value, 64)
 	from TargetWorks

@@ -95,12 +95,11 @@ namespace DdexInvoicing
                     select *
                     from ExceptionMember
                     where setCode = @setCode and excType = 1
+                    order by memberName
                 ";
                 cmd.Parameters.AddWithValue("@setCode", setCode);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dtCommunities);
-                if(dtCommunities.Rows.Count > 0)
-                    dtCommunities = dtCommunities.Select("", "memberName asc").CopyToDataTable();
             });
         }
 
@@ -337,11 +336,14 @@ namespace DdexInvoicing
                         , '' comment
                         , interCode IPInr
                         , GetDate() dateCreated
+                        , cast(1 as bit) as ForPer
+                        , cast(1 as bit) as ForMec
                     from vMSCommunity
                 ";
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dtLeft);
             });
+
             var form = new FormObjectChooser(dtLeft, dtCommunities);
             if(form.ShowDialog() == DialogResult.Cancel)
                 return;
@@ -657,6 +659,26 @@ namespace DdexInvoicing
         private void radTbName_TextChanged(object sender, EventArgs e)
         {
             SetDirty(true);
+        }
+
+        private void radGridCommunities_CellClick(object sender, GridViewCellEventArgs e)
+        {
+            var dataRowView = (GridViewRowInfo)e.Row;
+            var dataRowItem = (DataRowView)dataRowView.DataBoundItem;
+            var dataRow = dataRowItem.Row;
+            var rowIndex = e.RowIndex;
+            switch (e.Column.FieldName)
+            {
+                case "ForPer":
+                case "ForMec":
+                    var value = (bool)dtCommunities.Rows[rowIndex][e.Column.FieldName];
+                    dtCommunities.Rows[rowIndex][e.Column.FieldName] = !value;
+                    //dtCommunities.AcceptChanges();
+                    //dataRowView.InvalidateRow();
+                    //radGridCommunities.Refresh();
+                    SetDirty(true);
+                    break;
+            }
         }
     }
 }

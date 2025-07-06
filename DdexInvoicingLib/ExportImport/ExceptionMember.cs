@@ -26,5 +26,7 @@ namespace ExportImport
         public string IPInr { get; set; }
         [ImportCurrent]
         public DateTime? DateCreated { get; set; }
+        public bool ForPer { get; set; }
+        public bool ForMec { get; set; }
     }
 }

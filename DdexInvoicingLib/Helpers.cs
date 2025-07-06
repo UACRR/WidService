@@ -157,6 +157,7 @@ namespace InvoicingLib
                     int.Parse(timeParts[2])
                 );
         }
+        public static bool ToBool(string value) => value == "true" ? true : false;
         public static string ToExportString(object value)
         {
             if (value == null)
@@ -179,6 +180,10 @@ namespace InvoicingLib
             else if (valueType.Equals(typeof(DateTime)) || valueType.Equals(typeof(DateTime?)))
             {
                 return ((DateTime)value).ToString("yyyy-MM-dd hh:mm:ss");
+            }
+            else if (valueType.Equals(typeof(bool)) || valueType.Equals(typeof(bool?)))
+            {
+                return ((bool)value) ? "true" : "false";
             }
             else
             {

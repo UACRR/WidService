@@ -427,6 +427,17 @@ namespace ExportImport
                                         dataRecord.Add(Formatter.ToDateTime(valueString));
                                     }
                                 }
+                                else if (x.PropertyType.Equals(typeof(bool)) || x.PropertyType.Equals(typeof(bool?)))
+                                {
+                                    if (string.IsNullOrEmpty(valueString))
+                                    {
+                                        dataRecord.Add(DBNull.Value);
+                                    }
+                                    else
+                                    {
+                                        dataRecord.Add(Formatter.ToBool(valueString));
+                                    }
+                                }
                             }
 
                             fieldIndex++;

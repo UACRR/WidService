@@ -66,6 +66,10 @@ namespace ExportImport
                     {
                         x.SetValue(retVal, r.GetDateTime(i));
                     }
+                    else if (x.PropertyType.Equals(typeof(bool)) || x.PropertyType.Equals(typeof(bool?)))
+                    {
+                        x.SetValue(retVal, r.GetBoolean(i));
+                    }
                 }
                 else
                 {

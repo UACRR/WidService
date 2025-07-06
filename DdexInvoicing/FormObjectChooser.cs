@@ -25,8 +25,8 @@ namespace DdexInvoicing
             InitializeComponent();
             dtLeft.AcceptChanges();
             dtRight.AcceptChanges();
-            this.dtLeft = dtLeft;
-            this.dtRight = dtRight;
+            this.dtLeft = dtLeft.Copy();
+            this.dtRight = dtRight.Copy();
         }
 
         public DataTable GetRightTable() => (DataTable)radGridRight.DataSource;

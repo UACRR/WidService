@@ -30,6 +30,8 @@
         {
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
+            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn2 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -239,6 +241,14 @@
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "memberName";
             gridViewTextBoxColumn2.Width = 300;
+            gridViewCheckBoxColumn1.FieldName = "ForPer";
+            gridViewCheckBoxColumn1.HeaderText = "Для Пуб.";
+            gridViewCheckBoxColumn1.Name = "ForPer";
+            gridViewCheckBoxColumn1.Width = 60;
+            gridViewCheckBoxColumn2.FieldName = "ForMec";
+            gridViewCheckBoxColumn2.HeaderText = "Для Мех.";
+            gridViewCheckBoxColumn2.Name = "ForMec";
+            gridViewCheckBoxColumn2.Width = 60;
             gridViewCommandColumn1.FieldName = "Delete";
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Name = "Delete";
@@ -247,6 +257,8 @@
             this.radGridCommunities.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
+            gridViewCheckBoxColumn1,
+            gridViewCheckBoxColumn2,
             gridViewCommandColumn1});
             this.radGridCommunities.MasterTemplate.ShowFilteringRow = false;
             this.radGridCommunities.MasterTemplate.ShowRowHeaderColumn = false;
@@ -256,6 +268,7 @@
             this.radGridCommunities.Size = new System.Drawing.Size(1189, 476);
             this.radGridCommunities.TabIndex = 1;
             this.radGridCommunities.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridCommunities_CellFormatting);
+            this.radGridCommunities.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridCommunities_CellClick);
             this.radGridCommunities.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.radGridCommunities_CommandCellClick);
             // 
             // radLabel3
@@ -432,7 +445,6 @@
             // radPvRh1
             // 
             this.radPvRh1.Controls.Add(this.tlpExc3_1);
-            this.radPvRh1.ItemSize = new System.Drawing.SizeF(137F, 28F);
             this.radPvRh1.Location = new System.Drawing.Point(10, 37);
             this.radPvRh1.Name = "radPvRh1";
             this.radPvRh1.Size = new System.Drawing.Size(731, 413);
@@ -538,7 +550,6 @@
             // radPvRh2
             // 
             this.radPvRh2.Controls.Add(this.tableLayoutPanel11);
-            this.radPvRh2.ItemSize = new System.Drawing.SizeF(104F, 28F);
             this.radPvRh2.Location = new System.Drawing.Point(10, 37);
             this.radPvRh2.Name = "radPvRh2";
             this.radPvRh2.Size = new System.Drawing.Size(731, 413);
