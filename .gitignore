@@ -73,3 +73,5 @@ Thumbs.db
 /ipsmedserviceapp/cmd.cmd
 /GetUserId/GetUserId.jfm
 ~*.*
+/DdexInvoicing/.vs/DdexInvoicing.csproj.dtbcache.json
+/.gitignore

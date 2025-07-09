@@ -594,6 +594,11 @@
     <Content Include="Migrations\14_ExceptionSet\%284%29 spCopyExceptionSet.sql" />
     <Content Include="Migrations\14_ExceptionSet\%285%29 spDdexApplyReportExceptions.sql" />
     <Content Include="Migrations\14_ExceptionSet\%286%29 spSysExceptionDeleteDups.sql" />
+    <Content Include="Migrations\15_AutoSearch\%281%29 CreateTables.sql" />
+    <Content Include="Migrations\15_AutoSearch\%282%29 spCreateSourceInfo.sql" />
+    <Content Include="Migrations\15_AutoSearch\%283%29 spUpdateTargetInfo.sql" />
+    <Content Include="Migrations\15_AutoSearch\%284%29 spSearchInIdentMw.sql" />
+    <Content Include="Migrations\15_AutoSearch\%285%29 spFillInInitialInfo.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidIpRolePrty.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidPrtyIpRole.sql" />
     <Content Include="SqlQueries\WidInMediaService\spWidImportToMs.sql" />
