@@ -36,7 +36,7 @@ begin
 	from Ddex..IdentBacklog t1
 		join Ddex..IdentMw t2 on t1.mwId = t2.Id
 	--where t1.DdexReportId in (select Id from Ddex..ft_AgreementReportIds(1496))
-	where t1.DdexReportId = 1496--@ddexReportId --
+	where t1.DdexReportId = @ddexReportId --1496--
 		and isnull(t2.objId, 0) = 0
 		and isnull(t2.Wic, 0) = 0
 	update SearchSteps set Status = 2 where Id = 1
@@ -55,7 +55,7 @@ begin
 	update SearchSteps set Status = 1 where Id = 3
 	truncate table SourceNamesT
 	insert SourceNamesT(SourceNameId, Name)
-	select SourceNameId, dbo.TransLitFromUkrToLat(Name)
+	select SourceNameId, AutoSearch.dbo.ClrTranslitFromUkrToLat(Name)
 	from SourceNames
 	update SearchSteps set Status = 2 where Id = 3
 
@@ -72,31 +72,21 @@ begin
 	update SearchSteps set Status = 1 where Id = 5
 	truncate table SourcePerformerParts
 	insert SourcePerformerParts(WorkId, Name)
-	select distinct WorkId, value
+	select distinct WorkId, AutoSearch.dbo.ClrTranslitFromUkrToLat(value)
 	from SourceWorks
 		cross apply string_split(Performers, ' ')
 	where len(value) > 2
 	update SearchSteps set Status = 2 where Id = 5
 
--- SourcePerformerParts Translit
-	update SearchSteps set Status = 1 where Id = 6
-	update SourcePerformerParts set Name = dbo.TransLitFromUkrToLat(Name)
-	update SearchSteps set Status = 2 where Id = 6
-
 -- SourceAuthorParts
-	update SearchSteps set Status = 1 where Id = 7
+	update SearchSteps set Status = 1 where Id = 6
 	truncate table SourceAuthorParts
 	insert SourceAuthorParts(WorkId, Name)
-	select distinct WorkId, value
+	select distinct WorkId, AutoSearch.dbo.ClrTranslitFromUkrToLat(value)
 	from SourceWorks
 		cross apply string_split(Authors, ' ')
 	where len(value) > 2
-	update SearchSteps set Status = 2 where Id = 7
-
--- SourceAuthorParts Translit
-	update SearchSteps set Status = 1 where Id = 8
-	update SourceAuthorParts set Name = dbo.TransLitFromUkrToLat(Name)
-	update SearchSteps set Status = 2 where Id = 8
+	update SearchSteps set Status = 2 where Id = 6
 
 end
 

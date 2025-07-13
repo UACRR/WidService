@@ -11,7 +11,7 @@ begin
 
 	delete from FoundNamesInIdentMw
 
-	update SearchSteps set Status = 1 where Id = 17
+	update SearchSteps set Status = 1 where Id = 30
 -- St~Tt
 	insert FoundNamesInIdentMw(SourceNameId, TargetNameId, SearchType)
 	select t1.SourceNameId, t2.TargetNameId, 'St~Tt' as SearchType
@@ -100,9 +100,9 @@ begin
 		left join FoundNamesInIdentMw t3 on t1.SourceNameId = t3.SourceNameId and t2.TargetNameId = t3.TargetNameId
 	where t3.SourceNameId is null
 
-update SearchSteps set Status = 2 where Id = 17
+update SearchSteps set Status = 2 where Id = 30
 --==================================================================
-update SearchSteps set Status = 1 where Id = 18
+update SearchSteps set Status = 1 where Id = 31
 	delete from FoundWorksInIdentMw
 	insert FoundWorksInIdentMw(SourceWorkId, TargetWorkId)
 	select t2.WorkId as SourceWorkId, max(t4.WorkId) as TargetWorkId
@@ -124,7 +124,7 @@ update SearchSteps set Status = 1 where Id = 18
 	from FoundWorksInIdentMw t1
 		join Ddex..IdentMw t2 on t1.SourceWorkId = t2.Id
 		join Ddex..IdentMw t3 on t1.TargetWorkId = t3.Id
-update SearchSteps set Status = 2 where Id = 18
+update SearchSteps set Status = 2 where Id = 31
 /*
 	select t2.Title, t2.ComposerAuthor, t2.DisplayArtistName, t3.Title, t3.ComposerAuthor, t3.DisplayArtistName
 	from FoundWorksInIdentMw t1
