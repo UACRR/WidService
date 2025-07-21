@@ -18,14 +18,20 @@ namespace WidReplicationServiceLib
         public event EventHandler<ActionStatusChangedArgs> ActionStatusChanged;
 
         public string WidFtpUrl { get; set; }
+        public int WidFtpPort { get; set; }
         public string WidFtpLogin { get; set; }
         public string WidFtpPassword { get; set; }
+        public bool WidFtpUseSftp { get; set; }
+        public bool WidFtpUseSsl { get; set; }
         public string WidFtpDumpPath { get; set; }
         public string WidFtpUpdatesPath { get; set; }
         public string WidWorkFilesRootPath { get; set; }
         public string IpiFtpUrl { get; set; }
+        public int IpiFtpPort { get; set; }
         public string IpiFtpLogin { get; set; }
         public string IpiFtpPassword { get; set; }
+        public bool IpiFtpUseSftp { get; set; }
+        public bool IpiFtpUseSsl { get; set; }
         public string IpiFtpDumpPath { get; set; }
         public string IpiFtpUpdatesPath { get; set; }
         public string IpiWorkFilesRootPath { get; set; }
@@ -55,7 +61,12 @@ namespace WidReplicationServiceLib
 
         public void RunWidFileDownload(string ftpPath, string fileName)
         {
-            var ftpClient = new FtpClient(WidFtpUrl, WidFtpLogin, WidFtpPassword);
+            var ftpClient = new SocFtpClient.FtpClient(WidFtpUrl, 
+                WidFtpLogin, 
+                WidFtpPassword,
+                WidFtpPort,
+                WidFtpUseSftp,
+                WidFtpUseSsl);
 
             var fileExt = Path.GetExtension(fileName);
             var adjustedFileName = fileName;
@@ -78,16 +89,16 @@ namespace WidReplicationServiceLib
             {
                 switch (e.EventType)
                 {
-                    case FtpClient.FtpEventType.FileDownloadStarted:
+                    case SocFtpClient.FtpClient.FtpEventType.FileDownloadStarted:
                         InvokeEvent(ActionEventType.Started, e.EventInfo);
                         break;
-                    case FtpClient.FtpEventType.FileDownloadInProgress:
+                    case SocFtpClient.FtpClient.FtpEventType.FileDownloadInProgress:
                         InvokeEvent(ActionEventType.InProgress, e.EventInfo);
                         break;
-                    case FtpClient.FtpEventType.FileDownloadCompleted:
+                    case SocFtpClient.FtpClient.FtpEventType.FileDownloadCompleted:
                         InvokeEvent(ActionEventType.Completed, e.EventInfo);
                         break;
-                    case FtpClient.FtpEventType.FileDownloadFailed:
+                    case SocFtpClient.FtpClient.FtpEventType.FileDownloadFailed:
                         InvokeEvent(ActionEventType.Failed, e.EventInfo);
                         break;
                 }
@@ -382,21 +393,26 @@ namespace WidReplicationServiceLib
 
         public void RunIpiFileDownload(string ftpPath, string fileName)
         {
-            var ftpClient = new FtpClient(IpiFtpUrl, IpiFtpLogin, IpiFtpPassword, true);
+            var ftpClient = new SocFtpClient.FtpClient(IpiFtpUrl, 
+                IpiFtpLogin, 
+                IpiFtpPassword,
+                IpiFtpPort,
+                IpiFtpUseSftp,
+                IpiFtpUseSsl);
             ftpClient.FtpEvent += (sender, e) =>
             {
                 switch (e.EventType)
                 {
-                    case FtpClient.FtpEventType.FileDownloadStarted:
+                    case SocFtpClient.FtpClient.FtpEventType.FileDownloadStarted:
                         InvokeEvent(ActionEventType.Started, e.EventInfo);
                         break;
-                    case FtpClient.FtpEventType.FileDownloadInProgress:
+                    case SocFtpClient.FtpClient.FtpEventType.FileDownloadInProgress:
                         InvokeEvent(ActionEventType.InProgress, e.EventInfo);
                         break;
-                    case FtpClient.FtpEventType.FileDownloadCompleted:
+                    case SocFtpClient.FtpClient.FtpEventType.FileDownloadCompleted:
                         InvokeEvent(ActionEventType.Completed, e.EventInfo);
                         break;
-                    case FtpClient.FtpEventType.FileDownloadFailed:
+                    case SocFtpClient.FtpClient.FtpEventType.FileDownloadFailed:
                         InvokeEvent(ActionEventType.Failed, e.EventInfo);
                         break;
                 }

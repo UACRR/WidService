@@ -14,7 +14,8 @@ namespace Testing
         [STAThread]
         static void Main()
         {
-            /*
+            var ftpClient = new FtpClient("", "", "", 0, false);
+             /*
             IpiTests.LoadDumpFiles("ftp://ftp.suisa.ch", "UACRR", 
                 "S0c-74084lXY-?", 
                 "IPI/IPI_Pub/Complete_IPI/20240831",
@@ -28,7 +29,7 @@ namespace Testing
             return;*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            //Application.Run(new FormMain());
         }
     }
 }

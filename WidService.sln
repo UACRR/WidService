@@ -56,6 +56,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocIpiDumpLoader", "SocIpiDumpLoader\SocIpiDumpLoader.csproj", "{222A43B3-E251-43C2-842D-2F83D878EB56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsSqlClrExt", "MsSqlClrExt\MsSqlClrExt.csproj", "{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocFtpCLient", "SocFtpCLient\SocFtpCLient.csproj", "{C10C5390-B0D7-4596-B043-FDD245A1EF56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -164,6 +168,14 @@ Global
 		{222A43B3-E251-43C2-842D-2F83D878EB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{222A43B3-E251-43C2-842D-2F83D878EB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{222A43B3-E251-43C2-842D-2F83D878EB56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C10C5390-B0D7-4596-B043-FDD245A1EF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C10C5390-B0D7-4596-B043-FDD245A1EF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C10C5390-B0D7-4596-B043-FDD245A1EF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C10C5390-B0D7-4596-B043-FDD245A1EF56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

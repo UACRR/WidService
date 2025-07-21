@@ -77,7 +77,12 @@ namespace IpiUpdatesLib
         // For indepemdent load, not used in PROD
         public static void LoadDumpFiles()
         {
-            var ftpClient = new FtpClient("ftp://ftp.suisa.ch", "UACRR", "S0c-74084lXY-?", true);
+            var ftpClient = new SocFtpClient.FtpClient("ftp://ftp.suisa.ch", 
+                "UACRR", 
+                "S0c-74084lXY-?",
+                22,
+                true,
+                true);
             var inputDir = "IPI/IPI_Pub/Complete_IPI/20240601";
             var dir = ftpClient.ReadDirectory(inputDir);
             var fileNames = new List<string>();
@@ -97,7 +102,12 @@ namespace IpiUpdatesLib
         // For indepemdent aplly, not used in PROD
         public static void LoadUpdateFiles(DateTime dateFrom, DateTime dateTo)
         {
-            var ftpClient = new FtpClient("ftp://ftp.suisa.ch", "UACRR", "S0c-74084lXY-?", true);
+            var ftpClient = new SocFtpClient.FtpClient("ftp://ftp.suisa.ch", 
+                "UACRR", 
+                "S0c-74084lXY-?",
+                22,
+                true,
+                true);
 
             var fileNames = new List<string>();
             var curDate = dateFrom;
@@ -124,7 +134,12 @@ namespace IpiUpdatesLib
         // For indepemdent aplly, not used in PROD
         public static void ApplyUpdateFiles(DateTime dateFrom, DateTime dateTo)
         {
-            var ftpClient = new FtpClient("ftp://ftp.suisa.ch", "UACRR", "S0c-74084lXY-?", true);
+            var ftpClient = new SocFtpClient.FtpClient("ftp://ftp.suisa.ch", 
+                "UACRR", 
+                "S0c-74084lXY-?",
+                22,
+                true,
+                true);
 
             var fileNames = new List<string>();
             var curDate = dateFrom;

@@ -57,14 +57,21 @@ namespace WidAdminLib
                 IWidReplicationService service = new WidReplicationService
                 {
                     WidFtpUrl = _widConfig.WidFtpUrl,
+                    WidFtpPort = _widConfig.WidFtpPort,
                     WidFtpLogin = _widConfig.WidFtpLogin,
                     WidFtpPassword = _widConfig.WidFtpPassword,
+                    WidFtpUseSftp = _widConfig.WidFtpUseSftp,
+                    WidFtpUseSsl = _widConfig.WidFtpUseSsl,
                     WidFtpDumpPath = _widConfig.WidFtpDumpPath,
                     WidFtpUpdatesPath = _widConfig.WidFtpUpdatesPath,
                     WidWorkFilesRootPath = _widConfig.WidWorkFilesRootPath,
+
                     IpiFtpUrl = _widConfig.IpiFtpUrl,
+                    IpiFtpPort = _widConfig.IpiFtpPort,
                     IpiFtpLogin = _widConfig.IpiFtpLogin,
                     IpiFtpPassword = _widConfig.IpiFtpPassword,
+                    IpiFtpUseSftp = _widConfig.IpiFtpUseSftp,
+                    IpiFtpUseSsl = _widConfig.WidFtpUseSsl,
                     IpiFtpDumpPath = _widConfig.IpiFtpDumpPath,
                     IpiFtpUpdatesPath = _widConfig.IpiFtpUpdatesPath,
                     IpiWorkFilesRootPath = _widConfig.IpiWorkFilesRootPath,

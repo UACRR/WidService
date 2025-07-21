@@ -15,8 +15,11 @@ namespace IpiUpdatesLib
     public class IpiInitialLoader
     {
         public string IpiFtpUrl         { get; set; }
+        public int IpiFtpPort       { get; set; }
         public string IpiFtpLogin       { get; set; }
         public string IpiFtpPassword    { get; set; }
+        public bool IpiFtpUseSftp    { get; set; }
+        public bool IpiFtpUseSsl    { get; set; }
         public string CompleteIpiDir    { get; set; }
         public DateTime CompleteIpiDate { get; set; }
         public string UpdatesIpiDir     { get; set; }
@@ -72,7 +75,12 @@ namespace IpiUpdatesLib
 
         private void LoadCompleteIpi()
         {
-            var ftpClient = new FtpClient(IpiFtpUrl, IpiFtpLogin, IpiFtpPassword, true);
+            var ftpClient = new SocFtpClient.FtpClient(IpiFtpUrl
+                , IpiFtpLogin
+                , IpiFtpPassword
+                , IpiFtpPort
+                , IpiFtpUseSftp
+                , IpiFtpUseSsl);
             var inputDir = Path.Combine(CompleteIpiDir, CompleteIpiDate.ToString("yyyyMMdd"));
             var dir = ftpClient.ReadDirectory(inputDir);
             var fileNames = new List<string>();
@@ -92,7 +100,12 @@ namespace IpiUpdatesLib
 
         private List<string> GetUpdateFilesList()
         {
-            var ftpClient = new FtpClient(IpiFtpUrl, IpiFtpLogin, IpiFtpPassword, true);
+            var ftpClient = new SocFtpClient.FtpClient(IpiFtpUrl
+                , IpiFtpLogin
+                , IpiFtpPassword
+                , IpiFtpPort
+                , IpiFtpUseSftp
+                , IpiFtpUseSsl);
             var inputDir = UpdatesIpiDir;
             var dir = ftpClient.ReadDirectory(inputDir);
             var fileNames = new List<string>();
@@ -111,7 +124,12 @@ namespace IpiUpdatesLib
         {
             var fileNames = GetUpdateFilesList();
 
-            var ftpClient = new FtpClient(IpiFtpUrl, IpiFtpLogin, IpiFtpPassword, true);
+            var ftpClient = new SocFtpClient.FtpClient(IpiFtpUrl
+                , IpiFtpLogin
+                , IpiFtpPassword
+                , IpiFtpPort
+                , IpiFtpUseSftp
+                , IpiFtpUseSsl);
             fileNames.ForEach(fileName =>
             {
                 ftpClient.DownloadFile(UpdatesIpiDir, fileName, LocalWorkFilesDir);

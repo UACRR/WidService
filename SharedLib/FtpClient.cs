@@ -42,7 +42,7 @@ namespace SharedLib
             FtpWebRequest listRequest = (FtpWebRequest)WebRequest.Create($"{_url}/{targetPath}");
             listRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
             listRequest.Credentials = credentials;
-            listRequest.EnableSsl = _enableSsl;
+            listRequest.EnableSsl = false; // _enableSsl;
             List<string> lines = new List<string>();
             using (FtpWebResponse listResponse = (FtpWebResponse)listRequest.GetResponse())
             using (Stream listStream = listResponse.GetResponseStream())

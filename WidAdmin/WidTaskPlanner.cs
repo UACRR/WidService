@@ -396,7 +396,12 @@ namespace WidAdminLib
             });
 
             subjectId = CreateWidTaskSubject(_currentPeriod.Id, WidTaskSubjectTypeCodeEnum.InitFromDump, "IPI", null);
-            var ftpClient = new FtpClient(_widConfig.IpiFtpUrl, _widConfig.IpiFtpLogin, _widConfig.IpiFtpPassword, true);
+            var ftpClient = new SocFtpClient.FtpClient(_widConfig.IpiFtpUrl, 
+                _widConfig.IpiFtpLogin, 
+                _widConfig.IpiFtpPassword, 
+                _widConfig.IpiFtpPort,
+                _widConfig.IpiFtpUseSftp,
+                _widConfig.IpiFtpUseSsl);
             var ftpIpiDirectory = ftpClient.ReadDirectory(_widConfig.IpiFtpDumpPath);
             var ftpDirNames = new List<string>();
             ftpIpiDirectory.ForEach(x => ftpDirNames.Add(x.Split(' ').Last()));
@@ -450,86 +455,7 @@ namespace WidAdminLib
             return CreateWidTask(widTaskObjectId, WidTaskTypeCodeEnum.CalcWidDumpTs, lastTaskId);
         }
 
- /*
-        private void CreateUpdateFromTranFilesTasks()
-        {
-            string lastUpdateFileName = null;
-            var updateFromTranFilesSubject = _currentPeriod.WidTaskSubjects
-                .SingleOrDefault(x => x.WidTaskSubjectTypeId == (int)WidTaskSubjectTypeCodeEnum.UpdateFromTranFiles);
-
-            // Just guard
-            if (updateFromTranFilesSubject == null)
-            {
-                return; // This is initial period
-            }
-
-            lastUpdateFileName = updateFromTranFilesSubject.WidTaskObjects.Max(x => x.ObjectInfo);
-            if(lastUpdateFileName == null) // No updates are planned for current period yet
-            {
-                // Build file name from period wid-dump date
-                DateTime ts = (DateTime)_currentPeriod.WidDumpTs;
-                lastUpdateFileName = $"WID{ts.ToString("yyyyMMddhhmmss")}000300.021";
-            }
-
-            var maxUpdateFileName = "WID99990000000000000000.021";
-            if(_currentPeriod.NewWidDumpTs != null) // new dump is already loaded ind its time stamp is known
-            {
-                maxUpdateFileName = $"WID{((DateTime)_currentPeriod.NewWidDumpTs).ToString("yyyyMMddhhmmss")}000300.021";
-            }
-
-            Logger.WriteLine($"    Search files between {lastUpdateFileName} and {maxUpdateFileName} at {_widConfig.WidFtpUpdatesPath}");
-
-            var allDirFileNames = ReadFtpDirectory(_widConfig.WidFtpUpdatesPath)
-                .ConvertAll(x => x.Split(' ').Last());
-
-            // Updates to be added to the current period
-            var newUpdateFiles = allDirFileNames
-                .Where(x => x.CompareTo(lastUpdateFileName) > 0 && x.CompareTo(maxUpdateFileName) < 0)
-                .OrderBy(x => x)
-                .ToList();
-
-            if(newUpdateFiles.Count > 0) // not all updates were planned for the current period
-            {
-                Logger.WriteLine("    New files to add are found, creating tasks");
-                var lastWidTaskId = GetLastTaskId();
-                newUpdateFiles.ForEach(x =>
-                {
-                    Logger.WriteLine($"        Creating object {x} for subject {updateFromTranFilesSubject.Id}");
-                    var widTaskObjectId = CreateWidTaskObject(updateFromTranFilesSubject.Id, x);
-                    Logger.WriteLine($"        Creating FileDownload task for object {widTaskObjectId}");
-                    lastWidTaskId = CreateWidTask(widTaskObjectId, WidTaskTypeCodeEnum.FileDownload, lastWidTaskId);
-                    Logger.WriteLine($"        Creating FileUnzip task for object {widTaskObjectId}");
-                    lastWidTaskId = CreateWidTask(widTaskObjectId, WidTaskTypeCodeEnum.FileUnzip, lastWidTaskId);
-                    Logger.WriteLine($"        Creating FileZipDelete task for object {widTaskObjectId}");
-                    lastWidTaskId = CreateWidTask(widTaskObjectId, WidTaskTypeCodeEnum.FileZipDelete, lastWidTaskId);
-                    Logger.WriteLine($"        Creating FileApplyToSocDb task for object {widTaskObjectId}");
-                    lastWidTaskId = CreateWidTask(widTaskObjectId, WidTaskTypeCodeEnum.FileApplyToSocDb, lastWidTaskId);
-                    Logger.WriteLine($"        Creating FileApplyToDb task for object {widTaskObjectId}");
-                    lastWidTaskId = CreateWidTask(widTaskObjectId, WidTaskTypeCodeEnum.FileApplyToDb, lastWidTaskId);
-                    Logger.WriteLine($"        Creating FileDelete task for object {widTaskObjectId}");
-                    lastWidTaskId = CreateWidTask(widTaskObjectId, WidTaskTypeCodeEnum.FileDelete, lastWidTaskId);
-                });
-            }
-            else
-            {
-                Logger.WriteLine("    No new files to add are found");
-            }
-
-            // Note: at this point it is possible that updates applicaple for next period are already planned within this period.
-            // We do nothing special here and let them be applied. The logic would make them be planned for the new period after update from the new dump.
-
-            // If all updates applicable for the current period are planned we create "update from new dump" tasks if not planned yet
-            if(allDirFileNames.Any(x => x.CompareTo(maxUpdateFileName) >= 0) &&
-                !_currentPeriod.WidTaskSubjects.Any(x => x.WidTaskSubjectTypeId == (int)WidTaskSubjectTypeCodeEnum.UpdateFromNewDump))
-            {
-                CreateUpdateFromNewDumpTasks();
-            }
-
-            LoadCurrentPeriod();
-        }
- */
-
-        private void CreateUpdateFromTranFilesTasks()
+         private void CreateUpdateFromTranFilesTasks()
         {
             var ipiUpdSubjList = _currentPeriod
                 .WidTaskSubjects
@@ -775,18 +701,16 @@ namespace WidAdminLib
             LoadCurrentPeriod();
         }
 
-        private List<string> ReadFtpDirectory(string targetPath)
-        {
-            Logger.WriteLine($"    Reading directory lines from {_widConfig.WidFtpUrl}/{targetPath}");
-            var ftpClient = new FtpClient(_widConfig.WidFtpUrl, _widConfig.WidFtpLogin, _widConfig.WidFtpPassword);
-            return ftpClient.ReadDirectory(targetPath);
-        }
-
         private List<UpdFileInfo> ReadWidUpdateFilesInfo()
         {
             var targetPath = _widConfig.WidFtpUpdatesPath;
             Logger.WriteLine($"    Reading directory lines from {_widConfig.WidFtpUrl}/{targetPath}");
-            var ftpClient = new FtpClient(_widConfig.WidFtpUrl, _widConfig.WidFtpLogin, _widConfig.WidFtpPassword);
+            var ftpClient = new SocFtpClient.FtpClient(_widConfig.WidFtpUrl, 
+                _widConfig.WidFtpLogin, 
+                _widConfig.WidFtpPassword,
+                _widConfig.WidFtpPort,
+                _widConfig.WidFtpUseSftp,
+                _widConfig.WidFtpUseSsl);
             var dirLines = ftpClient.ReadDirectory(targetPath);
             var retVal = new List<UpdFileInfo>();
             dirLines.ForEach(x => {
@@ -818,7 +742,12 @@ namespace WidAdminLib
         {
             var targetPath = _widConfig.IpiFtpUpdatesPath;
             Logger.WriteLine($"    Reading directory lines from {_widConfig.IpiFtpUrl}/{targetPath}");
-            var ftpClient = new FtpClient(_widConfig.IpiFtpUrl, _widConfig.IpiFtpLogin, _widConfig.IpiFtpPassword, true);
+            var ftpClient = new SocFtpClient.FtpClient(_widConfig.IpiFtpUrl, 
+               _widConfig.IpiFtpLogin, 
+               _widConfig.IpiFtpPassword, 
+               _widConfig.IpiFtpPort, 
+               _widConfig.IpiFtpUseSftp, 
+               _widConfig.IpiFtpUseSsl);
             var dirLines = ftpClient.ReadDirectory(targetPath);
             var retVal = new List<UpdFileInfo>();
             dirLines.Where(x => x.EndsWith(".IPI")).ToList().ForEach(x =>
@@ -846,13 +775,16 @@ namespace WidAdminLib
 
         private long GetWidDumpFilesTotalSize()
         {
-            var dirEntries = ReadFtpDirectory(_widConfig.WidFtpDumpPath);
-            return dirEntries
-                .Where(x => x.Split(' ').Last().EndsWith(".zip"))
-                .ToList()
-                .ConvertAll(x => long.Parse(x.Split(' ', StringSplitOptions.RemoveEmptyEntries)[4]))
-                .Sum(x => x); ;
-        }
+            Logger.WriteLine($"    Reading directory lines from {_widConfig.WidFtpDumpPath}");
+            var ftpClient = new SocFtpClient.FtpClient(_widConfig.WidFtpUrl, 
+                _widConfig.WidFtpLogin, 
+                _widConfig.WidFtpPassword,
+                _widConfig.WidFtpPort,
+                _widConfig.WidFtpUseSftp,
+                _widConfig.WidFtpUseSsl);
+            var res = ftpClient.GetFilesTotalSize(_widConfig.WidFtpDumpPath, ".zip");
+            return res;
+         }
 
         private int? GetLastTaskId()
         {

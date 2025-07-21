@@ -26,6 +26,11 @@ namespace RadioStationReports
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
+                for (var idx = 0; idx < 10000000; idx++)
+                {
+                    var res = Translit.FromUkr("ÏÐèêëàä äëÿ òðàíñë³òåðàö³¿");
+                }   
+
                 //var m = new RadioPreSearchManager();
                 // m.LoadReport(@"D:\UACRR\Çâ³òè ðàä³î\Çâ³ò_ÀÒÎËË_ÓÀÀÑÏ_1 êâ. 2023.xlsx");
                 //return;

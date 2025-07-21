@@ -12,7 +12,6 @@
     <Compile Include="..\SharedLib\Dto\WidTaskSubjectDto.cs" Link="Dto\WidTaskSubjectDto.cs" />
     <Compile Include="..\SharedLib\Dto\WidUpdatePeriodDto.cs" Link="Dto\WidUpdatePeriodDto.cs" />
     <Compile Include="..\SharedLib\Enums.cs" Link="Enums.cs" />
-    <Compile Include="..\SharedLib\FtpClient.cs" Link="FtpClient.cs" />
     <Compile Include="..\SharedLib\Requests\WidConfigurationRq.cs" Link="Requests\WidConfigurationRq.cs" />
     <Compile Include="..\SharedLib\Responses\WidAllTasksRsp.cs" Link="Responses\WidAllTasksRsp.cs" />
     <Compile Include="..\SharedLib\Responses\WidConfigurationRsp.cs" Link="Responses\WidConfigurationRsp.cs" />
@@ -34,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SocFtpCLient\SocFtpCLient.csproj" />
     <ProjectReference Include="..\WidReplicationServiceLib\WidReplicationServiceLib.csproj" />
     <ProjectReference Include="..\WidService\WidServiceLib.csproj" />
   </ItemGroup>
