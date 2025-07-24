@@ -33,12 +33,14 @@
             this.radBtnClose = new Telerik.WinControls.UI.RadButton();
             this.panelMain = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
             this.ucDdexReports = new DdexInvoicing.UcDdexReports();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucExceptionSets = new DdexInvoicing.UcExceptionSets();
+            this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ucDspResourceAnalyser = new DdexInvoicing.UcDspResourceAnalyser();
+            this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
@@ -94,37 +96,29 @@
             // radPageViewPage1
             // 
             this.radPageViewPage1.Controls.Add(this.ucDdexReports);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(38F, 24F);
-            this.radPageViewPage1.Location = new System.Drawing.Point(10, 33);
+            this.radPageViewPage1.Controls.Add(this.button1);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(42F, 28F);
+            this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1086, 477);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1086, 473);
             this.radPageViewPage1.Text = "Звіти";
-            // 
-            // radPageViewPage2
-            // 
-            this.radPageViewPage2.Controls.Add(this.ucExceptionSets);
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(77F, 24F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
-            this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(1086, 473);
-            this.radPageViewPage2.Text = "Виключення";
-            // 
-            // radPageViewPage3
-            // 
-            this.radPageViewPage3.Controls.Add(this.ucDspResourceAnalyser);
-            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(178F, 24F);
-            this.radPageViewPage3.Location = new System.Drawing.Point(10, 37);
-            this.radPageViewPage3.Name = "radPageViewPage3";
-            this.radPageViewPage3.Size = new System.Drawing.Size(1086, 473);
-            this.radPageViewPage3.Text = "Ресурси цифрових майданчиків";
             // 
             // ucDdexReports
             // 
             this.ucDdexReports.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucDdexReports.Location = new System.Drawing.Point(0, 0);
             this.ucDdexReports.Name = "ucDdexReports";
-            this.ucDdexReports.Size = new System.Drawing.Size(1086, 477);
+            this.ucDdexReports.Size = new System.Drawing.Size(1086, 473);
             this.ucDdexReports.TabIndex = 2;
+            // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.Controls.Add(this.ucExceptionSets);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(81F, 28F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(1086, 473);
+            this.radPageViewPage2.Text = "Виключення";
             // 
             // ucExceptionSets
             // 
@@ -134,6 +128,15 @@
             this.ucExceptionSets.Size = new System.Drawing.Size(1086, 473);
             this.ucExceptionSets.TabIndex = 0;
             // 
+            // radPageViewPage3
+            // 
+            this.radPageViewPage3.Controls.Add(this.ucDspResourceAnalyser);
+            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(182F, 28F);
+            this.radPageViewPage3.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage3.Name = "radPageViewPage3";
+            this.radPageViewPage3.Size = new System.Drawing.Size(1086, 473);
+            this.radPageViewPage3.Text = "Ресурси цифрових майданчиків";
+            // 
             // ucDspResourceAnalyser
             // 
             this.ucDspResourceAnalyser.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -142,11 +145,30 @@
             this.ucDspResourceAnalyser.Size = new System.Drawing.Size(1086, 473);
             this.ucDspResourceAnalyser.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(313, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(13, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(14, 11);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // DdexInvoicingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1113, 567);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DdexInvoicingForm";
@@ -177,5 +199,7 @@
         private Telerik.WinControls.RadThemeManager radThemeManager1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
         private UcDspResourceAnalyser ucDspResourceAnalyser;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
