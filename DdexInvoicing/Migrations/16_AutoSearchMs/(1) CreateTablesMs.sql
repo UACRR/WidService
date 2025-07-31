@@ -112,18 +112,18 @@ values
 	, ('Заповнення таблиці ExtraTargetAuthorPartWorks', 0)					-- 16
 																			-- 
 	, ('Заповнення таблиці #ExtraTargetNameIdsToAdd', 0)					-- 17
-	, ('Розшення таблиці TargetNames', 0)									-- 18
-	, ('Розшення таблиці TargetNamesT', 0)									-- 19
+	, ('Розширення таблиці TargetNamesMs', 0)									-- 18
+	, ('Розширення таблиці TargetNamesMsT', 0)									-- 19
 	, ('Корекція посилань в ExtraTargetNameWorks', 0)						-- 20
-	, ('Розшення таблиці TargetNameWorks', 0)								-- 21
+	, ('Розширення таблиці TargetNameWorksMs', 0)								-- 21
 	, ('Заповнення таблиці #ExtraTargetPerformerPartIdsToAdd', 0)			-- 22
-	, ('Розшення таблиці TargetPerformerParts', 0)							-- 23
+	, ('Розширення таблиці TargetPerformerPartsMs', 0)							-- 23
 	, ('Корекція посилань в ExtraTargetPerformerPartWorks', 0)				-- 24
-	, ('Розшення таблиці TargetPerformerPartWorks', 0)						-- 25
+	, ('Розширення таблиці TargetPerformerPartWorksMs', 0)						-- 25
 	, ('Заповнення таблиці #ExtraTargetAuthorPartIdsToAdd', 0)				-- 26
-	, ('Розшення таблиці TargetAuthorParts', 0)								-- 27
+	, ('Розширення таблиці TargetAuthorPartsMs', 0)								-- 27
 	, ('Корекція посилань в ExtraTargetAuthorPartWorks', 0)					-- 28
-	, ('Розшення таблиці TargetAuthorPartWorks', 0)							-- 29
+	, ('Розширення таблиці TargetAuthorPartWorksMs', 0)							-- 29
 																			-- 
 																			-- 
 	, ('Пошук творів-кандидатів за подбністю назв', 0)						-- 30

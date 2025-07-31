@@ -42,6 +42,12 @@ namespace DdexInvoicing
 
         private void Configure()
         {
+            rbSearchInIdentMw.Checked = true;
+            rbSearchInMs.Checked = false;
+            rbSearchInWid.Checked = false;
+
+            rbSearchInWid.Enabled = false;
+
             lvSteps.FullRowSelect = true;
             lvSteps.View = View.Details;
             lvSteps.HeaderStyle = ColumnHeaderStyle.Nonclickable;
@@ -73,7 +79,18 @@ namespace DdexInvoicing
             lvSteps.Items.Clear();
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandText = "select Id, Name, Status from AutoSearch..SearchSteps order by Id";
+                var searchType = rbSearchInIdentMw.Checked ? 0 :
+                    rbSearchInMs.Checked ? 1 : 2;
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AutoSearch..spResetSearchSteps";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@searchType", searchType);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = $"select Id, Name, Status from AutoSearch..SearchSteps order by Id";
+                cmd.Parameters.Clear();
                 using (var r = cmd.ExecuteReader())
                 {
                     while(r.Read())
@@ -92,12 +109,23 @@ namespace DdexInvoicing
             lvResult.Items.Clear();
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandText = @"
+                if (rbSearchInIdentMw.Checked)
+                {
+                    cmd.CommandText = @"
                     select t2.Title, t2.ComposerAuthor, t2.DisplayArtistName, t3.Title, t3.ComposerAuthor, t3.DisplayArtistName
 	                    from AutoSearch..FoundWorksInIdentMw t1
 		                    join Ddex..IdentMw t2 on t1.SourceWorkId = t2.Id
 		                    join Ddex..IdentMw t3 on t1.TargetWorkId = t3.Id
-                ";
+                    ";
+                }
+                else if (rbSearchInMs.Checked) {
+                    cmd.CommandText = @"
+                        select t2.Title, t2.ComposerAuthor, t2.DisplayArtistName, t3.Name, t3.Author, t3.Performer
+                        from AutoSearch..FoundWorksInMs t1
+                            join Ddex..IdentMw t2 on t1.SourceWorkId = t2.Id
+                            join MediaService..ObjectRight t3 on t1.TargetObjId = t3.ObjId
+                    ";
+                }
                 using (var r = cmd.ExecuteReader())
                 {
                     var idx = 1;
@@ -125,7 +153,9 @@ namespace DdexInvoicing
         {
             Helpers.RunSqlOperationDdex(cmd =>
             {
-                cmd.CommandText = "select Status from AutoSearch..SearchSteps order by Id";
+                var tableName = rbSearchInIdentMw.Checked ? "SearchSteps" :
+                    rbSearchInMs.Checked ? "SearchStepsMs" : "SearchStepsWid";
+                cmd.CommandText = $"select Status from AutoSearch..SearchSteps order by Id";
                 using (var r = cmd.ExecuteReader())
                 {
                     var itemIdx = 0;
@@ -206,8 +236,10 @@ namespace DdexInvoicing
         {
             Helpers.RunSqlOperationDdex(cmd =>
             {
+                var procName = rbSearchInIdentMw.Checked ? "spSearchInIdentMw" :
+                    rbSearchInMs.Checked ? "spSearchInMs" : "spSearchInWid";     
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "AutoSearch..spSearchInIdentMw";
+                cmd.CommandText = $"AutoSearch..{procName}";
                 cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
                 cmd.ExecuteNonQuery();
             });
@@ -216,9 +248,9 @@ namespace DdexInvoicing
         {
             try
             {
-               Helpers.RunSqlOperationDdex(cmd =>
+                Helpers.RunSqlOperationDdex(cmd =>
                 {
-                    cmd.CommandText = "update AutoSearch..SearchSteps set Status = 0";
+                    cmd.CommandText = $"update AutoSearch..SearchSteps set Status = 0";
                     cmd.ExecuteNonQuery();
                 }, true);
             }
@@ -251,6 +283,7 @@ namespace DdexInvoicing
             {
                 _thread = null;
                 btnClose.Enabled = true;
+                btnDoSearch.Enabled = true;
                 _allowClose = true;
                 FillLvResult();
             }
@@ -298,6 +331,21 @@ namespace DdexInvoicing
             {
                 e.Cancel = true;
             }
+        }
+
+        private void rbSearchInIdentMw_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvSteps();
+        }
+
+        private void rbSearchInMs_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvSteps();
+        }
+
+        private void rbSearchInWid_CheckedChanged(object sender, EventArgs e)
+        {
+            FillLvSteps();
         }
     }
 }

@@ -1,13 +1,10 @@
 use AutoSearch
 go
 
-create or alter procedure spSearchInMs
+create or alter procedure spSearchInWid
 	@ddexReportId int
 as
 begin
-
-	exec spCreateSourceInfo @ddexReportId
-	exec spUpdateTargetInfoMs
 
 	delete from FoundNamesInWid
 
@@ -17,32 +14,36 @@ begin
 	insert FoundNamesInWid(SourceNameId, TargetNameId, SearchType)
 	select t1.SourceNameId, t2.Wic, 'St~Tt' as SearchType
 	from SourceNamesT t1
-		join SocWid..WidTitle t2 on t2.WrkTtl like concat( t1.Name, '%')
+		join SocWid..WidTitle t2 on t2.WrkTtl = t1.Name
+		left join FoundNamesInWid t3 on t1.SourceNameId = t3.SourceNameId and t2.Wic = t3.TargetNameId
+	where t3.SourceNameId is null
+	union
+	select t1.SourceNameId, t2.Wic, 'St~Tt' as SearchType
+	from SourceNamesT t1
+		join SocWid..widAltTtl t2 on t2.AltTtl = t1.Name
 		left join FoundNamesInWid t3 on t1.SourceNameId = t3.SourceNameId and t2.Wic = t3.TargetNameId
 	where t3.SourceNameId is null
 
--- Tt~St
-	insert FoundNamesInWid(SourceNameId, TargetNameId, SearchType)
-	select t1.SourceNameId, t2.TargetNameId, 'Tt~St' as SearchType
-	from SourceNamesT t1
-		join TargetNamesMsT t2 on t1.Name like concat( t2.Name, '%')
-		left join FoundNamesInWid t3 on t1.SourceNameId = t3.SourceNameId and t2.TargetNameId = t3.TargetNameId
-	where t3.SourceNameId is null
+drop table if exists #FoundNamesInWidByPerformer
+select *
+into #FoundNamesInWidByPerformer
+from FoundNamesInWid t1
+	join SocWid..widArtist t2 on t1.TargetNameId = t2.Wic
+	join SourcePerformerParts t3 on t2.PerfArtistLstName = t3.Name
 
--- St=Tt
-	insert FoundNamesInWid(SourceNameId, TargetNameId, SearchType)
-	select t1.SourceNameId, t2.TargetNameId, 'St=Tt' as SearchType
-	from SourceNamesT t1
-		join TargetNamesMsT t2 on t2.Name = t1.Name
-		left join FoundNamesInWid t3 on t1.SourceNameId = t3.SourceNameId and t2.TargetNameId = t3.TargetNameId
-	where t3.SourceNameId is null
+select *
+from #FoundNamesInWidByPerformer t1
+	join SourceWorks t2 on t1.WorkId = t2.WorkId
+
 
 
 update SearchStepsWid set Status = 2 where Id = 30
+
+
 --==================================================================
 update SearchStepsWid set Status = 1 where Id = 31
-	delete from FoundWorksInMs
-	insert FoundWorksInMs(SourceWorkId, TargetObjId)
+	delete from FoundWorksInWid
+	insert FoundWorksInWid(SourceWorkId, TargetWic)
 	select t2.WorkId as SourceWorkId, max(t4.WorkId) as TargetWorkId
 	from FoundNamesInWid t1
 		join SourceNameWorks t2 on t1.SourceNameId = t2.SourceNameId

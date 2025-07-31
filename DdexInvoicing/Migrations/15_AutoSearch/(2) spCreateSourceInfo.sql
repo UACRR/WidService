@@ -32,7 +32,11 @@ begin
 	update SearchSteps set Status = 1 where Id = 1
 	truncate table SourceWorks
 	insert SourceWorks(WorkId, Name, Authors, Performers)
-	select t2.Id, t2.Title, t2.ComposerAuthor, t2.DisplayArtistName
+	select 
+		t2.Id
+		, t2.Title
+		, translate(t2.ComposerAuthor, '.|,()&:;', '        ')
+		, translate(t2.DisplayArtistName, '.|,()&:;', '        ')
 	from Ddex..IdentBacklog t1
 		join Ddex..IdentMw t2 on t1.mwId = t2.Id
 	--where t1.DdexReportId in (select Id from Ddex..ft_AgreementReportIds(1496))

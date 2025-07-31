@@ -11,7 +11,7 @@ begin
 
 	delete from FoundNamesInMs
 
-	update SearchStepsMs set Status = 1 where Id = 30
+	exec spSetSearchStepStarted 30
 
 -- ÏÎÂÍÅ ÑÏ²ÂÏÀÄ²ÍÍß
 -- St=Tt
@@ -126,24 +126,10 @@ from TargetNamesMsT
 		left join FoundNamesInMs t3 on t1.SourceNameId = t3.SourceNameId and t2.TargetNameId = t3.TargetNameId
 	where t3.SourceNameId is null
 
-update SearchStepsMs set Status = 2 where Id = 30
-
-
-select t1.SearchType, t2.WorkId, t3.Title, t5.ObjId, t5.Name, t3.ComposerAuthor, t5.author, t3.DisplayArtistName, t5.performer
-	from FoundNamesInMs t1
-		join SourceNameWorks t2 on t1.SourceNameId = t2.SourceNameId
-		join Ddex..IdentMw t3 on t2.WorkId = t3.Id
-		join TargetNameWorksMs t4 on t1.TargetNameId = t4.TargetNameId
-		join MediaService..ObjectRight t5 on t4.WorkId = t5.ObjId
-where t3.Title = 'áåç áîþ'
-order by t3.Title desc
-
-select *
-from SourceNames
-where Name = 'áåç áîþ'
+exec spSetSearchStepEnded 30
 
 --==================================================================
-update SearchStepsMs set Status = 1 where Id = 31
+exec spSetSearchStepStarted 31
 	delete from FoundWorksInMs
 	insert FoundWorksInMs(SourceWorkId, TargetObjId)
 	select t2.WorkId as SourceWorkId, max(t4.WorkId) as TargetWorkId
@@ -164,7 +150,7 @@ update SearchStepsMs set Status = 1 where Id = 31
 	set t2.ObjId = t1.TargetObjId, t2.Wic = null, t2.Status = 2
 	from FoundWorksInMs t1
 		join Ddex..IdentMw t2 on t1.SourceWorkId = t2.Id
-	update SearchStepsMs set Status = 2 where Id = 31
+	exec spSetSearchStepEnded 31
 
 /*
 	select t2.Title, t2.ComposerAuthor, t2.DisplayArtistName, t3.Name, t3.Author, t3.Performer

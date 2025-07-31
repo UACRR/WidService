@@ -35,19 +35,22 @@
             this.panelSteps = new System.Windows.Forms.TableLayoutPanel();
             this.lvSteps = new System.Windows.Forms.ListView();
             this.panelStepsTitle = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnDoSearch = new System.Windows.Forms.Button();
             this.panelResults = new System.Windows.Forms.TableLayoutPanel();
             this.lvResult = new System.Windows.Forms.ListView();
-            this.btnDoSearch = new System.Windows.Forms.Button();
-            this.panelFormTitle = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
             this.panelFoundWorks = new System.Windows.Forms.FlowLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.panelFormTitle = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelFormFooter = new System.Windows.Forms.FlowLayoutPanel();
             this.btnClose = new System.Windows.Forms.Button();
             this.timerMonitor = new System.Windows.Forms.Timer(this.components);
             this.ilMain = new System.Windows.Forms.ImageList(this.components);
-            this.btnCopy = new System.Windows.Forms.Button();
+            this.rbSearchInIdentMw = new System.Windows.Forms.RadioButton();
+            this.rbSearchInMs = new System.Windows.Forms.RadioButton();
+            this.rbSearchInWid = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSplitStepsAndResults)).BeginInit();
             this.panelSplitStepsAndResults.Panel1.SuspendLayout();
@@ -56,8 +59,8 @@
             this.panelSteps.SuspendLayout();
             this.panelStepsTitle.SuspendLayout();
             this.panelResults.SuspendLayout();
-            this.panelFormTitle.SuspendLayout();
             this.panelFoundWorks.SuspendLayout();
+            this.panelFormTitle.SuspendLayout();
             this.panelFormFooter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,6 +129,9 @@
             // panelStepsTitle
             // 
             this.panelStepsTitle.Controls.Add(this.label1);
+            this.panelStepsTitle.Controls.Add(this.rbSearchInIdentMw);
+            this.panelStepsTitle.Controls.Add(this.rbSearchInMs);
+            this.panelStepsTitle.Controls.Add(this.rbSearchInWid);
             this.panelStepsTitle.Controls.Add(this.btnDoSearch);
             this.panelStepsTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelStepsTitle.Location = new System.Drawing.Point(3, 3);
@@ -133,15 +139,15 @@
             this.panelStepsTitle.Size = new System.Drawing.Size(774, 33);
             this.panelStepsTitle.TabIndex = 1;
             // 
-            // label1
+            // btnDoSearch
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(199, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Дії, які виконуються в процесі пошуку";
+            this.btnDoSearch.Location = new System.Drawing.Point(426, 3);
+            this.btnDoSearch.Name = "btnDoSearch";
+            this.btnDoSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnDoSearch.TabIndex = 1;
+            this.btnDoSearch.Text = "Щукати";
+            this.btnDoSearch.UseVisualStyleBackColor = true;
+            this.btnDoSearch.Click += new System.EventHandler(this.btnDoSearch_Click);
             // 
             // panelResults
             // 
@@ -169,35 +175,6 @@
             this.lvResult.TabIndex = 0;
             this.lvResult.UseCompatibleStateImageBehavior = false;
             // 
-            // btnDoSearch
-            // 
-            this.btnDoSearch.Location = new System.Drawing.Point(208, 3);
-            this.btnDoSearch.Name = "btnDoSearch";
-            this.btnDoSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnDoSearch.TabIndex = 1;
-            this.btnDoSearch.Text = "Щукати";
-            this.btnDoSearch.UseVisualStyleBackColor = true;
-            this.btnDoSearch.Click += new System.EventHandler(this.btnDoSearch_Click);
-            // 
-            // panelFormTitle
-            // 
-            this.panelFormTitle.Controls.Add(this.label2);
-            this.panelFormTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFormTitle.Location = new System.Drawing.Point(3, 3);
-            this.panelFormTitle.Name = "panelFormTitle";
-            this.panelFormTitle.Size = new System.Drawing.Size(788, 24);
-            this.panelFormTitle.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 7);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "ПОШУК ТВОРІВ ІЗ ЗВІТУ";
-            // 
             // panelFoundWorks
             // 
             this.panelFoundWorks.Controls.Add(this.label3);
@@ -217,6 +194,35 @@
             this.label3.Size = new System.Drawing.Size(84, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Знайдені твори";
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Location = new System.Drawing.Point(93, 3);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(179, 23);
+            this.btnCopy.TabIndex = 1;
+            this.btnCopy.Text = "Копіювати в буфер обміну";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
+            // panelFormTitle
+            // 
+            this.panelFormTitle.Controls.Add(this.label2);
+            this.panelFormTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFormTitle.Location = new System.Drawing.Point(3, 3);
+            this.panelFormTitle.Name = "panelFormTitle";
+            this.panelFormTitle.Size = new System.Drawing.Size(788, 24);
+            this.panelFormTitle.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 7);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(137, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "ПОШУК ТВОРІВ ІЗ ЗВІТУ";
             // 
             // panelFormFooter
             // 
@@ -253,15 +259,54 @@
             this.ilMain.Images.SetKeyName(2, "iconfinder_Error_132716.png");
             this.ilMain.Images.SetKeyName(3, "iconfinder_History_132755.png");
             // 
-            // btnCopy
+            // rbSearchInIdentMw
             // 
-            this.btnCopy.Location = new System.Drawing.Point(93, 3);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(179, 23);
-            this.btnCopy.TabIndex = 1;
-            this.btnCopy.Text = "Копіювати в буфер обміну";
-            this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            this.rbSearchInIdentMw.AutoSize = true;
+            this.rbSearchInIdentMw.Location = new System.Drawing.Point(98, 6);
+            this.rbSearchInIdentMw.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.rbSearchInIdentMw.Name = "rbSearchInIdentMw";
+            this.rbSearchInIdentMw.Size = new System.Drawing.Size(145, 17);
+            this.rbSearchInIdentMw.TabIndex = 2;
+            this.rbSearchInIdentMw.TabStop = true;
+            this.rbSearchInIdentMw.Text = "серед знайдених творів";
+            this.rbSearchInIdentMw.UseVisualStyleBackColor = true;
+            this.rbSearchInIdentMw.CheckedChanged += new System.EventHandler(this.rbSearchInIdentMw_CheckedChanged);
+            // 
+            // rbSearchInMs
+            // 
+            this.rbSearchInMs.AutoSize = true;
+            this.rbSearchInMs.Location = new System.Drawing.Point(249, 6);
+            this.rbSearchInMs.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.rbSearchInMs.Name = "rbSearchInMs";
+            this.rbSearchInMs.Size = new System.Drawing.Size(90, 17);
+            this.rbSearchInMs.TabIndex = 2;
+            this.rbSearchInMs.TabStop = true;
+            this.rbSearchInMs.Text = "в БД СМАРТ";
+            this.rbSearchInMs.UseVisualStyleBackColor = true;
+            this.rbSearchInMs.CheckedChanged += new System.EventHandler(this.rbSearchInMs_CheckedChanged);
+            // 
+            // rbSearchInWid
+            // 
+            this.rbSearchInWid.AutoSize = true;
+            this.rbSearchInWid.Location = new System.Drawing.Point(345, 6);
+            this.rbSearchInWid.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.rbSearchInWid.Name = "rbSearchInWid";
+            this.rbSearchInWid.Size = new System.Drawing.Size(75, 17);
+            this.rbSearchInWid.TabIndex = 2;
+            this.rbSearchInWid.TabStop = true;
+            this.rbSearchInWid.Text = "в БД WID";
+            this.rbSearchInWid.UseVisualStyleBackColor = true;
+            this.rbSearchInWid.CheckedChanged += new System.EventHandler(this.rbSearchInWid_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Виконати пошук";
             // 
             // FormAutoSearch
             // 
@@ -283,10 +328,10 @@
             this.panelStepsTitle.ResumeLayout(false);
             this.panelStepsTitle.PerformLayout();
             this.panelResults.ResumeLayout(false);
-            this.panelFormTitle.ResumeLayout(false);
-            this.panelFormTitle.PerformLayout();
             this.panelFoundWorks.ResumeLayout(false);
             this.panelFoundWorks.PerformLayout();
+            this.panelFormTitle.ResumeLayout(false);
+            this.panelFormTitle.PerformLayout();
             this.panelFormFooter.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -301,7 +346,6 @@
         private System.Windows.Forms.ListView lvSteps;
         private System.Windows.Forms.ListView lvResult;
         private System.Windows.Forms.FlowLayoutPanel panelStepsTitle;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDoSearch;
         private System.Windows.Forms.FlowLayoutPanel panelFoundWorks;
         private System.Windows.Forms.Label label3;
@@ -312,5 +356,9 @@
         private System.Windows.Forms.Timer timerMonitor;
         private System.Windows.Forms.ImageList ilMain;
         private System.Windows.Forms.Button btnCopy;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton rbSearchInMs;
+        private System.Windows.Forms.RadioButton rbSearchInIdentMw;
+        private System.Windows.Forms.RadioButton rbSearchInWid;
     }
 }

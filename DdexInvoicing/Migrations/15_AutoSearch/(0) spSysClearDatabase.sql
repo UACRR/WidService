@@ -73,3 +73,5 @@ drop table if exists TargetWorks
 
 end
 go
+
+-- exec spSysClearDatabase

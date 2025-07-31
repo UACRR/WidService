@@ -16,8 +16,18 @@ begin
 -- ExtraTargetWorks
 	update SearchSteps set Status = 1 where Id = 7
 	truncate table ExtraTargetWorks
-	insert ExtraTargetWorks(TargetWorkId, WorkId, Name, Authors, Performers)
-	select @baseTargetWorkId + row_number() over(order by Id), Id, Title, ComposerAuthor, DisplayArtistName
+	insert ExtraTargetWorks(
+		  TargetWorkId
+		, WorkId
+		, Name
+		, Authors
+		, Performers)
+	select 
+		@baseTargetWorkId + row_number() over(order by Id)
+		, Id
+		, Title
+		, translate(ComposerAuthor, '.|,()&:;', '        ')
+		, translate(DisplayArtistName, '.|,()&:;', '        ')
 	from Ddex..IdentMw t1
 		left join TargetWorks t2 on t1.Id = t2.WorkId
 	where (

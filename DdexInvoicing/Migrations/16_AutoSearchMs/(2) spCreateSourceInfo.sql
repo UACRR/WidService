@@ -6,8 +6,6 @@ create or alter procedure spCreateSourceInfo
 as
 begin
 
-	update SearchSteps set Status = 0
-
 /*
 update t2
 set t2.ObjId = null, t2.Wic = null, Status = 0
@@ -29,64 +27,68 @@ where t1.DdexReportId = 1496
 -- Інформація робоча, після завершення пошуку інформація з таблиць видаляється
 begin
 -- SourceWorks
-	update SearchSteps set Status = 1 where Id = 1
+	exec spSetSearchStepStarted 1
 	truncate table SourceWorks
 	insert SourceWorks(WorkId, Name, Authors, Performers)
-	select t2.Id, t2.Title, t2.ComposerAuthor, t2.DisplayArtistName
+	select 
+		t2.Id
+		, t2.Title
+		, translate(t2.ComposerAuthor, '.|,()&:;\/', '          ')
+		, translate(t2.DisplayArtistName, '.|,()&:;\/', '          ')
 	from Ddex..IdentBacklog t1
 		join Ddex..IdentMw t2 on t1.mwId = t2.Id
 	--where t1.DdexReportId in (select Id from Ddex..ft_AgreementReportIds(1496))
 	where t1.DdexReportId = @ddexReportId --1496--
 		and isnull(t2.objId, 0) = 0
 		and isnull(t2.Wic, 0) = 0
-	update SearchSteps set Status = 2 where Id = 1
+	exec spSetSearchStepEnded 1
 	
 		-- select count(*) from SourceWorks
 
 -- SourceNames
-	update SearchSteps set Status = 1 where Id = 2
+	exec spSetSearchStepStarted 2
 	truncate table SourceNames
 	insert SourceNames(Name)
 	select distinct Name
 	from SourceWorks
-	update SearchSteps set Status = 2 where Id = 2
+	exec spSetSearchStepEnded 2
 
 -- SourceNamesT
-	update SearchSteps set Status = 1 where Id = 3
+	exec spSetSearchStepStarted 3
 	truncate table SourceNamesT
 	insert SourceNamesT(SourceNameId, Name)
 	select SourceNameId, AutoSearch.dbo.ClrTranslitFromUkrToLat(Name)
 	from SourceNames
-	update SearchSteps set Status = 2 where Id = 3
+	exec spSetSearchStepEnded 3
 
 -- SourceNameWorks
-	update SearchSteps set Status = 1 where Id = 4
+	exec spSetSearchStepStarted 4
 	truncate table SourceNameWorks
 	insert SourceNameWorks(SourceNameId, WorkId, ObjId, Wic)
 	select distinct t1.SourceNameId, t2.WorkId, null, null
 	from SourceNames t1
 		join SourceWorks t2 on t1.Name = t2.Name
-	update SearchSteps set Status = 2 where Id = 4
+	exec spSetSearchStepEnded 4
 
 -- SourcePerformerParts
-	update SearchSteps set Status = 1 where Id = 5
+	exec spSetSearchStepStarted 5
 	truncate table SourcePerformerParts
 	insert SourcePerformerParts(WorkId, Name)
 	select distinct WorkId, AutoSearch.dbo.ClrTranslitFromUkrToLat(value)
 	from SourceWorks
 		cross apply string_split(Performers, ' ')
 	where len(value) > 2
-	update SearchSteps set Status = 2 where Id = 5
+	exec spSetSearchStepEnded 5
 
 -- SourceAuthorParts
-	update SearchSteps set Status = 1 where Id = 6
+	exec spSetSearchStepStarted 6
 	truncate table SourceAuthorParts
 	insert SourceAuthorParts(WorkId, Name)
 	select distinct WorkId, AutoSearch.dbo.ClrTranslitFromUkrToLat(value)
 	from SourceWorks
 		cross apply string_split(Authors, ' ')
 	where len(value) > 2
-	update SearchSteps set Status = 2 where Id = 6
+	exec spSetSearchStepEnded 6
 
 end
 
