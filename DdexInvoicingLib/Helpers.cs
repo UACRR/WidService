@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.Styles;
 
 namespace InvoicingLib
 {
@@ -46,9 +47,30 @@ namespace InvoicingLib
             }
         }
 
+        public static void RunSqlOperationDdexUnprotected(SqlOperation oper)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConnectionStringDdex"]))
+            using (SqlCommand cmd = conn.CreateCommand())
+            {
+                conn.Open();
+                cmd.CommandTimeout = 0;
+                oper(cmd);
+            }
+        }
+
+        public static async Task RunSqlOperationDdexAsync(SqlOperationAsync oper)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConnectionStringDdex"]))
+            using (SqlCommand cmd = conn.CreateCommand())
+            {
+                conn.Open();
+                cmd.CommandTimeout = 0;
+                await oper(cmd);
+            }
+        }
+
         public static void RunSqlOperationDdexUnsafe(SqlOperation oper, bool throwException = false)
         {
-            using (var waitCursor = new WaitCursor())
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.AppSettings["ConnectionStringDdex"]))
             using (SqlCommand cmd = conn.CreateCommand())
             {
@@ -295,5 +317,6 @@ namespace InvoicingLib
     }
 
     public delegate void SqlOperation(SqlCommand cmd);
+    public delegate Task<VoidStateNode> SqlOperationAsync(SqlCommand cmd);
     #endregion
 }

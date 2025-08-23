@@ -83,23 +83,31 @@ namespace InvoicingLib
             {
                 foreach (var suRecord in block.suRecords)
                 {
+                    LIRecord_01_02 recToInsert = null;
                     foreach (var liRecord in suRecord.liRecords)
                     {
                         if (liRecord.RightsController.Equals(UACRR_CS, StringComparison.OrdinalIgnoreCase))
                         {
+                            recToInsert = liRecord;
+                        }
+                    }
+                    if(recToInsert != null)
+                    {
+                        if (decimal.Parse(recToInsert.AllocatedUsages, CultureInfo.InvariantCulture) > 0)
+                        {
                             List<object> data = new List<object>();
                             data.Add(report.ddexReportId);
                             data.Add(suRecord.SalesTransactionId);
-                            data.Add(Formatter.ToDecimal(liRecord.AllocatedUsages));
-                            data.Add(Formatter.ToDecimal(liRecord.AllocatedAmount));
-                            data.Add(Meta.DdexEnumRightsType.Value(liRecord.RightType));
+                            data.Add(Formatter.ToDecimal(recToInsert.AllocatedUsages));
+                            data.Add(Formatter.ToDecimal(recToInsert.AllocatedAmount));
+                            data.Add(Meta.DdexEnumRightsType.Value(recToInsert.RightType));
                             data.Add(Meta.DdexEnumContentCategory.Value(suRecord.ContentCategory));
                             data.Add(0M); // Initial compensated amount
-                            // WorkCode skiooed, will be null
+                                          // WorkCode skiooed, will be null
                             bulkUploader.AddData(data);
                         }
                     }
-                }
+               }
             }
             catch (Exception)
             {

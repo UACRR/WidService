@@ -23,8 +23,8 @@ namespace DdexInvoicingStarter
                Console.WriteLine($"\"{Path.GetFileNameWithoutExtension(x).Split('_')[2]}\",");
            });
            */
-            try
-            {
+            //try
+            //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 //Application.Run(new FormAutoSearch(1496));
@@ -33,11 +33,11 @@ namespace DdexInvoicingStarter
                 Application.Run(new DdexInvoicingForm());
 
                 //Application.Run(new FormMwSearch());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
             // Application.Run(new FormMwSearch());
         }
     }

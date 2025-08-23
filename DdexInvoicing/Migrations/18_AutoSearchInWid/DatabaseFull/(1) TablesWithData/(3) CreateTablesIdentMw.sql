@@ -2,96 +2,92 @@ use AutoSearch
 go
 
 -- =================================== ≤Õ‘Œ–Ã¿÷≤ﬂ ƒÀﬂ œŒÿ” ”
--- TargetWorksWid
-drop table if exists TargetWorksWid
-create table TargetWorksWid (
+-- TargetWorks
+drop table if exists TargetWorksIdentMw
+create table TargetWorksIdentMw (
 	    TargetWorkId int primary key
-	 ,  Wic int
+	 ,  WorkId int
 )
 
 -- TargetNames
-drop table if exists TargetNamesWid
-create table TargetNamesWid (
+drop table if exists TargetNamesIdentMw
+create table TargetNamesIdentMw (
 	  TargetNameId int primary key
 	, Name nvarchar(261)
 )
-create unique nonclustered index idx_TargetNamesWid_Name on TargetNames(Name)
+create unique nonclustered index idx_TargetNamesIdentMw_Name on TargetNamesIdentMw(Name)
 
 -- TargetNamesT
-drop table if exists TargetNamesWidT
-create table TargetNamesWidT (
+drop table if exists TargetNamesIdentMwT
+create table TargetNamesIdentMwT (
 	  TargetNameId int primary key
 	, Name nvarchar(261)
 )
-create nonclustered index idx_TargetNamesWidT_Name on TargetNamesT(Name)
+create nonclustered index idx_TargetNamesIdentMwT_Name on TargetNamesIdentMwT(Name)
 
 -- TargetNameWorks
-drop table if exists TargetNameWorksWid
-create table TargetNameWorksWid (
+drop table if exists TargetNameWorksIdentMw
+create table TargetNameWorksIdentMw (
 	  TargetNameId int
 	, WorkId int
-	, ObjId int
-	, Wic int
 )
-create nonclustered index idx_TargetNameWorksWid_TargetNameId on TargetNameWorksWid(TargetNameId)
-create nonclustered index idx_TargetNameWorksWid_WorkId on TargetNameWorksWid(WorkId)
-create nonclustered index idx_TargetNameWorksWid_TargetNameId_WorkId on TargetNameWorksWid(TargetNameId, WorkId)
-alter table TargetNameWorksWid add constraint fk_TargetNameWorksWid_TargetNameId foreign key (TargetNameId) references TargetNamesWid(TargetNameId);
+create nonclustered index idx_TargetNameWorksIdentMw_TargetNameId on TargetNameWorksIdentMw(TargetNameId)
+create nonclustered index idx_TargetNameWorkIdentMws_WorkId on TargetNameWorksIdentMw(WorkId)
+create nonclustered index idx_TargetNameWorksIdentMw_TargetNameId_WorkId on TargetNameWorksIdentMw(TargetNameId, WorkId)
+alter table TargetNameWorksIdentMw add constraint fk_TargetNameWorksIdentMw_TargetNameId foreign key (TargetNameId) references TargetNamesIdentMw(TargetNameId);
 
 
-drop table if exists TargetPerformerPartsWid
-create table TargetPerformerPartsWid (
+drop table if exists TargetPerformerPartsIdentMw
+create table TargetPerformerPartsIdentMw (
 	  TargetPerformerPartId int primary key
 	, Name nvarchar(64)
 )
-create unique nonclustered index idx_TargetPerformerPartsWid_Name on TargetPerformerPartsWid(Name)
+create unique nonclustered index idx_TargetPerformerPartsIdentMw_Name on TargetPerformerPartsIdentMw(Name)
 
-drop table if exists TargetPerformerPartWorksWid
-create table TargetPerformerPartWorksWid (
+drop table if exists TargetPerformerPartWorksIdentMw
+create table TargetPerformerPartWorksIdentMw (
 	  TargetPerformerPartId int
 	, WorkId int
 )
-create nonclustered index idx_TargetPerformerPartWorksWid_TargetPerformerPartWorks on TargetPerformerPartWorksWid(TargetPerformerPartId)
-create nonclustered index idx_TargetPerformerPartWorksWid_WorkId on TargetPerformerPartWorksWid(WorkId)
+create nonclustered index idx_TargetPerformerPartWorks_TargetPerformerPartWorksIdentMw on TargetPerformerPartWorksIdentMw(TargetPerformerPartId)
+create nonclustered index idx_TargetPerformerPartWorksIdentMw_WorkId on TargetPerformerPartWorksIdentMw(WorkId)
 
-drop table if exists TargetAuthorPartsWid
-create table TargetAuthorPartsWid (
+drop table if exists TargetAuthorPartsIdentMw
+create table TargetAuthorPartsIdentMw (
 	  TargetAuthorPartId int primary key
 	, Name nvarchar(64)
 )
-create nonclustered index idx_TargetAuthorPartsWid_Name on TargetAuthorPartsWid(Name)
+create nonclustered index idx_TargetAuthorPartsIdentMw_Name on TargetAuthorPartsIdentMw(Name)
 
-drop table if exists TargetAuthorPartWorksWid
-create table TargetAuthorPartWorksWid (
+drop table if exists TargetAuthorPartWorksIdentMw
+create table TargetAuthorPartWorksIdentMw (
 	  TargetAuthorPartId int
 	, WorkId int
 )
-create nonclustered index idx_TargetAuthorPartWorksWid_TargetAuthorPartWorks on TargetAuthorPartWorksWid(TargetAuthorPartId)
-create nonclustered index idx_TargetAuthorPartWorksWid_WorkId on TargetAuthorPartWorksWid(WorkId)
+create nonclustered index idx_TargetAuthorPartWorksIdentMw_TargetAuthorPartWorks on TargetAuthorPartWorksIdentMw(TargetAuthorPartId)
+create nonclustered index idx_TargetAuthorPartWorksIdentMw_WorkId on TargetAuthorPartWorksIdentMw(WorkId)
 
 -- –≈«”À‹“¿“» œŒÿ” ”
-drop table if exists FoundNamesInWid
-create table FoundNamesInWid(
+drop table if exists FoundNamesInIdentMw
+create table FoundNamesInIdentMw(
 	  SourceNameId int
 	, TargetNameId int
 	, SearchType varchar(10)
 )
 
-drop table if exists FoundWorksInWid
-create table FoundWorksInWid(
+drop table if exists FoundWorksInIdentMw
+create table FoundWorksInIdentMw(
 	  SourceWorkId int
-	, TargetWic int
+	, TargetWorkId int
 )
 
--- ÃŒÕ≤“Œ–»Õ√
-drop table if exists SearchStepsWid
-create table SearchStepsWid (
+drop table if exists SearchStepsIdentMw
+create table SearchStepsIdentMw (
 	  Id int primary key identity(1, 1)
 	, Name varchar(100)
 	, Status int
 )
-
-insert SearchStepsWid (Name, Status)
+insert SearchStepsIdentMw (Name, Status)
 values
 	  ('«‡ÔÓ‚ÌÂÌÌˇ Ú‡·ÎËˆ≥ SourceWorks', 0)									-- 1
 	, ('«‡ÔÓ‚ÌÂÌÌˇ Ú‡·ÎËˆ≥ SourceNames', 0)									-- 2

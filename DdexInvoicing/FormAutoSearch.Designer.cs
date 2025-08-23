@@ -35,6 +35,10 @@
             this.panelSteps = new System.Windows.Forms.TableLayoutPanel();
             this.lvSteps = new System.Windows.Forms.ListView();
             this.panelStepsTitle = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rbSearchInIdentMw = new System.Windows.Forms.RadioButton();
+            this.rbSearchInMs = new System.Windows.Forms.RadioButton();
+            this.rbSearchInWid = new System.Windows.Forms.RadioButton();
             this.btnDoSearch = new System.Windows.Forms.Button();
             this.panelResults = new System.Windows.Forms.TableLayoutPanel();
             this.lvResult = new System.Windows.Forms.ListView();
@@ -47,10 +51,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.timerMonitor = new System.Windows.Forms.Timer(this.components);
             this.ilMain = new System.Windows.Forms.ImageList(this.components);
-            this.rbSearchInIdentMw = new System.Windows.Forms.RadioButton();
-            this.rbSearchInMs = new System.Windows.Forms.RadioButton();
-            this.rbSearchInWid = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnStopSearch = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSplitStepsAndResults)).BeginInit();
             this.panelSplitStepsAndResults.Panel1.SuspendLayout();
@@ -133,11 +134,61 @@
             this.panelStepsTitle.Controls.Add(this.rbSearchInMs);
             this.panelStepsTitle.Controls.Add(this.rbSearchInWid);
             this.panelStepsTitle.Controls.Add(this.btnDoSearch);
+            this.panelStepsTitle.Controls.Add(this.btnStopSearch);
             this.panelStepsTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelStepsTitle.Location = new System.Drawing.Point(3, 3);
             this.panelStepsTitle.Name = "panelStepsTitle";
             this.panelStepsTitle.Size = new System.Drawing.Size(774, 33);
             this.panelStepsTitle.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Виконати пошук";
+            // 
+            // rbSearchInIdentMw
+            // 
+            this.rbSearchInIdentMw.AutoSize = true;
+            this.rbSearchInIdentMw.Location = new System.Drawing.Point(98, 6);
+            this.rbSearchInIdentMw.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.rbSearchInIdentMw.Name = "rbSearchInIdentMw";
+            this.rbSearchInIdentMw.Size = new System.Drawing.Size(145, 17);
+            this.rbSearchInIdentMw.TabIndex = 2;
+            this.rbSearchInIdentMw.TabStop = true;
+            this.rbSearchInIdentMw.Text = "серед знайдених творів";
+            this.rbSearchInIdentMw.UseVisualStyleBackColor = true;
+            this.rbSearchInIdentMw.CheckedChanged += new System.EventHandler(this.rbSearchInIdentMw_CheckedChanged);
+            // 
+            // rbSearchInMs
+            // 
+            this.rbSearchInMs.AutoSize = true;
+            this.rbSearchInMs.Location = new System.Drawing.Point(249, 6);
+            this.rbSearchInMs.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.rbSearchInMs.Name = "rbSearchInMs";
+            this.rbSearchInMs.Size = new System.Drawing.Size(90, 17);
+            this.rbSearchInMs.TabIndex = 2;
+            this.rbSearchInMs.TabStop = true;
+            this.rbSearchInMs.Text = "в БД СМАРТ";
+            this.rbSearchInMs.UseVisualStyleBackColor = true;
+            this.rbSearchInMs.CheckedChanged += new System.EventHandler(this.rbSearchInMs_CheckedChanged);
+            // 
+            // rbSearchInWid
+            // 
+            this.rbSearchInWid.AutoSize = true;
+            this.rbSearchInWid.Location = new System.Drawing.Point(345, 6);
+            this.rbSearchInWid.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.rbSearchInWid.Name = "rbSearchInWid";
+            this.rbSearchInWid.Size = new System.Drawing.Size(75, 17);
+            this.rbSearchInWid.TabIndex = 2;
+            this.rbSearchInWid.TabStop = true;
+            this.rbSearchInWid.Text = "в БД WID";
+            this.rbSearchInWid.UseVisualStyleBackColor = true;
+            this.rbSearchInWid.CheckedChanged += new System.EventHandler(this.rbSearchInWid_CheckedChanged);
             // 
             // btnDoSearch
             // 
@@ -259,54 +310,15 @@
             this.ilMain.Images.SetKeyName(2, "iconfinder_Error_132716.png");
             this.ilMain.Images.SetKeyName(3, "iconfinder_History_132755.png");
             // 
-            // rbSearchInIdentMw
+            // btnStopSearch
             // 
-            this.rbSearchInIdentMw.AutoSize = true;
-            this.rbSearchInIdentMw.Location = new System.Drawing.Point(98, 6);
-            this.rbSearchInIdentMw.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.rbSearchInIdentMw.Name = "rbSearchInIdentMw";
-            this.rbSearchInIdentMw.Size = new System.Drawing.Size(145, 17);
-            this.rbSearchInIdentMw.TabIndex = 2;
-            this.rbSearchInIdentMw.TabStop = true;
-            this.rbSearchInIdentMw.Text = "серед знайдених творів";
-            this.rbSearchInIdentMw.UseVisualStyleBackColor = true;
-            this.rbSearchInIdentMw.CheckedChanged += new System.EventHandler(this.rbSearchInIdentMw_CheckedChanged);
-            // 
-            // rbSearchInMs
-            // 
-            this.rbSearchInMs.AutoSize = true;
-            this.rbSearchInMs.Location = new System.Drawing.Point(249, 6);
-            this.rbSearchInMs.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.rbSearchInMs.Name = "rbSearchInMs";
-            this.rbSearchInMs.Size = new System.Drawing.Size(90, 17);
-            this.rbSearchInMs.TabIndex = 2;
-            this.rbSearchInMs.TabStop = true;
-            this.rbSearchInMs.Text = "в БД СМАРТ";
-            this.rbSearchInMs.UseVisualStyleBackColor = true;
-            this.rbSearchInMs.CheckedChanged += new System.EventHandler(this.rbSearchInMs_CheckedChanged);
-            // 
-            // rbSearchInWid
-            // 
-            this.rbSearchInWid.AutoSize = true;
-            this.rbSearchInWid.Location = new System.Drawing.Point(345, 6);
-            this.rbSearchInWid.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.rbSearchInWid.Name = "rbSearchInWid";
-            this.rbSearchInWid.Size = new System.Drawing.Size(75, 17);
-            this.rbSearchInWid.TabIndex = 2;
-            this.rbSearchInWid.TabStop = true;
-            this.rbSearchInWid.Text = "в БД WID";
-            this.rbSearchInWid.UseVisualStyleBackColor = true;
-            this.rbSearchInWid.CheckedChanged += new System.EventHandler(this.rbSearchInWid_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 8);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 8, 3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Виконати пошук";
+            this.btnStopSearch.Location = new System.Drawing.Point(507, 3);
+            this.btnStopSearch.Name = "btnStopSearch";
+            this.btnStopSearch.Size = new System.Drawing.Size(119, 23);
+            this.btnStopSearch.TabIndex = 1;
+            this.btnStopSearch.Text = "Зупинити пошук";
+            this.btnStopSearch.UseVisualStyleBackColor = true;
+            this.btnStopSearch.Click += new System.EventHandler(this.btnStopSearch_Click);
             // 
             // FormAutoSearch
             // 
@@ -360,5 +372,6 @@
         private System.Windows.Forms.RadioButton rbSearchInMs;
         private System.Windows.Forms.RadioButton rbSearchInIdentMw;
         private System.Windows.Forms.RadioButton rbSearchInWid;
+        private System.Windows.Forms.Button btnStopSearch;
     }
 }

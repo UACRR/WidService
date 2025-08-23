@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -17,7 +18,8 @@ namespace DdexInvoicing
     {
         private int _ddexReportId;
 
-        private Thread _thread;
+        private string _cmdSearchResult;
+        private SqlCommand _cmdSearch;
 
         private int? _stepIdx;
         private DateTime? _stepStart;
@@ -29,7 +31,8 @@ namespace DdexInvoicing
         {
             InitializeComponent();
             _ddexReportId = ddexReportId;
-            _thread = null;
+            _cmdSearch = null;
+            _cmdSearchResult = "";
         }
 
         private void FormAutoSearch_Load(object sender, EventArgs e)
@@ -45,8 +48,6 @@ namespace DdexInvoicing
             rbSearchInIdentMw.Checked = true;
             rbSearchInMs.Checked = false;
             rbSearchInWid.Checked = false;
-
-            rbSearchInWid.Enabled = false;
 
             lvSteps.FullRowSelect = true;
             lvSteps.View = View.Details;
@@ -71,37 +72,46 @@ namespace DdexInvoicing
             lvResult.Columns.Add("Автори", 200);
             lvResult.Columns.Add("Виконавці", 100);
 
-            _allowClose = true;
+            ResetControls();
         }
 
         private void FillLvSteps()
         {
-            lvSteps.Items.Clear();
-            Helpers.RunSqlOperationDdex(cmd =>
+            try
             {
-                var searchType = rbSearchInIdentMw.Checked ? 0 :
-                    rbSearchInMs.Checked ? 1 : 2;
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "AutoSearch..spResetSearchSteps";
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@searchType", searchType);
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = $"select Id, Name, Status from AutoSearch..SearchSteps order by Id";
-                cmd.Parameters.Clear();
-                using (var r = cmd.ExecuteReader())
+                lvSteps.BeginUpdate();
+                lvSteps.Items.Clear();
+                Helpers.RunSqlOperationDdexUnprotected(cmd =>
                 {
-                    while(r.Read())
+                    var searchType = rbSearchInIdentMw.Checked ? 0 :
+                        rbSearchInMs.Checked ? 1 : 2;
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "AutoSearch..spResetSearchSteps";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@searchType", searchType);
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = $"select Id, Name, Status from AutoSearch..SearchSteps order by Id";
+                    cmd.Parameters.Clear();
+                    using (var r = cmd.ExecuteReader())
                     {
-                        var item = lvSteps.Items.Add(r.GetInt32(0).ToString());
-                        item.SubItems.Add(r.GetString(1));
-                        item.SubItems.Add("");
-                        item.SubItems.Add("");
+                        while (r.Read())
+                        {
+                            var item = lvSteps.Items.Add(r.GetInt32(0).ToString());
+                            item.SubItems.Add(r.GetString(1));
+                            item.SubItems.Add("");
+                            item.SubItems.Add("");
+                        }
                     }
-                }
-            });
+                });
+                lvSteps.EndUpdate();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void FillLvResult()
@@ -111,20 +121,13 @@ namespace DdexInvoicing
             {
                 if (rbSearchInIdentMw.Checked)
                 {
-                    cmd.CommandText = @"
-                    select t2.Title, t2.ComposerAuthor, t2.DisplayArtistName, t3.Title, t3.ComposerAuthor, t3.DisplayArtistName
-	                    from AutoSearch..FoundWorksInIdentMw t1
-		                    join Ddex..IdentMw t2 on t1.SourceWorkId = t2.Id
-		                    join Ddex..IdentMw t3 on t1.TargetWorkId = t3.Id
-                    ";
+                    cmd.CommandText = @"select * from AutoSearch..vFoundWorksInIdentMw";
                 }
                 else if (rbSearchInMs.Checked) {
-                    cmd.CommandText = @"
-                        select t2.Title, t2.ComposerAuthor, t2.DisplayArtistName, t3.Name, t3.Author, t3.Performer
-                        from AutoSearch..FoundWorksInMs t1
-                            join Ddex..IdentMw t2 on t1.SourceWorkId = t2.Id
-                            join MediaService..ObjectRight t3 on t1.TargetObjId = t3.ObjId
-                    ";
+                    cmd.CommandText = @"select * from AutoSearch..vFoundWorksInMs";
+                }
+                else if (rbSearchInWid.Checked) {
+                    cmd.CommandText = @"select * from AutoSearch..vFoundWorksInWid";
                 }
                 using (var r = cmd.ExecuteReader())
                 {
@@ -151,13 +154,12 @@ namespace DdexInvoicing
 
         private void RefreshLvSteps()
         {
-            Helpers.RunSqlOperationDdex(cmd =>
+            Helpers.RunSqlOperationDdexUnsafe(cmd =>
             {
-                var tableName = rbSearchInIdentMw.Checked ? "SearchSteps" :
-                    rbSearchInMs.Checked ? "SearchStepsMs" : "SearchStepsWid";
                 cmd.CommandText = $"select Status from AutoSearch..SearchSteps order by Id";
                 using (var r = cmd.ExecuteReader())
                 {
+                    lvSteps.BeginUpdate();
                     var itemIdx = 0;
                     while (r.Read())
                     {
@@ -167,12 +169,16 @@ namespace DdexInvoicing
                             "" : status == 1 ? "Виконується ..." : "Завершено";
                         item.SubItems[3].Text = statusText;
                         item.ImageIndex = GetImageIndex(status);
+                        if(item.SubItems[2].Text == "")
+                        {
+                            item.SubItems[2].Text = "00:00:00";
+                        }
 
                         if(status == 1)
                         {
                             if(itemIdx != _stepIdx)
                             {
-                                if(_stepIdx != null)
+                                if(_stepIdx != null && itemIdx > 1)
                                 {
                                     TimeSpan timeSpan = DateTime.Now - (DateTime)_stepStart;
                                     var itemPrev = lvSteps.Items[itemIdx - 1];
@@ -189,13 +195,9 @@ namespace DdexInvoicing
                             }
                         }
  
-
-                        if (status == 1)
-                        {
-                            item.EnsureVisible();
-                        }
                         itemIdx++;
                     }
+                    lvSteps.EndUpdate();
                 };
              });
         }
@@ -232,19 +234,38 @@ namespace DdexInvoicing
                 }
         }
 
-        private void DoSearch()
+        private async Task DoSearch()
         {
-            Helpers.RunSqlOperationDdex(cmd =>
+            try
             {
-                var procName = rbSearchInIdentMw.Checked ? "spSearchInIdentMw" :
-                    rbSearchInMs.Checked ? "spSearchInMs" : "spSearchInWid";     
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = $"AutoSearch..{procName}";
-                cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
-                cmd.ExecuteNonQuery();
-            });
+                await Helpers.RunSqlOperationDdexAsync(async cmd =>
+                {
+                    _cmdSearch = cmd;
+                    var procName = rbSearchInIdentMw.Checked ? "spSearchInIdentMw" :
+                        rbSearchInMs.Checked ? "spSearchInMs" : "spSearchInWid";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = $"AutoSearch..{procName}";
+                    cmd.Parameters.AddWithValue("@ddexReportId", _ddexReportId);
+                    await cmd.ExecuteNonQueryAsync();
+                    FillLvResult();
+                    MessageBox.Show("Пошук завершено", "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return null;
+               });
+            }
+            catch (Exception ex)
+            {
+                if(_cmdSearch != null)
+                {
+                    _cmdSearch.Cancel();
+                    MessageBox.Show(ex.Message, "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            finally
+            {
+                ResetControls();
+            }
         }
-        private void btnDoSearch_Click(object sender, EventArgs e)
+        private async void btnDoSearch_Click(object sender, EventArgs e)
         {
             try
             {
@@ -258,35 +279,63 @@ namespace DdexInvoicing
             {
                 return;
             }
- 
+
+            ResetControls();
+            
             timerMonitor.Enabled = true;
             btnClose.Enabled = false;
             btnDoSearch.Enabled = false;
+            rbSearchInIdentMw.Enabled = false;
+            rbSearchInMs.Enabled = false;
+            rbSearchInWid.Enabled = false;
             _allowClose = false;
-            _thread = new Thread(() =>
-            {
-                DoSearch();
-                //DoTestSearch();
-            });
-            _thread.Start();
+            lvResult.Items.Clear();
+
+            _cmdSearchResult = "";
+            btnStopSearch.Enabled = true;
+            await DoSearch();
+
+            //_thread = new Thread(() =>
+            //{
+            //    DoSearch();
+            //    //DoTestSearch();
+            //});
+            //_thread.Start();
+        }
+
+        private void ResetControls()
+        {
+            btnClose.Enabled = true;
+            btnDoSearch.Enabled = true;
+            btnStopSearch.Enabled = false;
+            _allowClose = true;
+            timerMonitor.Enabled = false;
+            _cmdSearch = null;
+            _cmdSearchResult = "";
+            rbSearchInIdentMw.Enabled = true;
+            rbSearchInMs.Enabled = true;
+            rbSearchInWid.Enabled = true;
+            //FillLvSteps();
         }
 
         private void timerMonitor_Tick(object sender, EventArgs e)
         {
-            timerMonitor.Enabled = false;
-            RefreshLvSteps();
-            if(_thread.IsAlive)
+            try
             {
+                timerMonitor.Enabled = false;
+                RefreshLvSteps();
                 timerMonitor.Enabled = true;
             }
-            else
+            catch (Exception ex)
             {
-                _thread = null;
-                btnClose.Enabled = true;
-                btnDoSearch.Enabled = true;
-                _allowClose = true;
-                FillLvResult();
+                if(_cmdSearch != null)
+                {
+                    _cmdSearch.Cancel();
+                }
+                MessageBox.Show(ex.Message, "Пошук творів", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ResetControls();
             }
+
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
@@ -346,6 +395,15 @@ namespace DdexInvoicing
         private void rbSearchInWid_CheckedChanged(object sender, EventArgs e)
         {
             FillLvSteps();
+        }
+
+        private void btnStopSearch_Click(object sender, EventArgs e)
+        {
+            if(_cmdSearch != null)
+            {
+                _cmdSearch.Cancel();
+                ResetControls();
+            }
         }
     }
 }
