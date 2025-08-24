@@ -14,6 +14,7 @@ namespace Testing
         [STAThread]
         static void Main()
         {
+            StringHelpers.CompareNormalizedForStartsWith("", "");
             var ftpClient = new FtpClient("", "", "", 0, false);
              /*
             IpiTests.LoadDumpFiles("ftp://ftp.suisa.ch", "UACRR", 
