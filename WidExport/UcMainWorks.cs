@@ -60,7 +60,7 @@ namespace WidExport
                             LocalName = r.GetString(3),
                             Authors = r.GetString(4),
                             Performers = r.GetString(5),
-                            CustId = r.GetInt32(6),
+                            CustId = r.IsDBNull(6) ? 0 : r.GetInt32(6),
                         });
                     }
                 }

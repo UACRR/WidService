@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{880B15E7-184E-431E-85EC-33A52425D99C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CwrTools</RootNamespace>
+    <AssemblyName>CwrTools</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BulkUploadToSql.cs" />
+    <Compile Include="CwrFileReader.cs" />
+    <Compile Include="CwrFileWriter.cs" />
+    <Compile Include="Entities\BaseRec.cs" />
+    <Compile Include="Entities\CwrFile.cs" />
+    <Compile Include="Entities\BaseRecDetail.cs" />
+    <Compile Include="Entities\BaseRecTran.cs" />
+    <Compile Include="Entities\RecAck.cs" />
+    <Compile Include="Entities\RecAgr.cs" />
+    <Compile Include="Entities\RecAlt.cs" />
+    <Compile Include="Entities\RecAri.cs" />
+    <Compile Include="Entities\RecCom.cs" />
+    <Compile Include="Entities\RecEwt.cs" />
+    <Compile Include="Entities\RecExc.cs" />
+    <Compile Include="Entities\RecGrh.cs" />
+    <Compile Include="Entities\RecGrt.cs" />
+    <Compile Include="Entities\RecHdr.cs" />
+    <Compile Include="Entities\RecInd.cs" />
+    <Compile Include="Entities\RecIns.cs" />
+    <Compile Include="Entities\RecIpa.cs" />
+    <Compile Include="Entities\RecIsw.cs" />
+    <Compile Include="Entities\RecMsg.cs" />
+    <Compile Include="Entities\RecNat.cs" />
+    <Compile Include="Entities\RecNct.cs" />
+    <Compile Include="Entities\RecNet.cs" />
+    <Compile Include="Entities\RecNow.cs" />
+    <Compile Include="Entities\RecNpa.cs" />
+    <Compile Include="Entities\RecNpn.cs" />
+    <Compile Include="Entities\RecNpr.cs" />
+    <Compile Include="Entities\RecNvt.cs" />
+    <Compile Include="Entities\RecNwn.cs" />
+    <Compile Include="Entities\RecNwr.cs" />
+    <Compile Include="Entities\RecOpt.cs" />
+    <Compile Include="Entities\RecOpu.cs" />
+    <Compile Include="Entities\RecOrn.cs" />
+    <Compile Include="Entities\RecOwr.cs" />
+    <Compile Include="Entities\RecOwt.cs" />
+    <Compile Include="Entities\RecPer.cs" />
+    <Compile Include="Entities\RecPwr.cs" />
+    <Compile Include="Entities\RecRec.cs" />
+    <Compile Include="Entities\RecRev.cs" />
+    <Compile Include="Entities\RecSpt.cs" />
+    <Compile Include="Entities\RecSpu.cs" />
+    <Compile Include="Entities\RecSwr.cs" />
+    <Compile Include="Entities\RecSwt.cs" />
+    <Compile Include="Entities\RecTer.cs" />
+    <Compile Include="Entities\RecTrl.cs" />
+    <Compile Include="Entities\RecVer.cs" />
+    <Compile Include="Entities\RecXrf.cs" />
+    <Compile Include="FormCreateFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateFile.Designer.cs">
+      <DependentUpon>FormCreateFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSpecImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSpecImport.Designer.cs">
+      <DependentUpon>FormSpecImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers.cs" />
+    <Compile Include="MetaData.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCreateFile.resx">
+      <DependentUpon>FormCreateFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSpecImport.resx">
+      <DependentUpon>FormSpecImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Docs\CWR19-1070R1_Functional_specifications_CWR_version_2-2_Rev2_2022-02-03_EN.pdf" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="TestData\CW250029117_117.V21" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sql\CreateTableBaseRecTran.sql" />
+    <Content Include="Sql\CreateTableFiles.sql" />
+    <Content Include="Sql\CreateTableSpecFields.sql" />
+    <Content Include="Sql\CreateTableSpecFormats.sql" />
+    <Content Include="Sql\CreateTableSpecRecords.sql" />
+    <Content Include="Sql\CreateTableSpecReqs.sql" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

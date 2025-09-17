@@ -1,0 +1,25 @@
+﻿use CWR
+go
+
+drop table if exists SpecFormats
+create table SpecFormats (
+	  Code char(1) primary key
+	, Description varchar(32)
+	, DefaultSize int
+	, Rules varchar(max)
+)
+
+insert SpecFormats (
+	  Code
+	, Description
+	, DefaultSize
+	, Rules
+)
+values
+	  ('A', 'Alpha or Alphanumeric', 0, 'Any string containing valid ASCII text. Note that nulls are not acceptable and all alphabetic characters must be in upper case. If there is no data to be entered in an alpha field, blanks must be entered.')
+	, ('B', 'Boolean', 1, 'Field must be equal to <Y>es or <N>o')
+	, ('F', 'Flag', 1, 'Field must be equal to <Y>es, <N>o, or <U>nknown. Note that the difference between Boolean and Flag is the allowance of an unknown condition for all fields declared as Flag.')
+	, ('D', 'Date', 8, 'Dates are all formatted as YYYYMMDD. If there is no data to be entered in a date field, zeroes must be entered.')
+	, ('N', 'Numeric', 0, 'Numeric fields are to be right justified and zero filled. If there is an implied decimal point, it will be defined in the record layout. If there is no data to be entered in a numeric field, zeroes must be entered.')
+	, ('T', 'Time or Duration', 6, 'Time/Duration fields are all formatted as HHMMSS. Time of day is to be expressed in 24 hour format, otherwise known as military time. If there is no data to be entered in a time or duration field, zeroes must be entered.')
+	, ('L', 'List or Table Lookup', 0, 'The valid entries for these fields come from a list in the field description or a table. Note that the values for these tables are to be found in the Lookup Table document.')

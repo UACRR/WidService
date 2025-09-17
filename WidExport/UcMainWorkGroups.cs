@@ -381,6 +381,28 @@ namespace WidExport
                 return;
             }
 
+            var hasSent = false;
+            Helpers.RunSqlSocWidSubmit(cmd =>
+            {
+                cmd.CommandText = @"
+                    select count(*)
+                    from WidSubmGroupWork
+                    where WidSubmGroupId = @groupId
+	                    and Status = 4
+                    ";
+                cmd.Parameters.AddWithValue("@groupId", _selectedGroup.Id);
+                hasSent = (int)cmd.ExecuteScalar() > 0;
+            });
+
+            if(hasSent)
+            {
+                MessageBox.Show("Група містить передані твори, для яких не отримана відповідь. Отримайте відповідь і спробуйте закрити групу.",
+                    "Закриття групи творів",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             var procResult = 0;
             using (var wc = new WaitCursor())
             {

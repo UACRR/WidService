@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -433,11 +434,14 @@ namespace WidExport
                 appSettings["FileExchangeFtpLogin"],
                 appSettings["FileExchangeFtpPassword"]
             );
+            /*
             var ftpFiles = ftpClient.ReadDirectoryFiles("")
                 .ToList()
                 .Where(x => !string.Equals(Path.GetExtension(x), ".gz", StringComparison.OrdinalIgnoreCase))
                 .ToList();
-
+            */
+            var ftpFiles = ftpClient.ReadDirectoryFiles("")
+                .ToList();
             var localFiles = Directory.GetFiles(
                 Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles"),
                 "*.021"
@@ -456,20 +460,43 @@ namespace WidExport
                 }
             });
 
-            var unprocessedFiles = ftpFiles.Where(x => !dbFiles.Contains(x)).ToList();
+            var unprocessedFiles = ftpFiles
+                .Where(x => !dbFiles.Contains(Path.GetFileNameWithoutExtension(x)))
+                .ToList();
 
             unprocessedFiles.ForEach(fileName =>
             {
-                if (!localFiles.Contains(fileName))
+                var isArchived = string.Compare(Path.GetExtension(fileName), ".gz", StringComparison.OrdinalIgnoreCase) == 0;
+                var fileNameUnzipped = isArchived ?
+                    Path.GetFileNameWithoutExtension(fileName) : fileName;
+                var folder = Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles");
+                if (!localFiles.Contains(fileNameUnzipped))
                 {
                     ftpClient.DownloadFile(
                         "",
                         fileName,
-                        Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles")
+                        folder
                     );
                 }
 
-                LoadRespFile(Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles", fileName));
+                if(isArchived)
+                {
+                    var fileFullName = Path.Combine(folder, fileName);
+                    var fileFullNameUnzipped = Path.Combine(folder, fileNameUnzipped);
+                    using (FileStream compressedFileStream = File.OpenRead(fileFullName))
+                    {
+                        using (FileStream decompressedFileStream = File.Create(fileFullNameUnzipped))
+                        {
+                            using (GZipStream decompressionStream = new GZipStream(compressedFileStream, CompressionMode.Decompress))
+                            {
+                                decompressionStream.CopyTo(decompressedFileStream);
+                            }
+                        }
+                    }
+                    File.Delete(fileFullName);
+                }
+
+                LoadRespFile(Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles", fileNameUnzipped));
             });
         }
 
