@@ -12,9 +12,10 @@ CREATE TABLE [dbo].[CwrFiles](
 	[CwrFileId] [int] IDENTITY(1,1) NOT NULL,
 	[Direction] [varchar](3) NULL,
 	[Path] [nvarchar](512) NULL,
-	[Name] [nchar](32) NULL,
+	[Name] [nvarchar](32) NULL,
 	[RespPath] [nvarchar](512) NULL,
-	[RespName] [nchar](32) NULL,
+	[RespName] [nvarchar](32) NULL,
+	Status int null
  CONSTRAINT [PK__CwrFiles__BB2F5039E836D9F9] PRIMARY KEY CLUSTERED 
 (
 	[CwrFileId] ASC

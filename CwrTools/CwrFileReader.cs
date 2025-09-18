@@ -74,12 +74,130 @@ namespace CwrTools
             bulkLoader.AddData(data);
         }
 
-        public void LoadFile(string fileFullName, string direction)
+        public string GetLoadedFileFullName(int cwrFileId)
         {
+            var retVal = "";
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                    select t1.CwrFileId, t1.Path, t1.Name, t2.SenderName, t2.CreationDate
+                    from CwrFiles t1
+	                    join RecHdr t2 on t1.CwrFileId = t2.CwrFileId
+                    where t1.CwrFileId = @CwrFileId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@CwrFileId", cwrFileId);
+                using (var r = cmd.ExecuteReader())
+                {
+                    r.Read();
+                    var FilePath      = r.GetString(1);
+                    var FileName      = r.GetString(2);
+                    var SenderName    = r.GetString(3);
+                    var CreationDate  = r.GetDateTime(4);
+
+                    retVal = $@"{CwrConfig.InputFilesPath}\{SenderName}\{CreationDate.ToString("yyyy")}\{FileName}";
+                   
+                }
+            });
+
+            return retVal;
+
+        }
+
+
+        private void MoveLoadedFile()
+        {
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                    select t1.CwrFileId, t1.Path, t1.Name, t2.SenderName, t2.CreationDate
+                    from CwrFiles t1
+	                    join RecHdr t2 on t1.CwrFileId = t2.CwrFileId
+                    where t1.CwrFileId = @CwrFileId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@CwrFileId", _cwrFileId);
+                using (var r = cmd.ExecuteReader())
+                {
+                    r.Read();
+                    var FilePath      = r.GetString(1);
+                    var FileName      = r.GetString(2);
+                    var SenderName    = r.GetString(3);
+                    var CreationDate  = r.GetDateTime(4);
+
+                    var targetFolder = $@"{CwrConfig.InputFilesPath}\{SenderName}\{CreationDate.ToString("yyyy")}";
+                    Directory.CreateDirectory(targetFolder);
+                    var sourceFileFullName = Path.Combine(CwrConfig.InputQueuePath, FileName);
+                    var targetFileFullName = Path.Combine(targetFolder, FileName);
+                    File.Delete(targetFileFullName);
+                    File.Move(sourceFileFullName, targetFileFullName);
+                }
+            });
+
+        }
+
+        private void CopyExternalFile(string fileFullName)
+        {
+            var fileName = Path.GetFileName(fileFullName);
+            var targetFileFullName = Path.Combine(CwrConfig.InputQueuePath, fileName);
+            if (!File.Exists(targetFileFullName))
+            {
+                File.Copy(fileFullName, targetFileFullName, true); 
+            }
+        }
+
+        private void MoveUnLoadedFile(int cwrFileId)
+        {
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                    select t1.CwrFileId, t1.Path, t1.Name, t2.SenderName, t2.CreationDate
+                    from CwrFiles t1
+	                    join RecHdr t2 on t1.CwrFileId = t2.CwrFileId
+                    where t1.CwrFileId = @CwrFileId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@CwrFileId", cwrFileId);
+                using (var r = cmd.ExecuteReader())
+                {
+                    if(!r.HasRows)
+                    {
+                        return;
+                    }
+
+                    r.Read();
+                    var FilePath      = r.GetString(1);
+                    var FileName      = r.GetString(2);
+                    var SenderName    = r.GetString(3);
+                    var CreationDate  = r.GetDateTime(4);
+
+                    var sourceFolder = $@"{CwrConfig.InputFilesPath}\{SenderName}\{CreationDate.ToString("yyyy")}";
+                    var sourceFileFullName = Path.Combine(sourceFolder, FileName);
+                    var targetFileFullName = Path.Combine(CwrConfig.InputQueuePath, FileName);
+                    if(File.Exists(sourceFileFullName))
+                    {
+                        File.Delete(targetFileFullName);
+                        File.Move(sourceFileFullName, targetFileFullName);
+                    }
+                }
+            });
+
+        }
+
+        public int LoadFile(string fileFullName, string direction)
+        {
+
+            if (string.Compare(direction, "IN", StringComparison.OrdinalIgnoreCase) == 0)
+            { 
+                CopyExternalFile(fileFullName);
+            }
+
             _bulkLoaders = new Dictionary<string, BulkUploadToSql>();
 
             Helpers.RunSqlCwr(cmd =>
             {
+                cmd.CommandTimeout = 0;
+
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "spCwrFileRegister";
                 cmd.Parameters.Clear();
@@ -98,6 +216,7 @@ namespace CwrTools
                         {
                             break;
                         }
+                        //Console.WriteLine(line);
                         LoadLine(cmd, line);
                     }
                 }
@@ -115,7 +234,28 @@ namespace CwrTools
 
             });
 
+            if (string.Compare(direction, "IN", StringComparison.OrdinalIgnoreCase) == 0)
+            { 
+                MoveLoadedFile();
+            }
+
+            return _cwrFileId;
+
         }
+        
+        public void UnLoadFile(int cwrFileId)
+        {
+            MoveUnLoadedFile(cwrFileId);
+            Helpers.RunSqlCwr(cmd =>
+             {
+                 cmd.CommandType = CommandType.StoredProcedure;
+                 cmd.CommandText = "spDeleteFile";
+                 cmd.Parameters.Clear();
+                 cmd.Parameters.AddWithValue("@cwrFileId", cwrFileId);
+                 cmd.ExecuteNonQuery();
+             });
+        }
+      
         public CwrFile ReadFile(string fileFullName)
         {
             var cwrFile = new CwrFile

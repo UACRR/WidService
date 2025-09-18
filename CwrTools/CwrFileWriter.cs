@@ -481,7 +481,7 @@ namespace CwrTools
             }
         }
 
-        public void CreateFile(string folderPath)
+        public string CreateFile(string folderPath)
         {
             var cwrFile = new CwrFile
             {
@@ -495,6 +495,8 @@ namespace CwrTools
 
             Helpers.RunSqlCwr(cmd =>
             {
+                cmd.CommandTimeout = 0;
+
                 CreateInputInfo(cmd);
 
                 cmd.CommandType = CommandType.Text;
@@ -510,13 +512,24 @@ namespace CwrTools
             AddGrt(recGrh, "00001");
             AddTrl(recHdr);
 
-            WriteFile(cwrFile, Path.Combine(folderPath, FormatFileName()));
+            var fileFullName = Path.Combine(folderPath, FormatFileName());
+            WriteFile(cwrFile, fileFullName);
+
+            return fileFullName;
                 
         }
 
         public string FormatFileName()
         {
-            return $"CW{DateTime.Now.ToString("yy")}0001140_000.V22";
+            var fileSeqNr = 0;
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = "select count(*) + 1 from CwrFiles where Status is not null and Direction = 'OUT'";
+                fileSeqNr = (int)cmd.ExecuteScalar();
+
+            });
+            var fileSeqNrStr = fileSeqNr.ToString("D4");
+            return $"CW{DateTime.Now.ToString("yy")}{fileSeqNrStr}140_000.V22";
         }
 
     }

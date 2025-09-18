@@ -38,12 +38,27 @@
             this.btnTestFile = new System.Windows.Forms.Button();
             this.btnCreateFile = new System.Windows.Forms.Button();
             this.btnSendFile = new System.Windows.Forms.Button();
+            this.tabMain = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ucInputFiles = new CwrTools.UcInputFiles();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucOutputFiles = new CwrTools.UcOutputFiles();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.panelMain = new System.Windows.Forms.TableLayoutPanel();
+            this.panelBottom = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.tabMain.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.panelMain.SuspendLayout();
+            this.panelBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnImportSpecs
             // 
             this.btnImportSpecs.Enabled = false;
-            this.btnImportSpecs.Location = new System.Drawing.Point(30, 12);
+            this.btnImportSpecs.Location = new System.Drawing.Point(21, 17);
             this.btnImportSpecs.Name = "btnImportSpecs";
             this.btnImportSpecs.Size = new System.Drawing.Size(163, 23);
             this.btnImportSpecs.TabIndex = 0;
@@ -54,7 +69,7 @@
             // btnCreateTables
             // 
             this.btnCreateTables.Enabled = false;
-            this.btnCreateTables.Location = new System.Drawing.Point(199, 12);
+            this.btnCreateTables.Location = new System.Drawing.Point(190, 17);
             this.btnCreateTables.Name = "btnCreateTables";
             this.btnCreateTables.Size = new System.Drawing.Size(163, 23);
             this.btnCreateTables.TabIndex = 1;
@@ -64,7 +79,8 @@
             // 
             // btnLoadFile
             // 
-            this.btnLoadFile.Location = new System.Drawing.Point(30, 41);
+            this.btnLoadFile.Enabled = false;
+            this.btnLoadFile.Location = new System.Drawing.Point(21, 46);
             this.btnLoadFile.Name = "btnLoadFile";
             this.btnLoadFile.Size = new System.Drawing.Size(163, 23);
             this.btnLoadFile.TabIndex = 2;
@@ -75,7 +91,7 @@
             // btnCreateProcedures
             // 
             this.btnCreateProcedures.Enabled = false;
-            this.btnCreateProcedures.Location = new System.Drawing.Point(368, 12);
+            this.btnCreateProcedures.Location = new System.Drawing.Point(359, 17);
             this.btnCreateProcedures.Name = "btnCreateProcedures";
             this.btnCreateProcedures.Size = new System.Drawing.Size(159, 23);
             this.btnCreateProcedures.TabIndex = 3;
@@ -86,7 +102,7 @@
             // btnCreateClasses
             // 
             this.btnCreateClasses.Enabled = false;
-            this.btnCreateClasses.Location = new System.Drawing.Point(533, 12);
+            this.btnCreateClasses.Location = new System.Drawing.Point(524, 17);
             this.btnCreateClasses.Name = "btnCreateClasses";
             this.btnCreateClasses.Size = new System.Drawing.Size(159, 23);
             this.btnCreateClasses.TabIndex = 4;
@@ -97,7 +113,7 @@
             // btnReadFile
             // 
             this.btnReadFile.Enabled = false;
-            this.btnReadFile.Location = new System.Drawing.Point(199, 41);
+            this.btnReadFile.Location = new System.Drawing.Point(190, 46);
             this.btnReadFile.Name = "btnReadFile";
             this.btnReadFile.Size = new System.Drawing.Size(163, 23);
             this.btnReadFile.TabIndex = 5;
@@ -108,7 +124,7 @@
             // btnWriteFile
             // 
             this.btnWriteFile.Enabled = false;
-            this.btnWriteFile.Location = new System.Drawing.Point(368, 41);
+            this.btnWriteFile.Location = new System.Drawing.Point(359, 46);
             this.btnWriteFile.Name = "btnWriteFile";
             this.btnWriteFile.Size = new System.Drawing.Size(159, 23);
             this.btnWriteFile.TabIndex = 6;
@@ -119,7 +135,7 @@
             // btnTestFile
             // 
             this.btnTestFile.Enabled = false;
-            this.btnTestFile.Location = new System.Drawing.Point(533, 41);
+            this.btnTestFile.Location = new System.Drawing.Point(524, 46);
             this.btnTestFile.Name = "btnTestFile";
             this.btnTestFile.Size = new System.Drawing.Size(159, 23);
             this.btnTestFile.TabIndex = 6;
@@ -129,7 +145,8 @@
             // 
             // btnCreateFile
             // 
-            this.btnCreateFile.Location = new System.Drawing.Point(34, 86);
+            this.btnCreateFile.Enabled = false;
+            this.btnCreateFile.Location = new System.Drawing.Point(25, 91);
             this.btnCreateFile.Name = "btnCreateFile";
             this.btnCreateFile.Size = new System.Drawing.Size(159, 23);
             this.btnCreateFile.TabIndex = 6;
@@ -139,7 +156,8 @@
             // 
             // btnSendFile
             // 
-            this.btnSendFile.Location = new System.Drawing.Point(199, 86);
+            this.btnSendFile.Enabled = false;
+            this.btnSendFile.Location = new System.Drawing.Point(190, 91);
             this.btnSendFile.Name = "btnSendFile";
             this.btnSendFile.Size = new System.Drawing.Size(159, 23);
             this.btnSendFile.TabIndex = 6;
@@ -147,27 +165,132 @@
             this.btnSendFile.UseVisualStyleBackColor = true;
             this.btnSendFile.Click += new System.EventHandler(this.btnSendFile_Click);
             // 
+            // tabMain
+            // 
+            this.tabMain.Controls.Add(this.tabPage2);
+            this.tabMain.Controls.Add(this.tabPage1);
+            this.tabMain.Controls.Add(this.tabPage3);
+            this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabMain.Location = new System.Drawing.Point(3, 12);
+            this.tabMain.Name = "tabMain";
+            this.tabMain.SelectedIndex = 0;
+            this.tabMain.Size = new System.Drawing.Size(955, 503);
+            this.tabMain.TabIndex = 7;
+            this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.ucInputFiles);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(907, 408);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Вхідні файли";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ucInputFiles
+            // 
+            this.ucInputFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInputFiles.Location = new System.Drawing.Point(3, 3);
+            this.ucInputFiles.Name = "ucInputFiles";
+            this.ucInputFiles.Size = new System.Drawing.Size(901, 402);
+            this.ucInputFiles.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ucOutputFiles);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(947, 477);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Вихідні файли";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ucOutputFiles
+            // 
+            this.ucOutputFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucOutputFiles.Location = new System.Drawing.Point(3, 3);
+            this.ucOutputFiles.Name = "ucOutputFiles";
+            this.ucOutputFiles.Size = new System.Drawing.Size(941, 471);
+            this.ucOutputFiles.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnCreateProcedures);
+            this.tabPage3.Controls.Add(this.btnSendFile);
+            this.tabPage3.Controls.Add(this.btnImportSpecs);
+            this.tabPage3.Controls.Add(this.btnCreateFile);
+            this.tabPage3.Controls.Add(this.btnCreateTables);
+            this.tabPage3.Controls.Add(this.btnTestFile);
+            this.tabPage3.Controls.Add(this.btnCreateClasses);
+            this.tabPage3.Controls.Add(this.btnWriteFile);
+            this.tabPage3.Controls.Add(this.btnReadFile);
+            this.tabPage3.Controls.Add(this.btnLoadFile);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(947, 477);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Інше";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // panelMain
+            // 
+            this.panelMain.ColumnCount = 1;
+            this.panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelMain.Controls.Add(this.tabMain, 0, 1);
+            this.panelMain.Controls.Add(this.panelBottom, 0, 2);
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(0, 0);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.RowCount = 4;
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.panelMain.Size = new System.Drawing.Size(961, 562);
+            this.panelMain.TabIndex = 8;
+            // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.btnClose);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBottom.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.panelBottom.Location = new System.Drawing.Point(3, 521);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(955, 30);
+            this.panelBottom.TabIndex = 8;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(877, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 0;
+            this.btnClose.Text = "Закрити";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 127);
-            this.Controls.Add(this.btnSendFile);
-            this.Controls.Add(this.btnCreateFile);
-            this.Controls.Add(this.btnTestFile);
-            this.Controls.Add(this.btnWriteFile);
-            this.Controls.Add(this.btnReadFile);
-            this.Controls.Add(this.btnCreateClasses);
-            this.Controls.Add(this.btnCreateProcedures);
-            this.Controls.Add(this.btnLoadFile);
-            this.Controls.Add(this.btnCreateTables);
-            this.Controls.Add(this.btnImportSpecs);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.ClientSize = new System.Drawing.Size(961, 562);
+            this.Controls.Add(this.panelMain);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMain";
             this.ShowIcon = false;
             this.Text = "Інструменти CWR";
+            this.Load += new System.EventHandler(this.FormMain_Load);
+            this.tabMain.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.panelMain.ResumeLayout(false);
+            this.panelBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -184,6 +307,15 @@
         private System.Windows.Forms.Button btnTestFile;
         private System.Windows.Forms.Button btnCreateFile;
         private System.Windows.Forms.Button btnSendFile;
+        private System.Windows.Forms.TabControl tabMain;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TableLayoutPanel panelMain;
+        private System.Windows.Forms.FlowLayoutPanel panelBottom;
+        private System.Windows.Forms.Button btnClose;
+        private UcInputFiles ucInputFiles;
+        private UcOutputFiles ucOutputFiles;
     }
 }
 

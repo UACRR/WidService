@@ -78,6 +78,15 @@ where t3.rHolderType = 3
 group by t1.ObjId, t2.custId
 having count(*) > 1
 
+-- Твори де вказані невірні ISWC
+drop table if exists TmpObjIdsWrongIswcs
+	select t1.ObjId, t2.Iswc
+	into TmpObjIdsWrongIswcs
+	from TmpObjIdsInitial t1
+		join MediaService..MediaTrack t2 on t1.ObjId = t2.ObjId
+	where dbo.fnCheckIswc(t2.Iswc) = 0
+
+
 -- Підсумкові твори
 drop table if exists TmpObjIdsFinal
 ; with WrongObjIds as (
@@ -95,6 +104,9 @@ drop table if exists TmpObjIdsFinal
 	union
 	select ObjId
 	from TmpObjIdsWrongPublishers
+	union
+	select ObjId
+	from TmpObjIdsWrongIswcs
 )
 select ObjId
 into TmpObjIdsFinal

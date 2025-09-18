@@ -15,6 +15,7 @@ namespace CwrTools
         static void Main()
         {
             MetaData.Load();
+            CwrConfig.Load();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

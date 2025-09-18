@@ -20,6 +20,7 @@ begin
 		, Name
 		, RespPath
 		, RespName
+		, Status
 	) 
 	values (
 		  @Direction
@@ -27,6 +28,7 @@ begin
 		, @Name
 		, null
 		, null
+		, 0
 	)
 	end
 

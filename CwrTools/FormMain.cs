@@ -24,6 +24,11 @@ namespace CwrTools
         {
             InitializeComponent();
         }
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            tabMain.SelectedIndex = 0;
+            ucOutputFiles.RefreshData();
+        }
 
         private void DropAllGeneratedTables()
         {
@@ -408,6 +413,24 @@ end
         private void btnSendFile_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabMain.SelectedIndex)
+            {
+                case 0:
+                    ucInputFiles.RefreshData();
+                    break;
+                case 1:
+                    ucOutputFiles.RefreshData();
+                    break;
+            }
         }
     }
 }
