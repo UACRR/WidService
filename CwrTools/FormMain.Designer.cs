@@ -39,17 +39,17 @@
             this.btnCreateFile = new System.Windows.Forms.Button();
             this.btnSendFile = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ucInputFiles = new CwrTools.UcInputFiles();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucOutputFiles = new CwrTools.UcOutputFiles();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelBottom = new System.Windows.Forms.FlowLayoutPanel();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ucOutputFiles = new CwrTools.UcOutputFiles();
+            this.ucInputFiles = new CwrTools.UcInputFiles();
             this.tabMain.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelBottom.SuspendLayout();
@@ -178,25 +178,6 @@
             this.tabMain.TabIndex = 7;
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.ucInputFiles);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(907, 408);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Вхідні файли";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // ucInputFiles
-            // 
-            this.ucInputFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInputFiles.Location = new System.Drawing.Point(3, 3);
-            this.ucInputFiles.Name = "ucInputFiles";
-            this.ucInputFiles.Size = new System.Drawing.Size(901, 402);
-            this.ucInputFiles.TabIndex = 0;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucOutputFiles);
@@ -208,13 +189,16 @@
             this.tabPage2.Text = "Вихідні файли";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // ucOutputFiles
+            // tabPage1
             // 
-            this.ucOutputFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucOutputFiles.Location = new System.Drawing.Point(3, 3);
-            this.ucOutputFiles.Name = "ucOutputFiles";
-            this.ucOutputFiles.Size = new System.Drawing.Size(941, 471);
-            this.ucOutputFiles.TabIndex = 0;
+            this.tabPage1.Controls.Add(this.ucInputFiles);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(947, 477);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Вхідні файли";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -273,6 +257,23 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // ucOutputFiles
+            // 
+            this.ucOutputFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucOutputFiles.Location = new System.Drawing.Point(3, 3);
+            this.ucOutputFiles.Name = "ucOutputFiles";
+            this.ucOutputFiles.Size = new System.Drawing.Size(941, 471);
+            this.ucOutputFiles.TabIndex = 0;
+            this.ucOutputFiles.Load += new System.EventHandler(this.ucOutputFiles_Load);
+            // 
+            // ucInputFiles
+            // 
+            this.ucInputFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInputFiles.Location = new System.Drawing.Point(3, 3);
+            this.ucInputFiles.Name = "ucInputFiles";
+            this.ucInputFiles.Size = new System.Drawing.Size(941, 471);
+            this.ucInputFiles.TabIndex = 0;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,8 +287,8 @@
             this.Text = "Інструменти CWR";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tabMain.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);

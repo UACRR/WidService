@@ -425,12 +425,17 @@ end
             switch (tabMain.SelectedIndex)
             {
                 case 0:
-                    ucInputFiles.RefreshData();
-                    break;
-                case 1:
                     ucOutputFiles.RefreshData();
                     break;
+                case 1:
+                    ucInputFiles.RefreshData();
+                    break;
             }
+        }
+
+        private void ucOutputFiles_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

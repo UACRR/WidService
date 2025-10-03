@@ -11,11 +11,13 @@ drop table if exists TmpObjIdsInitial
 	from MediaService..CopyRight t1
 		join MediaService..RightHolder t2 on t1.CustId = t2.CustId
 		join MediaService..AgreementAddRH t3 on t2.CustId = t3.CustId
+		join MediaService..ObjectRight t4 on t1.ObjId = t4.ObjId
 	where --t1.Status = 1
 		--and 
 		dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
 		and t3.agrStatus = 2
 		and dbo.fnIsDateInInterval(getdate(), t3.DateBegin, t3.DateEnd) = 1
+		and t4.categoryCode = 5
 
 -- Твори де не визначена роль правовласника
 drop table if exists TmpObjIdsUndefinedRole
@@ -26,10 +28,13 @@ drop table if exists TmpObjIdsUndefinedRole
 		join MediaService..RightHolder t2 on t1.CustId = t2.CustId
 		join MediaService..AgreementAddRH t3 on t2.CustId = t3.CustId
 	where not (
-		t2.rHolderType = 3 and t1.roleCode = 8
-		or
-		t2.rHolderType = 1 and t1.roleCode in (1, 2, 7, 10)
-	)
+			t2.rHolderType = 3 and t1.roleCode = 8
+			or
+			t2.rHolderType = 1 and t1.roleCode in (1, 2, 7, 10)
+		)
+		and dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
+		and t3.agrStatus = 2
+		and dbo.fnIsDateInInterval(getdate(), t3.DateBegin, t3.DateEnd) = 1
 
 -- Твори де сума Пуб більше 100%
 drop table if exists TmpObjIdsWrongShrPer
@@ -37,8 +42,11 @@ drop table if exists TmpObjIdsWrongShrPer
 	into TmpObjIdsWrongShrPer
 	from TmpObjIdsInitial t0
 		join MediaService..CopyRight t1 on t0.ObjId = t1.ObjId
+		join MediaService..AgreementAddRH t2 on t1.CustId = t2.CustId
 	where
-			dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
+		dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
+		and t2.agrStatus = 2
+		and dbo.fnIsDateInInterval(getdate(), t2.DateBegin, t2.DateEnd) = 1
 	group by t1.ObjId
 	having sum(isnull(t1.rate, 0)) > 100
 
@@ -48,8 +56,11 @@ drop table if exists TmpObjIdsWrongShrMec
 	into TmpObjIdsWrongShrMec
 	from TmpObjIdsInitial t0
 		join MediaService..CopyRight t1 on t0.ObjId = t1.ObjId
+		join MediaService..AgreementAddRH t2 on t1.CustId = t2.CustId
 	where
 			dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
+			and t2.agrStatus = 2
+		and dbo.fnIsDateInInterval(getdate(), t2.DateBegin, t2.DateEnd) = 1
 	group by t1.ObjId
 	having sum(isnull(t1.rateMech, 0)) > 100
 
@@ -59,6 +70,7 @@ drop table if exists TmpObjIdsWrongDupRoles
 	into TmpObjIdsWrongDupRoles
 	from TmpObjIdsInitial t1
 		join MediaService..CopyRight t2 on t1.ObjId = t2.ObjId
+		join MediaService..AgreementAddRH t3 on t2.CustId = t3.CustId
 	where dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
 	group by t1.ObjId, t2.custId, t2.roleCode
 	having count(*) > 1
@@ -86,6 +98,14 @@ drop table if exists TmpObjIdsWrongIswcs
 		join MediaService..MediaTrack t2 on t1.ObjId = t2.ObjId
 	where dbo.fnCheckIswc(t2.Iswc) = 0
 
+-- Твори де відсутня назва
+drop table if exists TmpObjIdsNoName
+	select t1.ObjId
+	into TmpObjIdsNoName
+	from TmpObjIdsInitial t1
+		join MediaService..ObjectRight t2 on t1.ObjId = t2.ObjId
+	where trim(isnull(Name, '')) = ''
+
 
 -- Підсумкові твори
 drop table if exists TmpObjIdsFinal
@@ -107,6 +127,9 @@ drop table if exists TmpObjIdsFinal
 	union
 	select ObjId
 	from TmpObjIdsWrongIswcs
+	union
+	select ObjId
+	from TmpObjIdsNoName
 )
 select ObjId
 into TmpObjIdsFinal
@@ -125,14 +148,13 @@ select
 		)
 	  ) as WorkTitle
 	, t1.ObjId as SubmWorkNr
-	, t3.Iswc as ISWC
+	, isnull(t3.Iswc, '') as ISWC
 	, 'POP' as MwDistCat
 	, 'ORI' as VersionType
 into TmpWorksNwr
 from TmpObjIdsFinal t1
 	join MediaService..ObjectRight t2 on t1.ObjId = t2.ObjId
-	join MediaService..MediaTrack t3 on t2.ObjId = t3.ObjId
-where t2.Name is not null
+	left join MediaService..MediaTrack t3 on t2.ObjId = t3.ObjId
 
 -- TmpWorksSpu
 drop table if exists TmpWorksSpu
@@ -171,7 +193,7 @@ where t3.rHolderType = 3
 	and t4.agrStatus = 2
 	and dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
 	and dbo.fnIsDateInInterval(getdate(), t4.DateBegin, t4.DateEnd) = 1
-	and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
+	-- and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
 order by t1.ObjId
 
 -- TmpWorksOpu
@@ -210,7 +232,7 @@ from TmpObjIdsFinal t1
 		and t2.CustId = t6.IpNr
 where t3.rHolderType = 3
 	and dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
-	and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
+	-- and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
 	and t6.ObjId is null
 order by t1.ObjId
 
@@ -255,7 +277,7 @@ where t3.rHolderType = 1
 	and t4.agrStatus = 2
 	and dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
 	and dbo.fnIsDateInInterval(getdate(), t4.DateBegin, t4.DateEnd) = 1
-	and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
+	--and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
 order by t1.ObjId
 
 -- TmpWorksOwr
@@ -298,7 +320,7 @@ from TmpObjIdsFinal t1
 where t3.rHolderType = 1
 	and t2.roleCode in (1, 2, 7, 10)
 	and dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
-	and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
+	--and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
 	and t6.ObjId is null
 order by t1.ObjId
 

@@ -15,5 +15,17 @@ namespace MsSqlClrExt
         {
             return Translit.FromUkr(source);
         }
+
+        [SqlFunction(DataAccess = DataAccessKind.None)]
+        public static bool ClrNeedRefineText(string source )
+        {
+            return Translit.NeedRefineText(source);
+        }
+
+        [SqlFunction(DataAccess = DataAccessKind.None)]
+        public static string ClrRefineText(string source )
+        {
+            return Translit.RefineText(source);
+        }
     }
 }

@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MsSqlClrExt
 {
@@ -173,6 +177,32 @@ namespace MsSqlClrExt
             var res = sb.ToString();
             res = NormalizeText(res);
             return res;
+        }
+
+        public static bool NeedRefineText(string source)
+        {
+            foreach(var curChar in source)
+            {
+                if(char.IsControl(curChar))
+                { 
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static string RefineText(string source)
+        {
+            var stringBuilder = new StringBuilder(source);
+            for(var idx = 0; idx < source.Length; idx++)
+            {
+                if (char.IsControl(source[idx]))
+                { 
+                    stringBuilder[idx] = ' ';
+                }
+            }
+            
+            return stringBuilder.ToString().Trim();
         }
 
         private static string NormalizeText(string value)

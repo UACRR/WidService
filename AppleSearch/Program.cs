@@ -16,6 +16,9 @@ namespace AppleSearch
         {
             var ret = LevenshteinDistance.Compute("digital", "digital");
 
+            //DataRefiner.GenerateSpRefineTexts(@"D:\OlegM\Sources\WidService\AppleSearch\Sql\spRefineTextsGenerated.sql");
+            //DataRefiner.GenerateRefineTriggers(@"D:\OlegM\Sources\WidService\AppleSearch\Sql\CreateRefineTriggersGenerated.sql");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());

@@ -10,10 +10,10 @@ create table Config (
 insert Config
 values 
 	  ('FilesRootFolder', 'D:\OlegM\CWR')
-	, ('InputQueuePath', 'D:\OlegM\CWR\InputQueue')
-	, ('OutputQueuePath', 'D:\OlegM\CWR\OutputQueue')
-	, ('InputFilesPath', 'D:\OlegM\CWR\InputFiles')
-	, ('OutputFilesPath', 'D:\OlegM\CWR\OutputFiles')
+	, ('InputQueuePath', 'D:\OlegM\CWR\Надходження')
+	, ('OutputQueuePath', 'D:\OlegM\CWR\До відправки')
+	, ('InputFilesPath', 'D:\OlegM\CWR\Отримані файли')
+	, ('OutputFilesPath', 'D:\OlegM\CWR\Відправлені файли')
 
 
 go

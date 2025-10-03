@@ -1,4 +1,4 @@
-﻿use AutoSearch
+﻿use AppleMusic
 go
 
 create assembly MsSqlClrExt from 'C:\MsSqlClrExt\MsSqlClrExt.dll' -- change path as apprpiate

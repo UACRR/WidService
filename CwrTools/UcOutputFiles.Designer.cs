@@ -34,12 +34,12 @@
             this.btnShowInFolder = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCreateFile = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnCreateFile = new System.Windows.Forms.Button();
             this.btnChangeStatus = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tbNewFileFullName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelMain.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -123,16 +123,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Файли для передачі товариствам";
             // 
-            // btnCreateFile
-            // 
-            this.btnCreateFile.Location = new System.Drawing.Point(643, 3);
-            this.btnCreateFile.Name = "btnCreateFile";
-            this.btnCreateFile.Size = new System.Drawing.Size(162, 23);
-            this.btnCreateFile.TabIndex = 1;
-            this.btnCreateFile.Text = "Створити/оновити файл";
-            this.btnCreateFile.UseVisualStyleBackColor = true;
-            this.btnCreateFile.Click += new System.EventHandler(this.btnCreateFile_Click);
-            // 
             // panel2
             // 
             this.panel2.ColumnCount = 5;
@@ -153,15 +143,15 @@
             this.panel2.Size = new System.Drawing.Size(971, 31);
             this.panel2.TabIndex = 4;
             // 
-            // label2
+            // btnCreateFile
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 82);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Попередні файли";
+            this.btnCreateFile.Location = new System.Drawing.Point(643, 3);
+            this.btnCreateFile.Name = "btnCreateFile";
+            this.btnCreateFile.Size = new System.Drawing.Size(162, 23);
+            this.btnCreateFile.TabIndex = 1;
+            this.btnCreateFile.Text = "Створити/оновити файл";
+            this.btnCreateFile.UseVisualStyleBackColor = true;
+            this.btnCreateFile.Click += new System.EventHandler(this.btnCreateFile_Click);
             // 
             // btnChangeStatus
             // 
@@ -192,6 +182,16 @@
             this.tbNewFileFullName.ReadOnly = true;
             this.tbNewFileFullName.Size = new System.Drawing.Size(554, 20);
             this.tbNewFileFullName.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 82);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Попередні файли";
             // 
             // UcOutputFiles
             // 

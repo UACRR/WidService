@@ -76,6 +76,10 @@ namespace AppleSearch
             this.labFoundWorksTitle = new System.Windows.Forms.Label();
             this.panelBottomButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.btnDisjoin = new System.Windows.Forms.Button();
+            this.panelFileExchange = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnLoadReportFile = new System.Windows.Forms.Button();
+            this.btnCreateInvoiceFilePub = new System.Windows.Forms.Button();
+            this.btnCreateInvoiceMec = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.Panel1.SuspendLayout();
@@ -96,6 +100,7 @@ namespace AppleSearch
             this.panelLocalSearchRight.SuspendLayout();
             this.panelFoundWorks.SuspendLayout();
             this.panelBottomButtons.SuspendLayout();
+            this.panelFileExchange.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -111,7 +116,7 @@ namespace AppleSearch
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelMain.Size = new System.Drawing.Size(1049, 496);
+            this.panelMain.Size = new System.Drawing.Size(1050, 532);
             this.panelMain.TabIndex = 0;
             // 
             // splitMain
@@ -129,7 +134,7 @@ namespace AppleSearch
             // splitMain.Panel2
             // 
             this.splitMain.Panel2.Controls.Add(this.panelFoundWorks);
-            this.splitMain.Size = new System.Drawing.Size(1041, 470);
+            this.splitMain.Size = new System.Drawing.Size(1042, 506);
             this.splitMain.SplitterDistance = 279;
             this.splitMain.TabIndex = 0;
             // 
@@ -147,7 +152,7 @@ namespace AppleSearch
             // splitTop.Panel2
             // 
             this.splitTop.Panel2.Controls.Add(this.panelReportWorks);
-            this.splitTop.Size = new System.Drawing.Size(1041, 279);
+            this.splitTop.Size = new System.Drawing.Size(1042, 279);
             this.splitTop.SplitterDistance = 508;
             this.splitTop.TabIndex = 0;
             // 
@@ -361,7 +366,7 @@ namespace AppleSearch
             this.panelReportWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelReportWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.panelReportWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelReportWorks.Size = new System.Drawing.Size(529, 279);
+            this.panelReportWorks.Size = new System.Drawing.Size(530, 279);
             this.panelReportWorks.TabIndex = 0;
             // 
             // lvReportWorks
@@ -372,7 +377,7 @@ namespace AppleSearch
             this.lvReportWorks.HideSelection = false;
             this.lvReportWorks.Location = new System.Drawing.Point(3, 87);
             this.lvReportWorks.Name = "lvReportWorks";
-            this.lvReportWorks.Size = new System.Drawing.Size(523, 145);
+            this.lvReportWorks.Size = new System.Drawing.Size(524, 145);
             this.lvReportWorks.SmallImageList = this.ilState;
             this.lvReportWorks.TabIndex = 0;
             this.lvReportWorks.UseCompatibleStateImageBehavior = false;
@@ -401,7 +406,7 @@ namespace AppleSearch
             this.panelReportWorksFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.panelReportWorksFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.panelReportWorksFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
-            this.panelReportWorksFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.panelReportWorksFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             this.panelReportWorksFilter.Controls.Add(this.btnReportWorksSearch, 6, 0);
             this.panelReportWorksFilter.Controls.Add(this.menuStrip1, 7, 0);
             this.panelReportWorksFilter.Controls.Add(this.label4, 0, 0);
@@ -415,7 +420,7 @@ namespace AppleSearch
             this.panelReportWorksFilter.Name = "panelReportWorksFilter";
             this.panelReportWorksFilter.RowCount = 1;
             this.panelReportWorksFilter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelReportWorksFilter.Size = new System.Drawing.Size(523, 26);
+            this.panelReportWorksFilter.Size = new System.Drawing.Size(524, 26);
             this.panelReportWorksFilter.TabIndex = 2;
             // 
             // btnReportWorksSearch
@@ -511,12 +516,12 @@ namespace AppleSearch
             this.panelButtonsRight.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.panelButtonsRight.Location = new System.Drawing.Point(3, 238);
             this.panelButtonsRight.Name = "panelButtonsRight";
-            this.panelButtonsRight.Size = new System.Drawing.Size(523, 30);
+            this.panelButtonsRight.Size = new System.Drawing.Size(524, 30);
             this.panelButtonsRight.TabIndex = 3;
             // 
             // btnJoinSelectedReportWorks
             // 
-            this.btnJoinSelectedReportWorks.Location = new System.Drawing.Point(416, 3);
+            this.btnJoinSelectedReportWorks.Location = new System.Drawing.Point(417, 3);
             this.btnJoinSelectedReportWorks.Name = "btnJoinSelectedReportWorks";
             this.btnJoinSelectedReportWorks.Size = new System.Drawing.Size(104, 23);
             this.btnJoinSelectedReportWorks.TabIndex = 0;
@@ -526,7 +531,7 @@ namespace AppleSearch
             // 
             // btnJoin
             // 
-            this.btnJoin.Location = new System.Drawing.Point(335, 3);
+            this.btnJoin.Location = new System.Drawing.Point(336, 3);
             this.btnJoin.Name = "btnJoin";
             this.btnJoin.Size = new System.Drawing.Size(75, 23);
             this.btnJoin.TabIndex = 1;
@@ -536,7 +541,7 @@ namespace AppleSearch
             // 
             // btnShowLocalWork
             // 
-            this.btnShowLocalWork.Location = new System.Drawing.Point(165, 3);
+            this.btnShowLocalWork.Location = new System.Drawing.Point(166, 3);
             this.btnShowLocalWork.Name = "btnShowLocalWork";
             this.btnShowLocalWork.Size = new System.Drawing.Size(164, 23);
             this.btnShowLocalWork.TabIndex = 2;
@@ -561,7 +566,7 @@ namespace AppleSearch
             this.panelLocalSearchRight.Name = "panelLocalSearchRight";
             this.panelLocalSearchRight.RowCount = 1;
             this.panelLocalSearchRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelLocalSearchRight.Size = new System.Drawing.Size(523, 26);
+            this.panelLocalSearchRight.Size = new System.Drawing.Size(524, 26);
             this.panelLocalSearchRight.TabIndex = 4;
             // 
             // label8
@@ -580,12 +585,12 @@ namespace AppleSearch
             this.tbLocalSearchRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbLocalSearchRight.Location = new System.Drawing.Point(136, 3);
             this.tbLocalSearchRight.Name = "tbLocalSearchRight";
-            this.tbLocalSearchRight.Size = new System.Drawing.Size(225, 20);
+            this.tbLocalSearchRight.Size = new System.Drawing.Size(226, 20);
             this.tbLocalSearchRight.TabIndex = 1;
             // 
             // btnLocalSearchRight
             // 
-            this.btnLocalSearchRight.Location = new System.Drawing.Point(367, 3);
+            this.btnLocalSearchRight.Location = new System.Drawing.Point(368, 3);
             this.btnLocalSearchRight.Name = "btnLocalSearchRight";
             this.btnLocalSearchRight.Size = new System.Drawing.Size(69, 20);
             this.btnLocalSearchRight.TabIndex = 2;
@@ -595,7 +600,7 @@ namespace AppleSearch
             // 
             // btnLocalSearchRightCancel
             // 
-            this.btnLocalSearchRightCancel.Location = new System.Drawing.Point(442, 3);
+            this.btnLocalSearchRightCancel.Location = new System.Drawing.Point(443, 3);
             this.btnLocalSearchRightCancel.Name = "btnLocalSearchRightCancel";
             this.btnLocalSearchRightCancel.Size = new System.Drawing.Size(70, 20);
             this.btnLocalSearchRightCancel.TabIndex = 3;
@@ -610,15 +615,16 @@ namespace AppleSearch
             this.panelFoundWorks.Controls.Add(this.lvFoundWorks, 0, 1);
             this.panelFoundWorks.Controls.Add(this.labFoundWorksTitle, 0, 0);
             this.panelFoundWorks.Controls.Add(this.panelBottomButtons, 0, 2);
+            this.panelFoundWorks.Controls.Add(this.panelFileExchange, 0, 3);
             this.panelFoundWorks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFoundWorks.Location = new System.Drawing.Point(0, 0);
             this.panelFoundWorks.Name = "panelFoundWorks";
             this.panelFoundWorks.RowCount = 4;
             this.panelFoundWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelFoundWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelFoundWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.panelFoundWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelFoundWorks.Size = new System.Drawing.Size(1041, 187);
+            this.panelFoundWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.panelFoundWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.panelFoundWorks.Size = new System.Drawing.Size(1042, 223);
             this.panelFoundWorks.TabIndex = 0;
             // 
             // lvFoundWorks
@@ -630,7 +636,7 @@ namespace AppleSearch
             this.lvFoundWorks.Location = new System.Drawing.Point(3, 23);
             this.lvFoundWorks.MultiSelect = false;
             this.lvFoundWorks.Name = "lvFoundWorks";
-            this.lvFoundWorks.Size = new System.Drawing.Size(1035, 119);
+            this.lvFoundWorks.Size = new System.Drawing.Size(1036, 122);
             this.lvFoundWorks.TabIndex = 0;
             this.lvFoundWorks.UseCompatibleStateImageBehavior = false;
             this.lvFoundWorks.View = System.Windows.Forms.View.Details;
@@ -649,14 +655,14 @@ namespace AppleSearch
             this.panelBottomButtons.Controls.Add(this.btnDisjoin);
             this.panelBottomButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBottomButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.panelBottomButtons.Location = new System.Drawing.Point(3, 148);
+            this.panelBottomButtons.Location = new System.Drawing.Point(3, 151);
             this.panelBottomButtons.Name = "panelBottomButtons";
-            this.panelBottomButtons.Size = new System.Drawing.Size(1035, 28);
+            this.panelBottomButtons.Size = new System.Drawing.Size(1036, 30);
             this.panelBottomButtons.TabIndex = 2;
             // 
             // btnDisjoin
             // 
-            this.btnDisjoin.Location = new System.Drawing.Point(957, 3);
+            this.btnDisjoin.Location = new System.Drawing.Point(958, 3);
             this.btnDisjoin.Name = "btnDisjoin";
             this.btnDisjoin.Size = new System.Drawing.Size(75, 23);
             this.btnDisjoin.TabIndex = 0;
@@ -664,11 +670,52 @@ namespace AppleSearch
             this.btnDisjoin.UseVisualStyleBackColor = true;
             this.btnDisjoin.Click += new System.EventHandler(this.btnDisjoin_Click);
             // 
+            // panelFileExchange
+            // 
+            this.panelFileExchange.Controls.Add(this.btnLoadReportFile);
+            this.panelFileExchange.Controls.Add(this.btnCreateInvoiceFilePub);
+            this.panelFileExchange.Controls.Add(this.btnCreateInvoiceMec);
+            this.panelFileExchange.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFileExchange.Location = new System.Drawing.Point(3, 187);
+            this.panelFileExchange.Name = "panelFileExchange";
+            this.panelFileExchange.Size = new System.Drawing.Size(1036, 33);
+            this.panelFileExchange.TabIndex = 3;
+            // 
+            // btnLoadReportFile
+            // 
+            this.btnLoadReportFile.Location = new System.Drawing.Point(3, 3);
+            this.btnLoadReportFile.Name = "btnLoadReportFile";
+            this.btnLoadReportFile.Size = new System.Drawing.Size(121, 23);
+            this.btnLoadReportFile.TabIndex = 0;
+            this.btnLoadReportFile.Text = "Завантажити звіт";
+            this.btnLoadReportFile.UseVisualStyleBackColor = true;
+            this.btnLoadReportFile.Click += new System.EventHandler(this.btnLoadReportFile_Click);
+            // 
+            // btnCreateInvoiceFilePub
+            // 
+            this.btnCreateInvoiceFilePub.Location = new System.Drawing.Point(130, 3);
+            this.btnCreateInvoiceFilePub.Name = "btnCreateInvoiceFilePub";
+            this.btnCreateInvoiceFilePub.Size = new System.Drawing.Size(131, 23);
+            this.btnCreateInvoiceFilePub.TabIndex = 0;
+            this.btnCreateInvoiceFilePub.Text = "Створити інвойс ПУБ";
+            this.btnCreateInvoiceFilePub.UseVisualStyleBackColor = true;
+            this.btnCreateInvoiceFilePub.Click += new System.EventHandler(this.btnCreateInvoiceFilePub_Click);
+            // 
+            // btnCreateInvoiceMec
+            // 
+            this.btnCreateInvoiceMec.Location = new System.Drawing.Point(267, 3);
+            this.btnCreateInvoiceMec.Name = "btnCreateInvoiceMec";
+            this.btnCreateInvoiceMec.Size = new System.Drawing.Size(131, 23);
+            this.btnCreateInvoiceMec.TabIndex = 0;
+            this.btnCreateInvoiceMec.Text = "Створити інвойс МЕХ";
+            this.btnCreateInvoiceMec.UseVisualStyleBackColor = true;
+            this.btnCreateInvoiceMec.Click += new System.EventHandler(this.btnCreateInvoiceMec_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 496);
+            this.ClientSize = new System.Drawing.Size(1050, 532);
             this.Controls.Add(this.panelMain);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
@@ -703,6 +750,7 @@ namespace AppleSearch
             this.panelFoundWorks.ResumeLayout(false);
             this.panelFoundWorks.PerformLayout();
             this.panelBottomButtons.ResumeLayout(false);
+            this.panelFileExchange.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -754,6 +802,10 @@ namespace AppleSearch
         private System.Windows.Forms.ComboBox cbHistAuthors;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuStripHistAuthorFilter;
+        private System.Windows.Forms.FlowLayoutPanel panelFileExchange;
+        private System.Windows.Forms.Button btnLoadReportFile;
+        private System.Windows.Forms.Button btnCreateInvoiceFilePub;
+        private System.Windows.Forms.Button btnCreateInvoiceMec;
     }
 }
 

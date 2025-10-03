@@ -1076,5 +1076,46 @@ namespace AppleSearch
             tbReportFilterPerformer.Text = "";
             LoadReportWorks();
         }
+
+        private void CreateInvoiceFile(string rightType)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                var writer = new ReportWriter();
+                writer.CreateClaimedContentReport(rightType);
+                var fileFullName = writer.WriteReport(@"D:\OlegM\APPLE\OutputReports", rightType);
+
+
+                var wrongLine = writer.TestClaimedContentReport(fileFullName);
+                Cursor.Current = Cursors.Default;
+                if (wrongLine != null)
+                {
+                    MessageBox.Show($"Помилка в рядку {wrongLine}", "Створення файлу", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Cursor.Current = Cursors.Default;
+                MessageBox.Show(ex.Message, "Створення файлу", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnLoadReportFile_Click(object sender, EventArgs e)
+        {
+            var loader = new ReportLoader();
+            loader.LoadFile(@"D:\OlegM\APPLE\InputReports\AppleMusic_ContentReport_2025Q2_UKR_v1.tsv");
+        }
+
+        private void btnCreateInvoiceFilePub_Click(object sender, EventArgs e)
+        {
+            CreateInvoiceFile("PER");
+        }
+
+        private void btnCreateInvoiceMec_Click(object sender, EventArgs e)
+        {
+            CreateInvoiceFile("MEC");
+        }
     }
 }
