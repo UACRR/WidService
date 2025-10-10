@@ -173,7 +173,10 @@ namespace DdexInvoicing
                     return;
             }
 
-            CalcMarketShare();
+            if(CalcMarketShare() == 0)
+            {
+                return;
+            }
 
             Helpers.RunSqlOperationDdexT(cmd =>
             {
@@ -467,38 +470,45 @@ namespace DdexInvoicing
             ShowInvoices();
         }
 
-        private void CalcMarketShare()
+        private int CalcMarketShare()
         {
             if (setCode == 0)
-                return;
-            Helpers.RunSqlOperationDdex(cmd =>
+                return 0;
+            try
             {
-                var agreementReportType = DdexReport.GetAgreementReportType(cmd, ddexReportId);
-                if (agreementReportType != DdexReport.ReportTypeEnum.YOUTUBE_SRMF)
+                Helpers.RunSqlOperationDdex(cmd =>
                 {
-                    cmd.Parameters.Clear();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "dbo.spCreateReportAuthors";
-                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                    cmd.Parameters.AddWithValue("@setId", setCode);
-                    cmd.ExecuteNonQuery();
-
-                    cmd.CommandText = "dbo.spDdexApplyReportExceptions";
-                    cmd.ExecuteNonQuery();
-
-                    if(agreementReportType == DdexReport.ReportTypeEnum.TIKTOK)
+                    var agreementReportType = DdexReport.GetAgreementReportType(cmd, ddexReportId);
+                    if (agreementReportType != DdexReport.ReportTypeEnum.YOUTUBE_SRMF)
                     {
-                        cmd.CommandText = "dbo.spDdexUpdateIndentBacklogSharesTiktok";
+                        cmd.Parameters.Clear();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "dbo.spCreateReportAuthors";
+                        cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                        cmd.Parameters.AddWithValue("@setId", setCode);
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = "dbo.spDdexApplyReportExceptions";
+                        cmd.ExecuteNonQuery();
+
+                        if(agreementReportType == DdexReport.ReportTypeEnum.TIKTOK)
+                        {
+                            cmd.CommandText = "dbo.spDdexUpdateIndentBacklogSharesTiktok";
+                        }
+                        else
+                        {
+                            cmd.CommandText = "dbo.spDdexUpdateIndentBacklogShares";
+                        }
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
+                        cmd.ExecuteNonQuery();
                     }
-                    else
-                    {
-                        cmd.CommandText = "dbo.spDdexUpdateIndentBacklogShares";
-                    }
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
-                    cmd.ExecuteNonQuery();
-                }
-            });
+                }, true);
+                return 1; 
+            }
+            catch { 
+                return 0; 
+            }
         }
 
         private void ConfirmFileSent(int fileId)
@@ -680,7 +690,10 @@ namespace DdexInvoicing
                 return;
             }
        
-            CalcMarketShare();
+            if(CalcMarketShare() == 0)
+            {
+                return;
+            }
 
             var fileId = 0;
 
