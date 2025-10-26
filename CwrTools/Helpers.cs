@@ -42,6 +42,7 @@ namespace CwrTools
                     using (tran = conn.BeginTransaction())
                     using (var cmd = conn.CreateCommand())
                     {
+                        cmd.CommandTimeout = 0;
                         cmd.Transaction = tran;
                         runSql(cmd);
                         tran.Commit();

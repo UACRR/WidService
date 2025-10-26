@@ -97,6 +97,12 @@
     <Compile Include="Entities\RecTrl.cs" />
     <Compile Include="Entities\RecVer.cs" />
     <Compile Include="Entities\RecXrf.cs" />
+    <Compile Include="FormRightHolderRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRightHolderRoles.Designer.cs">
+      <DependentUpon>FormRightHolderRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCreateFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,15 @@
     <Compile Include="UcOutputFiles.Designer.cs">
       <DependentUpon>UcOutputFiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcProblemWorks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcProblemWorks.Designer.cs">
+      <DependentUpon>UcProblemWorks.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormRightHolderRoles.resx">
+      <DependentUpon>FormRightHolderRoles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCreateFile.resx">
       <DependentUpon>FormCreateFile.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +170,9 @@
     <EmbeddedResource Include="UcOutputFiles.resx">
       <DependentUpon>UcOutputFiles.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UcProblemWorks.resx">
+      <DependentUpon>UcProblemWorks.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Docs\CWR19-1070R1_Functional_specifications_CWR_version_2-2_Rev2_2022-02-03_EN.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -171,13 +189,45 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Sql\Analysis.sql" />
     <Content Include="Sql\CreateTableBaseRecTran.sql" />
+    <Content Include="Sql\CreateTableConfig.sql" />
     <Content Include="Sql\CreateTableFiles.sql" />
+    <Content Include="Sql\CreateTableProblemTypes.sql" />
     <Content Include="Sql\CreateTableSpecFields.sql" />
     <Content Include="Sql\CreateTableSpecFormats.sql" />
     <Content Include="Sql\CreateTableSpecRecords.sql" />
     <Content Include="Sql\CreateTableSpecReqs.sql" />
+    <Content Include="Sql\fnCheckIswc.sql" />
+    <Content Include="Sql\fnCheckRoleDefined.sql" />
+    <Content Include="Sql\fnIsDateInInterval.sql" />
+    <Content Include="Sql\ResultTesting.sql" />
+    <Content Include="Sql\spCreateReferences.sql" />
+    <Content Include="Sql\spCreateReferencesAck.sql" />
+    <Content Include="Sql\spCreateReferencesAgr.sql" />
+    <Content Include="Sql\spCreateReferencesExc.sql" />
+    <Content Include="Sql\spCreateReferencesIsw.sql" />
+    <Content Include="Sql\spCreateReferencesNwr.sql" />
+    <Content Include="Sql\spCreateReferencesRev.sql" />
+    <Content Include="Sql\spCreateTmpWorksInfo.sql" />
+    <Content Include="Sql\spCreateTmpWrongWorks.sql" />
+    <Content Include="Sql\spCwrFileRegister.sql" />
+    <Content Include="Sql\spDeleteAllData.sql" />
+    <Content Include="Sql\spDeleteAllFiles.sql" />
+    <Content Include="Sql\spDeleteFile.sql" />
+    <Content Include="Sql\spDropTmpTables.sql" />
+    <Content Include="Sql\spUpdateTmpWrongWork.sql" />
+    <Content Include="Sql\vCustomerNamesLastAndFirst.sql" />
+    <Content Include="Sql\vRightHolderInfo.sql" />
+    <Content Include="Sql\vRightHoldersForeign.sql" />
+    <Content Include="Sql\vRightHoldersOwnActive.sql" />
+    <Content Include="Sql\vRightHoldersOwnAll.sql" />
+    <Content Include="Sql\vRightHoldersOwnInActive.sql" />
+    <Content Include="Sql\vWorkInfo.sql" />
+    <Content Include="Sql\vWorkRightHoldersCurrent.sql" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Icons\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

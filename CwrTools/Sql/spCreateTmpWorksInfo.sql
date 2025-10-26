@@ -8,133 +8,20 @@ begin
 drop table if exists TmpObjIdsInitial
 	select distinct t1.ObjId
 	into TmpObjIdsInitial
-	from MediaService..CopyRight t1
-		join MediaService..RightHolder t2 on t1.CustId = t2.CustId
-		join MediaService..AgreementAddRH t3 on t2.CustId = t3.CustId
-		join MediaService..ObjectRight t4 on t1.ObjId = t4.ObjId
-	where --t1.Status = 1
-		--and 
-		dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
-		and t3.agrStatus = 2
-		and dbo.fnIsDateInInterval(getdate(), t3.DateBegin, t3.DateEnd) = 1
-		and t4.categoryCode = 5
-
--- Твори де не визначена роль правовласника
-drop table if exists TmpObjIdsUndefinedRole
-	select distinct t1.ObjId
-	into TmpObjIdsUndefinedRole
-	from TmpObjIdsInitial t0
-		join MediaService..CopyRight t1 on t0.ObjId = t1.ObjId
-		join MediaService..RightHolder t2 on t1.CustId = t2.CustId
-		join MediaService..AgreementAddRH t3 on t2.CustId = t3.CustId
-	where not (
-			t2.rHolderType = 3 and t1.roleCode = 8
-			or
-			t2.rHolderType = 1 and t1.roleCode in (1, 2, 7, 10)
-		)
-		and dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
-		and t3.agrStatus = 2
-		and dbo.fnIsDateInInterval(getdate(), t3.DateBegin, t3.DateEnd) = 1
-
--- Твори де сума Пуб більше 100%
-drop table if exists TmpObjIdsWrongShrPer
-	select t1.ObjId, sum(isnull(t1.rate, 0)) as ShrPer
-	into TmpObjIdsWrongShrPer
-	from TmpObjIdsInitial t0
-		join MediaService..CopyRight t1 on t0.ObjId = t1.ObjId
-		join MediaService..AgreementAddRH t2 on t1.CustId = t2.CustId
-	where
-		dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
-		and t2.agrStatus = 2
-		and dbo.fnIsDateInInterval(getdate(), t2.DateBegin, t2.DateEnd) = 1
-	group by t1.ObjId
-	having sum(isnull(t1.rate, 0)) > 100
-
--- Твори де сума Мех більше 100%
-drop table if exists TmpObjIdsWrongShrMec
-	select t1.ObjId, sum(isnull(t1.rateMech, 0)) as ShrPer
-	into TmpObjIdsWrongShrMec
-	from TmpObjIdsInitial t0
-		join MediaService..CopyRight t1 on t0.ObjId = t1.ObjId
-		join MediaService..AgreementAddRH t2 on t1.CustId = t2.CustId
-	where
-			dbo.fnIsDateInInterval(getdate(), t1.BeginDate, t1.EndDate) = 1
-			and t2.agrStatus = 2
-		and dbo.fnIsDateInInterval(getdate(), t2.DateBegin, t2.DateEnd) = 1
-	group by t1.ObjId
-	having sum(isnull(t1.rateMech, 0)) > 100
-
--- Твори де правовлисники вказані двічі з однаковою творчою роллю
-drop table if exists TmpObjIdsWrongDupRoles
-	select t1.ObjId, t2.custId, t2.roleCode, count(*) cnt
-	into TmpObjIdsWrongDupRoles
-	from TmpObjIdsInitial t1
+	from MediaService..ObjectRight t1
 		join MediaService..CopyRight t2 on t1.ObjId = t2.ObjId
-		join MediaService..AgreementAddRH t3 on t2.CustId = t3.CustId
-	where dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
-	group by t1.ObjId, t2.custId, t2.roleCode
-	having count(*) > 1
+		join vRightHoldersOwnActive t3 on t2.CustId = t3.CustId
+	where t1.categoryCode = 5
 
--- Твори де видавці вказані двічі
-drop table if exists TmpObjIdsWrongPublishers
-	select t1.ObjId, t2.custId, count(*) cnt
-	into TmpObjIdsWrongPublishers
-	from TmpObjIdsInitial t1
-		join MediaService..CopyRight t2 on t1.ObjId = t2.ObjId
-		join MediaService..RightHolder t3 on t2.CustId = t3.CustId
-		join MediaService..AgreementAddRH t4 on t3.CustId = t4.CustId
-where t3.rHolderType = 3
-	and t4.agrStatus = 2
-	and dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
-	and dbo.fnIsDateInInterval(getdate(), t4.DateBegin, t4.DateEnd) = 1
-group by t1.ObjId, t2.custId
-having count(*) > 1
-
--- Твори де вказані невірні ISWC
-drop table if exists TmpObjIdsWrongIswcs
-	select t1.ObjId, t2.Iswc
-	into TmpObjIdsWrongIswcs
-	from TmpObjIdsInitial t1
-		join MediaService..MediaTrack t2 on t1.ObjId = t2.ObjId
-	where dbo.fnCheckIswc(t2.Iswc) = 0
-
--- Твори де відсутня назва
-drop table if exists TmpObjIdsNoName
-	select t1.ObjId
-	into TmpObjIdsNoName
-	from TmpObjIdsInitial t1
-		join MediaService..ObjectRight t2 on t1.ObjId = t2.ObjId
-	where trim(isnull(Name, '')) = ''
-
+-- Проблемні твори
+exec spCreateTmpWrongWorks
 
 -- Підсумкові твори
 drop table if exists TmpObjIdsFinal
-; with WrongObjIds as (
 	select ObjId
-	from TmpObjIdsUndefinedRole
-	union
-	select ObjId
-	from TmpObjIdsWrongShrPer
-	union
-	select ObjId
-	from TmpObjIdsWrongShrMec
-	union
-	select ObjId
-	from TmpObjIdsWrongDupRoles
-	union
-	select ObjId
-	from TmpObjIdsWrongPublishers
-	union
-	select ObjId
-	from TmpObjIdsWrongIswcs
-	union
-	select ObjId
-	from TmpObjIdsNoName
-)
-select ObjId
-into TmpObjIdsFinal
-from TmpObjIdsInitial
-where ObjId not in (select ObjId from WrongObjIds)
+	into TmpObjIdsFinal
+	from TmpObjIdsInitial
+	where ObjId not in (select ObjId from TmpWrongWorks)
 
 -- TmpWorksNwr
 drop table if exists TmpWorksNwr
@@ -239,90 +126,81 @@ order by t1.ObjId
 -- TmpWorksSwr
 drop table if exists TmpWorksSwr
 select 
-	  t1.ObjId
+	  t2.CopyRightId as CopyRightId
+	, t1.ObjId
 	, t2.CustId as IpNr
-	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t5.LastName, '')) as WriterLastName
-	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t5.FirstName, '')) as WriterFirstName
+	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t3.LastName, '')) as WriterLastName
+	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t3.FirstName, '')) as WriterFirstName
 	--, null as WriterUnknownIndicator
-	, case
-		when t2.roleCode = 1 then 'A'
-		when t2.roleCode = 2 then 'C'
-		when t2.roleCode = 7 then 'AR'
-		when t2.roleCode = 10 then 'CA'
-		else ''
-	 end									as WriterDesignationCode
+	, dbo.fnGetSwrRole(1, t2.RoleCode)  as WriterDesignationCode
 	--, null as TaxIDNr
-	, isnull(t3.IPIBase, '') as WriterIpNameNr
-	, case when t4.CustId is null then '' else '140' end as AffSocNrPR
-	, cast(isnull(t2.Rate, 0) * 100 as int) as OwnShrPR
-	, case when t4.CustId is null then '' else '140' end as SocMR
-	, cast (isnull(t2.rateMech, 0) * 100 as int) as OwnShrMR
+	, t2.IpNameNr as WriterIpNameNr
+	, '140' as AffSocNrPR
+	, cast(t2.PerShr * 100 as int) as OwnShrPR
+	, '140' as SocMR
+	, cast (t2.MecShr * 100 as int) as OwnShrMR
 	--, null as SocSR
 	--, null as OwnShrSR
 	--, null as SpecFieldsRevInd
 	--, null as FirstRecordingRefusalInd
 	--, null as WorkForHireIndicator
 	--, null as Filler
-	,isnull(t3.interCode, '') as WriterIpBaseNr
+	, t2.IpBaseNr as WriterIpBaseNr
 	--, null as PersonalNr
 	--, null as LicenseIndUSA
 into TmpWorksSwr
 from TmpObjIdsFinal t1
-	join MediaService..CopyRight t2 on t1.ObjId = t2.ObjId
-	join MediaService..RightHolder t3 on t2.CustId = t3.CustId
-	join MediaService..AgreementAddRH t4 on t2.CustId = t4.CustId
-	join MediaService..vCustomerNamesLastAndFirst t5 on t2.CustId = t5.CustId
-where t3.rHolderType = 1
-	and t2.roleCode in (1, 2, 7, 10)
-	and t4.agrStatus = 2
-	and dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
-	and dbo.fnIsDateInInterval(getdate(), t4.DateBegin, t4.DateEnd) = 1
-	--and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
+	join vWorkRightHoldersCurrent t2 on t1.ObjId = t2.ObjId
+	join MediaService..vCustomerNamesLastAndFirst t3 on t2.CustId = t3.CustId
+where t2.RightHolderType = 1
+	and t2.IsOwn = 1
 order by t1.ObjId
+
+update t1
+set t1.WriterDesignationCode = dbo.fnGetSwrRole(1, t2.CopyRightRoleNew)
+from TmpWorksSwr t1
+	join Z_CopyRightHistoryOutline t2 on t1.CopyRightId = t2.CopyRightId
+where t1.WriterDesignationCode = ''
 
 -- TmpWorksOwr
 drop table if exists TmpWorksOwr
-select 
-	  t1.ObjId
+select
+	  t2.CopyRightId as CopyRightId
+	, t1.ObjId
 	, t2.CustId as IpNr
-	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t5.LastName, '')) as WriterLastName
-	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t5.FirstName, '')) as WriterFirstName
+	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t3.LastName, '')) as WriterLastName
+	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t3.FirstName, '')) as WriterFirstName
 	--, null as WriterUnknownIndicator
-	, case
-		when t2.roleCode = 1 then 'A'
-		when t2.roleCode = 2 then 'C'
-		when t2.roleCode = 7 then 'AR'
-		when t2.roleCode = 10 then 'CA'
-		else ''
-	 end									as WriterDesignationCode
+	, dbo.fnGetSwrRole(1, t2.RoleCode) as WriterDesignationCode
 	--, null as TaxIDNr
-	, isnull(t3.IPIBase, '') as WriterIpNameNr
+	, t2.IpNameNr as WriterIpNameNr
 	--, null as AffSocNrPR
-	, cast(isnull(t2.Rate, 0) * 100 as int) as OwnShrPR
+	, cast(t2.PerShr * 100 as int) as OwnShrPR
 	-- , null as SocMR
-	, cast (isnull(t2.rateMech, 0) * 100 as int) as OwnShrMR
+	, cast (t2.MecShr * 100 as int) as OwnShrMR
 	--, null as SocSR
 	--, null as OwnShrSR
 	--, null as SpecFieldsRevInd
 	--, null as FirstRecordingRefusalInd
 	--, null as WorkForHireIndicator
 	--, null as Filler
-	,isnull(t3.interCode, '') as WriterIpBaseNr
+	,  t2.IpBaseNr as WriterIpBaseNr
 	--, null as PersonalNr
 	--, null as LicenseIndUSA
 into TmpWorksOwr
 from TmpObjIdsFinal t1
-	join MediaService..CopyRight t2 on t1.ObjId = t2.ObjId
-	join MediaService..RightHolder t3 on t2.CustId = t3.CustId
-	join MediaService..vCustomerNamesLastAndFirst t5 on t3.CustId = t5.CustId
-	left join TmpWorksSwr t6 on t1.ObjId = t6.ObjId
-		and t2.CustId = t6.IpNr
-where t3.rHolderType = 1
-	and t2.roleCode in (1, 2, 7, 10)
-	and dbo.fnIsDateInInterval(getdate(), t2.BeginDate, t2.EndDate) = 1
-	--and isnull(t2.rate, 0) + isnull(t2.rateMech, 0) > 0
-	and t6.ObjId is null
+	join vWorkRightHoldersCurrent t2 on t1.ObjId = t2.ObjId
+	join MediaService..vCustomerNamesLastAndFirst t3 on t2.CustId = t3.CustId
+where t2.RightHolderType = 1
+	and t2.IsOwn = 0
 order by t1.ObjId
+
+update t1
+set t1.WriterDesignationCode = dbo.fnGetSwrRole(1, t2.CopyRightRoleNew)
+from TmpWorksOwr t1
+	join Z_CopyRightHistoryOutline t2 on t1.CopyRightId = t2.CopyRightId
+where t1.WriterDesignationCode = ''
+
 
 -- TmpWorksAlt
 drop table if exists TmpWorksAlt

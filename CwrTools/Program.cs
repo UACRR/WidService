@@ -19,6 +19,7 @@ namespace CwrTools
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new FormRightHolderRoles());
             Application.Run(new FormMain());
         }
     }

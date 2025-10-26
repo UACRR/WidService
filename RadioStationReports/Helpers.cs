@@ -41,6 +41,7 @@ namespace RadioStationReports
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Logger.WriteLine(ex.Message);
                 throw;
             }
             

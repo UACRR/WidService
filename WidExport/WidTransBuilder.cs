@@ -959,7 +959,15 @@ namespace WidExport
                 colsText += $", {piList[i].Name}";
                 paramsText += $", @{piList[i].Name}";
             }
-            var sql = $"insert into SocWidSubmit..{tableName} (\r\n{colsText}\r\n) values (\r\n{paramsText}) \r\nselect scope_identity()";
+            var sql = $@"
+                set ansi_warnings off
+                insert into SocWidSubmit..{tableName} (
+                    {colsText}
+                ) values (
+                    {paramsText}
+                )
+                select scope_identity()
+            ";
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = sql;
             cmd.Parameters.Clear();

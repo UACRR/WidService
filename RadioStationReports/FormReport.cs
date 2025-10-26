@@ -130,13 +130,18 @@ namespace RadioStationReports
 
             //ucReportLineWork.Changed += UcReportLineWork_Changed;
 
+            Logger.WriteLine("ConfigureLvReportLines");
             ConfigureLvReportLines();
+            Logger.WriteLine("ConfigureCbFilter");
             ConfigureCbFilter();
 
+            Logger.WriteLine("LoadReportLines");
             LoadReportLines();
+            Logger.WriteLine("FillLvReportLines");
             FillLvReportLines();
+            Logger.WriteLine("FillLabLinesCnt");
             FillLabLinesCnt();
-
+            Logger.WriteLine("UpdateControls");
             UpdateControls();
         }
 
@@ -285,6 +290,8 @@ namespace RadioStationReports
                     where ReportId = @ReportId {filter}
                     order by t1.LineNr";
                 cmd.Parameters.AddWithValue("@ReportId", _report.Id);
+
+                Logger.WriteLine(cmd.CommandText);
 
                 using (var r = cmd.ExecuteReader())
                 {
@@ -1656,6 +1663,29 @@ namespace RadioStationReports
             {
                 Cursor.Current = Cursors.WaitCursor;
                 var isOwn = false;
+                // Якщо твір не знайдено вважаємо його нашим
+                Helpers.RunSql(cmd =>
+                {
+                    cmd.CommandText = @"
+                        select * 
+                        from SocWid..WidSubmission 
+                        where Wic = @wic
+                    ";
+                    cmd.Parameters.AddWithValue("@wic", wic);
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        isOwn = !r.HasRows;
+                    }
+                });
+
+                if (isOwn)
+                {
+                    MessageBox.Show("Не можливо визначити товариство, яке опублікувало твір, оновлення не буде виконане.",
+                        "Оновлення з WID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Якщо твір знайдено перевіряємо що він наш
                 Helpers.RunSql(cmd =>
                 {
                     cmd.CommandText = @"

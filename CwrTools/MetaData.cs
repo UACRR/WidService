@@ -128,12 +128,30 @@ namespace CwrTools
             public List<SpecField> SpecFields{ get; set; }
         }
 
+        public class RightHolderType
+        {
+            public int Code { get; set; }
+            public string Name { get; set; }
+            public string DisplayName { get; set; }
+        }
+
+        public class RightHolderRole
+        {
+            public int Code { get; set; }
+            public string Name { get; set; }
+            public string DisplayName { get; set; }
+        }
+
         private static List<SpecRecord> _specRecords;
+        private static List<RightHolderType> _rightHolderTypes;
+        private static List<RightHolderRole> _rightHolderRoles;
 
         public static void Load()
         {
             LoadRecordSpecs();
             LoadFieldSpecs();
+            LoadRightHolderTypes();
+            LoadRightHolderRoles();
         }
 
         public static void LoadRecordSpecs()
@@ -214,6 +232,58 @@ namespace CwrTools
             });
         }
 
+        public static void LoadRightHolderTypes()
+        {
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                    select CodeI, Name
+                    from MediaService..RHolderType
+                    order by codeI
+                ";
+                using (var r = cmd.ExecuteReader())
+                {
+                    _rightHolderTypes = new List<RightHolderType>();
+                    while (r.Read())
+                    {
+                        var rightHolderType = new RightHolderType
+                        {
+                            Code = r.GetInt32(0),
+                            Name = r.GetString(1),
+                            DisplayName = $"{r.GetInt32(0)} - {r.GetString(1)}",
+                        };
+                        _rightHolderTypes.Add(rightHolderType);
+                    }
+                }
+            });
+        }
+
+        public static void LoadRightHolderRoles()
+        {
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                    select CodeI, Name
+                    from MediaService..CreativeRoleType
+                    order by codeI
+                ";
+                using (var r = cmd.ExecuteReader())
+                {
+                    _rightHolderRoles = new List<RightHolderRole>();
+                    while (r.Read())
+                    {
+                        var rightHolderRole = new RightHolderRole
+                        {
+                            Code = r.GetInt32(0),
+                            Name = r.GetString(1),
+                            DisplayName = $"{r.GetInt32(0)} - {r.GetString(1)}",
+                        };
+                        _rightHolderRoles.Add(rightHolderRole);
+                    }
+                }
+            });
+        }
+
         public static List<SpecRecord> GetSpecRecords()
         {
             return _specRecords;
@@ -234,6 +304,23 @@ namespace CwrTools
             SpecRecord retVal = _specRecords
                 .Single(x => string.Compare(recordType, x.RecordType, StringComparison.OrdinalIgnoreCase) == 0);
             return retVal;
+        }
+
+        public static string GetRightHolderTypeText(int code)
+        {
+            var text = _rightHolderTypes.Single(x => x.Code == code).DisplayName;
+            return text;
+        }
+
+        public static string GetRightHolderRoleText(int code)
+        {
+            var text = _rightHolderRoles.Single(x => x.Code == code).DisplayName;
+            return text;
+        }
+
+        public static string GetRightHolderTypeRoleText(int typeCode, int roleCode)
+        {
+            return $"{GetRightHolderTypeText(typeCode)} - {GetRightHolderRoleText(roleCode)}";
         }
 
         public static string GetClassName(string recordType)

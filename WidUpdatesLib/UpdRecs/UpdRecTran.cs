@@ -154,7 +154,14 @@ namespace WidUpdatesLib.UpdRecs
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@wic", updWic);
             cmd.Parameters.AddWithValue("@pubIpNameNr", pubIpNameNr);
-            var pubRolId = (int)cmd.ExecuteScalar();
+            var pubRolIdObj = cmd.ExecuteScalar();
+
+            if (pubRolIdObj == null)
+            {
+                return;
+            }
+
+            var pubRolId = (int)pubRolIdObj;
 
             cmd.CommandText = 
                 "if exists (select null from SocWid..widWtrPubRel where wic = @wic and WtrIntrPtySeq = @WtrIntrPtySeq and PubIntrPtySeq = @PubIntrPtySeq) select 1 else select 0";

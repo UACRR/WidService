@@ -426,7 +426,7 @@ namespace WidUpdatesLib
                 }
             }
 
-            HistoryBuilder.BuildHistory(cmd, fileTime);
+            //HistoryBuilder.BuildHistory(cmd, fileTime);
 
             Logger.WriteLine($"FINISHED PROCESSING FILE {Path.Combine(path, fileName)}");
         }
