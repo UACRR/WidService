@@ -4,7 +4,7 @@ go
 create or alter view vWrongRoleRightHolders
 as
 with Customers as (
-	select t2.CustId, count(*) as Cnt
+	select t2.CustId, count(*) as CntWrongWorks
 	from TmpObjIdsInitial t1
 		join vWorkRightHoldersCurrent t2 on t1.ObjId = t2.ObjId
 		left join Z_CopyRightHistoryOutline t3 on t2.CopyRightId = t3.CopyRightId
@@ -12,7 +12,7 @@ with Customers as (
 		and (t3.CopyRightId is null or t3.CopyRightRoleNew = 0)
 	group by t2.CustId
 )
-select t2.*, t1.Cnt
+select t2.*, t1.CntWrongWorks
 from Customers t1
 	 join MediaService..vCustomerNames t2 on t1.CustId = t2.CustId
 go

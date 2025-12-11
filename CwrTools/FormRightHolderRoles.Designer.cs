@@ -73,6 +73,7 @@
             this.tbCntE = new System.Windows.Forms.TextBox();
             this.tbCntCA = new System.Windows.Forms.TextBox();
             this.tbCntERR = new System.Windows.Forms.TextBox();
+            this.btnShowRightHolderProblemWorks = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
             this.panelMain.SuspendLayout();
@@ -99,13 +100,11 @@
             this.panelMain.Name = "panelMain";
             this.panelMain.RowCount = 6;
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelMain.Size = new System.Drawing.Size(944, 536);
             this.panelMain.TabIndex = 0;
             // 
@@ -147,6 +146,7 @@
             // 
             // panelFilter
             // 
+            this.panelFilter.AutoSize = true;
             this.panelFilter.Controls.Add(this.label2);
             this.panelFilter.Controls.Add(this.rbFilterAll);
             this.panelFilter.Controls.Add(this.rbFilterAuthors);
@@ -157,7 +157,7 @@
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFilter.Location = new System.Drawing.Point(3, 42);
             this.panelFilter.Name = "panelFilter";
-            this.panelFilter.Size = new System.Drawing.Size(933, 32);
+            this.panelFilter.Size = new System.Drawing.Size(933, 29);
             this.panelFilter.TabIndex = 2;
             // 
             // label2
@@ -236,7 +236,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 84);
+            this.label3.Location = new System.Drawing.Point(3, 81);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(318, 13);
@@ -252,11 +252,11 @@
             this.panelMiddle.Controls.Add(this.lvRightHolders, 0, 0);
             this.panelMiddle.Controls.Add(this.panelChangeType, 1, 0);
             this.panelMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMiddle.Location = new System.Drawing.Point(3, 134);
+            this.panelMiddle.Location = new System.Drawing.Point(3, 149);
             this.panelMiddle.Name = "panelMiddle";
             this.panelMiddle.RowCount = 1;
             this.panelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelMiddle.Size = new System.Drawing.Size(933, 390);
+            this.panelMiddle.Size = new System.Drawing.Size(933, 375);
             this.panelMiddle.TabIndex = 6;
             // 
             // lvRightHolders
@@ -265,7 +265,7 @@
             this.lvRightHolders.HideSelection = false;
             this.lvRightHolders.Location = new System.Drawing.Point(3, 3);
             this.lvRightHolders.Name = "lvRightHolders";
-            this.lvRightHolders.Size = new System.Drawing.Size(660, 384);
+            this.lvRightHolders.Size = new System.Drawing.Size(660, 369);
             this.lvRightHolders.TabIndex = 1;
             this.lvRightHolders.UseCompatibleStateImageBehavior = false;
             this.lvRightHolders.SelectedIndexChanged += new System.EventHandler(this.lvRightHolders_SelectedIndexChanged);
@@ -276,14 +276,15 @@
             this.panelChangeType.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelChangeType.Controls.Add(this.panelNewType, 0, 0);
             this.panelChangeType.Controls.Add(this.panelRoles, 0, 1);
+            this.panelChangeType.Controls.Add(this.btnShowRightHolderProblemWorks, 0, 2);
             this.panelChangeType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelChangeType.Location = new System.Drawing.Point(669, 3);
             this.panelChangeType.Name = "panelChangeType";
             this.panelChangeType.RowCount = 3;
             this.panelChangeType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.panelChangeType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelChangeType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelChangeType.Size = new System.Drawing.Size(256, 384);
+            this.panelChangeType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.panelChangeType.Size = new System.Drawing.Size(256, 369);
             this.panelChangeType.TabIndex = 2;
             // 
             // panelNewType
@@ -358,9 +359,9 @@
             this.panelRoles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.panelRoles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.panelRoles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.panelRoles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.panelRoles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.panelRoles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelRoles.Size = new System.Drawing.Size(250, 332);
+            this.panelRoles.Size = new System.Drawing.Size(250, 274);
             this.panelRoles.TabIndex = 1;
             // 
             // label13
@@ -589,17 +590,28 @@
             this.tbCntERR.Size = new System.Drawing.Size(66, 20);
             this.tbCntERR.TabIndex = 4;
             // 
+            // btnShowRightHolderProblemWorks
+            // 
+            this.btnShowRightHolderProblemWorks.Location = new System.Drawing.Point(3, 321);
+            this.btnShowRightHolderProblemWorks.Name = "btnShowRightHolderProblemWorks";
+            this.btnShowRightHolderProblemWorks.Size = new System.Drawing.Size(250, 23);
+            this.btnShowRightHolderProblemWorks.TabIndex = 2;
+            this.btnShowRightHolderProblemWorks.Text = "Показати проблемны твори правовласника";
+            this.btnShowRightHolderProblemWorks.UseVisualStyleBackColor = true;
+            this.btnShowRightHolderProblemWorks.Click += new System.EventHandler(this.btnShowRightHolderProblemWorks_Click);
+            // 
             // label4
             // 
-            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(3, 111);
             this.label4.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(879, 13);
+            this.label4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
+            this.label4.Size = new System.Drawing.Size(933, 35);
             this.label4.TabIndex = 3;
             this.label4.Text = "Скорочення для творчої ролі: U - невіома, A  - автор тексту, C - композитор, AR -" +
-    " аранжувальник, E - видавець, CA - композитор/автор тексту, ERR - не відповідає " +
-    "вимогам\r\n";
+    " аранжувальник,\r\nE - видавець, CA - композитор/автор тексту, ERR - не відповідає" +
+    " вимогам НА ПОТОЧНИЙ ЧАС\r\n";
             // 
             // ilStatuses
             // 
@@ -618,6 +630,7 @@
             this.Controls.Add(this.panelMain);
             this.Name = "FormRightHolderRoles";
             this.Text = "Ролі правовласників";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormRightHolderRoles_FormClosed);
             this.Load += new System.EventHandler(this.FormRightHolderRoles_Load);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
@@ -682,5 +695,6 @@
         private System.Windows.Forms.TextBox tbCntE;
         private System.Windows.Forms.TextBox tbCntCA;
         private System.Windows.Forms.TextBox tbCntERR;
+        private System.Windows.Forms.Button btnShowRightHolderProblemWorks;
     }
 }

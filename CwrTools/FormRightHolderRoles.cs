@@ -33,13 +33,23 @@ namespace CwrTools
 
         private List<RightHolderInfo> _rightHolderInfoList;
 
-        public FormRightHolderRoles()
+        private UcProblemWorks.ShowRightHolderProblemWorks _showRightHolderProblemWorks;
+
+        public FormRightHolderRoles(UcProblemWorks.ShowRightHolderProblemWorks showRightHolderProblemWorks)
         {
             InitializeComponent();
+            _showRightHolderProblemWorks = showRightHolderProblemWorks;
         }
 
         private void FormRightHolderRoles_Load(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.FormRightHolderRolesSize.Width > 0 && Properties.Settings.Default.FormRightHolderRolesSize.Height > 0)
+            {
+                this.Location = Properties.Settings.Default.FormRightHolderRolesLocation;
+                this.Size = Properties.Settings.Default.FormRightHolderRolesSize;
+                this.WindowState = Properties.Settings.Default.FormRightHolderRolesState;
+            }
+
             Configure();
             FillRightHolderInfoList();
             UpdateRightHolderControls();
@@ -186,6 +196,9 @@ namespace CwrTools
                 ";
                 cmd.ExecuteNonQuery();
             });
+
+            FillRightHolderInfoList();
+            UpdateRightHolderControls();
         }
 
         private string GetRightHolderTypeSymb(int rightHolderType)
@@ -449,6 +462,28 @@ namespace CwrTools
         private void lvRightHolders_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateRightHolderControls();
+        }
+
+        private void btnShowRightHolderProblemWorks_Click(object sender, EventArgs e)
+        {
+            if (lvRightHolders.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var rightHolderItem = lvRightHolders.SelectedItems[0];
+            var rightHolderInfo = (RightHolderInfo)rightHolderItem.Tag;
+            var custId = rightHolderInfo.CustId;
+            _showRightHolderProblemWorks(custId);
+        }
+
+        private void FormRightHolderRoles_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.FormRightHolderRolesLocation = this.Location;
+            Properties.Settings.Default.FormRightHolderRolesSize = this.Size;
+            Properties.Settings.Default.FormRightHolderRolesState = this.WindowState;
+
+            Properties.Settings.Default.Save();
         }
     }
 }

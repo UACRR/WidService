@@ -37,7 +37,11 @@ namespace WidExport
             this.panelPartyCommands = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAddParty = new System.Windows.Forms.Button();
             this.btnRemoveParty = new System.Windows.Forms.Button();
-            this.ucWidSubmWorks = new WidExport.UcWidSubmWorks();
+            this.panelFilter = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
+            this.btnApplyFilter = new System.Windows.Forms.Button();
+            this.panelLeft = new WidExport.UcWidSubmWorks();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitMiddle)).BeginInit();
             this.splitMiddle.Panel1.SuspendLayout();
@@ -45,6 +49,7 @@ namespace WidExport
             this.splitMiddle.SuspendLayout();
             this.panelAuthors.SuspendLayout();
             this.panelPartyCommands.SuspendLayout();
+            this.panelFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -61,7 +66,7 @@ namespace WidExport
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelMain.Size = new System.Drawing.Size(1027, 500);
+            this.panelMain.Size = new System.Drawing.Size(1108, 617);
             this.panelMain.TabIndex = 0;
             // 
             // splitMiddle
@@ -77,8 +82,8 @@ namespace WidExport
             // 
             // splitMiddle.Panel2
             // 
-            this.splitMiddle.Panel2.Controls.Add(this.ucWidSubmWorks);
-            this.splitMiddle.Size = new System.Drawing.Size(1019, 474);
+            this.splitMiddle.Panel2.Controls.Add(this.panelLeft);
+            this.splitMiddle.Size = new System.Drawing.Size(1100, 591);
             this.splitMiddle.SplitterDistance = 359;
             this.splitMiddle.TabIndex = 0;
             // 
@@ -86,19 +91,20 @@ namespace WidExport
             // 
             this.panelAuthors.ColumnCount = 1;
             this.panelAuthors.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelAuthors.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelAuthors.Controls.Add(this.label2, 0, 0);
-            this.panelAuthors.Controls.Add(this.lvParties, 0, 1);
-            this.panelAuthors.Controls.Add(this.panelPartyCommands, 0, 2);
+            this.panelAuthors.Controls.Add(this.lvParties, 0, 2);
+            this.panelAuthors.Controls.Add(this.panelPartyCommands, 0, 3);
+            this.panelAuthors.Controls.Add(this.panelFilter, 0, 1);
             this.panelAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAuthors.Location = new System.Drawing.Point(0, 0);
             this.panelAuthors.Name = "panelAuthors";
-            this.panelAuthors.RowCount = 4;
+            this.panelAuthors.RowCount = 5;
             this.panelAuthors.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.panelAuthors.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.panelAuthors.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelAuthors.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.panelAuthors.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panelAuthors.Size = new System.Drawing.Size(359, 474);
+            this.panelAuthors.Size = new System.Drawing.Size(359, 591);
             this.panelAuthors.TabIndex = 0;
             // 
             // label2
@@ -117,10 +123,10 @@ namespace WidExport
             this.lvParties.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvParties.FullRowSelect = true;
             this.lvParties.HideSelection = false;
-            this.lvParties.Location = new System.Drawing.Point(3, 29);
+            this.lvParties.Location = new System.Drawing.Point(3, 65);
             this.lvParties.MultiSelect = false;
             this.lvParties.Name = "lvParties";
-            this.lvParties.Size = new System.Drawing.Size(353, 397);
+            this.lvParties.Size = new System.Drawing.Size(353, 478);
             this.lvParties.TabIndex = 1;
             this.lvParties.UseCompatibleStateImageBehavior = false;
             this.lvParties.View = System.Windows.Forms.View.Details;
@@ -131,7 +137,7 @@ namespace WidExport
             this.panelPartyCommands.Controls.Add(this.btnAddParty);
             this.panelPartyCommands.Controls.Add(this.btnRemoveParty);
             this.panelPartyCommands.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPartyCommands.Location = new System.Drawing.Point(3, 432);
+            this.panelPartyCommands.Location = new System.Drawing.Point(3, 549);
             this.panelPartyCommands.Name = "panelPartyCommands";
             this.panelPartyCommands.Size = new System.Drawing.Size(353, 31);
             this.panelPartyCommands.TabIndex = 2;
@@ -156,19 +162,59 @@ namespace WidExport
             this.btnRemoveParty.UseVisualStyleBackColor = true;
             this.btnRemoveParty.Click += new System.EventHandler(this.btnRemoveParty_Click);
             // 
-            // ucWidSubmWorks
+            // panelFilter
             // 
-            this.ucWidSubmWorks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucWidSubmWorks.Location = new System.Drawing.Point(0, 0);
-            this.ucWidSubmWorks.Name = "ucWidSubmWorks";
-            this.ucWidSubmWorks.Size = new System.Drawing.Size(656, 474);
-            this.ucWidSubmWorks.TabIndex = 0;
+            this.panelFilter.Controls.Add(this.label1);
+            this.panelFilter.Controls.Add(this.tbFilter);
+            this.panelFilter.Controls.Add(this.btnApplyFilter);
+            this.panelFilter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFilter.Location = new System.Drawing.Point(3, 29);
+            this.panelFilter.Name = "panelFilter";
+            this.panelFilter.Size = new System.Drawing.Size(353, 30);
+            this.panelFilter.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(147, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Вибрати за текстом в назві";
+            // 
+            // tbFilter
+            // 
+            this.tbFilter.Location = new System.Drawing.Point(156, 4);
+            this.tbFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(100, 20);
+            this.tbFilter.TabIndex = 1;
+            this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
+            // 
+            // btnApplyFilter
+            // 
+            this.btnApplyFilter.Location = new System.Drawing.Point(262, 3);
+            this.btnApplyFilter.Name = "btnApplyFilter";
+            this.btnApplyFilter.Size = new System.Drawing.Size(83, 23);
+            this.btnApplyFilter.TabIndex = 2;
+            this.btnApplyFilter.Text = "Застосувати";
+            this.btnApplyFilter.UseVisualStyleBackColor = true;
+            this.btnApplyFilter.Click += new System.EventHandler(this.btnApplyFilter_Click);
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Size = new System.Drawing.Size(737, 591);
+            this.panelLeft.TabIndex = 0;
             // 
             // FormWidSubmit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 500);
+            this.ClientSize = new System.Drawing.Size(1108, 617);
             this.Controls.Add(this.panelMain);
             this.Name = "FormWidSubmit";
             this.Text = "Підготовка творів для передачі в WID";
@@ -181,6 +227,8 @@ namespace WidExport
             this.panelAuthors.ResumeLayout(false);
             this.panelAuthors.PerformLayout();
             this.panelPartyCommands.ResumeLayout(false);
+            this.panelFilter.ResumeLayout(false);
+            this.panelFilter.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -195,6 +243,10 @@ namespace WidExport
         private System.Windows.Forms.FlowLayoutPanel panelPartyCommands;
         private System.Windows.Forms.Button btnAddParty;
         private System.Windows.Forms.Button btnRemoveParty;
-        private UcWidSubmWorks ucWidSubmWorks;
+        private UcWidSubmWorks panelLeft;
+        private System.Windows.Forms.FlowLayoutPanel panelFilter;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbFilter;
+        private System.Windows.Forms.Button btnApplyFilter;
     }
 }

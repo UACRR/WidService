@@ -17,21 +17,21 @@ namespace RadioStationReports
     {
         public class Share
         {
-		    public string SmartCodeM           { get; set; } 
-		    public string IpBaseNrM            { get; set; }
-		    public string IpNameNrM            { get; set; }
-		    public string RightHolderNameM     { get; set; }
-		    public string RightStartDateM      { get; set; }
-		    public string RightEndDateM        { get; set; }
-		    public string ShareM               { get; set; }
+            public string SmartCodeM { get; set; }
+            public string IpBaseNrM { get; set; }
+            public string IpNameNrM { get; set; }
+            public string RightHolderNameM { get; set; }
+            public string RightStartDateM { get; set; }
+            public string RightEndDateM { get; set; }
+            public string ShareM { get; set; }
 
-            public string SmartCodeW           { get; set; }
-		    public string IpBaseNrW            { get; set; }
-		    public string IpNameNrW            { get; set; }
-		    public string RightHolderNameW     { get; set; }
-		    public string RightStartDateW      { get; set; }
-		    public string RightEndDateW        { get; set; }
-		    public string ShareW               { get; set; }
+            public string SmartCodeW { get; set; }
+            public string IpBaseNrW { get; set; }
+            public string IpNameNrW { get; set; }
+            public string RightHolderNameW { get; set; }
+            public string RightStartDateW { get; set; }
+            public string RightEndDateW { get; set; }
+            public string ShareW { get; set; }
 
         }
 
@@ -43,7 +43,7 @@ namespace RadioStationReports
         }
 
         private int _workId = 0;
-        private int? _objId = null;   
+        private int? _objId = null;
         private int? _wic = null;
         private string _iswc = "";
 
@@ -106,7 +106,7 @@ namespace RadioStationReports
                 }
 
                 _info.WorkNameM = "";
-                if(_objId != null)
+                if (_objId != null)
                 {
                     cmd.CommandText = @"select Name from MediaService..ObjectRight where ObjId = @objId";
                     cmd.Parameters.Clear();
@@ -115,7 +115,7 @@ namespace RadioStationReports
                 }
 
                 _info.WorkNameW = "";
-                if(_wic != null)
+                if (_wic != null)
                 {
                     cmd.CommandText = @"select WrkTtl from SocWid..WidTitle where Wic = @wic";
                     cmd.Parameters.Clear();
@@ -123,7 +123,7 @@ namespace RadioStationReports
                     var res = cmd.ExecuteScalar();
                     _info.WorkNameW = res == null ? "!!! Твір не знайдено" : (string)cmd.ExecuteScalar();
                 }
-                
+
                 _info.Shares = new List<Share>();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "spCompareSharesMsVsWid";
@@ -132,26 +132,26 @@ namespace RadioStationReports
                 cmd.Parameters.AddWithValue("@wic", _wic == null ? DBNull.Value : _wic);
                 using (var r = cmd.ExecuteReader())
                 {
-                    while(r.Read())
+                    while (r.Read())
                     {
                         var share = new Share();
                         var idx = 0;
-		                share.SmartCodeM           = ConvertDbInt(r, idx++);
-		                share.IpBaseNrM            = ConvertDbString(r, idx++);
-		                share.IpNameNrM            = ConvertDbInt(r, idx++);
-		                share.RightHolderNameM     = ConvertDbString(r, idx++);
-		                share.RightStartDateM      = ConvertDbDate(r, idx++);
-		                share.RightEndDateM        = ConvertDbDate(r, idx++);
-		                share.ShareM               = ConvertDbDec(r, idx++);
+                        share.SmartCodeM = ConvertDbInt(r, idx++);
+                        share.IpBaseNrM = ConvertDbString(r, idx++);
+                        share.IpNameNrM = ConvertDbInt(r, idx++);
+                        share.RightHolderNameM = ConvertDbString(r, idx++);
+                        share.RightStartDateM = ConvertDbDate(r, idx++);
+                        share.RightEndDateM = ConvertDbDate(r, idx++);
+                        share.ShareM = ConvertDbDec(r, idx++);
                         idx++;
-                        share.SmartCodeW           = ConvertDbInt(r, idx++);
-		                share.IpBaseNrW            = ConvertDbString(r, idx++);
-		                share.IpNameNrW            = ConvertDbInt(r, idx++);
-		                share.RightHolderNameW     = ConvertDbString(r, idx++);
-		                share.RightStartDateW      = ConvertDbDate(r, idx++);
-                        share.RightEndDateW        = ConvertDbDate(r, idx++);
-		                share.ShareW               = ConvertDbDec(r, idx++);
- 
+                        share.SmartCodeW = ConvertDbInt(r, idx++);
+                        share.IpBaseNrW = ConvertDbString(r, idx++);
+                        share.IpNameNrW = ConvertDbInt(r, idx++);
+                        share.RightHolderNameW = ConvertDbString(r, idx++);
+                        share.RightStartDateW = ConvertDbDate(r, idx++);
+                        share.RightEndDateW = ConvertDbDate(r, idx++);
+                        share.ShareW = ConvertDbDec(r, idx++);
+
                         _info.Shares.Add(share);
                     }
                 }
@@ -177,17 +177,23 @@ namespace RadioStationReports
 
         private void AddRightHolder(Share s)
         {
-            AddItem("    Назва"                         , s.RightHolderNameM , s.RightHolderNameW);
-            AddItem("        Код СМАРТ"                 , s.SmartCodeM , s.SmartCodeW);
-            AddItem("        Міжнародни код (базовий)"  , s.IpBaseNrM , s.IpBaseNrW);
-            AddItem("        Міжнародни код (назва)"    , s.IpNameNrM , s.IpNameNrW);
-            AddItem("        Початок правоволодіння"    , s.RightStartDateM , s.RightStartDateW);
-            AddItem("        Закінчення правоволодіння" , s.RightEndDateM , s.RightEndDateW);
-            AddItem("        Проценти Пуб"              , s.ShareM , s.ShareW);
+            AddItem("    Назва", s.RightHolderNameM, s.RightHolderNameW);
+            AddItem("        Код СМАРТ", s.SmartCodeM, s.SmartCodeW);
+            AddItem("        Міжнародни код (базовий)", s.IpBaseNrM, s.IpBaseNrW);
+            AddItem("        Міжнародни код (назва)", s.IpNameNrM, s.IpNameNrW);
+            AddItem("        Початок правоволодіння", s.RightStartDateM, s.RightStartDateW);
+            AddItem("        Закінчення правоволодіння", s.RightEndDateM, s.RightEndDateW);
+            AddItem("        Проценти Пуб", s.ShareM, s.ShareW);
         }
 
-
-
-
+        private void lvInfo_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var menu = new ListViewMenu(lvInfo);
+                menu.Show(new Point(e.X, e.Y));
+                return;
+            }
+        }
     }
 }

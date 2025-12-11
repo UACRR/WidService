@@ -18,7 +18,7 @@ namespace IpiUpdatesLib.StructuredEntities
         protected List<RecMun> RecMunList { get; set; }
         protected List<RecIno> RecInoList { get; set; }
         protected List<RecImo> RecImoList { get; set; }
-        protected RecOno RenOno { get; set; }
+        protected RecOno RecOno { get; set; }
         protected RecOnn RecOnn { get; set; }
         protected List<RecInn> RecInnList { get; set; }
         protected List<RecImn> RecImnList { get; set; }
@@ -104,9 +104,9 @@ namespace IpiUpdatesLib.StructuredEntities
             }
 
             cmd.CommandText = SqlQueries.DeleteIpiName;
-            if (RecOnn != null)
+            if (RecOno != null)
             {
-                var x = RecOnn;
+                var x = RecOno;
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@IpBaseNr", UpdTrans.IpBaseNr);
                 cmd.Parameters.AddWithValue("@IpNameNr", int.Parse(x.IpNameNr));

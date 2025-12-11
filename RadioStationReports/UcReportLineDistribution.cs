@@ -137,26 +137,9 @@ namespace RadioStationReports
         {
             if (e.Button == MouseButtons.Right)
             {
-                var item = lvDistribution.GetItemAt(e.X, e.Y);
-                if (item == null)
-                {
-                    return;
-                }
-                var text = item.GetSubItemAt(e.X, e.Y).Text;
-                _textToCopy = string.IsNullOrEmpty(text) ? "" : text;
-                contextMenuStrip.Show(lvDistribution, new Point(e.X, e.Y), ToolStripDropDownDirection.BelowRight);
-            }
-        }
-
-        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(_textToCopy))
-            {
-                Clipboard.SetText(_textToCopy);
-            }
-            else
-            {
-                Clipboard.Clear();
+                var menu = new ListViewMenu(lvDistribution);
+                menu.Show(new Point(e.X, e.Y));
+                return;
             }
         }
     }

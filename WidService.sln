@@ -52,15 +52,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopyrightObjectSearch.Serve
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "copyrightobjectsearch.client", "CopyrightObjectSearch\copyrightobjectsearch.client\copyrightobjectsearch.client.esproj", "{A14C7553-F83C-4217-811E-E0F7EB80581C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{2B870528-B993-4451-B7D5-66EEB68A8E94}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocIpiDumpLoader", "SocIpiDumpLoader\SocIpiDumpLoader.csproj", "{222A43B3-E251-43C2-842D-2F83D878EB56}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsSqlClrExt", "MsSqlClrExt\MsSqlClrExt.csproj", "{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocFtpCLient", "SocFtpCLient\SocFtpCLient.csproj", "{C10C5390-B0D7-4596-B043-FDD245A1EF56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CwrTools", "CwrTools\CwrTools.csproj", "{880B15E7-184E-431E-85EC-33A52425D99C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocIpiDumpLoader", "SocIpiDumpLoader\SocIpiDumpLoader.csproj", "{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -162,14 +160,6 @@ Global
 		{A14C7553-F83C-4217-811E-E0F7EB80581C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A14C7553-F83C-4217-811E-E0F7EB80581C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A14C7553-F83C-4217-811E-E0F7EB80581C}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{2B870528-B993-4451-B7D5-66EEB68A8E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B870528-B993-4451-B7D5-66EEB68A8E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B870528-B993-4451-B7D5-66EEB68A8E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B870528-B993-4451-B7D5-66EEB68A8E94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{222A43B3-E251-43C2-842D-2F83D878EB56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{222A43B3-E251-43C2-842D-2F83D878EB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{222A43B3-E251-43C2-842D-2F83D878EB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{222A43B3-E251-43C2-842D-2F83D878EB56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63C74DD5-23FF-4728-8527-9E6ADA42CAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -182,6 +172,10 @@ Global
 		{880B15E7-184E-431E-85EC-33A52425D99C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{880B15E7-184E-431E-85EC-33A52425D99C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{880B15E7-184E-431E-85EC-33A52425D99C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -101,7 +101,7 @@ namespace RadioStationReports
             lvReportLines.Columns.Add("№", 120);
             lvReportLines.Columns.Add("Назва твору", 300);
             lvReportLines.Columns.Add("Виконавець", 300);
-            
+
             lvOtherCustomers.FullRowSelect = true;
             lvOtherCustomers.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             lvOtherCustomers.MultiSelect = false;
@@ -121,8 +121,8 @@ namespace RadioStationReports
         {
             lvReports.Items.Clear();
             lvReportLines.Items.Clear();
-            lvOtherCustomers.Items.Clear();   
-            
+            lvOtherCustomers.Items.Clear();
+
             FillLastUsedCustomers();
 
             _ignoreCbLastUsedCustomersEvents = true;
@@ -130,7 +130,7 @@ namespace RadioStationReports
             _ignoreCbLastUsedCustomersEvents = false;
 
             _selectedCustomer = _lastUsedCustomers[0];
-            
+
             FillCustomerReports();
             UpdateControls();
         }
@@ -138,11 +138,11 @@ namespace RadioStationReports
         private void UpdateControls()
         {
             btnShowReport.Visible = lvReports.SelectedItems.Count > 0;
-            if(lvReports.SelectedItems.Count > 0)
+            if (lvReports.SelectedItems.Count > 0)
             {
                 var report = (ReportItem)lvReports.SelectedItems[0].Tag;
-                btnShowReport.Text = 
-                    report.Status == ReportItemStatus.Registered    ? "Показати звіт" :
+                btnShowReport.Text =
+                    report.Status == ReportItemStatus.Registered ? "Показати звіт" :
                     report.Status == ReportItemStatus.NotRegistered ? "Зареєструвати звіт" :
                                                                       "Повторити реєстрацію";
 
@@ -231,8 +231,8 @@ namespace RadioStationReports
                 item.SubItems.Add(x.EndDate.ToString("yyyy-MM-dd"));
                 item.SubItems.Add(x.FileName);
                 item.ImageIndex =
-                    x.Status == ReportItemStatus.Registered          ?  0 :
-                    x.Status == (int)ReportItemStatus.NotRegistered  ? -1 :
+                    x.Status == ReportItemStatus.Registered ? 0 :
+                    x.Status == (int)ReportItemStatus.NotRegistered ? -1 :
                                                                         1;
                 item.Tag = x;
             });
@@ -491,8 +491,8 @@ namespace RadioStationReports
                 var res = RegisterReport(_selectedCustomer, _selectedReport);
                 _selectedReport.Status = res;
                 lvReports.SelectedItems[0].ImageIndex =
-                    res == ReportItemStatus.Registered          ?  0 :
-                    res == (int)ReportItemStatus.NotRegistered  ? -1 :
+                    res == ReportItemStatus.Registered ? 0 :
+                    res == (int)ReportItemStatus.NotRegistered ? -1 :
                                                                    1;
                 UpdateControls();
             }
@@ -502,5 +502,24 @@ namespace RadioStationReports
             }
         }
 
+        private void lvReports_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var menu = new ListViewMenu(lvReports);
+                menu.Show(new Point(e.X, e.Y));
+                return;
+            }
+        }
+
+        private void lvReportLines_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var menu = new ListViewMenu(lvReportLines);
+                menu.Show(new Point(e.X, e.Y));
+                return;
+            }
+        }
     }
 }

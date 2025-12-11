@@ -74,8 +74,6 @@ namespace RadioStationReports
             tbReprotSourceFileCopyName = new System.Windows.Forms.TextBox();
             openFileDlg = new System.Windows.Forms.OpenFileDialog();
             timerApplyFilter = new System.Windows.Forms.Timer(components);
-            contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
-            toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             panelMain.SuspendLayout();
             panelBottom.SuspendLayout();
             panelFilterArchived.SuspendLayout();
@@ -88,7 +86,6 @@ namespace RadioStationReports
             panelReportMainInfoTitle.SuspendLayout();
             panelReportDetails.SuspendLayout();
             panelReportDetailValues.SuspendLayout();
-            contextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // panelMain
@@ -368,7 +365,6 @@ namespace RadioStationReports
             lvReports.FullRowSelect = true;
             lvReports.GridLines = true;
             lvReports.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            lvReports.HideSelection = false;
             lvReports.Location = new System.Drawing.Point(3, 36);
             lvReports.MultiSelect = false;
             lvReports.Name = "lvReports";
@@ -591,19 +587,6 @@ namespace RadioStationReports
             // 
             timerApplyFilter.Tick += timerApplyFilter_Tick;
             // 
-            // contextMenuStrip
-            // 
-            contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItemCopy });
-            contextMenuStrip.Name = "contextMenuStrip";
-            contextMenuStrip.Size = new System.Drawing.Size(133, 26);
-            contextMenuStrip.ItemClicked += contextMenuStrip_ItemClicked;
-            // 
-            // toolStripMenuItemCopy
-            // 
-            toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-            toolStripMenuItemCopy.Size = new System.Drawing.Size(132, 22);
-            toolStripMenuItemCopy.Text = "Копіювати";
-            // 
             // FormMainReports
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -631,7 +614,6 @@ namespace RadioStationReports
             panelReportDetails.PerformLayout();
             panelReportDetailValues.ResumeLayout(false);
             panelReportDetailValues.PerformLayout();
-            contextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -681,7 +663,5 @@ namespace RadioStationReports
         private System.Windows.Forms.Timer timerApplyFilter;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbReprotSourceFileCopyName;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
     }
 }

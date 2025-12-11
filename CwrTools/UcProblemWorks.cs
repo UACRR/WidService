@@ -127,8 +127,32 @@ namespace CwrTools
         private delegate void CorrectionBody(ListViewItem workItem, ListViewItem rightHolderItem, 
             WorkInfo WorkInfo, RightHolderInfo rightHolderInfo);
 
+        public delegate void ShowRightHolderProblemWorks(int custId);
+
         private List<WorkInfo> _workInfoList = new List<WorkInfo>();
         private List<RightHolderName> _filterRightHolders;
+
+        private FormRightHolderRoles _formRightHolderRoles;
+        
+        public void OnShowRightHolderUnknownRoleWorks(int custId)
+        {
+            OnCbRightHolderFilterDropDown();
+
+            cbProblemType.SelectedIndex = 1;
+
+            var filterRightHolderIdx = 0;
+            for(var idx = 1; idx < _filterRightHolders.Count; idx++)
+            {
+                var filterRightHolder = _filterRightHolders[idx];
+                if(custId == filterRightHolder.CustId)
+                {
+                    filterRightHolderIdx = idx;
+                    break;
+                }
+            };
+            cbRightHolderFilter.SelectedIndex = filterRightHolderIdx;
+            OnSelectWorks();
+        }
 
         public UcProblemWorks()
         {
@@ -137,6 +161,19 @@ namespace CwrTools
 
             FillWorks();
             FillWorkDetails(null);
+        }
+
+        private void UcProblemWorks_Load(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.UcProblemWorksSplitterDistance > 0)
+            {
+                this.panelMiddle.SplitterDistance = Properties.Settings.Default.UcProblemWorksSplitterDistance;
+            }
+        }
+
+        public int GetSplitterDistance()
+        {
+            return this.panelMiddle.SplitterDistance;
         }
 
         private void Configure()
@@ -227,8 +264,9 @@ namespace CwrTools
                 else
                 {
                     var filterEx = filter == "" ? "where CustId = @custId" : $"{filter} and CustId = @custId";
+                    // Враховуємо можливість подвоєнь коли правовласник для твору трапляєься двічі з різними ролями
                     cmd.CommandText = $@"
-                        select t2.*, t1.* 
+                        select distinct t2.*, t1.* 
                         from TmpWrongWorks t1
 	                        join vWorkInfo t2 on t1.ObjId = t2.ObjId
 	                        join vWorkRightHoldersCurrent t3 on t2.ObjId = t3.ObjId
@@ -418,9 +456,10 @@ namespace CwrTools
             Helpers.RunSqlCwr(cmd =>
             {
                 cmd.CommandText = $@"
-                    select CustId, Name
-                    from TmpUndefinedRoleRightHolders
-                    order by Name
+                    select t2.CustId, t2.shortName
+                    from TmpRightHolderRoleCorrections t1
+                        join MediaService..vCustomerNamesShort t2 on t1.CustId = t2.CustId
+                    order by t2.ShortName
                 ";
                 using (var r = cmd.ExecuteReader())
                 {
@@ -728,7 +767,7 @@ namespace CwrTools
             }
         }
 
-        private void btnSelectWorks_Click(object sender, EventArgs e)
+        private void OnSelectWorks()
         {
             try
             {
@@ -743,7 +782,11 @@ namespace CwrTools
                 Cursor = Cursors.Default;
                 MessageBox.Show(ex.Message, "Обробка проблемних творів", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-    
+        }
+
+        private void btnSelectWorks_Click(object sender, EventArgs e)
+        {
+            OnSelectWorks();
         }
 
         private void cbProblemType_SelectedIndexChanged(object sender, EventArgs e)
@@ -855,11 +898,19 @@ namespace CwrTools
 
         private void btnShowRightHoderRoleChanges_Click(object sender, EventArgs e)
         {
-            var form = new FormRightHolderRoles();
-            form.Show(this);
-        }
+            if(_formRightHolderRoles == null || _formRightHolderRoles.IsDisposed)
+            {
+                _formRightHolderRoles = new FormRightHolderRoles(OnShowRightHolderUnknownRoleWorks);
+                _formRightHolderRoles.Show(this);
+            }
+            else
+            {
+                _formRightHolderRoles.Activate();
+            }
 
-        private void cbRightHolderFilter_DropDown(object sender, EventArgs e)
+       }
+
+        private void OnCbRightHolderFilterDropDown()
         {
             if(_filterRightHolders == null)
             {
@@ -871,9 +922,15 @@ namespace CwrTools
             }
         }
 
+        private void cbRightHolderFilter_DropDown(object sender, EventArgs e)
+        {
+            OnCbRightHolderFilterDropDown();
+        }
+
         private void cbRightHolderFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnSelectWorks.Enabled = cbProblemType.SelectedIndex != -1;
         }
+
     }
 }

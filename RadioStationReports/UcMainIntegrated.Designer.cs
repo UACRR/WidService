@@ -159,13 +159,13 @@
             // lvReports
             // 
             lvReports.Dock = System.Windows.Forms.DockStyle.Fill;
-            lvReports.HideSelection = false;
             lvReports.Location = new System.Drawing.Point(3, 68);
             lvReports.Name = "lvReports";
             lvReports.Size = new System.Drawing.Size(1052, 108);
             lvReports.TabIndex = 2;
             lvReports.UseCompatibleStateImageBehavior = false;
             lvReports.SelectedIndexChanged += lvReports_SelectedIndexChanged;
+            lvReports.MouseDown += lvReports_MouseDown;
             // 
             // panelReportActions
             // 
@@ -217,12 +217,12 @@
             // lvReportLines
             // 
             lvReportLines.Dock = System.Windows.Forms.DockStyle.Fill;
-            lvReportLines.HideSelection = false;
             lvReportLines.Location = new System.Drawing.Point(3, 3);
             lvReportLines.Name = "lvReportLines";
             lvReportLines.Size = new System.Drawing.Size(1038, 226);
             lvReportLines.TabIndex = 5;
             lvReportLines.UseCompatibleStateImageBehavior = false;
+            lvReportLines.MouseDown += lvReportLines_MouseDown;
             // 
             // tabPage2
             // 
@@ -238,7 +238,6 @@
             // lvOtherCustomers
             // 
             lvOtherCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
-            lvOtherCustomers.HideSelection = false;
             lvOtherCustomers.Location = new System.Drawing.Point(3, 3);
             lvOtherCustomers.Name = "lvOtherCustomers";
             lvOtherCustomers.Size = new System.Drawing.Size(1038, 226);

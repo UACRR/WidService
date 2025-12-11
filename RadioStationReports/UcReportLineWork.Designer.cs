@@ -30,8 +30,8 @@ namespace RadioStationReports
         private void InitializeComponent()
         {
             panelMain = new System.Windows.Forms.TableLayoutPanel();
-            toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             lvInfo = new System.Windows.Forms.ListView();
+            toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             panelMain.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,20 +50,20 @@ namespace RadioStationReports
             panelMain.Size = new System.Drawing.Size(1069, 460);
             panelMain.TabIndex = 0;
             // 
-            // toolStripMenuItemCopy
-            // 
-            toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-            toolStripMenuItemCopy.Size = new System.Drawing.Size(32, 19);
-            // 
             // lvInfo
             // 
             lvInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            lvInfo.HideSelection = false;
             lvInfo.Location = new System.Drawing.Point(3, 3);
             lvInfo.Name = "lvInfo";
             lvInfo.Size = new System.Drawing.Size(1063, 446);
             lvInfo.TabIndex = 0;
             lvInfo.UseCompatibleStateImageBehavior = false;
+            lvInfo.MouseDown += lvInfo_MouseDown;
+            // 
+            // toolStripMenuItemCopy
+            // 
+            toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
+            toolStripMenuItemCopy.Size = new System.Drawing.Size(32, 19);
             // 
             // UcReportLineWork
             // 

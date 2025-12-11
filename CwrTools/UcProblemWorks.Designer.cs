@@ -167,7 +167,7 @@
             // 
             this.panelMiddle.Panel2.Controls.Add(this.tbIsDuplicate);
             this.panelMiddle.Size = new System.Drawing.Size(1302, 620);
-            this.panelMiddle.SplitterDistance = 256;
+            this.panelMiddle.SplitterDistance = 300;
             this.panelMiddle.TabIndex = 0;
             // 
             // panelWorks
@@ -183,7 +183,7 @@
             this.panelWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.panelWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.panelWorks.Size = new System.Drawing.Size(256, 620);
+            this.panelWorks.Size = new System.Drawing.Size(300, 620);
             this.panelWorks.TabIndex = 0;
             // 
             // label3
@@ -202,7 +202,7 @@
             this.lvWorks.HideSelection = false;
             this.lvWorks.Location = new System.Drawing.Point(3, 33);
             this.lvWorks.Name = "lvWorks";
-            this.lvWorks.Size = new System.Drawing.Size(250, 579);
+            this.lvWorks.Size = new System.Drawing.Size(294, 579);
             this.lvWorks.TabIndex = 1;
             this.lvWorks.UseCompatibleStateImageBehavior = false;
             this.lvWorks.SelectedIndexChanged += new System.EventHandler(this.lvWorks_SelectedIndexChanged);
@@ -246,7 +246,7 @@
             this.tbIsDuplicate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tbIsDuplicate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tbIsDuplicate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tbIsDuplicate.Size = new System.Drawing.Size(1042, 620);
+            this.tbIsDuplicate.Size = new System.Drawing.Size(998, 620);
             this.tbIsDuplicate.TabIndex = 0;
             // 
             // panelWorkId
@@ -266,7 +266,7 @@
             this.panelWorkId.Name = "panelWorkId";
             this.panelWorkId.RowCount = 1;
             this.panelWorkId.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelWorkId.Size = new System.Drawing.Size(1036, 24);
+            this.panelWorkId.Size = new System.Drawing.Size(992, 24);
             this.panelWorkId.TabIndex = 1;
             // 
             // label5
@@ -324,7 +324,7 @@
             this.panelWorkCategory.Name = "panelWorkCategory";
             this.panelWorkCategory.RowCount = 1;
             this.panelWorkCategory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelWorkCategory.Size = new System.Drawing.Size(1036, 29);
+            this.panelWorkCategory.Size = new System.Drawing.Size(992, 29);
             this.panelWorkCategory.TabIndex = 2;
             // 
             // label6
@@ -371,7 +371,7 @@
             this.panelSelectedWorkName.Name = "panelSelectedWorkName";
             this.panelSelectedWorkName.RowCount = 1;
             this.panelSelectedWorkName.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelSelectedWorkName.Size = new System.Drawing.Size(1036, 25);
+            this.panelSelectedWorkName.Size = new System.Drawing.Size(992, 25);
             this.panelSelectedWorkName.TabIndex = 3;
             // 
             // picNameErr
@@ -418,7 +418,7 @@
             this.lvRightHolders.HideSelection = false;
             this.lvRightHolders.Location = new System.Drawing.Point(3, 256);
             this.lvRightHolders.Name = "lvRightHolders";
-            this.lvRightHolders.Size = new System.Drawing.Size(1036, 114);
+            this.lvRightHolders.Size = new System.Drawing.Size(992, 114);
             this.lvRightHolders.SmallImageList = this.ilStatuses;
             this.lvRightHolders.StateImageList = this.ilStatusesEx;
             this.lvRightHolders.TabIndex = 5;
@@ -453,7 +453,7 @@
             this.panelSelectedRightHolder.Name = "panelSelectedRightHolder";
             this.panelSelectedRightHolder.RowCount = 1;
             this.panelSelectedRightHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelSelectedRightHolder.Size = new System.Drawing.Size(1036, 26);
+            this.panelSelectedRightHolder.Size = new System.Drawing.Size(992, 26);
             this.panelSelectedRightHolder.TabIndex = 6;
             // 
             // label9
@@ -481,7 +481,7 @@
             this.panelWorkIswc.Name = "panelWorkIswc";
             this.panelWorkIswc.RowCount = 1;
             this.panelWorkIswc.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelWorkIswc.Size = new System.Drawing.Size(1036, 24);
+            this.panelWorkIswc.Size = new System.Drawing.Size(992, 24);
             this.panelWorkIswc.TabIndex = 8;
             // 
             // label12
@@ -525,7 +525,7 @@
             this.panelDetails.Name = "panelDetails";
             this.panelDetails.RowCount = 1;
             this.panelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelDetails.Size = new System.Drawing.Size(1036, 27);
+            this.panelDetails.Size = new System.Drawing.Size(992, 27);
             this.panelDetails.TabIndex = 9;
             // 
             // label4
@@ -543,7 +543,7 @@
             this.btnRefreshDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRefreshDetails.ImageIndex = 3;
             this.btnRefreshDetails.ImageList = this.ilStatuses;
-            this.btnRefreshDetails.Location = new System.Drawing.Point(904, 3);
+            this.btnRefreshDetails.Location = new System.Drawing.Point(860, 3);
             this.btnRefreshDetails.Name = "btnRefreshDetails";
             this.btnRefreshDetails.Size = new System.Drawing.Size(129, 21);
             this.btnRefreshDetails.TabIndex = 1;
@@ -566,7 +566,7 @@
             this.panelPubShr.Name = "panelPubShr";
             this.panelPubShr.RowCount = 1;
             this.panelPubShr.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelPubShr.Size = new System.Drawing.Size(1036, 25);
+            this.panelPubShr.Size = new System.Drawing.Size(992, 25);
             this.panelPubShr.TabIndex = 7;
             // 
             // label11
@@ -612,7 +612,7 @@
             this.panelTotalShareMec.Name = "panelTotalShareMec";
             this.panelTotalShareMec.RowCount = 1;
             this.panelTotalShareMec.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelTotalShareMec.Size = new System.Drawing.Size(1036, 27);
+            this.panelTotalShareMec.Size = new System.Drawing.Size(992, 27);
             this.panelTotalShareMec.TabIndex = 7;
             // 
             // label10
@@ -665,7 +665,7 @@
             this.panelRightHolderRole.Name = "panelRightHolderRole";
             this.panelRightHolderRole.RowCount = 1;
             this.panelRightHolderRole.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelRightHolderRole.Size = new System.Drawing.Size(1036, 28);
+            this.panelRightHolderRole.Size = new System.Drawing.Size(992, 28);
             this.panelRightHolderRole.TabIndex = 10;
             // 
             // labTypeRole
@@ -743,7 +743,7 @@
             this.panelRightHolderDup.Name = "panelRightHolderDup";
             this.panelRightHolderDup.RowCount = 1;
             this.panelRightHolderDup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelRightHolderDup.Size = new System.Drawing.Size(1036, 29);
+            this.panelRightHolderDup.Size = new System.Drawing.Size(992, 29);
             this.panelRightHolderDup.TabIndex = 10;
             // 
             // labDup
@@ -811,7 +811,7 @@
             this.panelRightHolderShr.Name = "panelRightHolderShr";
             this.panelRightHolderShr.RowCount = 1;
             this.panelRightHolderShr.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelRightHolderShr.Size = new System.Drawing.Size(1036, 26);
+            this.panelRightHolderShr.Size = new System.Drawing.Size(992, 26);
             this.panelRightHolderShr.TabIndex = 10;
             // 
             // labShares
@@ -905,7 +905,7 @@
             this.lvCopyRightHistory.HideSelection = false;
             this.lvCopyRightHistory.Location = new System.Drawing.Point(3, 535);
             this.lvCopyRightHistory.Name = "lvCopyRightHistory";
-            this.lvCopyRightHistory.Size = new System.Drawing.Size(1036, 74);
+            this.lvCopyRightHistory.Size = new System.Drawing.Size(992, 74);
             this.lvCopyRightHistory.TabIndex = 11;
             this.lvCopyRightHistory.UseCompatibleStateImageBehavior = false;
             // 
@@ -1039,6 +1039,7 @@
             this.Controls.Add(this.panelMain);
             this.Name = "UcProblemWorks";
             this.Size = new System.Drawing.Size(1313, 698);
+            this.Load += new System.EventHandler(this.UcProblemWorks_Load);
             this.panelMain.ResumeLayout(false);
             this.panelMiddle.Panel1.ResumeLayout(false);
             this.panelMiddle.Panel2.ResumeLayout(false);

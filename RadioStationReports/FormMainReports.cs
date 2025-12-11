@@ -614,27 +614,11 @@ namespace RadioStationReports
         {
             if (e.Button == MouseButtons.Right)
             {
-                var item = lvReports.GetItemAt(e.X, e.Y);
-                if (item == null)
-                {
-                    return;
-                }
-                var text = item.GetSubItemAt(e.X, e.Y).Text;
-                _textToCopy = string.IsNullOrEmpty(text) ? "" : text;
-                contextMenuStrip.Show(lvReports, new Point(e.X, e.Y), ToolStripDropDownDirection.BelowRight);
+                var menu = new ListViewMenu(lvReports);
+                menu.Show(new Point(e.X, e.Y));
+                return;
             }
         }
 
-        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(_textToCopy))
-            {
-                Clipboard.SetText(_textToCopy);
-            }
-            else
-            {
-                Clipboard.Clear();
-            }
-        }
     }
 }

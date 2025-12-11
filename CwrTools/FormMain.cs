@@ -26,6 +26,13 @@ namespace CwrTools
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.FormMainSize.Width > 0 && Properties.Settings.Default.FormMainSize.Height > 0)
+            {
+                this.Location = Properties.Settings.Default.FormMainLocation;
+                this.Size = Properties.Settings.Default.FormMainSize;
+                this.WindowState = Properties.Settings.Default.FormMainState;
+            }
+
             tabMain.SelectedIndex = 0;
             ucOutputFiles.RefreshData();
         }
@@ -436,6 +443,17 @@ end
         private void ucOutputFiles_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.FormMainLocation = this.Location;
+            Properties.Settings.Default.FormMainSize = this.Size;
+            Properties.Settings.Default.FormMainState = this.WindowState;
+
+            Properties.Settings.Default.UcProblemWorksSplitterDistance = ucProblemWorks.GetSplitterDistance();
+
+            Properties.Settings.Default.Save();
         }
     }
 }

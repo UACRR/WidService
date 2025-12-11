@@ -69,10 +69,11 @@
             tbReportFileName = new System.Windows.Forms.TextBox();
             label12 = new System.Windows.Forms.Label();
             tbReprotSourceFileCopyName = new System.Windows.Forms.TextBox();
+            panelExtraFilter = new System.Windows.Forms.FlowLayoutPanel();
+            label13 = new System.Windows.Forms.Label();
+            tbExtraFilter = new System.Windows.Forms.TextBox();
             openFileDlg = new System.Windows.Forms.OpenFileDialog();
             timerApplyFilter = new System.Windows.Forms.Timer(components);
-            contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(components);
-            toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
             panelMain.SuspendLayout();
             panelBottom.SuspendLayout();
             panelFilterArchived.SuspendLayout();
@@ -85,24 +86,26 @@
             panelReportMainInfoTitle.SuspendLayout();
             panelReportDetails.SuspendLayout();
             panelReportDetailValues.SuspendLayout();
-            contextMenuStrip.SuspendLayout();
+            panelExtraFilter.SuspendLayout();
             SuspendLayout();
             // 
             // panelMain
             // 
             panelMain.ColumnCount = 1;
             panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            panelMain.Controls.Add(panelBottom, 0, 4);
+            panelMain.Controls.Add(panelBottom, 0, 5);
             panelMain.Controls.Add(label1, 0, 0);
             panelMain.Controls.Add(panelFilterArchived, 0, 1);
             panelMain.Controls.Add(panelFilter, 0, 2);
-            panelMain.Controls.Add(splitPanelReports, 0, 3);
+            panelMain.Controls.Add(splitPanelReports, 0, 4);
+            panelMain.Controls.Add(panelExtraFilter, 0, 3);
             panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             panelMain.Location = new System.Drawing.Point(0, 0);
             panelMain.Name = "panelMain";
-            panelMain.RowCount = 7;
+            panelMain.RowCount = 8;
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
@@ -308,7 +311,7 @@
             // splitPanelReports
             // 
             splitPanelReports.Dock = System.Windows.Forms.DockStyle.Fill;
-            splitPanelReports.Location = new System.Drawing.Point(3, 98);
+            splitPanelReports.Location = new System.Drawing.Point(3, 133);
             splitPanelReports.Name = "splitPanelReports";
             // 
             // splitPanelReports.Panel1
@@ -318,7 +321,7 @@
             // splitPanelReports.Panel2
             // 
             splitPanelReports.Panel2.Controls.Add(panelReportDetails);
-            splitPanelReports.Size = new System.Drawing.Size(866, 357);
+            splitPanelReports.Size = new System.Drawing.Size(866, 322);
             splitPanelReports.SplitterDistance = 556;
             splitPanelReports.TabIndex = 5;
             // 
@@ -334,7 +337,7 @@
             panelReportMain.RowCount = 2;
             panelReportMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             panelReportMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            panelReportMain.Size = new System.Drawing.Size(556, 357);
+            panelReportMain.Size = new System.Drawing.Size(556, 322);
             panelReportMain.TabIndex = 0;
             // 
             // lvReports
@@ -343,11 +346,10 @@
             lvReports.FullRowSelect = true;
             lvReports.GridLines = true;
             lvReports.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            lvReports.HideSelection = false;
             lvReports.Location = new System.Drawing.Point(3, 36);
             lvReports.MultiSelect = false;
             lvReports.Name = "lvReports";
-            lvReports.Size = new System.Drawing.Size(550, 318);
+            lvReports.Size = new System.Drawing.Size(550, 283);
             lvReports.TabIndex = 2;
             lvReports.UseCompatibleStateImageBehavior = false;
             lvReports.View = System.Windows.Forms.View.Details;
@@ -401,7 +403,7 @@
             panelReportDetails.RowCount = 2;
             panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             panelReportDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            panelReportDetails.Size = new System.Drawing.Size(306, 357);
+            panelReportDetails.Size = new System.Drawing.Size(306, 322);
             panelReportDetails.TabIndex = 0;
             // 
             // label6
@@ -447,7 +449,7 @@
             panelReportDetailValues.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             panelReportDetailValues.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             panelReportDetailValues.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            panelReportDetailValues.Size = new System.Drawing.Size(300, 317);
+            panelReportDetailValues.Size = new System.Drawing.Size(300, 282);
             panelReportDetailValues.TabIndex = 4;
             // 
             // label7
@@ -558,6 +560,34 @@
             tbReprotSourceFileCopyName.Size = new System.Drawing.Size(294, 23);
             tbReprotSourceFileCopyName.TabIndex = 6;
             // 
+            // panelExtraFilter
+            // 
+            panelExtraFilter.Controls.Add(label13);
+            panelExtraFilter.Controls.Add(tbExtraFilter);
+            panelExtraFilter.Dock = System.Windows.Forms.DockStyle.Fill;
+            panelExtraFilter.Location = new System.Drawing.Point(3, 98);
+            panelExtraFilter.Name = "panelExtraFilter";
+            panelExtraFilter.Size = new System.Drawing.Size(866, 29);
+            panelExtraFilter.TabIndex = 6;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new System.Drawing.Point(3, 0);
+            label13.Name = "label13";
+            label13.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            label13.Size = new System.Drawing.Size(287, 21);
+            label13.TabIndex = 0;
+            label13.Text = "Де код, радіостанція або назва файлу містить текст";
+            // 
+            // tbExtraFilter
+            // 
+            tbExtraFilter.Location = new System.Drawing.Point(296, 3);
+            tbExtraFilter.Name = "tbExtraFilter";
+            tbExtraFilter.Size = new System.Drawing.Size(209, 23);
+            tbExtraFilter.TabIndex = 1;
+            tbExtraFilter.TextChanged += tbExtraFilter_TextChanged;
+            // 
             // openFileDlg
             // 
             openFileDlg.FileName = "openFileDialog1";
@@ -565,19 +595,6 @@
             // timerApplyFilter
             // 
             timerApplyFilter.Tick += timerApplyFilter_Tick;
-            // 
-            // contextMenuStrip
-            // 
-            contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItemCopy });
-            contextMenuStrip.Name = "contextMenuStrip";
-            contextMenuStrip.Size = new System.Drawing.Size(133, 26);
-            contextMenuStrip.ItemClicked += contextMenuStrip_ItemClicked;
-            // 
-            // toolStripMenuItemCopy
-            // 
-            toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
-            toolStripMenuItemCopy.Size = new System.Drawing.Size(132, 22);
-            toolStripMenuItemCopy.Text = "Копіювати";
             // 
             // UcRegisteredReports
             // 
@@ -605,7 +622,8 @@
             panelReportDetails.PerformLayout();
             panelReportDetailValues.ResumeLayout(false);
             panelReportDetailValues.PerformLayout();
-            contextMenuStrip.ResumeLayout(false);
+            panelExtraFilter.ResumeLayout(false);
+            panelExtraFilter.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -652,8 +670,9 @@
         private System.Windows.Forms.Timer timerApplyFilter;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbReprotSourceFileCopyName;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopy;
         private System.Windows.Forms.Button btnRegisterReportFromFile;
+        private System.Windows.Forms.FlowLayoutPanel panelExtraFilter;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbExtraFilter;
     }
 }

@@ -70,10 +70,11 @@ namespace WidExport
             }
 
             var partyToSelect = (Party)lvParties.SelectedItems[0].Tag;
-            ucWidSubmWorks.SetWidSubmGroupAndParty(_group, partyToSelect.IpNameNr, _objIdToSelect);
+            panelLeft.SetWidSubmGroupAndParty(_group, partyToSelect.IpNameNr, _objIdToSelect);
 
             _ignoreSelectedIndexChanged = false;
 
+            btnApplyFilter.Enabled = false;
             UpdateControls();
 
         }
@@ -90,17 +91,17 @@ namespace WidExport
             if (lvParties.SelectedItems.Count != 1)
             {
                 btnRemoveParty.Enabled = false;
-                ucWidSubmWorks.Visible = false;
+                panelLeft.Visible = false;
             }
             else if(((Party)lvParties.SelectedItems[0].Tag).Id == 0)
             {
                 btnRemoveParty.Enabled = false;
-                ucWidSubmWorks.Visible = true;
+                panelLeft.Visible = true;
             }
             else
             {
                 btnRemoveParty.Enabled = true;
-                ucWidSubmWorks.Visible = true;
+                panelLeft.Visible = true;
             }
         }
 
@@ -139,6 +140,23 @@ namespace WidExport
                 }
             });
 
+            UpdateLvParties();
+        }
+
+        private bool CheckMeetsFilter(Party party)
+        {
+            var filter = tbFilter.Text.Trim().ToUpper();
+            if(filter != "" &&
+               !party.InterName.ToUpper().Contains(filter) &&
+               !party.LocalName.ToUpper().Contains(filter))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void UpdateLvParties()
+        {
             lvParties.Items.Clear();
             var seqNr = 1;
             var idx = 0;
@@ -153,13 +171,19 @@ namespace WidExport
                 }
                 else
                 {
-                    item = lvParties.Items.Add(seqNr.ToString());
-                    item.SubItems.Add(x.InterName);
-                    item.Tag = x;
-                    seqNr++;
+                    if (CheckMeetsFilter(x))
+                    {
+                        item = lvParties.Items.Add(seqNr.ToString());
+                        item.SubItems.Add(x.InterName);
+                        item.Tag = x;
+                        seqNr++;
+                    }
                 }
                 idx++;
             });
+
+            lvParties.SelectedIndices.Clear();
+            lvParties.SelectedIndices.Add(0);
         }
 
         public void AddParty(string ipBaseNr, int ipNameNr)
@@ -368,7 +392,7 @@ namespace WidExport
                     cmd.ExecuteNonQuery();
                 });
 
-                ucWidSubmWorks.SetWidSubmGroupAndParty(_group, null);
+                panelLeft.SetWidSubmGroupAndParty(_group, null);
                 FillParties();
                 UpdateControls();
             }
@@ -378,12 +402,12 @@ namespace WidExport
         {
             if (lvParties.SelectedItems.Count == 0)
             {
-                ucWidSubmWorks.SetWidSubmGroupAndParty(_group, null);
+                panelLeft.SetWidSubmGroupAndParty(_group, null);
             }
             else
             {
                 var party = (Party)lvParties.SelectedItems[0].Tag;
-                ucWidSubmWorks.SetWidSubmGroupAndParty(_group, party.IpNameNr);
+                panelLeft.SetWidSubmGroupAndParty(_group, party.IpNameNr);
             }
             UpdateControls();
         }
@@ -398,5 +422,15 @@ namespace WidExport
             HandleSelectedIndexChanged();
         }
 
+        private void tbFilter_TextChanged(object sender, EventArgs e)
+        {
+            btnApplyFilter.Enabled = true;
+        }
+
+        private void btnApplyFilter_Click(object sender, EventArgs e)
+        {
+            UpdateLvParties();
+            btnApplyFilter.Enabled = false;
+        }
     }
 }

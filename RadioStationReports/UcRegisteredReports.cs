@@ -206,25 +206,33 @@ namespace RadioStationReports
 
         private void FillLvReports(int selectedReportId)
         {
-            lvReports.Visible = false;
+            lvReports.BeginUpdate();
             lvReports.Items.Clear();
             var seqNr = 1;
             _reports.ForEach(x =>
             {
-                var item = lvReports.Items.Add(seqNr.ToString());
-                item.SubItems.Add(x.Id.ToString());
-                item.SubItems.Add(x.RadioStationName);
-                item.SubItems.Add(FormatPeriod(x));
-                item.SubItems.Add(x.FileName);
-                item.Tag = x;
-                if (x.Id == selectedReportId)
+                var eft = tbExtraFilter.Text;
+                var shouldAdd = string.IsNullOrEmpty(eft) ||
+                    x.Id.ToString().Contains(eft, StringComparison.OrdinalIgnoreCase) ||
+                    x.RadioStationName.Contains(eft, StringComparison.OrdinalIgnoreCase) ||
+                    x.FileName.Contains(eft, StringComparison.OrdinalIgnoreCase);
+                if (shouldAdd)
                 {
-                    item.Selected = true;
-                    item.EnsureVisible();
+                    var item = lvReports.Items.Add(seqNr.ToString());
+                    item.SubItems.Add(x.Id.ToString());
+                    item.SubItems.Add(x.RadioStationName);
+                    item.SubItems.Add(FormatPeriod(x));
+                    item.SubItems.Add(x.FileName);
+                    item.Tag = x;
+                    if (x.Id == selectedReportId)
+                    {
+                        item.Selected = true;
+                        item.EnsureVisible();
+                    }
+                    seqNr++;
                 }
-                seqNr++;
             });
-            lvReports.Visible = true;
+            lvReports.EndUpdate();
         }
 
         private void FillReportDetails(Report report)
@@ -506,26 +514,9 @@ namespace RadioStationReports
         {
             if (e.Button == MouseButtons.Right)
             {
-                var item = lvReports.GetItemAt(e.X, e.Y);
-                if (item == null)
-                {
-                    return;
-                }
-                var text = item.GetSubItemAt(e.X, e.Y).Text;
-                _textToCopy = string.IsNullOrEmpty(text) ? "" : text;
-                contextMenuStrip.Show(lvReports, new Point(e.X, e.Y), ToolStripDropDownDirection.BelowRight);
-            }
-        }
-
-        private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(_textToCopy))
-            {
-                Clipboard.SetText(_textToCopy);
-            }
-            else
-            {
-                Clipboard.Clear();
+                var menu = new ListViewMenu(lvReports);
+                menu.Show(new Point(e.X, e.Y));
+                return;
             }
         }
 
@@ -534,7 +525,7 @@ namespace RadioStationReports
             openFileDlg.Title = "Виберіть файл звіту";
             if (openFileDlg.ShowDialog() != DialogResult.OK)
             {
-                FillFilterRadioStations(); 
+                FillFilterRadioStations();
                 return;
             }
 
@@ -563,8 +554,8 @@ namespace RadioStationReports
                 formRegisterReport.ShowDialog();
                 //return form.ReportItemStatus;
 
- //               radioPreSearchManager = new RadioPreSearchManager(reportId);
-  //              radioPreSearchManager.AutoSearch();
+                //               radioPreSearchManager = new RadioPreSearchManager(reportId);
+                //              radioPreSearchManager.AutoSearch();
 
                 Helpers.RunSql(cmd =>
                 {
@@ -586,7 +577,7 @@ namespace RadioStationReports
                 lvReports.Focus();
                 FillFilterRadioStations();
 
-             }
+            }
             catch (Exception ex)
             {
                 Helpers.ShowError(ex.Message);
@@ -595,6 +586,12 @@ namespace RadioStationReports
             {
                 Cursor.Current = Cursors.WaitCursor;
             }
+        }
+
+        private void tbExtraFilter_TextChanged(object sender, EventArgs e)
+        {
+            FillLvReports(0);
+            FillReportDetails(null);
         }
     }
 }

@@ -60,24 +60,31 @@ namespace WidExport
         }
         private void UcWidSubmWorks_Load(object sender, EventArgs e)
         {
-            cbFilter.DisplayMember = "Description";
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = -1, Description = "<Всі>" }); 
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 8, Description = "Існували в WID" });
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 3, Description = "Узгоджені" });
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 2, Description = "Відкладені" });
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 4, Description = "Надіслані WID" });
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 5, Description = "Прийняті WID" });
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 7, Description = "Прийняті WID умовно" });
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 6, Description = "Відхилені WID" });
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 9, Description = "Надіслані повторно" });
-            cbFilter.Items.Add(new WidSubmGroupWorkStatus { Id = 10, Description = "Завершені" });
-            cbFilter.SelectedIndex = 0;
+            FillWorks();
 
-            cbResubmit.Items.Add("<Всі>");
-            cbResubmit.Items.Add("Не визначено");
-            cbResubmit.Items.Add("Так");
-            cbResubmit.Items.Add("Ні");
-            cbResubmit.SelectedIndex = 0;
+            cbFilterStatus.DisplayMember = "Description";
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = -1, Description = "<Всі>" }); 
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 8, Description = "Існували в WID" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 3, Description = "Узгоджені" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 2, Description = "Відкладені" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 4, Description = "Надіслані WID" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 5, Description = "Прийняті WID" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 7, Description = "Прийняті WID умовно" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 6, Description = "Відхилені WID" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 9, Description = "Надіслані повторно" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 10, Description = "Завершені" });
+            cbFilterStatus.SelectedIndex = 0;
+
+            cbFilterSubmit.Items.Add("<Всі>");
+            cbFilterSubmit.Items.Add("Не визначено");
+            cbFilterSubmit.Items.Add("Так");
+            cbFilterSubmit.Items.Add("Ні");
+            cbFilterSubmit.SelectedIndex = 0;
+
+            cbFilterSubmType.Items.Add("<Всі>");
+            cbFilterSubmType.Items.Add("Новий");
+            cbFilterSubmType.Items.Add("Зміна");
+            cbFilterSubmType.SelectedIndex = 0;
 
             lvWorks.Columns.Add("#", 40);
             lvWorks.Columns.Add("ObjId", 60);
@@ -90,7 +97,8 @@ namespace WidExport
             lvWorks.Columns.Add("Iswc для передачі", 100);
             lvWorks.Columns.Add("T/T", 40);
 
-            FillWorks();
+            btnApplyFilter.Enabled = false;
+            btnResetFilter.Enabled = false;
 
             ucWidSubmNames.ChangedEvent += UcWidSubmNames_ChangedEvent;
             ucWidSubmPerformers.ChangedEvent += UcWidSubmPerformers_ChangedEvent;
@@ -191,14 +199,8 @@ namespace WidExport
                     cmd.CommandText = @"spWidSubmGroupPartyWorkSelect";
                     cmd.Parameters.AddWithValue("@WidSubmGroupId", _group.Id);
                     cmd.Parameters.AddWithValue("@IpNameNr", _ipNameNr);
-                    if(cbFilter.SelectedIndex == 0)
-                    {
-                        cmd.Parameters.AddWithValue("@status", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@status", ((WidSubmGroupWorkStatus)cbFilter.SelectedItem).Id);
-                    }
+                    cmd.Parameters.AddWithValue("@status", DBNull.Value);
+
                     using (var r = cmd.ExecuteReader())
                     {
                         while (r.Read())
@@ -233,19 +235,62 @@ namespace WidExport
             }
         }
 
+        private bool CheckMeetsFilter(Work work)
+        {
+            var workStatus = (WidSubmGroupWorkStatus)cbFilterStatus.SelectedItem;
+            if(workStatus.Id > 0 &&  work.Status != workStatus.Id)
+            {
+                return false;
+            }
+
+            if (
+                cbFilterSubmit.SelectedIndex == 1 && work.ShouldSubmit != null ||
+                cbFilterSubmit.SelectedIndex == 2 && (work.ShouldSubmit == null || !(bool)work.ShouldSubmit) ||
+                cbFilterSubmit.SelectedIndex == 3 && (work.ShouldSubmit == null || (bool)work.ShouldSubmit)
+            )
+            {
+                return false;
+            }
+
+            if (
+                cbFilterSubmType.SelectedIndex == 1 && work.TransType != "A" ||
+                cbFilterSubmType.SelectedIndex == 2 && work.TransType != "U"
+            )
+            {
+                return false;
+            }
+
+            if (
+                tbFilterName.Text.Trim() != "" && !work.Name.ToUpper().Contains(tbFilterName.Text.ToUpper())
+            )
+            {
+                return false;
+            }
+
+            if (
+                tbFilterPerformer.Text.Trim() != "" && !work.Performer.ToUpper().Contains(tbFilterPerformer.Text.ToUpper())
+            )
+            {
+                return false;
+            }
+
+            if (
+                tbFilterObjId.Text.Trim() != "" && work.ObjId.ToString() != tbFilterObjId.Text.Trim()
+            )
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private void FillWorksView()
         {
             lvWorks.Items.Clear();
             var seqNr = 1;
             _works.ForEach(x =>
             {
-                if(
-                    !cbResubmit.Visible ||
-                    cbResubmit.SelectedIndex == 0 ||
-                    cbResubmit.SelectedIndex == 1 && x.ShouldSubmit == null ||
-                    cbResubmit.SelectedIndex == 2 && x.ShouldSubmit != null && (bool)x.ShouldSubmit ||
-                    cbResubmit.SelectedIndex == 3 && x.ShouldSubmit != null && !(bool)x.ShouldSubmit
-                )
+                if(CheckMeetsFilter(x))
                 {
                     var lvItem = lvWorks.Items.Add(seqNr.ToString());
                     lvItem.SubItems.Add(x.ObjId.ToString());
@@ -329,11 +374,6 @@ namespace WidExport
         {
             var work = GetCurrentWork();
 
-            labFilter.Visible = true;
-            cbFilter.Visible = _group.Status != WidSubmGroupStatus.Closed;
-            labResubmit.Visible = _group.Status != WidSubmGroupStatus.Closed;
-            cbResubmit.Visible = _group.Status != WidSubmGroupStatus.Closed;
-
             labStatus.Visible = _group.Status != WidSubmGroupStatus.Closed && work != null;
             labStatus.ForeColor = ucWidSubmWorkCheckList.HasErrors() ? Color.DarkRed : Color.DarkGreen;
             labStatus.Text = ucWidSubmWorkCheckList.HasErrors() ? "Публікація в WID неможлива" : "Готовий до публікації в WID";
@@ -408,6 +448,17 @@ namespace WidExport
             tabMwInfo.Visible = setVisible;
         }
 
+        private void ResetFilter()
+        {
+            cbFilterStatus.SelectedIndex = 0;
+            cbFilterSubmit.SelectedIndex = 0;
+            cbFilterSubmType.SelectedIndex = 0;
+            tbFilterName.Text = "";
+            tbFilterPerformer.Text = "";
+            tbFilterObjId.Text = "";
+
+        }
+
         private void mnuProcess_Click(object sender, EventArgs e)
         {
             SetStatus(WidSubmGroupWorkStatusEnum.InWork);
@@ -443,13 +494,45 @@ namespace WidExport
             UpdateControls();
         }
 
-        private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnFilterChanged()
         {
-            FillWorks();
+            btnApplyFilter.Enabled = true;
+            btnResetFilter.Enabled = true;
+            lvWorks.Items.Clear();
             SetWorkDetailsVisble(false);
         }
 
-        private void ReSubmit_Click(object sender, EventArgs e)
+        private void cbFilterStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OnFilterChanged();
+        }
+
+        private void cbResubmit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OnFilterChanged();
+        }
+
+        private void cbFilterSubmType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OnFilterChanged();
+        }
+
+        private void tbFilterName_TextChanged(object sender, EventArgs e)
+        {
+            OnFilterChanged();
+        }
+
+        private void tbFilterPerformer_TextChanged(object sender, EventArgs e)
+        {
+            OnFilterChanged();
+        }
+
+        private void tbFilterObjId_TextChanged(object sender, EventArgs e)
+        {
+            OnFilterChanged();
+        }
+
+       private void ReSubmit_Click(object sender, EventArgs e)
         {
             if (lvWorks.SelectedItems.Count == 0)
             {
@@ -610,10 +693,6 @@ namespace WidExport
             UpdateFromMs(work);
         }
 
-        private void cbResubmit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FillWorksView();
-        }
 
         private void SearchWid_Click(object sender, EventArgs e)
         {
@@ -776,5 +855,24 @@ namespace WidExport
 
             UpdateAllFromMs();
         }
+
+        private void btnApplyFilter_Click(object sender, EventArgs e)
+        {
+            btnApplyFilter.Enabled = false;
+            btnResetFilter.Enabled = true;
+            FillWorksView();
+            SetWorkDetailsVisble(false);
+        }
+
+        private void btnResetFilter_Click(object sender, EventArgs e)
+        {
+
+            ResetFilter();
+            FillWorksView();
+            SetWorkDetailsVisble(false);
+            btnApplyFilter.Enabled = false;
+            btnResetFilter.Enabled = false;       
+        }
+
     }
 }
