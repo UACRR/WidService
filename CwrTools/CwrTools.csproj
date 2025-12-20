@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +51,7 @@
     <Compile Include="BulkUploadToSql.cs" />
     <Compile Include="CwrConfig.cs" />
     <Compile Include="CwrFileReader.cs" />
+    <Compile Include="CwrFileSplitter.cs" />
     <Compile Include="CwrFileWriter.cs" />
     <Compile Include="Entities\BaseRec.cs" />
     <Compile Include="Entities\CwrFile.cs" />

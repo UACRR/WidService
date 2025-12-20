@@ -201,6 +201,10 @@ namespace CwrTools
                 Cursor = Cursors.Default;
 
                 LoadData();
+
+                var fs = new CwrFileSplitter(fileFullName, 10000);
+                fs.SplitFile();
+
                 RefreshData();
             }
             catch(Exception ex)

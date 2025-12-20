@@ -287,17 +287,17 @@ namespace WidUpdatesLib.UpdRecs
 
         public void RegisterAffectedRecords(string recType, int? wic)
         {
-            cmd.CommandText = "if not exists (select null from SocWidUpdates..WrkAffectedRecords where EntityName = @EntityName and Wic = @Wic)" +
-                "insert SocWidUpdates..WrkAffectedRecords (EntityName, wic) values(@EntityName, @Wic)";
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@EntityName", recType);
-            cmd.Parameters.AddWithValue("@Wic", wic);
-            cmd.ExecuteNonQuery();
+            //cmd.CommandText = "if not exists (select null from SocWidUpdates..WrkAffectedRecords where EntityName = @EntityName and Wic = @Wic)" +
+            //    "insert SocWidUpdates..WrkAffectedRecords (EntityName, wic) values(@EntityName, @Wic)";
+            //cmd.Parameters.Clear();
+            //cmd.Parameters.AddWithValue("@EntityName", recType);
+            //cmd.Parameters.AddWithValue("@Wic", wic);
+            //cmd.ExecuteNonQuery();
         }
 
         public void RegisterAffectedRecords()
         {
-            RegisterAffectedRecords(info.name, updWic);
+            //RegisterAffectedRecords(info.name, updWic);
         }
 
         protected void AddTsAllParamValues(SqlCommand cmd)
