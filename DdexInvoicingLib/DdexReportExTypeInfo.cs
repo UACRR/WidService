@@ -24,6 +24,7 @@ namespace InvoicingLib
             SPOTIFY_PREMIUM,
             DEEZER_ALL,
             TIKTOK,
+            META,
         }
 
         public enum AgreementParamEnum
@@ -55,6 +56,7 @@ namespace InvoicingLib
             SPOTIFY,
             DEEZER,
             TIKTOK,
+            META,
         }
 
         public enum FileTypeEnum
@@ -321,6 +323,25 @@ namespace InvoicingLib
             },
             new ReportTypeInfo
             {
+                ReportType              = ReportTypeEnum.META,
+                Name                    = "meta",
+                IsMonthly               = false,
+                FileNameWildcard        = "DSR__PADPIDA2013071501L_UGC-Ad-Revenue_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.META,
+                NeedsExchRate           = false,
+                FileMayHaveErrors       = false,
+                RequiredParams          = new HashSet<AgreementParamEnum>
+                {
+                    AgreementParamEnum.MUSICRATE,
+                    AgreementParamEnum.MECHSPLIT,
+                    AgreementParamEnum.PERFSPLIT,
+                    AgreementParamEnum.ROYALTYTHRESHOLD,
+                },
+                GetReportingPeriodInfo  = GetMetaDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
+            },
+            new ReportTypeInfo
+            {
                 ReportType              = ReportTypeEnum.DEEZER_ALL,
                 Name                    = "deezer-all",
                 IsMonthly               = false,
@@ -379,6 +400,7 @@ namespace InvoicingLib
             { "spotify-premium",        ReportTypeEnum.SPOTIFY_PREMIUM},
             { "deezer-all",             ReportTypeEnum.DEEZER_ALL},
             { "tiktok",                 ReportTypeEnum.TIKTOK},
+            { "meta",                   ReportTypeEnum.META},
         };
 
         public static Dictionary<DigitalServiceProviderEnum, Dictionary<string, ReportTypeEnum>> DspFileReportTypes =
@@ -410,6 +432,7 @@ namespace InvoicingLib
             { "spotify", DigitalServiceProviderEnum.SPOTIFY},
             { "deezer", DigitalServiceProviderEnum.DEEZER},
             { "tiktok", DigitalServiceProviderEnum.TIKTOK},
+            { "facebook", DigitalServiceProviderEnum.META},
         };
 
         public static Dictionary<AgreementParamEnum, AgreementParam> AgreementParams =
@@ -857,6 +880,19 @@ namespace InvoicingLib
             };
         }
 
+        public static ReportingPeriodInfo GetMetaDsrReportingPeriodInfo(string fullFileName)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(fullFileName);
+            var periodPart = fileName.Split('_')[4];
+            var dateParts = periodPart.Split('-');
+            return new ReportingPeriodInfo
+            {
+                Year = int.Parse(dateParts[0]),
+                Quarter = (int.Parse(dateParts[1]) + 2) / 3,
+                Month = null,
+            };
+        }
+
         public static ReportingPeriodInfo GetDeezerDsrReportingPeriodInfo(string fullFileName)
         {
             var fileName = Path.GetFileNameWithoutExtension(fullFileName);
@@ -1081,11 +1117,18 @@ namespace InvoicingLib
             return reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK;
         }
 
+        public static bool IsMetaType(string agreementReportType)
+        {
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return reportTypeInfo.ReportType == ReportTypeEnum.META;
+        }
+
         public static bool IsMultiFile(string agreementReportType)
         {
             var reportTypeInfo = GetReportTypeInfo(agreementReportType);
             return reportTypeInfo.ReportType == ReportTypeEnum.DEEZER_ALL ||
-                reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK;
+                reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK ||
+                reportTypeInfo.ReportType == ReportTypeEnum.META;
         }
 
         public static bool IsMultiFile(SqlCommand cmd, int ddexReportId)
@@ -1093,12 +1136,44 @@ namespace InvoicingLib
             var agreementReportType = GetAgreementReportType(cmd, ddexReportId);
             var reportTypeInfo = GetReportTypeInfo(agreementReportType);
             return reportTypeInfo.ReportType == ReportTypeEnum.DEEZER_ALL ||
-                reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK;
+                reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK ||
+                reportTypeInfo.ReportType == ReportTypeEnum.META;
+        }
+
+        public static bool IsMultiTerr(string agreementReportType)
+        {
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return
+                reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK ||
+                reportTypeInfo.ReportType == ReportTypeEnum.META;
+        }
+
+        public static bool IsMultiTerr(SqlCommand cmd, int ddexReportId)
+        {
+            var agreementReportType = GetAgreementReportType(cmd, ddexReportId);
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return
+                reportTypeInfo.ReportType == ReportTypeEnum.TIKTOK ||
+                reportTypeInfo.ReportType == ReportTypeEnum.META;
+        }
+
+        public static bool IsMultiService(string agreementReportType)
+        {
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return reportTypeInfo.ReportType == ReportTypeEnum.DEEZER_ALL;
+        }
+
+        public static bool IsMultiService(SqlCommand cmd, int ddexReportId)
+        {
+            var agreementReportType = GetAgreementReportType(cmd, ddexReportId);
+            var reportTypeInfo = GetReportTypeInfo(agreementReportType);
+            return reportTypeInfo.ReportType == ReportTypeEnum.DEEZER_ALL;
         }
 
         public static List<string> GetServiceNames(string agreementReportType)
         {
-            return GetReportTypeInfo(agreementReportType).ServiceNames;
+            var art = GetReportTypeInfo(agreementReportType);
+            return art.ServiceNames;
         }
 
         public static string GetFileNameWildcardForService(string agreementReportType, string serviceName)

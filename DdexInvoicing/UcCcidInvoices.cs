@@ -206,6 +206,9 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.TIKTOK:
                         cmd.CommandText = "spCreateInitialInvoiceTikTok";
                         break;
+                    case DdexReport.ReportTypeEnum.META:
+                        cmd.CommandText = "spCreateInitialInvoiceMeta";
+                        break;
                 }
 
                 cmd.Parameters.Clear();
@@ -226,6 +229,7 @@ namespace DdexInvoicing
                         break;
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
                     case DdexReport.ReportTypeEnum.TIKTOK:
+                    case DdexReport.ReportTypeEnum.META:
                         cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@leadingFileId", fileId); break;
                 }
@@ -495,6 +499,10 @@ namespace DdexInvoicing
                         {
                             cmd.CommandText = "dbo.spDdexUpdateIndentBacklogSharesTiktok";
                         }
+                        else if(agreementReportType == DdexReport.ReportTypeEnum.META)
+                        {
+                            cmd.CommandText = "dbo.spDdexUpdateIndentBacklogSharesMeta";
+                        }
                         else
                         {
                             cmd.CommandText = "dbo.spDdexUpdateIndentBacklogShares";
@@ -689,7 +697,7 @@ namespace DdexInvoicing
                 MessageBox.Show("Не визначені обмеження на виставлення рахунку", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-       
+            
             if(CalcMarketShare() == 0)
             {
                 return;
@@ -725,6 +733,9 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.TIKTOK:
                         cmd.CommandText = "spCreateInitialInvoiceTiktok";
                         break;
+                    case DdexReport.ReportTypeEnum.META:
+                        cmd.CommandText = "spCreateInitialInvoiceMeta";
+                        break;
                 }
 
                 cmd.Parameters.Clear();
@@ -747,10 +758,14 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.TIKTOK:
                         cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@leadingFileId", DBNull.Value); break;
+                    case DdexReport.ReportTypeEnum.META:
+                        cmd.Parameters.AddWithValue("@leadingDdexReportId", ddexReportId);
+                        cmd.Parameters.AddWithValue("@leadingFileId", DBNull.Value); break;
                 }
                 cmd.ExecuteNonQuery();
 
-                if(agreementReportTypeEnum == DdexReport.ReportTypeEnum.TIKTOK)
+                if(agreementReportTypeEnum == DdexReport.ReportTypeEnum.TIKTOK ||
+                    agreementReportTypeEnum == DdexReport.ReportTypeEnum.META)
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = @"

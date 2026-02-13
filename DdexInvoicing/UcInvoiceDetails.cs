@@ -182,7 +182,10 @@ namespace DdexInvoicing
                 var leadingDdexReportId = (int)cmd.ExecuteScalar();
 
                 var agreementReportType = DdexReport.GetAgreementReportType(cmd, leadingDdexReportId);
-                if(agreementReportType == DdexReport.ReportTypeEnum.TIKTOK)
+                if(
+                    agreementReportType == DdexReport.ReportTypeEnum.TIKTOK ||
+                    agreementReportType == DdexReport.ReportTypeEnum.META
+                )
                 {
                     cmd.CommandText = @"
                         select distinct

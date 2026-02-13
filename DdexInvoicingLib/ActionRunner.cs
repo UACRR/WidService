@@ -90,6 +90,32 @@ namespace InvoicingLib
                                     .ProcessFiles(new DdexReportActionLoadIdentDataTiktok());
                         }
                         break;
+                    case DdexReport.DigitalServiceProviderEnum.META:
+                        {
+                            // For multifile reports DdexReportId corresppnds to the first file of group
+                            // Need to iterate over all reports starting from the report that is not loaded completely
+                            // Process the base file last as its status is used as the status of all group
+                            var ddexReportIds = DdexReport.GetAgreementNotLoadedReportIds(DdexReportId);
+                            ddexReportIds.Where(x => x != DdexReportId).ToList().ForEach(x =>
+                            {
+                                new DdexReport(ConnectionString, x)
+                                    .ProcessFiles(new DdexReportActionLoadIdentDataMeta());
+                                Helpers.RunSqlOperationDdex(cmd =>
+                                {
+                                    cmd.CommandText = $@"
+                                    update DdexReport
+                                    set Status = @status 
+                                    where id = @ddexReportId";
+                                    cmd.Parameters.Clear();
+                                    cmd.Parameters.AddWithValue("@ddexReportId", x);
+                                    cmd.Parameters.AddWithValue("@status", Meta.DdexReportStatus.MERGE_MUSIC_WORKS);
+                                    cmd.ExecuteNonQuery();
+                                });
+                            });
+                            new DdexReport(ConnectionString, DdexReportId)
+                                    .ProcessFiles(new DdexReportActionLoadIdentDataMeta());
+                        }
+                        break;
                     case DdexReport.DigitalServiceProviderEnum.DEEZER:
                         {
                             // For multifile reports DdexReportId corresppnds to the first file of group

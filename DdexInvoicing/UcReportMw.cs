@@ -55,6 +55,8 @@ namespace DdexInvoicing
 
         public event EventHandler<RowChangedEventArgs> RowChangedEvent;
 
+        private FormReportVsFoundWork _formReportVsFoundWork;
+
         public UcReportMw()
         {
             InitializeComponent();
@@ -393,6 +395,12 @@ namespace DdexInvoicing
                     Performers = rec.Performers,
                     Iswc = rec.Iswc,
                 };
+
+                if(_formReportVsFoundWork != null)
+                {
+                    _formReportVsFoundWork.SetWork(rec.Id);
+                }
+
                 rowChangedEvent(sender, rowChangedEventArgs);
             }
         }
@@ -402,6 +410,38 @@ namespace DdexInvoicing
             var form = new FormAutoSearch(_ddexReportId);
             form.ShowDialog();
             ApplyFilter();
+        }
+
+        private void chkShowFormReportVsFoundWork_ToggleStateChanged(object sender, StateChangedEventArgs args)
+        {
+            if (args.ToggleState == Telerik.WinControls.Enumerations.ToggleState.On) 
+            {
+                var rec = (ReportRecordEntry)radGridSales.CurrentRow.DataBoundItem;
+                _formReportVsFoundWork = new FormReportVsFoundWork();
+                _formReportVsFoundWork.SetWork(rec.Id);
+                _formReportVsFoundWork.Show(this);
+            }
+            else
+            {
+                _formReportVsFoundWork.Close();
+                _formReportVsFoundWork = null;
+            }
+        }
+
+        private void UcReportMw_Enter(object sender, EventArgs e)
+        {
+            if(_formReportVsFoundWork != null)
+            {
+                _formReportVsFoundWork.Visible = true;
+            }
+        }
+
+        private void UcReportMw_Leave(object sender, EventArgs e)
+        {
+            if(_formReportVsFoundWork != null)
+            {
+                _formReportVsFoundWork.Visible = false;
+            }
         }
     }
 }

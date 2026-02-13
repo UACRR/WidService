@@ -76,6 +76,7 @@
     <Compile Include="DdexReportActionLoadAdjAvod.cs" />
     <Compile Include="DdexReportActionLoadAdjSvod.cs" />
     <Compile Include="DdexReportActionLoadIdentDataDeezer.cs" />
+    <Compile Include="DdexReportActionLoadIdentDataMeta.cs" />
     <Compile Include="DdexReportActionLoadIdentDataTiktok.cs" />
     <Compile Include="DdexReportActionLoadIdentDataSrmf.cs" />
     <Compile Include="DdexReportActionLoadIdentDataSpotify.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="DdexReportActionRegisterErrorsSkip.cs" />
     <Compile Include="DdexReportActionRegisterErrorsYouTube.cs" />
     <Compile Include="DdexReportBlockDeezer.cs" />
+    <Compile Include="DdexReportBlockMeta.cs" />
     <Compile Include="DdexReportBlockTiktok.cs" />
     <Compile Include="DdexReportBlockSrmf.cs" />
     <Compile Include="DdexReportBlockSpotify.cs" />

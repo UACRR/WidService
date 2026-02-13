@@ -29,44 +29,46 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewImageColumn gridViewImageColumn1 = new Telerik.WinControls.UI.GridViewImageColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn41 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn42 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn43 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn44 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn45 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn46 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn47 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn48 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn6 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewImageColumn gridViewImageColumn6 = new Telerik.WinControls.UI.GridViewImageColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn11 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn12 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcReportMw));
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.radGridSales = new Telerik.WinControls.UI.RadGridView();
-            this.panelTop = new System.Windows.Forms.TableLayoutPanel();
-            this.panelFilter = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ddbBlock = new Telerik.WinControls.UI.RadDropDownButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ddbStatus = new Telerik.WinControls.UI.RadDropDownButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.ddbSort = new Telerik.WinControls.UI.RadDropDownButton();
-            this.btnApplyFilter = new Telerik.WinControls.UI.RadButton();
-            this.radBtnAutoSearch = new Telerik.WinControls.UI.RadButton();
             this.ilExpandCollapse = new System.Windows.Forms.ImageList(this.components);
             this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
+            this.radBtnAutoSearch = new Telerik.WinControls.UI.RadButton();
+            this.btnApplyFilter = new Telerik.WinControls.UI.RadButton();
+            this.panelFilter = new System.Windows.Forms.FlowLayoutPanel();
+            this.ddbSort = new Telerik.WinControls.UI.RadDropDownButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ddbStatus = new Telerik.WinControls.UI.RadDropDownButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ddbBlock = new Telerik.WinControls.UI.RadDropDownButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelTop = new System.Windows.Forms.TableLayoutPanel();
+            this.chkShowFormReportVsFoundWork = new Telerik.WinControls.UI.RadCheckBox();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridSales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridSales.MasterTemplate)).BeginInit();
-            this.panelTop.SuspendLayout();
-            this.panelFilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddbBlock)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddbStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddbSort)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnApplyFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAutoSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnApplyFilter)).BeginInit();
+            this.panelFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbSort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbBlock)).BeginInit();
+            this.panelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkShowFormReportVsFoundWork)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -101,99 +103,99 @@
             this.radGridSales.MasterTemplate.AllowAddNewRow = false;
             this.radGridSales.MasterTemplate.AllowColumnReorder = false;
             this.radGridSales.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Id";
-            gridViewTextBoxColumn1.HeaderText = "Id";
-            gridViewTextBoxColumn1.Name = "Id";
-            gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            gridViewTextBoxColumn1.Width = 95;
-            gridViewTextBoxColumn2.EnableExpressionEditor = false;
-            gridViewTextBoxColumn2.FieldName = "ResourceTitle";
-            gridViewTextBoxColumn2.HeaderText = "Назва запису";
-            gridViewTextBoxColumn2.Multiline = true;
-            gridViewTextBoxColumn2.Name = "ResourceTitle";
-            gridViewTextBoxColumn2.Width = 235;
-            gridViewTextBoxColumn2.WrapText = true;
-            gridViewTextBoxColumn3.EnableExpressionEditor = false;
-            gridViewTextBoxColumn3.FieldName = "Title";
-            gridViewTextBoxColumn3.HeaderText = "Назва твору";
-            gridViewTextBoxColumn3.Multiline = true;
-            gridViewTextBoxColumn3.Name = "Title";
-            gridViewTextBoxColumn3.Width = 235;
-            gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.EnableExpressionEditor = false;
-            gridViewTextBoxColumn4.FieldName = "Authors";
-            gridViewTextBoxColumn4.HeaderText = "Автор(и)";
-            gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "Authors";
-            gridViewTextBoxColumn4.Width = 235;
-            gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.EnableExpressionEditor = false;
-            gridViewTextBoxColumn5.FieldName = "Performers";
-            gridViewTextBoxColumn5.HeaderText = "Виконавець";
-            gridViewTextBoxColumn5.Multiline = true;
-            gridViewTextBoxColumn5.Name = "Performers";
-            gridViewTextBoxColumn5.Width = 184;
-            gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.AllowResize = false;
-            gridViewTextBoxColumn6.FieldName = "ISWC";
-            gridViewTextBoxColumn6.HeaderText = "ISWC";
-            gridViewTextBoxColumn6.Name = "ISWC";
-            gridViewTextBoxColumn6.Width = 84;
-            gridViewTextBoxColumn7.AllowResize = false;
-            gridViewTextBoxColumn7.EnableExpressionEditor = false;
-            gridViewTextBoxColumn7.FieldName = "netrevenue";
-            gridViewTextBoxColumn7.FormatString = "{0:### ### ### ##0.00}";
-            gridViewTextBoxColumn7.HeaderText = "Прибуток";
-            gridViewTextBoxColumn7.Name = "netrevenue";
-            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn7.Width = 80;
-            gridViewTextBoxColumn7.WrapText = true;
-            gridViewTextBoxColumn8.AllowResize = false;
-            gridViewTextBoxColumn8.EnableExpressionEditor = false;
-            gridViewTextBoxColumn8.FieldName = "Wic";
-            gridViewTextBoxColumn8.HeaderText = "Wic";
-            gridViewTextBoxColumn8.Name = "Wic";
-            gridViewTextBoxColumn8.Width = 73;
-            gridViewTextBoxColumn8.WrapText = true;
-            gridViewComboBoxColumn1.AllowResize = false;
-            gridViewComboBoxColumn1.EnableExpressionEditor = false;
-            gridViewComboBoxColumn1.FieldName = "ObjId";
-            gridViewComboBoxColumn1.HeaderText = "ObjId";
-            gridViewComboBoxColumn1.Name = "ObjId";
-            gridViewComboBoxColumn1.Width = 54;
-            gridViewComboBoxColumn1.WrapText = true;
-            gridViewImageColumn1.AllowResize = false;
-            gridViewImageColumn1.HeaderText = "Статус";
-            gridViewImageColumn1.Name = "Status";
-            gridViewImageColumn1.Width = 51;
-            gridViewCommandColumn1.AllowResize = false;
-            gridViewCommandColumn1.FieldName = "Reject";
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Name = "Reject";
-            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.Width = 70;
-            gridViewCommandColumn2.AllowResize = false;
-            gridViewCommandColumn2.FieldName = "Postpone";
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Name = "Postpone";
-            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn2.Width = 70;
+            gridViewTextBoxColumn41.FieldName = "Id";
+            gridViewTextBoxColumn41.HeaderText = "Id";
+            gridViewTextBoxColumn41.Name = "Id";
+            gridViewTextBoxColumn41.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn41.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            gridViewTextBoxColumn41.Width = 95;
+            gridViewTextBoxColumn42.EnableExpressionEditor = false;
+            gridViewTextBoxColumn42.FieldName = "ResourceTitle";
+            gridViewTextBoxColumn42.HeaderText = "Назва запису";
+            gridViewTextBoxColumn42.Multiline = true;
+            gridViewTextBoxColumn42.Name = "ResourceTitle";
+            gridViewTextBoxColumn42.Width = 235;
+            gridViewTextBoxColumn42.WrapText = true;
+            gridViewTextBoxColumn43.EnableExpressionEditor = false;
+            gridViewTextBoxColumn43.FieldName = "Title";
+            gridViewTextBoxColumn43.HeaderText = "Назва твору";
+            gridViewTextBoxColumn43.Multiline = true;
+            gridViewTextBoxColumn43.Name = "Title";
+            gridViewTextBoxColumn43.Width = 235;
+            gridViewTextBoxColumn43.WrapText = true;
+            gridViewTextBoxColumn44.EnableExpressionEditor = false;
+            gridViewTextBoxColumn44.FieldName = "Authors";
+            gridViewTextBoxColumn44.HeaderText = "Автор(и)";
+            gridViewTextBoxColumn44.Multiline = true;
+            gridViewTextBoxColumn44.Name = "Authors";
+            gridViewTextBoxColumn44.Width = 235;
+            gridViewTextBoxColumn44.WrapText = true;
+            gridViewTextBoxColumn45.EnableExpressionEditor = false;
+            gridViewTextBoxColumn45.FieldName = "Performers";
+            gridViewTextBoxColumn45.HeaderText = "Виконавець";
+            gridViewTextBoxColumn45.Multiline = true;
+            gridViewTextBoxColumn45.Name = "Performers";
+            gridViewTextBoxColumn45.Width = 184;
+            gridViewTextBoxColumn45.WrapText = true;
+            gridViewTextBoxColumn46.AllowResize = false;
+            gridViewTextBoxColumn46.FieldName = "ISWC";
+            gridViewTextBoxColumn46.HeaderText = "ISWC";
+            gridViewTextBoxColumn46.Name = "ISWC";
+            gridViewTextBoxColumn46.Width = 84;
+            gridViewTextBoxColumn47.AllowResize = false;
+            gridViewTextBoxColumn47.EnableExpressionEditor = false;
+            gridViewTextBoxColumn47.FieldName = "netrevenue";
+            gridViewTextBoxColumn47.FormatString = "{0:### ### ### ##0.00}";
+            gridViewTextBoxColumn47.HeaderText = "Прибуток";
+            gridViewTextBoxColumn47.Name = "netrevenue";
+            gridViewTextBoxColumn47.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewTextBoxColumn47.Width = 80;
+            gridViewTextBoxColumn47.WrapText = true;
+            gridViewTextBoxColumn48.AllowResize = false;
+            gridViewTextBoxColumn48.EnableExpressionEditor = false;
+            gridViewTextBoxColumn48.FieldName = "Wic";
+            gridViewTextBoxColumn48.HeaderText = "Wic";
+            gridViewTextBoxColumn48.Name = "Wic";
+            gridViewTextBoxColumn48.Width = 73;
+            gridViewTextBoxColumn48.WrapText = true;
+            gridViewComboBoxColumn6.AllowResize = false;
+            gridViewComboBoxColumn6.EnableExpressionEditor = false;
+            gridViewComboBoxColumn6.FieldName = "ObjId";
+            gridViewComboBoxColumn6.HeaderText = "ObjId";
+            gridViewComboBoxColumn6.Name = "ObjId";
+            gridViewComboBoxColumn6.Width = 54;
+            gridViewComboBoxColumn6.WrapText = true;
+            gridViewImageColumn6.AllowResize = false;
+            gridViewImageColumn6.HeaderText = "Статус";
+            gridViewImageColumn6.Name = "Status";
+            gridViewImageColumn6.Width = 51;
+            gridViewCommandColumn11.AllowResize = false;
+            gridViewCommandColumn11.FieldName = "Reject";
+            gridViewCommandColumn11.HeaderText = "";
+            gridViewCommandColumn11.Name = "Reject";
+            gridViewCommandColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn11.Width = 70;
+            gridViewCommandColumn12.AllowResize = false;
+            gridViewCommandColumn12.FieldName = "Postpone";
+            gridViewCommandColumn12.HeaderText = "";
+            gridViewCommandColumn12.Name = "Postpone";
+            gridViewCommandColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn12.Width = 70;
             this.radGridSales.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewComboBoxColumn1,
-            gridViewImageColumn1,
-            gridViewCommandColumn1,
-            gridViewCommandColumn2});
+            gridViewTextBoxColumn41,
+            gridViewTextBoxColumn42,
+            gridViewTextBoxColumn43,
+            gridViewTextBoxColumn44,
+            gridViewTextBoxColumn45,
+            gridViewTextBoxColumn46,
+            gridViewTextBoxColumn47,
+            gridViewTextBoxColumn48,
+            gridViewComboBoxColumn6,
+            gridViewImageColumn6,
+            gridViewCommandColumn11,
+            gridViewCommandColumn12});
             this.radGridSales.MasterTemplate.EnableSorting = false;
-            this.radGridSales.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridSales.MasterTemplate.ViewDefinition = tableViewDefinition6;
             this.radGridSales.Name = "radGridSales";
             this.radGridSales.ReadOnly = true;
             this.radGridSales.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -202,118 +204,6 @@
             this.radGridSales.TabIndex = 5;
             this.radGridSales.SelectionChanged += new System.EventHandler(this.radGridSales_SelectionChanged);
             this.radGridSales.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridSales_CellClick);
-            // 
-            // panelTop
-            // 
-            this.panelTop.AutoSize = true;
-            this.panelTop.ColumnCount = 3;
-            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 621F));
-            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 692F));
-            this.panelTop.Controls.Add(this.panelFilter, 0, 0);
-            this.panelTop.Controls.Add(this.btnApplyFilter, 1, 0);
-            this.panelTop.Controls.Add(this.radBtnAutoSearch, 2, 0);
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(3, 3);
-            this.panelTop.Name = "panelTop";
-            this.panelTop.RowCount = 1;
-            this.panelTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelTop.Size = new System.Drawing.Size(1476, 34);
-            this.panelTop.TabIndex = 7;
-            // 
-            // panelFilter
-            // 
-            this.panelFilter.Controls.Add(this.label1);
-            this.panelFilter.Controls.Add(this.ddbBlock);
-            this.panelFilter.Controls.Add(this.label2);
-            this.panelFilter.Controls.Add(this.ddbStatus);
-            this.panelFilter.Controls.Add(this.label3);
-            this.panelFilter.Controls.Add(this.ddbSort);
-            this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFilter.Location = new System.Drawing.Point(3, 3);
-            this.panelFilter.Name = "panelFilter";
-            this.panelFilter.Size = new System.Drawing.Size(615, 28);
-            this.panelFilter.TabIndex = 6;
-            this.panelFilter.WrapContents = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label1.Size = new System.Drawing.Size(129, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Показати твори з блоку";
-            // 
-            // ddbBlock
-            // 
-            this.ddbBlock.AutoSize = true;
-            this.ddbBlock.Location = new System.Drawing.Point(132, 3);
-            this.ddbBlock.Name = "ddbBlock";
-            this.ddbBlock.Size = new System.Drawing.Size(61, 20);
-            this.ddbBlock.TabIndex = 1;
-            this.ddbBlock.Text = "1 - 1000";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(196, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label2.Size = new System.Drawing.Size(61, 19);
-            this.label2.TabIndex = 0;
-            this.label2.Text = ", включити";
-            // 
-            // ddbStatus
-            // 
-            this.ddbStatus.AutoSize = true;
-            this.ddbStatus.Location = new System.Drawing.Point(260, 3);
-            this.ddbStatus.Name = "ddbStatus";
-            this.ddbStatus.Size = new System.Drawing.Size(37, 20);
-            this.ddbStatus.TabIndex = 1;
-            this.ddbStatus.Text = "всі ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(300, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label3.Size = new System.Drawing.Size(89, 19);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "твори в порядку";
-            // 
-            // ddbSort
-            // 
-            this.ddbSort.AutoSize = true;
-            this.ddbSort.Location = new System.Drawing.Point(392, 3);
-            this.ddbSort.Name = "ddbSort";
-            this.ddbSort.Size = new System.Drawing.Size(90, 20);
-            this.ddbSort.TabIndex = 1;
-            this.ddbSort.Text = "прибутковісті";
-            // 
-            // btnApplyFilter
-            // 
-            this.btnApplyFilter.Location = new System.Drawing.Point(624, 3);
-            this.btnApplyFilter.Name = "btnApplyFilter";
-            this.btnApplyFilter.Size = new System.Drawing.Size(89, 28);
-            this.btnApplyFilter.TabIndex = 7;
-            this.btnApplyFilter.Text = "Завантажити";
-            this.btnApplyFilter.Visible = false;
-            this.btnApplyFilter.Click += new System.EventHandler(this.btnApplyFilter_Click);
-            // 
-            // radBtnAutoSearch
-            // 
-            this.radBtnAutoSearch.Location = new System.Drawing.Point(726, 3);
-            this.radBtnAutoSearch.Name = "radBtnAutoSearch";
-            this.radBtnAutoSearch.Size = new System.Drawing.Size(136, 28);
-            this.radBtnAutoSearch.TabIndex = 7;
-            this.radBtnAutoSearch.Text = "Шукати автоматично";
-            this.radBtnAutoSearch.Click += new System.EventHandler(this.radBtnAutoSearch_Click);
             // 
             // ilExpandCollapse
             // 
@@ -330,6 +220,131 @@
             this.ilStatuses.Images.SetKeyName(1, "green-checkmark-line-icon.png");
             this.ilStatuses.Images.SetKeyName(2, "question-mark-round-line-icon.png");
             // 
+            // radBtnAutoSearch
+            // 
+            this.radBtnAutoSearch.Location = new System.Drawing.Point(726, 3);
+            this.radBtnAutoSearch.Name = "radBtnAutoSearch";
+            this.radBtnAutoSearch.Size = new System.Drawing.Size(136, 28);
+            this.radBtnAutoSearch.TabIndex = 7;
+            this.radBtnAutoSearch.Text = "Шукати автоматично";
+            this.radBtnAutoSearch.Click += new System.EventHandler(this.radBtnAutoSearch_Click);
+            // 
+            // btnApplyFilter
+            // 
+            this.btnApplyFilter.Location = new System.Drawing.Point(624, 3);
+            this.btnApplyFilter.Name = "btnApplyFilter";
+            this.btnApplyFilter.Size = new System.Drawing.Size(89, 28);
+            this.btnApplyFilter.TabIndex = 7;
+            this.btnApplyFilter.Text = "Завантажити";
+            this.btnApplyFilter.Visible = false;
+            this.btnApplyFilter.Click += new System.EventHandler(this.btnApplyFilter_Click);
+            // 
+            // panelFilter
+            // 
+            this.panelFilter.Controls.Add(this.label1);
+            this.panelFilter.Controls.Add(this.ddbBlock);
+            this.panelFilter.Controls.Add(this.label2);
+            this.panelFilter.Controls.Add(this.ddbStatus);
+            this.panelFilter.Controls.Add(this.label3);
+            this.panelFilter.Controls.Add(this.ddbSort);
+            this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFilter.Location = new System.Drawing.Point(3, 3);
+            this.panelFilter.Name = "panelFilter";
+            this.panelFilter.Size = new System.Drawing.Size(615, 28);
+            this.panelFilter.TabIndex = 6;
+            this.panelFilter.WrapContents = false;
+            // 
+            // ddbSort
+            // 
+            this.ddbSort.AutoSize = true;
+            this.ddbSort.Location = new System.Drawing.Point(392, 3);
+            this.ddbSort.Name = "ddbSort";
+            this.ddbSort.Size = new System.Drawing.Size(90, 20);
+            this.ddbSort.TabIndex = 1;
+            this.ddbSort.Text = "прибутковісті";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(300, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label3.Size = new System.Drawing.Size(89, 19);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "твори в порядку";
+            // 
+            // ddbStatus
+            // 
+            this.ddbStatus.AutoSize = true;
+            this.ddbStatus.Location = new System.Drawing.Point(260, 3);
+            this.ddbStatus.Name = "ddbStatus";
+            this.ddbStatus.Size = new System.Drawing.Size(37, 20);
+            this.ddbStatus.TabIndex = 1;
+            this.ddbStatus.Text = "всі ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(196, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label2.Size = new System.Drawing.Size(61, 19);
+            this.label2.TabIndex = 0;
+            this.label2.Text = ", включити";
+            // 
+            // ddbBlock
+            // 
+            this.ddbBlock.AutoSize = true;
+            this.ddbBlock.Location = new System.Drawing.Point(132, 3);
+            this.ddbBlock.Name = "ddbBlock";
+            this.ddbBlock.Size = new System.Drawing.Size(61, 20);
+            this.ddbBlock.TabIndex = 1;
+            this.ddbBlock.Text = "1 - 1000";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label1.Size = new System.Drawing.Size(129, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Показати твори з блоку";
+            // 
+            // panelTop
+            // 
+            this.panelTop.AutoSize = true;
+            this.panelTop.ColumnCount = 4;
+            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 621F));
+            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 144F));
+            this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 568F));
+            this.panelTop.Controls.Add(this.chkShowFormReportVsFoundWork, 3, 0);
+            this.panelTop.Controls.Add(this.panelFilter, 0, 0);
+            this.panelTop.Controls.Add(this.btnApplyFilter, 1, 0);
+            this.panelTop.Controls.Add(this.radBtnAutoSearch, 2, 0);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(3, 3);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.RowCount = 1;
+            this.panelTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelTop.Size = new System.Drawing.Size(1476, 34);
+            this.panelTop.TabIndex = 7;
+            // 
+            // chkShowFormReportVsFoundWork
+            // 
+            this.chkShowFormReportVsFoundWork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkShowFormReportVsFoundWork.Location = new System.Drawing.Point(870, 8);
+            this.chkShowFormReportVsFoundWork.Name = "chkShowFormReportVsFoundWork";
+            this.chkShowFormReportVsFoundWork.Size = new System.Drawing.Size(162, 17);
+            this.chkShowFormReportVsFoundWork.TabIndex = 8;
+            this.chkShowFormReportVsFoundWork.Text = "<html><span style=\"color: #000080\">Показати форму порівняння</span></html>";
+            this.chkShowFormReportVsFoundWork.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.chkShowFormReportVsFoundWork.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkShowFormReportVsFoundWork_ToggleStateChanged);
+            // 
             // UcReportMw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,18 +353,22 @@
             this.Name = "UcReportMw";
             this.Size = new System.Drawing.Size(1482, 514);
             this.Load += new System.EventHandler(this.UcReportMw_Load);
+            this.Enter += new System.EventHandler(this.UcReportMw_Enter);
+            this.Leave += new System.EventHandler(this.UcReportMw_Leave);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridSales.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridSales)).EndInit();
-            this.panelTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnAutoSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnApplyFilter)).EndInit();
             this.panelFilter.ResumeLayout(false);
             this.panelFilter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddbBlock)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddbStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbSort)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnApplyFilter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnAutoSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbBlock)).EndInit();
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkShowFormReportVsFoundWork)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -357,17 +376,18 @@
         #endregion
         private System.Windows.Forms.TableLayoutPanel panelMain;
         private Telerik.WinControls.UI.RadGridView radGridSales;
+        private System.Windows.Forms.ImageList ilExpandCollapse;
+        private System.Windows.Forms.ImageList ilStatuses;
+        private System.Windows.Forms.TableLayoutPanel panelTop;
         private System.Windows.Forms.FlowLayoutPanel panelFilter;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TableLayoutPanel panelTop;
         private Telerik.WinControls.UI.RadDropDownButton ddbBlock;
         private System.Windows.Forms.Label label2;
         private Telerik.WinControls.UI.RadDropDownButton ddbStatus;
         private System.Windows.Forms.Label label3;
         private Telerik.WinControls.UI.RadDropDownButton ddbSort;
         private Telerik.WinControls.UI.RadButton btnApplyFilter;
-        private System.Windows.Forms.ImageList ilExpandCollapse;
-        private System.Windows.Forms.ImageList ilStatuses;
         private Telerik.WinControls.UI.RadButton radBtnAutoSearch;
+        private Telerik.WinControls.UI.RadCheckBox chkShowFormReportVsFoundWork;
     }
 }

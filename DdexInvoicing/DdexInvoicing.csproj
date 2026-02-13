@@ -89,6 +89,12 @@
     <Compile Include="DdexDownloadActions.cs" />
     <Compile Include="DdexReportArchiver.cs" />
     <Compile Include="DspResourceAnalyserHelper.cs" />
+    <Compile Include="FormReportVsFoundWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportVsFoundWork.Designer.cs">
+      <DependentUpon>FormReportVsFoundWork.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAgreementParams _Old.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +325,9 @@
     <Compile Include="UсReconcile.Designer.cs">
       <DependentUpon>UсReconcile.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormReportVsFoundWork.resx">
+      <DependentUpon>FormReportVsFoundWork.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAgreementParams _Old.resx">
       <DependentUpon>FormAgreementParams _Old.cs</DependentUpon>
     </EmbeddedResource>
@@ -506,6 +515,7 @@
     <Content Include="DBSchema\Types\TblTypeWidAuthorShares.sql" />
     <Content Include="FullDatabase.sql" />
     <Content Include="FullDdexDatabase.sql" />
+    <Content Include="html\Test.html" />
     <Content Include="html\ResourceMetaData.html" />
     <Content Include="Images\expand-more_119176.ico" />
     <Content Include="Images\Expanded.ico" />
@@ -636,6 +646,7 @@
     <Content Include="Migrations\17_InvoicingTiktok\%285%29 spCreateOrUpdateInvoiceTikTok.sql" />
     <Content Include="Migrations\17_InvoicingTiktok\%286%29 spCreateInitialInvoiceTiktok.sql" />
     <Content Include="Migrations\17_InvoicingTiktok\%287%29 spDdexUpdateIndentBacklogSharesTikTok.sql" />
+    <Content Include="Migrations\20_Meta\CreateCustomerMeta.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidIpRolePrty.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidPrtyIpRole.sql" />
     <Content Include="SqlQueries\WidInMediaService\spWidImportToMs.sql" />

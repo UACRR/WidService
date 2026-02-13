@@ -124,6 +124,25 @@ namespace InvoicingLib
         public override int GetFieldCount() { return 6; }
     }
 
+    public class SRFORecord : DdexRecordBase
+    {
+        enum FieldIds
+        {
+              NumberOfLinesInReport = 1
+            , NumberOfSummaryRecords
+        }
+
+        public string NumberOfLinesInReport { get { return fields[(int)FieldIds.NumberOfLinesInReport]; } set { fields[(int)FieldIds.NumberOfLinesInReport] = value; } }
+        public string NumberOfSummaryRecords { get { return fields[(int)FieldIds.NumberOfSummaryRecords]; } set { fields[(int)FieldIds.NumberOfSummaryRecords] = value; } }
+        
+        public override object ConvertField(int fieldIndex)
+        {
+            return int.Parse(fields[fieldIndex]);
+        }
+
+        public override int GetFieldCount() { return 3; }
+    }
+
     public class SYRecord_01 : DdexRecordBase
     {
         public enum FieldIds
@@ -1004,7 +1023,106 @@ namespace InvoicingLib
         public override int GetFieldCount() { return 23; }
     }
 
+    public class SRRecord_03_01: DdexRecordBase
+    {
+        public enum FieldIds
+        {
+	          SummaryRecordId = 2
+            , DspResourceId	
+            , ISRC
+            , ResourceTitle
+            , ResourceSubTitle
+            , ResourceDisplayArtistName
+            , ResourceDisplayArtistPartyId
+            , Duration
+            , ResourceType
+            , WorkTitle
+            , DspWorkId
+            , ISWC
+            , ComposerAuthor
+            , ComposerAuthorPartyId
+            , Arranger
+            , ArrangerPartyId
+            , MusicPublisher
+            , MusicPublisherPartyId
+            , WorkContributor
+            , WorkContributorPartyId
+            , DspReleaseId
+            , ProprietaryReleaseId
+            , CatalogNumber
+            , ICPN
+            , ReleaseDisplayArtistName
+            , ReleaseDisplayArtistPartyId
+            , ReleaseTitle
+            , ReleaseSubTitle
+            , ReleaseLabel
+            , PLine
+            , SalesTransactionId
+            , Usages
+            , NetRevenue
+            , ValidityPeriodStart
+            , ValidityPeriodEnd
+            , ContentCategory
+            , RightsController
+            , RightsControllerPartyId
+            , RightsControllerWorkId
+            , RightShare
+            , RightsType
+            , AllocatedNetRevenue
+            , AllocatedAmount
+            , AllocatedUsages
+            , AllocatedNetUsage
+        }
 
+	        public string SummaryRecordId              {get { return fields[(int)FieldIds.SummaryRecordId              ];} set { fields[(int)FieldIds.SummaryRecordId              ] = value; } }
+            public string DspResourceId	               {get { return fields[(int)FieldIds.DspResourceId	               ];} set { fields[(int)FieldIds.DspResourceId	               ] = value; } }
+            public string ISRC                         {get { return fields[(int)FieldIds.ISRC                         ];} set { fields[(int)FieldIds.ISRC                         ] = value; } }
+            public string ResourceTitle                {get { return fields[(int)FieldIds.ResourceTitle                ];} set { fields[(int)FieldIds.ResourceTitle                ] = value; } }
+            public string ResourceSubTitle             {get { return fields[(int)FieldIds.ResourceSubTitle             ];} set { fields[(int)FieldIds.ResourceSubTitle             ] = value; } }
+            public string ResourceDisplayArtistName    {get { return fields[(int)FieldIds.ResourceDisplayArtistName    ];} set { fields[(int)FieldIds.ResourceDisplayArtistName    ] = value; } }
+            public string ResourceDisplayArtistPartyId {get { return fields[(int)FieldIds.ResourceDisplayArtistPartyId ];} set { fields[(int)FieldIds.ResourceDisplayArtistPartyId ] = value; } }
+            public string Duration                     {get { return fields[(int)FieldIds.Duration                     ];} set { fields[(int)FieldIds.Duration                     ] = value; } }
+            public string ResourceType                 {get { return fields[(int)FieldIds.ResourceType                 ];} set { fields[(int)FieldIds.ResourceType                 ] = value; } }
+            public string WorkTitle                    {get { return fields[(int)FieldIds.WorkTitle                    ];} set { fields[(int)FieldIds.WorkTitle                    ] = value; } }
+            public string DspWorkId                    {get { return fields[(int)FieldIds.DspWorkId                    ];} set { fields[(int)FieldIds.DspWorkId                    ] = value; } }
+            public string ISWC                         {get { return fields[(int)FieldIds.ISWC                         ];} set { fields[(int)FieldIds.ISWC                         ] = value; } }
+            public string ComposerAuthor               {get { return fields[(int)FieldIds.ComposerAuthor               ];} set { fields[(int)FieldIds.ComposerAuthor               ] = value; } }
+            public string ComposerAuthorPartyId        {get { return fields[(int)FieldIds.ComposerAuthorPartyId        ];} set { fields[(int)FieldIds.ComposerAuthorPartyId        ] = value; } }
+            public string Arranger                     {get { return fields[(int)FieldIds.Arranger                     ];} set { fields[(int)FieldIds.Arranger                     ] = value; } }
+            public string ArrangerPartyId              {get { return fields[(int)FieldIds.ArrangerPartyId              ];} set { fields[(int)FieldIds.ArrangerPartyId              ] = value; } }
+            public string MusicPublisher               {get { return fields[(int)FieldIds.MusicPublisher               ];} set { fields[(int)FieldIds.MusicPublisher               ] = value; } }
+            public string MusicPublisherPartyId        {get { return fields[(int)FieldIds.MusicPublisherPartyId        ];} set { fields[(int)FieldIds.MusicPublisherPartyId        ] = value; } }
+            public string WorkContributor              {get { return fields[(int)FieldIds.WorkContributor              ];} set { fields[(int)FieldIds.WorkContributor              ] = value; } }
+            public string WorkContributorPartyId       {get { return fields[(int)FieldIds.WorkContributorPartyId       ];} set { fields[(int)FieldIds.WorkContributorPartyId       ] = value; } }
+            public string DspReleaseId                 {get { return fields[(int)FieldIds.DspReleaseId                 ];} set { fields[(int)FieldIds.DspReleaseId                 ] = value; } }
+            public string ProprietaryReleaseId         {get { return fields[(int)FieldIds.ProprietaryReleaseId         ];} set { fields[(int)FieldIds.ProprietaryReleaseId         ] = value; } }
+            public string CatalogNumber                {get { return fields[(int)FieldIds.CatalogNumber                ];} set { fields[(int)FieldIds.CatalogNumber                ] = value; } }
+            public string ICPN                         {get { return fields[(int)FieldIds.ICPN                         ];} set { fields[(int)FieldIds.ICPN                         ] = value; } }
+            public string ReleaseDisplayArtistName     {get { return fields[(int)FieldIds.ReleaseDisplayArtistName     ];} set { fields[(int)FieldIds.ReleaseDisplayArtistName     ] = value; } }
+            public string ReleaseDisplayArtistPartyId  {get { return fields[(int)FieldIds.ReleaseDisplayArtistPartyId  ];} set { fields[(int)FieldIds.ReleaseDisplayArtistPartyId  ] = value; } }
+            public string ReleaseTitle                 {get { return fields[(int)FieldIds.ReleaseTitle                 ];} set { fields[(int)FieldIds.ReleaseTitle                 ] = value; } }
+            public string ReleaseSubTitle              {get { return fields[(int)FieldIds.ReleaseSubTitle              ];} set { fields[(int)FieldIds.ReleaseSubTitle              ] = value; } }
+            public string ReleaseLabel                 {get { return fields[(int)FieldIds.ReleaseLabel                 ];} set { fields[(int)FieldIds.ReleaseLabel                 ] = value; } }
+            public string PLine                        {get { return fields[(int)FieldIds.PLine                        ];} set { fields[(int)FieldIds.PLine                        ] = value; } }
+            public string SalesTransactionId           {get { return fields[(int)FieldIds.SalesTransactionId           ];} set { fields[(int)FieldIds.SalesTransactionId           ] = value; } }
+            public string Usages                       {get { return fields[(int)FieldIds.Usages                       ];} set { fields[(int)FieldIds.Usages                       ] = value; } }
+            public string NetRevenue                   {get { return fields[(int)FieldIds.NetRevenue                   ];} set { fields[(int)FieldIds.NetRevenue                   ] = value; } }
+            public string ValidityPeriodStart          {get { return fields[(int)FieldIds.ValidityPeriodStart          ];} set { fields[(int)FieldIds.ValidityPeriodStart          ] = value; } }
+            public string ValidityPeriodEnd            {get { return fields[(int)FieldIds.ValidityPeriodEnd            ];} set { fields[(int)FieldIds.ValidityPeriodEnd            ] = value; } }
+            public string ContentCategory              {get { return fields[(int)FieldIds.ContentCategory              ];} set { fields[(int)FieldIds.ContentCategory              ] = value; } }
+            public string RightsController             {get { return fields[(int)FieldIds.RightsController             ];} set { fields[(int)FieldIds.RightsController             ] = value; } }
+            public string RightsControllerPartyId      {get { return fields[(int)FieldIds.RightsControllerPartyId      ];} set { fields[(int)FieldIds.RightsControllerPartyId      ] = value; } }
+            public string RightsControllerWorkId       {get { return fields[(int)FieldIds.RightsControllerWorkId       ];} set { fields[(int)FieldIds.RightsControllerWorkId       ] = value; } }
+            public string RightShare                   {get { return fields[(int)FieldIds.RightShare                   ];} set { fields[(int)FieldIds.RightShare                   ] = value; } }
+            public string RightsType                   {get { return fields[(int)FieldIds.RightsType                   ];} set { fields[(int)FieldIds.RightsType                   ] = value; } }
+            public string AllocatedNetRevenue          {get { return fields[(int)FieldIds.AllocatedNetRevenue          ];} set { fields[(int)FieldIds.AllocatedNetRevenue          ] = value; } }
+            public string AllocatedAmount              {get { return fields[(int)FieldIds.AllocatedAmount              ];} set { fields[(int)FieldIds.AllocatedAmount              ] = value; } }
+            public string AllocatedUsages              {get { return fields[(int)FieldIds.AllocatedUsages              ];} set { fields[(int)FieldIds.AllocatedUsages              ] = value; } }
+            public string AllocatedNetUsage            {get { return fields[(int)FieldIds.AllocatedNetUsage            ];} set { fields[(int)FieldIds.AllocatedNetUsage            ] = value; } }
+
+
+        public override int GetFieldCount() { return 45; }
+    }
 
     public class DdexRecordBase
     {

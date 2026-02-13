@@ -262,5 +262,24 @@ namespace InvoicingLib
             }, true);
         }
 
+        public static void RegisterMetaReport(int licId, int custId, string agreementReportType, string masterFileFullName)
+        {
+            int ddexReportingPeriodId = CreateReportingPeriod(agreementReportType, masterFileFullName);
+            var fullFolderName = Path.GetDirectoryName(masterFileFullName);
+            var masterFileName = Path.GetFileName(masterFileFullName);
+            var parts = masterFileName.Split('_');
+            var datePart = parts[4];
+            Helpers.RunSqlOperationDdexT(cmd =>
+            {
+                var filter = $"DSR__PADPIDA2013071501L_UGC-Ad-Revenue_{datePart}_*_1of1_*.tsv";
+                var files = Directory.GetFiles(fullFolderName, filter);
+                foreach (var file in files)
+                {
+                    var isMasterReport = masterFileFullName.Equals(file, StringComparison.OrdinalIgnoreCase);
+                    InsertDdexReportRecord(cmd, agreementReportType, file, licId, custId, 0, ddexReportingPeriodId, isMasterReport);
+                }
+            }, true);
+        }
+
     }
 }

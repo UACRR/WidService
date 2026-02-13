@@ -252,6 +252,9 @@ namespace InvoicingLib
                                         case DigitalServiceProviderEnum.TIKTOK:
                                             block = new DdexReportBlockTiktok(this, action.DoFiltering());
                                             break;
+                                        case DigitalServiceProviderEnum.META:
+                                            block = new DdexReportBlockMeta(this, action.DoFiltering());
+                                            break;
                                         default:
                                             throw new Exception("InvoicingLib.DdexReport.ProcessFile - Cannot identify dsp");
                                     }
@@ -310,6 +313,57 @@ namespace InvoicingLib
             }
         }
 
+        public void ProcessMetaFile(string fileName, DdexReportActionBase action)
+        {
+            Logger.WriteLine($"Обробка файлу {fileName}");
+            using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+            {
+                var pseudoBlockId = 1;
+                while (!streamReader.EndOfStream)
+                {
+                    var line = streamReader.ReadLine();
+                    var fields = line.Split('\t');
+                    if (fields[0] == "SR03.01")
+                    {
+                        // Make line look like the one from DSR report
+                        var sw = new StringWriter();
+                        sw.Write(fields[0]);
+                        sw.Write('\t');
+                        sw.Write(pseudoBlockId++);
+                        for(var idx = 1; idx < fields.Length; idx++)
+                        {
+                            sw.Write('\t');
+                            sw.Write(fields[idx]);
+                        }
+                        var pseudoLine = sw.ToString(); 
+
+                        try
+                        {
+                            DdexReportBlock block = new DdexReportBlockMeta(this, false);
+                            block.Init(streamReader, ref pseudoLine);
+                            if (block.IsProcessed(lastProcessedBlockId))
+                                continue;
+                            block.Process(action, streamReader, ref pseudoLine);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.WriteLine(ex.Message);
+                            throw;
+                        }
+                    }
+                    else if (fields[0] == "SY02.03")
+                        {
+                            Logger.WriteLine($"Обробка запису {fields[0]}");
+                            var record = new SYRecord_02_02();
+                            record.fields = fields;
+                            action.ProcessSY_02_02(record);
+                        }
+                }
+                action.ProcessFoot(null); // Pseudo operation for flushing bulk copy buffer
+            }
+        }
+
         public void ProcessFile(string fileName, DdexReportActionBase action)
         {
             if (action.GetType() == typeof(DdexReportActionRegisterErrorsSkip))
@@ -319,6 +373,10 @@ namespace InvoicingLib
             else if (action.GetType() == typeof(DdexReportActionLoadIdentDataSrmf))
             {
                 ProcessSrmfFile(fileName, action);
+            }
+            else if (action.GetType() == typeof(DdexReportActionLoadIdentDataMeta))
+            {
+                ProcessMetaFile(fileName, action);
             }
             else
             {
