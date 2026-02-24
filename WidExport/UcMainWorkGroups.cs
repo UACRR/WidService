@@ -20,6 +20,7 @@ namespace WidExport
         };
 
         private List<WidSubmGroup> _groups;
+        private bool _hasPublicationInProgess;
 
         public WidSubmGroup _selectedGroup { get; set; }
          public UcMainWorkGroups()
@@ -84,6 +85,11 @@ namespace WidExport
             item.Tag = newGroup;
         }
 
+        private void SetPublicationInProgress()
+        {
+            _hasPublicationInProgess = Helpers.IsGroupPublishInProgress(_selectedGroup.Id);
+        }
+
         private void RefreshControls()
         {
             btnShow.Visible             =
@@ -92,9 +98,11 @@ namespace WidExport
             btnClose.Visible            =
             btnUpdate.Visible           =
             btnRefreshWicIswc.Visible   = false;
+            _hasPublicationInProgess    = false;
 
             if (_selectedGroup != null)
             {
+                SetPublicationInProgress();
                 btnShow.Visible             = true;
                 btnCreateSubmFile.Visible   = _selectedGroup.Status != WidSubmGroupStatus.Closed;
                 btnDeleteGroup.Visible      =
@@ -155,6 +163,15 @@ namespace WidExport
 
         private void btnDeleteGroup_Click(object sender, EventArgs e)
         {
+            if (_hasPublicationInProgess)
+            {
+                MessageBox.Show(
+                    "Твори групи в процесі передачі, видалення не можливе.",
+                    "Група творів",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (
                 DialogResult.Yes != MessageBox.Show(
                     "Видалення групи може призвести до втрати важливої інформації. Видалити?",
@@ -201,6 +218,14 @@ namespace WidExport
 
         private void btnShow_Click(object sender, EventArgs e)
         {
+            if (_hasPublicationInProgess)
+            {
+                MessageBox.Show(
+                    "Твори групи в процесі передачі, група буде відкрита в режимі перегляду.",
+                    "Група творів",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             var form = new FormWidSubmit(_selectedGroup, null);
             form.Show();
         }
@@ -235,6 +260,7 @@ namespace WidExport
                         from WidSubmGroupWork 
                         where WidSubmGroupId = @groupId 
                             and ShouldResubmit = 1
+                            and Status <> 11 -- Uploaded
                     ";
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@groupId", _selectedGroup.Id);
@@ -292,6 +318,15 @@ namespace WidExport
         }
         private void btnCreateSubmFile_Click(object sender, EventArgs e)
         {
+            if (_hasPublicationInProgess)
+            {
+                MessageBox.Show(
+                    "Твори групи в процесі передачі, створення нового файлу не можливе.",
+                    "Група творів",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             CreateSubmFile();
             ucWidGroupStatistics.SetGroup(_selectedGroup == null ? (int?)null : _selectedGroup.Id);
         }
@@ -371,6 +406,15 @@ namespace WidExport
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if (_hasPublicationInProgess)
+            {
+                MessageBox.Show(
+                    "Твори групи в процесі передачі, закриття групи не можливе.",
+                    "Група творів",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var res = MessageBox.Show("Не передані в WID твори будуть переміщені в окрему групу. Продовжити?",
                 "Закриття групи творів",
                 MessageBoxButtons.YesNo,
@@ -442,6 +486,15 @@ namespace WidExport
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (_hasPublicationInProgess)
+            {
+                MessageBox.Show(
+                    "Твори групи в процесі передачі, оновлення не можливе.",
+                    "Група творів",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var res = MessageBox.Show("Оновлення може зайняти тривалий час. Продовжити?",
                 "Оновлення творів в групі змін",
                 MessageBoxButtons.YesNo,

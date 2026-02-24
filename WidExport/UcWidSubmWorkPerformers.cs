@@ -33,6 +33,7 @@ namespace WidExport
 
         private WidSubmGroup _group;
         private int? _objId;
+        private bool _readOnly;
 
         private List<WorkPerformer> _workPerformers;
         private List<WorkPerformer> _newWorkPerformers;
@@ -51,10 +52,11 @@ namespace WidExport
             lvPerformers.Columns.Add("", 100); // IsDuplicate
         }
 
-        public void SetGroupAndObjId(WidSubmGroup group, int? objId)
+        public void SetGroupAndObjId(WidSubmGroup group, bool readOnly, int? objId)
         {
             _group = group;
             _objId = objId;
+            _readOnly = readOnly;
             LoadData();
        }
 
@@ -77,8 +79,7 @@ namespace WidExport
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "spWidSubmGroupWorkPerformerSelect";
-                cmd.Parameters.AddWithValue("@WidSubmGroupId", _group.
-                    Id);
+                cmd.Parameters.AddWithValue("@WidSubmGroupId", _group.Id);
                 cmd.Parameters.AddWithValue("@ObjId", _objId);
                 _workPerformers = new List<WorkPerformer>();
                 _newWorkPerformers = new List<WorkPerformer>();
@@ -192,6 +193,14 @@ namespace WidExport
 
                 btnRus.Enabled =
                 btnUkr.Enabled = true;
+
+                if(_readOnly)
+                {
+                    tbPerformer.Enabled =
+                    btnApply.Enabled =
+                    btnRus.Enabled =
+                    btnUkr.Enabled = false;
+                }
             }
         }
 

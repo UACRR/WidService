@@ -46,11 +46,13 @@ namespace WidExport
             "Існувало в WID"       ,
             "Надіслано повторно",
             "Завершено"         ,
+            "Надсилається WID"  ,
         };
 
         private WidSubmGroup _group;
         private int? _ipNameNr;
         private int? _objId;
+        private bool _readOnly;
 
         private List<Work> _works;
 
@@ -73,6 +75,7 @@ namespace WidExport
             cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 6, Description = "Відхилені WID" });
             cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 9, Description = "Надіслані повторно" });
             cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 10, Description = "Завершені" });
+            cbFilterStatus.Items.Add(new WidSubmGroupWorkStatus { Id = 11, Description = "Надсилаються WID" });
             cbFilterStatus.SelectedIndex = 0;
 
             cbFilterSubmit.Items.Add("<Всі>");
@@ -119,11 +122,12 @@ namespace WidExport
             UpdateControls();
         }
 
-        public void SetWidSubmGroupAndParty(WidSubmGroup group, int? ipNameNr, int? objId = null)
+        public void SetWidSubmGroupAndParty(WidSubmGroup group, bool readOnly, int? ipNameNr, int? objId = null)
         {
             _group = group;
             _ipNameNr = ipNameNr;
             _objId = objId;
+            _readOnly = readOnly;
             
             FillWorks();
 
@@ -167,10 +171,10 @@ namespace WidExport
                     ucWidSubmShares.SetGroupAndObjId(_group.Id, objId);
                     break;
                 case 1:
-                    ucWidSubmNames.SetGroupAndObjId(_group, objId);
+                    ucWidSubmNames.SetGroupAndObjId(_group, _readOnly, objId);
                     break;
                 case 2:
-                    ucWidSubmPerformers.SetGroupAndObjId(_group, objId);
+                    ucWidSubmPerformers.SetGroupAndObjId(_group, _readOnly, objId);
                     break;
                 case 4:
                     ucWidSubmWorkResp.SetGroupAndObjId(_group.Id, objId);
@@ -335,7 +339,7 @@ namespace WidExport
         {
             using (var wc = new WaitCursor())
             {
-                SetWorkDetailsVisble(true);
+                SetWorkDetailsVisble(_readOnly);
                 var item = lvWorks.SelectedItems[0];
                 var objId = int.Parse(item.SubItems[1].Text);
                 var work = (Work)item.Tag;
@@ -378,7 +382,7 @@ namespace WidExport
             labStatus.ForeColor = ucWidSubmWorkCheckList.HasErrors() ? Color.DarkRed : Color.DarkGreen;
             labStatus.Text = ucWidSubmWorkCheckList.HasErrors() ? "Публікація в WID неможлива" : "Готовий до публікації в WID";
 
-            mnuActions.Visible = _group.Status != WidSubmGroupStatus.Closed;
+            mnuActions.Visible = _group.Status != WidSubmGroupStatus.Closed && !_readOnly;
 
             mnuUpdateFromMs.Enabled = work != null &&
                 (
@@ -406,6 +410,8 @@ namespace WidExport
                     work.Status == (int)WidSubmGroupWorkStatusEnum.Accepted ||
                     work.Status == (int)WidSubmGroupWorkStatusEnum.Rejected
                 );
+
+            menuStripWorkActions.Enabled = !_readOnly;
 
             SetWorkDetailsVisble(work != null);
 

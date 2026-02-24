@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WidExport.Entities;
 
 namespace WidExport
@@ -136,6 +137,32 @@ namespace WidExport
                 RecCnt = "00000000",
             };
             return InsertEntityInDb(cmd, entity);
+        }
+        public static bool IsGroupPublishInProgress(int groupId)
+        {
+            var retVal = false;
+            try
+            {
+                Helpers.RunSqlSocWidSubmit(cmd => {
+                    cmd.CommandText = "select dbo.fnCheckGroupPublishInProgress(@groupId)";
+                    cmd.Parameters.AddWithValue("@groupId", groupId);
+                    retVal = (bool)cmd.ExecuteScalar();
+                });
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(
+                    $"Помилка серверу БД - {ex.Message}\r\nДодаток буде закрито, споробуйте пізніше.",
+                    "Оновлення інформації для групи",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+
+            return retVal;
+        }
+        public static bool IsGroupReadOnly(int groupId)
+        {
+            return IsGroupPublishInProgress(groupId);
         }
     }
 }

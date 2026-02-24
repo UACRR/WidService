@@ -8,9 +8,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using static WidExport.UcMainFileExchange;
 
 namespace WidExport
 {
@@ -32,6 +35,7 @@ namespace WidExport
             "Переданий",
             "Відповідь отримана",
             "Відхилений",
+            "Передача не завершена",
         };
 
         private List<ExchangeFile> _exchangeFiles;
@@ -103,7 +107,8 @@ namespace WidExport
 
                 var exchangeFile = (ExchangeFile)lvFiles.SelectedItems[0].Tag;
                 btnDeleteFile.Enabled = exchangeFile.SubmFileStatus == (int)ExchangeFileStatus.Created;
-                btnSendToFtp.Enabled = exchangeFile.SubmFileStatus == (int)ExchangeFileStatus.Created;
+                btnSendToFtp.Enabled = exchangeFile.SubmFileStatus == (int)ExchangeFileStatus.Created ||
+                    exchangeFile.SubmFileStatus == (int)ExchangeFileStatus.Uploaded;
                 btnShowSubmFileInFolder.Enabled = !string.IsNullOrEmpty(exchangeFile.SubmFileName);
                 btnShowRespFileInFolder.Enabled = !string.IsNullOrEmpty(exchangeFile.RespFileName);
             }
@@ -181,35 +186,111 @@ namespace WidExport
             RefreshControls();
         }
 
-        private async void btnSendToFtp_Click(object sender, EventArgs e)
+        private bool UploadFile(ExchangeFile exchangeFile)
+        {
+            try
+            {
+                Helpers.RunSqlSocWidSubmitT(async cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "spSubmFilePreSend";
+                    cmd.Parameters.AddWithValue("@submFileId", exchangeFile.SubmFileId);
+                    cmd.ExecuteNonQuery();
+
+                    var appSettings = ConfigurationManager.AppSettings;
+
+                    var targetFile = $"{appSettings["FileExchangeFtpSubmDir"]}/{exchangeFile.SubmFileName}";
+                    FtpWebRequest request = (FtpWebRequest)WebRequest.Create(targetFile);
+                    request.Method = WebRequestMethods.Ftp.UploadFile;
+
+                    request.Credentials = new NetworkCredential(appSettings["FileExchangeFtpLogin"], appSettings["FileExchangeFtpPassword"]);
+
+                    var folderPath = Path.Combine(appSettings["FileExchangeRootDir"], "OutFiles");
+                    var sourceFile = Path.Combine(folderPath, exchangeFile.SubmFileName);
+
+                    using (FileStream fileStream = File.Open(sourceFile, FileMode.Open, FileAccess.Read))
+                    {
+                        using (Stream requestStream = request.GetRequestStream())
+                        {
+                            await fileStream.CopyToAsync(requestStream);
+                        }
+                    }
+                    FtpStatusCode statusCode;
+                    using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                    {
+                        statusCode = response.StatusCode;
+                    }
+                });
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Файли обміну", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool FileUploaded(ExchangeFile exchangeFile)
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+
+            var targetFile = $"{appSettings["FileExchangeFtpSubmDir"]}/{exchangeFile.SubmFileName}";
+            FtpWebRequest fileSizeRequest = (FtpWebRequest)WebRequest.Create($"{targetFile}");
+            fileSizeRequest.Method = WebRequestMethods.Ftp.GetFileSize;
+            fileSizeRequest.Credentials = new NetworkCredential(appSettings["FileExchangeFtpLogin"], appSettings["FileExchangeFtpPassword"]);
+
+            try
+            {
+                FtpWebResponse response = (FtpWebResponse)fileSizeRequest.GetResponse();
+                return true;
+            }
+            catch (WebException ex)
+            {
+                FtpWebResponse response = (FtpWebResponse)ex.Response;
+                if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+
+        private void btnSendToFtp_Click(object sender, EventArgs e)
         {
             if(lvFiles.SelectedItems.Count == 0)
             {
                 return;
             }
 
-            if (DialogResult.Yes != MessageBox.Show("Викласти файл публікації на FTP?", "Файли обміну", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            if (DialogResult.Yes != MessageBox.Show("Передати файл публікації?", "Файли обміну", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 return;
             }
 
             var exchangeFile = (ExchangeFile)lvFiles.SelectedItems[0].Tag;
-            if (exchangeFile.SubmFileStatus != (int)ExchangeFileStatus.Created)
+            if (
+                exchangeFile.SubmFileStatus != (int)ExchangeFileStatus.Created &&
+                exchangeFile.SubmFileStatus != (int)ExchangeFileStatus.Uploaded
+            )
             {
-                MessageBox.Show("Файл вже викладений на FTP", "Файли обміну", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Файл вже переданий", "Файли обміну", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (Application.OpenForms.Count > 1)
+            {
+                MessageBox.Show("Закрийте форми, крім головної, і повторіть операцію", "Файли обміну", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             try
             {
                 var appSettings = ConfigurationManager.AppSettings;
-
-                var targetFile = $"{appSettings["FileExchangeFtpSubmDir"]}/{exchangeFile.SubmFileName}";
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(targetFile);
-                request.Method = WebRequestMethods.Ftp.UploadFile;
-
-                request.Credentials = new NetworkCredential(appSettings["FileExchangeFtpLogin"], appSettings["FileExchangeFtpPassword"]);
-
+                
                 var folderPath = Path.Combine(appSettings["FileExchangeRootDir"], "OutFiles");
                 var sourceFile = Path.Combine(folderPath, exchangeFile.SubmFileName);
 
@@ -220,17 +301,17 @@ namespace WidExport
                     return;
                 }
 
-                using (FileStream fileStream = File.Open(sourceFile, FileMode.Open, FileAccess.Read))
+                if(!FileUploaded(exchangeFile))
                 {
-                    using (Stream requestStream = request.GetRequestStream())
+                    var fileUploadRes = UploadFile(exchangeFile);
+                    if (!fileUploadRes)
                     {
-                        await fileStream.CopyToAsync(requestStream);
+                        return;
                     }
-                }
-                FtpStatusCode statusCode;
-                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
-                {
-                    statusCode = response.StatusCode;
+
+                    exchangeFile.SubmFileStatus = (int)ExchangeFileStatus.Uploaded;
+                    lvFiles.SelectedItems[0].SubItems[3].Text = _exchangeFileStatusText[(int)ExchangeFileStatus.Uploaded];
+                    RefreshButtons();
                 }
 
                 Helpers.RunSqlSocWidSubmitT(cmd =>
@@ -247,7 +328,7 @@ namespace WidExport
                 return;
             }
 
-            MessageBox.Show("Файл передано на FTP", "Файли обміну", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Файл передано", "Файли обміну", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             exchangeFile.SubmFileStatus = (int)ExchangeFileStatus.Submitted;
             lvFiles.SelectedItems[0].SubItems[3].Text = _exchangeFileStatusText[(int)ExchangeFileStatus.Submitted];

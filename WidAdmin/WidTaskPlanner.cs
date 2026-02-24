@@ -715,12 +715,25 @@ namespace WidAdminLib
             var retVal = new List<UpdFileInfo>();
             dirLines.ForEach(x => {
                 var fileName = x.Split(' ').Last();
-                var updDt = ParseWidFileTs(fileName);
-                retVal.Add(new UpdFileInfo
+                var updDt = DateTime.MinValue;
+                var isValidFile = true;
+                try
                 {
-                    FileName = fileName,
-                    UpdDt = updDt,
-                });
+                    updDt = ParseWidFileTs(fileName);
+                }
+                catch (Exception)
+                {
+                    isValidFile = false;
+                }
+
+                if (isValidFile)
+                {
+                    retVal.Add(new UpdFileInfo
+                    {
+                        FileName = fileName,
+                        UpdDt = updDt,
+                    });
+                }
             });
             return retVal;
         }

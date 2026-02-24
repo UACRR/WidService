@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,6 +27,7 @@ namespace WidExport
         private WidSubmGroup _group;
         private int? _custIdToSelect;
         private int? _objIdToSelect;
+        private bool _readOnly;
 
         private List<Party> _parties;
 
@@ -37,6 +39,7 @@ namespace WidExport
             _group = group;
             _custIdToSelect = custIdToSelect;
             _objIdToSelect = objIdToSelect;
+            _readOnly = Helpers.IsGroupReadOnly(group.Id);            
         }
 
         private void FormWidSubmit_Load(object sender, EventArgs e)
@@ -70,13 +73,21 @@ namespace WidExport
             }
 
             var partyToSelect = (Party)lvParties.SelectedItems[0].Tag;
-            panelLeft.SetWidSubmGroupAndParty(_group, partyToSelect.IpNameNr, _objIdToSelect);
+            panelLeft.SetWidSubmGroupAndParty(_group, _readOnly, partyToSelect.IpNameNr, _objIdToSelect);
 
             _ignoreSelectedIndexChanged = false;
 
             btnApplyFilter.Enabled = false;
+
+            SetReadOnly();
+
             UpdateControls();
 
+        }
+
+        private void SetReadOnly()
+        {
+            _readOnly = Helpers.IsGroupReadOnly(_group.Id);
         }
 
         private void UpdateControls()
@@ -100,7 +111,8 @@ namespace WidExport
             }
             else
             {
-                btnRemoveParty.Enabled = true;
+                btnAddParty.Enabled = !_readOnly;
+                btnRemoveParty.Enabled = !_readOnly;
                 panelLeft.Visible = true;
             }
         }
@@ -392,7 +404,7 @@ namespace WidExport
                     cmd.ExecuteNonQuery();
                 });
 
-                panelLeft.SetWidSubmGroupAndParty(_group, null);
+                panelLeft.SetWidSubmGroupAndParty(_group, _readOnly, null);
                 FillParties();
                 UpdateControls();
             }
@@ -402,12 +414,12 @@ namespace WidExport
         {
             if (lvParties.SelectedItems.Count == 0)
             {
-                panelLeft.SetWidSubmGroupAndParty(_group, null);
+                panelLeft.SetWidSubmGroupAndParty(_group, _readOnly, null);
             }
             else
             {
                 var party = (Party)lvParties.SelectedItems[0].Tag;
-                panelLeft.SetWidSubmGroupAndParty(_group, party.IpNameNr);
+                panelLeft.SetWidSubmGroupAndParty(_group, _readOnly, party.IpNameNr);
             }
             UpdateControls();
         }

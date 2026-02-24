@@ -34,6 +34,7 @@ namespace WidExport
 
         private WidSubmGroup _group;
         private int? _objId;
+        private bool _readOnly;
 
         private List<WorkName> _workNames;
         private List<WorkName> _newWorkNames;
@@ -53,10 +54,11 @@ namespace WidExport
             lvNames.Columns.Add("", 100); // IsDuplicate
         }
 
-        public void SetGroupAndObjId(WidSubmGroup group, int? objId)
+        public void SetGroupAndObjId(WidSubmGroup group, bool readOnly, int? objId)
         {
             _group = group;
             _objId = objId;
+            _readOnly = readOnly;
             LoadData();
        }
 
@@ -197,6 +199,14 @@ namespace WidExport
 
                 btnRus.Enabled =
                 btnUkr.Enabled = true;
+
+                if(_readOnly)
+                {
+                    tbName.Enabled =
+                    btnApply.Enabled =
+                    btnRus.Enabled =
+                    btnUkr.Enabled = false;
+                }
             }
         }
 
@@ -252,6 +262,11 @@ namespace WidExport
                 btnApply.Enabled = !workName.WidName.Equals(tbName.Text, StringComparison.OrdinalIgnoreCase);
             }
             else
+            {
+                btnApply.Enabled = false;
+            }
+
+            if(_readOnly)
             {
                 btnApply.Enabled = false;
             }

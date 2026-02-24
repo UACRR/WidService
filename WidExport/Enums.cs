@@ -19,6 +19,7 @@ namespace WidExport
         AlreadyInWid = 8,
         ReSent = 9,
         Completed = 10,
+        Uploaded = 11,
     }
 
     public enum WidSubmGroupStatus
@@ -32,6 +33,7 @@ namespace WidExport
         Submitted = 1,
         Responded = 2,
         Declined = 3,
+        Uploaded = 4,
     }
 
 }

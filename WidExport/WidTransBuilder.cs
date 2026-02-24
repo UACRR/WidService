@@ -397,8 +397,8 @@ namespace WidExport
             Helpers.RunSqlSocWidSubmitT(cmd =>
             {
                 var declinedFileIds = new List<int>();
-                cmd.CommandText = "select Id, Name from SubmFile where SubmFileStatus <> @SubmFileStatus";
-                cmd.Parameters.AddWithValue("@SubmFileStatus", ExchangeFileStatus.Declined);
+                cmd.CommandText = "select Id, Name from SubmFile where SubmFileStatus = @SubmFileStatus";
+                cmd.Parameters.AddWithValue("@SubmFileStatus", ExchangeFileStatus.Submitted);
                 using (var r = cmd.ExecuteReader())
                 {
                     while (r.Read())
@@ -460,6 +460,7 @@ namespace WidExport
                 }
             });
 
+
             var unprocessedFiles = ftpFiles
                 .Where(x => !dbFiles.Contains(Path.GetFileNameWithoutExtension(x)))
                 .ToList();
@@ -503,6 +504,20 @@ namespace WidExport
         public void LoadRespFile(string fileFullName)
         {
             var lines = File.ReadAllLines(fileFullName);
+
+            var submFileName = lines[0].Substring(101, 29);
+            var isSent = false;
+            Helpers.RunSqlSocWidSubmitT(cmd =>
+            {
+                cmd.CommandText = "select dbo.fnCheckFileSent(@submFileName)";
+                cmd.Parameters.AddWithValue("@submFileName", submFileName);
+                isSent = (bool)cmd.ExecuteScalar();
+            });
+            if(!isSent)
+            {
+                return;
+            }
+            
             Helpers.RunSqlSocWidSubmitT(cmd =>
             {
                 cmd.CommandTimeout = 0;

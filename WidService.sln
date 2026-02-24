@@ -58,7 +58,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocFtpCLient", "SocFtpCLien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CwrTools", "CwrTools\CwrTools.csproj", "{880B15E7-184E-431E-85EC-33A52425D99C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocIpiDumpLoader", "SocIpiDumpLoader\SocIpiDumpLoader.csproj", "{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocIpiDumpLoader", "SocIpiDumpLoader\SocIpiDumpLoader.csproj", "{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidSubmit", "WidSubmit\WidSubmit.csproj", "{3631DFAD-30E6-4CA6-9C65-78D0E248879E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -176,6 +178,10 @@ Global
 		{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B530A86-65F0-4F21-8E4C-15ADA671BE4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3631DFAD-30E6-4CA6-9C65-78D0E248879E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3631DFAD-30E6-4CA6-9C65-78D0E248879E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3631DFAD-30E6-4CA6-9C65-78D0E248879E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3631DFAD-30E6-4CA6-9C65-78D0E248879E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
