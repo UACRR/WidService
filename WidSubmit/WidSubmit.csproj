@@ -68,6 +68,18 @@
     <Compile Include="UcRightHolders.Designer.cs">
       <DependentUpon>UcRightHolders.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcSubmission.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcSubmission.Designer.cs">
+      <DependentUpon>UcSubmission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcSubmProcessControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcSubmProcessControl.Designer.cs">
+      <DependentUpon>UcSubmProcessControl.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +97,12 @@
     </Compile>
     <EmbeddedResource Include="UcRightHolders.resx">
       <DependentUpon>UcRightHolders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcSubmission.resx">
+      <DependentUpon>UcSubmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcSubmProcessControl.resx">
+      <DependentUpon>UcSubmProcessControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

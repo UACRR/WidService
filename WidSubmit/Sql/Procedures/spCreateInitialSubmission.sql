@@ -14,6 +14,7 @@ begin
 		, EndedAt
 		, SubmFileId
 		, RespFileId
+		, SubmissionStatusId
 		, CreatedAt
 		, UpdatedAt
 	)
@@ -22,6 +23,7 @@ begin
 		, getdate()					as EndedAt
 		, null						as SubmFileId
 		, null						as RespFileId
+		, 9						as SubmissionStatusID -- finished
 		, getdate()					as CreatedAt
 		, null						as UpdatedAt
 
@@ -184,6 +186,7 @@ begin
 		, EndedAt
 		, SubmFileId
 		, RespFileId
+		, SubmissionStatusID
 		, CreatedAt
 		, UpdatedAt
 	)
@@ -192,6 +195,7 @@ begin
 		, cast(datefromparts(9999, 12, 31) as datetime)	as EndedAt
 		, null											as SubmFileId
 		, null											as RespFileId
+		, 0												as SubmissionStatusID -- початковий
 		, getdate()										as CreatedAt
 		, null											as UpdatedAt
 

@@ -5,12 +5,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WidSubmit
 {
     public static class Helpers
     {
         public delegate void RunSql(SqlCommand cmd);
+        public delegate void ProtectedBlock();
 
         public static void RunSqlBase(string connString, RunSql runSql)
         {
@@ -70,6 +72,23 @@ namespace WidSubmit
         {
             var connString = ConfigurationManager.ConnectionStrings["SocWidSubmitEx"].ConnectionString;
             RunSqlBaseT(connString, runSql);
+        }
+
+        public static void RunProtected(ProtectedBlock block)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                block();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
         }
     }
 }

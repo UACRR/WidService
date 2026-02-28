@@ -1,6 +1,8 @@
 ﻿use SocWidSubmitEx
 go
 
+drop table if exists Z_SubmRightHolder
+
 drop table if exists SubmWorkShare
 drop table if exists SubmWorkAltName
 drop table if exists SubmWorkPerformer
@@ -13,7 +15,25 @@ drop table if exists Submission
 
 drop table if exists RightHolder
 
-drop table if exists Z_SubmRightHolder
+drop table if exists SubmissionStatus
+
+create table SubmissionStatus (
+	  Id int not null primary key
+	, Code varchar(30) not null
+)
+insert SubmissionStatus(Id, Code)
+values
+	  ( 0, 'INITIAL')
+	, ( 1, 'SUBM_FILE_CREATED')
+	, ( 2, 'SUBM_FILE_UPLOAD_FAILED')
+	, ( 3, 'SUBM_FILE_UPLOADED')
+	, ( 4, 'RESP_FILE_DOWNLOAD_FAILED')
+	, ( 5, 'RESP_WRONG_SUBM_FILE')
+	, ( 6, 'RESP_FILE_DOWNLOADED')
+	, ( 7, 'RESP_FILE_PROCESSING_FAILED')
+	, ( 8, 'ISWC_CODES_PASSED_TO_MS')
+	, ( 9, 'CLOSED')
+
 create table Z_SubmRightHolder (
 	  Guid uniqueidentifier
 	, RightHolderId int not null
@@ -41,14 +61,17 @@ alter table RightHolder add constraint ucRightHolderValidFromCustId unique (Vali
 alter table RightHolder add constraint ucRightHolderValidToCustId unique (ValidTo, CustId)
 
 create table Submission (
-	  Id			int primary key identity(1, 1)
-	, StartedAt		datetime not null
-	, EndedAt		datetime not null
-	, SubmFileId	int null
-	, RespFileId	int null
-	, CreatedAt		datetime not null default(getdate())
-	, UpdatedAt		datetime null
+	  Id					int primary key identity(1, 1)
+	, StartedAt				datetime not null
+	, EndedAt				datetime not null
+	, SubmFileName			varchar(32) not null default('')
+	, RespFileName			varchar(32) not null default('')
+	, ErrorFileName			varchar(32) not null default('')
+	, SubmissionStatusId	int not null
+	, CreatedAt				datetime not null default(getdate())
+	, UpdatedAt				datetime null
 )
+alter table Submission add constraint fkSubmissionSubmissionStatusID foreign key (SubmissionStatusId) references SubmissionStatus (Id);
 go
 
 create table SubmRightHolder (

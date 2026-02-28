@@ -7,6 +7,7 @@ as
 begin
 --truncate table Z_SubmRightHolder
 --declare @guid uniqueidentifier = 'D4D436D6-6603-4116-B5C6-2DC7541ED33A'
+-- select * from Z_SubmRightHolder
 -- Видалення
 	delete t1
 	from SubmRightHolder t1
@@ -17,12 +18,10 @@ begin
 
 -- Оновлення
 	update t1
-	set t1.SubmAsOwn = t3.SubmAsOwn
+	set t1.SubmAsOwn = t2.SubmAsOwn
 	from SubmRightHolder t1
-		join vCurSubmRightHolder t2 on t1.Id = t2.Id
-		left join Z_SubmRightHolder t3 on t2.RightHolderId = t3.RightHolderId
-			and t3.Guid = @guid
-	where t3.RightHolderId is null
+		join Z_SubmRightHolder t2 on t1.RightHolderId = t2.RightHolderId
+			and t2.Guid = @guid
 
 -- Додавання
 	insert SubmRightHolder(

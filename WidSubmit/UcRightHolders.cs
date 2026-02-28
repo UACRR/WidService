@@ -33,13 +33,14 @@ namespace WidSubmit
 
         public class Submission
         {
-	        public int          Id		    { get; set; }
-	        public DateTime     StartedAt	{ get; set; }
-	        public DateTime?    EndedAt	    { get; set; }
-	        public int?         SubmFileId  { get; set; }
-	        public int?         RespFileId  { get; set; }
-	        public DateTime     CreatedAt	{ get; set; }
-	        public DateTime?    UpdatedAt	{ get; set; }
+	        public int          Id		        { get; set; }
+	        public DateTime     StartedAt	    { get; set; }
+	        public DateTime?    EndedAt	        { get; set; }
+	        public string       SubmFileName    { get; set; }
+	        public string       RespFileName    { get; set; }
+            public string       ErrorFileName   { get; set; }
+	        public DateTime     CreatedAt	    { get; set; }
+	        public DateTime?    UpdatedAt	    { get; set; }
         }
 
         private List<Submission> _submissions;
@@ -110,8 +111,9 @@ namespace WidSubmit
                           Id		   
 	                    , StartedAt
 	                    , EndedAt	   
-	                    , SubmFileId 
-	                    , RespFileId 
+	                    , SubmFileName 
+	                    , RespFileName 
+                        , ErrorFileName
 	                    , CreatedAt
 	                    , UpdatedAt
                     from Submission
@@ -127,8 +129,9 @@ namespace WidSubmit
 	                    subm.Id		        = r.GetInt32(idx);                                          idx++;
 	                    subm.StartedAt	    = r.GetDateTime(idx);                                       idx++;
 	                    subm.EndedAt	    = r.IsDBNull(idx) ? (DateTime?)null : r.GetDateTime(idx);   idx++;
-	                    subm.SubmFileId 	= r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);           idx++;
-	                    subm.RespFileId     = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);           idx++;
+	                    subm.SubmFileName 	= r.GetString(idx);                                         idx++;
+	                    subm.RespFileName   = r.GetString(idx);                                         idx++;
+                        subm.ErrorFileName  = r.GetString(idx);                                         idx++;
 	                    subm.CreatedAt      = r.GetDateTime(idx);                                       idx++;
 	                    subm.UpdatedAt      = r.IsDBNull(idx) ? (DateTime?)null : r.GetDateTime(idx);   idx++;
 

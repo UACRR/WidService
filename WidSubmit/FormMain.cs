@@ -24,6 +24,7 @@ namespace WidSubmit
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            ucSubmission.UpdateContent();
             ucRightHolders.UpdateContent();
         }
 
@@ -49,6 +50,11 @@ namespace WidSubmit
                 Cursor = Cursors.Default;
             }
             
+        }
+
+        private void panelMiddle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ucRightHolders.UpdateContent();
         }
     }
 }
