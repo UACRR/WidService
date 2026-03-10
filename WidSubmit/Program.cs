@@ -17,6 +17,7 @@ namespace WidSubmit
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
+            //Application.Run(new FormTest());
             //Application.Run(new FormSubmissionRightHolders());
         }
     }

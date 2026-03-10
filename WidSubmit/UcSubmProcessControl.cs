@@ -85,6 +85,8 @@ namespace WidSubmit
         private List<SubmStep> _submSteps;
         private Submission _submission;
 
+        public event EventHandler WorksUpdated;
+
         private bool _isExpanded;
         public UcSubmProcessControl()
         {
@@ -104,7 +106,7 @@ namespace WidSubmit
 
         public void UpdateContent()
         {
-            SetExpanded(true);
+            SetExpanded(false);
             Configure();
             LoadSubmission();
             UpdateControls();
@@ -467,11 +469,46 @@ namespace WidSubmit
 
         private void UpdateFromMs()
         {
-
+            Helpers.RunProtected(() =>
+            {
+                Helpers.RunSqlSocWidSubmitEx(cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "spSubmWorksUpdate";
+                    cmd.ExecuteNonQuery();
+                });
+            });
         }
 
         private void CreateSubmFile()
         {
+            var hasReadyWorks = SubmActionRunner.SubmHasReadyWorks();
+
+            if (!hasReadyWorks)
+            {
+                if (DialogResult.Yes !=
+                    MessageBox.Show("Відсутні твори для передачі, файл не буде створений.",
+                        "Публікація творів",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning))
+                {
+                    return;
+                }
+            }
+
+            var submFileExists = SubmActionRunner.SubmFileExists();
+            if (submFileExists)
+            {
+                if (DialogResult.Yes !=
+                    MessageBox.Show("Підготовлений до передачі в WID файл вже створений. Замінити його на новий?",
+                        "Публікація творів",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    return;
+                }
+            }
+
+            var builder = new SubmFileBuilder();
+            builder.CreateSubmFile();
             SetSubmFile("WID2023030609244604300140.021");
             SetSubmStatus(SubmStatusEnum.SUBM_FILE_CREATED);
         }
@@ -538,6 +575,7 @@ namespace WidSubmit
         private void btnUpdateFromMs_Click(object sender, EventArgs e)
         {
             UpdateFromMs();
+            WorksUpdated?.Invoke(this, null);
         }
 
 

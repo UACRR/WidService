@@ -138,6 +138,7 @@
             this.lvRightHolders.TabIndex = 1;
             this.lvRightHolders.UseCompatibleStateImageBehavior = false;
             this.lvRightHolders.SelectedIndexChanged += new System.EventHandler(this.lvRightHolders_SelectedIndexChanged);
+            this.lvRightHolders.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvRightHolders_MouseDown);
             // 
             // ilStatuses
             // 
@@ -356,6 +357,7 @@
             this.lvRightHolderHist.StateImageList = this.ilStatuses;
             this.lvRightHolderHist.TabIndex = 1;
             this.lvRightHolderHist.UseCompatibleStateImageBehavior = false;
+            this.lvRightHolderHist.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvRightHolderHist_MouseDown);
             // 
             // toolTip
             // 

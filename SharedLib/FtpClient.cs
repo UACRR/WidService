@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace SharedLib
+namespace WidSubmit
 {
     internal class FtpClient
     {

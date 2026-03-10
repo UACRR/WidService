@@ -25,6 +25,7 @@ begin
 	drop table if exists #MsRightHolder
 	select distinct
 		  t2.custId																as CustId
+		, t2.rHolderType														as RhType
 		, t2.InterCode															as IpBaseNr
 		, t2.IPIBase															as IpNameNr
 		, t4.Name																as Name
@@ -94,10 +95,12 @@ begin
 
 	-- Нова інформація для правовласників які зазнали змін
 	-- Тут CurId - останній історичний запис (поточний запис) для відповідного правовласника
+
 	drop table if exists #SocRightHoldersChanged
 	select 
 		  t2.Id						as CurId
-		, t1.CustId					as NewCustId		
+		, t1.CustId					as NewCustId
+		, t1.RhType					as NewRhType
 		, t1.IpBaseNr				as NewIpBaseNr		
 		, t1.IpNameNr				as NewIpNameNr		
 		, t1.Name					as NewName
@@ -119,7 +122,8 @@ begin
 			and t2.ValidTo = dbo.fnMaxDate()
 			and t2.ValidFrom <= dbo.fnCurDate() -- запобіжник на випадок невірної дати на сервері
 			and not (
-					isnull(t1.IpBaseNr, '') = isnull(t2.IpBaseNr, '')
+				t1.RhType = t2.RhType
+				and	isnull(t1.IpBaseNr, '') = isnull(t2.IpBaseNr, '')
 				and isnull(t1.IpNameNr, 0) = isnull(t2.IpNameNr, 0)
 				and t1.Name = left(t2.Name, 255)
 				and t1.FstName = left(t2.FstName, 255)
@@ -128,38 +132,13 @@ begin
 				and t1.HasIpiAgreeMec = t2.HasIpiAgreeMec
 			)
 
-	-- Правовласники які стали неактивними
-	-- Тут CurId - останній історичний запис (поточний запис) для відповідного правовласника
-	drop table if exists #SocRightHoldersDeactivated
-	select 
-		  t1.Id				as CurId
-		, t1.CustId			as CustId		
-		, t1.IpBaseNr		as IpBaseNr		
-		, t1.IpNameNr		as IpNameNr		
-		, t1.Name			as Name
-		, t1.FstName		as FstName
-		, t1.NameForWid		as NameForWid
-		, t1.FstNameForWid	as FstNameForWid
-		, t1.IsOwn			as IsOwn	
-		, 0					as IsActive		
-	into #SocRightHoldersDeactivated
-	from RightHolder t1
-		left join #MsRightHolderActive t2 on
-			    t1.CustId = t2.CustId
-	where t1.ValidTo = dbo.fnMaxDate()
-		and t1.IsActive = 1
-		and t2.CustId is null
-
-	delete t1
-	from #SocRightHoldersDeactivated t1
-		join #SocRightHoldersChanged t2 on t1.CustId = t2.NewCustId
-
 	-- ЗАСТОСУВАННЯ ЗМІН У НАЯВНИХ ПРАВОВЛАСНИКАХ, ЯКІ АКТИВНІ В СМАРТІ
 
 	-- Якщо зміна трапилась вродовж того самого дня, змінюємо останній рядок
 	update t1 
 	set
-		  t1.IpBaseNr		= t2.NewIpBaseNr		
+		  t1.RhType			= t2.NewRhType
+		, t1.IpBaseNr		= left(t2.NewIpBaseNr, 13)		
 		, t1.IpNameNr		= t2.NewIpNameNr		
 		, t1.Name			= t2.NewName
 		, t1.FstName		= t2.NewFstName
@@ -185,58 +164,7 @@ begin
 		, ValidTo
 		, CreatedAt
 		, CustId
-		, IpBaseNr
-		, IpNameNr
-		, Name
-		, FstName
-		, NameForWid
-		, FstNameForWid
-		, IsOwn
-		, IsActive
-		, HasIpiAgreePer
-		, HasIpiAgreeMec
-	)
-	select
-		  dbo.fnCurDate()						as ValidFrom
-		, dbo.fnMaxDate()				as ValidTo
-		, dbo.fnCurDate()						as CreatedAt
-		, t1.NewCustId					as CustId
-		, t1.NewIpBaseNr				as IpBaseNr
-		, t1.NewIpNameNr				as IpNameNr
-		, left(t1.NewName, 255)			as Name
-		, left(t1.NewFstName, 255)		as FstName
-		, left(t1.NewNameForWid, 255)	as NameForWid
-		, left(t1.NewFstNameForWid, 255) as FstNameForWid
-		, 1								as IsOwn
-		, 1								as IsActive			
-		, t2.HasIpiAgreePer				as HasIpiAgreePer
-		, t2.HasIpiAgreeMec				as HasIpiAgreeMec
-	from #SocRightHoldersChanged t1
-		join RightHolder t2 on t1.CurId = t2.Id
-	where t2.ValidFrom <> dbo.fnCurDate()
-
-	-- ДЕАКТИВАЦІЯ ПРАВОВЛАСНИКІВ, ЯКІ НЕ МІТЯТЬСЯ СЕРЕД АКТИВНИХ В СМАРТІ
-	
-	-- Якщо зміна трапилась вродовж того самого дня, змінюємо останній рядок
-	update t1 
-	set
-		t1.IsActive	= 0
-	from RightHolder t1
-		join #SocRightHoldersDeactivated t2 on t1.Id = t2.CurId
-	where t1.ValidFrom = dbo.fnCurDate()
-
-	-- Якщо зміна трапилась пізніше того самого дня, змінюємо фінальну дату останнього рядока
-	-- і додаємо новий	
-	update RightHolder 
-	set ValidTo = dbo.fnPrevDate()
-	where Id in (select CurId from #SocRightHoldersDeactivated)
-		and ValidFrom <> dbo.fnCurDate()
-
-	insert RightHolder (
-		  ValidFrom
-		, ValidTo
-		, CreatedAt
-		, CustId
+		, RhType
 		, IpBaseNr
 		, IpNameNr
 		, Name
@@ -250,29 +178,32 @@ begin
 	)
 	select
 		  dbo.fnCurDate()					as ValidFrom
-		, dbo.fnMaxDate()			as ValidTo
+		, dbo.fnMaxDate()					as ValidTo
 		, dbo.fnCurDate()					as CreatedAt
-		, t2.CustId					as CustId
-		, t2.IpBaseNr				as IpBaseNr
-		, t2.IpNameNr				as IpNameNr
-		, left(t2.Name, 255)		as Name
-		, left(t2.FstName, 255)		as FstName
-		, left(t2.NameForWid, 255)	as NameForWid
-		, left(t2.FstNameForWid, 255) as FstNameForWid
-		, t2.IsOwn					as IsOwn
-		, 0							as IsActive			
-		, t2.HasIpiAgreePer			as HasIpiAgreePer
-		, t2.HasIpiAgreeMec			as HasIpiAgreeMec
-	from #SocRightHoldersDeactivated t1
+		, t1.NewCustId						as CustId
+		, t1.NewRhType						as RhType
+		, left(t1.NewIpBaseNr, 13)			as IpBaseNr
+		, t1.NewIpNameNr					as IpNameNr
+		, left(t1.NewName, 255)				as Name
+		, left(t1.NewFstName, 255)			as FstName
+		, left(t1.NewNameForWid, 255)		as NameForWid
+		, left(t1.NewFstNameForWid, 255)	as FstNameForWid
+		, t1.NewIsOwn						as IsOwn
+		, t1.NewIsActive					as IsActive			
+		, t2.HasIpiAgreePer					as HasIpiAgreePer
+		, t2.HasIpiAgreeMec					as HasIpiAgreeMec
+	from #SocRightHoldersChanged t1
 		join RightHolder t2 on t1.CurId = t2.Id
 	where t2.ValidFrom <> dbo.fnCurDate()
 
 	-- ДОДАЄМО ВІДСУТНІХ ПРАВОВЛАСНИКІВ
 	insert RightHolder (
+
 		  ValidFrom
 		, ValidTo
 		, CreatedAt
 		, CustId
+		, RhType
 		, IpBaseNr
 		, IpNameNr
 		, Name
@@ -285,11 +216,12 @@ begin
 		, HasIpiAgreeMec
 	)
 	select
-		  dbo.fnMinDate()					as ValidFrom
+		  dbo.fnMinDate()				as ValidFrom
 		, dbo.fnMaxDate()				as ValidTo
-		, dbo.fnCurDate()						as CreatedAt
+		, dbo.fnCurDate()				as CreatedAt
 		, t1.CustId						as CustId
-		, t1.IpBaseNr					as IpBaseNr
+		, t1.RhType						as RhType
+		, left(t1.IpBaseNr, 13)			as IpBaseNr
 		, t1.IpNameNr					as IpNameNr
 		, left(t1.Name, 255)			as Name
 		, left(t1.FstName, 255)			as FstName

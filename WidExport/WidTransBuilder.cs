@@ -1,5 +1,4 @@
-﻿using SharedLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Configuration;
@@ -14,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WidExport.Entities;
 
-namespace WidExport
+namespace WidSubmit
 {
     public class WidTransBuilder
     {

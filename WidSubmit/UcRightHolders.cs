@@ -489,5 +489,15 @@ namespace WidSubmit
             LoadRightHolders();
             FillLvRightHolders();
         }
+
+        private void lvRightHolders_MouseDown(object sender, MouseEventArgs e)
+        {
+            Helpers.CopyCellValue(e, lvRightHolders);
+        }
+
+        private void lvRightHolderHist_MouseDown(object sender, MouseEventArgs e)
+        {
+            Helpers.CopyCellValue(e, lvRightHolderHist);
+        }
     }
 }

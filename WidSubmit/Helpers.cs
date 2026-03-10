@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -51,7 +52,7 @@ namespace WidSubmit
                     }
                 }
             }
-            catch (Exception)
+                catch (Exception)
             {
                 if(tran != null)
                 {
@@ -88,6 +89,23 @@ namespace WidSubmit
             finally
             {
                 Cursor.Current = Cursors.Default;
+            }
+        }
+
+        public static void CopyCellValue(MouseEventArgs e, ListView listView)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                var htInfo = listView.HitTest(new Point(e.X, e.Y));
+                if (htInfo == null || htInfo.SubItem == null) return;
+                var text = htInfo.SubItem.Text;
+                var menu = new ContextMenu();
+                menu.MenuItems.Add("Копіювати значення");
+                menu.MenuItems[0].Click += ((s, ev) =>
+                {
+                    Clipboard.SetText(text);
+                });
+                menu.Show(listView, new Point(e.X, e.Y));
             }
         }
     }

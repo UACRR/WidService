@@ -1,7 +1,30 @@
 ﻿use SocWidSubmitEx
 go
 
+drop table if exists RecTrl
+drop table if exists RecGrt
+drop table if exists RecPer
+drop table if exists RecAlt
+drop table if exists RecOsr
+drop table if exists RecOip
+drop table if exists RecSsr
+drop table if exists RecSip
+drop table if exists RecWiaWiu
+drop table if exists RecGrh
+drop table if exists RecHdr
+
 drop table if exists Z_SubmRightHolder
+
+drop table if exists Z_SubmWorkHash
+drop table if exists Z_SubmWorkShare
+drop table if exists Z_SubmWorkAltName
+drop table if exists Z_SubmWorkPerformer
+drop table if exists Z_SubmWork
+
+drop table if exists ObjIdToWicIswc
+
+drop table if exists SubmCheckList
+drop table if exists SubmWorksAcceptedHash
 
 drop table if exists SubmWorkShare
 drop table if exists SubmWorkAltName
@@ -16,6 +39,8 @@ drop table if exists Submission
 drop table if exists RightHolder
 
 drop table if exists SubmissionStatus
+drop table if exists SubmWorkStatus
+
 
 create table SubmissionStatus (
 	  Id int not null primary key
@@ -34,11 +59,20 @@ values
 	, ( 8, 'ISWC_CODES_PASSED_TO_MS')
 	, ( 9, 'CLOSED')
 
-create table Z_SubmRightHolder (
-	  Guid uniqueidentifier
-	, RightHolderId int not null
-	, SubmAsOwn bit not null
+create table SubmWorkStatus (
+	  Id int not null primary key
+	, Code varchar(30) not null
 )
+insert SubmWorkStatus(Id, Code)
+values
+	  ( 0, 'NOT_READY')
+	, ( 1, 'READY')
+	, ( 2, 'SUBMITTED')
+	, ( 3, 'ACCEPTED')
+	, ( 4, 'ACCEPTED_WARNINGS')
+	, ( 5, 'REJECTED')
+	, ( 6, 'APPLIED')
+	, ( 7, 'COMPLETED')
 
 create table RightHolder (
 	  Id				int primary key identity(1, 1)
@@ -46,12 +80,13 @@ create table RightHolder (
 	, ValidTo			date not null
 	, CreatedAt			datetime not null default(getdate())
 	, CustId			int not null
+	, RhType			int not null
 	, IpBaseNr			varchar(13) null
 	, IpNameNr			int null
-	, Name				nvarchar(255) not null
-	, FstName			nvarchar(255) not null
-	, NameForWid		nvarchar(255) not null
-	, FstNameForWid		nvarchar(255) not null
+	, Name				nvarchar(256) not null
+	, FstName			nvarchar(256) not null
+	, NameForWid		nvarchar(256) not null
+	, FstNameForWid		nvarchar(256) not null
 	, IsOwn				bit not null default(0)
 	, IsActive			bit not null default(1)
 	, HasIpiAgreePer	bit null
@@ -114,21 +149,25 @@ create table SubmWork (
 	, SubmissionId int not null
 	, ObjId int not null
 	, Wic int null
+	, Iswc varchar(11) not null
 	, Name nvarchar(256)
-	, NameForWid nvarchar(60)
+	, NameForWid nvarchar(256)
 	, IsChanged bit not null
+	, Status int not null
 	, CreatedAt datetime not null default(getdate())
 	, UpdatedAt datetime null
 )
+alter table SubmWork add constraint fkSubmWorkStatus foreign key (Status) references SubmWorkStatus (Id);
 alter table SubmWork add constraint fkSubmWorkSubmission foreign key (SubmissionId) references Submission (Id);
+alter table SubmWork add constraint ucSubmWorkSubmissionIdObjId unique (SubmissionId, ObjId)
 go
 
 create table SubmWorkShare (
 	  Id int primary key identity(1, 1)
 	, SubmWorkId int not null
 	, RightHolderId int not null
-	, IpBaseNr varchar(13) null
-	, IpNameNr int null
+	, RhRole int not null
+	, RoleForWid varchar(2) not null
 	, ShrPer decimal(5, 2) not null
 	, ShrMec decimal(5, 2) not null
 	, CreatedAt datetime not null default(getdate())
@@ -141,8 +180,8 @@ go
 create table SubmWorkAltName (
 	  Id int primary key identity(1, 1)
 	, SubmWorkId int not null
-	, Name nvarchar(256)
-	, NameForWid nvarchar(60)
+	, OrigNames nvarchar(256)
+	, NameForWid nvarchar(256)
 	, CreatedAt datetime not null default(getdate())
 	, UpdatedAt datetime null
 )
@@ -152,11 +191,117 @@ go
 create table SubmWorkPerformer (
 	  Id int primary key identity(1, 1)
 	, SubmWorkId int not null
-	, Name nvarchar(256)
-	, NameForWid nvarchar(60)
+	, OrigNames nvarchar(256)
+	, NameForWid nvarchar(256)
 	, CreatedAt datetime not null default(getdate())
 	, UpdatedAt datetime null
 )
 alter table SubmWorkPerformer add constraint fkSubmWorkPerformerWork foreign key (SubmWorkId) references SubmWork (Id);
+go
+
+create table SubmWorksAcceptedHash (
+	  Id int primary key identity(1, 1)
+	, SubmWorkId int not null
+	, ObjId int not null
+	, HashValue nvarchar(max)
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table SubmWorksAcceptedHash add constraint fkSubmWorksAcceptedHashWork foreign key (SubmWorkId) references SubmWork (Id);
+go
+
+create table SubmCheckList (
+	  Id int identity(1, 1) primary key
+	, SubmWorkId int not null
+	, HasOwnRightHolder bit not null
+	, RolesDefined bit not null
+	, HasNonPublisher bit not null
+	, AllInIpi bit not null
+	, PubShare0or100 bit not null
+	, MecShare0or100 bit not null
+	, HasShare bit not null
+	, AllIpiCodesValid bit not null
+	, IsOk  bit not null
+)
+alter table SubmCheckList add constraint ucSubmCheckListSubmIdSubmWorkId unique (SubmWorkId)
+alter table SubmCheckList add constraint fkSubmCheckListSubmWork foreign key (SubmWorkId) references SubmWork (Id);
+go
+
+
+create table ObjIdToWicIswc (
+	  ObjId int primary key
+	, Wic int null
+	, Iswc varchar(11) null
+)
+
+-- РОБЮЧІ ТАБЛИЦІ
+
+create table Z_SubmRightHolder (
+	  Guid uniqueidentifier
+	, RightHolderId int not null
+	, SubmAsOwn bit not null
+)
+
+create table Z_SubmWork (
+	  Id int primary key identity(1, 1)
+	, SubmissionId int not null
+	, ObjId int not null
+	, Wic int null
+	, Iswc varchar(11) not null
+	, Name nvarchar(256)
+	, NameForWid nvarchar(256)
+	, IsChanged bit not null
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table Z_SubmWork add constraint ucZ_SubmWorkSubmissionIdObjId unique (SubmissionId, ObjId)
+go
+
+create table Z_SubmWorkShare (
+	  Id int primary key identity(1, 1)
+	, SubmWorkId int not null
+	, RightHolderId int not null
+	, RhRole int not null
+	, RoleForWid varchar(2) not null
+	, ShrPer decimal(5, 2) not null
+	, ShrMec decimal(5, 2) not null
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table Z_SubmWorkShare add constraint fkZ_SubmWorkShareWork foreign key (SubmWorkId) references Z_SubmWork (Id);
+alter table Z_SubmWorkShare add constraint fkZ_SubmWorkShareRightHolder foreign key (RightHolderId) references RightHolder (Id);
+go
+
+create table Z_SubmWorkAltName (
+	  Id int primary key identity(1, 1)
+	, SubmWorkId int not null
+	, OrigNames nvarchar(256)
+	, NameForWid nvarchar(256)
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table Z_SubmWorkAltName add constraint fkZ_SubmWorkAltNameWork foreign key (SubmWorkId) references Z_SubmWork (Id);
+go
+
+create table Z_SubmWorkPerformer (
+	  Id int primary key identity(1, 1)
+	, SubmWorkId int not null
+	, OrigNames nvarchar(256)
+	, NameForWid nvarchar(256)
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table Z_SubmWorkPerformer add constraint fkZ_SubmWorkPerformerWork foreign key (SubmWorkId) references Z_SubmWork (Id);
+go
+
+create table Z_SubmWorkHash (
+	  Id int primary key identity(1, 1)
+	, SubmWorkId int not null
+	, HashValue nvarchar(max)
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table Z_SubmWorkHash add constraint fkZ_SubmWorkHashWork foreign key (SubmWorkId) references Z_SubmWork (Id);
+
 go
 

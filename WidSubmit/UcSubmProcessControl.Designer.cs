@@ -35,12 +35,8 @@
             this.panelRight = new System.Windows.Forms.TableLayoutPanel();
             this.labStepTitle1 = new System.Windows.Forms.Label();
             this.labMsg1 = new System.Windows.Forms.Label();
-            this.btnCreateSubmFile = new System.Windows.Forms.Button();
             this.labStepTitle2 = new System.Windows.Forms.Label();
             this.labMsg2 = new System.Windows.Forms.Label();
-            this.btnReceiveRespFile = new System.Windows.Forms.Button();
-            this.btnApplyRespFile = new System.Windows.Forms.Button();
-            this.btnCancelSubm = new System.Windows.Forms.Button();
             this.labStepTitle3 = new System.Windows.Forms.Label();
             this.labMsg3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -50,25 +46,29 @@
             this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
             this.labStepStatus3 = new System.Windows.Forms.Label();
             this.labStepStatus2 = new System.Windows.Forms.Label();
-            this.btnShowRespFile = new System.Windows.Forms.Button();
-            this.btnSendSubmFile = new System.Windows.Forms.Button();
-            this.btnUpdateFromMs = new System.Windows.Forms.Button();
-            this.btnShowSubmFile = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelStep1Buttons = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnUpdateFromMs = new System.Windows.Forms.Button();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCreateSubmFile = new System.Windows.Forms.Button();
+            this.btnShowSubmFile = new System.Windows.Forms.Button();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnSendSubmFile = new System.Windows.Forms.Button();
             this.panelStep2Buttons = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnReceiveRespFile = new System.Windows.Forms.Button();
+            this.btnShowRespFile = new System.Windows.Forms.Button();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnApplyRespFile = new System.Windows.Forms.Button();
             this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnShowErrorFile = new System.Windows.Forms.Button();
+            this.btnCancelSubm = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             this.panelRight.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -116,7 +116,7 @@
             this.panelRight.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.panelRight.ColumnCount = 2;
             this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 800F));
+            this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 803F));
             this.panelRight.Controls.Add(this.labStepTitle1, 1, 0);
             this.panelRight.Controls.Add(this.labMsg1, 1, 1);
             this.panelRight.Controls.Add(this.labStepTitle2, 1, 3);
@@ -168,17 +168,6 @@
             this.labMsg1.TabIndex = 0;
             this.labMsg1.Text = "Файл створений";
             // 
-            // btnCreateSubmFile
-            // 
-            this.btnCreateSubmFile.AutoSize = true;
-            this.btnCreateSubmFile.Location = new System.Drawing.Point(3, 3);
-            this.btnCreateSubmFile.Name = "btnCreateSubmFile";
-            this.btnCreateSubmFile.Size = new System.Drawing.Size(93, 23);
-            this.btnCreateSubmFile.TabIndex = 1;
-            this.btnCreateSubmFile.Text = "Створити файл";
-            this.btnCreateSubmFile.UseVisualStyleBackColor = true;
-            this.btnCreateSubmFile.Click += new System.EventHandler(this.btnCreateSubmFile_Click);
-            // 
             // labStepTitle2
             // 
             this.labStepTitle2.AutoSize = true;
@@ -199,39 +188,6 @@
             this.labMsg2.Size = new System.Drawing.Size(92, 18);
             this.labMsg2.TabIndex = 0;
             this.labMsg2.Text = "Файл створений";
-            // 
-            // btnReceiveRespFile
-            // 
-            this.btnReceiveRespFile.AutoSize = true;
-            this.btnReceiveRespFile.Location = new System.Drawing.Point(3, 3);
-            this.btnReceiveRespFile.Name = "btnReceiveRespFile";
-            this.btnReceiveRespFile.Size = new System.Drawing.Size(118, 23);
-            this.btnReceiveRespFile.TabIndex = 0;
-            this.btnReceiveRespFile.Text = "Отримати відповідь";
-            this.btnReceiveRespFile.UseVisualStyleBackColor = true;
-            this.btnReceiveRespFile.Click += new System.EventHandler(this.btnReceiveRespFile_Click);
-            // 
-            // btnApplyRespFile
-            // 
-            this.btnApplyRespFile.AutoSize = true;
-            this.btnApplyRespFile.Location = new System.Drawing.Point(3, 3);
-            this.btnApplyRespFile.Name = "btnApplyRespFile";
-            this.btnApplyRespFile.Size = new System.Drawing.Size(133, 23);
-            this.btnApplyRespFile.TabIndex = 0;
-            this.btnApplyRespFile.Text = "Виконати";
-            this.btnApplyRespFile.UseVisualStyleBackColor = true;
-            this.btnApplyRespFile.Click += new System.EventHandler(this.btnApplyRespFile_Click);
-            // 
-            // btnCancelSubm
-            // 
-            this.btnCancelSubm.AutoSize = true;
-            this.btnCancelSubm.Location = new System.Drawing.Point(149, 3);
-            this.btnCancelSubm.Name = "btnCancelSubm";
-            this.btnCancelSubm.Size = new System.Drawing.Size(118, 23);
-            this.btnCancelSubm.TabIndex = 0;
-            this.btnCancelSubm.Text = "Відмінити передачу";
-            this.btnCancelSubm.UseVisualStyleBackColor = true;
-            this.btnCancelSubm.Click += new System.EventHandler(this.btnCancelSubm_Click);
             // 
             // labStepTitle3
             // 
@@ -281,7 +237,7 @@
             this.btnCloseSubm.Name = "btnCloseSubm";
             this.btnCloseSubm.Size = new System.Drawing.Size(145, 23);
             this.btnCloseSubm.TabIndex = 0;
-            this.btnCloseSubm.Text = "Завершити передачу";
+            this.btnCloseSubm.Text = "Завершити сеанс";
             this.btnCloseSubm.UseVisualStyleBackColor = true;
             this.btnCloseSubm.Click += new System.EventHandler(this.btnCloseSubm_Click);
             // 
@@ -327,61 +283,6 @@
             this.labStepStatus2.Size = new System.Drawing.Size(24, 24);
             this.labStepStatus2.TabIndex = 6;
             // 
-            // btnShowRespFile
-            // 
-            this.btnShowRespFile.AutoSize = true;
-            this.btnShowRespFile.Location = new System.Drawing.Point(127, 3);
-            this.btnShowRespFile.Name = "btnShowRespFile";
-            this.btnShowRespFile.Size = new System.Drawing.Size(140, 23);
-            this.btnShowRespFile.TabIndex = 1;
-            this.btnShowRespFile.Text = "Показати файл";
-            this.btnShowRespFile.UseVisualStyleBackColor = true;
-            this.btnShowRespFile.Click += new System.EventHandler(this.btnShowRespFile_Click);
-            // 
-            // btnSendSubmFile
-            // 
-            this.btnSendSubmFile.AutoSize = true;
-            this.btnSendSubmFile.Location = new System.Drawing.Point(3, 3);
-            this.btnSendSubmFile.Name = "btnSendSubmFile";
-            this.btnSendSubmFile.Size = new System.Drawing.Size(109, 23);
-            this.btnSendSubmFile.TabIndex = 1;
-            this.btnSendSubmFile.Text = "Передати в WID";
-            this.btnSendSubmFile.UseVisualStyleBackColor = true;
-            this.btnSendSubmFile.Click += new System.EventHandler(this.btnSendSubmFile_Click);
-            // 
-            // btnUpdateFromMs
-            // 
-            this.btnUpdateFromMs.AutoSize = true;
-            this.btnUpdateFromMs.Location = new System.Drawing.Point(3, 3);
-            this.btnUpdateFromMs.Name = "btnUpdateFromMs";
-            this.btnUpdateFromMs.Size = new System.Drawing.Size(118, 23);
-            this.btnUpdateFromMs.TabIndex = 0;
-            this.btnUpdateFromMs.Text = "Оновити із СМАРТ";
-            this.btnUpdateFromMs.UseVisualStyleBackColor = true;
-            this.btnUpdateFromMs.Click += new System.EventHandler(this.btnUpdateFromMs_Click);
-            // 
-            // btnShowSubmFile
-            // 
-            this.btnShowSubmFile.AutoSize = true;
-            this.btnShowSubmFile.Location = new System.Drawing.Point(102, 3);
-            this.btnShowSubmFile.Name = "btnShowSubmFile";
-            this.btnShowSubmFile.Size = new System.Drawing.Size(141, 23);
-            this.btnShowSubmFile.TabIndex = 1;
-            this.btnShowSubmFile.Text = "Показати файл";
-            this.btnShowSubmFile.UseVisualStyleBackColor = true;
-            this.btnShowSubmFile.Click += new System.EventHandler(this.btnShowSubmFile_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-            this.label1.Size = new System.Drawing.Size(110, 22);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Твори для публікації";
-            // 
             // panelStep1Buttons
             // 
             this.panelStep1Buttons.ColumnCount = 3;
@@ -402,6 +303,17 @@
             this.panelStep1Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.panelStep1Buttons.Size = new System.Drawing.Size(442, 109);
             this.panelStep1Buttons.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
+            this.label1.Size = new System.Drawing.Size(110, 22);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Твори для публікації";
             // 
             // label2
             // 
@@ -434,6 +346,17 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(273, 29);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
+            // btnUpdateFromMs
+            // 
+            this.btnUpdateFromMs.AutoSize = true;
+            this.btnUpdateFromMs.Location = new System.Drawing.Point(3, 3);
+            this.btnUpdateFromMs.Name = "btnUpdateFromMs";
+            this.btnUpdateFromMs.Size = new System.Drawing.Size(118, 23);
+            this.btnUpdateFromMs.TabIndex = 0;
+            this.btnUpdateFromMs.Text = "Оновити із СМАРТ";
+            this.btnUpdateFromMs.UseVisualStyleBackColor = true;
+            this.btnUpdateFromMs.Click += new System.EventHandler(this.btnUpdateFromMs_Click);
+            // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.btnCreateSubmFile);
@@ -444,6 +367,28 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(273, 29);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
+            // btnCreateSubmFile
+            // 
+            this.btnCreateSubmFile.AutoSize = true;
+            this.btnCreateSubmFile.Location = new System.Drawing.Point(3, 3);
+            this.btnCreateSubmFile.Name = "btnCreateSubmFile";
+            this.btnCreateSubmFile.Size = new System.Drawing.Size(93, 23);
+            this.btnCreateSubmFile.TabIndex = 1;
+            this.btnCreateSubmFile.Text = "Створити файл";
+            this.btnCreateSubmFile.UseVisualStyleBackColor = true;
+            this.btnCreateSubmFile.Click += new System.EventHandler(this.btnCreateSubmFile_Click);
+            // 
+            // btnShowSubmFile
+            // 
+            this.btnShowSubmFile.AutoSize = true;
+            this.btnShowSubmFile.Location = new System.Drawing.Point(102, 3);
+            this.btnShowSubmFile.Name = "btnShowSubmFile";
+            this.btnShowSubmFile.Size = new System.Drawing.Size(141, 23);
+            this.btnShowSubmFile.TabIndex = 1;
+            this.btnShowSubmFile.Text = "Показати файл";
+            this.btnShowSubmFile.UseVisualStyleBackColor = true;
+            this.btnShowSubmFile.Click += new System.EventHandler(this.btnShowSubmFile_Click);
+            // 
             // flowLayoutPanel4
             // 
             this.flowLayoutPanel4.Controls.Add(this.btnSendSubmFile);
@@ -452,6 +397,17 @@
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(273, 33);
             this.flowLayoutPanel4.TabIndex = 3;
+            // 
+            // btnSendSubmFile
+            // 
+            this.btnSendSubmFile.AutoSize = true;
+            this.btnSendSubmFile.Location = new System.Drawing.Point(3, 3);
+            this.btnSendSubmFile.Name = "btnSendSubmFile";
+            this.btnSendSubmFile.Size = new System.Drawing.Size(109, 23);
+            this.btnSendSubmFile.TabIndex = 1;
+            this.btnSendSubmFile.Text = "Передати в WID";
+            this.btnSendSubmFile.UseVisualStyleBackColor = true;
+            this.btnSendSubmFile.Click += new System.EventHandler(this.btnSendSubmFile_Click);
             // 
             // panelStep2Buttons
             // 
@@ -517,6 +473,28 @@
             this.flowLayoutPanel5.Size = new System.Drawing.Size(273, 29);
             this.flowLayoutPanel5.TabIndex = 2;
             // 
+            // btnReceiveRespFile
+            // 
+            this.btnReceiveRespFile.AutoSize = true;
+            this.btnReceiveRespFile.Location = new System.Drawing.Point(3, 3);
+            this.btnReceiveRespFile.Name = "btnReceiveRespFile";
+            this.btnReceiveRespFile.Size = new System.Drawing.Size(118, 23);
+            this.btnReceiveRespFile.TabIndex = 0;
+            this.btnReceiveRespFile.Text = "Отримати відповідь";
+            this.btnReceiveRespFile.UseVisualStyleBackColor = true;
+            this.btnReceiveRespFile.Click += new System.EventHandler(this.btnReceiveRespFile_Click);
+            // 
+            // btnShowRespFile
+            // 
+            this.btnShowRespFile.AutoSize = true;
+            this.btnShowRespFile.Location = new System.Drawing.Point(127, 3);
+            this.btnShowRespFile.Name = "btnShowRespFile";
+            this.btnShowRespFile.Size = new System.Drawing.Size(140, 23);
+            this.btnShowRespFile.TabIndex = 1;
+            this.btnShowRespFile.Text = "Показати файл";
+            this.btnShowRespFile.UseVisualStyleBackColor = true;
+            this.btnShowRespFile.Click += new System.EventHandler(this.btnShowRespFile_Click);
+            // 
             // flowLayoutPanel6
             // 
             this.flowLayoutPanel6.Controls.Add(this.btnApplyRespFile);
@@ -525,6 +503,17 @@
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(273, 29);
             this.flowLayoutPanel6.TabIndex = 3;
+            // 
+            // btnApplyRespFile
+            // 
+            this.btnApplyRespFile.AutoSize = true;
+            this.btnApplyRespFile.Location = new System.Drawing.Point(3, 3);
+            this.btnApplyRespFile.Name = "btnApplyRespFile";
+            this.btnApplyRespFile.Size = new System.Drawing.Size(133, 23);
+            this.btnApplyRespFile.TabIndex = 0;
+            this.btnApplyRespFile.Text = "Виконати";
+            this.btnApplyRespFile.UseVisualStyleBackColor = true;
+            this.btnApplyRespFile.Click += new System.EventHandler(this.btnApplyRespFile_Click);
             // 
             // flowLayoutPanel7
             // 
@@ -546,6 +535,17 @@
             this.btnShowErrorFile.Text = "Показати файл";
             this.btnShowErrorFile.UseVisualStyleBackColor = true;
             this.btnShowErrorFile.Click += new System.EventHandler(this.btnShowErrorFile_Click);
+            // 
+            // btnCancelSubm
+            // 
+            this.btnCancelSubm.AutoSize = true;
+            this.btnCancelSubm.Location = new System.Drawing.Point(149, 3);
+            this.btnCancelSubm.Name = "btnCancelSubm";
+            this.btnCancelSubm.Size = new System.Drawing.Size(118, 23);
+            this.btnCancelSubm.TabIndex = 0;
+            this.btnCancelSubm.Text = "Відмінити передачу";
+            this.btnCancelSubm.UseVisualStyleBackColor = true;
+            this.btnCancelSubm.Click += new System.EventHandler(this.btnCancelSubm_Click);
             // 
             // UcSubmProcessControl
             // 

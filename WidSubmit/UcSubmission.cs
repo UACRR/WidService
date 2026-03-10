@@ -15,11 +15,18 @@ namespace WidSubmit
         public UcSubmission()
         {
             InitializeComponent();
+            ucSubmProcessControl.WorksUpdated += UcSubmProcessControl_WorksUpdated;
         }
 
         public void UpdateContent()
         {
             ucSubmProcessControl.UpdateContent();
+            ucSubmWorks.UpdateContent();
+        }
+
+        private void UcSubmProcessControl_WorksUpdated(object sender, EventArgs e)
+        {
+            ucSubmWorks.UpdateContent();
         }
     }
 }

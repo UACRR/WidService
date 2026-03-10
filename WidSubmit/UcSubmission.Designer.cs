@@ -30,10 +30,8 @@
         {
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.ucSubmProcessControl = new WidSubmit.UcSubmProcessControl();
-            this.panelSubmWorks = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ucSubmWorks = new WidSubmit.UcSubmWorks();
             this.panelMain.SuspendLayout();
-            this.panelSubmWorks.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -43,7 +41,7 @@
             this.panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.panelMain.Controls.Add(this.ucSubmProcessControl, 0, 0);
-            this.panelMain.Controls.Add(this.panelSubmWorks, 1, 0);
+            this.panelMain.Controls.Add(this.ucSubmWorks, 1, 0);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
@@ -61,29 +59,13 @@
             this.ucSubmProcessControl.Size = new System.Drawing.Size(252, 355);
             this.ucSubmProcessControl.TabIndex = 0;
             // 
-            // panelSubmWorks
+            // ucSubmWorks
             // 
-            this.panelSubmWorks.ColumnCount = 2;
-            this.panelSubmWorks.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelSubmWorks.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.panelSubmWorks.Controls.Add(this.label1, 0, 0);
-            this.panelSubmWorks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSubmWorks.Location = new System.Drawing.Point(261, 3);
-            this.panelSubmWorks.Name = "panelSubmWorks";
-            this.panelSubmWorks.RowCount = 2;
-            this.panelSubmWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelSubmWorks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelSubmWorks.Size = new System.Drawing.Size(502, 355);
-            this.panelSubmWorks.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.ucSubmWorks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorks.Location = new System.Drawing.Point(261, 3);
+            this.ucSubmWorks.Name = "ucSubmWorks";
+            this.ucSubmWorks.Size = new System.Drawing.Size(502, 355);
+            this.ucSubmWorks.TabIndex = 1;
             // 
             // UcSubmission
             // 
@@ -93,8 +75,6 @@
             this.Name = "UcSubmission";
             this.Size = new System.Drawing.Size(771, 366);
             this.panelMain.ResumeLayout(false);
-            this.panelSubmWorks.ResumeLayout(false);
-            this.panelSubmWorks.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -103,7 +83,6 @@
 
         private System.Windows.Forms.TableLayoutPanel panelMain;
         private UcSubmProcessControl ucSubmProcessControl;
-        private System.Windows.Forms.TableLayoutPanel panelSubmWorks;
-        private System.Windows.Forms.Label label1;
+        private UcSubmWorks ucSubmWorks;
     }
 }
