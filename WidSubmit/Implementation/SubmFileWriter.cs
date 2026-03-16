@@ -16,11 +16,11 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using static WidSubmit.SubmFileBuilder;
+using static WidSubmit.SubmFileWriter;
 
 namespace WidSubmit
 {
-    public class SubmFileBuilder
+    public class SubmFileWriter
     {
         public class SubmWork
         {
@@ -77,9 +77,9 @@ namespace WidSubmit
 
         public class Grh
         {
-            public RecGrh RecGrh { get; set; }
+            public RecGrh         RecGrh { get; set; }
             public List<SubmWork> SubmWorks { get; set; }
-            public RecGrt RecGrt { get; set; }
+            public RecGrt         RecGrt { get; set; }
             public Grh()
             {
                 SubmWorks = new List<SubmWork>();
@@ -89,8 +89,8 @@ namespace WidSubmit
         public class Hdr
         {
             public RecHdr RecHdr { get; set; }
-            public Grh GrhWia { get; set; }
-            public Grh GrhWiu { get; set; }
+            public Grh    GrhWia { get; set; }
+            public Grh    GrhWiu { get; set; }
             public RecTrl RecTrl { get; set; }
         }
 
@@ -112,20 +112,22 @@ namespace WidSubmit
             {"MSG", "RecMsg"},
         };
 
-        private readonly string _connectStringSocWid;
-        private readonly string _connectStringSocWidSubmit;
+        //private readonly string _connectStringSocWid;
+        //private readonly string _connectStringSocWidSubmit;
 
-        public SubmFileBuilder()
+        public SubmFileWriter()
         {
 
         }
 
-        public SubmFileBuilder(string connectStringSocWid, string connectStringSocWidSubmit)
+        public SubmFileWriter(string connectStringSocWid, string connectStringSocWidSubmit)
         {
-            _connectStringSocWid = connectStringSocWid;
-            _connectStringSocWidSubmit = connectStringSocWidSubmit;
+            //_connectStringSocWid = connectStringSocWid;
+            //_connectStringSocWidSubmit = connectStringSocWidSubmit;
         }
-        
+
+        #region ФОРМУВАННЯ ДАНИХ В ПАМЯТІ // --------------------------------------------------------------
+
         private Hdr CreateHdrRecord(int submissionId)
         {
             var hdr = new Hdr();
@@ -348,7 +350,7 @@ namespace WidSubmit
                 share.RecSsrOsrPer  = new RecSsrOsr{
                     Id = 0,
                     RecSipOipId = 0,
-                    RecType = share.IsSubmWorkCnanged ? "SSR" : "OSR",
+                    RecType = share.IsSubmWorkCnanged ? "OSR" : "SSR",
                     TransSeqNr = "",
                     RecSeqNr = "",
                     Filler6 = "",
@@ -361,7 +363,7 @@ namespace WidSubmit
                 share.RecSsrOsrMec  = new RecSsrOsr{
                     Id = 0,
                     RecSipOipId = 0,
-                    RecType = share.IsSubmWorkCnanged ? "SSR" : "OSR",
+                    RecType = share.IsSubmWorkCnanged ? "OSR" : "SSR",
                     TransSeqNr = "",
                     RecSeqNr = "",
                     Filler6 = "",
@@ -558,18 +560,18 @@ namespace WidSubmit
             var recCnt = 0;
             grh.SubmWorks.ForEach(work =>
             {
-                recCnt += work.Shares.Count();
+                recCnt += 3 * work.Shares.Count();
                 recCnt += work.AltNames.Count();
                 recCnt += work.Performers.Count();
                 recCnt += 1; // Транзакція  WIA/WIU
-                recCnt += 2; // GRH + GRT
             });
+            recCnt += 2; // GRH + GRT
 
             grh.RecGrt = new RecGrt
             {
                 Id          = 0,
                 RecGrhId    = 0,
-                RecType     = "GRH",
+                RecType     = "GRT",
                 GrId        = grh.RecGrh.GrId,
                 TransCnt    = grh.SubmWorks.Count().ToString("D8"),
                 RecCnt      = recCnt.ToString("D8"),
@@ -605,6 +607,7 @@ namespace WidSubmit
                 work.RecWiaWiu.TransSeqNr = transSeqNr.ToString("D8");
                 work.RecWiaWiu.RecSeqNr = recSeqNr.ToString("D8");
                 
+                recSeqNr++;
                 work.Shares.ForEach(share => {
                     share.RecSipOip.TransSeqNr = transSeqNr.ToString("D8");
                     share.RecSipOip.RecSeqNr = recSeqNr.ToString("D8");
@@ -636,31 +639,307 @@ namespace WidSubmit
             });
         }
 
-        private List<string> FormatFileLines(Grh grh, List<string> lines)
+        #endregion ФОРМУВАННЯ ДАНИХ В ПАМЯТІ // --------------------------------------------------------------
+
+        #region ЗБЕРЕЖЕННЯ ДАНИХ В БД // --------------------------------------------------------------
+
+        private void SaveEntityInDb(SqlCommand cmd, string tableName, List<object> data)
         {
-            lines.Add(EntityToString(grh.RecGrh, 2));
+            var loader = new BulkUploadToSql();
+            loader.conn = cmd.Connection;
+            //loader.tran = cmd.Transaction;
+            loader.TableName = tableName;
+            loader.AddData(data);
+            loader.Flush();
+        }
+
+        private void SaveEntitiesInDb(SqlCommand cmd, string tableName, List<List<object>> dataList)
+        {
+            var loader = new BulkUploadToSql();
+            loader.conn = cmd.Connection;
+            //loader.tran = cmd.Transaction;
+            loader.TableName = tableName;
+            dataList.ForEach(data =>
+            {
+                loader.AddData(data);
+            });
+            loader.Flush();
+        }
+        
+        private void SaveRecHdrInDb(SqlCommand cmd, Hdr hdr)
+        {
+            var data = new List<object>();
+            data.Add(DBNull.Value);
+            data.Add(hdr.RecHdr.SubmissionId);
+            data.AddRange(EntityHelpers.EntityToList(hdr.RecHdr, 2));
+            SaveEntityInDb(cmd, "RecHdr", data);
+
+            cmd.CommandText = "select Id from RecHdr where SubmissionId = @submissionId";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@submissionId", hdr.RecHdr.SubmissionId);
+            hdr.RecHdr.Id = (int)cmd.ExecuteScalar();
+
+            SaveRecGrhInDb(cmd, hdr, hdr.GrhWia);
+            SaveRecGrhInDb(cmd, hdr, hdr.GrhWiu);
+            SaveRecTrlInDb(cmd, hdr);
+        }
+       
+        private void SaveRecGrhInDb(SqlCommand cmd, Hdr hdr, Grh grh)
+        {
+            if(grh == null) return;
+
+            var data = new List<object>();
+            data.Add(DBNull.Value);
+            data.Add(hdr.RecHdr.Id);
+            data.AddRange(EntityHelpers.EntityToList(grh.RecGrh, 2));
+            SaveEntityInDb(cmd, "RecGrh", data);
+
+            cmd.CommandText = "select Id from RecGrh where RecHdrId = @recHdrId and TransType = @transType";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@recHdrId", hdr.RecHdr.Id);
+            cmd.Parameters.AddWithValue("@transType", grh.RecGrh.TransType);
+            grh.RecGrh.Id = (int)cmd.ExecuteScalar();
+
+            SaveRecWiaWiuInDb(cmd, grh);
+            SaveRecGrtInDb(cmd, grh);
+        }
+
+        private void SaveRecGrtInDb(SqlCommand cmd, Grh grh)
+        {
+            var data = new List<object>();
+            data.Add(DBNull.Value);
+            data.Add(grh.RecGrh.Id);
+            data.AddRange(EntityHelpers.EntityToList(grh.RecGrt, 2));
+            SaveEntityInDb(cmd, "RecGrt", data);
+        }
+
+        private void SaveRecWiaWiuInDb(SqlCommand cmd, Grh grh)
+        {
+            var dataList = new List<List<object>>();
             grh.SubmWorks.ForEach(work =>
             {
-                lines.Add(EntityToString(work.RecWiaWiu, 3));
+                var data = new List<object>();
+                data.Add(DBNull.Value);
+                data.Add(grh.RecGrh.Id);
+                data.Add(work.SubmWorkId);
+                data.AddRange(EntityHelpers.EntityToList(work.RecWiaWiu, 3));
+                dataList.Add(data);
+            });
+            SaveEntitiesInDb(cmd, "RecWiaWiu", dataList);
+
+            cmd.CommandText = $@"
+                select Id
+                from RecWiaWiu
+                where RecGrhId = @recGrhId
+                    and RecType = @recType
+                order by TransSeqNr
+            ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@recGrhId", grh.RecGrh.Id);
+            cmd.Parameters.AddWithValue("@recType", grh.RecGrh.TransType);
+            var recIdx = 0;
+            using(var r = cmd.ExecuteReader())
+            {
+                while(r.Read())
+                {
+                    grh.SubmWorks[recIdx].RecWiaWiu.Id = r.GetInt32(0);
+                    recIdx++;
+                }
+            }
+
+            SaveRecSipOipInDb(cmd, grh);
+            SaveRecPerInDb(cmd, grh);
+
+        }
+
+        private void SaveRecSipOipInDb(SqlCommand cmd, Grh grh)
+        {
+            var dataList = new List<List<object>>();
+            grh.SubmWorks.ForEach(work =>
+            {
+                work.Shares.ForEach(share =>
+                {
+                    var data = new List<object>();
+                    data.Add(DBNull.Value);
+                    data.Add(work.RecWiaWiu.Id);
+                    data.Add(share.SubmWorkId);
+                    data.AddRange(EntityHelpers.EntityToList(share.RecSipOip, 3));
+                    dataList.Add(data);
+                });
+            });
+            SaveEntitiesInDb(cmd, "RecSipOip", dataList);
+
+            cmd.CommandText = $@"
+                select t1.Id
+                from RecSipOip t1
+	                join RecWiaWiu t2 on t1.RecWiaWiuId = t2.Id
+                where t2.RecGrhId = @recGrhId
+                order by t1.TransSeqNr, t1.RecSeqNr
+            ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@recGrhId", grh.RecGrh.Id);
+            using(var r = cmd.ExecuteReader())
+            {
+                grh.SubmWorks.ForEach(work =>
+                {
+                    work.Shares.ForEach(share =>
+                    {
+                        r.Read();
+                        share.RecSipOip.Id = r.GetInt32(0);
+                    });
+                });
+            }
+
+            SaveRecSsrOsrInDb(cmd, grh);
+        }
+
+        private void SaveRecSsrOsrInDb(SqlCommand cmd, Grh grh)
+        {
+            var dataList = new List<List<object>>();
+            grh.SubmWorks.ForEach(work =>
+            {
+                work.Shares.ForEach(share =>
+                {
+                    var data = new List<object>();
+                    data.Add(DBNull.Value);
+                    data.Add(share.RecSipOip.Id);
+                    data.AddRange(EntityHelpers.EntityToList(share.RecSsrOsrPer, 2));
+                    dataList.Add(data);
+
+                    data = new List<object>();
+                    data.Add(DBNull.Value);
+                    data.Add(share.RecSipOip.Id);
+                    data.AddRange(EntityHelpers.EntityToList(share.RecSsrOsrMec, 2));
+                    dataList.Add(data);
+                });
+            });
+            SaveEntitiesInDb(cmd, "RecSsrOsr", dataList);
+
+        }
+
+        private void SaveRecAltInDb(SqlCommand cmd, Grh grh)
+        {
+            var dataList = new List<List<object>>();
+            grh.SubmWorks.ForEach(work =>
+            {
+                work.AltNames.ForEach(altName =>
+                {
+                    var data = new List<object>();
+                    data.Add(DBNull.Value);
+                    data.Add(work.RecWiaWiu.Id);
+                    data.Add(altName.SubmWorkAltNameId);
+                    data.AddRange(EntityHelpers.EntityToList(altName.RecAlt, 3));
+                    dataList.Add(data);
+                });
+            });
+            SaveEntitiesInDb(cmd, "RecAlt", dataList);
+
+            cmd.CommandText = $@"
+                select t1.Id
+                from RecAlt t1
+	                join RecWiaWiu t2 on t1.RecWiaWiuId = t2.Id
+                where t2.RecGrhId = @recGrhId
+                order by t1.TransSeqNr, t1.RecSeqNr
+            ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@recGrhId", grh.RecGrh.Id);
+            using(var r = cmd.ExecuteReader())
+            {
+                grh.SubmWorks.ForEach(work =>
+                {
+                    work.AltNames.ForEach(altName =>
+                    {
+                        r.Read();
+                        altName.RecAlt.Id = r.GetInt32(0);
+                    });
+                });
+            }
+
+        }
+
+        private void SaveRecPerInDb(SqlCommand cmd, Grh grh)
+        {
+            var dataList = new List<List<object>>();
+            grh.SubmWorks.ForEach(work =>
+            {
+                work.Performers.ForEach(performer =>
+                {
+                    var data = new List<object>();
+                    data.Add(DBNull.Value);
+                    data.Add(work.RecWiaWiu.Id);
+                    data.Add(performer.SubmWorkPerformerId);
+                    data.AddRange(EntityHelpers.EntityToList(performer.RecPer, 3));
+                    dataList.Add(data);
+                });
+            });
+            SaveEntitiesInDb(cmd, "RecPer", dataList);
+
+            cmd.CommandText = $@"
+                select t1.Id
+                from RecPer t1
+	                join RecWiaWiu t2 on t1.RecWiaWiuId = t2.Id
+                where t2.RecGrhId = @recGrhId
+                order by t1.TransSeqNr, t1.RecSeqNr
+            ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@recGrhId", grh.RecGrh.Id);
+            using(var r = cmd.ExecuteReader())
+            {
+                grh.SubmWorks.ForEach(work =>
+                {
+                    work.Performers.ForEach(performer =>
+                    {
+                        r.Read();
+                        performer.RecPer.Id = r.GetInt32(0);
+                    });
+                });
+            }
+
+        }
+        
+        private void SaveRecTrlInDb(SqlCommand cmd, Hdr hdr)
+        {
+            var data = new List<object>();
+            data.Add(DBNull.Value);
+            data.Add(hdr.RecHdr.Id);
+            data.AddRange(EntityHelpers.EntityToList(hdr.RecTrl, 2));
+            SaveEntityInDb(cmd, "RecTrl", data);
+        }
+
+        private void SaveSubmFileInDb(SqlCommand cmd, Hdr hdr)
+        {
+            SaveRecHdrInDb(cmd, hdr);
+        }
+
+        #endregion ЗБЕРЕЖЕННЯ ДАНИХ В БД
+
+        // --------------------------------------------------------
+
+        #region СТВОРЕННЯ ФАЙЛУ У ФОЛДЕРІ
+        private void AddFileLines(Grh grh, List<string> lines)
+        {
+            lines.Add(EntityHelpers.EntityToString(grh.RecGrh, 2));
+            grh.SubmWorks.ForEach(work =>
+            {
+                lines.Add(EntityHelpers.EntityToString(work.RecWiaWiu, 3));
                 work.Shares.ForEach(share => {
-                    lines.Add(EntityToString(share.RecSipOip, 3));
-                    lines.Add(EntityToString(share.RecSsrOsrPer, 2));
-                    lines.Add(EntityToString(share.RecSsrOsrMec, 2));
+                    lines.Add(EntityHelpers.EntityToString(share.RecSipOip, 3));
+                    lines.Add(EntityHelpers.EntityToString(share.RecSsrOsrPer, 2));
+                    lines.Add(EntityHelpers.EntityToString(share.RecSsrOsrMec, 2));
                 });
 
                 work.AltNames.ForEach(altName => {
-                    lines.Add(EntityToString(altName.RecAlt, 3));
+                    lines.Add(EntityHelpers.EntityToString(altName.RecAlt, 3));
                 });
 
                 work.Performers.ForEach(performer => {
-                    lines.Add(EntityToString(performer.RecPer, 3));
+                    lines.Add(EntityHelpers.EntityToString(performer.RecPer, 3));
                 });
             });
-            lines.Add(EntityToString(grh.RecGrt, 2));
-            return lines;
+            lines.Add(EntityHelpers.EntityToString(grh.RecGrt, 2));
         }
 
-        private void WriteSubmFile(SqlCommand cmd, Hdr hdr)
+        private string WriteSubmFile(SqlCommand cmd, Hdr hdr)
         {
             cmd.CommandText = "select SubmFileName from Submission where Id = dbo.fnCurSubmId()";
             var oldSubmFileName = (string)cmd.ExecuteScalar();
@@ -672,15 +951,16 @@ namespace WidSubmit
             }
             
             var lines = new List<string>();
-            lines.Add(EntityToString(hdr.RecHdr, 2));
-            var linesWia = FormatFileLines(hdr.GrhWia, lines);
-            var linesWiu = FormatFileLines(hdr.GrhWiu, lines);
-            lines.Add(EntityToString(hdr.RecTrl, 2));
+            lines.Add(EntityHelpers.EntityToString(hdr.RecHdr, 2));
+            AddFileLines(hdr.GrhWia, lines);
+            AddFileLines(hdr.GrhWiu, lines);
+            lines.Add(EntityHelpers.EntityToString(hdr.RecTrl, 2));
 
             
             // Пишемо в файл
             var submFileName = $"WID{hdr.RecHdr.CreD}{hdr.RecHdr.CreT.Substring(0, 2)}24{hdr.RecHdr.CreT.Substring(2)}300140.021";
-            File.WriteAllLines(Path.Combine(folderPath, submFileName), lines);
+            var submFileFullName = Path.Combine(folderPath, submFileName);
+            File.WriteAllLines(submFileFullName, lines);
 
             // Запамятовуємо назву файлу
             cmd.CommandType = CommandType.Text;
@@ -688,243 +968,87 @@ namespace WidSubmit
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@submFileName", submFileName);
             cmd.ExecuteNonQuery();
-        }
 
-        public void CreateSubmFile()
+            return submFileName;
+        }
+        
+        public string CreateSubmFile()
         {
             var submissionId = 0;
-            try
-            {
-                Helpers.RunSqlSocWidSubmitExT(cmd =>
-                {
-                    cmd.CommandTimeout = 60;
-
-                    cmd.CommandText = "select dbo.fnCurSubmId()";
-                    submissionId = (int)cmd.ExecuteScalar();
-
-                    // Выдаляємо записи для файлу публякації (якщо був створений раніше)
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "spCurSubmFileRecsClear";
-                    cmd.ExecuteNonQuery();
-
-                    // Вибираємо твори до передачі
-                    var submWorks = new List<SubmWork>();
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = @"
-	                    select
-		                      Id		 as SubmWorkId
-		                    , ObjId	     as ObjId
-		                    , NameForWid as NameForWid
-		                    , Iswc	     as Iswc
-		                    , IsChanged  as IsChanged
-	                    from vCurSubmWorks
-	                    where Status = 1
-                        order by Id
-                    ";
-                    using (var r = cmd.ExecuteReader())
-                    {
-                        while (r.Read())
-                        {
-                            var submWork = new SubmWork();
-                            var idx = 0;
-                            submWork.SubmWorkId = r.GetInt32(idx++);
-                            submWork.ObjId      = r.GetInt32(idx++);
-		                    submWork.NameForWid = r.GetString(idx++);
-		                    submWork.Iswc       = r.GetString(idx++);
-		                    submWork.IsChanged  = r.GetBoolean(idx++);
-                            submWorks.Add(submWork);
-                        }
-                    }
-                    
-                    // Створюємо і заповнюємо структуру файлу в памяті
-                    var hdr = CreateHdrRecord(submissionId);
-
-                    CreateGrhRecords(cmd, hdr);
-
-                    CreateWiaWiuRecords(cmd, hdr.GrhWia);
-                    CreateShareRecords(cmd, hdr.GrhWia);
-                    CreateAltNameRecords(cmd, hdr.GrhWia);
-                    CreatePerformerRecords(cmd, hdr.GrhWia);
-                    CreateGrtRecord(hdr.GrhWia);
-                    CreateSeqNrs(hdr.GrhWia);
-                    
-                    CreateWiaWiuRecords(cmd, hdr.GrhWiu);
-                    CreateShareRecords(cmd, hdr.GrhWiu);
-                    CreateAltNameRecords(cmd, hdr.GrhWiu);
-                    CreatePerformerRecords(cmd, hdr.GrhWiu);
-                    CreateGrtRecord(hdr.GrhWiu);
-                    CreateSeqNrs(hdr.GrhWiu);
-
-                    CreateTrlRecord(hdr);
-
-                    WriteSubmFile(cmd, hdr);
-
-                    /*
-                    hdr.RecTrl = new RecTrl
-                    {
-                        SubmFileId = submFileId,
-                        RecType = "TRL",
-                        GrCnt = RecGrhWia == null ? "1" : RecGrhWiu == null ? "1" : "2",
-                        TransCnt = (wiaList.Count + wiuList.Count).ToString("D8"),
-                        RecCnt = (
-                                  (wiaRecCnt == 0 ? 0 : wiaRecCnt + 2)
-                                + (wiuRecCnt == 0 ? 0 : wiuRecCnt + 2)
-                                + 2
-                            )
-                            .ToString("D8"),
-                    };
-                    */
-
-                    // Заносимо інформацію в БД
-                    //SaveUpdFileInDb(cmd, hdr);
-
-                    // Створюємо реальний файл
-                    
-                    /*
-                    var folderPath = Path.Combine(ConfigurationManager.AppSettings["FileExchangeRootDir"], "OutFiles");
-                    if (!string.IsNullOrEmpty(oldSubmFileName))
-                    {
-                        File.Delete(Path.Combine(folderPath, oldSubmFileName));
-                    }
-                    var fileName = SaveUpdFile(hdr, folderPath);
-
-                    // Запамятовуємо назву файлу
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "update SubmFile set Name = @name, WidSubmGroupId = @groupId where Id = @submFileId";
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@submFileId", submFileId);
-                    cmd.Parameters.AddWithValue("@name", fileName);
-                    cmd.Parameters.AddWithValue("@groupId", 0);
-                    cmd.ExecuteNonQuery();
-                */
-
-                });
-            }
-            catch(Exception)
-            {
-                throw;
-            }
-        }
-
-        public void CheckDeclinedFiles()
-        {
-            var appSettings = ConfigurationManager.AppSettings;
-            var ftpClient = new FtpClient(
-                appSettings["FileExchangeFtpErrorDir"],
-                appSettings["FileExchangeFtpLogin"],
-                appSettings["FileExchangeFtpPassword"]
-            );
-            var ftpFiles = ftpClient.ReadDirectoryFiles("")
-                .ToList()
-                .Where(x => !string.Equals(Path.GetExtension(x), ".gz", StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            var dbFiles = new List<string>();
-            Helpers.RunSqlSocWidSubmitExT(cmd =>
-            {
-                var declinedFileIds = new List<int>();
-                cmd.CommandText = "select Id, Name from SubmFile where SubmFileStatus = @SubmFileStatus";
-                cmd.Parameters.AddWithValue("@SubmFileStatus", ExchangeFileStatus.Submitted);
-                using (var r = cmd.ExecuteReader())
-                {
-                    while (r.Read())
-                    {
-                        var id = r.GetInt32(0);
-                        var name = r.GetString(1);
-                        if(ftpFiles.Any(x => x.Contains(name)))
-                        {
-                            declinedFileIds.Add(id);
-                        }
-                    }
-                }
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spSubmFileDecline";
-                declinedFileIds.ForEach(x =>
-                {
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@SubmFileId", x);
-                    cmd.ExecuteNonQuery();
-                });
-
-            });
-
-        }
-
-        public void LoadRespFiles()
-        {
-            var appSettings = ConfigurationManager.AppSettings;
-            var ftpClient = new FtpClient(
-                appSettings["FileExchangeFtpRespDir"],
-                appSettings["FileExchangeFtpLogin"],
-                appSettings["FileExchangeFtpPassword"]
-            );
-            /*
-            var ftpFiles = ftpClient.ReadDirectoryFiles("")
-                .ToList()
-                .Where(x => !string.Equals(Path.GetExtension(x), ".gz", StringComparison.OrdinalIgnoreCase))
-                .ToList();
-            */
-            var ftpFiles = ftpClient.ReadDirectoryFiles("")
-                .ToList();
-            var localFiles = Directory.GetFiles(
-                Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles"),
-                "*.021"
-            ).ToList();
-
-            var dbFiles = new List<string>();
+            var submFileName = "";
             Helpers.RunSqlSocWidSubmitEx(cmd =>
             {
-                cmd.CommandText = "select Name from RespFile";
+                cmd.CommandTimeout = 60;
+
+                cmd.CommandText = "select dbo.fnCurSubmId()";
+                submissionId = (int)cmd.ExecuteScalar();
+
+                // Выдаляємо записи для файлу публякації (якщо був створений раніше)
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spCurSubmFileRecsClear";
+                cmd.ExecuteNonQuery();
+
+                // Вибираємо твори до передачі
+                var submWorks = new List<SubmWork>();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = @"
+	                select
+		                    Id		 as SubmWorkId
+		                , ObjId	     as ObjId
+		                , NameForWid as NameForWid
+		                , Iswc	     as Iswc
+		                , IsChanged  as IsChanged
+	                from vCurSubmWorks
+	                where Status = 1
+                    order by Id
+                ";
                 using (var r = cmd.ExecuteReader())
                 {
                     while (r.Read())
                     {
-                        dbFiles.Add(r.GetString(0));
+                        var submWork = new SubmWork();
+                        var idx = 0;
+                        submWork.SubmWorkId = r.GetInt32(idx++);
+                        submWork.ObjId      = r.GetInt32(idx++);
+		                submWork.NameForWid = r.GetString(idx++);
+		                submWork.Iswc       = r.GetString(idx++);
+		                submWork.IsChanged  = r.GetBoolean(idx++);
+                        submWorks.Add(submWork);
                     }
                 }
+                    
+                // Створюємо і заповнюємо структуру файлу в памяті
+                var hdr = CreateHdrRecord(submissionId);
+
+                CreateGrhRecords(cmd, hdr);
+
+                CreateWiaWiuRecords(cmd, hdr.GrhWia);
+                CreateShareRecords(cmd, hdr.GrhWia);
+                CreateAltNameRecords(cmd, hdr.GrhWia);
+                CreatePerformerRecords(cmd, hdr.GrhWia);
+                CreateGrtRecord(hdr.GrhWia);
+                CreateSeqNrs(hdr.GrhWia);
+                    
+                CreateWiaWiuRecords(cmd, hdr.GrhWiu);
+                CreateShareRecords(cmd, hdr.GrhWiu);
+                CreateAltNameRecords(cmd, hdr.GrhWiu);
+                CreatePerformerRecords(cmd, hdr.GrhWiu);
+                CreateGrtRecord(hdr.GrhWiu);
+                CreateSeqNrs(hdr.GrhWiu);
+
+                CreateTrlRecord(hdr);
+
+                    // Заносимо інформацію в БД
+                SaveSubmFileInDb(cmd, hdr);                   
+                    
+                // Створюємо реальний файл
+                submFileName = WriteSubmFile(cmd, hdr);
+
             });
 
-
-            var unprocessedFiles = ftpFiles
-                .Where(x => !dbFiles.Contains(Path.GetFileNameWithoutExtension(x)))
-                .ToList();
-
-            unprocessedFiles.ForEach(fileName =>
-            {
-                var isArchived = string.Compare(Path.GetExtension(fileName), ".gz", StringComparison.OrdinalIgnoreCase) == 0;
-                var fileNameUnzipped = isArchived ?
-                    Path.GetFileNameWithoutExtension(fileName) : fileName;
-                var folder = Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles");
-                if (!localFiles.Contains(fileNameUnzipped))
-                {
-                    ftpClient.DownloadFile(
-                        "",
-                        fileName,
-                        folder
-                    );
-                }
-
-                if(isArchived)
-                {
-                    var fileFullName = Path.Combine(folder, fileName);
-                    var fileFullNameUnzipped = Path.Combine(folder, fileNameUnzipped);
-                    using (FileStream compressedFileStream = File.OpenRead(fileFullName))
-                    {
-                        using (FileStream decompressedFileStream = File.Create(fileFullNameUnzipped))
-                        {
-                            using (GZipStream decompressionStream = new GZipStream(compressedFileStream, CompressionMode.Decompress))
-                            {
-                                decompressionStream.CopyTo(decompressedFileStream);
-                            }
-                        }
-                    }
-                    File.Delete(fileFullName);
-                }
-
-                LoadRespFile(Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles", fileNameUnzipped));
-            });
+            return submFileName;
         }
+        #endregion
 
         public void LoadRespFile(string fileFullName)
         {
@@ -1044,13 +1168,11 @@ namespace WidSubmit
             }
         }
 
-        /*
         private void SaveUpdFileInDb(SqlCommand cmd, Hdr hdr)
         {
+            /*
             InsertEntityInDb(cmd, hdr.RecHdr, null, null);
-            hdr.GrhList.ForEach(grh =>
-            {
-                InsertEntityInDb(cmd, grh.RecGrh, null, null);
+            InsertEntityInDb(cmd, grh.RecGrh, null, null);
                 grh.WiaList.ForEach(wia =>
                 {
                     InsertEntityInDb(cmd, wia.RecWia, "WidSubmGroupWork", "RecWiaId");
@@ -1084,9 +1206,9 @@ namespace WidSubmit
                 InsertEntityInDb(cmd, grh.RecGrt, null, null);
             });
             InsertEntityInDb(cmd, hdr.RecTrl, null, null);
+            */
         }
-
-        */        
+        
         private int InsertEntityInDb(SqlCommand cmd, object entity, string refTableName, string refColName)
         {
             var t = entity.GetType();
@@ -1180,48 +1302,6 @@ namespace WidSubmit
                 retVal.Add(entity);
             }
             return retVal;
-        }
-
-        private string EntityToString(object entity, int startPropIdx)
-        {
-            var t = entity.GetType();
-            var piList = t.GetProperties();
-
-            var sb = new StringBuilder();
-            for (int i = startPropIdx; i < piList.Count(); i++)
-            {
-                var pi = piList[i];
-                sb.Append(FormatProp(entity, pi));
-            }
-
-            var retVal = sb.ToString();
-            return retVal;
-        }
-
-        private string FormatProp(object entity, PropertyInfo pi)
-        {
-            var posInFile = (CustomPosInFileAttribute)pi.GetCustomAttribute(typeof(CustomPosInFileAttribute));
-            if (posInFile == null)
-            {
-                return "";
-            }
-            var size = posInFile.Size;
-            var fmt = posInFile.Fmt;
-            var value = (string)pi.GetValue(entity);
-            if(string.IsNullOrEmpty(value))
-            {
-                return new string(' ', size);
-            }
-            else if(fmt == 'N')
-            {
-                return int.Parse(value).ToString($"D{size}");
-            }
-            else
-            {
-                value = FileValidator.NormalizeText(value);
-                value = value.Substring(0, Math.Min(size, value.Length));
-                return value + new string(' ', size - value.Length);
-            }
         }
 
         private DataTable FillDtForRec(SqlConnection conn, string commandText, int recId)

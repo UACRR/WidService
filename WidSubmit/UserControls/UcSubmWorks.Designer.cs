@@ -46,6 +46,7 @@
             this.panelWorkList = new System.Windows.Forms.TableLayoutPanel();
             this.lvSubmWorks = new System.Windows.Forms.ListView();
             this.ilSubmWorkStatuses = new System.Windows.Forms.ImageList(this.components);
+            this.ilSubmWorkSubStatuses = new System.Windows.Forms.ImageList(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.panelFilterBySubmResult = new System.Windows.Forms.FlowLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,17 +65,36 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panelWorkDetails = new System.Windows.Forms.TabControl();
             this.tabRightHolders = new System.Windows.Forms.TabPage();
+            this.ucSubmWorkShares = new WidSubmit.UcSubmWorkShares();
             this.tabAltNames = new System.Windows.Forms.TabPage();
+            this.ucSubmWorkAltNames = new WidSubmit.UcSubmWorkAltNames();
             this.tabPerformers = new System.Windows.Forms.TabPage();
+            this.ucSubmWorkPerformers = new WidSubmit.UcSubmWorkPerformers();
             this.tabSubmProblems = new System.Windows.Forms.TabPage();
+            this.ucSubmWorkCheckList = new WidSubmit.UcSubmWorkCheckList();
             this.tabRespProblems = new System.Windows.Forms.TabPage();
             this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ilSubmWorkSubStatuses = new System.Windows.Forms.ImageList(this.components);
-            this.ucSubmWorkShares = new WidSubmit.UcSubmWorkShares();
-            this.ucSubmWorkAltNames = new WidSubmit.UcSubmWorkAltNames();
-            this.ucSubmWorkPerformers = new WidSubmit.UcSubmWorkPerformers();
-            this.ucSubmWorkCheckList = new WidSubmit.UcSubmWorkCheckList();
+            this.panelRightHolderCount = new System.Windows.Forms.FlowLayoutPanel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbRightHolderCntSelected = new System.Windows.Forms.TextBox();
+            this.tbRightHolderCntTotal = new System.Windows.Forms.TextBox();
+            this.btnChangeRightHolders = new System.Windows.Forms.Button();
+            this.panelSubmWorkCount = new System.Windows.Forms.FlowLayoutPanel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbSubmWorkCntTotal = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbSubmWorkCntSelected = new System.Windows.Forms.TextBox();
+            this.cbRightHolderFilterEx = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.rbRightHolderFilterOwn = new System.Windows.Forms.RadioButton();
+            this.rbRightHolderFilterPublished = new System.Windows.Forms.RadioButton();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.rbRightHolderFilterActive = new System.Windows.Forms.RadioButton();
+            this.rbRightHolderFilterNotActive = new System.Windows.Forms.RadioButton();
+            this.rbRightHolderFilterActiveNotActive = new System.Windows.Forms.RadioButton();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddle)).BeginInit();
             this.panelMiddle.Panel1.SuspendLayout();
@@ -95,6 +115,10 @@
             this.tabAltNames.SuspendLayout();
             this.tabPerformers.SuspendLayout();
             this.tabSubmProblems.SuspendLayout();
+            this.panelRightHolderCount.SuspendLayout();
+            this.panelSubmWorkCount.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -143,7 +167,7 @@
             // 
             this.panelMiddle.Panel2.Controls.Add(this.panelWorks);
             this.panelMiddle.Size = new System.Drawing.Size(1128, 501);
-            this.panelMiddle.SplitterDistance = 356;
+            this.panelMiddle.SplitterDistance = 422;
             this.panelMiddle.TabIndex = 1;
             // 
             // panelRightHolders
@@ -151,27 +175,38 @@
             this.panelRightHolders.ColumnCount = 2;
             this.panelRightHolders.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelRightHolders.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.panelRightHolders.Controls.Add(this.lvRightHolders, 0, 2);
+            this.panelRightHolders.Controls.Add(this.lvRightHolders, 0, 5);
             this.panelRightHolders.Controls.Add(this.label2, 0, 0);
             this.panelRightHolders.Controls.Add(this.panelRightHolderFilter, 0, 1);
+            this.panelRightHolders.Controls.Add(this.panelRightHolderCount, 0, 7);
+            this.panelRightHolders.Controls.Add(this.btnChangeRightHolders, 0, 8);
+            this.panelRightHolders.Controls.Add(this.cbRightHolderFilterEx, 0, 2);
+            this.panelRightHolders.Controls.Add(this.tableLayoutPanel1, 0, 3);
+            this.panelRightHolders.Controls.Add(this.flowLayoutPanel2, 0, 4);
             this.panelRightHolders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRightHolders.Location = new System.Drawing.Point(0, 0);
             this.panelRightHolders.Name = "panelRightHolders";
-            this.panelRightHolders.RowCount = 4;
+            this.panelRightHolders.RowCount = 9;
             this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.panelRightHolders.Size = new System.Drawing.Size(356, 501);
+            this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.panelRightHolders.Size = new System.Drawing.Size(422, 501);
             this.panelRightHolders.TabIndex = 0;
             // 
             // lvRightHolders
             // 
             this.lvRightHolders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvRightHolders.HideSelection = false;
-            this.lvRightHolders.Location = new System.Drawing.Point(3, 63);
+            this.lvRightHolders.Location = new System.Drawing.Point(3, 145);
             this.lvRightHolders.Name = "lvRightHolders";
-            this.lvRightHolders.Size = new System.Drawing.Size(345, 430);
+            this.lvRightHolders.Size = new System.Drawing.Size(411, 285);
             this.lvRightHolders.TabIndex = 0;
             this.lvRightHolders.UseCompatibleStateImageBehavior = false;
             this.lvRightHolders.SelectedIndexChanged += new System.EventHandler(this.lvRightHolders_SelectedIndexChanged);
@@ -184,9 +219,9 @@
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.label2.Size = new System.Drawing.Size(202, 18);
+            this.label2.Size = new System.Drawing.Size(146, 18);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Вибір творів за правовласником";
+            this.label2.Text = "Правовласники сеанса";
             // 
             // panelRightHolderFilter
             // 
@@ -197,7 +232,7 @@
             this.panelRightHolderFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRightHolderFilter.Location = new System.Drawing.Point(3, 28);
             this.panelRightHolderFilter.Name = "panelRightHolderFilter";
-            this.panelRightHolderFilter.Size = new System.Drawing.Size(345, 29);
+            this.panelRightHolderFilter.Size = new System.Drawing.Size(411, 29);
             this.panelRightHolderFilter.TabIndex = 2;
             this.panelRightHolderFilter.WrapContents = false;
             // 
@@ -207,13 +242,13 @@
             this.labSearch.Location = new System.Drawing.Point(3, 7);
             this.labSearch.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(187, 13);
+            this.labSearch.Size = new System.Drawing.Size(189, 13);
             this.labSearch.TabIndex = 5;
-            this.labSearch.Text = "Вибрати правовласника за умовою";
+            this.labSearch.Text = "Вибрати правовласників за умовою";
             // 
             // tbRightHolderFilter
             // 
-            this.tbRightHolderFilter.Location = new System.Drawing.Point(196, 4);
+            this.tbRightHolderFilter.Location = new System.Drawing.Point(198, 4);
             this.tbRightHolderFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.tbRightHolderFilter.Name = "tbRightHolderFilter";
             this.tbRightHolderFilter.Size = new System.Drawing.Size(95, 20);
@@ -223,7 +258,7 @@
             // 
             this.btnApplyRightHolderFilter.ImageIndex = 0;
             this.btnApplyRightHolderFilter.ImageList = this.ilButtonIcons;
-            this.btnApplyRightHolderFilter.Location = new System.Drawing.Point(297, 3);
+            this.btnApplyRightHolderFilter.Location = new System.Drawing.Point(299, 3);
             this.btnApplyRightHolderFilter.Name = "btnApplyRightHolderFilter";
             this.btnApplyRightHolderFilter.Size = new System.Drawing.Size(21, 23);
             this.btnApplyRightHolderFilter.TabIndex = 7;
@@ -242,7 +277,7 @@
             // 
             this.label4.ImageIndex = 1;
             this.label4.ImageList = this.ilButtonIcons;
-            this.label4.Location = new System.Drawing.Point(324, 0);
+            this.label4.Location = new System.Drawing.Point(326, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(19, 23);
             this.label4.TabIndex = 8;
@@ -263,8 +298,8 @@
             // panelWorks.Panel2
             // 
             this.panelWorks.Panel2.Controls.Add(this.panelWorkDetails);
-            this.panelWorks.Size = new System.Drawing.Size(768, 501);
-            this.panelWorks.SplitterDistance = 143;
+            this.panelWorks.Size = new System.Drawing.Size(702, 501);
+            this.panelWorks.SplitterDistance = 194;
             this.panelWorks.TabIndex = 0;
             // 
             // panelWorkList
@@ -275,19 +310,21 @@
             this.panelWorkList.Controls.Add(this.lvSubmWorks, 0, 4);
             this.panelWorkList.Controls.Add(this.label3, 0, 0);
             this.panelWorkList.Controls.Add(this.panelFilterBySubmResult, 0, 1);
+            this.panelWorkList.Controls.Add(this.panelSubmWorkCount, 0, 6);
             this.panelWorkList.Controls.Add(this.panelFilterByStatus, 0, 2);
             this.panelWorkList.Controls.Add(this.flowLayoutPanel1, 0, 3);
             this.panelWorkList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelWorkList.Location = new System.Drawing.Point(0, 0);
             this.panelWorkList.Name = "panelWorkList";
-            this.panelWorkList.RowCount = 6;
+            this.panelWorkList.RowCount = 7;
             this.panelWorkList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.panelWorkList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.panelWorkList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.panelWorkList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.panelWorkList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelWorkList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.panelWorkList.Size = new System.Drawing.Size(768, 143);
+            this.panelWorkList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.panelWorkList.Size = new System.Drawing.Size(702, 194);
             this.panelWorkList.TabIndex = 0;
             // 
             // lvSubmWorks
@@ -296,7 +333,7 @@
             this.lvSubmWorks.HideSelection = false;
             this.lvSubmWorks.Location = new System.Drawing.Point(3, 118);
             this.lvSubmWorks.Name = "lvSubmWorks";
-            this.lvSubmWorks.Size = new System.Drawing.Size(757, 17);
+            this.lvSubmWorks.Size = new System.Drawing.Size(691, 35);
             this.lvSubmWorks.SmallImageList = this.ilSubmWorkStatuses;
             this.lvSubmWorks.StateImageList = this.ilSubmWorkSubStatuses;
             this.lvSubmWorks.TabIndex = 0;
@@ -316,6 +353,13 @@
             this.ilSubmWorkStatuses.Images.SetKeyName(5, "STATUS_REJECTED.png");
             this.ilSubmWorkStatuses.Images.SetKeyName(6, "STATUS_APPLIED.png");
             this.ilSubmWorkStatuses.Images.SetKeyName(7, "STATUS_COMPLETED.png");
+            // 
+            // ilSubmWorkSubStatuses
+            // 
+            this.ilSubmWorkSubStatuses.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilSubmWorkSubStatuses.ImageStream")));
+            this.ilSubmWorkSubStatuses.TransparentColor = System.Drawing.Color.Transparent;
+            this.ilSubmWorkSubStatuses.Images.SetKeyName(0, "NEW.png");
+            this.ilSubmWorkSubStatuses.Images.SetKeyName(1, "CHANGED.png");
             // 
             // label3
             // 
@@ -338,7 +382,7 @@
             this.panelFilterBySubmResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFilterBySubmResult.Location = new System.Drawing.Point(3, 26);
             this.panelFilterBySubmResult.Name = "panelFilterBySubmResult";
-            this.panelFilterBySubmResult.Size = new System.Drawing.Size(757, 22);
+            this.panelFilterBySubmResult.Size = new System.Drawing.Size(691, 22);
             this.panelFilterBySubmResult.TabIndex = 2;
             this.panelFilterBySubmResult.WrapContents = false;
             // 
@@ -405,7 +449,7 @@
             this.panelFilterByStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFilterByStatus.Location = new System.Drawing.Point(3, 54);
             this.panelFilterByStatus.Name = "panelFilterByStatus";
-            this.panelFilterByStatus.Size = new System.Drawing.Size(757, 26);
+            this.panelFilterByStatus.Size = new System.Drawing.Size(691, 26);
             this.panelFilterByStatus.TabIndex = 2;
             this.panelFilterByStatus.WrapContents = false;
             // 
@@ -448,7 +492,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 86);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(757, 26);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(691, 26);
             this.flowLayoutPanel1.TabIndex = 2;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -503,7 +547,7 @@
             this.panelWorkDetails.Location = new System.Drawing.Point(0, 0);
             this.panelWorkDetails.Name = "panelWorkDetails";
             this.panelWorkDetails.SelectedIndex = 0;
-            this.panelWorkDetails.Size = new System.Drawing.Size(768, 354);
+            this.panelWorkDetails.Size = new System.Drawing.Size(702, 303);
             this.panelWorkDetails.TabIndex = 0;
             // 
             // tabRightHolders
@@ -512,10 +556,19 @@
             this.tabRightHolders.Location = new System.Drawing.Point(4, 23);
             this.tabRightHolders.Name = "tabRightHolders";
             this.tabRightHolders.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRightHolders.Size = new System.Drawing.Size(760, 327);
+            this.tabRightHolders.Size = new System.Drawing.Size(694, 276);
             this.tabRightHolders.TabIndex = 0;
             this.tabRightHolders.Text = "Проценти правовласників";
             this.tabRightHolders.UseVisualStyleBackColor = true;
+            // 
+            // ucSubmWorkShares
+            // 
+            this.ucSubmWorkShares.AutoScroll = true;
+            this.ucSubmWorkShares.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkShares.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkShares.Name = "ucSubmWorkShares";
+            this.ucSubmWorkShares.Size = new System.Drawing.Size(688, 270);
+            this.ucSubmWorkShares.TabIndex = 0;
             // 
             // tabAltNames
             // 
@@ -528,6 +581,14 @@
             this.tabAltNames.Text = "Альтернативні назви";
             this.tabAltNames.UseVisualStyleBackColor = true;
             // 
+            // ucSubmWorkAltNames
+            // 
+            this.ucSubmWorkAltNames.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkAltNames.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkAltNames.Name = "ucSubmWorkAltNames";
+            this.ucSubmWorkAltNames.Size = new System.Drawing.Size(754, 321);
+            this.ucSubmWorkAltNames.TabIndex = 0;
+            // 
             // tabPerformers
             // 
             this.tabPerformers.Controls.Add(this.ucSubmWorkPerformers);
@@ -539,6 +600,14 @@
             this.tabPerformers.Text = "Виконавці";
             this.tabPerformers.UseVisualStyleBackColor = true;
             // 
+            // ucSubmWorkPerformers
+            // 
+            this.ucSubmWorkPerformers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkPerformers.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkPerformers.Name = "ucSubmWorkPerformers";
+            this.ucSubmWorkPerformers.Size = new System.Drawing.Size(754, 321);
+            this.ucSubmWorkPerformers.TabIndex = 0;
+            // 
             // tabSubmProblems
             // 
             this.tabSubmProblems.Controls.Add(this.ucSubmWorkCheckList);
@@ -549,6 +618,14 @@
             this.tabSubmProblems.TabIndex = 3;
             this.tabSubmProblems.Text = "Проблеми для передачі";
             this.tabSubmProblems.UseVisualStyleBackColor = true;
+            // 
+            // ucSubmWorkCheckList
+            // 
+            this.ucSubmWorkCheckList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkCheckList.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkCheckList.Name = "ucSubmWorkCheckList";
+            this.ucSubmWorkCheckList.Size = new System.Drawing.Size(754, 321);
+            this.ucSubmWorkCheckList.TabIndex = 0;
             // 
             // tabRespProblems
             // 
@@ -578,45 +655,229 @@
             this.toolTip.ReshowDelay = 100;
             this.toolTip.ShowAlways = true;
             // 
-            // ilSubmWorkSubStatuses
+            // panelRightHolderCount
             // 
-            this.ilSubmWorkSubStatuses.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilSubmWorkSubStatuses.ImageStream")));
-            this.ilSubmWorkSubStatuses.TransparentColor = System.Drawing.Color.Transparent;
-            this.ilSubmWorkSubStatuses.Images.SetKeyName(0, "NEW.png");
-            this.ilSubmWorkSubStatuses.Images.SetKeyName(1, "CHANGED.png");
+            this.panelRightHolderCount.Controls.Add(this.label11);
+            this.panelRightHolderCount.Controls.Add(this.tbRightHolderCntTotal);
+            this.panelRightHolderCount.Controls.Add(this.label12);
+            this.panelRightHolderCount.Controls.Add(this.tbRightHolderCntSelected);
+            this.panelRightHolderCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRightHolderCount.Location = new System.Drawing.Point(3, 441);
+            this.panelRightHolderCount.Name = "panelRightHolderCount";
+            this.panelRightHolderCount.Size = new System.Drawing.Size(411, 27);
+            this.panelRightHolderCount.TabIndex = 3;
+            this.panelRightHolderCount.WrapContents = false;
             // 
-            // ucSubmWorkShares
+            // label11
             // 
-            this.ucSubmWorkShares.AutoScroll = true;
-            this.ucSubmWorkShares.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkShares.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkShares.Name = "ucSubmWorkShares";
-            this.ucSubmWorkShares.Size = new System.Drawing.Size(754, 321);
-            this.ucSubmWorkShares.TabIndex = 0;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 0);
+            this.label11.Name = "label11";
+            this.label11.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label11.Size = new System.Drawing.Size(135, 19);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Правовласників загалом";
             // 
-            // ucSubmWorkAltNames
+            // label12
             // 
-            this.ucSubmWorkAltNames.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkAltNames.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkAltNames.Name = "ucSubmWorkAltNames";
-            this.ucSubmWorkAltNames.Size = new System.Drawing.Size(754, 321);
-            this.ucSubmWorkAltNames.TabIndex = 0;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(202, 0);
+            this.label12.Name = "label12";
+            this.label12.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label12.Size = new System.Drawing.Size(43, 19);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "обрано";
             // 
-            // ucSubmWorkPerformers
+            // tbRightHolderCntSelected
             // 
-            this.ucSubmWorkPerformers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkPerformers.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkPerformers.Name = "ucSubmWorkPerformers";
-            this.ucSubmWorkPerformers.Size = new System.Drawing.Size(754, 321);
-            this.ucSubmWorkPerformers.TabIndex = 0;
+            this.tbRightHolderCntSelected.Location = new System.Drawing.Point(251, 3);
+            this.tbRightHolderCntSelected.Name = "tbRightHolderCntSelected";
+            this.tbRightHolderCntSelected.ReadOnly = true;
+            this.tbRightHolderCntSelected.Size = new System.Drawing.Size(62, 20);
+            this.tbRightHolderCntSelected.TabIndex = 1;
             // 
-            // ucSubmWorkCheckList
+            // tbRightHolderCntTotal
             // 
-            this.ucSubmWorkCheckList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkCheckList.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkCheckList.Name = "ucSubmWorkCheckList";
-            this.ucSubmWorkCheckList.Size = new System.Drawing.Size(754, 321);
-            this.ucSubmWorkCheckList.TabIndex = 0;
+            this.tbRightHolderCntTotal.Location = new System.Drawing.Point(144, 3);
+            this.tbRightHolderCntTotal.Name = "tbRightHolderCntTotal";
+            this.tbRightHolderCntTotal.ReadOnly = true;
+            this.tbRightHolderCntTotal.Size = new System.Drawing.Size(52, 20);
+            this.tbRightHolderCntTotal.TabIndex = 1;
+            // 
+            // btnChangeRightHolders
+            // 
+            this.btnChangeRightHolders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnChangeRightHolders.Location = new System.Drawing.Point(3, 474);
+            this.btnChangeRightHolders.Name = "btnChangeRightHolders";
+            this.btnChangeRightHolders.Size = new System.Drawing.Size(411, 24);
+            this.btnChangeRightHolders.TabIndex = 4;
+            this.btnChangeRightHolders.Text = "Налаштувати правовлаників";
+            this.btnChangeRightHolders.UseVisualStyleBackColor = true;
+            // 
+            // panelSubmWorkCount
+            // 
+            this.panelSubmWorkCount.Controls.Add(this.label13);
+            this.panelSubmWorkCount.Controls.Add(this.tbSubmWorkCntTotal);
+            this.panelSubmWorkCount.Controls.Add(this.label14);
+            this.panelSubmWorkCount.Controls.Add(this.tbSubmWorkCntSelected);
+            this.panelSubmWorkCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSubmWorkCount.Location = new System.Drawing.Point(3, 164);
+            this.panelSubmWorkCount.Name = "panelSubmWorkCount";
+            this.panelSubmWorkCount.Size = new System.Drawing.Size(691, 27);
+            this.panelSubmWorkCount.TabIndex = 3;
+            this.panelSubmWorkCount.WrapContents = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 0);
+            this.label13.Name = "label13";
+            this.label13.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label13.Size = new System.Drawing.Size(86, 19);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Творів загалом";
+            // 
+            // tbSubmWorkCntTotal
+            // 
+            this.tbSubmWorkCntTotal.Location = new System.Drawing.Point(95, 3);
+            this.tbSubmWorkCntTotal.Name = "tbSubmWorkCntTotal";
+            this.tbSubmWorkCntTotal.ReadOnly = true;
+            this.tbSubmWorkCntTotal.Size = new System.Drawing.Size(56, 20);
+            this.tbSubmWorkCntTotal.TabIndex = 1;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(157, 0);
+            this.label14.Name = "label14";
+            this.label14.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label14.Size = new System.Drawing.Size(43, 19);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "обрано";
+            // 
+            // tbSubmWorkCntSelected
+            // 
+            this.tbSubmWorkCntSelected.Location = new System.Drawing.Point(206, 3);
+            this.tbSubmWorkCntSelected.Name = "tbSubmWorkCntSelected";
+            this.tbSubmWorkCntSelected.ReadOnly = true;
+            this.tbSubmWorkCntSelected.Size = new System.Drawing.Size(62, 20);
+            this.tbSubmWorkCntSelected.TabIndex = 1;
+            // 
+            // cbRightHolderFilterEx
+            // 
+            this.cbRightHolderFilterEx.AutoSize = true;
+            this.cbRightHolderFilterEx.Location = new System.Drawing.Point(3, 63);
+            this.cbRightHolderFilterEx.Name = "cbRightHolderFilterEx";
+            this.cbRightHolderFilterEx.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbRightHolderFilterEx.Size = new System.Drawing.Size(215, 16);
+            this.cbRightHolderFilterEx.TabIndex = 5;
+            this.cbRightHolderFilterEx.Text = "Додатково показати правовласників";
+            this.cbRightHolderFilterEx.UseVisualStyleBackColor = true;
+            this.cbRightHolderFilterEx.CheckedChanged += new System.EventHandler(this.cbRightHolderFilterEx_CheckedChanged);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.0221F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.9779F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tableLayoutPanel1.Controls.Add(this.rbRightHolderFilterOwn, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rbRightHolderFilterPublished, 2, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 85);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(345, 22);
+            this.tableLayoutPanel1.TabIndex = 6;
+            // 
+            // rbRightHolderFilterOwn
+            // 
+            this.rbRightHolderFilterOwn.AutoSize = true;
+            this.rbRightHolderFilterOwn.Enabled = false;
+            this.rbRightHolderFilterOwn.Location = new System.Drawing.Point(20, 3);
+            this.rbRightHolderFilterOwn.Name = "rbRightHolderFilterOwn";
+            this.rbRightHolderFilterOwn.Size = new System.Drawing.Size(73, 16);
+            this.rbRightHolderFilterOwn.TabIndex = 0;
+            this.rbRightHolderFilterOwn.TabStop = true;
+            this.rbRightHolderFilterOwn.Text = "всіх своїх";
+            this.rbRightHolderFilterOwn.UseVisualStyleBackColor = true;
+            this.rbRightHolderFilterOwn.CheckedChanged += new System.EventHandler(this.rbRightHolderFilterOwn_CheckedChanged);
+            // 
+            // rbRightHolderFilterPublished
+            // 
+            this.rbRightHolderFilterPublished.AutoSize = true;
+            this.rbRightHolderFilterPublished.Enabled = false;
+            this.rbRightHolderFilterPublished.Location = new System.Drawing.Point(114, 3);
+            this.rbRightHolderFilterPublished.Name = "rbRightHolderFilterPublished";
+            this.rbRightHolderFilterPublished.Size = new System.Drawing.Size(143, 16);
+            this.rbRightHolderFilterPublished.TabIndex = 0;
+            this.rbRightHolderFilterPublished.TabStop = true;
+            this.rbRightHolderFilterPublished.Text = "з попередніх публікацій";
+            this.rbRightHolderFilterPublished.UseVisualStyleBackColor = true;
+            this.rbRightHolderFilterPublished.CheckedChanged += new System.EventHandler(this.rbRightHolderFilterPublished_CheckedChanged);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.label15);
+            this.flowLayoutPanel2.Controls.Add(this.rbRightHolderFilterActive);
+            this.flowLayoutPanel2.Controls.Add(this.rbRightHolderFilterNotActive);
+            this.flowLayoutPanel2.Controls.Add(this.rbRightHolderFilterActiveNotActive);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 113);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(411, 26);
+            this.flowLayoutPanel2.TabIndex = 7;
+            this.flowLayoutPanel2.WrapContents = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 0);
+            this.label15.Name = "label15";
+            this.label15.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label15.Size = new System.Drawing.Size(72, 18);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Обмежитись";
+            // 
+            // rbRightHolderFilterActive
+            // 
+            this.rbRightHolderFilterActive.AutoSize = true;
+            this.rbRightHolderFilterActive.Enabled = false;
+            this.rbRightHolderFilterActive.Location = new System.Drawing.Point(81, 3);
+            this.rbRightHolderFilterActive.Name = "rbRightHolderFilterActive";
+            this.rbRightHolderFilterActive.Size = new System.Drawing.Size(80, 17);
+            this.rbRightHolderFilterActive.TabIndex = 1;
+            this.rbRightHolderFilterActive.TabStop = true;
+            this.rbRightHolderFilterActive.Text = "активними";
+            this.rbRightHolderFilterActive.UseVisualStyleBackColor = true;
+            this.rbRightHolderFilterActive.CheckedChanged += new System.EventHandler(this.rbRightHolderFilterActive_CheckedChanged);
+            // 
+            // rbRightHolderFilterNotActive
+            // 
+            this.rbRightHolderFilterNotActive.AutoSize = true;
+            this.rbRightHolderFilterNotActive.Enabled = false;
+            this.rbRightHolderFilterNotActive.Location = new System.Drawing.Point(167, 3);
+            this.rbRightHolderFilterNotActive.Name = "rbRightHolderFilterNotActive";
+            this.rbRightHolderFilterNotActive.Size = new System.Drawing.Size(95, 17);
+            this.rbRightHolderFilterNotActive.TabIndex = 1;
+            this.rbRightHolderFilterNotActive.TabStop = true;
+            this.rbRightHolderFilterNotActive.Text = "не активними";
+            this.rbRightHolderFilterNotActive.UseVisualStyleBackColor = true;
+            this.rbRightHolderFilterNotActive.CheckedChanged += new System.EventHandler(this.rbRightHolderFilterNotActive_CheckedChanged);
+            // 
+            // rbRightHolderFilterActiveNotActive
+            // 
+            this.rbRightHolderFilterActiveNotActive.AutoSize = true;
+            this.rbRightHolderFilterActiveNotActive.Enabled = false;
+            this.rbRightHolderFilterActiveNotActive.Location = new System.Drawing.Point(268, 3);
+            this.rbRightHolderFilterActiveNotActive.Name = "rbRightHolderFilterActiveNotActive";
+            this.rbRightHolderFilterActiveNotActive.Size = new System.Drawing.Size(98, 17);
+            this.rbRightHolderFilterActiveNotActive.TabIndex = 1;
+            this.rbRightHolderFilterActiveNotActive.TabStop = true;
+            this.rbRightHolderFilterActiveNotActive.Text = "без обмежень";
+            this.rbRightHolderFilterActiveNotActive.UseVisualStyleBackColor = true;
+            this.rbRightHolderFilterActiveNotActive.CheckedChanged += new System.EventHandler(this.rbRightHolderFilterActiveNotActive_CheckedChanged);
             // 
             // UcSubmWorks
             // 
@@ -653,6 +914,14 @@
             this.tabAltNames.ResumeLayout(false);
             this.tabPerformers.ResumeLayout(false);
             this.tabSubmProblems.ResumeLayout(false);
+            this.panelRightHolderCount.ResumeLayout(false);
+            this.panelRightHolderCount.PerformLayout();
+            this.panelSubmWorkCount.ResumeLayout(false);
+            this.panelSubmWorkCount.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -704,5 +973,25 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ImageList ilSubmWorkStatuses;
         private System.Windows.Forms.ImageList ilSubmWorkSubStatuses;
+        private System.Windows.Forms.FlowLayoutPanel panelRightHolderCount;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbRightHolderCntTotal;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbRightHolderCntSelected;
+        private System.Windows.Forms.Button btnChangeRightHolders;
+        private System.Windows.Forms.FlowLayoutPanel panelSubmWorkCount;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbSubmWorkCntTotal;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox tbSubmWorkCntSelected;
+        private System.Windows.Forms.CheckBox cbRightHolderFilterEx;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.RadioButton rbRightHolderFilterOwn;
+        private System.Windows.Forms.RadioButton rbRightHolderFilterPublished;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.RadioButton rbRightHolderFilterActive;
+        private System.Windows.Forms.RadioButton rbRightHolderFilterNotActive;
+        private System.Windows.Forms.RadioButton rbRightHolderFilterActiveNotActive;
     }
 }

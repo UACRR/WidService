@@ -116,7 +116,7 @@
             this.panelRight.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial;
             this.panelRight.ColumnCount = 2;
             this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 803F));
+            this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 809F));
             this.panelRight.Controls.Add(this.labStepTitle1, 1, 0);
             this.panelRight.Controls.Add(this.labMsg1, 1, 1);
             this.panelRight.Controls.Add(this.labStepTitle2, 1, 3);
@@ -351,7 +351,7 @@
             this.btnUpdateFromMs.AutoSize = true;
             this.btnUpdateFromMs.Location = new System.Drawing.Point(3, 3);
             this.btnUpdateFromMs.Name = "btnUpdateFromMs";
-            this.btnUpdateFromMs.Size = new System.Drawing.Size(118, 23);
+            this.btnUpdateFromMs.Size = new System.Drawing.Size(111, 23);
             this.btnUpdateFromMs.TabIndex = 0;
             this.btnUpdateFromMs.Text = "Оновити із СМАРТ";
             this.btnUpdateFromMs.UseVisualStyleBackColor = true;
@@ -383,7 +383,7 @@
             this.btnShowSubmFile.AutoSize = true;
             this.btnShowSubmFile.Location = new System.Drawing.Point(102, 3);
             this.btnShowSubmFile.Name = "btnShowSubmFile";
-            this.btnShowSubmFile.Size = new System.Drawing.Size(141, 23);
+            this.btnShowSubmFile.Size = new System.Drawing.Size(103, 23);
             this.btnShowSubmFile.TabIndex = 1;
             this.btnShowSubmFile.Text = "Показати файл";
             this.btnShowSubmFile.UseVisualStyleBackColor = true;
@@ -489,7 +489,7 @@
             this.btnShowRespFile.AutoSize = true;
             this.btnShowRespFile.Location = new System.Drawing.Point(127, 3);
             this.btnShowRespFile.Name = "btnShowRespFile";
-            this.btnShowRespFile.Size = new System.Drawing.Size(140, 23);
+            this.btnShowRespFile.Size = new System.Drawing.Size(103, 23);
             this.btnShowRespFile.TabIndex = 1;
             this.btnShowRespFile.Text = "Показати файл";
             this.btnShowRespFile.UseVisualStyleBackColor = true;
@@ -509,7 +509,7 @@
             this.btnApplyRespFile.AutoSize = true;
             this.btnApplyRespFile.Location = new System.Drawing.Point(3, 3);
             this.btnApplyRespFile.Name = "btnApplyRespFile";
-            this.btnApplyRespFile.Size = new System.Drawing.Size(133, 23);
+            this.btnApplyRespFile.Size = new System.Drawing.Size(69, 23);
             this.btnApplyRespFile.TabIndex = 0;
             this.btnApplyRespFile.Text = "Виконати";
             this.btnApplyRespFile.UseVisualStyleBackColor = true;
@@ -530,7 +530,7 @@
             this.btnShowErrorFile.AutoSize = true;
             this.btnShowErrorFile.Location = new System.Drawing.Point(3, 3);
             this.btnShowErrorFile.Name = "btnShowErrorFile";
-            this.btnShowErrorFile.Size = new System.Drawing.Size(140, 23);
+            this.btnShowErrorFile.Size = new System.Drawing.Size(95, 23);
             this.btnShowErrorFile.TabIndex = 1;
             this.btnShowErrorFile.Text = "Показати файл";
             this.btnShowErrorFile.UseVisualStyleBackColor = true;
@@ -539,9 +539,9 @@
             // btnCancelSubm
             // 
             this.btnCancelSubm.AutoSize = true;
-            this.btnCancelSubm.Location = new System.Drawing.Point(149, 3);
+            this.btnCancelSubm.Location = new System.Drawing.Point(104, 3);
             this.btnCancelSubm.Name = "btnCancelSubm";
-            this.btnCancelSubm.Size = new System.Drawing.Size(118, 23);
+            this.btnCancelSubm.Size = new System.Drawing.Size(114, 23);
             this.btnCancelSubm.TabIndex = 0;
             this.btnCancelSubm.Text = "Відмінити передачу";
             this.btnCancelSubm.UseVisualStyleBackColor = true;

@@ -1,14 +1,34 @@
 ﻿use SocWidSubmitEx
 go
 
+drop table if exists MsgMapRecWiaWiu
+drop table if exists MsgMapRecSipOip
+drop table if exists MsgMapRecSsrOsr
+drop table if exists MsgMapRecAlt
+drop table if exists MsgMapRecPer
+
+drop table if exists RecAck
+drop table if exists RecMsg
+drop table if exists RecMsgType
 drop table if exists RecTrl
 drop table if exists RecGrt
 drop table if exists RecPer
 drop table if exists RecAlt
-drop table if exists RecOsr
-drop table if exists RecOip
-drop table if exists RecSsr
-drop table if exists RecSip
+drop table if exists RecSsrOsr
+drop table if exists RecSipOip
+drop table if exists RecWiaWiu
+drop table if exists RecGrh
+drop table if exists RecHdr
+
+drop table if exists Z_RecAck
+drop table if exists Z_RecMsg
+
+drop table if exists RecTrl
+drop table if exists RecGrt
+drop table if exists RecPer
+drop table if exists RecAlt
+drop table if exists RecSsrOsr
+drop table if exists RecSipOip
 drop table if exists RecWiaWiu
 drop table if exists RecGrh
 drop table if exists RecHdr
@@ -50,14 +70,12 @@ insert SubmissionStatus(Id, Code)
 values
 	  ( 0, 'INITIAL')
 	, ( 1, 'SUBM_FILE_CREATED')
-	, ( 2, 'SUBM_FILE_UPLOAD_FAILED')
-	, ( 3, 'SUBM_FILE_UPLOADED')
-	, ( 4, 'RESP_FILE_DOWNLOAD_FAILED')
-	, ( 5, 'RESP_WRONG_SUBM_FILE')
-	, ( 6, 'RESP_FILE_DOWNLOADED')
-	, ( 7, 'RESP_FILE_PROCESSING_FAILED')
-	, ( 8, 'ISWC_CODES_PASSED_TO_MS')
-	, ( 9, 'CLOSED')
+	, ( 2, 'SUBM_FILE_UPLOADED')
+	, ( 3, 'RESP_FILE_DOWNLOADED')
+	, ( 4, 'RESP_WRONG_SUBM_FILE')
+	, ( 5, 'RESP_FILE_PROCESSED')
+	, ( 6, 'ISWC_CODES_PASSED_TO_MS')
+	, ( 7, 'COMPLETED')
 
 create table SubmWorkStatus (
 	  Id int not null primary key

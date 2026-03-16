@@ -7,10 +7,10 @@ namespace WidSubmit
     public class RecAck
     {
         [Column(TypeName = "int")] public int Id { get; set; }
-        [Column(TypeName = "int")] public int RespFileId { get; set; }
-        [CustomPosInFile(1, 3, 'A')] [Column(TypeName = "varchar(3)")] public string     RecType             { get; set; }
-        [CustomPosInFile(4, 8, 'N')]  [Column(TypeName = "varchar(8)")] public string     TransSeqNr          { get; set; }
-        [CustomPosInFile(12, 8, 'N')] [Column(TypeName = "varchar(8)")] public string    RecSeqNr            { get; set; }
+        [Column(TypeName = "int")] public int RecWiaWiuId { get; set; }
+        [CustomPosInFile(1, 3, 'A')] [Column(TypeName = "varchar(3)")] public string     RecType            { get; set; }
+        [CustomPosInFile(4, 8, 'N')]  [Column(TypeName = "varchar(8)")] public string     TransSeqNr        { get; set; }
+        [CustomPosInFile(12, 8, 'N')] [Column(TypeName = "varchar(8)")] public string    RecSeqNr           { get; set; }
         [CustomPosInFile(20, 8, 'D')]   [Column(TypeName = "varchar(8)" )] public string CreDRef            { get; set; }
         [CustomPosInFile(28, 6, 'T')]   [Column(TypeName = "varchar(6)" )] public string CreTRef            { get; set; }
         [CustomPosInFile(34, 5, 'N')]   [Column(TypeName = "varchar(5)" )] public string GrpSeqNrRef        { get; set; } 

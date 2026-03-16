@@ -68,9 +68,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SharedLib\FtpClient.cs">
-      <Link>FtpClient.cs</Link>
-    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="CustomAttributes.cs" />
     <Compile Include="FileValidator.cs" />
@@ -133,6 +130,7 @@
       <DependentUpon>FormWidWorkSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="FoundWork.cs" />
+    <Compile Include="FtpClient.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="LocalWork.cs" />
     <Compile Include="Program.cs" />

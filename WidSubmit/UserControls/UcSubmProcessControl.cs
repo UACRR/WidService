@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WidSubmit.Implementation;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
+using static WidSubmit.UcRightHolders;
 using static WidSubmit.UcSubmProcessControl;
 using Button = System.Windows.Forms.Button;
 
@@ -28,20 +34,6 @@ namespace WidSubmit
               COMPLETED = 2
             , CURRENT = 1
             , PENDING = 4
-        }
-
-        public enum SubmStatusEnum
-        {
-              INITIAL
-            , SUBM_FILE_CREATED
-            , SUBM_FILE_UPLOADED
-            , RESP_FILE_DOWNLOADED
-            , RESP_WRONG_SUBM_FILE
-            , RESP_FILE_PROCESSED
-            , ISWC_CODES_PASSED_TO_MS
-            , CLOSED
-            , COMPLETED
-
         }
 
         public enum SubmStepEnum
@@ -173,13 +165,6 @@ namespace WidSubmit
                     }
                 },
                 new SubmStatus { 
-                    Id = SubmStatusEnum.CLOSED, 
-                    EnabledButtons = new List<Button> {
-                        btnShowSubmFile,
-                        btnShowRespFile,
-                    }
-                },
-                new SubmStatus { 
                     Id = SubmStatusEnum.COMPLETED, 
                     EnabledButtons = new List<Button> {
                         btnShowSubmFile,
@@ -242,7 +227,7 @@ namespace WidSubmit
                     SubmStatuses = new List<SubmStatusEnum>
                     {
                           SubmStatusEnum.ISWC_CODES_PASSED_TO_MS
-                        , SubmStatusEnum.CLOSED
+                        , SubmStatusEnum.COMPLETED
                     },
                 },
             };
@@ -306,8 +291,6 @@ namespace WidSubmit
                     return $"Файл відповіді {_submission.RespFileName} оброблений";
                 case (int)SubmStatusEnum.ISWC_CODES_PASSED_TO_MS    :
                     return "Коди ISWC нових творів передані в СМАРТ";
-                case (int)SubmStatusEnum.CLOSED                     :
-                    return "Публікація творів завершена, нова публікація започаткована";
                 case (int)SubmStatusEnum.COMPLETED                     :
                     return "Публікація творів завершена, нова публікація започаткована";
                 default: return "";
@@ -325,9 +308,12 @@ namespace WidSubmit
                 step.ActionButtons.ForEach(button =>
                 {
                     button.Enabled = false;
+                    button.Font = new Font(button.Font, FontStyle.Regular);
                 });
             });
-            _submStatuses.Single(x => (int)x.Id == submStatusId).EnabledButtons.ForEach(x => x.Enabled = true);
+            _submStatuses.Single(x => (int)x.Id == submStatusId)
+            .EnabledButtons
+                .ForEach(x => {x.Enabled = true; x.Font = new Font(x.Font, FontStyle.Bold);});
 
             if(submStatusId == (int)SubmStatusEnum.SUBM_FILE_CREATED)
             {
@@ -385,18 +371,15 @@ namespace WidSubmit
         
         private void SetSubmStatus(SubmStatusEnum status)
         {
-            Helpers.RunProtected ( () =>
+            Helpers.RunSqlSocWidSubmitEx(cmd =>
             {
-                Helpers.RunSqlSocWidSubmitEx(cmd =>
-                {
-                    cmd.CommandText = "update Submission set SubmissionStatusId = @status where Id = dbo.fnCurSubmId()";
-                    cmd.Parameters.AddWithValue("@status", (int)status);
-                    cmd.ExecuteNonQuery();
-                });
-
-                _submission.SubmissionStatusId = (int)status;
-                UpdateControls();
+                cmd.CommandText = "update Submission set SubmissionStatusId = @status where Id = dbo.fnCurSubmId()";
+                cmd.Parameters.AddWithValue("@status", (int)status);
+                cmd.ExecuteNonQuery();
             });
+
+            _submission.SubmissionStatusId = (int)status;
+            UpdateControls();
         }
 
         private void SetSubmFile(string submFileName)
@@ -469,84 +452,131 @@ namespace WidSubmit
 
         private void UpdateFromMs()
         {
-            Helpers.RunProtected(() =>
-            {
-                Helpers.RunSqlSocWidSubmitEx(cmd =>
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "spSubmWorksUpdate";
-                    cmd.ExecuteNonQuery();
-                });
-            });
+            SubmActionRunner.UpdateFromMs();
         }
 
         private void CreateSubmFile()
         {
-            var hasReadyWorks = SubmActionRunner.SubmHasReadyWorks();
-
-            if (!hasReadyWorks)
-            {
-                if (DialogResult.Yes !=
-                    MessageBox.Show("Відсутні твори для передачі, файл не буде створений.",
-                        "Публікація творів",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning))
-                {
-                    return;
-                }
-            }
-
-            var submFileExists = SubmActionRunner.SubmFileExists();
-            if (submFileExists)
-            {
-                if (DialogResult.Yes !=
-                    MessageBox.Show("Підготовлений до передачі в WID файл вже створений. Замінити його на новий?",
-                        "Публікація творів",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    return;
-                }
-            }
-
-            var builder = new SubmFileBuilder();
-            builder.CreateSubmFile();
-            SetSubmFile("WID2023030609244604300140.021");
+            SubmActionRunner.CreateSubmFile();
             SetSubmStatus(SubmStatusEnum.SUBM_FILE_CREATED);
         }
 
         private void ShowSubmFile()
         {
-            MessageBox.Show(_submission.SubmFileName);
+            var fileName = "";
+            Helpers.RunSqlSocWidSubmitEx(cmd =>
+            {
+                cmd.CommandText = "select dbo.fnCurSubmFileName()";
+                fileName = (string)cmd.ExecuteScalar();
+            });
+            var folderPath = Path.Combine(ConfigurationManager.AppSettings["FileExchangeRootDir"], "OutFiles");
+            var fileFullName = Path.Combine(folderPath, fileName);
+            var res = Helpers.ShowFileInFolder(fileFullName);
+            if(!res)
+            {
+                MessageBox.Show($"Файл {fileFullName} не знайдено", "Публікація творів", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void SendSubmFile()
+        private async Task SendSubmFile()
         {
-            SetSubmStatus(SubmStatusEnum.SUBM_FILE_UPLOADED);
+            await SubmActionRunner.CreateAndSendSubmFile();
+
+            Helpers.RunSqlSocWidSubmitExT(cmd =>
+            {
+                cmd.CommandText = @"
+                    update SubmWork 
+                    set Status = @newStatus 
+                    where SubmissionId = dbo.fnCurSubmId()
+                        and Status = @oldStatus
+                ";
+                cmd.Parameters.AddWithValue("@newStatus", SubmWorkStatusEnum.SUBMITTED);
+                cmd.Parameters.AddWithValue("@oldStatus", SubmWorkStatusEnum.READY);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = "update Submission set SubmissionStatusId = @status where Id = dbo.fnCurSubmId()";
+                cmd.Parameters.AddWithValue("@status", SubmStatusEnum.SUBM_FILE_UPLOADED);
+                cmd.ExecuteNonQuery();
+            });
+           
+            _submission.SubmissionStatusId = (int)SubmStatusEnum.SUBM_FILE_UPLOADED;
+            UpdateControls();
         }
 
-        int ReceiveRespFileRunIdx = 1;
+        //int ReceiveRespFileRunIdx = 1;
         private void ReceiveRespFile()
         {
-            if(ReceiveRespFileRunIdx == 1)
+            var errorFileName = SubmActionRunner.CheckSubmDeclined();
+            if(errorFileName != "")
             {
-                SetErrorFile("WID2023040708242611300140.021.gz");
-                SetSubmStatus(SubmStatusEnum.RESP_WRONG_SUBM_FILE);
-            }
-            else
-            {
-                SetRespFile("WID20260116125101140300.021");
-                SetSubmStatus(SubmStatusEnum.RESP_FILE_DOWNLOADED);
+                Helpers.RunSqlSocWidSubmitExT(cmd =>
+                {
+                    cmd.CommandText = "update Submission set ErrorFileName = @errorFileName where Id = dbo.fnCurSubmId()";
+                    cmd.Parameters.AddWithValue("@ErrorFileName", errorFileName);
+                    cmd.ExecuteNonQuery();
 
+                    
+                    cmd.CommandText = "update Submission set SubmissionStatusId = @status where Id = dbo.fnCurSubmId()";
+                    cmd.Parameters.AddWithValue("@status", SubmStatusEnum.RESP_WRONG_SUBM_FILE);
+                    cmd.ExecuteNonQuery();
+
+                });
+
+                _submission.ErrorFileName = errorFileName;
+                _submission.SubmissionStatusId = (int)SubmStatusEnum.RESP_WRONG_SUBM_FILE;
+                UpdateControls();
+
+                MessageBox.Show("Файл публікації відхилений, для вирішення проблеми зверніться до технічного персоналу.", "Публікація творів", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                return;
             }
-            ReceiveRespFileRunIdx++;
+
+            var respFileName = SubmActionRunner.DownloadRespFile();
+            if(respFileName == "")
+            {
+                MessageBox.Show("Файл відповіді не знайдений, спробуйте пізніше.", "Публікація творів", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Helpers.RunSqlSocWidSubmitExT(cmd =>
+            {
+                cmd.CommandText = "update Submission set RespFileName = @respFileName where Id = dbo.fnCurSubmId()";
+                cmd.Parameters.AddWithValue("@respFileName", respFileName);
+                cmd.ExecuteNonQuery();
+
+                    
+                cmd.CommandText = "update Submission set SubmissionStatusId = @status where Id = dbo.fnCurSubmId()";
+                cmd.Parameters.AddWithValue("@status", SubmStatusEnum.RESP_FILE_DOWNLOADED);
+                cmd.ExecuteNonQuery();
+
+            });
+
+            _submission.RespFileName = respFileName;
+            _submission.SubmissionStatusId = (int)SubmStatusEnum.RESP_FILE_DOWNLOADED;
+            UpdateControls();
+ 
         }
 
         private void ShowRespFile()
         {
-            MessageBox.Show(_submission.RespFileName);
+            var fileName = "";
+            Helpers.RunSqlSocWidSubmitEx(cmd =>
+            {
+                cmd.CommandText = "select dbo.fnCurRespFileName()";
+                fileName = (string)cmd.ExecuteScalar();
+            });
+            var folderPath = Path.Combine(ConfigurationManager.AppSettings["FileExchangeRootDir"], "RespFiles");
+            var fileFullName = Path.Combine(folderPath, fileName);
+            var res = Helpers.ShowFileInFolder(fileFullName);
+            if(!res)
+            {
+                MessageBox.Show($"Файл {fileFullName} не знайдено", "Публікація творів", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ApplyRespFile()
         {
+            SubmActionRunner.ApplyRespFile();
             SetSubmStatus(SubmStatusEnum.RESP_FILE_PROCESSED);
         }
 
@@ -557,77 +587,133 @@ namespace WidSubmit
 
         private void ShowErrorFile()
         {
-            MessageBox.Show(_submission.ErrorFileName);
+            var fileName = "";
+            Helpers.RunSqlSocWidSubmitEx(cmd =>
+            {
+                cmd.CommandText = "select dbo.fnCurErrorFileName()";
+                fileName = (string)cmd.ExecuteScalar();
+            });
+            var folderPath = Path.Combine(ConfigurationManager.AppSettings["FileExchangeRootDir"], "OutFiles");
+            var fileFullName = Path.Combine(folderPath, fileName);
+            var res = Helpers.ShowFileInFolder(fileFullName);
+            if(!res)
+            {
+                MessageBox.Show($"Файл {fileFullName} не знайдено", "Публікація творів", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void PassToMs()
         {
+            Helpers.RunSqlSocWidSubmitExT(cmd => {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spSubmPassIswcToMs";
+            });
             SetSubmStatus(SubmStatusEnum.ISWC_CODES_PASSED_TO_MS);
         }
 
         private void CloseSubm()
         {
-            SetSubmStatus(SubmStatusEnum.COMPLETED);
-        }
+            SubmActionRunner.CloseSubm();
+            MessageBox.Show("Поточний сеанс публікаії завершено, новий поточний сеанс створено. Інформація на поточній формі буде змінена відповідно до нового сеансу.", "Публікація творів", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        
+            // Оновлюємо інформацію відповідно до нового поточного сеансу
+            LoadSubmission();
+            UpdateControls();
+         }
         #endregion // Actions
 
         #region ActionButtonHandlers
         private void btnUpdateFromMs_Click(object sender, EventArgs e)
         {
-            UpdateFromMs();
-            WorksUpdated?.Invoke(this, null);
+            Helpers.RunProtected(() =>
+            {
+                UpdateFromMs();
+                WorksUpdated?.Invoke(this, null);
+            });
         }
 
 
         private void btnCreateSubmFile_Click(object sender, EventArgs e)
         {
-            CreateSubmFile();
+            Helpers.RunProtected(() =>
+            {
+                CreateSubmFile();
+            });
         }
 
         private void btnShowSubmFile_Click(object sender, EventArgs e)
         {
-            ShowSubmFile();
+            Helpers.RunProtected(() =>
+            {
+                ShowSubmFile();
+            });
         }
 
         private void btnSendSubmFile_Click(object sender, EventArgs e)
         {
-            SendSubmFile();
+            Helpers.RunProtected(async () =>
+            {
+                await SendSubmFile();
+                WorksUpdated?.Invoke(this, null);
+            });
         }
 
         private void btnReceiveRespFile_Click(object sender, EventArgs e)
         {
-            ReceiveRespFile();
+            Helpers.RunProtected(() =>
+            {
+                ReceiveRespFile();
+            });
         }
 
         private void btnShowRespFile_Click(object sender, EventArgs e)
         {
-            ShowRespFile();
+            Helpers.RunProtected(() =>
+            {
+                ShowRespFile();
+            });
         }
 
 
         private void btnApplyRespFile_Click(object sender, EventArgs e)
         {
-            ApplyRespFile();
+            Helpers.RunProtected(() =>
+            {
+                ApplyRespFile();
+            });
         }
 
         private void btnShowErrorFile_Click(object sender, EventArgs e)
         {
-            ShowErrorFile();
+            Helpers.RunProtected(() =>
+            {
+                ShowErrorFile();
+            });
         }
 
         private void btnCancelSubm_Click(object sender, EventArgs e)
         {
-            CancelSubm();
+            Helpers.RunProtected(() =>
+            {
+                CancelSubm();
+            });
         }
 
         private void btnPassToMs_Click(object sender, EventArgs e)
         {
-            PassToMs();
+            Helpers.RunProtected(() =>
+            {
+                PassToMs();
+            });
         }
 
         private void btnCloseSubm_Click(object sender, EventArgs e)
         {
-            CloseSubm();
+            Helpers.RunProtected(() =>
+            {
+                CloseSubm();
+                WorksUpdated?.Invoke(this, null);
+            });
         }
         #endregion // ActionButtonHandlers
     }

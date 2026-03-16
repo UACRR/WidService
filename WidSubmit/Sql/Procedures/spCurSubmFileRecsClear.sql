@@ -31,32 +31,17 @@ begin
 		join RecHdr hdr on grh.RecHdrId = hdr.Id
 	where hdr.SubmissionId = @submId
 
-	delete osr
-	from RecOsr osr
-		join RecOip oip on osr.RecOipId = oip.Id
-		join RecWiaWiu wiawiu on oip.RecWiaWiuId = wiawiu.Id
+	delete ssrosr
+	from RecSsrOsr ssrosr
+		join RecSipOip sipoip on ssrosr.RecSipOipId = sipoip.Id
+		join RecWiaWiu wiawiu on sipoip.RecWiaWiuId = wiawiu.Id
 		join RecGrh grh on wiawiu.RecGrhId = grh.Id 
 		join RecHdr hdr on grh.RecHdrId = hdr.Id
 	where hdr.SubmissionId = @submId
 
-	delete oip
-	from RecOip oip
-		join RecWiaWiu wiawiu on oip.RecWiaWiuId = wiawiu.Id
-		join RecGrh grh on wiawiu.RecGrhId = grh.Id 
-		join RecHdr hdr on grh.RecHdrId = hdr.Id
-	where hdr.SubmissionId = @submId
-
-	delete ssr
-	from RecSsr ssr
-		join RecSip sip on ssr.RecsipId = sip.Id
-		join RecWiaWiu wiawiu on sip.RecWiaWiuId = wiawiu.Id
-		join RecGrh grh on wiawiu.RecGrhId = grh.Id 
-		join RecHdr hdr on grh.RecHdrId = hdr.Id
-	where hdr.SubmissionId = @submId
-
-	delete sip
-	from RecSip sip
-		join RecWiaWiu wiawiu on sip.RecWiaWiuId = wiawiu.Id
+	delete sipoip
+	from RecSipOip sipoip
+		join RecWiaWiu wiawiu on sipoip.RecWiaWiuId = wiawiu.Id
 		join RecGrh grh on wiawiu.RecGrhId = grh.Id 
 		join RecHdr hdr on grh.RecHdrId = hdr.Id
 	where hdr.SubmissionId = @submId

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WidSubmit
 {
-    [Table("RecWia")]
+    [Table("RecWiaWiu")]
     public class RecWiaWiu
     {
         [Column(TypeName = "int")] public int                                       Id                  { get; set; }

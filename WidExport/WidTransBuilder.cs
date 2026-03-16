@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WidExport.Entities;
 
-namespace WidSubmit
+namespace WidExport
 {
     public class WidTransBuilder
     {

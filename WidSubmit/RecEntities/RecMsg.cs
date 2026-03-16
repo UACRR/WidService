@@ -7,7 +7,7 @@ namespace WidSubmit
     public class RecMsg
     {
         [Column(TypeName = "int")] public int Id { get; set; }
-        [Column(TypeName = "int")] public int RespFileId { get; set; }
+        [Column(TypeName = "int")] public int SubmissionId { get; set; }
         [CustomPosInFile(1, 3, 'A')] [Column(TypeName = "varchar(3)")] public string        RecType             { get; set; }
         [CustomPosInFile(4, 8, 'N')] [Column(TypeName = "varchar(8)")] public string        TransSeqNr          { get; set; }
         [CustomPosInFile(12, 8, 'N')] [Column(TypeName = "varchar(8)")] public string       RecSeqNr            { get; set; }

@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -106,6 +108,32 @@ namespace WidSubmit
                     Clipboard.SetText(text);
                 });
                 menu.Show(listView, new Point(e.X, e.Y));
+            }
+        }
+
+        public static bool ShowFileInFolder(string fileFullName)
+        {
+            if (!File.Exists(fileFullName))
+            {
+                return false;
+            }
+
+            var argument = $"/select, \"{fileFullName}\"";
+            System.Diagnostics.Process.Start("explorer.exe", argument);
+            return true;
+        }
+
+        public static void DecompressFile(string sourceFile, string targetFile)
+        {
+            using (FileStream sourceFileStream = File.OpenRead(sourceFile))
+            {
+                using (FileStream targetFileStream = File.Create(targetFile))
+                {
+                    using (GZipStream decompressionStream = new GZipStream(sourceFileStream, CompressionMode.Decompress))
+                    {
+                        decompressionStream.CopyTo(targetFileStream);
+                    }
+                }
             }
         }
     }

@@ -71,7 +71,7 @@ namespace WidSubmit
             {
                 cmd.CommandText = @"
                     select
-	                      HasOwnAuthor
+	                      HasOwnRightHolder
 	                    , RolesDefined
 	                    , HasNonPublisher
 	                    , AllInIpi

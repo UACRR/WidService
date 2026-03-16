@@ -12,17 +12,7 @@ namespace WidSubmit
 {
     public partial class UcSubmWorks : UserControl
     {
-        public enum SubmWorkStatus
-        {
-	          NOT_READY
-	        , READY
-	        , SUBMITTED
-	        , ACCEPTED
-	        , ACCEPTED_WARNINGS
-            , REJECTED
-	        , APPLIED
-	        , COMPLETED
-        }
+        
 
         public class RightHolder
         {
@@ -41,6 +31,8 @@ namespace WidSubmit
 	        public bool IsActive		{ get; set; }
             public bool HasIpiAgreePer	{ get; set; }
             public bool HasIpiAgreeMec	{ get; set; }
+            public bool IsInCurSubm	    { get; set; }
+            public bool WasPublished	{ get; set; }
         }
 
         public class SubmWork
@@ -88,6 +80,8 @@ namespace WidSubmit
             lvRightHolders.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             lvRightHolders.MultiSelect = false;
             lvRightHolders.View = View.Details;
+            lvRightHolders.SmallImageList = ilSubmWorkStatuses;
+            lvRightHolders.StateImageList = ilSubmWorkStatuses;
 
             lvRightHolders.Columns.Clear();
             lvRightHolders.Columns.Add("№", 40);
@@ -108,7 +102,7 @@ namespace WidSubmit
             lvSubmWorks.Columns.Add("ISWC", 80);
             lvSubmWorks.Columns.Add("Назва СМАРТ", 100);
             lvSubmWorks.Columns.Add("Назва WID", 100);
-            lvSubmWorks.Columns.Add("Статус публікації", 100);
+            lvSubmWorks.Columns.Add("Як публікувати", 100);
 
             cbFilterByStatus.Items.Clear();
             cbFilterByStatus.Items.Add("<Всі>");
@@ -129,6 +123,12 @@ namespace WidSubmit
 
             LoadSubmWorks();
             FillLvSubmWorks();
+
+            Helpers.RunSqlSocWidSubmitEx(cmd =>
+            {
+                cmd.CommandText = "select count(*) from SubmWork where SubmissionId = dbo.fnCurSubmId()";
+                tbSubmWorkCntTotal.Text =  ((int)cmd.ExecuteScalar()).ToString();
+            });
         }
         
         private void LoadRightHolders()
@@ -137,24 +137,25 @@ namespace WidSubmit
             {
                 cmd.CommandText = $@"
                     select
-	                      t1.Id		
-	                    , t1.ValidFrom	
-	                    , t1.ValidTo	
-	                    , t1.CreatedAt	
-	                    , t1.CustId	
-	                    , t1.IpBaseNr	
-	                    , t1.IpNameNr	
-	                    , t1.Name
-                        , t1.FstName
-                        , t1.NameForWid
-                        , t1.FstNameForWid
-                        , t1.IsOwn
-	                    , t1.IsActive
-                        , t1.HasIpiAgreePer
-                        , t1.HasIpiAgreeMec
-                    from RightHolder t1
-                        join SubmRightHolder t2 on t1.Id = t2.RightHolderId and t2.SubmissionId = dbo.fnCurSubmId()
-                    order by t1.Name, t1.FstName
+	                      Id		
+	                    , ValidFrom	
+	                    , ValidTo	
+	                    , CreatedAt	
+	                    , CustId	
+	                    , IpBaseNr	
+	                    , IpNameNr	
+	                    , Name
+                        , FstName
+                        , NameForWid
+                        , FstNameForWid
+                        , IsOwn
+	                    , IsActive
+                        , HasIpiAgreePer
+                        , HasIpiAgreeMec
+                        , IsInCurSubm
+                        , WasPublished
+                    from vCurSubmRightHolderEx
+                    order by Name, FstName
                 ";
                 using (var r = cmd.ExecuteReader())
                 {
@@ -178,11 +179,15 @@ namespace WidSubmit
 	                    rh.IsActive	        = r.GetBoolean(idx);                                idx++;
                         rh.HasIpiAgreePer	= r.GetBoolean(idx);                                idx++;
                         rh.HasIpiAgreeMec	= r.GetBoolean(idx);                                idx++;
+                        rh.IsInCurSubm	    = r.GetBoolean(idx);                                idx++;
+                        rh.WasPublished	    = r.GetBoolean(idx);                                idx++;
 
                         _rightHolders.Add(rh);
                     }
                 }
             });
+
+            tbRightHolderCntTotal.Text = _rightHolders.Count.ToString();
         }
 
         private void LoadSubmWorks()
@@ -220,10 +225,24 @@ namespace WidSubmit
 
                 _submWorks.OrderBy(x => x.Name);
             });
-        }
+
+       }
     
         private bool ShowRightHolder(RightHolder rh)
         {
+            if(cbRightHolderFilterEx.Checked)
+            {
+                if(rbRightHolderFilterActive         .Checked && !rh.IsActive) return false;
+                if(rbRightHolderFilterNotActive      .Checked && rh.IsActive) return false;
+                if(rbRightHolderFilterOwn            .Checked && !rh.IsOwn) return false;
+                if(rbRightHolderFilterPublished      .Checked && !rh.WasPublished) return false;
+                //if(rbRightHolderFilterActiveNotActive.Checked) return true;
+            }
+            else
+            {
+                if(!rh.IsInCurSubm) return false;
+            }
+ 
             var cond = tbRightHolderFilter.Text.Trim();
             if (cond.Length == 0) return true;
             if (rh.CustId.ToString().Contains(cond)) return true;
@@ -255,7 +274,9 @@ namespace WidSubmit
                     item = new ListViewItem(seqNr.ToString());
                     item.SubItems.Add(x.CustId.ToString());
                     item.SubItems.Add($"{x.Name} {x.FstName}".Trim());
-                    item.StateImageIndex = x.IsOwn ? 1 : 4;
+                    item.ImageIndex = x.IsActive ? -1 : 5;
+                    item.StateImageIndex = x.IsInCurSubm ? 3 : -1;
+                    if(!x.WasPublished) item.ForeColor = SystemColors.GrayText;
                     item.Tag = x;
                     lvRightHolders.Items.Add(item);
                     seqNr++;
@@ -263,12 +284,14 @@ namespace WidSubmit
             });
             lvRightHolders.EndUpdate();
 
+            tbRightHolderCntSelected.Text = (lvRightHolders.Items.Count - 1).ToString();
+
         }
 
         private bool ShowSubmWork(SubmWork work)
         {
-            if (rbFilterSubmittedYes.Checked && work.IsChanged) return false;
-            if (rbFilterSubmittedNo.Checked && !work.IsChanged) return false;
+            if (rbFilterSubmittedYes.Checked && !work.IsChanged) return false;
+            if (rbFilterSubmittedNo.Checked && work.IsChanged) return false;
 
             var requiredStatus = cbFilterByStatus.SelectedIndex - 1;
             if (requiredStatus >= 0 && work.Status != requiredStatus) return false;
@@ -310,6 +333,8 @@ namespace WidSubmit
                 }
             });
             lvSubmWorks.EndUpdate();
+
+            tbSubmWorkCntSelected.Text = lvSubmWorks.Items.Count.ToString();
         }
 
         private void ApplyRightHolderFilter()
@@ -442,6 +467,59 @@ namespace WidSubmit
         {
             btnSubmWorkApplyExFilter.Enabled = false;
             FillLvSubmWorks();
+        }
+
+        private void cbRightHolderFilterEx_CheckedChanged(object sender, EventArgs e)
+        {
+            Helpers.RunProtected(() =>
+            {
+                rbRightHolderFilterOwn              .Enabled = cbRightHolderFilterEx.Checked;
+                rbRightHolderFilterPublished        .Enabled = cbRightHolderFilterEx.Checked;
+                rbRightHolderFilterActive           .Enabled = cbRightHolderFilterEx.Checked;
+                rbRightHolderFilterNotActive        .Enabled = cbRightHolderFilterEx.Checked;
+                rbRightHolderFilterActiveNotActive  .Enabled = cbRightHolderFilterEx.Checked;
+                FillLvRightHolders();
+            });
+        }
+
+        private void rbRightHolderFilterOwn_CheckedChanged(object sender, EventArgs e)
+        {
+            Helpers.RunProtected(() =>
+            {
+                FillLvRightHolders();
+            });
+        }
+
+        private void rbRightHolderFilterPublished_CheckedChanged(object sender, EventArgs e)
+        {
+            Helpers.RunProtected(() =>
+            {
+                FillLvRightHolders();
+            });
+        }
+
+        private void rbRightHolderFilterActive_CheckedChanged(object sender, EventArgs e)
+        {
+            Helpers.RunProtected(() =>
+            {
+                FillLvRightHolders();
+            });
+        }
+
+        private void rbRightHolderFilterNotActive_CheckedChanged(object sender, EventArgs e)
+        {
+            Helpers.RunProtected(() =>
+            {
+                FillLvRightHolders();
+            });
+        }
+
+        private void rbRightHolderFilterActiveNotActive_CheckedChanged(object sender, EventArgs e)
+        {
+            Helpers.RunProtected(() =>
+            {
+                FillLvRightHolders();
+            });
         }
     }
 }
