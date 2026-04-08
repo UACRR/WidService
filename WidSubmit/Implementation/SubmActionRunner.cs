@@ -54,7 +54,7 @@ namespace WidSubmit
                 }
             }
 
-            Helpers.RunSqlSocWidSubmitEx(cmd =>
+            Helpers.RunSqlSocWidSubmitExT(cmd =>
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "spSubmWorksUpdate";
@@ -83,7 +83,7 @@ namespace WidSubmit
                 if (DialogResult.Yes !=
                     MessageBox.Show("Підготовлений до передачі в WID файл вже створений. Замінити його на новий?",
                         "Публікація творів",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning))
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
                     return;
                 }
@@ -100,8 +100,11 @@ namespace WidSubmit
                 }
             }
             
-            var writer = new SubmFileWriter();
-            writer.CreateSubmFile();
+            Helpers.RunProtected(() =>
+            {
+                var writer = new SubmFileWriter();
+                writer.CreateSubmFile();
+            });
         }   
 
         public static async Task CreateAndSendSubmFile()
@@ -178,7 +181,7 @@ namespace WidSubmit
             });
 
             //!!!!!!!!!!!!!!!!!!!! Для тестування
-            curSubmFileName = "WID2026031507242653300140.021";
+            curSubmFileName = "WID20260406124038140300.021";
 
             // Завантажуємо з ФТП повний перелік файлів відповіді
             var appSettings = ConfigurationManager.AppSettings;
@@ -261,10 +264,10 @@ namespace WidSubmit
         {
             Helpers.RunSqlSocWidSubmitExT(cmd => {
                 // Попередньо встановлюэмо статус заверешено, якщо процедура завершиться з помилками статус не буде застосовано
-                cmd.CommandText = "update Submission set SubmissionStatusId = @status where Id = dbo.fnCurSubmId()";
-                cmd.Parameters.AddWithValue("@status", SubmStatusEnum.COMPLETED);
-                cmd.ExecuteNonQuery();
-
+                //cmd.CommandText = "update Submission set SubmissionStatusId = @status where Id = dbo.fnCurSubmId()";
+                //cmd.Parameters.AddWithValue("@status", SubmStatusEnum.COMPLETED);
+                //cmd.ExecuteNonQuery();
+                //
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "spSubmClose";
                 cmd.Parameters.Clear();

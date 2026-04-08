@@ -29,8 +29,6 @@ select
 	, dbo.ClrTranslitFromUkrToLat(isnull(name, ''))		as NameForWid
 	, ''												as FstNameForWid
 from MediaService..AnketaExternal
-GO
-
--- select * from vCustomerNamesForWid
+go
 
 

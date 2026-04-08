@@ -24,8 +24,20 @@ namespace WidSubmit
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            ucSubmission.UpdateContent();
-            ucRightHolders.UpdateContent();
+            UpdateContent();
+        }
+
+        private void UpdateContent()
+        {
+            Helpers.RunProtected(() =>
+            {
+                switch(panelMiddle.SelectedIndex)
+                {
+                    case 0: ucSubmission.UpdateContent()    ; break;
+                    case 1: ucRightHolders.UpdateContent()  ; break;
+                    case 2: ucSubmWorksHist.UpdateContent() ; break;
+                }
+            });
         }
 
         private void btnUpdateFromMs_Click(object sender, EventArgs e)
@@ -54,7 +66,7 @@ namespace WidSubmit
 
         private void panelMiddle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ucRightHolders.UpdateContent();
-        }
+            UpdateContent();
+         }
     }
 }

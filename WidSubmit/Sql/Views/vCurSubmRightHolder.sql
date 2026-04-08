@@ -9,4 +9,5 @@ from SubmRightHolder t1
 		and t2.EndedAt = datefromparts(9999, 12, 31)
 go
 
--- select * from vCurSubmRightHolder
+
+

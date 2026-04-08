@@ -8,4 +8,3 @@ from RightHolder
 where ValidTo = dbo.fnMaxDate()
 go
 
--- select * from vCurRightHolder

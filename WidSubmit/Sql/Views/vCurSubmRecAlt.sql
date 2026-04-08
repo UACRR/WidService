@@ -11,3 +11,4 @@ as
 		join RecAlt t5 on t4.Id = t5.RecWiaWiuId
 	where t1.Id = dbo.fnCurSubmId()
 go
+

@@ -1,0 +1,1 @@
+type *.sql > ALL_PROCEDURES.sql

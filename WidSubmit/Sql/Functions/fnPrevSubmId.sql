@@ -10,4 +10,3 @@ begin
 end
 go
 
---print dbo.fnPrevSubmId()

@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FormTestSubmWorkRespErr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTestSubmWorkRespErr.Designer.cs">
+      <DependentUpon>FormTestSubmWorkRespErr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Implementation\BulkUploadToSql.cs" />
     <Compile Include="Implementation\CustomAttributes.cs" />
     <Compile Include="Implementation\EntityHelpers.cs" />
@@ -80,11 +86,11 @@
     <Compile Include="Forms\FormSubmissionRightHolders.Designer.cs">
       <DependentUpon>FormSubmissionRightHolders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormTest.cs">
+    <Compile Include="Forms\FormTestUcSubmRightHolders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormTest.Designer.cs">
-      <DependentUpon>FormTest.cs</DependentUpon>
+    <Compile Include="Forms\FormTestUcSubmRightHolders.Designer.cs">
+      <DependentUpon>FormTestUcSubmRightHolders.cs</DependentUpon>
     </Compile>
     <Compile Include="Implementation\Helpers.cs" />
     <Compile Include="Program.cs" />
@@ -108,17 +114,41 @@
     <Compile Include="UserControls\UcSubmProcessControl.Designer.cs">
       <DependentUpon>UcSubmProcessControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcSubmRightHolders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcSubmRightHolders.Designer.cs">
+      <DependentUpon>UcSubmRightHolders.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcSubmWorkPerformers.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\UcSubmWorkPerformers.Designer.cs">
       <DependentUpon>UcSubmWorkPerformers.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcSubmWorkRespErr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcSubmWorkRespErr.Designer.cs">
+      <DependentUpon>UcSubmWorkRespErr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcSubmWorkRespErr_Mockup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcSubmWorkRespErr_Mockup.Designer.cs">
+      <DependentUpon>UcSubmWorkRespErr_Mockup.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcSubmWorks.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\UcSubmWorks.Designer.cs">
       <DependentUpon>UcSubmWorks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcSubmWorkSharesDiff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcSubmWorkSharesDiff.Designer.cs">
+      <DependentUpon>UcSubmWorkSharesDiff.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcSubmWorkShares.cs">
       <SubType>UserControl</SubType>
@@ -139,14 +169,23 @@
       <DependentUpon>UcSubmWorkAltNames.cs</DependentUpon>
     </Compile>
     <Compile Include="Implementation\SubmFileWriter.cs" />
+    <Compile Include="UserControls\UcSubmWorksHist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcSubmWorksHist.Designer.cs">
+      <DependentUpon>UcSubmWorksHist.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSubmissionRightHolders.resx">
       <DependentUpon>FormSubmissionRightHolders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormTest.resx">
-      <DependentUpon>FormTest.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormTestSubmWorkRespErr.resx">
+      <DependentUpon>FormTestSubmWorkRespErr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTestUcSubmRightHolders.resx">
+      <DependentUpon>FormTestUcSubmRightHolders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -166,11 +205,23 @@
     <EmbeddedResource Include="UserControls\UcSubmProcessControl.resx">
       <DependentUpon>UcSubmProcessControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcSubmRightHolders.resx">
+      <DependentUpon>UcSubmRightHolders.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcSubmWorkPerformers.resx">
       <DependentUpon>UcSubmWorkPerformers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcSubmWorkRespErr.resx">
+      <DependentUpon>UcSubmWorkRespErr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcSubmWorkRespErr_Mockup.resx">
+      <DependentUpon>UcSubmWorkRespErr_Mockup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcSubmWorks.resx">
       <DependentUpon>UcSubmWorks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcSubmWorkSharesDiff.resx">
+      <DependentUpon>UcSubmWorkSharesDiff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcSubmWorkShares.resx">
       <DependentUpon>UcSubmWorkShares.cs</DependentUpon>
@@ -180,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcSubmWorkAltNames.resx">
       <DependentUpon>UcSubmWorkAltNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcSubmWorksHist.resx">
+      <DependentUpon>UcSubmWorksHist.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

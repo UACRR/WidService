@@ -8,6 +8,30 @@ begin
 	/*
 		гЛЁМЧ╨ РБНПХ ОНРНВМНЦН ЯЕЮМЯС АЮГСЧВХЯЭ МЮ ОНРНВМХУ ДЮМХУ ЁГ ялюпр
 	*/
+
+	-- опхахпю╙лн гюохях ъй╡ бхмхйкх опх ярбнпемм╡ тюикс дкъ осак╡йюж╡╞
+	exec spCurSubmFileRecsClear
+
+	-- яоепь нмнбкч╙лн опюбнбкюямхй╡б
+	exec spRightHoldersUpdate
+
+	-- оепеоняхкю╙лн опюбнбкюямхй╡б онрнвмнцн яеюмяс мю нярюмм╡у б ╡ярнп╡╞
+	update t1
+	set t1.RightHolderId = t4.Id
+	-- select *
+	from SubmRightHolder t1
+		join vCurSubmRightHolder t2 on t1.Id = t2.Id
+		join RightHolder t3 on t1.RightHolderId = t3.Id
+		join vCurRightHolder t4 on t3.CustId = t4.CustId
+
+	-- оепеоняхкю╙лн опнжемрх онрнвмнцн яеюмяс мю нярюмм╡у б ╡ярнп╡╞ опюбнбкюямхй╡б
+	update t1
+	set t1.RightHolderId = t4.Id
+	-- select *
+	from SubmWorkShare t1
+		join vCurSubmWorks t2 on t1.SubmWorkId = t2.Id
+		join RightHolder t3 on t1.RightHolderId = t3.Id
+		join vCurRightHolder t4 on t3.CustId = t4.CustId
 	
 	-- ярбнпч╙лн б пнанвху рюакхжъу онрнвм╡ дюм╡ ╡г ялюпр
 	exec spSubmWorksTargetCreate
@@ -20,11 +44,8 @@ begin
 	select t2.ObjId
 	into #UnChangedObjIds
 	from SubmWorksAcceptedHash t1
-		join SubmWork t2 on t1.SubmWorkId = t2.Id
-		join Z_SubmWork t3 on t2.ObjId = t3.ObjId
-		join Z_SubmWorkHash t4 on t3.Id = t4.SubmWorkId
-		left join SubmWork t5 on t2.ObjId = t5.ObjId
-	where t1.HashValue = t4.HashValue
+		join Z_SubmWorkHash t2 on t1.ObjId = t2.ObjId
+	where t1.HashValue = t2.HashValue
 
 	-- бхдюкъ╙лн рбнпх онрнвмнцн яеюмрс ъйху мелю╙ яепед рбнп╡б дкъ онрнвмн╞ оепедюв╡ б пнанвху рюакхжъу
 	declare @objIdsToDelete1 as dbo.typeObjIds
@@ -59,14 +80,14 @@ begin
 		, t1.Iswc			= t2.Iswc
 		, t1.Name			= t2.Name
 		, t1.NameForWid		= t2.NameForWid
-		, t1.IsChanged		= 1
+--		, t1.IsChanged		= 1 яРЮРСЯ КХДХЬЮ╨ЛН АЕГ ГЛЁМ
 --		, t1.CreatedAt		= t2.CreatedAt
 		, t1.UpdatedAt		= getdate()
 	from SubmWork t1
 		join Z_SubmWork t2 on t1.ObjId = t2.ObjId
 	where t1.SubmissionId = dbo.fnCurSubmId()
 
-	-- дндю╙лн рбнпх дн онрнвмнцн яеюмяс
+	-- дндю╙лн дн онрнвмнцн яеюмяс  рбнпх ъйху ме аскн б оноепедм╡у яеюмяюу
 	insert SubmWork (
 		  SubmissionId
 		, ObjId
@@ -89,10 +110,44 @@ begin
 		, 0						IsChanged
 		, 0						Status
 		, t1.CreatedAt			CreatedAt	
+		, t1.UpdatedAt			UpdatedAt
+	from Z_SubmWork t1
+		left join SubmWork t2 on t1.ObjId = t2.ObjId
+			and t2.SubmissionId = dbo.fnCurSubmId()
+		left join SubmWorksAcceptedHash t3 on t1.ObjId = t3.ObjId
+	where t2.ObjId is null
+		and t3.ObjId is null
+
+	-- дндю╙лн дн онрнвмнцн яеюмяс рбнпх, ъй╡ гюгмюкх гл╡м б╡дмнямн нярюммэнцн яеюмяс
+	insert SubmWork (
+		  SubmissionId
+		, ObjId
+		, Wic
+		, Iswc
+		, Name		
+		, NameForWid
+		, IsChanged
+		, Status
+		, CreatedAt	
+		, UpdatedAt	
+	)
+	select
+		  dbo.fnCurSubmId()		SubmissionId
+		, t1.ObjId				ObjId
+		, t1.Wic				Wic
+		, t1.Iswc				Iswc		
+		, t1.Name				Name		
+		, t1.NameForWid			NameForWid
+		, 1						IsChanged
+		, 0						Status
+		, t1.CreatedAt			CreatedAt	
 		, t1.UpdatedAt			UpdatedAt	
 	from Z_SubmWork t1
 		left join SubmWork t2 on t1.ObjId = t2.ObjId
 			and t2.SubmissionId = dbo.fnCurSubmId()
+		join Z_SubmWorkHash t3 on t1.ObjId = t3.ObjId
+		join SubmWorksAcceptedHash t4 on t1.ObjId = t4.ObjId
+			and t3.HashValue <> t4.HashValue
 	where t2.ObjId is null
 
 	-- дндю╙лн SubmWorkShare
@@ -159,10 +214,10 @@ begin
 	where t1.SubmissionId = dbo.fnCurSubmId()
 	
 	-- опхахпю╙лн пнанв╡ дюм╡
-	exec spZ_SubmWorksDeleteAll
+	--exec spZ_SubmWorksDeleteAll
 
 	-- бхйнмс╙лн дндюрйнб╡ д╡╞
-	exec spUpdateObjIdToWicIswcFromMs
+	--exec spUpdateObjIdToWicIswcFromMs
 	exec spSubmChecklistUpdate
 	exec spSubmWorksUpdatePostProc
 end

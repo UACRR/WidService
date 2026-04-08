@@ -1,0 +1,37 @@
+use SocWidSubmitEx
+go
+
+create or alter procedure spSubmWorksUpdatePostProc
+as
+begin
+
+	if (select SubmissionStatusId from Submission where Id = dbo.fnCurSubmId()) >= 3 /* SUBM_FILE_UPLOADED*/
+		throw 0, 'Операція неможлива після передачі творів в ВІД', 0;
+
+-- Твори що мають ISWC передаємо я змінені
+	update SubmWork
+	set IsChanged = 1
+	where SubmissionId = dbo.fnCurSubmId()
+		and isnull(Iswc, '') <> ''
+
+-- Плануємо до передачі твори, що не містять помилок
+
+	update t1
+	set t1.Status = 0
+	from SubmWork t1
+		join vCurSubmWorks t2 on t1.Id = t2.Id
+
+	; with ReadyToSubm as (
+		select t1.Id
+		from SubmWork t1
+			join vCurSubmWorks t2 on t1.Id = t2.Id
+			join SubmCheckList t3 on t2.Id = t3.SubmWorkId
+		where t3.IsOk = 1
+	)
+	update t1
+	set t1.Status = 1
+	from SubmWork t1
+		join ReadyToSubm t2 on t1.Id = t2.Id
+	
+end
+go

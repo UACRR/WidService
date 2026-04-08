@@ -14,11 +14,11 @@ namespace WidSubmit
         [STAThread]
         static void Main()
         {
-            Helpers.DecompressFile(@"D:\Tmp\WID2023040708242611300140.021.gz", @"D:\Tmp\WID2023040708242611300140.021");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
-            //Application.Run(new FormTest());
+            //Application.Run(new FormTestSubmWorkRespErr());
+            //Application.Run(new FormTestUcSubmRightHolders());
             //Application.Run(new FormSubmissionRightHolders());
         }
     }

@@ -12,3 +12,4 @@ begin
 	return left(trim(concat(@name, ' ', @fstName)), 256)
 end
 go
+

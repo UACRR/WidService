@@ -45,10 +45,12 @@ namespace WidSubmit
         private int _widSubmWorkId;
 
         private List<Share> _shares;
+        private bool _isDirty;
 
         public UcSubmWorkShares()
         {
             InitializeComponent();
+            _isDirty = true;
         }
 
         private void UcSubmWorkShares_Load(object sender, EventArgs e)
@@ -61,15 +63,21 @@ namespace WidSubmit
         {
             lvSubmWorkShares.Items.Clear();
             lvDetails.Items.Clear();
+
+            _isDirty = true;
         }
 
         public void UpdateContent(int widSubmWorkId)
         {
             _widSubmWorkId = widSubmWorkId;
 
+            if(!_isDirty) return;
+
             ClearContent();
             LoadShares();
             FillLvSubmWorkShares();
+
+            _isDirty = false;
         }
 
         private void Configure()

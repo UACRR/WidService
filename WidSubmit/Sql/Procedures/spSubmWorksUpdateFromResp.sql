@@ -23,6 +23,3 @@ begin
 
 end
 go
-
--- exec spSubmWorksUpdateFromResp
-go

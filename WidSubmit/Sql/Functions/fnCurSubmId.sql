@@ -8,3 +8,4 @@ begin
 	return (select Id from Submission where EndedAt = dbo.fnMaxDate())
 end
 go
+

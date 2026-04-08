@@ -8,3 +8,4 @@ begin
 	return (select datefromparts(1900, 1, 1))
 end
 go
+

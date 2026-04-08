@@ -8,3 +8,4 @@ begin
 	return getdate()
 end
 go
+

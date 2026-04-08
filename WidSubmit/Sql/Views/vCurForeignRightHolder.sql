@@ -9,4 +9,3 @@ where ValidTo = dbo.fnMaxDate()
 	and IsOwn = 0
 go
 
--- select * from vCurForeognRightHolder

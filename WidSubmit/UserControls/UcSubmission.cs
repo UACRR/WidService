@@ -26,6 +26,7 @@ namespace WidSubmit
 
         private void UcSubmProcessControl_WorksUpdated(object sender, EventArgs e)
         {
+            ucSubmWorks.SetDirty();
             ucSubmWorks.UpdateContent();
         }
     }

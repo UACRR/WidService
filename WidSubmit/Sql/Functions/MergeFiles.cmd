@@ -1,0 +1,1 @@
+type *.sql > ALL_FUNCTIONS.sql

@@ -1,11 +1,29 @@
 use SocWidSubmitEx
 go
 
-exec spCreateInitialSubmission
--- select * from SubmWork where SubmissionId <> 1
+begin try
+begin tran
 
-exec spRightHoldersUpdate
--- select * from SubmWork where SubmissionId <> 1
+-- нмнбкч╙лн опюбнбкюмхй╡б, ына оепек╡й бйкчвюб бя╡у опхвермху дн пюм╡ь оепедюмху рбнп╡б
+	exec spRightHoldersUpdate
 
-exec spSubmWorksUpdate
--- select * from SubmWork where SubmissionId <> 1 order by ObjId
+-- бйкчвю╙лн б онвюрйнбхи яеюмя рбнпх сяо╡ьмн оепедюм╡ б оноепедмэнлс дндюрйс
+	exec spCreateInitialSubmission
+
+-- нмнбкч╙лн опюбнбкюмхй╡б, ына оепек╡й бйкчвюб бя╡у опхвермху дн пюм╡ь оепедюмху рбнп╡б
+	exec spRightHoldersUpdate
+
+-- пнгьхпч╙лн ╡мтнплюж╡ч онвюрйнбнцн яеюмяс дндюбюммъл г б╡д рбнп╡б, ъй╡ пюм╡ь б дндюрйс оепедюм╡ ме аскх, юке лючрэ йнд ISWC
+	exec spInitialImportWorksFromWid
+
+-- гюйпхбю╙лн онвюрйнбхи яеюмя, ына ярбнпхбяъ мнбхи ярюмдюпрмхл вхмнл
+	exec spSubmClose
+
+-- нмнбкч╙лн рбнпх ярбнпемнцн яеюмяс
+	exec spSubmWorksUpdate
+
+	commit tran
+end try
+begin catch
+	rollback tran
+end catch

@@ -12,3 +12,4 @@ as
 		join RecSsrOsr t6 on t5.Id = t6.RecSipOipId
 	where t1.Id = dbo.fnCurSubmId()
 go
+

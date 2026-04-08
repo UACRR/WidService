@@ -52,14 +52,17 @@ drop table if exists SubmWorkPerformer
 drop table if exists SubmWork
 drop table if exists SubmRightHolder
 
-drop table if exists SubmFile
-drop table if exists RespFile
 drop table if exists Submission
 
 drop table if exists RightHolder
 
 drop table if exists SubmissionStatus
 drop table if exists SubmWorkStatus
+
+drop table if exists FailedSubmWorkShare
+drop table if exists FailedSubmWorkAltName
+drop table if exists FailedSubmWorkPerformer
+drop table if exists FailedSubmWork
 
 
 create table SubmissionStatus (
@@ -137,29 +140,8 @@ create table SubmRightHolder (
 
 alter table SubmRightHolder add constraint fkSubmRightHolderSubmission foreign key (SubmissionId) references Submission (Id);
 alter table SubmRightHolder add constraint fkSubmRightHolderRightHolder foreign key (RightHolderId) references RightHolder (Id);
+alter table SubmRightHolder add constraint ucSubmRightHolderSubmissionIdRightHolderId unique (SubmissionId, RightHolderId)
 
-go
-
-create table SubmFile (
-	  Id int primary key identity(1, 1)
-	, Name nvarchar(64)
-	, SubmissionId int not null
-	, SentAt datetime null
-	, CreatedAt datetime not null default(getdate())
-	, UpdatedAt datetime null
-)
-alter table SubmFile add constraint fkSubmFileSubmission foreign key (SubmissionId) references Submission (Id);
-go
-
-create table RespFile (
-	  Id int primary key identity(1, 1)
-	, SubmissionId int not null
-	, Name nvarchar(64)
-	, ReceivedAt datetime null
-	, CreatedAt datetime not null default(getdate())
-	, UpdatedAt datetime null
-)
-alter table RespFile add constraint fkRespFileSubmission foreign key (SubmissionId) references Submission (Id);
 go
 
 create table SubmWork (
@@ -238,6 +220,7 @@ create table SubmCheckList (
 	, PubShare0or100 bit not null
 	, MecShare0or100 bit not null
 	, HasShare bit not null
+	, AllIpiCodesExist bit not null
 	, AllIpiCodesValid bit not null
 	, IsOk  bit not null
 )
@@ -246,11 +229,60 @@ alter table SubmCheckList add constraint fkSubmCheckListSubmWork foreign key (Su
 go
 
 
-create table ObjIdToWicIswc (
-	  ObjId int primary key
+-- Факсимільна копія творів, відхилених останній раз
+-- Суто інформаційна таблиця яка не містить посилань назовні
+create table FailedSubmWork (
+	  Id int primary key
+	, SubmissionId int not null
+	, ObjId int not null
 	, Wic int null
-	, Iswc varchar(11) null
+	, Iswc varchar(11) not null
+	, Name nvarchar(256)
+	, NameForWid nvarchar(256)
+	, IsChanged bit not null
+	, Status int not null
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
 )
+alter table FailedSubmWork add constraint ucFailedSubmWorkObjId unique (ObjId)
+go
+
+create table FailedSubmWorkShare (
+	  Id int primary key
+	, SubmWorkId int not null
+	, RightHolderId int not null
+	, RhRole int not null
+	, RoleForWid varchar(2) not null
+	, ShrPer decimal(5, 2) not null
+	, ShrMec decimal(5, 2) not null
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table FailedSubmWorkShare add constraint fkFailedSubmWorkShareWork foreign key (SubmWorkId) references FailedSubmWork (Id);
+go
+
+create table FailedSubmWorkAltName (
+	  Id int primary key
+	, SubmWorkId int not null
+	, OrigNames nvarchar(256)
+	, NameForWid nvarchar(256)
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table FailedSubmWorkAltName add constraint fkFailedSubmWorkAltNameWork foreign key (SubmWorkId) references FailedSubmWork (Id);
+go
+
+create table FailedSubmWorkPerformer (
+	  Id int primary key
+	, SubmWorkId int not null
+	, OrigNames nvarchar(256)
+	, NameForWid nvarchar(256)
+	, CreatedAt datetime not null default(getdate())
+	, UpdatedAt datetime null
+)
+alter table FailedSubmWorkPerformer add constraint fkFailedSubmWorkPerformerWork foreign key (SubmWorkId) references FailedSubmWork (Id);
+go
+
 
 -- РОБЮЧІ ТАБЛИЦІ
 
@@ -315,6 +347,7 @@ go
 create table Z_SubmWorkHash (
 	  Id int primary key identity(1, 1)
 	, SubmWorkId int not null
+	, ObjId int not null
 	, HashValue nvarchar(max)
 	, CreatedAt datetime not null default(getdate())
 	, UpdatedAt datetime null

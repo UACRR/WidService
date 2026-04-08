@@ -62,6 +62,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocIpiDumpLoader", "SocIpiD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidSubmit", "WidSubmit\WidSubmit.csproj", "{3631DFAD-30E6-4CA6-9C65-78D0E248879E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartViewer", "SmartViewer\SmartViewer.csproj", "{0FC19B79-EFC8-48C3-8D5B-9C4E1DA1DE3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,10 @@ Global
 		{3631DFAD-30E6-4CA6-9C65-78D0E248879E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3631DFAD-30E6-4CA6-9C65-78D0E248879E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3631DFAD-30E6-4CA6-9C65-78D0E248879E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FC19B79-EFC8-48C3-8D5B-9C4E1DA1DE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FC19B79-EFC8-48C3-8D5B-9C4E1DA1DE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FC19B79-EFC8-48C3-8D5B-9C4E1DA1DE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FC19B79-EFC8-48C3-8D5B-9C4E1DA1DE3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

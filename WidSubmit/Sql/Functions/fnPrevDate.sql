@@ -8,3 +8,4 @@ begin
 	return (select dateadd(day, -1, getdate()))
 end
 go
+

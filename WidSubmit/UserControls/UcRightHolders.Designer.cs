@@ -55,6 +55,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lvRightHolderHist = new System.Windows.Forms.ListView();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.timerUpdateContent = new System.Windows.Forms.Timer(this.components);
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddle)).BeginInit();
             this.panelMiddle.Panel1.SuspendLayout();
@@ -367,6 +368,11 @@
             this.toolTip.ReshowDelay = 100;
             this.toolTip.ShowAlways = true;
             // 
+            // timerUpdateContent
+            // 
+            this.timerUpdateContent.Interval = 1;
+            this.timerUpdateContent.Tick += new System.EventHandler(this.timerUpdateContent_Tick);
+            // 
             // UcRightHolders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,5 +429,6 @@
         private System.Windows.Forms.Button btnUpdateRightHolders;
         private System.Windows.Forms.Button btnChangeSubmRightHolders;
         private System.Windows.Forms.FlowLayoutPanel panelBottom;
+        private System.Windows.Forms.Timer timerUpdateContent;
     }
 }

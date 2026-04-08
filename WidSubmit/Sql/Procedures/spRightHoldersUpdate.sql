@@ -1,4 +1,4 @@
-п»їuse SocWidSubmitEx
+use SocWidSubmitEx
 go
 
 create or alter procedure spRightHoldersUpdate
@@ -6,14 +6,14 @@ as
 begin
 	-- truncate table RightHolder
 
-	-- РђРєС‚РёРІРЅС– РїСЂР°РІРѕРІР»Р°СЃРЅРёРєРё РІ РЎРњРђР Рў
+	-- Активні правовласники в СМАРТ
 	drop table if exists #MsRightHolderActive
 	select *
 	into #MsRightHolderActive
 	from vMsRightHoldersActive
 
-	-- РђРєС‚РёРІРЅС– РїСЂР°РІРѕРІР»Р°СЃРЅРёРєРё С– С‚С–, СЏРєС– РјР°СЋС‚СЊ СЃРїС–Р»СЊРЅС– С‚РІРѕСЂРё Р· Р°РєС‚РёРІРЅРёРјРё РїСЂР°РІРѕРІР»Р°СЃРЅРёРєР°РјРё
-	-- Р—РђРЈР’РђР–Р•РќРќРЇ - РЅРµ РїРѕС‚СЂР°РїР»СЏС‚СЊ РїСЂР°РІРѕРІР»Р°СЃРЅРёРєРё, Сѓ СЏРєРёС… РЅРµРјР°С” С‚РІРѕСЂС–РІ, СЏРєРёРјРё РІРѕРЅРё РІРѕР»РѕРґС–СЋС‚СЊ
+	-- Активні правовласники і ті, які мають спільні твори з активними правовласниками
+	-- ЗАУВАЖЕННЯ - не потраплять правовласники, у яких немає творів, якими вони володіють
 	drop table if exists #MsCustIds
 	select distinct t4.custId
 	into #MsCustIds
@@ -49,13 +49,13 @@ begin
 				else cast(0 as bit)
 				end
 		  end																	as IsActive
-		, 0																		as HasIpiAgreePer  -- РџРѕРїРµСЂРµРґРЅСЊРѕ
-		, 0																		as HasIpiAgreeMec  -- РџРѕРїРµСЂРµРґРЅСЊРѕ
+		, 0																		as HasIpiAgreePer  -- Попередньо
+		, 0																		as HasIpiAgreeMec  -- Попередньо
 	into #MsRightHolder
 	from #MsCustIds t1
 		join MediaService..RightHolder t2 on t1.CustId = t2.CustId
 		left join MediaService..AgreementAddRH t3 on t1.custId = t3.custId
-		join vCustomerNamesForWid t4 on t1.CustId = t4.CustId -- РќРµ РїРѕС‚СЂР°РїР»СЏС‚СЊ РїСЂР°РІРѕРІР»Р°СЃРЅРёРєРё, СЏРєС– РЅРµ РјР°СЋС‚СЊ Р°РЅРєРµС‚Рё
+		join vCustomerNamesForWid t4 on t1.CustId = t4.CustId -- Не потраплять правовласники, які не мають анкети
 
 --		select * 
 --		from #MsRightHolder t1
@@ -63,38 +63,38 @@ begin
 --
 
 	
-	-- Р’СЃС‚Р°РЅРѕРІР»СЋС”РјРѕ HasIpiAgreePer, СЏРєС‰Рѕ С” РІ IPI
-	update t1
-	set t1.HasIpiAgreePer = 1
-	from #MsRightHolder t1
-		join SocIpi..IpiAgreement t2 on isnull(t1.IpBaseNr, '') = t2.IpBaseNr
-			and t2.SocCde = '140'
-			and t2.CreClsCde = 'MW'
-			and t2.RolCde in ('LY', 'MC', 'EM')
-			and t2.RgtCde = 'PR'
-			and dbo.fnCurDate() between t2.FromDt and t2.ToDt
-
-	-- Р’СЃС‚Р°РЅРѕРІР»СЋС”РјРѕ HasIpiAgreeMec, СЏРєС‰Рѕ С” РІ IPI
-	update t1
-	set t1.HasIpiAgreeMec = 1
-	from #MsRightHolder t1
-		join SocIpi..IpiAgreement t2 on isnull(t1.IpBaseNr, '') = t2.IpBaseNr
-			and t2.SocCde = '140'
-			and t2.CreClsCde = 'MW'
-			and t2.RolCde in ('LY', 'MC', 'EM')
-			and t2.RgtCde = 'MR'
-			and dbo.fnCurDate() between t2.FromDt and t2.ToDt
+	-- Встановлюємо HasIpiAgreePer, якщо є в IPI
+--	update t1
+--	set t1.HasIpiAgreePer = 1
+--	from #MsRightHolder t1
+--		join SocIpi..IpiAgreement t2 on isnull(t1.IpBaseNr, '') = t2.IpBaseNr
+--			and t2.SocCde = '140'
+--			and t2.CreClsCde = 'MW'
+--			and t2.RolCde in ('LY', 'MC', 'EM')
+--			and t2.RgtCde = 'PR'
+--			and dbo.fnCurDate() between t2.FromDt and t2.ToDt
+--
+--	-- Встановлюємо HasIpiAgreeMec, якщо є в IPI
+--	update t1
+--	set t1.HasIpiAgreeMec = 1
+--	from #MsRightHolder t1
+--		join SocIpi..IpiAgreement t2 on isnull(t1.IpBaseNr, '') = t2.IpBaseNr
+--			and t2.SocCde = '140'
+--			and t2.CreClsCde = 'MW'
+--			and t2.RolCde in ('LY', 'MC', 'EM')
+--			and t2.RgtCde = 'MR'
+--			and dbo.fnCurDate() between t2.FromDt and t2.ToDt
 
 --select * from #MsRightHolder where IsOwn = 1 and HasIpiAgreeMec = 0
 
-	-- РљРѕРґРё РІСЃС–С… Р·Р°СЂРµС”СЃС‚СЂРѕРІР°РЅРёС… РїСЂР°РІРѕРІР»Р°СЃРЅРёРєС–РІ РІ Р‘Р” SocWidSubmitEx
+	-- Коди всіх зареєстрованих правовласників в БД SocWidSubmitEx
 	drop table if exists #RegisteredCustIds
 	select distinct CustId
 	into #RegisteredCustIds
 	from RightHolder
 
-	-- РќРѕРІР° С–РЅС„РѕСЂРјР°С†С–СЏ РґР»СЏ РїСЂР°РІРѕРІР»Р°СЃРЅРёРєС–РІ СЏРєС– Р·Р°Р·РЅР°Р»Рё Р·РјС–РЅ
-	-- РўСѓС‚ CurId - РѕСЃС‚Р°РЅРЅС–Р№ С–СЃС‚РѕСЂРёС‡РЅРёР№ Р·Р°РїРёСЃ (РїРѕС‚РѕС‡РЅРёР№ Р·Р°РїРёСЃ) РґР»СЏ РІС–РґРїРѕРІС–РґРЅРѕРіРѕ РїСЂР°РІРѕРІР»Р°СЃРЅРёРєР°
+	-- Нова інформація для правовласників які зазнали змін
+	-- Тут CurId - останній історичний запис (поточний запис) для відповідного правовласника
 
 	drop table if exists #SocRightHoldersChanged
 	select 
@@ -120,7 +120,7 @@ begin
 		join RightHolder t2 on
 			    t1.CustId = t2.CustId
 			and t2.ValidTo = dbo.fnMaxDate()
-			and t2.ValidFrom <= dbo.fnCurDate() -- Р·Р°РїРѕР±С–Р¶РЅРёРє РЅР° РІРёРїР°РґРѕРє РЅРµРІС–СЂРЅРѕС— РґР°С‚Рё РЅР° СЃРµСЂРІРµСЂС–
+			and t2.ValidFrom <= dbo.fnCurDate() -- запобіжник на випадок невірної дати на сервері
 			and not (
 				t1.RhType = t2.RhType
 				and	isnull(t1.IpBaseNr, '') = isnull(t2.IpBaseNr, '')
@@ -132,9 +132,9 @@ begin
 				and t1.HasIpiAgreeMec = t2.HasIpiAgreeMec
 			)
 
-	-- Р—РђРЎРўРћРЎРЈР’РђРќРќРЇ Р—РњР†Рќ РЈ РќРђРЇР’РќРРҐ РџР РђР’РћР’Р›РђРЎРќРРљРђРҐ, РЇРљР† РђРљРўРР’РќР† Р’ РЎРњРђР РўР†
+	-- ЗАСТОСУВАННЯ ЗМІН У НАЯВНИХ ПРАВОВЛАСНИКАХ, ЯКІ АКТИВНІ В СМАРТІ
 
-	-- РЇРєС‰Рѕ Р·РјС–РЅР° С‚СЂР°РїРёР»Р°СЃСЊ РІСЂРѕРґРѕРІР¶ С‚РѕРіРѕ СЃР°РјРѕРіРѕ РґРЅСЏ, Р·РјС–РЅСЋС”РјРѕ РѕСЃС‚Р°РЅРЅС–Р№ СЂСЏРґРѕРє
+	-- Якщо зміна трапилась вродовж того самого дня, змінюємо останній рядок
 	update t1 
 	set
 		  t1.RhType			= t2.NewRhType
@@ -152,8 +152,8 @@ begin
 		join #SocRightHoldersChanged t2 on t1.Id = t2.CurId
 	where t1.ValidFrom = dbo.fnCurDate()
 
-	-- РЇРєС‰Рѕ Р·РјС–РЅР° С‚СЂР°РїРёР»Р°СЃСЊ РїС–Р·РЅС–С€Рµ С‚РѕРіРѕ СЃР°РјРѕРіРѕ РґРЅСЏ, Р·РјС–РЅСЋС”РјРѕ С„С–РЅР°Р»СЊРЅСѓ РґР°С‚Сѓ РѕСЃС‚Р°РЅРЅСЊРѕРіРѕ СЂСЏРґРѕРєР°
-	-- С– РґРѕРґР°С”РјРѕ РЅРѕРІРёР№	
+	-- Якщо зміна трапилась пізніше того самого дня, змінюємо фінальну дату останнього рядока
+	-- і додаємо новий	
 	update RightHolder 
 	set ValidTo = dbo.fnPrevDate()
 	where Id in (select CurId from #SocRightHoldersChanged)
@@ -196,7 +196,7 @@ begin
 		join RightHolder t2 on t1.CurId = t2.Id
 	where t2.ValidFrom <> dbo.fnCurDate()
 
-	-- Р”РћР”РђР„РњРћ Р’Р†Р”РЎРЈРўРќР†РҐ РџР РђР’РћР’Р›РђРЎРќРРљР†Р’
+	-- ДОДАЄМО ВІДСУТНІХ ПРАВОВЛАСНИКІВ
 	insert RightHolder (
 
 		  ValidFrom
@@ -235,7 +235,7 @@ begin
 		left join #RegisteredCustIds t2 on t1.CustId = t2.CustId
 	where t2.CustId is null
 
-	-- РџР•Р Р•РџРћРЎРР›РђРќРќРЇ РџР РђР’РћР’Р›РђРЎРќРРљР†Р’ РђРљРўРР’РќРћР“Рћ РќРђ РќРћР’Р† РџРћРўРћР§РќР† Р—РђРџРРЎР Р—РњР†РќР•РќРРҐ РџР РђР’РћР’Р›РђРЎРќРРљР†Р’
+	-- ПЕРЕПОСИЛАННЯ ПРАВОВЛАСНИКІВ АКТИВНОГО НА НОВІ ПОТОЧНІ ЗАПИСИ ЗМІНЕНИХ ПРАВОВЛАСНИКІВ
 	; with WrongRefs as (
 		select t1.RightHolderId as RightHolderId
 		from vCurSubmRightHolder t1
@@ -251,6 +251,3 @@ begin
 
 end
 go
-
--- exec spRightHoldersUpdate
--- select * from RightHolder

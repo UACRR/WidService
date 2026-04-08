@@ -18,3 +18,4 @@ as
 		join RecMsgType t2 on t1.RecMsgTypeId = t2.Id
 	where SubmissionId = dbo.fncurSubmId()
 go
+

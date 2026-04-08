@@ -29,9 +29,12 @@ namespace WidSubmit
         private int _submWorkId;
         private List<WorkAltName> _workAltNames;
 
+        private bool _isDirty;
+
         public UcSubmWorkAltNames()
         {
             InitializeComponent();
+            _isDirty = true;
         }
 
         private void UcWidSubmNames_Load(object sender, EventArgs e)
@@ -55,13 +58,20 @@ namespace WidSubmit
         {
             _submWorkId = 0;
             lvNames.Items.Clear();
+
+            _isDirty = true;
         }
 
         public void UpdateContent(int submWorkId)
         {
             _submWorkId = submWorkId;
+
+            if(!_isDirty) return;
+
             LoadNames();
             FillLvNames();
+
+            _isDirty = false;
         }
 
         private void LoadNames()

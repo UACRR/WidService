@@ -7,45 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static WidSubmit.UcSubmRightHolders;
 
 namespace WidSubmit
 {
     public partial class UcSubmWorks : UserControl
     {
-        
-
-        public class RightHolder
-        {
-	        public int Id			    { get; set; }
-	        public DateTime ValidFrom	{ get; set; }
-	        public DateTime ValidTo		{ get; set; }
-	        public DateTime CreatedAt	{ get; set; }
-	        public int CustId		    { get; set; }
-	        public string IpBaseNr		{ get; set; }
-	        public int? IpNameNr		{ get; set; }
-	        public string Name	        { get; set; }
-            public string FstName	    { get; set; }
-            public string NameForWid	{ get; set; }
-            public string FstNameForWid	{ get; set; }
-            public bool IsOwn		    { get; set; }
-	        public bool IsActive		{ get; set; }
-            public bool HasIpiAgreePer	{ get; set; }
-            public bool HasIpiAgreeMec	{ get; set; }
-            public bool IsInCurSubm	    { get; set; }
-            public bool WasPublished	{ get; set; }
-        }
-
         public class SubmWork
         {
-	        public int      Id              { get; set; }
-	        public int      SubmissionId    { get; set; }
-	        public int      ObjId           { get; set; }
-	        public int?     Wic             { get; set; }
+	        public int      Id               { get; set; }
+	        public int      SubmissionId     { get; set; }
+	        public int      ObjId            { get; set; }
+	        public int?     Wic              { get; set; }
             public string   Iswc             { get; set; }
-	        public string   Name            { get; set; }
-	        public string   NameForWid	    { get; set; }
-	        public bool     IsChanged	    { get; set; }
-            public int      Status	        { get; set; }
+	        public string   Name             { get; set; }
+	        public string   NameForWid	     { get; set; }
+	        public bool     IsChanged	     { get; set; }
+            public int      Status	         { get; set; }
         }
 
         private static readonly string[] _submWorkStatusText = new string[]
@@ -55,17 +33,28 @@ namespace WidSubmit
 	        , "Переданий"           //SUBMITTED
 	        , "Прийнятий"           //ACCEPTED
 	        , "Прийнятий умовно"    //ACCEPTED_WARNINGS
-            , "Віджхилений"         //REJECTED
+            , "Відхилений"          //REJECTED
 	        , "Застосований"        //APPLIED
 	        , "Завершений"          //COMPLETED
         };
 
-        private List<RightHolder>   _rightHolders;
+        private int _submissionId;
+
         private List<SubmWork>      _submWorks;
+
+        private RightHolder _selectedRightHolder;
+
+        private bool _isHistoryMode;
+        private bool _isSuscribedToEvents;
+
+        private bool _isDirty;
 
         public UcSubmWorks()
         {
             InitializeComponent();
+
+            _isHistoryMode = false;
+            _isDirty = true;
         }
 
         private void UcSubmWorks_Load(object sender, EventArgs e)
@@ -75,18 +64,7 @@ namespace WidSubmit
 
         private void Configure()
         {
-            lvRightHolders.FullRowSelect = true;
-            lvRightHolders.GridLines = true;
-            lvRightHolders.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            lvRightHolders.MultiSelect = false;
-            lvRightHolders.View = View.Details;
-            lvRightHolders.SmallImageList = ilSubmWorkStatuses;
-            lvRightHolders.StateImageList = ilSubmWorkStatuses;
-
-            lvRightHolders.Columns.Clear();
-            lvRightHolders.Columns.Add("№", 40);
-            lvRightHolders.Columns.Add("Код СМАРТ", 80);
-            lvRightHolders.Columns.Add("Назва СМАРТ", 200);
+            ucSubmRightHolders.Init(_isHistoryMode ? PresentationMode.PREV_SUBM : PresentationMode.CUR_SUBM);
 
             lvSubmWorks.FullRowSelect = true;
             lvSubmWorks.GridLines = true;
@@ -97,6 +75,7 @@ namespace WidSubmit
             lvSubmWorks.Columns.Clear();
             lvSubmWorks.Columns.Add("№", 40);
             lvSubmWorks.Columns.Add("Статус в сеансі", 100);
+            lvSubmWorks.Columns.Add("Попередня передача", 100);
             lvSubmWorks.Columns.Add("Код СМАРТ", 80);
             lvSubmWorks.Columns.Add("Код WID", 80);
             lvSubmWorks.Columns.Add("ISWC", 80);
@@ -116,90 +95,59 @@ namespace WidSubmit
             ResetTabImages();
         }
         
-        public void UpdateContent()
+        public void SetHistoryMode() => _isHistoryMode = true;
+        public void SetDirty() => _isDirty = true;
+
+        private void SuscribeToEvents()
         {
-            LoadRightHolders();
-            FillLvRightHolders();
+            if(_isSuscribedToEvents) { return; }
+            ucSubmRightHolders.RightHolderSelected += OnRightHolderSelected;
+            ucSubmRightHolders.RightHolderUnselected += OnRightHolderUnselected;
+            ucSubmRightHolders.EditRightHoldersClicked += OnEditRightHoldersClicked;
 
-            LoadSubmWorks();
-            FillLvSubmWorks();
+            _isSuscribedToEvents = true;
+        }
 
+        public void UpdateContent(int submissionId = 0)
+        {
+            if(!_isDirty) return;
+
+            _submissionId = submissionId;
+            panelMain.Visible = false;
+
+            timerUpdateContent.Enabled = true;
+            //if(!_isHistoryMode)
+            //{
+            //    Helpers.RunSqlSocWidSubmitEx(cmd =>
+            //    {
+            //        cmd.CommandText = "select dbo.fnCurSubmId()";
+            //        _submissionId = (int)cmd.ExecuteScalar();
+            //    });
+            //}
+            //
+            //LoadRightHolders();
+            //FillLvRightHolders();
+            //
+            //LoadSubmWorks();
+            //FillLvSubmWorks();
+            //
             Helpers.RunSqlSocWidSubmitEx(cmd =>
             {
-                cmd.CommandText = "select count(*) from SubmWork where SubmissionId = dbo.fnCurSubmId()";
+                cmd.CommandText = "select count(*) from SubmWork where SubmissionId = @submissionId";
+                cmd.Parameters.AddWithValue("@submissionId", _submissionId);
                 tbSubmWorkCntTotal.Text =  ((int)cmd.ExecuteScalar()).ToString();
             });
-        }
+         }
         
-        private void LoadRightHolders()
-        {
-            Helpers.RunSqlSocWidSubmitEx(cmd =>
-            {
-                cmd.CommandText = $@"
-                    select
-	                      Id		
-	                    , ValidFrom	
-	                    , ValidTo	
-	                    , CreatedAt	
-	                    , CustId	
-	                    , IpBaseNr	
-	                    , IpNameNr	
-	                    , Name
-                        , FstName
-                        , NameForWid
-                        , FstNameForWid
-                        , IsOwn
-	                    , IsActive
-                        , HasIpiAgreePer
-                        , HasIpiAgreeMec
-                        , IsInCurSubm
-                        , WasPublished
-                    from vCurSubmRightHolderEx
-                    order by Name, FstName
-                ";
-                using (var r = cmd.ExecuteReader())
-                {
-                    _rightHolders = new List<RightHolder>();
-                    while (r.Read())
-                    {
-                        var idx = 0;
-                        var rh = new RightHolder();
-	                    rh.Id		        = r.GetInt32(idx);                                  idx++;
-	                    rh.ValidFrom	    = r.GetDateTime(idx);                               idx++;
-	                    rh.ValidTo	        = r.GetDateTime(idx);                               idx++;
-	                    rh.CreatedAt	    = r.GetDateTime(idx);                               idx++;
-	                    rh.CustId	        = r.GetInt32(idx);                                  idx++;
-	                    rh.IpBaseNr	        = r.IsDBNull(idx) ? null : r.GetString(idx);        idx++;
-	                    rh.IpNameNr	        = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);   idx++;
-	                    rh.Name             = r.GetString(idx);                                 idx++;
-                        rh.FstName          = r.GetString(idx);                                 idx++;
-                        rh.NameForWid       = r.GetString(idx);                                 idx++;
-                        rh.FstNameForWid    = r.GetString(idx);                                 idx++;
-                        rh.IsOwn	        = r.GetBoolean(idx);                                idx++;
-	                    rh.IsActive	        = r.GetBoolean(idx);                                idx++;
-                        rh.HasIpiAgreePer	= r.GetBoolean(idx);                                idx++;
-                        rh.HasIpiAgreeMec	= r.GetBoolean(idx);                                idx++;
-                        rh.IsInCurSubm	    = r.GetBoolean(idx);                                idx++;
-                        rh.WasPublished	    = r.GetBoolean(idx);                                idx++;
-
-                        _rightHolders.Add(rh);
-                    }
-                }
-            });
-
-            tbRightHolderCntTotal.Text = _rightHolders.Count.ToString();
-        }
-
         private void LoadSubmWorks()
         {
-            var custId = lvRightHolders.SelectedItems.Count == 0 ? -1 :
-                    lvRightHolders.SelectedItems[0].Tag == null ? 0 :
-                    ((RightHolder)lvRightHolders.SelectedItems[0].Tag).CustId;
+            var custId = _selectedRightHolder == null ? 0 : _selectedRightHolder.CustId;
             Helpers.RunSqlSocWidSubmitEx(cmd =>
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spSelectRightHolderCurSubmWorks";
+                cmd.CommandText = "spSelectRightHolderSubmWorks";
                 cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@submissionId", _submissionId);
                 cmd.Parameters.AddWithValue("@custId", custId);
                 
                 using (var r = cmd.ExecuteReader())
@@ -209,15 +157,15 @@ namespace WidSubmit
                     {
                         var idx = 0;
                         var work = new SubmWork();
-	                    work.Id           = r.GetInt32(idx);                                idx++;
-	                    work.SubmissionId = r.GetInt32(idx);                                idx++;
-	                    work.ObjId        = r.GetInt32(idx);                                idx++;
-	                    work.Wic          = r.IsDBNull(idx) ? null : (int?)r.GetInt32(idx); idx++;
-                        work.Iswc         = r.GetString(idx);                               idx++;
-	                    work.Name         = r.GetString(idx);                               idx++;
-	                    work.NameForWid   = r.GetString(idx);                               idx++;
-                        work.IsChanged    = r.GetBoolean(idx);                              idx++;
-                        work.Status       = r.GetInt32(idx);                                idx++;
+	                    work.Id                 = r.GetInt32(idx);                                idx++;
+	                    work.SubmissionId       = r.GetInt32(idx);                                idx++;
+	                    work.ObjId              = r.GetInt32(idx);                                idx++;
+	                    work.Wic                = r.IsDBNull(idx) ? null : (int?)r.GetInt32(idx); idx++;
+                        work.Iswc               = r.GetString(idx);                               idx++;
+	                    work.Name               = r.GetString(idx);                               idx++;
+	                    work.NameForWid         = r.GetString(idx);                               idx++;
+                        work.IsChanged          = r.GetBoolean(idx);                              idx++;
+                        work.Status             = r.GetInt32(idx);                                idx++;
                         
                         _submWorks.Add(work);
                     }
@@ -228,66 +176,6 @@ namespace WidSubmit
 
        }
     
-        private bool ShowRightHolder(RightHolder rh)
-        {
-            if(cbRightHolderFilterEx.Checked)
-            {
-                if(rbRightHolderFilterActive         .Checked && !rh.IsActive) return false;
-                if(rbRightHolderFilterNotActive      .Checked && rh.IsActive) return false;
-                if(rbRightHolderFilterOwn            .Checked && !rh.IsOwn) return false;
-                if(rbRightHolderFilterPublished      .Checked && !rh.WasPublished) return false;
-                //if(rbRightHolderFilterActiveNotActive.Checked) return true;
-            }
-            else
-            {
-                if(!rh.IsInCurSubm) return false;
-            }
- 
-            var cond = tbRightHolderFilter.Text.Trim();
-            if (cond.Length == 0) return true;
-            if (rh.CustId.ToString().Contains(cond)) return true;
-            if (rh.IpBaseNr != null && rh.IpBaseNr.Contains(cond)) return true;
-            if (rh.IpNameNr != null && rh.IpNameNr.ToString().Contains(cond)) return true;
-            if (rh.Name.ToUpper().Contains(cond.ToUpper())) return true;
-            if (rh.FstName.ToUpper().Contains(cond.ToUpper())) return true;
-
-            return false;
-        }
-
-        private void FillLvRightHolders()
-        {
-            lvRightHolders.BeginUpdate();
-            lvRightHolders.Items.Clear();
-            
-            var seqNr = 1;
-            var item = new ListViewItem("");
-            item.SubItems.Add("");
-            item.SubItems.Add("<Всі правовласники>");
-            item.Tag = null;
-            lvRightHolders.Items.Add(item);
-
-            seqNr++;
-            _rightHolders.ForEach(x =>
-            {
-                if (ShowRightHolder(x))
-                {
-                    item = new ListViewItem(seqNr.ToString());
-                    item.SubItems.Add(x.CustId.ToString());
-                    item.SubItems.Add($"{x.Name} {x.FstName}".Trim());
-                    item.ImageIndex = x.IsActive ? -1 : 5;
-                    item.StateImageIndex = x.IsInCurSubm ? 3 : -1;
-                    if(!x.WasPublished) item.ForeColor = SystemColors.GrayText;
-                    item.Tag = x;
-                    lvRightHolders.Items.Add(item);
-                    seqNr++;
-                }
-            });
-            lvRightHolders.EndUpdate();
-
-            tbRightHolderCntSelected.Text = (lvRightHolders.Items.Count - 1).ToString();
-
-        }
-
         private bool ShowSubmWork(SubmWork work)
         {
             if (rbFilterSubmittedYes.Checked && !work.IsChanged) return false;
@@ -318,6 +206,7 @@ namespace WidSubmit
                 {
                     var item = new ListViewItem(seqNr.ToString());
                     item.SubItems.Add(_submWorkStatusText[x.Status]);
+                    item.SubItems.Add("Не передавався");
                     item.SubItems.Add(x.ObjId.ToString());
                     item.SubItems.Add(x.Wic == null ? "" : x.Wic.ToString());
                     item.SubItems.Add(x.Iswc);
@@ -335,11 +224,6 @@ namespace WidSubmit
             lvSubmWorks.EndUpdate();
 
             tbSubmWorkCntSelected.Text = lvSubmWorks.Items.Count.ToString();
-        }
-
-        private void ApplyRightHolderFilter()
-        {
-            FillLvRightHolders();
         }
 
         private void ResetTabImages()
@@ -360,16 +244,36 @@ namespace WidSubmit
             panelWorkDetails.TabPages[4].ImageIndex = 2;
         }
 
-        private void btnApplyRightHolderFilter_Click(object sender, EventArgs e)
+        private void ClearTabControls()
         {
-            Helpers.RunProtected(() =>
-            {
-                ApplyRightHolderFilter();
-            });
+            ucSubmWorkShares.ClearContent();
+            ucSubmWorkAltNames.ClearContent();
+            ucSubmWorkPerformers.ClearContent();
+            ucSubmWorkCheckList.ClearContent();
+            ucSubmWorkRespErr.ClearContent();
+            ucSubmWorkSharesDiff.ClearContent();
         }
+
+        private void UpdateTabControls()
+        {
+            if(lvSubmWorks.SelectedItems.Count == 0) return;
+
+            var submWork = (SubmWork)lvSubmWorks.SelectedItems[0].Tag;
+            switch(panelWorkDetails.SelectedIndex)
+            {
+                case 0: ucSubmWorkShares.UpdateContent(submWork.Id)    ; break;
+                case 1: ucSubmWorkAltNames.UpdateContent(submWork.Id)  ; break;
+                case 2: ucSubmWorkPerformers.UpdateContent(submWork.Id); break;
+                case 3: ucSubmWorkCheckList.UpdateContent(submWork.Id) ; break;
+                case 4: ucSubmWorkRespErr.UpdateContent(submWork.Id)   ; break;
+                case 5: ucSubmWorkSharesDiff.UpdateContent(submWork.Id); break;
+            }
+        }
+ 
 
         private void rbFilterSubmittedNo_CheckedChanged(object sender, EventArgs e)
         {
+            ClearTabControls();
             Helpers.RunProtected(() =>
             {
                 FillLvSubmWorks();
@@ -378,6 +282,7 @@ namespace WidSubmit
 
         private void rbFilterSubmittedYes_CheckedChanged(object sender, EventArgs e)
         {
+            ClearTabControls();
             Helpers.RunProtected(() =>
             {
                 FillLvSubmWorks();
@@ -386,60 +291,25 @@ namespace WidSubmit
 
         private void rbFilterSubmittedAll_CheckedChanged(object sender, EventArgs e)
         {
+            ClearTabControls();
             Helpers.RunProtected(() =>
             {
-                FillLvSubmWorks();
-            });
-        }
-
-        private void lvRightHolders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvRightHolders.SelectedItems.Count == 0)
-            {
-                lvSubmWorks.Items.Clear();
-                ucSubmWorkShares.ClearContent();
-                ucSubmWorkAltNames.ClearContent();
-                ucSubmWorkPerformers.ClearContent();
-                ucSubmWorkCheckList.ClearContent();
-                ResetTabImages();
-                return;
-            }
-
-            Helpers.RunProtected(() =>
-            {
-                ucSubmWorkShares.ClearContent();
-                ucSubmWorkAltNames.ClearContent();
-                ucSubmWorkPerformers.ClearContent();
-                ucSubmWorkCheckList.ClearContent();
-                LoadSubmWorks();
                 FillLvSubmWorks();
             });
         }
 
         private void lvSubmWorks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ClearTabControls();
             if (lvSubmWorks.SelectedItems.Count == 0)
             {
-                ucSubmWorkShares.ClearContent();
-                ucSubmWorkAltNames.ClearContent();
-                ucSubmWorkPerformers.ClearContent();
-                ucSubmWorkCheckList.ClearContent();
                 ResetTabImages();
             }
             else
             {
-                var submWork = (SubmWork)lvSubmWorks.SelectedItems[0].Tag;
-                ucSubmWorkShares.UpdateContent(submWork.Id);
-                ucSubmWorkAltNames.UpdateContent(submWork.Id);
-                ucSubmWorkPerformers.UpdateContent(submWork.Id);
-                ucSubmWorkCheckList.UpdateContent(submWork.Id);
+                UpdateTabControls();
                 UpdateTabImages();
             }
-        }
-
-        private void lvRightHolders_MouseDown(object sender, MouseEventArgs e)
-        {
-            Helpers.CopyCellValue(e, lvRightHolders);
         }
 
         private void lvSubmWorks_MouseDown(object sender, MouseEventArgs e)
@@ -451,6 +321,7 @@ namespace WidSubmit
         {
             if(cbFilterByStatus.SelectedIndex == -1 || _submWorks == null) return;
 
+            ClearTabControls();
             Helpers.RunProtected(() =>
             {
                 FillLvSubmWorks();
@@ -466,60 +337,106 @@ namespace WidSubmit
         private void btnSubmWorkApplyExFilter_Click(object sender, EventArgs e)
         {
             btnSubmWorkApplyExFilter.Enabled = false;
+            ClearTabControls();
             FillLvSubmWorks();
         }
 
-        private void cbRightHolderFilterEx_CheckedChanged(object sender, EventArgs e)
+        private void timerUpdateContent_Tick(object sender, EventArgs e)
         {
-            Helpers.RunProtected(() =>
+            timerUpdateContent.Enabled = false;
+            
+            Helpers.SetWaitCursor();
+            
+            if(!_isHistoryMode)
             {
-                rbRightHolderFilterOwn              .Enabled = cbRightHolderFilterEx.Checked;
-                rbRightHolderFilterPublished        .Enabled = cbRightHolderFilterEx.Checked;
-                rbRightHolderFilterActive           .Enabled = cbRightHolderFilterEx.Checked;
-                rbRightHolderFilterNotActive        .Enabled = cbRightHolderFilterEx.Checked;
-                rbRightHolderFilterActiveNotActive  .Enabled = cbRightHolderFilterEx.Checked;
-                FillLvRightHolders();
+                Helpers.RunSqlSocWidSubmitEx(cmd =>
+                {
+                    cmd.CommandText = "select dbo.fnCurSubmId()";
+                    _submissionId = (int)cmd.ExecuteScalar();
+                });
+            }
+
+            SuscribeToEvents();
+            ucSubmRightHolders.UpdateContent(_submissionId);
+
+            LoadSubmWorks();
+            FillLvSubmWorks();
+
+            Helpers.RunSqlSocWidSubmitEx(cmd =>
+            {
+                cmd.CommandText = "select count(*) from SubmWork where SubmissionId = @submissionId";
+                cmd.Parameters.AddWithValue("@submissionId", _submissionId);
+                tbSubmWorkCntTotal.Text =  ((int)cmd.ExecuteScalar()).ToString();
+            });
+            panelMain.Visible = true;
+
+            Helpers.UnsetWaitCursor();
+            _isDirty = false;
+        }
+
+        private void btnChangeRightHolders_Click(object sender, EventArgs e)
+        {
+            var form = new FormSubmissionRightHolders();
+            form.ShowDialog();
+            //LoadRightHolders();
+            //FillLvRightHolders();
+        }
+
+        public void OnRightHolderSelected(object sender, RightHolderSelectedEventArgs e)
+        {
+            _selectedRightHolder = e.RightHolder;
+           Helpers.RunProtected(() =>
+            {
+                ClearTabControls();
+                LoadSubmWorks();
+                FillLvSubmWorks();
             });
         }
 
-        private void rbRightHolderFilterOwn_CheckedChanged(object sender, EventArgs e)
+        public void OnRightHolderUnselected(object sender, EventArgs e)
         {
-            Helpers.RunProtected(() =>
-            {
-                FillLvRightHolders();
-            });
+            lvSubmWorks.Items.Clear();
+            ClearTabControls();
+            ResetTabImages();
         }
 
-        private void rbRightHolderFilterPublished_CheckedChanged(object sender, EventArgs e)
+        public void OnEditRightHoldersClicked(object sender, EventArgs e)
         {
+            var submStatus = 0;
+            Helpers.RunSqlSocWidSubmitEx(cmd =>
+            {
+                cmd.CommandText = "select SubmissionStatusId from Submission where Id = @submissionId";
+                cmd.Parameters.AddWithValue("@submissionId", _submissionId);
+                submStatus = (int)cmd.ExecuteScalar();
+            });
+
+            if(submStatus >= (int)SubmStatusEnum.SUBM_FILE_UPLOADED)
+            {
+                MessageBox.Show("Файл переданий, зміни правовласників сеансу не можливі.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var form = new FormSubmissionRightHolders();
+            var res = form.ShowDialog();
+            if(res == DialogResult.Cancel) return;
+
             Helpers.RunProtected(() =>
             {
-                FillLvRightHolders();
+                Helpers.RunSqlSocWidSubmitExT(cmd =>
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "spSubmWorksUpdate";
+                    cmd.ExecuteNonQuery();
+                });
             });
+
+            _isDirty = true;
+            UpdateContent();
         }
 
-        private void rbRightHolderFilterActive_CheckedChanged(object sender, EventArgs e)
+        private void panelWorkDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Helpers.RunProtected(() =>
-            {
-                FillLvRightHolders();
-            });
-        }
-
-        private void rbRightHolderFilterNotActive_CheckedChanged(object sender, EventArgs e)
-        {
-            Helpers.RunProtected(() =>
-            {
-                FillLvRightHolders();
-            });
-        }
-
-        private void rbRightHolderFilterActiveNotActive_CheckedChanged(object sender, EventArgs e)
-        {
-            Helpers.RunProtected(() =>
-            {
-                FillLvRightHolders();
-            });
+            UpdateTabControls();
         }
     }
 }

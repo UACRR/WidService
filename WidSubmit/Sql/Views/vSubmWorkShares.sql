@@ -25,4 +25,3 @@ as
 		join MediaService..CreativeRoleType t5 on t2.RhRole = t5.codeI
 go
 
--- select * from vCurRightHolder

@@ -17,6 +17,8 @@ namespace WidSubmit
         public delegate void RunSql(SqlCommand cmd);
         public delegate void ProtectedBlock();
 
+        private static int _waitCursorCnt;
+
         public static void RunSqlBase(string connString, RunSql runSql)
         {
             try
@@ -77,11 +79,11 @@ namespace WidSubmit
             RunSqlBaseT(connString, runSql);
         }
 
-        public static void RunProtected(ProtectedBlock block)
+        public static void RunProtected(ProtectedBlock block, bool keepWaitCursor = false)
         {
             try
             {
-                Cursor.Current = Cursors.WaitCursor;
+                SetWaitCursor();
                 block();
             }
             catch(Exception ex)
@@ -90,7 +92,7 @@ namespace WidSubmit
             }
             finally
             {
-                Cursor.Current = Cursors.Default;
+                if(!keepWaitCursor) UnsetWaitCursor();
             }
         }
 
@@ -105,7 +107,8 @@ namespace WidSubmit
                 menu.MenuItems.Add("Копіювати значення");
                 menu.MenuItems[0].Click += ((s, ev) =>
                 {
-                    Clipboard.SetText(text);
+                    if(!string.IsNullOrEmpty(text))
+                        Clipboard.SetText(text);
                 });
                 menu.Show(listView, new Point(e.X, e.Y));
             }
@@ -135,6 +138,18 @@ namespace WidSubmit
                     }
                 }
             }
+        }
+
+        public static void SetWaitCursor()
+        {
+            _waitCursorCnt++;
+            if(_waitCursorCnt == 1) Cursor.Current = Cursors.WaitCursor;
+        }
+
+        public static void UnsetWaitCursor()
+        {
+            _waitCursorCnt--;
+            if(_waitCursorCnt == 0) Cursor.Current = Cursors.Default;
         }
     }
 }

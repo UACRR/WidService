@@ -14,8 +14,8 @@ namespace CwrTools
         [STAThread]
         static void Main()
         {
-            var fs = new CwrFileSplitter(@"D:\OlegM\CWR\Відправлені файли\CW250003140_000.V22", 10000);
-            fs.SplitFile();
+            //var fs = new CwrFileSplitter(@"D:\OlegM\CWR\Відправлені файли\CW250003140_000.V22", 10000);
+            //fs.SplitFile();
             //return;
 
             MetaData.Load();

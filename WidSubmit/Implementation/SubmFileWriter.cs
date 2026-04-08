@@ -55,6 +55,7 @@ namespace WidSubmit
             public RecSipOip RecSipOip          { get; set; }
             public RecSsrOsr RecSsrOsrPer       { get; set; }
             public RecSsrOsr RecSsrOsrMec       { get; set; }
+            public bool      IsOwn              { get; set; }
         }
 
         public class SubmWorkAltName
@@ -291,16 +292,16 @@ namespace WidSubmit
 	                  t1.Id						as SubmWorkShareId
 	                , t1.SubmWorkId				as SubmWorkId
                     , t2.IsChanged				as IsSubmWorkChanged
-	                , t4.IpNameNr				as IpNameNr
-	                , t4.NameForWid				as NameForWid
-	                , t4.FstNameForWid			as FstNameForWid
+	                , t3.IpNameNr				as IpNameNr
+	                , t3.NameForWid				as NameForWid
+	                , t3.FstNameForWid			as FstNameForWid
 	                , t1.RoleForWid				as RoleForWid
 	                , t1.ShrPer					as ShrPer
 	                , t1.ShrMec					as ShrMec
+                    , t3.IsOwn					as IsOwn
                 from SubmWorkShare t1
 	                join vCurSubmWorks t2 on t1.SubmWorkId = t2.Id
-	                join vCurSubmRightHolder t3 on t1.RightHolderId = t3.RightHolderId
-	                join vCurRightHolder t4 on t3.RightHolderId = t4.Id
+	                join vCurRightHolder t3 on t1.RightHolderId = t3.Id
                 where t2.Status = 1
                     and t2.IsChanged = @isChanged
                 order by t1.SubmWorkId
@@ -323,6 +324,7 @@ namespace WidSubmit
                     share.RoleForWid        = r.GetString(idx);                              idx++;
                     share.ShrPer            = (int)r.GetDecimal(idx) * 100;                  idx++;
                     share.ShrMec            = (int)r.GetDecimal(idx) * 100;                  idx++;
+                    share.IsOwn             = (bool)r.GetBoolean(idx);                       idx++;
                     share.RecSipOip         = null;
                     share.RecSsrOsrPer      = null;
                     share.RecSsrOsrMec      = null;
@@ -337,7 +339,7 @@ namespace WidSubmit
                     Id = 0,
                     RecWiaWiuId = 0,
                     SubmWorkShareId = share.SubmWorkShareId,
-                    RecType = share.IsSubmWorkCnanged ? "OIP" : "SIP",
+                    RecType = !share.IsOwn ? "OIP" : "SIP",
                     TransSeqNr = "",
                     RecSeqNr = "",
                     Filler5 = "",
@@ -350,7 +352,7 @@ namespace WidSubmit
                 share.RecSsrOsrPer  = new RecSsrOsr{
                     Id = 0,
                     RecSipOipId = 0,
-                    RecType = share.IsSubmWorkCnanged ? "OSR" : "SSR",
+                    RecType = !share.IsOwn ? "OSR" : "SSR",
                     TransSeqNr = "",
                     RecSeqNr = "",
                     Filler6 = "",
@@ -363,7 +365,7 @@ namespace WidSubmit
                 share.RecSsrOsrMec  = new RecSsrOsr{
                     Id = 0,
                     RecSipOipId = 0,
-                    RecType = share.IsSubmWorkCnanged ? "OSR" : "SSR",
+                    RecType = !share.IsOwn ? "OSR" : "SSR",
                     TransSeqNr = "",
                     RecSeqNr = "",
                     Filler6 = "",
@@ -371,8 +373,8 @@ namespace WidSubmit
                     Shares = share.ShrPer.ToString(CultureInfo.InvariantCulture),
                     IpNameNr = share.IpNameNr.ToString("D11"),
                     Aff = "",
-                }; 
-            });
+                };
+             });
 
             var submWorks = grh.SubmWorks;
             var workIdx = 0;
@@ -557,6 +559,9 @@ namespace WidSubmit
 
         private void CreateGrtRecord(Grh grh)
         {
+            if(grh == null)
+                return;
+
             var recCnt = 0;
             grh.SubmWorks.ForEach(work =>
             {
@@ -600,6 +605,9 @@ namespace WidSubmit
         
         private void CreateSeqNrs(Grh grh)
         {
+            if(grh == null)
+                return;
+
             var transSeqNr = 0;
             grh.SubmWorks.ForEach(work =>
             {
@@ -706,6 +714,8 @@ namespace WidSubmit
 
         private void SaveRecGrtInDb(SqlCommand cmd, Grh grh)
         {
+            if(grh == null) return;
+
             var data = new List<object>();
             data.Add(DBNull.Value);
             data.Add(grh.RecGrh.Id);
@@ -715,6 +725,8 @@ namespace WidSubmit
 
         private void SaveRecWiaWiuInDb(SqlCommand cmd, Grh grh)
         {
+            if(grh == null) return;
+
             var dataList = new List<List<object>>();
             grh.SubmWorks.ForEach(work =>
             {
@@ -748,12 +760,15 @@ namespace WidSubmit
             }
 
             SaveRecSipOipInDb(cmd, grh);
+            SaveRecAltInDb(cmd, grh);
             SaveRecPerInDb(cmd, grh);
 
         }
 
         private void SaveRecSipOipInDb(SqlCommand cmd, Grh grh)
         {
+            if(grh == null) return;
+
             var dataList = new List<List<object>>();
             grh.SubmWorks.ForEach(work =>
             {
@@ -762,7 +777,7 @@ namespace WidSubmit
                     var data = new List<object>();
                     data.Add(DBNull.Value);
                     data.Add(work.RecWiaWiu.Id);
-                    data.Add(share.SubmWorkId);
+                    data.Add(share.SubmWorkShareId);
                     data.AddRange(EntityHelpers.EntityToList(share.RecSipOip, 3));
                     dataList.Add(data);
                 });
@@ -795,6 +810,8 @@ namespace WidSubmit
 
         private void SaveRecSsrOsrInDb(SqlCommand cmd, Grh grh)
         {
+            if(grh == null) return;
+
             var dataList = new List<List<object>>();
             grh.SubmWorks.ForEach(work =>
             {
@@ -819,6 +836,8 @@ namespace WidSubmit
 
         private void SaveRecAltInDb(SqlCommand cmd, Grh grh)
         {
+            if(grh == null) return;
+
             var dataList = new List<List<object>>();
             grh.SubmWorks.ForEach(work =>
             {
@@ -859,6 +878,8 @@ namespace WidSubmit
 
         private void SaveRecPerInDb(SqlCommand cmd, Grh grh)
         {
+            if(grh == null) return;
+
             var dataList = new List<List<object>>();
             grh.SubmWorks.ForEach(work =>
             {
@@ -918,6 +939,8 @@ namespace WidSubmit
         #region СТВОРЕННЯ ФАЙЛУ У ФОЛДЕРІ
         private void AddFileLines(Grh grh, List<string> lines)
         {
+            if(grh == null) return;
+
             lines.Add(EntityHelpers.EntityToString(grh.RecGrh, 2));
             grh.SubmWorks.ForEach(work =>
             {
@@ -1038,7 +1061,7 @@ namespace WidSubmit
 
                 CreateTrlRecord(hdr);
 
-                    // Заносимо інформацію в БД
+                // Заносимо інформацію в БД
                 SaveSubmFileInDb(cmd, hdr);                   
                     
                 // Створюємо реальний файл

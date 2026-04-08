@@ -17,6 +17,7 @@ as
 		from SubmWork t1
 			join Submission t2 on t1.SubmissionId = t2.Id
 		where t2.EndedAt <> dbo.fnMaxDate()
+			and t1.Status = 7
 	)
 	select t1.*
 	from SubmWork t1
@@ -24,4 +25,3 @@ as
 	where t2.SeqNr = 1
 go
 
--- select * from vCurRightHolder

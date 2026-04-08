@@ -30,8 +30,3 @@ from RightHolder t1
 where t1.IsOwn = 1
 go
 
---select * from SubmRightHolder
-
--- select t2.* from vCurSubmRightHolder t1 join RightHolder t2 on t1.RightHolderId = t2.Id order by Name
--- 
--- select * from vCurSubmRightHolderEx where IsInCurSubm = 1 order by NAme

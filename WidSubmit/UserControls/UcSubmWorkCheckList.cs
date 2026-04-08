@@ -22,16 +22,19 @@ namespace WidSubmit
             public bool PubShare0or100      { get; set; }
             public bool MecShare0or100      { get; set; }
             public bool HasShare            { get; set; }
+            public bool AllIpiCodesExist    { get; set; }
             public bool AllIpiCodesValid    { get; set; }
 
         }
 
         private int _submWorkId;
         private CheckList _checkList;
+        private bool _isDirty;
         
         public UcSubmWorkCheckList()
         {
             InitializeComponent();
+            _isDirty = true;
         }
 
         private void UcSubmWorkCheckList_Load(object sender, EventArgs e)
@@ -55,14 +58,21 @@ namespace WidSubmit
         public void ClearContent()
         {
             _submWorkId = 0;
-            lvCheckList.Items.Clear()   ;
+            lvCheckList.Items.Clear();
+
+            _isDirty = true;
         }
 
         public void UpdateContent(int submWorkId)
         {
             _submWorkId = submWorkId;
+
+            if(!_isDirty) return;
+
             LoadCheckList();
             FillLvCheckList();
+
+            _isDirty = false;
         }
 
         private void LoadCheckList()
@@ -78,6 +88,7 @@ namespace WidSubmit
 	                    , PubShare0or100
 	                    , MecShare0or100
 	                    , HasShare
+                        , AllIpiCodesExist
 	                    , AllIpiCodesValid
                     from SubmCheckList
                     where SubmWorkId = @submWorkId
@@ -96,6 +107,7 @@ namespace WidSubmit
                     _checkList.PubShare0or100      = r.GetBoolean(idx++);
                     _checkList.MecShare0or100      = r.GetBoolean(idx++);
                     _checkList.HasShare            = r.GetBoolean(idx++);
+                    _checkList.AllIpiCodesExist    = r.GetBoolean(idx++);
                     _checkList.AllIpiCodesValid    = r.GetBoolean(idx++);
                 }
             });
@@ -110,14 +122,15 @@ namespace WidSubmit
                 return;
             }
 
-            AddItem("Є правовласник, що має договори з УААСП"                   , _checkList.HasOwnAuthor        );
-            AddItem("Для всіх автрів/видавців визначені ролі"                       , _checkList.RolesDefined        );
-            AddItem("Є правовласник, відмінний від видавця"                         , _checkList.HasNonPublisher     );
-            AddItem("Всі автори/видавці зареєстровані в IPI"                        , _checkList.AllInIpi            );
-            AddItem("Сума процентів Пуб нуль або 100"                               , _checkList.PubShare0or100      );
-            AddItem("Сума процентів Мех нуль або 100"                               , _checkList.MecShare0or100      );
-            AddItem("Є автори/видавці з ненульвоими процентами"                     , _checkList.HasShare            );
-            AddItem("Коди всіх авторів знайдені в IPI і мають вірний статус (1)"    , _checkList.AllIpiCodesValid    );
+            AddItem("Є правовласник, що має договори з УААСП"                           , _checkList.HasOwnAuthor        );
+            AddItem("Для всіх автрів/видавців визначені ролі"                           , _checkList.RolesDefined        );
+            AddItem("Є правовласник, відмінний від видавця"                             , _checkList.HasNonPublisher     );
+            AddItem("Всі автори/видавці зареєстровані в IPI"                            , _checkList.AllInIpi            );
+            AddItem("Сума процентів Пуб нуль або 100"                                   , _checkList.PubShare0or100      );
+            AddItem("Сума процентів Мех нуль або 100"                                   , _checkList.MecShare0or100      );
+            AddItem("Є автори/видавці з ненульвоими процентами"                         , _checkList.HasShare            );
+            AddItem("Всі правовласники мають міжнародні коди"                           , _checkList.AllIpiCodesExist    );
+            AddItem("Коди всіх правовласників знайдені в IPI і мають вірний статус (1)" , _checkList.AllIpiCodesValid    );
         }
 
         private void AddItem(string name, bool value)
@@ -142,7 +155,8 @@ namespace WidSubmit
                     && _checkList.HasNonPublisher 
                     && _checkList.HasShare 
                     && _checkList.MecShare0or100 
-                    && _checkList.PubShare0or100 
+                    && _checkList.PubShare0or100
+                    && _checkList.AllIpiCodesExist
                     && _checkList.AllIpiCodesValid
                 );
             }

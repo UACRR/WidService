@@ -10,7 +10,7 @@ begin
 		опнжедспю ╡делонремрмю - ме гюкефхрэ б╡д оноепедмэнцн нопхжч╡бюммъ ╡мтнплюж╡╞
 	*/
 
-	-- ьсйю╙лн оепек╡й ObjId ъйхлх бнкнд╡чрэ опюбнбкюямхйх онрнвмнцн яеюряс осак╡йюж╡╞
+	-- ьсйю╙лн оепек╡й ObjId ъйхлх бнкнд╡чрэ опюбнбкюямхйх онрнвмнцн яеюмяс осак╡йюж╡╞
 	drop table if exists #ObjIds
 	select distinct t3.ObjId
 	into #ObjIds
@@ -23,16 +23,21 @@ begin
 	drop table if exists #SubmWork
 	select
 	    t1.ObjId								as ObjId
-      , t3.Wic									as Wic
+      , null									as Wic
 	  , left(trim(isnull(t1.Iswc, '')), 11)		as Iswc
 	  , t1.Name									as Name
       , dbo.ClrTranslitFromUkrToLat(t1.Name)	as NameForWid
 	into #SubmWork
 	from MediaService..MediaTrack t1
 		join #ObjIds t2 on t1.ObjId = t2.ObjId
-		left join MediaService..RepMSWIC t3 on t1.ObjId = t3.ObjId
 	where t1.Name is not null -- гюона╡фмхй, ЮКЕ РПЮОКЪ╨РЭЯЪ
 
+	update t1
+	set t1.Wic = t2.Wic
+	from #SubmWork t1
+		join SocWid..WidIswc t2 on t1.Iswc = t2.Iswc
+	where t1.Iswc <> ''
+	
 	-- ярбнпч╙лн опнжемрх
 	drop table if exists #SubmWorkShare
 	select

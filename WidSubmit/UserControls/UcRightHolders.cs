@@ -49,9 +49,13 @@ namespace WidSubmit
 
         private bool _ignoreCbFilterBySubmissionSelectedIndexChanged = false;
 
+        private bool _isDirty;
+
         public UcRightHolders()
         {
             InitializeComponent();
+
+            _isDirty = true;
         }
 
         private void UcRightHolders_Load(object sender, EventArgs e)
@@ -59,14 +63,21 @@ namespace WidSubmit
             Configure();
         }
 
+        public void SetDirty() => _isDirty = true;
+
         public void UpdateContent()
         {
-            LoadSubmissions();
-            _ignoreCbFilterBySubmissionSelectedIndexChanged = true;
-            FillCbFilterBySubmission();
-            _ignoreCbFilterBySubmissionSelectedIndexChanged = false;
-            LoadRightHolders();
-            ApplyFilter();
+            if(!_isDirty) return;
+
+            panelMain.Visible = false;
+            timerUpdateContent.Enabled = true;
+            //LoadSubmissions();
+            //_ignoreCbFilterBySubmissionSelectedIndexChanged = true;
+            //FillCbFilterBySubmission();
+            //_ignoreCbFilterBySubmissionSelectedIndexChanged = false;
+            //LoadRightHolders();
+            //ApplyFilter();
+            //this.Visible = true;
         }
          
         private void ApplyFilter()
@@ -461,25 +472,13 @@ namespace WidSubmit
 
         private void btnUpdateRightHolders_Click(object sender, EventArgs e)
         {
-            try
+            Helpers.RunSqlSocWidSubmitExT(cmd =>
             {
-                Cursor = Cursors.WaitCursor;
-                Helpers.RunSqlSocWidSubmitExT(cmd =>
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "spRightHoldersUpdate";
-                    cmd.ExecuteNonQuery();
-                });
-                UpdateContent();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                Cursor = Cursors.Default;
-            }
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spRightHoldersUpdate";
+                cmd.ExecuteNonQuery();
+            });
+            UpdateContent();
         }
 
         private void btnChangeSubmRightHolders_Click(object sender, EventArgs e)
@@ -498,6 +497,25 @@ namespace WidSubmit
         private void lvRightHolderHist_MouseDown(object sender, MouseEventArgs e)
         {
             Helpers.CopyCellValue(e, lvRightHolderHist);
+        }
+
+        private void timerUpdateContent_Tick(object sender, EventArgs e)
+        {
+            timerUpdateContent.Enabled = false;
+            
+            Helpers.SetWaitCursor();
+            
+            LoadSubmissions();
+            _ignoreCbFilterBySubmissionSelectedIndexChanged = true;
+            FillCbFilterBySubmission();
+            _ignoreCbFilterBySubmissionSelectedIndexChanged = false;
+            LoadRightHolders();
+            ApplyFilter();
+            panelMain.Visible = true;
+
+            Helpers.UnsetWaitCursor();
+            _isDirty = false;
+            
         }
     }
 }

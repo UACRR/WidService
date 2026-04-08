@@ -15,4 +15,3 @@ begin
 end
 go
 
--- select dbo.fnSubmFileExists()

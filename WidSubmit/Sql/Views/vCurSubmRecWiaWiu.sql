@@ -10,3 +10,4 @@ as
 		join RecWiaWiu t4 on t3.Id = t4.RecGrhId
 	where t1.Id = dbo.fnCurSubmId()
 go
+

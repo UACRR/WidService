@@ -8,24 +8,19 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static WidSubmit.UcRightHolders;
+using static WidSubmit.UcSubmRightHolders;
 
 namespace WidSubmit
 {
     public partial class FormSubmissionRightHolders : Form
     {
-        public class RightHolder
-        {
-	        public int Id			    { get; set; }
-	        public int CustId		    { get; set; }
-	        public string Name	        { get; set; }
-            public string FstName	    { get; set; }
-            public bool IsInSubm        { get; set; }
-            public bool SubmAsOwn	    { get; set; }
-        }
+        private int _submissionId;
 
-        private List<RightHolder> _rightHolders;
+        private bool _isSuscribedToEvents;
 
-        private bool _ignoreSelectedIndexChanged = false;
+        private UcSubmRightHolders.RightHolder _candidateRightHolder;
+
         private bool _forceClose = false;
 
         public FormSubmissionRightHolders()
@@ -36,232 +31,171 @@ namespace WidSubmit
         private void FormSubmissionRightHolders_Load(object sender, EventArgs e)
         {
             Configure();
-            LoadRightHolders();
-            FillLvOwnRightHolders();
-            FillLvSubmRightHolders();
+            UpdateContent();
         }
 
         private void Configure()
         {
-            lvOwnRightHolders.FullRowSelect = true;
-            lvOwnRightHolders.GridLines = true;
-            lvOwnRightHolders.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            lvOwnRightHolders.MultiSelect = false;
-            lvOwnRightHolders.View = View.Details;
-            lvOwnRightHolders.SmallImageList = ilStatuses;
+            ucSubmRightHolders.Init(PresentationMode.RIGHTHOLDER_SELECT);
+            SuscribeToEvents();
 
-            lvOwnRightHolders.Columns.Clear();
-            lvOwnRightHolders.Columns.Add("№", 50);
-            lvOwnRightHolders.Columns.Add("ID", 50);
-            lvOwnRightHolders.Columns.Add("Код СМАРТ", 80);
-            lvOwnRightHolders.Columns.Add("Назва СМАРТ", 200);
+            lvCurSubmRightHolders.FullRowSelect = true;
+            lvCurSubmRightHolders.GridLines = true;
+            lvCurSubmRightHolders.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lvCurSubmRightHolders.MultiSelect = false;
+            lvCurSubmRightHolders.View = View.Details;
+            lvCurSubmRightHolders.SmallImageList = ilStatuses;
 
-            lvSubmRightHolders.FullRowSelect = true;
-            lvSubmRightHolders.GridLines = true;
-            lvSubmRightHolders.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            lvSubmRightHolders.MultiSelect = false;
-            lvSubmRightHolders.View = View.Details;
+            lvCurSubmRightHolders.Columns.Clear();
+            lvCurSubmRightHolders.Columns.Add("№", 40);
+            lvCurSubmRightHolders.Columns.Add("Код СМАРТ", 80);
+            lvCurSubmRightHolders.Columns.Add("Назва СМАРТ", 200);
+            lvCurSubmRightHolders.Columns.Add("Приналежність для WID", 120);
 
-            lvSubmRightHolders.Columns.Clear();
-            lvSubmRightHolders.Columns.Add("№", 40);
-            lvSubmRightHolders.Columns.Add("ID", 50);
-            lvSubmRightHolders.Columns.Add("Код СМАРТ", 80);
-            lvSubmRightHolders.Columns.Add("Назва СМАРТ", 200);
-            lvSubmRightHolders.Columns.Add("Свій для WID", 90);
+            btnAddSelected.Enabled = false;
+            btnRemoveSelected.Enabled = false;
+            btnToggleSubmType.Enabled = false;
         }
 
-        private void LoadRightHolders()
+        private void SuscribeToEvents()
+        {
+            if(_isSuscribedToEvents) { return; }
+            ucSubmRightHolders.RightHolderSelected += OnRightHolderSelected;
+            ucSubmRightHolders.RightHolderUnselected += OnRightHolderUnselected;
+
+            _isSuscribedToEvents = true;
+        }
+
+        private void UpdateContent()
         {
             Helpers.RunSqlSocWidSubmitEx(cmd =>
             {
-                cmd.CommandText = $@"
-                    select
-                          t1.Id																as Id		
-                        , t1.CustId															as CustId	
-                        , t1.Name															as Name
-                        , t1.FstName														as FstName
-	                    , cast(case when t2.Id is null then 0 else 1 end as bit)			as IsInSubm 
-	                    , cast(case when t2.Id is null then 1 else t2.SubmAsOwn end as bit)	as SubmAsOwn
-                    from vCurOwnRightHolder t1
-	                    left join vCurSubmRightHolder t2 on t1.Id = t2.RightHolderId
-                    order by t1.Name, t1.FstName
-                ";
-                using (var r = cmd.ExecuteReader())
-                {
-                    
-                    _rightHolders = new List<RightHolder>();
-                    while (r.Read())
-                    {
-                        var idx = 0;
-                        var rh = new RightHolder();
-	                    rh.Id		        = r.GetInt32(idx);                                  idx++;
-	                    rh.CustId	        = r.GetInt32(idx);                                  idx++;
-	                    rh.Name             = r.GetString(idx);                                 idx++;
-                        rh.FstName          = r.GetString(idx);                                 idx++;
-                        rh.IsInSubm         = r.GetBoolean(idx);                                idx++;
-                        rh.SubmAsOwn        = r.GetBoolean(idx);                                idx++;
-                        
-                        _rightHolders.Add(rh);
-                    }
-                }
-            });
-        }
+                cmd.CommandText = "select dbo.FnCurSubmId()";
+                _submissionId = (int)cmd.ExecuteScalar();
 
-        private void FillLvOwnRightHolders()
-        {
-            lvOwnRightHolders.BeginUpdate();
-            lvOwnRightHolders.Items.Clear();
-            var seqNr = 1;
-            _rightHolders.ForEach(x =>
-            {
-                var item = new ListViewItem(seqNr.ToString());
-                item.SubItems.Add(x.Id.ToString());
-                item.SubItems.Add(x.CustId.ToString());
-                item.SubItems.Add($"{x.Name} {x.FstName}".Trim());
-                item.ImageIndex = x.IsInSubm ? 2 : 4;
-                item.Tag = x;
-                lvOwnRightHolders.Items.Add(item);
-                seqNr++;
+                ucSubmRightHolders.UpdateContent(_submissionId);
+                //LoadRightHolders();
+                FillLvSubmRightHolders();
+
             });
-            lvOwnRightHolders.EndUpdate();
         }
 
         private void FillLvSubmRightHolders()
         {
-            lvSubmRightHolders.BeginUpdate();
-            lvSubmRightHolders.Items.Clear();
+            // Викорустовуємо посилання на правовласників в контролі
+            var rightHolders = ucSubmRightHolders. GetSubmRightHolders();
+            lvCurSubmRightHolders.BeginUpdate();
+            lvCurSubmRightHolders.Items.Clear();
             var seqNr = 1;
-            _rightHolders.ForEach(x =>
+            rightHolders.ForEach(x =>
             {
-                if (x.IsInSubm)
+                if (x.IsInCurSubm)
                 {
                     var item = new ListViewItem(seqNr.ToString());
-                    item.SubItems.Add(x.Id.ToString());
                     item.SubItems.Add(x.CustId.ToString());
                     item.SubItems.Add($"{x.Name} {x.FstName}".Trim());
-                    item.SubItems.Add(x.SubmAsOwn ? "так" : "ні");
+                    item.SubItems.Add(x.IsOwn ? "свій" : "чужий");
+                    item.ImageIndex = x.IsOwn ? 0 : 1;
                     item.Tag = x;
-                    lvSubmRightHolders.Items.Add(item);
+                    lvCurSubmRightHolders.Items.Add(item);
                     seqNr++;
                 }
             });
-            lvSubmRightHolders.EndUpdate();
+            lvCurSubmRightHolders.EndUpdate();
+        }
+
+        private ListViewItem FindRightHolderItem(UcSubmRightHolders.RightHolder rightHolder)
+        {
+            foreach(ListViewItem item in lvCurSubmRightHolders.Items)
+            {
+                if((UcSubmRightHolders.RightHolder)item.Tag == rightHolder)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        
+        public void OnRightHolderSelected(object sender, RightHolderSelectedEventArgs e)
+        {
+           _candidateRightHolder = e.RightHolder;
+           btnAddSelected.Enabled = !_candidateRightHolder.IsInCurSubm && _candidateRightHolder.IsActive;
+        }
+
+        public void OnRightHolderUnselected(object sender, EventArgs e)
+        {
+        }
+
+        private void btnAddAll_Click(object sender, EventArgs e)
+        {
+            ucSubmRightHolders.AddShownToCurSubm();
+            FillLvSubmRightHolders();
+            btnRemoveAll.Enabled = true;
+            btnRemoveSelected.Enabled = false;
+            btnToggleSubmType.Enabled = false;
+        }
+
+        private void btnAddSelected_Click(object sender, EventArgs e)
+        {
+            _candidateRightHolder.IsInCurSubm = true;
+            ucSubmRightHolders.UpdateRightHolderItem(_candidateRightHolder);
+            FillLvSubmRightHolders();
+            var item = FindRightHolderItem(_candidateRightHolder);
+            if( item != null )
+            {
+                item.Selected = true;
+                item.EnsureVisible();
+            }
+        }
+
+        private void btnRemoveSelected_Click(object sender, EventArgs e)
+        {
+            if(lvCurSubmRightHolders.SelectedItems.Count == 0) return;
+            var item = lvCurSubmRightHolders.SelectedItems[0];
+            var rh = (UcSubmRightHolders.RightHolder)item.Tag;
+            rh.IsInCurSubm = false;
+            ucSubmRightHolders.UpdateRightHolderItem(rh);
+            lvCurSubmRightHolders.Items.Remove(item);
+            
+            btnRemoveSelected.Enabled =
+            btnToggleSubmType.Enabled = false;
+        }
+
+        private void btnRemoveAll_Click(object sender, EventArgs e)
+        {
+            lvCurSubmRightHolders.Items.Clear();
+            ucSubmRightHolders.RemoveAllFromCurSubm();
+
+            btnRemoveAll.Enabled = false;
+            btnRemoveSelected.Enabled = false;
+            btnToggleSubmType.Enabled = false;
+        }
+
+        private void btnToggleSubmType_Click(object sender, EventArgs e)
+        {
+            if(lvCurSubmRightHolders.SelectedItems.Count == 0) return;
+
+            var item = lvCurSubmRightHolders.SelectedItems[0];
+            var rh = (UcSubmRightHolders.RightHolder)item.Tag;
+            rh.IsOwn = !rh.IsOwn;
+            item.SubItems[3].Text = rh.IsOwn ? "свій" : "чужий";
+            item.ImageIndex = rh.IsOwn ? 0 : 1;
         }
 
         private void lvSubmRightHolders_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_ignoreSelectedIndexChanged)
-            {
-                return;
-            }
-            
-            if(lvSubmRightHolders.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            
-            _ignoreSelectedIndexChanged = true;
-            lvOwnRightHolders.SelectedItems.Clear();
-            
-            var rightHolder = (RightHolder)lvSubmRightHolders.SelectedItems[0].Tag;
-            foreach(ListViewItem item in lvOwnRightHolders.Items)
-            {
-                if(((RightHolder)item.Tag).Id == rightHolder.Id)
-                {
-                    item.Selected = true;
-                    item.EnsureVisible();
-                    break;
-                }
-            }
-
-            _ignoreSelectedIndexChanged = false;
-        }
-
-        private void lvOwnRightHolders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(_ignoreSelectedIndexChanged)
-            {
-                return;
-            }
-            
-            if(lvOwnRightHolders.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            
-            _ignoreSelectedIndexChanged = true;
-            lvSubmRightHolders.SelectedItems.Clear();
-            
-            var rightHolder = (RightHolder)lvOwnRightHolders.SelectedItems[0].Tag;
-            foreach(ListViewItem item in lvSubmRightHolders.Items)
-            {
-                if(((RightHolder)item.Tag).Id == rightHolder.Id)
-                {
-                    item.Selected = true;
-                    item.EnsureVisible();
-                    break;
-                }
-            }
-
-            _ignoreSelectedIndexChanged = false;
-        }
-
-        private void lvSubmRightHolders_DoubleClick(object sender, EventArgs e)
-        {
-            if(lvSubmRightHolders.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var item = lvSubmRightHolders.SelectedItems[0];
-            var rh = (RightHolder)item.Tag;
-            rh.SubmAsOwn = !rh.SubmAsOwn;
-            item.SubItems[4].Text = rh.SubmAsOwn ? "так" : "ні";
-        }
-
-        private void lvOwnRightHolders_DoubleClick(object sender, EventArgs e)
-        {
-            if(lvOwnRightHolders.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            var ownItem = lvOwnRightHolders.SelectedItems[0];
-            var ownRh = (RightHolder)ownItem.Tag;
-            ownRh.IsInSubm = !ownRh.IsInSubm;
-            ownItem.ImageIndex = ownRh.IsInSubm ? 2 : 4;
-
-            _ignoreSelectedIndexChanged = true;
-            var isFound = false;
-            foreach(ListViewItem submItem in lvSubmRightHolders.Items)
-            {
-                if(((RightHolder)submItem.Tag).Id == ownRh.Id)
-                {
-                    lvSubmRightHolders.Items.Remove(submItem);
-                    isFound = true;
-                    break;
-                }
-            }
-
-            if (!isFound)
-            {
-                FillLvSubmRightHolders();
-                foreach(ListViewItem submItem in lvSubmRightHolders.Items)
-                {
-                    if(((RightHolder)submItem.Tag).Id == ownRh.Id)
-                    {
-                        submItem.Selected = true;
-                        submItem.EnsureVisible();
-                        break;
-                    }
-                }
-            }
-
-            _ignoreSelectedIndexChanged = false;
+            btnRemoveSelected.Enabled =
+            btnToggleSubmType.Enabled = lvCurSubmRightHolders.SelectedItems.Count > 0;
         }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
+            if(lvCurSubmRightHolders.Items.Count == 0)
+            {
+                MessageBox.Show("Треба вибрати хоча б одного правовласника для поточної публікації", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var res = MessageBox.Show("Застосувати зміни і закрити форму?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(res == DialogResult.No)
             {
@@ -283,12 +217,13 @@ namespace WidSubmit
                     cmd.Parameters.AddWithValue("@rightHolderId", 0);
                     cmd.Parameters.AddWithValue("@submAsOwn", 1);
 
-                    _rightHolders.Where(x => x.IsInSubm).ToList().ForEach(x =>
+                    foreach(ListViewItem item in lvCurSubmRightHolders.Items)
                     {
-                        cmd.Parameters[1].Value = x.Id;
-                        cmd.Parameters[2].Value = x.SubmAsOwn;
+                        var rh = (UcSubmRightHolders.RightHolder)item.Tag;
+                        cmd.Parameters[1].Value = rh.Id;
+                        cmd.Parameters[2].Value = rh.IsOwn;
                         cmd.ExecuteNonQuery();
-                    });
+                    }
 
                     cmd.CommandText = "spSubmRightHoldersSave";
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -306,6 +241,7 @@ namespace WidSubmit
                 Cursor.Current = Cursors.Default;
             }
 
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -322,7 +258,9 @@ namespace WidSubmit
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
+
     }
 }

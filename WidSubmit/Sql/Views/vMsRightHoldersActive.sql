@@ -1,4 +1,4 @@
-﻿use SocWidSubmitEx
+use SocWidSubmitEx
 go
 
 create or alter view vMsRightHoldersActive
@@ -21,4 +21,3 @@ where t2.agrStatus = 2
 	and (t2.dateEnd is null or t2.dateEnd >= getdate())
 go
 
--- select * from vMsRightHoldersActive

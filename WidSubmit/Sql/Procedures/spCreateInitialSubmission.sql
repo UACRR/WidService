@@ -1,14 +1,38 @@
-п»їuse SocWidSubmitEx
+use SocWidSubmitEx
 go
 
 create or alter procedure spCreateInitialSubmission
 as
 begin
 
--- Р’РёРєРѕРЅСѓС”С‚СЊСЃСЏ Р»РёС€Рµ РґР»СЏ РїРѕСЂРѕР¶РЅСЊРѕС— Р‘Р”
+-- Виконується лише для порожньої БД
 	if exists (select null from Submission) return
 
--- РќР°Р·РІРё С„Р°Р№Р»С–РІ
+-- Передаємо в СМАРТ міжнародні коди творів
+	update t2
+	set t2.Iswc = t1.Iswc
+	from SocWidSubmit..ObjIdToWic t1
+		join MediaService..MediaTrack t2 on t1.ObjId = t2.ObjId
+	where isnull(t1.Iswc, '') <> ''
+		and isnull(t2.Iswc, '') = ''
+	
+-- Заповнюємо міжнародні коди назв
+	update t1
+	set t1.IPIBase = t2.IpNameNr
+	from MediaService..RightHolder t1
+		join SocIpi..IpiName t2 on t1.interCode = t2.IpBaseNr
+			and t2.NameType = 'PA'
+	where isnull(InterCode, '') <> ''
+		and isnull(IpiBase, '') = ''
+	
+	update t1
+	set t1.InterCode = t2.IpBaseNr
+	from MediaService..RightHolder t1
+		join SocIpi..IpiName t2 on t1.IPIBase = t2.IpNameNr
+	where isnull(IpiBase, '') <> ''
+		and isnull(InterCode, '') = ''
+
+-- Назви файлів
 	declare @submFileName nvarchar(max) = (select max(Name) from SocWidSubmit..SubmFile)
 	declare @respFileName nvarchar(max) = (select max(Name) from SocWidSubmit..RespFile)
 
@@ -29,11 +53,11 @@ begin
 		, @submFileName		as SubmFileName
 		, @respFileName		as RespFileName
 		, ''				as ErrorFileName
-		, 6					as SubmissionStatusID -- РІРµСЂС€РµРЅР° Р°Р»Рµ РЅРµ Р·Р°РєСЂРёС‚Р°
+		, 6					as SubmissionStatusID -- вершена але не закрита
 		, getdate()			as CreatedAt
 		, null				as UpdatedAt
 
--- Р’РёРґР°Р»СЏС”РјРѕ РґР°РЅС–
+-- Видаляємо дані
 	--delete from SubmWorkShare
 	--delete from SubmWorkAltName
 	--delete from SubmWorkPerformer
@@ -43,6 +67,14 @@ begin
 
 
 -- RightHolder
+	drop table if exists #RelatedRightHolders
+	select distinct CustId, RhType, IpBaseNr, IpNameNr
+	into #RelatedRightHolders
+	from SocWidSubmit..WidSubmGroupWorkShare t1
+		join SocWidSubmit..WidSubmGroupWork t2 on t1.WidSubmGroupId = t2.WidSubmGroupId
+	where t1.WidSubmGroupId not in (2014, 2015)
+		and t2.Status in (5, 7, 10)
+
 	insert RightHolder (
 		  ValidFrom		
 		, ValidTo		
@@ -65,75 +97,19 @@ begin
 		, dbo.fnMaxDate()	as ValidTo		
 		, getdate()			as CreatedAt		
 		, t1.CustId			as CustId	
-		, t2.rHolderType	as RhType
-		, t2.InterCode		as IpBaseNr		
-		, t2.IpiBase		as IpNameNr		
-		, t3.Name			as Name			
-		, t3.FstName		as FstName		
-		, t3.NameForWid		as NameForWid	
-		, t3.FstNameForWid	as FstNameForWid	
+		, t1.RhType			as RhType
+		, t1.IpBaseNr		as IpBaseNr		
+		, t1.IpNameNr		as IpNameNr		
+		, t2.Name			as Name			
+		, t2.FstName		as FstName		
+		, t2.NameForWid		as NameForWid	
+		, t2.FstNameForWid	as FstNameForWid	
 		, 1					as IsOwn			
 		, 1					as IsActive		
 		, 1					as HasIpiAgreePer
 		, 1					as HasIpiAgreeMec
-	from SocWidSubmit..WidSubmGroupParty t1
-		join MediaService..RightHolder t2 on t1.CustId = t2.CustId
-		join vCustomerNamesForWid t3 on t1.CustId = t3.CustId
-	where t1.WidSubmGroupId not in (2014, 2015)
-
-
-	; with Dist as (
-		select distinct CustId, IpBaseNr, IpNameNr, RhType
-		from SocWidSubmit..WidSubmGroupWorkShare
-		where WidSubmGroupId not in (2014, 2015)
-	),
-	Res as (
-		select CustId, IpBaseNr, IpNameNr, RhType, row_number() over (partition by CustId order by IpBaseNr desc) as SeqNr
-		from Dist
-	),
-	CustomerInfo as (
-		select * from Res where SeqNr = 1
-	)
-	insert RightHolder (
-		  ValidFrom		
-		, ValidTo		
-		, CreatedAt		
-		, CustId	
-		, RhType
-		, IpBaseNr		
-		, IpNameNr		
-		, Name			
-		, FstName		
-		, NameForWid	
-		, FstNameForWid	
-		, IsOwn			
-		, IsActive		
-		, HasIpiAgreePer
-		, HasIpiAgreeMec
-	)
-	select
-		  datefromparts(1900, 1, 1)		as ValidFrom		
-		, datefromparts(9999, 12, 31)	as ValidTo		
-		, getdate()						as CreatedAt		
-		, t1.CustId						as CustId	
-		, t1.RhType						as RhType
-		, t1.IpBaseNr					as IpBaseNr		
-		, t1.IpNameNr					as IpNameNr		
-		, t2.Name						as Name			
-		, t2.FstName					as FstName		
-		, t2.NameForWid					as NameForWid	
-		, t2.FstNameForWid				as FstNameForWid	
-		, 1								as IsOwn			
-		, 1								as IsActive		
-		, 1								as HasIpiAgreePer
-		, 1								as HasIpiAgreeMec
-	from CustomerInfo t1
+	from #RelatedRightHolders t1
 		join vCustomerNamesForWid t2 on t1.CustId = t2.CustId
-
-	--update t1
-	--set t1.RhType = t2.rHolderType
-	--from RightHolder t1
-	--	join MediaService..RightHolder t2 on t1.CustId = t2.CustId
 
 -- select * from RightHolder
 
@@ -151,8 +127,7 @@ begin
 		, getdate()			as CreatedAt
 --		select * 
 	from SocWidSubmit..WidSubmGroupParty t1
-		join RightHolder t2 on t1.CustId = t2.CustId
-			 and t2.ValidFrom = datefromparts(1900, 1, 1)
+		join vCurRightHolder t2 on t1.CustId = t2.CustId
 
 --select * from RightHolder
 
@@ -177,34 +152,34 @@ begin
 		, isnull(t3.LocalName, '')		as Name
 		, isnull(t3.WidName, '')		as NameForWid
 		, 0								as IsChanged
-		, 7								as Status -- Р—Р°РІРµСЂС€РµРЅРѕ
+		, 7								as Status -- Завершено
 		, getdate()						as CreatedAt
 		, null							as UpdatedAt
 	from SocWidSubmit..WidSubmGroupWork t1
 		left join SocWidSubmit..ObjIdToWic t2 on t1.ObjId = t2.ObjId
-		left join SocWidSubmit..WidSubmGroupWorkName t3 on t1.ObjId = t3.ObjId -- Р”РёРІРЅРёРј С‡РёРЅРѕРј РЅР°Р·РІРё РґРµСЏРєРёС… С‚РІРѕСЂС–РІ РІС‚СЂР°С‡РµРЅРѕ
+		left join SocWidSubmit..WidSubmGroupWorkName t3 on t1.ObjId = t3.ObjId -- Дивним чином назви деяких творів втрачено
 			and t3.IsMain = 1
 			and t3.WidSubmGroupId not in (2014, 2015)
-	where t1.Status = 10
+	where t1.Status in (5, 7, 10)
 		and t1.WidSubmGroupId not in (2014, 2015)
 
--- Р’С–РЅРѕРІР»РµРЅРЅСЏ РІС–РґСЃСѓС‚РЅС–С… РєРѕРґС–РІ ISWC
+-- Віновлення відсутніх кодів ISWC
 	--select * from SubmWork t1 left join SocWid..WidTitle t2 on t1.Wic = t2.Wic where trim(t1.Iswc) = '' and t2.Wic is null
-	--    РўРІРѕСЂРё Р·РЅР°С…РѕРґСЏС‚СЊСЃСЏ Р°Р»Рµ РЅРµ РјР°СЋС‚СЊ ISWC, С‚Р°Рє СЃР°РјРѕ РІ Р¦РёР·РќРµС‚
-	--    Р’Р†Р”РќРћР’Р›Р•РќРќРЇ РќР• РњРћР–Р›РР’Р•
+	--    Твори знаходяться але не мають ISWC, так само в ЦизНет
+	--    ВІДНОВЛЕННЯ НЕ МОЖЛИВЕ
 
--- Р’С–РЅРѕРІР»РµРЅРЅСЏ РІС–РґСЃСѓС‚РЅС–С… РєРѕРґС–РІ WIC
+-- Віновлення відсутніх кодів WIC
 	-- select * from SubmWork where Wic is null and Iswc = ''
-			-- Р”Р»СЏ РІСЃС–С… С‚Р°РєРёС… С‚РІРѕСЂС–РІ С” РєРѕРґ ISWC
+			-- Для всіх таких творів є код ISWC
 	--select * from SubmWork t1 left join SocWid..WIdIswc t2 on t1.Iswc = t2.Iswc	where t1.Wic is null and t1.Iswc <> ''
-				-- РўРІРѕСЂРё РЅРµ Р·РЅР°С…РѕРґСЏС‚СЊСЃСЏ РІ Р»РѕРєР°Р»СЊРЅС–Р№ Р’Р†Р” Р°Р»Рµ С–СЃРЅСѓСЋС‚СЊ РІ Р¦РёР·РќРµС‚
-	--    Р’Р†Р”РќРћР’Р›Р•РќРќРЇ РќР• РњРћР–Р›РР’Р• РќРђР РђР—Р†, РђР›Р• РџР†РЎР›РЇ Р’Р†Р”РќРћР’Р›Р•РќРќРЇ РџР•Р Р›Р†РљРђР¦Р†Р‡ Р’Р†Р” Р‘РЈР”Р• Р—Р”Р†Р™РЎРќР•РќРћ РћРљР Р•РњРћ
+				-- Твори не знаходяться в локальній ВІД але існують в ЦизНет
+	--    ВІДНОВЛЕННЯ НЕ МОЖЛИВЕ НАРАЗІ, АЛЕ ПІСЛЯ ВІДНОВЛЕННЯ ПЕРЛІКАЦІЇ ВІД БУДЕ ЗДІЙСНЕНО ОКРЕМО
 
--- Р’С–РЅРѕРІР»РµРЅРЅСЏ РЅР°Р·РІ РІ Р’Р†Р”
+-- Віновлення назв в ВІД
 	-- select * from SubmWork t1 where t1.Name = ''
-	-- Р›РѕРєР°Р»СЊРЅС– РЅР°Р·РІРё Р·Р°РІР¶РґРё РїСЂРёСЃСѓС‚РЅС–
+	-- Локальні назви завжди присутні
 
-	-- Р’С–РґРЅРѕРІР»СЋС”РјРѕ Р· РєРѕРґРѕРј WIC
+	-- Відновлюємо з кодом WIC
 	update t1
 	set t1.NameForWid = t2.WrkTtl
 	from SubmWork t1
@@ -212,19 +187,19 @@ begin
 	where t1.NameForWid = ''
 
 	-- select * from SubmWork t1 where t1.NameForWid = ''
-	-- Р”РµСЏРєС– РЅР°Р·РІРё РЅРµ РІС–РґРЅРѕРІРёР»РёСЃСЊ
-	-- РўРІРѕСЂРё РЅРµ Р·РЅР°С…РѕРґСЏС‚СЊСЃСЏ РІ Р»РѕРєР°Р»СЊРЅС–Р№ Р’Р†Р” Р°Р»Рµ С–СЃРЅСѓСЋС‚СЊ РІ Р¦РёР·РќРµС‚
+	-- Деякі назви не відновились
+	-- Твори не знаходяться в локальній ВІД але існують в ЦизНет
 	-- select *	from SubmWork t1 join SocWid..WidIswc t2 on t1.Iswc = t2.Iswc where t1.NameForWid = ''
-	-- Р’С–РґРЅРѕРІР»РµРЅРЅСЏ Р·Р° РєРѕРґРѕРј ISWC РЅРµ РґР°С” СЂРµР·СѓР»СЊС‚Р°С‚Сѓ
+	-- Відновлення за кодом ISWC не дає результату
 
-	-- Р’Р†Р”РќРћРЎР›Р®Р„РњРћ РЁР›РЇРҐРћРњ РўР РђРќР—Р›Р†РўР•Р РђР¦Р†Р‡
+	-- ВІДНОСЛЮЄМО ШЛЯХОМ ТРАНЗЛІТЕРАЦІЇ
 	update SubmWork
 	set NameForWid = dbo.ClrTranslitFromUkrToLat(Name)
 	from SubmWork
 	where NameForWid = ''
 
 	-- select * from SubmWork t1 where t1.NameForWid = ''
-	-- РќРђР—Р’Р Р’Р†Р” Р’Р†Р”РќРћР’Р›Р•РќР†
+	-- НАЗВИ ВІД ВІДНОВЛЕНІ
 
 -- SubmWorkShare
 	insert SubmWorkShare (
@@ -324,10 +299,11 @@ begin
       , PubShare0or100
       , MecShare0or100
       , HasShare
+	  , AllIpiCodesExist
       , AllIpiCodesValid
       , IsOk
 	)
-	select Id, 1, 1, 1, 1, 1, 1, 1, 1, 1
+	select Id, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 	from SubmWork
 
 -- ============================   NEXT SUBMISSION
@@ -349,7 +325,7 @@ begin
 		, ''											as SubmFileName
 		, ''											as RespFileName
 		, ''											as ErrorFileName
-		, 0												as SubmissionStatusID -- РїРѕС‡Р°С‚РєРѕРІРёР№
+		, 0												as SubmissionStatusID -- початковий
 		, getdate()										as CreatedAt
 		, null											as UpdatedAt
 
@@ -375,6 +351,3 @@ begin
 
 end
 go
-
--- exec spCreateInitialSubmission
-
