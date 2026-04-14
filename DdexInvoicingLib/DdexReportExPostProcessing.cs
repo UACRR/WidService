@@ -35,9 +35,10 @@ namespace InvoicingLib
                         int lastBlock = firstBlock + incr;
                         cmd.Parameters.AddWithValue("@firstBlock", firstBlock);
                         cmd.Parameters.AddWithValue("@lastBlock", lastBlock);
-                        cmd.CommandText = $@"
+
+                        var cmdText1 = $@"
                             insert IdentMw  (ResourceTitle, Title,      ComposerAuthor,    DisplayArtistName,    ISWC,    [status])
-                            select distinct  t1.asTitle,    t1.mwTitle, t1.composerauthor, t1.DisplayArtistName, t1.ISWC, 0
+                            select distinct left(t1.asTitle, 332), left(t1.mwTitle, 261), left(t1.composerauthor, 2054), left(t1.DisplayArtistName, 2054), left(t1.ISWC, 20), 0
                             from DdexIdentificationBacklog t1
                                 left join IdentMw t2 on 
                                             t2.ResourceTitle = t1.AsTitle 
@@ -50,7 +51,8 @@ namespace InvoicingLib
                                 and blockid >= @firstBlock 
                                 and blockId < @lastBlock 
                                 and t2.Title is null
-                            
+                        ";
+                        var cmdText2 = $@"
                             update [DdexIdentificationBacklog] 
                             set ExcStatus = 1 
                             where 
@@ -58,9 +60,15 @@ namespace InvoicingLib
                                 and blockid >= @firstBlock 
                                 and blockId < @lastBlock
                         ";
+
                         while (firstBlock <= maxBlock)
                         {
+                            cmd.CommandText = cmdText1;
                             cmd.ExecuteNonQuery();
+
+                            cmd.CommandText = cmdText2;
+                            cmd.ExecuteNonQuery();
+
                             int processedBlocks = lastBlock - 1 < maxBlock ? lastBlock - 1 : maxBlock;
                             Logger.WriteLine($"Оброблено {processedBlocks} блоків із {maxBlock}");
                             firstBlock = lastBlock;

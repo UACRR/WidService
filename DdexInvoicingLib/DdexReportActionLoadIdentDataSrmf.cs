@@ -81,6 +81,18 @@ namespace InvoicingLib
 
         private void InsertRecord(DdexReportBlockSrmf block)
         {
+            if
+            (
+                block.title.Length > 256         || // asTitle
+                block.artist.Length > 2000       || // displayartistname
+                block.comp_iswc.Length > 13      || // iswc
+                block.comp_title.Length > 256    || // mwtitle
+                block.comp_writers.Length > 2000    // composerauthor
+            )
+            {
+                return;
+            }
+
             try
             {
                 var data = new List<object>();
