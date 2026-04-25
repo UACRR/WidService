@@ -180,6 +180,7 @@
             this.MinimumSize = new System.Drawing.Size(16, 600);
             this.Name = "FormMain";
             this.Text = "Публікація творів у WID";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.panelMain.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);

@@ -46,6 +46,7 @@ namespace WidSubmit
 	        public int       SubmWorkShareId    { get; set; }
 	        public int       SubmWorkId         { get; set; }
             public bool      IsSubmWorkCnanged  { get; set; }
+            public int       CustId             { get; set; }
 	        public int       IpNameNr           { get; set; }
 	        public string    NameForWid         { get; set; }
 	        public string    FstNameForWid      { get; set; }
@@ -292,6 +293,7 @@ namespace WidSubmit
 	                  t1.Id						as SubmWorkShareId
 	                , t1.SubmWorkId				as SubmWorkId
                     , t2.IsChanged				as IsSubmWorkChanged
+	                , t3.CustId				    as CustId
 	                , t3.IpNameNr				as IpNameNr
 	                , t3.NameForWid				as NameForWid
 	                , t3.FstNameForWid			as FstNameForWid
@@ -318,6 +320,7 @@ namespace WidSubmit
                     share.SubmWorkShareId   = r.GetInt32(idx);                               idx++;
                     share.SubmWorkId        = r.GetInt32(idx);                               idx++;
                     share.IsSubmWorkCnanged = r.GetBoolean(idx);                             idx++;
+                    share.CustId            = r.GetInt32(idx);                               idx++;
                     share.IpNameNr          = r.GetInt32(idx);                               idx++;
                     share.NameForWid        = r.GetString(idx);                              idx++;
                     share.FstNameForWid     = r.GetString(idx);                              idx++;
@@ -343,10 +346,12 @@ namespace WidSubmit
                     TransSeqNr = "",
                     RecSeqNr = "",
                     Filler5 = "",
-                    IpNr = share.IpNameNr.ToString("D9"),
+                    IpNr = share.CustId.ToString(),
                     IpName = share.NameForWid,
                     IpFstName = share.FstNameForWid,
                     IpRole = share.RoleForWid,
+                    IpNameNr = share.IpNameNr.ToString("D11"),
+
                 };
 
                 share.RecSsrOsrPer  = new RecSsrOsr{

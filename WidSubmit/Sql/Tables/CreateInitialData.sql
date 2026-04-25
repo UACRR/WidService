@@ -4,9 +4,6 @@ go
 begin try
 begin tran
 
--- нмнбкч╙лн опюбнбкюмхй╡б, ына оепек╡й бйкчвюб бя╡у опхвермху дн пюм╡ь оепедюмху рбнп╡б
-	exec spRightHoldersUpdate
-
 -- бйкчвю╙лн б онвюрйнбхи яеюмя рбнпх сяо╡ьмн оепедюм╡ б оноепедмэнлс дндюрйс
 	exec spCreateInitialSubmission
 

@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WidSubmit.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static WidSubmit.UcSubmRightHolders;
 
@@ -71,7 +72,6 @@ namespace WidSubmit
         public event EventHandler RightHolderUnselected;
         public event EventHandler EditRightHoldersClicked;
 
-
         public UcSubmRightHolders()
         {
             InitializeComponent();
@@ -113,6 +113,45 @@ namespace WidSubmit
             panelRightHolders.RowStyles[8].Height = _showEditRightHoldersButton ? 30 : 0;
         }
         
+        public void InitProperties()
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+
+            _ignoreControlEvents = true;
+
+            tbRightHolderFilter.Text                    = Settings.Default.SubmRhSpecFilterText     ;
+            rbRightHolderFilterActive.Checked           = Settings.Default.SubmRhShowActiveChecked  ;
+            rbRightHolderFilterNotActive.Checked        = Settings.Default.SubmRhShowInactiveChecked;
+            rbRightHolderFilterActiveNotActive.Checked  = Settings.Default.SubmRhShowAllChecked     ;
+            cbRightHolderFilterEx.Checked               = Settings.Default.SubmRhShowSpecChecked    ;
+            rbRightHolderFilterOwn.Checked              = Settings.Default.SubmRhShowQwnChecked     ;
+            rbRightHolderFilterPublished.Checked        = Settings.Default.SubmRhShowPrevChecked    ;
+            for (int idx = 0; idx < lvRightHolders.Columns.Count; idx++)
+            {
+                lvRightHolders.Columns[idx].Width = int.Parse(Settings.Default.SubmRhListColWidth[idx]);
+            }
+            
+            _ignoreControlEvents = false;
+        }
+
+        public void UpdateProperties()
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+
+            Settings.Default.SubmRhSpecFilterText      = tbRightHolderFilter.Text                  ;
+            Settings.Default.SubmRhShowActiveChecked   = rbRightHolderFilterActive.Checked         ;
+            Settings.Default.SubmRhShowInactiveChecked = rbRightHolderFilterNotActive.Checked      ;
+            Settings.Default.SubmRhShowAllChecked      = rbRightHolderFilterActiveNotActive.Checked;
+            Settings.Default.SubmRhShowSpecChecked     = cbRightHolderFilterEx.Checked             ;
+            Settings.Default.SubmRhShowQwnChecked      = rbRightHolderFilterOwn.Checked            ;
+            Settings.Default.SubmRhShowPrevChecked     = rbRightHolderFilterPublished.Checked      ;
+            for (int idx = 0; idx < lvRightHolders.Columns.Count; idx++)
+            {
+                Settings.Default.SubmRhListColWidth[idx] = lvRightHolders.Columns[idx].Width.ToString();
+            }
+
+        }
+
         public void Init(PresentationMode presentationMode) 
         {
             _presentationMode = presentationMode;
@@ -342,6 +381,8 @@ namespace WidSubmit
 
         private void rbRightHolderFilterActive_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             Helpers.RunProtected(() =>
             {
                 FillLvRightHolders();
@@ -350,6 +391,8 @@ namespace WidSubmit
 
         private void rbRightHolderFilterNotActive_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             Helpers.RunProtected(() =>
             {
                 FillLvRightHolders();
@@ -358,6 +401,8 @@ namespace WidSubmit
 
         private void rbRightHolderFilterActiveNotActive_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             Helpers.RunProtected(() =>
             {
                 FillLvRightHolders();
@@ -366,6 +411,8 @@ namespace WidSubmit
 
         private void cbRightHolderFilterEx_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             Helpers.RunProtected(() =>
             {
                 rbRightHolderFilterOwn              .Enabled = cbRightHolderFilterEx.Checked;
@@ -376,6 +423,8 @@ namespace WidSubmit
 
         private void rbRightHolderFilterOwn_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             Helpers.RunProtected(() =>
             {
                 FillLvRightHolders();
@@ -384,6 +433,8 @@ namespace WidSubmit
 
         private void rbRightHolderFilterPublished_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             Helpers.RunProtected(() =>
             {
                 FillLvRightHolders();

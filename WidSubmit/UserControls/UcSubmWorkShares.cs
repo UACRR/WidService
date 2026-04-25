@@ -14,6 +14,22 @@ namespace WidSubmit
     public partial class UcSubmWorkShares : UserControl
     {
 
+        private enum DetailItemIndexEnum
+        {
+            RhCustId     ,
+            RhIpBaseNr   ,
+            RhIpNameNr   ,
+            RhName       ,
+            RhNameForWid ,
+            RhTypeName   ,
+            RhRoleName   ,
+            RhRoleForWid ,
+            RhIsOwn      ,
+            RhIsActive   ,
+            RhShrPer     ,
+            RhShrMec     ,
+        }
+
         public enum StatusImageIndex
         {
 	          CURRENT
@@ -338,6 +354,7 @@ namespace WidSubmit
         private void FillLvDetails()
         {
             lvDetails.Items.Clear();
+            btnCorrect.Enabled = false;
             if(lvSubmWorkShares.SelectedItems.Count == 0)
             {
                 return;
@@ -390,6 +407,37 @@ namespace WidSubmit
         private void lvDetails_MouseDown(object sender, MouseEventArgs e)
         {
             Helpers.CopyCellValue(e, lvDetails);
+        }
+
+        private void lvDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnCorrect.Enabled = false;
+            if(lvDetails.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var selectedItem = lvDetails.SelectedItems[0];
+            var detailsItemIndex = selectedItem.Index;
+            switch((DetailItemIndexEnum)detailsItemIndex)
+            {
+                case DetailItemIndexEnum.RhIpBaseNr:
+                case DetailItemIndexEnum.RhIpNameNr:
+                    if(selectedItem.StateImageIndex == (int)StatusImageIndex.FAILED)
+                    {
+                        btnCorrect.Enabled = true;
+                    }
+                    break;
+                default:
+                    btnCorrect.Enabled = false;
+                    break;
+            }
+        }
+
+        private void btnCorrect_Click(object sender, EventArgs e)
+        {
+            var form = new FormCorrectIpiInfo();
+            form.ShowDialog();
         }
     }
 }

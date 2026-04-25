@@ -29,4 +29,11 @@ namespace WidSubmit
 	    , APPLIED
 	    , COMPLETED
     }
+
+	public enum PubStatusEnum
+	{
+		NOT_SENT,
+		ACCEPTED,
+		REJECTED,
+	}
 }

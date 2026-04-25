@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WidSubmit.Properties;
 using static WidSubmit.UcSubmRightHolders;
 
 namespace WidSubmit
@@ -15,15 +16,16 @@ namespace WidSubmit
     {
         public class SubmWork
         {
-	        public int      Id               { get; set; }
-	        public int      SubmissionId     { get; set; }
-	        public int      ObjId            { get; set; }
-	        public int?     Wic              { get; set; }
-            public string   Iswc             { get; set; }
-	        public string   Name             { get; set; }
-	        public string   NameForWid	     { get; set; }
-	        public bool     IsChanged	     { get; set; }
-            public int      Status	         { get; set; }
+	        public int      Id           { get; set; }
+	        public int      SubmissionId { get; set; }
+	        public int      ObjId        { get; set; }
+	        public int?     Wic          { get; set; }
+            public string   Iswc         { get; set; }
+	        public string   Name         { get; set; }
+	        public string   NameForWid	 { get; set; }
+	        public bool     IsChanged	 { get; set; }
+            public int      Status	     { get; set; }
+            public int      PubStatus    { get; set; } // В попередньому сенасі, для поточного визначається статусом
         }
 
         private static readonly string[] _submWorkStatusText = new string[]
@@ -38,6 +40,13 @@ namespace WidSubmit
 	        , "Завершений"          //COMPLETED
         };
 
+        private static readonly string[] _pubStatusText = new string[]
+        {
+	          "Не передавався"  //NOT_SENT
+	        , "Прийнятий"       //ACCEPTED
+	        , "Відхилений"      //REJECTED
+        };
+
         private int _submissionId;
 
         private List<SubmWork>      _submWorks;
@@ -48,6 +57,8 @@ namespace WidSubmit
         private bool _isSuscribedToEvents;
 
         private bool _isDirty;
+
+        private bool _ignoreControlEvents = false;
 
         public UcSubmWorks()
         {
@@ -60,6 +71,51 @@ namespace WidSubmit
         private void UcSubmWorks_Load(object sender, EventArgs e)
         {
             Configure();
+            InitProperties();
+        }
+
+        private void InitProperties()
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+
+            _ignoreControlEvents = true;
+            rbFilterSubmittedNo.Checked = Settings.Default.CurSubmWorkSubmittedNoChecked;
+            rbFilterSubmittedYes.Checked = Settings.Default.CurSubmWorkSubmittedYesChecked;
+            rbFilterSubmittedAll.Checked = Settings.Default.CurSubmWorkSubmittedAllChecked;
+            cbFilterByStatus.SelectedIndex = Settings.Default.CurSubmWorkStatusSelIndex;
+            tbSubmWorkExFilter.Text = Settings.Default.CurSubmWorkSpecFilterText;
+            panelMiddle.SplitterDistance = Settings.Default.CurSubmWorkMiddleSplitterDist;
+            panelWorks.SplitterDistance = Settings.Default.CurSubmWorkListSplitterDist;
+            for (int idx = 0; idx < lvSubmWorks.Columns.Count; idx++)
+            {
+                lvSubmWorks.Columns[idx].Width = int.Parse(Settings.Default.CurSubmWorkListColWidth[idx]);
+            }
+
+            panelWorkDetails.TabIndex = Settings.Default.CurSubmWorkDetailsTabIndex;
+
+            _ignoreControlEvents = false;
+
+            ucSubmRightHolders.InitProperties();
+        }
+
+        public void UpdateProperties()
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+
+            Settings.Default.CurSubmWorkSubmittedNoChecked = rbFilterSubmittedNo.Checked;
+            Settings.Default.CurSubmWorkSubmittedYesChecked = rbFilterSubmittedYes.Checked;
+            Settings.Default.CurSubmWorkSubmittedAllChecked = rbFilterSubmittedAll.Checked;
+            Settings.Default.CurSubmWorkStatusSelIndex = cbFilterByStatus.SelectedIndex;
+            Settings.Default.CurSubmWorkSpecFilterText = tbSubmWorkExFilter.Text;
+            Settings.Default.CurSubmWorkMiddleSplitterDist = panelMiddle.SplitterDistance;
+            Settings.Default.CurSubmWorkListSplitterDist = panelWorks.SplitterDistance;
+
+            for (int idx = 0; idx < lvSubmWorks.Columns.Count; idx++)
+            {
+                Settings.Default.CurSubmWorkListColWidth[idx] = lvSubmWorks.Columns[idx].Width.ToString();
+            }
+
+            ucSubmRightHolders.UpdateProperties();
         }
 
         private void Configure()
@@ -73,9 +129,9 @@ namespace WidSubmit
             lvSubmWorks.View = View.Details;
 
             lvSubmWorks.Columns.Clear();
-            lvSubmWorks.Columns.Add("№", 40);
+            lvSubmWorks.Columns.Add("", 40);
             lvSubmWorks.Columns.Add("Статус в сеансі", 100);
-            lvSubmWorks.Columns.Add("Попередня передача", 100);
+            lvSubmWorks.Columns.Add("Попередня відповідь", 100);
             lvSubmWorks.Columns.Add("Код СМАРТ", 80);
             lvSubmWorks.Columns.Add("Код WID", 80);
             lvSubmWorks.Columns.Add("ISWC", 80);
@@ -166,6 +222,7 @@ namespace WidSubmit
 	                    work.NameForWid         = r.GetString(idx);                               idx++;
                         work.IsChanged          = r.GetBoolean(idx);                              idx++;
                         work.Status             = r.GetInt32(idx);                                idx++;
+                        work.PubStatus          = r.GetInt32(idx);                                idx++;
                         
                         _submWorks.Add(work);
                     }
@@ -206,7 +263,7 @@ namespace WidSubmit
                 {
                     var item = new ListViewItem(seqNr.ToString());
                     item.SubItems.Add(_submWorkStatusText[x.Status]);
-                    item.SubItems.Add("Не передавався");
+                    item.SubItems.Add(_isHistoryMode ? "" : _pubStatusText[x.PubStatus]);
                     item.SubItems.Add(x.ObjId.ToString());
                     item.SubItems.Add(x.Wic == null ? "" : x.Wic.ToString());
                     item.SubItems.Add(x.Iswc);
@@ -269,10 +326,11 @@ namespace WidSubmit
                 case 5: ucSubmWorkSharesDiff.UpdateContent(submWork.Id); break;
             }
         }
- 
 
         private void rbFilterSubmittedNo_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             ClearTabControls();
             Helpers.RunProtected(() =>
             {
@@ -282,6 +340,8 @@ namespace WidSubmit
 
         private void rbFilterSubmittedYes_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             ClearTabControls();
             Helpers.RunProtected(() =>
             {
@@ -291,6 +351,8 @@ namespace WidSubmit
 
         private void rbFilterSubmittedAll_CheckedChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             ClearTabControls();
             Helpers.RunProtected(() =>
             {
@@ -300,6 +362,8 @@ namespace WidSubmit
 
         private void lvSubmWorks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             ClearTabControls();
             if (lvSubmWorks.SelectedItems.Count == 0)
             {
@@ -319,6 +383,8 @@ namespace WidSubmit
 
         private void cbFilterByStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             if(cbFilterByStatus.SelectedIndex == -1 || _submWorks == null) return;
 
             ClearTabControls();
@@ -331,6 +397,8 @@ namespace WidSubmit
 
         private void tbSubmWorkExFilter_TextChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             btnSubmWorkApplyExFilter.Enabled = true;
         }
 
@@ -436,6 +504,8 @@ namespace WidSubmit
 
         private void panelWorkDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(_ignoreControlEvents) return;
+
             UpdateTabControls();
         }
     }

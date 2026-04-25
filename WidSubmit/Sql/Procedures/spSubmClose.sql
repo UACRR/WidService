@@ -95,5 +95,15 @@ begin
 -- Оновлюємо твори новоствореного сеансу
 	exec spSubmWorksUpdate
 
+-- Оновлюємо перелік останніх отриманих відповідей (слід робити після створення нового ссеансу)
+	truncate table SubmWorkLastPubResult
+	insert SubmWorkLastPubResult(SubmWorkId, ObjId, SubmWorkPubStatusId)
+	select 
+		  Id
+		, ObjId
+		, case when Status = 5 then 2 else 1 end
+	from vLastRespondedSubmWorks
+
+
 end
 go

@@ -181,7 +181,7 @@ namespace WidSubmit
             });
 
             //!!!!!!!!!!!!!!!!!!!! Для тестування
-            curSubmFileName = "WID20260406124038140300.021";
+            //curSubmFileName = "WID20260406124038140300.021";
 
             // Завантажуємо з ФТП повний перелік файлів відповіді
             var appSettings = ConfigurationManager.AppSettings;

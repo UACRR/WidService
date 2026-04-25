@@ -161,21 +161,21 @@ begin
 	from #CheckList t1
 		join InvalidWorkIds t2 on t1.SubmWorkId = t2.SubmWorkId
 
-	-- Коди всіх авторів існують в IPI і мають вірний статус (1)
-	; with InvalidWorkIds as (
-		select t1.SubmWorkId
-			, max(case when t3.SttCde is null then 5 else t3.SttCde end) as SttCde
-		from #ShareRightHolders t1
-			left join SocIpi..IpiBase t2 on t1.IpBaseNr = t2.IpBaseNr
-			left join SocIpi..IpiStatus t3 on t2.IpBaseNr = t3.IpBaseNr
-		where isnull(t1.IpBaseNr, '') <> ''
-		group by t1.SubmWorkId
-		having max(case when t3.SttCde is null then 5 else t3.SttCde end) <> 1
-	)
-	update t1
-	set t1.AllIpiCodesValid = 0
-	from #CheckList t1
-		join InvalidWorkIds t2 on t1.SubmWorkId = t2.SubmWorkId
+	-- Коди всіх авторів існують в IPI і мають вірний статус (1) - тимчасово не виконуємо
+--	; with InvalidWorkIds as (
+--		select t1.SubmWorkId
+--			, max(case when t3.SttCde is null then 5 else t3.SttCde end) as SttCde
+--		from #ShareRightHolders t1
+--			left join SocIpi..IpiBase t2 on t1.IpBaseNr = t2.IpBaseNr
+--			left join SocIpi..IpiStatus t3 on t2.IpBaseNr = t3.IpBaseNr
+--		where isnull(t1.IpBaseNr, '') <> ''
+--		group by t1.SubmWorkId
+--		having max(case when t3.SttCde is null then 5 else t3.SttCde end) <> 1
+--	)
+--	update t1
+--	set t1.AllIpiCodesValid = 0
+--	from #CheckList t1
+--		join InvalidWorkIds t2 on t1.SubmWorkId = t2.SubmWorkId
 	
 	--  В підсумку
 	update #CheckList

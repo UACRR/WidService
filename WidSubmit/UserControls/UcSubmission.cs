@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WidSubmit.Properties;
 
 namespace WidSubmit
 {
@@ -16,6 +17,15 @@ namespace WidSubmit
         {
             InitializeComponent();
             ucSubmProcessControl.WorksUpdated += UcSubmProcessControl_WorksUpdated;
+        }
+
+        private void InitProperties()
+        {
+        }
+
+        public void UpdateProperties()
+        {
+            ucSubmWorks.UpdateProperties();
         }
 
         public void UpdateContent()

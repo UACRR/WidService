@@ -95,9 +95,9 @@ select
 --	, null as TaxIDNr
 	, t3.IPIBase as PublisherIPNameNr
 --	, null as SubmAgrNr
-	, '140' as AffSocNrPR
+	, '   ' as AffSocNrPR
 	, cast(t2.rate * 100 as int) as OwnShrPR
-	, '140' as SocMR
+	, '   ' as SocMR
 	, cast(t2.rateMech * 100 as int) as OwnShrMR
 --	, null as SocSR
 --	, null as OwnShrSR
@@ -174,9 +174,9 @@ select
 	, dbo.fnGetSwrRole(1, t2.RoleCode) as WriterDesignationCode
 	--, null as TaxIDNr
 	, t2.IpNameNr as WriterIpNameNr
-	--, null as AffSocNrPR
+	, null as AffSocNrPR
 	, cast(t2.PerShr * 100 as int) as OwnShrPR
-	-- , null as SocMR
+	 , null as SocMR
 	, cast (t2.MecShr * 100 as int) as OwnShrMR
 	--, null as SocSR
 	--, null as OwnShrSR

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WidSubmit.Properties;
 
 namespace WidSubmit.UserControls
 {
@@ -40,6 +41,14 @@ namespace WidSubmit.UserControls
         private void Configure()
         {
 
+        }
+
+        private void InitProperties()
+        {
+        }
+
+        public void UpdateProperties()
+        {
         }
 
         public void UpdateContent()

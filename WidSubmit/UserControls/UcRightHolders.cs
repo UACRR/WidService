@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WidSubmit.Properties;
 
 namespace WidSubmit
 {
@@ -62,7 +63,7 @@ namespace WidSubmit
         {
             Configure();
         }
-
+        
         public void SetDirty() => _isDirty = true;
 
         public void UpdateContent()
@@ -204,8 +205,8 @@ namespace WidSubmit
                         rh.FstNameForWid    = r.GetString(idx);                                 idx++;
                         rh.IsOwn	        = r.GetBoolean(idx);                                idx++;
 	                    rh.IsActive	        = r.GetBoolean(idx);                                idx++;
-                        rh.HasIpiAgreePer	= r.GetBoolean(idx);                                idx++;
-                        rh.HasIpiAgreeMec	= r.GetBoolean(idx);                                idx++;
+                        //rh.HasIpiAgreePer	= r.GetBoolean(idx);                                idx++;
+                        //rh.HasIpiAgreeMec	= r.GetBoolean(idx);                                idx++;
 
                         _rightHolders.Add(rh);
                     }
@@ -259,8 +260,8 @@ namespace WidSubmit
                         rh.FstNameForWid    = r.GetString(idx);                                 idx++;
                         rh.IsOwn	        = r.GetBoolean(idx);                                idx++;
 	                    rh.IsActive	        = r.GetBoolean(idx);                                idx++;
-                        rh.HasIpiAgreePer	= r.GetBoolean(idx);                                idx++;
-                        rh.HasIpiAgreeMec	= r.GetBoolean(idx);                                idx++;
+                        //rh.HasIpiAgreePer	= r.GetBoolean(idx);                                idx++;
+                        //rh.HasIpiAgreeMec	= r.GetBoolean(idx);                                idx++;
 
                         _rightHolderHist.Add(rh);
                     }
@@ -349,8 +350,8 @@ namespace WidSubmit
             lvRightHolderHist.Items.Add(new ListViewItem("Договір з УААСП активний"));
             lvRightHolderHist.Items.Add(new ListViewItem("Базовий код в IPI"));
             lvRightHolderHist.Items.Add(new ListViewItem("Код назви в IPI"));
-            lvRightHolderHist.Items.Add(new ListViewItem("Має договір з УААСП в IPI для пуб"));
-            lvRightHolderHist.Items.Add(new ListViewItem("Має договір з УААСП в IPI для мех"));
+            //lvRightHolderHist.Items.Add(new ListViewItem("Має договір з УААСП в IPI для пуб"));
+            //lvRightHolderHist.Items.Add(new ListViewItem("Має договір з УААСП в IPI для мех"));
             lvRightHolderHist.Items.Add(new ListViewItem("Назва в СМАРТ"));
             
             _rightHolderHist.ForEach(x =>
@@ -368,8 +369,8 @@ namespace WidSubmit
                 items[itemIdx++].SubItems.Add(x.IsActive ? "так" : "ні");
                 items[itemIdx++].SubItems.Add(x.IpBaseNr == null ? "" : x.IpBaseNr);
                 items[itemIdx++].SubItems.Add(x.IpNameNr == null ? "" : x.IpNameNr.ToString());
-                items[itemIdx++].SubItems.Add(x.HasIpiAgreePer ? "так" : "ні");
-                items[itemIdx++].SubItems.Add(x.HasIpiAgreeMec ? "так" : "ні");
+                //items[itemIdx++].SubItems.Add(x.HasIpiAgreePer ? "так" : "ні");
+                //items[itemIdx++].SubItems.Add(x.HasIpiAgreeMec ? "так" : "ні");
                 items[itemIdx++].SubItems.Add($"{x.Name} {x.FstName}".Trim());
             });
             lvRightHolderHist.EndUpdate();
@@ -395,8 +396,8 @@ namespace WidSubmit
                 item.SubItems.Add(x.IsActive ? "так" : "ні");
                 item.SubItems.Add(x.IpBaseNr == null ? "" : x.IpBaseNr);
                 item.SubItems.Add(x.IpNameNr == null ? "" : x.IpNameNr.ToString());
-                item.SubItems.Add(x.HasIpiAgreePer ? "так" : "ні");
-                item.SubItems.Add(x.HasIpiAgreeMec ? "так" : "ні");
+                //item.SubItems.Add(x.HasIpiAgreePer ? "так" : "ні");
+                //item.SubItems.Add(x.HasIpiAgreeMec ? "так" : "ні");
                 item.SubItems.Add($"{x.Name} {x.FstName}".Trim());
                 item.ImageIndex = x.ValidTo == new DateTime(9999, 12, 31) ? !x.IsOwn ? 4 : x.IsActive ? 2 : 3 : 4;
                 item.Tag = x;

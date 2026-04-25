@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WidSubmit.Properties;
 
 namespace WidSubmit
 {
@@ -24,6 +25,8 @@ namespace WidSubmit
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            this.Size = Settings.Default.FormMainSize;
+            this.Location = Settings.Default.FormMainLocation;
             UpdateContent();
         }
 
@@ -68,5 +71,17 @@ namespace WidSubmit
         {
             UpdateContent();
          }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ucSubmission    .UpdateProperties();
+            //ucRightHolders  .UpdateProperties();
+            ucSubmWorksHist .UpdateProperties();
+
+            Settings.Default.FormMainSize = this.Size;
+            Settings.Default.FormMainLocation = this.Location;
+
+            Settings.Default.Save();
+        }
     }
 }

@@ -33,7 +33,6 @@
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMiddle = new System.Windows.Forms.SplitContainer();
-            this.ucSubmRightHolders = new WidSubmit.UcSubmRightHolders();
             this.panelWorks = new System.Windows.Forms.SplitContainer();
             this.panelWorkList = new System.Windows.Forms.TableLayoutPanel();
             this.lvSubmWorks = new System.Windows.Forms.ListView();
@@ -63,20 +62,21 @@
             this.ilButtonIcons = new System.Windows.Forms.ImageList(this.components);
             this.panelWorkDetails = new System.Windows.Forms.TabControl();
             this.tabRightHolders = new System.Windows.Forms.TabPage();
-            this.ucSubmWorkShares = new WidSubmit.UcSubmWorkShares();
             this.tabAltNames = new System.Windows.Forms.TabPage();
-            this.ucSubmWorkAltNames = new WidSubmit.UcSubmWorkAltNames();
             this.tabPerformers = new System.Windows.Forms.TabPage();
-            this.ucSubmWorkPerformers = new WidSubmit.UcSubmWorkPerformers();
             this.tabSubmProblems = new System.Windows.Forms.TabPage();
-            this.ucSubmWorkCheckList = new WidSubmit.UcSubmWorkCheckList();
             this.tabRespProblems = new System.Windows.Forms.TabPage();
-            this.ucSubmWorkRespErr = new WidSubmit.UcSubmWorkRespErr();
             this.tabRghtHoldersDiff = new System.Windows.Forms.TabPage();
-            this.ucSubmWorkSharesDiff = new WidSubmit.UcSubmWorkSharesDiff();
             this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timerUpdateContent = new System.Windows.Forms.Timer(this.components);
+            this.ucSubmRightHolders = new WidSubmit.UcSubmRightHolders();
+            this.ucSubmWorkShares = new WidSubmit.UcSubmWorkShares();
+            this.ucSubmWorkAltNames = new WidSubmit.UcSubmWorkAltNames();
+            this.ucSubmWorkPerformers = new WidSubmit.UcSubmWorkPerformers();
+            this.ucSubmWorkCheckList = new WidSubmit.UcSubmWorkCheckList();
+            this.ucSubmWorkRespErr = new WidSubmit.UcSubmWorkRespErr();
+            this.ucSubmWorkSharesDiff = new WidSubmit.UcSubmWorkSharesDiff();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddle)).BeginInit();
             this.panelMiddle.Panel1.SuspendLayout();
@@ -148,14 +148,6 @@
             this.panelMiddle.Size = new System.Drawing.Size(1128, 501);
             this.panelMiddle.SplitterDistance = 379;
             this.panelMiddle.TabIndex = 1;
-            // 
-            // ucSubmRightHolders
-            // 
-            this.ucSubmRightHolders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmRightHolders.Location = new System.Drawing.Point(0, 0);
-            this.ucSubmRightHolders.Name = "ucSubmRightHolders";
-            this.ucSubmRightHolders.Size = new System.Drawing.Size(379, 501);
-            this.ucSubmRightHolders.TabIndex = 2;
             // 
             // panelWorks
             // 
@@ -494,15 +486,6 @@
             this.tabRightHolders.Text = "Проценти правовласників";
             this.tabRightHolders.UseVisualStyleBackColor = true;
             // 
-            // ucSubmWorkShares
-            // 
-            this.ucSubmWorkShares.AutoScroll = true;
-            this.ucSubmWorkShares.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkShares.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkShares.Name = "ucSubmWorkShares";
-            this.ucSubmWorkShares.Size = new System.Drawing.Size(731, 202);
-            this.ucSubmWorkShares.TabIndex = 0;
-            // 
             // tabAltNames
             // 
             this.tabAltNames.Controls.Add(this.ucSubmWorkAltNames);
@@ -513,14 +496,6 @@
             this.tabAltNames.TabIndex = 1;
             this.tabAltNames.Text = "Альтернативні назви";
             this.tabAltNames.UseVisualStyleBackColor = true;
-            // 
-            // ucSubmWorkAltNames
-            // 
-            this.ucSubmWorkAltNames.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkAltNames.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkAltNames.Name = "ucSubmWorkAltNames";
-            this.ucSubmWorkAltNames.Size = new System.Drawing.Size(731, 202);
-            this.ucSubmWorkAltNames.TabIndex = 0;
             // 
             // tabPerformers
             // 
@@ -533,14 +508,6 @@
             this.tabPerformers.Text = "Виконавці";
             this.tabPerformers.UseVisualStyleBackColor = true;
             // 
-            // ucSubmWorkPerformers
-            // 
-            this.ucSubmWorkPerformers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkPerformers.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkPerformers.Name = "ucSubmWorkPerformers";
-            this.ucSubmWorkPerformers.Size = new System.Drawing.Size(731, 202);
-            this.ucSubmWorkPerformers.TabIndex = 0;
-            // 
             // tabSubmProblems
             // 
             this.tabSubmProblems.Controls.Add(this.ucSubmWorkCheckList);
@@ -551,14 +518,6 @@
             this.tabSubmProblems.TabIndex = 3;
             this.tabSubmProblems.Text = "Проблеми для передачі";
             this.tabSubmProblems.UseVisualStyleBackColor = true;
-            // 
-            // ucSubmWorkCheckList
-            // 
-            this.ucSubmWorkCheckList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkCheckList.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkCheckList.Name = "ucSubmWorkCheckList";
-            this.ucSubmWorkCheckList.Size = new System.Drawing.Size(731, 202);
-            this.ucSubmWorkCheckList.TabIndex = 0;
             // 
             // tabRespProblems
             // 
@@ -571,14 +530,6 @@
             this.tabRespProblems.Text = "Проблеми із відповіді";
             this.tabRespProblems.UseVisualStyleBackColor = true;
             // 
-            // ucSubmWorkRespErr
-            // 
-            this.ucSubmWorkRespErr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkRespErr.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmWorkRespErr.Name = "ucSubmWorkRespErr";
-            this.ucSubmWorkRespErr.Size = new System.Drawing.Size(731, 202);
-            this.ucSubmWorkRespErr.TabIndex = 0;
-            // 
             // tabRghtHoldersDiff
             // 
             this.tabRghtHoldersDiff.Controls.Add(this.ucSubmWorkSharesDiff);
@@ -589,15 +540,6 @@
             this.tabRghtHoldersDiff.TabIndex = 5;
             this.tabRghtHoldersDiff.Text = "Зміни";
             this.tabRghtHoldersDiff.UseVisualStyleBackColor = true;
-            // 
-            // ucSubmWorkSharesDiff
-            // 
-            this.ucSubmWorkSharesDiff.AutoScroll = true;
-            this.ucSubmWorkSharesDiff.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmWorkSharesDiff.Location = new System.Drawing.Point(0, 0);
-            this.ucSubmWorkSharesDiff.Name = "ucSubmWorkSharesDiff";
-            this.ucSubmWorkSharesDiff.Size = new System.Drawing.Size(737, 208);
-            this.ucSubmWorkSharesDiff.TabIndex = 0;
             // 
             // ilStatuses
             // 
@@ -622,6 +564,64 @@
             // 
             this.timerUpdateContent.Interval = 1;
             this.timerUpdateContent.Tick += new System.EventHandler(this.timerUpdateContent_Tick);
+            // 
+            // ucSubmRightHolders
+            // 
+            this.ucSubmRightHolders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmRightHolders.Location = new System.Drawing.Point(0, 0);
+            this.ucSubmRightHolders.Name = "ucSubmRightHolders";
+            this.ucSubmRightHolders.Size = new System.Drawing.Size(379, 501);
+            this.ucSubmRightHolders.TabIndex = 2;
+            // 
+            // ucSubmWorkShares
+            // 
+            this.ucSubmWorkShares.AutoScroll = true;
+            this.ucSubmWorkShares.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkShares.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkShares.Name = "ucSubmWorkShares";
+            this.ucSubmWorkShares.Size = new System.Drawing.Size(731, 202);
+            this.ucSubmWorkShares.TabIndex = 0;
+            // 
+            // ucSubmWorkAltNames
+            // 
+            this.ucSubmWorkAltNames.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkAltNames.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkAltNames.Name = "ucSubmWorkAltNames";
+            this.ucSubmWorkAltNames.Size = new System.Drawing.Size(731, 202);
+            this.ucSubmWorkAltNames.TabIndex = 0;
+            // 
+            // ucSubmWorkPerformers
+            // 
+            this.ucSubmWorkPerformers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkPerformers.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkPerformers.Name = "ucSubmWorkPerformers";
+            this.ucSubmWorkPerformers.Size = new System.Drawing.Size(731, 202);
+            this.ucSubmWorkPerformers.TabIndex = 0;
+            // 
+            // ucSubmWorkCheckList
+            // 
+            this.ucSubmWorkCheckList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkCheckList.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkCheckList.Name = "ucSubmWorkCheckList";
+            this.ucSubmWorkCheckList.Size = new System.Drawing.Size(731, 202);
+            this.ucSubmWorkCheckList.TabIndex = 0;
+            // 
+            // ucSubmWorkRespErr
+            // 
+            this.ucSubmWorkRespErr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkRespErr.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmWorkRespErr.Name = "ucSubmWorkRespErr";
+            this.ucSubmWorkRespErr.Size = new System.Drawing.Size(731, 202);
+            this.ucSubmWorkRespErr.TabIndex = 0;
+            // 
+            // ucSubmWorkSharesDiff
+            // 
+            this.ucSubmWorkSharesDiff.AutoScroll = true;
+            this.ucSubmWorkSharesDiff.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmWorkSharesDiff.Location = new System.Drawing.Point(0, 0);
+            this.ucSubmWorkSharesDiff.Name = "ucSubmWorkSharesDiff";
+            this.ucSubmWorkSharesDiff.Size = new System.Drawing.Size(737, 208);
+            this.ucSubmWorkSharesDiff.TabIndex = 0;
             // 
             // UcSubmWorks
             // 

@@ -191,7 +191,6 @@ namespace WidSubmit
                     {
                           SubmStatusEnum.INITIAL
                         , SubmStatusEnum.SUBM_FILE_CREATED
-                        , SubmStatusEnum.SUBM_FILE_UPLOADED
                     },
                 },
                 new SubmStep {
@@ -209,9 +208,9 @@ namespace WidSubmit
                     },
                     SubmStatuses = new List<SubmStatusEnum>
                     {
-                          SubmStatusEnum.RESP_WRONG_SUBM_FILE
+                          SubmStatusEnum.SUBM_FILE_UPLOADED
+                        , SubmStatusEnum.RESP_WRONG_SUBM_FILE
                         , SubmStatusEnum.RESP_FILE_DOWNLOADED
-                        , SubmStatusEnum.RESP_FILE_PROCESSED
                     },
                 },
                 new SubmStep {
@@ -226,7 +225,8 @@ namespace WidSubmit
                     },
                     SubmStatuses = new List<SubmStatusEnum>
                     {
-                          SubmStatusEnum.ISWC_CODES_PASSED_TO_MS
+                          SubmStatusEnum.RESP_FILE_PROCESSED
+                        , SubmStatusEnum.ISWC_CODES_PASSED_TO_MS
                         , SubmStatusEnum.COMPLETED
                     },
                 },
@@ -259,8 +259,8 @@ namespace WidSubmit
             {
                 var minSubmStatus = step.SubmStatuses.Min(x => x);
                 var maxSubmStatus = step.SubmStatuses.Max(x => x);
-                step.StatusLabel.Text = (int)maxSubmStatus < submStatusId ? GetStatusText((int)maxSubmStatus) :
-                    (int)minSubmStatus > submStatusId ? "Не розпочато" :
+                step.StatusLabel.Text = (int)maxSubmStatus <= submStatusId ? GetStatusText((int)maxSubmStatus) :
+                    (int)minSubmStatus >= submStatusId ? "Не розпочато" :
                     GetStatusText(submStatusId);
             });
         }

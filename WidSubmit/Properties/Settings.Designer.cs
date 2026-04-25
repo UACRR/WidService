@@ -8,22 +8,267 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WidSubmit.Properties
-{
-
-
+namespace WidSubmit.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.11.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("qwerty")]
+        public string CurSubmWorkSpecFilterText {
+            get {
+                return ((string)(this["CurSubmWorkSpecFilterText"]));
+            }
+            set {
+                this["CurSubmWorkSpecFilterText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("600")]
+        public int CurSubmWorkListSplitterDist {
+            get {
+                return ((int)(this["CurSubmWorkListSplitterDist"]));
+            }
+            set {
+                this["CurSubmWorkListSplitterDist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int CurSubmWorkMiddleSplitterDist {
+            get {
+                return ((int)(this["CurSubmWorkMiddleSplitterDist"]));
+            }
+            set {
+                this["CurSubmWorkMiddleSplitterDist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size FormMainSize {
+            get {
+                return ((global::System.Drawing.Size)(this["FormMainSize"]));
+            }
+            set {
+                this["FormMainSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point FormMainLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["FormMainLocation"]));
+            }
+            set {
+                this["FormMainLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CurSubmWorkSubmittedNoChecked {
+            get {
+                return ((bool)(this["CurSubmWorkSubmittedNoChecked"]));
+            }
+            set {
+                this["CurSubmWorkSubmittedNoChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CurSubmWorkSubmittedYesChecked {
+            get {
+                return ((bool)(this["CurSubmWorkSubmittedYesChecked"]));
+            }
+            set {
+                this["CurSubmWorkSubmittedYesChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CurSubmWorkSubmittedAllChecked {
+            get {
+                return ((bool)(this["CurSubmWorkSubmittedAllChecked"]));
+            }
+            set {
+                this["CurSubmWorkSubmittedAllChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CurSubmWorkStatusSelIndex {
+            get {
+                return ((int)(this["CurSubmWorkStatusSelIndex"]));
+            }
+            set {
+                this["CurSubmWorkStatusSelIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection CurSubmWorkListColWidth {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["CurSubmWorkListColWidth"]));
+            }
+            set {
+                this["CurSubmWorkListColWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CurSubmWorkDetailsTabIndex {
+            get {
+                return ((int)(this["CurSubmWorkDetailsTabIndex"]));
+            }
+            set {
+                this["CurSubmWorkDetailsTabIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SubmRhSpecFilterText {
+            get {
+                return ((string)(this["SubmRhSpecFilterText"]));
+            }
+            set {
+                this["SubmRhSpecFilterText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SubmRhShowAllChecked {
+            get {
+                return ((bool)(this["SubmRhShowAllChecked"]));
+            }
+            set {
+                this["SubmRhShowAllChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SubmRhShowActiveChecked {
+            get {
+                return ((bool)(this["SubmRhShowActiveChecked"]));
+            }
+            set {
+                this["SubmRhShowActiveChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SubmRhShowInactiveChecked {
+            get {
+                return ((bool)(this["SubmRhShowInactiveChecked"]));
+            }
+            set {
+                this["SubmRhShowInactiveChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SubmRhShowSpecChecked {
+            get {
+                return ((bool)(this["SubmRhShowSpecChecked"]));
+            }
+            set {
+                this["SubmRhShowSpecChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SubmRhShowQwnChecked {
+            get {
+                return ((bool)(this["SubmRhShowQwnChecked"]));
+            }
+            set {
+                this["SubmRhShowQwnChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SubmRhShowPrevChecked {
+            get {
+                return ((bool)(this["SubmRhShowPrevChecked"]));
+            }
+            set {
+                this["SubmRhShowPrevChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+  <string>100</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection SubmRhListColWidth {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["SubmRhListColWidth"]));
+            }
+            set {
+                this["SubmRhListColWidth"] = value;
             }
         }
     }

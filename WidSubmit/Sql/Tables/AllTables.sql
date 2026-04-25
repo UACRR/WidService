@@ -51,6 +51,8 @@ drop table if exists SubmWorkAltName
 drop table if exists SubmWorkPerformer
 drop table if exists SubmWork
 drop table if exists SubmRightHolder
+drop table if exists SubmWorkLastPubResult
+drop table if exists SubmWorkPubStatus
 
 drop table if exists Submission
 
@@ -59,10 +61,6 @@ drop table if exists RightHolder
 drop table if exists SubmissionStatus
 drop table if exists SubmWorkStatus
 
-drop table if exists FailedSubmWorkShare
-drop table if exists FailedSubmWorkAltName
-drop table if exists FailedSubmWorkPerformer
-drop table if exists FailedSubmWork
 
 
 create table SubmissionStatus (
@@ -228,61 +226,28 @@ alter table SubmCheckList add constraint ucSubmCheckListSubmIdSubmWorkId unique 
 alter table SubmCheckList add constraint fkSubmCheckListSubmWork foreign key (SubmWorkId) references SubmWork (Id);
 go
 
+create table SubmWorkPubStatus (
+	  Id int not null primary key clustered
+	, Code varchar(32) not null
+)
 
--- Факсимільна копія творів, відхилених останній раз
--- Суто інформаційна таблиця яка не містить посилань назовні
-create table FailedSubmWork (
-	  Id int primary key
-	, SubmissionId int not null
+insert SubmWorkPubStatus(Id, Code)
+values
+	  ( 0, 'NOT_SENT')
+	, ( 1, 'ACCEPTED')
+	, ( 2, 'REJECTED')
+go
+
+create table SubmWorkLastPubResult (
+	  SubmWorkId int not null
 	, ObjId int not null
-	, Wic int null
-	, Iswc varchar(11) not null
-	, Name nvarchar(256)
-	, NameForWid nvarchar(256)
-	, IsChanged bit not null
-	, Status int not null
-	, CreatedAt datetime not null default(getdate())
-	, UpdatedAt datetime null
+	, SubmWorkPubStatusId int not null
+	, primary key (SubmWorkId, ObjId)
 )
-alter table FailedSubmWork add constraint ucFailedSubmWorkObjId unique (ObjId)
+alter table SubmWorkLastPubResult 
+	add constraint fk_SubmWorkLastPubResult_SubmWorkPubStatus 
+	foreign key (SubmWorkPubStatusId) references SubmWorkPubStatus (Id);
 go
-
-create table FailedSubmWorkShare (
-	  Id int primary key
-	, SubmWorkId int not null
-	, RightHolderId int not null
-	, RhRole int not null
-	, RoleForWid varchar(2) not null
-	, ShrPer decimal(5, 2) not null
-	, ShrMec decimal(5, 2) not null
-	, CreatedAt datetime not null default(getdate())
-	, UpdatedAt datetime null
-)
-alter table FailedSubmWorkShare add constraint fkFailedSubmWorkShareWork foreign key (SubmWorkId) references FailedSubmWork (Id);
-go
-
-create table FailedSubmWorkAltName (
-	  Id int primary key
-	, SubmWorkId int not null
-	, OrigNames nvarchar(256)
-	, NameForWid nvarchar(256)
-	, CreatedAt datetime not null default(getdate())
-	, UpdatedAt datetime null
-)
-alter table FailedSubmWorkAltName add constraint fkFailedSubmWorkAltNameWork foreign key (SubmWorkId) references FailedSubmWork (Id);
-go
-
-create table FailedSubmWorkPerformer (
-	  Id int primary key
-	, SubmWorkId int not null
-	, OrigNames nvarchar(256)
-	, NameForWid nvarchar(256)
-	, CreatedAt datetime not null default(getdate())
-	, UpdatedAt datetime null
-)
-alter table FailedSubmWorkPerformer add constraint fkFailedSubmWorkPerformerWork foreign key (SubmWorkId) references FailedSubmWork (Id);
-go
-
 
 -- РОБЮЧІ ТАБЛИЦІ
 

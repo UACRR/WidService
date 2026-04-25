@@ -38,12 +38,15 @@
             this.panelRight = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.lvDetails = new System.Windows.Forms.ListView();
+            this.panelActions = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCorrect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
             this.panelMain.Panel1.SuspendLayout();
             this.panelMain.Panel2.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panelRight.SuspendLayout();
+            this.panelActions.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvSubmWorkShares
@@ -83,7 +86,7 @@
             // panelMain.Panel2
             // 
             this.panelMain.Panel2.Controls.Add(this.panelRight);
-            this.panelMain.Size = new System.Drawing.Size(644, 350);
+            this.panelMain.Size = new System.Drawing.Size(862, 350);
             this.panelMain.SplitterDistance = 494;
             this.panelMain.TabIndex = 1;
             // 
@@ -120,14 +123,16 @@
             this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelRight.Controls.Add(this.label2, 0, 0);
             this.panelRight.Controls.Add(this.lvDetails, 0, 1);
+            this.panelRight.Controls.Add(this.panelActions, 0, 3);
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRight.Location = new System.Drawing.Point(0, 0);
             this.panelRight.Name = "panelRight";
-            this.panelRight.RowCount = 3;
+            this.panelRight.RowCount = 4;
             this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.panelRight.Size = new System.Drawing.Size(146, 350);
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.panelRight.Size = new System.Drawing.Size(364, 350);
             this.panelRight.TabIndex = 0;
             // 
             // label2
@@ -146,11 +151,33 @@
             this.lvDetails.HideSelection = false;
             this.lvDetails.Location = new System.Drawing.Point(3, 27);
             this.lvDetails.Name = "lvDetails";
-            this.lvDetails.Size = new System.Drawing.Size(140, 315);
+            this.lvDetails.Size = new System.Drawing.Size(358, 278);
             this.lvDetails.StateImageList = this.ilStatuses;
             this.lvDetails.TabIndex = 1;
             this.lvDetails.UseCompatibleStateImageBehavior = false;
+            this.lvDetails.SelectedIndexChanged += new System.EventHandler(this.lvDetails_SelectedIndexChanged);
             this.lvDetails.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvDetails_MouseDown);
+            // 
+            // panelActions
+            // 
+            this.panelActions.Controls.Add(this.btnCorrect);
+            this.panelActions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelActions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.panelActions.Location = new System.Drawing.Point(3, 316);
+            this.panelActions.Name = "panelActions";
+            this.panelActions.Size = new System.Drawing.Size(358, 31);
+            this.panelActions.TabIndex = 2;
+            // 
+            // btnCorrect
+            // 
+            this.btnCorrect.Enabled = false;
+            this.btnCorrect.Location = new System.Drawing.Point(202, 3);
+            this.btnCorrect.Name = "btnCorrect";
+            this.btnCorrect.Size = new System.Drawing.Size(153, 23);
+            this.btnCorrect.TabIndex = 0;
+            this.btnCorrect.Text = "Виправити селектоване";
+            this.btnCorrect.UseVisualStyleBackColor = true;
+            this.btnCorrect.Click += new System.EventHandler(this.btnCorrect_Click);
             // 
             // UcSubmWorkShares
             // 
@@ -159,7 +186,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.panelMain);
             this.Name = "UcSubmWorkShares";
-            this.Size = new System.Drawing.Size(644, 350);
+            this.Size = new System.Drawing.Size(862, 350);
             this.Load += new System.EventHandler(this.UcSubmWorkShares_Load);
             this.panelMain.Panel1.ResumeLayout(false);
             this.panelMain.Panel2.ResumeLayout(false);
@@ -169,6 +196,7 @@
             this.panelLeft.PerformLayout();
             this.panelRight.ResumeLayout(false);
             this.panelRight.PerformLayout();
+            this.panelActions.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -183,5 +211,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView lvDetails;
         private System.Windows.Forms.ImageList ilStatuses;
+        private System.Windows.Forms.FlowLayoutPanel panelActions;
+        private System.Windows.Forms.Button btnCorrect;
     }
 }

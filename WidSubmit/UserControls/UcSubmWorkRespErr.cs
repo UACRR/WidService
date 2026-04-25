@@ -253,6 +253,22 @@ namespace WidSubmit
 
             if(!_isDirty) return;
 
+            // Якщо це ще не переданий твір поточного сеансу показуємо проблеми із попереднього сеансу
+            Helpers.RunSqlSocWidSubmitEx(cmd =>
+            {
+                cmd.CommandText = "select dbo.fnIsCurSubmWork(@submWorkId)";
+                cmd.Parameters.AddWithValue("@submWorkId", _submWorkId);
+                var isCurSubm = (bool)cmd.ExecuteScalar();
+                if(!isCurSubm) return;
+
+                cmd.CommandText = "select dbo.fnGetRejectedSubmWorkId(@submWorkId)";
+                var newSubmWorkId = cmd.ExecuteScalar();
+                if(newSubmWorkId != DBNull.Value)
+                {
+                    _submWorkId = (int)newSubmWorkId;
+                }
+            });
+
             ClearContent();
 
             var hasRespMessages = false;
