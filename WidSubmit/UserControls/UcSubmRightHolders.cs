@@ -115,7 +115,7 @@ namespace WidSubmit
         
         public void InitProperties()
         {
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+            if (Helpers.IsDesignMode()) return;
 
             _ignoreControlEvents = true;
 
@@ -136,7 +136,7 @@ namespace WidSubmit
 
         public void UpdateProperties()
         {
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+            if (Helpers.IsDesignMode()) return;
 
             Settings.Default.SubmRhSpecFilterText      = tbRightHolderFilter.Text                  ;
             Settings.Default.SubmRhShowActiveChecked   = rbRightHolderFilterActive.Checked         ;

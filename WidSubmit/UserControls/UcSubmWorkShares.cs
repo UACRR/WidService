@@ -354,7 +354,7 @@ namespace WidSubmit
         private void FillLvDetails()
         {
             lvDetails.Items.Clear();
-            btnCorrect.Enabled = false;
+            btnChangeCodesIpi.Enabled = false;
             if(lvSubmWorkShares.SelectedItems.Count == 0)
             {
                 return;
@@ -411,7 +411,7 @@ namespace WidSubmit
 
         private void lvDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnCorrect.Enabled = false;
+            btnChangeCodesIpi.Enabled = false;
             if(lvDetails.SelectedItems.Count == 0)
             {
                 return;
@@ -423,21 +423,33 @@ namespace WidSubmit
             {
                 case DetailItemIndexEnum.RhIpBaseNr:
                 case DetailItemIndexEnum.RhIpNameNr:
-                    if(selectedItem.StateImageIndex == (int)StatusImageIndex.FAILED)
-                    {
-                        btnCorrect.Enabled = true;
-                    }
+                    //if(selectedItem.StateImageIndex == (int)StatusImageIndex.FAILED)
+                    //{
+                        btnChangeCodesIpi.Enabled = true;
+                    //}
                     break;
                 default:
-                    btnCorrect.Enabled = false;
+                    btnChangeCodesIpi.Enabled = false;
                     break;
             }
         }
 
-        private void btnCorrect_Click(object sender, EventArgs e)
+        private void btnChangeCodesIpi_Click(object sender, EventArgs e)
         {
-            var form = new FormCorrectIpiInfo();
-            form.ShowDialog();
+            if(lvSubmWorkShares.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var share = (Share)lvSubmWorkShares.SelectedItems[0].Tag;
+            if(share == null) return;
+
+            var form = new FormCorrectIpiInfo(
+                  share.RhCustId
+                , share.RhIpBaseNr
+                , share.RhIpNameNr == null ? "" : share.RhIpNameNr.ToString()
+                , share.RhName);
+            var res = form.ShowDialog();
         }
     }
 }

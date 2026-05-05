@@ -151,5 +151,10 @@ namespace WidSubmit
             _waitCursorCnt--;
             if(_waitCursorCnt == 0) Cursor.Current = Cursors.Default;
         }
+
+        public static bool IsDesignMode()
+        {
+            return System.Diagnostics.Process.GetCurrentProcess().ProcessName.ToLower() == "devenv";
+        }
     }
 }

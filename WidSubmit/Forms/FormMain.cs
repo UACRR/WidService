@@ -25,6 +25,8 @@ namespace WidSubmit
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            if (Helpers.IsDesignMode()) return;
+
             this.Size = Settings.Default.FormMainSize;
             this.Location = Settings.Default.FormMainLocation;
             UpdateContent();

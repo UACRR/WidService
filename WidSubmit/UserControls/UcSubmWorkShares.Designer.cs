@@ -39,7 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lvDetails = new System.Windows.Forms.ListView();
             this.panelActions = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnCorrect = new System.Windows.Forms.Button();
+            this.btnChangeCodesIpi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
             this.panelMain.Panel1.SuspendLayout();
             this.panelMain.Panel2.SuspendLayout();
@@ -160,7 +160,7 @@
             // 
             // panelActions
             // 
-            this.panelActions.Controls.Add(this.btnCorrect);
+            this.panelActions.Controls.Add(this.btnChangeCodesIpi);
             this.panelActions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelActions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.panelActions.Location = new System.Drawing.Point(3, 316);
@@ -168,16 +168,16 @@
             this.panelActions.Size = new System.Drawing.Size(358, 31);
             this.panelActions.TabIndex = 2;
             // 
-            // btnCorrect
+            // btnChangeCodesIpi
             // 
-            this.btnCorrect.Enabled = false;
-            this.btnCorrect.Location = new System.Drawing.Point(202, 3);
-            this.btnCorrect.Name = "btnCorrect";
-            this.btnCorrect.Size = new System.Drawing.Size(153, 23);
-            this.btnCorrect.TabIndex = 0;
-            this.btnCorrect.Text = "Виправити селектоване";
-            this.btnCorrect.UseVisualStyleBackColor = true;
-            this.btnCorrect.Click += new System.EventHandler(this.btnCorrect_Click);
+            this.btnChangeCodesIpi.Enabled = false;
+            this.btnChangeCodesIpi.Location = new System.Drawing.Point(252, 3);
+            this.btnChangeCodesIpi.Name = "btnChangeCodesIpi";
+            this.btnChangeCodesIpi.Size = new System.Drawing.Size(103, 23);
+            this.btnChangeCodesIpi.TabIndex = 0;
+            this.btnChangeCodesIpi.Text = "Змінити коди IPI";
+            this.btnChangeCodesIpi.UseVisualStyleBackColor = true;
+            this.btnChangeCodesIpi.Click += new System.EventHandler(this.btnChangeCodesIpi_Click);
             // 
             // UcSubmWorkShares
             // 
@@ -212,6 +212,6 @@
         private System.Windows.Forms.ListView lvDetails;
         private System.Windows.Forms.ImageList ilStatuses;
         private System.Windows.Forms.FlowLayoutPanel panelActions;
-        private System.Windows.Forms.Button btnCorrect;
+        private System.Windows.Forms.Button btnChangeCodesIpi;
     }
 }

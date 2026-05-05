@@ -76,7 +76,7 @@ namespace WidSubmit
 
         private void InitProperties()
         {
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+            if (Helpers.IsDesignMode()) return;
 
             _ignoreControlEvents = true;
             rbFilterSubmittedNo.Checked = Settings.Default.CurSubmWorkSubmittedNoChecked;
@@ -100,7 +100,7 @@ namespace WidSubmit
 
         public void UpdateProperties()
         {
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+            if (Helpers.IsDesignMode()) return;
 
             Settings.Default.CurSubmWorkSubmittedNoChecked = rbFilterSubmittedNo.Checked;
             Settings.Default.CurSubmWorkSubmittedYesChecked = rbFilterSubmittedYes.Checked;
@@ -120,6 +120,8 @@ namespace WidSubmit
 
         private void Configure()
         {
+            if (Helpers.IsDesignMode()) return;
+
             ucSubmRightHolders.Init(_isHistoryMode ? PresentationMode.PREV_SUBM : PresentationMode.CUR_SUBM);
 
             lvSubmWorks.FullRowSelect = true;

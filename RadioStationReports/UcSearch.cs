@@ -68,7 +68,7 @@ namespace RadioStationReports
             Helpers.RunSql(cmd =>
             {
                 cmd.CommandTimeout = cbSerachUsingLike.Checked ? 60 : 30;
-                cmd.CommandText = cbSerachUsingLike.Checked ? "MediaService..spSearchWorksEx" : "MediaService..spSearchWorks";
+                cmd.CommandText = cbSerachUsingLike.Checked ? "MediaService..spSearchMsWorksEx" : "MediaService..spSearchMsWorks";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@name", cbSerachUsingLike.Checked ? $"%{_name}%" : _name);
 

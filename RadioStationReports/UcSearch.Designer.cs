@@ -36,7 +36,6 @@ namespace RadioStationReports
             labFilterName = new Label();
             tbFilterName = new TextBox();
             btnSearchName = new Button();
-            cbSerachUsingLike = new CheckBox();
             wvFoundWorks = new WebBrowser();
             label1 = new Label();
             label4 = new Label();
@@ -54,33 +53,42 @@ namespace RadioStationReports
             label7 = new Label();
             tbReportWorkName = new TextBox();
             tbReportWorkPerformers = new TextBox();
+            panelSearchSettings = new FlowLayoutPanel();
+            label8 = new Label();
+            chkSearchInMs = new RadioButton();
+            chkSearchInWid = new RadioButton();
+            chkSearchInAll = new RadioButton();
+            cbSerachUsingLike = new CheckBox();
             timerLoad = new Timer(components);
             panelMain.SuspendLayout();
             panelFilterName.SuspendLayout();
             panelFilterSelected.SuspendLayout();
             panelFilterPerformers.SuspendLayout();
             panelReportInfo.SuspendLayout();
+            panelSearchSettings.SuspendLayout();
             SuspendLayout();
             // 
             // panelMain
             // 
             panelMain.ColumnCount = 1;
             panelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            panelMain.Controls.Add(panelFilterName, 0, 3);
-            panelMain.Controls.Add(wvFoundWorks, 0, 7);
-            panelMain.Controls.Add(label1, 0, 4);
+            panelMain.Controls.Add(panelFilterName, 0, 4);
+            panelMain.Controls.Add(wvFoundWorks, 0, 8);
+            panelMain.Controls.Add(label1, 0, 5);
             panelMain.Controls.Add(label4, 0, 2);
             panelMain.Controls.Add(label5, 0, 0);
-            panelMain.Controls.Add(panelFilterSelected, 0, 6);
-            panelMain.Controls.Add(panelFilterPerformers, 0, 5);
+            panelMain.Controls.Add(panelFilterSelected, 0, 7);
+            panelMain.Controls.Add(panelFilterPerformers, 0, 6);
             panelMain.Controls.Add(panelReportInfo, 0, 1);
+            panelMain.Controls.Add(panelSearchSettings, 0, 3);
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new System.Drawing.Point(0, 0);
             panelMain.Name = "panelMain";
-            panelMain.RowCount = 9;
+            panelMain.RowCount = 10;
             panelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
             panelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
             panelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            panelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             panelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             panelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
             panelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
@@ -95,9 +103,8 @@ namespace RadioStationReports
             panelFilterName.Controls.Add(labFilterName);
             panelFilterName.Controls.Add(tbFilterName);
             panelFilterName.Controls.Add(btnSearchName);
-            panelFilterName.Controls.Add(cbSerachUsingLike);
             panelFilterName.Dock = DockStyle.Fill;
-            panelFilterName.Location = new System.Drawing.Point(3, 97);
+            panelFilterName.Location = new System.Drawing.Point(3, 132);
             panelFilterName.Name = "panelFilterName";
             panelFilterName.Size = new System.Drawing.Size(852, 29);
             panelFilterName.TabIndex = 0;
@@ -129,24 +136,12 @@ namespace RadioStationReports
             btnSearchName.UseVisualStyleBackColor = true;
             btnSearchName.Click += btnSearchName_Click;
             // 
-            // cbSerachUsingLike
-            // 
-            cbSerachUsingLike.AutoSize = true;
-            cbSerachUsingLike.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            cbSerachUsingLike.Location = new System.Drawing.Point(382, 3);
-            cbSerachUsingLike.Name = "cbSerachUsingLike";
-            cbSerachUsingLike.Padding = new Padding(0, 3, 0, 0);
-            cbSerachUsingLike.Size = new System.Drawing.Size(179, 22);
-            cbSerachUsingLike.TabIndex = 3;
-            cbSerachUsingLike.Text = "Шукати за подібністю назви";
-            cbSerachUsingLike.UseVisualStyleBackColor = true;
-            // 
             // wvFoundWorks
             // 
             wvFoundWorks.Dock = DockStyle.Fill;
-            wvFoundWorks.Location = new System.Drawing.Point(3, 229);
+            wvFoundWorks.Location = new System.Drawing.Point(3, 264);
             wvFoundWorks.Name = "wvFoundWorks";
-            wvFoundWorks.Size = new System.Drawing.Size(852, 195);
+            wvFoundWorks.Size = new System.Drawing.Size(852, 160);
             wvFoundWorks.TabIndex = 4;
             wvFoundWorks.DocumentCompleted += wvFoundWorks_DocumentCompleted;
             // 
@@ -155,7 +150,7 @@ namespace RadioStationReports
             label1.AutoSize = true;
             label1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             label1.Dock = DockStyle.Fill;
-            label1.Location = new System.Drawing.Point(3, 135);
+            label1.Location = new System.Drawing.Point(3, 170);
             label1.Margin = new Padding(3, 6, 3, 0);
             label1.Name = "label1";
             label1.Padding = new Padding(5, 3, 0, 0);
@@ -201,7 +196,7 @@ namespace RadioStationReports
             panelFilterSelected.Controls.Add(rbShowAll, 1, 0);
             panelFilterSelected.Controls.Add(rbShowSelected, 2, 0);
             panelFilterSelected.Dock = DockStyle.Fill;
-            panelFilterSelected.Location = new System.Drawing.Point(3, 198);
+            panelFilterSelected.Location = new System.Drawing.Point(3, 233);
             panelFilterSelected.Name = "panelFilterSelected";
             panelFilterSelected.RowCount = 1;
             panelFilterSelected.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -253,7 +248,7 @@ namespace RadioStationReports
             panelFilterPerformers.Controls.Add(tbFilterTextFragment, 1, 0);
             panelFilterPerformers.Controls.Add(btnSelectByTextFragnemts, 2, 0);
             panelFilterPerformers.Dock = DockStyle.Fill;
-            panelFilterPerformers.Location = new System.Drawing.Point(3, 161);
+            panelFilterPerformers.Location = new System.Drawing.Point(3, 196);
             panelFilterPerformers.Name = "panelFilterPerformers";
             panelFilterPerformers.RowCount = 1;
             panelFilterPerformers.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -347,6 +342,76 @@ namespace RadioStationReports
             tbReportWorkPerformers.Size = new System.Drawing.Size(331, 23);
             tbReportWorkPerformers.TabIndex = 1;
             // 
+            // panelSearchSettings
+            // 
+            panelSearchSettings.Controls.Add(label8);
+            panelSearchSettings.Controls.Add(chkSearchInMs);
+            panelSearchSettings.Controls.Add(chkSearchInWid);
+            panelSearchSettings.Controls.Add(chkSearchInAll);
+            panelSearchSettings.Controls.Add(cbSerachUsingLike);
+            panelSearchSettings.Dock = DockStyle.Fill;
+            panelSearchSettings.Location = new System.Drawing.Point(3, 97);
+            panelSearchSettings.Name = "panelSearchSettings";
+            panelSearchSettings.Size = new System.Drawing.Size(852, 29);
+            panelSearchSettings.TabIndex = 6;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new System.Drawing.Point(3, 0);
+            label8.Name = "label8";
+            label8.Padding = new Padding(0, 8, 0, 0);
+            label8.Size = new System.Drawing.Size(57, 23);
+            label8.TabIndex = 0;
+            label8.Text = "Шукати в";
+            // 
+            // chkSearchInMs
+            // 
+            chkSearchInMs.AutoSize = true;
+            chkSearchInMs.Checked = true;
+            chkSearchInMs.Location = new System.Drawing.Point(66, 3);
+            chkSearchInMs.Name = "chkSearchInMs";
+            chkSearchInMs.Padding = new Padding(0, 3, 0, 0);
+            chkSearchInMs.Size = new System.Drawing.Size(66, 22);
+            chkSearchInMs.TabIndex = 1;
+            chkSearchInMs.TabStop = true;
+            chkSearchInMs.Text = "СМАРТ";
+            chkSearchInMs.UseVisualStyleBackColor = true;
+            // 
+            // chkSearchInWid
+            // 
+            chkSearchInWid.AutoSize = true;
+            chkSearchInWid.Location = new System.Drawing.Point(138, 3);
+            chkSearchInWid.Name = "chkSearchInWid";
+            chkSearchInWid.Padding = new Padding(0, 3, 0, 0);
+            chkSearchInWid.Size = new System.Drawing.Size(47, 22);
+            chkSearchInWid.TabIndex = 1;
+            chkSearchInWid.Text = "WID";
+            chkSearchInWid.UseVisualStyleBackColor = true;
+            // 
+            // chkSearchInAll
+            // 
+            chkSearchInAll.AutoSize = true;
+            chkSearchInAll.Location = new System.Drawing.Point(191, 3);
+            chkSearchInAll.Name = "chkSearchInAll";
+            chkSearchInAll.Padding = new Padding(0, 3, 0, 0);
+            chkSearchInAll.Size = new System.Drawing.Size(53, 22);
+            chkSearchInAll.TabIndex = 1;
+            chkSearchInAll.Text = "Обох";
+            chkSearchInAll.UseVisualStyleBackColor = true;
+            // 
+            // cbSerachUsingLike
+            // 
+            cbSerachUsingLike.AutoSize = true;
+            cbSerachUsingLike.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            cbSerachUsingLike.Location = new System.Drawing.Point(250, 3);
+            cbSerachUsingLike.Name = "cbSerachUsingLike";
+            cbSerachUsingLike.Padding = new Padding(0, 3, 0, 0);
+            cbSerachUsingLike.Size = new System.Drawing.Size(135, 22);
+            cbSerachUsingLike.TabIndex = 3;
+            cbSerachUsingLike.Text = "за подібністю назви";
+            cbSerachUsingLike.UseVisualStyleBackColor = true;
+            // 
             // timerLoad
             // 
             timerLoad.Tick += timerLoad_Tick;
@@ -369,6 +434,8 @@ namespace RadioStationReports
             panelFilterPerformers.PerformLayout();
             panelReportInfo.ResumeLayout(false);
             panelReportInfo.PerformLayout();
+            panelSearchSettings.ResumeLayout(false);
+            panelSearchSettings.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -398,5 +465,10 @@ namespace RadioStationReports
         private System.Windows.Forms.TextBox tbReportWorkPerformers;
         private Timer timerLoad;
         private CheckBox cbSerachUsingLike;
+        private FlowLayoutPanel panelSearchSettings;
+        private Label label8;
+        private RadioButton chkSearchInMs;
+        private RadioButton chkSearchInWid;
+        private RadioButton chkSearchInAll;
     }
 }

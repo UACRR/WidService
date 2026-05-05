@@ -17,6 +17,8 @@ namespace WidSubmit
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
+            //var form = new FormCorrectIpiInfo(318350, "", "", "СВІРСЬКИЙ АНДРІЙ БОРИСОВИЧ");
+            //Application.Run(form);
             //Application.Run(new FormTestSubmWorkRespErr());
             //Application.Run(new FormTestUcSubmRightHolders());
             //Application.Run(new FormSubmissionRightHolders());
