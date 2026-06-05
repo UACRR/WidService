@@ -49,7 +49,10 @@
             Controls.Add(ucSearch);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             Name = "FormSearch";
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             Text = "Пошук твору із звіту";
+            FormClosing += FormSearch_FormClosing;
             Load += FormSearch_Load;
             ResumeLayout(false);
         }

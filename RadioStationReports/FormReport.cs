@@ -496,7 +496,7 @@ namespace RadioStationReports
                 tbWic.Enabled = false;
                 tbIswc.Enabled = false;
                 btnApplyCode.Enabled = false;
-                btnCancelCode.Enabled = false;
+                //btnCancelCode.Enabled = false;
                 btnSearch.Enabled = false;
                 btnUpdateFromWid.Enabled = false;
 
@@ -511,7 +511,7 @@ namespace RadioStationReports
                 tbWic.Enabled = true;
                 tbIswc.Enabled = true;
                 btnApplyCode.Enabled = false;
-                btnCancelCode.Enabled = false;
+                //btnCancelCode.Enabled = false;
             }
 
             else if (ChangedCodeField == "SMART")
@@ -519,7 +519,7 @@ namespace RadioStationReports
                 tbWic.Text = "";
                 tbIswc.Text = "";
                 btnApplyCode.Enabled = true;
-                btnCancelCode.Enabled = true;
+                //btnCancelCode.Enabled = true;
             }
 
             else if (ChangedCodeField == "WID")
@@ -527,7 +527,7 @@ namespace RadioStationReports
                 tbObjId.Text = "";
                 tbIswc.Text = "";
                 btnApplyCode.Enabled = true;
-                btnCancelCode.Enabled = true;
+                //btnCancelCode.Enabled = true;
             }
 
             else if (ChangedCodeField == "ISWC")
@@ -535,7 +535,7 @@ namespace RadioStationReports
                 tbObjId.Text = "";
                 tbWic.Text = "";
                 btnApplyCode.Enabled = true;
-                btnCancelCode.Enabled = true;
+                //btnCancelCode.Enabled = true;
             }
 
             if (line == null)
@@ -549,6 +549,7 @@ namespace RadioStationReports
                 rbCheckValue0.Enabled = false;
 
                 btnUpdateFromWid.Enabled = false;
+                btnCancelCode.Enabled = false;
             }
             else
             {
@@ -561,6 +562,9 @@ namespace RadioStationReports
                 rbCheckValue0.Enabled = true;
 
                 btnUpdateFromWid.Enabled = line.Work.ObjId != null;
+                btnCancelCode.Enabled = line.Work.ObjId != null
+                    || line.Work.Wic != null
+                    || line.Work.Iswc != "";
             }
 
             _ignoreCodeChangedEvent = false;
@@ -1048,7 +1052,7 @@ namespace RadioStationReports
             FillLabLinesCnt();
         }
 
-        private void lvReportLines_SelectedIndexChanged(object sender, EventArgs e)
+        private void ProcessReportLineSelected()
         {
             try
             {
@@ -1062,7 +1066,7 @@ namespace RadioStationReports
                     {
                         _formSearch.Visible = false;
                     }
-                    btnSearch.Enabled = false; ;
+                    btnSearch.Enabled = false;
                     UpdateCodeEditControls("NONE");
                     return;
                 }
@@ -1071,7 +1075,7 @@ namespace RadioStationReports
 
                 if (_formSearch != null)
                 {
-                    UpdateFormSearch();
+                    UpdateFormSearch(false);
                 }
 
                 UpdateCodeEditControls("NONE");
@@ -1088,15 +1092,26 @@ namespace RadioStationReports
                     ucReportLineWork.Update(_report.Id, reportLine.LineNr);
                 }
 
-                if (_formSearch != null && _formSearch.Visible)
-                {
-                    _formSearch.Activate();
-                }
+                //if (_formSearch != null && _formSearch.Visible)
+                //{
+                //    _formSearch.Activate();
+                //}
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 Cursor.Current = Cursors.Default;
             }
+        }
+
+        private void lvReportLines_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Відкладаємо обробку щоб не реагувати на проміжні події
+            timerProcessReportRowSelected.Enabled = true;
+            //ProcessReportLineSelected();
         }
 
         private void btnShowHideActions_Click(object sender, EventArgs e)
@@ -1221,6 +1236,7 @@ namespace RadioStationReports
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@reportId", _report.Id);
                     cmd.Parameters.AddWithValue("@lineNr", line.LineNr);
+                    cmd.Parameters.AddWithValue("@calcShares", true);
 
                     var paramObjId = new SqlParameter("@objId", SqlDbType.Int)
                     {
@@ -1267,7 +1283,7 @@ namespace RadioStationReports
                     {
                         r.Read();
                         share = r.GetDecimal(0);
-                        checkValue = r.GetInt32(1);
+                        checkValue = r.IsDBNull(1) ? 0 : r.GetInt32(1);
                     }
                 });
 
@@ -1288,7 +1304,7 @@ namespace RadioStationReports
 
                 UpdateLvReportLine();
 
-                ucReportLineWork.Update(_report.Id, line.LineNr);
+                //ucReportLineWork.Update(_report.Id, line.LineNr);
                 ucReportLineDistribution.Update(_report.Id, line.LineNr);
 
                 _ignoreCodeChangedEvent = true;
@@ -1296,6 +1312,55 @@ namespace RadioStationReports
                 tbWic.Text = wic == 0 ? "" : wic.ToString();
                 tbIswc.Text = iswc;
                 _ignoreCodeChangedEvent = false;
+                tbObjId.Enabled = true;
+                tbWic.Enabled = true;
+                tbIswc.Enabled = true;
+                btnApplyCode.Enabled = false;
+                btnCancelCode.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Застосування коду твору", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+        
+        private void CancelWorkCodes()
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                var line = GetSelectedLine();
+
+                Helpers.RunSqlT(cmd =>
+                {
+                    cmd.CommandText = "spCancelFoundWork";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@reportId", _report.Id);
+                    cmd.Parameters.AddWithValue("@lineNr", line.LineNr);
+                    cmd.ExecuteNonQuery();
+                });
+
+                line.Work.FoundIn = "";
+                line.Work.ObjId = null;
+                line.Work.Wic = null;
+                line.Work.Iswc = "";
+                line.Work.Share = 0;
+
+                UpdateLvReportLine();
+
+                ucReportLineWork.Clear();
+                ucReportLineDistribution.Clear();
+
+                _ignoreCodeChangedEvent = true;
+                tbObjId.Text = "";
+                tbWic.Text = "";
+                tbIswc.Text = "";
+                _ignoreCodeChangedEvent = false;
+
                 tbObjId.Enabled = true;
                 tbWic.Enabled = true;
                 tbIswc.Enabled = true;
@@ -1311,6 +1376,7 @@ namespace RadioStationReports
                 Cursor.Current = Cursors.Default;
             }
         }
+
         private void btnApplyCode_Click(object sender, EventArgs e)
         {
             if (
@@ -1329,6 +1395,14 @@ namespace RadioStationReports
 
         private void btnCancelCode_Click(object sender, EventArgs e)
         {
+            var res = MessageBox.Show(
+                "Після скасування поєднання твір не потрапить у розподіл і доведеться виконати поєдніння ще раз.\r\n Скасувати?",
+                "Пошук творів",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if(res == DialogResult.No) return;
+
+            CancelWorkCodes();
             UpdateCodeEditControls("NONE");
         }
 
@@ -1344,8 +1418,8 @@ namespace RadioStationReports
 
         private void _formSearch_Closed(object sender, FormClosedEventArgs e)
         {
-            _formSearch = null;
-            btnSearch.Enabled = true;
+            //_formSearch = null;
+            //btnSearch.Enabled = true;
         }
 
         private void ApplyFoundWork(string workCode)
@@ -1367,7 +1441,7 @@ namespace RadioStationReports
             ApplyWorkCode();
         }
 
-        private void UpdateFormSearch()
+        private void UpdateFormSearch(bool setInUse)
         {
             var selectedItem = GetSelectedItem();
 
@@ -1383,26 +1457,39 @@ namespace RadioStationReports
             if (_formSearch == null)
             {
                 _formSearch = new FormSearch();
-                _formSearch.FormClosed += _formSearch_Closed;
+                _formSearch.Owner = this;
+                //_formSearch.TopMost = true;
+                //_formSearch.FormClosed += _formSearch_Closed;
+
+                MoveFormSearch();
             }
 
+            if(setInUse) _formSearch.IsInUse = true;
             var reportLine = (ReportLine)selectedItem.Tag;
-            if (!_formSearch.Visible)
+            if (!_formSearch.Visible && _formSearch.IsInUse)
             {
-                _formSearch.Show(this);
+                _formSearch.Show();
             }
             _formSearch.SetNamePerformer(reportLine.Name,
                 reportLine.Performer,
                 ApplyFoundWork);
 
-            btnSearch.Enabled = false;
+            //btnSearch.Enabled = false;
+
+        }
+
+        private void MoveFormSearch()
+        {
+            if (_formSearch == null) return;
+
+            _formSearch.Location = new Point(this.Right - _formSearch.Width, this.Bottom - _formSearch.Height);
 
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("NOT IMPLEMENTED");
-            UpdateFormSearch();
+            UpdateFormSearch(true);
         }
 
         private void _formSearch_FormClosed(object sender, FormClosedEventArgs e)
@@ -1577,14 +1664,18 @@ namespace RadioStationReports
                 return;
             }
             var reportLine = (ReportLine)selectedItem.Tag;
-            if (tabDetails.SelectedIndex == 0)
+
+            Helpers.RunProtected(() =>
             {
-                ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
-            }
-            else if (tabDetails.SelectedIndex == 1)
-            {
-                ucReportLineWork.Update(_report.Id, reportLine.LineNr);
-            }
+                if (tabDetails.SelectedIndex == 0)
+                {
+                    ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+                }
+                else if (tabDetails.SelectedIndex == 1)
+                {
+                    ucReportLineWork.Update(_report.Id, reportLine.LineNr);
+                }
+            });
         }
 
         private void btnUpdateFromWid_Click(object sender, EventArgs e)
@@ -1606,99 +1697,91 @@ namespace RadioStationReports
                 return;
             }
 
-            if (wic == null)
-            {
-                var form = new FormJoinObjIdToWic((int)objId, iswc);
-                if (form.ShowDialog() == DialogResult.Cancel)
-                {
-                    return;
-                }
-
-                wic = form.FoundWic;
-                iswc = form.FoundIswc;
-
-                reportLine.Work.Wic = wic;
-                reportLine.Work.Iswc = iswc;
-
-                _ignoreCodeChangedEvent = true;
-                tbWic.Text = wic.ToString();
-                tbIswc.Text = iswc;
-                _ignoreCodeChangedEvent = false;
-
-                selectedItem.SubItems[6].Text = wic.ToString();
-                selectedItem.SubItems[7].Text = iswc;
-
-                Helpers.RunSql(cmd =>
-                {
-                    cmd.CommandText = @"
-                        update Works
-                        set Wic = @wic, Iswc = @iswc
-                        where Id = @workId
-                    ";
-                    cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
-                    cmd.Parameters.AddWithValue("@wic", wic);
-                    cmd.Parameters.AddWithValue("@iswc", iswc == "" ? DBNull.Value : iswc);
-                    cmd.ExecuteNonQuery();
-                });
-            }
+            //if (wic == null)
+            //{
+            //    var form = new FormJoinObjIdToWic((int)objId, iswc);
+            //    if (form.ShowDialog() == DialogResult.Cancel)
+            //    {
+            //        return;
+            //    }
+            //
+            //    wic = form.FoundWic;
+            //    iswc = form.FoundIswc;
+            //
+            //    reportLine.Work.Wic = wic;
+            //    reportLine.Work.Iswc = iswc;
+            //
+            //    _ignoreCodeChangedEvent = true;
+            //    tbWic.Text = wic.ToString();
+            //    tbIswc.Text = iswc;
+            //    _ignoreCodeChangedEvent = false;
+            //
+            //    selectedItem.SubItems[6].Text = wic.ToString();
+            //    selectedItem.SubItems[7].Text = iswc;
+            //
+            //    Helpers.RunSql(cmd =>
+            //    {
+            //        cmd.CommandText = @"
+            //            update Works
+            //            set Wic = @wic, Iswc = @iswc
+            //           where Id = @workId
+            //       ";
+            //        cmd.Parameters.AddWithValue("@workId", reportLine.Work.Id);
+            //        cmd.Parameters.AddWithValue("@wic", wic);
+            //        cmd.Parameters.AddWithValue("@iswc", iswc == "" ? DBNull.Value : iswc);
+            //        cmd.ExecuteNonQuery();
+            //    });
+            //}
 
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-                var isOwn = false;
-                // Якщо твір не знайдено вважаємо його нашим
-                Helpers.RunSql(cmd =>
+                var updateFromWid = false;
+                if(wic != null)
                 {
-                    cmd.CommandText = @"
-                        select * 
-                        from SocWid..WidSubmission 
-                        where Wic = @wic
-                    ";
-                    cmd.Parameters.AddWithValue("@wic", wic);
-                    using (var r = cmd.ExecuteReader())
+                    Helpers.RunSql(cmd =>
                     {
-                        isOwn = !r.HasRows;
-                    }
-                });
+                        cmd.Parameters.AddWithValue("@wic", wic);
 
-                if (isOwn)
-                {
-                    MessageBox.Show("Не можливо визначити товариство, яке опублікувало твір, оновлення не буде виконане.",
-                        "Оновлення з WID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                        cmd.CommandText = @"
+                            select * 
+                            from SocWid..WidTitle 
+                            where Wic = @wic
+                        ";
+                        using (var r = cmd.ExecuteReader())
+                        {
+                            updateFromWid = r.HasRows;
+                        }
 
-                // Якщо твір знайдено перевіряємо що він наш
-                Helpers.RunSql(cmd =>
-                {
-                    cmd.CommandText = @"
-                        select * 
-                        from SocWid..WidSubmission 
-                        where SocCde = 140 and Wic = @wic
-                    ";
-                    cmd.Parameters.AddWithValue("@wic", wic);
-                    using (var r = cmd.ExecuteReader())
-                    {
-                        isOwn = r.HasRows;
-                    }
-                });
+                        if (updateFromWid)
+                        {
+                            cmd.CommandText = @"
+                                select * 
+                                from SocWid..WidSubmission 
+                                where SocCde = 140 and Wic = @wic
+                            ";
+                            using (var r = cmd.ExecuteReader())
+                            {
+                                updateFromWid = !r.HasRows;
+                            }
 
-                if (isOwn)
-                {
-                    MessageBox.Show("Твір був опублікований УААСП, оновлення не буде виконане.",
-                        "Оновлення з WID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                        }
+                        
+                    });
                 }
 
                 Helpers.RunSql(cmd =>
                 {
-                    cmd.CommandText = "MediaService..spUpdateWorkFromWid";
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@objId", objId);
-                    cmd.Parameters.AddWithValue("@wic", wic);
-                    cmd.ExecuteNonQuery();
-
+                    if(updateFromWid)
+                    {
+                        cmd.CommandText = "MediaService..spUpdateWorkFromWid";
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@objId", objId);
+                        cmd.Parameters.AddWithValue("@wic", wic);
+                        cmd.ExecuteNonQuery();
+                    }
+ 
                     cmd.CommandText = "spCreateReportAuthorsMs";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
@@ -1715,8 +1798,10 @@ namespace RadioStationReports
 
                 UpdateLvReportLine();
 
-                ucReportLineWork.Update(_report.Id, reportLine.LineNr);
-                ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
+                if(tabDetails.SelectedIndex == 1)
+                    ucReportLineWork.Update(_report.Id, reportLine.LineNr);
+                if(tabDetails.SelectedIndex == 0)
+                    ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
 
             }
             catch (Exception ex)
@@ -1777,6 +1862,29 @@ namespace RadioStationReports
             form.ShowDialog();
             LoadReportLines();
             FillLvReportLines();
+        }
+
+        private void FormReport_Activated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timerProcessReportRowSelected_Tick(object sender, EventArgs e)
+        {
+            timerProcessReportRowSelected.Enabled = false;
+            ProcessReportLineSelected();
+        }
+
+        private void FormReport_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(_formSearch != null) 
+            {
+                _formSearch.Close();
+                _formSearch.Dispose();
+                _formSearch = null;
+            }
+
+            e.Cancel = false;
         }
     }
 }

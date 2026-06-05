@@ -24,5 +24,10 @@ namespace SmartViewer
                 ucCustomerAffiliation.UpdateContent();
             }
         }
+
+        private void ucCustomerWorks_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

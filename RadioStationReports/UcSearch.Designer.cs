@@ -230,10 +230,10 @@ namespace RadioStationReports
             rbShowSelected.Checked = true;
             rbShowSelected.Location = new System.Drawing.Point(194, 3);
             rbShowSelected.Name = "rbShowSelected";
-            rbShowSelected.Size = new System.Drawing.Size(101, 19);
+            rbShowSelected.Size = new System.Drawing.Size(107, 19);
             rbShowSelected.TabIndex = 1;
             rbShowSelected.TabStop = true;
-            rbShowSelected.Text = "Тільки обрані";
+            rbShowSelected.Text = "Тільки вибрані";
             rbShowSelected.UseVisualStyleBackColor = true;
             rbShowSelected.CheckedChanged += rbShowSelected_CheckedChanged;
             // 

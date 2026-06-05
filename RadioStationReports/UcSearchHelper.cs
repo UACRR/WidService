@@ -117,9 +117,13 @@ namespace RadioStationReports
 
         public string GetWaitHtml()
         {
+            //return $@"
+            //    {htmlHeader}
+            //    <tr><td colspan=6>Виконується пошук ...</td></tr>
+            //    {htmlFooter}
+            //";
             return $@"
                 {htmlHeader}
-                <tr><td colspan=6>Виконується пошук ...</td></tr>
                 {htmlFooter}
             ";
         }

@@ -23,6 +23,10 @@ namespace RadioStationReports
         public delegate void Body(SqlCommand cmd);
         public delegate void ExcelBody(_Worksheet xlWorksheet);
 
+        public delegate void ProtectedBlock();
+
+        private static int _waitCursorCnt;
+
         public static void RunSql(Body body)
         {
             var connString = ConfigurationManager.ConnectionStrings["RadioStationReports"].ConnectionString;
@@ -317,6 +321,40 @@ namespace RadioStationReports
             sharesRes = retVal;
 
             return (sum2 / 100);
+        }
+        
+        public static void RunProtected(ProtectedBlock block, bool keepWaitCursor = false)
+        {
+            try
+            {
+                SetWaitCursor();
+                block();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if(!keepWaitCursor) UnsetWaitCursor();
+            }
+        }
+
+        public static void SetWaitCursor()
+        {
+            _waitCursorCnt++;
+            if(_waitCursorCnt == 1) Cursor.Current = Cursors.WaitCursor;
+        }
+
+        public static void UnsetWaitCursor()
+        {
+            _waitCursorCnt--;
+            if(_waitCursorCnt == 0) Cursor.Current = Cursors.Default;
+        }
+
+        public static bool IsDesignMode()
+        {
+            return System.Diagnostics.Process.GetCurrentProcess().ProcessName.ToLower() == "devenv";
         }
     }
 }

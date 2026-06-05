@@ -51,9 +51,9 @@ namespace RadioStationReports
                 //chechInfoLoader.LoadCheckInfoFromWorkBook();
                 //Application.Run(new FormMainReports());
                 
-                //Application.Run(new FormJoinObjIdToWic(920710, ""));
-                //return;
-                Application.Run(new FormMainIntegrated());
+                Application.Run(new FormCisNetImport());
+                return;
+                //Application.Run(new FormMainIntegrated());
             }
             catch (Exception ex)
             {

@@ -202,9 +202,11 @@ namespace SmartViewer
                     select CustId, Name
                     from vCustomerNames
                     where Name like @filter
+                        or CustId = try_cast(@filter1 as int)
                     order by Name
                 ";
                 cmd.Parameters.AddWithValue("@filter", filter);
+                cmd.Parameters.AddWithValue("@filter1", tbCustomerFilterValue.Text);
                 
                 using (var r = cmd.ExecuteReader())
                 {
@@ -455,7 +457,7 @@ namespace SmartViewer
                         var idx = 0;
                         var performer = new Performer();
 	                    performer.Id = r.GetInt32(idx); idx++;
-	                    performer.Name   = r.GetString(idx); idx++;
+	                    performer.Name   = r.IsDBNull(idx) ? "" : r.GetString(idx); idx++;
                         
                         _performers.Add(performer);
                     }

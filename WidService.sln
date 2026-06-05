@@ -66,6 +66,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartViewer", "SmartViewer\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CcidViewer", "CcidViewer\CcidViewer.csproj", "{04CFABB9-B5D2-4B2C-9E09-881FBBC16413}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaServiceDataFix", "MediaServiceDataFix\MediaServiceDataFix.csproj", "{031EB105-99E0-47E6-8D3D-384EEC3024CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CisNetImporter", "CisNetImporter\CisNetImporter.csproj", "{26220E85-9BCB-4A8C-A552-66CA5335DB0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +198,14 @@ Global
 		{04CFABB9-B5D2-4B2C-9E09-881FBBC16413}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04CFABB9-B5D2-4B2C-9E09-881FBBC16413}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04CFABB9-B5D2-4B2C-9E09-881FBBC16413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{031EB105-99E0-47E6-8D3D-384EEC3024CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{031EB105-99E0-47E6-8D3D-384EEC3024CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{031EB105-99E0-47E6-8D3D-384EEC3024CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{031EB105-99E0-47E6-8D3D-384EEC3024CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26220E85-9BCB-4A8C-A552-66CA5335DB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26220E85-9BCB-4A8C-A552-66CA5335DB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26220E85-9BCB-4A8C-A552-66CA5335DB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26220E85-9BCB-4A8C-A552-66CA5335DB0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -80,6 +80,12 @@
     <Compile Include="UcListViewBase.Designer.cs">
       <DependentUpon>UcListViewBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcSearchIpiCodes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcSearchIpiCodes.Designer.cs">
+      <DependentUpon>UcSearchIpiCodes.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcShareDetailsMs.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcListViewBase.resx">
       <DependentUpon>UcListViewBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcSearchIpiCodes.resx">
+      <DependentUpon>UcSearchIpiCodes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcShareDetailsMs.resx">
       <DependentUpon>UcShareDetailsMs.cs</DependentUpon>

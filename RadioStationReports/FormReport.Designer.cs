@@ -52,7 +52,6 @@ namespace RadioStationReports
             rbCheckValue0 = new System.Windows.Forms.RadioButton();
             panelUpdateFromWid = new System.Windows.Forms.FlowLayoutPanel();
             label17 = new System.Windows.Forms.Label();
-            cbAutoCalcShares = new System.Windows.Forms.CheckBox();
             btnUpdateFromWid = new System.Windows.Forms.Button();
             panelSearchInCisNet = new System.Windows.Forms.FlowLayoutPanel();
             label18 = new System.Windows.Forms.Label();
@@ -114,6 +113,7 @@ namespace RadioStationReports
             statusStrip1 = new System.Windows.Forms.StatusStrip();
             statusBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
             pbOperationProgress = new System.Windows.Forms.ToolStripProgressBar();
+            timerProcessReportRowSelected = new System.Windows.Forms.Timer(components);
             panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)panelSplit).BeginInit();
             panelSplit.Panel1.SuspendLayout();
@@ -414,7 +414,6 @@ namespace RadioStationReports
             // panelUpdateFromWid
             // 
             panelUpdateFromWid.Controls.Add(label17);
-            panelUpdateFromWid.Controls.Add(cbAutoCalcShares);
             panelUpdateFromWid.Controls.Add(btnUpdateFromWid);
             panelUpdateFromWid.Dock = System.Windows.Forms.DockStyle.Fill;
             panelUpdateFromWid.Location = new System.Drawing.Point(3, 274);
@@ -433,20 +432,9 @@ namespace RadioStationReports
             label17.TabIndex = 0;
             label17.Text = "Розрахунок процентів для твору";
             // 
-            // cbAutoCalcShares
-            // 
-            cbAutoCalcShares.AutoSize = true;
-            cbAutoCalcShares.Location = new System.Drawing.Point(193, 3);
-            cbAutoCalcShares.Name = "cbAutoCalcShares";
-            cbAutoCalcShares.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            cbAutoCalcShares.Size = new System.Drawing.Size(282, 22);
-            cbAutoCalcShares.TabIndex = 2;
-            cbAutoCalcShares.Text = "виконувати автоматично після вказання твору";
-            cbAutoCalcShares.UseVisualStyleBackColor = true;
-            // 
             // btnUpdateFromWid
             // 
-            btnUpdateFromWid.Location = new System.Drawing.Point(481, 3);
+            btnUpdateFromWid.Location = new System.Drawing.Point(193, 3);
             btnUpdateFromWid.Name = "btnUpdateFromWid";
             btnUpdateFromWid.Size = new System.Drawing.Size(121, 23);
             btnUpdateFromWid.TabIndex = 1;
@@ -1115,6 +1103,10 @@ namespace RadioStationReports
             pbOperationProgress.Size = new System.Drawing.Size(648, 32);
             pbOperationProgress.Visible = false;
             // 
+            // timerProcessReportRowSelected
+            // 
+            timerProcessReportRowSelected.Tick += timerProcessReportRowSelected_Tick;
+            // 
             // FormReport
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1122,9 +1114,12 @@ namespace RadioStationReports
             ClientSize = new System.Drawing.Size(1244, 670);
             Controls.Add(statusStrip1);
             Controls.Add(panelMain);
+            DoubleBuffered = true;
             MinimumSize = new System.Drawing.Size(920, 39);
             Name = "FormReport";
             Text = "Звіт";
+            Activated += FormReport_Activated;
+            FormClosing += FormReport_FormClosing;
             Load += FormReport_Load;
             panelMain.ResumeLayout(false);
             panelMain.PerformLayout();
@@ -1251,9 +1246,9 @@ namespace RadioStationReports
         private System.Windows.Forms.Button btnSearchInCisNet;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnImportFromCisNet;
-        private System.Windows.Forms.CheckBox cbAutoCalcShares;
         private System.Windows.Forms.FlowLayoutPanel panelSearchInstrunctions;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Timer timerProcessReportRowSelected;
     }
 }

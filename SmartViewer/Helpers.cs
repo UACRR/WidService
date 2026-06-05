@@ -91,6 +91,33 @@ namespace SmartViewer
             }
         }
 
-        
+        public static void SetWaitCursor()
+        {
+            _waitCursorCnt++;
+            if(_waitCursorCnt == 1) Cursor.Current = Cursors.WaitCursor;
+        }
+
+        public static void UnsetWaitCursor()
+        {
+            _waitCursorCnt--;
+            if(_waitCursorCnt == 0) Cursor.Current = Cursors.Default;
+        }
+
+        public static void RunProtected(ProtectedBlock block, bool keepWaitCursor = false)
+        {
+            try
+            {
+                SetWaitCursor();
+                block();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if(!keepWaitCursor) UnsetWaitCursor();
+            }
+        }
     }
 }

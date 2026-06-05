@@ -50,7 +50,7 @@ namespace RadioStationReports
             {
                 Cursor = Cursors.WaitCursor;
                 FillControls(true);
-                timerLoad.Enabled = true;
+                //timerLoad.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -68,10 +68,20 @@ namespace RadioStationReports
             Helpers.RunSql(cmd =>
             {
                 cmd.CommandTimeout = cbSerachUsingLike.Checked ? 60 : 30;
-                cmd.CommandText = cbSerachUsingLike.Checked ? "MediaService..spSearchMsWorksEx" : "MediaService..spSearchMsWorks";
+                if(chkSearchInMs.Checked )
+                {
+                    cmd.CommandText = cbSerachUsingLike.Checked ? "MediaService..spSearchMsWorksEx" : "MediaService..spSearchMsWorks";
+                }
+                else if(chkSearchInWid.Checked )
+                {
+                    cmd.CommandText = cbSerachUsingLike.Checked ? "MediaService..spSearchWidWorksEx" : "MediaService..spSearchWidWorks";
+                }
+                else
+                {
+                    cmd.CommandText = cbSerachUsingLike.Checked ? "MediaService..spSearchWorksEx" : "MediaService..spSearchWorks";
+                }
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@name", cbSerachUsingLike.Checked ? $"%{_name}%" : _name);
-
                 using (var r = cmd.ExecuteReader())
                 {
                     _foundWorks = new List<FoundWork>();

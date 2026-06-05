@@ -14,11 +14,14 @@ namespace RadioStationReports
     public partial class FormSearch : Form
     {
 
+        public bool IsInUse { get; set; }
+
         public delegate void OnWorkApplied(string code);
         private OnWorkApplied _onWorkApplied;
         public FormSearch()
         {
             InitializeComponent();
+            IsInUse = true;
         }
 
         private void FormSearch_Load(object sender, EventArgs e)
@@ -27,9 +30,9 @@ namespace RadioStationReports
 
         public void SetNamePerformer(string name, string performers, OnWorkApplied onWorkApplied)
         {
-            Activate();
-            ucSearch.SetNamePerformer(name, 
-                performers, 
+            //Activate();
+            ucSearch.SetNamePerformer(name,
+                performers,
                 x => onWorkApplied(x)
             );
         }
@@ -37,6 +40,13 @@ namespace RadioStationReports
         private void ucSearch_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormSearch_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            IsInUse = false;
+            e.Cancel = true;
         }
     }
 }

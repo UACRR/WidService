@@ -56,6 +56,7 @@
             this.lvData.Size = new System.Drawing.Size(680, 355);
             this.lvData.TabIndex = 0;
             this.lvData.UseCompatibleStateImageBehavior = false;
+            this.lvData.SelectedIndexChanged += new System.EventHandler(this.lvData_SelectedIndexChanged);
             // 
             // UcListViewBase
             // 

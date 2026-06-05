@@ -21,6 +21,7 @@
     <Folder Include="Sql\Migration2\" />
     <Folder Include="Sql\Migration4\" />
     <Folder Include="Sql\Migration5\" />
+    <Folder Include="Sql\Migration10\" />
     <Folder Include="Sql\Procedures\" />
     <Folder Include="Sql\Tables\" />
   </ItemGroup>

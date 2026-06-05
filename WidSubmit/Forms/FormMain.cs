@@ -29,6 +29,7 @@ namespace WidSubmit
 
             this.Size = Settings.Default.FormMainSize;
             this.Location = Settings.Default.FormMainLocation;
+            this.WindowState = FormWindowState.Normal;
             UpdateContent();
         }
 
@@ -80,10 +81,22 @@ namespace WidSubmit
             //ucRightHolders  .UpdateProperties();
             ucSubmWorksHist .UpdateProperties();
 
-            Settings.Default.FormMainSize = this.Size;
-            Settings.Default.FormMainLocation = this.Location;
+            //Settings.Default.FormMainSize = this.Size;
+            //Settings.Default.FormMainLocation = this.Location;
 
             Settings.Default.Save();
+        }
+
+        private void FormMain_SizeChanged(object sender, EventArgs e)
+        {
+            Settings.Default.FormMainSize = this.Size;
+            Settings.Default.FormMainLocation = this.Location;
+        }
+
+        private void FormMain_Move(object sender, EventArgs e)
+        {
+            Settings.Default.FormMainSize = this.Size;
+            Settings.Default.FormMainLocation = this.Location;
         }
     }
 }

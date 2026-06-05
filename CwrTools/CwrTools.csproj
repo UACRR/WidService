@@ -176,6 +176,8 @@
       <DependentUpon>UcProblemWorks.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Docs\CWR19-1070R1_Functional_specifications_CWR_version_2-2_Rev2_2022-02-03_EN.pdf" />
+    <None Include="Docs\CwrRoleMap2.xlsx" />
+    <None Include="Docs\відповідь по CWR.docx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -195,6 +197,7 @@
     <Content Include="Sql\CreateTableBaseRecTran.sql" />
     <Content Include="Sql\CreateTableConfig.sql" />
     <Content Include="Sql\CreateTableFiles.sql" />
+    <Content Include="Sql\Migration1\CreateTableMapMsRoleToCwrRole.sql" />
     <Content Include="Sql\CreateTableProblemTypes.sql" />
     <Content Include="Sql\CreateTableSpecFields.sql" />
     <Content Include="Sql\CreateTableSpecFormats.sql" />
@@ -203,6 +206,11 @@
     <Content Include="Sql\fnCheckIswc.sql" />
     <Content Include="Sql\fnCheckRoleDefined.sql" />
     <Content Include="Sql\fnIsDateInInterval.sql" />
+    <Content Include="Sql\Migration1\fnCheckRoleDefined.sql" />
+    <Content Include="Sql\Migration1\fnGetCwrRole.sql" />
+    <Content Include="Sql\Migration1\spCreateTmpWorksInfo.sql" />
+    <Content Include="Sql\Migration1\vRightHoldersOwnActive.sql" />
+    <Content Include="Sql\Migration1\vWorkRightHoldersCurrent.sql" />
     <Content Include="Sql\ResultTesting.sql" />
     <Content Include="Sql\spCreateReferences.sql" />
     <Content Include="Sql\spCreateReferencesAck.sql" />
@@ -211,7 +219,6 @@
     <Content Include="Sql\spCreateReferencesIsw.sql" />
     <Content Include="Sql\spCreateReferencesNwr.sql" />
     <Content Include="Sql\spCreateReferencesRev.sql" />
-    <Content Include="Sql\spCreateTmpWorksInfo.sql" />
     <Content Include="Sql\spCreateTmpWrongWorks.sql" />
     <Content Include="Sql\spCwrFileRegister.sql" />
     <Content Include="Sql\spDeleteAllData.sql" />

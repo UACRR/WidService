@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CwrTools
 {
@@ -41,7 +42,7 @@ namespace CwrTools
 
             var recTrl = new RecTrl
             {
-                GroupCount = groupCount.ToString().PadLeft(8, '0'),
+                GroupCount = groupCount.ToString().PadLeft(5, '0'),
                 TranCount = tranCount.ToString().PadLeft(8, '0'),
                 RecordCount = (detailCount + tranCount + groupCount * 2 + 2).ToString().PadLeft(8, '0'),
             };
@@ -157,8 +158,8 @@ namespace CwrTools
                         CollShrPR       = "50",
                         CollShrMR       = "100",
                         CollShrSR       = "100",
-                        IncExcIndicator = "Y",
-                        TISNumericCode  = "0804",
+                        IncExcIndicator = "I",
+                        TISNumericCode  = "2136",
                         SharesChange    = null,
                         SeqNr           = "1",
                     };
@@ -232,7 +233,7 @@ namespace CwrTools
                 }
             }
         }
-        
+
         private void AddSwrs(SqlCommand cmd, RecGrh recGrh)
         {
             cmd.CommandText = @"
@@ -278,8 +279,8 @@ namespace CwrTools
                         CollShrPR       = "100",
                         CollShrMR       = "100",
                         CollShrSR       = "100",
-                        IncExcIndicator = "Y",
-                        TISNumericCode  = "0804",
+                        IncExcIndicator = "I",
+                        TISNumericCode  = "2136",
                         SharesChange    = null,
                         SeqNr           = "1",
                     };

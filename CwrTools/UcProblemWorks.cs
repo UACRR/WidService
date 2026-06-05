@@ -39,8 +39,8 @@ namespace CwrTools
             new ProblemType { Code = ProblemTypeEnum.RIGHTHOLDER_ROLE_UNDEFINED, Name = "Не визначена роль правовласника", IndFieldName = "UndefRole" },
             new ProblemType { Code = ProblemTypeEnum.SHARE_PER_EXCEEDS_100     , Name = "Проценти з Пуб Перевищують 100" , IndFieldName = "WrongPerShr" },	
             new ProblemType { Code = ProblemTypeEnum.SHARE_MEC_EXCEEDS_100     , Name = "Проценти з Мех Перевищують 100" , IndFieldName = "WrongMecShr" },
-            new ProblemType { Code = ProblemTypeEnum.DUPLICATE_PUBLISHERS      , Name = "Видавці вказані двічі"          , IndFieldName = "DupRightHolder" },
-            new ProblemType { Code = ProblemTypeEnum.DUPLICATE_AUTHORS         , Name = "Автори вказані двічі"           , IndFieldName = "DupPublisher" },	
+            new ProblemType { Code = ProblemTypeEnum.DUPLICATE_PUBLISHERS      , Name = "Видавці вказані двічі"          , IndFieldName = "DupPublisher" },
+            new ProblemType { Code = ProblemTypeEnum.DUPLICATE_AUTHORS         , Name = "Автори вказані двічі"           , IndFieldName = "DupRightHolder" },	
             new ProblemType { Code = ProblemTypeEnum.WRONG_ISWC                , Name = "Невірний код ISWC"              , IndFieldName = "WrongIswc" },		
             new ProblemType { Code = ProblemTypeEnum.EMPTY_NAME                , Name = "Відсутня назва твору"           , IndFieldName = "NoName" },		   
         };

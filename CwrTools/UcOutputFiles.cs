@@ -206,6 +206,7 @@ namespace CwrTools
                 fs.SplitFile();
 
                 RefreshData();
+
             }
             catch(Exception ex)
             {

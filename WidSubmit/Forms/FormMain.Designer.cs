@@ -182,6 +182,8 @@
             this.Text = "Публікація творів у WID";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.SizeChanged += new System.EventHandler(this.FormMain_SizeChanged);
+            this.Move += new System.EventHandler(this.FormMain_Move);
             this.panelMain.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelMiddle.ResumeLayout(false);

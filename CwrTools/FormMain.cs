@@ -28,9 +28,9 @@ namespace CwrTools
         {
             if (Properties.Settings.Default.FormMainSize.Width > 0 && Properties.Settings.Default.FormMainSize.Height > 0)
             {
-                this.Location = Properties.Settings.Default.FormMainLocation;
-                this.Size = Properties.Settings.Default.FormMainSize;
-                this.WindowState = Properties.Settings.Default.FormMainState;
+                //this.Location = Properties.Settings.Default.FormMainLocation;
+                //this.Size = Properties.Settings.Default.FormMainSize;
+                //this.WindowState = Properties.Settings.Default.FormMainState;
             }
 
             tabMain.SelectedIndex = 0;

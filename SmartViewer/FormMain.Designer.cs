@@ -32,19 +32,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabPanelMain = new System.Windows.Forms.TabControl();
             this.tabPageCustomerWorks = new System.Windows.Forms.TabPage();
-            this.tabPageCustomerAffiliation = new System.Windows.Forms.TabPage();
-            this.ilMainTabs = new System.Windows.Forms.ImageList(this.components);
             this.ucCustomerWorks = new SmartViewer.UcCustomerWorks();
+            this.tabPageCustomerAffiliation = new System.Windows.Forms.TabPage();
             this.ucCustomerAffiliation = new SmartViewer.UcCustomerAffiliation();
+            this.tabPageSearchIpiCodes = new System.Windows.Forms.TabPage();
+            this.ucSearchIpiCodes = new SmartViewer.UcSearchIpiCodes();
+            this.ilMainTabs = new System.Windows.Forms.ImageList(this.components);
             this.tabPanelMain.SuspendLayout();
             this.tabPageCustomerWorks.SuspendLayout();
             this.tabPageCustomerAffiliation.SuspendLayout();
+            this.tabPageSearchIpiCodes.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPanelMain
             // 
             this.tabPanelMain.Controls.Add(this.tabPageCustomerWorks);
             this.tabPanelMain.Controls.Add(this.tabPageCustomerAffiliation);
+            this.tabPanelMain.Controls.Add(this.tabPageSearchIpiCodes);
             this.tabPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabPanelMain.ImageList = this.ilMainTabs;
             this.tabPanelMain.ItemSize = new System.Drawing.Size(94, 45);
@@ -67,6 +71,15 @@
             this.tabPageCustomerWorks.Text = "Правоволодіння";
             this.tabPageCustomerWorks.UseVisualStyleBackColor = true;
             // 
+            // ucCustomerWorks
+            // 
+            this.ucCustomerWorks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucCustomerWorks.Location = new System.Drawing.Point(3, 3);
+            this.ucCustomerWorks.Name = "ucCustomerWorks";
+            this.ucCustomerWorks.Size = new System.Drawing.Size(1030, 530);
+            this.ucCustomerWorks.TabIndex = 0;
+            this.ucCustomerWorks.Load += new System.EventHandler(this.ucCustomerWorks_Load);
+            // 
             // tabPageCustomerAffiliation
             // 
             this.tabPageCustomerAffiliation.Controls.Add(this.ucCustomerAffiliation);
@@ -79,22 +92,6 @@
             this.tabPageCustomerAffiliation.Text = "Афілійованість правовласників";
             this.tabPageCustomerAffiliation.UseVisualStyleBackColor = true;
             // 
-            // ilMainTabs
-            // 
-            this.ilMainTabs.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilMainTabs.ImageStream")));
-            this.ilMainTabs.TransparentColor = System.Drawing.Color.Transparent;
-            this.ilMainTabs.Images.SetKeyName(0, "icons8-music-library-30.png");
-            this.ilMainTabs.Images.SetKeyName(1, "icons8-users-30.png");
-            this.ilMainTabs.Images.SetKeyName(2, "icons8-history-30.png");
-            // 
-            // ucCustomerWorks
-            // 
-            this.ucCustomerWorks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucCustomerWorks.Location = new System.Drawing.Point(3, 3);
-            this.ucCustomerWorks.Name = "ucCustomerWorks";
-            this.ucCustomerWorks.Size = new System.Drawing.Size(1030, 530);
-            this.ucCustomerWorks.TabIndex = 0;
-            // 
             // ucCustomerAffiliation
             // 
             this.ucCustomerAffiliation.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -102,6 +99,33 @@
             this.ucCustomerAffiliation.Name = "ucCustomerAffiliation";
             this.ucCustomerAffiliation.Size = new System.Drawing.Size(1030, 530);
             this.ucCustomerAffiliation.TabIndex = 0;
+            // 
+            // tabPageSearchIpiCodes
+            // 
+            this.tabPageSearchIpiCodes.Controls.Add(this.ucSearchIpiCodes);
+            this.tabPageSearchIpiCodes.ImageIndex = 1;
+            this.tabPageSearchIpiCodes.Location = new System.Drawing.Point(4, 49);
+            this.tabPageSearchIpiCodes.Name = "tabPageSearchIpiCodes";
+            this.tabPageSearchIpiCodes.Size = new System.Drawing.Size(1036, 536);
+            this.tabPageSearchIpiCodes.TabIndex = 2;
+            this.tabPageSearchIpiCodes.Text = "Пошук кодів в IPI";
+            this.tabPageSearchIpiCodes.UseVisualStyleBackColor = true;
+            // 
+            // ucSearchIpiCodes
+            // 
+            this.ucSearchIpiCodes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSearchIpiCodes.Location = new System.Drawing.Point(0, 0);
+            this.ucSearchIpiCodes.Name = "ucSearchIpiCodes";
+            this.ucSearchIpiCodes.Size = new System.Drawing.Size(1036, 536);
+            this.ucSearchIpiCodes.TabIndex = 0;
+            // 
+            // ilMainTabs
+            // 
+            this.ilMainTabs.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilMainTabs.ImageStream")));
+            this.ilMainTabs.TransparentColor = System.Drawing.Color.Transparent;
+            this.ilMainTabs.Images.SetKeyName(0, "icons8-music-library-30.png");
+            this.ilMainTabs.Images.SetKeyName(1, "icons8-users-30.png");
+            this.ilMainTabs.Images.SetKeyName(2, "icons8-history-30.png");
             // 
             // FormMain
             // 
@@ -115,6 +139,7 @@
             this.tabPanelMain.ResumeLayout(false);
             this.tabPageCustomerWorks.ResumeLayout(false);
             this.tabPageCustomerAffiliation.ResumeLayout(false);
+            this.tabPageSearchIpiCodes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -127,5 +152,7 @@
         private UcCustomerWorks ucCustomerWorks;
         private System.Windows.Forms.ImageList ilMainTabs;
         private UcCustomerAffiliation ucCustomerAffiliation;
+        private System.Windows.Forms.TabPage tabPageSearchIpiCodes;
+        private UcSearchIpiCodes ucSearchIpiCodes;
     }
 }
