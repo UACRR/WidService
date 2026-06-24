@@ -150,7 +150,7 @@ namespace CwrTools
                 foreach (var item in row.ItemArray)
                 {
                     DataRow rowColInfo = dtColInfo.Rows[i];
-                    Console.WriteLine($"{rowColInfo.ItemArray[0]}({rowColInfo.ItemArray[1]}) = {item}");
+                    //Console.WriteLine($"{rowColInfo.ItemArray[0]}({rowColInfo.ItemArray[1]}) = {item}");
                     i++;
                 }
                 throw;

@@ -81,7 +81,7 @@ namespace CwrTools
 #region ValueToString
         protected string FormatFieldA(string value, int size)
         {
-            return value == null ? new string(' ', size) : value.PadRight(size);
+            return value == null ? new string(' ', size) : value.Substring(0, Math.Min(value.Length, size)).PadRight(size);
         }
 
         protected string FormatFieldB(bool? value, int size)

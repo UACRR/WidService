@@ -16,29 +16,32 @@ namespace RadioStationReports
 {
     public class CisNetSingleWorkImporter
     {
+        private const string IpNameNrUnknown = "00258374538";
+
         public class Share
         {
-            public string IpName { get; set; }
-            public string IpBaseNr { get; set; }
-            public string IpNameNr { get; set; }
-            public string IpRole { get; set; }
-            public string PerSoc { get; set; }
-            public string PerShr { get; set; }
-            public string MecSoc { get; set; }
-            public string MecShr { get; set; }
+            public string IpName    { get; set; }
+            public string IpBaseNr  { get; set; }
+            public string IpNameNr  { get; set; }
+            public string IpRole    { get; set; }
+            public string PerSoc    { get; set; }
+            public string PerShr    { get; set; }
+            public string MecSoc    { get; set; }
+            public string MecShr    { get; set; }
         }
 
         public class Work
         {
-            public string SocWorkCode { get; set; }
-            public string SocCode { get; set; }
-            public string SourceDb { get; set; }
-            public string Name { get; set; }
-            public string Iswc { get; set; }
-            public List<string> Iswcs { get; set; }
-            public List<Share> Shares { get; set; }
-            public List<string> AltNames { get; set; }
-            public List<string> Performers { get; set; }
+            public int          SingleWorkDownloadId { get; set; }
+            public string       SocWorkCode          { get; set; }
+            public string       SocCode              { get; set; }
+            public string       SourceDb             { get; set; }
+            public string       Name                 { get; set; }
+            public string       Iswc                 { get; set; }
+            public List<string> Iswcs                { get; set; }
+            public List<Share>  Shares               { get; set; }
+            public List<string> AltNames             { get; set; }
+            public List<string> Performers           { get; set; }
 
             public Work()
             {
@@ -55,18 +58,26 @@ namespace RadioStationReports
         {
         }
 
+        #region Обробка файлу
         public Work LoadDownloadedFile()
         {
-            var xmlDataId = LoadFile();
-            var xDoc = LoadXml(xmlDataId);
-            ProcessXml(xDoc);
-            return _work;
+            // Реєструємо імпортований файл в БД
+            var singleWorkDownloadId = LoadFile();
+            if(singleWorkDownloadId == 0) return null;
+            // Читаємо XML з БД 
+            var xDoc = LoadXml(singleWorkDownloadId);
+            // Розбираємо XML і заносимо в інформацію про твір у структури в памяті
+            ProcessXml(xDoc, singleWorkDownloadId);
+            return _work; // Щоб мати змогу показати інформацію зовні
         }
 
         private int LoadFile()
         {
+            // Функцію слід виконувати в захищеному блоці.Це універсальний захист від проблем спричиненим невірним форматом файлу.
+
             string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
+           // Вибираємо останні завантажений в інтернет провіднику файл
             var files = new DirectoryInfo(downloadsPath).GetFiles()
                 .OrderByDescending(f => f.LastWriteTime)
                 .ToList();
@@ -79,16 +90,54 @@ namespace RadioStationReports
 
             var file = files[0];
 
+            // Читаємо вміст файлу
             var xmlLines = File.ReadAllLines(file.FullName).ToList();
             xmlLines.RemoveAt(0);
             var xmlData = string.Join("\r\n", xmlLines);
 
-            XElement elWorkNaturalKey = XElement.Parse(xmlData).Element("mwiWorks").Element("workNaturalKey");
+            // Виділяємо попередню внформацію із вмісту файлу
+            var elRoot = XElement.Parse(xmlData).Element("mwiWorks");
+            var elWorkNaturalKey = elRoot.Element("workNaturalKey");
             var socWorkCode = elWorkNaturalKey.Element("societyWorkCode")?.Value;
             var socCode = elWorkNaturalKey.Element("societyCode")?.Value;
             var sourceDb = elWorkNaturalKey.Element("sourceDb")?.Value;
+            var iswc = elRoot.Element("iswcPrefered")?.Value;
+            var tisan = elRoot.Element("shareTerritories").Element("territoryExpression")?.Value;
 
-            var xmlDataId = 0;
+            if (socCode == "140")
+            {
+                MessageBox.Show("Твір опублікований УААСП і не буде розглянутий", "Імпорт творів із CisNet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return 0;
+            }
+
+            //if (sourceDb == "300")
+            //{
+            //    MessageBox.Show("Твір існує в WID і не буде розглянутий", "Імпорт творів із CisNet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    return 0;
+            //}
+
+            if (string.IsNullOrEmpty(iswc))
+            {
+                MessageBox.Show("Твір не містить коду ISWC і не буде розглянутий", "Імпорт творів із CisNet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return 0;
+            }
+
+            //if (string.IsNullOrEmpty(tisan) || (tisan != "2136" && tisan != "+2136"))
+            //{
+            //    MessageBox.Show("Твір не має прав на весь світ і не буде розглянутий", "Імпорт творів із CisNet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    return 0;
+            //}
+
+            // Видаляємо реєстрації для яких не було імпортовано твір у СМАРТ
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SocCisNet..spDeleteIncompleteDownloads";
+                cmd.ExecuteNonQuery();
+            });
+
+            // Шукаємо в БД реєстрацію файлу спираючись на XML
+            var singleWorkDownloadId = 0;
             Helpers.RunSql(cmd =>
             {
                 cmd.CommandText = @"
@@ -99,7 +148,7 @@ namespace RadioStationReports
                     insert #Xmldata(XmlData)
                     values(@xmlData)
                     select t1.Id
-                    from SocCisNet..SingleWorkDownload t1
+                    from SocCisNet..SingleWorkDownloads t1
 	                    join #Xmldata t2 on t1.XmlDataHash = t2.XmlDataHash
                 ";
                 cmd.Parameters.AddWithValue("@xmlData", xmlData);
@@ -108,17 +157,18 @@ namespace RadioStationReports
                     if (r.HasRows)
                     {
                         r.Read();
-                        xmlDataId = r.GetInt32(0);
+                        singleWorkDownloadId = r.GetInt32(0);
                     }
                 }
             });
 
-            if (xmlDataId == 0)
+            // Якщо не знайшли створюємо реєстрацію
+            if (singleWorkDownloadId == 0)
             {
                 Helpers.RunSql(cmd =>
                 {
                     cmd.CommandText = @"
-                        insert into SocCisNet..SingleWorkDownload(SocCode, SourceDb, SocWorkCode, XmlData, CreatedAt)
+                        insert into SocCisNet..SingleWorkDownloads(SocCode, SourceDb, SocWorkCode, XmlData, CreatedAt)
                         values(@SocCode, @SourceDb, @SocWorkCode, @xmlData, @createdAt)
                         select cast(scope_identity() as int)
                     ";
@@ -127,7 +177,7 @@ namespace RadioStationReports
                     cmd.Parameters.AddWithValue("@SocWorkCode", socWorkCode);
                     cmd.Parameters.AddWithValue("@xmlData", xmlData);
                     cmd.Parameters.AddWithValue("@createdAt", file.LastWriteTime);
-                    xmlDataId = (int)cmd.ExecuteScalar();
+                    singleWorkDownloadId = (int)cmd.ExecuteScalar();
                 });
             }
 
@@ -136,18 +186,19 @@ namespace RadioStationReports
             //    File.Delete(f);
             //}
 
-            return xmlDataId;
+            // 
+            return singleWorkDownloadId;
         }
 
-        private XDocument LoadXml(int xmlDataId)
+        private XDocument LoadXml(int singleWorkDownloadId)
         {
             XDocument xDoc = null;
             Helpers.RunSql(cmd =>
             {
                 cmd.CommandText = @"
-                    select XmlData from CisNetImport where Id = @id
+                    select XmlData from SocCisNet..SingleWorkDownloads where Id = @id
                 ";
-                cmd.Parameters.AddWithValue("@id", xmlDataId);
+                cmd.Parameters.AddWithValue("@id", singleWorkDownloadId);
                 using (SqlDataReader r = cmd.ExecuteReader(CommandBehavior.SequentialAccess))
                 {
                     if (r.Read())
@@ -213,6 +264,7 @@ namespace RadioStationReports
                     share.IpName = $"{lastName} {firstName}".Trim();
                     share.IpBaseNr = el.Element("ipBaseNumber")?.Value;
                     share.IpNameNr = el.Element("ipNameNumber")?.Value;
+                    if(share.IpNameNr == null) share.IpNameNr = IpNameNrUnknown;
                 }
                 else if (el.Name == "ipRole")
                 {
@@ -250,14 +302,15 @@ namespace RadioStationReports
         private void ProcessArtists(XElement root)
         {
             var lastName = root.Element("ipReference").Element("lastname")?.Value;
-            var name = root.Element("ipReference").Element("name")?.Value;
+            var name = root.Element("ipReference").Element("firstname")?.Value;
             var fullName = $"{lastName} {name}".Trim();
             _work.Performers.Add(fullName);
         }
 
-        private void ProcessXml(XDocument xDoc)
+        private void ProcessXml(XDocument xDoc, int singleWorkDownloadId)
         {
             _work = new Work();
+            _work.SingleWorkDownloadId = singleWorkDownloadId;
             var elRoot = xDoc.Descendants("mwiWorks");
             foreach (XElement el in elRoot.Descendants())
             {
@@ -286,6 +339,222 @@ namespace RadioStationReports
                     ProcessArtists(el);
                 }
             }
+        }
+        #endregion
+
+        private int SaveWorkInDb(SqlCommand cmd)
+        {
+            cmd.CommandText = @"
+                insert SocCisNet..Works (
+                      SingleWorkDownloadId
+	                , SocWorkCode
+	                , SocCode    
+	                , SourceDb   
+	                , Name       
+	                , Iswc       
+	                , CreatedAt 
+                )
+                values (
+                      @singleWorkDownloadId
+	                , @socWorkCode
+	                , @socCode    
+	                , @sourceDb   
+	                , @name       
+	                , @iswc       
+	                , getdate()
+                )
+                select cast(scope_identity() as int)
+            ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@singleWorkDownloadId".Trim(), _work.SingleWorkDownloadId  );
+            cmd.Parameters.AddWithValue("@socWorkCode         ".Trim(), _work.SocWorkCode           );
+            cmd.Parameters.AddWithValue("@socCode             ".Trim(), _work.SocCode               );
+            cmd.Parameters.AddWithValue("@sourceDb            ".Trim(), _work.SourceDb              );
+            cmd.Parameters.AddWithValue("@name                ".Trim(), _work.Name                  );
+            cmd.Parameters.AddWithValue("@iswc                ".Trim(), _work.Iswc                  );
+            return (int)cmd.ExecuteScalar();
+        }
+
+        private void SaveWorkSharesInDb(SqlCommand cmd, int workId, Share share)
+        {
+            cmd.CommandText = @"
+                insert SocCisNet..WorkShares (
+                      WorkId  
+	                , IpName  
+	                , IpBaseNr
+	                , IpNameNr
+	                , IpRole  
+	                , PerSoc  
+	                , PerShr  
+	                , MecSoc  
+	                , MecShr  
+	                , CreatedAt
+                )
+                values (
+                      @workId  
+	                , @ipName  
+	                , @ipBaseNr
+	                , @ipNameNr
+	                , @ipRole  
+	                , @perSoc  
+	                , @perShr  
+	                , @mecSoc  
+	                , @mecShr  
+	                , getdate()
+                )
+            ";
+
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@workId  ".Trim(), workId                                );
+            cmd.Parameters.AddWithValue("@ipName  ".Trim(), share.IpName                          );
+            cmd.Parameters.AddWithValue("@ipBaseNr".Trim(), share.IpBaseNr ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@ipNameNr".Trim(), share.IpNameNr                        );
+            cmd.Parameters.AddWithValue("@ipRole  ".Trim(), share.IpRole                          );
+            cmd.Parameters.AddWithValue("@perSoc  ".Trim(), share.PerSoc ?? (object)DBNull.Value  );
+            cmd.Parameters.AddWithValue("@perShr  ".Trim(), share.PerShr ?? (object)DBNull.Value  );
+            cmd.Parameters.AddWithValue("@mecSoc  ".Trim(), share.MecSoc ?? (object)DBNull.Value  );
+            cmd.Parameters.AddWithValue("@mecShr  ".Trim(), share.MecShr ?? (object)DBNull.Value  );
+            
+            cmd.ExecuteNonQuery();
+        }
+
+        private void SaveWorkAltNamesInDb(SqlCommand cmd, int workId, string name)
+        {
+            cmd.CommandText = @"
+                insert SocCisNet..WorkAltNames (
+                      WorkId  
+	                , Name  
+	                , CreatedAt
+                )
+                values (
+                      @workId  
+	                , @name  
+	                , getdate()
+                )
+            ";
+
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@workId".Trim(), workId);
+            cmd.Parameters.AddWithValue("@name  ".Trim(), name  );
+            
+            cmd.ExecuteNonQuery();
+        }
+
+        private void SaveWorkPerformersInDb(SqlCommand cmd, int workId, string name)
+        {
+            cmd.CommandText = @"
+                insert SocCisNet..WorkPerformers (
+                      WorkId  
+	                , Name  
+	                , CreatedAt
+                )
+                values (
+                      @workId  
+	                , @name  
+	                , getdate()
+                )
+            ";
+
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@workId".Trim(), workId);
+            cmd.Parameters.AddWithValue("@name  ".Trim(), name  );
+            
+            cmd.ExecuteNonQuery();
+        }
+
+        private int SaveSingleWorkInDb(SqlCommand cmd)
+        {
+            var workId = SaveWorkInDb(cmd);
+            _work.Shares.ForEach(share => {
+                SaveWorkSharesInDb(cmd, workId, share);
+            });
+            _work.AltNames.ForEach(name => {
+                SaveWorkAltNamesInDb(cmd, workId, name);
+            });
+            _work.Performers.ForEach(name => {
+                SaveWorkPerformersInDb(cmd, workId, name);
+            });
+
+            cmd.CommandText = @"
+                update t2
+                set t2.IpBaseNr = t3.IpBaseNr
+                from SocCisNet..Works t1
+	                join SocCisNet..WorkShares t2 on t1.Id = t2.WorkId
+	                left join SocIpi..IpiName t3 on t2.IpNameNr = t3.IpNameNr
+                where t1.SocWorkCode = @socWorkCode
+	                and t1.SocCode = @socCode
+	                and t1.SourceDb = @sourceDb
+	                and t2.IpBaseNr is null
+            ";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@socWorkCode", _work.SocWorkCode);
+            cmd.Parameters.AddWithValue("@socCode", _work.SocCode);
+            cmd.Parameters.AddWithValue("@sourceDb", _work.SourceDb);
+            cmd.ExecuteNonQuery();
+
+            return workId;
+        }
+
+        private int ImportSingleWorkToMs(SqlCommand cmd, int workId)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "SocCisNet..spImportWorkFromCisNet";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@workId", workId);
+            cmd.Parameters.AddWithValue("@showTrace", false);
+            var objIdParam = new SqlParameter("@objId", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output,
+            };
+            cmd.Parameters.Add(objIdParam);
+            
+            cmd.ExecuteNonQuery();
+
+            return (int)objIdParam.Value;
+
+        }
+
+        public int ApplyImportedWork()
+        {
+            if(_work == null )
+            {
+                MessageBox.Show("Твір не обрано", "Імпорт творів із CisNet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return 0;
+            }
+
+            var objId = 0;
+            
+            // Перевіряємо чи вже імпортовано
+            Helpers.RunSql(cmd =>
+            {
+                cmd.CommandText = @"
+                    select ObjId
+                    from SocCisNet..Works t1
+                        join SocCisNet..SingleWorkDownloads t2 on t1.SingleWorkDownloadId = t2.Id
+                    where t2.Id = @singleWorkDownloadId
+                ";
+                cmd.Parameters.AddWithValue("@singleWorkDownloadId", _work.SingleWorkDownloadId);
+                using(var r = cmd.ExecuteReader())
+                {
+                    r.Read();
+                    if(r.HasRows)
+                    {
+                        objId = r.GetInt32(0);
+                    }
+                }
+            });
+
+            // Перешкоджаємо подвоєнню
+            if(objId != 0) return objId;
+
+            // Імпортуємо
+            Helpers.RunSql(cmd =>
+            {
+                var workId = SaveSingleWorkInDb(cmd);
+                objId = ImportSingleWorkToMs(cmd, workId);
+            });
+
+            return objId;
         }
     }
 }

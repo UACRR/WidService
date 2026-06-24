@@ -22,11 +22,13 @@ namespace RadioStationReports
 
     public partial class UcCisNetImport : UserControl
     {
+        private CisNetSingleWorkImporter _cisNetSingleWorkImporter;
+
         public UcCisNetImport()
         {
             InitializeComponent();
         }
-        
+
         private void UcCisNetImport_Load(object sender, EventArgs e)
         {
             Configure();
@@ -46,17 +48,31 @@ namespace RadioStationReports
             lvShares.Columns.Add("Базовий код", 90);
             lvShares.Columns.Add("Код назви", 90);
             lvShares.Columns.Add("Роль", 40);
-            lvShares.Columns.Add("Пуб %", 60);
             lvShares.Columns.Add("Пуб Тов", 60);
-            lvShares.Columns.Add("Мех %", 60);
+            lvShares.Columns.Add("Пуб %", 60);
             lvShares.Columns.Add("Мех Тов", 60);
+            lvShares.Columns.Add("Мех %", 60);
 
-            lvAltNames.View = View.Tile;
-            lvAltNames.TileSize = new Size(100, 20);
+            lvAltNames.FullRowSelect = true;
+            lvAltNames.GridLines = true;
+            lvAltNames.HeaderStyle = ColumnHeaderStyle.None;
+            lvAltNames.MultiSelect = false;
+            lvAltNames.View = View.Details;
 
-            lvPerformers.View = View.Tile;
-            lvPerformers.TileSize = new Size(100, 20);
-           
+            lvAltNames.Columns.Add("Назва", 300);
+
+            lvPerformers.FullRowSelect = true;
+            lvPerformers.GridLines = true;
+            lvPerformers.HeaderStyle = ColumnHeaderStyle.None;
+            lvPerformers.MultiSelect = false;
+            lvPerformers.View = View.Details;
+
+            lvPerformers.Columns.Add("Назва", 300);
+
+            //btnApply.Enabled = false;
+
+            _cisNetSingleWorkImporter = new CisNetSingleWorkImporter();
+
         }
 
         private void FillControls(CisNetSingleWorkImporter.Work work)
@@ -67,7 +83,8 @@ namespace RadioStationReports
 
             var seqNr = 1;
             lvShares.Items.Clear();
-            work.Shares.ForEach(s => {
+            work.Shares.ForEach(s =>
+            {
                 var item = lvShares.Items.Add(seqNr.ToString());
                 item.SubItems.Add(s.IpName);
                 item.SubItems.Add(s.IpBaseNr);
@@ -81,26 +98,42 @@ namespace RadioStationReports
             });
 
             lvAltNames.Items.Clear();
-            work.AltNames.ForEach(n => {
+            work.AltNames.ForEach(n =>
+            {
                 lvAltNames.Items.Add(n);
             });
 
             lvPerformers.Items.Clear();
-            work.Performers.ForEach(p => {
+            work.Performers.ForEach(p =>
+            {
                 lvPerformers.Items.Add(p);
             });
+            lvPerformers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
         }
 
-        private void btnPaste_Click(object sender, EventArgs e)
+        public void GetWork()
         {
             Helpers.RunProtected(() =>
             {
-                var cisNetSingleWorkImporter = new CisNetSingleWorkImporter();
-                var work = cisNetSingleWorkImporter.LoadDownloadedFile();
+                var work = _cisNetSingleWorkImporter.LoadDownloadedFile();
+                if(work == null) return;
+
                 FillControls(work);
+                //btnPaste.Enabled = false;
+                //btnApply.Enabled = true;
             });
         }
 
+        public int ApplyWork()
+        {
+           var res = 0;
+           Helpers.RunProtected(() =>
+            {
+                res = _cisNetSingleWorkImporter.ApplyImportedWork();
+                //btnApply.Enabled = false;
+            });
+            return res;
+        }
     }
 }

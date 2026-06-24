@@ -126,6 +126,7 @@ namespace CwrTools
                     , SocMR
                     , OwnShrMR
                     , PublisherIPBaseNr
+                    , AroundWorld
                 from TmpWorksSpu
                 order by ObjId
             ";
@@ -159,7 +160,7 @@ namespace CwrTools
                         CollShrMR       = "100",
                         CollShrSR       = "100",
                         IncExcIndicator = "I",
-                        TISNumericCode  = "2136",
+                        TISNumericCode  = r.IsDBNull(11) ? "0804" : r.GetBoolean(11) ? "2136" : "0804",
                         SharesChange    = null,
                         SeqNr           = "1",
                     };
@@ -249,6 +250,7 @@ namespace CwrTools
 	                , SocMR
 	                , OwnShrMR
 	                , WriterIpBaseNr
+                    , AroundWorld
                 from TmpWorksSwr
                 order by ObjId
             ";
@@ -280,7 +282,7 @@ namespace CwrTools
                         CollShrMR       = "100",
                         CollShrSR       = "100",
                         IncExcIndicator = "I",
-                        TISNumericCode  = "2136",
+                        TISNumericCode  = r.IsDBNull(11) ? "0804" : r.GetBoolean(11) ? "2136" : "0804",
                         SharesChange    = null,
                         SeqNr           = "1",
                     };
@@ -375,7 +377,7 @@ namespace CwrTools
                     objId = r.GetInt32(0);
                     var recAlt = new RecAlt
                     {
-                         AltTitle   = r.GetString(1),
+                         AltTitle   = r.GetString(1).Replace('\t', ' ').Trim(' ', '\r', '\n'),
                          TitleType  = r.GetString(2),
                     };
 
@@ -416,7 +418,7 @@ namespace CwrTools
                     objId = r.GetInt32(0);
                     var recPer = new RecPer
                     {
-                         LastName   = r.GetString(1),
+                         LastName   = r.GetString(1).Replace('\t', ' ').Trim(' ', '\r', '\n'),
                     };
 
                     RecNwr recNwr = null;

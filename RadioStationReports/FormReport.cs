@@ -170,10 +170,10 @@ namespace RadioStationReports
             lvReportLines.Columns.Add("Номер рядка", 90);
             lvReportLines.Columns.Add("Назва твору", 200);
             lvReportLines.Columns.Add("Виконавці", 200);
-            lvReportLines.Columns.Add("Де знайдено", 80);
+            //lvReportLines.Columns.Add("Де знайдено", 80);
             lvReportLines.Columns.Add("Код СМАРТ", 80);
             lvReportLines.Columns.Add("Код WID", 80);
-            lvReportLines.Columns.Add("Код CISNet", 100);
+            //lvReportLines.Columns.Add("Код CISNet", 100);
             lvReportLines.Columns.Add("Код ISWC", 100);
             lvReportLines.Columns.Add("До виплати %", 100);
             lvReportLines.Columns.Add("Перевірка", 80);
@@ -427,10 +427,10 @@ namespace RadioStationReports
                     item.SubItems.Add(x.LineNr.ToString());
                     item.SubItems.Add(x.Name);
                     item.SubItems.Add(x.Performer);
-                    item.SubItems.Add(x.Work.FoundIn);
+                    //item.SubItems.Add(x.Work.FoundIn);
                     item.SubItems.Add(x.Work.ObjId.ToString());
                     item.SubItems.Add(x.Work.Wic.ToString());
-                    item.SubItems.Add(x.Work.CisNetWorkCode);
+                    //item.SubItems.Add(x.Work.CisNetWorkCode);
                     item.SubItems.Add(x.Work.Iswc);
                     item.SubItems.Add(x.Work.Share.ToString());
                     item.SubItems.Add(x.Work.CheckValue.ToString());
@@ -457,10 +457,10 @@ namespace RadioStationReports
             var idx = 2;
             item.SubItems[idx++].Text = line.Name;
             item.SubItems[idx++].Text = line.Performer;
-            item.SubItems[idx++].Text = line.Work.FoundIn;
+            //item.SubItems[idx++].Text = line.Work.FoundIn;
             item.SubItems[idx++].Text = line.Work.ObjId.ToString();
             item.SubItems[idx++].Text = line.Work.Wic.ToString();
-            item.SubItems[idx++].Text = line.Work.CisNetWorkCode;
+            //item.SubItems[idx++].Text = line.Work.CisNetWorkCode;
             item.SubItems[idx++].Text = line.Work.Iswc;
             item.SubItems[idx++].Text = line.Work.Share.ToString();
             item.SubItems[idx++].Text = line.Work.CheckValue.ToString();
@@ -1097,7 +1097,7 @@ namespace RadioStationReports
                 //    _formSearch.Activate();
                 //}
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -1327,7 +1327,7 @@ namespace RadioStationReports
                 Cursor.Current = Cursors.Default;
             }
         }
-        
+
         private void CancelWorkCodes()
         {
             try
@@ -1400,7 +1400,7 @@ namespace RadioStationReports
                 "Пошук творів",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
-            if(res == DialogResult.No) return;
+            if (res == DialogResult.No) return;
 
             CancelWorkCodes();
             UpdateCodeEditControls("NONE");
@@ -1464,7 +1464,7 @@ namespace RadioStationReports
                 MoveFormSearch();
             }
 
-            if(setInUse) _formSearch.IsInUse = true;
+            if (setInUse) _formSearch.IsInUse = true;
             var reportLine = (ReportLine)selectedItem.Tag;
             if (!_formSearch.Visible && _formSearch.IsInUse)
             {
@@ -1737,7 +1737,7 @@ namespace RadioStationReports
             {
                 Cursor.Current = Cursors.WaitCursor;
                 var updateFromWid = false;
-                if(wic != null)
+                if (wic != null)
                 {
                     Helpers.RunSql(cmd =>
                     {
@@ -1766,13 +1766,13 @@ namespace RadioStationReports
                             }
 
                         }
-                        
+
                     });
                 }
 
                 Helpers.RunSql(cmd =>
                 {
-                    if(updateFromWid)
+                    if (updateFromWid)
                     {
                         cmd.CommandText = "MediaService..spUpdateWorkFromWid";
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -1781,7 +1781,7 @@ namespace RadioStationReports
                         cmd.Parameters.AddWithValue("@wic", wic);
                         cmd.ExecuteNonQuery();
                     }
- 
+
                     cmd.CommandText = "spCreateReportAuthorsMs";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
@@ -1798,9 +1798,9 @@ namespace RadioStationReports
 
                 UpdateLvReportLine();
 
-                if(tabDetails.SelectedIndex == 1)
+                if (tabDetails.SelectedIndex == 1)
                     ucReportLineWork.Update(_report.Id, reportLine.LineNr);
-                if(tabDetails.SelectedIndex == 0)
+                if (tabDetails.SelectedIndex == 0)
                     ucReportLineDistribution.Update(_report.Id, reportLine.LineNr);
 
             }
@@ -1877,7 +1877,7 @@ namespace RadioStationReports
 
         private void FormReport_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(_formSearch != null) 
+            if (_formSearch != null)
             {
                 _formSearch.Close();
                 _formSearch.Dispose();
@@ -1885,6 +1885,21 @@ namespace RadioStationReports
             }
 
             e.Cancel = false;
+        }
+
+        private void btnCisNetApply_Click(object sender, EventArgs e)
+        {
+            var form = new FormCisNetImport();
+            if(form.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            var objId = form.ObjId;
+            _ignoreCodeChangedEvent = true;
+            tbObjId.Text = objId.ToString();
+            tbWic.Text = "";
+            tbIswc.Text= "";
+            _ignoreCodeChangedEvent = false;
+            ApplyWorkCode();
         }
     }
 }
