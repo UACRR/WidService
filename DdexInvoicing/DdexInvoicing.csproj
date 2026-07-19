@@ -647,6 +647,8 @@
     <Content Include="Migrations\17_InvoicingTiktok\%286%29 spCreateInitialInvoiceTiktok.sql" />
     <Content Include="Migrations\17_InvoicingTiktok\%287%29 spDdexUpdateIndentBacklogSharesTikTok.sql" />
     <Content Include="Migrations\20_Meta\CreateCustomerMeta.sql" />
+    <Content Include="Migrations\21_TikTokDist\spCreateAdjConsolidatedDetailForTikTok.sql" />
+    <Content Include="Migrations\21_TikTokDist\spDdexAdjConsolidatedDistRoyalty.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidIpRolePrty.sql" />
     <Content Include="SqlQueries\WidInMediaService\fnWidPrtyIpRole.sql" />
     <Content Include="SqlQueries\WidInMediaService\spWidImportToMs.sql" />

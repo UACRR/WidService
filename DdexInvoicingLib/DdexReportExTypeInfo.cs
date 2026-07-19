@@ -562,6 +562,7 @@ namespace InvoicingLib
                 case "spotify-free":            return ReportTypeEnum.SPOTIFY_FREE;
                 case "spotify-premium":         return ReportTypeEnum.SPOTIFY_PREMIUM;
                 case "deezer-all":              return ReportTypeEnum.DEEZER_ALL;
+                case "tiktok":                  return ReportTypeEnum.TIKTOK;
                 default:                        return ReportTypeEnum.UNKNOWN;
 
             }
@@ -695,6 +696,14 @@ namespace InvoicingLib
             return AgreementReportTypes.ContainsKey(agreementReportType.ToLower()) &&
                  (
                     AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.DEEZER_ALL
+                 );
+        }
+
+        public static bool IsTikTokReport(string agreementReportType)
+        {
+            return AgreementReportTypes.ContainsKey(agreementReportType.ToLower()) &&
+                 (
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.TIKTOK
                  );
         }
 

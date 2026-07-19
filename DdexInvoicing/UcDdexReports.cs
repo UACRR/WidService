@@ -658,7 +658,6 @@ namespace DdexInvoicing
 
         }
 
-
         private bool DistGoogle(int ddexReportId, int ddexReportingPeriodId, bool loadInitialData)
         {
             // Get data for file name validation from db
@@ -730,7 +729,7 @@ namespace DdexInvoicing
             return true;
         }
 
-        private bool DistSpotify(int ddexReportId, int ddexReportingPeriodId)
+        private bool DistPreCheck(int ddexReportId, int ddexReportingPeriodId)
         {
             // Get data for file name validation from db
             string fileType = "";
@@ -777,25 +776,27 @@ namespace DdexInvoicing
                 return false;
             }
 
+            return true;
+        }
+
+        private bool DistSpotify(int ddexReportId, int ddexReportingPeriodId)
+        {
+            if(!DistPreCheck(ddexReportId, ddexReportingPeriodId))
+                return false;
+
             FormRoyaltyDistribution formRoyaltyDistribution = new FormRoyaltyDistribution(ddexReportId, "");
             formRoyaltyDistribution.ShowDialog();
             return true;
 
-            FormLongOperation form = new FormLongOperation("Виконується побудова даних для розподілу. Зачекайте, будь ласка.");
-            Form parent = FindForm();
-            form.Show(parent);
-            var task = new Task<string>(() => { return DoDistSpotifyRoyalty(ddexReportId, "", fileType); });
-            task.Start();
-            task.Wait();
-            form.Hide();
+        }
 
-            if (!string.IsNullOrEmpty(task.Result))
-            {
-                MessageBox.Show(task.Result, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        private bool DistTikTok(int ddexReportId, int ddexReportingPeriodId)
+        {
+            if(!DistPreCheck(ddexReportId, ddexReportingPeriodId))
                 return false;
-            }
 
-            MessageBox.Show("Дані для розподілу роялті побудовані і передані в БД MediaService", "Операція завершена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FormRoyaltyDistribution formRoyaltyDistribution = new FormRoyaltyDistribution(ddexReportId, "");
+            formRoyaltyDistribution.ShowDialog();
             return true;
         }
 
@@ -894,6 +895,10 @@ namespace DdexInvoicing
                     else if (DdexReport.IsSpotifyReport(agreementReportType))
                     {
                         res = DistSpotify(ddexReportId, ddexReportingPeriodId);
+                    }
+                    else if (DdexReport.IsTikTokReport(agreementReportType))
+                    {
+                        res = DistTikTok(ddexReportId, ddexReportingPeriodId);
                     }
 
                     if (res)

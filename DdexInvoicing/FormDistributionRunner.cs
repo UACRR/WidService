@@ -236,7 +236,8 @@ namespace DdexInvoicing
 
             Cursor.Current = Cursors.WaitCursor;
             if (reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_FREE ||
-                reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM)
+                reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM  ||
+                reportTypeEnum == DdexReport.ReportTypeEnum.TIKTOK)
             {
                 return true;
             }

@@ -142,6 +142,18 @@ namespace InvoicingLib
             if (!isSWOD && royaltyThreshold > 0 && Formatter.ToDouble(suRecord.NetRevenue) == 0)
                 return;
 
+            if
+            (
+                asRecord.Title.Length > 256                 || // asTitle
+                asRecord.DisplayArtistName.Length > 2000    || // displayartistname
+                mwRecord.ISWC.Length > 13                   || // iswc
+                mwRecord.Title.Length > 256                 || // mwtitle
+                mwRecord.ComposerAuthor.Length > 2000          // composerauthor
+            )
+            {
+                return;
+            }
+
             cntSalesLoaded++;
             try
             {
