@@ -107,11 +107,11 @@ namespace WidSubmit
             });
         }   
 
-        public static async Task CreateAndSendSubmFile()
+        public static bool CreateAndSendSubmFile()
         {
             if (DialogResult.Yes != MessageBox.Show("Передати файл публікації?", "Публікація творів", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
-                return;
+                return false;
             }
 
             var submFileName = "";
@@ -124,7 +124,7 @@ namespace WidSubmit
             // ЗАПОБІЖНИК - не чіпаємо вже переданий файл.
             if(SubmFileUploaded())
             {
-                return;
+                return false;
             }
 
             // Створюємо і передаємо файл
@@ -140,10 +140,11 @@ namespace WidSubmit
             if(wrongLineIdx.Count() != 0)
             {
                 MessageBox.Show("Файл містить помилки", "Файли обміну", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                return false;
             }
 
-            await UploadFile(submFileName);
+            UploadFile(submFileName);
+            return true;
         } 
 
         public static string CheckSubmDeclined()
@@ -157,11 +158,13 @@ namespace WidSubmit
 
             var appSettings = ConfigurationManager.AppSettings;
             var ftpClient = new FtpClient(
-                appSettings["FileExchangeFtpErrorDir"],
+                appSettings["FileExchangeFtpPath"],
                 appSettings["FileExchangeFtpLogin"],
-                appSettings["FileExchangeFtpPassword"]
+                appSettings["FileExchangeFtpPassword"],
+                int.Parse(appSettings["FileExchangeFtpPort"]),
+                bool.Parse(appSettings["FileExchangeFtpUseSftp"])
             );
-            var ftpFiles = ftpClient.ReadDirectoryFiles("").ToList();
+            var ftpFiles = ftpClient.ReadDirectoryFiles(appSettings["FileExchangeFtpErrorDir"]).ToList();
             return ftpFiles.Any(x => x.ToUpper().Contains(submFileName.ToUpper())) ? submFileName : "";
 
          }
@@ -180,17 +183,24 @@ namespace WidSubmit
                 lastRespFileName = (string)cmd.ExecuteScalar();
             });
 
+            // Враховуємо зміну назви файлу в ЦН-2
+            if (char.ToUpper(lastRespFileName[0]) == 'W')
+                lastRespFileName = "";
+
             //!!!!!!!!!!!!!!!!!!!! Для тестування
             //curSubmFileName = "WID20260406124038140300.021";
 
             // Завантажуємо з ФТП повний перелік файлів відповіді
             var appSettings = ConfigurationManager.AppSettings;
             var ftpClient = new FtpClient(
-                appSettings["FileExchangeFtpRespDir"],
+                appSettings["FileExchangeFtpPath"],
                 appSettings["FileExchangeFtpLogin"],
-                appSettings["FileExchangeFtpPassword"]
+                appSettings["FileExchangeFtpPassword"],
+                int.Parse(appSettings["FileExchangeFtpPort"]),
+                bool.Parse(appSettings["FileExchangeFtpUseSftp"])
+
             );
-            var ftpFileNames = ftpClient.ReadDirectoryFiles("");
+            var ftpFileNames = ftpClient.ReadDirectoryFiles(appSettings["FileExchangeFtpRespDir"]);
             
             // Серед завантаженого переліку вибираємо назви файлів, які створені пізніше останнього прийнятого
             var ftpCandidateFileNames = new List<string>();
@@ -204,7 +214,7 @@ namespace WidSubmit
                 }
 
                 // Про всяк випадок перевіряємо що назва файлу відповідає файлу відповіді
-                if(Path.GetExtension(fileNameNoGz).ToLower() == ".021")
+                if(Path.GetExtension(fileNameNoGz).ToLower() == ".021_2136")
                 {
                     // Після чого додаємо файл якщо він старший за останній файл відповіді
                     if(string.Compare(fileName, lastRespFileName) > 0)
@@ -218,9 +228,9 @@ namespace WidSubmit
             var retVal = ""; // якщо файл не знайдений
             foreach(var fileName in ftpCandidateFileNames)
             {
-                // Сперш завантажуємо файл з ФТП (ftpClient вже налаштований на фолдер файлів відповіді)
+                // Сперш завантажуємо файл з ФТП
                 var targetDir = Path.Combine(appSettings["FileExchangeRootDir"], "RespFiles");
-                ftpClient.DownloadFile("", fileName, targetDir);
+                ftpClient.DownloadFile(appSettings["FileExchangeFtpRespDir"], fileName, targetDir);
 
                 // За потреби розпаковуємо файл
                 var targetFileNameFull = Path.Combine(targetDir, fileName);
@@ -237,9 +247,9 @@ namespace WidSubmit
                 using(StreamReader reader = new StreamReader(targetFileNameFull))
                 {
                     var lineRecHdr = reader.ReadLine();
-                    if(lineRecHdr != null && lineRecHdr.Length < 131) // Запобігаємо аналізу невірного файлу
+                    if(lineRecHdr != null && lineRecHdr.Length < 136) // Запобігаємо аналізу невірного файлу
                     {
-                        var submFileNameInResp = lineRecHdr.Substring(101 /*102 - 1*/, 29);
+                        var submFileNameInResp = lineRecHdr.Substring(108 /*109 - 1*/, 27);
                         if(submFileNameInResp.ToLower() == curSubmFileName.ToLower())
                         {
                             retVal = Path.GetFileName(targetFileNameFull);
@@ -290,56 +300,30 @@ namespace WidSubmit
             }
 
             var appSettings = ConfigurationManager.AppSettings;
-
-            var targetFile = $"{appSettings["FileExchangeFtpSubmDir"]}/{submFileName}";
-            FtpWebRequest fileSizeRequest = (FtpWebRequest)WebRequest.Create($"{targetFile}");
-            fileSizeRequest.Method = WebRequestMethods.Ftp.GetFileSize;
-            fileSizeRequest.Credentials = new NetworkCredential(appSettings["FileExchangeFtpLogin"], appSettings["FileExchangeFtpPassword"]);
-
-            try
-            {
-                FtpWebResponse response = (FtpWebResponse)fileSizeRequest.GetResponse();
-                return true;
-            }
-            catch (WebException ex)
-            {
-                FtpWebResponse response = (FtpWebResponse)ex.Response;
-                if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
-                {
-                    return false;
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var ftpClient = new FtpClient(
+                appSettings["FileExchangeFtpPath"],
+                appSettings["FileExchangeFtpLogin"],
+                appSettings["FileExchangeFtpPassword"],
+                int.Parse(appSettings["FileExchangeFtpPort"]),
+                bool.Parse(appSettings["FileExchangeFtpUseSftp"])
+            );
+            var retVal = ftpClient.FileExists(appSettings["FileExchangeFtpSubmDir"], submFileName);
+            return retVal;
         }
 
-        private static async Task UploadFile(string submFileName)
+        private static void UploadFile(string submFileName)
         {
             var appSettings = ConfigurationManager.AppSettings;
-
-            var targetFile = $"{appSettings["FileExchangeFtpSubmDir"]}/{submFileName}";
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(targetFile);
-            request.Method = WebRequestMethods.Ftp.UploadFile;
-
-            request.Credentials = new NetworkCredential(appSettings["FileExchangeFtpLogin"], appSettings["FileExchangeFtpPassword"]);
-
-            var folderPath = Path.Combine(appSettings["FileExchangeRootDir"], "OutFiles");
-            var sourceFile = Path.Combine(folderPath, submFileName);
-
-            using (FileStream fileStream = File.Open(sourceFile, FileMode.Open, FileAccess.Read))
-            {
-                using (Stream requestStream = request.GetRequestStream())
-                {
-                    await fileStream.CopyToAsync(requestStream);
-                }
-            }
-            FtpStatusCode statusCode;
-            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
-            {
-                statusCode = response.StatusCode;
-            }
+            var ftpClient = new FtpClient(
+                appSettings["FileExchangeFtpPath"],
+                appSettings["FileExchangeFtpLogin"],
+                appSettings["FileExchangeFtpPassword"],
+                int.Parse(appSettings["FileExchangeFtpPort"]),
+                bool.Parse(appSettings["FileExchangeFtpUseSftp"])
+            );
+            var localFileFullName = Path.Combine(appSettings["FileExchangeRootDir"], "OutFiles", submFileName);
+            var targetFileName = $"{appSettings["FileExchangeFtpSubmDir"]}/{submFileName}";
+            ftpClient.UploadFile(localFileFullName, targetFileName);
         }
 
     }

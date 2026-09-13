@@ -33,7 +33,6 @@
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelMiddle = new System.Windows.Forms.SplitContainer();
             this.panelSocRightHolders = new System.Windows.Forms.TableLayoutPanel();
-            this.ucSubmRightHolders = new WidSubmit.UcSubmRightHolders();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAddSelected = new System.Windows.Forms.Button();
             this.btnAddAll = new System.Windows.Forms.Button();
@@ -53,6 +52,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
             this.toolTipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.btnAddFromCbd = new System.Windows.Forms.Button();
+            this.ucSubmRightHolders = new WidSubmit.UcSubmRightHolders();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddle)).BeginInit();
             this.panelMiddle.Panel1.SuspendLayout();
@@ -99,7 +100,7 @@
             // 
             this.panelMiddle.Panel2.Controls.Add(this.panelSubmRightHolders);
             this.panelMiddle.Size = new System.Drawing.Size(976, 379);
-            this.panelMiddle.SplitterDistance = 389;
+            this.panelMiddle.SplitterDistance = 453;
             this.panelMiddle.TabIndex = 0;
             // 
             // panelSocRightHolders
@@ -115,32 +116,25 @@
             this.panelSocRightHolders.RowCount = 2;
             this.panelSocRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelSocRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.panelSocRightHolders.Size = new System.Drawing.Size(389, 379);
+            this.panelSocRightHolders.Size = new System.Drawing.Size(453, 379);
             this.panelSocRightHolders.TabIndex = 1;
-            // 
-            // ucSubmRightHolders
-            // 
-            this.ucSubmRightHolders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSubmRightHolders.Location = new System.Drawing.Point(3, 3);
-            this.ucSubmRightHolders.Name = "ucSubmRightHolders";
-            this.ucSubmRightHolders.Size = new System.Drawing.Size(378, 338);
-            this.ucSubmRightHolders.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnAddSelected);
             this.flowLayoutPanel1.Controls.Add(this.btnAddAll);
+            this.flowLayoutPanel1.Controls.Add(this.btnAddFromCbd);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 347);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(378, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(442, 29);
             this.flowLayoutPanel1.TabIndex = 2;
             this.flowLayoutPanel1.WrapContents = false;
             // 
             // btnAddSelected
             // 
-            this.btnAddSelected.Location = new System.Drawing.Point(229, 3);
+            this.btnAddSelected.Location = new System.Drawing.Point(293, 3);
             this.btnAddSelected.Name = "btnAddSelected";
             this.btnAddSelected.Size = new System.Drawing.Size(146, 23);
             this.btnAddSelected.TabIndex = 0;
@@ -150,7 +144,7 @@
             // 
             // btnAddAll
             // 
-            this.btnAddAll.Location = new System.Drawing.Point(108, 3);
+            this.btnAddAll.Location = new System.Drawing.Point(172, 3);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(115, 23);
             this.btnAddAll.TabIndex = 0;
@@ -173,7 +167,7 @@
             this.panelSubmRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.panelSubmRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelSubmRightHolders.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.panelSubmRightHolders.Size = new System.Drawing.Size(583, 379);
+            this.panelSubmRightHolders.Size = new System.Drawing.Size(519, 379);
             this.panelSubmRightHolders.TabIndex = 0;
             // 
             // lvCurSubmRightHolders
@@ -182,7 +176,7 @@
             this.lvCurSubmRightHolders.HideSelection = false;
             this.lvCurSubmRightHolders.Location = new System.Drawing.Point(3, 33);
             this.lvCurSubmRightHolders.Name = "lvCurSubmRightHolders";
-            this.lvCurSubmRightHolders.Size = new System.Drawing.Size(572, 308);
+            this.lvCurSubmRightHolders.Size = new System.Drawing.Size(508, 308);
             this.lvCurSubmRightHolders.TabIndex = 0;
             this.lvCurSubmRightHolders.UseCompatibleStateImageBehavior = false;
             this.lvCurSubmRightHolders.SelectedIndexChanged += new System.EventHandler(this.lvSubmRightHolders_SelectedIndexChanged);
@@ -194,7 +188,7 @@
             this.btnSubmRightHolderAddAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSubmRightHolderAddAll.Location = new System.Drawing.Point(3, 3);
             this.btnSubmRightHolderAddAll.Name = "btnSubmRightHolderAddAll";
-            this.btnSubmRightHolderAddAll.Size = new System.Drawing.Size(572, 24);
+            this.btnSubmRightHolderAddAll.Size = new System.Drawing.Size(508, 24);
             this.btnSubmRightHolderAddAll.TabIndex = 1;
             // 
             // label2
@@ -234,7 +228,7 @@
             this.panelSubmRightHoldersButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSubmRightHoldersButtons.Location = new System.Drawing.Point(3, 347);
             this.panelSubmRightHoldersButtons.Name = "panelSubmRightHoldersButtons";
-            this.panelSubmRightHoldersButtons.Size = new System.Drawing.Size(572, 29);
+            this.panelSubmRightHoldersButtons.Size = new System.Drawing.Size(508, 29);
             this.panelSubmRightHoldersButtons.TabIndex = 2;
             this.panelSubmRightHoldersButtons.WrapContents = false;
             // 
@@ -329,6 +323,24 @@
             this.toolTipHelp.ReshowDelay = 100;
             this.toolTipHelp.ShowAlways = true;
             // 
+            // btnAddFromCbd
+            // 
+            this.btnAddFromCbd.Location = new System.Drawing.Point(17, 3);
+            this.btnAddFromCbd.Name = "btnAddFromCbd";
+            this.btnAddFromCbd.Size = new System.Drawing.Size(149, 23);
+            this.btnAddFromCbd.TabIndex = 0;
+            this.btnAddFromCbd.Text = "Додати з буферу обміну";
+            this.btnAddFromCbd.UseVisualStyleBackColor = true;
+            this.btnAddFromCbd.Click += new System.EventHandler(this.btnAddFromCbd_Click);
+            // 
+            // ucSubmRightHolders
+            // 
+            this.ucSubmRightHolders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSubmRightHolders.Location = new System.Drawing.Point(3, 3);
+            this.ucSubmRightHolders.Name = "ucSubmRightHolders";
+            this.ucSubmRightHolders.Size = new System.Drawing.Size(442, 338);
+            this.ucSubmRightHolders.TabIndex = 0;
+            // 
             // FormSubmissionRightHolders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,5 +394,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnAddSelected;
         private System.Windows.Forms.Button btnAddAll;
+        private System.Windows.Forms.Button btnAddFromCbd;
     }
 }

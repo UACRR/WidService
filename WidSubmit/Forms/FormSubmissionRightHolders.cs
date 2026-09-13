@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -147,6 +148,37 @@ namespace WidSubmit
                 item.EnsureVisible();
             }
         }
+        
+        private void btnAddFromCbd_Click(object sender, EventArgs e)
+        {
+            if (!Clipboard.ContainsText())
+            {
+                Helpers.ShowErrMsg("Відсутні коди правовласників в буфері обміну");
+                return;
+            }
+            
+            var rawText = Clipboard.GetText();
+            var custIds = new List<int>();
+            using (StringReader reader = new StringReader(rawText))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if(!Helpers.IsDigitString(line))
+                    {
+                        Helpers.ShowErrMsg("Невірні коди правовласників в буфері обміну");
+                        return;
+                    }
+                    custIds.Add(int.Parse(line));
+                }
+            }
+
+            ucSubmRightHolders.AddFromCbd(custIds);
+            FillLvSubmRightHolders();
+            btnRemoveAll.Enabled = true;
+            btnRemoveSelected.Enabled = false;
+            btnToggleSubmType.Enabled = false;
+        }
 
         private void btnRemoveSelected_Click(object sender, EventArgs e)
         {
@@ -261,6 +293,5 @@ namespace WidSubmit
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
     }
 }

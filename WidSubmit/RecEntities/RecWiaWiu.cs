@@ -29,9 +29,9 @@ namespace WidSubmit
         [CustomPosInFile(152, 3, 'L')] [Column(TypeName = "varchar(3)")] public string   LyrAdapt            { get; set; }
         [CustomPosInFile(155, 10, 'N')] [Column(TypeName = "varchar(10)")] public string WicCode             { get; set; }
         [CustomPosInFile(165, 8, 'N')] [Column(TypeName = "varchar(8)")] public string   UpdDate             { get; set; }
-        [CustomPosInFile(173, 8, 'N')] [Column(TypeName = "varchar(8)")] public string   FstSendDateToCis    { get; set; }
-        [CustomPosInFile(181, 8, 'N')] [Column(TypeName = "varchar(8)")] public string   LstSendDateToCis    { get; set; }
-        [CustomPosInFile(189, 3, 'L')] [Column(TypeName = "varchar(3)")] public string   SocWrkType          { get; set; }
+        //[CustomPosInFile(173, 8, 'N')] [Column(TypeName = "varchar(8)")] public string   FstSendDateToCis    { get; set; }
+        //[CustomPosInFile(181, 8, 'N')] [Column(TypeName = "varchar(8)")] public string   LstSendDateToCis    { get; set; }
+        //[CustomPosInFile(189, 3, 'L')] [Column(TypeName = "varchar(3)")] public string   SocWrkType          { get; set; }
     }
 }
 

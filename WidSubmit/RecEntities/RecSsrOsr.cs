@@ -15,7 +15,7 @@ namespace WidSubmit
         [CustomPosInFile(29, 3, 'L')] [Column(TypeName = "varchar(3)")] public string RightType { get; set; }
         [CustomPosInFile(32, 5, 'N')] [Column(TypeName = "varchar(5)")] public string Shares { get; set; }
         [CustomPosInFile(37, 11, 'N')] [Column(TypeName = "varchar(11)")] public string IpNameNr { get; set; }
-        [CustomPosInFile(48, 3, 'L')] [Column(TypeName = "varchar(3)")] public string Aff { get; set; }
+        //[CustomPosInFile(48, 3, 'L')] [Column(TypeName = "varchar(3)")] public string Aff { get; set; }
     }
 }
 

@@ -80,5 +80,32 @@ namespace MsSqlClrExt
             }
             return -1;
         }
+    
+        [SqlFunction(DataAccess = DataAccessKind.None)]
+        public static string ClrGetName(string text)
+        {
+            var parts = text.Trim().Split(' ');
+            if (parts.Length > 0)
+                return parts[0].Trim();
+            return "";
+        }
+
+        [SqlFunction(DataAccess = DataAccessKind.None)]
+        public static string ClrGetFirstName(string text)
+        {
+            var parts = text.Trim().Split(' ');
+            if (parts.Length > 1)
+                return parts[1].Trim();
+            return "";
+        }
+
+        [SqlFunction(DataAccess = DataAccessKind.None)]
+        public static string ClrGetSurName(string text)
+        {
+            var parts = text.Trim().Split(' ');
+            if (parts.Length > 2)
+                return parts[2].Trim();
+            return "";
+        }
     }
 }

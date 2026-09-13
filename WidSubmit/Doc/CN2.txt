@@ -1,0 +1,62 @@
+Пересилаю листа від Cis-Net 2 із даними для входу в SFTP 
+
+host: stgcisnet2sftpprod.blob.core.windows.net (port 22)
+user: stgcisnet2sftpprod.cisnet2ngouacrr
+password xERYu7CFUCgFOU0/syyZAgaaltafdF+g
+
+On Wed, Jul 29, 2026 at 3:43 PM CISNET 2 Support <cisnet2.support@cisac.org> wrote:
+Dear NGO-UACRR team,
+
+Your works are loaded in CN2 production and your access is ready. Here is everything you need to start delivering.
+
+1 — Your CN2 accounts
+
+Your account International Uacrr (international@uacrr.org.ua) is active — you already set your password and can sign in as usual.
+
+Anyone who cannot sign in:
+
+go to https://cisnet2.cisac.org/login
+click Reset password
+enter your work address
+If someone else at NGO-UACRR needs access, tell us their name and work address and we create the account.
+
+2 — Your SFTP channel for incremental deliveries
+
+host: stgcisnet2sftpprod.blob.core.windows.net (port 22)
+user: stgcisnet2sftpprod.cisnet2ngouacrr
+password — !WARNING! this link opens ONLY ONCE: https://pwpush.com/p/kgzs_xoohts4zsw
+Store the password in your own vault the moment you open it. If it is lost, tell us and we issue a new one — we cannot read it back.
+
+On the first connection your client will ask you to accept the server's host key. Accept it only if the fingerprint it shows is one of these:
+
+RSA     SHA256:QJjDXoSDfNQ/pDzUDTu1nUOu3eiLVb7kJiZq5PB98Ss
+ECDSA   SHA256:yvTxRmJsSaLh0W2easLL+EBTm7o2nNSQC15CGOxLUi0
+Anything else: stop and tell us before entering the password.
+
+You land directly in your own folder and see nothing outside it. Deposit your files in inbox/.
+
+If the password is refused on your very first attempt, wait a minute and try again before telling us it is wrong — a newly issued credential takes a short while to become active everywhere.
+
+3 — After each delivery
+
+Each file you deposit produces an ACK in your outbox/ACK/ folder: accepted works, rejected works, and the reason for each rejection.
+
+4 — Your migration reports
+
+Your container also holds a reports/ folder, with three files comparing what CIS-Net 1 held for you against what CN2 holds today: 140_wid_works.csv for the CIS-Net 1 side, 140_cn2_works.csv for the CN2 side, and 140_not_migrated_works.csv for the works in the first and not in the second. Each file states the two dates it was built from — the two sides are refreshed independently. If anything in the third file looks wrong to you, tell us.
+
+5 — The WID FTP is being switched to read-only
+
+This is the FTP server you deliver to today: ftp-cis.cisac.org (FTPS, port 21), where you sign in with your own NGO-UACRR account.
+
+Please move your deliveries to the SFTP channel above now. Files sent to the WID FTP after the switch are no longer processed; existing files stay readable. We will tell you once the switch is effective.
+
+Questions on any of this: reply to this mail.
+
+Best regards,
+Bastien
+
+
+
+--
+CISNET 2 Support

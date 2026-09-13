@@ -259,7 +259,8 @@ namespace WidSubmit
                 cmd.CommandText = "select dbo.fnIsCurSubmWork(@submWorkId)";
                 cmd.Parameters.AddWithValue("@submWorkId", _submWorkId);
                 var isCurSubm = (bool)cmd.ExecuteScalar();
-                if(!isCurSubm) return;
+                //if(!isCurSubm) return;
+                if(isCurSubm) return;
 
                 cmd.CommandText = "select dbo.fnGetRejectedSubmWorkId(@submWorkId)";
                 var newSubmWorkId = cmd.ExecuteScalar();
@@ -271,16 +272,16 @@ namespace WidSubmit
 
             ClearContent();
 
-            var hasRespMessages = false;
-            Helpers.RunSqlSocWidSubmitEx(cmd =>
-            {
-                cmd.CommandText = "select Status from SubmWork where Id = @submWorkId";
-                cmd.Parameters.AddWithValue("@submWorkId", _submWorkId);
-                var status = (int)cmd.ExecuteScalar();
-                hasRespMessages = status == (int)SubmWorkStatusEnum.ACCEPTED_WARNINGS || status == (int)SubmWorkStatusEnum.REJECTED;
-            });
+            //var hasRespMessages = false;
+            //Helpers.RunSqlSocWidSubmitEx(cmd =>
+            //{
+            //    cmd.CommandText = "select Status from SubmWork where Id = @submWorkId";
+            //    cmd.Parameters.AddWithValue("@submWorkId", _submWorkId);
+            //    var status = (int)cmd.ExecuteScalar();
+            //    hasRespMessages = status == (int)SubmWorkStatusEnum.ACCEPTED_WARNINGS || status == (int)SubmWorkStatusEnum.REJECTED;
+            //});
 
-            if(!hasRespMessages) return;
+            //if(!hasRespMessages) return;
 
             Configure();
 

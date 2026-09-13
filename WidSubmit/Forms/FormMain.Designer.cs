@@ -41,12 +41,15 @@
             this.tabPageSubmHist = new System.Windows.Forms.TabPage();
             this.ucSubmWorksHist = new WidSubmit.UserControls.UcSubmWorksHist();
             this.ilMainTabs = new System.Windows.Forms.ImageList(this.components);
+            this.tabPageTools = new System.Windows.Forms.TabPage();
+            this.ucTools = new WidSubmit.UcTools();
             this.panelMain.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panelMiddle.SuspendLayout();
             this.tabPageCurSubm.SuspendLayout();
             this.tabPageRightHolders.SuspendLayout();
             this.tabPageSubmHist.SuspendLayout();
+            this.tabPageTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -92,6 +95,7 @@
             this.panelMiddle.Controls.Add(this.tabPageCurSubm);
             this.panelMiddle.Controls.Add(this.tabPageRightHolders);
             this.panelMiddle.Controls.Add(this.tabPageSubmHist);
+            this.panelMiddle.Controls.Add(this.tabPageTools);
             this.panelMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMiddle.ImageList = this.ilMainTabs;
             this.panelMiddle.ItemSize = new System.Drawing.Size(130, 40);
@@ -169,6 +173,26 @@
             this.ilMainTabs.Images.SetKeyName(0, "icons8-music-library-30.png");
             this.ilMainTabs.Images.SetKeyName(1, "icons8-users-30.png");
             this.ilMainTabs.Images.SetKeyName(2, "icons8-history-30.png");
+            this.ilMainTabs.Images.SetKeyName(3, "icons8-question.gif");
+            // 
+            // tabPageTools
+            // 
+            this.tabPageTools.Controls.Add(this.ucTools);
+            this.tabPageTools.ImageIndex = 3;
+            this.tabPageTools.Location = new System.Drawing.Point(4, 44);
+            this.tabPageTools.Name = "tabPageTools";
+            this.tabPageTools.Size = new System.Drawing.Size(1243, 653);
+            this.tabPageTools.TabIndex = 3;
+            this.tabPageTools.Text = "Інструменти";
+            this.tabPageTools.UseVisualStyleBackColor = true;
+            // 
+            // ucTools
+            // 
+            this.ucTools.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTools.Location = new System.Drawing.Point(0, 0);
+            this.ucTools.Name = "ucTools";
+            this.ucTools.Size = new System.Drawing.Size(1243, 653);
+            this.ucTools.TabIndex = 0;
             // 
             // FormMain
             // 
@@ -190,6 +214,7 @@
             this.tabPageCurSubm.ResumeLayout(false);
             this.tabPageRightHolders.ResumeLayout(false);
             this.tabPageSubmHist.ResumeLayout(false);
+            this.tabPageTools.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -207,6 +232,8 @@
         private UcSubmission ucSubmission;
         private UserControls.UcSubmWorksHist ucSubmWorksHist;
         private System.Windows.Forms.ImageList ilMainTabs;
+        private System.Windows.Forms.TabPage tabPageTools;
+        private UcTools ucTools;
     }
 }
 

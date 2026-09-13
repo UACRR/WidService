@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -155,6 +156,201 @@ namespace WidSubmit
         public static bool IsDesignMode()
         {
             return System.Diagnostics.Process.GetCurrentProcess().ProcessName.ToLower() == "devenv";
+        }
+
+        public static void LoadCsvFileInDb(string fileFullName, string tableName)
+        {
+            RunSqlSocWidSubmitEx(cmd =>
+            {
+                var bulkCopy = new BulkUploadToSql();
+                bulkCopy.conn = cmd.Connection;
+                bulkCopy.TableName = tableName;
+
+                var isFirst = true;
+                foreach (string line in File.ReadLines(fileFullName))
+                {
+                    if(isFirst)
+                    {
+                        isFirst = false;
+                        continue;
+                    }
+                    if(string.IsNullOrEmpty(line))
+                        break;
+                    var parts = line.Split(',');
+                    bulkCopy.AddData(new List<object>()
+                    {
+                          DBNull.Value
+                        , parts[1].ToString() 
+                        , parts[2].ToString()
+                        , parts[3].ToString()
+                    });
+                    Console.WriteLine(line);
+                }
+
+                bulkCopy.Flush();
+            });
+
+        }
+
+        public static void LoadInDbFromCbd(string tableName)
+        {
+            RunSqlSocWidSubmitEx(cmd =>
+            {
+                var bulkCopy = new BulkUploadToSql();
+                bulkCopy.conn = cmd.Connection;
+                bulkCopy.TableName = tableName;
+
+                var text = Clipboard.GetText();
+    
+                using (StringReader reader = new StringReader(text))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        if(string.IsNullOrEmpty(line))
+                            break;
+                        var parts = line.Split('\t');
+                        var data = new List<object>();
+                        foreach (var part in parts)
+                        {
+                            data.Add(part);
+                        }
+                        bulkCopy.AddData(data);
+                    }
+                }
+
+                bulkCopy.Flush();
+            });
+
+        }
+    
+        public static List<T> CreateListFromCmd<T>(SqlCommand cmd)
+        {
+            var list = new List<T>();
+            var elementProps = typeof(T).GetProperties();
+            using(var r =  cmd.ExecuteReader())
+            {
+                while (r.Read())
+                {
+                    var obj = (T)Activator.CreateInstance(typeof(T));
+                    for (int propIdx = 0; propIdx < elementProps.Length; propIdx++)
+                    {
+                        var prop = elementProps[propIdx];
+                        switch(prop.PropertyType.Name.ToLower())
+                        {
+                            case "string":
+                                prop.SetValue(obj, r.IsDBNull(propIdx) ? "" : r.GetString(propIdx));
+                                break;
+                            case "int32":
+                                prop.SetValue(obj, r.IsDBNull(propIdx) ? 0 : r.GetInt32(propIdx));
+                                break;
+                            case "decimal":
+                                prop.SetValue(obj, r.IsDBNull(propIdx) ? 0 : r.GetDecimal(propIdx));
+                                break;
+                            case "datetime":
+                                prop.SetValue(obj, r.IsDBNull(propIdx) ? (DateTime?)null : r.GetDateTime(propIdx));
+                                break;
+                            case "boolean":
+                                prop.SetValue(obj, r.IsDBNull(propIdx) ? (bool?)null : r.GetBoolean(propIdx));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+ 
+                    list.Add(obj);
+                }
+            }
+            return list;
+        }
+
+        public delegate bool SkipListViewItem<T>(T obj);
+        public static void FillListView<T>(List<T> list, ListView lv, SkipListViewItem<T> skipObj = null)
+        {
+            lv.BeginUpdate();
+            var elementProps = typeof(T).GetProperties();
+            lv.Items.Clear();
+            for (int idx = 0; idx < list.Count; idx++)
+            {
+                var obj = list[idx];
+                if(skipObj != null && skipObj(obj))
+                    continue;
+                var lvItem = new ListViewItem((idx + 1).ToString());
+                for (int propIdx = 0; propIdx < elementProps.Length; propIdx++)
+                {
+                    var prop = elementProps[propIdx];
+                    lvItem.SubItems.Add(prop.GetValue(obj).ToString());
+                }
+                lvItem.Tag = obj;
+                lv.Items.Add(lvItem);
+            }
+            lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lv.EndUpdate();
+        }
+
+        public static void ConfigureListView(ListView lv, params string[] colTitles)
+        {
+            lv.FullRowSelect = true;
+            lv.GridLines = true;
+            lv.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lv.MultiSelect = false;
+            lv.View = View.Details;
+            lv.Columns.Clear();
+            lv.Columns.Add("№");
+            colTitles.ToList().ForEach(x => lv.Columns.Add(x));
+
+            lv.MouseDown += (sender, e) => CopyCellValue(e, (ListView)sender);
+        }
+        
+        public static void ShowErrMsg(string errMsg)
+        {
+            MessageBox.Show(errMsg, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static bool ConfirmAction(string msg)
+        {
+            return MessageBox.Show(msg, "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        public static bool IsDigitString(string text)
+        {
+            var retVal = true;
+            text.ToList().ForEach(c =>
+            {
+                if(!char.IsDigit(c))
+                    retVal = false;
+            });
+            return retVal;
+        }
+
+        public static bool IsValidIpBaseNr(string text)
+        {
+            if(text.Trim().Length != text.Length)
+                return false;
+            var parts = text.Split('-');
+            if(parts.Length != 3)
+                return false;
+            if(parts[0].ToUpper() != "I")
+                return false;
+            if(parts[2].Length != 1)
+                return false;
+            if(!char.IsDigit(parts[2][0]))
+                return false;
+            if(parts[1].Length != 9)
+                return false;
+            if (!IsDigitString(parts[1]))
+                return false;
+            return true;
+        }
+
+        public static bool IsValidIpNameNr(string text)
+        {
+            if(text.Trim().Length != text.Length)
+                return false;
+            if (!IsDigitString(text))
+                return false;
+            return true;
         }
     }
 }

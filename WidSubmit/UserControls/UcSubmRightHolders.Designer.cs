@@ -37,6 +37,8 @@
             this.labSearch = new System.Windows.Forms.Label();
             this.tbRightHolderFilter = new System.Windows.Forms.TextBox();
             this.btnApplyRightHolderFilter = new System.Windows.Forms.Button();
+            this.ilButtonIcons = new System.Windows.Forms.ImageList(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelRightHolderCount = new System.Windows.Forms.FlowLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
@@ -57,8 +59,6 @@
             this.timerSelChangedHandler = new System.Windows.Forms.Timer(this.components);
             this.timerInvokeRighHolderSelected = new System.Windows.Forms.Timer(this.components);
             this.timerInvokeRightHoldersEmpty = new System.Windows.Forms.Timer(this.components);
-            this.ilButtonIcons = new System.Windows.Forms.ImageList(this.components);
-            this.label5 = new System.Windows.Forms.Label();
             this.toolTipHelp = new System.Windows.Forms.ToolTip(this.components);
             this.panelRightHolders.SuspendLayout();
             this.panelRightHolderFilter.SuspendLayout();
@@ -163,6 +163,24 @@
             this.btnApplyRightHolderFilter.UseVisualStyleBackColor = true;
             this.btnApplyRightHolderFilter.Click += new System.EventHandler(this.btnApplyRightHolderFilter_Click);
             // 
+            // ilButtonIcons
+            // 
+            this.ilButtonIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilButtonIcons.ImageStream")));
+            this.ilButtonIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.ilButtonIcons.Images.SetKeyName(0, "angle-right-solid.ico");
+            this.ilButtonIcons.Images.SetKeyName(1, "icons8-question.gif");
+            // 
+            // label5
+            // 
+            this.label5.ImageIndex = 1;
+            this.label5.ImageList = this.ilButtonIcons;
+            this.label5.Location = new System.Drawing.Point(326, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(19, 23);
+            this.label5.TabIndex = 9;
+            this.toolTipHelp.SetToolTip(this.label5, "Для вибору правовласників введіть фрагмент тексту\r\n з наступного:\r\n- код у СМАРТ\r" +
+        "\n- базовий код IPI\r\n- код  назви IPI\r\n- прізвище у СМАРТ\r\n- імя у СМАРТ\r\n");
+            // 
             // label4
             // 
             this.label4.ImageIndex = 1;
@@ -237,14 +255,14 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
             this.tableLayoutPanel1.Controls.Add(this.rbRightHolderFilterOwn, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.rbRightHolderFilterPublished, 2, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 118);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(345, 22);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(506, 22);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // rbRightHolderFilterOwn
@@ -373,24 +391,6 @@
             // 
             this.timerInvokeRightHoldersEmpty.Interval = 1;
             this.timerInvokeRightHoldersEmpty.Tick += new System.EventHandler(this.timerInvokeRightHoldersEmpty_Tick);
-            // 
-            // ilButtonIcons
-            // 
-            this.ilButtonIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilButtonIcons.ImageStream")));
-            this.ilButtonIcons.TransparentColor = System.Drawing.Color.Transparent;
-            this.ilButtonIcons.Images.SetKeyName(0, "angle-right-solid.ico");
-            this.ilButtonIcons.Images.SetKeyName(1, "icons8-question.gif");
-            // 
-            // label5
-            // 
-            this.label5.ImageIndex = 1;
-            this.label5.ImageList = this.ilButtonIcons;
-            this.label5.Location = new System.Drawing.Point(326, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(19, 23);
-            this.label5.TabIndex = 9;
-            this.toolTipHelp.SetToolTip(this.label5, "Для вибору правовласників введіть фрагмент тексту\r\n з наступного:\r\n- код у СМАРТ\r" +
-        "\n- базовий код IPI\r\n- код  назви IPI\r\n- прізвище у СМАРТ\r\n- імя у СМАРТ\r\n");
             // 
             // toolTipHelp
             // 

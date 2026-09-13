@@ -478,9 +478,10 @@ namespace WidSubmit
             }
         }
 
-        private async Task SendSubmFile()
+        private void SendSubmFile()
         {
-            await SubmActionRunner.CreateAndSendSubmFile();
+            if(!SubmActionRunner.CreateAndSendSubmFile())
+                return;
 
             Helpers.RunSqlSocWidSubmitExT(cmd =>
             {
@@ -607,6 +608,7 @@ namespace WidSubmit
             Helpers.RunSqlSocWidSubmitExT(cmd => {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "spSubmPassIswcToMs";
+                cmd.ExecuteNonQuery();
             });
             SetSubmStatus(SubmStatusEnum.ISWC_CODES_PASSED_TO_MS);
         }
@@ -651,9 +653,9 @@ namespace WidSubmit
 
         private void btnSendSubmFile_Click(object sender, EventArgs e)
         {
-            Helpers.RunProtected(async () =>
+            Helpers.RunProtected(() =>
             {
-                await SendSubmFile();
+                SendSubmFile();
                 WorksUpdated?.Invoke(this, null);
             });
         }
@@ -704,6 +706,7 @@ namespace WidSubmit
             Helpers.RunProtected(() =>
             {
                 PassToMs();
+                WorksUpdated?.Invoke(this, null);
             });
         }
 

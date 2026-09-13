@@ -47,7 +47,7 @@ namespace WidSubmit
 	        public int       SubmWorkId         { get; set; }
             public bool      IsSubmWorkCnanged  { get; set; }
             public int       CustId             { get; set; }
-	        public int       IpNameNr           { get; set; }
+	        public int?      IpNameNr           { get; set; }
 	        public string    NameForWid         { get; set; }
 	        public string    FstNameForWid      { get; set; }
 	        public string    RoleForWid         { get; set; }
@@ -269,9 +269,9 @@ namespace WidSubmit
                     LyrAdapt = "",
                     WicCode = "",
                     UpdDate = "",
-                    FstSendDateToCis = "",
-                    LstSendDateToCis = "",
-                    SocWrkType = "",
+                    //FstSendDateToCis = "",
+                    //LstSendDateToCis = "",
+                    //SocWrkType = "",
                 };
 
                 tranSeqNr++;
@@ -304,7 +304,7 @@ namespace WidSubmit
                 from SubmWorkShare t1
 	                join vCurSubmWorks t2 on t1.SubmWorkId = t2.Id
 	                join vCurRightHolder t3 on t1.RightHolderId = t3.Id
-                where t2.Status = 1
+                where Status = 1
                     and t2.IsChanged = @isChanged
                 order by t1.SubmWorkId
             ";
@@ -321,12 +321,12 @@ namespace WidSubmit
                     share.SubmWorkId        = r.GetInt32(idx);                               idx++;
                     share.IsSubmWorkCnanged = r.GetBoolean(idx);                             idx++;
                     share.CustId            = r.GetInt32(idx);                               idx++;
-                    share.IpNameNr          = r.GetInt32(idx);                               idx++;
+                    share.IpNameNr          = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx);idx++;
                     share.NameForWid        = r.GetString(idx);                              idx++;
                     share.FstNameForWid     = r.GetString(idx);                              idx++;
                     share.RoleForWid        = r.GetString(idx);                              idx++;
-                    share.ShrPer            = (int)r.GetDecimal(idx) * 100;                  idx++;
-                    share.ShrMec            = (int)r.GetDecimal(idx) * 100;                  idx++;
+                    share.ShrPer            = (int)(r.GetDecimal(idx) * 100);                  idx++;
+                    share.ShrMec            = (int)(r.GetDecimal(idx) * 100);                  idx++;
                     share.IsOwn             = (bool)r.GetBoolean(idx);                       idx++;
                     share.RecSipOip         = null;
                     share.RecSsrOsrPer      = null;
@@ -350,7 +350,7 @@ namespace WidSubmit
                     IpName = share.NameForWid,
                     IpFstName = share.FstNameForWid,
                     IpRole = share.RoleForWid,
-                    IpNameNr = share.IpNameNr.ToString("D11"),
+                    IpNameNr = share.IpNameNr == null ? new string(' ', 11) : ((int)share.IpNameNr).ToString("D11"),
 
                 };
 
@@ -363,8 +363,8 @@ namespace WidSubmit
                     Filler6 = "",
                     RightType = "PER",
                     Shares = share.ShrPer.ToString(CultureInfo.InvariantCulture),
-                    IpNameNr = share.IpNameNr.ToString("D11"),
-                    Aff = "",
+                    IpNameNr = share.IpNameNr == null ? new string(' ', 11) : ((int)share.IpNameNr).ToString("D11"),
+                    //Aff = "",
                 }; 
                 
                 share.RecSsrOsrMec  = new RecSsrOsr{
@@ -375,9 +375,9 @@ namespace WidSubmit
                     RecSeqNr = "",
                     Filler6 = "",
                     RightType = "MEC",
-                    Shares = share.ShrPer.ToString(CultureInfo.InvariantCulture),
-                    IpNameNr = share.IpNameNr.ToString("D11"),
-                    Aff = "",
+                    Shares = share.ShrMec.ToString(CultureInfo.InvariantCulture),
+                    IpNameNr = share.IpNameNr == null ? new string(' ', 11) : ((int)share.IpNameNr).ToString("D11"),
+                    //Aff = "",
                 };
              });
 
@@ -421,7 +421,7 @@ namespace WidSubmit
 	                , t1.NameForWid	as NameForWid       
                 from SubmWorkAltName t1
                     join vCurSubmWorks t2 on t1.SubmWorkId = t2.Id
-                where t2.Status = 1
+                where Status = 1
                     and t2.IsChanged = @isChanged
                 order by t1.SubmWorkId, t1.NameForWid
             ";
@@ -501,7 +501,7 @@ namespace WidSubmit
 	                , t1.NameForWid	as NameForWid       
                 from SubmWorkPerformer t1
                     join vCurSubmWorks t2 on t1.SubmWorkId = t2.Id
-                where t2.Status = 1
+                where Status = 1
                     and t2.IsChanged = @isChanged
                 order by t1.SubmWorkId, t1.NameForWid
             ";
@@ -986,7 +986,8 @@ namespace WidSubmit
 
             
             // Пишемо в файл
-            var submFileName = $"WID{hdr.RecHdr.CreD}{hdr.RecHdr.CreT.Substring(0, 2)}24{hdr.RecHdr.CreT.Substring(2)}300140.021";
+            //var submFileName = $"WID{hdr.RecHdr.CreD}{hdr.RecHdr.CreT.Substring(0, 2)}24{hdr.RecHdr.CreT.Substring(2)}300140.021";
+            var submFileName = $"CIS{hdr.RecHdr.CreD}{hdr.RecHdr.CreT.Substring(0, 2)}{hdr.RecHdr.CreT.Substring(2)}312140.021";
             var submFileFullName = Path.Combine(folderPath, submFileName);
             File.WriteAllLines(submFileFullName, lines);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Pqc.Crypto.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -28,6 +29,7 @@ namespace WidSubmit.Implementation
             var folderPath = Path.Combine(ConfigurationManager.AppSettings["FileExchangeRootDir"], "RespFiles");
             _fileFullName = Path.Combine(folderPath, _fileName);
 
+            FixRespFile();
             ReadRespFile();
 
             Helpers.RunSqlSocWidSubmitEx(cmd =>
@@ -39,6 +41,40 @@ namespace WidSubmit.Implementation
                 cmd.CommandText = "spSubmWorksUpdateFromResp";
                 cmd.ExecuteNonQuery();
             });
+        }
+        private void FixRespFile()
+        {
+            var linesIn = File.ReadAllLines(_fileFullName);
+            var linesOut = new List<string>();
+
+            int tranSeqNr = -1;
+            var sb = new StringBuilder();
+            linesIn.ToList().ForEach(line => {
+                if(line.Trim() == "")
+                    return;
+                var recType = line.Substring(0, 3).ToUpper();
+                switch(recType)
+                {
+                    case "HDR":
+                    case "GRH":
+                    case "GRT":
+                    case "TRL":
+                        linesOut.Add(line);
+                        break;
+                    case "ACK":
+                    case "MSG":
+                        if(recType == "ACK")
+                            tranSeqNr++;
+                        sb.Clear();
+                        sb.Append(line);
+                        sb.Remove(3, 8); 
+                        sb.Insert(3, tranSeqNr.ToString("D8"));
+                        linesOut.Add(sb.ToString());
+                        break;
+                }
+            });
+
+            File.WriteAllLines(_fileFullName, linesOut);
         }
 
         private void ReadRespFile()

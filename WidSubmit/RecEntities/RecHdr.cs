@@ -19,4 +19,3 @@ namespace WidSubmit
         [CustomPosInFile(102, 29, 'A')] [Column(TypeName = "varchar(29)")] public string FileNameRef { get; set; }
     }
 }
-

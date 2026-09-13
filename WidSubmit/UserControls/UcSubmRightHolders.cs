@@ -221,6 +221,15 @@ namespace WidSubmit
             FillLvRightHolders();
         }
 
+        public void AddFromCbd(List<int> custIds)
+        {
+            _rightHolders
+                .Where(x => custIds.Contains(x.CustId))
+                .ToList()
+                .ForEach(x => x.IsInCurSubm = true);
+            FillLvRightHolders();
+        }
+
         private ListViewItem FindRightHolderItem(RightHolder rightHolder)
         {
             foreach(ListViewItem item in lvRightHolders.Items)
