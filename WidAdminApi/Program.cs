@@ -9,7 +9,7 @@ using System.IO;
 using IpiUpdatesLib;
 //using SampleApp.Services;
 
-namespace WidAdminApi
+namespace IpiReplSvc
 {
     public class Program
     {
@@ -40,7 +40,7 @@ namespace WidAdminApi
             var exeFileFullName = System.Reflection.Assembly.GetExecutingAssembly().Location;
             var rootPath = System.IO.Path.GetDirectoryName(exeFileFullName);
             Logger.SetRootPath(Path.Combine(rootPath, "Log"));
-            Logger.SetSubFolder("WidAdminApi");
+            Logger.SetSubFolder("IpiReplSvc");
             Logger.WriteLine($"STARTING SERVICE");
             try
             {

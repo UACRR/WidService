@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WidAdminLib;
 
-namespace WidAdminApi.Controllers
+namespace IpiReplSvc.Controllers
 {
     [ApiController]
     [Route("[controller]")]

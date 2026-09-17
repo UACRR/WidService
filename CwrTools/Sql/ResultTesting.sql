@@ -37,8 +37,8 @@ select * from #EmptyWorks
 select 
 	  t1.ObjId
 	, t2.CustId as IpNr
-	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t5.LastName, '')) as WriterLastName
-	, AutoSearch.dbo.ClrTranslitFromUkrToLat(isnull(t5.FirstName, '')) as WriterFirstName
+	, MediaService.dbo.ClrTranslitFromUkrToLat(isnull(t5.LastName, '')) as WriterLastName
+	, MediaService.dbo.ClrTranslitFromUkrToLat(isnull(t5.FirstName, '')) as WriterFirstName
 	--, null as WriterUnknownIndicator
 	, case
 		when t2.roleCode = 1 then 'A'

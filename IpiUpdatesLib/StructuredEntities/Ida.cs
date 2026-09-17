@@ -8,22 +8,22 @@ namespace IpiUpdatesLib.StructuredEntities
 {
     public class Ida : TransBase
     {
-        protected List<RecCcl> RecCclList { get; set; } 
-        protected List<RecIri> RecIriList { get; set; }
-        protected List<RecIsc> RecIscList { get; set; }
-        protected List<RecNmt> RecNmtList { get; set; }
-        protected List<RecRcc> RecRccList { get; set; }
-        protected List<RecRig> RecRigList { get; set; }
-        protected List<RecRis> RecRisList { get; set; }
-        protected List<RecRix> RecRixList { get; set; }
-        protected List<RecRol> RecRolList { get; set; }
-        protected List<RecSoc> RecSocList { get; set; }
-        protected List<RecSop> RecSopList { get; set; }
-        protected List<RecCsc> RecCscList { get; set; }
-        protected List<RecTnr> RecTnrList { get; set; }
-        protected List<RecTna> RecTnaList { get; set; }
-        protected List<RecHnr> RecHnrList { get; set; }
-        protected List<RecHna> RecHnaList { get; set; }
+        protected List<DicCcl> RecCclList { get; set; } 
+        protected List<DicIri> RecIriList { get; set; }
+        protected List<DicIsc> RecIscList { get; set; }
+        protected List<DicNmt> RecNmtList { get; set; }
+        protected List<DicRcc> RecRccList { get; set; }
+        protected List<DicRig> RecRigList { get; set; }
+        protected List<DicRis> RecRisList { get; set; }
+        protected List<DicRix> RecRixList { get; set; }
+        protected List<DicRol> RecRolList { get; set; }
+        protected List<DicSoc> RecSocList { get; set; }
+        protected List<DicSop> RecSopList { get; set; }
+        protected List<DicCsc> RecCscList { get; set; }
+        protected List<DicTnr> RecTnrList { get; set; }
+        protected List<DicTna> RecTnaList { get; set; }
+        protected List<DicHnr> RecHnrList { get; set; }
+        protected List<DicHna> RecHnaList { get; set; }
 
         protected override void UpdateDatabase(SqlCommand cmd)
         {

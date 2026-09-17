@@ -46,7 +46,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SocFtpCLient\SocFtpCLient.csproj" />
-    <ProjectReference Include="..\WidService\WidServiceLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,13 +1,40 @@
-﻿using IpiUpdatesLib.Entities;
+﻿using IpiUpdatesLib;
+using IpiUpdatesLib.Entities;
 using IpiUpdatesLib.Entities.Main;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
+using System.Reflection.Emit;
+using static IpiUpdatesLib.IpiUpdatesDbContext;
 
 namespace IpiUpdatesLib
 {
     public class IpiUpdatesDbContext : DbContext
     {
+        public enum RpnJobTypeEnum
+        {              
+            LoadDict = 1,
+            LoadIpi,
+            ApplyUpdates,
+        }
+
+        public enum RpnJobTaskTypeEnum
+        {
+            ApplyDict = 1,     
+            ApplyIpiFile,  
+            ApplyUpdateFile,
+        }; 
+
+        public enum RpnJobTaskStepTypeEnum
+        {
+            DownloadFile = 1, 
+            UnzipFile,    
+            DeleteZipFile,
+            ApplyFile,    
+            DeleteFile,   
+        };
 
         public DbSet<IpiAgreement> IpiAgreement { get; set; }
         public DbSet<IpiBase> IpiBase { get; set; }
@@ -59,33 +86,41 @@ namespace IpiUpdatesLib
         public DbSet<RecOno> RecOno { get; set; }
 
 
-       public DbSet<RecRen> RecRen { get; set; }
+        public DbSet<RecRen> RecRen { get; set; }
         public DbSet<RecReo> RecReo { get; set; }
 
 
         public DbSet<RecStn> RecStn { get; set; }
         public DbSet<RecSto> RecSto { get; set; }
         
-
         public DbSet<RecTma> RecTma { get; set; }
 
+        public DbSet<RpnSettings>           RpnSettings         { get; set; }
+        public DbSet<RpnPeriod>             RpnPeriods          { get; set; }
+        public DbSet<RpnJob>                RpnJobs             { get; set; }
+        public DbSet<RpnJobTask>            RpnJobTasks         { get; set; }
+        public DbSet<RpnJobTaskStep>        RpnJobTaskSteps         { get; set; }
+        public DbSet<RpnJobTaskStepType>    RpnJobTaskStepType  { get; set; }
+        public DbSet<RpnJobTaskType>        RpnJobTaskTypes     { get; set; }
+        public DbSet<RpnJobType>            RpnJobTypes         { get; set; }
+
         // DOMAINS
-        public DbSet<RecCcl> RecCcl { get; set; }
-        public DbSet<RecIri> RecIri { get; set; }
-        public DbSet<RecIsc> RecIsc { get; set; }
-        public DbSet<RecNmt> RecNmt { get; set; }
-        public DbSet<RecRcc> RecRcc { get; set; }
-        public DbSet<RecRig> RecRig { get; set; }
-        public DbSet<RecRis> RecRis { get; set; }
-        public DbSet<RecRix> RecRix { get; set; }
-        public DbSet<RecRol> RecRol { get; set; }
-        public DbSet<RecSoc> RecSoc { get; set; }
-        public DbSet<RecSop> RecSop { get; set; }
-        public DbSet<RecCsc> RecCsc { get; set; }
-        public DbSet<RecTnr> RecTnr { get; set; }
-        public DbSet<RecTna> RecTna { get; set; }
-        public DbSet<RecHnr> RecHnr { get; set; }
-        public DbSet<RecHna> RecHna { get; set; }
+        public DbSet<DicCcl> RecCcl { get; set; }
+        public DbSet<DicIri> RecIri { get; set; }
+        public DbSet<DicIsc> RecIsc { get; set; }
+        public DbSet<DicNmt> RecNmt { get; set; }
+        public DbSet<DicRcc> RecRcc { get; set; }
+        public DbSet<DicRig> RecRig { get; set; }
+        public DbSet<DicRis> RecRis { get; set; }
+        public DbSet<DicRix> RecRix { get; set; }
+        public DbSet<DicRol> RecRol { get; set; }
+        public DbSet<DicSoc> RecSoc { get; set; }
+        public DbSet<DicSop> RecSop { get; set; }
+        public DbSet<DicCsc> RecCsc { get; set; }
+        public DbSet<DicTnr> RecTnr { get; set; }
+        public DbSet<DicTna> RecTna { get; set; }
+        public DbSet<DicHnr> RecHnr { get; set; }
+        public DbSet<DicHna> RecHna { get; set; }
 
 
         public IpiUpdatesDbContext() : base()
@@ -123,6 +158,52 @@ namespace IpiUpdatesLib
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder
+                .Entity<RpnJobType>()
+                .HasData(new RpnJobType[]
+                {
+                    new RpnJobType { Id = (int)RpnJobTypeEnum.LoadDict,     Code = "LoadDict",    Description = "Завантажити словники"      },
+                    new RpnJobType { Id = (int)RpnJobTypeEnum.LoadIpi,      Code = "LoadIpi",      Description = "Завантажити повну БД"      },
+                    new RpnJobType { Id = (int)RpnJobTypeEnum.ApplyUpdates, Code = "ApplyUpdates", Description = "Застосувати щоденні зміни" },
+                });
+
+            modelBuilder
+                .Entity<RpnJobTaskType>()
+                .HasData(new RpnJobTaskType[]
+                {
+                    new RpnJobTaskType { Id = (int)RpnJobTaskTypeEnum.ApplyDict,       Code = "ApplyDict",        Description = "Оновити словники"                   },
+                    new RpnJobTaskType { Id = (int)RpnJobTaskTypeEnum.ApplyIpiFile,    Code = "ApplyIpiFile",     Description = "Додати дані з файлу повної бази"    },
+                    new RpnJobTaskType { Id = (int)RpnJobTaskTypeEnum.ApplyUpdateFile, Code = "ApplyUpdateFile",  Description = "Застосувати дані з файлу оновлення" },
+                }); 
+
+            modelBuilder
+                .Entity<RpnJobTaskStepType>()
+                .HasData(new RpnJobTaskStepType[]
+                {
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DownloadFile,  Code = "DownloadFile",  Description = "Завантажити файл"          },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.UnzipFile,     Code = "UnzipFile",     Description = "Розпакувати файл"          },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DeleteZipFile, Code = "DeleteZipFile", Description = "Видалити запакований файл" },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.ApplyFile,     Code = "ApplyFile",     Description = "Застосувати файл"          },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DeleteFile,    Code = "DeleteFile",    Description = "Видалити файл"             },
+                });
+
+            modelBuilder
+                .Entity<RpnSettings>()
+            .HasData(new RpnSettings[]
+            {
+                    new RpnSettings {
+                        Id                = 1,
+                        FtpUrl            = "ftp.suisa.ch",
+                        FtpPort           = 22,
+                        FtpLogin          = "UACRR",
+                        FtpPassword       = "S0c-74084lXY-?",
+                        FtpUseSsl         = false,
+                        FtpUseSftp        = true,
+                        FtpDumpPath       = "IPI/IPI_Pub/Complete_IPI",
+                        FtpUpdatesPath    = "IPI/download",
+                        WorkFilesRootPath = @"C:\UACRR\WID_Service\ReplicationWorkFiles\Ipi",
+                    },
+                });
         }
     }
 }

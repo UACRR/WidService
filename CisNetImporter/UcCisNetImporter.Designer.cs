@@ -30,21 +30,16 @@
         {
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.splitPanelImage = new System.Windows.Forms.SplitContainer();
-            this.splitPanelText = new System.Windows.Forms.SplitContainer();
             this.panelImage = new System.Windows.Forms.TableLayoutPanel();
-            this.panelRawText = new System.Windows.Forms.TableLayoutPanel();
-            this.panelProcessedData = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pbScreenFragment = new System.Windows.Forms.PictureBox();
-            this.tbRawText = new System.Windows.Forms.TextBox();
-            this.panelActions = new System.Windows.Forms.TableLayoutPanel();
-            this.btnPasteFragment = new System.Windows.Forms.Button();
-            this.btnProcessFragment = new System.Windows.Forms.Button();
-            this.btnProcessText = new System.Windows.Forms.Button();
-            this.btnImportToMs = new System.Windows.Forms.Button();
             this.panelScrollImage = new System.Windows.Forms.Panel();
+            this.pbScreenFragment = new System.Windows.Forms.PictureBox();
+            this.splitPanelText = new System.Windows.Forms.SplitContainer();
+            this.panelRawText = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbRawText = new System.Windows.Forms.TextBox();
+            this.panelProcessedData = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelWorkInfo = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -52,22 +47,27 @@
             this.tbWorkIswc = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lvRightHolders = new System.Windows.Forms.ListView();
+            this.panelActions = new System.Windows.Forms.TableLayoutPanel();
+            this.btnPasteFragment = new System.Windows.Forms.Button();
+            this.btnProcessFragment = new System.Windows.Forms.Button();
+            this.btnProcessText = new System.Windows.Forms.Button();
+            this.btnImportToMs = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelImage)).BeginInit();
             this.splitPanelImage.Panel1.SuspendLayout();
             this.splitPanelImage.Panel2.SuspendLayout();
             this.splitPanelImage.SuspendLayout();
+            this.panelImage.SuspendLayout();
+            this.panelScrollImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScreenFragment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelText)).BeginInit();
             this.splitPanelText.Panel1.SuspendLayout();
             this.splitPanelText.Panel2.SuspendLayout();
             this.splitPanelText.SuspendLayout();
-            this.panelImage.SuspendLayout();
             this.panelRawText.SuspendLayout();
             this.panelProcessedData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScreenFragment)).BeginInit();
-            this.panelActions.SuspendLayout();
-            this.panelScrollImage.SuspendLayout();
             this.panelWorkInfo.SuspendLayout();
+            this.panelActions.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -105,6 +105,52 @@
             this.splitPanelImage.SplitterDistance = 182;
             this.splitPanelImage.TabIndex = 0;
             // 
+            // panelImage
+            // 
+            this.panelImage.ColumnCount = 1;
+            this.panelImage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelImage.Controls.Add(this.label1, 0, 0);
+            this.panelImage.Controls.Add(this.panelScrollImage, 0, 1);
+            this.panelImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelImage.Location = new System.Drawing.Point(0, 0);
+            this.panelImage.Name = "panelImage";
+            this.panelImage.RowCount = 2;
+            this.panelImage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelImage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelImage.Size = new System.Drawing.Size(905, 182);
+            this.panelImage.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.label1.Size = new System.Drawing.Size(899, 30);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Фрагмент екрану";
+            // 
+            // panelScrollImage
+            // 
+            this.panelScrollImage.AutoScroll = true;
+            this.panelScrollImage.Controls.Add(this.pbScreenFragment);
+            this.panelScrollImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelScrollImage.Location = new System.Drawing.Point(3, 33);
+            this.panelScrollImage.Name = "panelScrollImage";
+            this.panelScrollImage.Size = new System.Drawing.Size(899, 146);
+            this.panelScrollImage.TabIndex = 1;
+            // 
+            // pbScreenFragment
+            // 
+            this.pbScreenFragment.Location = new System.Drawing.Point(3, 13);
+            this.pbScreenFragment.Name = "pbScreenFragment";
+            this.pbScreenFragment.Size = new System.Drawing.Size(871, 130);
+            this.pbScreenFragment.TabIndex = 1;
+            this.pbScreenFragment.TabStop = false;
+            // 
             // splitPanelText
             // 
             this.splitPanelText.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -123,21 +169,6 @@
             this.splitPanelText.SplitterDistance = 219;
             this.splitPanelText.TabIndex = 0;
             // 
-            // panelImage
-            // 
-            this.panelImage.ColumnCount = 1;
-            this.panelImage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelImage.Controls.Add(this.label1, 0, 0);
-            this.panelImage.Controls.Add(this.panelScrollImage, 0, 1);
-            this.panelImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelImage.Location = new System.Drawing.Point(0, 0);
-            this.panelImage.Name = "panelImage";
-            this.panelImage.RowCount = 2;
-            this.panelImage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelImage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelImage.Size = new System.Drawing.Size(905, 182);
-            this.panelImage.TabIndex = 0;
-            // 
             // panelRawText
             // 
             this.panelRawText.ColumnCount = 1;
@@ -152,6 +183,30 @@
             this.panelRawText.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelRawText.Size = new System.Drawing.Size(905, 219);
             this.panelRawText.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.label2.Size = new System.Drawing.Size(899, 30);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Текст з фрагменту екрану";
+            // 
+            // tbRawText
+            // 
+            this.tbRawText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbRawText.Location = new System.Drawing.Point(3, 33);
+            this.tbRawText.Multiline = true;
+            this.tbRawText.Name = "tbRawText";
+            this.tbRawText.ReadOnly = true;
+            this.tbRawText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbRawText.Size = new System.Drawing.Size(899, 183);
+            this.tbRawText.TabIndex = 1;
             // 
             // panelProcessedData
             // 
@@ -168,32 +223,6 @@
             this.panelProcessedData.Size = new System.Drawing.Size(905, 213);
             this.panelProcessedData.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label1.Size = new System.Drawing.Size(899, 30);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Фрагмент екрану";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label2.Size = new System.Drawing.Size(899, 30);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Текст з фрагменту екрану";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -206,98 +235,6 @@
             this.label3.Size = new System.Drawing.Size(899, 30);
             this.label3.TabIndex = 0;
             this.label3.Text = "Інформація для передачі в СМАРТ";
-            // 
-            // pbScreenFragment
-            // 
-            this.pbScreenFragment.Location = new System.Drawing.Point(3, 13);
-            this.pbScreenFragment.Name = "pbScreenFragment";
-            this.pbScreenFragment.Size = new System.Drawing.Size(871, 130);
-            this.pbScreenFragment.TabIndex = 1;
-            this.pbScreenFragment.TabStop = false;
-            // 
-            // tbRawText
-            // 
-            this.tbRawText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbRawText.Location = new System.Drawing.Point(3, 33);
-            this.tbRawText.Multiline = true;
-            this.tbRawText.Name = "tbRawText";
-            this.tbRawText.ReadOnly = true;
-            this.tbRawText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbRawText.Size = new System.Drawing.Size(899, 183);
-            this.tbRawText.TabIndex = 1;
-            // 
-            // panelActions
-            // 
-            this.panelActions.ColumnCount = 1;
-            this.panelActions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelActions.Controls.Add(this.btnPasteFragment, 0, 0);
-            this.panelActions.Controls.Add(this.btnProcessFragment, 0, 1);
-            this.panelActions.Controls.Add(this.btnProcessText, 0, 2);
-            this.panelActions.Controls.Add(this.btnImportToMs, 0, 3);
-            this.panelActions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelActions.Location = new System.Drawing.Point(914, 3);
-            this.panelActions.Name = "panelActions";
-            this.panelActions.RowCount = 5;
-            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 0F));
-            this.panelActions.Size = new System.Drawing.Size(153, 622);
-            this.panelActions.TabIndex = 1;
-            // 
-            // btnPasteFragment
-            // 
-            this.btnPasteFragment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPasteFragment.Location = new System.Drawing.Point(3, 3);
-            this.btnPasteFragment.Name = "btnPasteFragment";
-            this.btnPasteFragment.Size = new System.Drawing.Size(147, 24);
-            this.btnPasteFragment.TabIndex = 0;
-            this.btnPasteFragment.Text = "Вставити фрагмент";
-            this.btnPasteFragment.UseVisualStyleBackColor = true;
-            this.btnPasteFragment.Click += new System.EventHandler(this.btnPasteFragment_Click);
-            // 
-            // btnProcessFragment
-            // 
-            this.btnProcessFragment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnProcessFragment.Location = new System.Drawing.Point(3, 33);
-            this.btnProcessFragment.Name = "btnProcessFragment";
-            this.btnProcessFragment.Size = new System.Drawing.Size(147, 24);
-            this.btnProcessFragment.TabIndex = 1;
-            this.btnProcessFragment.Text = "Знайти текст";
-            this.btnProcessFragment.UseVisualStyleBackColor = true;
-            this.btnProcessFragment.Click += new System.EventHandler(this.btnProcessFragment_Click);
-            // 
-            // btnProcessText
-            // 
-            this.btnProcessText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnProcessText.Location = new System.Drawing.Point(3, 63);
-            this.btnProcessText.Name = "btnProcessText";
-            this.btnProcessText.Size = new System.Drawing.Size(147, 24);
-            this.btnProcessText.TabIndex = 1;
-            this.btnProcessText.Text = "Обробити текст";
-            this.btnProcessText.UseVisualStyleBackColor = true;
-            this.btnProcessText.Click += new System.EventHandler(this.btnProcessText_Click);
-            // 
-            // btnImportToMs
-            // 
-            this.btnImportToMs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnImportToMs.Location = new System.Drawing.Point(3, 93);
-            this.btnImportToMs.Name = "btnImportToMs";
-            this.btnImportToMs.Size = new System.Drawing.Size(147, 24);
-            this.btnImportToMs.TabIndex = 1;
-            this.btnImportToMs.Text = "Передати в СМАРТ";
-            this.btnImportToMs.UseVisualStyleBackColor = true;
-            // 
-            // panelScrollImage
-            // 
-            this.panelScrollImage.AutoScroll = true;
-            this.panelScrollImage.Controls.Add(this.pbScreenFragment);
-            this.panelScrollImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelScrollImage.Location = new System.Drawing.Point(3, 33);
-            this.panelScrollImage.Name = "panelScrollImage";
-            this.panelScrollImage.Size = new System.Drawing.Size(899, 146);
-            this.panelScrollImage.TabIndex = 1;
             // 
             // panelWorkInfo
             // 
@@ -380,6 +317,69 @@
             this.lvRightHolders.TabIndex = 3;
             this.lvRightHolders.UseCompatibleStateImageBehavior = false;
             // 
+            // panelActions
+            // 
+            this.panelActions.ColumnCount = 1;
+            this.panelActions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelActions.Controls.Add(this.btnPasteFragment, 0, 0);
+            this.panelActions.Controls.Add(this.btnProcessFragment, 0, 1);
+            this.panelActions.Controls.Add(this.btnProcessText, 0, 2);
+            this.panelActions.Controls.Add(this.btnImportToMs, 0, 3);
+            this.panelActions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelActions.Location = new System.Drawing.Point(914, 3);
+            this.panelActions.Name = "panelActions";
+            this.panelActions.RowCount = 5;
+            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.panelActions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 0F));
+            this.panelActions.Size = new System.Drawing.Size(153, 622);
+            this.panelActions.TabIndex = 1;
+            // 
+            // btnPasteFragment
+            // 
+            this.btnPasteFragment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPasteFragment.Location = new System.Drawing.Point(3, 3);
+            this.btnPasteFragment.Name = "btnPasteFragment";
+            this.btnPasteFragment.Size = new System.Drawing.Size(147, 24);
+            this.btnPasteFragment.TabIndex = 0;
+            this.btnPasteFragment.Text = "Вставити фрагмент";
+            this.btnPasteFragment.UseVisualStyleBackColor = true;
+            this.btnPasteFragment.Click += new System.EventHandler(this.btnPasteFragment_Click);
+            // 
+            // btnProcessFragment
+            // 
+            this.btnProcessFragment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnProcessFragment.Location = new System.Drawing.Point(3, 33);
+            this.btnProcessFragment.Name = "btnProcessFragment";
+            this.btnProcessFragment.Size = new System.Drawing.Size(147, 24);
+            this.btnProcessFragment.TabIndex = 1;
+            this.btnProcessFragment.Text = "Знайти текст";
+            this.btnProcessFragment.UseVisualStyleBackColor = true;
+            this.btnProcessFragment.Click += new System.EventHandler(this.btnProcessFragment_Click);
+            // 
+            // btnProcessText
+            // 
+            this.btnProcessText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnProcessText.Location = new System.Drawing.Point(3, 63);
+            this.btnProcessText.Name = "btnProcessText";
+            this.btnProcessText.Size = new System.Drawing.Size(147, 24);
+            this.btnProcessText.TabIndex = 1;
+            this.btnProcessText.Text = "Обробити текст";
+            this.btnProcessText.UseVisualStyleBackColor = true;
+            this.btnProcessText.Click += new System.EventHandler(this.btnProcessText_Click);
+            // 
+            // btnImportToMs
+            // 
+            this.btnImportToMs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnImportToMs.Location = new System.Drawing.Point(3, 93);
+            this.btnImportToMs.Name = "btnImportToMs";
+            this.btnImportToMs.Size = new System.Drawing.Size(147, 24);
+            this.btnImportToMs.TabIndex = 1;
+            this.btnImportToMs.Text = "Передати в СМАРТ";
+            this.btnImportToMs.UseVisualStyleBackColor = true;
+            // 
             // UcCisNetImporter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -392,21 +392,21 @@
             this.splitPanelImage.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelImage)).EndInit();
             this.splitPanelImage.ResumeLayout(false);
+            this.panelImage.ResumeLayout(false);
+            this.panelImage.PerformLayout();
+            this.panelScrollImage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbScreenFragment)).EndInit();
             this.splitPanelText.Panel1.ResumeLayout(false);
             this.splitPanelText.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelText)).EndInit();
             this.splitPanelText.ResumeLayout(false);
-            this.panelImage.ResumeLayout(false);
-            this.panelImage.PerformLayout();
             this.panelRawText.ResumeLayout(false);
             this.panelRawText.PerformLayout();
             this.panelProcessedData.ResumeLayout(false);
             this.panelProcessedData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScreenFragment)).EndInit();
-            this.panelActions.ResumeLayout(false);
-            this.panelScrollImage.ResumeLayout(false);
             this.panelWorkInfo.ResumeLayout(false);
             this.panelWorkInfo.PerformLayout();
+            this.panelActions.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

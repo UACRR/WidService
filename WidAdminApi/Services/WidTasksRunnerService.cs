@@ -8,7 +8,7 @@ using SharedLib;
 using WidAdminLib;
 using static WidReplicationServiceLib.IWidReplicationService;
 
-namespace WidAdminApi.Services
+namespace IpiReplSvc.Services
 {
     public class WidTasksRunnerService : BackgroundService
     {

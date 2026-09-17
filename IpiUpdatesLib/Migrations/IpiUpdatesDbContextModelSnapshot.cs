@@ -2299,6 +2299,316 @@ namespace IpiUpdatesLib.Migrations
                     b.ToTable("UpdTrans");
                 });
 
+            modelBuilder.Entity("IpiUpdatesLib.RpnJob", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("EndedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("RpnJobTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RpnPeriodId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeqNr")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartedAt")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RpnJobTypeId");
+
+                    b.HasIndex("RpnPeriodId");
+
+                    b.ToTable("RpnJobs");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobTask", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("EndedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("RpnJobId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RpnJobTaskTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeqNr")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartedAt")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RpnJobId");
+
+                    b.ToTable("RpnJobTasks");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobTaskStep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("EndedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("ErrMsg")
+                        .HasColumnType("varchar(1024)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("varchar(1024)");
+
+                    b.Property<int>("RpnJobTaskId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RpnJobTaskStepTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeqNr")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartedAt")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RpnJobTaskId");
+
+                    b.HasIndex("RpnJobTaskStepTypeId");
+
+                    b.ToTable("RpnJobTaskSteps");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobTaskStepType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RpnJobTaskStepTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "DownloadFile",
+                            Description = "Завантажити файл"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "UnzipFile",
+                            Description = "Розпакувати файл"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "DeleteZipFile",
+                            Description = "Видалити запакований файл"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "ApplyFile",
+                            Description = "Застосувати файл"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Code = "DeleteFile",
+                            Description = "Видалити файл"
+                        });
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobTaskType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RpnJobTaskTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "ApplyDict",
+                            Description = "Оновити словники"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "ApplyIpiFile",
+                            Description = "Додати дані з файлу повної бази"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "ApplyUpdateFile",
+                            Description = "Застосувати дані з файлу оновлення"
+                        });
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Code")
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RpnJobTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "LoadDict",
+                            Description = "Завантажити словники"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "LoadIpi",
+                            Description = "Завантажити повну БД"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "ApplyUpdates",
+                            Description = "Застосувати щоденні зміни"
+                        });
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnPeriod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("EndedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("IpiCompleteDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime?>("StartedAt")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RpnPeriods");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("FtpDumpPath")
+                        .HasColumnType("varchar(1024)");
+
+                    b.Property<string>("FtpLogin")
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("FtpPassword")
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<int>("FtpPort")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FtpUpdatesPath")
+                        .HasColumnType("varchar(1024)");
+
+                    b.Property<string>("FtpUrl")
+                        .HasColumnType("varchar(1024)");
+
+                    b.Property<bool>("FtpUseSftp")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("FtpUseSsl")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("WorkFilesRootPath")
+                        .HasColumnType("varchar(1024)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RpnSettings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FtpDumpPath = "IPI/IPI_Pub/Complete_IPI",
+                            FtpLogin = "UACRR",
+                            FtpPassword = "S0c-74084lXY-?",
+                            FtpPort = 22,
+                            FtpUpdatesPath = "IPI/download",
+                            FtpUrl = "ftp.suisa.ch",
+                            FtpUseSftp = true,
+                            FtpUseSsl = false,
+                            WorkFilesRootPath = "C:\\UACRR\\WID_Service\\ReplicationWorkFiles\\Ipi"
+                        });
+                });
+
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecBdn", b =>
                 {
                     b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
@@ -2792,6 +3102,70 @@ namespace IpiUpdatesLib.Migrations
                         .IsRequired();
 
                     b.Navigation("UpdFile");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJob", b =>
+                {
+                    b.HasOne("IpiUpdatesLib.RpnJobType", "RpnJobType")
+                        .WithMany()
+                        .HasForeignKey("RpnJobTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IpiUpdatesLib.RpnPeriod", "RpnPeriod")
+                        .WithMany("RpnJobs")
+                        .HasForeignKey("RpnPeriodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RpnJobType");
+
+                    b.Navigation("RpnPeriod");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobTask", b =>
+                {
+                    b.HasOne("IpiUpdatesLib.RpnJob", "RpnJob")
+                        .WithMany("RpnJobTasks")
+                        .HasForeignKey("RpnJobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RpnJob");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobTaskStep", b =>
+                {
+                    b.HasOne("IpiUpdatesLib.RpnJobTask", "RpnJobTask")
+                        .WithMany("RpnJobTaskSteps")
+                        .HasForeignKey("RpnJobTaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IpiUpdatesLib.RpnJobTaskStepType", "RpnJobTaskStepType")
+                        .WithMany()
+                        .HasForeignKey("RpnJobTaskStepTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RpnJobTask");
+
+                    b.Navigation("RpnJobTaskStepType");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJob", b =>
+                {
+                    b.Navigation("RpnJobTasks");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobTask", b =>
+                {
+                    b.Navigation("RpnJobTaskSteps");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnPeriod", b =>
+                {
+                    b.Navigation("RpnJobs");
                 });
 #pragma warning restore 612, 618
         }

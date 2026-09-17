@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WidAdminApi
+namespace IpiReplSvc
 {
     public class Logger
     {

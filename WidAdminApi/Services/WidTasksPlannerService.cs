@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using WidAdminLib;
 
-namespace WidAdminApi.Services
+namespace IpiReplSvc.Services
 {
     public class WidTasksPlannerService : BackgroundService
     {

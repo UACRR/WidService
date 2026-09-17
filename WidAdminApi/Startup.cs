@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WidAdminLib;
 
-namespace WidAdminApi
+namespace IpiReplSvc
 {
     public class Startup
     {

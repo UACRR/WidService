@@ -1,7 +1,7 @@
-﻿$acl = Get-Acl "D:\UACRR\WID\Sources\WidService\WidAdminApi\bin\Debug\netcoreapp3.1\WidAdminApi.exe"
+﻿$acl = Get-Acl "D:\UACRR\WID\Sources\WidService\IpiReplSvc\bin\Debug\netcoreapp3.1\IpiReplSvc.exe"
 $aclRuleArgs = "DESKTOP-FT79FOI\admin", "Read,Write,ReadAndExecute", "None", "None", "Allow"
 $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($aclRuleArgs)
 $acl.SetAccessRule($accessRule)
-$acl | Set-Acl "D:\UACRR\WID\Sources\WidService\WidAdminApi\bin\Debug\netcoreapp3.1\WidAdminApi.exe"
+$acl | Set-Acl "D:\UACRR\WID\Sources\WidService\IpiReplSvc\bin\Debug\netcoreapp3.1\IpiReplSvc.exe"
 
-New-Service -Name WidAdminApi -BinaryPathName "D:\UACRR\WID\Sources\WidService\WidAdminApi\bin\Debug\netcoreapp3.1\WidAdminApi.exe --contentRoot D:\UACRR\WID\Sources\WidService\WidAdminApi\bin\Debug\netcoreapp3.1\WidAdminApi.exe" -Credential "DESKTOP-FT79FOI\admin" -Description "WidAdminService" -DisplayName "WidAdminService" -StartupType Automatic
+New-Service -Name IpiReplSvc -BinaryPathName "D:\UACRR\WID\Sources\WidService\IpiReplSvc\bin\Debug\netcoreapp3.1\IpiReplSvc.exe --contentRoot D:\UACRR\WID\Sources\WidService\IpiReplSvc\bin\Debug\netcoreapp3.1\IpiReplSvc.exe" -Credential "DESKTOP-FT79FOI\admin" -Description "WidAdminService" -DisplayName "WidAdminService" -StartupType Automatic
