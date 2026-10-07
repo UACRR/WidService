@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IpiUpdatesLib.Migrations
 {
     [DbContext(typeof(IpiUpdatesDbContext))]
-    [Migration("20260915115753_InitialCreate")]
+    [Migration("20260919115258_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,456 @@ namespace IpiUpdatesLib.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicCcl", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Cde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("Dsc")
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicCcl");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicCsc", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreClsCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("CreSubClsCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicCsc");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicHna", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("FromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("TisNrCh")
+                        .HasColumnType("varchar(4)");
+
+                    b.Property<string>("TisNrChFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisNrChToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisNrPa")
+                        .HasColumnType("varchar(4)");
+
+                    b.Property<string>("TisNrPaFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisNrPaToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisaCh")
+                        .HasColumnType("varchar(6)");
+
+                    b.Property<string>("TisaPa")
+                        .HasColumnType("varchar(6)");
+
+                    b.Property<string>("TisanCh")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("TisanChFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisanChToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisanPa")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("TisanPaFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisanPaToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("ToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicHna");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicHnr", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("FromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("TisNrCh")
+                        .HasColumnType("varchar(4)");
+
+                    b.Property<string>("TisNrChFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisNrChToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisNrPa")
+                        .HasColumnType("varchar(4)");
+
+                    b.Property<string>("TisNrPaFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisNrPaToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisaCh")
+                        .HasColumnType("varchar(6)");
+
+                    b.Property<string>("TisaPa")
+                        .HasColumnType("varchar(6)");
+
+                    b.Property<string>("TisanCh")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("TisanChFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisanChToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisanPa")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("TisanPaFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisanPaToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("ToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicHnr");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicIri", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Cde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("RgtCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicIri");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicIsc", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Cde")
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<string>("Dsc")
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicIsc");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicNmt", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Cde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("Dsc")
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicNmt");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicRcc", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreClsCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("RolCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicRcc");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicRig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Cde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("Dsc")
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicRig");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicRis", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreClsCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("RgtCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("RolCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("SocCde")
+                        .HasColumnType("varchar(3)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicRis");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicRix", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreClsCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("FromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("RgtCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("RolCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("SocCde")
+                        .HasColumnType("varchar(3)");
+
+                    b.Property<string>("ToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicRix");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicRol", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Cde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("Dsc")
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicRol");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicSoc", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Cde")
+                        .HasColumnType("varchar(3)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("varchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicSoc");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicSop", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("PartnerSocCde")
+                        .HasColumnType("varchar(3)");
+
+                    b.Property<string>("SocCde")
+                        .HasColumnType("varchar(3)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicSop");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicTna", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("TisNr")
+                        .HasColumnType("varchar(4)");
+
+                    b.Property<string>("TisNrFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisNrToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("Tisa")
+                        .HasColumnType("varchar(6)");
+
+                    b.Property<string>("Tisan")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("TisanFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisanToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicTna");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.Entities.DicTnr", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("LngCde")
+                        .HasColumnType("varchar(2)");
+
+                    b.Property<string>("TisNr")
+                        .HasColumnType("varchar(4)");
+
+                    b.Property<string>("TisNrFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisNrToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("Tisa")
+                        .HasColumnType("varchar(6)");
+
+                    b.Property<string>("Tisan")
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("TisanFromD")
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("TisanToD")
+                        .HasColumnType("varchar(8)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DicTnr");
+                });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.Main.IpiAgreement", b =>
                 {
@@ -65,6 +515,10 @@ namespace IpiUpdatesLib.Migrations
                         .HasColumnType("datetime");
 
                     b.HasKey("Id");
+
+                    b.HasIndex(new[] { "IpAgreeNr" }, "idx_IpiAgreement_IpAgreeNr");
+
+                    b.HasIndex(new[] { "IpBaseNr" }, "idx_IpiAgreement_IpBaseNr");
 
                     b.ToTable("IpiAgreement");
                 });
@@ -114,6 +568,8 @@ namespace IpiUpdatesLib.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex(new[] { "IpBaseNr" }, "idx_IpiBase_IpBaseNr");
+
                     b.ToTable("IpiBase");
                 });
 
@@ -156,6 +612,10 @@ namespace IpiUpdatesLib.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex(new[] { "IpBaseNr" }, "idx_IpiName_IpBaseNr");
+
+                    b.HasIndex(new[] { "IpNameNr" }, "idx_IpiName_IpNameNr");
+
                     b.ToTable("IpiName");
                 });
 
@@ -182,6 +642,10 @@ namespace IpiUpdatesLib.Migrations
                         .HasColumnType("varchar(2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex(new[] { "IpBaseNr" }, "idx_IpiNameUsage_IpBaseNr");
+
+                    b.HasIndex(new[] { "IpNameNr" }, "idx_IpiNameUsage_IpNameNr");
 
                     b.ToTable("IpiNameUsage");
                 });
@@ -210,6 +674,8 @@ namespace IpiUpdatesLib.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex(new[] { "IpBaseNr" }, "idx_IpiNationality_IpBaseNr");
+
                     b.ToTable("IpiNationality");
                 });
 
@@ -233,6 +699,8 @@ namespace IpiUpdatesLib.Migrations
                         .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex(new[] { "IpBaseNr" }, "idx_IpiRemark_IpBaseNr");
 
                     b.ToTable("IpiRemark");
                 });
@@ -264,6 +732,8 @@ namespace IpiUpdatesLib.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex(new[] { "IpBaseNr" }, "idx_IpiStatus_IpBaseNr");
+
                     b.ToTable("IpiStatus");
                 });
 
@@ -293,6 +763,8 @@ namespace IpiUpdatesLib.Migrations
                         .HasColumnType("date");
 
                     b.HasKey("Id");
+
+                    b.HasIndex(new[] { "IpAgreeNr" }, "idx_IpiTerritory_IpAgreeNr");
 
                     b.ToTable("IpiTerritory");
                 });
@@ -439,61 +911,6 @@ namespace IpiUpdatesLib.Migrations
                     b.ToTable("RecBdo");
                 });
 
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecCcl", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("Dsc")
-                        .HasColumnType("varchar(60)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicCcl");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecCsc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreClsCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("CreSubClsCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicCsc");
-                });
-
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecGrh", b =>
                 {
                     b.Property<int>("Id")
@@ -591,148 +1008,6 @@ namespace IpiUpdatesLib.Migrations
                     b.HasIndex("UpdFileId");
 
                     b.ToTable("RecHdr");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecHna", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("FromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("TisNrCh")
-                        .HasColumnType("varchar(4)");
-
-                    b.Property<string>("TisNrChFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisNrChToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisNrPa")
-                        .HasColumnType("varchar(4)");
-
-                    b.Property<string>("TisNrPaFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisNrPaToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisaCh")
-                        .HasColumnType("varchar(6)");
-
-                    b.Property<string>("TisaPa")
-                        .HasColumnType("varchar(6)");
-
-                    b.Property<string>("TisanCh")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("TisanChFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisanChToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisanPa")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("TisanPaFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisanPaToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("ToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicHna");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecHnr", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("FromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("TisNrCh")
-                        .HasColumnType("varchar(4)");
-
-                    b.Property<string>("TisNrChFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisNrChToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisNrPa")
-                        .HasColumnType("varchar(4)");
-
-                    b.Property<string>("TisNrPaFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisNrPaToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisaCh")
-                        .HasColumnType("varchar(6)");
-
-                    b.Property<string>("TisaPa")
-                        .HasColumnType("varchar(6)");
-
-                    b.Property<string>("TisanCh")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("TisanChFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisanChToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisanPa")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("TisanPaFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisanPaToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("ToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicHnr");
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecImn", b =>
@@ -891,61 +1166,6 @@ namespace IpiUpdatesLib.Migrations
                     b.HasIndex("UpdFileId");
 
                     b.ToTable("RecIno");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecIri", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("RgtCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicIri");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecIsc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cde")
-                        .HasColumnType("varchar(1)");
-
-                    b.Property<string>("Dsc")
-                        .HasColumnType("varchar(60)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicIsc");
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecMan", b =>
@@ -1372,35 +1592,6 @@ namespace IpiUpdatesLib.Migrations
                     b.ToTable("RecNco");
                 });
 
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecNmt", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("Dsc")
-                        .HasColumnType("varchar(60)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicNmt");
-                });
-
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecNtn", b =>
                 {
                     b.Property<int>("Id")
@@ -1683,32 +1874,6 @@ namespace IpiUpdatesLib.Migrations
                     b.ToTable("RecOno");
                 });
 
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRcc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreClsCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("RolCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicRcc");
-                });
-
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecRen", b =>
                 {
                     b.Property<int>("Id")
@@ -1789,189 +1954,6 @@ namespace IpiUpdatesLib.Migrations
                     b.HasIndex("UpdFileId");
 
                     b.ToTable("RecReo");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRig", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("Dsc")
-                        .HasColumnType("varchar(60)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicRig");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRis", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreClsCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("RgtCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("RolCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("SocCde")
-                        .HasColumnType("varchar(3)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicRis");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRix", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreClsCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("FromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("RgtCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("RolCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("SocCde")
-                        .HasColumnType("varchar(3)");
-
-                    b.Property<string>("ToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicRix");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRol", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("Dsc")
-                        .HasColumnType("varchar(60)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicRol");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecSoc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Cde")
-                        .HasColumnType("varchar(3)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicSoc");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecSop", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("PartnerSocCde")
-                        .HasColumnType("varchar(3)");
-
-                    b.Property<string>("SocCde")
-                        .HasColumnType("varchar(3)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicSop");
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecStn", b =>
@@ -2122,94 +2104,6 @@ namespace IpiUpdatesLib.Migrations
                     b.HasIndex("UpdFileId");
 
                     b.ToTable("RecTma");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecTna", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("TisNr")
-                        .HasColumnType("varchar(4)");
-
-                    b.Property<string>("TisNrFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisNrToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("Tisa")
-                        .HasColumnType("varchar(6)");
-
-                    b.Property<string>("Tisan")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("TisanFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisanToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicTna");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecTnr", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("GrId")
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<string>("LngCde")
-                        .HasColumnType("varchar(2)");
-
-                    b.Property<string>("TisNr")
-                        .HasColumnType("varchar(4)");
-
-                    b.Property<string>("TisNrFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisNrToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("Tisa")
-                        .HasColumnType("varchar(6)");
-
-                    b.Property<string>("Tisan")
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("TisanFromD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<string>("TisanToD")
-                        .HasColumnType("varchar(8)");
-
-                    b.Property<int>("UpdFileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UpdFileId");
-
-                    b.ToTable("DicTnr");
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.UpdFile", b =>
@@ -2380,9 +2274,6 @@ namespace IpiUpdatesLib.Migrations
                     b.Property<DateTime?>("EndedAt")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("ErrMsg")
-                        .HasColumnType("varchar(1024)");
-
                     b.Property<string>("FileName")
                         .HasColumnType("varchar(1024)");
 
@@ -2405,6 +2296,27 @@ namespace IpiUpdatesLib.Migrations
                     b.HasIndex("RpnJobTaskStepTypeId");
 
                     b.ToTable("RpnJobTaskSteps");
+                });
+
+            modelBuilder.Entity("IpiUpdatesLib.RpnJobTaskStepErr", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("ErrMsg")
+                        .HasColumnType("varchar(1024)");
+
+                    b.Property<int>("RpnJobTaskStepId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RpnJobTaskStepErrs");
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.RpnJobTaskStepType", b =>
@@ -2446,12 +2358,18 @@ namespace IpiUpdatesLib.Migrations
                         new
                         {
                             Id = 4,
+                            Code = "LoadFileIntoDb",
+                            Description = "Завантажити в БД"
+                        },
+                        new
+                        {
+                            Id = 5,
                             Code = "ApplyFile",
                             Description = "Застосувати файл"
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 6,
                             Code = "DeleteFile",
                             Description = "Видалити файл"
                         });
@@ -2607,7 +2525,7 @@ namespace IpiUpdatesLib.Migrations
                             FtpUrl = "ftp.suisa.ch",
                             FtpUseSftp = true,
                             FtpUseSsl = false,
-                            WorkFilesRootPath = "C:\\UACRR\\WID_Service\\ReplicationWorkFiles\\Ipi"
+                            WorkFilesRootPath = "D:\\UACRR\\WID_Service\\ReplicationWorkFiles\\Ipi"
                         });
                 });
 
@@ -2623,28 +2541,6 @@ namespace IpiUpdatesLib.Migrations
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecBdo", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecCcl", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecCsc", b =>
                 {
                     b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
                         .WithMany()
@@ -2678,28 +2574,6 @@ namespace IpiUpdatesLib.Migrations
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecHdr", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecHna", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecHnr", b =>
                 {
                     b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
                         .WithMany()
@@ -2744,28 +2618,6 @@ namespace IpiUpdatesLib.Migrations
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecIno", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecIri", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecIsc", b =>
                 {
                     b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
                         .WithMany()
@@ -2864,17 +2716,6 @@ namespace IpiUpdatesLib.Migrations
                     b.Navigation("UpdFile");
                 });
 
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecNmt", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecNtn", b =>
                 {
                     b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
@@ -2941,17 +2782,6 @@ namespace IpiUpdatesLib.Migrations
                     b.Navigation("UpdFile");
                 });
 
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRcc", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecRen", b =>
                 {
                     b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
@@ -2964,72 +2794,6 @@ namespace IpiUpdatesLib.Migrations
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecReo", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRig", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRis", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRix", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecRol", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecSoc", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecSop", b =>
                 {
                     b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
                         .WithMany()
@@ -3063,28 +2827,6 @@ namespace IpiUpdatesLib.Migrations
                 });
 
             modelBuilder.Entity("IpiUpdatesLib.Entities.RecTma", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecTna", b =>
-                {
-                    b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
-                        .WithMany()
-                        .HasForeignKey("UpdFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UpdFile");
-                });
-
-            modelBuilder.Entity("IpiUpdatesLib.Entities.RecTnr", b =>
                 {
                     b.HasOne("IpiUpdatesLib.Entities.UpdFile", "UpdFile")
                         .WithMany()

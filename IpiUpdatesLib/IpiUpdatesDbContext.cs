@@ -32,6 +32,7 @@ namespace IpiUpdatesLib
             DownloadFile = 1, 
             UnzipFile,    
             DeleteZipFile,
+            LoadFileIntoDb,
             ApplyFile,    
             DeleteFile,   
         };
@@ -99,7 +100,8 @@ namespace IpiUpdatesLib
         public DbSet<RpnPeriod>             RpnPeriods          { get; set; }
         public DbSet<RpnJob>                RpnJobs             { get; set; }
         public DbSet<RpnJobTask>            RpnJobTasks         { get; set; }
-        public DbSet<RpnJobTaskStep>        RpnJobTaskSteps         { get; set; }
+        public DbSet<RpnJobTaskStep>        RpnJobTaskSteps     { get; set; }
+        public DbSet<RpnJobTaskStepErr>     RpnJobTaskStepErrs  { get; set; }
         public DbSet<RpnJobTaskStepType>    RpnJobTaskStepType  { get; set; }
         public DbSet<RpnJobTaskType>        RpnJobTaskTypes     { get; set; }
         public DbSet<RpnJobType>            RpnJobTypes         { get; set; }
@@ -180,12 +182,33 @@ namespace IpiUpdatesLib
                 .Entity<RpnJobTaskStepType>()
                 .HasData(new RpnJobTaskStepType[]
                 {
-                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DownloadFile,  Code = "DownloadFile",  Description = "Завантажити файл"          },
-                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.UnzipFile,     Code = "UnzipFile",     Description = "Розпакувати файл"          },
-                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DeleteZipFile, Code = "DeleteZipFile", Description = "Видалити запакований файл" },
-                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.ApplyFile,     Code = "ApplyFile",     Description = "Застосувати файл"          },
-                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DeleteFile,    Code = "DeleteFile",    Description = "Видалити файл"             },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DownloadFile,   Code = "DownloadFile",   Description = "Завантажити файл"          },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.UnzipFile,      Code = "UnzipFile",      Description = "Розпакувати файл"          },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DeleteZipFile,  Code = "DeleteZipFile",  Description = "Видалити запакований файл" },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.LoadFileIntoDb, Code = "LoadFileIntoDb", Description = "Завантажити в БД"          },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.ApplyFile,      Code = "ApplyFile",      Description = "Застосувати файл"          },
+                    new RpnJobTaskStepType { Id = (int)RpnJobTaskStepTypeEnum.DeleteFile,     Code = "DeleteFile",     Description = "Видалити файл"             },
                 });
+
+            modelBuilder.Entity<IpiAgreement>().HasIndex(x => x.IpBaseNr, "idx_IpiAgreement_IpBaseNr");
+            modelBuilder.Entity<IpiAgreement>().HasIndex(x => x.IpAgreeNr, "idx_IpiAgreement_IpAgreeNr");
+
+            modelBuilder.Entity<IpiBase>().HasIndex(x => x.IpBaseNr, "idx_IpiBase_IpBaseNr");
+
+            modelBuilder.Entity<IpiName>().HasIndex(x => x.IpBaseNr, "idx_IpiName_IpBaseNr");
+            modelBuilder.Entity<IpiName>().HasIndex(x => x.IpNameNr, "idx_IpiName_IpNameNr");
+
+            modelBuilder.Entity<IpiNameUsage>().HasIndex(x => x.IpBaseNr, "idx_IpiNameUsage_IpBaseNr");
+            modelBuilder.Entity<IpiNameUsage>().HasIndex(x => x.IpNameNr, "idx_IpiNameUsage_IpNameNr");
+
+
+            modelBuilder.Entity<IpiNationality>().HasIndex(x => x.IpBaseNr, "idx_IpiNationality_IpBaseNr");
+
+            modelBuilder.Entity<IpiRemark>().HasIndex(x => x.IpBaseNr, "idx_IpiRemark_IpBaseNr");
+
+            modelBuilder.Entity<IpiStatus>().HasIndex(x => x.IpBaseNr, "idx_IpiStatus_IpBaseNr");
+
+            modelBuilder.Entity<IpiTerritory>().HasIndex(x => x.IpAgreeNr, "idx_IpiTerritory_IpAgreeNr");
 
             modelBuilder
                 .Entity<RpnSettings>()

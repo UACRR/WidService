@@ -8,6 +8,284 @@ namespace IpiUpdatesLib.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "DicCcl",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicCcl", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicCsc",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreClsCde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    CreSubClsCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicCsc", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicHna",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TisNrPa = table.Column<string>(type: "varchar(4)", nullable: true),
+                    TisNrPaFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisNrPaToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanPa = table.Column<string>(type: "varchar(20)", nullable: true),
+                    TisanPaFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanPaToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisaPa = table.Column<string>(type: "varchar(6)", nullable: true),
+                    TisNrCh = table.Column<string>(type: "varchar(4)", nullable: true),
+                    TisNrChFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisNrChToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanCh = table.Column<string>(type: "varchar(20)", nullable: true),
+                    TisanChFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanChToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisaCh = table.Column<string>(type: "varchar(6)", nullable: true),
+                    FromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    ToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicHna", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicHnr",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TisNrPa = table.Column<string>(type: "varchar(4)", nullable: true),
+                    TisNrPaFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisNrPaToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanPa = table.Column<string>(type: "varchar(20)", nullable: true),
+                    TisanPaFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanPaToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisaPa = table.Column<string>(type: "varchar(6)", nullable: true),
+                    TisNrCh = table.Column<string>(type: "varchar(4)", nullable: true),
+                    TisNrChFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisNrChToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanCh = table.Column<string>(type: "varchar(20)", nullable: true),
+                    TisanChFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanChToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisaCh = table.Column<string>(type: "varchar(6)", nullable: true),
+                    FromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    ToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicHnr", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicIri",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    RgtCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicIri", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicIsc",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cde = table.Column<string>(type: "varchar(1)", nullable: true),
+                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicIsc", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicNmt",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicNmt", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicRcc",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreClsCde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    RolCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicRcc", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicRig",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicRig", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicRis",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SocCde = table.Column<string>(type: "varchar(3)", nullable: true),
+                    CreClsCde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    RolCde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    RgtCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicRis", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicRix",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SocCde = table.Column<string>(type: "varchar(3)", nullable: true),
+                    CreClsCde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    RolCde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    RgtCde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    FromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    ToD = table.Column<string>(type: "varchar(8)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicRix", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicRol",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
+                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicRol", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicSoc",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cde = table.Column<string>(type: "varchar(3)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(20)", nullable: true),
+                    Country = table.Column<string>(type: "varchar(20)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicSoc", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicSop",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SocCde = table.Column<string>(type: "varchar(3)", nullable: true),
+                    PartnerSocCde = table.Column<string>(type: "varchar(3)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicSop", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicTna",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TisNr = table.Column<string>(type: "varchar(4)", nullable: true),
+                    TisNrFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisNrToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    Tisan = table.Column<string>(type: "varchar(20)", nullable: true),
+                    TisanFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    Tisa = table.Column<string>(type: "varchar(6)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicTna", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DicTnr",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TisNr = table.Column<string>(type: "varchar(4)", nullable: true),
+                    TisNrFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisNrToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    Tisan = table.Column<string>(type: "varchar(20)", nullable: true),
+                    TisanFromD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    TisanToD = table.Column<string>(type: "varchar(8)", nullable: true),
+                    Tisa = table.Column<string>(type: "varchar(6)", nullable: true),
+                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DicTnr", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "IpiAgreement",
                 columns: table => new
                 {
@@ -164,6 +442,21 @@ namespace IpiUpdatesLib.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RpnJobTaskStepErrs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RpnJobTaskStepId = table.Column<int>(type: "int", nullable: false),
+                    ErrMsg = table.Column<string>(type: "varchar(1024)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RpnJobTaskStepErrs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RpnJobTaskStepTypes",
                 columns: table => new
                 {
@@ -284,412 +577,6 @@ namespace IpiUpdatesLib.Migrations
                         name: "FK_RpnJobs_RpnPeriods_RpnPeriodId",
                         column: x => x.RpnPeriodId,
                         principalTable: "RpnPeriods",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicCcl",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicCcl", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicCcl_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicCsc",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    CreClsCde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    CreSubClsCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicCsc", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicCsc_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicHna",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    TisNrPa = table.Column<string>(type: "varchar(4)", nullable: true),
-                    TisNrPaFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisNrPaToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanPa = table.Column<string>(type: "varchar(20)", nullable: true),
-                    TisanPaFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanPaToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisaPa = table.Column<string>(type: "varchar(6)", nullable: true),
-                    TisNrCh = table.Column<string>(type: "varchar(4)", nullable: true),
-                    TisNrChFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisNrChToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanCh = table.Column<string>(type: "varchar(20)", nullable: true),
-                    TisanChFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanChToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisaCh = table.Column<string>(type: "varchar(6)", nullable: true),
-                    FromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    ToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicHna", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicHna_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicHnr",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    TisNrPa = table.Column<string>(type: "varchar(4)", nullable: true),
-                    TisNrPaFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisNrPaToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanPa = table.Column<string>(type: "varchar(20)", nullable: true),
-                    TisanPaFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanPaToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisaPa = table.Column<string>(type: "varchar(6)", nullable: true),
-                    TisNrCh = table.Column<string>(type: "varchar(4)", nullable: true),
-                    TisNrChFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisNrChToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanCh = table.Column<string>(type: "varchar(20)", nullable: true),
-                    TisanChFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanChToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisaCh = table.Column<string>(type: "varchar(6)", nullable: true),
-                    FromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    ToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicHnr", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicHnr_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicIri",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    RgtCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicIri", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicIri_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicIsc",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    Cde = table.Column<string>(type: "varchar(1)", nullable: true),
-                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicIsc", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicIsc_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicNmt",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicNmt", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicNmt_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicRcc",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    CreClsCde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    RolCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicRcc", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicRcc_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicRig",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicRig", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicRig_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicRis",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    SocCde = table.Column<string>(type: "varchar(3)", nullable: true),
-                    CreClsCde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    RolCde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    RgtCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicRis", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicRis_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicRix",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    SocCde = table.Column<string>(type: "varchar(3)", nullable: true),
-                    CreClsCde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    RolCde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    RgtCde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    FromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    ToD = table.Column<string>(type: "varchar(8)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicRix", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicRix_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicRol",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    Cde = table.Column<string>(type: "varchar(2)", nullable: true),
-                    Dsc = table.Column<string>(type: "varchar(60)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicRol", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicRol_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicSoc",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    Cde = table.Column<string>(type: "varchar(3)", nullable: true),
-                    Name = table.Column<string>(type: "varchar(20)", nullable: true),
-                    Country = table.Column<string>(type: "varchar(20)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicSoc", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicSoc_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicSop",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    SocCde = table.Column<string>(type: "varchar(3)", nullable: true),
-                    PartnerSocCde = table.Column<string>(type: "varchar(3)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicSop", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicSop_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicTna",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    TisNr = table.Column<string>(type: "varchar(4)", nullable: true),
-                    TisNrFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisNrToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    Tisan = table.Column<string>(type: "varchar(20)", nullable: true),
-                    TisanFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    Tisa = table.Column<string>(type: "varchar(6)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicTna", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicTna_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DicTnr",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UpdFileId = table.Column<int>(type: "int", nullable: false),
-                    GrId = table.Column<string>(type: "varchar(5)", nullable: true),
-                    TisNr = table.Column<string>(type: "varchar(4)", nullable: true),
-                    TisNrFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisNrToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    Tisan = table.Column<string>(type: "varchar(20)", nullable: true),
-                    TisanFromD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    TisanToD = table.Column<string>(type: "varchar(8)", nullable: true),
-                    Tisa = table.Column<string>(type: "varchar(6)", nullable: true),
-                    LngCde = table.Column<string>(type: "varchar(2)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DicTnr", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DicTnr_UpdFiles_UpdFileId",
-                        column: x => x.UpdFileId,
-                        principalTable: "UpdFiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1582,7 +1469,6 @@ namespace IpiUpdatesLib.Migrations
                     RpnJobTaskId = table.Column<int>(type: "int", nullable: false),
                     RpnJobTaskStepTypeId = table.Column<int>(type: "int", nullable: false),
                     FileName = table.Column<string>(type: "varchar(1024)", nullable: true),
-                    ErrMsg = table.Column<string>(type: "varchar(1024)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
                     StartedAt = table.Column<DateTime>(type: "datetime", nullable: true),
                     EndedAt = table.Column<DateTime>(type: "datetime", nullable: true)
@@ -1612,8 +1498,9 @@ namespace IpiUpdatesLib.Migrations
                     { 1, "DownloadFile", "Завантажити файл" },
                     { 2, "UnzipFile", "Розпакувати файл" },
                     { 3, "DeleteZipFile", "Видалити запакований файл" },
-                    { 4, "ApplyFile", "Застосувати файл" },
-                    { 5, "DeleteFile", "Видалити файл" }
+                    { 4, "LoadFileIntoDb", "Завантажити в БД" },
+                    { 5, "ApplyFile", "Застосувати файл" },
+                    { 6, "DeleteFile", "Видалити файл" }
                 });
 
             migrationBuilder.InsertData(
@@ -1639,87 +1526,62 @@ namespace IpiUpdatesLib.Migrations
             migrationBuilder.InsertData(
                 table: "RpnSettings",
                 columns: new[] { "Id", "FtpDumpPath", "FtpLogin", "FtpPassword", "FtpPort", "FtpUpdatesPath", "FtpUrl", "FtpUseSftp", "FtpUseSsl", "WorkFilesRootPath" },
-                values: new object[] { 1, "IPI/IPI_Pub/Complete_IPI", "UACRR", "S0c-74084lXY-?", 22, "IPI/download", "ftp.suisa.ch", true, false, "C:\\UACRR\\WID_Service\\ReplicationWorkFiles\\Ipi" });
+                values: new object[] { 1, "IPI/IPI_Pub/Complete_IPI", "UACRR", "S0c-74084lXY-?", 22, "IPI/download", "ftp.suisa.ch", true, false, "D:\\UACRR\\WID_Service\\ReplicationWorkFiles\\Ipi" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicCcl_UpdFileId",
-                table: "DicCcl",
-                column: "UpdFileId");
+                name: "idx_IpiAgreement_IpAgreeNr",
+                table: "IpiAgreement",
+                column: "IpAgreeNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicCsc_UpdFileId",
-                table: "DicCsc",
-                column: "UpdFileId");
+                name: "idx_IpiAgreement_IpBaseNr",
+                table: "IpiAgreement",
+                column: "IpBaseNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicHna_UpdFileId",
-                table: "DicHna",
-                column: "UpdFileId");
+                name: "idx_IpiBase_IpBaseNr",
+                table: "IpiBase",
+                column: "IpBaseNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicHnr_UpdFileId",
-                table: "DicHnr",
-                column: "UpdFileId");
+                name: "idx_IpiName_IpBaseNr",
+                table: "IpiName",
+                column: "IpBaseNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicIri_UpdFileId",
-                table: "DicIri",
-                column: "UpdFileId");
+                name: "idx_IpiName_IpNameNr",
+                table: "IpiName",
+                column: "IpNameNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicIsc_UpdFileId",
-                table: "DicIsc",
-                column: "UpdFileId");
+                name: "idx_IpiNameUsage_IpBaseNr",
+                table: "IpiNameUsage",
+                column: "IpBaseNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicNmt_UpdFileId",
-                table: "DicNmt",
-                column: "UpdFileId");
+                name: "idx_IpiNameUsage_IpNameNr",
+                table: "IpiNameUsage",
+                column: "IpNameNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicRcc_UpdFileId",
-                table: "DicRcc",
-                column: "UpdFileId");
+                name: "idx_IpiNationality_IpBaseNr",
+                table: "IpiNationality",
+                column: "IpBaseNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicRig_UpdFileId",
-                table: "DicRig",
-                column: "UpdFileId");
+                name: "idx_IpiRemark_IpBaseNr",
+                table: "IpiRemark",
+                column: "IpBaseNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicRis_UpdFileId",
-                table: "DicRis",
-                column: "UpdFileId");
+                name: "idx_IpiStatus_IpBaseNr",
+                table: "IpiStatus",
+                column: "IpBaseNr");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DicRix_UpdFileId",
-                table: "DicRix",
-                column: "UpdFileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DicRol_UpdFileId",
-                table: "DicRol",
-                column: "UpdFileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DicSoc_UpdFileId",
-                table: "DicSoc",
-                column: "UpdFileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DicSop_UpdFileId",
-                table: "DicSop",
-                column: "UpdFileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DicTna_UpdFileId",
-                table: "DicTna",
-                column: "UpdFileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DicTnr_UpdFileId",
-                table: "DicTnr",
-                column: "UpdFileId");
+                name: "idx_IpiTerritory_IpAgreeNr",
+                table: "IpiTerritory",
+                column: "IpAgreeNr");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RecBdn_UpdFileId",
@@ -2049,6 +1911,9 @@ namespace IpiUpdatesLib.Migrations
 
             migrationBuilder.DropTable(
                 name: "RecTma");
+
+            migrationBuilder.DropTable(
+                name: "RpnJobTaskStepErrs");
 
             migrationBuilder.DropTable(
                 name: "RpnJobTaskSteps");

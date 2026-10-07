@@ -9,7 +9,6 @@ using IpiUpdatesLib;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using WidAdminLib;
 
 namespace IpiReplSvc.Services
 {
@@ -37,23 +36,16 @@ namespace IpiReplSvc.Services
                 while (!stoppingToken.IsCancellationRequested)
                 {
                     Logger.WriteLine("IpiTasksPlannerService is planning next tasks.");
-                    try
+                    //var planner = new WidTaskPlanner();
+                    var planner = new TaskPlanner();
+                    if(planner.PlanTasks())
                     {
-                        //var planner = new WidTaskPlanner();
-                        var planner = new TaskPlanner();
-                        if(planner.PlanTasks())
-                        {
-                            IpiTasksRunnerService.taskAddedHandle.Set();
-                        }
-                        //Thread.Sleep(TimeSpan.FromSeconds(10));
-                        taskStatusChangedHandle.WaitOne(TimeSpan.FromHours(1));
-                        //Thread.Sleep(TimeSpan.FromSeconds(10));
-                        //await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
+                        IpiTasksRunnerService.taskAddedHandle.Set();
                     }
-                    catch(Exception ex)
-                    {
-                        Logger.WriteLine($"ERROR: {ex.Message}");
-                    }
+                    //Thread.Sleep(TimeSpan.FromSeconds(10));
+                    taskStatusChangedHandle.WaitOne(TimeSpan.FromHours(1));
+                    //Thread.Sleep(TimeSpan.FromSeconds(10));
+                    //await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
                 }
             });
             thread.Start();

@@ -263,11 +263,11 @@ namespace IpiUpdatesLib
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 tran.Rollback();
-                throw;
+                throw new Exception(ex.Message);
             }
         }
+        
         public static void LoadUpdFile(string fileFullName, ProgressChanged progressChanged)
         {
             var fileName = Path.GetFileNameWithoutExtension(Path.GetFileName(fileFullName));

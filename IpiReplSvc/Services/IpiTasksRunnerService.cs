@@ -5,9 +5,6 @@ using IpiUpdatesLib;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SharedLib;
-using WidAdminLib;
-using static WidReplicationServiceLib.IWidReplicationService;
 
 namespace IpiReplSvc.Services
 {
@@ -36,9 +33,7 @@ namespace IpiReplSvc.Services
                 while (!stoppingToken.IsCancellationRequested)
                 {
                     Logger.WriteLine("TasksRunnerService is executing next task.");
-                    TryCatch.Run(() =>
-                    {
-                        var runner = new TaskRunner();
+                    var runner = new TaskRunner();
                         //runner.WidTaskCompleted += Runner_WidTaskCompleted;
                         switch (runner.RunPendingTask())
                         {
@@ -52,11 +47,6 @@ namespace IpiReplSvc.Services
                                 Thread.Sleep(TimeSpan.FromSeconds(10000));
                                 break;
                         }
-                        //await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);}
-                    },  ex =>
-                    {
-                        Logger.WriteLine($"ERROR: {ex.Message}");
-                    });
                 }
             }); 
             thread.Start();

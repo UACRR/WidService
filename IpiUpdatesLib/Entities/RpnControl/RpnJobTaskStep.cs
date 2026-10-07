@@ -14,7 +14,6 @@ namespace IpiUpdatesLib
         [Column(TypeName = "int")]           public int         RpnJobTaskId            { get; set; }
         [Column(TypeName = "int")]           public int         RpnJobTaskStepTypeId    { get; set; }
         [Column(TypeName = "varchar(1024)")] public string      FileName                { get; set; }
-        [Column(TypeName = "varchar(1024)")] public string      ErrMsg                  { get; set; }
         [Column(TypeName = "datetime")]      public DateTime    CreatedAt               { get; set; }
         [Column(TypeName = "datetime")]      public DateTime?   StartedAt               { get; set; }
         [Column(TypeName = "datetime")]      public DateTime?   EndedAt                 { get; set; }

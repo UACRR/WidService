@@ -6,8 +6,6 @@ namespace IpiUpdatesLib.Entities
     public class DicHna
     {
         [Column(TypeName = "int")] public int Id { get; set; }
-        [Column(TypeName = "int")] public int UpdFileId { get; set; }
-        [Column(TypeName = "varchar(5)")] public string GrId { get; set; }
         [CustomPosInFile(20, 4)] [Column(TypeName = "varchar(4)")] public string TisNrPa { get; set; }
         [CustomPosInFile(24, 8)] [Column(TypeName = "varchar(8)")] public string TisNrPaFromD { get; set; }
         [CustomPosInFile(32, 8)] [Column(TypeName = "varchar(8)")] public string TisNrPaToD { get; set; }
@@ -25,8 +23,6 @@ namespace IpiUpdatesLib.Entities
         [CustomPosInFile(144, 8)] [Column(TypeName = "varchar(8)")] public string FromD { get; set; }
         [CustomPosInFile(152, 8)] [Column(TypeName = "varchar(8)")] public string ToD { get; set; }
         [CustomPosInFile(160, 2)] [Column(TypeName = "varchar(2)")] public string LngCde { get; set; }
-
-        public UpdFile UpdFile { get; set; }
     }
 }
 

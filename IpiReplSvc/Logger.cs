@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace IpiReplSvc
@@ -31,11 +32,15 @@ namespace IpiReplSvc
 
         public static void WriteLine(string line)
         {
-            lock(_lock)
+            try
             {
-                //Console.WriteLine(line);
-                File.AppendAllText(logFullName, $"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff")}    {line}{Environment.NewLine}");
+               lock(_lock)
+                {
+                    //Console.WriteLine(line);
+                    File.AppendAllText(logFullName, $"{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff")}    {line}{Environment.NewLine}");
+                }
             }
-        }
+            catch { }
+         }
     }
 }

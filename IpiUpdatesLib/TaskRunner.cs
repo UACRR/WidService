@@ -39,43 +39,96 @@ namespace IpiUpdatesLib
 
         public TaskResult RunPendingTask()
         {
-            var step = _dbc.RpnJobTaskSteps
-                .Include(x => x.RpnJobTask)
-                .Include(x => x.RpnJobTask.RpnJob)
-                .Include(x => x.RpnJobTask.RpnJob.RpnPeriod)
-                .Where(x => x.EndedAt == null)
-                .OrderBy(x => x.SeqNr)
-                .FirstOrDefault();
-
-            if (step == null)
-                return TaskResult.NoTasks;
-
-            step.StartedAt = DateTime.Now;
-            _dbc.SaveChanges();
-
-            switch(step.RpnJobTaskStepTypeId)
+            RpnJobTaskStep step;
+            try 
             {
-                case (int)RpnJobTaskStepTypeEnum.DownloadFile:
-                    DownloadFile(step);
-                    break;
-                case (int)RpnJobTaskStepTypeEnum.UnzipFile:
-                    UnzipFile(step);
-                    break;
-                case (int)RpnJobTaskStepTypeEnum.DeleteZipFile:
-                    DeleteZipFile(step);
-                    break;
-                case (int)RpnJobTaskStepTypeEnum.ApplyFile:
-                    ApplyFile(step);
-                    break;
-                case (int)RpnJobTaskStepTypeEnum.DeleteFile:
-                    DeleteFile(step);
-                    break;
+                Logger.SetStepId(0);
+
+                step = _dbc.RpnJobTaskSteps
+                    .Include(x => x.RpnJobTask)
+                    .Include(x => x.RpnJobTask.RpnJob)
+                    .Include(x => x.RpnJobTask.RpnJob.RpnPeriod)
+                    .Where(x => x.EndedAt == null)
+                    .OrderBy(x => x.SeqNr)
+                    .FirstOrDefault();
+                if (step == null)
+                    return TaskResult.NoTasks;
+
+                SetStartedAt(step);
+
+                switch(step.RpnJobTaskStepTypeId)
+                {
+                    case (int)RpnJobTaskStepTypeEnum.DownloadFile:
+                        DownloadFile(step);
+                        break;
+                    case (int)RpnJobTaskStepTypeEnum.UnzipFile:
+                        UnzipFile(step);
+                        break;
+                    case (int)RpnJobTaskStepTypeEnum.DeleteZipFile:
+                        DeleteZipFile(step);
+                        break;
+                    case (int)RpnJobTaskStepTypeEnum.LoadFileIntoDb:
+                        LoadFileIntoDb(step);
+                        break;
+                    case (int)RpnJobTaskStepTypeEnum.ApplyFile:
+                        ApplyFile(step);
+                        break;
+                    case (int)RpnJobTaskStepTypeEnum.DeleteFile:
+                        DeleteFile(step);
+                        break;
+                }
+
+                SetEndedAt(step);
+
+                return TaskResult.Completed;
+
+            }
+            catch(Exception ex)
+            {
+                Logger.WriteErr($"ERROR: {ex.Message}");
+                return TaskResult.Failed;
+            }
+        }
+
+        private void SetStartedAt(RpnJobTaskStep step)
+        {
+            step.StartedAt = DateTime.Now;
+            if(step.RpnJobTask.StartedAt == null)
+                step.RpnJobTask.StartedAt = DateTime.Now;
+            if(step.RpnJobTask.RpnJob.StartedAt == null)
+                step.RpnJobTask.RpnJob.StartedAt = DateTime.Now;
+            if(step.RpnJobTask.RpnJob.RpnPeriod.StartedAt == null)
+                step.RpnJobTask.RpnJob.RpnPeriod.StartedAt = DateTime.Now;
+            _dbc.SaveChanges();
+        }
+
+        private void SetEndedAt(RpnJobTaskStep step)
+        {
+            step.EndedAt = DateTime.Now;
+
+            // Завершуємо задачу, якщо крок останній (видалення файлу)
+            if(step.RpnJobTaskStepTypeId == (int)RpnJobTaskStepTypeEnum.DeleteFile)
+                step.RpnJobTask.EndedAt = DateTime.Now;
+
+            // Заврершення РОБОТИ
+            // Початково заплановані всі роботи завантаження повних даних
+            // Період і роботу щоденного завантаження не завершуємо
+            if(step.RpnJobTask.RpnJobTaskTypeId != (int)RpnJobTaskTypeEnum.ApplyUpdateFile)
+            {
+                var nextStep = _dbc.RpnJobTaskSteps
+                        .Include(x => x.RpnJobTask)
+                        .Include(x => x.RpnJobTask.RpnJob)
+                        .Include(x => x.RpnJobTask.RpnJob.RpnPeriod)
+                        .Where(x => x.SeqNr == step.SeqNr + 1)
+                        .OrderBy(x => x.SeqNr)
+                        .FirstOrDefault();
+                if(nextStep == null || step.RpnJobTask.RpnJob.Id != nextStep.RpnJobTask.RpnJob.Id)
+                {
+                    step.RpnJobTask.RpnJob.EndedAt = DateTime.Now;
+                }
             }
 
-            step.EndedAt = DateTime.Now;
-            _dbc.SaveChanges();
-
-            return TaskResult.Completed;
+             _dbc.SaveChanges();
         }
 
         private void DownloadFile(RpnJobTaskStep step)
@@ -85,7 +138,7 @@ namespace IpiUpdatesLib
 
         private void UnzipFile(RpnJobTaskStep step)
         {
-            ZipFile.ExtractToDirectory(Path.Combine(_settings.WorkFilesRootPath, step.FileName), _settings.WorkFilesRootPath);
+            ZipFile.ExtractToDirectory(Path.Combine(_settings.WorkFilesRootPath, step.FileName), _settings.WorkFilesRootPath, true);
         }
 
         private void DeleteZipFile(RpnJobTaskStep step)
@@ -111,14 +164,23 @@ namespace IpiUpdatesLib
 
         private void ApplyFileDict(RpnJobTaskStep step)
         {
+            var service =  new IpiDomainService();
+            service.ApplyFileDomains();
         }
 
         private void ApplyFileIpi(RpnJobTaskStep step)
         {
+            IpiUpdateService.LoadDumpFile(Path.Combine(_settings.WorkFilesRootPath,step.FileName), x => { });
+        }
+
+        private void LoadFileIntoDb(RpnJobTaskStep step)
+        {
+            IpiUpdateService.LoadUpdFile(Path.Combine(_settings.WorkFilesRootPath,step.FileName), x => { });
         }
 
         private void ApplyFileUpdate(RpnJobTaskStep step)
         {
+            IpiUpdateService.ApplySingleFileUpdates(Path.Combine(_settings.WorkFilesRootPath,step.FileName), x => { });
         }
 
         private void DeleteFile(RpnJobTaskStep step)

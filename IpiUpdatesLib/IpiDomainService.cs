@@ -61,7 +61,6 @@ namespace IpiUpdatesLib
                     {
                         var nestedLine = lines[nestedLineIdx];
                         var nestedRecName = nestedLine.Substring(0, 3);
-                        recs.Add(nestedLine);
                         if(nestedRecName != dicName)
                         {
                             ApplyDic(dicName, recs);
@@ -69,7 +68,8 @@ namespace IpiUpdatesLib
                             lineIdx = nestedLineIdx - 1;
                             break;
                         }
-                        Logger.WriteLine(nestedLine);
+                        
+                        recs.Add(nestedLine);
                     }
                 }
            }
@@ -85,24 +85,31 @@ namespace IpiUpdatesLib
             conn.Open();
             using(var cmd = conn.CreateCommand())
             {
+                cmd.CommandText = $"truncate table {tableName}";
+                cmd.ExecuteNonQuery();
+
                 var bl = new BulkUploadToSql();
                 bl.conn = conn;
                 bl.TableName = tableName;
 
                 recs.ForEach(rec =>
                 {
-                    var data = new List<object>();
+                    var data = new List<object> { DBNull.Value };
+                    dicTypeProps.ForEach(x =>
+                    {
+                        var posInFile = (CustomPosInFileAttribute)x.GetCustomAttribute(typeof(CustomPosInFileAttribute));
+                        if(posInFile != null)
+                        {
+                            var val = rec.Substring(posInFile.Start - 1, posInFile.Size);
+                            data.Add(val);
+                        }
+                    });
+                    bl.AddData(data);
                 });
 
                 bl.Flush();
             }
             
-
-            dicTypeProps.ForEach(x =>
-            {
-                var posInFile = (CustomPosInFileAttribute)x.GetCustomAttribute(typeof(CustomPosInFileAttribute)); 
-            });
-
             conn.Close();
         }
     }

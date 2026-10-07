@@ -38,16 +38,24 @@ namespace IpiUpdatesLib
 
         public bool PlanTasks()
         {
-            if(!_dbc.RpnPeriods.Any())
+            try
             {
-                PlanInitialTasks();
-                PlanDailyTasks();
+                if(!_dbc.RpnPeriods.Any())
+                {
+                    PlanInitialTasks();
+                    PlanDailyTasks();
+                }
+                else
+                {
+                    PlanDailyTasks();
+                }
+                return true;
             }
-            else
+            catch (Exception ex)
             {
-                PlanDailyTasks();
+                Logger.WriteErr($"ERROR: {ex.Message}");
+                return false;
             }
-            return true;
         }
 
         private void PlanInitialTasks()
@@ -112,7 +120,8 @@ namespace IpiUpdatesLib
         private List<RpnJobTaskStep> CreateFileSteps(
             string remotePath,
             string remoteFileName,
-            string localFileName
+            string localFileName,
+            bool createLoadFileIntoDb = false
         )
         {
             var steps = new List<RpnJobTaskStep>();
@@ -122,6 +131,9 @@ namespace IpiUpdatesLib
                 steps.Add(CreateFileStep(RpnJobTaskStepTypeEnum.UnzipFile, remoteFileName));
                 steps.Add(CreateFileStep(RpnJobTaskStepTypeEnum.DeleteZipFile, remoteFileName));
             }
+
+            if(createLoadFileIntoDb)
+                steps.Add(CreateFileStep(RpnJobTaskStepTypeEnum.LoadFileIntoDb, localFileName));
             steps.Add(CreateFileStep(RpnJobTaskStepTypeEnum.ApplyFile, localFileName));
             steps.Add(CreateFileStep(RpnJobTaskStepTypeEnum.DeleteFile, localFileName));
             return steps;
@@ -136,7 +148,6 @@ namespace IpiUpdatesLib
                 SeqNr = ++_seqNrStep,
                 RpnJobTaskStepTypeId = (int)stepType,
                 FileName = fileName,
-                ErrMsg = "",
                 CreatedAt = DateTime.Now
             };
             
@@ -178,7 +189,8 @@ namespace IpiUpdatesLib
                 RpnJobTaskSteps = CreateFileSteps(
                     _settings.FtpUpdatesPath,
                     remoteFileName,
-                    remoteFileName
+                    remoteFileName,
+                    true
                 )
             };
         }
