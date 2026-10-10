@@ -23,8 +23,7 @@ namespace InvoicingLib
                         , Name licenseeName
                         , licCodeName licenseDescription
                     from vMSCustomerUses
-                    order by custId
-                ";
+                 ";
 
                 using (var r = cmd.ExecuteReader())
                 {

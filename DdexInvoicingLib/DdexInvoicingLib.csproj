@@ -64,6 +64,7 @@
     <Compile Include="ActionRunner.cs" />
     <Compile Include="BulkUploadToSql.cs" />
     <Compile Include="CcidRecords.cs" />
+    <Compile Include="CisNetSingleWorkImporter.cs" />
     <Compile Include="DdexAgreement.cs" />
     <Compile Include="DdexAgreements.cs" />
     <Compile Include="DdexRecords.cs" />

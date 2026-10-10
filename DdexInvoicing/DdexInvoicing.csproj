@@ -247,6 +247,12 @@
     <Compile Include="UcCcidInvoiceTestResults.Designer.cs">
       <DependentUpon>UcCcidInvoiceTestResults.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcCisNetImport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCisNetImport.Designer.cs">
+      <DependentUpon>UcCisNetImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcDdexLoad.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -312,6 +318,12 @@
     </Compile>
     <Compile Include="UcRoyaltyDistribution.Designer.cs">
       <DependentUpon>UcRoyaltyDistribution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcShareCalc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcShareCalc.Designer.cs">
+      <DependentUpon>UcShareCalc.cs</DependentUpon>
     </Compile>
     <Compile Include="UcTraceRoyaltyCalc.cs">
       <SubType>UserControl</SubType>
@@ -414,6 +426,9 @@
     <EmbeddedResource Include="UcCcidInvoiceTestResults.resx">
       <DependentUpon>UcCcidInvoiceTestResults.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UcCisNetImport.resx">
+      <DependentUpon>UcCisNetImport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcDdexLoad.resx">
       <DependentUpon>UcDdexLoad.cs</DependentUpon>
     </EmbeddedResource>
@@ -446,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcRoyaltyDistribution.resx">
       <DependentUpon>UcRoyaltyDistribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcShareCalc.resx">
+      <DependentUpon>UcShareCalc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcTraceRoyaltyCalc.resx">
       <DependentUpon>UcTraceRoyaltyCalc.cs</DependentUpon>
@@ -528,6 +546,7 @@
     <Content Include="Images\icons8-ютуб-48.png" />
     <Content Include="Images\Oxygen-Icons.org-Oxygen-Actions-edit-delete.ico" />
     <Content Include="Images\Paomedia-Small-N-Flat-Sign-warning.ico" />
+    <Content Include="Images\UACRR.png" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\ReleaseNotes.txt" />
     <Content Include="Migrations\01_SaveAggrParamsWithReport\Upgrade.sql" />
     <Content Include="Migrations\02 AdjConsolidatedSql\All.sql" />

@@ -198,6 +198,8 @@ namespace DdexInvoicing
                         break;
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_MULTIUSER:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_STUDENT:
                         cmd.CommandText = "spCreateInitialInvoiceSpotify";
                         break;
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
@@ -219,6 +221,8 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_MULTIUSER:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_STUDENT:
                         cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@fileId", fileId);
                         break;
@@ -725,6 +729,8 @@ namespace DdexInvoicing
                         break;
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_MULTIUSER:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_STUDENT:
                         cmd.CommandText = "spCreateInitialInvoiceSpotify";
                         break;
                     case DdexReport.ReportTypeEnum.DEEZER_ALL:
@@ -746,6 +752,8 @@ namespace DdexInvoicing
                     case DdexReport.ReportTypeEnum.YOUTUBE_SUBSCRIPTION_PREMIUM:
                     case DdexReport.ReportTypeEnum.SPOTIFY_FREE:
                     case DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_MULTIUSER:
+                    case DdexReport.ReportTypeEnum.SPOTIFY_STUDENT:
                         cmd.Parameters.AddWithValue("@ddexReportId", ddexReportId);
                         cmd.Parameters.AddWithValue("@fileId", DBNull.Value);
                         break;

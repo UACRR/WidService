@@ -22,6 +22,8 @@ namespace InvoicingLib
             YOUTUBE_SRMF,
             SPOTIFY_FREE,
             SPOTIFY_PREMIUM,
+            SPOTIFY_MULTIUSER,
+            SPOTIFY_STUDENT,
             DEEZER_ALL,
             TIKTOK,
             META,
@@ -304,6 +306,44 @@ namespace InvoicingLib
             },
             new ReportTypeInfo
             {
+                ReportType              = ReportTypeEnum.SPOTIFY_MULTIUSER,
+                Name                    = "spotify-multiuser",
+                IsMonthly               = true,
+                FileNameWildcard        = "DSR_uacrr_Spotify_multiuser_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.SPOTIFY,
+                NeedsExchRate           = false,
+                FileMayHaveErrors       = false,
+                RequiredParams          = new HashSet<AgreementParamEnum>
+                {
+                    AgreementParamEnum.MUSICRATE,
+                    AgreementParamEnum.MECHSPLIT,
+                    AgreementParamEnum.PERFSPLIT,
+                    AgreementParamEnum.ROYALTYTHRESHOLD,
+                },
+                GetReportingPeriodInfo  = GetSpotifyDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
+            },
+            new ReportTypeInfo
+            {
+                ReportType              = ReportTypeEnum.SPOTIFY_STUDENT,
+                Name                    = "spotify-student",
+                IsMonthly               = true,
+                FileNameWildcard        = "DSR_uacrr_Spotify_student_*_UA_1of1_*.tsv",
+                DigitalServiceProvider  = DigitalServiceProviderEnum.SPOTIFY,
+                NeedsExchRate           = false,
+                FileMayHaveErrors       = false,
+                RequiredParams          = new HashSet<AgreementParamEnum>
+                {
+                    AgreementParamEnum.MUSICRATE,
+                    AgreementParamEnum.MECHSPLIT,
+                    AgreementParamEnum.PERFSPLIT,
+                    AgreementParamEnum.ROYALTYTHRESHOLD,
+                },
+                GetReportingPeriodInfo  = GetSpotifyDsrReportingPeriodInfo,
+                InsertHead              = InsertDsrHead,
+            },
+            new ReportTypeInfo
+            {
                 ReportType              = ReportTypeEnum.TIKTOK,
                 Name                    = "tiktok",
                 IsMonthly               = true,
@@ -398,6 +438,8 @@ namespace InvoicingLib
             { "srmf",                   ReportTypeEnum.YOUTUBE_SRMF},
             { "spotify-free",           ReportTypeEnum.SPOTIFY_FREE},
             { "spotify-premium",        ReportTypeEnum.SPOTIFY_PREMIUM},
+            { "spotify-multiuser",      ReportTypeEnum.SPOTIFY_MULTIUSER},
+            { "spotify-student",        ReportTypeEnum.SPOTIFY_STUDENT},
             { "deezer-all",             ReportTypeEnum.DEEZER_ALL},
             { "tiktok",                 ReportTypeEnum.TIKTOK},
             { "meta",                   ReportTypeEnum.META},
@@ -422,6 +464,8 @@ namespace InvoicingLib
                     {
                         { "free",           ReportTypeEnum.SPOTIFY_FREE},
                         { "premium",        ReportTypeEnum.SPOTIFY_PREMIUM},
+                        { "multiuser",      ReportTypeEnum.SPOTIFY_MULTIUSER},
+                        { "student",        ReportTypeEnum.SPOTIFY_STUDENT},
                     }
                 },
             };
@@ -561,6 +605,8 @@ namespace InvoicingLib
                 case "srmf":                    return ReportTypeEnum.YOUTUBE_SRMF;
                 case "spotify-free":            return ReportTypeEnum.SPOTIFY_FREE;
                 case "spotify-premium":         return ReportTypeEnum.SPOTIFY_PREMIUM;
+                case "spotify-multiuser":       return ReportTypeEnum.SPOTIFY_MULTIUSER;
+                case "spotify-student":         return ReportTypeEnum.SPOTIFY_STUDENT;
                 case "deezer-all":              return ReportTypeEnum.DEEZER_ALL;
                 case "tiktok":                  return ReportTypeEnum.TIKTOK;
                 default:                        return ReportTypeEnum.UNKNOWN;
@@ -687,7 +733,9 @@ namespace InvoicingLib
             return AgreementReportTypes.ContainsKey(agreementReportType.ToLower()) &&
                  (
                     AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.SPOTIFY_FREE ||
-                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.SPOTIFY_PREMIUM
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.SPOTIFY_PREMIUM ||
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.SPOTIFY_MULTIUSER ||
+                    AgreementReportTypes[agreementReportType.ToLower()] == ReportTypeEnum.SPOTIFY_STUDENT
                  );
         }
 
@@ -1058,6 +1106,10 @@ namespace InvoicingLib
                     return $"Spotify_free_{usageStartDate.ToString("yyyy-MM-dd")}@";
                 case ReportTypeEnum.SPOTIFY_PREMIUM:
                     return $"Spotify_premium_{usageStartDate.ToString("yyyy-MM-dd")}@";
+                case ReportTypeEnum.SPOTIFY_MULTIUSER:
+                    return $"Spotify_multiuser_{usageStartDate.ToString("yyyy-MM-dd")}@";
+                case ReportTypeEnum.SPOTIFY_STUDENT:
+                    return $"Spotify_student_{usageStartDate.ToString("yyyy-MM-dd")}@";
                 case ReportTypeEnum.DEEZER_ALL:
                     return $"Deezer_0XMOD_{usageStartDate.ToString("yyyy-MM-dd")}@";
             }
@@ -1071,6 +1123,8 @@ namespace InvoicingLib
             {
                 case ReportTypeEnum.SPOTIFY_FREE:
                 case ReportTypeEnum.SPOTIFY_PREMIUM:
+                case ReportTypeEnum.SPOTIFY_MULTIUSER:
+                case ReportTypeEnum.SPOTIFY_STUDENT:
                 case ReportTypeEnum.DEEZER_ALL:
                 case ReportTypeEnum.TIKTOK:
                 {

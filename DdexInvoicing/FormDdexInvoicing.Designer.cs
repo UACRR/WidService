@@ -83,7 +83,7 @@
             this.radPageViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageViewMain.Location = new System.Drawing.Point(3, 3);
             this.radPageViewMain.Name = "radPageViewMain";
-            this.radPageViewMain.SelectedPage = this.radPageAnalysis;
+            this.radPageViewMain.SelectedPage = this.radPageMwIdent;
             this.radPageViewMain.Size = new System.Drawing.Size(1364, 610);
             this.radPageViewMain.TabIndex = 15;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageViewMain.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;

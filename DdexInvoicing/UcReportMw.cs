@@ -29,6 +29,8 @@ namespace DdexInvoicing
             public string Authors { get; set; }
             public string Performers { get; set; }
             public string Iswc { get; set; }
+            public int?   ObjId { get; set; }
+            public int?   Wic { get; set; }
         }
         public class ReportRecordEntry
         {
@@ -394,6 +396,8 @@ namespace DdexInvoicing
                     Authors = rec.Authors,
                     Performers = rec.Performers,
                     Iswc = rec.Iswc,
+                    ObjId = rec.ObjId,
+                    Wic = rec.Wic,
                 };
 
                 if(_formReportVsFoundWork != null)

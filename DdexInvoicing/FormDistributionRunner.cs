@@ -131,7 +131,9 @@ namespace DdexInvoicing
                     ddexReport.ProcessAdjustment(new DdexReportActionLoadAdjSvod(), _inputFileName);
                 }
                 else if (reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_FREE ||
-                    reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM)
+                    reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM ||
+                    reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_MULTIUSER ||
+                    reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_STUDENT)
                 {
                     Helpers.RunSqlOperationDdexT(cmd =>
                     {
@@ -237,6 +239,8 @@ namespace DdexInvoicing
             Cursor.Current = Cursors.WaitCursor;
             if (reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_FREE ||
                 reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_PREMIUM  ||
+                reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_MULTIUSER  ||
+                reportTypeEnum == DdexReport.ReportTypeEnum.SPOTIFY_STUDENT  ||
                 reportTypeEnum == DdexReport.ReportTypeEnum.TIKTOK)
             {
                 return true;

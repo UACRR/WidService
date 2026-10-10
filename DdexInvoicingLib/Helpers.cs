@@ -17,6 +17,10 @@ namespace InvoicingLib
 {
     public class Helpers
     {
+        public delegate void ProtectedBlock();
+
+        private static int _waitCursorCnt;
+
         public static string Truncate(string source, int length)
         {
             if (source.Length > length)
@@ -147,6 +151,35 @@ namespace InvoicingLib
                 oper(cmd);
             }
         }
+
+        public static void RunProtected(ProtectedBlock block, bool keepWaitCursor = false)
+        {
+            try
+            {
+                SetWaitCursor();
+                block();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if(!keepWaitCursor) UnsetWaitCursor();
+            }
+        }
+
+        public static void SetWaitCursor()
+        {
+            _waitCursorCnt++;
+            if(_waitCursorCnt == 1) Cursor.Current = Cursors.WaitCursor;
+        }
+
+        public static void UnsetWaitCursor()
+        {
+            _waitCursorCnt--;
+            if(_waitCursorCnt == 0) Cursor.Current = Cursors.Default;
+        }
     }
 
     public class Formatter
@@ -227,6 +260,8 @@ namespace InvoicingLib
         }
 
     }
+
+
 
     #region DEFINITIONS
     public class WaitCursor : IDisposable
@@ -319,4 +354,6 @@ namespace InvoicingLib
     public delegate void SqlOperation(SqlCommand cmd);
     public delegate Task<VoidStateNode> SqlOperationAsync(SqlCommand cmd);
     #endregion
+
+
 }
