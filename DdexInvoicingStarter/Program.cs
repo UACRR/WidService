@@ -30,7 +30,7 @@ namespace DdexInvoicingStarter
                 //Application.Run(new FormAutoSearch(1496));
                 //Application.Run(new FormDspResourceAnalyser());
 
-                //Application.Run(new DdexInvoicingForm());
+                Application.Run(new DdexInvoicingForm());
 
                 //Application.Run((new FormReportVsFoundWork()).SetWork(1510, 27581885, "2510CUA902677321319037172771"));
                 //Application.Run((new FormReportVsFoundWork()).SetWork(32260192));
