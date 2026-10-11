@@ -211,6 +211,7 @@
     <Content Include="Sql\Migration1\spCreateTmpWorksInfo.sql" />
     <Content Include="Sql\Migration1\vRightHoldersOwnActive.sql" />
     <Content Include="Sql\Migration1\vWorkRightHoldersCurrent.sql" />
+    <Content Include="Sql\Migration2\CreateTables.sql" />
     <Content Include="Sql\ResultTesting.sql" />
     <Content Include="Sql\spCreateReferences.sql" />
     <Content Include="Sql\spCreateReferencesAck.sql" />
