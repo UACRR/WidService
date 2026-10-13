@@ -34,8 +34,7 @@ namespace CwrTools
             }
 
             tabMain.SelectedIndex = 0;
-            ucOutputFiles.RefreshData();
-        }
+       }
 
         private void DropAllGeneratedTables()
         {
@@ -432,7 +431,6 @@ end
             switch (tabMain.SelectedIndex)
             {
                 case 0:
-                    ucOutputFiles.RefreshData();
                     break;
                 case 1:
                     ucInputFiles.RefreshData();
