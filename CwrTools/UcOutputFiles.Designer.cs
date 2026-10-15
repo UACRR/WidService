@@ -41,6 +41,7 @@
             this.tsbtnDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnPartnerSettings = new System.Windows.Forms.ToolStripButton();
+            this.ucPartnerOutputFiles = new CwrTools.UcPartnerOutputFiles();
             this.ucGroupOutputFiles = new CwrTools.UcGroupOutputFiles();
             this.ilPartnerGroups = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
@@ -64,6 +65,7 @@
             // 
             // panelMain.Panel2
             // 
+            this.panelMain.Panel2.Controls.Add(this.ucPartnerOutputFiles);
             this.panelMain.Panel2.Controls.Add(this.ucGroupOutputFiles);
             this.panelMain.Size = new System.Drawing.Size(977, 441);
             this.panelMain.SplitterDistance = 193;
@@ -181,12 +183,20 @@
             this.tsBtnPartnerSettings.ToolTipText = "Налаштування";
             this.tsBtnPartnerSettings.Click += new System.EventHandler(this.tsBtnPartnerSettings_Click);
             // 
+            // ucPartnerOutputFiles
+            // 
+            this.ucPartnerOutputFiles.Location = new System.Drawing.Point(36, 273);
+            this.ucPartnerOutputFiles.Name = "ucPartnerOutputFiles";
+            this.ucPartnerOutputFiles.Size = new System.Drawing.Size(619, 155);
+            this.ucPartnerOutputFiles.TabIndex = 3;
+            // 
             // ucGroupOutputFiles
             // 
             this.ucGroupOutputFiles.Location = new System.Drawing.Point(36, -3);
             this.ucGroupOutputFiles.Name = "ucGroupOutputFiles";
             this.ucGroupOutputFiles.Size = new System.Drawing.Size(536, 280);
             this.ucGroupOutputFiles.TabIndex = 2;
+            this.ucGroupOutputFiles.Load += new System.EventHandler(this.ucGroupOutputFiles_Load);
             // 
             // ilPartnerGroups
             // 
@@ -229,5 +239,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsBtnPartnerSettings;
         private UcGroupOutputFiles ucGroupOutputFiles;
+        private UcPartnerOutputFiles ucPartnerOutputFiles;
     }
 }

@@ -144,7 +144,7 @@ namespace CwrTools
             {
                 Cursor = Cursors.WaitCursor;
                 var reader = new CwrFileReader();
-                cwrFileId = reader.LoadFile(dlg.FileName, "IN");
+                cwrFileId = reader.LoadFile(dlg.FileName, "IN", 1);
                 Cursor = Cursors.Default;
             }
             catch (Exception ex)

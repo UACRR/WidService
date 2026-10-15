@@ -71,5 +71,9 @@ namespace CwrTools
             var connString = ConfigurationManager.ConnectionStrings["CWR"].ConnectionString;
             RunSqlBaseT(connString, runSql);
         }
-    }
+            public static bool IsDesignMode()
+            {
+                return System.Diagnostics.Process.GetCurrentProcess().ProcessName.ToLower() == "devenv";
+            }
+        }
 }

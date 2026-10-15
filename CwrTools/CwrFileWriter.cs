@@ -447,7 +447,7 @@ namespace CwrTools
             cmd.ExecuteNonQuery();
         }
 
-        public void WriteFile(CwrFile cwrFile, string fileFullName)
+        private void WriteFile(CwrFile cwrFile, string fileFullName)
         {
             using (StreamWriter sw = File.CreateText(fileFullName))
             {
@@ -485,7 +485,7 @@ namespace CwrTools
             }
         }
 
-        public string CreateFile(string folderPath)
+        public string CreateFile(string folderPath, PartnerGroupInfo partnerGroupInfo)
         {
             var cwrFile = new CwrFile
             {
@@ -516,14 +516,13 @@ namespace CwrTools
             AddGrt(recGrh, "00001");
             AddTrl(recHdr);
 
-            var fileFullName = Path.Combine(folderPath, FormatFileName());
+            var fileFullName = Path.Combine(folderPath, FormatFileName(partnerGroupInfo.IsV21 ? "V21" : "V22"));
             WriteFile(cwrFile, fileFullName);
 
             return fileFullName;
-                
         }
 
-        public string FormatFileName()
+        public string FormatFileName(string version)
         {
             var fileSeqNr = 0;
             Helpers.RunSqlCwr(cmd =>
@@ -533,7 +532,7 @@ namespace CwrTools
 
             });
             var fileSeqNrStr = fileSeqNr.ToString("D4");
-            return $"CW{DateTime.Now.ToString("yy")}{fileSeqNrStr}140_000.V22";
+            return $"CW{DateTime.Now.ToString("yy")}{fileSeqNrStr}140_000.{version}";
         }
 
     }

@@ -30,146 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.btnImportSpecs = new System.Windows.Forms.Button();
-            this.btnCreateTables = new System.Windows.Forms.Button();
-            this.btnLoadFile = new System.Windows.Forms.Button();
-            this.btnCreateProcedures = new System.Windows.Forms.Button();
-            this.btnCreateClasses = new System.Windows.Forms.Button();
-            this.btnReadFile = new System.Windows.Forms.Button();
-            this.btnWriteFile = new System.Windows.Forms.Button();
-            this.btnTestFile = new System.Windows.Forms.Button();
-            this.btnCreateFile = new System.Windows.Forms.Button();
-            this.btnSendFile = new System.Windows.Forms.Button();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ilTabIcons = new System.Windows.Forms.ImageList(this.components);
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelBottom = new System.Windows.Forms.FlowLayoutPanel();
             this.btnClose = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ucOutputFiles = new CwrTools.UcOutputFiles();
             this.ucInputFiles = new CwrTools.UcInputFiles();
             this.ucProblemWorks = new CwrTools.UcProblemWorks();
+            this.ucTools = new CwrTools.UcTools();
             this.tabMain.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelBottom.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnImportSpecs
-            // 
-            this.btnImportSpecs.Enabled = false;
-            this.btnImportSpecs.Location = new System.Drawing.Point(21, 17);
-            this.btnImportSpecs.Name = "btnImportSpecs";
-            this.btnImportSpecs.Size = new System.Drawing.Size(163, 23);
-            this.btnImportSpecs.TabIndex = 0;
-            this.btnImportSpecs.Text = "Імпортувати специфікації";
-            this.btnImportSpecs.UseVisualStyleBackColor = true;
-            this.btnImportSpecs.Click += new System.EventHandler(this.btnImportSpecs_Click);
-            // 
-            // btnCreateTables
-            // 
-            this.btnCreateTables.Enabled = false;
-            this.btnCreateTables.Location = new System.Drawing.Point(190, 17);
-            this.btnCreateTables.Name = "btnCreateTables";
-            this.btnCreateTables.Size = new System.Drawing.Size(163, 23);
-            this.btnCreateTables.TabIndex = 1;
-            this.btnCreateTables.Text = "Створити таблиці";
-            this.btnCreateTables.UseVisualStyleBackColor = true;
-            this.btnCreateTables.Click += new System.EventHandler(this.btnCreateTables_Click);
-            // 
-            // btnLoadFile
-            // 
-            this.btnLoadFile.Enabled = false;
-            this.btnLoadFile.Location = new System.Drawing.Point(21, 46);
-            this.btnLoadFile.Name = "btnLoadFile";
-            this.btnLoadFile.Size = new System.Drawing.Size(163, 23);
-            this.btnLoadFile.TabIndex = 2;
-            this.btnLoadFile.Text = "Завантажити файл";
-            this.btnLoadFile.UseVisualStyleBackColor = true;
-            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
-            // 
-            // btnCreateProcedures
-            // 
-            this.btnCreateProcedures.Enabled = false;
-            this.btnCreateProcedures.Location = new System.Drawing.Point(359, 17);
-            this.btnCreateProcedures.Name = "btnCreateProcedures";
-            this.btnCreateProcedures.Size = new System.Drawing.Size(159, 23);
-            this.btnCreateProcedures.TabIndex = 3;
-            this.btnCreateProcedures.Text = "Створити процедури";
-            this.btnCreateProcedures.UseVisualStyleBackColor = true;
-            this.btnCreateProcedures.Click += new System.EventHandler(this.btnCreateProcedures_Click);
-            // 
-            // btnCreateClasses
-            // 
-            this.btnCreateClasses.Enabled = false;
-            this.btnCreateClasses.Location = new System.Drawing.Point(524, 17);
-            this.btnCreateClasses.Name = "btnCreateClasses";
-            this.btnCreateClasses.Size = new System.Drawing.Size(159, 23);
-            this.btnCreateClasses.TabIndex = 4;
-            this.btnCreateClasses.Text = "Створити класи";
-            this.btnCreateClasses.UseVisualStyleBackColor = true;
-            this.btnCreateClasses.Click += new System.EventHandler(this.btnCreateClasses_Click);
-            // 
-            // btnReadFile
-            // 
-            this.btnReadFile.Enabled = false;
-            this.btnReadFile.Location = new System.Drawing.Point(190, 46);
-            this.btnReadFile.Name = "btnReadFile";
-            this.btnReadFile.Size = new System.Drawing.Size(163, 23);
-            this.btnReadFile.TabIndex = 5;
-            this.btnReadFile.Text = "Зачитати файл";
-            this.btnReadFile.UseVisualStyleBackColor = true;
-            this.btnReadFile.Click += new System.EventHandler(this.btnReadFile_Click);
-            // 
-            // btnWriteFile
-            // 
-            this.btnWriteFile.Enabled = false;
-            this.btnWriteFile.Location = new System.Drawing.Point(359, 46);
-            this.btnWriteFile.Name = "btnWriteFile";
-            this.btnWriteFile.Size = new System.Drawing.Size(159, 23);
-            this.btnWriteFile.TabIndex = 6;
-            this.btnWriteFile.Text = "Записати файл";
-            this.btnWriteFile.UseVisualStyleBackColor = true;
-            this.btnWriteFile.Click += new System.EventHandler(this.btnWriteFile_Click);
-            // 
-            // btnTestFile
-            // 
-            this.btnTestFile.Enabled = false;
-            this.btnTestFile.Location = new System.Drawing.Point(524, 46);
-            this.btnTestFile.Name = "btnTestFile";
-            this.btnTestFile.Size = new System.Drawing.Size(159, 23);
-            this.btnTestFile.TabIndex = 6;
-            this.btnTestFile.Text = "Тестувати файл";
-            this.btnTestFile.UseVisualStyleBackColor = true;
-            this.btnTestFile.Click += new System.EventHandler(this.btnTestFile_Click);
-            // 
-            // btnCreateFile
-            // 
-            this.btnCreateFile.Enabled = false;
-            this.btnCreateFile.Location = new System.Drawing.Point(25, 91);
-            this.btnCreateFile.Name = "btnCreateFile";
-            this.btnCreateFile.Size = new System.Drawing.Size(159, 23);
-            this.btnCreateFile.TabIndex = 6;
-            this.btnCreateFile.Text = "Створити файл";
-            this.btnCreateFile.UseVisualStyleBackColor = true;
-            this.btnCreateFile.Click += new System.EventHandler(this.btnCreateFile_Click);
-            // 
-            // btnSendFile
-            // 
-            this.btnSendFile.Enabled = false;
-            this.btnSendFile.Location = new System.Drawing.Point(190, 91);
-            this.btnSendFile.Name = "btnSendFile";
-            this.btnSendFile.Size = new System.Drawing.Size(159, 23);
-            this.btnSendFile.TabIndex = 6;
-            this.btnSendFile.Text = "Передати файл";
-            this.btnSendFile.UseVisualStyleBackColor = true;
-            this.btnSendFile.Click += new System.EventHandler(this.btnSendFile_Click);
             // 
             // tabMain
             // 
@@ -221,27 +102,6 @@
             this.tabPage4.Text = "Проблемні твори";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.btnCreateProcedures);
-            this.tabPage3.Controls.Add(this.btnSendFile);
-            this.tabPage3.Controls.Add(this.btnImportSpecs);
-            this.tabPage3.Controls.Add(this.btnCreateFile);
-            this.tabPage3.Controls.Add(this.btnCreateTables);
-            this.tabPage3.Controls.Add(this.btnTestFile);
-            this.tabPage3.Controls.Add(this.btnCreateClasses);
-            this.tabPage3.Controls.Add(this.btnWriteFile);
-            this.tabPage3.Controls.Add(this.btnReadFile);
-            this.tabPage3.Controls.Add(this.btnLoadFile);
-            this.tabPage3.ImageIndex = 3;
-            this.tabPage3.Location = new System.Drawing.Point(4, 31);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1194, 561);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Інше";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // ilTabIcons
             // 
             this.ilTabIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilTabIcons.ImageStream")));
@@ -288,6 +148,18 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.ucTools);
+            this.tabPage3.ImageIndex = 3;
+            this.tabPage3.Location = new System.Drawing.Point(4, 31);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1194, 561);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Інше";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // ucOutputFiles
             // 
             this.ucOutputFiles.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -295,7 +167,6 @@
             this.ucOutputFiles.Name = "ucOutputFiles";
             this.ucOutputFiles.Size = new System.Drawing.Size(1188, 555);
             this.ucOutputFiles.TabIndex = 0;
-            this.ucOutputFiles.Load += new System.EventHandler(this.ucOutputFiles_Load);
             // 
             // ucInputFiles
             // 
@@ -313,6 +184,14 @@
             this.ucProblemWorks.Size = new System.Drawing.Size(1194, 561);
             this.ucProblemWorks.TabIndex = 0;
             // 
+            // ucTools
+            // 
+            this.ucTools.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTools.Location = new System.Drawing.Point(3, 3);
+            this.ucTools.Name = "ucTools";
+            this.ucTools.Size = new System.Drawing.Size(1188, 555);
+            this.ucTools.TabIndex = 0;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,29 +207,17 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             this.panelMain.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnImportSpecs;
-        private System.Windows.Forms.Button btnCreateTables;
-        private System.Windows.Forms.Button btnLoadFile;
-        private System.Windows.Forms.Button btnCreateProcedures;
-        private System.Windows.Forms.Button btnCreateClasses;
-        private System.Windows.Forms.Button btnReadFile;
-        private System.Windows.Forms.Button btnWriteFile;
-        private System.Windows.Forms.Button btnTestFile;
-        private System.Windows.Forms.Button btnCreateFile;
-        private System.Windows.Forms.Button btnSendFile;
         private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TableLayoutPanel panelMain;
         private System.Windows.Forms.FlowLayoutPanel panelBottom;
         private System.Windows.Forms.Button btnClose;
@@ -359,6 +226,8 @@
         private System.Windows.Forms.TabPage tabPage4;
         private UcProblemWorks ucProblemWorks;
         private System.Windows.Forms.ImageList ilTabIcons;
+        private System.Windows.Forms.TabPage tabPage3;
+        private UcTools ucTools;
     }
 }
 

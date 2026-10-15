@@ -37,7 +37,7 @@ namespace CwrTools
         private List<FileInfo> _fileInfoList;
         private FileInfo _newFileInfo;
 
-        private int _groupId;
+        private PartnerGroupInfo _groupInfo;
 
         public UcGroupOutputFiles()
         {
@@ -80,7 +80,7 @@ namespace CwrTools
                             and PartnerGroupId = @groupId
                         order by CreationDate desc
                 ";
-                cmd.Parameters.AddWithValue("@groupId", _groupId);
+                cmd.Parameters.AddWithValue("@groupId", _groupInfo.Id);
                 using (var r = cmd.ExecuteReader())
                 {
                     while (r.Read())
@@ -108,7 +108,24 @@ namespace CwrTools
         
         public void RefreshData(int groupId)
         {
-            _groupId = groupId;
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = "select * from PartnerGroups where Id = @id";
+                cmd.Parameters.AddWithValue("@id", groupId);
+                using(var r = cmd.ExecuteReader())
+                {
+                    r.Read();
+                    _groupInfo = new PartnerGroupInfo
+                    {
+                        Id = r.GetInt32(0),
+                        Name = r.GetString(1),
+                        IsStandard = r.GetBoolean(2),
+                        IsV21 = r.GetBoolean(3),
+                        IsV22 = r.GetBoolean(4),
+                        AddNativeNames = r.GetBoolean(5),
+                    };
+                }
+            });
 
             LoadData();
 
@@ -177,7 +194,7 @@ namespace CwrTools
         private void btnCreateFile_Click(object sender, EventArgs e)
         {
             var reader = new CwrFileReader();
-                
+
             try
             {
                 Cursor = Cursors.WaitCursor;
@@ -187,9 +204,10 @@ namespace CwrTools
                     reader.UnLoadFile(_newFileInfo.CwrFileId);
                 }
 
-                Directory.CreateDirectory(CwrConfig.OutputFilesPath);
+                var path = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name);
+                Directory.CreateDirectory(path);
                 var writer = new CwrFileWriter();
-                var fileFullName = writer.CreateFile(CwrConfig.OutputFilesPath);
+                var fileFullName = writer.CreateFile(path, _groupInfo);
 
                 var fileName = Path.GetFileName(fileFullName);
                 int? cwrFileId = null;
@@ -204,7 +222,7 @@ namespace CwrTools
                     reader.UnLoadFile((int)cwrFileId);
                 }
 
-                cwrFileId = reader.LoadFile(fileFullName, "OUT");
+                cwrFileId = reader.LoadFile(fileFullName, "OUT", _groupInfo.Id);
 
                 Cursor = Cursors.Default;
 
@@ -213,7 +231,7 @@ namespace CwrTools
                 var fs = new CwrFileSplitter(fileFullName, 10000);
                 fs.SplitFile();
 
-                RefreshData(_groupId);
+                RefreshData(_groupInfo.Id);
 
             }
             catch(Exception ex)
@@ -250,7 +268,7 @@ namespace CwrTools
                     File.Delete(sourceFileFullName);
                 }
 
-                RefreshData(_groupId);
+                RefreshData(_groupInfo.Id);
                 Cursor = Cursors.Default;
             }
             catch (Exception ex)

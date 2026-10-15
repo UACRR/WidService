@@ -40,9 +40,13 @@ namespace CwrTools
 
         private void UcOutputFiles_Load(object sender, EventArgs e)
         {
+            if(Helpers.IsDesignMode())
+                return;
+
             Configure();
             LoadPartnerGroups();
             FillPartnerGroups();
+            tvPartners.SelectedNode = tvPartners.Nodes[0];
         }
 
         private void Configure()
@@ -409,7 +413,13 @@ namespace CwrTools
 
             if(tvPartners.SelectedNode.Parent == null)
             {
-                var form = new FormPartnerGroupSettings();
+                var group = (PartnerGroup)tvPartners.SelectedNode.Tag;
+                if (group.IsStandard) {
+                    MessageBox.Show("Зміни налаштувань стандартних груп не дозволені.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var form = new FormPartnerGroupSettings(group.Id);
                 form.ShowDialog();
             }
             else
@@ -434,13 +444,21 @@ namespace CwrTools
                     ucGroupOutputFiles.RefreshData(group.Id);
                     ucGroupOutputFiles.Dock = DockStyle.Fill;
                     ucGroupOutputFiles.Visible = true;
+                    ucPartnerOutputFiles.Visible = false;
                 }
                 else
                 {
+                    ucPartnerOutputFiles.Dock = DockStyle.Fill;
                     ucGroupOutputFiles.Visible = false;
+                    ucPartnerOutputFiles.Visible = true;
                 }
 
             }
+        }
+
+        private void ucGroupOutputFiles_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

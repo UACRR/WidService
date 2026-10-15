@@ -3,6 +3,7 @@ go
 
 create or alter procedure spCwrFileRegister
 	  @Direction varchar(3)
+	, @PartnerGroupId int
 	, @Path nvarchar(512)
 	, @Name nvarchar(32)
 as
@@ -16,6 +17,7 @@ begin
 
 	insert CwrFiles (
 			Direction
+		, PartnerGroupId
 		, Path
 		, Name
 		, RespPath
@@ -24,6 +26,7 @@ begin
 	) 
 	values (
 		  @Direction
+		, @PartnerGroupId
 		, @Path
 		, @Name
 		, null

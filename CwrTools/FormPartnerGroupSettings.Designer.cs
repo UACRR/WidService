@@ -31,18 +31,14 @@ namespace CwrTools
         {
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelTop = new System.Windows.Forms.FlowLayoutPanel();
-            this.panelBottom = new System.Windows.Forms.FlowLayoutPanel();
             this.labTitle = new System.Windows.Forms.Label();
+            this.panelBottom = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
-            this.panelMiddle = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbSettings = new System.Windows.Forms.CheckedListBox();
             this.panelMain.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.panelBottom.SuspendLayout();
-            this.panelMiddle.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
@@ -50,8 +46,8 @@ namespace CwrTools
             this.panelMain.ColumnCount = 1;
             this.panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelMain.Controls.Add(this.panelTop, 0, 0);
+            this.panelMain.Controls.Add(this.lbSettings, 0, 1);
             this.panelMain.Controls.Add(this.panelBottom, 0, 2);
-            this.panelMain.Controls.Add(this.panelMiddle, 0, 1);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
@@ -59,7 +55,7 @@ namespace CwrTools
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.panelMain.Size = new System.Drawing.Size(900, 498);
+            this.panelMain.Size = new System.Drawing.Size(327, 482);
             this.panelMain.TabIndex = 0;
             // 
             // panelTop
@@ -68,19 +64,8 @@ namespace CwrTools
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(894, 27);
+            this.panelTop.Size = new System.Drawing.Size(321, 27);
             this.panelTop.TabIndex = 0;
-            // 
-            // panelBottom
-            // 
-            this.panelBottom.Controls.Add(this.btnCancel);
-            this.panelBottom.Controls.Add(this.btnApply);
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBottom.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.panelBottom.Location = new System.Drawing.Point(3, 468);
-            this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(894, 27);
-            this.panelBottom.TabIndex = 0;
             // 
             // labTitle
             // 
@@ -92,84 +77,63 @@ namespace CwrTools
             this.labTitle.TabIndex = 0;
             this.labTitle.Text = "Налаштування групи";
             // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.btnCancel);
+            this.panelBottom.Controls.Add(this.btnApply);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBottom.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.panelBottom.Location = new System.Drawing.Point(3, 452);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(321, 27);
+            this.panelBottom.TabIndex = 0;
+            // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(816, 3);
+            this.btnCancel.Location = new System.Drawing.Point(243, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Відмінити";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(719, 3);
+            this.btnApply.Location = new System.Drawing.Point(146, 3);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(91, 23);
             this.btnApply.TabIndex = 0;
             this.btnApply.Text = "Застосувати";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
-            // panelMiddle
+            // lbSettings
             // 
-            this.panelMiddle.ColumnCount = 2;
-            this.panelMiddle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.panelMiddle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.panelMiddle.Controls.Add(this.label1, 0, 0);
-            this.panelMiddle.Controls.Add(this.label2, 0, 1);
-            this.panelMiddle.Controls.Add(this.label3, 0, 2);
-            this.panelMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMiddle.Location = new System.Drawing.Point(3, 36);
-            this.panelMiddle.Name = "panelMiddle";
-            this.panelMiddle.RowCount = 4;
-            this.panelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.panelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.panelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.panelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelMiddle.Size = new System.Drawing.Size(894, 426);
-            this.panelMiddle.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "label1";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "label1";
+            this.lbSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbSettings.FormattingEnabled = true;
+            this.lbSettings.Location = new System.Drawing.Point(3, 36);
+            this.lbSettings.Name = "lbSettings";
+            this.lbSettings.Size = new System.Drawing.Size(321, 410);
+            this.lbSettings.TabIndex = 1;
+            this.lbSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lbSettings_ItemCheck);
             // 
             // FormPartnerGroupSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 498);
+            this.ClientSize = new System.Drawing.Size(327, 482);
+            this.ControlBox = false;
             this.Controls.Add(this.panelMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormPartnerGroupSettings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Налаштування групи";
+            this.Load += new System.EventHandler(this.FormPartnerGroupSettings_Load);
             this.panelMain.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panelBottom.ResumeLayout(false);
-            this.panelMiddle.ResumeLayout(false);
-            this.panelMiddle.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -182,9 +146,6 @@ namespace CwrTools
         private System.Windows.Forms.FlowLayoutPanel panelBottom;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.TableLayoutPanel panelMiddle;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckedListBox lbSettings;
     }
 }

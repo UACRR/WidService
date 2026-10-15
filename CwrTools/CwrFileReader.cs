@@ -184,7 +184,7 @@ namespace CwrTools
 
         }
 
-        public int LoadFile(string fileFullName, string direction)
+        public int LoadFile(string fileFullName, string direction, int partnerGroupId)
         {
 
             if (string.Compare(direction, "IN", StringComparison.OrdinalIgnoreCase) == 0)
@@ -202,6 +202,7 @@ namespace CwrTools
                 cmd.CommandText = "spCwrFileRegister";
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@Direction", direction);
+                cmd.Parameters.AddWithValue("@PartnerGroupId", partnerGroupId);
                 cmd.Parameters.AddWithValue("@Path", Path.GetDirectoryName(fileFullName));
                 cmd.Parameters.AddWithValue("@Name", Path.GetFileName(fileFullName));
                 _cwrFileId = (int)cmd.ExecuteScalar();
