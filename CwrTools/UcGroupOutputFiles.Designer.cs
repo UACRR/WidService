@@ -32,42 +32,36 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcGroupOutputFiles));
             this.panelFiles = new System.Windows.Forms.TableLayoutPanel();
             this.lvFiles = new System.Windows.Forms.ListView();
-            this.panelBottom = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnShowInFolder = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCreateFile = new System.Windows.Forms.Button();
-            this.btnChangeStatus = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbNewFileFullName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labTitle = new System.Windows.Forms.Label();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.tsbtnCreateFile = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnUpdateFile = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnDeleteFile = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnShowFile = new System.Windows.Forms.ToolStripButton();
             this.ilPartnerGroups = new System.Windows.Forms.ImageList(this.components);
             this.panelFiles.SuspendLayout();
-            this.panelBottom.SuspendLayout();
             this.panelTop.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelFiles
             // 
             this.panelFiles.ColumnCount = 1;
             this.panelFiles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelFiles.Controls.Add(this.lvFiles, 0, 3);
-            this.panelFiles.Controls.Add(this.panelBottom, 0, 4);
+            this.panelFiles.Controls.Add(this.lvFiles, 0, 2);
             this.panelFiles.Controls.Add(this.panelTop, 0, 0);
-            this.panelFiles.Controls.Add(this.panel2, 0, 1);
-            this.panelFiles.Controls.Add(this.label2, 0, 2);
+            this.panelFiles.Controls.Add(this.toolStrip, 0, 1);
             this.panelFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFiles.Location = new System.Drawing.Point(0, 0);
             this.panelFiles.Name = "panelFiles";
-            this.panelFiles.RowCount = 6;
+            this.panelFiles.RowCount = 4;
             this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.panelFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelFiles.Size = new System.Drawing.Size(977, 441);
             this.panelFiles.TabIndex = 1;
             // 
@@ -75,39 +69,19 @@
             // 
             this.lvFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvFiles.HideSelection = false;
-            this.lvFiles.Location = new System.Drawing.Point(3, 102);
+            this.lvFiles.Location = new System.Drawing.Point(3, 73);
             this.lvFiles.Name = "lvFiles";
-            this.lvFiles.Size = new System.Drawing.Size(971, 291);
+            this.lvFiles.Size = new System.Drawing.Size(971, 356);
             this.lvFiles.TabIndex = 0;
             this.lvFiles.UseCompatibleStateImageBehavior = false;
             this.lvFiles.SelectedIndexChanged += new System.EventHandler(this.lvFiles_SelectedIndexChanged);
-            // 
-            // panelBottom
-            // 
-            this.panelBottom.Controls.Add(this.btnShowInFolder);
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBottom.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.panelBottom.Location = new System.Drawing.Point(3, 399);
-            this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(971, 30);
-            this.panelBottom.TabIndex = 2;
-            // 
-            // btnShowInFolder
-            // 
-            this.btnShowInFolder.Location = new System.Drawing.Point(830, 3);
-            this.btnShowInFolder.Name = "btnShowInFolder";
-            this.btnShowInFolder.Size = new System.Drawing.Size(138, 23);
-            this.btnShowInFolder.TabIndex = 0;
-            this.btnShowInFolder.Text = "Показати в фолдері";
-            this.btnShowInFolder.UseVisualStyleBackColor = true;
-            this.btnShowInFolder.Click += new System.EventHandler(this.btnShowInFolder_Click);
             // 
             // panelTop
             // 
             this.panelTop.ColumnCount = 2;
             this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 178F));
-            this.panelTop.Controls.Add(this.label1, 0, 0);
+            this.panelTop.Controls.Add(this.labTitle, 0, 0);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
@@ -116,85 +90,70 @@
             this.panelTop.Size = new System.Drawing.Size(971, 32);
             this.panelTop.TabIndex = 3;
             // 
-            // label1
+            // labTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label1.Size = new System.Drawing.Size(178, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Файли для передачі товариствам";
+            this.labTitle.AutoSize = true;
+            this.labTitle.Location = new System.Drawing.Point(3, 0);
+            this.labTitle.Name = "labTitle";
+            this.labTitle.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.labTitle.Size = new System.Drawing.Size(178, 20);
+            this.labTitle.TabIndex = 0;
+            this.labTitle.Text = "Файли для передачі товариствам";
             // 
-            // panel2
+            // toolStrip
             // 
-            this.panel2.ColumnCount = 5;
-            this.panel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.panel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 168F));
-            this.panel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
-            this.panel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.panel2.Controls.Add(this.btnCreateFile, 2, 0);
-            this.panel2.Controls.Add(this.btnChangeStatus, 3, 0);
-            this.panel2.Controls.Add(this.label3, 0, 0);
-            this.panel2.Controls.Add(this.tbNewFileFullName, 1, 0);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 41);
-            this.panel2.Name = "panel2";
-            this.panel2.RowCount = 1;
-            this.panel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panel2.Size = new System.Drawing.Size(971, 31);
-            this.panel2.TabIndex = 4;
+            this.toolStrip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnCreateFile,
+            this.tsbtnUpdateFile,
+            this.tsbtnDeleteFile,
+            this.tsbtnShowFile});
+            this.toolStrip.Location = new System.Drawing.Point(0, 38);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(977, 32);
+            this.toolStrip.TabIndex = 5;
+            this.toolStrip.Text = "toolStrip1";
             // 
-            // btnCreateFile
+            // tsbtnCreateFile
             // 
-            this.btnCreateFile.Location = new System.Drawing.Point(643, 3);
-            this.btnCreateFile.Name = "btnCreateFile";
-            this.btnCreateFile.Size = new System.Drawing.Size(162, 23);
-            this.btnCreateFile.TabIndex = 1;
-            this.btnCreateFile.Text = "Створити/оновити файл";
-            this.btnCreateFile.UseVisualStyleBackColor = true;
-            this.btnCreateFile.Click += new System.EventHandler(this.btnCreateFile_Click);
+            this.tsbtnCreateFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnCreateFile.Image")));
+            this.tsbtnCreateFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnCreateFile.Name = "tsbtnCreateFile";
+            this.tsbtnCreateFile.Size = new System.Drawing.Size(119, 29);
+            this.tsbtnCreateFile.Text = "Створити файл";
+            this.tsbtnCreateFile.ToolTipText = "Створити файл";
+            this.tsbtnCreateFile.Click += new System.EventHandler(this.tsbtnCreateFile_Click);
             // 
-            // btnChangeStatus
+            // tsbtnUpdateFile
             // 
-            this.btnChangeStatus.Location = new System.Drawing.Point(811, 3);
-            this.btnChangeStatus.Name = "btnChangeStatus";
-            this.btnChangeStatus.Size = new System.Drawing.Size(147, 23);
-            this.btnChangeStatus.TabIndex = 2;
-            this.btnChangeStatus.Text = "До передачі";
-            this.btnChangeStatus.UseVisualStyleBackColor = true;
-            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
+            this.tsbtnUpdateFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnUpdateFile.Image")));
+            this.tsbtnUpdateFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnUpdateFile.Name = "tsbtnUpdateFile";
+            this.tsbtnUpdateFile.Size = new System.Drawing.Size(115, 29);
+            this.tsbtnUpdateFile.Text = "Оновити файл";
+            this.tsbtnUpdateFile.ToolTipText = "Оновити файл";
+            this.tsbtnUpdateFile.Click += new System.EventHandler(this.tsbtnUpdateFile_Click);
             // 
-            // label3
+            // tsbtnDeleteFile
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 7);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Новий файл";
+            this.tsbtnDeleteFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnDeleteFile.Image")));
+            this.tsbtnDeleteFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnDeleteFile.Name = "tsbtnDeleteFile";
+            this.tsbtnDeleteFile.Size = new System.Drawing.Size(119, 29);
+            this.tsbtnDeleteFile.Text = "Видалити файл";
+            this.tsbtnDeleteFile.ToolTipText = "Видалити файл";
+            this.tsbtnDeleteFile.Click += new System.EventHandler(this.tsbtnDeleteFile_Click);
             // 
-            // tbNewFileFullName
+            // tsbtnShowFile
             // 
-            this.tbNewFileFullName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbNewFileFullName.Location = new System.Drawing.Point(83, 5);
-            this.tbNewFileFullName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            this.tbNewFileFullName.Name = "tbNewFileFullName";
-            this.tbNewFileFullName.ReadOnly = true;
-            this.tbNewFileFullName.Size = new System.Drawing.Size(554, 20);
-            this.tbNewFileFullName.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 82);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Попередні файли";
+            this.tsbtnShowFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnShowFile.Image")));
+            this.tsbtnShowFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnShowFile.Name = "tsbtnShowFile";
+            this.tsbtnShowFile.Size = new System.Drawing.Size(143, 29);
+            this.tsbtnShowFile.Text = "Показати в фолдері";
+            this.tsbtnShowFile.ToolTipText = "Показати файл в фолдері";
+            this.tsbtnShowFile.Click += new System.EventHandler(this.tsbtnShowFile_Click);
             // 
             // ilPartnerGroups
             // 
@@ -213,11 +172,10 @@
             this.Load += new System.EventHandler(this.UcOutputFiles_Load);
             this.panelFiles.ResumeLayout(false);
             this.panelFiles.PerformLayout();
-            this.panelBottom.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -226,16 +184,13 @@
 
         private System.Windows.Forms.TableLayoutPanel panelFiles;
         private System.Windows.Forms.ListView lvFiles;
-        private System.Windows.Forms.FlowLayoutPanel panelBottom;
-        private System.Windows.Forms.Button btnShowInFolder;
         private System.Windows.Forms.TableLayoutPanel panelTop;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnCreateFile;
-        private System.Windows.Forms.TableLayoutPanel panel2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnChangeStatus;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbNewFileFullName;
+        private System.Windows.Forms.Label labTitle;
         private System.Windows.Forms.ImageList ilPartnerGroups;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton tsbtnCreateFile;
+        private System.Windows.Forms.ToolStripButton tsbtnUpdateFile;
+        private System.Windows.Forms.ToolStripButton tsbtnDeleteFile;
+        private System.Windows.Forms.ToolStripButton tsbtnShowFile;
     }
 }

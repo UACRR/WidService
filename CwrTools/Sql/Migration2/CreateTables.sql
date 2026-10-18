@@ -12,6 +12,7 @@ create table PartnerGroups (
 	, IsV21 bit not null
 	, IsV22 bit not null
 	, AddNativeNames bit not null
+	, AroundWorldRequired bit not null
 )
 
 create table Partners (
@@ -21,11 +22,11 @@ create table Partners (
 )
 alter table Partners add constraint fk_PartnerGroup foreign key (PartnerGroupId) references PartnerGroups(Id);
 
-insert PartnerGroups (Name, IsStandard, IsV21, IsV22, AddNativeNames)
+insert PartnerGroups (Name, IsStandard, IsV21, IsV22, AddNativeNames, AroundWorldRequired)
 values
-	  ('Стандартна V21', 1, 1, 0, 0)
-	, ('Стандартна V22', 1, 0, 1, 0)
-	, ('MINT', 0, 0, 1, 1)
+	  ('Стандартна V21', 1, 1, 0, 0, 1)
+	, ('Стандартна V22', 1, 0, 1, 0, 1)
+	, ('MINT', 0, 0, 1, 1, 1)
 
 insert Partners (PartnerGroupId, Name)
 values

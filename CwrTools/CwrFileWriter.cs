@@ -440,10 +440,11 @@ namespace CwrTools
             }
         }
 
-        private void CreateInputInfo(SqlCommand cmd)
+        private void CreateInputInfo(SqlCommand cmd, PartnerGroupInfo partnerGroupInfo)
         {
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "spCreateTmpWorksInfo";
+            cmd.Parameters.AddWithValue("@groupId", partnerGroupInfo.Id);
             cmd.ExecuteNonQuery();
         }
 
@@ -501,7 +502,7 @@ namespace CwrTools
             {
                 cmd.CommandTimeout = 0;
 
-                CreateInputInfo(cmd);
+                CreateInputInfo(cmd, partnerGroupInfo);
 
                 cmd.CommandType = CommandType.Text;
                 AddNwrs(cmd, recGrh);

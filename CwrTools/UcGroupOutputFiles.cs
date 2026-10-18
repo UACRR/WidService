@@ -127,6 +127,8 @@ namespace CwrTools
                 }
             });
 
+            labTitle.Text = $"Файли групи {_groupInfo.Name}";
+
             LoadData();
 
             lvFiles.Items.Clear();
@@ -142,37 +144,11 @@ namespace CwrTools
                 item.Tag = x;
             });
 
-            tbNewFileFullName.Text = _newFileInfo == null ? "" : _newFileInfo.Name;
-
             RefreshControls();
         }
 
         public void RefreshControls()
         {
-            if (lvFiles.SelectedItems.Count > 0)
-            {
-                btnShowInFolder.Enabled = true;
-            }
-            else
-            {
-                btnShowInFolder.Enabled = false;
-            }
-
-            if (_newFileInfo == null)
-            {
-                btnCreateFile.Visible = true;
-                btnChangeStatus.Visible = false;
-
-                btnCreateFile.Text = "Створити новий файл";
-            }
-            else
-            {
-                btnCreateFile.Visible = _newFileInfo.Status == (int)FileStatusEnum.New;
-                btnChangeStatus.Visible = true;
-
-                btnCreateFile.Text = "Оновити новий файл";
-                btnChangeStatus.Text = _newFileInfo.Status == (int)FileStatusEnum.New ? "До передачі" : "Позначити як переданий";
-            }
         }
 
         private void lvFiles_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,18 +156,7 @@ namespace CwrTools
             RefreshControls();
         }
 
-        private void btnShowInFolder_Click(object sender, EventArgs e)
-        {
-            if(lvFiles.SelectedItems.Count == 0) return;
-
-            var fileInfo = (FileInfo)lvFiles.SelectedItems[0].Tag;
-
-            var reader = new CwrFileReader();
-            var fileFullName = Path.Combine(fileInfo.Path, fileInfo.Name);
-            Process.Start("explorer.exe", "/select, " + fileFullName);
-        }
-
-        private void btnCreateFile_Click(object sender, EventArgs e)
+        private void CreateFile()
         {
             var reader = new CwrFileReader();
 
@@ -242,7 +207,30 @@ namespace CwrTools
             }
         }
 
-        private void btnChangeStatus_Click(object sender, EventArgs e)
+        private void DeleteFile()
+        {
+            if(lvFiles.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Попередження", "Не обраний файл для видалення", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var item = lvFiles.SelectedItems[0];
+            var fileInfo = (FileInfo)item.Tag;
+        }
+
+        private void ShowInFolder()
+        {
+            if(lvFiles.SelectedItems.Count == 0) return;
+
+            var fileInfo = (FileInfo)lvFiles.SelectedItems[0].Tag;
+
+            var reader = new CwrFileReader();
+            var fileFullName = Path.Combine(fileInfo.Path, fileInfo.Name);
+            Process.Start("explorer.exe", "/select, " + fileFullName);
+        }
+
+        private void ChangeStatus()
         {
             try
             {
@@ -277,6 +265,26 @@ namespace CwrTools
                 MessageBox.Show(ex.Message, "Створення файлу", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void tsbtnCreateFile_Click(object sender, EventArgs e)
+        {
+            CreateFile();
+        }
+
+        private void tsbtnUpdateFile_Click(object sender, EventArgs e)
+        {
+            CreateFile();
+        }
+
+        private void tsbtnDeleteFile_Click(object sender, EventArgs e)
+        {
+            DeleteFile();
+        }
+
+        private void tsbtnShowFile_Click(object sender, EventArgs e)
+        {
+            ShowInFolder();
         }
     }
 }
