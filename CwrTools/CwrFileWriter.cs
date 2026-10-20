@@ -517,24 +517,24 @@ namespace CwrTools
             AddGrt(recGrh, "00001");
             AddTrl(recHdr);
 
-            var fileFullName = Path.Combine(folderPath, FormatFileName(partnerGroupInfo.IsV21 ? "V21" : "V22"));
+            var fileFullName = Path.Combine(folderPath, $"{DateTime.Now:yyyy-MM-dd_hhmmss}.CWR");
             WriteFile(cwrFile, fileFullName);
 
             return fileFullName;
         }
 
-        public string FormatFileName(string version)
-        {
-            var fileSeqNr = 0;
-            Helpers.RunSqlCwr(cmd =>
-            {
-                cmd.CommandText = "select count(*) + 1 from CwrFiles where Status is not null and Direction = 'OUT'";
-                fileSeqNr = (int)cmd.ExecuteScalar();
-
-            });
-            var fileSeqNrStr = fileSeqNr.ToString("D4");
-            return $"CW{DateTime.Now.ToString("yy")}{fileSeqNrStr}140_000.{version}";
-        }
+        //public string FormatFileName(string version)
+        //{
+        //    var fileSeqNr = 0;
+        //    Helpers.RunSqlCwr(cmd =>
+        //    {
+        //        cmd.CommandText = "select count(*) + 1 from CwrFiles where Status is not null and Direction = 'OUT'";
+        //        fileSeqNr = (int)cmd.ExecuteScalar();
+        //
+        //    });
+        //    var fileSeqNrStr = fileSeqNr.ToString("D4");
+        //    return $"CW{DateTime.Now.ToString("yy")}{fileSeqNrStr}140_000.{version}";
+        //}
 
     }
 }

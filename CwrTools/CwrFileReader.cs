@@ -203,7 +203,6 @@ namespace CwrTools
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@Direction", direction);
                 cmd.Parameters.AddWithValue("@PartnerGroupId", partnerGroupId);
-                cmd.Parameters.AddWithValue("@Path", Path.GetDirectoryName(fileFullName));
                 cmd.Parameters.AddWithValue("@Name", Path.GetFileName(fileFullName));
                 _cwrFileId = (int)cmd.ExecuteScalar();
 

@@ -97,9 +97,9 @@
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
-            this.label4.Size = new System.Drawing.Size(73, 20);
+            this.label4.Size = new System.Drawing.Size(131, 20);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Групи файлів";
+            this.label4.Text = "Групи файлів / партнери";
             // 
             // tvPartners
             // 

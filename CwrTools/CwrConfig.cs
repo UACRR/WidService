@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,11 @@ namespace CwrTools
                         }
                     }
                 }
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spFillPeriods";
+                cmd.Parameters.AddWithValue("@endYear", DateTime.Now.Year + 1);
+                cmd.ExecuteNonQuery();
             });
         }
     }

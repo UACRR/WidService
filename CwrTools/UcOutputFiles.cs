@@ -424,7 +424,8 @@ namespace CwrTools
             }
             else
             {
-                var form = new FormPartnerSettings();
+                var partner = (Partner)tvPartners.SelectedNode.Tag;
+                var form = new FormPartnerSettings(partner.Id);
                 form.ShowDialog();
             }
         }

@@ -17,21 +17,10 @@ namespace CwrTools
 {
     public partial class UcGroupOutputFiles : UserControl
     {
-        public enum FileStatusEnum
-        {
-            New, Approved, Sent
-        }
-
-        public string[] StatusName = new string[3] {"Новий", "До передачі", "Переданий" };
-
         public class FileInfo
         {
-                public int CwrFileId     { get; set; }
-                public string Path          { get; set; }
-                public string Name          { get; set; }
-                public string SenderName    { get; set; }
-                public DateTime CreationDate  { get; set; }
-                public int Status  { get; set; }
+                public int CwrFileId { get; set; }
+                public string Name   { get; set; }
         }
 
         private List<FileInfo> _fileInfoList;
@@ -59,11 +48,7 @@ namespace CwrTools
 
             lvFiles.Columns.Clear();
             lvFiles.Columns.Add("Код", 100);
-            lvFiles.Columns.Add("Початкове розташування файлу", 300);
             lvFiles.Columns.Add("Назва", 200);
-            lvFiles.Columns.Add("Відправник", 100);
-            lvFiles.Columns.Add("Дата створення", 100);
-            lvFiles.Columns.Add("Статус", 100);
         }
 
         public void LoadData()
@@ -73,7 +58,7 @@ namespace CwrTools
             Helpers.RunSqlCwr(cmd =>
             {
                 cmd.CommandText = @"
-                        select t1.CwrFileId, t1.Path, t1.Name, t2.SenderName, t2.CreationDate, t1.Status
+                        select t1.CwrFileId, t1.Name
                         from CwrFiles t1
 	                        join RecHdr t2 on t1.CwrFileId = t2.CwrFileId
                         where Direction = 'OUT'
@@ -88,18 +73,9 @@ namespace CwrTools
                         var fileInfo = new FileInfo
                         {
                             CwrFileId = r.GetInt32(0),
-                            Path = r.GetString(1),
-                            Name = r.GetString(2),
-                            SenderName = r.GetString(3),
-                            CreationDate = r.GetDateTime(4),
-                            Status = r.GetInt32(5),
+                            Name = r.GetString(1),
                         };
                         _fileInfoList.Add(fileInfo);
-
-                        if(fileInfo.Status == (int)FileStatusEnum.New || fileInfo.Status == (int)FileStatusEnum.Approved)
-                        {
-                            _newFileInfo = fileInfo;
-                        }
                     }
                 }
             });
@@ -135,11 +111,7 @@ namespace CwrTools
             _fileInfoList.ForEach(x =>
             {
                 var item = lvFiles.Items.Add(x.CwrFileId.ToString());
-                item.SubItems.Add(x.Path);
                 item.SubItems.Add(x.Name);
-                item.SubItems.Add(x.SenderName);
-                item.SubItems.Add(x.CreationDate.ToString("yyyy-MM-dd"));
-                item.SubItems.Add(StatusName[x.Status]);
 
                 item.Tag = x;
             });
@@ -149,11 +121,6 @@ namespace CwrTools
 
         public void RefreshControls()
         {
-        }
-
-        private void lvFiles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshControls();
         }
 
         private void CreateFile()
@@ -174,20 +141,7 @@ namespace CwrTools
                 var writer = new CwrFileWriter();
                 var fileFullName = writer.CreateFile(path, _groupInfo);
 
-                var fileName = Path.GetFileName(fileFullName);
-                int? cwrFileId = null;
-                Helpers.RunSqlCwr(cmd =>
-                {
-                    cmd.CommandText = "select CwrFileId from CwrFiles where Status is null and Direction = 'OUT'";
-                    cwrFileId = (int?)cmd.ExecuteScalar();
-                });
-
-                if (cwrFileId != null)
-                {
-                    reader.UnLoadFile((int)cwrFileId);
-                }
-
-                cwrFileId = reader.LoadFile(fileFullName, "OUT", _groupInfo.Id);
+                int cwrFileId = reader.LoadFile(fileFullName, "OUT", _groupInfo.Id);
 
                 Cursor = Cursors.Default;
 
@@ -211,12 +165,26 @@ namespace CwrTools
         {
             if(lvFiles.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Попередження", "Не обраний файл для видалення", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Не обраний файл для видалення", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var item = lvFiles.SelectedItems[0];
             var fileInfo = (FileInfo)item.Tag;
+
+            File.Delete(Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, fileInfo.Name));
+
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "spDeleteFile";
+                cmd.Parameters.AddWithValue("CwrFileId", fileInfo.CwrFileId);
+                cmd.ExecuteNonQuery();
+            });
+
+            lvFiles.Items.Remove(item);
+
+            MessageBox.Show("Файл видалено.", "Повідомлення", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ShowInFolder()
@@ -226,45 +194,8 @@ namespace CwrTools
             var fileInfo = (FileInfo)lvFiles.SelectedItems[0].Tag;
 
             var reader = new CwrFileReader();
-            var fileFullName = Path.Combine(fileInfo.Path, fileInfo.Name);
+            var fileFullName = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, fileInfo.Name);
             Process.Start("explorer.exe", "/select, " + fileFullName);
-        }
-
-        private void ChangeStatus()
-        {
-            try
-            {
-                Cursor = Cursors.WaitCursor;
-                Helpers.RunSqlCwr(cmd =>
-                {
-                    cmd.CommandText = "update CwrFiles set Status = Status + 1 where CwrFileId = @CwrFileId";
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@CwrFileId", _newFileInfo.CwrFileId);
-                    cmd.ExecuteNonQuery();
-                });
-
-                if (_newFileInfo.Status == (int)FileStatusEnum.New)
-                {
-                    Directory.CreateDirectory(CwrConfig.OutputQueuePath);
-                    var sourceFileFullName = Path.Combine(CwrConfig.OutputFilesPath, _newFileInfo.Name);
-                    var targetFileFullName = Path.Combine(CwrConfig.OutputQueuePath, _newFileInfo.Name);
-                    File.Copy(sourceFileFullName, targetFileFullName, true);
-                }
-                else if (_newFileInfo.Status == (int)FileStatusEnum.Approved)
-                {
-                    var sourceFileFullName = Path.Combine(CwrConfig.OutputQueuePath, _newFileInfo.Name);
-                    File.Delete(sourceFileFullName);
-                }
-
-                RefreshData(_groupInfo.Id);
-                Cursor = Cursors.Default;
-            }
-            catch (Exception ex)
-            {
-                Cursor = Cursors.Default;
-                MessageBox.Show(ex.Message, "Створення файлу", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
         }
 
         private void tsbtnCreateFile_Click(object sender, EventArgs e)
@@ -274,7 +205,7 @@ namespace CwrTools
 
         private void tsbtnUpdateFile_Click(object sender, EventArgs e)
         {
-            CreateFile();
+            //CreateFile();
         }
 
         private void tsbtnDeleteFile_Click(object sender, EventArgs e)
@@ -286,5 +217,11 @@ namespace CwrTools
         {
             ShowInFolder();
         }
-    }
+
+        private void lvFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshControls();
+        }
+
+        }
 }
