@@ -29,7 +29,6 @@ namespace CwrTools
             {
                 throw;
             }
-            
         }
         public static void RunSqlBaseT(string connString, RunSql runSql)
         {

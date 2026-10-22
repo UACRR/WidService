@@ -72,7 +72,7 @@ values
 	, (3, 'MINT', 2, '', '', '', '', 0)
 go
 
--- Column PartnerGroupId should be inserted manually
+-- Column PartnerGroupId and CreatedAt should be inserted manually
 alter table CwrFiles add constraint fk_CwrFiles_PartnerGroup foreign key (PartnerGroupId) references PartnerGroups(Id);
 update CwrFiles set PartnerGroupId = 1
 go
