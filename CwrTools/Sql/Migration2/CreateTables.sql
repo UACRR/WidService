@@ -2,8 +2,8 @@ use CWR
 go
 
 alter table CwrFiles drop constraint fk_CwrFiles_PartnerGroup;
-drop table if exists CwrFilesSent
-drop table if exists CwrFilesSentStatus
+drop table if exists CwrPartnerFiles
+drop table if exists CwrPartnerFilesStatus
 drop table if exists Partners
 drop table if exists PartnerGroups
 drop table if exists Periods
@@ -77,30 +77,33 @@ alter table CwrFiles add constraint fk_CwrFiles_PartnerGroup foreign key (Partne
 update CwrFiles set PartnerGroupId = 1
 go
 
-create table CwrFilesSentStatus (
+create table CwrPartnerFilesStatus (
 	  Id int primary key
 	, Code varchar(30)
 )
-insert CwrFilesSentStatus (Id, Code)
+insert CwrPartnerFilesStatus (Id, Code)
 values
-	  (1, 'Awaiting')
-	, (2, 'Sent')
-	, (3, 'Accepted')
-	, (4, 'Rejected')
+	  (1, 'Planned')
+	, (2, 'Awaiting')
+	, (3, 'Sent')
+	, (4, 'Accepted')
+	, (5, 'Rejected')
 go
 
-create table CwrFilesSent (
+create table CwrPartnerFiles (
 	  Id int primary key nonclustered identity(1, 1)
 	, CwrFileId int
 	, PartnerId int
+	, PeriodId int
 	, Name nvarchar(32) not null
 	, Status int
 	, CreatedAt datetime
 	, SentAt datetime
 	, AnsweredAt datetime
 )
-alter table CwrFilesSent add constraint fk_CwrFilesSent_CwrFileId foreign key (CwrFileId) references CwrFiles(CwrFileId);
-alter table CwrFilesSent add constraint fk_CwrFilesSent_PartnerId foreign key (PartnerId) references Partners(Id);
+alter table CwrPartnerFiles add constraint fk_CwrPartnerFiles_CwrFileId foreign key (CwrFileId) references CwrFiles(CwrFileId);
+alter table CwrPartnerFiles add constraint fk_CwrPartnerFiles_PartnerId foreign key (PartnerId) references Partners(Id);
+alter table CwrPartnerFiles add constraint fk_CwrPartnerFiles_PeriodId foreign key (PeriodId) references Periods(Id);
 go
 
 alter table CwrFiles drop column if exists Path

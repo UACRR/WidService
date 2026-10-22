@@ -449,6 +449,8 @@ namespace CwrTools
                 }
                 else
                 {
+                    var partner = (Partner)node.Tag;
+                    ucPartnerOutputFiles.RefreshData(partner.Id);
                     ucPartnerOutputFiles.Dock = DockStyle.Fill;
                     ucGroupOutputFiles.Visible = false;
                     ucPartnerOutputFiles.Visible = true;
