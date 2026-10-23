@@ -100,6 +100,7 @@ create table CwrPartnerFiles (
 	, CreatedAt datetime
 	, SentAt datetime
 	, AnsweredAt datetime
+	, SentFileSeqNr int
 )
 alter table CwrPartnerFiles add constraint fk_CwrPartnerFiles_CwrFileId foreign key (CwrFileId) references CwrFiles(CwrFileId);
 alter table CwrPartnerFiles add constraint fk_CwrPartnerFiles_PartnerId foreign key (PartnerId) references Partners(Id);

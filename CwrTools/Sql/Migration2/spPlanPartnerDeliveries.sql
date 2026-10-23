@@ -15,7 +15,7 @@ begin
 	declare @periodTypeId int = (select PeriodType from Partners where Id = @partnerId)
 	
 	-- Додаємо запис в перелік файлів, якщо такий перелік порожній
-	if not exists (select null from CwrPartnerFiles)
+	if not exists (select null from CwrPartnerFiles where PartnerId = @partnerId)
 	begin
 		insert CwrPartnerFiles (PartnerId, PeriodId, Name, Status, CreatedAt)
 		values (

@@ -272,6 +272,7 @@ namespace CwrTools
             this.btnSetStatus.TabIndex = 4;
             this.btnSetStatus.Text = "Надіслати";
             this.btnSetStatus.UseVisualStyleBackColor = true;
+            this.btnSetStatus.Click += new System.EventHandler(this.btnSetStatus_Click);
             // 
             // btnShowFile
             // 
@@ -282,6 +283,7 @@ namespace CwrTools
             this.btnShowFile.TabIndex = 3;
             this.btnShowFile.Text = "Показати в фолдері";
             this.btnShowFile.UseVisualStyleBackColor = true;
+            this.btnShowFile.Click += new System.EventHandler(this.btnShowFile_Click);
             // 
             // btnShowBaseFile
             // 
@@ -292,6 +294,7 @@ namespace CwrTools
             this.btnShowBaseFile.TabIndex = 3;
             this.btnShowBaseFile.Text = "Показати в фолдері";
             this.btnShowBaseFile.UseVisualStyleBackColor = true;
+            this.btnShowBaseFile.Click += new System.EventHandler(this.btnShowBaseFile_Click);
             // 
             // btnSetCanceled
             // 
@@ -302,6 +305,7 @@ namespace CwrTools
             this.btnSetCanceled.TabIndex = 3;
             this.btnSetCanceled.Text = "Файл відхилено";
             this.btnSetCanceled.UseVisualStyleBackColor = true;
+            this.btnSetCanceled.Click += new System.EventHandler(this.btnSetCanceled_Click);
             // 
             // label6
             // 
