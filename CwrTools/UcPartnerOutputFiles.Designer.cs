@@ -52,7 +52,6 @@ namespace CwrTools
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEditComment = new System.Windows.Forms.Button();
-            this.btnCancelEditComment = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddle)).BeginInit();
             this.panelMiddle.Panel1.SuspendLayout();
@@ -142,7 +141,6 @@ namespace CwrTools
             this.panelDetails.Controls.Add(this.label6, 0, 4);
             this.panelDetails.Controls.Add(this.label5, 0, 5);
             this.panelDetails.Controls.Add(this.btnEditComment, 2, 5);
-            this.panelDetails.Controls.Add(this.btnCancelEditComment, 3, 5);
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetails.Location = new System.Drawing.Point(0, 0);
             this.panelDetails.Name = "panelDetails";
@@ -336,16 +334,7 @@ namespace CwrTools
             this.btnEditComment.TabIndex = 4;
             this.btnEditComment.Text = "Редагувати";
             this.btnEditComment.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelEditComment
-            // 
-            this.btnCancelEditComment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCancelEditComment.Location = new System.Drawing.Point(596, 133);
-            this.btnCancelEditComment.Name = "btnCancelEditComment";
-            this.btnCancelEditComment.Size = new System.Drawing.Size(124, 20);
-            this.btnCancelEditComment.TabIndex = 4;
-            this.btnCancelEditComment.Text = "Скасувати зміни";
-            this.btnCancelEditComment.UseVisualStyleBackColor = true;
+            this.btnEditComment.Click += new System.EventHandler(this.btnEditComment_Click);
             // 
             // UcPartnerOutputFiles
             // 
@@ -392,6 +381,5 @@ namespace CwrTools
         private System.Windows.Forms.Button btnShowBaseFile;
         private System.Windows.Forms.Button btnSetCanceled;
         private System.Windows.Forms.Button btnEditComment;
-        private System.Windows.Forms.Button btnCancelEditComment;
     }
 }

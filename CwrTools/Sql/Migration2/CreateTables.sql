@@ -1,7 +1,10 @@
 use CWR
 go
 
+exec spDeleteAllData
+
 alter table CwrFiles drop constraint fk_CwrFiles_PartnerGroup;
+drop table if exists CwrPartnerFileComments
 drop table if exists CwrPartnerFiles
 drop table if exists CwrPartnerFilesStatus
 drop table if exists Partners
@@ -111,5 +114,13 @@ alter table CwrFiles drop column if exists Path
 alter table CwrFiles drop column if exists RespPath
 alter table CwrFiles drop column if exists RespName
 alter table CwrFiles drop column if exists Status
+go
+
+create table CwrPartnerFileComments (
+	  Id int primary key nonclustered identity(1, 1)
+	, CwrPartnerFileId int
+	, Text varchar(max)
+)
+alter table CwrPartnerFileComments add constraint fk_CwrPartnerFileComments_CwrPartnerFileId foreign key (CwrPartnerFileId) references CwrPartnerFiles(Id);
 go
 

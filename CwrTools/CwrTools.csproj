@@ -100,6 +100,12 @@
     <Compile Include="Entities\RecTrl.cs" />
     <Compile Include="Entities\RecVer.cs" />
     <Compile Include="Entities\RecXrf.cs" />
+    <Compile Include="FormEditText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditText.Designer.cs">
+      <DependentUpon>FormEditText.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPartnerGroupSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     <Compile Include="UcTools.Designer.cs">
       <DependentUpon>UcTools.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormEditText.resx">
+      <DependentUpon>FormEditText.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPartnerGroupSettings.resx">
       <DependentUpon>FormPartnerGroupSettings.cs</DependentUpon>
     </EmbeddedResource>

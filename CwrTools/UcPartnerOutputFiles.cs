@@ -28,9 +28,10 @@ namespace CwrTools
         {
             "Заплановано",
             "До передачі",
-            "Передланий",
+            "Переданий",
             "Прийнятий",
             "Відхилений",
+            "Скасований",
         };
 
         private string[] PeriodTypeTitle =
@@ -60,6 +61,8 @@ namespace CwrTools
             public string    BaseFileName    { get; set; }
             public DateTime  PeriodStartDate { get; set; }
             public DateTime  PeriodEndDate   { get; set; }
+
+            public string    Comment         { get; set; }
         }
 
         private PartnerGroupInfo _groupInfo;
@@ -174,20 +177,22 @@ namespace CwrTools
             {
                 cmd.CommandText = @"
                     select 
-                          t1.Id         as FileId
-                        , t1.Status     as FileStatus
-                        , t1.Name       as FileName
-                        , t1.SentAt     as FileSentAt
-                        , t1.AnsweredAt as FileAnsweredAt
-                        , t2.Id         as PeriodId
-                        , t2.Year       as PeriodYear
-                        , t2.Point      as PeriodPoint
-                        , t3.Name       as BaseFileName
-                        , t2.StartDate  as PeriodStartDate
-                        , t2.EndDate    as PeriodEndDate
+                          t1.Id                 as FileId
+                        , t1.Status             as FileStatus
+                        , t1.Name               as FileName
+                        , t1.SentAt             as FileSentAt
+                        , t1.AnsweredAt         as FileAnsweredAt
+                        , t2.Id                 as PeriodId
+                        , t2.Year               as PeriodYear
+                        , t2.Point              as PeriodPoint
+                        , t3.Name               as BaseFileName
+                        , t2.StartDate          as PeriodStartDate
+                        , t2.EndDate            as PeriodEndDate
+                        , isnull(t4.Text, '')   as Comment
                     from CwrPartnerFiles t1
                         join Periods t2 on t1.PeriodId = t2.Id
                         left join CwrFiles t3 on t1.CwrFileId = t3.CwrFileId
+                        left join CwrPartnerFileComments t4 on t1.Id = t4.CwrPartnerFileId
                     where t1.PartnerId = @partnerId
                     order by t2.StartDate desc
                 ";
@@ -210,6 +215,7 @@ namespace CwrTools
                         fileInfo.BaseFileName    = r.IsDBNull(idx) ? "" : r.GetString(idx); idx++;
                         fileInfo.PeriodStartDate = r.GetDateTime(idx); idx++;
                         fileInfo.PeriodEndDate   = r.GetDateTime(idx); idx++;
+                        fileInfo.Comment         = r.GetString(idx); idx++;
                         _fileInfoList.Add(fileInfo);
                     }
                 }
@@ -246,6 +252,7 @@ namespace CwrTools
             tbFileSentAt    .Text = fileInfo.FileSentAt == null ? "" : ((DateTime)fileInfo.FileSentAt).ToString("yyyy-MM-dd hh:mm:ss");
             tbFileAnsweredAt.Text = fileInfo.FileAnsweredAt == null ? "" : ((DateTime)fileInfo.FileAnsweredAt).ToString("yyyy-MM-dd hh:mm:ss");
             tbBaseFileName  .Text = fileInfo.BaseFileName;
+            tbComment       .Text = fileInfo.Comment;
         }
 
         private void UpdateButtons()
@@ -266,7 +273,6 @@ namespace CwrTools
                     btnShowBaseFile     .Visible = false;
                     btnSetCanceled      .Visible = false;
                     btnEditComment      .Visible = false;
-                    btnCancelEditComment.Visible = false;
                     break;
                 case FileStatus.Awaiting :
                     btnSetStatus        .Visible = true;
@@ -274,7 +280,8 @@ namespace CwrTools
                     btnShowBaseFile     .Visible = true;
                     btnSetCanceled      .Visible = false;
                     btnEditComment      .Visible = false;
-                    btnCancelEditComment.Visible = false;
+
+                    btnSetStatus.Text = "Передати";
                     break;
                 case FileStatus.Sent     :
                     btnApplyBaseFile    .Visible = false;
@@ -283,7 +290,6 @@ namespace CwrTools
                     btnShowBaseFile     .Visible = true;
                     btnSetCanceled      .Visible = true;
                     btnEditComment      .Visible = false;
-                    btnCancelEditComment.Visible = false;
 
                     btnSetStatus.Text = "Файл прийнятий";
                     break;
@@ -292,9 +298,8 @@ namespace CwrTools
                     btnSetStatus        .Visible = false;
                     btnShowFile         .Visible = true;
                     btnShowBaseFile     .Visible = true;
-                    btnSetCanceled      .Visible = false;
+                    btnSetCanceled      .Visible = true;
                     btnEditComment      .Visible = false;
-                    btnCancelEditComment.Visible = false;
                     break;
                 case FileStatus.Rejected :
                     btnApplyBaseFile    .Visible = true;
@@ -303,7 +308,8 @@ namespace CwrTools
                     btnShowBaseFile     .Visible = true;
                     btnSetCanceled      .Visible = true;
                     btnEditComment      .Visible = true;
-                    btnCancelEditComment.Visible = true;
+
+                    btnSetStatus.Text = "Файл прийнятий";
                     break;
             }
         }
@@ -461,13 +467,18 @@ namespace CwrTools
             var fileInfo = (FileInfo)item.Tag;
             var nextStatus = fileInfo.FileStatus - 1 == (int)FileStatus.Planned ? FileStatus.Sent : FileStatus.Accepted;
 
-
+            #region // Зміна статусу
             Helpers.RunSqlCwr(cmd =>
             {
-                cmd.CommandText = "update CwrPartnerFiles set Status = @status where Id = @fileId";
+                cmd.CommandText = @"update CwrPartnerFiles set
+                      Status = @status
+                    , SentAt = getdate()
+                    where Id = @fileId
+                ";
                 cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
                 cmd.Parameters.AddWithValue("@status", (int)nextStatus);
                 cmd.ExecuteNonQuery();
+
             });
 
             // Заносимо в память
@@ -476,8 +487,53 @@ namespace CwrTools
             // Відобржаємо на формі
             item.SubItems[3].Text = FileStatusTitle[(int)nextStatus - 1];
             tbFileStatus.Text = FileStatusTitle[(int)nextStatus - 1];
+            #endregion // Зміна статусу
 
+            #region // Зміна дати НАДІСЛАНО
+            if(nextStatus == FileStatus.Sent)
+            {
+                Helpers.RunSqlCwr(cmd =>
+                {
+                    cmd.CommandText = @"update CwrPartnerFiles set
+                            SentAt = getdate()
+                        where Id = @fileId
+                    ";
+                    cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
+                    cmd.ExecuteNonQuery();
 
+                });
+
+                // Заносимо в память
+                fileInfo.FileSentAt = DateTime.Now;
+
+                // Відобржаємо на формі
+                tbFileSentAt.Text = DateTime.Now.ToString("yyyy-dd-mm hh:mm:ss");
+            }
+            #endregion /// Зміна дати НАДІСЛАНО
+
+            #region // Зміна дати ПРИЙНЯТО
+            if(nextStatus == FileStatus.Accepted)
+            {
+                Helpers.RunSqlCwr(cmd =>
+                {
+                    cmd.CommandText = @"update CwrPartnerFiles set
+                            AnsweredAt = getdate()
+                        where Id = @fileId
+                    ";
+                    cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
+                    cmd.ExecuteNonQuery();
+
+                });
+
+                // Заносимо в память
+                fileInfo.FileAnsweredAt = DateTime.Now;
+
+                // Відобржаємо на формі
+                tbFileAnsweredAt.Text = DateTime.Now.ToString("yyyy-dd-mm hh:mm:ss");
+            }
+            #endregion /// Зміна дати ПРИЙНЯТО
+
+            // Змінюємо статуси кнопок
             UpdateButtons();
         }
 
@@ -496,7 +552,7 @@ namespace CwrTools
 
             Helpers.RunSqlCwr(cmd =>
             {
-                cmd.CommandText = "update CwrPartnerFiles set Status = @status where Id = @fileId";
+                cmd.CommandText = "update CwrPartnerFiles set Status = @status, AnsweredAt = getdate() where Id = @fileId";
                 cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
                 cmd.Parameters.AddWithValue("@status", (int)nextStatus);
                 cmd.ExecuteNonQuery();
@@ -504,13 +560,71 @@ namespace CwrTools
 
             // Заносимо в память
             fileInfo.FileStatus = (int)nextStatus;
+            fileInfo.FileAnsweredAt = DateTime.Now;
 
             // Відобржаємо на формі
             item.SubItems[3].Text = FileStatusTitle[(int)nextStatus - 1];
             tbFileStatus.Text = FileStatusTitle[(int)nextStatus - 1];
+            tbFileAnsweredAt.Text = DateTime.Now.ToString("yyyy-dd-mm hh:mm:ss");
 
 
             UpdateButtons();
+        }
+
+        private void btnEditComment_Click(object sender, EventArgs e)
+        {
+            if(lvFiles.SelectedItems.Count == 0)
+            {
+                panelDetails.Visible = false;
+                return;
+            }
+
+            var item = lvFiles.SelectedItems[0];
+            var fileInfo = (FileInfo)item.Tag;
+
+            int? commentId = null;
+            string comment = "";
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = "select Id, Text from CwrPartnerFileComments where CwrPartnerFileId = @fileId";
+                cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
+                using(var r = cmd.ExecuteReader())
+                {
+                    if(!r.HasRows)
+                    {
+                        return;
+                    }
+                    r.Read();
+                    commentId = r.GetInt32(0);
+                    comment = r.GetString(1);
+                }
+            });
+
+            var form = new FormEditText("Коментар стосовно відповіді для надісланого файлу", comment);
+            var res = form.ShowDialog();
+
+            if(res != DialogResult.OK)
+                return;
+
+            Helpers.RunSqlCwr(cmd =>
+            {
+                if(commentId == null)
+                {
+                    cmd.CommandText = "insert CwrPartnerFileComments values( @fileId, @text)";
+                }
+                else
+                {
+                    cmd.CommandText = "update CwrPartnerFileComments set Text = @text where Id = @commentId";
+                    cmd.Parameters.AddWithValue("@commentId", commentId);
+                }
+                cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
+                cmd.Parameters.AddWithValue("@text", form.OutputText);
+                cmd.ExecuteNonQuery();
+            });
+
+            tbComment.Text = form.OutputText;
+
+
         }
     }
 }
