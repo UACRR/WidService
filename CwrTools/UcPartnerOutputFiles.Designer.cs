@@ -29,6 +29,8 @@ namespace CwrTools
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcPartnerOutputFiles));
             this.panelMain = new System.Windows.Forms.TableLayoutPanel();
             this.labTitle = new System.Windows.Forms.Label();
             this.panelMiddle = new System.Windows.Forms.SplitContainer();
@@ -44,7 +46,6 @@ namespace CwrTools
             this.tbFileSentAt = new System.Windows.Forms.TextBox();
             this.tbFileAnsweredAt = new System.Windows.Forms.TextBox();
             this.tbComment = new System.Windows.Forms.TextBox();
-            this.btnApplyBaseFile = new System.Windows.Forms.Button();
             this.btnSetStatus = new System.Windows.Forms.Button();
             this.btnShowFile = new System.Windows.Forms.Button();
             this.btnShowBaseFile = new System.Windows.Forms.Button();
@@ -52,6 +53,8 @@ namespace CwrTools
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEditComment = new System.Windows.Forms.Button();
+            this.btnSetPendingBaseFile = new System.Windows.Forms.Button();
+            this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddle)).BeginInit();
             this.panelMiddle.Panel1.SuspendLayout();
@@ -65,11 +68,13 @@ namespace CwrTools
             this.panelMain.ColumnCount = 1;
             this.panelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelMain.Controls.Add(this.labTitle, 0, 0);
-            this.panelMain.Controls.Add(this.panelMiddle, 0, 1);
+            this.panelMain.Controls.Add(this.panelMiddle, 0, 2);
+            this.panelMain.Controls.Add(this.btnSetPendingBaseFile, 0, 1);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.RowCount = 3;
+            this.panelMain.RowCount = 4;
+            this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
@@ -91,7 +96,7 @@ namespace CwrTools
             this.panelMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMiddle.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.panelMiddle.IsSplitterFixed = true;
-            this.panelMiddle.Location = new System.Drawing.Point(3, 36);
+            this.panelMiddle.Location = new System.Drawing.Point(3, 69);
             this.panelMiddle.Name = "panelMiddle";
             // 
             // panelMiddle.Panel1
@@ -101,7 +106,7 @@ namespace CwrTools
             // panelMiddle.Panel2
             // 
             this.panelMiddle.Panel2.Controls.Add(this.panelDetails);
-            this.panelMiddle.Size = new System.Drawing.Size(1033, 425);
+            this.panelMiddle.Size = new System.Drawing.Size(1033, 392);
             this.panelMiddle.SplitterDistance = 306;
             this.panelMiddle.TabIndex = 3;
             // 
@@ -111,7 +116,7 @@ namespace CwrTools
             this.lvFiles.HideSelection = false;
             this.lvFiles.Location = new System.Drawing.Point(0, 0);
             this.lvFiles.Name = "lvFiles";
-            this.lvFiles.Size = new System.Drawing.Size(306, 425);
+            this.lvFiles.Size = new System.Drawing.Size(306, 392);
             this.lvFiles.TabIndex = 2;
             this.lvFiles.UseCompatibleStateImageBehavior = false;
             this.lvFiles.SelectedIndexChanged += new System.EventHandler(this.lvFiles_SelectedIndexChanged);
@@ -133,14 +138,13 @@ namespace CwrTools
             this.panelDetails.Controls.Add(this.tbFileSentAt, 1, 3);
             this.panelDetails.Controls.Add(this.tbFileAnsweredAt, 1, 4);
             this.panelDetails.Controls.Add(this.tbComment, 1, 5);
-            this.panelDetails.Controls.Add(this.btnApplyBaseFile, 2, 1);
             this.panelDetails.Controls.Add(this.btnSetStatus, 2, 2);
             this.panelDetails.Controls.Add(this.btnShowFile, 2, 0);
-            this.panelDetails.Controls.Add(this.btnShowBaseFile, 3, 1);
             this.panelDetails.Controls.Add(this.btnSetCanceled, 3, 2);
             this.panelDetails.Controls.Add(this.label6, 0, 4);
             this.panelDetails.Controls.Add(this.label5, 0, 5);
             this.panelDetails.Controls.Add(this.btnEditComment, 2, 5);
+            this.panelDetails.Controls.Add(this.btnShowBaseFile, 2, 1);
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetails.Location = new System.Drawing.Point(0, 0);
             this.panelDetails.Name = "panelDetails";
@@ -152,7 +156,7 @@ namespace CwrTools
             this.panelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.panelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.panelDetails.Size = new System.Drawing.Size(723, 425);
+            this.panelDetails.Size = new System.Drawing.Size(723, 392);
             this.panelDetails.TabIndex = 0;
             // 
             // label2
@@ -247,19 +251,8 @@ namespace CwrTools
             this.tbComment.Multiline = true;
             this.tbComment.Name = "tbComment";
             this.tbComment.ReadOnly = true;
-            this.tbComment.Size = new System.Drawing.Size(319, 284);
+            this.tbComment.Size = new System.Drawing.Size(319, 251);
             this.tbComment.TabIndex = 2;
-            // 
-            // btnApplyBaseFile
-            // 
-            this.btnApplyBaseFile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnApplyBaseFile.Location = new System.Drawing.Point(467, 29);
-            this.btnApplyBaseFile.Name = "btnApplyBaseFile";
-            this.btnApplyBaseFile.Size = new System.Drawing.Size(123, 20);
-            this.btnApplyBaseFile.TabIndex = 4;
-            this.btnApplyBaseFile.Text = "Обрати для передачі";
-            this.btnApplyBaseFile.UseVisualStyleBackColor = true;
-            this.btnApplyBaseFile.Click += new System.EventHandler(this.btnApplyBaseFile_Click);
             // 
             // btnSetStatus
             // 
@@ -285,10 +278,10 @@ namespace CwrTools
             // 
             // btnShowBaseFile
             // 
-            this.btnShowBaseFile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnShowBaseFile.Location = new System.Drawing.Point(596, 29);
+            this.btnShowBaseFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnShowBaseFile.Location = new System.Drawing.Point(467, 29);
             this.btnShowBaseFile.Name = "btnShowBaseFile";
-            this.btnShowBaseFile.Size = new System.Drawing.Size(124, 20);
+            this.btnShowBaseFile.Size = new System.Drawing.Size(123, 20);
             this.btnShowBaseFile.TabIndex = 3;
             this.btnShowBaseFile.Text = "Показати в фолдері";
             this.btnShowBaseFile.UseVisualStyleBackColor = true;
@@ -336,6 +329,28 @@ namespace CwrTools
             this.btnEditComment.UseVisualStyleBackColor = true;
             this.btnEditComment.Click += new System.EventHandler(this.btnEditComment_Click);
             // 
+            // btnSetPendingBaseFile
+            // 
+            this.btnSetPendingBaseFile.Location = new System.Drawing.Point(3, 36);
+            this.btnSetPendingBaseFile.Name = "btnSetPendingBaseFile";
+            this.btnSetPendingBaseFile.Size = new System.Drawing.Size(274, 23);
+            this.btnSetPendingBaseFile.TabIndex = 4;
+            this.btnSetPendingBaseFile.Text = "Призначити до передачі найновіший файл групи";
+            this.btnSetPendingBaseFile.UseVisualStyleBackColor = true;
+            this.btnSetPendingBaseFile.Click += new System.EventHandler(this.btnSetPendingBaseFile_Click);
+            // 
+            // ilStatuses
+            // 
+            this.ilStatuses.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilStatuses.ImageStream")));
+            this.ilStatuses.TransparentColor = System.Drawing.Color.Transparent;
+            this.ilStatuses.Images.SetKeyName(0, "icons8-pending-24.png");
+            this.ilStatuses.Images.SetKeyName(1, "icons8-question-24.png");
+            this.ilStatuses.Images.SetKeyName(2, "icons8-ready-24.png");
+            this.ilStatuses.Images.SetKeyName(3, "icons8-uploaded-24.png");
+            this.ilStatuses.Images.SetKeyName(4, "icons8-accepted-24.png");
+            this.ilStatuses.Images.SetKeyName(5, "icons8-rejected-24.png");
+            this.ilStatuses.Images.SetKeyName(6, "icons8-minus-24.png");
+            // 
             // UcPartnerOutputFiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,11 +390,12 @@ namespace CwrTools
         private System.Windows.Forms.TextBox tbFileSentAt;
         private System.Windows.Forms.TextBox tbFileAnsweredAt;
         private System.Windows.Forms.TextBox tbComment;
-        private System.Windows.Forms.Button btnApplyBaseFile;
         private System.Windows.Forms.Button btnSetStatus;
         private System.Windows.Forms.Button btnShowFile;
         private System.Windows.Forms.Button btnShowBaseFile;
         private System.Windows.Forms.Button btnSetCanceled;
         private System.Windows.Forms.Button btnEditComment;
+        private System.Windows.Forms.Button btnSetPendingBaseFile;
+        private System.Windows.Forms.ImageList ilStatuses;
     }
 }

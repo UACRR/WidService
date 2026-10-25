@@ -91,6 +91,7 @@ values
 	, (3, 'Sent')
 	, (4, 'Accepted')
 	, (5, 'Rejected')
+	, (6, 'Cancelled')
 go
 
 create table CwrPartnerFiles (

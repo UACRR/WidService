@@ -13,45 +13,74 @@ begin
 
 	-- Тип періода клієнта
 	declare @periodTypeId int = (select PeriodType from Partners where Id = @partnerId)
-	
-	-- Додаємо запис в перелік файлів, якщо такий перелік порожній
-	if not exists (select null from CwrPartnerFiles where PartnerId = @partnerId)
+
+	-- Створюємо перелік файлів для ПОТОЧНОГО року, якщо такий перелік порожній
+	if not exists (
+		select null
+		from CwrPartnerFiles t1
+			join Periods t2 on t1.PeriodId = t2.Id
+		where t1.PartnerId = @partnerId
+			and t2.Year = @curYear
+	)
 	begin
 		insert CwrPartnerFiles (PartnerId, PeriodId, Name, Status, CreatedAt)
-		values (
+		select
 			  @partnerId
-			, (select Id from Periods where PeriodType = @periodTypeId and getdate() between StartDate and EndDate)
+			, Id
 			, ''
 			, 1
 			, getdate()
-		)
+		from Periods
+		where PeriodType = @periodTypeId
+			and Year = @curYear
+	end
+
+	-- Створюємо перелік файлів для НАСТУПНОГО року, якщо такий перелік порожній
+	if not exists (
+		select null
+		from CwrPartnerFiles t1
+			join Periods t2 on t1.PeriodId = t2.Id
+		where t1.PartnerId = @partnerId
+			and t2.Year = @nextYear
+	)
+	begin
+		insert CwrPartnerFiles (PartnerId, PeriodId, Name, Status, CreatedAt)
+		select
+			  @partnerId
+			, Id
+			, ''
+			, 1
+			, getdate()
+		from Periods
+		where PeriodType = @periodTypeId
+			and Year = @nextYear
 	end
 
 	-- Додаємо записи в перелік файлів до дати наступного періоду від поточної дати
 	
-	declare @periodId int = (
-		select top 1 t1.PeriodId
-		from CwrPartnerFiles t1
-			join Periods t2 on t1.PeriodId = t2.Id
-		where PartnerId = @partnerId
-		order by t2.StartDate desc
-	)
-
-	declare @lastPeriodEndDate date = (select EndDate from Periods where Id = @periodId)
-	declare @curPeriodStartDate date = (
-		select EndDate
-		from Periods
-	    where getdate() between StartDate and EndDate
-			and PeriodType = @periodTypeId
-	)
-
-	declare @targetPeriodStartDate date = dateadd(dd, 1, @curPeriodStartDate)
-	
-	insert CwrPartnerFiles (PartnerId, PeriodId, Name, Status, CreatedAt)
-	select @partnerId, Id, '', 1, getdate() 
-	from Periods
-	where StartDate between @lastPeriodEndDate and @targetPeriodStartDate
-		and PeriodType = @periodTypeId
+	-- declare @periodId int = (
+	-- 	select top 1 t1.PeriodId
+	-- 	from CwrPartnerFiles t1
+	-- 		join Periods t2 on t1.PeriodId = t2.Id
+	-- 	where PartnerId = @partnerId
+	-- 	order by t2.StartDate desc
+	-- )
+	-- 
+	-- declare @lastPeriodEndDate date = (select EndDate from Periods where Id = @periodId)
+	-- declare @curPeriodStartDate date = (
+	-- 	select EndDate
+	-- 	from Periods
+	--     where getdate() between StartDate and EndDate
+	-- 		and PeriodType = @periodTypeId
+	-- )
+	-- 
+	-- declare @targetPeriodStartDate date = dateadd(dd, 1, @curPeriodStartDate)
+	-- 
+	-- insert CwrPartnerFiles (PartnerId, PeriodId, Name, Status, CreatedAt)
+	-- select @partnerId, Id, '', 1, getdate() 
+	-- from Periods
+	-- where StartDate between @lastPeriodEndDate and @targetPeriodStartDate
+	-- 	and PeriodType = @periodTypeId
 end
 go
 

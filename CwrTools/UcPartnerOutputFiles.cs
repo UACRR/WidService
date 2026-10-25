@@ -58,11 +58,14 @@ namespace CwrTools
             public int       PeriodId        { get; set; }
             public int       PeriodYear      { get; set; }
             public int       PeriodPoint     { get; set; }
+            public int?      BaseFileId      { get; set; }
             public string    BaseFileName    { get; set; }
             public DateTime  PeriodStartDate { get; set; }
             public DateTime  PeriodEndDate   { get; set; }
 
             public string    Comment         { get; set; }
+
+            public bool      IsPending       { get; set; }
         }
 
         private PartnerGroupInfo _groupInfo;
@@ -85,10 +88,28 @@ namespace CwrTools
             Configure();
             PlanPartnerDeliveries();
             UpdateNames();
+            UpdatePartnerFiles();
+        }
+
+        public void UpdatePartnerFiles()
+        {
             LoadPartnerFiles();
             FillPartnerFiles();
+
+            foreach (ListViewItem item in lvFiles.Items)
+            {
+                var fileInfo = (FileInfo)item.Tag;
+                if(fileInfo.IsPending)
+                {
+                    item.EnsureVisible();
+                    item.Selected = true;
+                    break;
+                }
+            }
+
             UpdateDetails();
             UpdateButtons();
+
         }
 
         private void Configure()
@@ -98,6 +119,8 @@ namespace CwrTools
             lvFiles.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             lvFiles.MultiSelect = false;
             lvFiles.View = View.Details;
+            lvFiles.SmallImageList = ilStatuses;
+            lvFiles.StateImageList = ilStatuses;
 
             lvFiles.Columns.Clear();
             lvFiles.Columns.Add("Код", 60);
@@ -185,6 +208,7 @@ namespace CwrTools
                         , t2.Id                 as PeriodId
                         , t2.Year               as PeriodYear
                         , t2.Point              as PeriodPoint
+                        , t3.CwrFileId          as BaseFileId
                         , t3.Name               as BaseFileName
                         , t2.StartDate          as PeriodStartDate
                         , t2.EndDate            as PeriodEndDate
@@ -212,14 +236,21 @@ namespace CwrTools
                         fileInfo.PeriodId        = r.GetInt32(idx); idx++;
                         fileInfo.PeriodYear      = r.GetInt32(idx); idx++;
                         fileInfo.PeriodPoint     = r.GetInt32(idx); idx++;
+                        fileInfo.BaseFileId      = r.IsDBNull(idx) ? (int?)null : r.GetInt32(idx); idx++;
                         fileInfo.BaseFileName    = r.IsDBNull(idx) ? "" : r.GetString(idx); idx++;
                         fileInfo.PeriodStartDate = r.GetDateTime(idx); idx++;
                         fileInfo.PeriodEndDate   = r.GetDateTime(idx); idx++;
                         fileInfo.Comment         = r.GetString(idx); idx++;
+                        fileInfo.IsPending       = false;
                         _fileInfoList.Add(fileInfo);
                     }
                 }
             });
+
+            _fileInfoList
+                .OrderByDescending(x => x.PeriodEndDate)
+                .First(x => x.PeriodEndDate < DateTime.Now)
+                .IsPending = true;
         }
 
         private void FillPartnerFiles()
@@ -232,6 +263,8 @@ namespace CwrTools
                 if(_partnerInfo.PeriodTypeId != 4)
                     item.SubItems.Add(x.PeriodPoint.ToString());
                 item.SubItems.Add(FileStatusTitle[x.FileStatus - 1]);
+                item.ImageIndex = x.FileStatus;
+                item.StateImageIndex = x.IsPending ? 0 : -1;
                 item.Tag = x;
                 lvFiles.Items.Add(item);
             });
@@ -267,7 +300,6 @@ namespace CwrTools
             switch((FileStatus)fileInfo.FileStatus)
             {
                 case FileStatus.Planned  :
-                    btnApplyBaseFile    .Visible = true;
                     btnSetStatus        .Visible = false;
                     btnShowFile         .Visible = false;
                     btnShowBaseFile     .Visible = false;
@@ -284,7 +316,6 @@ namespace CwrTools
                     btnSetStatus.Text = "Передати";
                     break;
                 case FileStatus.Sent     :
-                    btnApplyBaseFile    .Visible = false;
                     btnSetStatus        .Visible = true;
                     btnShowFile         .Visible = true;
                     btnShowBaseFile     .Visible = true;
@@ -294,15 +325,13 @@ namespace CwrTools
                     btnSetStatus.Text = "Файл прийнятий";
                     break;
                 case FileStatus.Accepted :
-                    btnApplyBaseFile    .Visible = false;
                     btnSetStatus        .Visible = false;
                     btnShowFile         .Visible = true;
                     btnShowBaseFile     .Visible = true;
                     btnSetCanceled      .Visible = true;
-                    btnEditComment      .Visible = false;
+                    btnEditComment      .Visible = true;
                     break;
                 case FileStatus.Rejected :
-                    btnApplyBaseFile    .Visible = true;
                     btnSetStatus        .Visible = true;
                     btnShowFile         .Visible = true;
                     btnShowBaseFile     .Visible = true;
@@ -322,111 +351,112 @@ namespace CwrTools
 
         private void btnApplyBaseFile_Click(object sender, EventArgs e)
         {
-            var item = lvFiles.SelectedItems[0];
-            var fileInfo = (FileInfo)item.Tag;
-
-            int? baseFileId = null;
-            var baseFileName = "";
-            DateTime? baseFileCreatedAt = null;
-
-            // Обираємо базовий файл із групи (створений після кінцевої дати запланованого періоду)
-            Helpers.RunSqlCwr(cmd =>
-            {
-                cmd.CommandText = @"
-                    select top 1 CwrFileId, Name, CreatedAt
-                    from CwrFiles
-                    where PartnerGroupID = 1
-                        and Direction = 'OUT'
-                        and CreatedAt > @dateAfter
-                    order by CreatedAt desc
-                ";
-                cmd.Parameters.AddWithValue("@dateAfter", fileInfo.PeriodStartDate);
-                using(var r = cmd.ExecuteReader())
-                {
-                    if(!r.HasRows)
-                        return;
-                    r.Read();
-                    baseFileId = r.GetInt32(0);
-                    baseFileName = r.GetString(1);
-                    baseFileCreatedAt = r.GetDateTime(2);
-                }
-            });
-
-            // Якщо немає
-            if(baseFileId == null)
-            {
-                MessageBox.Show("Не знайдено файл, створений після початку періоду звітності. Створіть потрібний файл.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Індекс останнього надісланого фалу за поточний рік
-            var lastSentSeqNr = 0;
-            Helpers.RunSqlCwr(cmd =>
-            {
-                cmd.CommandText = "select max(SentFileSeqNr) from CwrPartnerFiles where PartnerId = @partnerId";
-                cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
-                using(var r = cmd.ExecuteReader())
-                {
-                    r.Read();
-                    if(!r.IsDBNull(0))
-                    {
-                        lastSentSeqNr = r.GetInt32(0);
-                    }
-                }
-            });
-
-            // Назви файлів для надсилання
-            var targetFileName = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.V21";
-            var targetFileNamePacked = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.zip";
-
-            // Копіюємо базовий файл з потрібною назвою, пакуємо і видаляємо не запакований
-            var targetFilePath = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, _partnerInfo.Name);
-            Directory.CreateDirectory(targetFilePath);
-
-            var sourceFileNameFull = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, baseFileName);
-            var targetFileNameFull = Path.Combine(targetFilePath, targetFileName);
-            File.Copy(sourceFileNameFull, targetFileNameFull, true);
-
-            var targetFileNamePackedFull = Path.Combine(targetFilePath, targetFileNamePacked);
-            File.Delete(targetFileNamePackedFull);
-            using (ZipArchive archive = ZipFile.Open(targetFileNamePackedFull, ZipArchiveMode.Create))
-            {
-                archive.CreateEntryFromFile(sourceFileNameFull, targetFileName, CompressionLevel.Optimal);
-            }
-
-            File.Delete(targetFileNameFull);
-
-            // Заносимо інформацію в БД
-            Helpers.RunSqlCwr(cmd =>
-            {
-                cmd.CommandText = @"
-                    update CwrPartnerFiles
-                    set
-                          CwrFileId = @cwrFileId
-                        , Name = @name
-                        , Status = @status
-                    where Id = @fileId
-                ";
-                cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
-                cmd.Parameters.AddWithValue("@cwrFileId", baseFileId);
-                cmd.Parameters.AddWithValue("@name", targetFileNamePacked);
-                cmd.Parameters.AddWithValue("@status", (int)FileStatus.Awaiting);
-                cmd.ExecuteNonQuery();
-            });
-
-            // Заносимо в память
-            fileInfo.BaseFileName = baseFileName;
-            fileInfo.FileName = targetFileNamePacked;
-            fileInfo.FileStatus = (int)FileStatus.Awaiting;
-
-            // Відобржаємо на формі
-            item.SubItems[3].Text = FileStatusTitle[(int)FileStatus.Awaiting - 1];
-            tbFileName.Text = targetFileNamePacked;
-            tbBaseFileName.Text = baseFileName;
-            tbFileStatus.Text = FileStatusTitle[(int)FileStatus.Awaiting - 1];
-
-
-            UpdateButtons();
+            // var item = lvFiles.SelectedItems[0];
+            // var fileInfo = (FileInfo)item.Tag;
+            // 
+            // int? baseFileId = null;
+            // var baseFileName = "";
+            // DateTime? baseFileCreatedAt = null;
+            // 
+            // // Обираємо базовий файл із групи (створений після кінцевої дати запланованого періоду)
+            // Helpers.RunSqlCwr(cmd =>
+            // {
+            //     cmd.CommandText = @"
+            //         select top 1 CwrFileId, Name, CreatedAt
+            //         from CwrFiles
+            //         where PartnerGroupID = @partnerGroupId
+            //             and Direction = 'OUT'
+            //             and CreatedAt > @dateAfter
+            //         order by CreatedAt desc
+            //     ";
+            //     cmd.Parameters.AddWithValue("@partnerGroupId", _groupInfo.Id);
+            //     cmd.Parameters.AddWithValue("@dateAfter", fileInfo.PeriodEndDate);
+            //     using(var r = cmd.ExecuteReader())
+            //     {
+            //         if(!r.HasRows)
+            //             return;
+            //         r.Read();
+            //         baseFileId = r.GetInt32(0);
+            //         baseFileName = r.GetString(1);
+            //         baseFileCreatedAt = r.GetDateTime(2);
+            //     }
+            // });
+            // 
+            // // Якщо немає
+            // if(baseFileId == null)
+            // {
+            //     MessageBox.Show("Не знайдено файл, створений після кінцевої дати обраного періоду звітності. Створіть потрібний файл.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //     return;
+            // }
+            // 
+            // // Індекс останнього надісланого фалу за поточний рік
+            // var lastSentSeqNr = 0;
+            // Helpers.RunSqlCwr(cmd =>
+            // {
+            //     cmd.CommandText = "select max(SentFileSeqNr) from CwrPartnerFiles where PartnerId = @partnerId";
+            //     cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
+            //     using(var r = cmd.ExecuteReader())
+            //     {
+            //         r.Read();
+            //         if(!r.IsDBNull(0))
+            //         {
+            //             lastSentSeqNr = r.GetInt32(0);
+            //         }
+            //     }
+            // });
+            // 
+            // // Назви файлів для надсилання
+            // var targetFileName = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.V21";
+            // var targetFileNamePacked = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.zip";
+            // 
+            // // Копіюємо базовий файл з потрібною назвою, пакуємо і видаляємо не запакований
+            // var targetFilePath = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, _partnerInfo.Name);
+            // Directory.CreateDirectory(targetFilePath);
+            // 
+            // var sourceFileNameFull = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, baseFileName);
+            // var targetFileNameFull = Path.Combine(targetFilePath, targetFileName);
+            // File.Copy(sourceFileNameFull, targetFileNameFull, true);
+            // 
+            // var targetFileNamePackedFull = Path.Combine(targetFilePath, targetFileNamePacked);
+            // File.Delete(targetFileNamePackedFull);
+            // using (ZipArchive archive = ZipFile.Open(targetFileNamePackedFull, ZipArchiveMode.Create))
+            // {
+            //     archive.CreateEntryFromFile(sourceFileNameFull, targetFileName, CompressionLevel.Optimal);
+            // }
+            // 
+            // File.Delete(targetFileNameFull);
+            // 
+            // // Заносимо інформацію в БД
+            // Helpers.RunSqlCwr(cmd =>
+            // {
+            //     cmd.CommandText = @"
+            //         update CwrPartnerFiles
+            //         set
+            //               CwrFileId = @cwrFileId
+            //             , Name = @name
+            //             , Status = @status
+            //         where Id = @fileId
+            //     ";
+            //     cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
+            //     cmd.Parameters.AddWithValue("@cwrFileId", baseFileId);
+            //     cmd.Parameters.AddWithValue("@name", targetFileNamePacked);
+            //     cmd.Parameters.AddWithValue("@status", (int)FileStatus.Awaiting);
+            //     cmd.ExecuteNonQuery();
+            // });
+            // 
+            // // Заносимо в память
+            // fileInfo.BaseFileName = baseFileName;
+            // fileInfo.FileName = targetFileNamePacked;
+            // fileInfo.FileStatus = (int)FileStatus.Awaiting;
+            // 
+            // // Відобржаємо на формі
+            // item.SubItems[3].Text = FileStatusTitle[(int)FileStatus.Awaiting - 1];
+            // tbFileName.Text = targetFileNamePacked;
+            // tbBaseFileName.Text = baseFileName;
+            // tbFileStatus.Text = FileStatusTitle[(int)FileStatus.Awaiting - 1];
+            // 
+            // 
+            // UpdateButtons();
         }
 
         private void btnShowFile_Click(object sender, EventArgs e)
@@ -481,12 +511,7 @@ namespace CwrTools
 
             });
 
-            // Заносимо в память
-            fileInfo.FileStatus = (int)nextStatus;
-
-            // Відобржаємо на формі
-            item.SubItems[3].Text = FileStatusTitle[(int)nextStatus - 1];
-            tbFileStatus.Text = FileStatusTitle[(int)nextStatus - 1];
+            UpdatePartnerFiles();
             #endregion // Зміна статусу
 
             #region // Зміна дати НАДІСЛАНО
@@ -503,13 +528,21 @@ namespace CwrTools
 
                 });
 
-                // Заносимо в память
-                fileInfo.FileSentAt = DateTime.Now;
-
-                // Відобржаємо на формі
-                tbFileSentAt.Text = DateTime.Now.ToString("yyyy-dd-mm hh:mm:ss");
+                UpdatePartnerFiles();
             }
             #endregion /// Зміна дати НАДІСЛАНО
+
+            #region // Скасовуємо надсилання файлів для попереднх періодів
+            if(nextStatus == FileStatus.Sent)
+            {
+                Helpers.RunSqlCwr(cmd =>
+                {
+                    cmd.CommandText = @"update CwrPartnerFiles set Status = 6 where Id = @fileId";
+                    cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
+                    cmd.ExecuteNonQuery();
+               });
+            }
+            #endregion /// Скасовуємо надсилання файлів для попереднх періодів
 
             #region // Зміна дати ПРИЙНЯТО
             if(nextStatus == FileStatus.Accepted)
@@ -525,16 +558,10 @@ namespace CwrTools
 
                 });
 
-                // Заносимо в память
-                fileInfo.FileAnsweredAt = DateTime.Now;
-
-                // Відобржаємо на формі
-                tbFileAnsweredAt.Text = DateTime.Now.ToString("yyyy-dd-mm hh:mm:ss");
+                UpdatePartnerFiles();
             }
             #endregion /// Зміна дати ПРИЙНЯТО
 
-            // Змінюємо статуси кнопок
-            UpdateButtons();
         }
 
         private void btnSetCanceled_Click(object sender, EventArgs e)
@@ -558,17 +585,7 @@ namespace CwrTools
                 cmd.ExecuteNonQuery();
             });
 
-            // Заносимо в память
-            fileInfo.FileStatus = (int)nextStatus;
-            fileInfo.FileAnsweredAt = DateTime.Now;
-
-            // Відобржаємо на формі
-            item.SubItems[3].Text = FileStatusTitle[(int)nextStatus - 1];
-            tbFileStatus.Text = FileStatusTitle[(int)nextStatus - 1];
-            tbFileAnsweredAt.Text = DateTime.Now.ToString("yyyy-dd-mm hh:mm:ss");
-
-
-            UpdateButtons();
+            UpdatePartnerFiles();
         }
 
         private void btnEditComment_Click(object sender, EventArgs e)
@@ -622,9 +639,170 @@ namespace CwrTools
                 cmd.ExecuteNonQuery();
             });
 
+            fileInfo.Comment = form.OutputText;
             tbComment.Text = form.OutputText;
 
 
+        }
+
+        private void btnSetPendingBaseFile_Click(object sender, EventArgs e)
+        {
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Якщо для надісланого раніше файлу не отримана відповідь нічого не робимо
+            var hasNotRespondedFiles = false;
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = "select top 1 null from CwrPartnerFiles where PartnerId = @partnerId and Status= 3";
+                cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
+                using(var r = cmd.ExecuteReader())
+                {
+                    hasNotRespondedFiles = r.HasRows;
+                }
+            });
+            // Якщо немає
+            if(hasNotRespondedFiles)
+            {
+                MessageBox.Show("Не вказана відповідь для раніш надійсланого файл. Передача нового файлу не планується.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Файл партнера який слід передати станом на поточну дату
+            var pendingFileInfo = _fileInfoList
+                .OrderByDescending(x => x.PeriodEndDate)
+                .First(x => x.PeriodEndDate < DateTime.Now);
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Базовий файл для передачі
+            int? baseFileId = null;
+            var baseFileName = "";
+            DateTime? baseFileCreatedAt = null;
+
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                   select top 1 CwrFileId, Name, CreatedAt
+                    from CwrFiles
+                    where PartnerGroupID = @partnerGroupID
+                        and CreatedAt > @createdAfter
+                    order by CreatedAt desc
+                ";
+                cmd.Parameters.AddWithValue("@partnerGroupID", _groupInfo.Id);
+                cmd.Parameters.AddWithValue("@createdAfter", pendingFileInfo.PeriodEndDate);
+                using(var r = cmd.ExecuteReader())
+                {
+                    if(!r.HasRows)
+                        return;
+                    r.Read();
+                    baseFileId = r.GetInt32(0);
+                    baseFileName = r.GetString(1);
+                    baseFileCreatedAt = r.GetDateTime(2);
+                }
+            });
+
+            if(baseFileId == null)
+            {
+                MessageBox.Show("Не знайдено файл, створений після кінцевої дати останнього періоду звітності. Створіть потрібний файл.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Перевіряємо, що обраний файл не було надіслано і прийнято
+            var isAccepted = false;
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                    select null
+                    from CwrPartnerFiles
+                    where CwrFileId = @cwrFileId
+                        and PartnerId = @partnerId
+                        and Status = 4
+                ";
+                cmd.Parameters.AddWithValue("@cwrFileId", baseFileId);
+                cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
+                using(var r = cmd.ExecuteReader())
+                {
+                    if(r.HasRows)
+                        isAccepted = true;
+                }
+            });
+
+            // Якщо було надіслано і прийнято
+            if(isAccepted)
+            {
+                MessageBox.Show("Файл вже отриманий партнером.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Індекс останнього надісланого фалу за поточний рік
+            var lastSentSeqNr = 0;
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = "select max(SentFileSeqNr) from CwrPartnerFiles where PartnerId = @partnerId";
+                cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
+                using(var r = cmd.ExecuteReader())
+                {
+                    r.Read();
+                    if(!r.IsDBNull(0))
+                    {
+                        lastSentSeqNr = r.GetInt32(0);
+                    }
+                }
+            });
+
+            // Назви файлів для надсилання
+            var targetFileName = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.V21";
+            var targetFileNamePacked = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.zip";
+
+            // Копіюємо базовий файл з потрібною назвою, пакуємо і видаляємо не запакований
+            var targetFilePath = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, _partnerInfo.Name);
+            Directory.CreateDirectory(targetFilePath);
+
+            var sourceFileNameFull = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, baseFileName);
+            var targetFileNameFull = Path.Combine(targetFilePath, targetFileName);
+            File.Copy(sourceFileNameFull, targetFileNameFull, true);
+
+            var targetFileNamePackedFull = Path.Combine(targetFilePath, targetFileNamePacked);
+            File.Delete(targetFileNamePackedFull);
+            using (ZipArchive archive = ZipFile.Open(targetFileNamePackedFull, ZipArchiveMode.Create))
+            {
+                archive.CreateEntryFromFile(sourceFileNameFull, targetFileName, CompressionLevel.Optimal);
+            }
+
+            File.Delete(targetFileNameFull);
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Заносимо інформацію в БД
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                    update CwrPartnerFiles
+                    set
+                          CwrFileId = @cwrFileId
+                        , Name = @name
+                        , Status = @status
+                    where Id = @fileId
+                ";
+                cmd.Parameters.AddWithValue("@fileId", pendingFileInfo.FileId);
+                cmd.Parameters.AddWithValue("@cwrFileId", baseFileId);
+                cmd.Parameters.AddWithValue("@name", targetFileNamePacked);
+                cmd.Parameters.AddWithValue("@status", (int)FileStatus.Awaiting);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = @"
+                    update CwrPartnerFiles
+                    set Status = 6 -- Canceled
+                    from CwrPartnerFiles t1
+                        join Periods t2 on t1.PeriodId = t2.Id
+                    where t1.PartnerId = @partnerId
+                        and t1.Id <> @fileId
+                        and t1.Status in (1, 2)
+                        and t2.EndDate < @dateLimit
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@fileId", pendingFileInfo.FileId);
+                cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
+                cmd.Parameters.AddWithValue("@dateLimit", pendingFileInfo.PeriodStartDate);
+                cmd.ExecuteNonQuery();
+            });
+
+            // Відобржаємо на формі
+            UpdatePartnerFiles();
         }
     }
 }
