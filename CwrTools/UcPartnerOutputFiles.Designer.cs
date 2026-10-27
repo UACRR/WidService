@@ -48,13 +48,15 @@ namespace CwrTools
             this.tbComment = new System.Windows.Forms.TextBox();
             this.btnSetStatus = new System.Windows.Forms.Button();
             this.btnShowFile = new System.Windows.Forms.Button();
-            this.btnShowBaseFile = new System.Windows.Forms.Button();
-            this.btnSetCanceled = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEditComment = new System.Windows.Forms.Button();
+            this.btnShowBaseFile = new System.Windows.Forms.Button();
             this.btnSetPendingBaseFile = new System.Windows.Forms.Button();
             this.ilStatuses = new System.Windows.Forms.ImageList(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelMiddle)).BeginInit();
             this.panelMiddle.Panel1.SuspendLayout();
@@ -126,29 +128,32 @@ namespace CwrTools
             this.panelDetails.ColumnCount = 4;
             this.panelDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
             this.panelDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
-            this.panelDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.panelDetails.Controls.Add(this.label2, 0, 0);
-            this.panelDetails.Controls.Add(this.label1, 0, 1);
-            this.panelDetails.Controls.Add(this.label3, 0, 2);
-            this.panelDetails.Controls.Add(this.label4, 0, 3);
-            this.panelDetails.Controls.Add(this.tbFileName, 1, 0);
-            this.panelDetails.Controls.Add(this.tbBaseFileName, 1, 1);
-            this.panelDetails.Controls.Add(this.tbFileStatus, 1, 2);
-            this.panelDetails.Controls.Add(this.tbFileSentAt, 1, 3);
-            this.panelDetails.Controls.Add(this.tbFileAnsweredAt, 1, 4);
-            this.panelDetails.Controls.Add(this.tbComment, 1, 5);
-            this.panelDetails.Controls.Add(this.btnSetStatus, 2, 2);
-            this.panelDetails.Controls.Add(this.btnShowFile, 2, 0);
-            this.panelDetails.Controls.Add(this.btnSetCanceled, 3, 2);
-            this.panelDetails.Controls.Add(this.label6, 0, 4);
-            this.panelDetails.Controls.Add(this.label5, 0, 5);
-            this.panelDetails.Controls.Add(this.btnEditComment, 2, 5);
-            this.panelDetails.Controls.Add(this.btnShowBaseFile, 2, 1);
+            this.panelDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
+            this.panelDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.panelDetails.Controls.Add(this.label2, 0, 1);
+            this.panelDetails.Controls.Add(this.label1, 0, 2);
+            this.panelDetails.Controls.Add(this.label3, 0, 3);
+            this.panelDetails.Controls.Add(this.label4, 0, 4);
+            this.panelDetails.Controls.Add(this.tbFileName, 1, 1);
+            this.panelDetails.Controls.Add(this.tbBaseFileName, 1, 2);
+            this.panelDetails.Controls.Add(this.tbFileStatus, 1, 3);
+            this.panelDetails.Controls.Add(this.tbFileSentAt, 1, 4);
+            this.panelDetails.Controls.Add(this.tbFileAnsweredAt, 1, 5);
+            this.panelDetails.Controls.Add(this.tbComment, 1, 6);
+            this.panelDetails.Controls.Add(this.btnSetStatus, 2, 3);
+            this.panelDetails.Controls.Add(this.btnShowFile, 2, 1);
+            this.panelDetails.Controls.Add(this.label6, 0, 5);
+            this.panelDetails.Controls.Add(this.label5, 0, 6);
+            this.panelDetails.Controls.Add(this.btnEditComment, 2, 6);
+            this.panelDetails.Controls.Add(this.btnShowBaseFile, 2, 2);
+            this.panelDetails.Controls.Add(this.label7, 1, 0);
+            this.panelDetails.Controls.Add(this.label8, 2, 0);
+            this.panelDetails.Controls.Add(this.label9, 0, 0);
             this.panelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetails.Location = new System.Drawing.Point(0, 0);
             this.panelDetails.Name = "panelDetails";
-            this.panelDetails.RowCount = 7;
+            this.panelDetails.RowCount = 8;
+            this.panelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.panelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.panelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.panelDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
@@ -162,7 +167,7 @@ namespace CwrTools
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(3, 26);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label2.Size = new System.Drawing.Size(103, 18);
@@ -172,7 +177,7 @@ namespace CwrTools
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 26);
+            this.label1.Location = new System.Drawing.Point(3, 52);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label1.Size = new System.Drawing.Size(79, 18);
@@ -182,7 +187,7 @@ namespace CwrTools
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 52);
+            this.label3.Location = new System.Drawing.Point(3, 78);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label3.Size = new System.Drawing.Size(131, 18);
@@ -192,7 +197,7 @@ namespace CwrTools
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 78);
+            this.label4.Location = new System.Drawing.Point(3, 104);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label4.Size = new System.Drawing.Size(79, 18);
@@ -202,64 +207,64 @@ namespace CwrTools
             // tbFileName
             // 
             this.tbFileName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbFileName.Location = new System.Drawing.Point(142, 3);
+            this.tbFileName.Location = new System.Drawing.Point(142, 29);
             this.tbFileName.Name = "tbFileName";
             this.tbFileName.ReadOnly = true;
-            this.tbFileName.Size = new System.Drawing.Size(319, 20);
+            this.tbFileName.Size = new System.Drawing.Size(407, 20);
             this.tbFileName.TabIndex = 2;
             // 
             // tbBaseFileName
             // 
             this.tbBaseFileName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbBaseFileName.Location = new System.Drawing.Point(142, 29);
+            this.tbBaseFileName.Location = new System.Drawing.Point(142, 55);
             this.tbBaseFileName.Name = "tbBaseFileName";
             this.tbBaseFileName.ReadOnly = true;
-            this.tbBaseFileName.Size = new System.Drawing.Size(319, 20);
+            this.tbBaseFileName.Size = new System.Drawing.Size(407, 20);
             this.tbBaseFileName.TabIndex = 2;
             // 
             // tbFileStatus
             // 
             this.tbFileStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbFileStatus.Location = new System.Drawing.Point(142, 55);
+            this.tbFileStatus.Location = new System.Drawing.Point(142, 81);
             this.tbFileStatus.Name = "tbFileStatus";
             this.tbFileStatus.ReadOnly = true;
-            this.tbFileStatus.Size = new System.Drawing.Size(319, 20);
+            this.tbFileStatus.Size = new System.Drawing.Size(407, 20);
             this.tbFileStatus.TabIndex = 2;
             // 
             // tbFileSentAt
             // 
             this.tbFileSentAt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbFileSentAt.Location = new System.Drawing.Point(142, 81);
+            this.tbFileSentAt.Location = new System.Drawing.Point(142, 107);
             this.tbFileSentAt.Name = "tbFileSentAt";
             this.tbFileSentAt.ReadOnly = true;
-            this.tbFileSentAt.Size = new System.Drawing.Size(319, 20);
+            this.tbFileSentAt.Size = new System.Drawing.Size(407, 20);
             this.tbFileSentAt.TabIndex = 2;
             // 
             // tbFileAnsweredAt
             // 
             this.tbFileAnsweredAt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbFileAnsweredAt.Location = new System.Drawing.Point(142, 107);
+            this.tbFileAnsweredAt.Location = new System.Drawing.Point(142, 133);
             this.tbFileAnsweredAt.Name = "tbFileAnsweredAt";
             this.tbFileAnsweredAt.ReadOnly = true;
-            this.tbFileAnsweredAt.Size = new System.Drawing.Size(319, 20);
+            this.tbFileAnsweredAt.Size = new System.Drawing.Size(407, 20);
             this.tbFileAnsweredAt.TabIndex = 2;
             // 
             // tbComment
             // 
             this.tbComment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbComment.Location = new System.Drawing.Point(142, 133);
+            this.tbComment.Location = new System.Drawing.Point(142, 159);
             this.tbComment.Multiline = true;
             this.tbComment.Name = "tbComment";
             this.tbComment.ReadOnly = true;
-            this.tbComment.Size = new System.Drawing.Size(319, 251);
+            this.tbComment.Size = new System.Drawing.Size(407, 225);
             this.tbComment.TabIndex = 2;
             // 
             // btnSetStatus
             // 
             this.btnSetStatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSetStatus.Location = new System.Drawing.Point(467, 55);
+            this.btnSetStatus.Location = new System.Drawing.Point(555, 81);
             this.btnSetStatus.Name = "btnSetStatus";
-            this.btnSetStatus.Size = new System.Drawing.Size(123, 20);
+            this.btnSetStatus.Size = new System.Drawing.Size(160, 20);
             this.btnSetStatus.TabIndex = 4;
             this.btnSetStatus.Text = "Надіслати";
             this.btnSetStatus.UseVisualStyleBackColor = true;
@@ -268,40 +273,18 @@ namespace CwrTools
             // btnShowFile
             // 
             this.btnShowFile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnShowFile.Location = new System.Drawing.Point(467, 3);
+            this.btnShowFile.Location = new System.Drawing.Point(555, 29);
             this.btnShowFile.Name = "btnShowFile";
-            this.btnShowFile.Size = new System.Drawing.Size(123, 20);
+            this.btnShowFile.Size = new System.Drawing.Size(160, 20);
             this.btnShowFile.TabIndex = 3;
             this.btnShowFile.Text = "Показати в фолдері";
             this.btnShowFile.UseVisualStyleBackColor = true;
             this.btnShowFile.Click += new System.EventHandler(this.btnShowFile_Click);
             // 
-            // btnShowBaseFile
-            // 
-            this.btnShowBaseFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnShowBaseFile.Location = new System.Drawing.Point(467, 29);
-            this.btnShowBaseFile.Name = "btnShowBaseFile";
-            this.btnShowBaseFile.Size = new System.Drawing.Size(123, 20);
-            this.btnShowBaseFile.TabIndex = 3;
-            this.btnShowBaseFile.Text = "Показати в фолдері";
-            this.btnShowBaseFile.UseVisualStyleBackColor = true;
-            this.btnShowBaseFile.Click += new System.EventHandler(this.btnShowBaseFile_Click);
-            // 
-            // btnSetCanceled
-            // 
-            this.btnSetCanceled.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSetCanceled.Location = new System.Drawing.Point(596, 55);
-            this.btnSetCanceled.Name = "btnSetCanceled";
-            this.btnSetCanceled.Size = new System.Drawing.Size(124, 20);
-            this.btnSetCanceled.TabIndex = 3;
-            this.btnSetCanceled.Text = "Файл відхилено";
-            this.btnSetCanceled.UseVisualStyleBackColor = true;
-            this.btnSetCanceled.Click += new System.EventHandler(this.btnSetCanceled_Click);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 104);
+            this.label6.Location = new System.Drawing.Point(3, 130);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label6.Size = new System.Drawing.Size(78, 18);
@@ -311,7 +294,7 @@ namespace CwrTools
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 130);
+            this.label5.Location = new System.Drawing.Point(3, 156);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label5.Size = new System.Drawing.Size(113, 18);
@@ -321,13 +304,24 @@ namespace CwrTools
             // btnEditComment
             // 
             this.btnEditComment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEditComment.Location = new System.Drawing.Point(467, 133);
+            this.btnEditComment.Location = new System.Drawing.Point(555, 159);
             this.btnEditComment.Name = "btnEditComment";
-            this.btnEditComment.Size = new System.Drawing.Size(123, 20);
+            this.btnEditComment.Size = new System.Drawing.Size(160, 20);
             this.btnEditComment.TabIndex = 4;
             this.btnEditComment.Text = "Редагувати";
             this.btnEditComment.UseVisualStyleBackColor = true;
             this.btnEditComment.Click += new System.EventHandler(this.btnEditComment_Click);
+            // 
+            // btnShowBaseFile
+            // 
+            this.btnShowBaseFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnShowBaseFile.Location = new System.Drawing.Point(555, 55);
+            this.btnShowBaseFile.Name = "btnShowBaseFile";
+            this.btnShowBaseFile.Size = new System.Drawing.Size(160, 20);
+            this.btnShowBaseFile.TabIndex = 3;
+            this.btnShowBaseFile.Text = "Показати в фолдері";
+            this.btnShowBaseFile.UseVisualStyleBackColor = true;
+            this.btnShowBaseFile.Click += new System.EventHandler(this.btnShowBaseFile_Click);
             // 
             // btnSetPendingBaseFile
             // 
@@ -350,6 +344,39 @@ namespace CwrTools
             this.ilStatuses.Images.SetKeyName(4, "icons8-accepted-24.png");
             this.ilStatuses.Images.SetKeyName(5, "icons8-rejected-24.png");
             this.ilStatuses.Images.SetKeyName(6, "icons8-minus-24.png");
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(142, 0);
+            this.label7.Name = "label7";
+            this.label7.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.label7.Size = new System.Drawing.Size(63, 20);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Значення";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(555, 0);
+            this.label8.Name = "label8";
+            this.label8.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.label8.Size = new System.Drawing.Size(24, 20);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Дії";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Name = "label9";
+            this.label9.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.label9.Size = new System.Drawing.Size(66, 20);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Параметр";
             // 
             // UcPartnerOutputFiles
             // 
@@ -393,9 +420,11 @@ namespace CwrTools
         private System.Windows.Forms.Button btnSetStatus;
         private System.Windows.Forms.Button btnShowFile;
         private System.Windows.Forms.Button btnShowBaseFile;
-        private System.Windows.Forms.Button btnSetCanceled;
         private System.Windows.Forms.Button btnEditComment;
         private System.Windows.Forms.Button btnSetPendingBaseFile;
         private System.Windows.Forms.ImageList ilStatuses;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

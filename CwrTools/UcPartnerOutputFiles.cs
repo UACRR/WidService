@@ -22,6 +22,7 @@ namespace CwrTools
             Sent       ,
             Accepted   ,
             Rejected   ,
+            Cancled    ,
         }
 
         private string[] FileStatusTitle =
@@ -303,14 +304,12 @@ namespace CwrTools
                     btnSetStatus        .Visible = false;
                     btnShowFile         .Visible = false;
                     btnShowBaseFile     .Visible = false;
-                    btnSetCanceled      .Visible = false;
                     btnEditComment      .Visible = false;
                     break;
                 case FileStatus.Awaiting :
                     btnSetStatus        .Visible = true;
                     btnShowFile         .Visible = true;
                     btnShowBaseFile     .Visible = true;
-                    btnSetCanceled      .Visible = false;
                     btnEditComment      .Visible = false;
 
                     btnSetStatus.Text = "Передати";
@@ -319,144 +318,116 @@ namespace CwrTools
                     btnSetStatus        .Visible = true;
                     btnShowFile         .Visible = true;
                     btnShowBaseFile     .Visible = true;
-                    btnSetCanceled      .Visible = true;
                     btnEditComment      .Visible = false;
 
-                    btnSetStatus.Text = "Файл прийнятий";
+                    btnSetStatus.Text = "Прийняти файл";
                     break;
                 case FileStatus.Accepted :
-                    btnSetStatus        .Visible = false;
+                    btnSetStatus        .Visible = true;
                     btnShowFile         .Visible = true;
                     btnShowBaseFile     .Visible = true;
-                    btnSetCanceled      .Visible = true;
                     btnEditComment      .Visible = true;
+
+                    btnSetStatus.Text = "Змінити на ВІДХИЛЕНО";
                     break;
                 case FileStatus.Rejected :
                     btnSetStatus        .Visible = true;
                     btnShowFile         .Visible = true;
                     btnShowBaseFile     .Visible = true;
-                    btnSetCanceled      .Visible = true;
                     btnEditComment      .Visible = true;
 
-                    btnSetStatus.Text = "Файл прийнятий";
+                    btnSetStatus.Text = "Змінити на ПРИЙНЯТО";
+                    break;
+                case FileStatus.Cancled :
+                    btnSetStatus        .Visible = false;
+                    btnShowFile         .Visible = false;
+                    btnShowBaseFile     .Visible = false;
+                    btnEditComment      .Visible = false;
                     break;
             }
+        }
+
+        private void SetFileSent()
+        {
+            if(lvFiles.SelectedItems.Count == 0)
+            {
+                panelDetails.Visible = false;
+                return;
+            }
+
+            var item = lvFiles.SelectedItems[0];
+            var fileInfo = (FileInfo)item.Tag;
+
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"update CwrPartnerFiles set
+                      Status = @status
+                    , SentAt = getdate()
+                    where Id = @fileId
+                ";
+                cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
+                cmd.Parameters.AddWithValue("@status", (int)FileStatus.Sent);
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = @"
+                    update t1
+                    set t1.Status = 6
+                    from CwrPartnerFiles t1
+                        join Periods t2 on t1.PeriodId = t2.Id
+                    where t2.StartDate < @dateLimit
+                        and t1.PartnerId = @partnerId
+                ";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@dateLimit", fileInfo.PeriodStartDate);
+                cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
+                cmd.ExecuteNonQuery();
+            });
+
+            UpdatePartnerFiles();
+
+        }
+
+        private void SetFileRespStatus(FileStatus status)
+        {
+            if(lvFiles.SelectedItems.Count == 0)
+            {
+                panelDetails.Visible = false;
+                return;
+            }
+
+            var item = lvFiles.SelectedItems[0];
+            var fileInfo = (FileInfo)item.Tag;
+
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"update CwrPartnerFiles set
+                      Status = @status
+                    , AnsweredAt = getdate()
+                    where Id = @fileId
+                ";
+                cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
+                cmd.Parameters.AddWithValue("@status", (int)status);
+                cmd.ExecuteNonQuery();
+            });
+
+            UpdatePartnerFiles();
+
+        }
+
+        private void ShooseFileRespStatus()
+        {
+            var msg = "Вкажіть відповідь від партнера стосовно переданого файлу. Якщо файл прийнятий - натисніть Yes, якщо відхилений - натисніть No.";
+            var res = MessageBox.Show(msg, "Питання", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if(res == DialogResult.Yes)
+                SetFileRespStatus(FileStatus.Accepted);
+            else if(res == DialogResult.No)
+                SetFileRespStatus(FileStatus.Rejected);
         }
 
         private void lvFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateDetails();
             UpdateButtons();
-        }
-
-        private void btnApplyBaseFile_Click(object sender, EventArgs e)
-        {
-            // var item = lvFiles.SelectedItems[0];
-            // var fileInfo = (FileInfo)item.Tag;
-            // 
-            // int? baseFileId = null;
-            // var baseFileName = "";
-            // DateTime? baseFileCreatedAt = null;
-            // 
-            // // Обираємо базовий файл із групи (створений після кінцевої дати запланованого періоду)
-            // Helpers.RunSqlCwr(cmd =>
-            // {
-            //     cmd.CommandText = @"
-            //         select top 1 CwrFileId, Name, CreatedAt
-            //         from CwrFiles
-            //         where PartnerGroupID = @partnerGroupId
-            //             and Direction = 'OUT'
-            //             and CreatedAt > @dateAfter
-            //         order by CreatedAt desc
-            //     ";
-            //     cmd.Parameters.AddWithValue("@partnerGroupId", _groupInfo.Id);
-            //     cmd.Parameters.AddWithValue("@dateAfter", fileInfo.PeriodEndDate);
-            //     using(var r = cmd.ExecuteReader())
-            //     {
-            //         if(!r.HasRows)
-            //             return;
-            //         r.Read();
-            //         baseFileId = r.GetInt32(0);
-            //         baseFileName = r.GetString(1);
-            //         baseFileCreatedAt = r.GetDateTime(2);
-            //     }
-            // });
-            // 
-            // // Якщо немає
-            // if(baseFileId == null)
-            // {
-            //     MessageBox.Show("Не знайдено файл, створений після кінцевої дати обраного періоду звітності. Створіть потрібний файл.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //     return;
-            // }
-            // 
-            // // Індекс останнього надісланого фалу за поточний рік
-            // var lastSentSeqNr = 0;
-            // Helpers.RunSqlCwr(cmd =>
-            // {
-            //     cmd.CommandText = "select max(SentFileSeqNr) from CwrPartnerFiles where PartnerId = @partnerId";
-            //     cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
-            //     using(var r = cmd.ExecuteReader())
-            //     {
-            //         r.Read();
-            //         if(!r.IsDBNull(0))
-            //         {
-            //             lastSentSeqNr = r.GetInt32(0);
-            //         }
-            //     }
-            // });
-            // 
-            // // Назви файлів для надсилання
-            // var targetFileName = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.V21";
-            // var targetFileNamePacked = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.zip";
-            // 
-            // // Копіюємо базовий файл з потрібною назвою, пакуємо і видаляємо не запакований
-            // var targetFilePath = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, _partnerInfo.Name);
-            // Directory.CreateDirectory(targetFilePath);
-            // 
-            // var sourceFileNameFull = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, baseFileName);
-            // var targetFileNameFull = Path.Combine(targetFilePath, targetFileName);
-            // File.Copy(sourceFileNameFull, targetFileNameFull, true);
-            // 
-            // var targetFileNamePackedFull = Path.Combine(targetFilePath, targetFileNamePacked);
-            // File.Delete(targetFileNamePackedFull);
-            // using (ZipArchive archive = ZipFile.Open(targetFileNamePackedFull, ZipArchiveMode.Create))
-            // {
-            //     archive.CreateEntryFromFile(sourceFileNameFull, targetFileName, CompressionLevel.Optimal);
-            // }
-            // 
-            // File.Delete(targetFileNameFull);
-            // 
-            // // Заносимо інформацію в БД
-            // Helpers.RunSqlCwr(cmd =>
-            // {
-            //     cmd.CommandText = @"
-            //         update CwrPartnerFiles
-            //         set
-            //               CwrFileId = @cwrFileId
-            //             , Name = @name
-            //             , Status = @status
-            //         where Id = @fileId
-            //     ";
-            //     cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
-            //     cmd.Parameters.AddWithValue("@cwrFileId", baseFileId);
-            //     cmd.Parameters.AddWithValue("@name", targetFileNamePacked);
-            //     cmd.Parameters.AddWithValue("@status", (int)FileStatus.Awaiting);
-            //     cmd.ExecuteNonQuery();
-            // });
-            // 
-            // // Заносимо в память
-            // fileInfo.BaseFileName = baseFileName;
-            // fileInfo.FileName = targetFileNamePacked;
-            // fileInfo.FileStatus = (int)FileStatus.Awaiting;
-            // 
-            // // Відобржаємо на формі
-            // item.SubItems[3].Text = FileStatusTitle[(int)FileStatus.Awaiting - 1];
-            // tbFileName.Text = targetFileNamePacked;
-            // tbBaseFileName.Text = baseFileName;
-            // tbFileStatus.Text = FileStatusTitle[(int)FileStatus.Awaiting - 1];
-            // 
-            // 
-            // UpdateButtons();
         }
 
         private void btnShowFile_Click(object sender, EventArgs e)
@@ -495,97 +466,25 @@ namespace CwrTools
 
             var item = lvFiles.SelectedItems[0];
             var fileInfo = (FileInfo)item.Tag;
-            var nextStatus = fileInfo.FileStatus - 1 == (int)FileStatus.Planned ? FileStatus.Sent : FileStatus.Accepted;
 
-            #region // Зміна статусу
-            Helpers.RunSqlCwr(cmd =>
+            if(fileInfo.FileStatus == (int)FileStatus.Awaiting)
             {
-                cmd.CommandText = @"update CwrPartnerFiles set
-                      Status = @status
-                    , SentAt = getdate()
-                    where Id = @fileId
-                ";
-                cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
-                cmd.Parameters.AddWithValue("@status", (int)nextStatus);
-                cmd.ExecuteNonQuery();
-
-            });
-
-            UpdatePartnerFiles();
-            #endregion // Зміна статусу
-
-            #region // Зміна дати НАДІСЛАНО
-            if(nextStatus == FileStatus.Sent)
-            {
-                Helpers.RunSqlCwr(cmd =>
-                {
-                    cmd.CommandText = @"update CwrPartnerFiles set
-                            SentAt = getdate()
-                        where Id = @fileId
-                    ";
-                    cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
-                    cmd.ExecuteNonQuery();
-
-                });
-
-                UpdatePartnerFiles();
+                SetFileSent();
             }
-            #endregion /// Зміна дати НАДІСЛАНО
-
-            #region // Скасовуємо надсилання файлів для попереднх періодів
-            if(nextStatus == FileStatus.Sent)
+            else if(fileInfo.FileStatus == (int)FileStatus.Sent)
             {
-                Helpers.RunSqlCwr(cmd =>
-                {
-                    cmd.CommandText = @"update CwrPartnerFiles set Status = 6 where Id = @fileId";
-                    cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
-                    cmd.ExecuteNonQuery();
-               });
+                ShooseFileRespStatus();
             }
-            #endregion /// Скасовуємо надсилання файлів для попереднх періодів
-
-            #region // Зміна дати ПРИЙНЯТО
-            if(nextStatus == FileStatus.Accepted)
+            else if(fileInfo.FileStatus == (int)FileStatus.Accepted)
             {
-                Helpers.RunSqlCwr(cmd =>
-                {
-                    cmd.CommandText = @"update CwrPartnerFiles set
-                            AnsweredAt = getdate()
-                        where Id = @fileId
-                    ";
-                    cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
-                    cmd.ExecuteNonQuery();
-
-                });
-
-                UpdatePartnerFiles();
+                SetFileRespStatus(FileStatus.Rejected);
             }
-            #endregion /// Зміна дати ПРИЙНЯТО
-
-        }
-
-        private void btnSetCanceled_Click(object sender, EventArgs e)
-        {
-            if(lvFiles.SelectedItems.Count == 0)
+            else if(fileInfo.FileStatus == (int)FileStatus.Rejected)
             {
-                panelDetails.Visible = false;
-                return;
+                SetFileRespStatus(FileStatus.Accepted);
             }
 
-            var item = lvFiles.SelectedItems[0];
-            var fileInfo = (FileInfo)item.Tag;
-            var nextStatus = FileStatus.Rejected;
-
-
-            Helpers.RunSqlCwr(cmd =>
-            {
-                cmd.CommandText = "update CwrPartnerFiles set Status = @status, AnsweredAt = getdate() where Id = @fileId";
-                cmd.Parameters.AddWithValue("@fileId", fileInfo.FileId);
-                cmd.Parameters.AddWithValue("@status", (int)nextStatus);
-                cmd.ExecuteNonQuery();
-            });
-
-            UpdatePartnerFiles();
+            return;
         }
 
         private void btnEditComment_Click(object sender, EventArgs e)
@@ -727,6 +626,32 @@ namespace CwrTools
             if(isAccepted)
             {
                 MessageBox.Show("Файл вже отриманий партнером.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Перевіряємо, що базовий файл відмінний від раніш призначеного для передачі
+            var isTheSame = false;
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = @"
+                    select null
+                    from CwrPartnerFiles
+                    where CwrFileId = @cwrFileId
+                        and PartnerId = @partnerId
+                ";
+                cmd.Parameters.AddWithValue("@cwrFileId", baseFileId);
+                cmd.Parameters.AddWithValue("@partnerId", _partnerInfo.Id);
+                using(var r = cmd.ExecuteReader())
+                {
+                    if(r.HasRows)
+                        isTheSame = true;
+                }
+            });
+
+            // Якщо той самий
+            if(isTheSame)
+            {
+                MessageBox.Show("Файл для передачі не зазнав змін.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

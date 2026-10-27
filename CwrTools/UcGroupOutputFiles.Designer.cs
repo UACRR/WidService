@@ -36,7 +36,6 @@
             this.labTitle = new System.Windows.Forms.Label();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.tsbtnCreateFile = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnUpdateFile = new System.Windows.Forms.ToolStripButton();
             this.tsbtnDeleteFile = new System.Windows.Forms.ToolStripButton();
             this.tsbtnShowFile = new System.Windows.Forms.ToolStripButton();
             this.ilPartnerGroups = new System.Windows.Forms.ImageList(this.components);
@@ -106,7 +105,6 @@
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbtnCreateFile,
-            this.tsbtnUpdateFile,
             this.tsbtnDeleteFile,
             this.tsbtnShowFile});
             this.toolStrip.Location = new System.Drawing.Point(0, 38);
@@ -122,18 +120,8 @@
             this.tsbtnCreateFile.Name = "tsbtnCreateFile";
             this.tsbtnCreateFile.Size = new System.Drawing.Size(119, 29);
             this.tsbtnCreateFile.Text = "Створити файл";
-            this.tsbtnCreateFile.ToolTipText = "Створити файл";
+            this.tsbtnCreateFile.ToolTipText = "Створити файл або оновити останній";
             this.tsbtnCreateFile.Click += new System.EventHandler(this.tsbtnCreateFile_Click);
-            // 
-            // tsbtnUpdateFile
-            // 
-            this.tsbtnUpdateFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnUpdateFile.Image")));
-            this.tsbtnUpdateFile.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnUpdateFile.Name = "tsbtnUpdateFile";
-            this.tsbtnUpdateFile.Size = new System.Drawing.Size(115, 29);
-            this.tsbtnUpdateFile.Text = "Оновити файл";
-            this.tsbtnUpdateFile.ToolTipText = "Оновити файл";
-            this.tsbtnUpdateFile.Click += new System.EventHandler(this.tsbtnUpdateFile_Click);
             // 
             // tsbtnDeleteFile
             // 
@@ -189,7 +177,6 @@
         private System.Windows.Forms.ImageList ilPartnerGroups;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton tsbtnCreateFile;
-        private System.Windows.Forms.ToolStripButton tsbtnUpdateFile;
         private System.Windows.Forms.ToolStripButton tsbtnDeleteFile;
         private System.Windows.Forms.ToolStripButton tsbtnShowFile;
     }

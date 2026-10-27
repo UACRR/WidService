@@ -124,6 +124,31 @@ namespace CwrTools
             });
         }
 
+        private string GetNewPartnerName()
+        {
+            var retVal = "";
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = "select top 1 null from Partners where Name = @name";
+
+                var idx = 1;
+                while(true)
+                {
+                    var newName = $"Новий партнер {idx}";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@name", newName);
+                    if(cmd.ExecuteScalar() == null)
+                    {
+                        retVal = newName;
+                        return;
+                    }
+                    idx++;
+                }
+            });
+
+            return retVal;
+        }
+
         private void AddPartner()
         {
             var node = tvPartners.SelectedNode;
@@ -134,23 +159,44 @@ namespace CwrTools
             }
 
             var group = (PartnerGroup)node.Tag;
+            var name = GetNewPartnerName();
             Helpers.RunSqlCwr(cmd =>
             {
                 cmd.CommandText = @"
-                    insert Partners(PartnerGroupId, Name) values(@groupId, 'Новий партнер');
+                    insert Partners(
+                          PartnerGroupId
+                        , Name
+                        , PeriodType
+                        , EMail
+                        , FtpUrl
+                        , FtpLogin
+                        , FtpPwd
+                        , FtpPort
+                    )
+                    values(
+                          @groupId
+                        , @name
+                        , 2
+                        , ''
+                        , ''
+                        , ''
+                        , ''
+                        , 0
+                    );
                     select cast(scope_identity() as int);
                 ";
                 cmd.Parameters.AddWithValue("@groupId", group.Id);
+                cmd.Parameters.AddWithValue("@name", name);
                 var newPartnerId = (int)cmd.ExecuteScalar();
 
                 var newPartner = new Partner
                 {
                     Id = newPartnerId,
-                    Name = "Новий партнер",
+                    Name = name,
                 };
                 group.Partners.Add(newPartner);
 
-                var partnerNode = node.Nodes.Add("Новий партнер");
+                var partnerNode = node.Nodes.Add(name);
                 partnerNode.ImageIndex = 1;
                 partnerNode.SelectedImageIndex = 1;
                 partnerNode.Tag = newPartner;
@@ -159,25 +205,40 @@ namespace CwrTools
             });
         }
 
+        private string GetNewGroupName()
+        {
+            var idx = 1;
+            while(true)
+            {
+                var newName = $"Нова група {idx}";
+                if(!_partnerGroups.Any(x => x.Name.ToUpper() == newName.ToUpper()))
+                    return newName;
+                idx++;
+            }
+        }
+
         private void AddGroup()
         {
             Helpers.RunSqlCwr(cmd =>
             {
+                var name = GetNewGroupName();
                 cmd.CommandText = @"
-                    insert PartnerGroups(Name, IsStandard) values('Нова група', 0);
+                    insert PartnerGroups(Name,  IsStandard, IsV21, IsV22, AddNativeNames, AroundWorldRequired)
+                    values              (@name, 0         , 1    , 0    , 0             , 1                  );
                     select cast(scope_identity() as int);
                 ";
+                cmd.Parameters.AddWithValue("@name", name);
                 var newGrId = (int)cmd.ExecuteScalar();
 
                 var newPg = new PartnerGroup
                 {
                     Id = newGrId,
-                    Name = "Нова група",
+                    Name = name,
                     Partners = new List<Partner>(),
                 };
                 _partnerGroups.Add(newPg);
 
-                var node = tvPartners.Nodes.Add("Нова група");
+                var node = tvPartners.Nodes.Add(name);
                 node.ImageIndex = 0;
                 node.SelectedImageIndex = 0;
                 node.Tag = newPg;
@@ -189,6 +250,12 @@ namespace CwrTools
         private void RenameGroup(TreeNode node, string newName)
         {
             var group = (PartnerGroup)node.Tag;
+
+            var sourceDir = Path.Combine(CwrConfig.OutputQueuePath, group.Name);
+            var targetDir = Path.Combine(CwrConfig.OutputQueuePath, newName);
+            if(Directory.Exists(sourceDir))
+                Directory.Move(sourceDir, targetDir);
+
             Helpers.RunSqlCwr(cmd => {
                 cmd.CommandText = @"
                     update PartnerGroups set Name = @name where Id = @groupId;
@@ -222,12 +289,26 @@ namespace CwrTools
         {
             var group = (PartnerGroup)node.Tag;
             if (group.IsStandard) {
-                MessageBox.Show("Загальні групи видаляти не можна", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Стандартні групи видаляти не можна", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (DialogResult.Yes !=
                 MessageBox.Show($"Видалити групу {group.Name} і всю супутню інформацю?", "Питання", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
+                return;
+            }
+
+            var hasParters = false;
+            Helpers.RunSqlCwr(cmd => {
+                cmd.CommandText = @"
+                    select null from Partners where PartnerGroupId = @groupId;
+                ";
+                cmd.Parameters.AddWithValue("@groupId", group.Id);
+                hasParters = cmd.ExecuteScalar() != null;
+            });
+            if (DialogResult.Yes !=
+                MessageBox.Show($"Група містить партнерів, видаліть партнерів сперш.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning))
             {
                 return;
             }
@@ -257,6 +338,7 @@ namespace CwrTools
 
             Helpers.RunSqlCwr(cmd => {
                 cmd.CommandText = @"
+                    delete from CwrPartnerFiles where PartnerId = @partnerId;
                     delete from Partners where Id = @partnerId;
                 ";
                 cmd.Parameters.AddWithValue("@partnerId", partner.Id);
@@ -285,6 +367,15 @@ namespace CwrTools
             var node = e.Node;
             if(node.Parent == null)
             {
+                var group = (PartnerGroup)node.Tag;
+
+                if(_partnerGroups.Any(x => x.Name.ToUpper() == e.Label.ToUpper()))
+                {
+                    e.CancelEdit = true;
+                    MessageBox.Show("Група з такою назвою вже існує", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 RenameGroup(node, e.Label);
             }
             else
@@ -415,11 +506,10 @@ namespace CwrTools
             {
                 var group = (PartnerGroup)tvPartners.SelectedNode.Tag;
                 if (group.IsStandard) {
-                    MessageBox.Show("Зміни налаштувань стандартних груп не дозволені.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    MessageBox.Show("Зміни налаштувань стандартних груп не дозволені.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                var form = new FormPartnerGroupSettings(group.Id);
+                var form = new FormPartnerGroupSettings(group.Id, group.IsStandard);
                 form.ShowDialog();
             }
             else
@@ -457,11 +547,6 @@ namespace CwrTools
                 }
 
             }
-        }
-
-        private void ucGroupOutputFiles_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -53,6 +53,7 @@ namespace CwrTools
 
         public void LoadData()
         {
+            return;
             _fileInfoList = new List<FileInfo>();
             Helpers.RunSqlCwr(cmd =>
             {
@@ -83,6 +84,7 @@ namespace CwrTools
 
         public void RefreshData()
         {
+            return;
             LoadData();
 
             lvFiles.Items.Clear();

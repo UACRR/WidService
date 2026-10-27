@@ -196,7 +196,6 @@
             this.ucGroupOutputFiles.Name = "ucGroupOutputFiles";
             this.ucGroupOutputFiles.Size = new System.Drawing.Size(536, 280);
             this.ucGroupOutputFiles.TabIndex = 2;
-            this.ucGroupOutputFiles.Load += new System.EventHandler(this.ucGroupOutputFiles_Load);
             // 
             // ilPartnerGroups
             // 

@@ -245,7 +245,7 @@ namespace CwrTools
         
         public void UnLoadFile(int cwrFileId)
         {
-            MoveUnLoadedFile(cwrFileId);
+            // MoveUnLoadedFile(cwrFileId);
             Helpers.RunSqlCwr(cmd =>
              {
                  cmd.CommandType = CommandType.StoredProcedure;

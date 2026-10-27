@@ -14,9 +14,11 @@ namespace CwrTools
     {
         private bool _ignoreItemCheckEvent = false;
         private int _groupId;
-        public FormPartnerGroupSettings(int groupId)
+        private bool _readOnly;
+        public FormPartnerGroupSettings(int groupId, bool readOnly)
         {
             _groupId = groupId;
+            _readOnly = readOnly;
             InitializeComponent();
         }
 
@@ -37,6 +39,9 @@ namespace CwrTools
                 }
             });
             _ignoreItemCheckEvent = false;
+
+            lbSettings.Enabled = !_readOnly;
+            btnApply.Enabled = !_readOnly;
         }
 
         private void lbSettings_ItemCheck(object sender, ItemCheckEventArgs e)

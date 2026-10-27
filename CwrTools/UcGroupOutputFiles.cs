@@ -19,12 +19,13 @@ namespace CwrTools
     {
         public class FileInfo
         {
-                public int CwrFileId { get; set; }
-                public string Name   { get; set; }
+            public int CwrFileId { get; set; }
+            public string Name   { get; set; }
+            public bool IsUsed   { get; set; }
         }
 
         private List<FileInfo> _fileInfoList;
-        private FileInfo _newFileInfo;
+        private FileInfo _lastFileInfo;
 
         private PartnerGroupInfo _groupInfo;
 
@@ -49,21 +50,21 @@ namespace CwrTools
             lvFiles.Columns.Clear();
             lvFiles.Columns.Add("Код", 100);
             lvFiles.Columns.Add("Назва", 200);
+            lvFiles.Columns.Add("Використовується", 200);
         }
 
         public void LoadData()
         {
             _fileInfoList = new List<FileInfo>();
-            _newFileInfo = null;
             Helpers.RunSqlCwr(cmd =>
             {
                 cmd.CommandText = @"
-                        select t1.CwrFileId, t1.Name
+                        select distinct t1.CwrFileId, t1.Name, case when t2.Id is null then 0 else 1 end
                         from CwrFiles t1
-	                        join RecHdr t2 on t1.CwrFileId = t2.CwrFileId
-                        where Direction = 'OUT'
-                            and PartnerGroupId = @groupId
-                        order by CreationDate desc
+                            left join CwrPartnerFiles t2 on t1.CwrFileId = t2.CwrFileId
+                        where t1.Direction = 'OUT'
+                            and t1.PartnerGroupId = @groupId
+                        order by t1.Name desc
                 ";
                 cmd.Parameters.AddWithValue("@groupId", _groupInfo.Id);
                 using (var r = cmd.ExecuteReader())
@@ -74,6 +75,7 @@ namespace CwrTools
                         {
                             CwrFileId = r.GetInt32(0),
                             Name = r.GetString(1),
+                            IsUsed = r.GetInt32(2) == 1 ? true : false,
                         };
                         _fileInfoList.Add(fileInfo);
                     }
@@ -112,6 +114,7 @@ namespace CwrTools
             {
                 var item = lvFiles.Items.Add(x.CwrFileId.ToString());
                 item.SubItems.Add(x.Name);
+                item.SubItems.Add(x.IsUsed ? "ТАК" : "");
 
                 item.Tag = x;
             });
@@ -123,6 +126,19 @@ namespace CwrTools
         {
         }
 
+        private bool IsUsedByPartner(int cwrFileId)
+        {
+            var isUsedByPartner = false;
+            Helpers.RunSqlCwr(cmd =>
+            {
+                cmd.CommandText = "select top 1 null from CwrPartnerFiles where CwrFileId = @cwrFileId";
+                cmd.Parameters.AddWithValue("@cwrFileId", cwrFileId);
+                var res = cmd.ExecuteScalar();
+                isUsedByPartner = res != null;
+            });
+            return isUsedByPartner;
+        }
+
         private void CreateFile()
         {
             var reader = new CwrFileReader();
@@ -131,9 +147,15 @@ namespace CwrTools
             {
                 Cursor = Cursors.WaitCursor;
 
-                if(_newFileInfo != null)
+                var lastFileInfo = _fileInfoList.OrderByDescending(x => x.Name).FirstOrDefault();
+                var isUsedByPartner = lastFileInfo == null || lastFileInfo.IsUsed;
+                if(lastFileInfo != null)
                 {
-                    reader.UnLoadFile(_newFileInfo.CwrFileId);
+                    if(!isUsedByPartner)
+                    {
+                        MessageBox.Show("Останній файл не використовується партнерами. Він буде оновлений.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        reader.UnLoadFile(lastFileInfo.CwrFileId);
+                    }
                 }
 
                 var path = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name);
@@ -151,6 +173,15 @@ namespace CwrTools
                 fs.SplitFile();
 
                 RefreshData(_groupInfo.Id);
+
+                if(isUsedByPartner)
+                {
+                    MessageBox.Show("Файл створено.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Файл оновлено.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
             }
             catch(Exception ex)
@@ -172,6 +203,12 @@ namespace CwrTools
             var item = lvFiles.SelectedItems[0];
             var fileInfo = (FileInfo)item.Tag;
 
+            if(fileInfo.IsUsed)
+            {
+                MessageBox.Show("Файл використовується партнерами і не може бути видалений.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             File.Delete(Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, fileInfo.Name));
 
             Helpers.RunSqlCwr(cmd =>
@@ -189,7 +226,11 @@ namespace CwrTools
 
         private void ShowInFolder()
         {
-            if(lvFiles.SelectedItems.Count == 0) return;
+            if(lvFiles.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Не обраний файл", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var fileInfo = (FileInfo)lvFiles.SelectedItems[0].Tag;
 
@@ -201,11 +242,6 @@ namespace CwrTools
         private void tsbtnCreateFile_Click(object sender, EventArgs e)
         {
             CreateFile();
-        }
-
-        private void tsbtnUpdateFile_Click(object sender, EventArgs e)
-        {
-            //CreateFile();
         }
 
         private void tsbtnDeleteFile_Click(object sender, EventArgs e)
@@ -223,5 +259,5 @@ namespace CwrTools
             RefreshControls();
         }
 
-        }
+    }
 }
