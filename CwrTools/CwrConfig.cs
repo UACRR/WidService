@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,11 @@ namespace CwrTools
 {
     public static class CwrConfig
     {
-        public static string FilesRootFolder { get; set; }
+        private static string FilesRootFolder { get; set; }
         public static string InputQueuePath { get; set; }
-        public static string OutputQueuePath { get; set; }
+        private static string OutputQueuePath { get; set; }
         public static string InputFilesPath { get; set; }
-        public static string OutputFilesPath { get; set; }
+        private static string OutputFilesPath { get; set; }
         public static void Load()
         {
             Helpers.RunSqlCwr(cmd =>
@@ -49,6 +50,26 @@ namespace CwrTools
                 cmd.Parameters.AddWithValue("@endYear", DateTime.Now.Year + 1);
                 cmd.ExecuteNonQuery();
             });
+        }
+
+        public static string GetOutputGroupPath(string groupName)
+        {
+            return Path.Combine(OutputQueuePath, groupName);
+        }
+
+        public static string GetOutputGroupFullFileName(string groupName, string fileName)
+        {
+            return Path.Combine(GetOutputGroupPath(groupName), fileName);
+        }
+
+        public static string GetOutputPartnerPath(string partnerName)
+        {
+            return Path.Combine(OutputFilesPath, partnerName);
+        }
+
+        public static string GetOutputPartnerFullFileName(string partnerName, string fileName)
+        {
+            return Path.Combine(GetOutputPartnerPath(partnerName), fileName);
         }
     }
 }

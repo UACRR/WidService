@@ -439,7 +439,7 @@ namespace CwrTools
             }
 
             var fileInfo = (FileInfo)lvFiles.SelectedItems[0].Tag;
-            var filePath = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, fileInfo.BaseFileName);
+            var filePath = CwrConfig.GetOutputGroupFullFileName(_groupInfo.Name, fileInfo.BaseFileName);
             Process.Start("explorer.exe", $"/select,\"{filePath}\"");
         }
 
@@ -452,7 +452,7 @@ namespace CwrTools
             }
 
             var fileInfo = (FileInfo)lvFiles.SelectedItems[0].Tag;
-            var filePath = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name,_partnerInfo.Name, fileInfo.FileName);
+            var filePath = CwrConfig.GetOutputGroupFullFileName(_groupInfo.Name, fileInfo.FileName);
             Process.Start("explorer.exe", $"/select,\"{filePath}\"");
         }
 
@@ -676,10 +676,10 @@ namespace CwrTools
             var targetFileNamePacked = $"CW{baseFileCreatedAt:yy}{lastSentSeqNr + 1:D4}140_000.zip";
 
             // Копіюємо базовий файл з потрібною назвою, пакуємо і видаляємо не запакований
-            var targetFilePath = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, _partnerInfo.Name);
+            var targetFilePath = CwrConfig.GetOutputPartnerPath(_partnerInfo.Name);
             Directory.CreateDirectory(targetFilePath);
 
-            var sourceFileNameFull = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, baseFileName);
+            var sourceFileNameFull = CwrConfig.GetOutputGroupFullFileName(_groupInfo.Name, baseFileName);
             var targetFileNameFull = Path.Combine(targetFilePath, targetFileName);
             File.Copy(sourceFileNameFull, targetFileNameFull, true);
 

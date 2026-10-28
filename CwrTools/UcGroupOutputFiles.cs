@@ -158,7 +158,7 @@ namespace CwrTools
                     }
                 }
 
-                var path = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name);
+                var path = CwrConfig.GetOutputGroupPath(_groupInfo.Name);
                 Directory.CreateDirectory(path);
                 var writer = new CwrFileWriter();
                 var fileFullName = writer.CreateFile(path, _groupInfo);
@@ -169,8 +169,8 @@ namespace CwrTools
 
                 LoadData();
 
-                var fs = new CwrFileSplitter(fileFullName, 10000);
-                fs.SplitFile();
+                //var fs = new CwrFileSplitter(fileFullName, 10000);
+                //fs.SplitFile();
 
                 RefreshData(_groupInfo.Id);
 
@@ -209,7 +209,7 @@ namespace CwrTools
                 return;
             }
 
-            File.Delete(Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, fileInfo.Name));
+            File.Delete(CwrConfig.GetOutputGroupFullFileName(_groupInfo.Name, fileInfo.Name));
 
             Helpers.RunSqlCwr(cmd =>
             {
@@ -219,6 +219,7 @@ namespace CwrTools
                 cmd.ExecuteNonQuery();
             });
 
+            _fileInfoList.Remove(fileInfo);
             lvFiles.Items.Remove(item);
 
             MessageBox.Show("Файл видалено.", "Повідомлення", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -235,7 +236,7 @@ namespace CwrTools
             var fileInfo = (FileInfo)lvFiles.SelectedItems[0].Tag;
 
             var reader = new CwrFileReader();
-            var fileFullName = Path.Combine(CwrConfig.OutputQueuePath, _groupInfo.Name, fileInfo.Name);
+            var fileFullName = CwrConfig.GetOutputGroupFullFileName(_groupInfo.Name, fileInfo.Name);
             Process.Start("explorer.exe", "/select, " + fileFullName);
         }
 

@@ -21,6 +21,7 @@ namespace CwrTools
         {
             public int Id      { get; set; }
             public string Name { get; set; }
+            public int PartnerGroupId { get; set; }
         }
 
         public class PartnerGroup
@@ -99,6 +100,7 @@ namespace CwrTools
                             {
                                 Id = r.GetInt32(3),
                                 Name = r.GetString(4),
+                                PartnerGroupId = grId,
                             });
                         }
                     }
@@ -124,29 +126,28 @@ namespace CwrTools
             });
         }
 
+        private bool PartnerExists(string name)
+        {
+             var retVal = false;
+             Helpers.RunSqlCwr(cmd =>
+             {
+                cmd.CommandText = "select top 1 null from Partners where Name = @name";
+                cmd.Parameters.AddWithValue("@name", name);
+                retVal = cmd.ExecuteScalar() != null;
+            });
+            return retVal;
+        }
+
         private string GetNewPartnerName()
         {
-            var retVal = "";
-            Helpers.RunSqlCwr(cmd =>
+            var idx = 1;
+            while(true)
             {
-                cmd.CommandText = "select top 1 null from Partners where Name = @name";
-
-                var idx = 1;
-                while(true)
-                {
-                    var newName = $"Новий партнер {idx}";
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@name", newName);
-                    if(cmd.ExecuteScalar() == null)
-                    {
-                        retVal = newName;
-                        return;
-                    }
-                    idx++;
-                }
-            });
-
-            return retVal;
+                var newName = $"Новий партнер {idx}";
+                if(!PartnerExists(newName))
+                    return newName;
+                idx++;
+            }
         }
 
         private void AddPartner()
@@ -251,8 +252,8 @@ namespace CwrTools
         {
             var group = (PartnerGroup)node.Tag;
 
-            var sourceDir = Path.Combine(CwrConfig.OutputQueuePath, group.Name);
-            var targetDir = Path.Combine(CwrConfig.OutputQueuePath, newName);
+            var sourceDir = CwrConfig.GetOutputGroupPath(group.Name);
+            var targetDir = CwrConfig.GetOutputGroupPath(newName);
             if(Directory.Exists(sourceDir))
                 Directory.Move(sourceDir, targetDir);
 
@@ -272,6 +273,13 @@ namespace CwrTools
         private void RenamePartner(TreeNode node, string newName)
         {
             var partner = (Partner)node.Tag;
+            var group = _partnerGroups.Single(x => x.Id == partner.PartnerGroupId);
+
+            var sourceDir = CwrConfig.GetOutputPartnerPath(partner.Name);
+            var targetDir = CwrConfig.GetOutputPartnerPath(newName);
+            if(Directory.Exists(sourceDir))
+                Directory.Move(sourceDir, targetDir);
+
             Helpers.RunSqlCwr(cmd => {
                 cmd.CommandText = @"
                     update Partners set Name = @name where Id = @partnerId;
@@ -336,6 +344,20 @@ namespace CwrTools
                 return;
             }
 
+            var hasSentFiles = false;
+            Helpers.RunSqlCwr(cmd => {
+                cmd.CommandText = @"
+                    select null from CwrPartnerFiles where PartnerId = @partnerId and Status not in (1, 2);
+                ";
+                cmd.Parameters.AddWithValue("@partnerId", partner.Id);
+                hasSentFiles = cmd.ExecuteScalar() != null;
+            });
+            if (hasSentFiles)
+            {
+                MessageBox.Show($"Партнеру надіслані файли, видалити не можна.", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Helpers.RunSqlCwr(cmd => {
                 cmd.CommandText = @"
                     delete from CwrPartnerFiles where PartnerId = @partnerId;
@@ -380,6 +402,15 @@ namespace CwrTools
             }
             else
             {
+                var partner = (Partner)node.Tag;
+
+                if(PartnerExists(e.Label))
+                {
+                    e.CancelEdit = true;
+                    MessageBox.Show("Партнер з такою назвою вже існує", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 RenamePartner(node, e.Label);
             }
         }
